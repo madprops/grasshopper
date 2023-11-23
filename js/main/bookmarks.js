@@ -130,6 +130,10 @@ App.bookmark_items = async (item, active, feedback = true) => {
   let bump = []
 
   for (let item of active) {
+    if (item.header) {
+      continue
+    }
+
     let bumped = false
 
     for (let b of bookmarks) {

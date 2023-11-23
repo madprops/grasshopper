@@ -154,6 +154,7 @@ App.setup_commands = () => {
     cmd: `remove_color`,
     modes: [`tabs`],
     item: true,
+    some_custom_color: true,
     icon: theme_icon,
     action: (args) => {
       App.edit_tab_color({item: args.item})
@@ -444,7 +445,7 @@ App.setup_commands = () => {
       cmd: `bookmark_items`,
       modes: [`items`],
       item: true,
-      no_header: true,
+      some_no_header: true,
       icon: bookmarks_icon,
       action: (args) => {
         App.bookmark_items(args.item)
@@ -534,7 +535,7 @@ App.setup_commands = () => {
       cmd: `unload_tabs`,
       modes: [`tabs`],
       some_loaded: true,
-      no_header: true,
+      some_no_header: true,
       item: true,
       icon: unloaded_icon,
       action: (args) => {
@@ -570,7 +571,7 @@ App.setup_commands = () => {
       cmd: `duplicate_tabs`,
       modes: [`tabs`],
       item: true,
-      no_header: true,
+      some_no_header: true,
       icon: tabs_icon,
       action: (args) => {
         App.duplicate_tabs(args.item)
@@ -655,7 +656,7 @@ App.setup_commands = () => {
       cmd: `mute_tabs`,
       modes: [`tabs`],
       some_unmuted: true,
-      no_header: true,
+      some_no_header: true,
       item: true,
       icon: muted_icon,
       action: (args) => {
@@ -668,7 +669,7 @@ App.setup_commands = () => {
       cmd: `unmute_tabs`,
       modes: [`tabs`],
       some_muted: true,
-      no_header: true,
+      some_no_header: true,
       item: true,
       icon: muted_icon,
       action: (args) => {
@@ -1032,8 +1033,8 @@ App.setup_commands = () => {
       cmd: `add_split_top`,
       modes: [`tabs`],
       item: true,
-      some_not_split_top: true,
-      no_header: true,
+      some_no_split_top: true,
+      some_no_header: true,
       icon: zone_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `top`})
@@ -1045,8 +1046,8 @@ App.setup_commands = () => {
       cmd: `add_split_bottom`,
       modes: [`tabs`],
       item: true,
-      some_not_split_bottom: true,
-      no_header: true,
+      some_no_split_bottom: true,
+      some_no_header: true,
       icon: zone_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `bottom`})
@@ -1061,6 +1062,7 @@ App.setup_commands = () => {
       cmd: `remove_title`,
       modes: [`tabs`],
       item: true,
+      some_custom_title: true,
       icon: notepad_icon,
       action: (args) => {
         App.remove_item_title(args.item)
@@ -1082,6 +1084,7 @@ App.setup_commands = () => {
       cmd: `remove_icon`,
       modes: [`tabs`],
       item: true,
+      some_custom_icon: true,
       icon: bot_icon,
       action: (args) => {
         App.remove_item_icon(args.item)
@@ -1135,6 +1138,7 @@ App.setup_commands = () => {
       cmd: `remove_tags`,
       modes: [`tabs`],
       item: true,
+      some_custom_tags: true,
       icon: tag_icon,
       action: (args) => {
         App.remove_item_tags(args.item)
@@ -1166,7 +1170,7 @@ App.setup_commands = () => {
       cmd: `remove_split`,
       modes: [`tabs`],
       some_split: true,
-      no_header: true,
+      some_no_header: true,
       item: true,
       icon: zone_icon,
       action: (args) => {
@@ -1246,7 +1250,7 @@ App.setup_commands = () => {
       modes: [`items`],
       item: true,
       single: true,
-      no_header: true,
+      some_no_header: true,
       icon: filter_icon,
       action: (args) => {
         App.filter_domain(args.item, true)
@@ -1282,7 +1286,7 @@ App.setup_commands = () => {
       name: `Filter Tag`,
       cmd: `filter_tag`,
       modes: [`items`],
-      some_tagged: true,
+      some_tags: true,
       item: true,
       icon: tag_icon,
       action: (args) => {
@@ -1509,7 +1513,7 @@ App.setup_commands = () => {
       cmd: `edit_domain_rule`,
       modes: [`items`],
       single: true,
-      no_header: true,
+      some_no_header: true,
       icon: notepad_icon,
       action: (args) => {
         App.edit_domain_rule(args.item, args.e)
@@ -1727,32 +1731,64 @@ App.check_command = (command, args = {}) => {
           args.some_split_top = true
         }
         else {
-          args.some_not_split_top = true
+          args.some_no_split_top = true
         }
 
         if (App.get_split(item, `bottom`)) {
           args.some_split_bottom = true
         }
         else {
-          args.some_not_split_bottom = true
+          args.some_no_split_bottom = true
         }
 
         if (args.some_split_top || args.some_split_bottom) {
           args.some_split = true
         }
         else {
-          args.some_not_split = true
+          args.some_no_split = true
         }
 
-        args.header = item.header
+        if (item.header) {
+          args.some_header = true
+        }
+        else {
+          args.some_no_header = true
+        }
       }
 
-      if (App.get_tags(item).length) {
-        args.some_tagged = true
+      //
+
+      if (App.get_color(item, false)) {
+        args.some_color = true
       }
       else {
-        args.some_untagged = true
+        args.some_no_color = true
       }
+
+      if (item.custom_color) {
+        args.some_custom_color = true
+      }
+      else {
+        args.some_no_custom_color = true
+      }
+
+      //
+
+      if (App.get_tags(item).length) {
+        args.some_tags = true
+      }
+      else {
+        args.some_no_tags = true
+      }
+
+      if (item.custom_tags.length) {
+        args.some_custom_tags = true
+      }
+      else {
+        args.some_no_custom_tags = true
+      }
+
+      //
 
       if (App.get_icon(item)) {
         args.some_icon = true
@@ -1760,194 +1796,94 @@ App.check_command = (command, args = {}) => {
       else {
         args.some_no_icon = true
       }
+
+      if (item.custom_icon) {
+        args.some_custom_icon = true
+      }
+      else {
+        args.some_no_custom_icon = true
+      }
+
+      //
+
+      if (App.get_title(item, false)) {
+        args.some_title = true
+      }
+      else {
+        args.some_no_title = true
+      }
+
+      if (item.custom_title) {
+        args.some_custom_title = true
+      }
+      else {
+        args.some_no_custom_title = true
+      }
     }
   }
 
   let valid = true
 
-  if (valid) {
-    if (command.item) {
-      if (!args.item) {
+  function check (what) {
+    if (!valid) {
+      return
+    }
+
+    if (command[what]) {
+      if (!args[what]) {
         valid = false
       }
     }
   }
 
-  if (valid) {
-    if (command.media) {
-      if (command.media !== args.media) {
-        valid = false
-      }
+  function compare (what, value) {
+    if (!valid) {
+      return
     }
-  }
 
-  if (valid) {
-    if (command.color) {
-      if (!args.color) {
+    if (command[what]) {
+      if (command[what] !== value) {
         valid = false
       }
     }
   }
-
-  if (valid) {
-    if (command.some_pinned) {
-      if (!args.some_pinned) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_unpinned) {
-      if (!args.some_unpinned) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_muted) {
-      if (!args.some_muted) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_unmuted) {
-      if (!args.some_unmuted) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_loaded) {
-      if (!args.some_loaded) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_unloaded) {
-      if (!args.some_unloaded) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_split) {
-      if (!args.some_split) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_not_split) {
-      if (!args.some_not_split) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_split_top) {
-      if (!args.some_split_top) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_split_bottom) {
-      if (!args.some_split_bottom) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_not_split_top) {
-      if (!args.some_not_split_top) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_not_split_bottom) {
-      if (!args.some_not_split_bottom) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_tagged) {
-      if (!args.some_tagged) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_untagged) {
-      if (!args.some_untagged) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_icon) {
-      if (!args.some_icon) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_no_icon) {
-      if (!args.some_no_icon) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.single) {
-      if (!args.single) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.multiple) {
-      if (!args.multiple) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.some_tagged) {
-      if (!args.some_tagged) {
-        valid = false
-      }
-    }
-  }
-
-  if (valid) {
-    if (command.no_header) {
-      if (args.header) {
-        valid = false
-      }
-    }
-  }
+  compare(`media`, args.media)
+  //
+  check(`single`)
+  check(`multiple`)
+  check(`item`)
+  check(`color`)
+  check(`some_pinned`)
+  check(`some_unpinned`)
+  check(`some_muted`)
+  check(`some_unmuted`)
+  check(`some_loaded`)
+  check(`some_unloaded`)
+  check(`some_split`)
+  check(`some_no_split`)
+  check(`some_split_top`)
+  check(`some_split_bottom`)
+  check(`some_no_split_top`)
+  check(`some_no_split_bottom`)
+  check(`some_header`)
+  check(`some_no_header`)
+  //
+  check(`some_color`)
+  check(`some_no_color`)
+  check(`some_custom_color`)
+  check(`some_no_custom_color`)
+  check(`some_tags`)
+  check(`some_no_tags`)
+  check(`some_custom_tags`)
+  check(`some_no_custom_tags`)
+  check(`some_icon`)
+  check(`some_no_icon`)
+  check(`some_custom_icon`)
+  check(`some_no_custom_icon`)
+  check(`some_title`)
+  check(`some_no_title`)
+  check(`some_custom_title`)
+  check(`some_no_custom_title`)
 
   if (valid) {
     if (command.modes) {
