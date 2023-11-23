@@ -971,23 +971,23 @@ App.show_filter_context_menu = (mode, e) => {
     })
 
     App.sep(items)
-
-    items.push({
-      text: `Refine`,
-      action: (e) => {
-        return App.show_filter_refine(mode, e)
-      }
-    })
-
-    items.push({
-      text: `Custom`,
-      action: (e) => {
-        App.show_custom_filters(mode, e)
-      }
-    })
-
-    App.sep(items)
   }
+
+  items.push({
+    text: `Refine`,
+    action: (e) => {
+      return App.show_filter_refine(mode, e)
+    }
+  })
+
+  items.push({
+    text: `Custom`,
+    action: (e) => {
+      App.show_custom_filters(mode, e)
+    }
+  })
+
+  App.sep(items)
 
   if (value) {
     items.push({
