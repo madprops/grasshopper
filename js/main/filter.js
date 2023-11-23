@@ -1231,10 +1231,10 @@ App.create_filter_menu = (mode) => {
     let direction = App.wheel_direction(e)
 
     if (direction === `down`) {
-      App.cycle_filter_modes(mode, true)
+      App.cycle_filter_modes(mode, true, e)
     }
     else if (direction === `up`) {
-      App.cycle_filter_modes(mode, false)
+      App.cycle_filter_modes(mode, false, e)
     }
   })
 
@@ -1309,12 +1309,12 @@ App.show_filter_menu = (mode) => {
   App.show_context({element: btn, items: items, margin: btn.clientHeight})
 }
 
-App.cycle_filter_modes = (mode, reverse = true) => {
+App.cycle_filter_modes = (mode, reverse = true, e) => {
   let f_modes = App.filter_modes(mode)
   let cycle_filters = App.get_setting(`cycle_filters`)
   let modes = []
 
-  if (cycle_filters.length) {
+  if (cycle_filters.length && !e.shiftKey) {
     modes.push(f_modes[0])
     let cmd_names = cycle_filters.map(x => x.cmd)
 
