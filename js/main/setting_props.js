@@ -1371,7 +1371,7 @@ App.build_settings = () => {
       version: 3,
     },
     cycle_filters: {
-      name: `Wheel Filters`,
+      name: `Cycle Filters`,
       type: `list`,
       value: [],
       info: `Use these when cycling the Filter Menu`,

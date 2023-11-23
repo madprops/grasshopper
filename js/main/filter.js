@@ -1239,10 +1239,10 @@ App.create_filter_menu = (mode) => {
     let direction = App.wheel_direction(e)
 
     if (direction === `down`) {
-      App.cycle_filter_modes(mode, true, e)
+      App.cycle_filter_modes(mode, false, e)
     }
     else if (direction === `up`) {
-      App.cycle_filter_modes(mode, false, e)
+      App.cycle_filter_modes(mode, true, e)
     }
   })
 
@@ -1322,8 +1322,25 @@ App.cycle_filter_modes = (mode, reverse, e) => {
   let cycle_filters = App.get_setting(`cycle_filters`)
   let modes = []
 
+  function proc (cmd) {
+    if (cmd === `all`) {
+      App.filter_all(mode)
+    }
+    else {
+      let c = App.get_command(cmd)
+
+      if (c) {
+        App.run_command({cmd: c.cmd, from: `cycle_filters`, e: e})
+      }
+    }
+  }
+
   if (cycle_filters.length && !e.shiftKey) {
-    modes.push(f_modes[0])
+    modes.push({
+      cmd: `all`,
+      name: `all`,
+    })
+
     let cmd_names = cycle_filters.map(x => x.cmd)
 
     for (let cmd_name of cmd_names) {
@@ -1331,7 +1348,10 @@ App.cycle_filter_modes = (mode, reverse, e) => {
 
       if (cmd) {
         if (App.check_command(cmd)) {
-          modes.push({cmd: cmd_name})
+          modes.push({
+            cmd: cmd_name,
+            name: App.filter_cmd_name(cmd_name)
+          })
         }
       }
     }
@@ -1349,7 +1369,7 @@ App.cycle_filter_modes = (mode, reverse, e) => {
 
   let first
 
-  for (let filter_mode of modes.slice(0).reverse()) {
+  for (let filter_mode of modes) {
     if (filter_mode.skip) {
       continue
     }
@@ -1359,16 +1379,18 @@ App.cycle_filter_modes = (mode, reverse, e) => {
     }
 
     if (waypoint) {
-      App.set_filter_mode({mode: mode, cmd: filter_mode.cmd, instant: false})
+      proc(filter_mode.cmd)
       return
     }
 
-    if (filter_mode.cmd === App.filter_mode(mode)) {
+    if (filter_mode.name === App.filter_mode(mode)) {
       waypoint = true
     }
   }
 
-  App.set_filter_mode({mode: mode, cmd: first.cmd, instant: false})
+  if (first) {
+    proc(first.cmd)
+  }
 }
 
 App.copy_filter = (mode) => {
@@ -1387,4 +1409,19 @@ App.paste_filter = async (mode) => {
   if (filter) {
     App.set_filter({mode: mode, text: filter})
   }
+}
+
+App.filter_cmd_name = (cmd) => {
+  let combo_filters = [
+    `filter_color_all`,
+    `filter_tag_all`,
+    `filter_icon_all`,
+  ]
+
+  if (combo_filters.includes(cmd)) {
+    let split = cmd.split(`_`)
+    return `${split[1]}-${split[2]}`
+  }
+
+  return cmd
 }

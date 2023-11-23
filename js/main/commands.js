@@ -33,6 +33,7 @@ App.setup_commands = () => {
 
   color_filters.push({
     name: `Filter All Colors`,
+    short_name: `All Colors`,
     cmd: `filter_color_all`,
     modes: [`items`],
     icon: theme_icon,
@@ -1310,6 +1311,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter All Tags`,
+      short_name: `All Tags`,
       cmd: `filter_tag_all`,
       modes: [`items`],
       item: true,
