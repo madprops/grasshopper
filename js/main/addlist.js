@@ -99,7 +99,7 @@ Addlist.save = (id, hide = true) => {
 Addlist.register = (args = {}) => {
   let def_args = {
     labels: [],
-    sources: [],
+    sources: {},
     append: false,
     process: {},
     labels: {},
