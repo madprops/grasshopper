@@ -370,7 +370,7 @@ App.set_item_text = (item) => {
   }
 
   let text_mode = App.get_setting(`text_mode`)
-  let title = App.get_title(item)
+  let title = App.title(item)
 
   if (text_mode === `title`) {
     lines.push(title || url)
@@ -405,7 +405,7 @@ App.set_item_text = (item) => {
     }
 
     if (App.tagged(item)) {
-      let tags = App.get_tags(item)
+      let tags = App.tags(item)
       tips.push(`Tags: ${tags.join(`, `)}`)
     }
 
@@ -948,7 +948,7 @@ App.copy_url = (item) => {
 }
 
 App.copy_title = (item) => {
-  let title = App.get_title(item)
+  let title = App.title(item)
   App.copy_to_clipboard(title, `Title`)
 }
 

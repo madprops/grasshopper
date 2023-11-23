@@ -101,6 +101,7 @@ App.setup_commands = () => {
       name: name,
       cmd: `remove_color_${color.id}`,
       modes: [`tabs`],
+      some_custom_color: true,
       icon: icon,
       action: (args) => {
         App.remove_color(color.id)
@@ -1117,6 +1118,7 @@ App.setup_commands = () => {
       cmd: `remove_notes`,
       modes: [`tabs`],
       item: true,
+      some_custom_notes: true,
       icon: notes_icon,
       action: (args) => {
         App.remove_item_notes(args.item)
@@ -1819,6 +1821,22 @@ App.check_command = (command, args = {}) => {
       else {
         args.some_no_custom_title = true
       }
+
+      //
+
+      if (App.get_notes(item)) {
+        args.some_notes = true
+      }
+      else {
+        args.some_no_notes = true
+      }
+
+      if (item.custom_notes) {
+        args.some_custom_notes = true
+      }
+      else {
+        args.some_no_custom_notes = true
+      }
     }
   }
 
@@ -1884,6 +1902,10 @@ App.check_command = (command, args = {}) => {
   check(`some_no_title`)
   check(`some_custom_title`)
   check(`some_no_custom_title`)
+  check(`some_notes`)
+  check(`some_no_notes`)
+  check(`some_custom_notes`)
+  check(`some_no_custom_notes`)
 
   if (valid) {
     if (command.modes) {

@@ -122,7 +122,7 @@ App.remove_all_headers = () => {
 }
 
 App.set_header_text = (item) => {
-  let title = App.get_title(item, false) || `Give me a title`
+  let title = App.title(item, false) || `Give me a title`
 
   if (!item.tab_box && (item.title === title)) {
     return

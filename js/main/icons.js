@@ -119,7 +119,7 @@ App.check_icons = (item) => {
     if (!item.header) {
       let icon = DOM.el(`.titled_icon`, item.element)
 
-      if (App.get_title(item, false)) {
+      if (App.get_title(item)) {
         icon.classList.remove(`hidden`)
       }
       else {

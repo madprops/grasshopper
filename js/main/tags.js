@@ -326,7 +326,7 @@ App.filter_tag_pick = (item, e) => {
 
   let items = []
 
-  for (let tag of App.get_tags(item)) {
+  for (let tag of App.tags(item)) {
     items.push({
       icon: App.tag_icon,
       text: tag,
@@ -352,7 +352,7 @@ App.get_tag_items = (mode) => {
   let tags = []
 
   for (let tab of App.get_items(`tabs`)) {
-    for (let tag of App.get_tags(tab)) {
+    for (let tag of App.tags(tab)) {
       if (!tags.includes(tag)) {
         tags.push(tag)
       }
@@ -472,7 +472,7 @@ App.check_taglist = (item) => {
     let container = DOM.el(`.taglist_container`, taglist)
     item.element.classList.add(`using_taglist_${setting}`)
     container.innerHTML = ``
-    let tags = App.get_tags(item).slice(0)
+    let tags = App.tags(item).slice(0)
 
     if (App.get_setting(`sort_taglist`)) {
       App.sort_alpha(tags)

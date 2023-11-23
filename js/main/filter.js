@@ -334,7 +334,7 @@ App.filter_check = (args) => {
 
     if (!match) {
       if (args.by_what.startsWith(`tag`) || App.get_setting(`filter_tags`)) {
-        for (let tag of App.get_tags(args.item)) {
+        for (let tag of App.tags(args.item)) {
           if (App.clean_filter(tag).toLowerCase().startsWith(args.value_lower)) {
             match = true
             break
@@ -345,7 +345,7 @@ App.filter_check = (args) => {
   }
 
   if (!match) {
-    let title = App.get_title(args.item)
+    let title = App.title(args.item)
     title = App.clean_filter(title)
 
     for (let regex of args.regexes) {
@@ -395,7 +395,7 @@ App.filter_check = (args) => {
         match = App.tagged(args.item)
       }
       else {
-        match = App.get_tags(args.item).includes(args.f_value)
+        match = App.tags(args.item).includes(args.f_value)
       }
     }
     else if (args.filter_mode === `icon`) {
@@ -875,7 +875,7 @@ App.filter_title = (item) => {
     return
   }
 
-  let title = App.get_title(item)
+  let title = App.title(item)
 
   if (!title) {
     return

@@ -113,7 +113,7 @@ App.edit_domain_rule = (item, e) => {
   items.push({
     text: `By Title`,
     action: () => {
-      add(App.get_title(item), true)
+      add(App.title(item), true)
     }
   })
 

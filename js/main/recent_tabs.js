@@ -81,7 +81,7 @@ App.show_recent_tabs = (e) => {
   let playing_icon = App.get_setting(`playing_icon`)
 
   for (let item of tabs) {
-    let title = App.get_title(item)
+    let title = App.title(item)
 
     if (item.audible && playing_icon) {
       title = `${playing_icon} ${title}`

@@ -216,7 +216,7 @@ App.edit_prompt = (args = {}) => {
 
   if (args.what === `tags`) {
     if (args.add) {
-      ignore_words = App.get_tags(args.item)
+      ignore_words = App.tags(args.item)
       show_list = true
     }
 
