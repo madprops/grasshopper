@@ -970,9 +970,18 @@ App.show_filter_context_menu = (mode, e) => {
       }
     })
 
+    App.sep(items)
+
+    items.push({
+      text: `Refine`,
+      action: (e) => {
+        return App.show_filter_refine(mode, e)
+      }
+    })
+
     items.push({
       text: `Custom`,
-      action: () => {
+      action: (e) => {
         App.show_custom_filters(mode, e)
       }
     })
@@ -1440,4 +1449,9 @@ App.filter_cmd_name = (cmd) => {
   }
 
   return cmd
+}
+
+App.show_filter_refine = (mode, e) => {
+  let items = App.get_filter_refine(mode)
+  App.show_context({items: items, e: e})
 }
