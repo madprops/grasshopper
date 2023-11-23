@@ -154,6 +154,10 @@ App.view_media = (o_item) => {
     DOM.el(`#media_${what}_prev`).classList.remove(`disabled`)
     DOM.el(`#media_${what}_next`).classList.remove(`disabled`)
   }
+
+  if (App.is_filtered(o_item.mode)) {
+    App.update_filter_history(o_item.mode)
+  }
 }
 
 App.stop_media_player = (what) => {
