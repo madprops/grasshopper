@@ -956,6 +956,7 @@ App.show_filter_context_menu = (mode, e) => {
       },
       alt_action: () => {
         App.forget_filter_history_item(value)
+        App.show_filter_context_menu(mode, e)
       }
     })
   }
