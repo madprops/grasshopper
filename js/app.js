@@ -31,6 +31,7 @@ App.tab_box_modes = [`recent`, `pins`, `colors`, `playing`, `headers`]
 App.no_favicons = [`history`, `bookmarks`]
 App.local_fonts = [`serif`, `sans-serif`, `monospace`]
 App.optional_modes = [`history`, `bookmarks`]
+App.default_icons = [`😀`, `❤️`, `🤖`, `✅`, `🕒`]
 App.primary_mode = `tabs`
 App.default_setting_string = `__default__`
 App.separator_string = `--separator--`

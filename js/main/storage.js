@@ -107,7 +107,7 @@ App.stor_save_title_history = () => {
 }
 
 App.stor_get_icon_history = async () => {
-  App.icon_history = await App.get_local_storage(App.stor_icon_history_name, [])
+  App.icon_history = await App.get_local_storage(App.stor_icon_history_name, App.default_icons.slice(0))
   App.debug(`Stor: Got icon history`)
 }
 
