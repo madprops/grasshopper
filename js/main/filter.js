@@ -559,6 +559,12 @@ App.get_filter_mode = (mode, type) => {
       return filter_mode
     }
   }
+
+  let cmd = App.get_command(type)
+
+  if (cmd) {
+    return {cmd: type, type: type, skip: false}
+  }
 }
 
 App.set_filter_mode = (args = {}) => {
@@ -569,7 +575,7 @@ App.set_filter_mode = (args = {}) => {
 
   App.def_args(def_args, args)
   let filter_mode = App.get_filter_mode(args.mode, args.type)
-  App[`${args.mode}_filter_mode`] = filter_mode.type
+  App[`${args.mode}_filter_mode`] = args.type
   let mode_text = DOM.el(`#${args.mode}_filter_modes_text`)
   mode_text.innerHTML = ``
   mode_text.append(App.filter_mode_text({filter_mode: filter_mode}))
@@ -1304,14 +1310,17 @@ App.show_filter_menu = (mode) => {
 
 App.cycle_filter_modes = (mode, reverse = true) => {
   let f_modes = App.filter_modes(mode)
-  let cycle_filters = App.get_setting(`cycle_filters`).map(x => x.cmd)
+  let cycle_filters = App.get_setting(`cycle_filters`)
   let modes = []
 
   if (cycle_filters.length) {
-    for (let cmd_name of cycle_filters) {
+    modes.push(f_modes[0])
+    let cmd_names = cycle_filters.map(x => x.cmd)
+
+    for (let cmd_name of cmd_names) {
       modes.push({
         cmd: cmd_name,
-        type: cmd_name,
+        type: App.get_filter_type(mode, cmd_name),
         skip: false,
       })
     }
@@ -1366,4 +1375,14 @@ App.paste_filter = async (mode) => {
   if (filter) {
     App.set_filter({mode: mode, text: filter})
   }
+}
+
+App.get_filter_type = (mode, cmd_name) => {
+  for (let f_mode of App.filter_modes(mode)) {
+    if (f_mode.cmd === cmd_name) {
+      return f_mode.type
+    }
+  }
+
+  return cmd_name
 }
