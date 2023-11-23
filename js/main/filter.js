@@ -139,6 +139,7 @@ App.do_filter = async (args = {}) => {
 
   if (filter_mode === `filter_duplicate_tabs`) {
     duplicates = App.find_duplicates(items, `url`)
+    duplicates = duplicates.filter(x => !x.header)
   }
 
   let regexes = []
