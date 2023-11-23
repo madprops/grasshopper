@@ -1729,27 +1729,6 @@ App.check_command = (command, args = {}) => {
           args.some_loaded = true
         }
 
-        if (App.get_split(item, `top`)) {
-          args.some_split_top = true
-        }
-        else {
-          args.some_no_split_top = true
-        }
-
-        if (App.get_split(item, `bottom`)) {
-          args.some_split_bottom = true
-        }
-        else {
-          args.some_no_split_bottom = true
-        }
-
-        if (args.some_split_top || args.some_split_bottom) {
-          args.some_split = true
-        }
-        else {
-          args.some_no_split = true
-        }
-
         if (item.header) {
           args.some_header = true
         }
@@ -1758,84 +1737,23 @@ App.check_command = (command, args = {}) => {
         }
       }
 
-      //
+      for (let prop of [
+        `color`, `tags`, `icon`, `title`,
+        `notes`, `split_top`, `split_bottom`,
+      ]) {
+        if (App.get_edit(item, prop)) {
+          args[`some_${prop}`] = true
+        }
+        else {
+          args[`some_no_${prop}`] = true
+        }
 
-      if (App.get_color(item, false)) {
-        args.some_color = true
-      }
-      else {
-        args.some_no_color = true
-      }
-
-      if (item.custom_color) {
-        args.some_custom_color = true
-      }
-      else {
-        args.some_no_custom_color = true
-      }
-
-      //
-
-      if (App.get_tags(item).length) {
-        args.some_tags = true
-      }
-      else {
-        args.some_no_tags = true
-      }
-
-      if (item.custom_tags.length) {
-        args.some_custom_tags = true
-      }
-      else {
-        args.some_no_custom_tags = true
-      }
-
-      //
-
-      if (App.get_icon(item)) {
-        args.some_icon = true
-      }
-      else {
-        args.some_no_icon = true
-      }
-
-      if (item.custom_icon) {
-        args.some_custom_icon = true
-      }
-      else {
-        args.some_no_custom_icon = true
-      }
-
-      //
-
-      if (App.get_title(item, false)) {
-        args.some_title = true
-      }
-      else {
-        args.some_no_title = true
-      }
-
-      if (item.custom_title) {
-        args.some_custom_title = true
-      }
-      else {
-        args.some_no_custom_title = true
-      }
-
-      //
-
-      if (App.get_notes(item)) {
-        args.some_notes = true
-      }
-      else {
-        args.some_no_notes = true
-      }
-
-      if (item.custom_notes) {
-        args.some_custom_notes = true
-      }
-      else {
-        args.some_no_custom_notes = true
+        if (App.get_edit(item, prop, false)) {
+          args[`some_custom_${prop}`] = true
+        }
+        else {
+          args[`some_no_custom_${prop}`] = true
+        }
       }
     }
   }
@@ -1865,6 +1783,7 @@ App.check_command = (command, args = {}) => {
       }
     }
   }
+
   compare(`media`, args.media)
   //
   check(`single`)

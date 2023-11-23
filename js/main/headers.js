@@ -45,11 +45,11 @@ App.header_group = (item) => {
         select = true
         break
       }
-      else if (App.get_split(it, `top`)) {
+      else if (App.get_split_top(it)) {
         select = true
         break
       }
-      else if (App.get_split(it, `bottom`)) {
+      else if (App.get_split_bottom(it)) {
         selected.push(it)
         select = true
         break
@@ -172,7 +172,7 @@ App.check_header_first = (item) => {
     return false
   }
 
-  if (App.get_split(item, `top`)) {
+  if (App.get_split_top(item)) {
     return false
   }
 
