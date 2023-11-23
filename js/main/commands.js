@@ -35,6 +35,7 @@ App.setup_commands = () => {
     cmd: `filter_color_all`,
     modes: [`items`],
     icon: theme_icon,
+    filter_mode: true,
     action: (args) => {
       App.filter_color(args.mode, `all`, true)
     },
@@ -1305,6 +1306,7 @@ App.setup_commands = () => {
       modes: [`items`],
       item: true,
       icon: tag_icon,
+      filter_mode: true,
       action: (args) => {
         App.filter_tag(args.mode, `all`)
       },
@@ -1322,6 +1324,18 @@ App.setup_commands = () => {
         App.filter_by_icon(args.item)
       },
       info: `Filter by the item's icon`,
+    },
+    {
+      name: `Filter All Icons`,
+      cmd: `filter_icon_all`,
+      modes: [`items`],
+      item: true,
+      icon: bot_icon,
+      filter_mode: true,
+      action: (args) => {
+        App.filter_icon(args.mode, `all`)
+      },
+      info: `Filter all tagged tabs`,
     },
     {
       name: `Filter Icon Menu`,
