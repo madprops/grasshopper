@@ -966,6 +966,13 @@ App.show_filter_context_menu = (mode, e) => {
       }
     })
 
+    items.push({
+      text: `Custom`,
+      action: () => {
+        App.show_custom_filters(mode, e)
+      }
+    })
+
     App.sep(items)
   }
 
