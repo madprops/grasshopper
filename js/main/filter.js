@@ -1059,56 +1059,8 @@ App.toggle_filter = (mode, type) => {
   }
 }
 
-App.filter_playing = (mode) => {
-  App.toggle_filter(mode, `playing`)
-}
-
-App.filter_duplicate = (mode) => {
-  App.toggle_filter(mode, `duplicate`)
-}
-
-App.filter_unloaded = (mode) => {
-  App.toggle_filter(mode, `unloaded`)
-}
-
-App.filter_pinned = (mode) => {
-  App.toggle_filter(mode, `pinned`)
-}
-
-App.filter_normal = (mode) => {
-  App.toggle_filter(mode, `normal`)
-}
-
-App.filter_loaded = (mode) => {
-  App.toggle_filter(mode, `loaded`)
-}
-
-App.filter_no_tab = (mode) => {
-  App.toggle_filter(mode, `notab`)
-}
-
-App.filter_unread = (mode) => {
-  App.toggle_filter(mode, `unread`)
-}
-
-App.filter_titled = (mode) => {
-  App.toggle_filter(mode, `titled`)
-}
-
-App.filter_notes = (mode) => {
-  App.toggle_filter(mode, `notes`)
-}
-
-App.filter_edited = (mode) => {
-  App.toggle_filter(mode, `edited`)
-}
-
-App.filter_header = (mode) => {
-  App.toggle_filter(mode, `header`)
-}
-
-App.filter_media = (mode, media) => {
-  App.toggle_filter(mode, media)
+App.filter_type = (mode, type) => {
+  App.toggle_filter(mode, type)
 }
 
 App.filter_tag = (mode, tag, toggle = false) => {

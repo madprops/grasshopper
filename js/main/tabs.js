@@ -95,35 +95,16 @@ App.setup_tabs = () => {
 }
 
 App.build_tab_filters = () => {
-  let def_icon = App.mode_icons.tabs
-
   App.tabs_filter_modes = [
     {cmd: `filter_pinned_tabs`, type: `pinned`, skip: false},
     {cmd: `filter_normal_tabs`, type: `normal`, skip: false},
-    // {
-    //   type: `playing`, text:`Playing`, skip: false, info: `Show tabs emitting sound`,
-    //   icon: App.get_setting(`playing_icon`) || def_icon
-    // },
-    // {
-    //   type: `loaded`, text:`Loaded`, skip: false, info: `Show tabs that are loaded`,
-    //   icon: App.get_setting(`loaded_icon`) || def_icon
-    // },
-    // {
-    //   type: `unloaded`, text:`Unloaded`, skip: false, info: `Show unloaded tabs`,
-    //   icon: App.get_setting(`unloaded_icon`) || def_icon
-    // },
-    // {
-    //   type: `unread`, text:`Unread`, skip: false, info: `Show tabs that haven't been visited yet`,
-    //   icon: App.get_setting(`unread_icon`) || def_icon
-    // },
-    // {
-    //   type: `header`, text:`Header`, skip: false, info: `Show header tabs`,
-    //   icon: App.zone_icon
-    // },
-    // {type: App.separator_string, skip: true},
-    // {
-    //   type: `duplicate`, text:`Duplicate`, skip: false, info: `Show tabs that have duplicates`,
-    // },
+    {cmd: `filter_playing_tabs`, type: `playing`, skip: false},
+    {cmd: `filter_loaded_tabs`, type: `loaded`, skip: false},
+    {cmd: `filter_unloaded_tabs`, type: `unloaded`, skip: false},
+    {cmd: `filter_unread_tabs`, type: `unread`, skip: false},
+    {cmd: `filter_headers`, type: `headers`, skip: false},
+    {type: App.separator_string, skip: true},
+    {cmd: `filter_duplicate_tabs`, type: `duplicate`, skip: false},
   ]
 }
 
