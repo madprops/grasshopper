@@ -1714,6 +1714,13 @@ App.build_settings = () => {
       info: `Show icons next to the text on the buttons, like on the Main Menu or Settings`,
       version: 1,
     },
+    check_commands: {
+      name: `Check Commands`,
+      type: `checkbox`,
+      value: true,
+      info: `Make commands context aware to avoid clutter`,
+      version: 1,
+    },
     direct_settings: {
       name: `Direct Settings`,
       type: `checkbox`,

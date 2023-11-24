@@ -1662,6 +1662,10 @@ App.check_command = (command, args = {}) => {
     return false
   }
 
+  if (!App.get_setting(`check_commands`)) {
+    return true
+  }
+
   let def_args = {
     active: [],
   }
