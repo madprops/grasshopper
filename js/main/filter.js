@@ -481,11 +481,15 @@ App.set_filter = (args = {}) => {
     text: ``,
     filter: true,
     instant: true,
+    to_history: true,
   }
 
   App.def_args(def_args, args)
   App.get_filter_el(args.mode).value = args.text
-  App.update_filter_history(args.mode)
+
+  if (args.to_history) {
+    App.update_filter_history(args.mode)
+  }
 
   if (args.filter) {
     if (App.on_items(args.mode)) {
@@ -670,6 +674,11 @@ App.create_filter = (mode) => {
     }
 
     App.filter({mode: mode})
+  })
+
+  DOM.ev(filter, `wheel`, (e) => {
+    let direction = App.wheel_direction(e)
+    App.cycle_filters(mode, direction)
   })
 
   return filter
@@ -1484,4 +1493,37 @@ App.show_favorite_filters = (mode, e) => {
   }
 
   App.show_context({items: items, e: e})
+}
+
+App.cycle_filters = (mode, direction) => {
+  let filters = App.filter_history.slice(0)
+
+  if (!filters.length) {
+    return
+  }
+
+  if (direction === `up`) {
+    filters = filters.reverse()
+  }
+
+  let next
+  let waypoint = false
+  let current = App.get_filter(mode)
+
+  for (let it of App.filter_history) {
+    if (waypoint) {
+      next = it
+      break
+    }
+
+    if (it === current) {
+      waypoint = true
+    }
+  }
+
+  if (!next) {
+    next = App.filter_history[0]
+  }
+
+  App.set_filter({mode: mode, text: next, to_history: false})
 }
