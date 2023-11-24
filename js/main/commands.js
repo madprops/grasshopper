@@ -71,7 +71,7 @@ App.setup_commands = () => {
       name: name,
       short_name: short,
       cmd: `color_${color.id}`,
-      some_no_custom_color_id: color.id,
+      some_no_color_id: color.id,
       modes: [`tabs`],
       item: true,
       icon: icon,
@@ -1773,14 +1773,14 @@ App.check_command = (command, args = {}) => {
       }
 
       for (let color of App.colors()) {
-        if (App.get_color(item, color) === color.id) {
+        if (App.get_color(item) === color.id) {
           args[`some_color_id_${color.id}`] = true
         }
         else {
           args[`some_no_color_id_${color.id}`] = true
         }
 
-        if (App.get_color(item, color, false) === color.id) {
+        if (App.get_color(item, false) === color.id) {
           args[`some_custom_color_id_${color.id}`] = true
         }
         else {
@@ -1905,6 +1905,8 @@ App.check_command = (command, args = {}) => {
   //
   check_2(`media`, args.media)
   //
+  check_3(`some_color_id`)
+  check_3(`some_no_color_id`)
   check_3(`some_custom_color_id`)
   check_3(`some_no_custom_color_id`)
 
