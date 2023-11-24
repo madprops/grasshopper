@@ -1,7 +1,7 @@
 App.setup_favorites = () => {
-  App.refresh_favorites_bar_debouncer = App.create_debouncer((mode) => {
-    App.do_refresh_favorites_bar(mode)
-  }, App.refresh_favorites_bar_delay)
+  App.refresh_favorites_debouncer = App.create_debouncer((mode) => {
+    App.do_refresh_favorites(mode)
+  }, App.refresh_favorites_delay)
 }
 
 App.create_favorites_bar = (mode) => {
@@ -108,15 +108,15 @@ App.show_favorites_menu = (mode, e) => {
   App.show_context({items: items, e: e})
 }
 
-App.refresh_favorites_bar = (mode) => {
+App.refresh_favorites = (mode) => {
   if (App.get_setting(`favorites_mode`) === `bar`) {
     if (App.get_setting(`reactive_favorites`)) {
-      App.refresh_favorites_bar_debouncer.call(mode)
+      App.refresh_favorites_debouncer.call(mode)
     }
   }
 }
 
-App.do_refresh_favorites_bar = (mode) => {
+App.do_refresh_favorites = (mode) => {
   if (App.get_setting(`favorites_mode`) === `bar`) {
     if (App.get_setting(`reactive_favorites`)) {
       App.fill_favorites_bar(mode)
