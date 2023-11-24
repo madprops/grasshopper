@@ -525,6 +525,13 @@ App.build_settings = () => {
         {cmd: `set_random_dark_colors`, alt: `set_dark_colors`},
       ],
       info: `List of commands that can appear in various forms`,
+      version: 1,
+    },
+    reactive_favorites_bar: {
+      name: `Reactive Favorites Bar`,
+      type: `checkbox`,
+      value: true,
+      info: `Make the favorites bar context aware to hide and show commands depending on state`,
       separator: true,
       version: 1,
     },

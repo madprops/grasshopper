@@ -7,6 +7,12 @@ App.setup_favorites = () => {
 App.create_favorites_bar = (mode) => {
   let el = DOM.create(`div`, `favorites_bar`, `favorites_bar_${mode}`)
   el.title = App.favorites_title
+
+  DOM.ev(el, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.show_favorites_menu(e)
+  })
+
   return el
 }
 
@@ -34,7 +40,6 @@ App.fill_favorites_bar = (mode) => {
     return
   }
 
-  bar.classList.remove(`hidden`)
   let c = DOM.el(`#favorites_bar_${mode}`)
   let favorites = App.get_setting(`favorites_menu`)
 
@@ -43,6 +48,7 @@ App.fill_favorites_bar = (mode) => {
   }
 
   c.innerHTML = ``
+  let some_cmds = false
 
   for (let fav of favorites) {
     let cmd = App.get_command(fav.cmd)
@@ -93,14 +99,14 @@ App.fill_favorites_bar = (mode) => {
         })
       }
 
+      some_cmds = true
       c.append(btn)
     }
   }
 
-  DOM.ev(c, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_favorites_menu(e)
-  })
+  if (some_cmds) {
+    bar.classList.remove(`hidden`)
+  }
 }
 
 App.show_favorites_menu = (e, item) => {
@@ -110,12 +116,16 @@ App.show_favorites_menu = (e, item) => {
 
 App.refresh_favorites_bar = (mode) => {
   if (App.get_setting(`favorites_mode`) === `bar`) {
-    App.refresh_favorites_bar_debouncer.call(mode)
+    if (App.get_setting(`reactive_favorites_bar`)) {
+      App.refresh_favorites_bar_debouncer.call(mode)
+    }
   }
 }
 
 App.do_refresh_favorites_bar = (mode) => {
   if (App.get_setting(`favorites_mode`) === `bar`) {
-    App.fill_favorites_bar(mode)
+    if (App.get_setting(`reactive_favorites_bar`)) {
+      App.fill_favorites_bar(mode)
+    }
   }
 }
