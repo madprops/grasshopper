@@ -20,6 +20,7 @@ App.init = async () => {
   App.setup_active_trace()
   App.setup_keyboard()
   App.setup_window()
+  App.setup_favorites()
   App.setup_gestures()
   App.setup_filter()
   App.setup_modes()

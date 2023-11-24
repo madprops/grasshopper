@@ -103,6 +103,7 @@ App.last_scroll_delay = 100
 App.check_selected_delay = 100
 App.update_tab_box_delay = 100
 App.update_active_trace_delay = 100
+App.refresh_favorites_bar_delay = 100
 
 App.settings_icons = {
   general: `⚡`,

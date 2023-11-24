@@ -1,3 +1,9 @@
+App.setup_favorites = () => {
+  App.refresh_favorites_bar_debouncer = App.create_debouncer((mode) => {
+    App.do_refresh_favorites_bar(mode)
+  }, App.refresh_favorites_bar_delay)
+}
+
 App.create_favorites_bar = (mode) => {
   let el = DOM.create(`div`, `favorites_bar`, `favorites_bar_${mode}`)
   el.title = App.favorites_title
@@ -19,6 +25,10 @@ App.create_favorites_button = (mode) => {
 App.fill_favorites_bar = (mode) => {
   let bar = DOM.el(`#item_top_bar_${mode}`)
 
+  if (!bar) {
+    return
+  }
+
   if (App.get_setting(`favorites_mode`) !== `bar`) {
     bar.classList.add(`hidden`)
     return
@@ -38,6 +48,13 @@ App.fill_favorites_bar = (mode) => {
     let cmd = App.get_command(fav.cmd)
 
     if (cmd) {
+      let obj = {}
+      obj.item = App.get_selected(mode)
+
+      if (!App.check_command(cmd, obj)) {
+        continue
+      }
+
       let btn = DOM.create(`div`, `favorites_bar_item button button_3`)
       let icon = DOM.create(`div`, `favorites_bar_icon`)
       let icon_s = cmd.icon
@@ -89,4 +106,16 @@ App.fill_favorites_bar = (mode) => {
 App.show_favorites_menu = (e, item) => {
   let items = App.custom_menu_items(`favorites_menu`, item)
   App.show_context({items: items, e: e})
+}
+
+App.refresh_favorites_bar = (mode) => {
+  if (App.get_setting(`favorites_mode`) === `bar`) {
+    App.refresh_favorites_bar_debouncer.call(mode)
+  }
+}
+
+App.do_refresh_favorites_bar = (mode) => {
+  if (App.get_setting(`favorites_mode`) === `bar`) {
+    App.fill_favorites_bar(mode)
+  }
 }
