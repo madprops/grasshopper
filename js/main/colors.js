@@ -224,6 +224,8 @@ App.color_menu_items = (item) => {
     App.sep(items)
   }
 
+  let colors_used = false
+
   for (let color of App.colors()) {
     let c = App.get_command(`color_${color.id}`)
 
@@ -236,13 +238,17 @@ App.color_menu_items = (item) => {
             App.edit_tab_color({item: item, color: color.id})
           },
         })
+
+        colors_used = true
       }
     }
   }
 
-  if (item.custom_color) {
+  if (colors_used) {
     App.sep(items)
+  }
 
+  if (item.custom_color) {
     items.push({
       text: `Remove`,
       action: () => {
