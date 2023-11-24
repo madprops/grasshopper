@@ -262,8 +262,15 @@ App.do_filter = async (args = {}) => {
 
   if (args.select) {
     App.clear_selected(args.mode)
+    let f_mode = App.filter_mode(args.mode)
+    let last_filter = App.last_filter(args.mode)
+    let last_filter_mode = Boolean(last_filter && last_filter.filter_mode === f_mode)
+    let last_item = last_filter_mode && Boolean(last_filter && last_filter.item && last_filter.item.visible)
 
-    if (some_matched) {
+    if (last_item) {
+      App.select_item({item: last_filter.item, deselect: false})
+    }
+    else if (some_matched) {
       App.select_first_item(args.mode, !App.is_filtered(args.mode))
     }
   }
@@ -1534,4 +1541,8 @@ App.cycle_filters = (mode, direction) => {
   }
 
   App.set_filter({mode: mode, text: next, to_history: false})
+}
+
+App.last_filter = (mode) => {
+  return App[`last_filter_${mode}`]
 }

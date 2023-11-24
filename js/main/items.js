@@ -177,6 +177,15 @@ App.set_selected = (item) => {
   }
 
   App[`last_selected_${item.mode}`] = item
+  let f_mode = App.filter_mode(item.mode)
+
+  if (f_mode !== `all`) {
+    App[`last_filter_${item.mode}`] = {
+      filter_mode: f_mode,
+      item: item,
+    }
+  }
+
   App.update_footer_info(item)
 }
 
