@@ -1159,6 +1159,7 @@ App.filter_tag = (mode, tag, toggle = false) => {
   App.complex_filter({
     mode: mode,
     value: tag,
+    text: tag,
     short: `tag`,
     full: `Tags`,
     toggle: toggle,
@@ -1169,6 +1170,7 @@ App.filter_icon = (mode, icon, toggle = false) => {
   App.complex_filter({
     mode: mode,
     value: icon,
+    text: icon,
     short: `icon`,
     full: `Icons`,
     toggle: toggle,
