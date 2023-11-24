@@ -262,7 +262,7 @@ App.do_filter = async (args = {}) => {
 
   if (args.select) {
     App.clear_selected(args.mode)
-    let f_item = App.filter_items[filter_mode]
+    let f_item = App.filter_item(args.mode, filter_mode)
 
     if (f_item && f_item.visible) {
       App.select_item({item: f_item, deselect: false})
@@ -1538,4 +1538,12 @@ App.cycle_filters = (mode, direction) => {
   }
 
   App.set_filter({mode: mode, text: next, to_history: false})
+}
+
+App.filter_item = (mode, filter_mode) => {
+  return App[`filter_items_${mode}`][filter_mode]
+}
+
+App.set_filter_item = (mode, filter_mode, item) => {
+  return App[`filter_items_${mode}`][filter_mode] = item
 }
