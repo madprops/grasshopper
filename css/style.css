@@ -1284,6 +1284,15 @@ a:hover
   flex-wrap: wrap;
 }
 
+.autohide_taglist .taglist.normal {
+  display: none;
+}
+
+
+.autohide_taglist .selected .taglist.normal {
+  display: flex;
+}
+
 .taglist_left_scroll,
 .taglist_right_scroll
 {

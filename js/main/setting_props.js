@@ -616,12 +616,19 @@ App.build_settings = () => {
       info: `Show the Taglist add button`,
       version: 1,
     },
+    autohide_taglist: {
+      name: `Autohide Taglist`,
+      type: `checkbox`,
+      value: false,
+      info: `If the Taglist mode is above or below, only show tags when the item is selected`,
+      separator: true,
+      version: 1,
+    },
     sort_taglist: {
       name: `Sort Taglist`,
       type: `checkbox`,
       value: false,
       info: `Sort tags alphabetically in the Taglist`,
-      separator: true,
       version: 1,
     },
     extra_menu_mode: {

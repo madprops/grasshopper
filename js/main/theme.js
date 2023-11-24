@@ -331,6 +331,13 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`button_text_icon_enabled`)
     }
 
+    if (App.get_setting(`autohide_taglist`)) {
+      main.classList.add(`autohide_taglist`)
+    }
+    else {
+      main.classList.remove(`autohide_taglist`)
+    }
+
     App.insert_color_css()
     App.insert_custom_css()
   }
