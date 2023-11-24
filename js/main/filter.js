@@ -265,7 +265,8 @@ App.do_filter = async (args = {}) => {
     let last_item
 
     if (App.get_setting(`sticky_filter`)) {
-      let f_item = App.filter_item(args.mode, filter_mode)
+      let f_mode = App.filter_mode(args.mode)
+      let f_item = App.get_filter_item(args.mode, f_mode)
 
       if (f_item && f_item.visible) {
         last_item = f_item
@@ -1548,7 +1549,7 @@ App.cycle_filters = (mode, direction) => {
   App.set_filter({mode: mode, text: next, to_history: false})
 }
 
-App.filter_item = (mode, filter_mode) => {
+App.get_filter_item = (mode, filter_mode) => {
   return App[`filter_items_${mode}`][filter_mode]
 }
 
