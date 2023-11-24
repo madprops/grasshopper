@@ -1093,74 +1093,62 @@ App.filter_cmd = (mode, cmd) => {
   App.toggle_filter(mode, cmd)
 }
 
-App.filter_tag = (mode, tag, toggle = false) => {
-  let name = `tag-${tag}`
+App.complex_filter = (args = {}) => {
+  let def_args = {
+    toggle: false,
+  }
 
-  if (toggle) {
-    if (App[`${mode}_filter_mode`] === name) {
-      App.filter_all(mode)
+  App.def_args(def_args, args)
+  let name = `${args.short}-${args.value}`
+
+  if (args.toggle) {
+    if (App[`${args.mode}_filter_mode`] === name) {
+      App.filter_all(args.mode)
       return
     }
   }
 
   let s
 
-  if (tag === `all`) {
-    s = `All Tags`
+  if (args.value === `all`) {
+    s = `All ${name}`
   }
   else {
-    s = tag
+    s = args.value
   }
 
-  App.set_custom_filter_mode(mode, name, s)
-  App.do_filter({mode: mode})
-}
-
-App.filter_icon = (mode, icon, toggle = false) => {
-  let name = `icon-${icon}`
-
-  if (toggle) {
-    if (App[`${mode}_filter_mode`] === name) {
-      App.filter_all(mode)
-      return
-    }
-  }
-
-  let s
-
-  if (icon === `all`) {
-    s = `All Icons`
-  }
-  else {
-    s = icon
-  }
-
-  App.set_custom_filter_mode(mode, name, s)
-  App.do_filter({mode: mode})
+  App.set_custom_filter_mode(args.mode, name, s)
+  App.do_filter({mode: args.mode})
 }
 
 App.filter_color = (mode, color, toggle = false) => {
-  let name = `color-${color}`
+  App.complex_filter({
+    mode: mode,
+    value: color,
+    short: `color`,
+    full: `Color`,
+    toggle: toggle,
+  })
+}
 
-  if (toggle) {
-    if (App[`${mode}_filter_mode`] === name) {
-      App.filter_all(mode)
-      return
-    }
-  }
+App.filter_tag = (mode, tag, toggle = false) => {
+  App.complex_filter({
+    mode: mode,
+    value: tag,
+    short: `tag`,
+    full: `Tag`,
+    toggle: toggle,
+  })
+}
 
-  let s
-  let c_obj = App.get_color_by_id(color)
-
-  if (color === `all`) {
-    s = `All Colors`
-  }
-  else {
-    s = c_obj.name
-  }
-
-  App.set_custom_filter_mode(mode, name, s)
-  App.do_filter({mode: mode})
+App.filter_icon = (mode, icon, toggle = false) => {
+  App.complex_filter({
+    mode: mode,
+    value: icon,
+    short: `icon`,
+    full: `Icon`,
+    toggle: toggle,
+  })
 }
 
 App.blur_filter = (mode) => {
