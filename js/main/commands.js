@@ -103,6 +103,7 @@ App.setup_commands = () => {
       name: name,
       cmd: `remove_color_${color.id}`,
       modes: [`tabs`],
+      some_custom_color_id: color.id,
       some_custom_color: true,
       icon: icon,
       action: (args) => {
@@ -1797,7 +1798,7 @@ App.check_command = (command, args = {}) => {
 
   let valid = true
 
-  function check (what) {
+  function check_1 (what) {
     if (!valid) {
       return
     }
@@ -1809,7 +1810,7 @@ App.check_command = (command, args = {}) => {
     }
   }
 
-  function compare (what, value) {
+  function check_2 (what, value) {
     if (!valid) {
       return
     }
@@ -1821,56 +1822,65 @@ App.check_command = (command, args = {}) => {
     }
   }
 
-  compare(`media`, args.media)
-  //
-  check(`single`)
-  check(`multiple`)
-  check(`item`)
-  check(`color`)
-  check(`some_pinned`)
-  check(`some_unpinned`)
-  check(`some_muted`)
-  check(`some_unmuted`)
-  check(`some_loaded`)
-  check(`some_unloaded`)
-  check(`some_split`)
-  check(`some_no_split`)
-  check(`some_split_top`)
-  check(`some_split_bottom`)
-  check(`some_no_split_top`)
-  check(`some_no_split_bottom`)
-  check(`some_header`)
-  check(`some_no_header`)
-  //
-  check(`some_edits`)
-  check(`some_color`)
-  check(`some_no_color`)
-  check(`some_custom_color`)
-  check(`some_no_custom_color`)
-  check(`some_tags`)
-  check(`some_no_tags`)
-  check(`some_custom_tags`)
-  check(`some_no_custom_tags`)
-  check(`some_icon`)
-  check(`some_no_icon`)
-  check(`some_custom_icon`)
-  check(`some_no_custom_icon`)
-  check(`some_title`)
-  check(`some_no_title`)
-  check(`some_custom_title`)
-  check(`some_no_custom_title`)
-  check(`some_notes`)
-  check(`some_no_notes`)
-  check(`some_custom_notes`)
-  check(`some_no_custom_notes`)
+  function check_3 (what) {
+    if (!valid) {
+      return
+    }
 
-  if (command.some_no_custom_color_id) {
-    let id = command.some_no_custom_color_id
+    if (command[what]) {
+      let value = command[what]
 
-    if (!args[`some_no_custom_color_id_${id}`]) {
-      valid = false
+      if (!args[`${what}_${value}`]) {
+        valid = false
+      }
     }
   }
+
+  check_1(`single`)
+  check_1(`multiple`)
+  check_1(`item`)
+  check_1(`color`)
+  check_1(`some_pinned`)
+  check_1(`some_unpinned`)
+  check_1(`some_muted`)
+  check_1(`some_unmuted`)
+  check_1(`some_loaded`)
+  check_1(`some_unloaded`)
+  check_1(`some_split`)
+  check_1(`some_no_split`)
+  check_1(`some_split_top`)
+  check_1(`some_split_bottom`)
+  check_1(`some_no_split_top`)
+  check_1(`some_no_split_bottom`)
+  check_1(`some_header`)
+  check_1(`some_no_header`)
+  //
+  check_1(`some_edits`)
+  check_1(`some_color`)
+  check_1(`some_no_color`)
+  check_1(`some_custom_color`)
+  check_1(`some_no_custom_color`)
+  check_1(`some_tags`)
+  check_1(`some_no_tags`)
+  check_1(`some_custom_tags`)
+  check_1(`some_no_custom_tags`)
+  check_1(`some_icon`)
+  check_1(`some_no_icon`)
+  check_1(`some_custom_icon`)
+  check_1(`some_no_custom_icon`)
+  check_1(`some_title`)
+  check_1(`some_no_title`)
+  check_1(`some_custom_title`)
+  check_1(`some_no_custom_title`)
+  check_1(`some_notes`)
+  check_1(`some_no_notes`)
+  check_1(`some_custom_notes`)
+  check_1(`some_no_custom_notes`)
+  //
+  check_2(`media`, args.media)
+  //
+  check_3(`some_custom_color_id`)
+  check_3(`some_no_custom_color_id`)
 
   if (valid) {
     if (command.modes) {
