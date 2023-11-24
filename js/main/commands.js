@@ -69,6 +69,7 @@ App.setup_commands = () => {
       name: name,
       short_name: short,
       cmd: `color_${color.id}`,
+      some_no_custom_color_id: color.id,
       modes: [`tabs`],
       item: true,
       icon: icon,
@@ -1761,6 +1762,22 @@ App.check_command = (command, args = {}) => {
           args[`some_no_custom_${prop}`] = true
         }
       }
+
+      for (let color of App.colors()) {
+        if (App.get_color(item, color) === color.id) {
+          args[`some_color_id_${color.id}`] = true
+        }
+        else {
+          args[`some_no_color_id_${color.id}`] = true
+        }
+
+        if (App.get_color(item, color, false) === color.id) {
+          args[`some_custom_color_id_${color.id}`] = true
+        }
+        else {
+          args[`some_no_custom_color_id_${color.id}`] = true
+        }
+      }
     }
   }
 
@@ -1846,6 +1863,14 @@ App.check_command = (command, args = {}) => {
   check(`some_no_notes`)
   check(`some_custom_notes`)
   check(`some_no_custom_notes`)
+
+  if (command.some_no_custom_color_id) {
+    let id = command.some_no_custom_color_id
+
+    if (!args[`some_no_custom_color_id_${id}`]) {
+      valid = false
+    }
+  }
 
   if (valid) {
     if (command.modes) {
