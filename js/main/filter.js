@@ -262,10 +262,18 @@ App.do_filter = async (args = {}) => {
 
   if (args.select) {
     App.clear_selected(args.mode)
-    let f_item = App.filter_item(args.mode, filter_mode)
+    let last_item
 
-    if (f_item && f_item.visible) {
-      App.select_item({item: f_item, deselect: false})
+    if (App.get_setting(`sticky_filter`)) {
+      let f_item = App.filter_item(args.mode, filter_mode)
+
+      if (f_item && f_item.visible) {
+        last_item = f_item
+      }
+    }
+
+    if (last_item) {
+      App.select_item({item: last_item, deselect: false})
     }
     else if (some_matched) {
       App.select_first_item(args.mode, !App.is_filtered(args.mode))

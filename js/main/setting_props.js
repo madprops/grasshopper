@@ -1426,6 +1426,14 @@ App.build_settings = () => {
       info: `Make it clear that a filter is active`,
       version: 1,
     },
+    sticky_filter: {
+      name: `Sticky Filter`,
+      type: `checkbox`,
+      value: true,
+      actions: [`theme`],
+      info: `Remember the items that were last selected when switching filter views`,
+      version: 1,
+    },
     clear_on_all: {
       name: `Clear On All`,
       type: `checkbox`,

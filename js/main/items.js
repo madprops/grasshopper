@@ -177,10 +177,13 @@ App.set_selected = (item) => {
   }
 
   App[`last_selected_${item.mode}`] = item
-  let f_mode = App.filter_mode(item.mode)
 
-  if (f_mode !== `all`) {
-    App.set_filter_item(item.mode, f_mode, item)
+  if (App.get_setting(`sticky_filter`)) {
+    let f_mode = App.filter_mode(item.mode)
+
+    if (f_mode !== `all`) {
+      App.set_filter_item(item.mode, f_mode, item)
+    }
   }
 
   App.update_footer_info(item)
