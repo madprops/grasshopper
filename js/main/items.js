@@ -503,7 +503,6 @@ App.update_item = (mode, id, info) => {
       App.check_filter(mode)
       App.update_active_trace()
       App.refresh_tab_box()
-      App.refresh_favorites(mode)
       break
     }
   }

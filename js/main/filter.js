@@ -278,7 +278,6 @@ App.do_filter = async (args = {}) => {
   App.update_footer_count(args.mode)
   App.do_check_pinline()
   App.do_check_scroller(args.mode)
-  App.refresh_favorites(args.mode)
 }
 
 App.replace_filter_vars = (value) => {

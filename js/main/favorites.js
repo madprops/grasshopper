@@ -1,9 +1,3 @@
-App.setup_favorites = () => {
-  App.refresh_favorites_debouncer = App.create_debouncer((mode) => {
-    App.do_refresh_favorites(mode)
-  }, App.refresh_favorites_delay)
-}
-
 App.create_favorites_bar = (mode) => {
   let el = DOM.create(`div`, `favorites_bar`, `favorites_bar_${mode}`)
   el.title = App.favorites_title
@@ -40,7 +34,7 @@ App.fill_favorites_bar = (mode) => {
     return
   }
 
-  let favs = App.get_active_favorites(mode)
+  let favs = App.get_active_favorites()
 
   if (!favs.length) {
     bar.classList.add(`hidden`)
@@ -97,7 +91,7 @@ App.fill_favorites_bar = (mode) => {
 }
 
 App.show_favorites_menu = (mode, e) => {
-  let favs = App.get_active_favorites(mode)
+  let favs = App.get_active_favorites()
   let cmds = favs.map(x => x.cmd)
   let items = []
 
@@ -108,41 +102,18 @@ App.show_favorites_menu = (mode, e) => {
   App.show_context({items: items, e: e})
 }
 
-App.refresh_favorites = (mode) => {
-  if (App.get_setting(`favorites_mode`) === `bar`) {
-    if (App.get_setting(`reactive_favorites`)) {
-      App.refresh_favorites_debouncer.call(mode)
-    }
-  }
-}
-
-App.do_refresh_favorites = (mode) => {
-  if (App.get_setting(`favorites_mode`) === `bar`) {
-    if (App.get_setting(`reactive_favorites`)) {
-      App.fill_favorites_bar(mode)
-    }
-  }
-}
-
-App.get_active_favorites = (mode) => {
+App.get_active_favorites = () => {
   let favorites = App.get_setting(`favorites_menu`)
-  let reactive = App.get_setting(`reactive_favorites`)
-  let force = !reactive
   let favs = []
 
   for (let fav of favorites) {
     let c = App.get_command(fav.cmd)
 
     if (c) {
-      let obj = {}
-      obj.item = App.get_selected(mode)
-
-      if (force || App.check_command(c, obj)) {
-        favs.push({
-          cmd: c,
-          fav: fav,
-        })
-      }
+      favs.push({
+        cmd: c,
+        fav: fav,
+      })
     }
   }
 
