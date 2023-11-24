@@ -621,7 +621,7 @@ App.filter_mode_text = (args = {}) => {
     if (args.name.startsWith(`tag-`)) {
       icon = App.tag_icon
     }
-    else if (args.name.startsWith(`icon-`)) {
+    else if (args.name === `icon-all`) {
       icon = App.bot_icon
     }
     else if (args.name.startsWith(`color-`)) {
@@ -1111,7 +1111,7 @@ App.complex_filter = (args = {}) => {
   let s
 
   if (args.value === `all`) {
-    s = `All ${name}`
+    s = `All ${args.full}`
   }
   else {
     s = args.value
@@ -1126,7 +1126,7 @@ App.filter_color = (mode, color, toggle = false) => {
     mode: mode,
     value: color,
     short: `color`,
-    full: `Color`,
+    full: `Colors`,
     toggle: toggle,
   })
 }
@@ -1136,7 +1136,7 @@ App.filter_tag = (mode, tag, toggle = false) => {
     mode: mode,
     value: tag,
     short: `tag`,
-    full: `Tag`,
+    full: `Tags`,
     toggle: toggle,
   })
 }
@@ -1146,7 +1146,7 @@ App.filter_icon = (mode, icon, toggle = false) => {
     mode: mode,
     value: icon,
     short: `icon`,
-    full: `Icon`,
+    full: `Icons`,
     toggle: toggle,
   })
 }
