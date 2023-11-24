@@ -225,16 +225,19 @@ App.color_menu_items = (item) => {
   }
 
   for (let color of App.colors()) {
-    let icon = App.color_icon(color.id)
-    let text = color.name
+    let c = App.get_command(`color_${color.id}`)
 
-    items.push({
-      icon: icon,
-      text: text,
-      action: () => {
-        App.edit_tab_color({item: item, color: color.id})
+    if (c) {
+      if (App.check_command(c, {item: item})) {
+        items.push({
+          icon: App.color_icon(color.id),
+          text: color.name,
+          action: () => {
+            App.edit_tab_color({item: item, color: color.id})
+          },
+        })
       }
-    })
+    }
   }
 
   if (item.custom_color) {
