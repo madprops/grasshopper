@@ -1671,6 +1671,13 @@ App.build_settings = () => {
       info: `Sort commands in the Palette by recent use`,
       version: 1,
     },
+    check_commands: {
+      name: `Check Commands`,
+      type: `checkbox`,
+      value: true,
+      info: `Make commands context aware to avoid clutter`,
+      version: 1,
+    },
     all_bookmarks: {
       name: `All Bookmarks`,
       type: `checkbox`,
@@ -1712,13 +1719,6 @@ App.build_settings = () => {
       value: true,
       actions: [`theme`],
       info: `Show icons next to the text on the buttons, like on the Main Menu or Settings`,
-      version: 1,
-    },
-    check_commands: {
-      name: `Check Commands`,
-      type: `checkbox`,
-      value: true,
-      info: `Make commands context aware to avoid clutter`,
       version: 1,
     },
     direct_settings: {
