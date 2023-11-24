@@ -34,7 +34,7 @@ App.fill_favorites_bar = (mode) => {
     return
   }
 
-  let favs = App.get_active_favorites()
+  let favs = App.get_favorites()
 
   if (!favs.length) {
     bar.classList.add(`hidden`)
@@ -91,18 +91,18 @@ App.fill_favorites_bar = (mode) => {
 }
 
 App.show_favorites_menu = (mode, e) => {
-  let favs = App.get_active_favorites()
-  let cmds = favs.map(x => x.cmd)
-  let items = []
+  let favs = App.get_setting(`favorites_menu`)
 
-  for (let cmd of cmds) {
-    items.push(App.cmd_item({command: cmd}))
-  }
+  let items = App.show_cmds_menu({
+    cmds: favs,
+    from: `favorites_button`,
+    check: false,
+  })
 
   App.show_context({items: items, e: e})
 }
 
-App.get_active_favorites = () => {
+App.get_favorites = () => {
   let favorites = App.get_setting(`favorites_menu`)
   let favs = []
 

@@ -33,7 +33,7 @@ App.print_intro = () => {
 
 App.custom_menu_items = (name, item) => {
   let cmds = App.get_setting(name)
-  return App.show_cmds_menu(cmds, name, item)
+  return App.show_cmds_menu({cmds: cmds, from: name, item: item})
 }
 
 App.check_ready = (what) => {

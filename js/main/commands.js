@@ -1998,10 +1998,15 @@ App.cmd_list = (cmds) => {
   return items
 }
 
-App.show_cmds_menu = (cmds, from, item) => {
+App.show_cmds_menu = (args = {}) => {
+  let def_args = {
+    check: true,
+  }
+
+  App.def_args(def_args, args)
   let items = []
 
-  if (!cmds.length) {
+  if (!args.cmds.length) {
     items.push({
       text: `No items yet`,
       action: (e) => {
@@ -2010,7 +2015,7 @@ App.show_cmds_menu = (cmds, from, item) => {
     })
   }
   else {
-    for (let obj of cmds) {
+    for (let obj of args.cmds) {
       let cmd = App.get_command(obj.cmd)
 
       if (!cmd) {
@@ -2018,12 +2023,14 @@ App.show_cmds_menu = (cmds, from, item) => {
       }
 
       let cmd_obj = {
-        from: from,
-        item: item,
+        from: args.from,
+        item: args.item,
       }
 
-      if (!App.check_command(cmd, cmd_obj)) {
-        continue
+      if (args.check) {
+        if (!App.check_command(cmd, cmd_obj)) {
+          continue
+        }
       }
 
       let item_obj = {
@@ -2043,8 +2050,8 @@ App.show_cmds_menu = (cmds, from, item) => {
           item_obj.alt_action = (e) => {
             App.run_command({
               cmd: alt.cmd,
-              from: from,
-              item: item,
+              from: args.from,
+              item: args.item,
               e: e,
             })
           }
