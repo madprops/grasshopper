@@ -1375,7 +1375,6 @@ App.build_settings = () => {
       type: `list`,
       value: [],
       info: `Use these when cycling the Filter Menu with the mousewheel, or right clicking the Filter Menu`,
-      separator: true,
       version: 1,
     },
     clean_filter: {
