@@ -1836,6 +1836,24 @@ App.check_command = (command, args = {}) => {
     }
   }
 
+  if (valid) {
+    if (command.modes) {
+      if (command.modes.includes(`items`)) {
+        if (!args.on_items) {
+          valid = false
+        }
+      }
+      else if (command.modes.includes(`search`)) {
+        if (!App.search_modes.includes(args.mode)) {
+          valid = false
+        }
+      }
+      else if (!command.modes.includes(args.mode)) {
+        valid = false
+      }
+    }
+  }
+
   check_1(`single`)
   check_1(`multiple`)
   check_1(`item`)
@@ -1881,24 +1899,6 @@ App.check_command = (command, args = {}) => {
   //
   check_3(`some_custom_color_id`)
   check_3(`some_no_custom_color_id`)
-
-  if (valid) {
-    if (command.modes) {
-      if (command.modes.includes(`items`)) {
-        if (!args.on_items) {
-          valid = false
-        }
-      }
-      else if (command.modes.includes(`search`)) {
-        if (!App.search_modes.includes(args.mode)) {
-          valid = false
-        }
-      }
-      else if (!command.modes.includes(args.mode)) {
-        valid = false
-      }
-    }
-  }
 
   return valid
 }
