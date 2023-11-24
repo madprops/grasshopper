@@ -1096,6 +1096,7 @@ App.filter_cmd = (mode, cmd) => {
 App.complex_filter = (args = {}) => {
   let def_args = {
     toggle: false,
+    cap_value : false,
   }
 
   App.def_args(def_args, args)
@@ -1114,7 +1115,12 @@ App.complex_filter = (args = {}) => {
     s = `All ${args.full}`
   }
   else {
-    s = args.value
+    if (args.cap_value) {
+      s = App.capitalize(args.value)
+    }
+    else {
+      s = args.value
+    }
   }
 
   App.set_custom_filter_mode(args.mode, name, s)
@@ -1128,6 +1134,7 @@ App.filter_color = (mode, color, toggle = false) => {
     short: `color`,
     full: `Colors`,
     toggle: toggle,
+    cap_value: true,
   })
 }
 
