@@ -244,11 +244,11 @@ App.color_menu_items = (item) => {
     }
   }
 
-  if (colors_used) {
-    App.sep(items)
-  }
-
   if (item.custom_color) {
+    if (colors_used) {
+      App.sep(items)
+    }
+
     items.push({
       text: `Remove`,
       action: () => {
