@@ -1951,7 +1951,7 @@ App.check_dead_commands = () => {
 
 App.cmd_item = (args = {}) => {
   let def_args = {
-    short: true,
+    short: false,
     from: `cmd_item`,
   }
 

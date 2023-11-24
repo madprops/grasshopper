@@ -527,11 +527,11 @@ App.build_settings = () => {
       info: `List of commands that can appear in various forms`,
       version: 1,
     },
-    reactive_favorites_bar: {
-      name: `Reactive Favorites Bar`,
+    reactive_favorites: {
+      name: `Reactive Favorites`,
       type: `checkbox`,
       value: true,
-      info: `Make the favorites bar context aware to hide and show commands depending on state`,
+      info: `Make the favorites context aware to hide and show commands depending on state`,
       separator: true,
       version: 1,
     },

@@ -53,7 +53,7 @@ App.show_main_menu = (mode) => {
   }
 
   App.sep(items)
-  items.push(App.cmd_item({cmd: `show_settings`}))
+  items.push(App.cmd_item({cmd: `show_settings`, short: true}))
 
   items.push({
     icon: App.bot_icon,
