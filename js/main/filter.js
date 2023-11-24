@@ -607,7 +607,8 @@ App.filter_mode_text = (args = {}) => {
 
   if (args.filter_mode) {
     if (args.filter_mode.cmd === `all`) {
-      text = `All`
+      icon = args.filter_mode.icon
+      text = args.filter_mode.text
     }
     else {
       let cmd = App.get_command(args.filter_mode.cmd)
@@ -1197,7 +1198,7 @@ App.create_filter_menu = (mode) => {
   btn.title = `Filters (Ctrl + F) - Right Click to show favorites or palette`
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
-  fmodes.push({cmd: `all`, text: `All`, info: `Show all items`})
+  fmodes.push({cmd: `all`, text: `All`, icon: App.globe_icon, info: `Show all items`})
   let m_modes = App[`${mode}_filter_modes`]
 
   if (m_modes) {
@@ -1464,9 +1465,11 @@ App.filter_menu_context = (mode, e) => {
 
 App.show_favorite_filters = (mode, e) => {
   let items = []
+  let all = App.filter_modes(mode)[0]
 
   items.push({
-    text: `All`,
+    icon: all.icon,
+    text: all.text,
     action: () => {
       App.filter_all(mode)
     },
