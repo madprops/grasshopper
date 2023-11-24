@@ -34,6 +34,7 @@ App.setup_commands = () => {
   color_filters.push({
     name: `Filter All Colors`,
     short_name: `All Colors`,
+    short_name: `All Colors`,
     cmd: `filter_color_all`,
     modes: [`items`],
     icon: theme_icon,
@@ -51,6 +52,7 @@ App.setup_commands = () => {
 
     color_filters.push({
       name: name,
+      short_name: color.name,
       cmd: `filter_color_${color.id}`,
       modes: [`items`],
       icon: icon,
@@ -1152,6 +1154,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove All Tags`,
+      short_name: `All Tags`,
       cmd: `remove_all_tags`,
       modes: [`tabs`],
       icon: tag_icon,
@@ -1339,6 +1342,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter All Icons`,
+      short_name: `All Icons`,
       cmd: `filter_icon_all`,
       modes: [`items`],
       item: true,

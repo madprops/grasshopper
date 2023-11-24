@@ -1476,13 +1476,7 @@ App.show_favorite_filters = (mode, e) => {
     let c = App.get_command(cmd.cmd)
 
     if (c) {
-      items.push({
-        icon: c.icon,
-        text: c.short_name || c.name,
-        action: () => {
-          App.run_command({cmd: c.cmd, from: `favorite_filters`})
-        },
-      })
+      items.push(App.cmd_item({command: c, e: e, short: true}))
     }
   }
 
