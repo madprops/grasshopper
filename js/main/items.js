@@ -180,10 +180,7 @@ App.set_selected = (item) => {
   let f_mode = App.filter_mode(item.mode)
 
   if (f_mode !== `all`) {
-    App[`last_filter_${item.mode}`] = {
-      filter_mode: f_mode,
-      item: item,
-    }
+    App.filter_items[f_mode] = item
   }
 
   App.update_footer_info(item)
