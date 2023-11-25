@@ -180,12 +180,16 @@ Addlist.register = (args = {}) => {
           return Addlist.get_value(key)
         },
         after_dismiss: () => {
-          if (args.automenu) {
+          let data = Addlist.data
+
+          if (!data.edit && args.automenu) {
             Addlist.hide(false)
           }
         },
         after_action: () => {
-          if (args.automenu) {
+          let data = Addlist.data
+
+          if (!data.edit && args.automenu) {
             Addlist.save(args.id)
           }
         },
@@ -334,7 +338,7 @@ Addlist.edit = (args = {}) => {
   Addlist.data = args
   Addlist.check_focus(args.id)
 
-  if (oargs.automenu && first_menu) {
+  if (!args.edit && oargs.automenu && first_menu) {
     App[`addlist_menubutton_${args.id}_${first_menu}`].show()
   }
 }
