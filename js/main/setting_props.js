@@ -692,7 +692,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `How to show the Close Button on tabs`,
-      separator: true,
       version: 1,
     },
     show_tooltips: {
