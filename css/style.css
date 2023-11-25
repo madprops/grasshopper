@@ -1277,7 +1277,7 @@ a:hover
   align-items: center;
   justify-content: flex-start;
   height: 100%;
-  gap: 0.2rem;
+  gap: 0.65rem;
 }
 
 .taglist.normal .taglist_container {
@@ -1353,11 +1353,6 @@ a:hover
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 0.5rem;
-}
-
-.taglist.hover .taglist_container > div:first-child {
-  padding-left: 0.5rem;
 }
 
 .not_filtered .header_item .taglist.normal .taglist_container {

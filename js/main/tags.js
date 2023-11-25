@@ -496,8 +496,11 @@ App.check_taglist = (item) => {
     }
 
     if (App.get_setting(`taglist_add`)) {
+      let sep = DOM.create(`div`)
+      sep.textContent = `|`
+      container.append(sep)
       let add = DOM.create(`div`, `taglist_add action`)
-      add.textContent = `+`
+      add.textContent = `add`
       add.title = `Add Tag`
       container.append(add)
     }
