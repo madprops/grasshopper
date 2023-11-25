@@ -1386,7 +1386,7 @@ App.build_settings = () => {
     sticky_filter: {
       name: `Sticky Filter`,
       type: `menu`,
-      value: `normal`,
+      value: `select`,
       info: `Remember the items that were last selected when switching filter views
       In activate mode it auto activates the items instead of just selecting them`,
       version: 2,
@@ -2045,7 +2045,7 @@ App.build_settings = () => {
       setup: () => {
         App.settings_make_menu(`sticky_filter`, [
           {text: `None`, value: `none`},
-          {text: `Normal`, value: `normal`},
+          {text: `Select`, value: `select`},
           {text: `Activate`, value: `activate`},
         ])
       },
