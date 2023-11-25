@@ -611,7 +611,7 @@ App.set_filter_mode = (args = {}) => {
   App[`${args.mode}_filter_mode`] = args.cmd
   let mode_text = DOM.el(`#${args.mode}_filter_modes_text`)
   mode_text.innerHTML = ``
-  mode_text.append(App.filter_mode_text({filter_mode: filter_mode}))
+  mode_text.append(App.filter_mode_text({mode: args.mode, filter_mode: filter_mode}))
 
   if (args.filter) {
     if (args.instant) {
@@ -627,7 +627,7 @@ App.set_custom_filter_mode = (mode, name, title) => {
   App[`${mode}_filter_mode`] = name
   let mode_text = DOM.el(`#${mode}_filter_modes_text`)
   mode_text.innerHTML = ``
-  mode_text.append(App.filter_mode_text({name: name, title: title}))
+  mode_text.append(App.filter_mode_text({mode: mode, name: name, title: title}))
 }
 
 App.filter_mode_text = (args = {}) => {
@@ -649,16 +649,19 @@ App.filter_mode_text = (args = {}) => {
   }
   else if (args.name) {
     if (args.name.startsWith(`tag-`)) {
-      icon = App.tag_icon
+      let filter_mode = App.get_filter_mode(args.mode, `tag_menu`)
+      icon = filter_mode.icon
     }
     else if (args.name === `icon-all`) {
-      icon = App.bot_icon
+      let filter_mode = App.get_filter_mode(args.mode, `icon_menu`)
+      icon = filter_mode.icon
     }
     else if (args.name.startsWith(`color-`)) {
       let color = args.name.replace(`color-`, ``)
 
       if (color === `all`) {
-        icon = App.settings_icons.theme
+        let filter_mode = App.get_filter_mode(args.mode, `color_menu`)
+        icon = filter_mode.icon
       }
       else {
         icon = App.color_icon(color)
@@ -1157,16 +1160,21 @@ App.complex_filter = (args = {}) => {
 }
 
 App.filter_color = (mode, color_id, toggle = false) => {
-  let color = App.get_color_by_id(color_id)
+  let value, text
 
-  if (!color) {
-    return
+  if (color_id === `all`) {
+    value = `all`
+  }
+  else {
+    let color = App.get_color_by_id(color_id)
+    value = color.id
+    text = color.name
   }
 
   App.complex_filter({
     mode: mode,
-    value: color.id,
-    text: color.name,
+    value: value,
+    text: text,
     short: `color`,
     full: `Colors`,
     toggle: toggle,
@@ -1234,8 +1242,8 @@ App.create_filter_menu = (mode) => {
   btn.title = `Filters (Ctrl + F) - Right Click to show favorites or palette`
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
-  let all_cmd = App.get_command(`filter_all`)
-  fmodes.push({cmd: `all`, text: `All`, icon: all_cmd.icon, info: all_cmd.info})
+  let cmd = App.get_command(`filter_all`)
+  fmodes.push({cmd: `all`, text: `All`, icon: cmd.icon, info: cmd.info})
   let m_modes = App[`${mode}_filter_modes`]
 
   if (m_modes) {
@@ -1248,9 +1256,12 @@ App.create_filter_menu = (mode) => {
   fmodes.push({cmd: `filter_media_video`})
   fmodes.push({cmd: `filter_media_audio`})
   fmodes.push(separator())
-  fmodes.push({cmd: `tag_menu`, text: `Tags`, skip: true, info: `Show items with tags`})
-  fmodes.push({cmd: `color_menu`, text: `Colors`, skip: true, info: `Show items with colors`})
-  fmodes.push({cmd: `icon_menu`, text: `Icons`, skip: true, info: `Show items with icons`})
+  cmd = App.get_command(`show_filter_color_menu`)
+  fmodes.push({cmd: `color_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
+  cmd = App.get_command(`show_filter_tag_menu`)
+  fmodes.push({cmd: `tag_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
+  cmd = App.get_command(`show_filter_icon_menu`)
+  fmodes.push({cmd: `icon_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
   fmodes.push(separator())
   fmodes.push({cmd: `filter_titled_tabs`})
   fmodes.push({cmd: `filter_notes_tabs`})
@@ -1360,39 +1371,33 @@ App.show_filter_menu = (mode) => {
         })
       }
       else if (filter_mode.cmd === `color_menu`) {
-        let cmd = App.get_command(`show_filter_color_menu`)
-
         items.push({
-          icon: cmd.icon,
+          icon: filter_mode.icon,
           text: filter_mode.text,
           get_items: () => {
             return App.get_color_items(mode)
           },
-          info: cmd.info,
+          info: filter_mode.info,
         })
       }
       else if (filter_mode.cmd === `tag_menu`) {
-        let cmd = App.get_command(`show_filter_tag_menu`)
-
         items.push({
-          icon: cmd.icon,
+          icon: filter_mode.icon,
           text: filter_mode.text,
           get_items: () => {
             return App.get_tag_items(mode)
           },
-          info: cmd.info,
+          info: filter_mode.info,
         })
       }
       else if (filter_mode.cmd === `icon_menu`) {
-        let cmd = App.get_command(`show_filter_icon_menu`)
-
         items.push({
-          icon: cmd.icon,
+          icon: filter_mode.icon,
           text: filter_mode.text,
           get_items: () => {
             return App.get_icon_items(mode)
           },
-          info: cmd.info,
+          info: filter_mode.info,
         })
       }
     }
