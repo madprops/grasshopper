@@ -269,7 +269,7 @@ App.do_filter = async (args = {}) => {
       let f_mode = App.filter_mode(args.mode)
       let f_item = App.get_filter_item(args.mode, f_mode)
 
-      if (f_item && f_item.visible) {
+      if (f_item && !f_item.removed && f_item.visible) {
         last_item = f_item
       }
     }
