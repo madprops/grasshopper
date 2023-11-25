@@ -85,7 +85,7 @@ App.close_tabs_popup = (type, item) => {
   App.close_tabs_type = type
   App.close_tabs_item = item
   App.show_popup(`close_tabs`)
-  let title = App.capitalize_words(App.close_tabs_title(type))
+  let title = App.close_tabs_title(type)
   DOM.el(`#close_tabs_title`).textContent = title
   DOM.el(`#close_tabs_include_pins`).checked = false
   DOM.el(`#close_tabs_include_unloaded`).checked = false
