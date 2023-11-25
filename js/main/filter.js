@@ -1234,7 +1234,8 @@ App.create_filter_menu = (mode) => {
   btn.title = `Filters (Ctrl + F) - Right Click to show favorites or palette`
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
-  fmodes.push({cmd: `all`, text: `All`, info: `Show all items`})
+  let all_cmd = App.get_command(`filter_all`)
+  fmodes.push({cmd: `all`, text: `All`, icon: all_cmd.icon, info: `Show all items`})
   let m_modes = App[`${mode}_filter_modes`]
 
   if (m_modes) {
@@ -1322,10 +1323,8 @@ App.show_filter_menu = (mode) => {
         })
       }
       else if (filter_mode.cmd === `all`) {
-        let cmd = App.get_command(`filter_all`)
-
         items.push({
-          icon: cmd.icon,
+          icon: filter_mode.icon,
           text: filter_mode.text,
           action: () => {
             if (App.get_setting(`clear_on_all`) || (f_mode === `all`)) {
