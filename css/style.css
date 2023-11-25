@@ -1324,6 +1324,8 @@ a:hover
 
 .taglist.hover .taglist_container {
   overflow: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .taglist.hover.overflow .taglist_left_scroll,
