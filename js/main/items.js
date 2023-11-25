@@ -870,6 +870,10 @@ App.select_all = (mode = App.window_mode, toggle = false) => {
   let first
 
   for (let item of items) {
+    if (!item.visible) {
+      continue
+    }
+
     if (!first) {
       first = item
     }

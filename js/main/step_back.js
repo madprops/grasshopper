@@ -28,12 +28,7 @@ App.step_back = (mode = App.window_mode, e) => {
   let tabs = mode === `tabs`
 
   if (App.multiple_selected(mode)) {
-    if (tabs) {
-      App.focus_current_tab(scroll)
-    }
-    else {
-      App.deselect({mode: mode, select: `selected`, scroll: scroll})
-    }
+    App.deselect({mode: mode, select: `selected`, scroll: scroll})
   }
   else if (App.filter_has_value(mode)) {
     App.clear_filter(mode)
@@ -42,12 +37,7 @@ App.step_back = (mode = App.window_mode, e) => {
     App.filter_all()
   }
   else if (item && !App.item_is_visible(item)) {
-    if (tabs) {
-      App.focus_current_tab(scroll)
-    }
-    else {
-      App.select_item({item: item, scroll: scroll})
-    }
+    App.select_item({item: item, scroll: scroll})
   }
   else if (tabs && !item.active) {
     App.focus_current_tab(scroll)
