@@ -1277,7 +1277,7 @@ a:hover
   align-items: center;
   justify-content: flex-start;
   height: 100%;
-  gap: 0.6rem;
+  gap: 0.55rem;
 }
 
 .taglist.normal .taglist_container {
@@ -1324,8 +1324,8 @@ a:hover
 
 .taglist.hover .taglist_container {
   overflow: auto;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 0.55rem;
+  padding-right: 0.55rem;
 }
 
 .taglist.hover.overflow .taglist_left_scroll,
