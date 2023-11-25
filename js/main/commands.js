@@ -1313,7 +1313,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_filter_tag_menu(args.mode, args.e)
       },
-      info: `Filter all items by picking a tag`,
+      info: `Filter the filter tag menu`,
     },
     {
       name: `Filter All Tags`,
@@ -1364,7 +1364,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_filter_icon_menu(args.mode, args.e)
       },
-      info: `Show the Filter Icon Menu`,
+      info: `Show the filter icon menu`,
     },
     {
       name: `Filter Pins`,

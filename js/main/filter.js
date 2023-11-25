@@ -1235,7 +1235,7 @@ App.create_filter_menu = (mode) => {
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
   let all_cmd = App.get_command(`filter_all`)
-  fmodes.push({cmd: `all`, text: `All`, icon: all_cmd.icon, info: `Show all items`})
+  fmodes.push({cmd: `all`, text: `All`, icon: all_cmd.icon, info: all_cmd.info})
   let m_modes = App[`${mode}_filter_modes`]
 
   if (m_modes) {
@@ -1368,7 +1368,7 @@ App.show_filter_menu = (mode) => {
           get_items: () => {
             return App.get_color_items(mode)
           },
-          info: filter_mode.info,
+          info: cmd.info,
         })
       }
       else if (filter_mode.cmd === `tag_menu`) {
@@ -1380,7 +1380,7 @@ App.show_filter_menu = (mode) => {
           get_items: () => {
             return App.get_tag_items(mode)
           },
-          info: filter_mode.info,
+          info: cmd.info,
         })
       }
       else if (filter_mode.cmd === `icon_menu`) {
@@ -1392,7 +1392,7 @@ App.show_filter_menu = (mode) => {
           get_items: () => {
             return App.get_icon_items(mode)
           },
-          info: filter_mode.info,
+          info: cmd.info,
         })
       }
     }
