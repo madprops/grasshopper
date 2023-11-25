@@ -26,6 +26,7 @@ App.setup_commands = () => {
   let close_icon = App.close_icon
   let tag_icon = App.tag_icon
   let zone_icon = App.zone_icon
+  let globe_icon = App.globe_icon
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -408,7 +409,7 @@ App.setup_commands = () => {
       name: `Filter All`,
       cmd: `filter_all`,
       modes: [`items`],
-      icon: filter_icon,
+      icon: globe_icon,
       action: (args) => {
         App.filter_all(args.mode)
       },

@@ -1234,7 +1234,7 @@ App.create_filter_menu = (mode) => {
   btn.title = `Filters (Ctrl + F) - Right Click to show favorites or palette`
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
-  fmodes.push({cmd: `all`, text: `All`, icon: App.globe_icon, info: `Show all items`})
+  fmodes.push({cmd: `all`, text: `All`, info: `Show all items`})
   let m_modes = App[`${mode}_filter_modes`]
 
   if (m_modes) {
@@ -1247,9 +1247,9 @@ App.create_filter_menu = (mode) => {
   fmodes.push({cmd: `filter_media_video`})
   fmodes.push({cmd: `filter_media_audio`})
   fmodes.push(separator())
-  fmodes.push({cmd: `show_filter_tag_menu`, skip: true})
-  fmodes.push({cmd: `show_filter_color_menu`, skip: true})
-  fmodes.push({cmd: `show_filter_icon_menu`, skip: true})
+  fmodes.push({cmd: `tag_menu`, text: `Tags`, skip: true, info: `Show items with tags`})
+  fmodes.push({cmd: `color_menu`, text: `Colors`, skip: true, info: `Show items with colors`})
+  fmodes.push({cmd: `icon_menu`, text: `Icons`, skip: true, info: `Show items with icons`})
   fmodes.push(separator())
   fmodes.push({cmd: `filter_titled_tabs`})
   fmodes.push({cmd: `filter_notes_tabs`})
@@ -1296,71 +1296,113 @@ App.create_filter_menu = (mode) => {
 }
 
 App.show_filter_menu = (mode) => {
-  let items = []
-  let f_mode = App.filter_mode(mode)
+  if (!App.filter_menus[mode]) {
+    let items = []
+    let f_mode = App.filter_mode(mode)
 
-  for (let filter_mode of App.filter_modes(mode)) {
-    if (filter_mode.cmd === App.separator_string) {
-      App.sep(items)
-      continue
+    for (let filter_mode of App.filter_modes(mode)) {
+      if (filter_mode.cmd === App.separator_string) {
+        App.sep(items)
+        continue
+      }
+
+      let cmd = App.get_command(filter_mode.cmd)
+
+      if (cmd) {
+        let selected = f_mode === filter_mode.cmd
+
+        items.push({
+          icon: cmd.icon,
+          text: cmd.short_name || cmd.name,
+          action: (e) => {
+            App.run_command({cmd: cmd.cmd, from: `filter_menu`, e: e})
+          },
+          selected: selected,
+          info: cmd.info,
+        })
+      }
+      else if (filter_mode.cmd === `all`) {
+        let cmd = App.get_command(`filter_all`)
+
+        items.push({
+          icon: cmd.icon,
+          text: filter_mode.text,
+          action: () => {
+            if (App.get_setting(`clear_on_all`) || (f_mode === `all`)) {
+              App.filter_all(mode)
+            }
+            else {
+              App.set_filter_mode({mode: mode, cmd: `all`})
+            }
+          },
+          info: filter_mode.info,
+        })
+      }
+      else if (filter_mode.cmd === `custom`) {
+        items.push({
+          icon: filter_mode.icon,
+          text: `Custom`,
+          get_items: () => {
+            return App.get_custom_filters(mode)
+          },
+          info: filter_mode.info,
+        })
+
+        continue
+      }
+      else if (filter_mode.cmd === `refine`) {
+        items.push({
+          icon: filter_mode.icon,
+          text: filter_mode.text,
+          get_items: () => {
+            return App.get_filter_refine(mode)
+          },
+          info: filter_mode.info,
+        })
+      }
+      else if (filter_mode.cmd === `color_menu`) {
+        let cmd = App.get_command(`show_filter_color_menu`)
+
+        items.push({
+          icon: cmd.icon,
+          text: filter_mode.text,
+          get_items: () => {
+            return App.get_color_items(mode)
+          },
+          info: filter_mode.info,
+        })
+      }
+      else if (filter_mode.cmd === `tag_menu`) {
+        let cmd = App.get_command(`show_filter_tag_menu`)
+
+        items.push({
+          icon: cmd.icon,
+          text: filter_mode.text,
+          get_items: () => {
+            return App.get_tag_items(mode)
+          },
+          info: filter_mode.info,
+        })
+      }
+      else if (filter_mode.cmd === `icon_menu`) {
+        let cmd = App.get_command(`show_filter_icon_menu`)
+
+        items.push({
+          icon: cmd.icon,
+          text: filter_mode.text,
+          get_items: () => {
+            return App.get_icon_items(mode)
+          },
+          info: filter_mode.info,
+        })
+      }
     }
 
-    let cmd = App.get_command(filter_mode.cmd)
-
-    if (cmd) {
-      let selected = f_mode === filter_mode.cmd
-
-      items.push({
-        icon: cmd.icon,
-        text: cmd.short_name || cmd.name,
-        action: (e) => {
-          App.run_command({cmd: cmd.cmd, from: `filter_menu`, e: e})
-        },
-        selected: selected,
-        info: cmd.info,
-      })
-    }
-    else if (filter_mode.cmd === `all`) {
-      items.push({
-        icon: filter_mode.icon,
-        text: filter_mode.text,
-        action: () => {
-          if (App.get_setting(`clear_on_all`) || (f_mode === `all`)) {
-            App.filter_all(mode)
-          }
-          else {
-            App.set_filter_mode({mode: mode, cmd: `all`})
-          }
-        },
-        info: filter_mode.info,
-      })
-    }
-    else if (filter_mode.cmd === `custom`) {
-      items.push({
-        icon: filter_mode.icon,
-        text: `Custom`,
-        get_items: () => {
-          return App.get_custom_filters(mode)
-        },
-        info: filter_mode.info,
-      })
-
-      continue
-    }
-    else if (filter_mode.cmd === `refine`) {
-      items.push({
-        icon: filter_mode.icon,
-        text: filter_mode.text,
-        get_items: () => {
-          return App.get_filter_refine(mode)
-        },
-        info: filter_mode.info,
-      })
-    }
+    App.filter_menus[mode] = items
   }
 
   let btn = DOM.el(`#${mode}_filter_modes`)
-  App.show_context({element: btn, items: items, margin: btn.clientHeight})
+  App.show_context({element: btn, items: App.filter_menus[mode], margin: btn.clientHeight})
 }
 
 App.cycle_filter_modes = (mode, reverse, e) => {
