@@ -14,6 +14,7 @@
   --split_border: var(--split_width) solid var(--split_color);
   --split_margin: 0.88rem;
   --backdrop: blur(8px);
+  --taglist_gap: 0.55rem;
 }
 
 @keyframes spin {
@@ -1277,7 +1278,7 @@ a:hover
   align-items: center;
   justify-content: flex-start;
   height: 100%;
-  gap: 0.55rem;
+  gap: var(--taglist_gap);
 }
 
 .taglist.normal .taglist_container {
@@ -1324,8 +1325,8 @@ a:hover
 
 .taglist.hover .taglist_container {
   overflow: auto;
-  padding-left: 0.55rem;
-  padding-right: 0.55rem;
+  padding-left: var(--taglist_gap);
+  padding-right: var(--taglist_gap);
 }
 
 .taglist.hover.overflow .taglist_left_scroll,
