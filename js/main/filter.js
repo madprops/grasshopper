@@ -262,9 +262,10 @@ App.do_filter = async (args = {}) => {
 
   if (args.select) {
     App.clear_selected(args.mode)
+    let sticky_filter = App.get_setting(`sticky_filter`)
     let last_item
 
-    if (App.get_setting(`sticky_filter`)) {
+    if (sticky_filter !== `none`) {
       let f_mode = App.filter_mode(args.mode)
       let f_item = App.get_filter_item(args.mode, f_mode)
 
@@ -274,7 +275,12 @@ App.do_filter = async (args = {}) => {
     }
 
     if (last_item) {
-      App.select_item({item: last_item, deselect: false})
+      if ((sticky_filter === `activate`) && !last_item.discarded) {
+        App.focus_tab({item: last_item, scroll: `center`, method: `sticky_filter`})
+      }
+      else {
+        App.select_item({item: last_item, deselect: false})
+      }
     }
     else if (some_matched) {
       App.select_first_item(args.mode, !App.is_filtered(args.mode))

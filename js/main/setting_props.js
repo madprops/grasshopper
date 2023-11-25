@@ -1383,6 +1383,14 @@ App.build_settings = () => {
       info: `Use these when cycling the Filter Menu with the mousewheel, or right clicking the Filter Menu`,
       version: 1,
     },
+    sticky_filter: {
+      name: `Sticky Filter`,
+      type: `menu`,
+      value: `normal`,
+      info: `Remember the items that were last selected when switching filter views
+      In activate mode it auto activates the items instead of just selecting them`,
+      version: 2,
+    },
     clean_filter: {
       name: `Clean Filter`,
       type: `checkbox`,
@@ -1430,14 +1438,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Make it clear that a filter is active`,
-      version: 1,
-    },
-    sticky_filter: {
-      name: `Sticky Filter`,
-      type: `checkbox`,
-      value: true,
-      actions: [`theme`],
-      info: `Remember the items that were last selected when switching filter views`,
       version: 1,
     },
     clear_on_all: {
@@ -2042,7 +2042,13 @@ App.build_settings = () => {
     },
     filter: {
       info: `Adjust the filter and search`,
-      setup: () => {},
+      setup: () => {
+        App.settings_make_menu(`sticky_filter`, [
+          {text: `None`, value: `none`},
+          {text: `Normal`, value: `normal`},
+          {text: `Activate`, value: `activate`},
+        ])
+      },
     },
     media: {
       info: `How to view media items

@@ -178,7 +178,7 @@ App.set_selected = (item) => {
 
   App[`last_selected_${item.mode}`] = item
 
-  if (App.get_setting(`sticky_filter`)) {
+  if (App.get_setting(`sticky_filter`) !== `none`) {
     let f_mode = App.filter_mode(item.mode)
 
     if (f_mode !== `all`) {
