@@ -71,12 +71,21 @@ App.close_tabs = (item, multiple = true) => {
   App.close_tabs_method(items, force)
 }
 
+App.close_tabs_title = (type) => {
+  if (type === `duplicate`) {
+    type = `duplicates`
+  }
+
+  let s = `Close ${type.replace(/_/, ` `)}`
+  return App.capitalize_words(s)
+}
+
 App.close_tabs_popup = (type, item) => {
   App.start_close_tabs()
   App.close_tabs_type = type
   App.close_tabs_item = item
   App.show_popup(`close_tabs`)
-  let title = App.capitalize_words(`Close ${type.replace(/_/, ` `)}`)
+  let title = App.capitalize_words(App.close_tabs_title(type))
   DOM.el(`#close_tabs_title`).textContent = title
   DOM.el(`#close_tabs_include_pins`).checked = false
   DOM.el(`#close_tabs_include_unloaded`).checked = false

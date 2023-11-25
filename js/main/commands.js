@@ -778,7 +778,7 @@ App.setup_commands = () => {
       info: `Close unloaded tabs`,
     },
     {
-      name: `Close Duplicate`,
+      name: `Close Duplicates`,
       cmd: `close_duplicate_tabs`,
       modes: [`tabs`],
       icon: close_icon,
