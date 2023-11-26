@@ -56,6 +56,7 @@ App.do_filter = async (args = {}) => {
     force: false,
     deep: false,
     select: true,
+    from: `normal`,
   }
 
   App.def_args(def_args, args)
@@ -265,7 +266,7 @@ App.do_filter = async (args = {}) => {
     let sticky_filter = App.get_setting(`sticky_filter`)
     let last_item
 
-    if (sticky_filter !== `none`) {
+    if ((sticky_filter !== `none`) && (args.from !== `step_back`)) {
       let f_mode = App.filter_mode(args.mode)
       let f_item = App.get_filter_item(args.mode, f_mode)
 
@@ -518,10 +519,10 @@ App.set_filter = (args = {}) => {
   if (args.filter) {
     if (App.on_items(args.mode)) {
       if (args.instant) {
-        App.do_filter({mode: args.mode})
+        App.do_filter({mode: args.mode, from: args.from})
       }
       else {
-        App.filter({mode: args.mode})
+        App.filter({mode: args.mode, from: args.from})
       }
     }
     else if (App.on_settings(args.mode)) {
@@ -925,10 +926,10 @@ App.filter_title = (item) => {
   App.set_filter({mode: item.mode, text: title})
 }
 
-App.filter_all = (mode = App.window_mode) => {
+App.filter_all = (mode = App.window_mode, from) => {
   if (App.is_filtered(mode)) {
     App.set_filter_mode({mode: mode, cmd: `all`, filter: false})
-    App.set_filter({mode: mode})
+    App.set_filter({mode: mode, from: from})
   }
 }
 
