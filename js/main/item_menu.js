@@ -158,6 +158,7 @@ App.extra_menu_items = (o_items) => {
   let items = App.custom_menu_items({
     name: `extra_menu`,
     item: App.command_item,
+    check: false,
   })
 
   if (mode === `normal`) {
