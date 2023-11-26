@@ -11,6 +11,5 @@ App.show_hover_menu = (e, item) => {
     item: item,
   })
 
-  App.command_item = item
   App.show_context({items: items, e: e})
 }

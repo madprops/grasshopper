@@ -3,7 +3,6 @@ App.show_item_menu = async (args = {}) => {
     return
   }
 
-  App.command_item = args.item
   App.item_menu_args = args
   App.item_menu_active = App.get_active_items({mode: args.item.mode, item: args.item})
   let items = []
@@ -11,7 +10,7 @@ App.show_item_menu = async (args = {}) => {
   if (App.get_setting(`extra_menu_mode`) === `total`) {
     items = App.custom_menu_items({
       name: `extra_menu`,
-      item: App.command_item,
+      item: args.item
     })
   }
   else {
@@ -157,7 +156,7 @@ App.extra_menu_items = (o_items) => {
 
   let items = App.custom_menu_items({
     name: `extra_menu`,
-    item: App.command_item,
+    item: App.item_menu_args.item,
   })
 
   if (mode === `normal`) {
