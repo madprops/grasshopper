@@ -4,6 +4,10 @@ App.setup_context = () => {
 }
 
 App.show_context = (args = {}) => {
+  if (!args.items) {
+    return
+  }
+
   if (!args.items.length) {
     args.items.push({
       text: `No items`,
