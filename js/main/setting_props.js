@@ -225,7 +225,7 @@ App.build_settings = () => {
       name: `Font`,
       type: `text`,
       actions: [`theme`],
-      value: ``,
+      value: `sans-serif`,
       placeholder: `Font Name`,
       btns: [`pick`],
       info: `Font to use for the text

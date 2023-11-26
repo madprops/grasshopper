@@ -2027,15 +2027,21 @@ App.show_cmds_menu = (args = {}) => {
       }
 
       let ok = true
+      let cmd_ok = true
+      let alt_ok = true
 
       if (args.check) {
-        if (!App.check_command(cmd, cmd_obj)) {
-          if (alt) {
-            if (!App.check_command(alt, cmd_obj)) {
-              ok = false
-            }
+        cmd_ok = App.check_command(cmd, cmd_obj)
+
+        if (alt) {
+          alt_ok = App.check_command(alt, cmd_obj)
+
+          if (!cmd_ok && !alt_ok) {
+            ok = false
           }
-          else {
+        }
+        else {
+          if (!cmd_ok) {
             ok = false
           }
         }
@@ -2048,21 +2054,25 @@ App.show_cmds_menu = (args = {}) => {
       let item_obj = {
         text: App.command_name(cmd),
         action: (e) => {
-          cmd_obj.e = e
-          cmd_obj.cmd = cmd.cmd
-          App.run_command(cmd_obj)
+          if (cmd_ok) {
+            cmd_obj.e = e
+            cmd_obj.cmd = cmd.cmd
+            App.run_command(cmd_obj)
+          }
         },
         icon: cmd.icon,
       }
 
       if (alt) {
         item_obj.alt_action = (e) => {
-          App.run_command({
-            cmd: alt.cmd,
-            from: args.from,
-            item: args.item,
-            e: e,
-          })
+          if (alt_ok) {
+            App.run_command({
+              cmd: alt.cmd,
+              from: args.from,
+              item: args.item,
+              e: e,
+            })
+          }
         }
 
         item_obj.info = `Middle Click: ${alt.name}`
