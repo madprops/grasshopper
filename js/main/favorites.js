@@ -93,7 +93,6 @@ App.fill_favorites_bar = (mode) => {
 App.show_favorites_menu = (e) => {
   let items = App.custom_menu_items({
     name: `favorites_menu`,
-    check: false,
   })
 
   App.show_context({items: items, e: e})

@@ -9,7 +9,6 @@ App.show_hover_menu = (e, item) => {
   let items = App.custom_menu_items({
     name: `hover_menu`,
     item: item,
-    check: false,
   })
 
   App.command_item = item
