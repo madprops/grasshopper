@@ -1723,34 +1723,32 @@ App.check_command = (command, args = {}) => {
     args.some_edits = false
 
     for (let item of args.active) {
-      if (args.mode === `tabs`) {
-        if (item.pinned) {
-          args.some_pinned = true
-        }
-        else {
-          args.some_unpinned = true
-        }
+      if (item.pinned) {
+        args.some_pinned = true
+      }
+      else {
+        args.some_unpinned = true
+      }
 
-        if (item.muted) {
-          args.some_muted = true
-        }
-        else {
-          args.some_unmuted = true
-        }
+      if (item.muted) {
+        args.some_muted = true
+      }
+      else {
+        args.some_unmuted = true
+      }
 
-        if (item.discarded) {
-          args.some_unloaded = true
-        }
-        else {
-          args.some_loaded = true
-        }
+      if (item.discarded) {
+        args.some_unloaded = true
+      }
+      else {
+        args.some_loaded = true
+      }
 
-        if (item.header) {
-          args.some_header = true
-        }
-        else {
-          args.some_no_header = true
-        }
+      if (item.header) {
+        args.some_header = true
+      }
+      else {
+        args.some_no_header = true
       }
 
       for (let prop of [
