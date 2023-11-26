@@ -401,7 +401,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: heart_icon,
       action: (args) => {
-        App.show_favorites_menu(args.e, args.item)
+        App.show_favorites_menu(args.e)
       },
       info: `Show the Favorites menu`,
     },
@@ -2076,4 +2076,15 @@ App.command_name = (command, force_short) => {
   else {
     return command.name
   }
+}
+// name, item, check
+App.custom_menu_items = (args = {}) => {
+  let cmds = App.get_setting(args.name)
+
+  return App.show_cmds_menu({
+    cmds: cmds,
+    from: args.name,
+    item: args.item,
+    check: args.check,
+  })
 }

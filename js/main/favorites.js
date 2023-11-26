@@ -4,7 +4,7 @@ App.create_favorites_bar = (mode) => {
 
   DOM.ev(el, `contextmenu`, (e) => {
     e.preventDefault()
-    App.show_favorites_menu(mode, e)
+    App.show_favorites_menu(e)
   })
 
   return el
@@ -16,7 +16,7 @@ App.create_favorites_button = (mode) => {
   btn.title = App.favorites_title
 
   DOM.ev(btn, `click`, (e) => {
-    App.show_favorites_menu(mode, e)
+    App.show_favorites_menu(e)
   })
 
   return btn
@@ -90,12 +90,9 @@ App.fill_favorites_bar = (mode) => {
   bar.classList.remove(`hidden`)
 }
 
-App.show_favorites_menu = (mode, e) => {
-  let favs = App.get_setting(`favorites_menu`)
-
-  let items = App.show_cmds_menu({
-    cmds: favs,
-    from: `favorites_button`,
+App.show_favorites_menu = (e) => {
+  let items = App.custom_menu_items({
+    name: `favorites_menu`,
     check: false,
   })
 

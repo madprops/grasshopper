@@ -31,11 +31,6 @@ App.print_intro = () => {
   App.log(`${App.nice_date(d, true)} | ${d}`)
 }
 
-App.custom_menu_items = (name, item) => {
-  let cmds = App.get_setting(name)
-  return App.show_cmds_menu({cmds: cmds, from: name, item: item})
-}
-
 App.check_ready = (what) => {
   let s = `${what}_ready`
 

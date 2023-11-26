@@ -9,7 +9,10 @@ App.show_item_menu = async (args = {}) => {
   let items = []
 
   if (App.get_setting(`extra_menu_mode`) === `total`) {
-    items = App.custom_menu_items(`extra_menu`, App.command_item)
+    items = App.custom_menu_items({
+      name: `extra_menu`,
+      item: App.command_item,
+    })
   }
   else {
     if (args.item.mode === `tabs`) {
@@ -152,7 +155,10 @@ App.extra_menu_items = (o_items) => {
     return
   }
 
-  let items = App.custom_menu_items(`extra_menu`, App.command_item)
+  let items = App.custom_menu_items({
+    name: `extra_menu`,
+    item: App.command_item,
+  })
 
   if (mode === `normal`) {
     if (items.length) {

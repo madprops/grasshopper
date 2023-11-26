@@ -6,7 +6,12 @@ App.create_hover_button = () => {
 }
 
 App.show_hover_menu = (e, item) => {
-  let items = App.custom_menu_items(`hover_menu`, item)
+  let items = App.custom_menu_items({
+    name: `hover_menu`,
+    item: item,
+    check: false,
+  })
+
   App.command_item = item
   App.show_context({items: items, e: e})
 }
