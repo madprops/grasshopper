@@ -97,7 +97,6 @@ App.scroller_delay = 100
 App.pinline_delay = 100
 App.wheel_delay = 100
 App.show_mode_delay = 100
-App.filter_cycle_delay = 100
 App.check_filter_delay = 100
 App.apply_theme_delay = 100
 App.last_scroll_delay = 100

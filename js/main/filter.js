@@ -18,10 +18,6 @@ App.start_filter_debouncers = () => {
       App.do_filter(args)
     }
   }, App.check_filter_delay)
-
-  App.filter_debouncer_cycle = App.create_debouncer((args) => {
-    App.do_filter(args)
-  }, App.filter_cycle_delay)
 }
 
 App.check_filter = (mode) => {
@@ -31,10 +27,7 @@ App.check_filter = (mode) => {
 }
 
 App.filter = (args) => {
-  if (args.from === `cycle`) {
-    App.filter_debouncer_cycle.call(args)
-  }
-  else if (App.search_modes.includes(args.mode)) {
+  if (App.search_modes.includes(args.mode)) {
     App.filter_debouncer_search.call(args)
   }
   else {
@@ -46,7 +39,6 @@ App.cancel_filter = () => {
   App.filter_debouncer.cancel()
   App.filter_debouncer_search.cancel()
   App.check_filter_debouncer.cancel()
-  App.filter_debouncer_cycle.cancel()
 }
 
 App.do_filter = async (args = {}) => {
@@ -616,10 +608,10 @@ App.set_filter_mode = (args = {}) => {
 
   if (args.filter) {
     if (args.instant) {
-      App.do_filter({mode: args.mode})
+      App.do_filter({mode: args.mode, from: args.from})
     }
     else {
-      App.filter({mode: args.mode, from: `cycle`})
+      App.filter({mode: args.mode, from: args.from})
     }
   }
 }
