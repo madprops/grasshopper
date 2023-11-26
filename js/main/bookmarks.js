@@ -173,7 +173,7 @@ App.bookmark_items = async (item, active, feedback = true) => {
   let force = App.check_force(`warn_on_bookmark`, items)
 
   App.show_confirm({
-    message: `Bookmark these items? (${items.length})`,
+    message: `Bookmark items? (${items.length})`,
     confirm_action: async () => {
       for (let item of add) {
         let title = App.title(item)

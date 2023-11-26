@@ -796,7 +796,7 @@ App.open_items = (item, shift, multiple = true) => {
     let force = App.check_force(`warn_on_open`, items)
 
     App.show_confirm({
-      message: `Open these items ${items.length}?`,
+      message: `Open items ${items.length}?`,
       confirm_action: () => {
         for (let item of items) {
           App.open_tab(item)
