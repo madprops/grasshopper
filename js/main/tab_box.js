@@ -7,6 +7,10 @@ App.setup_tab_box = () => {
     App.do_check_tab_box_playing()
   }, App.check_tab_box_playing_delay)
 
+  App.tab_box_grow_debouncer = App.create_debouncer(() => {
+    App.do_tab_box_grow()
+  }, App.tab_box_grow_delay)
+
   App.tab_box_shrink_debouncer = App.create_debouncer(() => {
     App.do_tab_box_shrink()
   }, App.tab_box_shrink_delay)
@@ -268,6 +272,7 @@ App.tab_box_menu = (e) => {
       text: size.text,
       action: (e) => {
         App.set_setting(`tab_box`, size.value)
+        App.tab_box_prev = size.value
         App.apply_theme()
       },
     })
@@ -425,16 +430,33 @@ App.toggle_tab_box = () => {
   }
 }
 
-App.tab_box_grow = () => {
-  App.tab_box_shrink_debouncer.cancel()
+App.check_tab_box_grow = () => {
   let auto = App.get_setting(`tab_box_auto_grow`)
   let current = App.get_setting(`tab_box`)
+  let index_1 = App.sizes.findIndex(x => x.value === auto)
+  let index_2 = App.sizes.findIndex(x => x.value === current)
 
-  if (auto !== current) {
-    App.tab_box_prev = current
-    App.set_setting(`tab_box`, auto)
-    App.apply_theme()
+  if (index_1 <= index_2) {
+    return false
   }
+
+  return true
+}
+
+App.tab_box_grow = () => {
+  App.tab_box_grow_debouncer.call()
+}
+
+App.do_tab_box_grow = () => {
+  App.tab_box_shrink_debouncer.cancel()
+
+  if (!App.check_tab_box_grow()) {
+    return
+  }
+
+  App.tab_box_size = App.get_setting(`tab_box_auto_grow`)
+  App.tab_box_prev = App.get_setting(`tab_box`)
+  App.apply_theme()
 }
 
 App.tab_box_shrink = () => {
@@ -442,10 +464,8 @@ App.tab_box_shrink = () => {
 }
 
 App.do_tab_box_shrink = () => {
-  let current = App.get_setting(`tab_box`)
-
-  if (current !== App.tab_box_prev) {
-    App.set_setting(`tab_box`, App.tab_box_prev)
+  if (App.tab_box_size) {
+    App.tab_box_size = undefined
     App.apply_theme()
   }
 }
