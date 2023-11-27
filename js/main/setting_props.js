@@ -592,6 +592,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Enable the Taglist in the items of the Tab Box`,
+      version: 1,
+    },
+    tab_box_auto_playing: {
+      name: `Tab Box Auto Playing`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto show the tab box when a tab is playing. And auto hide it when nothing is playing`,
       separator: true,
       version: 1,
     },

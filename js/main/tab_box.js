@@ -2,6 +2,10 @@ App.setup_tab_box = () => {
   App.update_tab_box_debouncer = App.create_debouncer((what) => {
     App.do_update_tab_box(what)
   }, App.update_tab_box_delay)
+
+  App.check_tab_box_playing_debouncer = App.create_debouncer(() => {
+    App.do_check_tab_box_playing()
+  }, App.check_tab_box_playing_delay)
 }
 
 App.create_tab_box = () => {
@@ -296,8 +300,7 @@ App.tab_box_menu = (e) => {
       App.show_confirm({
         message: `Hide the Tab Box?`,
         confirm_action: () => {
-          App.set_setting(`tab_box`, `none`)
-          App.apply_theme()
+          App.hide_tab_box()
         },
       })
     },
@@ -356,4 +359,39 @@ App.cycle_tab_box_mode = (dir) => {
   }
 
   App.change_tab_box_mode(modes[0])
+}
+
+App.check_tab_box_playing = () => {
+  if (App.get_setting(`tab_box_auto_playing`)) {
+    App.check_tab_box_playing_debouncer.call()
+  }
+}
+
+App.do_check_tab_box_playing = () => {
+  if (App.get_setting(`tab_box_auto_playing`)) {
+    let playing = App.get_playing_tabs()
+
+    if (playing.length > 0) {
+      if (App.get_setting(`tab_box`) === `none`) {
+        App.set_setting(`tab_box`, `small`)
+      }
+
+      if (App.get_setting(`tab_box_mode`) !== `playing`) {
+        App.change_tab_box_mode(`playing`)
+      }
+
+      App.apply_theme()
+      App.update_tab_box(`playing`)
+    }
+    else {
+      if (App.get_setting(`tab_box_mode`) === `playing`) {
+        App.hide_tab_box()
+      }
+    }
+  }
+}
+
+App.hide_tab_box = () => {
+  App.set_setting(`tab_box`, `none`)
+  App.apply_theme()
 }

@@ -1090,9 +1090,7 @@ App.build_item_window = (mode) => {
   let tab_box
 
   if (mode === `tabs`) {
-    if (App.get_setting(`tab_box`) !== `none`) {
-      tab_box = App.create_tab_box()
-    }
+    tab_box = App.create_tab_box()
   }
 
   let btns = DOM.create(`div`, `item_top_buttons`)
