@@ -1181,6 +1181,7 @@ a:hover
 #tab_box {
   display: var(--tab_box_display);
   height: var(--tab_box_height);
+  transition: height 0.35s ease;
 }
 
 .box_title {
