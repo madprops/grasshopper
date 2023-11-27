@@ -563,6 +563,13 @@ App.build_settings = () => {
       info: `What effect to show on active items in the Tab Box`,
       version: 4,
     },
+    tab_box_auto_grow: {
+      name: `Tab Box Auto Grow`,
+      type: `menu`,
+      value: `none`,
+      info: `Grow the Tab Box when the mouse enters, restore it when the mouse leaves`,
+      version: 1,
+    },
     tab_box_icons: {
       name: `Tab Box Icons`,
       type: `checkbox`,
@@ -1969,6 +1976,13 @@ App.build_settings = () => {
         ])
 
         App.settings_make_menu(`tab_box`, [{text: `None`, value: `none`}, ...App.sizes])
+
+        App.settings_make_menu(`tab_box_auto_grow`, [
+          {text: `None`, value: `none`},
+          {text: `Normal`, value: `normal`},
+          {text: `Big`, value: `big`},
+          {text: `Huge`, value: `huge`},
+        ])
 
         App.settings_make_menu(`tab_box_mode`, [
           {text: `Recent`, value: `recent`, icon: App.tab_box_icon(`recent`)},

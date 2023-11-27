@@ -104,6 +104,7 @@ App.check_selected_delay = 100
 App.update_tab_box_delay = 100
 App.check_tab_box_playing_delay = 100
 App.update_active_trace_delay = 100
+App.tab_box_shrink_delay = 500
 
 App.settings_icons = {
   general: `⚡`,
