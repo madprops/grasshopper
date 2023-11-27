@@ -377,7 +377,7 @@ svg {
   padding-bottom: 0.25rem;
 }
 
-.header_item .item_text {
+.item_container .header_item .item_text {
   align-items: center;
 }
 
@@ -1385,7 +1385,7 @@ a:hover
 }
 
 .not_filtered .split_top,
-.header_item
+.item_container .header_item
 {
   border-top: var(--split_border) !important;
 }
