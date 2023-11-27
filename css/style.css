@@ -1035,12 +1035,16 @@ a:hover
   backdrop-filter: var(--backdrop);
   padding-top: var(--footer_padding);
   padding-bottom: var(--footer_padding);
-  padding-left: 0.25rem;
   border: 0px solid var(--alt_color_1);
   border-top-width: 1px;
   flex-shrink: 0;
   flex-grow: 0;
   gap: 0.5rem;
+}
+
+.footer_tab_box {
+  padding-left: 0.25rem;
+  height: 100%;
 }
 
 .footer_content {
