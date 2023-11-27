@@ -383,11 +383,6 @@ App.do_check_tab_box_playing = () => {
       App.apply_theme()
       App.update_tab_box(`playing`)
     }
-    else {
-      if (App.get_setting(`tab_box_mode`) === `playing`) {
-        App.hide_tab_box()
-      }
-    }
   }
 }
 
