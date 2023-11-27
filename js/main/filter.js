@@ -343,10 +343,14 @@ App.filter_check = (args) => {
 
   if (!match) {
     if (args.by_what.startsWith(`color`) || App.get_setting(`filter_colors`)) {
-      let color = App.get_color(args.item)
+      let color_id = App.get_color(args.item)
 
-      if (color) {
-        match = App.clean_filter(color).toLowerCase().startsWith(args.value_lower)
+      if (color_id) {
+        let color = App.get_color_by_id(color_id)
+
+        if (color) {
+          match = App.clean_filter(color.name).toLowerCase().startsWith(args.value_lower)
+        }
       }
     }
 
