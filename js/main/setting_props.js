@@ -598,7 +598,7 @@ App.build_settings = () => {
       name: `Tab Box Auto Playing`,
       type: `checkbox`,
       value: false,
-      info: `Auto show the Tab Box when a tab is playing. And auto hide it when nothing is playing`,
+      info: `Auto show the Tab Box when a tab is playing, and auto hide it when nothing is playing`,
       separator: true,
       version: 1,
     },
