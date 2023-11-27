@@ -60,12 +60,26 @@ App.get_footer = (mode) => {
 
 App.create_footer = (mode) => {
   let footer = DOM.create(`div`, `footer glowbox`, `${mode}_footer`)
-  let footer_count = DOM.create(`div`, `footer_count`, `${mode}_footer_count`)
-  footer.append(footer_count)
-  let footer_info = DOM.create(`div`, `footer_info`, `${mode}_footer_info`)
-  footer.append(footer_info)
 
-  DOM.ev(footer, `click`, (e) => {
+  if (mode === `tabs`) {
+    let tab_box_btn = DOM.create(`div`, `footer_show_tab_box grower`)
+    tab_box_btn.textContent = App.mode_icons[mode]
+    tab_box_btn.title = `Toggle Tab Box`
+
+    DOM.ev(tab_box_btn, `click`, () => {
+      App.toggle_tab_box()
+    })
+
+    footer.append(tab_box_btn)
+  }
+
+  let footer_content = DOM.create(`div`, `footer_content`)
+  let footer_count = DOM.create(`div`, `footer_count`, `${mode}_footer_count`)
+  footer_content.append(footer_count)
+  let footer_info = DOM.create(`div`, `footer_info`, `${mode}_footer_info`)
+  footer_content.append(footer_info)
+
+  DOM.ev(footer_content, `click`, (e) => {
     if (e.shiftKey || e.ctrlKey) {
       return
     }
@@ -73,7 +87,7 @@ App.create_footer = (mode) => {
     App.goto_bottom(mode)
   })
 
-  DOM.ev(footer, `contextmenu`, (e) => {
+  DOM.ev(footer_content, `contextmenu`, (e) => {
     e.preventDefault()
 
     let cmds = [
@@ -85,13 +99,14 @@ App.create_footer = (mode) => {
     App.show_context({items: items, e: e})
   })
 
-  DOM.ev(footer, `auxclick`, (e) => {
+  DOM.ev(footer_content, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_footer`)
       App.run_command({cmd: cmd, from: `footer`, e: e})
     }
   })
 
+  footer.append(footer_content)
   return footer
 }
 

@@ -392,6 +392,28 @@ App.do_check_tab_box_playing = () => {
 }
 
 App.hide_tab_box = () => {
-  App.set_setting(`tab_box`, `none`)
-  App.apply_theme()
+  if (App.get_setting(`tab_box`) !== `none`) {
+    App.set_setting(`tab_box`, `none`)
+    App.apply_theme()
+  }
+}
+
+App.show_tab_box = () => {
+  if (App.get_setting(`tab_box`) === `none`) {
+    App.set_setting(`tab_box`, `normal`)
+    App.apply_theme()
+    App.refresh_tab_box()
+  }
+}
+
+App.toggle_tab_box = () => {
+  if (App.get_setting(`tab_box`) === `none`) {
+    App.set_setting(`tab_box`, `normal`)
+    App.apply_theme()
+    App.refresh_tab_box()
+  }
+  else {
+    App.set_setting(`tab_box`, `none`)
+    App.apply_theme()
+  }
 }
