@@ -43,10 +43,12 @@ App.create_tab_box = () => {
   }
 
   DOM.ev(tab_box, `mouseenter`, () => {
+    App.tab_box_clear_grow()
     App.tab_box_grow()
   })
 
   DOM.ev(tab_box, `mouseleave`, () => {
+    App.tab_box_clear_grow()
     App.tab_box_shrink()
   })
 
@@ -448,8 +450,6 @@ App.tab_box_grow = () => {
 }
 
 App.do_tab_box_grow = () => {
-  App.tab_box_shrink_debouncer.cancel()
-
   if (!App.check_tab_box_grow()) {
     return
   }
@@ -468,4 +468,9 @@ App.do_tab_box_shrink = () => {
     App.tab_box_size = undefined
     App.apply_theme()
   }
+}
+
+App.tab_box_clear_grow = () => {
+  App.tab_box_grow_debouncer.cancel()
+  App.tab_box_shrink_debouncer.cancel()
 }
