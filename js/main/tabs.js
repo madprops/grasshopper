@@ -1295,7 +1295,7 @@ App.tab_ready = (item) => {
 }
 
 App.check_pins = (item) => {
-  if (App.get_setting(`hide_pins`)) {
+  if (App.get_setting(`hide_pins`) && !item.tab_box) {
     if (item.pinned) {
       item.element.classList.add(`hidden_2`)
       item.visible = false
