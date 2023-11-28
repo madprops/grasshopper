@@ -1456,3 +1456,7 @@ a:hover
 .a-color-picker-rgb, .a-color-picker-rgbhex {
   padding: 2px !important;
 }
+
+.tab_pointers .item {
+  cursor: pointer;
+}

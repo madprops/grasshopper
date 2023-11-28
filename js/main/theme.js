@@ -337,6 +337,13 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`autohide_taglist`)
     }
 
+    if (App.get_setting(`tab_pointers`)) {
+      main.classList.add(`tab_pointers`)
+    }
+    else {
+      main.classList.remove(`tab_pointers`)
+    }
+
     App.insert_color_css()
     App.insert_custom_css()
   }
