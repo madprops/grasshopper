@@ -24,6 +24,21 @@ App.show_item_menu = async (args = {}) => {
       App.item_menu_item(items, `edit_title`, {item: args.item})
       App.item_menu_item(items, `edit_notes`, {item: args.item})
 
+      let zone_items = []
+      App.item_menu_item(zone_items, `insert_header`, {item: args.item})
+      App.item_menu_item(zone_items, `insert_subheader`, {item: args.item})
+      App.sep(zone_items)
+      App.item_menu_item(zone_items, `add_split_both`, {item: args.item})
+      App.item_menu_item(zone_items, `add_split_top`, {item: args.item})
+      App.item_menu_item(zone_items, `add_split_bottom`, {item: args.item})
+      App.item_menu_item(zone_items, `remove_split`, {item: args.item})
+
+      items.push({
+        icon: App.zone_icon,
+        text: `Zones`,
+        items: zone_items,
+      })
+
       let common_obj = {
         o_items: items,
         item: args.item,
@@ -122,14 +137,6 @@ App.more_menu_items = (args = {}) => {
       App.sep(items)
     }
 
-    App.item_menu_item(items, `insert_header`, {item: args.item})
-    App.item_menu_item(items, `insert_subheader`, {item: args.item})
-    App.sep(items)
-    App.item_menu_item(items, `add_split_both`, {item: args.item})
-    App.item_menu_item(items, `add_split_top`, {item: args.item})
-    App.item_menu_item(items, `add_split_bottom`, {item: args.item})
-    App.item_menu_item(items, `remove_split`, {item: args.item})
-    App.sep(items)
     App.item_menu_item(items, `move_tabs_to_top`, {item: args.item})
     App.item_menu_item(items, `move_tabs_to_bottom`, {item: args.item})
     App.sep(items)
