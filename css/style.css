@@ -1045,6 +1045,9 @@ a:hover
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.footer > div {
   height: 100%;
 }
 
