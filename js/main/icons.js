@@ -276,7 +276,7 @@ App.check_item_icon = (item) => {
 }
 
 App.make_item_icon = (item, normal = true) => {
-  let icon, text_icon
+  let icon, text_icon, svg_icon
 
   if (item.tab_box) {
     normal = false
@@ -287,14 +287,25 @@ App.make_item_icon = (item, normal = true) => {
       text_icon = App.zone_icon
     }
     else {
-      text_icon = App.down_arrow_icon
+      svg_icon = `arrow_down`
     }
   }
 
   let no_favicon = App.no_favicons.includes(item.mode)
   let fetch = no_favicon && App.get_setting(`fetch_favicons`)
 
-  if (text_icon) {
+  if (svg_icon) {
+    icon = App.get_svg_icon(svg_icon)
+    icon.classList.add(`item_icon`)
+
+    if (normal) {
+      item.svg_icon_used = svg_icon
+      item.text_icon_used = undefined
+      item.favicon_used = undefined
+      item.generated_icon = undefined
+    }
+  }
+  else if (text_icon) {
     if (normal) {
       if (item.text_icon_used === text_icon) {
         return {add: false}
@@ -307,6 +318,7 @@ App.make_item_icon = (item, normal = true) => {
       item.text_icon_used = text_icon
       item.favicon_used = undefined
       item.generated_icon = undefined
+      item.svg_icon = undefined
     }
   }
   else if (item.favicon || fetch) {
@@ -326,6 +338,7 @@ App.make_item_icon = (item, normal = true) => {
       item.favicon_used = item.favicon
       item.generated_icon = undefined
       item.text_icon_used = undefined
+      item.svg_icon = undefined
     }
   }
   else if (App.get_setting(`generate_icons`)) {
@@ -341,6 +354,7 @@ App.make_item_icon = (item, normal = true) => {
       item.generated_icon = item.hostname
       item.favicon_used = undefined
       item.text_icon_used = undefined
+      item.svg_icon = undefined
     }
   }
 
@@ -353,6 +367,15 @@ App.make_item_icon = (item, normal = true) => {
 App.create_icon = (name, type = 1) => {
   let icon = document.createElementNS(`http://www.w3.org/2000/svg`, `svg`)
   icon.classList.add(`icon_${type}`)
+  let icon_use = document.createElementNS(`http://www.w3.org/2000/svg`, `use`)
+  icon_use.href.baseVal = `#${name}_icon`
+  icon.append(icon_use)
+  return icon
+}
+
+App.get_svg_icon = (name) => {
+  let icon = document.createElementNS(`http://www.w3.org/2000/svg`, `svg`)
+  icon.classList.add(`item_icon`)
   let icon_use = document.createElementNS(`http://www.w3.org/2000/svg`, `use`)
   icon_use.href.baseVal = `#${name}_icon`
   icon.append(icon_use)
