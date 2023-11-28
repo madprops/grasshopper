@@ -1041,7 +1041,7 @@ a:hover
   gap: 0.5rem;
 }
 
-.footer_tab_box {
+#footer_tab_box {
   display: flex;
   align-items: center;
   justify-content: center;

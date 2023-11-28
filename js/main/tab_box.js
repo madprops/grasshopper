@@ -408,6 +408,7 @@ App.hide_tab_box = () => {
   if (App.get_setting(`tab_box`) !== `none`) {
     App.set_setting(`tab_box`, `none`)
     App.apply_theme()
+    App.check_tab_box_footer()
   }
 }
 
@@ -416,18 +417,16 @@ App.show_tab_box = () => {
     App.set_setting(`tab_box`, `normal`)
     App.apply_theme()
     App.refresh_tab_box()
+    App.check_tab_box_footer()
   }
 }
 
 App.toggle_tab_box = () => {
   if (App.get_setting(`tab_box`) === `none`) {
-    App.set_setting(`tab_box`, `normal`)
-    App.apply_theme()
-    App.refresh_tab_box()
+    App.show_tab_box()
   }
   else {
-    App.set_setting(`tab_box`, `none`)
-    App.apply_theme()
+    App.hide_tab_box()
   }
 }
 
@@ -481,4 +480,19 @@ App.do_tab_box_shrink = () => {
 App.tab_box_clear_grow = () => {
   App.tab_box_grow_debouncer.cancel()
   App.tab_box_shrink_debouncer.cancel()
+}
+
+App.check_tab_box_footer = () => {
+  let btn = DOM.el(`#footer_tab_box`)
+  btn.innerHTML = ``
+  let icon
+
+  if (App.get_setting(`tab_box`) === `none`) {
+    icon = `arrow_up_empty`
+  }
+  else {
+    icon = `arrow_up`
+  }
+
+  btn.append(App.create_icon(icon))
 }

@@ -60,7 +60,7 @@ App.create_footer = (mode) => {
   let footer = DOM.create(`div`, `footer`, `${mode}_footer`)
 
   if (mode === `tabs`) {
-    let tab_box_btn = DOM.create(`div`, `footer_tab_box grower`)
+    let tab_box_btn = DOM.create(`div`, `grower`, `footer_tab_box`)
     tab_box_btn.append(App.create_icon(`arrow_up`))
     tab_box_btn.title = `Toggle Tab Box`
 
