@@ -9,9 +9,7 @@ App.setup_footer = () => {
 }
 
 App.update_footer_info = (item) => {
-  if (App.get_setting(`show_footer`)) {
-    App.update_footer_info_debouncer.call(item)
-  }
+  App.update_footer_info_debouncer.call(item)
 }
 
 App.do_update_footer_info = (item) => {
@@ -111,9 +109,7 @@ App.create_footer = (mode) => {
 }
 
 App.update_footer_count = (mode) => {
-  if (App.get_setting(`show_footer`)) {
-    App.footer_count_debouncer.call(mode)
-  }
+  App.footer_count_debouncer.call(mode)
 }
 
 App.do_update_footer_count = (mode) => {
