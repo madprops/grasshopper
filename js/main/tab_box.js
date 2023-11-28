@@ -311,6 +311,8 @@ App.tab_box_menu = (e) => {
     items: positions,
   })
 
+  App.sep(items)
+
   items.push({
     text: `Hide`,
     action: (e) => {
