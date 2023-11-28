@@ -1,4 +1,8 @@
 App.settings_do_actions = (actions) => {
+  if (!App.on_settings()) {
+    return
+  }
+
   for (let action of actions) {
     if (action === `theme`) {
       App.apply_theme()
