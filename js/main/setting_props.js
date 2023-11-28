@@ -499,6 +499,22 @@ App.build_settings = () => {
       Edits include color, tags, notes, etc`,
       version: 1,
     },
+    header_icon: {
+      name: `Header Icon`,
+      type: `text_smaller`,
+      value: `🚥`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for header tabs`,
+      version: 1,
+    },
+    subheader_icon: {
+      name: `Subheader Icon`,
+      type: `text_smaller`,
+      value: `⬇️`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for subheader tabs`,
+      version: 1,
+    },
   }
 
   add_props()

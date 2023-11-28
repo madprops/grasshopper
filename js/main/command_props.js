@@ -7,6 +7,8 @@ App.setup_commands = () => {
   let muted_icon = App.get_setting(`muted_icon`) || App.muted_icon
   let unread_icon = App.get_setting(`unread_icon`) || App.circle_icon
   let notes_icon = App.get_setting(`notes_icon`) || App.notepad_icon
+  let header_icon = App.get_setting(`header_icon`) || App.zone_icon
+  let subheader_icon = App.get_setting(`subheader_icon`) || App.down_arrow_icon
   let command_icon = App.command_icon
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
@@ -886,7 +888,7 @@ App.setup_commands = () => {
       cmd: `insert_header`,
       modes: [`tabs`],
       item: true,
-      icon: zone_icon,
+      icon: header_icon,
       action: (args) => {
         App.insert_header(args.item)
       },
@@ -898,7 +900,7 @@ App.setup_commands = () => {
       cmd: `insert_subheader`,
       modes: [`tabs`],
       item: true,
-      icon: zone_icon,
+      icon: subheader_icon,
       action: (args) => {
         App.insert_header(args.item, false)
       },
@@ -1221,9 +1223,19 @@ App.setup_commands = () => {
       name: `Remove All Headers`,
       cmd: `remove_all_headers`,
       modes: [`tabs`],
-      icon: zone_icon,
+      icon: header_icon,
       action: (args) => {
         App.remove_all_headers(args.item)
+      },
+      info: `Remove all header tabs`,
+    },
+    {
+      name: `Remove All Subheaders`,
+      cmd: `remove_all_subheaders`,
+      modes: [`tabs`],
+      icon: subheader_icon,
+      action: (args) => {
+        App.remove_all_subheaders(args.item)
       },
       info: `Remove all header tabs`,
     },

@@ -114,8 +114,23 @@ App.get_header_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.header)
 }
 
+App.get_subheader_tabs = () => {
+  let headers = App.get_header_tabs()
+  return headers.filter(x => !x.element.classList.contains(`split_top`))
+}
+
 App.remove_all_headers = () => {
   let items = App.get_header_tabs()
+
+  if (!items.length) {
+    return
+  }
+
+  App.close_tabs_method(items)
+}
+
+App.remove_all_subheaders = () => {
+  let items = App.get_subheader_tabs()
 
   if (!items.length) {
     return

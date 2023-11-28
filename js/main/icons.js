@@ -284,27 +284,17 @@ App.make_item_icon = (item, normal = true) => {
 
   if (!text_icon && item.header) {
     if (App.get_split_top(item)) {
-      text_icon = App.zone_icon
+      text_icon = App.get_setting(`header_icon`)
     }
     else {
-      svg_icon = `arrow_down`
+      text_icon = App.get_setting(`subheader_icon`)
     }
   }
 
   let no_favicon = App.no_favicons.includes(item.mode)
   let fetch = no_favicon && App.get_setting(`fetch_favicons`)
 
-  if (svg_icon) {
-    icon = App.get_svg_icon(svg_icon, `item_icon`)
-
-    if (normal) {
-      item.svg_icon_used = svg_icon
-      item.text_icon_used = undefined
-      item.favicon_used = undefined
-      item.generated_icon = undefined
-    }
-  }
-  else if (text_icon) {
+  if (text_icon) {
     if (normal) {
       if (item.text_icon_used === text_icon) {
         return {add: false}
