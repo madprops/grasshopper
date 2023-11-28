@@ -434,6 +434,11 @@ App.toggle_tab_box = () => {
 
 App.check_tab_box_grow = () => {
   let auto = App.get_setting(`tab_box_auto_grow`)
+
+  if (auto === `none`) {
+    return false
+  }
+
   let current = App.get_setting(`tab_box`)
   let index_1 = App.sizes.findIndex(x => x.value === auto)
   let index_2 = App.sizes.findIndex(x => x.value === current)
@@ -446,6 +451,10 @@ App.check_tab_box_grow = () => {
 }
 
 App.tab_box_grow = () => {
+  if (!App.check_tab_box_grow()) {
+    return
+  }
+
   App.tab_box_grow_debouncer.call()
 }
 
