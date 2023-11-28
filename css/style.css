@@ -1423,7 +1423,7 @@ a:hover
 }
 
 .not_filtered .split_top,
-.item_container .header_item
+.item_container .header_item.split_top
 {
   border-top: var(--split_border) !important;
 }

@@ -283,7 +283,12 @@ App.make_item_icon = (item, normal = true) => {
   }
 
   if (!text_icon && item.header) {
-    text_icon = App.zone_icon
+    if (App.get_split_top(item)) {
+      text_icon = App.zone_icon
+    }
+    else {
+      text_icon = App.down_arrow_icon
+    }
   }
 
   let no_favicon = App.no_favicons.includes(item.mode)

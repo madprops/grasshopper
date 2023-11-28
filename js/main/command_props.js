@@ -890,7 +890,19 @@ App.setup_commands = () => {
       action: (args) => {
         App.insert_header(args.item)
       },
-      info: `Add a header tab above a tab`,
+      info: `Add a header tab`,
+    },
+    {
+      name: `Insert Subheader`,
+      short_name: `Subheader`,
+      cmd: `insert_subheader`,
+      modes: [`tabs`],
+      item: true,
+      icon: zone_icon,
+      action: (args) => {
+        App.insert_header(args.item, false)
+      },
+      info: `Add a subheader tab`,
     },
     {
       name: `Select Pins`,

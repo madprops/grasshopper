@@ -15,6 +15,10 @@ App.show_dialog = (args = {}) => {
     DOM.ev(btn, `click`, () => {
       App.popups[`dialog`].hide()
       button[1]()
+
+      if (args.on_any_action) {
+        args.on_any_action()
+      }
     })
 
     if (button[2]) {
@@ -26,7 +30,17 @@ App.show_dialog = (args = {}) => {
   }
 
   App.dialog_buttons = args.buttons
-  App.dialog_on_dismiss = args.on_dismiss
+
+  App.dialog_on_dismiss = () => {
+    if (args.on_dismiss) {
+      args.on_dismiss()
+    }
+
+    if (args.on_any_action) {
+      args.on_any_action()
+    }
+  }
+
   App.focus_dialog_button(args.buttons.length - 1)
   App.show_popup(`dialog`)
 }
@@ -84,13 +98,20 @@ App.show_confirm = (args = {}) => {
 
   let on_dismiss = () => {
     if (args.cancel_action) {
-     args. cancel_action()
+     args.cancel_action()
+    }
+  }
+
+  let on_any_action = () => {
+    if (args.on_any_action) {
+      args.on_any_action()
     }
   }
 
   App.show_dialog({
     message: args.message,
     buttons: buttons,
-    on_dismiss: on_dismiss
+    on_dismiss: on_dismiss,
+    on_any_action: on_any_action,
   })
 }

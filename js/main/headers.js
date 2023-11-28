@@ -1,4 +1,4 @@
-App.insert_header = async (item) => {
+App.insert_header = async (item, full = true) => {
   let active = App.get_active_items({mode: item.mode, item: item})
   let first = active.at(0)
   let index = App.get_item_element_index(first.mode, first.element)
@@ -24,7 +24,10 @@ App.insert_header = async (item) => {
   }
 
   if (header) {
-    App.select_item({item: header, scroll: `nearest`})
+    if (full) {
+      App.edit_tab_split({item: header, which: `top`})
+    }
+
     App.edit_title(header)
   }
 }
