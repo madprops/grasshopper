@@ -1408,15 +1408,15 @@ a:hover
   text-decoration-style: double;
 }
 
-.split_side_right .not_filtered .split {
+.split_side_right .not_filtered .split:not(.header_item) {
   border-right: var(--split_border) !important;
 }
 
-.split_side_left .not_filtered .split {
+.split_side_left .not_filtered .split:not(.header_item) {
   border-left: var(--split_border) !important;
 }
 
-.split_side_both .not_filtered .split {
+.split_side_both .not_filtered .split:not(.header_item) {
   border-left: var(--split_border) !important;
   border-right: var(--split_border) !important;
 }
