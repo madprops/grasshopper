@@ -199,7 +199,7 @@ App.do_filter = async (args = {}) => {
   }
 
   let some_matched = false
-  let headers = filter_mode === `headers`
+  let headers = filter_mode === `filter_header_tabs`
   let header_match = 0
   let max_header = App.get_setting(`header_filter_context`)
 
