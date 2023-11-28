@@ -1035,6 +1035,7 @@ a:hover
   backdrop-filter: var(--backdrop);
   padding-top: var(--footer_padding);
   padding-bottom: var(--footer_padding);
+  padding-right: 0.5rem;
   border: 0px solid var(--alt_color_1);
   border-top-width: 1px;
   flex-shrink: 0;
@@ -1043,6 +1044,9 @@ a:hover
 }
 
 .footer_tab_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding-left: 0.25rem;
   height: 100%;
 }
@@ -1051,8 +1055,6 @@ a:hover
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
   flex-grow: 0;
   gap: 0.5rem;
   overflow: hidden;
