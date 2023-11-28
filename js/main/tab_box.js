@@ -316,12 +316,7 @@ App.tab_box_menu = (e) => {
   items.push({
     text: `Hide`,
     action: (e) => {
-      App.show_confirm({
-        message: `Hide the Tab Box?`,
-        confirm_action: () => {
-          App.hide_tab_box()
-        },
-      })
+      App.hide_tab_box()
     },
   })
 
