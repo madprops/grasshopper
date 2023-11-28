@@ -455,6 +455,7 @@ App.do_tab_box_grow = () => {
   }
 
   App.tab_box_size = App.get_setting(`tab_box_auto_grow`)
+  App.tab_box_check_size()
 }
 
 App.tab_box_shrink = () => {
@@ -466,6 +467,7 @@ App.do_tab_box_shrink = () => {
 
   if (App.tab_box_size) {
     App.tab_box_size = undefined
+    App.tab_box_check_size()
   }
 }
 
@@ -514,7 +516,7 @@ App.tab_box_check_size = () => {
     tab_box.classList.remove(`size_${size.value}`)
   }
 
-  let size = App.get_setting(`tab_box_size`)
+  let size = App.tab_box_size || App.get_setting(`tab_box_size`)
   tab_box.classList.add(`size_${size}`)
 }
 
