@@ -381,27 +381,29 @@ App.cycle_tab_box_mode = (dir) => {
 }
 
 App.check_tab_box_playing = () => {
-  if (App.get_setting(`tab_box_auto_playing`)) {
-    App.check_tab_box_playing_debouncer.call()
-  }
+  App.check_tab_box_playing_debouncer.call()
 }
 
 App.do_check_tab_box_playing = () => {
-  if (App.get_setting(`tab_box_auto_playing`)) {
-    let playing = App.get_playing_tabs()
+  App.check_tab_box_playing_debouncer.cancel()
 
-    if (playing.length > 0) {
-      if (App.get_setting(`tab_box`) === `none`) {
-        App.set_setting(`tab_box`, `small`)
-      }
+  if (!App.get_setting(`tab_box_auto_playing`)) {
+    return
+  }
 
-      if (App.get_setting(`tab_box_mode`) !== `playing`) {
-        App.change_tab_box_mode(`playing`)
-      }
+  let playing = App.get_playing_tabs()
 
-      App.apply_theme()
-      App.update_tab_box(`playing`)
+  if (playing.length > 0) {
+    if (App.get_setting(`tab_box`) === `none`) {
+      App.set_setting(`tab_box`, `small`)
     }
+
+    if (App.get_setting(`tab_box_mode`) !== `playing`) {
+      App.change_tab_box_mode(`playing`)
+    }
+
+    App.apply_theme()
+    App.update_tab_box(`playing`)
   }
 }
 
