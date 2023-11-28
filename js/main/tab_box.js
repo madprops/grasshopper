@@ -68,14 +68,12 @@ App.check_tab_box = () => {
 }
 
 App.update_tab_box = (what) => {
-  if (!App.tab_box_enabled()) {
-    return
-  }
-
   App.update_tab_box_debouncer.call(what)
 }
 
 App.do_update_tab_box = (what) => {
+  App.update_tab_box_debouncer.cancel()
+
   if (!App.tab_box_enabled()) {
     return
   }
