@@ -49,7 +49,7 @@ App.do_check_pinline = () => {
   let s2 = `Normal`
   let sep = `&nbsp;&nbsp;+&nbsp;&nbsp;`
   pinline.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
-  pinline.title = `This is the Pinline. Pins above. Normal below`
+  pinline.title = `This is the Pinline. Pinned tabs above. Normal tabs below`
 
   DOM.ev(pinline, `click`, (e) => {
     let cmds = [
