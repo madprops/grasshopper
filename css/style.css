@@ -14,6 +14,7 @@
   --split_margin: 0.5rem;
   --backdrop: blur(8px);
   --taglist_gap: 0.55rem;
+  --header_margin: 0.25rem;
 }
 
 @keyframes spin {
@@ -363,12 +364,12 @@ svg {
 }
 
 .not_filtered .header_item {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
+  margin-top: var(--header_margin);
+  margin-bottom: var(--header_margin);
 }
 
 .not_filtered .header_item.split_top {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--split_margin);
 }
 
 .header_item:nth-child(1 of :not(.hidden)) {
