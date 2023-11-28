@@ -124,6 +124,7 @@ App.more_menu_items = (args = {}) => {
 
     App.item_menu_item(items, `insert_header`, {item: args.item})
     App.item_menu_item(items, `insert_subheader`, {item: args.item})
+    App.sep(items)
     App.item_menu_item(items, `add_split_both`, {item: args.item})
     App.item_menu_item(items, `add_split_top`, {item: args.item})
     App.item_menu_item(items, `add_split_bottom`, {item: args.item})
