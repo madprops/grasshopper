@@ -497,7 +497,7 @@ App.check_tab_box_footer = () => {
     icon = `arrow_up_empty`
   }
 
-  btn.append(App.create_icon(icon))
+  btn.append(App.get_svg_icon(icon))
 }
 
 App.set_show_tab_box = (what) => {

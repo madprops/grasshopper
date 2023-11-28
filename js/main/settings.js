@@ -486,7 +486,7 @@ App.add_settings_switchers = (category) => {
   container.append(title)
   let actions = DOM.create(`div`, `button icon_button`)
   actions.id = `settings_actions_${category}`
-  actions.append(App.create_icon(`sun`))
+  actions.append(App.get_svg_icon(`sun`))
   container.append(actions)
   let close = DOM.create(`div`, `button`)
   close.textContent = App.close_text

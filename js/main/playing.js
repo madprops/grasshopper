@@ -1,7 +1,7 @@
 App.create_playing_icon = (mode) => {
   btn = DOM.create(`div`, `button icon_button playing_icon hidden`, `playing_icon_${mode}`)
   btn.title = `Go To Playing Tab (Ctrl + Dot) - Right Click to filter playing tabs`
-  let icon = App.create_icon(`speaker`)
+  let icon = App.get_svg_icon(`speaker`)
 
   DOM.ev(btn, `click`, () => {
     App.go_to_playing_tab()

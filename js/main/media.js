@@ -25,7 +25,7 @@ App.start_media = (what) => {
 
       let menu = DOM.create(`div`, `button icon_button`, `media_${what}_menu`)
       menu.title = `Menu (Space)`
-      menu.append(App.create_icon(`sun`))
+      menu.append(App.get_svg_icon(`sun`))
       buttons.append(menu)
 
       let close = DOM.create(`div`, `button`, `media_${what}_close`)

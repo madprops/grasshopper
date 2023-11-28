@@ -1,7 +1,7 @@
 App.create_actions_menu = (mode) => {
   App[`${mode}_actions`] = App[`${mode}_actions`] || []
   let btn = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
-  btn.append(App.create_icon(`sun`))
+  btn.append(App.get_svg_icon(`sun`))
   btn.title = `Actions (Ctrl + Right) - Right Click to show the Browser Menu`
 
   DOM.ev(btn, `click`, () => {

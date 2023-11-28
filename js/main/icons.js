@@ -295,8 +295,7 @@ App.make_item_icon = (item, normal = true) => {
   let fetch = no_favicon && App.get_setting(`fetch_favicons`)
 
   if (svg_icon) {
-    icon = App.get_svg_icon(svg_icon)
-    icon.classList.add(`item_icon`)
+    icon = App.get_svg_icon(svg_icon, `item_icon`)
 
     if (normal) {
       item.svg_icon_used = svg_icon
@@ -364,18 +363,9 @@ App.make_item_icon = (item, normal = true) => {
   }
 }
 
-App.create_icon = (name, type = 1) => {
+App.get_svg_icon = (name, cls = `svg_icon`) => {
   let icon = document.createElementNS(`http://www.w3.org/2000/svg`, `svg`)
-  icon.classList.add(`icon_${type}`)
-  let icon_use = document.createElementNS(`http://www.w3.org/2000/svg`, `use`)
-  icon_use.href.baseVal = `#${name}_icon`
-  icon.append(icon_use)
-  return icon
-}
-
-App.get_svg_icon = (name) => {
-  let icon = document.createElementNS(`http://www.w3.org/2000/svg`, `svg`)
-  icon.classList.add(`item_icon`)
+  icon.classList.add(cls)
   let icon_use = document.createElementNS(`http://www.w3.org/2000/svg`, `use`)
   icon_use.href.baseVal = `#${name}_icon`
   icon.append(icon_use)
