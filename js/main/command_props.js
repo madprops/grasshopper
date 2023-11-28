@@ -376,6 +376,16 @@ App.setup_commands = () => {
       info: `Show or hide the Taglist`,
     },
     {
+      name: `Toggle Tab Box`,
+      cmd: `toggle_tab_box`,
+      modes: [`tabs`],
+      icon: tabs_icon,
+      action: (args) => {
+        App.toggle_tab_box()
+      },
+      info: `Show or hide the Tab Box`,
+    },
+    {
       name: `Fullscreen`,
       cmd: `toggle_fullscreen`,
       icon: command_icon,
