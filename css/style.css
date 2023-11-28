@@ -362,6 +362,11 @@ svg {
   background-color: var(--slight_shade);
 }
 
+.not_filtered .header_item {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .not_filtered .header_item.split_top {
   margin-bottom: 0.5rem;
 }
