@@ -44,7 +44,11 @@ App.create_tab_box = () => {
     tab_box.classList.add(`box_top`)
   }
 
-  DOM.ev(tab_box, `mouseenter`, () => {
+  tab_box.append(title)
+  let container = DOM.create(`div`, `box_container`, `tab_box_container`)
+  tab_box.append(container)
+
+  DOM.ev(container, `mouseenter`, () => {
     App.tab_box_clear_grow()
     App.tab_box_grow()
   })
@@ -54,9 +58,6 @@ App.create_tab_box = () => {
     App.tab_box_shrink()
   })
 
-  tab_box.append(title)
-  let container = DOM.create(`div`, `box_container`, `tab_box_container`)
-  tab_box.append(container)
   App.setup_container_mouse(`tabs`, tab_box)
   App.tab_box_ready = false
   return tab_box
