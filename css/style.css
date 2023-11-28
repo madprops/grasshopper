@@ -1457,6 +1457,6 @@ a:hover
   padding: 2px !important;
 }
 
-.tab_pointers .item {
+.item_pointer .item {
   cursor: pointer;
 }

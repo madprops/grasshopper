@@ -1748,11 +1748,11 @@ App.build_settings = () => {
       info: `Show icons next to the text on the buttons, like on the Main Menu or Settings`,
       version: 1,
     },
-    tab_pointers: {
-      name: `Tab Pointers`,
+    item_pointer: {
+      name: `Item Pointer`,
       type: `checkbox`,
       value: false,
-      info: `Use the pointer cursor on tabs when hovering them`,
+      info: `Use the pointer cursor on items when hovering them`,
       version: 1,
     },
     direct_settings: {
