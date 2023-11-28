@@ -9,7 +9,7 @@ App.create_playing_icon = (mode) => {
 
   DOM.ev(btn, `contextmenu`, (e) => {
     e.preventDefault()
-    App.filter_playing(mode)
+    App.filter_playing()
   })
 
   DOM.ev(btn, `auxclick`, (e) => {
@@ -80,4 +80,9 @@ App.go_to_playing_tab = async () => {
   if (first) {
     App.focus_tab({item: first, scroll: `center_smooth`, method: `playing`})
   }
+}
+
+App.filter_playing = async () => {
+  await App.check_on_tabs()
+  App.filter_cmd(`tabs`, `filter_playing_tabs`)
 }
