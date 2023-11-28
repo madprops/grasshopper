@@ -122,15 +122,9 @@ App.remove_all_headers = () => {
 }
 
 App.set_header_text = (item) => {
-  let title = App.title(item, false) || `Give me a title`
-
-  if (!item.tab_box && (item.title === title)) {
-    return
-  }
-
+  let title = App.title(item, false)
   let text_el = DOM.el(`.item_text_1`, item.element)
   text_el.textContent = title
-  item.title = title
   item.element.title = `Header: ${title}`
 }
 
