@@ -216,24 +216,31 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`icon_size`, `${icon_size}rem`)
-    let tb_size = App.tab_box_size || App.get_setting(`tab_box_size`)
     let tbh_rem = 12.2
     let tbh_diff = 3.5
 
-    if (tb_size === `tiny`) {
-      tbh_rem -= (tbh_diff * 2)
+    for (let size of App.sizes) {
+      if (size.value === `tiny`) {
+        let size = tbh_rem - (tbh_diff * 2)
+        App.set_css_var(`tab_box_size_tiny`, `${size}rem`)
+      }
+      else if (size.value === `small`) {
+        let size = tbh_rem - tbh_diff
+        App.set_css_var(`tab_box_size_small`, `${size}rem`)
+      }
+      else if (size.value === `normal`) {
+        let size = tbh_rem
+        App.set_css_var(`tab_box_size_normal`, `${size}rem`)
+      }
+      else if (size.value === `big`) {
+        let size = tbh_rem + (tbh_diff * 2)
+        App.set_css_var(`tab_box_size_big`, `${size}rem`)
+      }
+      else if (size.value === `huge`) {
+        let size = tbh_rem + (tbh_diff * 4)
+        App.set_css_var(`tab_box_size_huge`, `${size}rem`)
+      }
     }
-    else if (tb_size === `small`) {
-      tbh_rem -= tbh_diff
-    }
-    else if (tb_size === `big`) {
-      tbh_rem += (tbh_diff * 2)
-    }
-    else if (tb_size === `huge`) {
-      tbh_rem += (tbh_diff * 4)
-    }
-
-    App.set_css_var(`tab_box_height`, `${tbh_rem}rem`)
 
     if (App.get_setting(`text_glow`)) {
       document.body.classList.add(`text_glow`)

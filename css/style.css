@@ -1184,8 +1184,27 @@ a:hover
 
 #tab_box {
   display: flex;
-  height: var(--tab_box_height);
   transition: height 0.35s ease;
+}
+
+#tab_box.size_tiny {
+  height: var(--tab_box_size_tiny);
+}
+
+#tab_box.size_small {
+  height: var(--tab_box_size_small);
+}
+
+#tab_box.size_normal {
+  height: var(--tab_box_size_normal);
+}
+
+#tab_box.size_big {
+  height: var(--tab_box_size_big);
+}
+
+#tab_box.size_huge {
+  height: var(--tab_box_size_huge);
 }
 
 .box_title {
