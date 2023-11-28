@@ -1183,7 +1183,7 @@ a:hover
 }
 
 #tab_box {
-  display: var(--tab_box_display);
+  display: flex;
   height: var(--tab_box_height);
   transition: height 0.35s ease;
 }

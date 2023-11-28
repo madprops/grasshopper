@@ -17,7 +17,7 @@ App.setup_tab_box = () => {
 }
 
 App.create_tab_box = () => {
-  let tab_box = DOM.create(`div`, `box`, `tab_box`)
+  let tab_box = DOM.create(`div`, `box hidden`, `tab_box`)
   let title = DOM.create(`div`, `box_title glowbox`, `tab_box_title`)
   title.title = `This is the Tab Box`
 
@@ -204,7 +204,7 @@ App.fill_tab_box = (items, scroll = true) => {
 }
 
 App.change_tab_box_mode = (what) => {
-  App.set_setting(`tab_box_mode`, what)
+  App.set_tab_box_mode(what)
   App.set_tab_box_items()
   App.update_tab_box(what)
 }
@@ -267,15 +267,14 @@ App.tab_box_menu = (e) => {
   let sizes = []
 
   for (let [i, size] of App.sizes.entries()) {
-    if (App.get_setting(`tab_box`) === size.value) {
+    if (App.get_setting(`tab_box_size`) === size.value) {
       continue
     }
 
     sizes.push({
       text: size.text,
       action: (e) => {
-        App.set_tab_box(size.value)
-        App.tab_box_prev = size.value
+        App.set_tab_box_size(size.value)
         App.apply_theme()
       },
     })
@@ -293,7 +292,7 @@ App.tab_box_menu = (e) => {
     positions.push({
       text: `Top`,
       action: (e) => {
-        App.set_setting(`tab_box_position`, `top`)
+        App.set_tab_box_position(`top`)
         App.clear_show()
       },
     })
@@ -303,7 +302,7 @@ App.tab_box_menu = (e) => {
     positions.push({
       text: `Bottom`,
       action: (e) => {
-        App.set_setting(`tab_box_position`, `bottom`)
+        App.set_tab_box_position(`bottom`)
         App.clear_show()
       },
     })
@@ -341,7 +340,7 @@ App.check_tab_box_item = (item, what) => {
 }
 
 App.tab_box_mode = (what) => {
-  if (App.get_setting(`tab_box`) !== `none`) {
+  if (App.get_setting(`show_tab_box`)) {
     if (App.get_setting(`tab_box_mode`) === what) {
       return true
     }
@@ -351,7 +350,7 @@ App.tab_box_mode = (what) => {
 }
 
 App.tab_box_enabled = () => {
-  return App.get_setting(`tab_box`) !== `none`
+  return App.get_setting(`show_tab_box`)
 }
 
 App.cycle_tab_box_mode = (dir) => {
@@ -392,8 +391,8 @@ App.do_check_tab_box_playing = () => {
   let playing = App.get_playing_tabs()
 
   if (playing.length > 0) {
-    if (App.get_setting(`tab_box`) === `none`) {
-      App.set_tab_box(`small`)
+    if (!App.get_setting(`show_tab_box`)) {
+      App.set_show_tab_box(true)
     }
 
     if (App.get_setting(`tab_box_mode`) !== `playing`) {
@@ -405,29 +404,23 @@ App.do_check_tab_box_playing = () => {
   }
 }
 
-App.hide_tab_box = () => {
-  if (App.get_setting(`tab_box`) !== `none`) {
-    App.set_tab_box(`none`)
-    App.apply_theme()
-    App.check_tab_box_footer()
-  }
+App.show_tab_box = () => {
+  DOM.el(`#tab_box`).classList.remove(`hidden`)
+  App.set_show_tab_box(true)
+  App.refresh_tab_box()
 }
 
-App.show_tab_box = () => {
-  if (App.get_setting(`tab_box`) === `none`) {
-    App.set_tab_box(`normal`)
-    App.apply_theme()
-    App.refresh_tab_box()
-    App.check_tab_box_footer()
-  }
+App.hide_tab_box = () => {
+  DOM.el(`#tab_box`).classList.add(`hidden`)
+  App.set_show_tab_box(false)
 }
 
 App.toggle_tab_box = () => {
-  if (App.get_setting(`tab_box`) === `none`) {
-    App.show_tab_box()
+  if (App.get_setting(`show_tab_box`)) {
+    App.hide_tab_box()
   }
   else {
-    App.hide_tab_box()
+    App.show_tab_box()
   }
 }
 
@@ -438,7 +431,7 @@ App.check_tab_box_grow = () => {
     return false
   }
 
-  let current = App.get_setting(`tab_box`)
+  let current = App.get_setting(`tab_box_size`)
   let index_1 = App.sizes.findIndex(x => x.value === auto)
   let index_2 = App.sizes.findIndex(x => x.value === current)
 
@@ -461,7 +454,6 @@ App.do_tab_box_grow = () => {
   }
 
   App.tab_box_size = App.get_setting(`tab_box_auto_grow`)
-  App.tab_box_prev = App.get_setting(`tab_box`)
   App.apply_theme()
 }
 
@@ -488,17 +480,37 @@ App.check_tab_box_footer = () => {
   btn.innerHTML = ``
   let icon
 
-  if (App.get_setting(`tab_box`) === `none`) {
-    icon = `arrow_up_empty`
+  if (App.get_setting(`show_tab_box`)) {
+    icon = `arrow_up`
   }
   else {
-    icon = `arrow_up`
+    icon = `arrow_up_empty`
   }
 
   btn.append(App.create_icon(icon))
 }
 
-App.set_tab_box = (size) => {
-  App.set_setting(`tab_box`, size)
+App.set_show_tab_box = (what) => {
+  App.set_setting(`show_tab_box`, what)
   App.check_tab_box_footer()
+}
+
+App.set_tab_box_size = (what) => {
+  App.set_setting(`tab_box_size`, what)
+}
+
+App.set_tab_box_mode = (what) => {
+  App.set_setting(`tab_box_mode`, what)
+}
+
+App.set_tab_box_position = (what) => {
+  App.set_setting(`tab_box_position`, what)
+}
+
+App.check_show_tab_box = () => {
+  App.check_tab_box_footer()
+
+  if (App.get_setting(`show_tab_box`)) {
+    App.show_tab_box()
+  }
 }

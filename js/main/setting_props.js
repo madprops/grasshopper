@@ -528,12 +528,19 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-    tab_box: {
-      name: `Tab Box`,
+    show_tab_box: {
+      name: `Show Tab Box`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable or disable the Tab Box`,
+      version: 3,
+    },
+    tab_box_size: {
+      name: `Tab Box Size`,
       type: `menu`,
-      value: `none`,
-      info: `How to present the Tab Box`,
-      version: 2,
+      value: `normal`,
+      info: `The size of the Tab Box`,
+      version: 1,
     },
     tab_box_position: {
       name: `Tab Box Position`,
@@ -1982,7 +1989,7 @@ App.build_settings = () => {
           {text: `Always`, value: `always`},
         ])
 
-        App.settings_make_menu(`tab_box`, [{text: `None`, value: `none`}, ...App.sizes])
+        App.settings_make_menu(`tab_box_size`, App.sizes)
 
         App.settings_make_menu(`tab_box_auto_grow`, [
           {text: `None`, value: `none`},

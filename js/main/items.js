@@ -1134,10 +1134,6 @@ App.build_item_window = (mode) => {
     content.append(footer)
   }
 
-  if (mode === `tabs`) {
-    App.check_tab_box_footer()
-  }
-
   App.setup_mode_mouse(mode)
   let main_menu = App.create_main_menu(mode)
   let filter = App.create_filter(mode)

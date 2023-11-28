@@ -216,28 +216,23 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`icon_size`, `${icon_size}rem`)
-    let tbh = App.tab_box_size || App.get_setting(`tab_box`)
+    let tb_size = App.tab_box_size || App.get_setting(`tab_box_size`)
     let tbh_rem = 12.2
     let tbh_diff = 3.5
-    let tbh_display = `flex`
 
-    if (tbh === `none`) {
-      tbh_display = `none`
-    }
-    else if (tbh === `tiny`) {
+    if (tb_size === `tiny`) {
       tbh_rem -= (tbh_diff * 2)
     }
-    else if (tbh === `small`) {
+    else if (tb_size === `small`) {
       tbh_rem -= tbh_diff
     }
-    else if (tbh === `big`) {
+    else if (tb_size === `big`) {
       tbh_rem += (tbh_diff * 2)
     }
-    else if (tbh === `huge`) {
+    else if (tb_size === `huge`) {
       tbh_rem += (tbh_diff * 4)
     }
 
-    App.set_css_var(`tab_box_display`, tbh_display)
     App.set_css_var(`tab_box_height`, `${tbh_rem}rem`)
 
     if (App.get_setting(`text_glow`)) {
