@@ -451,14 +451,12 @@ App.check_tab_box_grow = () => {
 }
 
 App.tab_box_grow = () => {
-  if (!App.check_tab_box_grow()) {
-    return
-  }
-
   App.tab_box_grow_debouncer.call()
 }
 
 App.do_tab_box_grow = () => {
+  App.tab_box_grow_debouncer.cancel()
+
   if (!App.check_tab_box_grow()) {
     return
   }
@@ -473,6 +471,8 @@ App.tab_box_shrink = () => {
 }
 
 App.do_tab_box_shrink = () => {
+  App.tab_box_shrink_debouncer.cancel()
+
   if (App.tab_box_size) {
     App.tab_box_size = undefined
     App.apply_theme()

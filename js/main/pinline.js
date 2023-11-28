@@ -17,9 +17,7 @@ App.pinline_enabled = () => {
 }
 
 App.check_pinline = () => {
-  if (App.pinline_enabled()) {
-    App.pinline_debouncer.call()
-  }
+  App.pinline_debouncer.call()
 }
 
 App.do_check_pinline = () => {
