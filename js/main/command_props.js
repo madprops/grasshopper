@@ -1063,7 +1063,6 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_no_split_top: true,
-      some_no_header: true,
       icon: zone_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `top`})
@@ -1201,7 +1200,6 @@ App.setup_commands = () => {
       cmd: `remove_split`,
       modes: [`tabs`],
       some_custom_split: true,
-      some_no_header: true,
       item: true,
       icon: zone_icon,
       action: (args) => {
