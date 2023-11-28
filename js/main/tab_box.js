@@ -21,7 +21,9 @@ App.create_tab_box = () => {
   let title = DOM.create(`div`, `box_title glowbox`, `tab_box_title`)
   title.title = `This is the Tab Box`
 
-  DOM.ev(title, `click`, (e) => {
+  DOM.evs(title, [`click`, `contextmenu`], (e) => {
+    e.preventDefault()
+    e.stopPropagation()
     App.tab_box_menu(e)
   })
 
