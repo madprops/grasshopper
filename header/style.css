@@ -1,7 +1,7 @@
 :root {
   --color_1: black;
   --color_2: white;
-}		
+}
 
 body, html {
   width: 100vw;
@@ -65,4 +65,8 @@ body, html {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
+}
+
+#image {
+  width: 200px;
 }
