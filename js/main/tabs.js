@@ -324,7 +324,7 @@ App.tabs_action = async (item, from, scroll = `nearest_smooth`) => {
       return
     }
     else if (header_action === `first`) {
-      App.focus_header_first(item, `nearest_smooth`)
+      App.focus_header_first(item)
       return
     }
   }
