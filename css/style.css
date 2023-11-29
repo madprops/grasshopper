@@ -1482,7 +1482,9 @@ a:hover
   display: flex;
 }
 
-.a-color-picker-rgb, .a-color-picker-rgbhex {
+.a-color-picker-rgb,
+.a-color-picker-rgbhex
+{
   padding: 2px !important;
 }
 
