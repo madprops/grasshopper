@@ -112,12 +112,12 @@ App.select_header_group = (item) => {
 
 App.get_header_tabs = () => {
   let headers = App.get_items(`tabs`).filter(x => x.header)
-  return headers.filter(x => x.element.classList.contains(`split_top`))
+  return headers.filter(x => App.is_full_header(x))
 }
 
 App.get_subheader_tabs = () => {
   let headers = App.get_items(`tabs`).filter(x => x.header)
-  return headers.filter(x => !x.element.classList.contains(`split_top`))
+  return headers.filter(x => !App.is_full_header(x))
 }
 
 App.get_headers = () => {
@@ -208,4 +208,8 @@ App.select_header_first = (item, scroll) => {
   }
 
   return false
+}
+
+App.is_full_header = (item) => {
+  return App.get_split_top(item)
 }

@@ -283,7 +283,7 @@ App.make_item_icon = (item, normal = true) => {
   }
 
   if (!text_icon && item.header) {
-    if (App.get_split_top(item)) {
+    if (App.is_full_header) {
       text_icon = App.get_setting(`header_icon`)
     }
     else {
