@@ -1210,7 +1210,7 @@ App.remove_auto_blur = () => {
   }
 }
 
-App.scroll_to_selected = (mode = App.window_mode, scroll = `nearest_smooth`) => {
+App.scroll_to_selected = (mode = App.window_mode, scroll = `nearest`) => {
   let selected = App.get_selected(mode)
 
   if (selected) {
