@@ -100,7 +100,7 @@ App.update_tab_box_headers = () => {
     return
   }
 
-  let o_items = App.get_header_tabs()
+  let o_items = App.get_headers()
   let items = App.get_tab_box_items(o_items, `headers`)
   App.fill_tab_box(items, false)
 }

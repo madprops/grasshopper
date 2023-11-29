@@ -120,6 +120,10 @@ App.get_subheader_tabs = () => {
   return headers.filter(x => !x.element.classList.contains(`split_top`))
 }
 
+App.get_headers = () => {
+  return App.get_items(`tabs`).filter(x => x.header)
+}
+
 App.close_headers = () => {
   let items = App.get_header_tabs()
 
