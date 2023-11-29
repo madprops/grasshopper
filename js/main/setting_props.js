@@ -510,9 +510,9 @@ App.build_settings = () => {
     subheader_icon: {
       name: `Subheader Icon`,
       type: `text_smaller`,
-      value: `⬇️`,
+      value: ``,
       placeholder: App.icon_placeholder,
-      info: `Icon for subheader tabs`,
+      info: `Icon for subheheader tabs`,
       version: 1,
     },
   }
