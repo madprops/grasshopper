@@ -7,8 +7,8 @@ App.setup_commands = () => {
   let muted_icon = App.get_setting(`muted_icon`) || App.muted_icon
   let unread_icon = App.get_setting(`unread_icon`) || App.circle_icon
   let notes_icon = App.get_setting(`notes_icon`) || App.notepad_icon
-  let header_icon = App.get_setting(`header_icon`) || App.get_svg_icon(`arrow_down`)
-  let subheader_icon = App.get_setting(`subheader_icon`) || App.get_svg_icon(`arrow_down`)
+  let header_icon = App.get_setting(`header_icon`) || App.zone_icon
+  let subheader_icon = App.get_setting(`subheader_icon`) || App.zone_icon
   let command_icon = App.command_icon
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
