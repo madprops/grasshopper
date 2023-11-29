@@ -1144,6 +1144,13 @@ App.build_settings = () => {
       info: `Select the tab group of a header by double clicking on headers`,
       version: 1,
     },
+    view_header: {
+      name: `View Header`,
+      type: `checkbox`,
+      value: false,
+      info: `View the content of the headers when clicking on them`,
+      version: 1,
+    },
   }
 
   add_props()

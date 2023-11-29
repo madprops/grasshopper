@@ -203,6 +203,13 @@ App.mouse_click_action = (mode, e, from) => {
     }
   }
 
+  if (item.header) {
+    if (!App.get_setting(`view_header`)) {
+      App.select_item({item: item, scroll: `nearest_smooth`})
+      return
+    }
+  }
+
   if (e.altKey || App.get_setting(`click_select`)) {
     App.select_item({item: item, scroll: `nearest_smooth`})
     return
