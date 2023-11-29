@@ -82,8 +82,6 @@ App.mouse_click_action = (mode, e, from) => {
     return
   }
 
-  let item_container = e.target.closest(`.item_container`)
-
   if (e.shiftKey) {
     App.select_range(item)
     return
@@ -112,6 +110,8 @@ App.mouse_click_action = (mode, e, from) => {
       return
     }
   }
+
+  let item_container = e.target.closest(`.item_container`)
 
   if (item_container) {
     if (e.target.closest(`.item_icon_container`)) {
