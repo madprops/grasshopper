@@ -124,7 +124,7 @@ App.setup_commands = () => {
       name: name,
       cmd: `close_color_${color.id}`,
       modes: [`tabs`],
-      icon: icon,
+      icon: close_icon,
       action: (args) => {
         App.close_color(color.id)
       },
@@ -1220,24 +1220,24 @@ App.setup_commands = () => {
       info: `Remove all splits from tabs`,
     },
     {
-      name: `Remove All Headers`,
-      cmd: `remove_all_headers`,
+      name: `Close Headers`,
+      cmd: `close_headers`,
       modes: [`tabs`],
-      icon: header_icon,
+      icon: close_icon,
       action: (args) => {
-        App.remove_all_headers(args.item)
+        App.close_headers(args.item)
       },
-      info: `Remove all header tabs`,
+      info: `Close all header tabs`,
     },
     {
-      name: `Remove All Subheaders`,
-      cmd: `remove_all_subheaders`,
+      name: `Close Subheaders`,
+      cmd: `close_subheaders`,
       modes: [`tabs`],
-      icon: subheader_icon,
+      icon: close_icon,
       action: (args) => {
-        App.remove_all_subheaders(args.item)
+        App.close_subheaders(args.item)
       },
-      info: `Remove all header tabs`,
+      info: `Close all header tabs`,
     },
     {
       name: `Replace Tag`,
