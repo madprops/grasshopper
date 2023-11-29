@@ -196,7 +196,11 @@ App.item_menu_item = (items, cmd, obj) => {
     obj.mode = App.item_menu_args.item.mode
     obj.active = App.item_menu_active
     obj.command = command
-    obj.short = true
+
+    if (obj.short === undefined) {
+      obj.short = true
+    }
+
     items.push(App.cmd_item(obj))
   }
 }

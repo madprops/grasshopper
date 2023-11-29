@@ -1342,6 +1342,10 @@ a:hover
   display: flex;
 }
 
+.header_item .taglist.normal {
+  justify-content: center;
+}
+
 .taglist_left_scroll,
 .taglist_right_scroll
 {

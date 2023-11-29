@@ -3,45 +3,37 @@
 <html>
 	<head>
 		<title>Header</title>
-
-		<style>
-			body, html {
-				background-color: darkslategrey;
-				color: white;
-				font-family: serif;
-				font-size: 18px;
-				margin: 2rem;
-			}
-
-			#text {
-				display: flex;
-				flex-direction: column;
-				gap: 1rem;
-			}
-		</style>
+		<link rel="stylesheet" href="style.css"/>
+		<script src="../js/libs/colorlib.js"></script>
+		<script src="../js/libs/dom.js"></script>
+		<script src="base.js"></script>
 	</head>
 
 	<body>
-		<div id="text">
-			<div>
-				<img id="image" src="grasshopper.png">
-				The jump is a three-stage process. First, the grasshopper fully flexes the lower part of the leg (tibia)
-				against the upper part (femur) by activating the flexor tibiae muscle. Second, there is a
-				period of co-contraction in which force builds up in the large, pennate extensor tibiae muscle, but
-				the tibia is kept flexed by the simultaneous contraction of the flexor tibiae muscle. The extensor
-				muscle is much stronger than the flexor muscle, but the latter is aided by specialisations in the
-				joint that give it a large effective mechanical advantage over the former when the tibia is fully
-				flexed. Co-contraction can last for up to half a second, and during this period the extensor muscle
-				shortens and stores elastic strain energy by distorting stiff cuticular structures in the leg. The
-				extensor muscle contraction is quite slow (almost isometric), which allows it to develop high
-				force (up to 14 N in the desert locust), but because it is slow only low power is needed. The third
-				stage of the jump is the trigger relaxation of the flexor muscle, which releases the tibia from the
-				flexed position. The subsequent rapid tibial extension is driven mainly by the relaxation of the
-				elastic structures, rather than by further shortening of the extensor muscle. In this way the stiff
-				cuticle acts like the elastic of a catapult, or the bow of a bow-and-arrow. Energy is put into the
-				store at low power by slow but strong muscle contraction, and retrieved from the store at high
-				power by rapid relaxation of the mechanical elastic structures.
+		<div id="main">
+			<div id="buttons">
+				<div class="flex_row">
+					<div id="red_button" class="button">R</div>
+					<div id="green_button" class="button">G</div>
+					<div id="blue_button" class="button">B</div>
+				</div>
+
+				<div class="flex_row">
+					<div id="black_button" class="button">Black</div>
+					<div id="white_button" class="button">White</div>
+				</div>
+
+				<div id="random_button" class="button">Random</div>
+				<div id="exact_button" class="button">Exact</div>
+				<div id="darker_button" class="button">Darker</div>
+				<div id="lighter_button" class="button">Lighter</div>
+				<div id="fullscreen_button" class="button">Fullscreen</div>
+				<div id="color_info"></div>
 			</div>
+
+			<div id="reference"></div>
 		</div>
 	</body>
+
+	<script src="init.js"></script>
 </html>
