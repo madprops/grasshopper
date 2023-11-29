@@ -1342,7 +1342,7 @@ a:hover
   display: flex;
 }
 
-.header_item .taglist.normal {
+.item_container .header_item .taglist.normal {
   justify-content: center;
 }
 
