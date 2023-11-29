@@ -596,6 +596,10 @@ App.custom_icon_menu_items = (item) => {
     }
   })
 
+  if (item.mode !== `tabs`) {
+    return items
+  }
+
   items.push({
     text: `Change`,
     action: () => {

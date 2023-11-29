@@ -151,13 +151,6 @@ App.mouse_click_action = (mode, e, from) => {
       }
     }
 
-    if (App.get_setting(`color_icon_click`)) {
-      if (e.target.closest(`.color_icon_container`)) {
-        App.show_color_menu(item, e)
-        return
-      }
-    }
-
     if (App.taglist_active()) {
       if (e.target.classList.contains(`taglist_item`)) {
         App.taglist_action(item, e)
@@ -182,6 +175,13 @@ App.mouse_click_action = (mode, e, from) => {
         App.add_tags(item)
         return
       }
+    }
+  }
+
+  if (App.get_setting(`color_icon_click`)) {
+    if (e.target.closest(`.color_icon_container`)) {
+      App.show_color_menu(item, e)
+      return
     }
   }
 
@@ -276,8 +276,6 @@ App.mouse_context_action = (mode, e) => {
     return
   }
 
-  let item_container = e.target.closest(`.item_container`)
-
   if (App.get_setting(`hover_button`)) {
     if (App.get_setting(`hover_button_pick`)) {
       if (e.target.closest(`.hover_button`)) {
@@ -286,6 +284,8 @@ App.mouse_context_action = (mode, e) => {
       }
     }
   }
+
+  let item_container = e.target.closest(`.item_container`)
 
   if (item_container)  {
     if (App.get_setting(`icon_pick`)) {
@@ -367,11 +367,11 @@ App.mouse_middle_action = (mode, e) => {
         return
       }
     }
-  }
 
-  if (e.target.classList.contains(`custom_icon`)) {
-    App.remove_item_icon(item)
-    return
+    if (e.target.classList.contains(`custom_icon`)) {
+      App.remove_item_icon(item)
+      return
+    }
   }
 
   let cmd = App.get_setting(`middle_click_${item.mode}`)

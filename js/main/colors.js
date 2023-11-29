@@ -221,6 +221,10 @@ App.color_menu_items = (item) => {
       }
     })
 
+    if (item.mode !== `tabs`) {
+      return items
+    }
+
     App.sep(items)
   }
 
@@ -409,10 +413,8 @@ App.get_colored_items = (mode) => {
 App.get_color_icon = (item) => {
   let cls = ``
 
-  if (item.mode === `tabs`) {
-    if (App.get_setting(`color_icon_click`)) {
-      cls += ` effect`
-    }
+  if (App.get_setting(`color_icon_click`)) {
+    cls += ` effect`
   }
 
   let icon = DOM.create(`div`, `color_icon_container item_node hidden${cls}`)
