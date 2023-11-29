@@ -196,6 +196,20 @@ App.check_header_first = (item) => {
   return true
 }
 
+App.focus_header_first = (item, scroll) => {
+  let next = App.get_other_item({mode: item.mode, item: item, wrap: false})
+
+  if (App.check_header_first(next)) {
+    App.tabs_action(next, `header`, scroll)
+    return true
+  }
+  else {
+    App.scroll_to_item({item: item, scroll: scroll})
+  }
+
+  return false
+}
+
 App.is_full_header = (item) => {
   return App.get_split_top(item)
 }

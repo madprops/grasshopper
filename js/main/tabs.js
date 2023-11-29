@@ -313,6 +313,22 @@ App.remove_closed_tab = (id) => {
 }
 
 App.tabs_action = async (item, from, scroll = `nearest_smooth`) => {
+  if (item.header) {
+    let header_action = App.get_setting(`header_action`)
+
+    if (header_action === `none`) {
+      return
+    }
+    else if (header_action === `select`) {
+      App.select_item({item: item, scroll: `nearest_smooth`})
+      return
+    }
+    else if (header_action === `first`) {
+      App.focus_header_first(item, `nearest_smooth`)
+      return
+    }
+  }
+
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
 

@@ -1123,6 +1123,13 @@ App.build_settings = () => {
       info: `Custom background color for Header Tabs`,
       version: 1,
     },
+    header_action: {
+      name: `Header Action`,
+      type: `menu`,
+      value: `select`,
+      info: `What to do when clicking a header`,
+      version: 1,
+    },
     split_side: {
       name: `Split Side`,
       type: `menu`,
@@ -1149,13 +1156,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Enable the header icon pick to select the items below`,
-      version: 1,
-    },
-    view_header: {
-      name: `View Header`,
-      type: `checkbox`,
-      value: false,
-      info: `View the content of the headers when clicking on them`,
       version: 1,
     },
   }
@@ -2102,6 +2102,13 @@ App.build_settings = () => {
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
           {text: `Both`, value: `both`},
+        ])
+
+        App.settings_make_menu(`header_action`, [
+          {text: `None`, value: `none`},
+          {text: `Select`, value: `select`},
+          {text: `Activate`, value: `activate`},
+          {text: `First`, value: `first`},
         ])
 
         App.start_setting_colors(`zones`)
