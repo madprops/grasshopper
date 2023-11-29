@@ -421,7 +421,12 @@ App.toggle_tab_box = () => {
     App.hide_tab_box()
   }
   else {
+    let visible = App.selected_visible(`tabs`)
     App.show_tab_box()
+
+    if (visible) {
+      App.scroll_to_selected(`tabs`)
+    }
   }
 }
 

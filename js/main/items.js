@@ -1209,3 +1209,23 @@ App.remove_auto_blur = () => {
     DOM.el(`#main`).classList.remove(`auto_blur`)
   }
 }
+
+App.scroll_to_selected = (mode = App.window_mode, scroll = `nearest_smooth`) => {
+  let selected = App.get_selected(mode)
+
+  if (selected) {
+    App.scroll_to_item({item: selected, scroll: scroll})
+  }
+}
+
+App.selected_visible = (mode = App.window_mode) => {
+  let selected = App.get_selected(mode)
+
+  if (selected) {
+    if (App.item_is_visible(selected)) {
+      return true
+    }
+  }
+
+  return false
+}
