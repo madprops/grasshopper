@@ -64,7 +64,7 @@ App.copy_rule = (item, rule) => {
 }
 
 App.domain_rule_message = () => {
-  App.alert_autohide(`This is set by a domain rule`)
+  App.alert(`This is set by a domain rule`)
 }
 
 App.refresh_rules = (mode) => {

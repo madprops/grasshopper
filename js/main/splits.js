@@ -34,7 +34,7 @@ App.edit_tab_split = (args = {}) => {
   }
   else if (args.which === `both`) {
     if (active.length < 2) {
-      App.alert(`Needs at least 2 tabs to split both`)
+      App.alert(`Multiple tabs are required to do this`)
       return
     }
 

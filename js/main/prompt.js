@@ -120,7 +120,7 @@ App.show_prompt_list = (from = `click`) => {
 
   if (!valid.length) {
     if (from === `click`) {
-      App.alert_autohide(`No more items to add`)
+      App.alert(`No more items to add`)
     }
 
     return
