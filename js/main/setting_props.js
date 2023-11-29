@@ -504,7 +504,7 @@ App.build_settings = () => {
       type: `text_smaller`,
       value: `🚥`,
       placeholder: App.icon_placeholder,
-      info: `Icon for header tabs`,
+      info: `Icon for header tabs. Leave empty to use an arrow`,
       version: 1,
     },
     subheader_icon: {
@@ -512,7 +512,7 @@ App.build_settings = () => {
       type: `text_smaller`,
       value: ``,
       placeholder: App.icon_placeholder,
-      info: `Icon for subheheader tabs`,
+      info: `Icon for subheheader tabs. Leave empty to use an arrow`,
       version: 1,
     },
   }
