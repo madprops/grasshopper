@@ -434,10 +434,10 @@ App.edit_tab_icon = (args = {}) => {
     message: `${s} (${active.length})`,
     confirm_action: () => {
       for (let it of active) {
-        if (App.apply_edit(`icon`, it, args.icon)) {
-          App.custom_save(it.id, `custom_icon`, args.icon)
-          App.push_to_icon_history([args.icon])
-        }
+        App.apply_edit({what: `icon`, item: it, value: args.icon, on_change: (value) => {
+          App.custom_save(it.id, `custom_icon`, value)
+          App.push_to_icon_history([value])
+        }})
       }
     },
     force: force,

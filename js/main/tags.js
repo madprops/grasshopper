@@ -32,13 +32,13 @@ App.edit_tab_tags = (args = {}) => {
           tags = tags.filter(x => !it.rule_tags.includes(x))
         }
 
-        if (App.apply_edit(`tags`, it, tags)) {
-          App.custom_save(it.id, `custom_tags`, tags)
+        App.apply_edit({what: `tags`, item: it, value: tags, on_change: (value) => {
+          App.custom_save(it.id, `custom_tags`, value)
 
           if (new_tags.length) {
             App.push_to_tag_history(new_tags)
           }
-        }
+        }})
       }
     },
     force: force,
@@ -75,9 +75,9 @@ App.remove_tag = (item, tag) => {
 
   let tags = item.custom_tags.filter(x => x !== tag)
 
-  if (App.apply_edit(`tags`, item, tags)) {
-    App.custom_save(item.id, `custom_tags`, tags)
-  }
+  App.apply_edit({what: `tags`, item: item, value: tags, on_change: (value) => {
+    App.custom_save(item.id, `custom_tags`, value)
+  }})
 }
 
 App.wipe_tag = () => {
@@ -221,10 +221,10 @@ App.do_replace_tag = (tag_1, tag_2) => {
     if (item.custom_tags.includes(tag_1)) {
       let tags = item.custom_tags.map(x => x === tag_1 ? tag_2 : x)
 
-      if (App.apply_edit(`tags`, item, tags)) {
-        App.custom_save(item.id, `custom_tags`, tags)
+      App.apply_edit({what: `tags`, item: item, value: tags, on_change: (value) => {
+        App.custom_save(item.id, `custom_tags`, value)
         App.push_to_tag_history([tag_2])
-      }
+      }})
     }
   }
 }
@@ -279,10 +279,10 @@ App.do_edit_tag = (item, tag_1, tag_2) => {
   let tags = item.custom_tags.filter(x => x !== tag_1)
   tags.push(tag_2)
 
-  if (App.apply_edit(`tags`, item, tags)) {
-    App.custom_save(item.id, `custom_tags`, tags)
+  App.apply_edit({what: `tags`, item: item, value: tags, on_change: (value) => {
+    App.custom_save(item.id, `custom_tags`, value)
     App.push_to_tag_history([tag_2])
-  }
+  }})
 }
 
 App.check_tag_edit = (tag_1, tag_2) => {

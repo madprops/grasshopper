@@ -12,10 +12,10 @@ App.edit_tab_title = (args = {}) => {
     message: `${s} (${active.length})`,
     confirm_action: () => {
       for (let it of active) {
-        if (App.apply_edit(`title`, it, args.title)) {
-          App.custom_save(it.id, `custom_title`, args.title)
-          App.push_to_title_history([args.title])
-        }
+        App.apply_edit({what: `title`, item: it, value: args.title, on_change: (value) => {
+          App.custom_save(it.id, `custom_title`, value)
+          App.push_to_title_history([value])
+        }})
       }
     },
     force: force,

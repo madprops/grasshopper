@@ -7,20 +7,20 @@ App.insert_header = async (item, full = true) => {
 
   if (active.length > 1) {
     for (let it of active.slice(1, -1)) {
-      if (App.apply_edit(`split_top`, it, false)) {
-        App.custom_save(it.id, `custom_split_top`, false)
-      }
+      App.apply_edit({what: `split_top`, item: it, value: false, on_change: (value) => {
+        App.custom_save(it.id, `custom_split_top`, value)
+      }})
 
-      if (App.apply_edit(`split_bottom`, it, false)) {
-        App.custom_save(it.id, `custom_split_bottom`, false)
-      }
+      App.apply_edit({what: `split_bottom`, item: it, value: false, on_change: (value) => {
+        App.custom_save(it.id, `custom_split_bottom`, value)
+      }})
     }
 
     let bottom = active.at(-1)
 
-    if (App.apply_edit(`split_bottom`, bottom, true)) {
-      App.custom_save(bottom.id, `custom_split_bottom`, true)
-    }
+    App.apply_edit({what: `split_bottom`, item: bottom, value: true, on_change: (value) => {
+      App.custom_save(bottom.id, `custom_split_bottom`, value)
+    }})
   }
 
   if (header) {

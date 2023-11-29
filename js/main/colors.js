@@ -200,9 +200,9 @@ App.edit_tab_color = (args = {}) => {
     message: `${s} (${active.length})`,
     confirm_action: () => {
       for (let it of active) {
-        if (App.apply_edit(`color`, it, value)) {
+        App.apply_edit({what: `color`, item: it, value: value, on_change: (value) => {
           App.custom_save(it.id, `custom_color`, value)
-        }
+        }})
       }
     },
     force: force,
@@ -512,9 +512,9 @@ App.do_replace_color = (color_1, color_2) => {
 
   for (let item of App.get_items(`tabs`)) {
     if (item.custom_color === c_obj_1.id) {
-      if (App.apply_edit(`color`, item, c_obj_2.id)) {
-        App.custom_save(item.id, `custom_color`, c_obj_2.id)
-      }
+      App.apply_edit({what: `color`, item: item, value: c_obj_2.id, on_change: (value) => {
+        App.custom_save(item.id, `custom_color`, value)
+      }})
     }
   }
 }

@@ -20,13 +20,13 @@ App.edit_tab_split = (args = {}) => {
       message: `Add splits (${active.length})`,
       confirm_action: () => {
         for (let it of active) {
-          if (App.apply_edit(`split_${args.which}`, it, true)) {
-            App.custom_save(it.id, `custom_split_${args.which}`, true)
-          }
+          App.apply_edit({what: `split_${args.which}`, item: it, value: true, on_change: (value) => {
+            App.custom_save(it.id, `custom_split_${args.which}`, value)
+          }})
 
-          if (App.apply_edit(`split_${other}`, it, false)) {
-            App.custom_save(it.id, `custom_split_${other}`, false)
-          }
+          App.apply_edit({what: `split_${other}`, item: it, value: false, on_change: (value) => {
+            App.custom_save(it.id, `custom_split_${other}`, value)
+          }})
         }
       },
       force: force,
@@ -39,25 +39,25 @@ App.edit_tab_split = (args = {}) => {
     }
 
     for (let it of active.slice(1, -1)) {
-      if (App.apply_edit(`split_top`, it, false)) {
-        App.custom_save(it.id, `custom_split_top`, false)
-      }
+      App.apply_edit({what: `split_top`, item: it, value: false, on_change: (value) => {
+        App.custom_save(it.id, `custom_split_top`, value)
+      }})
 
-      if (App.apply_edit(`split_bottom`, it, false)) {
-        App.custom_save(it.id, `custom_split_bottom`, false)
-      }
+      App.apply_edit({what: `split_bottom`, item: it, value: false, on_change: (value) => {
+        App.custom_save(it.id, `custom_split_bottom`, value)
+      }})
     }
 
     let top = active.at(0)
     let bottom = active.at(-1)
 
-    if (App.apply_edit(`split_top`, top, true)) {
-      App.custom_save(top.id, `custom_split_top`, true)
-    }
+    App.apply_edit({what: `split_top`, item: top, value: true, on_change: (value) => {
+      App.custom_save(top.id, `custom_split_top`, value)
+    }})
 
-    if (App.apply_edit(`split_bottom`, bottom, true)) {
-      App.custom_save(bottom.id, `custom_split_bottom`, true)
-    }
+    App.apply_edit({what: `split_bottom`, item: bottom, value: true, on_change: (value) => {
+      App.custom_save(bottom.id, `custom_split_bottom`, value)
+    }})
   }
 }
 

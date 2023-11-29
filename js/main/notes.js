@@ -11,9 +11,9 @@ App.edit_notes = (item) => {
         }
       }
 
-      if (App.apply_edit(`notes`, item, notes)) {
-        App.custom_save(item.id, `custom_notes`, notes)
-      }
+      App.apply_edit({what: `notes`, item: item, value: notes, on_change: (value) => {
+        App.custom_save(item.id, `custom_notes`, value)
+      }})
 
       return true
     },
