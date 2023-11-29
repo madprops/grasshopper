@@ -109,7 +109,7 @@ App.mouse_click_action = (mode, e, from) => {
 
   if (item_container) {
     if (e.target.closest(`.item_icon_container`)) {
-      if (item.header) {
+      if (item.header && App.get_setting(`header_icon_pick`)) {
         App.select_header_group(item)
         return
       }

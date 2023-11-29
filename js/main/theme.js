@@ -345,6 +345,13 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`item_pointer`)
     }
 
+    if (App.get_setting(`header_icon_pick`)) {
+      main.classList.add(`header_icon_pick`)
+    }
+    else {
+      main.classList.remove(`header_icon_pick`)
+    }
+
     App.insert_color_css()
     App.insert_custom_css()
   }

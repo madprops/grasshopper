@@ -1144,6 +1144,13 @@ App.build_settings = () => {
       info: `Select the tab group of a header by double clicking on headers`,
       version: 1,
     },
+    header_icon_pick: {
+      name: `Header Icon Pick`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable the header icon pick to select the items below`,
+      version: 1,
+    },
     view_header: {
       name: `View Header`,
       type: `checkbox`,
