@@ -268,12 +268,11 @@ App.do_apply_theme = (args = {}) => {
     }
 
     main.classList.add(`icon_effect_${ie}`)
-    let local_fonts = App.local_fonts
     let font = App.get_setting(`font`)
     let font_str = `sans-serif`
 
     if (font) {
-      if (local_fonts.includes(font)) {
+      if (App.fonts.includes(font)) {
         font_str = `${font}, sans-serif`
       }
       else if (App.is_url(font)) {

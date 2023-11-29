@@ -17,6 +17,11 @@
   --header_margin: 0.25rem;
 }
 
+@font-face {
+  font-family: "Nova Square";
+  src: url("../fonts/NovaSquare-Regular.ttf") format('truetype');
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

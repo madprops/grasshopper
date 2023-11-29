@@ -1317,7 +1317,7 @@ App.background_path = (num) => {
 App.pick_font = (e) => {
   let items = []
 
-  for (let font of App.local_fonts) {
+  for (let font of App.fonts) {
     items.push({
       text: font,
       action: () => {
