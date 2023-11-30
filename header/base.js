@@ -103,7 +103,6 @@ App.init = () => {
   })
 
   App.state = App.get_local_storage(App.ls_state) || {}
-  console.log(App.state)
   App.set_color(App.state.color || App.default_color)
   App.locked = App.state.locked || false
   App.sticky = App.state.sticky || false
