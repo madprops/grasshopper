@@ -1238,16 +1238,18 @@ App.blink_item = (item) => {
   let down = true
   let max_rounds = 3
   let delay = 20
+  let top = 1
+  let bottom = 0.25
 
   let interval = setInterval(() => {
-    if (opacity >= 1) {
+    if (opacity >= top) {
       down = true
 
       if (rounds >= max_rounds) {
         clearInterval(interval)
       }
     }
-    else if (opacity <= 0.25) {
+    else if (opacity <= bottom) {
       down = false
       rounds += 1
     }
