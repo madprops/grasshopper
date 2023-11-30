@@ -196,11 +196,11 @@ App.check_header_first = (item) => {
   return true
 }
 
-App.focus_header_first = (item, scroll = `nearest_smooth`) => {
+App.focus_header_first = (item, from, scroll = `nearest_smooth`) => {
   let next = App.get_other_item({mode: item.mode, item: item, wrap: false})
 
   if (App.check_header_first(next)) {
-    App.tabs_action(next, `header_first`, scroll)
+    App.tabs_action(next, from, scroll)
   }
 }
 

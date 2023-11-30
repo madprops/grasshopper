@@ -1234,7 +1234,7 @@ App.selected_visible = (mode = App.window_mode) => {
 App.blink_item = (item) => {
   let opacity = 1
   let rounds = 0
-  let max_rounds = 3
+  let max_rounds = 2
   let down = true
   let top = 1
   let bottom = 0.25

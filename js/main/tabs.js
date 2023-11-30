@@ -314,7 +314,7 @@ App.remove_closed_tab = (id) => {
 
 App.tabs_action = async (item, from, scroll) => {
   function blink(it) {
-    if (!App.get_setting(`item_blink`)) {
+    if (!App.get_setting(`tab_box_blink`)) {
       return
     }
 
@@ -351,7 +351,7 @@ App.tabs_action = async (item, from, scroll) => {
       return
     }
     else if (header_action === `first`) {
-      App.focus_header_first(item, scroll)
+      App.focus_header_first(item, from, scroll)
       return
     }
   }

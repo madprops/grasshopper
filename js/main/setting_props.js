@@ -626,6 +626,13 @@ App.build_settings = () => {
       info: `Enable the Taglist in the items of the Tab Box`,
       version: 1,
     },
+    tab_box_blink: {
+      name: `Tab Box Blink`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable tab blink effect when selecting an item from the Tab Box`,
+      version: 1,
+    },
     tab_box_auto_playing: {
       name: `Tab Box Auto Playing`,
       type: `checkbox`,
@@ -1785,13 +1792,6 @@ App.build_settings = () => {
       value: true,
       actions: [`theme`],
       info: `Show icons next to the text on the buttons, like on the Main Menu or Settings`,
-      version: 1,
-    },
-    item_blink: {
-      name: `Item Blink`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable item blink in some cases, like when clicking a Tab Box item`,
       version: 1,
     },
     item_pointer: {
