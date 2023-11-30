@@ -482,6 +482,7 @@ svg {
 .tab_box_hover_effect_background #tab_box_container .item:hover,
 .tab_box_active_effect_background #tab_box_container .active_tab
 {
+  color: var(--text_color);
   background-color: var(--alt_color_1);
 }
 

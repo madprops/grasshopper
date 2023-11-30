@@ -351,6 +351,7 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.insert_color_css()
+    App.insert_tab_color_css()
     App.insert_custom_css()
   }
   catch (err) {
@@ -566,6 +567,44 @@ App.insert_color_css = () => {
   }
 
   let style = DOM.create(`style`, `color_css`)
+  style.textContent = css
+  document.head.appendChild(style)
+}
+
+App.insert_tab_color_css = () => {
+  let css = ``
+  let types = [`active`, `playing`, `unread`,
+  `pinned`, `normal`, `unloaded`, `loaded`]
+
+  for (let type of types) {
+    let text_color, bg_color
+
+    if (App.get_setting(`text_color_${type}_enabled`)) {
+      text_color = App.get_setting(`text_color_${type}`)
+    }
+
+    if (App.get_setting(`background_color_${type}_enabled`)) {
+      bg_color = App.get_setting(`background_color_${type}`)
+    }
+
+    if (text_color) {
+      css += `.tab_color_${type} {
+        color: ${text_color} !important;
+      }`
+    }
+
+    if (bg_color) {
+      css += `.tab_color_${type} {
+        background-color: ${bg_color} !important;
+      }`
+    }
+  }
+
+  for (let style of DOM.els(`.tab_color_css`)) {
+    style.remove()
+  }
+
+  let style = DOM.create(`style`, `tab_color_css`)
   style.textContent = css
   document.head.appendChild(style)
 }
