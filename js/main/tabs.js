@@ -313,6 +313,18 @@ App.remove_closed_tab = (id) => {
 }
 
 App.tabs_action = async (item, from, scroll) => {
+  function blink(it) {
+    if (!App.get_setting(`item_blink`)) {
+      return
+    }
+
+    let valid = [`tab_box`, `header_first`]
+
+    if (valid.includes(from)) {
+      App.blink_item(it)
+    }
+  }
+
   if (!scroll) {
     if (from === `tab_box`) {
       scroll = `center_smooth`
@@ -326,10 +338,16 @@ App.tabs_action = async (item, from, scroll) => {
     let header_action = App.get_setting(`header_action`)
 
     if (header_action === `none`) {
+      if (from === `tab_box`) {
+        App.select_item({item: item, scroll: scroll})
+        blink(item)
+      }
+
       return
     }
     else if (header_action === `select`) {
       App.select_item({item: item, scroll: scroll})
+      blink(item)
       return
     }
     else if (header_action === `first`) {
@@ -346,9 +364,7 @@ App.tabs_action = async (item, from, scroll) => {
     scroll: scroll,
   })
 
-  if ((from === `tab_box`) && App.get_setting(`item_blink`)) {
-    App.blink_item(item)
-  }
+  blink(item)
 }
 
 App.duplicate_tab = async (item) => {
