@@ -66,8 +66,6 @@ App.do_apply_theme = (args = {}) => {
     let bg_opacity = App.get_setting(`background_opacity`) / 100
     let main_background = App.opacity(args.background_color, bg_opacity)
     App.set_css_var(`main_background`, main_background)
-    let lighter_background = App.contrast(args.background_color, 0.18)
-    App.set_css_var(`lighter_background`, lighter_background)
     let slight_shade = App.opacity(args.text_color, 0.1)
     App.set_css_var(`slight_shade`, slight_shade)
     let alt_color_0 = App.opacity(args.text_color, 0.15)
