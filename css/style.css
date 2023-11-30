@@ -1494,7 +1494,3 @@ a:hover
 .item_pointer .item {
   cursor: pointer;
 }
-
-.blink {
-  animation: fade 500ms 3;
-}

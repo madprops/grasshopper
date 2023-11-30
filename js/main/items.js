@@ -1231,9 +1231,33 @@ App.selected_visible = (mode = App.window_mode) => {
 }
 
 App.blink_item = (item) => {
-  item.element.classList.remove(`blink`)
+  let opacity = 1
+  let rounds = 0
+  let step = 0.05
+  let down = true
+  let max_rounds = 3
+  let delay = 20
 
-  setTimeout(() => {
-    item.element.classList.add(`blink`)
-  }, 10)
+  let interval = setInterval(() => {
+    if (opacity >= 1) {
+      down = true
+
+      if (rounds >= max_rounds) {
+        clearInterval(interval)
+      }
+    }
+    else if (opacity <= 0.25) {
+      down = false
+      rounds += 1
+    }
+
+    item.element.style.opacity = opacity
+
+    if (down) {
+      opacity -= step
+    }
+    else {
+      opacity += step
+    }
+  }, delay)
 }
