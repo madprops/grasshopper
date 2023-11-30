@@ -1242,6 +1242,8 @@ App.blink_item = (item) => {
   let bottom = 0.25
 
   let interval = setInterval(() => {
+    item.element.style.opacity = opacity
+
     if (opacity >= top) {
       down = true
 
@@ -1253,8 +1255,6 @@ App.blink_item = (item) => {
       down = false
       rounds += 1
     }
-
-    item.element.style.opacity = opacity
 
     if (down) {
       opacity -= step
