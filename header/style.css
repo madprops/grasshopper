@@ -108,7 +108,3 @@ body, html {
 .rotate_3 {
   filter: hue-rotate(270deg);
 }
-
-.flipped {
-	transform: rotateY(180deg);
-}

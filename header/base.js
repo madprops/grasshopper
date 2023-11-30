@@ -260,13 +260,6 @@ App.image_click = (image) => {
     image.classList.add(`rotate_3`)
   }
   else if (App.image_state === 5) {
-    if (image.classList.contains(`flipped`)) {
-      image.classList.remove(`flipped`)
-    }
-    else {
-      image.classList.add(`flipped`)
-    }
-
     App.image_state = 0
   }
 }
