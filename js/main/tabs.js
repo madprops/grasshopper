@@ -312,17 +312,17 @@ App.remove_closed_tab = (id) => {
   }
 }
 
-App.tabs_action = async (item, from, scroll = `nearest_smooth`) => {
-  if (item.header) {
-    let scroll
-
+App.tabs_action = async (item, from, scroll) => {
+  if (!scroll) {
     if (from === `tab_box`) {
       scroll = `center_smooth`
     }
     else {
       scroll = `nearest_smooth`
     }
+  }
 
+  if (item.header) {
     let header_action = App.get_setting(`header_action`)
 
     if (header_action === `none`) {
