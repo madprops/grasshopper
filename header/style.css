@@ -69,6 +69,7 @@ body, html {
 
 #image {
   width: 200px;
+  padding-bottom: 0.5rem;
 }
 
 #top_right {
