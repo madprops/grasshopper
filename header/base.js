@@ -4,10 +4,11 @@ App.colorlib = ColorLib()
 App.default_color = `#252933`
 App.visible = false
 App.timeout_delay = 250
+App.locked = false
 
 App.init = () => {
   DOM.ev(DOM.el(`#fullscreen_button`), `click`, () => {
-    if (!App.visible) {
+    if (App.disabled()) {
       return
     }
 
@@ -15,7 +16,7 @@ App.init = () => {
   })
 
   DOM.ev(DOM.el(`#random_button`), `click`, () => {
-    if (!App.visible) {
+    if (App.disabled()) {
       return
     }
 
@@ -23,7 +24,7 @@ App.init = () => {
   })
 
   DOM.ev(DOM.el(`#darker_button`), `click`, () => {
-    if (!App.visible) {
+    if (App.disabled()) {
       return
     }
 
@@ -31,7 +32,7 @@ App.init = () => {
   })
 
   DOM.ev(DOM.el(`#lighter_button`), `click`, () => {
-    if (!App.visible) {
+    if (App.disabled()) {
       return
     }
 
@@ -39,7 +40,7 @@ App.init = () => {
   })
 
   DOM.ev(DOM.el(`#exact_button`), `click`, () => {
-    if (!App.visible) {
+    if (App.disabled()) {
       return
     }
 
@@ -47,7 +48,7 @@ App.init = () => {
   })
 
   DOM.ev(DOM.el(`#red_button`), `click`, () => {
-    if (!App.visible) {
+    if (App.disabled()) {
       return
     }
 
@@ -55,7 +56,7 @@ App.init = () => {
   })
 
   DOM.ev(DOM.el(`#green_button`), `click`, () => {
-    if (!App.visible) {
+    if (App.disabled()) {
       return
     }
 
@@ -63,7 +64,7 @@ App.init = () => {
   })
 
   DOM.ev(DOM.el(`#blue_button`), `click`, () => {
-    if (!App.visible) {
+    if (App.disabled()) {
       return
     }
 
@@ -71,7 +72,7 @@ App.init = () => {
   })
 
   DOM.ev(DOM.el(`#black_button`), `click`, () => {
-    if (!App.visible) {
+    if (App.disabled()) {
       return
     }
 
@@ -79,7 +80,7 @@ App.init = () => {
   })
 
   DOM.ev(DOM.el(`#white_button`), `click`, () => {
-    if (!App.visible) {
+    if (App.disabled()) {
       return
     }
 
@@ -100,6 +101,10 @@ App.init = () => {
 
     DOM.el(`#buttons`).classList.remove(`visible`)
     App.visible = false
+  })
+
+  DOM.ev(DOM.el(`#lock`), `click`, (e) => {
+    App.toggle_lock(e.target)
   })
 
   App.state = App.get_local_storage(App.ls_state) || {}
@@ -164,4 +169,12 @@ App.get_local_storage = (ls_name) => {
 
 App.save_local_storage = (ls_name, obj) => {
   localStorage.setItem(ls_name, JSON.stringify(obj))
+}
+
+App.toggle_lock = (checkbox) => {
+  App.locked = checkbox.checked
+}
+
+App.disabled = () => {
+  return !App.visible || App.locked
 }
