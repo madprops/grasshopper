@@ -4,8 +4,6 @@ App.colorlib = ColorLib()
 App.default_color = `#252933`
 App.visible = false
 App.timeout_delay = 250
-App.locked = false
-App.sticky = false
 
 App.init = () => {
   DOM.ev(DOM.el(`#fullscreen_button`), `click`, () => {
@@ -105,7 +103,19 @@ App.init = () => {
   })
 
   App.state = App.get_local_storage(App.ls_state) || {}
+  console.log(App.state)
   App.set_color(App.state.color || App.default_color)
+  App.locked = App.state.locked || false
+  App.sticky = App.state.sticky || false
+
+  if (App.locked) {
+    DOM.el(`#lock`).checked = true
+  }
+
+  if (App.sticky) {
+    DOM.el(`#sticky`).checked = true
+    App.show()
+  }
 }
 
 App.set_color = (color) => {
@@ -114,8 +124,9 @@ App.set_color = (color) => {
   let color_2 = App.colorlib.get_lighter_or_darker(color_1, 0.66)
   document.documentElement.style.setProperty(`--color_1`, color_1)
   document.documentElement.style.setProperty(`--color_2`, color_2)
-  App.save_local_storage(App.ls_state, {color: color_1})
   DOM.el(`#color_info`).textContent = color_1
+  App.state.color = color_1
+  App.save_state()
 }
 
 App.toggle_fullscreen = () => {
@@ -168,12 +179,14 @@ App.save_local_storage = (ls_name, obj) => {
   localStorage.setItem(ls_name, JSON.stringify(obj))
 }
 
-App.toggle_lock = (checkbox) => {
-  App.locked = checkbox.checked
+App.save_state = () => {
+  App.save_local_storage(App.ls_state, App.state)
 }
 
-App.disabled = () => {
-  return !App.visible || App.locked
+App.toggle_lock = (checkbox) => {
+  App.locked = checkbox.checked
+  App.state.locked = App.locked
+  App.save_state()
 }
 
 App.toggle_sticky = (checkbox) => {
@@ -185,6 +198,13 @@ App.toggle_sticky = (checkbox) => {
   else {
     App.hide()
   }
+
+  App.state.sticky = App.sticky
+  App.save_state()
+}
+
+App.disabled = () => {
+  return !App.visible || App.locked
 }
 
 App.show = (instant = false) => {
