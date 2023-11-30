@@ -350,8 +350,8 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`header_icon_pick`)
     }
 
-    App.insert_color_css()
     App.insert_tab_color_css()
+    App.insert_color_css()
     App.insert_custom_css()
   }
   catch (err) {
