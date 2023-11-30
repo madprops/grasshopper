@@ -323,8 +323,6 @@ App.tabs_action = async (item, from, scroll = `nearest_smooth`) => {
       scroll = `nearest_smooth`
     }
 
-    console.log(scroll)
-
     let header_action = App.get_setting(`header_action`)
 
     if (header_action === `none`) {
