@@ -1230,6 +1230,7 @@ App.selected_visible = (mode = App.window_mode) => {
   return false
 }
 
+// It's better to do this manually than dealing with CSS classes
 App.blink_item = (item) => {
   let opacity = 1
   let rounds = 0
