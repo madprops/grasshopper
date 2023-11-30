@@ -71,7 +71,7 @@ body, html {
   width: 200px;
 }
 
-#lock_container {
+#top_right {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -80,5 +80,13 @@ body, html {
   top: 1rem;
   right: 1rem;
   color: var(--color_2);
+  gap: 1rem;
+}
+
+.toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }

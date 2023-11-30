@@ -5,6 +5,7 @@ App.default_color = `#252933`
 App.visible = false
 App.timeout_delay = 250
 App.locked = false
+App.sticky = false
 
 App.init = () => {
   DOM.ev(DOM.el(`#fullscreen_button`), `click`, () => {
@@ -88,23 +89,19 @@ App.init = () => {
   })
 
   DOM.ev(DOM.el(`#buttons`), `mouseenter`, () => {
-    clearTimeout(App.show_timeout)
-
-    App.show_timeout = setTimeout(() => {
-      DOM.el(`#buttons`).classList.add(`visible`)
-      App.visible = true
-    }, App.timeout_delay)
+    App.show()
   })
 
   DOM.ev(DOM.el(`#buttons`), `mouseleave`, () => {
-    clearTimeout(App.show_timeout)
-
-    DOM.el(`#buttons`).classList.remove(`visible`)
-    App.visible = false
+    App.hide()
   })
 
   DOM.ev(DOM.el(`#lock`), `click`, (e) => {
     App.toggle_lock(e.target)
+  })
+
+  DOM.ev(DOM.el(`#sticky`), `click`, (e) => {
+    App.toggle_sticky(e.target)
   })
 
   App.state = App.get_local_storage(App.ls_state) || {}
@@ -177,4 +174,42 @@ App.toggle_lock = (checkbox) => {
 
 App.disabled = () => {
   return !App.visible || App.locked
+}
+
+App.toggle_sticky = (checkbox) => {
+  App.sticky = checkbox.checked
+
+  if (App.sticky) {
+    App.show(true)
+  }
+  else {
+    App.hide()
+  }
+}
+
+App.show = (instant = false) => {
+  clearTimeout(App.show_timeout)
+  let delay
+
+  if (instant) {
+    delay = 0
+  }
+  else {
+    delay = App.timeout_delay
+  }
+
+  App.show_timeout = setTimeout(() => {
+    DOM.el(`#buttons`).classList.add(`visible`)
+    App.visible = true
+  }, delay)
+}
+
+App.hide = () => {
+  if (App.sticky) {
+    return
+  }
+
+  clearTimeout(App.show_timeout)
+  DOM.el(`#buttons`).classList.remove(`visible`)
+  App.visible = false
 }
