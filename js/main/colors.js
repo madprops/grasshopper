@@ -35,11 +35,9 @@ App.check_tab_colors = (item) => {
   item.element.style.backgroundColor = ``
 
   if (item.header) {
-    if (enabled(`header`)) {
-      proc(`header`)
+    if (!App.get_setting(`color_header`)) {
+      return
     }
-
-    return
   }
 
   if (false) {

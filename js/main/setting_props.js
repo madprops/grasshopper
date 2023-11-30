@@ -1196,6 +1196,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the color menu by clicking a color icon`,
+      version: 1,
+    },
+    color_header: {
+      name: `Color Header`,
+      type: `checkbox`,
+      value: false,
+      info: `Apply the colors to headers too`,
       separator: true,
       version: 1,
     },
