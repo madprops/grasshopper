@@ -41,7 +41,7 @@ App.setup_container_mouse = (mode, container) => {
   })
 
   DOM.ev(container, `click`, (e) => {
-    App.mouse_click_action(mode, e, `click_items`)
+    App.mouse_click_action(mode, e)
   })
 
   DOM.ev(container, `dblclick`, (e) => {
@@ -64,7 +64,7 @@ App.setup_container_mouse = (mode, container) => {
 // Using this on mousedown instead causes some problems
 // For instance can't move a tab without selecting it
 // And in a popup it would close the popup on selection
-App.mouse_click_action = (mode, e, from) => {
+App.mouse_click_action = (mode, e) => {
   if (App.click_press_triggered) {
     App.reset_triggers()
     return
@@ -204,6 +204,16 @@ App.mouse_click_action = (mode, e, from) => {
   if (e.altKey || App.get_setting(`click_select`)) {
     App.select_item({item: item, scroll: `nearest_smooth`})
     return
+  }
+
+  let from
+  let tab_box = e.target.closest(`#tab_box`)
+
+  if (tab_box) {
+    from = `tab_box`
+  }
+  else {
+    from = `item_container`
   }
 
   App[`${mode}_action`](item, from)

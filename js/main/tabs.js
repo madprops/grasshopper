@@ -314,17 +314,28 @@ App.remove_closed_tab = (id) => {
 
 App.tabs_action = async (item, from, scroll = `nearest_smooth`) => {
   if (item.header) {
+    let scroll
+
+    if (from === `tab_box`) {
+      scroll = `center_smooth`
+    }
+    else {
+      scroll = `nearest_smooth`
+    }
+
+    console.log(scroll)
+
     let header_action = App.get_setting(`header_action`)
 
     if (header_action === `none`) {
       return
     }
     else if (header_action === `select`) {
-      App.select_item({item: item, scroll: `nearest_smooth`})
+      App.select_item({item: item, scroll: scroll})
       return
     }
     else if (header_action === `first`) {
-      App.focus_header_first(item)
+      App.focus_header_first(item, scroll)
       return
     }
   }
