@@ -1234,12 +1234,12 @@ App.selected_visible = (mode = App.window_mode) => {
 App.blink_item = (item) => {
   let opacity = 1
   let rounds = 0
-  let step = 0.05
+  let max_rounds = 3
   let down = true
-  let max_rounds = 2
-  let delay = 20
   let top = 1
   let bottom = 0.25
+  let step = 0.05
+  let delay = 20
 
   let interval = setInterval(() => {
     item.element.style.opacity = opacity
