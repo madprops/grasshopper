@@ -1229,3 +1229,11 @@ App.selected_visible = (mode = App.window_mode) => {
 
   return false
 }
+
+App.blink_item = (item) => {
+  item.element.classList.remove(`blink`)
+
+  setTimeout(() => {
+    item.element.classList.add(`blink`)
+  }, 10)
+}
