@@ -345,6 +345,14 @@ App.tabs_action = async (item, from, scroll) => {
     item: item,
     scroll: scroll,
   })
+
+  if (from === `tab_box`) {
+    item.element.classList.remove(`blink`)
+
+    setTimeout(() => {
+      item.element.classList.add(`blink`)
+    }, 10)
+  }
 }
 
 App.duplicate_tab = async (item) => {
