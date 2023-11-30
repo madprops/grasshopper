@@ -420,6 +420,9 @@ App.check_theme_refresh = () => {
       App.set_settings_menu(`background_tiles`, undefined, false)
     }
   }
+  else {
+    App.apply_theme()
+  }
 }
 
 App.random_colors = (type = `dark`) => {
