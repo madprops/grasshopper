@@ -1239,7 +1239,7 @@ App.blink_item = (item) => {
   let top = 1
   let bottom = 0.25
   let step = 0.05
-  let delay = 20
+  let delay = 22
 
   let interval = setInterval(() => {
     item.element.style.opacity = opacity
