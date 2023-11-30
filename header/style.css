@@ -70,6 +70,7 @@ body, html {
 #image {
   width: 200px;
   padding-bottom: 0.5rem;
+  cursor: pointer;
 }
 
 #top_right {
@@ -90,4 +91,24 @@ body, html {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+.invert {
+  filter: invert(1);
+}
+
+.rotate_1 {
+  filter: hue-rotate(90deg);
+}
+
+.rotate_2 {
+  filter: hue-rotate(180deg);
+}
+
+.rotate_3 {
+  filter: hue-rotate(270deg);
+}
+
+.flipped {
+	transform: rotateY(180deg);
 }

@@ -4,6 +4,7 @@ App.colorlib = ColorLib()
 App.default_color = `#252933`
 App.visible = false
 App.timeout_delay = 250
+App.image_state = 0
 
 App.init = () => {
   DOM.ev(DOM.el(`#fullscreen_button`), `click`, () => {
@@ -92,6 +93,10 @@ App.init = () => {
 
   DOM.ev(DOM.el(`#buttons`), `mouseleave`, () => {
     App.hide()
+  })
+
+  DOM.ev(DOM.el(`#image`), `click`, (e) => {
+    App.image_click(e.target)
   })
 
   DOM.ev(DOM.el(`#lock`), `click`, (e) => {
@@ -231,4 +236,37 @@ App.hide = () => {
   clearTimeout(App.show_timeout)
   DOM.el(`#buttons`).classList.remove(`visible`)
   App.visible = false
+}
+
+App.image_click = (image) => {
+  image.classList.remove(`invert`)
+  image.classList.remove(`rotate_1`)
+  image.classList.remove(`rotate_2`)
+  image.classList.remove(`rotate_3`)
+
+  App.image_state += 1
+  console.log(App.image_state)
+
+  if (App.image_state === 1) {
+    image.classList.add(`invert`)
+  }
+  else if (App.image_state === 2) {
+    image.classList.add(`rotate_1`)
+  }
+  else if (App.image_state === 3) {
+    image.classList.add(`rotate_2`)
+  }
+  else if (App.image_state === 4) {
+    image.classList.add(`rotate_3`)
+  }
+  else if (App.image_state === 5) {
+    if (image.classList.contains(`flipped`)) {
+      image.classList.remove(`flipped`)
+    }
+    else {
+      image.classList.add(`flipped`)
+    }
+
+    App.image_state = 0
+  }
 }
