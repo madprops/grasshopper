@@ -346,7 +346,7 @@ App.tabs_action = async (item, from, scroll) => {
     scroll: scroll,
   })
 
-  if (from === `tab_box`) {
+  if ((from === `tab_box`) && App.get_setting(`item_blink`)) {
     App.blink_item(item)
   }
 }

@@ -1787,6 +1787,13 @@ App.build_settings = () => {
       info: `Show icons next to the text on the buttons, like on the Main Menu or Settings`,
       version: 1,
     },
+    item_blink: {
+      name: `Item Blink`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable item blink in some cases, like when clicking a Tab Box item`,
+      version: 1,
+    },
     item_pointer: {
       name: `Item Pointer`,
       type: `checkbox`,
