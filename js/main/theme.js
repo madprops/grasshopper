@@ -391,7 +391,6 @@ App.set_light_colors = () => {
 App.set_colors = (c1, c2) => {
   App.set_setting(`background_color`, c1, false)
   App.set_setting(`text_color`, c2, false)
-  App.apply_theme()
   App.check_theme_refresh()
 }
 
@@ -406,7 +405,6 @@ App.change_background = (url, bg_eff, bg_tiles) => {
     App.set_setting(`background_tiles`, bg_tiles, false)
   }
 
-  App.apply_theme()
   App.check_theme_refresh()
 }
 
@@ -420,9 +418,8 @@ App.check_theme_refresh = () => {
       App.set_settings_menu(`background_tiles`, undefined, false)
     }
   }
-  else {
-    App.apply_theme()
-  }
+
+  App.apply_theme()
 }
 
 App.random_colors = (type = `dark`) => {
