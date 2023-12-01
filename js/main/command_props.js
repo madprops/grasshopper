@@ -14,6 +14,7 @@ App.setup_commands = () => {
   let theme_icon = App.settings_icons.theme
   let filter_icon = App.settings_icons.filter
   let media_icon = App.settings_icons.media
+  let tab_box_icon = App.settings_icons.tab_box
   let tabs_icon =  App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
   let closed_icon = App.mode_icons.closed
@@ -381,7 +382,7 @@ App.setup_commands = () => {
       name: `Toggle Tab Box`,
       cmd: `toggle_tab_box`,
       modes: [`tabs`],
-      icon: tabs_icon,
+      icon: tab_box_icon,
       action: (args) => {
         App.toggle_tab_box()
       },
