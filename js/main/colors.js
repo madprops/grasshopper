@@ -9,12 +9,6 @@ App.check_tab_colors = (item) => {
     }
   }
 
-  if (item.header) {
-    if (!App.get_setting(`color_header`)) {
-      return
-    }
-  }
-
   function text_enabled (type) {
     return App.get_setting(`text_color_${type}_enabled`)
   }
@@ -23,7 +17,13 @@ App.check_tab_colors = (item) => {
     return App.get_setting(`background_color_${type}_enabled`)
   }
 
-  function enabled (type) {
+  function enabled (type, allow_header = false) {
+    if (item.header) {
+      if (!allow_header) {
+        return false
+      }
+    }
+
     return text_enabled(type) || background_enabled(type)
   }
 
@@ -41,7 +41,7 @@ App.check_tab_colors = (item) => {
   if (false) {
     // Top = Higher Priority
   }
-  else if (item.active && enabled(`active`)) {
+  else if (item.active && enabled(`active`, true)) {
     proc(`active`)
   }
   else if (item.audible && enabled(`playing`)) {
