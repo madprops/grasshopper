@@ -93,7 +93,8 @@ App.check_tab_colors = (item) => {
   `pinned`, `normal`, `unloaded`, `loaded`]
 
   for (let type of types) {
-    item.element.classList.remove(`tab_color_${type}`)
+    item.element.classList.remove(`tab_text_color_${type}`)
+    item.element.classList.remove(`tab_background_color_${type}`)
   }
 
   proc(`items`)
