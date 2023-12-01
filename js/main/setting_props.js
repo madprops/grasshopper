@@ -595,6 +595,16 @@ App.build_settings = () => {
       info: `Grow the Tab Box when the mouse enters, restore it when the mouse leaves`,
       version: 1,
     },
+    tab_box_max: {
+      name: `Tab Box Max`,
+      type: `number`,
+      value: 20,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Max items to show in the Tab Box`,
+      version: 1,
+    },
     tab_box_icons: {
       name: `Tab Box Icons`,
       type: `checkbox`,

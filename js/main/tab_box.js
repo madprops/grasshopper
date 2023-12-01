@@ -90,7 +90,7 @@ App.update_tab_box_recent = () => {
     return
   }
 
-  let o_items = App.get_recent_tabs({max: App.tab_box_max})
+  let o_items = App.get_recent_tabs({max: App.get_setting(`tab_box_max`)})
   let items = App.get_tab_box_items(o_items, `recent`)
   App.fill_tab_box(items)
 }
@@ -138,7 +138,7 @@ App.update_tab_box_playing = () => {
 App.get_tab_box_items = (o_items, mode) => {
   let items = []
 
-  for (let o_item of o_items.slice(0, App.tab_box_max)) {
+  for (let o_item of o_items.slice(0, App.get_setting(`tab_box_max`))) {
     if (!o_item || !o_item.element) {
       continue
     }
