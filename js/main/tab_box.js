@@ -151,6 +151,7 @@ App.get_tab_box_items = (o_items, mode) => {
 
     let {element, ...item} = o_item
     item.tab_box = true
+    item.test = 123
     App.create_item_element(item)
     items.push(item)
   }

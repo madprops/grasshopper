@@ -3,37 +3,90 @@ App.check_tab_colors = (item) => {
     return
   }
 
-  function check_enabled (item, type, what) {
-    let mode = App.get_setting(`${what}_color_${type}_mode`)
+  function is_enabled (type, what, mode) {
+    let s_mode = App.get_setting(`${what}_color_${type}_mode`)
 
-    if (mode === `none`) {
+    if (s_mode === `none`) {
       return false
     }
-
-    if (mode === `everywhere`) {
+    else if (s_mode === `everywhere`) {
       return true
     }
 
+    if (s_mode !== mode) {
+      return false
+    }
+
     if (mode === `items`) {
-      if (!item.tab_box) {
-        return true
+      if (item.tab_box) {
+        return false
       }
     }
     else if (mode === `tab_box`) {
-      if (item.tab_box) {
-        return true
+      if (!item.tab_box) {
+        return false
       }
     }
 
-    return false
+    return true
   }
 
-  function enabled (item, type) {
-    return (check_enabled(item, type, `text`) || check_enabled(item, type, `background`))
+  function check (type, mode) {
+    let enabled = false
+
+    if (is_enabled(type, `text`, mode)) {
+      add_class(type, `text`)
+      enabled = true
+    }
+
+    if (is_enabled(type, `background`, mode)) {
+      add_class(type, `background`)
+      enabled = true
+    }
+
+    return enabled
   }
 
-  function proc (type) {
-    item.element.classList.add(`tab_color_${type}`)
+  function add_class (type, what) {
+    item.element.classList.add(`tab_${what}_color_${type}`)
+  }
+
+  function proc (mode) {
+    if (item.active && check(`active`, mode)) {
+      return
+    }
+
+    if (App.is_header(item) && check(`header`, mode)) {
+      return
+    }
+
+    if (App.is_subheader(item) && check(`subheader`, mode)) {
+      return
+    }
+
+    if (item.audible && check(`playing`, mode)) {
+      return
+    }
+
+    if (item.unread && check(`unread`, mode)) {
+      return
+    }
+
+    if (item.discarded && check(`unloaded`, mode)) {
+      return
+    }
+
+    if (!item.discarded && check(`loaded`, mode)) {
+      return
+    }
+
+    if (item.pinned && check(`pinned`, mode)) {
+      return
+    }
+
+    if (!item.pinned && check(`normal`, mode)) {
+      return
+    }
   }
 
   let types = [`active`, `header`, `subheader`, `playing`, `unread`,
@@ -43,36 +96,8 @@ App.check_tab_colors = (item) => {
     item.element.classList.remove(`tab_color_${type}`)
   }
 
-  if (false) {
-    // Top = Higher Priority
-  }
-  else if (item.active && enabled(item, `active`)) {
-    proc(`active`)
-  }
-  else if (App.is_header(item) && enabled(item, `header`)) {
-    proc(`header`)
-  }
-  else if (App.is_subheader(item) && enabled(item, `subheader`)) {
-    proc(`subheader`)
-  }
-  else if (item.audible && enabled(item, `playing`)) {
-    proc(`playing`)
-  }
-  else if (item.unread && enabled(item, `unread`)) {
-    proc(`unread`)
-  }
-  else if (item.discarded && enabled(item, `unloaded`)) {
-    proc(`unloaded`)
-  }
-  else if (!item.discarded && enabled(item, `loaded`)) {
-    proc(`loaded`)
-  }
-  else if (item.pinned && enabled(item, `pinned`)) {
-    proc(`pinned`)
-  }
-  else if (!item.pinned && enabled(item, `normal`)) {
-    proc(`normal`)
-  }
+  proc(`items`)
+  proc(`tab_box`)
 }
 
 App.apply_color_mode = (item) => {

@@ -608,13 +608,13 @@ App.insert_tab_color_css = () => {
     }
 
     if (text_color) {
-      css += `.tab_color_${type} {
+      css += `.tab_text_color_${type} {
         color: ${text_color} !important;
       }`
     }
 
     if (bg_color) {
-      css += `.tab_color_${type} {
+      css += `.tab_background_color_${type} {
         background-color: ${bg_color} !important;
       }`
 
