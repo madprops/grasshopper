@@ -477,15 +477,6 @@ svg {
   overflow: hidden;
 }
 
-.hover_effect_background .item_container .item:hover,
-.selected_effect_background .item_container .selected,
-.tab_box_hover_effect_background #tab_box_container .item:hover,
-.tab_box_active_effect_background #tab_box_container .active_tab
-{
-  color: var(--text_color);
-  background-color: var(--alt_color_1);
-}
-
 .hover_effect_glow .item_container .item:hover .item_text,
 .selected_effect_glow .item_container .selected .item_text,
 .tab_box_hover_effect_glow #tab_box_container .item:hover .item_text,
@@ -1140,14 +1131,6 @@ a:hover
 
 .colored_background .color_icon {
   outline: 1px solid var(--text_color);
-}
-
-.selected_effect_background .colored_background.selected {
-  text-decoration: underline;
-}
-
-.selected_effect_background .colored_background:hover {
-  text-decoration: underline;
 }
 
 .pointer {

@@ -350,6 +350,7 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`header_icon_pick`)
     }
 
+    App.insert_effect_css()
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_custom_css()
@@ -515,16 +516,34 @@ App.apply_background_effects = (effect, tiles) => {
   }
 }
 
-App.insert_custom_css = () => {
-  for (let style of DOM.els(`.custom_css`)) {
+App.background_effect_css = (color, cls) => {
+  return `.hover_effect_background .item_container ${cls}:hover,
+  .selected_effect_background .item_container ${cls}.selected,
+  .tab_box_hover_effect_background #tab_box_container ${cls}:hover,
+  .tab_box_active_effect_background #tab_box_container ${cls}.active_tab
+  {
+    background-color: color-mix(in srgb, transparent 40%, ${color}) !important;
+  }`
+}
+
+App.insert_css = (name, css) => {
+  for (let style of DOM.els(`.${name}`)) {
     style.remove()
   }
 
-  if (App.get_setting(`custom_css`)) {
-    let style = DOM.create(`style`, `custom_css`)
-    style.textContent = App.get_setting(`custom_css`)
-    document.head.appendChild(style)
-  }
+  let style = DOM.create(`style`, name)
+  style.textContent = css
+  document.head.appendChild(style)
+}
+
+App.insert_custom_css = () => {
+  App.insert_css(`custom_css`, App.get_setting(`custom_css`))
+}
+
+App.insert_effect_css = () => {
+  let css = ``
+  css += App.background_effect_css(`var(--alt_color_1)`, `.item`)
+  App.insert_css(`effect_css`, css)
 }
 
 App.insert_color_css = () => {
@@ -560,15 +579,11 @@ App.insert_color_css = () => {
     css += `.text_color_${color.id} {
       color: var(--color_${color.id}) !important;
     }`
+
+    css += App.background_effect_css(`var(--color_${color.id})`, `.background_color_${color.id}`)
   }
 
-  for (let style of DOM.els(`.color_css`)) {
-    style.remove()
-  }
-
-  let style = DOM.create(`style`, `color_css`)
-  style.textContent = css
-  document.head.appendChild(style)
+  App.insert_css(`color_css`, css)
 }
 
 App.insert_tab_color_css = () => {
@@ -597,16 +612,12 @@ App.insert_tab_color_css = () => {
       css += `.tab_color_${type} {
         background-color: ${bg_color} !important;
       }`
+
+      css += App.background_effect_css(bg_color, `.tab_color_${type}`)
     }
   }
 
-  for (let style of DOM.els(`.tab_color_css`)) {
-    style.remove()
-  }
-
-  let style = DOM.create(`style`, `tab_color_css`)
-  style.textContent = css
-  document.head.appendChild(style)
+  App.insert_css(`tab_color_css`, css)
 }
 
 App.insert_font_css = () => {
@@ -619,11 +630,5 @@ App.insert_font_css = () => {
     }
   `
 
-  for (let style of DOM.els(`.font_css`)) {
-    style.remove()
-  }
-
-  let style = DOM.create(`style`, `font_css`)
-  style.textContent = css
-  document.head.appendChild(style)
+  App.insert_css(`font_css`, css)
 }
