@@ -618,7 +618,7 @@ App.insert_tab_color_css = () => {
         background-color: ${bg_color} !important;
       }`
 
-      css += App.background_effect_css(bg_color, `.tab_color_${type}`)
+      css += App.background_effect_css(bg_color, `.tab_background_color_${type}`)
     }
   }
 
