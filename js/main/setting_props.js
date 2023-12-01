@@ -1907,6 +1907,17 @@ App.build_settings = () => {
       info: `Max items to show in Recent Tabs`,
       version: 1,
     },
+    background_effect_contrast: {
+      name: `BG Effect Contrast`,
+      type: `number`,
+      value: 22,
+      placeholder: `Number`,
+      min: 1,
+      max: 100,
+      info: `How strong is the contrast of the background effect
+      Percentage, from 1 to 100`,
+      version: 1,
+    },
   }
 
   add_props()
