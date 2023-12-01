@@ -225,8 +225,8 @@ Addlist.register = (args = {}) => {
       App[`addlist_color_${args.id}_${key}`] = AColorPicker.createPicker(color, {
         showAlpha: false,
         showHSL: false,
-        showHEX: false,
         showRGB: true,
+        showHEX: true,
       })
 
       add_label(el, key)
