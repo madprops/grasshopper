@@ -477,60 +477,60 @@ svg {
   overflow: hidden;
 }
 
-.hover_effect_background .item_container .item:hover,
-.selected_effect_background .item_container .selected,
-.tab_box_hover_effect_background #tab_box_container .item:hover,
-.tab_box_active_effect_background #tab_box_container .active_tab
+.hover_effect_background .item_container .item:not(.header_item):hover,
+.selected_effect_background .item_container .selected:not(.header_item),
+.tab_box_hover_effect_background #tab_box_container .item:not(.header_item):hover,
+.tab_box_active_effect_background #tab_box_container .active_tab:not(.header_item)
 {
   color: var(--text_color);
   background-color: var(--alt_color_1);
 }
 
-.hover_effect_glow .item_container .item:hover .item_text,
-.selected_effect_glow .item_container .selected .item_text,
-.tab_box_hover_effect_glow #tab_box_container .item:hover .item_text,
-.tab_box_active_effect_glow #tab_box_container .active_tab .item_text
+.hover_effect_glow .item_container .item:not(.header_item):hover .item_text,
+.selected_effect_glow .item_container .selected:not(.header_item) .item_text,
+.tab_box_hover_effect_glow #tab_box_container .item:not(.header_item):hover .item_text,
+.tab_box_active_effect_glow #tab_box_container .active_tab:not(.header_item) .item_text
 {
   text-shadow: var(--glow_effect);
 }
 
-.hover_effect_opacity .item_container .item:hover,
-.selected_effect_opacity .item_container .selected,
-.tab_box_hover_effect_opacity #tab_box_container .item:hover,
-.tab_box_active_effect_opacity #tab_box_container .active_tab
+.hover_effect_opacity .item_container .item:not(.header_item):hover,
+.selected_effect_opacity .item_container .selected:not(.header_item),
+.tab_box_hover_effect_opacity #tab_box_container .item:not(.header_item):hover,
+.tab_box_active_effect_opacity #tab_box_container .active_tab:not(.header_item)
 {
   opacity: 0.8;
 }
 
-.hover_effect_underline .item_container .item:hover .item_text,
-.selected_effect_underline .item_container .selected .item_text,
-.tab_box_hover_effect_underline #tab_box_container .item:hover .item_text,
-.tab_box_active_effect_underline #tab_box_container .active_tab .item_text
+.hover_effect_underline .item_container .item:not(.header_item):hover .item_text,
+.selected_effect_underline .item_container .selected:not(.header_item) .item_text,
+.tab_box_hover_effect_underline #tab_box_container .item:not(.header_item):hover .item_text,
+.tab_box_active_effect_underline #tab_box_container .active_tab:not(.header_item) .item_text
 {
   text-decoration: underline;
 }
 
-.hover_effect_bold .item_container .item:hover .item_text,
-.selected_effect_bold .item_container .selected .item_text,
-.tab_box_hover_effect_bold #tab_box_container .item:hover .item_text,
-.tab_box_active_effect_bold #tab_box_container .active_tab .item_text
+.hover_effect_bold .item_container .item:not(.header_item):hover .item_text,
+.selected_effect_bold .item_container .selected:not(.header_item) .item_text,
+.tab_box_hover_effect_bold #tab_box_container .item:not(.header_item):hover .item_text,
+.tab_box_active_effect_bold #tab_box_container .active_tab:not(.header_item) .item_text
 {
   font-weight: bold;
 }
 
-.hover_effect_bigger .item_container .item:hover .item_text,
-.selected_effect_bigger .item_container .selected .item_text,
-.tab_box_hover_effect_bigger #tab_box_container .item:hover .item_text,
-.tab_box_active_effect_bigger #tab_box_container .active_tab .item_text
+.hover_effect_bigger .item_container .item:not(.header_item):hover .item_text,
+.selected_effect_bigger .item_container .selected:not(.header_item) .item_text,
+.tab_box_hover_effect_bigger #tab_box_container .item:not(.header_item):hover .item_text,
+.tab_box_active_effect_bigger #tab_box_container .active_tab:not(.header_item) .item_text
 {
   font-size: var(--bigger_font);
   font-weight: bold;
 }
 
-.hover_effect_border .item_container .item:hover .item_text,
-.selected_effect_border .item_container .selected .item_text,
-.tab_box_hover_effect_border #tab_box_container .item:hover .item_text,
-.tab_box_active_effect_border #tab_box_container .active_tab .item_text
+.hover_effect_border .item_container .item:not(.header_item):hover .item_text,
+.selected_effect_border .item_container .selected:not(.header_item) .item_text,
+.tab_box_hover_effect_border #tab_box_container .item:not(.header_item):hover .item_text,
+.tab_box_active_effect_border #tab_box_container .active_tab:not(.header_item) .item_text
 {
   outline: 1px solid var(--text_color);
 }
@@ -1498,4 +1498,8 @@ a:hover
 
 .header_item.selected .item_text {
   text-decoration: underline;
+}
+
+.header_item:hover .item_text {
+  text-shadow: var(--glow_effect);
 }
