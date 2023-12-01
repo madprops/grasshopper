@@ -1232,6 +1232,11 @@ App.selected_visible = (mode = App.window_mode) => {
 
 // It's better to do this manually than dealing with CSS classes
 App.blink_item = (item) => {
+  if (item.blink_interval) {
+    clearInterval(item.blink_interval)
+    item.blink_interval = undefined
+  }
+
   let opacity = 1
   let rounds = 0
   let max_rounds = 2
@@ -1248,6 +1253,7 @@ App.blink_item = (item) => {
       down = true
 
       if (rounds >= max_rounds) {
+        item.blink_interval = undefined
         clearInterval(interval)
       }
     }
@@ -1263,4 +1269,6 @@ App.blink_item = (item) => {
       opacity += step
     }
   }, delay)
+
+  item.blink_interval = interval
 }
