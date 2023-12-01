@@ -116,6 +116,7 @@ App.settings_icons = {
   media: `📷`,
   icons: `👁️`,
   show: `👁️`,
+  tab_box: `📦`,
   gestures: `🖱️`,
   auxclick: `🖱️`,
   warns: `🚨`,

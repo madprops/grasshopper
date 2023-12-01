@@ -312,6 +312,13 @@ App.tab_box_menu = (e) => {
     items: positions,
   })
 
+  items.push({
+    text: `Settings`,
+    action: () => {
+      App.show_settings_category(`tab_box`)
+    }
+  })
+
   App.sep(items)
 
   items.push({

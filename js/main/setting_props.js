@@ -546,111 +546,6 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-    show_tab_box: {
-      name: `Show Tab Box`,
-      type: `checkbox`,
-      value: false,
-      info: `Enable or disable the Tab Box`,
-      version: 3,
-    },
-    tab_box_size: {
-      name: `Tab Box Size`,
-      type: `menu`,
-      value: `normal`,
-      info: `The size of the Tab Box`,
-      version: 1,
-    },
-    tab_box_position: {
-      name: `Tab Box Position`,
-      type: `menu`,
-      value: `bottom`,
-      info: `The position of the Tab Box`,
-      version: 1,
-    },
-    tab_box_mode: {
-      name: `Tab Box Mode`,
-      type: `menu`,
-      value: `recent`,
-      info: `What to show in the Tab Box`,
-      version: 4,
-    },
-    tab_box_hover_effect: {
-      name: `Tab Box Hover Effect`,
-      type: `menu`,
-      value: `glow`,
-      info: `What effect to show on hovered items in the Tab Box`,
-      version: 4,
-    },
-    tab_box_active_effect: {
-      name: `Tab Box Active Effect`,
-      type: `menu`,
-      value: `underline`,
-      info: `What effect to show on active items in the Tab Box`,
-      version: 4,
-    },
-    tab_box_auto_grow: {
-      name: `Tab Box Auto Grow`,
-      type: `menu`,
-      value: `none`,
-      info: `Grow the Tab Box when the mouse enters, restore it when the mouse leaves`,
-      version: 1,
-    },
-    tab_box_max: {
-      name: `Tab Box Max`,
-      type: `number`,
-      value: 20,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Max items to show in the Tab Box`,
-      version: 1,
-    },
-    tab_box_icons: {
-      name: `Tab Box Icons`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable icons in the items of the Tab Box
-      This means icons like muted, or notes`,
-      version: 1,
-    },
-    tab_box_colors: {
-      name: `Tab Box Colors`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable colors in the items of the Tab Box
-      Like green, red, etc`,
-      version: 1,
-    },
-    tab_box_tab_colors: {
-      name: `Tab Box Tab Colors`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable tab colors in the items of the Tab Box
-      Like active color, etc`,
-      version: 1,
-    },
-    tab_box_taglist: {
-      name: `Tab Box Taglist`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable the Taglist in the items of the Tab Box`,
-      version: 1,
-    },
-    tab_box_blink: {
-      name: `Tab Box Blink`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable tab blink effect when selecting an item from the Tab Box`,
-      version: 1,
-    },
-    tab_box_auto_playing: {
-      name: `Tab Box Auto Playing`,
-      type: `checkbox`,
-      value: false,
-      info: `Auto show the Tab Box when a tab is playing`,
-      separator: true,
-      version: 1,
-    },
     taglist: {
       name: `Taglist`,
       type: `menu`,
@@ -808,6 +703,116 @@ App.build_settings = () => {
       value: false,
       info: `Show the regular scrollbars
       Else scrollbars are disabled`,
+      version: 1,
+    },
+  }
+
+  add_props()
+  category = `tab_box`
+
+  props = {
+    show_tab_box: {
+      name: `Show Tab Box`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable or disable the Tab Box`,
+      version: 3,
+    },
+    tab_box_size: {
+      name: `Tab Box Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the Tab Box`,
+      version: 1,
+    },
+    tab_box_position: {
+      name: `Tab Box Position`,
+      type: `menu`,
+      value: `bottom`,
+      info: `The position of the Tab Box`,
+      version: 1,
+    },
+    tab_box_mode: {
+      name: `Tab Box Mode`,
+      type: `menu`,
+      value: `recent`,
+      info: `What to show in the Tab Box`,
+      version: 4,
+    },
+    tab_box_hover_effect: {
+      name: `Tab Box Hover Effect`,
+      type: `menu`,
+      value: `glow`,
+      info: `What effect to show on hovered items in the Tab Box`,
+      version: 4,
+    },
+    tab_box_active_effect: {
+      name: `Tab Box Active Effect`,
+      type: `menu`,
+      value: `underline`,
+      info: `What effect to show on active items in the Tab Box`,
+      version: 4,
+    },
+    tab_box_auto_grow: {
+      name: `Tab Box Auto Grow`,
+      type: `menu`,
+      value: `none`,
+      info: `Grow the Tab Box when the mouse enters, restore it when the mouse leaves`,
+      version: 1,
+    },
+    tab_box_max: {
+      name: `Tab Box Max`,
+      type: `number`,
+      value: 20,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Max items to show in the Tab Box`,
+      version: 1,
+    },
+    tab_box_icons: {
+      name: `Tab Box Icons`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable icons in the items of the Tab Box
+      This means icons like muted, or notes`,
+      version: 1,
+    },
+    tab_box_colors: {
+      name: `Tab Box Colors`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable colors in the items of the Tab Box
+      Like green, red, etc`,
+      version: 1,
+    },
+    tab_box_tab_colors: {
+      name: `Tab Box Tab Colors`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable tab colors in the items of the Tab Box
+      Like active color, etc`,
+      version: 1,
+    },
+    tab_box_taglist: {
+      name: `Tab Box Taglist`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable the Taglist in the items of the Tab Box`,
+      version: 1,
+    },
+    tab_box_blink: {
+      name: `Tab Box Blink`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable tab blink effect when selecting an item from the Tab Box`,
+      version: 1,
+    },
+    tab_box_auto_playing: {
+      name: `Tab Box Auto Playing`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto show the Tab Box when a tab is playing`,
       version: 1,
     },
   }
@@ -2045,28 +2050,6 @@ App.build_settings = () => {
           {text: `Always`, value: `always`},
         ])
 
-        App.settings_make_menu(`tab_box_size`, App.sizes)
-
-        App.settings_make_menu(`tab_box_auto_grow`, [
-          {text: `None`, value: `none`},
-          {text: `Normal`, value: `normal`},
-          {text: `Big`, value: `big`},
-          {text: `Huge`, value: `huge`},
-        ])
-
-        App.settings_make_menu(`tab_box_mode`, [
-          {text: `Recent`, value: `recent`, icon: App.tab_box_icon(`recent`)},
-          {text: `Pins`, value: `pins`, icon: App.tab_box_icon(`pins`)},
-          {text: `Colors`, value: `colors`, icon: App.tab_box_icon(`colors`)},
-          {text: `Playing`, value: `playing`, icon: App.tab_box_icon(`playing`)},
-          {text: `Headers`, value: `headers`, icon: App.tab_box_icon(`headers`)},
-        ])
-
-        App.settings_make_menu(`tab_box_position`, [
-          {text: `Top`, value: `top`},
-          {text: `Bottom`, value: `bottom`},
-        ])
-
         App.settings_make_menu(`favorites_mode`, [
           {text: `None`, value: `none`},
           {text: `Bar`, value: `bar`},
@@ -2107,9 +2090,6 @@ App.build_settings = () => {
           {text: `Filter`, value: `filter`},
           {text: `Remove`, value: `remove`},
         ])
-
-        App.settings_make_menu(`tab_box_hover_effect`, App.effects)
-        App.settings_make_menu(`tab_box_active_effect`, App.effects)
       },
     },
     icons: {
@@ -2165,6 +2145,35 @@ App.build_settings = () => {
           App.settings_make_menu(`view_audio_${m}`, opts)
         }
       },
+    },
+    tab_box: {
+      info: `Configure the Tab Box`,
+      setup: () => {
+        App.settings_make_menu(`tab_box_size`, App.sizes)
+
+        App.settings_make_menu(`tab_box_auto_grow`, [
+          {text: `None`, value: `none`},
+          {text: `Normal`, value: `normal`},
+          {text: `Big`, value: `big`},
+          {text: `Huge`, value: `huge`},
+        ])
+
+        App.settings_make_menu(`tab_box_mode`, [
+          {text: `Recent`, value: `recent`, icon: App.tab_box_icon(`recent`)},
+          {text: `Pins`, value: `pins`, icon: App.tab_box_icon(`pins`)},
+          {text: `Colors`, value: `colors`, icon: App.tab_box_icon(`colors`)},
+          {text: `Playing`, value: `playing`, icon: App.tab_box_icon(`playing`)},
+          {text: `Headers`, value: `headers`, icon: App.tab_box_icon(`headers`)},
+        ])
+
+        App.settings_make_menu(`tab_box_position`, [
+          {text: `Top`, value: `top`},
+          {text: `Bottom`, value: `bottom`},
+        ])
+
+        App.settings_make_menu(`tab_box_hover_effect`, App.effects)
+        App.settings_make_menu(`tab_box_active_effect`, App.effects)
+      }
     },
     triggers: {
       info: `Run commands on certain keyboard and mouse actions`,
