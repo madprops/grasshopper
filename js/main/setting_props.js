@@ -2147,7 +2147,9 @@ App.build_settings = () => {
       },
     },
     tab_box: {
-      info: `Configure the Tab Box`,
+      info: `Configure the Tab Box
+      This is a component that appears below or above the tabs
+      It shows different kinds of tabs so you can jump around`,
       setup: () => {
         App.settings_make_menu(`tab_box_size`, App.sizes)
 
