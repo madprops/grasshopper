@@ -10,7 +10,7 @@ App.check_tab_colors = (item) => {
       return false
     }
 
-    if (mode === `items`) {
+    if (mode === `normal`) {
       if (item.tab_box) {
         return false
       }
@@ -90,7 +90,7 @@ App.check_tab_colors = (item) => {
   }
 
   proc(`everywhere`)
-  proc(`items`)
+  proc(`normal`)
   proc(`tab_box`)
 }
 

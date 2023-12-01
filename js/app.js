@@ -188,7 +188,7 @@ App.background_effects = [
 
 App.color_modes = [
   {text: `None`, value: `none`},
-  {text: `Items`, value: `items`},
+  {text: `Normal`, value: `normal`},
   {text: `Tab Box`, value: `tab_box`},
   {text: `Everywhere`, value: `everywhere`},
 ]
