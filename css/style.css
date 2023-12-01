@@ -1495,3 +1495,7 @@ a:hover
 .item_pointer .item {
   cursor: pointer;
 }
+
+.header_item.selected .item_text {
+  text-decoration: underline;
+}

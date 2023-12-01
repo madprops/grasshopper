@@ -112,12 +112,12 @@ App.select_header_group = (item) => {
 
 App.get_header_tabs = () => {
   let headers = App.get_items(`tabs`).filter(x => x.header)
-  return headers.filter(x => App.is_full_header(x))
+  return headers.filter(x => App.is_header(x))
 }
 
 App.get_subheader_tabs = () => {
   let headers = App.get_items(`tabs`).filter(x => x.header)
-  return headers.filter(x => !App.is_full_header(x))
+  return headers.filter(x => !App.is_header(x))
 }
 
 App.get_headers = () => {
@@ -151,7 +151,7 @@ App.set_header_text = (item) => {
   item.element.title = `Header: ${title}`
 }
 
-App.is_header = (url) => {
+App.is_header_url = (url) => {
   if (!url.startsWith(App.browser_protocol)) {
     return false
   }
@@ -168,7 +168,7 @@ App.check_header = (item) => {
     return
   }
 
-  if (App.is_header(item.url)) {
+  if (App.is_header_url(item.url)) {
     item.header = true
     item.unread = false
     item.discarded = false
@@ -204,6 +204,10 @@ App.focus_header_first = (item, from, scroll = `nearest_smooth`) => {
   }
 }
 
-App.is_full_header = (item) => {
-  return App.get_split_top(item)
+App.is_header = (item) => {
+  return item.header && App.get_split_top(item)
+}
+
+App.is_subheader = (item) => {
+  return item.header && !App.get_split_top(item)
 }

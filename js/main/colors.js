@@ -17,13 +17,7 @@ App.check_tab_colors = (item) => {
     return App.get_setting(`background_color_${type}_enabled`)
   }
 
-  function enabled (type, allow_header = false) {
-    if (item.header) {
-      if (!allow_header) {
-        return false
-      }
-    }
-
+  function enabled (type) {
     return text_enabled(type) || background_enabled(type)
   }
 
@@ -31,7 +25,7 @@ App.check_tab_colors = (item) => {
     item.element.classList.add(`tab_color_${type}`)
   }
 
-  let types = [`active`, `playing`, `unread`,
+  let types = [`active`, `header`, `subheader`, `playing`, `unread`,
   `pinned`, `normal`, `unloaded`, `loaded`]
 
   for (let type of types) {
@@ -41,7 +35,13 @@ App.check_tab_colors = (item) => {
   if (false) {
     // Top = Higher Priority
   }
-  else if (item.active && enabled(`active`, true)) {
+  else if (App.is_header(item) && enabled(`header`)) {
+    proc(`header`)
+  }
+  else if (App.is_subheader(item) && enabled(`subheader`)) {
+    proc(`subheader`)
+  }
+  else if (item.active && enabled(`active`)) {
     proc(`active`)
   }
   else if (item.audible && enabled(`playing`)) {

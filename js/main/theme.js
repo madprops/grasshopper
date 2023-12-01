@@ -573,7 +573,7 @@ App.insert_color_css = () => {
 
 App.insert_tab_color_css = () => {
   let css = ``
-  let types = [`active`, `playing`, `unread`,
+  let types = [`active`, `header`, `subheader`, `playing`, `unread`,
   `pinned`, `normal`, `unloaded`, `loaded`]
 
   for (let type of types) {

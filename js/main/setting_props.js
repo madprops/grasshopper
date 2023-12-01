@@ -1089,6 +1089,13 @@ App.build_settings = () => {
   category = `zones`
 
   props = {
+    header_action: {
+      name: `Header Action`,
+      type: `menu`,
+      value: `select`,
+      info: `What to do when clicking a header`,
+      version: 1,
+    },
     split_width: {
       name: `Split Width`,
       type: `number`,
@@ -1115,11 +1122,64 @@ App.build_settings = () => {
       info: `The color of the splits between tabs`,
       version: 1,
     },
-    header_action: {
-      name: `Header Action`,
-      type: `menu`,
-      value: `select`,
-      info: `What to do when clicking a header`,
+    text_color_header_enabled: {
+      name: `Header Text Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Use a custom text color for Header Tabs`,
+      version: 1,
+    },
+    text_color_header: {
+      name: `Header Text Color`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for Header Tabs`,
+      version: 1,
+    },
+    background_color_header_enabled: {
+      name: `Header Background Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Use a custom background color for Header Tabs`,
+      version: 1,
+    },
+    background_color_header: {
+      name: `Header Background Color`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom background color for Header Tabs`,
+      version: 1,
+    },
+    text_color_subheader_enabled: {
+      name: `Subheader Text Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Use a custom text color for Subheader Tabs`,
+      version: 1,
+    },
+    text_color_subheader: {
+      name: `Subheader Text Color`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for Subheader Tabs`,
+      version: 1,
+    },
+    background_color_subheader_enabled: {
+      name: `Subheader Background Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Use a custom background color for Subheader Tabs`,
+      version: 1,
+    },
+    background_color_subheader: {
+      name: `Subheader Background Color`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom background color for Subheader Tabs`,
       version: 1,
     },
     split_side: {
@@ -1181,6 +1241,7 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the color menu by clicking a color icon`,
+      separator: true,
       version: 1,
     },
     text_color_active_enabled: {
