@@ -50,17 +50,17 @@ App.check_tab_colors = (item) => {
   else if (item.unread && enabled(`unread`)) {
     proc(`unread`)
   }
-  else if (item.pinned && enabled(`pinned`)) {
-    proc(`pinned`)
-  }
-  else if (!item.pinned && enabled(`normal`)) {
-    proc(`normal`)
-  }
   else if (item.discarded && enabled(`unloaded`)) {
     proc(`unloaded`)
   }
   else if (!item.discarded && enabled(`loaded`)) {
     proc(`loaded`)
+  }
+  else if (item.pinned && enabled(`pinned`)) {
+    proc(`pinned`)
+  }
+  else if (!item.pinned && enabled(`normal`)) {
+    proc(`normal`)
   }
 }
 
