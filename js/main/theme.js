@@ -517,12 +517,15 @@ App.apply_background_effects = (effect, tiles) => {
 }
 
 App.background_effect_css = (color, cls) => {
+  let is_dark = App.colorlib.is_dark(color)
+  let base_color = is_dark ? `rgba(255, 255, 255, 0.8)` : `rgba(0, 0, 0, 0.8)`
+
   return `.hover_effect_background .item_container ${cls}:hover,
   .selected_effect_background .item_container ${cls}.selected,
   .tab_box_hover_effect_background #tab_box_container ${cls}:hover,
   .tab_box_active_effect_background #tab_box_container ${cls}.active_tab
   {
-    background-color: color-mix(in srgb, transparent 40%, ${color}) !important;
+    background-color: color-mix(in srgb, ${base_color} 20%, ${color}) !important;
   }`
 }
 
@@ -542,7 +545,8 @@ App.insert_custom_css = () => {
 
 App.insert_effect_css = () => {
   let css = ``
-  css += App.background_effect_css(`var(--alt_color_1)`, `.item`)
+  let bg_color = App.get_setting(`background_color`)
+  css += App.background_effect_css(bg_color, `.item`)
   App.insert_css(`effect_css`, css)
 }
 
@@ -580,7 +584,7 @@ App.insert_color_css = () => {
       color: var(--color_${color.id}) !important;
     }`
 
-    css += App.background_effect_css(`var(--color_${color.id})`, `.background_color_${color.id}`)
+    css += App.background_effect_css(color.value, `.background_color_${color.id}`)
   }
 
   App.insert_css(`color_css`, css)
