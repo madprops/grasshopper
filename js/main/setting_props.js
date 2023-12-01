@@ -1912,10 +1912,10 @@ App.build_settings = () => {
       type: `number`,
       value: 22,
       placeholder: `Number`,
-      min: 1,
+      min: 0,
       max: 100,
       info: `How strong is the contrast of the background effect
-      Percentage, from 1 to 100`,
+      Percentage, from 0 to 100`,
       version: 1,
     },
   }
