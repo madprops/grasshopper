@@ -3,22 +3,33 @@ App.check_tab_colors = (item) => {
     return
   }
 
-  if (item.tab_box) {
-    if (!App.get_setting(`tab_box_tab_colors`)) {
-      return
+  function check_enabled (item, type, what) {
+    let mode = App.get_setting(`${what}_color_${type}_mode`)
+
+    if (mode === `none`) {
+      return false
     }
+
+    if (mode === `everywhere`) {
+      return true
+    }
+
+    if (mode === `items`) {
+      if (!item.tab_box) {
+        return true
+      }
+    }
+    else if (mode === `tab_box`) {
+      if (item.tab_box) {
+        return true
+      }
+    }
+
+    return false
   }
 
-  function text_enabled (type) {
-    return App.get_setting(`text_color_${type}_enabled`)
-  }
-
-  function background_enabled (type) {
-    return App.get_setting(`background_color_${type}_enabled`)
-  }
-
-  function enabled (type) {
-    return text_enabled(type) || background_enabled(type)
+  function enabled (item, type) {
+    return (check_enabled(item, type, `text`) || check_enabled(item, type, `background`))
   }
 
   function proc (type) {
@@ -35,31 +46,31 @@ App.check_tab_colors = (item) => {
   if (false) {
     // Top = Higher Priority
   }
-  else if (item.active && enabled(`active`)) {
+  else if (item.active && enabled(item, `active`)) {
     proc(`active`)
   }
-  else if (App.is_header(item) && enabled(`header`)) {
+  else if (App.is_header(item) && enabled(item, `header`)) {
     proc(`header`)
   }
-  else if (App.is_subheader(item) && enabled(`subheader`)) {
+  else if (App.is_subheader(item) && enabled(item, `subheader`)) {
     proc(`subheader`)
   }
-  else if (item.audible && enabled(`playing`)) {
+  else if (item.audible && enabled(item, `playing`)) {
     proc(`playing`)
   }
-  else if (item.unread && enabled(`unread`)) {
+  else if (item.unread && enabled(item, `unread`)) {
     proc(`unread`)
   }
-  else if (item.discarded && enabled(`unloaded`)) {
+  else if (item.discarded && enabled(item, `unloaded`)) {
     proc(`unloaded`)
   }
-  else if (!item.discarded && enabled(`loaded`)) {
+  else if (!item.discarded && enabled(item, `loaded`)) {
     proc(`loaded`)
   }
-  else if (item.pinned && enabled(`pinned`)) {
+  else if (item.pinned && enabled(item, `pinned`)) {
     proc(`pinned`)
   }
-  else if (!item.pinned && enabled(`normal`)) {
+  else if (!item.pinned && enabled(item, `normal`)) {
     proc(`normal`)
   }
 }

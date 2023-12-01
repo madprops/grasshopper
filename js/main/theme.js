@@ -599,11 +599,11 @@ App.insert_tab_color_css = () => {
   for (let type of types) {
     let text_color, bg_color
 
-    if (App.get_setting(`text_color_${type}_enabled`)) {
+    if (App.get_setting(`text_color_${type}_mode`) !== `none`) {
       text_color = App.get_setting(`text_color_${type}`)
     }
 
-    if (App.get_setting(`background_color_${type}_enabled`)) {
+    if (App.get_setting(`background_color_${type}_mode`) !== `none`) {
       bg_color = App.get_setting(`background_color_${type}`)
     }
 

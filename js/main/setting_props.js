@@ -786,14 +786,6 @@ App.build_settings = () => {
       Like green, red, etc`,
       version: 1,
     },
-    tab_box_tab_colors: {
-      name: `Tab Box Tab Colors`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable tab colors in the items of the Tab Box
-      Like active color, etc`,
-      version: 1,
-    },
     tab_box_taglist: {
       name: `Tab Box Taglist`,
       type: `checkbox`,
@@ -1115,10 +1107,10 @@ App.build_settings = () => {
       info: `The color of the splits between tabs`,
       version: 1,
     },
-    text_color_header_enabled: {
+    text_color_header_mode: {
       name: `Header Text Color`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom text color for Header Tabs`,
       version: 1,
     },
@@ -1130,10 +1122,10 @@ App.build_settings = () => {
       info: `Custom text color for Header Tabs`,
       version: 1,
     },
-    background_color_header_enabled: {
+    background_color_header_mode: {
       name: `Header Background Color`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom background color for Header Tabs`,
       version: 1,
     },
@@ -1145,10 +1137,10 @@ App.build_settings = () => {
       info: `Custom background color for Header Tabs`,
       version: 1,
     },
-    text_color_subheader_enabled: {
+    text_color_subheader_mode: {
       name: `Subheader Text Color`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom text color for Subheader Tabs`,
       version: 1,
     },
@@ -1160,10 +1152,10 @@ App.build_settings = () => {
       info: `Custom text color for Subheader Tabs`,
       version: 1,
     },
-    background_color_subheader_enabled: {
+    background_color_subheader_mode: {
       name: `Subheader Background Color`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom background color for Subheader Tabs`,
       version: 1,
     },
@@ -1244,10 +1236,10 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-    text_color_active_enabled: {
+    text_color_active_mode: {
       name: `Active Tabs (Text)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom text color for active tabs`,
       version: 1,
     },
@@ -1259,10 +1251,10 @@ App.build_settings = () => {
       info: `Custom text color for active tabs`,
       version: 1,
     },
-    background_color_active_enabled: {
+    background_color_active_mode: {
       name: `Active Tabs (Background)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom background color for active tabs`,
       version: 1,
     },
@@ -1274,10 +1266,10 @@ App.build_settings = () => {
       info: `Custom background color for active tabs`,
       version: 1,
     },
-    text_color_playing_enabled: {
+    text_color_playing_mode: {
       name: `Playing Tabs (Text)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom text color for playing tabs`,
       version: 1,
     },
@@ -1289,10 +1281,10 @@ App.build_settings = () => {
       info: `Custom text color for playing tabs`,
       version: 1,
     },
-    background_color_playing_enabled: {
+    background_color_playing_mode: {
       name: `Playing Tabs (Background)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom background color for playing tabs`,
       version: 1,
     },
@@ -1304,10 +1296,10 @@ App.build_settings = () => {
       info: `Custom background color for playing tabs`,
       version: 1,
     },
-    text_color_unread_enabled: {
+    text_color_unread_mode: {
       name: `Unread Tabs (Text)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom text color for unread tabs`,
       version: 1,
     },
@@ -1319,10 +1311,10 @@ App.build_settings = () => {
       info: `Custom text color for unread tabs`,
       version: 1,
     },
-    background_color_unread_enabled: {
+    background_color_unread_mode: {
       name: `Unread Tabs (Background)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom background color for unread tabs`,
       version: 1,
     },
@@ -1334,10 +1326,10 @@ App.build_settings = () => {
       info: `Custom background color for unread tabs`,
       version: 1,
     },
-    text_color_unloaded_enabled: {
+    text_color_unloaded_mode: {
       name: `Unloaded Tabs (Text)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom text color for unloaded tabs`,
       version: 1,
     },
@@ -1349,10 +1341,10 @@ App.build_settings = () => {
       info: `Custom text color for unloaded tabs`,
       version: 1,
     },
-    background_color_unloaded_enabled: {
+    background_color_unloaded_mode: {
       name: `Unloaded Tabs (Background)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom background color for unloaded tabs`,
       version: 1,
     },
@@ -1364,10 +1356,10 @@ App.build_settings = () => {
       info: `Custom background color for unloaded tabs`,
       version: 1,
     },
-    text_color_loaded_enabled: {
+    text_color_loaded_mode: {
       name: `Loaded Tabs (Text)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom text color for loaded tabs`,
       version: 1,
     },
@@ -1379,10 +1371,10 @@ App.build_settings = () => {
       info: `Custom text color for loaded tabs`,
       version: 1,
     },
-    background_color_loaded_enabled: {
+    background_color_loaded_mode: {
       name: `Loaded Tabs (Background)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom background color for loaded tabs`,
       version: 1,
     },
@@ -1394,10 +1386,10 @@ App.build_settings = () => {
       info: `Custom background color for loaded tabs`,
       version: 1,
     },
-    text_color_pinned_enabled: {
+    text_color_pinned_mode: {
       name: `Pinned Tabs (Text)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom text color for pins`,
       version: 1,
     },
@@ -1409,10 +1401,10 @@ App.build_settings = () => {
       info: `Custom text color for pins`,
       version: 1,
     },
-    background_color_pinned_enabled: {
+    background_color_pinned_mode: {
       name: `Pinned Tabs (Background)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom background color for pins`,
       version: 1,
     },
@@ -1424,10 +1416,10 @@ App.build_settings = () => {
       info: `Custom background color for pins`,
       version: 1,
     },
-    text_color_normal_enabled: {
+    text_color_normal_mode: {
       name: `Normal Tabs (Text)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom text color for normal tabs`,
       version: 1,
     },
@@ -1439,10 +1431,10 @@ App.build_settings = () => {
       info: `Custom text color for normal tabs`,
       version: 1,
     },
-    background_color_normal_enabled: {
+    background_color_normal_mode: {
       name: `Normal Tabs (Background)`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `none`,
       info: `Use a custom background color for normal tabs`,
       version: 1,
     },
@@ -2072,6 +2064,18 @@ App.build_settings = () => {
           {text: `Background`, value: `background`},
           {text: `BG & Icon`, value: `background_icon`},
         ])
+
+        for (let key in App.setting_props) {
+          let props = App.setting_props[key]
+
+          if (props.category === `colors`) {
+            if ((key.includes(`text_color`) ||
+            key.includes(`background_color`))
+            && key.endsWith(`_mode`)) {
+              App.settings_make_menu(key, App.color_modes)
+            }
+          }
+        }
       },
     },
     show: {
@@ -2150,6 +2154,18 @@ App.build_settings = () => {
         ])
 
         App.start_setting_colors(`zones`)
+
+        for (let key in App.setting_props) {
+          let props = App.setting_props[key]
+
+          if (props.category === `zones`) {
+            if ((key.includes(`text_color`) ||
+            key.includes(`background_color`))
+            && key.endsWith(`_mode`)) {
+              App.settings_make_menu(key, App.color_modes)
+            }
+          }
+        }
       },
     },
     filter: {

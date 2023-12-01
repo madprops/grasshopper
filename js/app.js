@@ -185,6 +185,13 @@ App.background_effects = [
   {text: `Blur`, value: `blur`},
 ]
 
+App.color_modes = [
+  {text: `None`, value: `none`},
+  {text: `Items`, value: `items`},
+  {text: `Tab Box`, value: `tab_box`},
+  {text: `Everywhere`, value: `everywhere`},
+]
+
 App.favorites_title = `Favorites. You can edit this in the Menu settings`
 
 App.filter_whats = [
