@@ -1089,13 +1089,6 @@ App.build_settings = () => {
   category = `zones`
 
   props = {
-    header_action: {
-      name: `Header Action`,
-      type: `menu`,
-      value: `select`,
-      info: `What to do when clicking a header`,
-      version: 1,
-    },
     split_width: {
       name: `Split Width`,
       type: `number`,
@@ -1180,6 +1173,13 @@ App.build_settings = () => {
       type: `color`,
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for Subheader Tabs`,
+      version: 1,
+    },
+    header_action: {
+      name: `Header Action`,
+      type: `menu`,
+      value: `select`,
+      info: `What to do when clicking a header`,
       version: 1,
     },
     split_side: {
