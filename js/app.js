@@ -22,6 +22,7 @@ App.tab_box_modes = [`recent`, `pins`, `colors`, `playing`, `headers`]
 App.no_favicons = [`history`, `bookmarks`]
 App.fonts = [`serif`, `sans-serif`, `monospace`, `Nova Square`]
 App.optional_modes = [`history`, `bookmarks`]
+App.color_types = [`active`, `header`, `subheader`, `playing`, `unread`, `pinned`, `normal`, `unloaded`, `loaded`]
 App.default_icons = [`😀`, `❤️`, `🤖`, `✅`, `🕒`]
 App.primary_mode = `tabs`
 App.default_setting_string = `__default__`

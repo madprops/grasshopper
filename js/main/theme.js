@@ -593,10 +593,8 @@ App.insert_color_css = () => {
 
 App.insert_tab_color_css = () => {
   let css = ``
-  let types = [`active`, `header`, `subheader`, `playing`, `unread`,
-  `pinned`, `normal`, `unloaded`, `loaded`]
 
-  for (let type of types) {
+  for (let type of App.color_types.slice(0).reverse()) {
     let text_color, bg_color
 
     if (App.get_setting(`text_color_${type}_mode`) !== `none`) {

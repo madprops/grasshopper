@@ -6,13 +6,6 @@ App.check_tab_colors = (item) => {
   function is_enabled (type, what, mode) {
     let s_mode = App.get_setting(`${what}_color_${type}_mode`)
 
-    if (s_mode === `none`) {
-      return false
-    }
-    else if (s_mode === `everywhere`) {
-      return true
-    }
-
     if (s_mode !== mode) {
       return false
     }
@@ -53,50 +46,50 @@ App.check_tab_colors = (item) => {
 
   function proc (mode) {
     if (item.active && check(`active`, mode)) {
-      return
+      return true
     }
 
     if (App.is_header(item) && check(`header`, mode)) {
-      return
+      return true
     }
 
     if (App.is_subheader(item) && check(`subheader`, mode)) {
-      return
+      return true
     }
 
     if (item.audible && check(`playing`, mode)) {
-      return
+      return true
     }
 
     if (item.unread && check(`unread`, mode)) {
-      return
+      return true
     }
 
     if (item.discarded && check(`unloaded`, mode)) {
-      return
+      return true
     }
 
     if (!item.discarded && check(`loaded`, mode)) {
-      return
+      return true
     }
 
     if (item.pinned && check(`pinned`, mode)) {
-      return
+      return true
     }
 
     if (!item.pinned && check(`normal`, mode)) {
-      return
+      return true
     }
+
+    return false
   }
 
-  let types = [`active`, `header`, `subheader`, `playing`, `unread`,
-  `pinned`, `normal`, `unloaded`, `loaded`]
-
-  for (let type of types) {
+  for (let type of App.color_types) {
     item.element.classList.remove(`tab_text_color_${type}`)
     item.element.classList.remove(`tab_background_color_${type}`)
   }
 
+  proc(`everywhere`)
   proc(`items`)
   proc(`tab_box`)
 }
