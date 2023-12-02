@@ -1608,14 +1608,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.color_displays)
       },
     },
-    color_icon_click: {
-      name: `Color Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the color menu by clicking a color icon`,
-      separator: true,
-      version: 1,
-    },
     text_color_active_mode: {
       name: `Active Tabs (Text)`,
       type: `menu`,
@@ -1909,6 +1901,13 @@ App.build_settings = () => {
       setup: (key) => {
         App.start_color_picker(key)
       },
+    },
+    color_icon_click: {
+      name: `Color Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the color menu by clicking a color icon`,
+      version: 1,
     },
   }
 
