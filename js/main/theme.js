@@ -517,16 +517,14 @@ App.apply_background_effects = (effect, tiles) => {
 }
 
 App.background_effect_css = (color, cls) => {
-  let is_dark = App.colorlib.is_dark(color)
-  let base_color = is_dark ? `rgb(255, 255, 255)` : `rgb(0, 0, 0)`
-  let contrast = App.get_setting(`background_effect_contrast`)
+  let contrast = App.colorlib.get_lighter_or_darker(color, 0.2)
 
   return `.hover_effect_background .item_container ${cls}:hover,
   .selected_effect_background .item_container ${cls}.selected,
   .tab_box_hover_effect_background #tab_box_container ${cls}:hover,
   .tab_box_active_effect_background #tab_box_container ${cls}.active_tab
   {
-    background-color: color-mix(in srgb, ${base_color} ${contrast}%, ${color}) !important;
+    background-color: ${contrast} !important;
   }`
 }
 
