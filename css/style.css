@@ -15,7 +15,7 @@
   --backdrop: blur(8px);
   --taglist_gap: 0.55rem;
   --header_margin: 0.25rem;
-  --transition_delay: 150ms;
+  --transition_delay: 170ms;
 }
 
 @font-face {
@@ -314,7 +314,6 @@ svg {
   flex-shrink: 0;
   scroll-margin: 4.2rem;
   transition: text-shadow var(--transition_delay);
-  transition: background-color var(--transition_delay);
   border-top-width: 1px;
   border-bottom-width: 1px;
   border-left-width: 0;

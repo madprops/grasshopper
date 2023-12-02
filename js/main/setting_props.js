@@ -2393,13 +2393,13 @@ App.build_settings = () => {
     background_effect_contrast: {
       name: `BG Effect Contrast`,
       type: `number`,
-      value: 25,
+      value: 20,
       placeholder: `Number`,
       min: 0,
       max: 100,
       info: `How strong is the contrast of the background effect
       Percentage, from 0 to 100`,
-      version: 1,
+      version: 2,
     },
   }
 

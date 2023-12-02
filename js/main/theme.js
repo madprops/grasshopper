@@ -517,17 +517,18 @@ App.apply_background_effects = (effect, tiles) => {
 }
 
 App.background_effect_css = (color, cls, single, multiple) => {
-  let contrast = App.colorlib.get_lighter_or_darker(color, 0.2)
+  let contrast = App.get_setting(`background_effect_contrast`) / 100
+  let bg_color = App.colorlib.get_lighter_or_darker(color, contrast)
 
   let css = `
-  .hover_effect_background .item_container.multiple_selected ${cls}:hover,
+  .hover_effect_background .item_container ${cls}:hover,
   .tab_box_hover_effect_background #tab_box_container ${cls}:hover,
   .tab_box_active_effect_background #tab_box_container ${cls}.active_tab
   {
-    background-color: ${contrast} !important;
+    background-color: ${bg_color} !important;
   }`
 
-  let bg = single ? contrast : color
+  let bg = single ? bg_color : color
 
   css += `
   .selected_effect_background .item_container.single_selected ${cls}.selected
@@ -535,7 +536,7 @@ App.background_effect_css = (color, cls, single, multiple) => {
     background-color: ${bg} !important;
   }`
 
-  bg = multiple ? contrast : color
+  bg = multiple ? bg_color : color
 
   if (multiple) {
     css += `
