@@ -256,6 +256,9 @@ App.build_settings = () => {
       actions: [`theme`],
       info: `Main color to use for the text`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     background_color: {
       name: `Background Color`,
@@ -265,6 +268,9 @@ App.build_settings = () => {
       info: `Main color to use for the background`,
       separator: true,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     background_image: {
       name: `Background Image`,
@@ -276,6 +282,11 @@ App.build_settings = () => {
       info: `The background image below the background color
       Pick from the list or enter a URL`,
       version: 1,
+      setup: (key) => {
+        DOM.ev(DOM.el(`#settings_${key}_pick`), `click`, (e) => {
+          App.pick_background(e)
+        })
+      },
     },
     background_effect: {
       name: `Background Effect`,
@@ -337,6 +348,11 @@ App.build_settings = () => {
       info: `Font to use for the text
       Pick from the list, or enter a Google Font name, or enter a font URL`,
       version: 1,
+      setup: (key) => {
+        DOM.ev(DOM.el(`#settings_${key}_pick`), `click`, (e) => {
+          App.pick_font(e)
+        })
+      },
     },
     font_size: {
       name: `Font Size`,
@@ -1293,6 +1309,9 @@ App.build_settings = () => {
       value: `rgb(102, 204, 0)`,
       info: `The color of the splits between tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     text_color_header_mode: {
       name: `Header Text Color`,
@@ -1308,6 +1327,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for Header Tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     background_color_header_mode: {
       name: `Header Background Color`,
@@ -1323,6 +1345,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for Header Tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     text_color_subheader_mode: {
       name: `Subheader Text Color`,
@@ -1338,6 +1363,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for Subheader Tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     background_color_subheader_mode: {
       name: `Subheader Background Color`,
@@ -1353,6 +1381,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for Subheader Tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     header_action: {
       name: `Header Action`,
@@ -1457,6 +1488,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom text color for active tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     text_color_active: {
       name: `Active Tabs (Text)`,
@@ -1465,6 +1499,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for active tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     background_color_active_mode: {
       name: `Active Tabs (Background)`,
@@ -1472,6 +1509,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom background color for active tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     background_color_active: {
       name: `Active Tabs (Background)`,
@@ -1480,6 +1520,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for active tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     text_color_playing_mode: {
       name: `Playing Tabs (Text)`,
@@ -1487,6 +1530,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom text color for playing tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     text_color_playing: {
       name: `Playing Tabs (Text)`,
@@ -1495,6 +1541,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for playing tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     background_color_playing_mode: {
       name: `Playing Tabs (Background)`,
@@ -1502,6 +1551,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom background color for playing tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     background_color_playing: {
       name: `Playing Tabs (Background)`,
@@ -1510,6 +1562,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for playing tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     text_color_unread_mode: {
       name: `Unread Tabs (Text)`,
@@ -1517,6 +1572,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom text color for unread tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     text_color_unread: {
       name: `Unread Tabs (Text)`,
@@ -1525,6 +1583,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for unread tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     background_color_unread_mode: {
       name: `Unread Tabs (Background)`,
@@ -1532,6 +1593,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom background color for unread tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     background_color_unread: {
       name: `Unread Tabs (Background)`,
@@ -1540,6 +1604,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for unread tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     text_color_unloaded_mode: {
       name: `Unloaded Tabs (Text)`,
@@ -1547,6 +1614,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom text color for unloaded tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     text_color_unloaded: {
       name: `Unloaded Tabs (Text)`,
@@ -1555,6 +1625,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for unloaded tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     background_color_unloaded_mode: {
       name: `Unloaded Tabs (Background)`,
@@ -1562,6 +1635,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom background color for unloaded tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     background_color_unloaded: {
       name: `Unloaded Tabs (Background)`,
@@ -1570,6 +1646,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for unloaded tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     text_color_loaded_mode: {
       name: `Loaded Tabs (Text)`,
@@ -1577,6 +1656,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom text color for loaded tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     text_color_loaded: {
       name: `Loaded Tabs (Text)`,
@@ -1585,6 +1667,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for loaded tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     background_color_loaded_mode: {
       name: `Loaded Tabs (Background)`,
@@ -1592,6 +1677,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom background color for loaded tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     background_color_loaded: {
       name: `Loaded Tabs (Background)`,
@@ -1600,6 +1688,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for loaded tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     text_color_pinned_mode: {
       name: `Pinned Tabs (Text)`,
@@ -1607,6 +1698,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom text color for pins`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     text_color_pinned: {
       name: `Pinned Tabs (Text)`,
@@ -1615,6 +1709,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for pins`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     background_color_pinned_mode: {
       name: `Pinned Tabs (Background)`,
@@ -1622,6 +1719,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom background color for pins`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     background_color_pinned: {
       name: `Pinned Tabs (Background)`,
@@ -1630,6 +1730,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for pins`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     text_color_normal_mode: {
       name: `Normal Tabs (Text)`,
@@ -1637,6 +1740,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom text color for normal tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     text_color_normal: {
       name: `Normal Tabs (Text)`,
@@ -1645,6 +1751,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for normal tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     background_color_normal_mode: {
       name: `Normal Tabs (Background)`,
@@ -1652,6 +1761,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom background color for normal tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     background_color_normal: {
       name: `Normal Tabs (Background)`,
@@ -1660,6 +1772,9 @@ App.build_settings = () => {
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for normal tabs`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
   }
 
@@ -2147,18 +2262,7 @@ App.build_settings = () => {
     },
     theme: {
       info: `Here you can change the appearance of the interface`,
-      setup: () => {
-        App.start_color_picker(`background_color`)
-        App.start_color_picker(`text_color`)
-
-        DOM.ev(DOM.el(`#settings_background_image_pick`), `click`, (e) => {
-          App.pick_background(e)
-        })
-
-        DOM.ev(DOM.el(`#settings_font_pick`), `click`, (e) => {
-          App.pick_font(e)
-        })
-      },
+      setup: () => {},
       buttons: [
         [
           {
@@ -2193,21 +2297,7 @@ App.build_settings = () => {
     colors: {
       info: `Set the colors for different kinds of items
       This includes the edit colors and tab colors`,
-      setup: () => {
-        App.start_setting_colors(`colors`)
-
-        for (let key in App.setting_props) {
-          let props = App.setting_props[key]
-
-          if (props.category === `colors`) {
-            if ((key.includes(`text_color`) ||
-            key.includes(`background_color`))
-            && key.endsWith(`_mode`)) {
-              App.settings_make_menu(key, App.color_modes)
-            }
-          }
-        }
-      },
+      setup: () => {},
     },
     show: {
       info: `Hide or show interface components
@@ -2223,8 +2313,6 @@ App.build_settings = () => {
     zones: {
       info: `Customize headers and splits`,
       setup: () => {
-        App.start_setting_colors(`zones`)
-
         for (let key in App.setting_props) {
           let props = App.setting_props[key]
 

@@ -395,7 +395,7 @@ App.run_setting_setups = (category) => {
 
     if (props.category === category) {
       if (props.setup) {
-        props.setup()
+        props.setup(key)
       }
     }
   }
@@ -1364,22 +1364,6 @@ App.edit_text_setting = (key) => {
     },
     value: App.get_setting(key),
   })
-}
-
-App.start_setting_colors = (category) => {
-  for (let key in App.setting_props) {
-    let props = App.setting_props[key]
-
-    if (props.category !== category) {
-      continue
-    }
-
-    if (props.type !== `color`) {
-      continue
-    }
-
-    App.start_color_picker(key)
-  }
 }
 
 App.is_default_setting = (setting) => {
