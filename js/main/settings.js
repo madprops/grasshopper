@@ -374,6 +374,7 @@ App.prepare_settings_category = (category) => {
   App.settings_setup_labels(category)
   App.add_settings_switchers(category)
   App.add_settings_filter(category)
+  App.run_setting_setups(category)
   let container = DOM.el(`#settings_${category}_container`)
   container.classList.add(`filter_container`)
 
@@ -384,6 +385,19 @@ App.prepare_settings_category = (category) => {
   for (let el of DOM.els(`.settings_label`, container)) {
     el.classList.add(`filter_text`)
     el.classList.add(`linkbutton`)
+  }
+
+}
+
+App.run_setting_setups = (category) => {
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
+
+    if (props.category === category) {
+      if (props.setup) {
+        props.setup()
+      }
+    }
   }
 }
 
