@@ -15,7 +15,7 @@
   --backdrop: blur(8px);
   --taglist_gap: 0.55rem;
   --header_margin: 0.25rem;
-  --transition_delay: 180ms;
+  --transition_delay: 150ms;
 }
 
 @font-face {
