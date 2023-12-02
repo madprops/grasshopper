@@ -20,8 +20,8 @@ App.build_settings = () => {
       value: `title`,
       info: `What to show as the text for each item`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`text_mode`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `Title`, value: `title`},
           {text: `URL`, value: `url`},
           {text: `Title / URL`, value: `title_url`},
@@ -35,8 +35,8 @@ App.build_settings = () => {
       value: `normal`,
       info: `How big each item is`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`item_height`, App.sizes)
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes)
       },
     },
     item_border: {
@@ -45,8 +45,8 @@ App.build_settings = () => {
       value: `none`,
       info: `Borders between items`,
       version: 2,
-      setup: () => {
-        App.settings_make_menu(`item_border`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Normal`, value: `normal`},
           {text: `Big`, value: `big`},
@@ -60,8 +60,8 @@ App.build_settings = () => {
       value: `normal`,
       info: `The size of the item icons`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`item_icon`, [{text: `None`, value: `none`}, ...App.sizes])
+      setup: (key) => {
+        App.settings_make_menu(key, [{text: `None`, value: `none`}, ...App.sizes])
       },
     },
     icon_effect: {
@@ -70,8 +70,8 @@ App.build_settings = () => {
       value: `spin`,
       info: `Effect for icons when multiple items are selected`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`icon_effect`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Spin`, value: `spin`},
           {text: `Invert`, value: `invert`},
@@ -85,8 +85,8 @@ App.build_settings = () => {
       value: `glow`,
       info: `What effect to use when hovering items`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`hover_effect`, App.effects)
+      setup: (key) => {
+        App.settings_make_menu(key, App.effects)
       },
     },
     selected_effect: {
@@ -95,8 +95,8 @@ App.build_settings = () => {
       value: `background`,
       info: `What effect to use on selected items`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`selected_effect`, App.effects)
+      setup: (key) => {
+        App.settings_make_menu(key, App.effects)
       },
     },
     loading_effect: {
@@ -105,8 +105,8 @@ App.build_settings = () => {
       value: `icon`,
       info: `Which effect to show on loading tabs`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`loading_effect`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Icon`, value: `icon`},
           {text: `Fade`, value: `fade`},
@@ -121,8 +121,8 @@ App.build_settings = () => {
       info: `How to sort the tabs
       Either by index or by recent use`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`tab_sort`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `Normal`, value: `normal`},
           {text: `Recent`, value: `recent`},
         ])
@@ -136,8 +136,8 @@ App.build_settings = () => {
       Or if it should restore instantly after an action
       Restore means going back to the primary mode and clearing the filter`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`auto_restore`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `Never`, value: `never`},
           {text: `1 Second`, value: `1_seconds`},
           {text: `3 Seconds`, value: `3_seconds`},
@@ -157,8 +157,8 @@ App.build_settings = () => {
       info: `Width of the popup
       It doesn't affect the sidebar`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`width`, App.get_size_options(), () => {
+      setup: (key) => {
+        App.settings_make_menu(key, App.get_size_options(), () => {
           App.apply_theme()
         })
       },
@@ -170,8 +170,8 @@ App.build_settings = () => {
       info: `Height of the popup
       It doesn't affect the sidebar`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`height`, App.get_size_options(), () => {
+      setup: (key) => {
+        App.settings_make_menu(key, App.get_size_options(), () => {
           App.apply_theme()
         })
       },
@@ -295,8 +295,8 @@ App.build_settings = () => {
       actions: [`theme`],
       info: `The effect on the background image`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`background_effect`, App.background_effects, () => {
+      setup: (key) => {
+        App.settings_make_menu(key, App.background_effects, () => {
           App.apply_theme()
         })
       },
@@ -308,8 +308,8 @@ App.build_settings = () => {
       actions: [`theme`],
       info: `The tile size of the background image`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`background_tiles`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `50px`, value: `50px`},
           {text: `100px`, value: `100px`},
@@ -677,8 +677,8 @@ App.build_settings = () => {
       info: `How to show the Favorites Menu
       A bar near the top, or a button at the top right`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`favorites_mode`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Bar`, value: `bar`},
           {text: `Button`, value: `button`},
@@ -708,8 +708,8 @@ App.build_settings = () => {
       Either on its own submenu, flat at the root level, or totally replace the Item Menu
       This menu only appears in Tabs mode`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`extra_menu_mode`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Normal`, value: `normal`},
           {text: `Flat`, value: `flat`},
@@ -736,8 +736,8 @@ App.build_settings = () => {
       value: `none`,
       info: `This is a button that appears on the side of items, to run commands`,
       version: 2,
-      setup: () => {
-        App.settings_make_menu(`hover_button`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
@@ -770,8 +770,8 @@ App.build_settings = () => {
       value: `none`,
       info: `A special widget to display the tags of a tab`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`taglist`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Above`, value: `above`},
           {text: `Below`, value: `below`},
@@ -786,8 +786,8 @@ App.build_settings = () => {
       value: `filter`,
       info: `What to do when clicking the Taglist items`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`taglist_mode`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Menu`, value: `menu`},
           {text: `Edit`, value: `edit`},
@@ -824,8 +824,8 @@ App.build_settings = () => {
       value: `auto`,
       info: `Show a separator between pinned and normal tabs`,
       version: 3,
-      setup: () => {
-        App.settings_make_menu(`show_pinline`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `Never`, value: `never`},
           {text: `Auto`, value: `auto`},
           {text: `Always`, value: `always`},
@@ -838,8 +838,8 @@ App.build_settings = () => {
       value: `right`,
       info: `How to show the Close Button on tabs`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`close_button`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
@@ -925,8 +925,8 @@ App.build_settings = () => {
       value: `normal`,
       info: `The size of the Tab Box`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`tab_box_size`, App.sizes)
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes)
       },
     },
     tab_box_position: {
@@ -935,8 +935,8 @@ App.build_settings = () => {
       value: `bottom`,
       info: `The position of the Tab Box`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`tab_box_position`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `Top`, value: `top`},
           {text: `Bottom`, value: `bottom`},
         ])
@@ -948,8 +948,8 @@ App.build_settings = () => {
       value: `recent`,
       info: `What to show in the Tab Box`,
       version: 4,
-      setup: () => {
-        App.settings_make_menu(`tab_box_mode`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `Recent`, value: `recent`, icon: App.tab_box_icon(`recent`)},
           {text: `Pins`, value: `pins`, icon: App.tab_box_icon(`pins`)},
           {text: `Colors`, value: `colors`, icon: App.tab_box_icon(`colors`)},
@@ -964,8 +964,8 @@ App.build_settings = () => {
       value: `glow`,
       info: `What effect to show on hovered items in the Tab Box`,
       version: 4,
-      setup: () => {
-        App.settings_make_menu(`tab_box_hover_effect`, App.effects)
+      setup: (key) => {
+        App.settings_make_menu(key, App.effects)
       },
     },
     tab_box_active_effect: {
@@ -974,8 +974,8 @@ App.build_settings = () => {
       value: `underline`,
       info: `What effect to show on active items in the Tab Box`,
       version: 4,
-      setup: () => {
-        App.settings_make_menu(`tab_box_active_effect`, App.effects)
+      setup: (key) => {
+        App.settings_make_menu(key, App.effects)
       },
     },
     tab_box_auto_grow: {
@@ -984,8 +984,8 @@ App.build_settings = () => {
       value: `none`,
       info: `Grow the Tab Box when the mouse enters, restore it when the mouse leaves`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`tab_box_auto_grow`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Normal`, value: `normal`},
           {text: `Big`, value: `big`},
@@ -1059,8 +1059,8 @@ App.build_settings = () => {
       value: 10,
       info: `How sensitive gestures are`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`gestures_threshold`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `Normal`, value: 10},
           {text: `Less Sensitive`, value: 100},
         ])
@@ -1532,8 +1532,8 @@ App.build_settings = () => {
       value: `select`,
       info: `What to do when clicking a header`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`header_action`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Select`, value: `select`},
           {text: `Activate`, value: `activate`},
@@ -1547,8 +1547,8 @@ App.build_settings = () => {
       value: `right`,
       info: `Which side to show the split side border`,
       version: 1,
-      setup: () => {
-        App.settings_make_menu(`split_side`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
@@ -1602,8 +1602,8 @@ App.build_settings = () => {
       value: `icon`,
       info: `How to display the colors (green, red, etc) you assign to tabs`,
       version: 2,
-      setup: () => {
-        App.settings_make_menu(`color_mode`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Icon`, value: `icon`},
           {text: `Border`, value: `border`},
@@ -1958,8 +1958,8 @@ App.build_settings = () => {
       info: `Remember the items that were last selected when switching filter views
       In activate mode it auto activates the items instead of just selecting them`,
       version: 2,
-      setup: () => {
-        App.settings_make_menu(`sticky_filter`, [
+      setup: (key) => {
+        App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: `Select`, value: `select`},
           {text: `Activate`, value: `activate`},
@@ -2420,11 +2420,10 @@ App.build_settings = () => {
       There are various categories
       Clicking the labels shows menus
       Use the top buttons to navigate and save/load data`,
-      setup: () => {},
     },
     theme: {
       info: `Here you can change the appearance of the interface`,
-      setup: () => {},
+      setup: (key) => {},
       buttons: [
         [
           {
@@ -2459,62 +2458,50 @@ App.build_settings = () => {
     colors: {
       info: `Set the colors for different kinds of items
       This includes the edit colors and tab colors`,
-      setup: () => {},
     },
     show: {
       info: `Hide or show interface components
       Set component behavior and their menus`,
-      setup: () => {},
     },
     icons: {
       info: `Customize the icons used by items
       These are the icons used for various states
       You can leave them empty to not show anything`,
-      setup: () => {},
     },
     zones: {
       info: `Customize headers and splits`,
-      setup: () => {},
     },
     filter: {
       info: `Adjust the filter and search`,
-      setup: () => {},
     },
     media: {
       info: `How to view media items
       An icon appears to the left of items
       You can make it view media when clicking the icons, the whole item, or never`,
-      setup: () => {},
     },
     tab_box: {
       info: `Configure the Tab Box
       This is a component that appears below or above the tabs
       It shows different kinds of tabs so you can jump around`,
-      setup: () => {},
     },
     triggers: {
       info: `Run commands on certain keyboard and mouse actions`,
-      setup: () => {},
     },
     gestures: {
       info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button
       Each gesture runs a specified command
       You can also set the sensitivity of the gestures`,
-      setup: () => {},
     },
     auxclick: {
       info: `Run commands when middle clicking various components`,
-      setup: () => {},
     },
     warns: {
       info: `When to show the confirmation dialog on certain actions
       'Special' forces a confirm depending if tabs have a certain state like pinned, playing, or colored
       'Multiple' forces a confirm if multiple items are selected`,
-      setup: () => {},
     },
     more: {
       info: `Even more settings`,
-      setup: () => {},
     },
   }
 }
