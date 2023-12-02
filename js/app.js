@@ -193,6 +193,19 @@ App.color_modes = [
   {text: `Everywhere`, value: `everywhere`},
 ]
 
+App.warn_modes = [
+  {text: `Never`, value: `never`},
+  {text: `Multiple`, value: `multiple`},
+  {text: `Special`, value: `special`},
+  {text: `Always`, value: `always`},
+]
+
+App.media_modes = [
+  {text: `Never`, value: `never`},
+  {text: `On Icon Click`, value: `icon`},
+  {text: `On Item Click`, value: `item`},
+]
+
 App.favorites_title = `Favorites. You can edit this in the Menu settings`
 
 App.filter_whats = [

@@ -404,6 +404,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on an image in Tabs mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
     view_image_history: {
       name: `View Image (History)`,
@@ -411,6 +414,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on an image in History mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
     view_image_bookmarks: {
       name: `View Image (Bookmarks)`,
@@ -418,6 +424,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on an image in Bookmarks mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
     view_image_closed: {
       name: `View Image (Closed)`,
@@ -425,6 +434,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on an image in Closed mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
     video_icon: {
       name: `View Video Icon`,
@@ -440,6 +452,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on a video in Tabs mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
     view_video_history: {
       name: `View Video (History)`,
@@ -447,6 +462,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on a video in History mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
     view_video_bookmarks: {
       name: `View Video (Bookmarks)`,
@@ -454,6 +472,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on a video in Bookmarks mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
     view_video_closed: {
       name: `View Video (Closed)`,
@@ -461,6 +482,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on a video in Closed mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
     audio_icon: {
       name: `View Audio Icon`,
@@ -476,6 +500,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on an audio in Tabs mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
     view_audio_history: {
       name: `View Audio (History)`,
@@ -483,6 +510,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on an audio in History mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
     view_audio_bookmarks: {
       name: `View Audio (Bookmarks)`,
@@ -490,6 +520,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on an audio in Bookmarks mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
     view_audio_closed: {
       name: `View Audio (Closed)`,
@@ -497,6 +530,9 @@ App.build_settings = () => {
       value: `icon`,
       info: `What to do when clicking on an audio in Closed mode`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
     },
   }
 
@@ -1036,6 +1072,9 @@ App.build_settings = () => {
       value: `go_to_top`,
       info: `Up gesture`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     gesture_down: {
       name: `Gesture Down`,
@@ -1043,6 +1082,9 @@ App.build_settings = () => {
       value: `go_to_bottom`,
       info: `Down gesture`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     gesture_left: {
       name: `Gesture Left`,
@@ -1050,6 +1092,9 @@ App.build_settings = () => {
       value: `show_previous_mode`,
       info: `Left gesture`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     gesture_right: {
       name: `Gesture Right`,
@@ -1057,6 +1102,9 @@ App.build_settings = () => {
       value: `show_next_mode`,
       info: `Right gesture`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     gesture_up_and_down: {
       name: `Gesture Up Down`,
@@ -1064,6 +1112,9 @@ App.build_settings = () => {
       value: `filter_all`,
       info: `Up and Down gesture`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     gesture_left_and_right: {
       name: `Gesture Left Right`,
@@ -1071,6 +1122,9 @@ App.build_settings = () => {
       value: `filter_domain`,
       info: `Left and Right gesture`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
   }
 
@@ -1084,6 +1138,9 @@ App.build_settings = () => {
       value: `close_tabs`,
       info: `Command to run when middle clicking tab items`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_history: {
       name: `Middle Click History`,
@@ -1091,6 +1148,9 @@ App.build_settings = () => {
       value: `open_items`,
       info: `Command to run when middle clicking history items`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_bookmarks: {
       name: `Middle Click Bookmarks`,
@@ -1098,6 +1158,9 @@ App.build_settings = () => {
       value: `open_items`,
       info: `Command to run when middle clicking bookmark items`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_closed: {
       name: `Middle Click Closed`,
@@ -1106,6 +1169,9 @@ App.build_settings = () => {
       info: `Command to run when middle clicking closed items`,
       separator: true,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_main_menu: {
       name: `Middle Click Main Menu`,
@@ -1113,6 +1179,9 @@ App.build_settings = () => {
       value: `show_mode_tabs`,
       info: `Command to run when middle clicking the Main Menu`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_filter_menu: {
       name: `Middle Click Filter Menu`,
@@ -1120,6 +1189,9 @@ App.build_settings = () => {
       value: `previous_filter`,
       info: `Command to run when middle clicking the Filter Menu`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_playing: {
       name: `Middle Click Playing`,
@@ -1127,6 +1199,9 @@ App.build_settings = () => {
       value: `mute_playing_tabs`,
       info: `Command to run when middle clicking the Playing Button`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_step_back: {
       name: `Middle Click Step Back`,
@@ -1134,6 +1209,9 @@ App.build_settings = () => {
       value: `browser_back`,
       info: `Command to run when middle clicking the Step Back Button`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_actions_menu: {
       name: `Middle Click Actions Menu`,
@@ -1142,6 +1220,9 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the Actions Menu`,
       separator: true,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_footer: {
       name: `Middle Click Footer`,
@@ -1149,6 +1230,9 @@ App.build_settings = () => {
       value: `copy_item_url`,
       info: `Command to run when middle clicking the Footer`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_pinline: {
       name: `Middle Click Pinline`,
@@ -1156,6 +1240,9 @@ App.build_settings = () => {
       value: `close_normal_tabs`,
       info: `Command to run when middle clicking the Pinline`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_favorites: {
       name: `Middle Click Favorites`,
@@ -1163,6 +1250,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Command to run when middle clicking the Favorites Button`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_hover_button: {
       name: `Middle Click Hover Button`,
@@ -1170,6 +1260,9 @@ App.build_settings = () => {
       value: `close_tabs`,
       info: `Command to run when middle clicking the Hover Button`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_close_button: {
       name: `Middle Click Close Button`,
@@ -1177,6 +1270,9 @@ App.build_settings = () => {
       value: `unload_tabs`,
       info: `Command to run when middle clicking the Close Button`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
   }
 
@@ -1197,6 +1293,9 @@ App.build_settings = () => {
       value: `special`,
       info: `Warn when closing tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
     },
     warn_on_unload_tabs: {
       name: `Warn On Unload Tabs`,
@@ -1204,6 +1303,9 @@ App.build_settings = () => {
       value: `special`,
       info: `Warn when unloading tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
     },
     warn_on_pin_tabs: {
       name: `Warn On Pin Tabs`,
@@ -1211,6 +1313,9 @@ App.build_settings = () => {
       value: `multiple`,
       info: `Warn when pinning tabs`,
       version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
     },
     warn_on_unpin_tabs: {
       name: `Warn On Unpin Tabs`,
@@ -1218,6 +1323,9 @@ App.build_settings = () => {
       value: `multiple`,
       info: `Warn when unpinning tabs`,
       version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
     },
     warn_on_duplicate_tabs: {
       name: `Warn Duplicate Tabs`,
@@ -1225,6 +1333,9 @@ App.build_settings = () => {
       value: `multiple`,
       info: `Warn when duplicating tabs`,
       version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
     },
     warn_on_open: {
       name: `Warn On Open`,
@@ -1232,6 +1343,9 @@ App.build_settings = () => {
       value: `multiple`,
       info: `Warn when opening items`,
       version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
     },
     warn_on_bookmark: {
       name: `Warn On Bookmark`,
@@ -1239,6 +1353,9 @@ App.build_settings = () => {
       value: `multiple`,
       info: `Warn when adding bookmarks`,
       version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
     },
     warn_on_load_tabs: {
       name: `Warn On Load Tabs`,
@@ -1246,6 +1363,9 @@ App.build_settings = () => {
       value: `multiple`,
       info: `Warn when loading tabs`,
       version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
     },
     warn_on_mute_tabs: {
       name: `Warn On Mute Tabs`,
@@ -1253,6 +1373,9 @@ App.build_settings = () => {
       value: `multiple`,
       info: `Warn when muting tabs`,
       version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
     },
     warn_on_unmute_tabs: {
       name: `Warn On Unmute Tabs`,
@@ -1260,6 +1383,9 @@ App.build_settings = () => {
       value: `multiple`,
       info: `Warn when unmuting tabs`,
       version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
     },
     warn_on_edit_tabs: {
       name: `Warn On Edit Tabs`,
@@ -1267,6 +1393,9 @@ App.build_settings = () => {
       value: `multiple`,
       info: `Warn when changing custom tab properties, like color, title, etc`,
       version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
     },
     max_warn_limit: {
       name: `Max Warn Limit`,
@@ -2003,6 +2132,9 @@ App.build_settings = () => {
       value: `none`,
       info: `What command to run when double clicking an item`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     left_click_press_command: {
       name: `On Left Click Press`,
@@ -2010,6 +2142,9 @@ App.build_settings = () => {
       value: `none`,
       info: `What command to run when pressing the left mouse button on an item for a short time`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     middle_click_press_command: {
       name: `On Middle Click Press`,
@@ -2018,6 +2153,9 @@ App.build_settings = () => {
       info: `What command to run when pressing the middle mouse button on an item for a short time`,
       separator: true,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     double_ctrl_command: {
       name: `On Double Ctrl`,
@@ -2025,6 +2163,9 @@ App.build_settings = () => {
       value: `show_palette`,
       info: `What command to run when pressing Ctrl twice quickly`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     double_shift_command: {
       name: `On Double Shift`,
@@ -2032,6 +2173,9 @@ App.build_settings = () => {
       value: `previous_filter`,
       info: `What command to run when pressing Shift twice quickly`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     ctrl_press_command: {
       name: `On Ctrl Press`,
@@ -2039,6 +2183,9 @@ App.build_settings = () => {
       value: `none`,
       info: `What command to run when pressing and holding Ctrl for a short time`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     shift_press_command: {
       name: `On Shift Press`,
@@ -2047,6 +2194,9 @@ App.build_settings = () => {
       info: `What command to run when pressing and holding Shift for a short time`,
       separator: true,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     double_key_delay: {
       name: `Double Key Delay`,
@@ -2334,19 +2484,7 @@ App.build_settings = () => {
       info: `How to view media items
       An icon appears to the left of items
       You can make it view media when clicking the icons, the whole item, or never`,
-      setup: () => {
-        let opts = [
-          {text: `Never`, value: `never`},
-          {text: `On Icon Click`, value: `icon`},
-          {text: `On Item Click`, value: `item`},
-        ]
-
-        for (let m of App.modes) {
-          App.settings_make_menu(`view_image_${m}`, opts)
-          App.settings_make_menu(`view_video_${m}`, opts)
-          App.settings_make_menu(`view_audio_${m}`, opts)
-        }
-      },
+      setup: () => {},
     },
     tab_box: {
       info: `Configure the Tab Box
@@ -2356,80 +2494,23 @@ App.build_settings = () => {
     },
     triggers: {
       info: `Run commands on certain keyboard and mouse actions`,
-      setup: () => {
-        let cmds = [
-          `double_click`,
-          `double_ctrl`,
-          `double_shift`,
-          `ctrl_press`,
-          `shift_press`,
-          `left_click_press`,
-          `middle_click_press`,
-        ]
-
-        for (let cmd of cmds) {
-          App.settings_make_menu(`${cmd}_command`, App.cmdlist)
-        }
-      },
+      setup: () => {},
     },
     gestures: {
       info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button
       Each gesture runs a specified command
       You can also set the sensitivity of the gestures`,
-      setup: () => {
-        for (let key in App.setting_props) {
-          let props = App.setting_props[key]
-
-          if (props.category === `gestures`) {
-            if (key.startsWith(`gesture_`)) {
-              App.settings_make_menu(key, App.cmdlist)
-            }
-          }
-        }
-      },
+      setup: () => {},
     },
     auxclick: {
       info: `Run commands when middle clicking various components`,
-      setup: () => {
-        for (let key in App.setting_props) {
-          let props = App.setting_props[key]
-
-          if (props.category === `auxclick`) {
-            App.settings_make_menu(key, App.cmdlist)
-          }
-        }
-      },
+      setup: () => {},
     },
     warns: {
       info: `When to show the confirmation dialog on certain actions
       'Special' forces a confirm depending if tabs have a certain state like pinned, playing, or colored
       'Multiple' forces a confirm if multiple items are selected`,
-      setup: () => {
-        let warns = [
-          `close_tabs`,
-          `unload_tabs`,
-          `pin_tabs`,
-          `unpin_tabs`,
-          `duplicate_tabs`,
-          `open`,
-          `bookmark`,
-          `load_tabs`,
-          `mute_tabs`,
-          `unmute_tabs`,
-          `edit_tabs`,
-        ]
-
-        let tab_warn_opts = [
-          {text: `Never`, value: `never`},
-          {text: `Multiple`, value: `multiple`},
-          {text: `Special`, value: `special`},
-          {text: `Always`, value: `always`},
-        ]
-
-        for (let warn of warns) {
-          App.settings_make_menu(`warn_on_${warn}`, tab_warn_opts)
-        }
-      },
+      setup: () => {},
     },
     more: {
       info: `Even more settings`,

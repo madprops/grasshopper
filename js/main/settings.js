@@ -458,7 +458,10 @@ App.start_settings = () => {
       element: App.settings_build_category(key),
       setup: () => {
         App.prepare_settings_category(key)
-        catprops.setup()
+
+        if (catprops.setup) {
+          catprops.setup()
+        }
       },
     }))
   }
