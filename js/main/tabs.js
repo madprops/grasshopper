@@ -362,7 +362,6 @@ App.tabs_action = async (item, from, scroll) => {
   await App.focus_tab({
     item: item,
     scroll: scroll,
-    select: false,
   })
 
   blink(item)
