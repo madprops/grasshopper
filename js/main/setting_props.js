@@ -993,6 +993,16 @@ App.build_settings = () => {
         ])
       },
     },
+    tab_box_color_mode: {
+      name: `Tab Box Color Mode`,
+      type: `menu`,
+      value: `icon`,
+      info: `The color mode inside the Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_displays)
+      },
+    },
     tab_box_max: {
       name: `Tab Box Max`,
       type: `number`,
@@ -1009,14 +1019,6 @@ App.build_settings = () => {
       value: true,
       info: `Enable icons in the items of the Tab Box
       This means icons like muted, or notes`,
-      version: 1,
-    },
-    tab_box_colors: {
-      name: `Tab Box Colors`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable colors in the items of the Tab Box
-      Like green, red, etc`,
       version: 1,
     },
     tab_box_taglist: {
@@ -1603,16 +1605,7 @@ App.build_settings = () => {
       info: `How to display the colors (green, red, etc) you assign to tabs`,
       version: 2,
       setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: `Icon`, value: `icon`},
-          {text: `Border`, value: `border`},
-          {text: `Border & Icon`, value: `border_icon`},
-          {text: `Text`, value: `text`},
-          {text: `Text & Icon`, value: `text_icon`},
-          {text: `Background`, value: `background`},
-          {text: `BG & Icon`, value: `background_icon`},
-        ])
+        App.settings_make_menu(key, App.color_displays)
       },
     },
     color_icon_click: {

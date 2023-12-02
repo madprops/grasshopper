@@ -193,6 +193,17 @@ App.color_modes = [
   {text: `Everywhere`, value: `everywhere`},
 ]
 
+App.color_displays = [
+  {text: `None`, value: `none`},
+  {text: `Icon`, value: `icon`},
+  {text: `Border`, value: `border`},
+  {text: `Border & Icon`, value: `border_icon`},
+  {text: `Text`, value: `text`},
+  {text: `Text & Icon`, value: `text_icon`},
+  {text: `Background`, value: `background`},
+  {text: `BG & Icon`, value: `background_icon`},
+]
+
 App.warn_modes = [
   {text: `Never`, value: `never`},
   {text: `Multiple`, value: `multiple`},

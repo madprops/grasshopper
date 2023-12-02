@@ -95,14 +95,12 @@ App.check_tab_colors = (item) => {
 }
 
 App.apply_color_mode = (item) => {
-  if (item.tab_box) {
-    if (!App.get_setting(`tab_box_colors`)) {
-      return
-    }
-  }
-
   let color_mode = App.get_setting(`color_mode`)
   let color = App.get_color(item)
+
+  if (item.tab_box) {
+    color_mode = App.get_setting(`tab_box_color_mode`)
+  }
 
   if (item.header) {
     color_mode = `icon`
