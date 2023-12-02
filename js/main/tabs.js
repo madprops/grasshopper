@@ -359,10 +359,18 @@ App.tabs_action = async (item, from, scroll) => {
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
 
-  await App.focus_tab({
-    item: item,
-    scroll: scroll,
-  })
+  if (item.active) {
+    App.select_item({item: item, scroll: scroll})
+  }
+  else {
+    App.deselect({mode: `tabs`})
+
+    await App.focus_tab({
+      item: item,
+      scroll: scroll,
+      select: false,
+    })
+  }
 
   blink(item)
 }
