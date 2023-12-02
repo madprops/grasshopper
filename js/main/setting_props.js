@@ -1319,6 +1319,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom text color for Header Tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     text_color_header: {
       name: `Header Text Color`,
@@ -1337,6 +1340,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom background color for Header Tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     background_color_header: {
       name: `Header Background Color`,
@@ -1355,6 +1361,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom text color for Subheader Tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     text_color_subheader: {
       name: `Subheader Text Color`,
@@ -1373,6 +1382,9 @@ App.build_settings = () => {
       value: `none`,
       info: `Use a custom background color for Subheader Tabs`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
     },
     background_color_subheader: {
       name: `Subheader Background Color`,
@@ -2312,19 +2324,7 @@ App.build_settings = () => {
     },
     zones: {
       info: `Customize headers and splits`,
-      setup: () => {
-        for (let key in App.setting_props) {
-          let props = App.setting_props[key]
-
-          if (props.category === `zones`) {
-            if ((key.includes(`text_color`) ||
-            key.includes(`background_color`))
-            && key.endsWith(`_mode`)) {
-              App.settings_make_menu(key, App.color_modes)
-            }
-          }
-        }
-      },
+      setup: () => {},
     },
     filter: {
       info: `Adjust the filter and search`,
