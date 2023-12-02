@@ -2423,7 +2423,6 @@ App.build_settings = () => {
     },
     theme: {
       info: `Here you can change the appearance of the interface`,
-      setup: (key) => {},
       buttons: [
         [
           {
