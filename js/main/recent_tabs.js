@@ -97,6 +97,9 @@ App.show_recent_tabs = (e) => {
       alt_action: () => {
         App.close_tabs(item)
       },
+      context_action: (e) => {
+        App.show_item_menu({item: item, e: e})
+      },
     }
 
     if (item.active) {

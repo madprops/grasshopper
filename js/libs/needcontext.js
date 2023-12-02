@@ -464,6 +464,11 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
       NeedContext.alt_action(item, e)
     }
   }
+  else if (e.button === 2) {
+    if (item.context_action) {
+      NeedContext.context_action(item, e)
+    }
+  }
 }
 
 // Check if item is hidden
@@ -890,6 +895,22 @@ NeedContext.alt_action = (item, e) => {
 
   NeedContext.hide(e)
   item.alt_action(e)
+}
+
+// Context (right click) action
+NeedContext.context_action = (item, e) => {
+  if (item.element) {
+    if (!NeedContext.is_visible(item.element)) {
+      return
+    }
+  }
+
+  if (NeedContext.args.after_context_action) {
+    NeedContext.args.after_context_action(e)
+  }
+
+  NeedContext.hide(e)
+  item.context_action(e)
 }
 
 // Start
