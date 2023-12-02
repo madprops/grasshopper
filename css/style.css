@@ -321,6 +321,7 @@ svg {
   border-color: transparent;
   margin-top: -1px;
   opacity: 1;
+  transition: background-color 100ms;
 }
 
 .item:nth-child(1 of :not(.hidden))  {
