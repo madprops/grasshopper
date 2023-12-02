@@ -632,3 +632,15 @@ App.show_filter_icon_menu = (mode, e) => {
   let items = App.get_icon_items(mode)
   App.show_context({items: items, e: e})
 }
+
+App.get_iconed_items = (mode) => {
+  let items = []
+
+  for (let item of App.get_items(mode)) {
+    if (App.get_icon(item)) {
+      items.push(item)
+    }
+  }
+
+  return items
+}

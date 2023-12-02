@@ -1047,6 +1047,13 @@ App.build_settings = () => {
       info: `Enable tab blink effect when selecting an item from the Tab Box`,
       version: 1,
     },
+    tab_box_headers: {
+      name: `Tab Box Headers`,
+      type: `checkbox`,
+      value: false,
+      info: `Show headers in the Tab Box on all modes`,
+      version: 1,
+    },
     tab_box_auto_playing: {
       name: `Tab Box Auto Playing`,
       type: `checkbox`,

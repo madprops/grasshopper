@@ -636,3 +636,15 @@ App.taglist_scroll = (taglist, direction) => {
     container.scrollLeft += amount
   }
 }
+
+App.get_tagged_items = (mode) => {
+  let items = []
+
+  for (let item of App.get_items(mode)) {
+    if (App.get_tags(item).length) {
+      items.push(item)
+    }
+  }
+
+  return items
+}
