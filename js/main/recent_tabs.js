@@ -92,7 +92,10 @@ App.show_recent_tabs = (e) => {
       text: title,
       action: async () => {
         await App.check_on_tabs()
-        App.tabs_action(item)
+        App.tabs_action(item, `recent_tabs`)
+      },
+      alt_action: () => {
+        App.close_tabs(item)
       },
     }
 

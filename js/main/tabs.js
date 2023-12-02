@@ -314,14 +314,15 @@ App.remove_closed_tab = (id) => {
 
 App.tabs_action = async (item, from, scroll) => {
   function blink(it) {
-    if (!App.get_setting(`tab_box_blink`)) {
-      return
+    if ([`tab_box`, `header_first`].includes(from)) {
+      if (App.get_setting(`tab_box_blink`)) {
+        App.blink_item(it)
+      }
     }
-
-    let valid = [`tab_box`, `header_first`]
-
-    if (valid.includes(from)) {
-      App.blink_item(it)
+    else if ([`recent_tabs`].includes(from)) {
+      if (App.get_setting(`recent_tabs_blink`)) {
+        App.blink_item(it)
+      }
     }
   }
 

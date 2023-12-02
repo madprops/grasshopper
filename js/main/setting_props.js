@@ -2319,6 +2319,13 @@ App.build_settings = () => {
       info: `Show the notes when clicking the notes icon`,
       version: 1,
     },
+    recent_tabs_blink: {
+      name: `Recent Tabs Blink`,
+      type: `checkbox`,
+      value: true,
+      info: `Blink on focus when using Recent Tabs`,
+      version: 1,
+    },
     custom_icon_click: {
       name: `Custom Icon Click`,
       type: `checkbox`,
