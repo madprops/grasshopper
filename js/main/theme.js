@@ -516,16 +516,33 @@ App.apply_background_effects = (effect, tiles) => {
   }
 }
 
-App.background_effect_css = (color, cls) => {
+App.background_effect_css = (color, cls, single, multiple) => {
   let contrast = App.colorlib.get_lighter_or_darker(color, 0.2)
 
-  return `.hover_effect_background .item_container ${cls}:hover,
-  .selected_effect_background .item_container ${cls}.selected,
+  let css = `.hover_effect_background .item_container.multiple_selected ${cls}:hover,
   .tab_box_hover_effect_background #tab_box_container ${cls}:hover,
   .tab_box_active_effect_background #tab_box_container ${cls}.active_tab
   {
     background-color: ${contrast} !important;
   }`
+
+  let bg = single ? contrast : color
+
+  css += `.selected_effect_background .item_container.single_selected ${cls}.selected
+  {
+    background-color: ${bg} !important;
+  }`
+
+  bg = multiple ? contrast : color
+
+  if (multiple) {
+    css += `.selected_effect_background .item_container.multiple_selected ${cls}.selected
+    {
+      background-color: ${bg} !important;
+    }`
+  }
+
+  return css
 }
 
 App.insert_css = (name, css) => {
@@ -545,7 +562,7 @@ App.insert_custom_css = () => {
 App.insert_effect_css = () => {
   let css = ``
   let bg_color = App.get_setting(`background_color`)
-  css += App.background_effect_css(bg_color, `.item`)
+  css += App.background_effect_css(bg_color, `.item`, true, true)
   App.insert_css(`effect_css`, css)
 }
 
@@ -583,7 +600,7 @@ App.insert_color_css = () => {
       color: var(--color_${color.id}) !important;
     }`
 
-    css += App.background_effect_css(color.value, `.background_color_${color.id}`)
+    css += App.background_effect_css(color.value, `.background_color_${color.id}`, true, true)
   }
 
   App.insert_css(`color_css`, css)
@@ -614,7 +631,7 @@ App.insert_tab_color_css = () => {
         background-color: ${bg_color} !important;
       }`
 
-      css += App.background_effect_css(bg_color, `.tab_background_color_${type}`)
+      css += App.background_effect_css(bg_color, `.tab_background_color_${type}`, false, true)
     }
   }
 

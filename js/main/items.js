@@ -729,9 +729,11 @@ App.do_check_selected = (mode) => {
   let c = DOM.el(`#${mode}_container`)
 
   if (num > 1) {
+    c.classList.remove(`single_selected`)
     c.classList.add(`multiple_selected`)
   }
   else {
+    c.classList.add(`single_selected`)
     c.classList.remove(`multiple_selected`)
   }
 }
