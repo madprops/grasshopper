@@ -48,7 +48,7 @@ body, html {
 }
 
 .button:hover {
-  outline: 2px solid currentColor;
+  outline: 1px solid currentColor;
 }
 
 .visible {
