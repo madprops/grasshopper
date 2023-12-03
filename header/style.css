@@ -108,3 +108,31 @@ body, html {
 .rotate_3 {
   filter: hue-rotate(270deg);
 }
+
+#frame {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.linkbutton {
+  cursor: pointer;
+  text-decoration: underline;
+  transition: text-shadow 170ms;
+}
+
+.linkbutton:hover {
+  text-shadow: 0 0 0.18rem currentColor;
+}
+
+#mines {
+  padding-right: 2rem;
+}
+
+.unselectable {
+  user-select: none;
+}
