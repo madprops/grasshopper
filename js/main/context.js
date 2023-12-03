@@ -11,6 +11,11 @@ App.show_context = (args = {}) => {
   if (!args.items.length) {
     args.items.push({
       text: `No items`,
+      action: () => {
+        if (args.no_items) {
+          App.alert(args.no_items)
+        }
+      },
     })
   }
 

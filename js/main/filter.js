@@ -1692,5 +1692,9 @@ App.show_refine_filters = (e) => {
     }
   }
 
-  App.show_context({items: items, e: e})
+  App.show_context({
+    e: e,
+    items: items,
+    no_items: `Add Refine Filters in the Filter settings`,
+  })
 }

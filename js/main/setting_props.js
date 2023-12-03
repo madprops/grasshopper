@@ -1966,7 +1966,11 @@ App.build_settings = () => {
     refine_filters: {
       name: `Refine Filters`,
       type: `list`,
-      value: [],
+      value: [
+        {cmd: `filter_media_image`},
+        {cmd: `filter_media_video`},
+        {cmd: `filter_media_audio`},
+      ],
       info: `This list appears when middle clicking the Filter input
       Used to further refine filtered items`,
       version: 1,
