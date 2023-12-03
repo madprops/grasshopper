@@ -354,7 +354,7 @@ App.random_string = (n) => {
 
   let possible = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789`
 
-  for (let i=0; i<n; i++) {
+  for (let i = 0; i < n; i++) {
     text += possible[App.random_int(0, possible.length - 1)]
   }
 

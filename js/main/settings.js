@@ -629,7 +629,7 @@ App.reset_all_settings = () => {
 App.get_size_options = () => {
   let opts = []
 
-  for (let i=50; i<=100; i+=5) {
+  for (let i = 50; i <= 100; i += 5) {
     opts.push({text: `${i}%`, value: i})
   }
 
