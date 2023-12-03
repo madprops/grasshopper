@@ -1593,10 +1593,28 @@ App.show_favorite_filters = (mode, e) => {
   })
 
   for (let cmd of App.get_setting(`favorite_filters`)) {
-    let c = App.get_command(cmd.cmd)
+    let command = App.get_command(cmd.cmd)
 
-    if (c) {
-      items.push(App.cmd_item({command: c, e: e, short: true}))
+    if (command) {
+      items.push({
+        e: e,
+        icon: command.icon,
+        text: App.command_name(command, true),
+        info: command.info,
+        action: (e) => {
+          App.run_command({
+            e: e,
+            cmd: command.cmd,
+          })
+        },
+        alt_action: (e) => {
+          App.run_command({
+            e: e,
+            cmd: command.cmd,
+            from: App.refine_string,
+          })
+        }
+      })
     }
   }
 
