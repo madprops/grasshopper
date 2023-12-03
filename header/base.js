@@ -7,6 +7,11 @@ App.timeout_delay = 250
 App.image_state = 0
 
 App.init = () => {
+  App.setup_events()
+  App.setup_state()
+}
+
+App.setup_events = () => {
   DOM.ev(DOM.el(`#fullscreen_button`), `click`, () => {
     if (App.disabled()) {
       return
@@ -106,11 +111,31 @@ App.init = () => {
   DOM.ev(DOM.el(`#sticky`), `click`, (e) => {
     App.toggle_sticky(e.target)
   })
+}
 
+App.setup_state = () => {
   App.state = App.get_local_storage(App.ls_state) || {}
-  App.set_color(App.state.color || App.default_color)
-  App.locked = App.state.locked || false
-  App.sticky = App.state.sticky || true
+
+  if (App.state.color !== undefined) {
+    App.set_color(App.state.color)
+  }
+  else {
+    App.set_color(App.default_color)
+  }
+
+  if (App.state.locked !== undefined) {
+    App.locked = App.state.locked
+  }
+  else {
+    App.locked = false
+  }
+
+  if (App.state.sticky !== undefined) {
+    App.sticky = App.state.sticky
+  }
+  else {
+    App.sticky = true
+  }
 
   if (App.locked) {
     DOM.el(`#lock`).checked = true
