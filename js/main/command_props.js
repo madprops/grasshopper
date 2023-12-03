@@ -1560,28 +1560,40 @@ App.setup_commands = () => {
     },
     {
       name: `Show Favorite Filters`,
-      short_name: `Favorites`,
+      short_name: `Favorite Filters`,
       cmd: `show_favorite_filters`,
       modes: [`items`],
       icon: filter_icon,
       action: (args) => {
         App.show_favorite_filters(args.mode, args.e)
       },
-      info: `Show the favorite filters`,
+      info: `Show the Favorite Filters`,
     },
     {
       name: `Show Refine Filters`,
-      short_name: `Refine`,
+      short_name: `Refine Filters`,
       cmd: `show_refine_filters`,
       modes: [`items`],
       icon: filter_icon,
       action: (args) => {
         App.show_refine_filters(args.e)
       },
-      info: `Show the refine filters`,
+      info: `Show the Refine Filters`,
     },
     {
-      name: `Custom Filters`,
+      name: `Show Exact Filters`,
+      short_name: `Exact Filters`,
+      cmd: `show_exact_filters`,
+      modes: [`items`],
+      icon: filter_icon,
+      action: (args) => {
+        App.show_exact_filters(args.mode, args.e)
+      },
+      info: `Show the Exact filters`,
+    },
+    {
+      name: `Show Custom Filters`,
+      short_name: `Custom Filters`,
       cmd: `show_custom_filters`,
       modes: [`items`],
       icon: filter_icon,

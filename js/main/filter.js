@@ -1026,7 +1026,7 @@ App.show_filter_context_menu = (mode, e) => {
   items.push({
     text: `Exact`,
     action: (e) => {
-      return App.show_filter_exact(mode, e)
+      return App.show_exact_filters(mode, e)
     }
   })
 
@@ -1573,7 +1573,7 @@ App.filter_cmd_name = (cmd) => {
   return cmd
 }
 
-App.show_filter_exact = (mode, e) => {
+App.show_exact_filters = (mode, e) => {
   let items = App.get_filter_exact(mode)
   App.show_context({items: items, e: e})
 }
