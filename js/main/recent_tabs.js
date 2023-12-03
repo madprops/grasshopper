@@ -16,6 +16,7 @@ App.do_empty_previous_tabs = () => {
 App.get_recent_tabs = (args = {}) => {
   let def_args = {
     active: true,
+    headers: false,
     max: 0,
   }
 
@@ -30,7 +31,9 @@ App.get_recent_tabs = (args = {}) => {
     tabs = tabs.filter(x => !x.active)
   }
 
-  tabs = tabs.filter(x => !x.header)
+  if (!args.headers) {
+    tabs = tabs.filter(x => !x.header)
+  }
 
   if (args.max > 0) {
     tabs = tabs.slice(0, args.max)

@@ -95,7 +95,11 @@ App.tab_box_show = (mode, o_items) => {
 }
 
 App.update_tab_box_recent = () => {
-  let o_items = App.get_recent_tabs({max: App.get_setting(`tab_box_max`)})
+  let o_items = App.get_recent_tabs({
+    max: App.get_setting(`tab_box_max`),
+    headers: App.get_setting(`tab_box_headers`),
+  })
+
   App.tab_box_show(`recent`, o_items)
 }
 
@@ -137,9 +141,11 @@ App.get_tab_box_items = (o_items, mode) => {
       continue
     }
 
-    if (mode !== `headers`) {
-      if (o_item.header) {
-        continue
+    if (o_item.header) {
+      if (mode !== `headers`) {
+        if (!App.get_setting(`tab_box_headers`)) {
+          continue
+        }
       }
     }
 
