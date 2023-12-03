@@ -152,20 +152,21 @@ App.mouse_click_action = (mode, e) => {
     }
 
     if (App.taglist_active()) {
-      if (e.target.classList.contains(`taglist_item`)) {
-        App.taglist_action(item, e)
-        return
-      }
+      if (e.target.closest(`.taglist`)) {
+        if (e.target.classList.contains(`taglist_item`)) {
+          App.taglist_action(item, e)
+        }
 
-      if (e.target.classList.contains(`taglist_left_scroll`)) {
-        let taglist = DOM.el(`.taglist`, item.element)
-        App.taglist_scroll(taglist, `left`)
-        return
-      }
+        if (e.target.classList.contains(`taglist_left_scroll`)) {
+          let taglist = DOM.el(`.taglist`, item.element)
+          App.taglist_scroll(taglist, `left`)
+        }
 
-      if (e.target.classList.contains(`taglist_right_scroll`)) {
-        let taglist = DOM.el(`.taglist`, item.element)
-        App.taglist_scroll(taglist, `right`)
+        if (e.target.classList.contains(`taglist_right_scroll`)) {
+          let taglist = DOM.el(`.taglist`, item.element)
+          App.taglist_scroll(taglist, `right`)
+        }
+
         return
       }
     }
@@ -237,8 +238,10 @@ App.mouse_double_click_action = (mode, e) => {
     return
   }
 
-  if (e.target.closest(`.taglist`)) {
-    return
+  if (App.taglist_active()) {
+    if (e.target.closest(`.taglist`)) {
+      return
+    }
   }
 
   if (e.target.closest(`.item_icon_container`)) {
@@ -300,8 +303,11 @@ App.mouse_context_action = (mode, e) => {
   }
 
   if (App.taglist_active()) {
-    if (e.target.classList.contains(`taglist_item`)) {
-      App.show_taglist_menu(e, item)
+    if (e.target.closest(`.taglist`)) {
+      if (e.target.classList.contains(`taglist_item`)) {
+        App.show_taglist_menu(e, item)
+      }
+
       return
     }
   }
