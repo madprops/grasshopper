@@ -1613,7 +1613,7 @@ App.show_favorite_filters = (mode, e) => {
             cmd: command.cmd,
             from: App.refine_string,
           })
-        }
+        },
       })
     }
   }
