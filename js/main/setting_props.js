@@ -964,8 +964,10 @@ App.build_settings = () => {
         App.settings_make_menu(key, [
           {text: `Recent`, value: `recent`, icon: App.tab_box_icon(`recent`)},
           {text: `Pins`, value: `pins`, icon: App.tab_box_icon(`pins`)},
-          {text: `Colors`, value: `colors`, icon: App.tab_box_icon(`colors`)},
           {text: `Playing`, value: `playing`, icon: App.tab_box_icon(`playing`)},
+          {text: `Colors`, value: `colors`, icon: App.tab_box_icon(`colors`)},
+          {text: `Tags`, value: `tags`, icon: App.tab_box_icon(`tags`)},
+          {text: `Icons`, value: `icons`, icon: App.tab_box_icon(`icons`)},
           {text: `Headers`, value: `headers`, icon: App.tab_box_icon(`headers`)},
         ])
       },
