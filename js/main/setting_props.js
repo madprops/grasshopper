@@ -1963,6 +1963,14 @@ App.build_settings = () => {
       info: `Use these when cycling the Filter Menu with the mousewheel, or right clicking the Filter Menu`,
       version: 1,
     },
+    refine_filters: {
+      name: `Refine Filters`,
+      type: `list`,
+      value: [],
+      info: `This list appears when middle clicking the filter
+      Used to further refine filtered items`,
+      version: 1,
+    },
     sticky_filter: {
       name: `Sticky Filter`,
       type: `menu`,

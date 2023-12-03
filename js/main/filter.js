@@ -707,6 +707,14 @@ App.create_filter = (mode) => {
     App.filter({mode: mode})
   })
 
+  DOM.ev(filter, `auxclick`, (e) => {
+    e.preventDefault()
+
+    if (e.button === 1) {
+      App.show_refine_filters(e)
+    }
+  })
+
   DOM.ev(filter, `wheel`, (e) => {
     let direction = App.wheel_direction(e)
     App.cycle_filters(mode, direction)
@@ -1660,4 +1668,30 @@ App.get_filter_item = (mode, filter_mode) => {
 
 App.set_filter_item = (mode, filter_mode, item) => {
   return App[`filter_items_${mode}`][filter_mode] = item
+}
+
+App.show_refine_filters = (e) => {
+  let items = []
+
+  for (let cmd of App.get_setting(`refine_filters`)) {
+    let command = App.get_command(cmd.cmd)
+
+    if (command) {
+      items.push({
+        e: e,
+        icon: command.icon,
+        text: App.command_name(command, true),
+        info: command.info,
+        action: (e) => {
+          App.run_command({
+            e: e,
+            cmd: command.cmd,
+            from: App.refine_string,
+          })
+        },
+      })
+    }
+  }
+
+  App.show_context({items: items, e: e})
 }
