@@ -73,16 +73,24 @@ body, html {
   cursor: pointer;
 }
 
-#top_right {
+.corner {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   position: fixed;
-  top: 1rem;
-  right: 1rem;
   color: var(--color_2);
   gap: 1rem;
+}
+
+#top_left {
+  top: 1rem;
+  left: 1rem;
+}
+
+#top_right {
+  top: 1rem;
+  right: 1rem;
 }
 
 .toggle {
