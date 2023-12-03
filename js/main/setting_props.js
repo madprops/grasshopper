@@ -1551,7 +1551,7 @@ App.build_settings = () => {
     header_action: {
       name: `Header Action`,
       type: `menu`,
-      value: `select`,
+      value: `activate`,
       info: `What to do when clicking a header`,
       version: 1,
       setup: (key) => {

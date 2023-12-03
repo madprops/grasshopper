@@ -107,14 +107,10 @@ App.init = () => {
     App.toggle_sticky(e.target)
   })
 
-  DOM.ev(DOM.el(`#mines`), `click`, (e) => {
-    App.play_mines()
-  })
-
   App.state = App.get_local_storage(App.ls_state) || {}
   App.set_color(App.state.color || App.default_color)
   App.locked = App.state.locked || false
-  App.sticky = App.state.sticky || false
+  App.sticky = App.state.sticky || true
 
   if (App.locked) {
     DOM.el(`#lock`).checked = true
@@ -124,8 +120,6 @@ App.init = () => {
     DOM.el(`#sticky`).checked = true
     App.show()
   }
-
-  App.create_frame()
 }
 
 App.set_color = (color) => {
@@ -268,19 +262,4 @@ App.image_click = (image) => {
   else if (App.image_state === 5) {
     App.image_state = 0
   }
-}
-
-App.create_frame = () => {
-  let frame = DOM.create(`iframe`, undefined, `frame`)
-  document.body.append(frame)
-}
-
-App.change_frame = (src) => {
-  let frame = DOM.el(`#frame`)
-  frame.style.display = `block`
-  frame.src = src
-}
-
-App.play_mines = () => {
-  App.change_frame(`mines/index.html`)
 }

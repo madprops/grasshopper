@@ -119,18 +119,20 @@ body, html {
   border: none;
 }
 
-.linkbutton {
+a.linkbutton:hover,
+a.linkbutton:link,
+a.linkbutton:visited,
+a.linkbutton:active
+{
+  color: var(--color_2);
   cursor: pointer;
   text-decoration: underline;
   transition: text-shadow 170ms;
 }
 
-.linkbutton:hover {
+a.linkbutton:hover
+{
   text-shadow: 0 0 0.18rem currentColor;
-}
-
-#mines {
-  padding-right: 2rem;
 }
 
 .unselectable {

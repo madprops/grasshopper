@@ -156,7 +156,7 @@ App.is_header_url = (url) => {
     return false
   }
 
-  if (!url.endsWith(App.header_file)) {
+  if (!url.includes(App.header_path)) {
     return false
   }
 
