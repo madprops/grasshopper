@@ -365,8 +365,11 @@ App.mouse_middle_action = (mode, e) => {
     }
 
     if (App.taglist_active()) {
-      if (e.target.classList.contains(`taglist_item`)) {
-        App.taglist_remove(e, item)
+      if (e.target.closest(`.taglist`)) {
+        if (e.target.classList.contains(`taglist_item`)) {
+          App.taglist_remove(e, item)
+        }
+
         return
       }
     }
