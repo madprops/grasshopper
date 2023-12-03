@@ -1688,6 +1688,13 @@ App.show_refine_filters = (e) => {
             from: App.refine_string,
           })
         },
+        alt_action: (e) => {
+          App.run_command({
+            e: e,
+            cmd: command.cmd,
+            from: App.refine_string,
+          })
+        },
       })
     }
   }
