@@ -1009,7 +1009,8 @@ App.build_settings = () => {
       name: `Tab Box Color Mode`,
       type: `menu`,
       value: `icon`,
-      info: `The color mode inside the Tab Box`,
+      info: `The color mode inside the Tab Box
+      For colors like green, red, etc`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.color_displays)
