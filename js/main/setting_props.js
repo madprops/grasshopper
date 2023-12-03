@@ -1967,7 +1967,7 @@ App.build_settings = () => {
       name: `Refine Filters`,
       type: `list`,
       value: [],
-      info: `This list appears when middle clicking the filter
+      info: `This list appears when middle clicking the Filter input
       Used to further refine filtered items`,
       version: 1,
     },
