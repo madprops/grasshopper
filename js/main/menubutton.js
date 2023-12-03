@@ -36,7 +36,7 @@ Menubutton.create = (args = {}) => {
   args.refresh_opts()
 
   args.set = (value, on_change = true) => {
-    args.action(Menubutton.opt(args, value))
+    args.action(Menubutton.opt(args, value), on_change)
   }
 
   args.prev = () => {
@@ -52,15 +52,17 @@ Menubutton.create = (args = {}) => {
     args.action(args.opts[0])
   }
 
-  args.action = (opt) => {
+  args.action = (opt, on_change = true) => {
     if (!opt) {
       return
     }
 
     Menubutton.set_text(args, opt)
 
-    if (args.on_change) {
-      args.on_change(args, opt)
+    if (on_change) {
+      if (args.on_change) {
+        args.on_change(args, opt)
+      }
     }
   }
 
