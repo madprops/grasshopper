@@ -47,6 +47,7 @@ App.do_filter = async (args = {}) => {
     deep: false,
     select: true,
     from: `normal`,
+    refine: false,
   }
 
   App.def_args(def_args, args)
@@ -110,7 +111,14 @@ App.do_filter = async (args = {}) => {
     }
   }
 
-  let items = App.get_items(args.mode)
+  let items
+
+  if (args.refine) {
+    items = App.get_visible(args.mode)
+  }
+  else {
+    items = App.get_items(args.mode)
+  }
 
   if (!items) {
     return
@@ -599,6 +607,7 @@ App.set_filter_mode = (args = {}) => {
   let def_args = {
     filter: true,
     instant: true,
+    refine: false,
   }
 
   App.def_args(def_args, args)
@@ -610,10 +619,10 @@ App.set_filter_mode = (args = {}) => {
 
   if (args.filter) {
     if (args.instant) {
-      App.do_filter({mode: args.mode, from: args.from})
+      App.do_filter({mode: args.mode, from: args.from, refine: args.refine})
     }
     else {
-      App.filter({mode: args.mode, from: args.from})
+      App.filter({mode: args.mode, from: args.from, refine: args.refine})
     }
   }
 }
@@ -952,15 +961,15 @@ App.previous_filter = (mode) => {
         if (pmode.includes(`-`)) {
           if (pmode.startsWith(`color`)) {
             let color = pmode.replace(`color-`, ``)
-            App.filter_color(mode, color)
+            App.filter_color({mode: mode, id: color})
           }
           else if (pmode.startsWith(`tag`)) {
             let tag = pmode.replace(`tag-`, ``)
-            App.filter_tag(mode, tag)
+            App.filter_tag({mode: mode, tag: tag})
           }
           else if (pmode.startsWith(`icon`)) {
             let icon = pmode.replace(`icon-`, ``)
-            App.filter_icon(mode, icon)
+            App.filter_icon({mode: mode, icon: icon})
           }
         }
         else {
@@ -1112,18 +1121,23 @@ App.show_filter_color_menu = (mode, e) => {
   App.show_context({items: items, e: e})
 }
 
-App.toggle_filter = (mode, cmd) => {
+App.toggle_filter = (mode, cmd, refine = false) => {
   if (App[`${mode}_filter_mode`] === cmd) {
     App.filter_all(mode)
     return
   }
   else {
-    App.set_filter_mode({mode: mode, cmd: cmd})
+    App.set_filter_mode({mode: mode, cmd: cmd, refine: refine})
   }
 }
 
-App.filter_cmd = (mode, cmd) => {
-  App.toggle_filter(mode, cmd)
+App.filter_cmd = (mode, cmd, from) => {
+  if (from === App.refine_string) {
+    App.toggle_filter(mode, cmd, true)
+  }
+  else {
+    App.toggle_filter(mode, cmd)
+  }
 }
 
 App.complex_filter = (args = {}) => {
@@ -1150,52 +1164,73 @@ App.complex_filter = (args = {}) => {
     s = args.text
   }
 
+  let refine = args.from === App.refine_string
   App.set_custom_filter_mode(args.mode, name, s)
-  App.do_filter({mode: args.mode})
+  App.do_filter({mode: args.mode, refine: refine})
 }
 
-App.filter_color = (mode, color_id, toggle = false) => {
+App.filter_color = (args = {}) => {
+  let def_args = {
+    toggle: false,
+  }
+
+  App.def_args(def_args, args)
   let value, text
 
-  if (color_id === `all`) {
+  if (args.id === `all`) {
     value = `all`
   }
   else {
-    let color = App.get_color_by_id(color_id)
+    let color = App.get_color_by_id(args.id)
     value = color.id
     text = color.name
   }
 
   App.complex_filter({
-    mode: mode,
+    mode: args.mode,
     value: value,
     text: text,
     short: `color`,
     full: `Colors`,
-    toggle: toggle,
+    toggle: args.toggle,
     cap_value: true,
+    from: args.from,
   })
 }
 
-App.filter_tag = (mode, tag, toggle = false) => {
+App.filter_tag = (args = {}) => {
+  let def_args = {
+    toggle: false,
+  }
+
+  App.def_args(def_args, args)
+
   App.complex_filter({
-    mode: mode,
-    value: tag,
-    text: tag,
+    mode: args.mode,
+    value: args.tag,
+    text: args.tag,
     short: `tag`,
     full: `Tags`,
-    toggle: toggle,
+    toggle: args.toggle,
+    from: args.from,
   })
 }
 
-App.filter_icon = (mode, icon, toggle = false) => {
+App.filter_icon = (args = {}) => {
+  let def_args = {
+    toggle: false,
+  }
+
+  App.def_args(def_args, args)
+
   App.complex_filter({
-    mode: mode,
-    value: icon,
-    text: icon,
+    mode: args.mode,
+    value: args.icon,
+    text: args.icon,
     short: `icon`,
     full: `Icons`,
     toggle: toggle,
+    from: args.from,
   })
 }
 
@@ -1313,22 +1348,7 @@ App.show_filter_menu = (mode) => {
         continue
       }
 
-      let cmd = App.get_command(filter_mode.cmd)
-
-      if (cmd) {
-        let selected = f_mode === filter_mode.cmd
-
-        items.push({
-          icon: cmd.icon,
-          text: cmd.short_name || cmd.name,
-          action: (e) => {
-            App.run_command({cmd: cmd.cmd, from: `filter_menu`, e: e})
-          },
-          selected: selected,
-          info: cmd.info,
-        })
-      }
-      else if (filter_mode.cmd === `all`) {
+      if (filter_mode.cmd === `all`) {
         items.push({
           icon: filter_mode.icon,
           text: filter_mode.text,
@@ -1394,6 +1414,26 @@ App.show_filter_menu = (mode) => {
           },
           info: filter_mode.info,
         })
+      }
+      else {
+        let cmd = App.get_command(filter_mode.cmd)
+
+        if (cmd) {
+          let selected = f_mode === filter_mode.cmd
+
+          items.push({
+            icon: cmd.icon,
+            text: cmd.short_name || cmd.name,
+            action: (e) => {
+              App.run_command({cmd: cmd.cmd, from: `filter_menu`, e: e})
+            },
+            alt_action: (e) => {
+              App.run_command({cmd: cmd.cmd, from: App.refine_string, e: e})
+            },
+            selected: selected,
+            info: cmd.info,
+          })
+        }
       }
     }
 

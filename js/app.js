@@ -64,6 +64,7 @@ App.tab_session_first = false
 App.force_debug = false
 App.copied_tabs = []
 App.filter_menus = {}
+App.refine_string = `refine_filter`
 
 App.settings_done = false
 App.settings_ready = false

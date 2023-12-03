@@ -241,7 +241,7 @@ App.color_menu_items = (item) => {
     items.push({
       text: `Filter`,
       action: () => {
-        App.filter_color(item.mode, item_color)
+        App.filter_color({mode: item.mode, id: item_color})
       }
     })
 
@@ -303,7 +303,10 @@ App.get_color_items = (mode) => {
         icon: App.settings_icons.colors,
         text: `All`,
         action: () => {
-          App.filter_color(mode, `all`)
+          App.filter_color({mode: mode, id: `all`})
+        },
+        alt_action: () => {
+          App.filter_color({mode: mode, id: `all`, from: App.refine_string})
         },
       })
     }
@@ -320,7 +323,10 @@ App.get_color_items = (mode) => {
         icon: icon,
         text: name,
         action: () => {
-          App.filter_color(mode, color.id)
+          App.filter_color({mode: mode, id: color.id})
+        },
+        alt_action: () => {
+          App.filter_color({mode: mode, id: color.id, from: App.refine_string})
         },
       })
     }

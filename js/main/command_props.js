@@ -44,7 +44,12 @@ App.setup_commands = () => {
     icon: theme_icon,
     filter_mode: true,
     action: (args) => {
-      App.filter_color(args.mode, `all`, true)
+      App.filter_color({
+        mode: args.mode,
+        id: `all`,
+        toggle: true,
+        from: args.from,
+      })
     },
     info: `Show all colors`,
   })
@@ -62,7 +67,12 @@ App.setup_commands = () => {
       icon: icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_color(args.mode, color.id, true)
+        App.filter_color({
+          mode: args.mode,
+          id: color.id,
+          toggle: true,
+          from: args.from,
+        })
       },
       info: `Filter items with this color (${color.name})`,
     })
@@ -221,7 +231,7 @@ App.setup_commands = () => {
       icon: icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show media items (${media})`,
     })
@@ -1321,7 +1331,12 @@ App.setup_commands = () => {
       color: true,
       icon: theme_icon,
       action: (args) => {
-        App.filter_color(args.mode, App.get_color(args.item), true)
+        App.filter_color({
+          mode: args.mode,
+          id: App.get_color(args.item),
+          toggle: true,
+          from: args.from,
+        })
       },
       info: `Show same color`,
     },
@@ -1357,7 +1372,7 @@ App.setup_commands = () => {
       icon: tag_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_tag(args.mode, `all`)
+        App.filter_tag({mode: args.mode, tag: `all`, from: args.from})
       },
       info: `Filter all tagged tabs`,
     },
@@ -1383,7 +1398,7 @@ App.setup_commands = () => {
       icon: bot_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_icon(args.mode, `all`)
+        App.filter_icon({mode: args.mode, icon: `all`, from: args.from})
       },
       info: `Filter all tagged tabs`,
     },
@@ -1407,7 +1422,7 @@ App.setup_commands = () => {
       icon: pin_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show pinned tabs`,
     },
@@ -1419,7 +1434,7 @@ App.setup_commands = () => {
       icon: normal_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show normal tabs`,
     },
@@ -1431,7 +1446,7 @@ App.setup_commands = () => {
       icon: playing_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show playing tabs`,
     },
@@ -1443,7 +1458,7 @@ App.setup_commands = () => {
       icon: loaded_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show loaded tabs`,
     },
@@ -1455,7 +1470,7 @@ App.setup_commands = () => {
       icon: unloaded_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show unloaded tabs`,
     },
@@ -1467,7 +1482,7 @@ App.setup_commands = () => {
       icon: tabs_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show duplicate tabs`,
     },
@@ -1479,7 +1494,7 @@ App.setup_commands = () => {
       icon: unread_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show unread tabs`,
     },
@@ -1491,7 +1506,7 @@ App.setup_commands = () => {
       icon: notepad_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show tabs that have a custom title`,
     },
@@ -1503,7 +1518,7 @@ App.setup_commands = () => {
       icon: notes_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show tabs that have notes`,
     },
@@ -1515,7 +1530,7 @@ App.setup_commands = () => {
       icon: notepad_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show tabs that have custom properties`,
     },
@@ -1527,7 +1542,7 @@ App.setup_commands = () => {
       icon: zone_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show header tabs`,
     },
@@ -1539,7 +1554,7 @@ App.setup_commands = () => {
       icon: filter_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_cmd(args.mode, args.self.cmd)
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Show items that are not open in a tab`,
     },

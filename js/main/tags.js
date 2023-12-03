@@ -331,7 +331,7 @@ App.filter_tag_pick = (item, e) => {
       icon: App.tag_icon,
       text: tag,
       action: () => {
-        App.filter_tag(item.mode, tag)
+        App.filter_tag({mode: item.mode, tag: tag})
       },
     })
   }
@@ -367,7 +367,10 @@ App.get_tag_items = (mode) => {
       icon: icon,
       text: `All`,
       action: () => {
-        App.filter_tag(mode, `all`)
+        App.filter_tag({mode: mode, tag: `all`})
+      },
+      alt_action: () => {
+        App.filter_tag({mode: mode, tag: `all`, from: App.refine_string})
       },
     })
 
@@ -376,7 +379,10 @@ App.get_tag_items = (mode) => {
         icon: icon,
         text: tag,
         action: () => {
-          App.filter_tag(mode, tag)
+          App.filter_tag({mode: mode, tag: tag})
+        },
+        alt_action: () => {
+          App.filter_tag({mode: mode, tag: tag, from: App.refine_string})
         },
       })
     }
@@ -519,7 +525,7 @@ App.check_taglist = (item) => {
 }
 
 App.taglist_filter = (item, tag) => {
-  App.filter_tag(item.mode, tag)
+  App.filter_tag({mode: item.mode, tag: tag})
 }
 
 App.taglist_action = (item, e) => {
@@ -561,7 +567,7 @@ App.show_taglist_menu = (e, item) => {
   items.push({
     text: `Filter`,
     action: () => {
-      App.filter_tag(item.mode, tag)
+      App.filter_tag({mode: item.mode, tag: tag})
     },
   })
 

@@ -553,7 +553,10 @@ App.get_icon_items = (mode) => {
     items.push({
       text: `All`,
       action: () => {
-        App.filter_icon(mode, `all`)
+        App.filter_icon({mode: mode, icon: `all`})
+      },
+      alt_action: () => {
+        App.filter_icon({mode: mode, icon: `all`, from: App.refine_string})
       },
     })
 
@@ -561,7 +564,10 @@ App.get_icon_items = (mode) => {
       items.push({
         text: icon,
         action: () => {
-          App.filter_icon(mode, icon)
+          App.filter_icon({mode: mode, icon: icon})
+        },
+        alt_action: () => {
+          App.filter_icon({mode: mode, icon: icon, from: App.refine_string})
         },
       })
     }
@@ -582,7 +588,7 @@ App.filter_by_icon = (item) => {
   let icon = App.get_icon(item)
 
   if (icon) {
-    App.filter_icon(item.mode, icon)
+    App.filter_icon({mode: item.mode, icon: icon})
   }
 }
 
