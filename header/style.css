@@ -36,7 +36,7 @@ body, html {
 
 .button {
   font-size: 1.4rem;
-  border: 2px solid currentColor;
+  border: 1px solid currentColor;
   cursor: pointer;
   text-align: center;
   padding-left: 1.2rem;

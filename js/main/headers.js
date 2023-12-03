@@ -2,7 +2,7 @@ App.insert_header = async (item, full = true) => {
   let active = App.get_active_items({mode: item.mode, item: item})
   let first = active.at(0)
   let index = App.get_item_element_index(first.mode, first.element)
-  let tab = await App.open_new_tab({url: App.header_file, index: index, pinned: item.pinned, active: false})
+  let tab = await App.open_new_tab({url: App.header_url, index: index, pinned: item.pinned, active: false})
   let header = App.get_item_by_id(item.mode, tab.id)
 
   if (active.length > 1) {
@@ -169,6 +169,13 @@ App.check_header = (item) => {
   }
 
   if (App.is_header_url(item.url)) {
+    // The header url is now obsolete, so update it
+    if (item.url !== App.header_url) {
+      item.header = false
+      browser.tabs.update(item.id, {url: App.header_url})
+      return
+    }
+
     item.header = true
     item.unread = false
     item.discarded = false
