@@ -354,7 +354,6 @@ App.filter_check = (args) => {
         let color = App.get_color_by_id(color_id)
 
         if (color) {
-          console.log(args.value_lower)
           match = App.clean_filter(color.name).toLowerCase().startsWith(args.value_lower)
         }
       }
