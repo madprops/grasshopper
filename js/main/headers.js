@@ -156,7 +156,7 @@ App.is_header_url = (url) => {
     return false
   }
 
-  if (!url.endsWith(App.header_file)) {
+  if (!url.includes(App.header_file)) {
     return false
   }
 
@@ -168,10 +168,21 @@ App.check_header = (item) => {
     return
   }
 
+  function no_header () {
+    item.header = false
+    item.element.classList.remove(`header_item`)
+  }
+
   if (App.is_header_url(item.url)) {
     // The header url is now obsolete, so update it
-    if (item.url !== App.header_url) {
-      item.header = false
+    if (!item.url.includes(App.header_url)) {
+      no_header()
+
+      if (item.header_refresh) {
+        return
+      }
+
+      item.header_refresh = true
       browser.tabs.update(item.id, {url: App.header_url})
       return
     }
@@ -182,8 +193,7 @@ App.check_header = (item) => {
     item.element.classList.add(`header_item`)
   }
   else {
-    item.header = false
-    item.element.classList.remove(`header_item`)
+    no_header()
   }
 }
 
