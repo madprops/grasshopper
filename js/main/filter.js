@@ -1237,7 +1237,7 @@ App.filter_icon = (args = {}) => {
     text: args.icon,
     short: `icon`,
     full: `Icons`,
-    toggle: toggle,
+    toggle: args.toggle,
     from: args.from,
   })
 }
