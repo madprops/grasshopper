@@ -152,11 +152,10 @@ App.do_filter = async (args = {}) => {
   }
 
   let insensitive = App.get_setting(`case_insensitive`)
-  let value_lower
 
   if (value && by_what === `all`) {
     value = App.clean_filter(value)
-    value_lower = value.toLowerCase()
+    let value_lower = value.toLowerCase()
     let aliases = App.get_setting(`aliases`)
 
     for (let alias of aliases) {
@@ -198,7 +197,7 @@ App.do_filter = async (args = {}) => {
       filter_mode: filter_mode,
       duplicates: duplicates,
       value: value,
-      value_lower: value_lower,
+      value_lower: value.toLowerCase(),
       f_value: f_value,
       search: search,
     }
@@ -355,6 +354,7 @@ App.filter_check = (args) => {
         let color = App.get_color_by_id(color_id)
 
         if (color) {
+          console.log(args.value_lower)
           match = App.clean_filter(color.name).toLowerCase().startsWith(args.value_lower)
         }
       }
