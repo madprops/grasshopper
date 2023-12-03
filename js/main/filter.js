@@ -683,6 +683,7 @@ App.create_filter = (mode) => {
   filter.autocomplete = `off`
   filter.spellcheck = false
   filter.tabIndex = 0
+  filter.title = `Type to filter or search - Right Click for context - Middle Click to refine`
 
   if (App.search_modes.includes(mode)) {
     filter.placeholder = `Search`
