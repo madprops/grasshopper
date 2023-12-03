@@ -1559,6 +1559,28 @@ App.setup_commands = () => {
       info: `Show items that are not open in a tab`,
     },
     {
+      name: `Show Favorite Filters`,
+      short_name: `Favorites`,
+      cmd: `show_favorite_filters`,
+      modes: [`items`],
+      icon: filter_icon,
+      action: (args) => {
+        App.show_favorite_filters(args.mode, args.e)
+      },
+      info: `Show the favorite filters`,
+    },
+    {
+      name: `Show Refine Filters`,
+      short_name: `Refine`,
+      cmd: `show_refine_filters`,
+      modes: [`items`],
+      icon: filter_icon,
+      action: (args) => {
+        App.show_refine_filters(args.e)
+      },
+      info: `Show the refine filters`,
+    },
+    {
       name: `Custom Filters`,
       cmd: `show_custom_filters`,
       modes: [`items`],
