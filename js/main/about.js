@@ -50,6 +50,7 @@ App.start_about = () => {
         `In the filter, $year resolves to the year number`,
         `Context menus support filtering, just start typing something`,
         `Middle click filter items to further refine the filter`,
+        `Middle click the filter input to show Refine Filters`,
       ]
 
       let close = DOM.el(`#about_close`)
