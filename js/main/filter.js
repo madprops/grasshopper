@@ -778,7 +778,7 @@ App.do_filter_2 = (mode) => {
   }
 }
 
-App.get_filter_refine = (mode) => {
+App.get_filter_exact = (mode) => {
   let items = []
 
   items.push({
@@ -1025,9 +1025,9 @@ App.show_filter_context_menu = (mode, e) => {
   }
 
   items.push({
-    text: `Refine`,
+    text: `Exact`,
     action: (e) => {
-      return App.show_filter_refine(mode, e)
+      return App.show_filter_exact(mode, e)
     }
   })
 
@@ -1311,7 +1311,7 @@ App.create_filter_menu = (mode) => {
   }
 
   fmodes.push(separator())
-  fmodes.push({cmd: `refine`, text: `Refine`, skip: true, info: `Refine the filter`})
+  fmodes.push({cmd: `exact`, text: `Exact`, skip: true, info: `Use exact modes when typing a filter`})
   fmodes.push({cmd: `custom`, text: `Custom`, skip: true, info: `Pick a custom filter`})
   App[`${mode}_filter_modes_all`] = fmodes
 
@@ -1383,12 +1383,12 @@ App.show_filter_menu = (mode) => {
 
         continue
       }
-      else if (filter_mode.cmd === `refine`) {
+      else if (filter_mode.cmd === `exact`) {
         items.push({
           icon: filter_mode.icon,
           text: filter_mode.text,
           get_items: () => {
-            return App.get_filter_refine(mode)
+            return App.get_filter_exact(mode)
           },
           info: filter_mode.info,
         })
@@ -1574,8 +1574,8 @@ App.filter_cmd_name = (cmd) => {
   return cmd
 }
 
-App.show_filter_refine = (mode, e) => {
-  let items = App.get_filter_refine(mode)
+App.show_filter_exact = (mode, e) => {
+  let items = App.get_filter_exact(mode)
   App.show_context({items: items, e: e})
 }
 
