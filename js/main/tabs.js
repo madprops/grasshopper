@@ -326,6 +326,12 @@ App.tabs_action = async (item, from, scroll) => {
     }
   }
 
+  if (from === `tab_box`) {
+    if (App.is_filtered(`tabs`)) {
+      App.filter_all(`tabs`)
+    }
+  }
+
   if (!scroll) {
     if (from === `tab_box`) {
       scroll = `center_smooth`
