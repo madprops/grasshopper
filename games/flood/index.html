@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Flood</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="../../js/libs/dom.js"></script>
+    <script src="base.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="top">
+        <div id="colorbox">
+          <div class="colorbox_row">
+            <div class="block color_1" data-color=1></div>
+            <div class="block color_2" data-color=2></div>
+            <div class="block color_3" data-color=3></div>
+          </div>
+          <div class="colorbox_row">
+            <div class="block color_4" data-color=4></div>
+            <div class="block color_5" data-color=5></div>
+            <div class="block color_6" data-color=6></div>
+          </div>
+        </div>
+
+        <div id="info">
+          <div>Starts at top left block</div>
+          <div>Select color to flood region</div>
+          <div>Win by flooding everything</div>
+        </div>
+      </div>
+
+      <div id="grid"></div>
+      <div id="counter"></div>
+    </div>
+
+    <audio src="audio/laser.mp3" id="audio_laser"></audio>
+    <audio src="audio/bell.mp3" id="audio_bell"></audio>
+    <script src="init.js"></script>
+  </body>
+</html>
