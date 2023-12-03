@@ -85,13 +85,13 @@ App.do_update_tab_box = (what) => {
   App[`update_tab_box_${what}`]()
 }
 
-App.tab_box_show = (mode, o_items) => {
+App.tab_box_show = (mode, o_items, scroll = false) => {
   if (!App.tab_box_mode(mode)) {
     return
   }
 
   let items = App.get_tab_box_items(o_items, mode)
-  App.fill_tab_box(items)
+  App.fill_tab_box(items, scroll)
 }
 
 App.update_tab_box_recent = () => {
@@ -100,7 +100,7 @@ App.update_tab_box_recent = () => {
     headers: App.get_setting(`tab_box_headers`),
   })
 
-  App.tab_box_show(`recent`, o_items)
+  App.tab_box_show(`recent`, o_items, true)
 }
 
 App.update_tab_box_pins = () => {
