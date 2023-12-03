@@ -811,7 +811,7 @@ App.build_settings = () => {
     taglist_add: {
       name: `Taglist Add`,
       type: `checkbox`,
-      value: true,
+      value: false,
       info: `Show the Taglist add button`,
       version: 1,
     },
