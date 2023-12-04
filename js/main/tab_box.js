@@ -219,8 +219,13 @@ App.change_tab_box_mode = (what) => {
 
 App.tab_box_menu = (e) => {
   let items = []
+  let c_mode = App.get_setting(`tab_box_mode`)
 
   for (let tbmode of App.tab_box_modes) {
+    if (c_mode === tbmode) {
+      continue
+    }
+
     items.push({
       text: App.capitalize(tbmode),
       icon: App.tab_box_icon(tbmode),
@@ -232,9 +237,10 @@ App.tab_box_menu = (e) => {
 
   App.sep(items)
   let sizes = []
+  let c_size = App.get_setting(`tab_box_size`)
 
   for (let [i, size] of App.sizes.entries()) {
-    if (App.get_setting(`tab_box_size`) === size.value) {
+    if (c_size === size.value) {
       continue
     }
 
@@ -252,9 +258,9 @@ App.tab_box_menu = (e) => {
   })
 
   let positions = []
-  let position = App.get_setting(`tab_box_position`)
+  let c_position = App.get_setting(`tab_box_position`)
 
-  if (position !== `top`) {
+  if (c_position !== `top`) {
     positions.push({
       text: `Top`,
       action: (e) => {
@@ -264,7 +270,7 @@ App.tab_box_menu = (e) => {
     })
   }
 
-  if (position !== `bottom`) {
+  if (c_position !== `bottom`) {
     positions.push({
       text: `Bottom`,
       action: (e) => {
