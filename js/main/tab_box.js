@@ -101,6 +101,7 @@ App.update_tab_box_recent = () => {
   })
 
   App.tab_box_show(`recent`, o_items)
+  App.scroll_tab_box_top()
 }
 
 App.update_tab_box_pins = () => {
