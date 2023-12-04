@@ -402,14 +402,6 @@ App.run_setting_setups = (category) => {
 }
 
 App.setup_settings = () => {
-  window.addEventListener(`storage`, (e) => {
-    if (e.key === App.stor_settings_name) {
-      App.debug(`Settings changed in another window`)
-      App.stor_get_settings()
-      App.restart_settings(`sync`)
-    }
-  })
-
   App.save_settings_debouncer = App.create_debouncer(() => {
     App.stor_save_settings()
   }, App.settings_save_delay)
@@ -702,15 +694,9 @@ App.import_settings = () => {
   })
 }
 
-App.restart_settings = (type = `normal`) => {
+App.restart_settings = () => {
   App.refresh_settings()
-
-  if (App.on_items() || type === `sync`) {
-    App.clear_show()
-  }
-  else {
-    App.show_settings()
-  }
+  App.show_settings()
 }
 
 App.settings_data_items = () => {
