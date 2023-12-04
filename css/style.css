@@ -1312,6 +1312,8 @@ a:hover
   justify-content: flex-start;
   height: 100%;
   gap: var(--taglist_gap);
+  column-gap: var(--taglist_gap);
+  row-gap: 0.25rem;
 }
 
 .taglist.normal .taglist_container {
