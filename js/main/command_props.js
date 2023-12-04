@@ -565,7 +565,6 @@ App.setup_commands = () => {
       cmd: `unload_tabs`,
       modes: [`tabs`],
       some_loaded: true,
-      some_no_header: true,
       item: true,
       icon: unloaded_icon,
       action: (args) => {

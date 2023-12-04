@@ -479,7 +479,7 @@ App.unload_tabs = (item, multiple = true) => {
   let active = false
 
   for (let it of App.get_active_items({mode: `tabs`, item: item, multiple: multiple})) {
-    if (it.discarded || App.is_new_tab(it.url) || it.header) {
+    if (it.discarded || App.is_new_tab(it.url)) {
       continue
     }
 

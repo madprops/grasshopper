@@ -189,7 +189,6 @@ App.check_header = (item) => {
 
     item.header = true
     item.unread = false
-    item.discarded = false
     item.element.classList.add(`header_item`)
   }
   else {
