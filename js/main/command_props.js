@@ -1237,7 +1237,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.remove_all_zones()
       },
-      info: `Remove all zones (Header / Splits) from tabs`,
+      info: `Remove all zones (Header / Splits)`,
     },
     {
       name: `Close Headers`,
