@@ -369,12 +369,12 @@ svg {
   background-color: var(--slight_shade);
 }
 
-.not_filtered .header_item {
+.header_item {
   margin-top: var(--header_margin);
   margin-bottom: var(--header_margin);
 }
 
-.not_filtered .header_item.split_top {
+.header_item.split_top {
   margin-bottom: var(--split_margin);
 }
 

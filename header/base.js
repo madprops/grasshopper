@@ -9,7 +9,6 @@ App.image_state = 0
 App.init = () => {
   App.setup_events()
   App.setup_state()
-  App.set_color(App.default_color)
 }
 
 App.setup_events = () => {
@@ -139,6 +138,8 @@ App.setup_state = () => {
     DOM.el(`#sticky`).checked = true
     App.show()
   }
+
+  App.set_color(App.state.color || App.default_color)
 }
 
 App.set_color = (color) => {
@@ -148,6 +149,8 @@ App.set_color = (color) => {
   document.documentElement.style.setProperty(`--color_1`, color_1)
   document.documentElement.style.setProperty(`--color_2`, color_2)
   DOM.el(`#color_info`).textContent = color_1
+  App.state.color = color_1
+  App.save_state()
 }
 
 App.toggle_fullscreen = () => {

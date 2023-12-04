@@ -451,7 +451,7 @@ App.filter_check = (args) => {
       match = args.item.audible || args.item.muted
     }
     else if (args.filter_mode === `filter_loaded_tabs`) {
-      match = !args.item.discarded && !args.item.header
+      match = !args.item.discarded
     }
     else if (args.filter_mode === `filter_unloaded_tabs`) {
       match = args.item.discarded
