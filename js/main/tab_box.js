@@ -65,7 +65,7 @@ App.create_tab_box = () => {
 
 App.check_tab_box = () => {
   if (!App.tab_box_ready) {
-    App.set_tab_box_items()
+    App.set_tab_box_title()
     App.tab_box_ready = true
   }
 }
@@ -85,13 +85,13 @@ App.do_update_tab_box = (what) => {
   App[`update_tab_box_${what}`]()
 }
 
-App.tab_box_show = (mode, o_items, scroll = false) => {
+App.tab_box_show = (mode, o_items) => {
   if (!App.tab_box_mode(mode)) {
     return
   }
 
   let items = App.get_tab_box_items(o_items, mode)
-  App.fill_tab_box(items, scroll)
+  App.fill_tab_box(items)
 }
 
 App.update_tab_box_recent = () => {
@@ -100,7 +100,7 @@ App.update_tab_box_recent = () => {
     headers: App.get_setting(`tab_box_headers`),
   })
 
-  App.tab_box_show(`recent`, o_items, true)
+  App.tab_box_show(`recent`, o_items)
 }
 
 App.update_tab_box_pins = () => {
@@ -159,13 +159,16 @@ App.get_tab_box_items = (o_items, mode) => {
   return items
 }
 
-App.set_tab_box_items = () => {
+App.set_tab_box_title = () => {
   let mode = App.get_setting(`tab_box_mode`)
   let title = DOM.el(`#tab_box_title`)
   title.innerHTML = ``
   let icon = App.tab_box_icon(mode)
   let text = App.capitalize(mode)
   title.append(App.button_text(icon, text, true))
+}
+
+App.scroll_tab_box_top = () => {
   let c = DOM.el(`#tab_box_container`)
   App.scroll_to_top(c)
 }
@@ -197,28 +200,24 @@ App.tab_box_icon = (mode) => {
   }
 }
 
-App.fill_tab_box = (items, scroll = true) => {
+App.fill_tab_box = (items) => {
   let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
 
   for (let item of items) {
     c.append(item.element)
   }
-
-  if (scroll) {
-    App.scroll_to_top(c)
-  }
 }
 
 App.change_tab_box_mode = (what) => {
   App.set_tab_box_mode(what)
-  App.set_tab_box_items()
+  App.set_tab_box_title()
   App.update_tab_box(what)
+  App.scroll_tab_box_top()
 }
 
 App.tab_box_menu = (e) => {
   let items = []
-  let mode = App.get_setting(`tab_box_mode`)
 
   for (let tbmode of App.tab_box_modes) {
     items.push({
