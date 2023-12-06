@@ -1518,7 +1518,6 @@ a:hover
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-top: 1px;
   position: relative;
 }
 
@@ -1530,6 +1529,5 @@ a:hover
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-top: 1px;
   position: relative;
 }
