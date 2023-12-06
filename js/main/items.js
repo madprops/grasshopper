@@ -1121,7 +1121,7 @@ App.build_item_window = (mode) => {
   }
 
   let btns = DOM.create(`div`, `item_top_buttons`)
-  let bar = DOM.create(`div`, `item_top_bar hidden`, `item_top_bar_${mode}`)
+  let bar = DOM.create(`div`, `item_top_bar`, `item_top_bar_${mode}`)
   maintop.append(btns)
   maintop.append(bar)
 

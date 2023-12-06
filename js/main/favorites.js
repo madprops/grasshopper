@@ -51,17 +51,11 @@ App.create_favorites_button = (mode) => {
 }
 
 App.fill_favorites_bar = (mode) => {
-  let bar = DOM.el(`#item_top_bar_${mode}`)
-
-  if (!bar) {
-    return
-  }
-
   if (!App.favorites_bar_active()) {
-    bar.classList.add(`hidden`)
     return
   }
 
+  let bar = DOM.el(`#item_top_bar_${mode}`)
   let favs = App.get_favorites()
 
   if (!favs.length) {
