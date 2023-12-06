@@ -119,12 +119,14 @@ App.do_check_scroller = (mode = App.window_mode) => {
 
 App.create_scroller = (mode) => {
   let scroller = DOM.create(`div`, `scroller glowbox`, `${mode}_scroller`)
+  let content = DOM.create(`div`, `scroller_content`)
   scroller.title = `This is the Scroller`
   let text = DOM.create(`div`)
   text.textContent = `Go To Top`
   let percentage = DOM.create(`div`, ``, `${mode}_scroller_percentage`)
-  scroller.append(text)
-  scroller.append(percentage)
+  content.append(text)
+  content.append(percentage)
+  scroller.append(content)
 
   DOM.ev(scroller, `click`, (e) => {
     if (e.shiftKey || e.ctrlKey) {

@@ -1017,14 +1017,21 @@ a:hover
   background-color: var(--slight_shade);
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7rem;
   left: 0;
   z-index: 9;
   border: 1px solid var(--alt_color_1);
   padding: var(--scroller_padding);
   backdrop-filter: var(--backdrop);
+  justify-content: center;
+}
+
+.scroller_content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0.5rem;
 }
 
 .hide_scroller .scroller {
@@ -1269,8 +1276,6 @@ a:hover
 .favorites_sidetop .favorites_bar.fav_right
 {
   justify-content: flex-start;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
   padding-left: 0.2rem;
   padding-right: 0.2rem;
 }
@@ -1514,7 +1519,23 @@ a:hover
 .item_container_main {
   display: flex;
   flex-direction: row;
-  flex-grow: 1;
-  flex-shrink: 1;
-  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 1px;
+  position: relative;
+}
+
+.item_container_col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 1px;
+  position: relative;
 }

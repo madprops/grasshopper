@@ -1089,19 +1089,30 @@ App.build_item_window = (mode) => {
   let container_main = DOM.create(`div`, `item_container_main`)
   let container = DOM.create(`div`, `item_container`, `${mode}_container`)
   let favmode = App.get_setting(`favorites_mode`)
-  let favorites_bar
+  let favorites_bar, scroller
 
   if (App.favorites_bar_active()) {
     favorites_bar = App.create_favorites_bar(mode)
   }
 
+  if (App.get_setting(`show_scroller`)) {
+    scroller = App.create_scroller(mode)
+  }
+
   container.tabIndex = 1
+  let container_col = DOM.create(`div`, `item_container_col`)
+
+  if (scroller) {
+    container_col.append(scroller)
+  }
+
+  container_col.append(container)
 
   if (favmode === `left`) {
     container_main.append(favorites_bar)
   }
 
-  container_main.append(container)
+  container_main.append(container_col)
 
   if (favmode === `right`) {
     container_main.append(favorites_bar)
@@ -1133,18 +1144,10 @@ App.build_item_window = (mode) => {
     bar.append(favorites_bar)
   }
 
-  let scroller, footer
-
-  if (App.get_setting(`show_scroller`)) {
-    scroller = App.create_scroller(mode)
-  }
+  let footer
 
   if (App.get_setting(`show_footer`)) {
     footer = App.create_footer(mode)
-  }
-
-  if (scroller) {
-    content.append(scroller)
   }
 
   if (tab_box && tab_box_pos === `bottom`) {
