@@ -100,11 +100,11 @@ App.select_header_group = (item) => {
           }
         }
 
-        App.toggle_selected(item, true)
+        App.toggle_selected({item: item, what: true})
       }
 
       if (first) {
-        App.toggle_selected(first, true)
+        App.toggle_selected({item: first, what: true})
       }
     }
   }

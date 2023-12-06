@@ -158,6 +158,7 @@ App.focus_tab = async (args = {}) => {
     show_tabs: false,
     scroll: `center`,
     select: true,
+    no_selected_class: false,
   }
 
   App.def_args(def_args, args)
@@ -169,7 +170,11 @@ App.focus_tab = async (args = {}) => {
   App.check_tab_first(args.item)
 
   if (args.select) {
-    App.select_item({item: args.item, scroll: args.scroll})
+    App.select_item({
+      item: args.item,
+      scroll: args.scroll,
+      no_class: args.no_selected_class,
+    })
   }
 
   if (args.item.window_id) {
@@ -369,6 +374,7 @@ App.tabs_action = async (item, from, scroll) => {
   await App.focus_tab({
     item: item,
     scroll: scroll,
+    no_selected_class: true,
   })
 
   blink(item)
@@ -1077,14 +1083,14 @@ App.select_tabs = (type = `pins`) => {
       }
 
       if (!item.selected) {
-        App.toggle_selected(item, true, false)
+        App.toggle_selected({item: item, what: true, select: false})
       }
 
       selected = true
     }
     else {
       if (item.selected) {
-        App.toggle_selected(item, false, false)
+        App.toggle_selected({item: item, fwhat: alse, select: false})
       }
     }
   }
@@ -1095,7 +1101,7 @@ App.select_tabs = (type = `pins`) => {
   }
 
   if (!selected && prev_selected) {
-    App.toggle_selected(prev_selected, true, false)
+    App.toggle_selected({item: prev_selected, what: true, select: false})
   }
 }
 
@@ -1386,6 +1392,6 @@ App.paste_tabs = async (item) => {
   App.deselect({mode: `tabs`})
 
   for (let tab of tabs) {
-    App.toggle_selected(tab, true, false)
+    App.toggle_selected({item: tab, what: true, select: false})
   }
 }

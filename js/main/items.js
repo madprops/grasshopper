@@ -14,6 +14,7 @@ App.select_item = (args = {}) => {
   let def_args = {
     deselect: true,
     scroll: `center`,
+    no_class: false,
   }
 
   App.def_args(def_args, args)
@@ -32,7 +33,7 @@ App.select_item = (args = {}) => {
     App.deselect({mode: args.item.mode})
   }
 
-  App.toggle_selected(args.item, true)
+  App.toggle_selected({item: args.item, what: true})
 
   if (prev) {
     App.scroll_to_item({item: args.item, scroll: args.scroll})
@@ -191,7 +192,7 @@ App.clear_selected = (mode) => {
 
   for (let item of App.get_items(mode)) {
     if (item.selected) {
-      App.toggle_selected(item, false, false)
+      App.toggle_selected({item: item, what: false, select: false})
     }
   }
 }
@@ -582,7 +583,7 @@ App.select_range = (item) => {
       }
 
       if (unselect) {
-        App.toggle_selected(it, false)
+        App.toggle_selected({item: it, what: false})
       }
     }
 
@@ -617,7 +618,7 @@ App.select_range = (item) => {
         continue
       }
 
-      App.toggle_selected(it, true)
+      App.toggle_selected({item: it, select: true})
     }
   }
 
@@ -636,7 +637,7 @@ App.deselect = (args = {}) => {
   let first, last
 
   for (let item of App.selected_items(args.mode)) {
-    App.toggle_selected(item, false, false)
+    App.toggle_selected({item: item, what: false, select: false})
 
     if (!first) {
       first = item
@@ -673,39 +674,44 @@ App.deselect = (args = {}) => {
   return num
 }
 
-App.toggle_selected = (item, what, select = true) => {
-  let items = App.selected_items(item.mode)
+App.toggle_selected = (args = {}) => {
+  let def_args = {
+    select: true,
+  }
+
+  App.def_args(def_args, args)
+  let items = App.selected_items(args.item.mode)
   let selected
 
-  if (what !== undefined) {
-    selected = what
+  if (args.what !== undefined) {
+    selected = args.what
   }
   else {
-    selected = !item.selected
+    selected = !args.item.selected
   }
 
-  if (!item.visible) {
+  if (!args.item.visible) {
     selected = false
   }
 
   if (selected) {
-    item.element.classList.add(`selected`)
-    App.set_selected(item)
+    args.item.element.classList.add(`selected`)
+    App.set_selected(args.item)
   }
   else {
-    if (items.length === 1 && select) {
+    if (items.length === 1 && args.select) {
       return
     }
 
-    item.element.classList.remove(`selected`)
+    args.item.element.classList.remove(`selected`)
   }
 
-  item.selected = selected
+  args.item.selected = selected
 
-  if (select && !selected) {
-    if (items.length && App.get_selected(item.mode) === item) {
+  if (args.select && !selected) {
+    if (items.length && App.get_selected(args.item.mode) === args.item) {
       for (let it of items) {
-        if (it === item) {
+        if (it === args.item) {
           continue
         }
 
@@ -715,8 +721,8 @@ App.toggle_selected = (item, what, select = true) => {
     }
   }
 
-  App.update_footer_count(item.mode)
-  App.check_selected(item.mode)
+  App.update_footer_count(args.item.mode)
+  App.check_selected(args.item.mode)
 }
 
 App.check_selected = (mode) => {
@@ -878,7 +884,7 @@ App.select_all = (mode = App.window_mode, toggle = false) => {
       first = item
     }
 
-    App.toggle_selected(item, true, false)
+    App.toggle_selected({item: item, what: true, select: false})
   }
 
   if (first) {
@@ -1031,7 +1037,7 @@ App.remove_duplicates = (items) => {
 
 App.pick = (item) => {
   if (item.selected) {
-    App.toggle_selected(item, false)
+    App.toggle_selected({item: item, what: false})
   }
   else {
     App.select_item({item: item, scroll: `nearest`, deselect: false})
