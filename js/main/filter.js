@@ -1315,8 +1315,13 @@ App.create_filter_menu = (mode) => {
   fmodes.push({cmd: `custom`, text: `Custom`, skip: true, info: `Pick a custom filter`})
   App[`${mode}_filter_modes_all`] = fmodes
 
-  DOM.ev(btn, `click`, () => {
-    App.show_filter_menu(mode)
+  DOM.ev(btn, `click`, (e) => {
+    if (App.get_setting(`favorite_filters_click`)) {
+      App.show_favorite_filters(mode, e)
+    }
+    else {
+      App.show_filter_menu(mode)
+    }
   })
 
   DOM.ev(btn, `contextmenu`, (e) => {
@@ -1581,7 +1586,12 @@ App.show_exact_filters = (mode, e) => {
 
 App.filter_menu_context = (mode, e) => {
   if (App.get_setting(`favorite_filters`).length) {
-    App.show_favorite_filters(mode, e)
+    if (App.get_setting(`favorite_filters_click`)) {
+      App.show_filter_menu(mode)
+    }
+    else {
+      App.show_favorite_filters(mode, e)
+    }
   }
   else {
     App.show_palette(`filter`)

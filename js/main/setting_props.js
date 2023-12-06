@@ -2055,6 +2055,14 @@ App.build_settings = () => {
       info: `Require pressing Enter to trigger the filter`,
       version: 1,
     },
+    favorite_filters_click: {
+      name: `Favorite Filters Click`,
+      type: `checkbox`,
+      value: false,
+      info: `Use the left click to show the Favorite Fitlers
+      Use right click to open the Filter Menu`,
+      version: 1,
+    },
     max_search_items: {
       name: `Max Search Items`,
       type: `number`,
