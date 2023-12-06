@@ -1254,6 +1254,7 @@ a:hover
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  background-color: var(--favorites_bar_color);
   gap: 0.5rem;
 }
 
@@ -1272,6 +1273,9 @@ a:hover
 {
   justify-content: flex-start;
   margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 
 .favorites_bar.fav_left {

@@ -357,6 +357,13 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`favorites_sidetop`)
     }
 
+    if (App.get_setting(`favorites_bar_color_enabled`)) {
+      App.set_css_var(`favorites_bar_color`, App.get_setting(`favorites_bar_color`))
+    }
+    else {
+      App.set_css_var(`favorites_bar_color`, `unset`)
+    }
+
     App.insert_effect_css()
     App.insert_tab_color_css()
     App.insert_color_css()
