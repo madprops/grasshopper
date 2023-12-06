@@ -2059,8 +2059,8 @@ App.build_settings = () => {
       name: `Favorite Filters Click`,
       type: `checkbox`,
       value: false,
-      info: `Use the left click to show the Favorite Fitlers
-      Use right click to open the Filter Menu`,
+      info: `Use the left click to show the Favorite Filters
+      Use right click to open the Filter Menu instead`,
       version: 1,
     },
     max_search_items: {
