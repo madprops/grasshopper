@@ -258,14 +258,14 @@ select {
   padding-left: 0.26rem;
   padding-right: 0.26rem;
   user-select: none;
-  outline: 1px solid var(--alt_color_1);
+  border: 1px solid var(--alt_color_1);
   border-radius: var(--border_radius);
   min-width: 1.2rem;
   box-sizing: content-box;
 }
 
 .button:hover {
-  outline: 1px solid var(--alt_color_2);
+  border: 1px solid var(--alt_color_2);
 }
 
 .button:active {
@@ -278,7 +278,7 @@ select {
 
 .button_3 {
   background-color: transparent;
-  outline: none;
+  border: 1px solid transparent;
   padding: 0.1rem;
 }
 
