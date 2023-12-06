@@ -1271,6 +1271,7 @@ a:hover
  {
   flex-direction: row;
   width: 100%;
+  margin-bottom: 0.35rem;
 }
 
 .favorites_sidetop .favorites_bar.fav_left,

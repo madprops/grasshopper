@@ -361,7 +361,7 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`favorites_bar_color`, App.get_setting(`favorites_bar_color`))
     }
     else {
-      if (App.favorites_bar_active()) {
+      if (App.favorites_bar_side()) {
         App.set_css_var(`favorites_bar_color`, slight_shade)
       }
       else {

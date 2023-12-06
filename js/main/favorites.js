@@ -8,6 +8,16 @@ App.favorites_bar_active = () => {
   return true
 }
 
+App.favorites_bar_side = () => {
+  let favmode = App.get_setting(`favorites_mode`)
+
+  if ((favmode === `left`) || (favmode === `right`)) {
+    return true
+  }
+
+  return false
+}
+
 App.create_favorites_bar = (mode) => {
   if (!App.favorites_bar_active()) {
     return
