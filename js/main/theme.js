@@ -602,6 +602,8 @@ App.insert_color_css = () => {
 
   for (let color of App.colors()) {
     App.set_css_var(`color_${color.id}`, color.value)
+    let full = App.colorlib.rgba_to_rgb(color.value)
+    App.set_css_var(`color_${color.id}_full`, full)
     let text = App.contrast(color.value, 0.8)
     App.set_css_var(`text_color_${color.id}`, text)
 
@@ -616,6 +618,19 @@ App.insert_color_css = () => {
 
     css += `.text_color_${color.id} {
       color: var(--color_${color.id}) !important;
+    }`
+
+    css += `.border_color_${color.id}_full {
+      border-color: var(--color_${color.id}_full) !important;
+    }`
+
+    css += `.background_color_${color.id}_full {
+      background-color: var(--color_${color.id}_full) !important;
+      color: var(--text_color_${color.id}) !important;
+    }`
+
+    css += `.text_color_${color.id}_full {
+      color: var(--color_${color.id}_full) !important;
     }`
 
     css += App.background_effect_css(color.value, `.background_color_${color.id}`, true, true)

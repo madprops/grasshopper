@@ -174,7 +174,7 @@ App.color_icon = (id) => {
   let s
 
   if (App.color_exists(id)) {
-    s = `color_icon background_color_${id}`
+    s = `color_icon background_color_${id}_full`
   }
   else {
     s = `color_icon background_fallback_color`
