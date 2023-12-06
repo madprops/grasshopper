@@ -537,34 +537,38 @@ App.apply_background_effects = (effect, tiles) => {
   }
 }
 
-App.background_effect_css = (color, cls, single, multiple) => {
-  let bg_color = App.colorlib.increase_alpha(color, 0.15)
+App.background_effect_css = (args = {}) => {
+  let def_args = {
+    single: true,
+    multiple: true,
+  }
+
+  App.def_args(def_args, args)
+  let bg_color = App.colorlib.increase_alpha(args.color, 0.15)
 
   let css = `
-  .hover_effect_background .item_container ${cls}:hover,
-  .tab_box_hover_effect_background #tab_box_container ${cls}:hover,
-  .tab_box_active_effect_background #tab_box_container ${cls}.active_tab
+  .hover_effect_background .item_container ${args.cls}:hover,
+  .tab_box_hover_effect_background #tab_box_container ${args.cls}:hover,
+  .tab_box_active_effect_background #tab_box_container ${args.cls}.active_tab
   {
     background-color: ${bg_color} !important;
   }`
 
-  let bg = single ? bg_color : color
+  let bg = args.single ? bg_color : args.color
 
   css += `
-  .selected_effect_background .item_container.single_selected ${cls}.selected
+  .selected_effect_background .item_container.single_selected ${args.cls}.selected
   {
     background-color: ${bg} !important;
   }`
 
-  bg = multiple ? bg_color : color
+  bg = args.multiple ? bg_color : args.color
 
-  if (multiple) {
-    css += `
-    .selected_effect_background .item_container.multiple_selected ${cls}.selected
-    {
-      background-color: ${bg} !important;
-    }`
-  }
+  css += `
+  .selected_effect_background .item_container.multiple_selected ${args.cls}.selected
+  {
+    background-color: ${bg} !important;
+  }`
 
   return css
 }
@@ -587,7 +591,7 @@ App.insert_effect_css = () => {
   let css = ``
   let bg_color = App.get_setting(`text_color`)
   bg_color = App.colorlib.increase_alpha(bg_color, 0.66)
-  css += App.background_effect_css(bg_color, `.item`, true, true)
+  css += App.background_effect_css({color: bg_color, cls: `.item`})
   App.insert_css(`effect_css`, css)
 }
 
@@ -632,7 +636,10 @@ App.insert_color_css = () => {
       color: var(--color_${color.id}) !important;
     }`
 
-    css += App.background_effect_css(color.value, `.background_color_${color.id}_alpha`, true, true)
+    css += App.background_effect_css({
+      color: color.value,
+      cls: `.background_color_${color.id}_alpha`,
+    })
   }
 
   App.insert_css(`color_css`, css)
@@ -663,7 +670,12 @@ App.insert_tab_color_css = () => {
         background-color: ${bg_color} !important;
       }`
 
-      css += App.background_effect_css(bg_color, `.tab_background_color_${type}`, false, true)
+      css += App.background_effect_css({
+        color: bg_color,
+        cls: `.tab_background_color_${type}`,
+        single: false,
+        multiple: false,
+      })
     }
   }
 
