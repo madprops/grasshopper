@@ -110,6 +110,7 @@ App.settings_icons = {
   icons: `👁️`,
   show: `👁️`,
   tab_box: `📦`,
+  favorites: `❤️`,
   gestures: `🖱️`,
   auxclick: `🖱️`,
   warns: `🚨`,

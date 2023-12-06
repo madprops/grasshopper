@@ -682,46 +682,6 @@ App.build_settings = () => {
   category = `show`
 
   props = {
-    favorites_mode: {
-      name: `Favorites Mode`,
-      type: `menu`,
-      value: `none`,
-      info: `How to show the Favorites Menu
-      A bar near the top, or a button at the top right`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: `Top`, value: `top`},
-          {text: `Left`, value: `left`},
-          {text: `Right`, value: `right`},
-          {text: `Bottom`, value: `bottom`},
-          {text: `Button`, value: `button`},
-        ])
-      },
-    },
-    favorites_menu: {
-      name: `Favorites Menu`,
-      type: `list`,
-      value: [
-        {cmd: `color_red`, alt: `filter_color_red`},
-        {cmd: `color_green`, alt: `filter_color_green`},
-        {cmd: `color_blue`, alt: `filter_color_blue`},
-        {cmd: `color_yellow`, alt: `filter_color_yellow`},
-        {cmd: `set_random_light_colors`, alt: `set_light_colors`},
-        {cmd: `set_random_dark_colors`, alt: `set_dark_colors`},
-      ],
-      info: `List of commands that can appear in various forms`,
-      version: 1,
-    },
-    favorites_sidetop: {
-      name: `Favorites Sidetop`,
-      type: `checkbox`,
-      value: false,
-      info: `If favorites mode is left or right, make them stick to the top edge`,
-      separator: true,
-      version: 1,
-    },
     extra_menu_mode: {
       name: `Extra Menu Mode`,
       type: `menu`,
@@ -1072,6 +1032,69 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Auto show the Tab Box when a tab is playing`,
+      version: 1,
+    },
+  }
+
+  add_props()
+  category = `favorites`
+
+  props = {
+    favorites_mode: {
+      name: `Favorites Mode`,
+      type: `menu`,
+      value: `none`,
+      info: `How to show the Favorites Menu
+      A bar near the top, or a button at the top right`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: `Top`, value: `top`},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+          {text: `Bottom`, value: `bottom`},
+          {text: `Button`, value: `button`},
+        ])
+      },
+    },
+    favorites_menu: {
+      name: `Favorites Menu`,
+      type: `list`,
+      value: [
+        {cmd: `color_red`, alt: `filter_color_red`},
+        {cmd: `color_green`, alt: `filter_color_green`},
+        {cmd: `color_blue`, alt: `filter_color_blue`},
+        {cmd: `color_yellow`, alt: `filter_color_yellow`},
+        {cmd: `set_random_light_colors`, alt: `set_light_colors`},
+        {cmd: `set_random_dark_colors`, alt: `set_dark_colors`},
+      ],
+      info: `List of commands that can appear in various forms`,
+      version: 1,
+    },
+    favorites_bar_color_enabled: {
+      name: `Favorites Bar Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable the background color of the Favorites Bar`,
+      version: 1,
+    },
+    favorites_bar_color: {
+      name: `Favorites Bar Color`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(102, 204, 0)`,
+      info: `Background color of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
+    },
+    favorites_sidetop: {
+      name: `Favorites Sidetop`,
+      type: `checkbox`,
+      value: false,
+      info: `If favorites mode is left or right, make them stick to the top edge`,
       version: 1,
     },
   }
@@ -2517,6 +2540,11 @@ App.build_settings = () => {
       info: `How to view media items
       An icon appears to the left of items
       You can make it view media when clicking the icons, the whole item, or never`,
+    },
+    favorites: {
+      info: `Configure favorite commands
+      Show them as a bar in different places
+      Or as a button on the top right`,
     },
     tab_box: {
       info: `Configure the Tab Box
