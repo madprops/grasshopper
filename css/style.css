@@ -171,11 +171,7 @@ select {
   min-height: 1rem;
   flex-shrink: 0;
   padding-top: 0.55rem;
-  padding-bottom: 0.707rem;
-}
-
-.window_top_mode {
-  padding-bottom: 0;
+  padding-bottom: 0.71rem;
 }
 
 .colored_top {
@@ -535,7 +531,6 @@ svg {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 1rem;
 }
 
 .item_top_buttons {
