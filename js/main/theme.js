@@ -590,10 +590,11 @@ App.insert_custom_css = () => {
 App.insert_effect_css = () => {
   let css = ``
   let single
+  let active = App.get_setting(`background_color_active_mode`)
   let bg_color = App.get_setting(`text_color`)
   bg_color = App.colorlib.increase_alpha(bg_color, 0.66)
 
-  if (App.get_setting(`background_color_active_mode`) !== `none`) {
+  if ((active === `normal`) || (active === `everywhere`)) {
     single = false
   }
   else {
