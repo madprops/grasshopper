@@ -1257,7 +1257,7 @@ a:hover
   align-items: center;
   justify-content: center;
   background-color: var(--favorites_bar_color);
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .favorites_bar.fav_top,
