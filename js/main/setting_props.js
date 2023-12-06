@@ -712,6 +712,13 @@ App.build_settings = () => {
         {cmd: `set_random_dark_colors`, alt: `set_dark_colors`},
       ],
       info: `List of commands that can appear in various forms`,
+      version: 1,
+    },
+    favorites_sidetop: {
+      name: `Favorites Sidetop`,
+      type: `checkbox`,
+      value: false,
+      info: `If favorites mode is left or right, make them stick to the top edge`,
       separator: true,
       version: 1,
     },

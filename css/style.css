@@ -1265,6 +1265,13 @@ a:hover
   flex-direction: row;
 }
 
+.favorites_sidetop .favorites_bar.fav_left,
+.favorites_sidetop .favorites_bar.fav_right
+{
+  justify-content: flex-start;
+  margin-top: 2rem;
+}
+
 .favorites_bar.fav_left {
   flex-direction: column;
 }

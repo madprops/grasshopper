@@ -350,6 +350,13 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`header_icon_pick`)
     }
 
+    if (App.get_setting(`favorites_sidetop`)) {
+      main.classList.add(`favorites_sidetop`)
+    }
+    else {
+      main.classList.remove(`favorites_sidetop`)
+    }
+
     App.insert_effect_css()
     App.insert_tab_color_css()
     App.insert_color_css()
