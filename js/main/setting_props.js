@@ -1094,7 +1094,7 @@ App.build_settings = () => {
       name: `Favorites Sidetop`,
       type: `checkbox`,
       value: false,
-      info: `If favorites mode is left or right, make them stick to the top edge`,
+      info: `If favorites mode is left or right, make them stick near the top edge`,
       version: 1,
     },
   }
