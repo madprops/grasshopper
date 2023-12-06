@@ -1271,7 +1271,7 @@ a:hover
  {
   flex-direction: row;
   width: 100%;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.09rem;
 }
 
 .favorites_bar.fav_bottom {
@@ -1312,7 +1312,7 @@ a:hover
 }
 
 .favorites_bar_item {
-  height: 1.8rem;
+  height: 1.5rem;
   flex-shrink: 0;
 }
 

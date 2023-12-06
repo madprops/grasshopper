@@ -139,11 +139,13 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `Never`, value: `never`},
+          {text: App.separator_string},
           {text: `1 Second`, value: `1_seconds`},
           {text: `3 Seconds`, value: `3_seconds`},
           {text: `5 Seconds`, value: `5_seconds`},
           {text: `10 Seconds`, value: `10_seconds`},
           {text: `30 Seconds`, value: `30_seconds`},
+          {text: App.separator_string},
           {text: `On Action`, value: `action`},
         ], () => {
           clearTimeout(App.restore_timeout)
@@ -311,6 +313,7 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `50px`, value: `50px`},
           {text: `100px`, value: `100px`},
           {text: `150px`, value: `150px`},
@@ -1040,10 +1043,12 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `Top`, value: `top`},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
           {text: `Bottom`, value: `bottom`},
+          {text: App.separator_string},
           {text: `Button`, value: `button`},
         ])
       },
