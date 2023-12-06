@@ -1519,6 +1519,7 @@ a:hover
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
+  padding-top: 1px;
 }
 
 .item_container_col {
