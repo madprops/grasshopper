@@ -1038,7 +1038,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `How to show the Favorites Menu
-      A bar near the top, or a button at the top right`,
+      Either a bar, or a button at the top right`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
