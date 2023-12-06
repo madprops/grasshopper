@@ -1259,10 +1259,12 @@ a:hover
 
 .favorites_bar.fav_top {
   flex-direction: row;
+  margin-bottom: 0.5rem;
 }
 
 .favorites_bar.fav_bottom {
   flex-direction: row;
+  margin-top: 0.5rem;
 }
 
 .favorites_sidetop .favorites_bar.fav_left,
