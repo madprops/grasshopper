@@ -64,7 +64,7 @@ App.custom_save = async (id, name, value) => {
   }
 
   try {
-    await browser.runtime.sendMessage({action: `tab_edited`, id: id})
+    await browser.runtime.sendMessage({action: `mirror_edits`, id: id})
   }
   catch (err) {}
 }

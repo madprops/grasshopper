@@ -2410,6 +2410,15 @@ App.build_settings = () => {
       For example, making a change in the popup triggers a reload in the sidebar`,
       version: 1,
     },
+    mirror_edits: {
+      name: `Mirror Edits`,
+      type: `checkbox`,
+      value: true,
+      actions: [`theme`],
+      info: `Sync / mirror edits between instances
+      For example, making a color change in the popup triggers an item update in the sidebar`,
+      version: 1,
+    },
     item_pointer: {
       name: `Item Pointer`,
       type: `checkbox`,
