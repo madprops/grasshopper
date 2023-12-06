@@ -600,7 +600,6 @@ App.insert_effect_css = () => {
     single = true
   }
 
-  console.log(single)
   css += App.background_effect_css({
     color: bg_color,
     cls: `.item`,
