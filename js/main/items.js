@@ -1083,12 +1083,13 @@ App.item_is_visible = (item) => {
 
 App.build_item_window = (mode) => {
   let top = DOM.el(`#window_top_${mode}`)
-  let maintop = DOM.create(`div`, `item_main_top`)
-  top.append(maintop)
+  let main_top = DOM.create(`div`, `item_main_top`)
+  top.append(main_top)
   let content = DOM.el(`#window_content_${mode}`)
+  let middle = DOM.el(`#window_middle_${mode}`)
   let container_main = DOM.create(`div`, `item_container_main`)
   let container = DOM.create(`div`, `item_container`, `${mode}_container`)
-  let favmode = App.get_setting(`favorites_mode`)
+  let fav_mode = App.get_setting(`favorites_mode`)
   let favorites_bar, scroller
 
   if (App.favorites_bar_active()) {
@@ -1108,19 +1109,19 @@ App.build_item_window = (mode) => {
 
   container_col.append(container)
 
-  if (favmode === `left`) {
+  if (fav_mode === `left`) {
     container_main.append(favorites_bar)
   }
 
   container_main.append(container_col)
 
-  if (favmode === `right`) {
+  if (fav_mode === `right`) {
     container_main.append(favorites_bar)
   }
 
   content.append(container_main)
 
-  if (favmode === `bottom`) {
+  if (fav_mode === `bottom`) {
     content.append(favorites_bar)
   }
 
@@ -1133,15 +1134,15 @@ App.build_item_window = (mode) => {
 
   let btns = DOM.create(`div`, `item_top_buttons`)
   let bar = DOM.create(`div`, `item_top_bar`, `item_top_bar_${mode}`)
-  maintop.append(btns)
-  maintop.append(bar)
+  main_top.append(btns)
+  main_top.append(bar)
 
-  if (tab_box && tab_box_pos === `top`) {
-    maintop.append(tab_box)
+  if (fav_mode === `top`) {
+    middle.append(favorites_bar)
   }
 
-  if (favmode === `top`) {
-    bar.append(favorites_bar)
+  if (tab_box && tab_box_pos === `top`) {
+    main_top.append(tab_box)
   }
 
   let footer
@@ -1178,7 +1179,7 @@ App.build_item_window = (mode) => {
     right_btns.append(actions_menu)
   }
 
-  if (favmode === `button`) {
+  if (fav_mode === `button`) {
     let fav_button = App.create_favorites_button(mode)
     right_btns.append(fav_button)
   }

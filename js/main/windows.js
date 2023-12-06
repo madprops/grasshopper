@@ -40,6 +40,8 @@ App.create_window = (args) => {
     el.append(top)
   }
 
+  let middle = DOM.create(`div`, `window_middle window_middle_${args.cls}`, `window_middle_${args.id}`)
+  el.append(middle)
   let content = DOM.create(`div`, `window_content window_content_${args.cls}`, `window_content_${args.id}`)
   let content_html
 
