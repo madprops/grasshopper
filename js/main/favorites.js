@@ -1,6 +1,34 @@
+App.favorites_bar_active = () => {
+  let favmode = App.get_setting(`favorites_mode`)
+
+  if ((favmode === `none`) || (favmode === `button`)) {
+    return false
+  }
+
+  return true
+}
+
 App.create_favorites_bar = (mode) => {
+  if (!App.favorites_bar_active()) {
+    return
+  }
+
+  let favmode = App.get_setting(`favorites_mode`)
   let el = DOM.create(`div`, `favorites_bar`, `favorites_bar_${mode}`)
   el.title = App.favorites_title
+
+  if (favmode === `top`) {
+    el.classList.add(`fav_top`)
+  }
+  else if (favmode === `left`) {
+    el.classList.add(`fav_left`)
+  }
+  else if (favmode === `right`) {
+    el.classList.add(`fav_right`)
+  }
+  else if (favmode === `bottom`) {
+    el.classList.add(`fav_bottom`)
+  }
 
   DOM.ev(el, `contextmenu`, (e) => {
     e.preventDefault()
@@ -29,7 +57,7 @@ App.fill_favorites_bar = (mode) => {
     return
   }
 
-  if (App.get_setting(`favorites_mode`) !== `bar`) {
+  if (!App.favorites_bar_active()) {
     bar.classList.add(`hidden`)
     return
   }

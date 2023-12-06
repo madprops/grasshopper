@@ -1086,9 +1086,33 @@ App.build_item_window = (mode) => {
   let maintop = DOM.create(`div`, `item_main_top`)
   top.append(maintop)
   let content = DOM.el(`#window_content_${mode}`)
+  let container_main = DOM.create(`div`, `item_container_main`)
   let container = DOM.create(`div`, `item_container`, `${mode}_container`)
+  let favmode = App.get_setting(`favorites_mode`)
+  let favorites_bar
+
+  if (App.favorites_bar_active()) {
+    favorites_bar = App.create_favorites_bar(mode)
+  }
+
   container.tabIndex = 1
-  content.append(container)
+
+  if (favmode === `left`) {
+    container_main.append(favorites_bar)
+  }
+
+  container_main.append(container)
+
+  if (favmode === `right`) {
+    container_main.append(favorites_bar)
+  }
+
+  content.append(container_main)
+
+  if (favmode === `bottom`) {
+    content.append(favorites_bar)
+  }
+
   let tab_box_pos = App.get_setting(`tab_box_position`)
   let tab_box
 
@@ -1105,11 +1129,8 @@ App.build_item_window = (mode) => {
     maintop.append(tab_box)
   }
 
-  let favmode = App.get_setting(`favorites_mode`)
-
-  if (favmode === `bar`) {
-    let favorites = App.create_favorites_bar(mode)
-    bar.append(favorites)
+  if (favmode === `top`) {
+    bar.append(favorites_bar)
   }
 
   let scroller, footer
@@ -1125,8 +1146,6 @@ App.build_item_window = (mode) => {
   if (scroller) {
     content.append(scroller)
   }
-
-  content.append(container)
 
   if (tab_box && tab_box_pos === `bottom`) {
     content.append(tab_box)

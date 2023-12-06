@@ -692,7 +692,10 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
-          {text: `Bar`, value: `bar`},
+          {text: `Top`, value: `top`},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+          {text: `Bottom`, value: `bottom`},
           {text: `Button`, value: `button`},
         ])
       },
