@@ -601,10 +601,10 @@ App.insert_color_css = () => {
   }`
 
   for (let color of App.colors()) {
+    let alpha = App.colorlib.rgb_to_rgba(color.value, 0.7)
+    App.set_css_var(`color_${color.id}_alpha`, alpha)
     App.set_css_var(`color_${color.id}`, color.value)
-    let full = App.colorlib.rgba_to_rgb(color.value)
-    App.set_css_var(`color_${color.id}_full`, full)
-    let text = App.contrast(color.value, 0.8)
+    let text = App.contrast(color.value, 1)
     App.set_css_var(`text_color_${color.id}`, text)
 
     css += `.border_color_${color.id} {
@@ -616,24 +616,16 @@ App.insert_color_css = () => {
       color: var(--text_color_${color.id}) !important;
     }`
 
+    css += `.background_color_${color.id}_alpha {
+      background-color: var(--color_${color.id}_alpha) !important;
+      color: var(--text_color_${color.id}) !important;
+    }`
+
     css += `.text_color_${color.id} {
       color: var(--color_${color.id}) !important;
     }`
 
-    css += `.border_color_${color.id}_full {
-      border-color: var(--color_${color.id}_full) !important;
-    }`
-
-    css += `.background_color_${color.id}_full {
-      background-color: var(--color_${color.id}_full) !important;
-      color: var(--text_color_${color.id}) !important;
-    }`
-
-    css += `.text_color_${color.id}_full {
-      color: var(--color_${color.id}_full) !important;
-    }`
-
-    css += App.background_effect_css(color.value, `.background_color_${color.id}`, true, true)
+    css += App.background_effect_css(color.value, `.background_color_${color.id}_alpha`, true, true)
   }
 
   App.insert_css(`color_css`, css)
