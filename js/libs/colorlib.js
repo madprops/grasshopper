@@ -1,5 +1,4 @@
 const ColorLib = (function () {
-
 	function get_random_int (min, max) {
 		return Math.floor(Math.random() * (max - min + 1) + min)
 	}
@@ -239,8 +238,8 @@ const ColorLib = (function () {
     }
 
     instance.rgb_to_rgba = function (rgb, alpha) {
-      if (rgba.startsWith("rgba(")) {
-        let array = instance.rgba_to_array(rgba)
+      if (rgb.startsWith("rgba(")) {
+        let array = instance.rgba_to_array(rgb)
         return `rgba(${array[0]}, ${array[1]}, ${array[2]}, ${alpha})`
       }
 

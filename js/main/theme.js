@@ -532,7 +532,7 @@ App.apply_background_effects = (effect, tiles) => {
 
 App.background_effect_css = (color, cls, single, multiple) => {
   let contrast = App.get_setting(`background_effect_contrast`) / 100
-  let bg_color = App.increase_alpha(color, contrast)
+  let bg_color = App.colorlib.increase_alpha(color, contrast)
   console.log(color, bg_color)
 
   let css = `
