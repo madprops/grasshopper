@@ -361,7 +361,12 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`favorites_bar_color`, App.get_setting(`favorites_bar_color`))
     }
     else {
-      App.set_css_var(`favorites_bar_color`, `unset`)
+      if (App.favorites_bar_active()) {
+        App.set_css_var(`favorites_bar_color`, slight_shade)
+      }
+      else {
+        App.set_css_var(`favorites_bar_color`, `unset`)
+      }
     }
 
     if (App.get_setting(`favorites_autohide`)) {
