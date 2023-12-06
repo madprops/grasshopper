@@ -1083,10 +1083,13 @@ App.item_is_visible = (item) => {
 
 App.build_item_window = (mode) => {
   let top = DOM.el(`#window_top_${mode}`)
+  top.innerHTML = ``
+  let middle = DOM.el(`#window_middle_${mode}`)
+  middle.innerHTML = ``
+  let content = DOM.el(`#window_content_${mode}`)
+  content.innerHTML = ``
   let main_top = DOM.create(`div`, `item_main_top`)
   top.append(main_top)
-  let content = DOM.el(`#window_content_${mode}`)
-  let middle = DOM.el(`#window_middle_${mode}`)
   let container_main = DOM.create(`div`, `item_container_main`)
   let container = DOM.create(`div`, `item_container`, `${mode}_container`)
   let fav_mode = App.get_setting(`favorites_mode`)
