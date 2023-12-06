@@ -369,12 +369,12 @@ svg {
   background-color: var(--slight_shade);
 }
 
-.header_item {
+.item_container .header_item {
   margin-top: var(--header_margin);
   margin-bottom: var(--header_margin);
 }
 
-.header_item.split_top {
+.item_container .header_item.split_top {
   margin-bottom: var(--split_margin);
 }
 
@@ -382,7 +382,7 @@ svg {
   margin-top: unset;
 }
 
-.header_item .item_content {
+.item_container .header_item .item_content {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
