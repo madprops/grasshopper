@@ -545,15 +545,6 @@ App.background_effect_css = (args = {}) => {
 
   App.def_args(def_args, args)
   let bg_color = App.colorlib.increase_alpha(args.color, 0.15)
-
-  let css = `
-  .hover_effect_background .item_container ${args.cls}:hover,
-  .tab_box_hover_effect_background #tab_box_container ${args.cls}:hover,
-  .tab_box_active_effect_background #tab_box_container ${args.cls}.active_tab
-  {
-    background-color: ${bg_color} !important;
-  }`
-
   let not_cls
 
   if (args.not_cls) {
@@ -563,9 +554,17 @@ App.background_effect_css = (args = {}) => {
     not_cls = ``
   }
 
+  let css = `
+  .hover_effect_background .item_container ${args.cls}${not_cls}:hover,
+  .tab_box_hover_effect_background #tab_box_container ${args.cls}${not_cls}:hover,
+  .tab_box_active_effect_background #tab_box_container ${args.cls}.active_tab
+  {
+    background-color: ${bg_color} !important;
+  }`
+
   if (args.single) {
     css += `
-    .selected_effect_background .item_container.single_selected ${args.cls}.selected${not_cls}
+    .selected_effect_background .item_container.single_selected ${args.cls}${not_cls}.selected
     {
       background-color: ${bg_color} !important;
     }`
@@ -573,7 +572,7 @@ App.background_effect_css = (args = {}) => {
 
   if (args.multiple) {
     css += `
-    .selected_effect_background .item_container.multiple_selected ${args.cls}.selected${not_cls}
+    .selected_effect_background .item_container.multiple_selected ${args.cls}${not_cls}.selected
     {
       background-color: ${bg_color} !important;
     }`
@@ -668,6 +667,12 @@ App.insert_color_css = () => {
 
 App.insert_tab_color_css = () => {
   let css = ``
+  let not_cls = ``
+  let active = App.get_setting(`background_color_active_mode`)
+
+  if ((active === `normal`) || (active === `everywhere`)) {
+    not_cls += `.active_tab`
+  }
 
   for (let type of App.color_types.slice(0).reverse()) {
     let text_color, bg_color
@@ -696,6 +701,7 @@ App.insert_tab_color_css = () => {
         cls: `.tab_background_color_${type}`,
         single: false,
         multiple: false,
+        not_cls: not_cls,
       })
     }
   }
