@@ -14,7 +14,6 @@ App.select_item = (args = {}) => {
   let def_args = {
     deselect: true,
     scroll: `center`,
-    no_class: false,
   }
 
   App.def_args(def_args, args)

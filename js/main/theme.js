@@ -554,21 +554,21 @@ App.background_effect_css = (args = {}) => {
     background-color: ${bg_color} !important;
   }`
 
-  let bg = args.single ? bg_color : args.color
+  if (args.single) {
+    css += `
+    .selected_effect_background .item_container.single_selected ${args.cls}.selected
+    {
+      background-color: ${bg_color} !important;
+    }`
+  }
 
-  css += `
-  .selected_effect_background .item_container.single_selected ${args.cls}.selected
-  {
-    background-color: ${bg} !important;
-  }`
-
-  bg = args.multiple ? bg_color : args.color
-
-  css += `
-  .selected_effect_background .item_container.multiple_selected ${args.cls}.selected
-  {
-    background-color: ${bg} !important;
-  }`
+  if (args.multiple) {
+    css += `
+    .selected_effect_background .item_container.multiple_selected ${args.cls}.selected
+    {
+      background-color: ${bg_color} !important;
+    }`
+  }
 
   return css
 }
@@ -589,9 +589,24 @@ App.insert_custom_css = () => {
 
 App.insert_effect_css = () => {
   let css = ``
+  let single
   let bg_color = App.get_setting(`text_color`)
   bg_color = App.colorlib.increase_alpha(bg_color, 0.66)
-  css += App.background_effect_css({color: bg_color, cls: `.item`})
+
+  if (App.get_setting(`background_color_active_mode`) !== `none`) {
+    single = false
+  }
+  else {
+    single = true
+  }
+
+  console.log(single)
+  css += App.background_effect_css({
+    color: bg_color,
+    cls: `.item`,
+    single: single,
+  })
+
   App.insert_css(`effect_css`, css)
 }
 
