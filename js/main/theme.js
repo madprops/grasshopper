@@ -554,9 +554,18 @@ App.background_effect_css = (args = {}) => {
     background-color: ${bg_color} !important;
   }`
 
+  let not_cls
+
+  if (args.not_cls) {
+    not_cls = `:not(${args.not_cls})`
+  }
+  else {
+    not_cls = ``
+  }
+
   if (args.single) {
     css += `
-    .selected_effect_background .item_container.single_selected ${args.cls}.selected
+    .selected_effect_background .item_container.single_selected ${args.cls}.selected${not_cls}
     {
       background-color: ${bg_color} !important;
     }`
@@ -564,7 +573,7 @@ App.background_effect_css = (args = {}) => {
 
   if (args.multiple) {
     css += `
-    .selected_effect_background .item_container.multiple_selected ${args.cls}.selected
+    .selected_effect_background .item_container.multiple_selected ${args.cls}.selected${not_cls}
     {
       background-color: ${bg_color} !important;
     }`
@@ -589,22 +598,19 @@ App.insert_custom_css = () => {
 
 App.insert_effect_css = () => {
   let css = ``
-  let single
+  let not_cls = ``
   let active = App.get_setting(`background_color_active_mode`)
   let bg_color = App.get_setting(`text_color`)
   bg_color = App.colorlib.increase_alpha(bg_color, 0.66)
 
   if ((active === `normal`) || (active === `everywhere`)) {
-    single = false
-  }
-  else {
-    single = true
+    not_cls += `.active_tab`
   }
 
   css += App.background_effect_css({
     color: bg_color,
     cls: `.item`,
-    single: single,
+    not_cls: not_cls,
   })
 
   App.insert_css(`effect_css`, css)

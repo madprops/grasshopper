@@ -170,10 +170,12 @@ App.focus_tab = async (args = {}) => {
   App.check_tab_first(args.item)
 
   if (args.select) {
+    args.item.active = true
+    App.check_tab_active(args.item)
+
     App.select_item({
       item: args.item,
       scroll: args.scroll,
-      no_class: args.no_selected_class,
     })
   }
 
