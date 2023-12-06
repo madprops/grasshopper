@@ -1,27 +1,8 @@
 const ColorLib = (function () {
-  function get_random_int (min, max, exclude = undefined, random_function) {
-    let num
 
-    if (random_function) {
-      num = Math.floor(random_function() * (max - min + 1) + min)
-    }
-    else {
-      num = Math.floor(Math.random() * (max - min + 1) + min)
-    }
-
-    if (exclude) {
-      if (num === exclude) {
-        if (num + 1 <= max) {
-          num = num + 1
-        }
-        else if (num - 1 >= min) {
-          num = num - 1
-        }
-      }
-    }
-
-    return num
-  }
+	function get_random_int (min, max) {
+		return Math.floor(Math.random() * (max - min + 1) + min)
+	}
 
   let num_instances = 0
 
@@ -41,19 +22,13 @@ const ColorLib = (function () {
       }
 
       let size = 64
-
       const canvas = document.createElement("canvas")
-
       canvas.width = size
       canvas.height = size
-
       const context = canvas.getContext("2d")
       context.imageSmoothingEnabled = false
-
       context.drawImage(image, 0, 0, size, size)
-
       const pixels = context.getImageData(0, 0, size, size).data
-
       const pixelArray = []
       const palette = []
 
@@ -93,8 +68,7 @@ const ColorLib = (function () {
 
         if (matchIndex === undefined) {
           pixelArray.push([red, green, blue, 1])
-        }
-        else {
+        } else {
           pixelArray[matchIndex][3]++
         }
       }
@@ -105,7 +79,6 @@ const ColorLib = (function () {
 
       for (let i = 0; i < Math.min(palette_size, pixelArray.length); i++) {
         let arr = [pixelArray[i][0], pixelArray[i][1], pixelArray[i][2]]
-
         palette.push(instance.check_array(arr))
       }
 
@@ -115,8 +88,7 @@ const ColorLib = (function () {
         if (palette[i] === undefined) {
           if (last_p === undefined) {
             palette[i] = [42, 42, 42]
-          }
-          else {
+          } else {
             palette[i] = last_p
           }
         }
@@ -139,51 +111,13 @@ const ColorLib = (function () {
 
       if (instance.is_light(rgb)) {
         new_rgb = instance.shadeBlendConvert(-amount, rgb)
-      }
-      else {
+      } else {
         new_rgb = instance.shadeBlendConvert(amount, rgb)
       }
 
 			if (mode === "rgb") {
 				return new_rgb
-			}
-      else {
-				return instance.rgb_to_hex(new_rgb)
-			}
-    }
-
-    instance.get_darker = function (rgb, amount = 0.2) {
-			let mode = "rgb"
-
-			if (rgb.startsWith("#")) {
-				mode = "hex"
-				rgb = instance.hex_to_rgb(rgb)
-			}
-
-			let new_rgb = instance.shadeBlendConvert(-amount, rgb)
-
-			if (mode === "rgb") {
-				return new_rgb
-			}
-      else {
-				return instance.rgb_to_hex(new_rgb)
-			}
-    }
-
-    instance.get_lighter = function (rgb, amount = 0.2) {
-			let mode = "rgb"
-
-			if (rgb.startsWith("#")) {
-				mode = "hex"
-				rgb = instance.hex_to_rgb(rgb)
-			}
-
-			let new_rgb = instance.shadeBlendConvert(amount, rgb)
-
-			if (mode === "rgb") {
-				return new_rgb
-			}
-      else {
+			} else {
 				return instance.rgb_to_hex(new_rgb)
 			}
     }
@@ -204,8 +138,7 @@ const ColorLib = (function () {
       let c = uicolors.map(c => {
         if (c <= 0.03928) {
           return c / 12.92
-        }
-        else {
+        } else {
           return Math.pow((c + 0.055) / 1.055, 2.4)
         }
       })
@@ -222,8 +155,7 @@ const ColorLib = (function () {
     instance.get_proper_font = function (rgb) {
       if (instance.is_light(rgb)) {
         return "#000000"
-      }
-      else {
+      } else {
         return "#ffffff"
       }
     }
@@ -237,8 +169,7 @@ const ColorLib = (function () {
         for (let i = 0; i < array.length; i++) {
           rgb[i] = `rgb(${array[i][0]}, ${array[i][1]}, ${array[i][2]})`
         }
-      }
-      else {
+      } else {
         rgb = `rgb(${array[0]}, ${array[1]}, ${array[2]})`
       }
 
@@ -258,8 +189,7 @@ const ColorLib = (function () {
             .split(",")
           array[i] = split.map(x => parseInt(x))
         }
-      }
-      else {
+      } else {
         let split = rgb
           .replace("rgb(", "")
           .replace(")", "")
@@ -270,9 +200,48 @@ const ColorLib = (function () {
       return array
     }
 
+    instance.rgba_to_array = function (rgba) {
+      let array
+
+      if (Array.isArray(rgba)) {
+        array = []
+
+        for (let i = 0; i < rgba.length; i++) {
+          let split = rgba[i]
+            .replace("rgba(", "")
+            .replace(")", "")
+            .split(",")
+          array[i] = split.map(x => parseInt(x))
+        }
+      } else {
+        let split = rgba
+          .replace("rgba(", "")
+          .replace(")", "")
+          .split(",")
+        array = split.map(x => parseInt(x))
+      }
+
+      return array
+    }
+
+    instance.increase_alpha = function (rgba, amount = 0.2) {
+      let array
+
+      if (rgba.startsWith("rgb(")) {
+        array = instance.rgb_to_array(rgba)
+        array.push(1)
+      }
+      else {
+        array = instance.rgba_to_array(rgba)
+      }
+
+      return `rgba(${array[0]}, ${array[1]}, ${array[2]}, ${array[3] - amount})`
+    }
+
     instance.rgb_to_rgba = function (rgb, alpha) {
-      if (rgb.startsWith("rgba(")) {
-        return rgb
+      if (rgba.startsWith("rgba(")) {
+        let array = instance.rgba_to_array(rgba)
+        return `rgba(${array[0]}, ${array[1]}, ${array[2]}, ${alpha})`
       }
 
       let split = rgb
@@ -280,20 +249,18 @@ const ColorLib = (function () {
         .replace(")", "")
         .split(",")
 
-      return `rgba(${split[0].trim()}, ${split[1].trim()}, ${split[2].trim()}, ${alpha})`
+      let rgba = `rgba(${split[0].trim()}, ${split[1].trim()}, ${split[2].trim()}, ${alpha})`
+      return rgba
     }
 
     instance.rgba_to_rgb = function (rgb) {
-      if (rgb.startsWith("rgb(")) {
-        return rgb
-      }
-
       let split = rgb
         .replace("rgba(", "")
         .replace(")", "")
         .split(",")
 
-      return `rgb(${split[0].trim()}, ${split[1].trim()}, ${split[2].trim()})`
+      let nrgb = `rgb(${split[0].trim()}, ${split[1].trim()}, ${split[2].trim()})`
+      return nrgb
     }
 
     instance.rgb_to_hex = function (rgb, hash = true) {
@@ -338,8 +305,7 @@ const ColorLib = (function () {
       for (let i = 0; i < array.length; i++) {
         if (array[i] < 0) {
           array[i] = 0
-        }
-        else if (array[i] > 255) {
+        } else if (array[i] > 255) {
           array[i] = 255
         }
       }
@@ -377,8 +343,7 @@ const ColorLib = (function () {
               (RGB[1] = i(d[1])),
               (RGB[2] = i(d[2])),
               (RGB[3] = d[3] ? parseFloat(d[3]) : -1)
-          }
-          else {
+          } else {
             if (l == 8 || l == 6 || l < 4) return null // ErrorCheck
             if (l < 6)
               d =
@@ -418,8 +383,7 @@ const ColorLib = (function () {
         f = this.sbcRip(from),
         t = this.sbcRip(to)
       if (!f || !t) return null // ErrorCheck
-
-      if (h) {
+      if (h)
         return (
           "rgb(" +
           r((t[0] - f[0]) * p + f[0]) +
@@ -437,8 +401,7 @@ const ColorLib = (function () {
                 : t[3]) +
               ")")
         )
-      }
-      else {
+      else
         return (
           "#" +
           (
@@ -458,7 +421,6 @@ const ColorLib = (function () {
             .toString(16)
             .slice(f[3] > -1 || t[3] > -1 ? 1 : 3)
         )
-      }
     }
 
     instance.lab2rgb = function (lab) {
@@ -552,23 +514,19 @@ const ColorLib = (function () {
                          (a[3] - b[3]) * (a[3] - b[3]) ) / ( 256 * Math.sqrt(4) ))
     }
 
-    instance.get_dark_color = function (rand) {
+    instance.get_dark_color = function () {
       let n = 55
 
       return instance.rgb_to_hex([
-        get_random_int(0, n, undefined, rand),
-        get_random_int(0, n, undefined, rand),
-        get_random_int(0, n, undefined, rand),
+        get_random_int(0, n), get_random_int(0, n), get_random_int(0, n)
       ])
     }
 
-    instance.get_light_color = function (rand) {
+    instance.get_light_color = function () {
       let n = 55
 
       return instance.rgb_to_hex([
-        255 - get_random_int(0, n, undefined, rand),
-        255 - get_random_int(0, n, undefined, rand),
-        255 - get_random_int(0, n, undefined, rand),
+        255 - get_random_int(0, n), 255 - get_random_int(0, n), 255 - get_random_int(0, n)
       ])
     }
 
