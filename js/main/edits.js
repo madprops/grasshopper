@@ -39,6 +39,11 @@ App.check_tab_session = async (items = []) => {
   for (let item of items) {
     for (let key in App.edit_props) {
       let value = await browser.sessions.getTabValue(item.id, `custom_${key}`)
+
+      if (value === undefined) {
+        value = App.edit_default(key)
+      }
+
       App.apply_edit({what: key, item: item, value: value})
     }
   }
