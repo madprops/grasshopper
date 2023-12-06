@@ -115,7 +115,6 @@ App.apply_color_mode = (item) => {
       el.classList.remove(`hidden`)
     }
     else {
-      el.textContent = ``
       el.classList.add(`hidden`)
     }
 
