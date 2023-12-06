@@ -61,9 +61,9 @@ App.stor_get_settings = async () => {
   App.debug(`Stor: Got settings`)
 }
 
-App.stor_save_settings = () => {
+App.stor_save_settings = async () => {
   App.debug(`Stor: Saving settings`)
-  App.save_local_storage(App.stor_settings_name, App.settings)
+  await App.save_local_storage(App.stor_settings_name, App.settings)
 }
 
 App.stor_get_command_history = async () => {

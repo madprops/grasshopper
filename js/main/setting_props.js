@@ -886,6 +886,7 @@ App.build_settings = () => {
       name: `Show Tab Box`,
       type: `checkbox`,
       value: false,
+      no_mirror: true,
       info: `Enable or disable the Tab Box`,
       version: 3,
     },
@@ -998,6 +999,7 @@ App.build_settings = () => {
       name: `Tab Box Taglist`,
       type: `checkbox`,
       value: true,
+      no_mirror: true,
       info: `Enable the Taglist in the items of the Tab Box`,
       version: 1,
     },
@@ -2397,6 +2399,15 @@ App.build_settings = () => {
       value: true,
       actions: [`theme`],
       info: `Show icons next to the text on the buttons, like on the Main Menu or Settings`,
+      version: 1,
+    },
+    mirror_settings: {
+      name: `Mirror Settings`,
+      type: `checkbox`,
+      value: true,
+      actions: [`theme`],
+      info: `Sync / mirror settings between instances
+      For example, making a change in the popup triggers a reload in the sidebar`,
       version: 1,
     },
     item_pointer: {

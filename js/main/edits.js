@@ -22,15 +22,6 @@ App.edit_props = {
   },
 }
 
-App.setup_edits = () => {
-  browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === `tab_edited`) {
-      let item = App.get_item_by_id(`tabs`, message.id)
-      App.check_tab_session([item])
-    }
-  })
-}
-
 App.check_tab_session = async (items = []) => {
   if (!items.length) {
     items = App.get_items(`tabs`)

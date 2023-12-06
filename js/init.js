@@ -27,7 +27,7 @@ App.init = async () => {
   App.setup_scroll()
   App.setup_items()
   App.setup_theme()
-  App.setup_edits()
+  App.setup_messages()
   App.setup_mouse()
   App.do_apply_theme()
   App.setup_pinline()

@@ -402,8 +402,12 @@ App.run_setting_setups = (category) => {
 }
 
 App.setup_settings = () => {
-  App.save_settings_debouncer = App.create_debouncer(() => {
-    App.stor_save_settings()
+  App.save_settings_debouncer = App.create_debouncer(async (mirror = false) => {
+    await App.stor_save_settings()
+
+    if (mirror) {
+      App.mirror_settings()
+    }
   }, App.settings_save_delay)
 
   App.settings_categories = Object.keys(App.setting_catprops)
@@ -759,8 +763,10 @@ App.get_setting = (setting) => {
 
 App.set_setting = (setting, value, do_action = true) => {
   if (App.str(App.settings[setting].value) !== App.str(value)) {
+    let props = App.setting_props[setting]
     App.settings[setting].value = value
-    App.save_settings_debouncer.call()
+    let mirror = !props.no_mirror
+    App.save_settings_debouncer.call(mirror)
 
     if (do_action) {
       let props = App.setting_props[setting]
@@ -1411,4 +1417,11 @@ App.get_setting_addlist_objects = () => {
   }
 
   return popobj, regobj
+}
+
+App.mirror_settings = async () => {
+  try {
+    await browser.runtime.sendMessage({action: `mirror_settings`})
+  }
+  catch (err) {}
 }
