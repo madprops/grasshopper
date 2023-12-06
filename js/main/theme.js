@@ -364,6 +364,13 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`favorites_bar_color`, `unset`)
     }
 
+    if (App.get_setting(`favorites_autohide`)) {
+      main.classList.add(`favorites_autohide`)
+    }
+    else {
+      main.classList.remove(`favorites_autohide`)
+    }
+
     App.insert_effect_css()
     App.insert_tab_color_css()
     App.insert_color_css()

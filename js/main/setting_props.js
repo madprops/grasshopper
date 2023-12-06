@@ -1085,6 +1085,13 @@ App.build_settings = () => {
       info: `If favorites mode is left or right, make them stick near the top edge`,
       version: 1,
     },
+    favorites_autohide: {
+      name: `Favorites Autohide`,
+      type: `checkbox`,
+      value: false,
+      info: `Autohide the Favorites Bar when on left or right mode`,
+      version: 1,
+    },
   }
 
   add_props()

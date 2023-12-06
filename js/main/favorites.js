@@ -14,6 +14,7 @@ App.create_favorites_bar = (mode) => {
   }
 
   let favmode = App.get_setting(`favorites_mode`)
+  let container = DOM.create(`div`, `favorites_bar_container`, `favorites_bar_container_${mode}`)
   let el = DOM.create(`div`, `favorites_bar`, `favorites_bar_${mode}`)
   el.title = App.favorites_title
 
@@ -35,7 +36,8 @@ App.create_favorites_bar = (mode) => {
     App.show_favorites_menu(e)
   })
 
-  return el
+  container.append(el)
+  return container
 }
 
 App.create_favorites_button = (mode) => {
@@ -55,14 +57,7 @@ App.fill_favorites_bar = (mode) => {
     return
   }
 
-  let bar = DOM.el(`#item_top_bar_${mode}`)
   let favs = App.get_favorites()
-
-  if (!favs.length) {
-    bar.classList.add(`hidden`)
-    return
-  }
-
   let c = DOM.el(`#favorites_bar_${mode}`)
   c.innerHTML = ``
 
@@ -108,8 +103,6 @@ App.fill_favorites_bar = (mode) => {
     some_cmds = true
     c.append(btn)
   }
-
-  bar.classList.remove(`hidden`)
 }
 
 App.show_favorites_menu = (e) => {
