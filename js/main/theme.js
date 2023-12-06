@@ -531,9 +531,7 @@ App.apply_background_effects = (effect, tiles) => {
 }
 
 App.background_effect_css = (color, cls, single, multiple) => {
-  let contrast = App.get_setting(`background_effect_contrast`) / 100
-  let bg_color = App.colorlib.increase_alpha(color, contrast)
-  console.log(color, bg_color)
+  let bg_color = App.colorlib.increase_alpha(color, 0.15)
 
   let css = `
   .hover_effect_background .item_container ${cls}:hover,
@@ -580,7 +578,8 @@ App.insert_custom_css = () => {
 
 App.insert_effect_css = () => {
   let css = ``
-  let bg_color = App.get_setting(`background_color`)
+  let bg_color = App.get_setting(`text_color`)
+  bg_color = App.colorlib.increase_alpha(bg_color, 0.66)
   css += App.background_effect_css(bg_color, `.item`, true, true)
   App.insert_css(`effect_css`, css)
 }

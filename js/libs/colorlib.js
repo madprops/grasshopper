@@ -210,14 +210,14 @@ const ColorLib = (function () {
             .replace("rgba(", "")
             .replace(")", "")
             .split(",")
-          array[i] = split.map(x => parseInt(x))
+          array[i] = split.map(x => parseFloat(x))
         }
       } else {
         let split = rgba
           .replace("rgba(", "")
           .replace(")", "")
           .split(",")
-        array = split.map(x => parseInt(x))
+        array = split.map(x => parseFloat(x))
       }
 
       return array
@@ -234,7 +234,9 @@ const ColorLib = (function () {
         array = instance.rgba_to_array(rgba)
       }
 
-      return `rgba(${array[0]}, ${array[1]}, ${array[2]}, ${array[3] - amount})`
+      let new_alpha = Math.max(0, (array[3] - amount))
+      new_alpha = Math.min(1, new_alpha)
+      return `rgba(${array[0]}, ${array[1]}, ${array[2]}, ${new_alpha})`
     }
 
     instance.rgb_to_rgba = function (rgb, alpha) {

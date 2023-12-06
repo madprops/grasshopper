@@ -192,18 +192,6 @@ App.build_settings = () => {
       info: `Where to save bookmarks`,
       version: 1,
     },
-    background_effect_contrast: {
-      name: `BG Effect Contrast`,
-      type: `number`,
-      value: 15,
-      placeholder: `Number`,
-      min: 0,
-      max: 100,
-      info: `How strong is the contrast of the background effect
-      Like on hover or selected items
-      Percentage, from 0 to 100`,
-      version: 2,
-    },
     fetch_favicons: {
       name: `Fetch Favicons`,
       type: `checkbox`,
