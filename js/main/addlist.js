@@ -223,7 +223,7 @@ Addlist.register = (args = {}) => {
       let color = DOM.create(`div`, `addlist_color`)
 
       App[`addlist_color_${args.id}_${key}`] = AColorPicker.createPicker(color, {
-        showAlpha: true,
+        showAlpha: false,
         showHSL: false,
         showRGB: true,
         showHEX: true,
@@ -720,7 +720,7 @@ Addlist.get_value = (key) => {
   }
   else if (w === `color`) {
     let picker = App[`addlist_color_${id}_${key}`]
-    value = AColorPicker.parseColor(picker.color, `rgbacss`)
+    value = AColorPicker.parseColor(picker.color, `rgbcss`)
   }
 
   return value
