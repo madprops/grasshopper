@@ -1087,7 +1087,7 @@ App.build_settings = () => {
       info: `Background color of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     favorites_sidetop: {
@@ -1517,7 +1517,7 @@ App.build_settings = () => {
       info: `Custom text color for Header Tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_header_mode: {
@@ -1538,7 +1538,7 @@ App.build_settings = () => {
       info: `Custom background color for Header Tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_subheader_mode: {
@@ -1559,7 +1559,7 @@ App.build_settings = () => {
       info: `Custom text color for Subheader Tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_subheader_mode: {
@@ -1580,7 +1580,7 @@ App.build_settings = () => {
       info: `Custom background color for Subheader Tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     header_action: {
@@ -1681,7 +1681,7 @@ App.build_settings = () => {
       info: `Custom text color for active tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_active_mode: {
@@ -1702,7 +1702,7 @@ App.build_settings = () => {
       info: `Custom background color for active tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_playing_mode: {
@@ -1723,7 +1723,7 @@ App.build_settings = () => {
       info: `Custom text color for playing tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_playing_mode: {
@@ -1744,7 +1744,7 @@ App.build_settings = () => {
       info: `Custom background color for playing tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_unread_mode: {
@@ -1765,7 +1765,7 @@ App.build_settings = () => {
       info: `Custom text color for unread tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_unread_mode: {
@@ -1786,7 +1786,7 @@ App.build_settings = () => {
       info: `Custom background color for unread tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_unloaded_mode: {
@@ -1807,7 +1807,7 @@ App.build_settings = () => {
       info: `Custom text color for unloaded tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_unloaded_mode: {
@@ -1828,7 +1828,7 @@ App.build_settings = () => {
       info: `Custom background color for unloaded tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_loaded_mode: {
@@ -1849,7 +1849,7 @@ App.build_settings = () => {
       info: `Custom text color for loaded tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_loaded_mode: {
@@ -1870,7 +1870,7 @@ App.build_settings = () => {
       info: `Custom background color for loaded tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_pinned_mode: {
@@ -1891,7 +1891,7 @@ App.build_settings = () => {
       info: `Custom text color for pins`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_pinned_mode: {
@@ -1912,7 +1912,7 @@ App.build_settings = () => {
       info: `Custom background color for pins`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_normal_mode: {
@@ -1933,7 +1933,7 @@ App.build_settings = () => {
       info: `Custom text color for normal tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_normal_mode: {
@@ -1954,7 +1954,7 @@ App.build_settings = () => {
       info: `Custom background color for normal tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     color_icon_click: {
