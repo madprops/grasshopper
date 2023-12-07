@@ -593,8 +593,6 @@ App.insert_color_css = () => {
     css += `.text_color_${color.id} {
       color: var(--color_${color.id});
     }`
-
-    console.log(css)
   }
 
   App.insert_css(`color_css`, css)
