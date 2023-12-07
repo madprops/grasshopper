@@ -1281,7 +1281,7 @@ App.setup_settings_addlist = () => {
       },
       labels: {
         name: `Name`,
-        value: `Color Value`,
+        value: `Value`,
         text: `Text`
       },
       list_icon: (items) => {
