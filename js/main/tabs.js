@@ -250,7 +250,7 @@ App.refresh_tab = async (args = {}) => {
   }
 
   if (args.select && item.visible) {
-    App.select_item({item: item, scroll: `nearest`})
+    App.select_item({item: item, scroll: `nearest_smooth`})
   }
 
   return item
