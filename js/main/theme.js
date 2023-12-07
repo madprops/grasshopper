@@ -63,19 +63,27 @@ App.do_apply_theme = (args = {}) => {
 
     App.set_css_var(`background_color`, args.background_color)
     App.set_css_var(`text_color`, args.text_color)
+
     let bg_opacity = App.get_setting(`background_opacity`) / 100
+
     let main_background = App.opacity(args.background_color, bg_opacity)
     App.set_css_var(`main_background`, main_background)
+
     let slight_shade = App.opacity(args.text_color, 0.1)
     App.set_css_var(`slight_shade`, slight_shade)
+
     let alt_color_0 = App.opacity(args.text_color, 0.15)
     App.set_css_var(`alt_color_0`, alt_color_0)
+
     let alt_color_1 = App.opacity(args.text_color, 0.20)
     App.set_css_var(`alt_color_1`, alt_color_1)
+
     let alt_color_2 = App.opacity(args.text_color, 0.50)
     App.set_css_var(`alt_color_2`, alt_color_2)
+
     let text_color_darker = App.contrast(args.text_color, 0.2)
     App.set_css_var(`text_color_darker`, text_color_darker)
+
     let overlay_color = App.opacity(args.background_color, 0.6)
     App.set_css_var(`overlay_color`, overlay_color)
 
@@ -84,10 +92,13 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
+
     let w = `${(App.get_setting(`width`) / 100) * App.popup_width}px`
     App.set_css_var(`width`, w)
+
     let h = `${(App.get_setting(`height`) / 100) * App.popup_height}px`
     App.set_css_var(`height`, h)
+
     let item_padding = 0.42
     let height_diff = 0.15
     let item_height = App.get_setting(`item_height`)
@@ -214,6 +225,7 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`icon_size`, `${icon_size}rem`)
+
     let tbh_rem = 12.2
     let tbh_diff = 3.5
 
@@ -266,6 +278,7 @@ App.do_apply_theme = (args = {}) => {
     }
 
     main.classList.add(`icon_effect_${ie}`)
+
     let font = App.get_setting(`font`)
     let font_str = `sans-serif`
 
@@ -285,6 +298,7 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`font`, font_str)
+
     let scv
 
     if (App.get_setting(`split_color_enabled`)) {
@@ -295,6 +309,7 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`split_color`, scv)
+
     let sw = App.get_setting(`split_width`)
 
     if (App.get_setting(`split_padding`)) {
@@ -305,6 +320,7 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`split_width`, `${sw}px`)
+
     let split_sides = [`left`, `right`, `both`]
 
     for (let side of split_sides) {
@@ -313,6 +329,7 @@ App.do_apply_theme = (args = {}) => {
 
     let split_side = App.get_setting(`split_side`)
     main.classList.add(`split_side_${split_side}`)
+
     let close_btns = [`none`, `left`, `right`]
 
     for (let cb of close_btns) {
