@@ -1082,7 +1082,7 @@ App.build_settings = () => {
       info: `Background color of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     favorites_bar_double_click: {
