@@ -446,6 +446,10 @@ App.get_color_icon = (item) => {
     cls += ` effect`
   }
 
+  if (App.get_setting(`color_mode`).includes(`background`)) {
+    cls += ` grower`
+  }
+
   let icon = DOM.create(`div`, `color_icon_container item_node hidden${cls}`)
   item.element.append(icon)
 }
