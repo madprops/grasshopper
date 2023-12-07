@@ -350,12 +350,14 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`header_icon_pick`)
     }
 
-    if (App.get_setting(`favorites_sidetop`)) {
-      main.classList.add(`favorites_sidetop`)
+    let favgravs = [`top`, `center`, `bottom`]
+
+    for (let grav of favgravs) {
+      main.classList.remove(`favorites_gravity_${grav}`)
     }
-    else {
-      main.classList.remove(`favorites_sidetop`)
-    }
+
+    let grav = App.get_setting(`favorites_gravity`)
+    main.classList.add(`favorites_gravity_${grav}`)
 
     if (App.get_setting(`favorites_bar_color_enabled`)) {
       App.set_css_var(`favorites_bar_color`, App.get_setting(`favorites_bar_color`))

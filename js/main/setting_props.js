@@ -897,6 +897,7 @@ App.build_settings = () => {
       name: `Tab Box Size`,
       type: `menu`,
       value: `normal`,
+      no_mirror: true,
       info: `The size of the Tab Box`,
       version: 1,
       setup: (key) => {
@@ -907,6 +908,7 @@ App.build_settings = () => {
       name: `Tab Box Position`,
       type: `menu`,
       value: `bottom`,
+      no_mirror: true,
       info: `The position of the Tab Box`,
       version: 1,
       setup: (key) => {
@@ -1105,25 +1107,26 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    favorites_sidetop: {
-      name: `Favorites Sidetop`,
-      type: `checkbox`,
-      value: true,
-      info: `If favorites mode is left or right, make them stick near the top edge`,
+    favorites_gravity: {
+      name: `Favorites Gravity`,
+      type: `menu`,
+      value: `top`,
+      info: `Gravity of the items in side modes of the favorites bar
+      Either make them stick to the top, center, or bottom`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Top`, value: `top`},
+          {text: `Center`, value: `center`},
+          {text: `Bottom`, value: `bottom`},
+        ])
+      },
     },
     favorites_autohide: {
       name: `Favorites Autohide`,
       type: `checkbox`,
       value: false,
       info: `Autohide the Favorites Bar when on left or right mode`,
-      version: 1,
-    },
-    favorites_branding: {
-      name: `Favorites Branding`,
-      type: `checkbox`,
-      value: false,
-      info: `Show some  text on the bottom of side favorite bars`,
       version: 1,
     },
   }
