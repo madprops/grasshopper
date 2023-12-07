@@ -221,7 +221,7 @@ App.media_modes = [
   {text: `On Item Click`, value: `item`},
 ]
 
-App.favorites_title = `Favorites. You can edit this in the Menu settings`
+App.favorites_title = `Favorites`
 
 App.filter_whats = [
   `title`,
