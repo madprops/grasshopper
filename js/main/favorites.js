@@ -183,6 +183,16 @@ App.show_favorites_menu = (e) => {
     name: `favorites_menu`,
   })
 
+  App.sep(items)
+
+  items.push({
+    icon: App.heart_icon,
+    text: `Settings`,
+    action: () => {
+      App.show_settings_category(`favorites`)
+    },
+  })
+
   App.show_context({items: items, e: e})
 }
 
