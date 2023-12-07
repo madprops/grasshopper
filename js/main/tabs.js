@@ -157,7 +157,6 @@ App.focus_tab = async (args = {}) => {
     method: `normal`,
     show_tabs: false,
     scroll: `center`,
-    select: true,
   }
 
   App.def_args(def_args, args)
