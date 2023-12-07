@@ -1309,17 +1309,6 @@ a:hover
   flex-direction: column;
 }
 
-.favorites_autohide .favorites_bar.fav_left,
-.favorites_autohide .favorites_bar.fav_right
-{
-  display: none;
-}
-
-.favorites_autohide .favorites_bar_container:hover .favorites_bar
-{
-  display: flex;
-}
-
 .favorites_bar_item {
   height: 1.5rem;
   flex-shrink: 0;

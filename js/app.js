@@ -82,9 +82,11 @@ App.domain_rules_ready = false
 
 App.empty_previous_tabs_delay = 2000
 App.alert_autohide_delay = 1500
-App.tab_box_shrink_delay = 350
-App.settings_save_delay = 50
 App.tab_box_grow_delay = 50
+App.tab_box_shrink_delay = 500
+App.favorites_bar_show_delay = 50
+App.favorites_bar_hide_delay = 500
+App.settings_save_delay = 50
 App.filter_delay_2 = 50
 App.footer_delay = 50
 App.scroller_delay = 50

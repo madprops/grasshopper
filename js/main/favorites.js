@@ -1,3 +1,13 @@
+App.setup_favorites = () => {
+  App.favorites_bar_show_debouncer = App.create_debouncer((mode) => {
+    App.do_favorites_bar_show(mode)
+  }, App.favorites_bar_show_delay)
+
+  App.favorites_bar_hide_debouncer = App.create_debouncer((mode) => {
+    App.do_favorites_bar_hide(mode)
+  }, App.favorites_bar_hide_delay)
+}
+
 App.favorites_bar_active = () => {
   let favmode = App.get_setting(`favorites_mode`)
 
@@ -24,8 +34,15 @@ App.create_favorites_bar = (mode) => {
   }
 
   let favmode = App.get_setting(`favorites_mode`)
+  let autohide = App.get_setting(`favorites_autohide`)
   let container = DOM.create(`div`, `favorites_bar_container`, `favorites_bar_container_${mode}`)
-  let el = DOM.create(`div`, `favorites_bar`, `favorites_bar_${mode}`)
+  let cls = `favorites_bar`
+
+  if (autohide) {
+    cls += ` hidden`
+  }
+
+  let el = DOM.create(`div`, cls, `favorites_bar_${mode}`)
   el.title = App.favorites_title
 
   if (favmode === `top`) {
@@ -55,6 +72,18 @@ App.create_favorites_bar = (mode) => {
       App.favorites_middle_click(e)
     }
   })
+
+  if (autohide) {
+    DOM.ev(container, `mouseenter`, () => {
+      App.clear_favorite_bar_autohide()
+      App.favorites_bar_show_debouncer.call(mode)
+    })
+
+    DOM.ev(container, `mouseleave`, () => {
+      App.clear_favorite_bar_autohide()
+      App.favorites_bar_hide_debouncer.call(mode)
+    })
+  }
 
   container.append(el)
   return container
@@ -209,4 +238,19 @@ App.favorites_middle_click = (e) => {
 
     App.run_command(args)
   }
+}
+
+App.do_favorites_bar_show = (mode) => {
+  let bar = DOM.el(`#favorites_bar_${mode}`)
+  bar.classList.remove(`hidden`)
+}
+
+App.do_favorites_bar_hide = (mode) => {
+  let bar = DOM.el(`#favorites_bar_${mode}`)
+  bar.classList.add(`hidden`)
+}
+
+App.clear_favorite_bar_autohide = () => {
+  App.favorites_bar_show_debouncer.cancel()
+  App.favorites_bar_hide_debouncer.cancel()
 }
