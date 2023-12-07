@@ -1997,7 +1997,7 @@ App.build_settings = () => {
       placeholder: `Opacity`,
       min: 0,
       max: 100,
-      info: `Opacity to use on the background of color items like red or blue
+      info: `Opacity to use on the background of colored items
       A lower number means more transparent`,
       version: 1,
     },
