@@ -1078,7 +1078,7 @@ App.build_settings = () => {
       name: `Favorites Bar Color`,
       hide_name: true,
       type: `color`,
-      value: `rgb(102, 204, 0)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Background color of the Favorites Bar`,
       version: 1,
       setup: (key) => {
@@ -1521,7 +1521,7 @@ App.build_settings = () => {
       name: `Split Color`,
       hide_name: true,
       type: `color`,
-      value: `rgb(102, 204, 0)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `The color of the splits between tabs`,
       version: 1,
       setup: (key) => {
@@ -1542,7 +1542,7 @@ App.build_settings = () => {
       name: `Header Text Color`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom text color for Header Tabs`,
       version: 1,
       setup: (key) => {
@@ -1563,7 +1563,7 @@ App.build_settings = () => {
       name: `Header Background Color`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom background color for Header Tabs`,
       version: 1,
       setup: (key) => {
@@ -1584,7 +1584,7 @@ App.build_settings = () => {
       name: `Subheader Text Color`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom text color for Subheader Tabs`,
       version: 1,
       setup: (key) => {
@@ -1605,7 +1605,7 @@ App.build_settings = () => {
       name: `Subheader Background Color`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom background color for Subheader Tabs`,
       version: 1,
       setup: (key) => {
@@ -1673,10 +1673,10 @@ App.build_settings = () => {
       name: `Colors`,
       type: `list`,
       value: [
-        {_id_: `red`, name: `Red`, value: `rgb(255, 0, 153)`, text: `rgb(255, 255, 255)`},
-        {_id_: `green`, name: `Green`, value: `rgb(102, 204, 0)`, text: `rgb(255, 255, 255)`},
-        {_id_: `blue`, name: `Blue`, value: `rgb(0, 153, 255)`, text: `rgb(255, 255, 255)`},
-        {_id_: `yellow`, name: `Yellow`, value: `rgb(255, 153, 0)`, text: `rgb(255, 255, 255)`},
+        {_id_: `red`, name: `Red`, value: `rgba(255, 0, 153, 1)`, text: `rgba(255, 255, 255, 1)`},
+        {_id_: `green`, name: `Green`, value: `rgba(102, 204, 0, 1)`, text: `rgba(255, 255, 255, 1)`},
+        {_id_: `blue`, name: `Blue`, value: `rgba(0, 153, 255, 1)`, text: `rgba(255, 255, 255, 1)`},
+        {_id_: `yellow`, name: `Yellow`, value: `rgba(255, 153, 0, 1)`, text: `rgba(255, 255, 255, 1)`},
       ],
       actions: [`theme`, `commands`],
       info: `The list of colors that you can assign to items`,
@@ -1706,7 +1706,7 @@ App.build_settings = () => {
       name: `Active Tabs (Text)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom text color for active tabs`,
       version: 1,
       setup: (key) => {
@@ -1727,7 +1727,7 @@ App.build_settings = () => {
       name: `Active Tabs (Background)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom background color for active tabs`,
       version: 1,
       setup: (key) => {
@@ -1748,7 +1748,7 @@ App.build_settings = () => {
       name: `Playing Tabs (Text)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom text color for playing tabs`,
       version: 1,
       setup: (key) => {
@@ -1769,7 +1769,7 @@ App.build_settings = () => {
       name: `Playing Tabs (Background)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom background color for playing tabs`,
       version: 1,
       setup: (key) => {
@@ -1790,7 +1790,7 @@ App.build_settings = () => {
       name: `Unread Tabs (Text)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom text color for unread tabs`,
       version: 1,
       setup: (key) => {
@@ -1811,7 +1811,7 @@ App.build_settings = () => {
       name: `Unread Tabs (Background)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom background color for unread tabs`,
       version: 1,
       setup: (key) => {
@@ -1832,7 +1832,7 @@ App.build_settings = () => {
       name: `Unloaded Tabs (Text)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom text color for unloaded tabs`,
       version: 1,
       setup: (key) => {
@@ -1853,7 +1853,7 @@ App.build_settings = () => {
       name: `Unloaded Tabs (Background)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom background color for unloaded tabs`,
       version: 1,
       setup: (key) => {
@@ -1874,7 +1874,7 @@ App.build_settings = () => {
       name: `Loaded Tabs (Text)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom text color for loaded tabs`,
       version: 1,
       setup: (key) => {
@@ -1895,7 +1895,7 @@ App.build_settings = () => {
       name: `Loaded Tabs (Background)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom background color for loaded tabs`,
       version: 1,
       setup: (key) => {
@@ -1916,7 +1916,7 @@ App.build_settings = () => {
       name: `Pinned Tabs (Text)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom text color for pins`,
       version: 1,
       setup: (key) => {
@@ -1937,7 +1937,7 @@ App.build_settings = () => {
       name: `Pinned Tabs (Background)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom background color for pins`,
       version: 1,
       setup: (key) => {
@@ -1958,7 +1958,7 @@ App.build_settings = () => {
       name: `Normal Tabs (Text)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom text color for normal tabs`,
       version: 1,
       setup: (key) => {
@@ -1979,7 +1979,7 @@ App.build_settings = () => {
       name: `Normal Tabs (Background)`,
       hide_name: true,
       type: `color`,
-      value: `rgb(100, 100, 100)`,
+      value: `rgba(100, 100, 100, 1)`,
       info: `Custom background color for normal tabs`,
       version: 1,
       setup: (key) => {
