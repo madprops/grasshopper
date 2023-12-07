@@ -627,9 +627,16 @@ App.insert_tab_color_css = () => {
     if (bg_color) {
       let alpha = App.colorlib.rgb_to_rgba(bg_color, opacity)
 
-      css += `.tab_background_color_${type} {
-        background-color: ${alpha};
-      }`
+      if (type === `active`) {
+        css += `.tab_background_color_${type} {
+          background-color: ${alpha} !important;
+        }`
+      }
+      else {
+        css += `.tab_background_color_${type} {
+          background-color: ${alpha};
+        }`
+      }
     }
   }
 
