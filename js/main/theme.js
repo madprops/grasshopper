@@ -376,7 +376,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`favorites_autohide`)
     }
 
-    App.insert_effect_css()
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_custom_css()
@@ -542,50 +541,6 @@ App.apply_background_effects = (effect, tiles) => {
   }
 }
 
-App.background_effect_css = (args = {}) => {
-  let def_args = {
-    single: true,
-    multiple: true,
-  }
-
-  App.def_args(def_args, args)
-  let bg_color = App.colorlib.increase_alpha(args.color, 0.15)
-  let not_cls
-
-  if (args.not_cls) {
-    not_cls = `:not(${args.not_cls})`
-  }
-  else {
-    not_cls = ``
-  }
-
-  let css = `
-  .hover_effect_background .item_container ${args.cls}${not_cls}:hover,
-  .tab_box_hover_effect_background #tab_box_container ${args.cls}${not_cls}:hover,
-  .tab_box_active_effect_background #tab_box_container ${args.cls}.active_tab
-  {
-    background-color: ${bg_color} !important;
-  }`
-
-  if (args.single) {
-    css += `
-    .selected_effect_background .item_container.single_selected ${args.cls}${not_cls}.selected
-    {
-      background-color: ${bg_color} !important;
-    }`
-  }
-
-  if (args.multiple) {
-    css += `
-    .selected_effect_background .item_container.multiple_selected ${args.cls}${not_cls}.selected
-    {
-      background-color: ${bg_color} !important;
-    }`
-  }
-
-  return css
-}
-
 App.insert_css = (name, css) => {
   for (let style of DOM.els(`.${name}`)) {
     style.remove()
@@ -598,26 +553,6 @@ App.insert_css = (name, css) => {
 
 App.insert_custom_css = () => {
   App.insert_css(`custom_css`, App.get_setting(`custom_css`))
-}
-
-App.insert_effect_css = () => {
-  let css = ``
-  let not_cls = ``
-  let active = App.get_setting(`background_color_active_mode`)
-  let bg_color = App.get_setting(`text_color`)
-  bg_color = App.colorlib.increase_alpha(bg_color, 0.66)
-
-  if ((active === `normal`) || (active === `everywhere`)) {
-    not_cls += `.active_tab`
-  }
-
-  css += App.background_effect_css({
-    color: bg_color,
-    cls: `.item`,
-    not_cls: not_cls,
-  })
-
-  App.insert_css(`effect_css`, css)
 }
 
 App.insert_color_css = () => {
@@ -636,35 +571,33 @@ App.insert_color_css = () => {
     color: grey !important;
   }`
 
+  let opacity = App.get_setting(`color_opacity`) / 100
+
   for (let color of App.colors()) {
-    let alpha = App.colorlib.rgb_to_rgba(color.value, 0.7)
+    let alpha = App.colorlib.rgb_to_rgba(color.value, opacity)
     App.set_css_var(`color_${color.id}_alpha`, alpha)
     App.set_css_var(`color_${color.id}`, color.value)
-    let text = App.contrast(color.value, 1)
+
+    let text = App.contrast(alpha, 1)
     App.set_css_var(`text_color_${color.id}`, text)
 
     css += `.border_color_${color.id} {
-      border-color: var(--color_${color.id}) !important;
+      border-color: var(--color_${color.id});
     }`
 
     css += `.background_color_${color.id} {
-      background-color: var(--color_${color.id}) !important;
-      color: var(--text_color_${color.id}) !important;
+      background-color: var(--color_${color.id});
+      color: var(--text_color_${color.id});
     }`
 
     css += `.background_color_${color.id}_alpha {
-      background-color: var(--color_${color.id}_alpha) !important;
-      color: var(--text_color_${color.id}) !important;
+      background-color: var(--color_${color.id}_alpha);
+      color: var(--text_color_${color.id});
     }`
 
     css += `.text_color_${color.id} {
-      color: var(--color_${color.id}) !important;
+      color: var(--color_${color.id});
     }`
-
-    css += App.background_effect_css({
-      color: color.value,
-      cls: `.background_color_${color.id}_alpha`,
-    })
   }
 
   App.insert_css(`color_css`, css)
@@ -672,12 +605,7 @@ App.insert_color_css = () => {
 
 App.insert_tab_color_css = () => {
   let css = ``
-  let not_cls = ``
-  let active = App.get_setting(`background_color_active_mode`)
-
-  if ((active === `normal`) || (active === `everywhere`)) {
-    not_cls += `.active_tab`
-  }
+  let opacity = App.get_setting(`color_opacity`) / 100
 
   for (let type of App.color_types.slice(0).reverse()) {
     let text_color, bg_color
@@ -692,22 +620,16 @@ App.insert_tab_color_css = () => {
 
     if (text_color) {
       css += `.tab_text_color_${type} {
-        color: ${text_color} !important;
+        color: ${text_color};
       }`
     }
 
     if (bg_color) {
-      css += `.tab_background_color_${type} {
-        background-color: ${bg_color} !important;
-      }`
+      let alpha = App.colorlib.rgb_to_rgba(bg_color, opacity)
 
-      css += App.background_effect_css({
-        color: bg_color,
-        cls: `.tab_background_color_${type}`,
-        single: false,
-        multiple: false,
-        not_cls: not_cls,
-      })
+      css += `.tab_background_color_${type} {
+        background-color: ${alpha};
+      }`
     }
   }
 

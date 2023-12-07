@@ -478,6 +478,14 @@ svg {
   overflow: hidden;
 }
 
+.hover_effect_background .item_container .item:hover,
+.selected_effect_background .item_container .selected,
+.tab_box_hover_effect_background #tab_box_container .item:hover,
+.tab_box_active_effect_background #tab_box_container .active_tab
+{
+  background-color: var(--alt_color_1);
+}
+
 .hover_effect_glow .item_container .item:hover .item_text,
 .selected_effect_glow .item_container .selected .item_text,
 .tab_box_hover_effect_glow #tab_box_container .item:hover .item_text,
