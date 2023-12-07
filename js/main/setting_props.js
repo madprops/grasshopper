@@ -1085,6 +1085,26 @@ App.build_settings = () => {
         App.start_color_picker(key, true)
       },
     },
+    favorites_bar_double_click: {
+      name: `Fav Bar Dbl Click`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when double clicking the empty area from the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    favorites_middle_click: {
+      name: `Fav Middle Click`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when middle clicking the Favorites Bar or Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
     favorites_sidetop: {
       name: `Favorites Sidetop`,
       type: `checkbox`,

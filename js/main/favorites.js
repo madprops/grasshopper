@@ -46,6 +46,16 @@ App.create_favorites_bar = (mode) => {
     App.show_favorites_menu(e)
   })
 
+  DOM.ev(container, `dblclick`, (e) => {
+    App.favorites_double_click(e)
+  })
+
+  DOM.ev(container, `auxclick`, (e) => {
+    if (e.button === 1) {
+      App.favorites_middle_click(e)
+    }
+  })
+
   container.append(el)
   return container
 }
@@ -57,6 +67,16 @@ App.create_favorites_button = (mode) => {
 
   DOM.ev(btn, `click`, (e) => {
     App.show_favorites_menu(e)
+  })
+
+  DOM.ev(btn, `dblclick`, (e) => {
+    App.favorites_double_click(e)
+  })
+
+  DOM.ev(btn, `auxclick`, (e) => {
+    if (e.button === 1) {
+      App.favorites_middle_click(e)
+    }
   })
 
   return btn
@@ -139,4 +159,40 @@ App.get_favorites = () => {
   }
 
   return favs
+}
+
+App.favorites_double_click = (e) => {
+  if (e.target.closest(`.favorites_bar_item`)) {
+    return
+  }
+
+  let cmd = App.get_setting(`favorites_bar_double_click`)
+  let command = App.get_command(cmd)
+
+  if (command) {
+    let args = {
+      cmd: command.cmd,
+      e: e,
+    }
+
+    App.run_command(args)
+  }
+}
+
+App.favorites_middle_click = (e) => {
+  if (e.target.closest(`.favorites_bar_item`)) {
+    return
+  }
+
+  let cmd = App.get_setting(`favorites_middle_click`)
+  let command = App.get_command(cmd)
+
+  if (command) {
+    let args = {
+      cmd: command.cmd,
+      e: e,
+    }
+
+    App.run_command(args)
+  }
 }
