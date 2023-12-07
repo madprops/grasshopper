@@ -10,7 +10,7 @@ App.setup_tabs = () => {
     App.debug(`Tab Created: ID: ${info.id}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      let item = await App.refresh_tab(info.id, false, info)
+      let item = await App.refresh_tab({id: info.id, info: info})
 
       if (item) {
         App.check_tab_session([item])
@@ -26,7 +26,7 @@ App.setup_tabs = () => {
     App.debug(`Tab Updated: ID: ${id}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      await App.refresh_tab(id, false, info)
+      await App.refresh_tab({id: id, info: info})
       App.check_playing()
     }
   })
@@ -158,7 +158,6 @@ App.focus_tab = async (args = {}) => {
     show_tabs: false,
     scroll: `center`,
     select: true,
-    no_selected_class: false,
   }
 
   App.def_args(def_args, args)
@@ -168,16 +167,6 @@ App.focus_tab = async (args = {}) => {
   }
 
   App.check_tab_first(args.item)
-
-  if (args.select) {
-    args.item.active = true
-    App.check_tab_active(args.item)
-
-    App.select_item({
-      item: args.item,
-      scroll: args.scroll,
-    })
-  }
 
   if (args.item.window_id) {
     await browser.windows.update(args.item.window_id, {focused: true})
@@ -226,10 +215,16 @@ App.get_tab_info = async (id) => {
   }
 }
 
-App.refresh_tab = async (id, select, info) => {
-  if (!info) {
+App.refresh_tab = async (args = {}) => {
+  let def_args = {
+    select: false,
+  }
+
+  App.def_args(def_args, args)
+
+  if (!args.info) {
     try {
-      info = await App.get_tab_info(id)
+      args.info = await App.get_tab_info(args.id)
     }
     catch (err) {
       App.check_pinline()
@@ -237,28 +232,26 @@ App.refresh_tab = async (id, select, info) => {
     }
   }
 
-  if (!info) {
+  if (!args.info) {
     return
   }
 
-  let item = App.get_item_by_id(`tabs`, id)
+  let item = App.get_item_by_id(`tabs`, args.id)
 
   if (item) {
-    if (item.pinned !== info.pinned) {
+    if (item.pinned !== args.info.pinned) {
       App.check_pinline()
     }
 
-    App.update_item(`tabs`, item.id, info)
+    App.update_item(`tabs`, item.id, args.info)
   }
   else {
-    item = App.insert_item(`tabs`, info)
+    item = App.insert_item(`tabs`, args.info)
     App.check_pinline()
   }
 
-  if (select) {
-    if (App.get_selected(`tabs`) !== item) {
-      App.select_item({item: item, scroll: `nearest`})
-    }
+  if (args.select && item.visible) {
+    App.select_item({item: item, scroll: `nearest`})
   }
 
   return item
@@ -376,7 +369,6 @@ App.tabs_action = async (item, from, scroll) => {
   await App.focus_tab({
     item: item,
     scroll: scroll,
-    no_selected_class: true,
   })
 
   blink(item)
@@ -854,13 +846,7 @@ App.on_tab_activated = async (info) => {
     }
   }
 
-  let select = true
-
-  if (App.is_filtered(`tabs`)) {
-    select = false
-  }
-
-  let new_active = await App.refresh_tab(info.tabId, select)
+  let new_active = await App.refresh_tab({id: info.tabId, select: true})
   new_active.unread = false
 
   for (let item of old_active) {
