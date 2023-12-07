@@ -2412,7 +2412,7 @@ App.build_settings = () => {
       value: true,
       actions: [`theme`],
       info: `Sync / mirror settings between instances
-      For example, making a change in the popup triggers a reload in the sidebar`,
+      For example, changing a setting in the popup triggers a reload in the sidebar`,
       version: 1,
     },
     mirror_edits: {
