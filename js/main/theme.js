@@ -630,17 +630,15 @@ App.insert_tab_color_css = () => {
         }`
       }
 
-      if (!text_color) {
-        let text = App.contrast(bg_color, 1)
-
+      if (text_color) {
         if (type === `active`) {
           css += `.tab_background_color_${type} {
-            color: ${text} !important;
+            color: ${text_color} !important;
           }`
         }
         else {
           css += `.tab_background_color_${type} {
-            color: ${text};
+            color: ${text_color};
           }`
         }
       }
