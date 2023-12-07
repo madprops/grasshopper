@@ -619,6 +619,7 @@ App.insert_color_css = () => {
 
 App.insert_tab_color_css = () => {
   let css = ``
+  let important = [`active`]
 
   for (let type of App.color_types.slice(0).reverse()) {
     let text_color, bg_color
@@ -631,14 +632,19 @@ App.insert_tab_color_css = () => {
       bg_color = App.get_setting(`background_color_${type}`)
     }
 
-    if (text_color) {
+    if (important.includes(type)) {
+      css += `.tab_text_color_${type} {
+        color: ${text_color} !important;
+      }`
+    }
+    else {
       css += `.tab_text_color_${type} {
         color: ${text_color};
       }`
     }
 
     if (bg_color) {
-      if (type === `active`) {
+      if (important.includes(type)) {
         css += `.tab_background_color_${type} {
           background-color: ${bg_color} !important;
         }`
@@ -650,7 +656,7 @@ App.insert_tab_color_css = () => {
       }
 
       if (text_color) {
-        if (type === `active`) {
+        if (important.includes(type)) {
           css += `.tab_background_color_${type} {
             color: ${text_color} !important;
           }`
