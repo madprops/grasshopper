@@ -1110,7 +1110,7 @@ App.build_settings = () => {
     favorites_gravity: {
       name: `Favorites Gravity`,
       type: `menu`,
-      value: `top`,
+      value: `center`,
       info: `Gravity of the items in side modes of the favorites bar
       Either make them stick to the top, center, or bottom`,
       version: 1,
