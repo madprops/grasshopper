@@ -636,6 +636,21 @@ App.insert_tab_color_css = () => {
           background-color: ${alpha};
         }`
       }
+
+      if (!text_color) {
+        let text = App.contrast(bg_color, 1)
+
+        if (type === `active`) {
+          css += `.tab_background_color_${type} {
+            color: ${text} !important;
+          }`
+        }
+        else {
+          css += `.tab_background_color_${type} {
+            color: ${text};
+          }`
+        }
+      }
     }
   }
 
