@@ -1685,16 +1685,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.color_displays)
       },
     },
-    color_text_color: {
-      name: `Color Text`,
-      type: `color`,
-      value: `rgb(255, 255, 255)`,
-      info: `Text color for all colors like red or blue when using the background mode`,
-      version: 1,
-      setup: (key) => {
-        App.start_color_picker(key)
-      },
-    },
     text_color_active_mode: {
       name: `Active Tabs (Text)`,
       type: `menu`,
@@ -1992,7 +1982,7 @@ App.build_settings = () => {
     color_opacity: {
       name: `Color Opacity`,
       type: `number`,
-      value: 60,
+      value: 66,
       actions: [`theme`],
       placeholder: `Opacity`,
       min: 0,
