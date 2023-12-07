@@ -89,6 +89,7 @@ App.fill_favorites_bar = (mode) => {
 
   let favs = App.get_favorites()
   let c = DOM.el(`#favorites_bar_${mode}`)
+  let fav_mode = App.get_setting(`favorites_mode`)
   c.innerHTML = ``
 
   for (let fav of favs) {
@@ -132,6 +133,19 @@ App.fill_favorites_bar = (mode) => {
 
     some_cmds = true
     c.append(btn)
+  }
+
+  if (App.get_setting(`favorites_branding`)) {
+    if ((fav_mode === `left`) || (fav_mode === `right`)) {
+      let logo = DOM.create(`div`, `favorites_bar_logo action`)
+      logo.textContent = App.manifest.name
+
+      DOM.ev(logo, `click`, () => {
+        App.show_about()
+      })
+
+      c.append(logo)
+    }
   }
 }
 

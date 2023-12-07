@@ -1332,6 +1332,13 @@ a:hover
   height: 100%;
 }
 
+.favorites_bar_logo {
+  writing-mode: tb-rl;
+  transform: rotate(-180deg);
+  margin-top: auto;
+  margin-bottom: 0.5rem;
+}
+
 .menupanel_icon {
   display: flex;
   align-items: center;

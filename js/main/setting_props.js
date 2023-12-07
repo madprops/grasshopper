@@ -1119,6 +1119,13 @@ App.build_settings = () => {
       info: `Autohide the Favorites Bar when on left or right mode`,
       version: 1,
     },
+    favorites_branding: {
+      name: `Favorites Branding`,
+      type: `checkbox`,
+      value: false,
+      info: `Show some  text on the bottom of side favorite bars`,
+      version: 1,
+    },
   }
 
   add_props()
