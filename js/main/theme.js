@@ -572,14 +572,13 @@ App.insert_color_css = () => {
   }`
 
   let opacity = App.get_setting(`color_opacity`) / 100
+  let color_text = App.get_setting(`color_text_color`)
 
   for (let color of App.colors()) {
     let alpha = App.opacity(color.value, opacity)
     App.set_css_var(`color_${color.id}_alpha`, alpha)
     App.set_css_var(`color_${color.id}`, color.value)
-
-    let text = App.contrast(alpha, 1)
-    App.set_css_var(`text_color_${color.id}`, text)
+    App.set_css_var(`text_color_${color.id}`, color_text)
 
     css += `.border_color_${color.id} {
       border-color: var(--color_${color.id});

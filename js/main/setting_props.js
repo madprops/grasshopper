@@ -1685,17 +1685,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.color_displays)
       },
     },
-    color_opacity: {
-      name: `Color Opacity`,
-      type: `number`,
-      value: 60,
-      actions: [`theme`],
-      placeholder: `Opacity`,
-      min: 0,
-      max: 100,
-      info: `Opacity to use on color items like red or blue
-      A lower number means more transparent`,
+    color_text_color: {
+      name: `Color Text`,
+      type: `color`,
+      value: `rgb(255, 255, 255)`,
+      info: `Text color for all colors like red or blue`,
       version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
     },
     text_color_active_mode: {
       name: `Active Tabs (Text)`,
@@ -1990,6 +1988,18 @@ App.build_settings = () => {
       setup: (key) => {
         App.start_color_picker(key)
       },
+    },
+    color_opacity: {
+      name: `Color Opacity`,
+      type: `number`,
+      value: 60,
+      actions: [`theme`],
+      placeholder: `Opacity`,
+      min: 0,
+      max: 100,
+      info: `Opacity to use on color items like red or blue
+      A lower number means more transparent`,
+      version: 1,
     },
     color_icon_click: {
       name: `Color Icon Click`,
