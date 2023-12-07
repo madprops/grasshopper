@@ -558,8 +558,16 @@ App.start_color_picker = (setting, alpha = false) => {
   })
 
   App[setting].on(`change`, (picker, color) => {
-    let rgba = AColorPicker.parseColor(color, `rgbacss`)
-    App.set_setting(setting, rgba)
+    let rgb
+
+    if (alpha) {
+      rgb = AColorPicker.parseColor(color, `rgbacss`)
+    }
+    else {
+      rgb = AColorPicker.parseColor(color, `rgbcss`)
+    }
+
+    App.set_setting(setting, rgb)
   })
 
   DOM.ev(App.get_settings_label(setting), `click`, (e) => {
@@ -1264,14 +1272,17 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`name`, `value`],
+      keys: [`name`, `value`, `text`],
       pk: `name`,
       widgets: {
         name: `text`,
         value: `color`,
+        text: `color`,
       },
       labels: {
         name: `Name`,
+        value: `Color Value`,
+        text: `Text Color`
       },
       list_icon: (items) => {
         return App.color_icon(items._id_)

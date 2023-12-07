@@ -144,13 +144,13 @@ App.apply_color_mode = (item) => {
     for (let color of App.colors()) {
       item.element.classList.remove(`colored`)
       item.element.classList.remove(`colored_background`)
-      item.element.classList.remove(`background_color_${color.id}_alpha`)
+      item.element.classList.remove(`background_color_${color.id}`)
     }
 
     if (color) {
       item.element.classList.add(`colored`)
       item.element.classList.add(`colored_background`)
-      item.element.classList.add(`background_color_${color}_alpha`)
+      item.element.classList.add(`background_color_${color}`)
     }
   }
 
@@ -458,6 +458,7 @@ App.colors = () => {
       id: color._id_,
       name: color.name,
       value: color.value,
+      text: color.text,
     })
   }
 

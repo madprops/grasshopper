@@ -571,14 +571,15 @@ App.insert_color_css = () => {
     color: grey !important;
   }`
 
-  let opacity = App.get_setting(`color_opacity`) / 100
-
   for (let color of App.colors()) {
-    let alpha = App.opacity(color.value, opacity)
-    App.set_css_var(`color_${color.id}_alpha`, alpha)
     App.set_css_var(`color_${color.id}`, color.value)
-    let text = App.contrast(color.value, 1)
-    App.set_css_var(`text_color_${color.id}`, text)
+
+    if (color.text) {
+      App.set_css_var(`text_color_${color.id}`, color.text)
+    }
+    else {
+      App.set_css_var(`text_color_${color.id}`, `rgb(255, 255, 255)`)
+    }
 
     css += `.border_color_${color.id} {
       border-color: var(--color_${color.id});
@@ -589,14 +590,11 @@ App.insert_color_css = () => {
       color: var(--text_color_${color.id});
     }`
 
-    css += `.background_color_${color.id}_alpha {
-      background-color: var(--color_${color.id}_alpha);
-      color: var(--text_color_${color.id});
-    }`
-
     css += `.text_color_${color.id} {
       color: var(--color_${color.id});
     }`
+
+    console.log(css)
   }
 
   App.insert_css(`color_css`, css)
@@ -604,7 +602,6 @@ App.insert_color_css = () => {
 
 App.insert_tab_color_css = () => {
   let css = ``
-  let opacity = App.get_setting(`color_opacity`) / 100
 
   for (let type of App.color_types.slice(0).reverse()) {
     let text_color, bg_color
@@ -624,16 +621,14 @@ App.insert_tab_color_css = () => {
     }
 
     if (bg_color) {
-      let alpha = App.opacity(bg_color, opacity)
-
       if (type === `active`) {
         css += `.tab_background_color_${type} {
-          background-color: ${alpha} !important;
+          background-color: ${bg_color} !important;
         }`
       }
       else {
         css += `.tab_background_color_${type} {
-          background-color: ${alpha};
+          background-color: ${bg_color};
         }`
       }
 

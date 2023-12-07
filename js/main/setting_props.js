@@ -1525,7 +1525,7 @@ App.build_settings = () => {
       info: `The color of the splits between tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_header_mode: {
@@ -1546,7 +1546,7 @@ App.build_settings = () => {
       info: `Custom text color for Header Tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_header_mode: {
@@ -1567,7 +1567,7 @@ App.build_settings = () => {
       info: `Custom background color for Header Tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_subheader_mode: {
@@ -1588,7 +1588,7 @@ App.build_settings = () => {
       info: `Custom text color for Subheader Tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_subheader_mode: {
@@ -1609,7 +1609,7 @@ App.build_settings = () => {
       info: `Custom background color for Subheader Tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     header_action: {
@@ -1673,10 +1673,10 @@ App.build_settings = () => {
       name: `Colors`,
       type: `list`,
       value: [
-        {_id_: `red`, name: `Red`, value: `rgb(255, 0, 153)`},
-        {_id_: `green`, name: `Green`, value: `rgb(102, 204, 0)`},
-        {_id_: `blue`, name: `Blue`, value: `rgb(0, 153, 255)`},
-        {_id_: `yellow`, name: `Yellow`, value: `rgb(255, 153, 0)`},
+        {_id_: `red`, name: `Red`, value: `rgba(255, 0, 153, 0.8)`, text: `rgb(255, 255, 255)`},
+        {_id_: `green`, name: `Green`, value: `rgba(102, 204, 0, 0.8)`, text: `rgb(255, 255, 255)`},
+        {_id_: `blue`, name: `Blue`, value: `rgba(0, 153, 255, 0.8)`, text: `rgb(255, 255, 255)`},
+        {_id_: `yellow`, name: `Yellow`, value: `rgba(255, 153, 0, 0.8)`, text: `rgb(255, 255, 255)`},
       ],
       actions: [`theme`, `commands`],
       info: `The list of colors that you can assign to items`,
@@ -1710,7 +1710,7 @@ App.build_settings = () => {
       info: `Custom text color for active tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_active_mode: {
@@ -1731,7 +1731,7 @@ App.build_settings = () => {
       info: `Custom background color for active tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_playing_mode: {
@@ -1752,7 +1752,7 @@ App.build_settings = () => {
       info: `Custom text color for playing tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_playing_mode: {
@@ -1773,7 +1773,7 @@ App.build_settings = () => {
       info: `Custom background color for playing tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_unread_mode: {
@@ -1794,7 +1794,7 @@ App.build_settings = () => {
       info: `Custom text color for unread tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_unread_mode: {
@@ -1815,7 +1815,7 @@ App.build_settings = () => {
       info: `Custom background color for unread tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_unloaded_mode: {
@@ -1836,7 +1836,7 @@ App.build_settings = () => {
       info: `Custom text color for unloaded tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_unloaded_mode: {
@@ -1857,7 +1857,7 @@ App.build_settings = () => {
       info: `Custom background color for unloaded tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_loaded_mode: {
@@ -1878,7 +1878,7 @@ App.build_settings = () => {
       info: `Custom text color for loaded tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_loaded_mode: {
@@ -1899,7 +1899,7 @@ App.build_settings = () => {
       info: `Custom background color for loaded tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_pinned_mode: {
@@ -1920,7 +1920,7 @@ App.build_settings = () => {
       info: `Custom text color for pins`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_pinned_mode: {
@@ -1941,7 +1941,7 @@ App.build_settings = () => {
       info: `Custom background color for pins`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     text_color_normal_mode: {
@@ -1962,7 +1962,7 @@ App.build_settings = () => {
       info: `Custom text color for normal tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     background_color_normal_mode: {
@@ -1983,20 +1983,8 @@ App.build_settings = () => {
       info: `Custom background color for normal tabs`,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
-    },
-    color_opacity: {
-      name: `Color Opacity`,
-      type: `number`,
-      value: 66,
-      actions: [`theme`],
-      placeholder: `Opacity`,
-      min: 0,
-      max: 100,
-      info: `Opacity to use on the background of all colored items
-      A lower number means more transparent`,
-      version: 1,
     },
     color_icon_click: {
       name: `Color Icon Click`,
