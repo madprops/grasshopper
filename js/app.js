@@ -65,6 +65,7 @@ App.force_debug = false
 App.copied_tabs = []
 App.filter_menus = {}
 App.refine_string = `refine_filter`
+App.default_color = `rgba(100, 100, 100, 1)`
 
 App.settings_done = false
 App.settings_ready = false
