@@ -1689,7 +1689,7 @@ App.build_settings = () => {
       name: `Color Text`,
       type: `color`,
       value: `rgb(255, 255, 255)`,
-      info: `Text color for all colors like red or blue`,
+      info: `Text color for all colors like red or blue when using the background mode`,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key)
