@@ -574,7 +574,7 @@ App.insert_color_css = () => {
   let opacity = App.get_setting(`color_opacity`) / 100
 
   for (let color of App.colors()) {
-    let alpha = App.colorlib.rgb_to_rgba(color.value, opacity)
+    let alpha = App.opacity(color.value, opacity)
     App.set_css_var(`color_${color.id}_alpha`, alpha)
     App.set_css_var(`color_${color.id}`, color.value)
 
@@ -625,7 +625,7 @@ App.insert_tab_color_css = () => {
     }
 
     if (bg_color) {
-      let alpha = App.colorlib.rgb_to_rgba(bg_color, opacity)
+      let alpha = App.opacity(bg_color, opacity)
 
       if (type === `active`) {
         css += `.tab_background_color_${type} {
