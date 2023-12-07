@@ -22,7 +22,7 @@ App.edit_props = {
   },
 }
 
-App.check_tab_session = async (items = []) => {
+App.check_tab_session = async (items = [], force = false) => {
   if (!items.length) {
     items = App.get_items(`tabs`)
   }
@@ -32,6 +32,10 @@ App.check_tab_session = async (items = []) => {
       let value = await browser.sessions.getTabValue(item.id, `custom_${key}`)
 
       if (value === undefined) {
+        if (!force) {
+          continue
+        }
+
         value = App.edit_default(key)
       }
 

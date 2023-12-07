@@ -10,7 +10,7 @@ App.setup_messages = () => {
 		else if (message.action === `mirror_edits`) {
 			if (App.get_setting(`mirror_edits`)) {
 				let item = App.get_item_by_id(`tabs`, message.id)
-				App.check_tab_session([item])
+				App.check_tab_session([item], true)
 			}
 		}
 	})
