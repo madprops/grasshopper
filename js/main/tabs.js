@@ -153,8 +153,6 @@ App.get_tabs = async () => {
 }
 
 App.focus_tab = async (args = {}) => {
-  App.def_args(def_args, args)
-
   if (!args.item) {
     return
   }
@@ -356,13 +354,13 @@ App.tabs_action = async (item, from, scroll) => {
     }
   }
 
-  App.on_action(`tabs`)
   App.select_item({item: item, scroll: `nearest_smooth`})
 
   await App.focus_tab({
     item: item,
   })
 
+  App.on_action(`tabs`)
   blink(item)
 }
 
