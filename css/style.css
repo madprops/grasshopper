@@ -481,8 +481,8 @@ svg {
 .hover_effect_background .item_container .item:hover,
 .selected_effect_background.active_background_none .item_container .selected,
 .selected_effect_background.active_background_tab_box .item_container .selected,
-.selected_effect_background.active_background_normal .item_container.multiple_selected .selected:not(.active_tab),
-.selected_effect_background.active_background_everywhere .item_container.multiple_selected .selected:not(.active_tab),
+.selected_effect_background.active_background_normal .item_container .selected:not(.active_tab),
+.selected_effect_background.active_background_everywhere .item_container .selected:not(.active_tab),
 .tab_box_hover_effect_background #tab_box_container .item:hover,
 .tab_box_active_effect_background #tab_box_container .active_tab
 {
