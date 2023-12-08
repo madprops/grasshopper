@@ -153,12 +153,6 @@ App.get_tabs = async () => {
 }
 
 App.focus_tab = async (args = {}) => {
-  let def_args = {
-    method: `normal`,
-    show_tabs: false,
-    scroll: `center`,
-  }
-
   App.def_args(def_args, args)
 
   if (!args.item) {
@@ -249,7 +243,7 @@ App.refresh_tab = async (args = {}) => {
     App.check_pinline()
   }
 
-  if (args.select && item.visible) {
+  if (args.select && !item.selected && item.visible) {
     App.select_item({item: item, scroll: `nearest_smooth`})
   }
 
@@ -363,17 +357,11 @@ App.tabs_action = async (item, from, scroll) => {
   }
 
   App.on_action(`tabs`)
-  App.do_empty_previous_tabs()
+  App.select_item({item: item, scroll: `nearest_smooth`})
 
-  if (item.active) {
-    App.select_item({item: item, scroll: `nearest_smooth`})
-  }
-  else {
-    await App.focus_tab({
-      item: item,
-      scroll: scroll,
-    })
-  }
+  await App.focus_tab({
+    item: item,
+  })
 
   blink(item)
 }

@@ -750,6 +750,7 @@ App.selected_items = (mode = App.window_mode) => {
 App.after_focus = (args = {}) => {
   let def_args = {
     method: `normal`,
+    show_tabs: false,
   }
 
   App.def_args(def_args, args)

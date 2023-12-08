@@ -46,10 +46,15 @@ App.get_playing_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.audible)
 }
 
-App.go_to_playing_tab = async () => {
+App.go_to_playing_tab = () => {
   let items = App.get_items(`tabs`)
   let waypoint = false
   let first
+
+  async function proc (item) {
+    await App.check_on_tabs()
+    App.tabs_action(item, `playing`)
+  }
 
   for (let item of items) {
     if (item.audible) {
@@ -58,14 +63,7 @@ App.go_to_playing_tab = async () => {
       }
 
       if (waypoint) {
-        await App.check_on_tabs()
-
-        App.focus_tab({
-          item: item,
-          scroll: `center_smooth`,
-          method: `playing`,
-        })
-
+        proc(item)
         return
       }
     }
@@ -76,9 +74,8 @@ App.go_to_playing_tab = async () => {
     }
   }
 
-  // If none found then pick the first one
   if (first) {
-    App.focus_tab({item: first, scroll: `center_smooth`, method: `playing`})
+    proc(first)
   }
 }
 
