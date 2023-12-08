@@ -153,11 +153,24 @@ App.get_tabs = async () => {
 }
 
 App.focus_tab = async (args = {}) => {
+  let def_args = {
+    method: `normal`,
+    show_tabs: false,
+    scroll: `center`,
+    select: true,
+  }
+
+  App.def_args(def_args, args)
+
   if (!args.item) {
     return
   }
 
   App.check_tab_first(args.item)
+
+  if (args.select) {
+    App.select_item({item: args.item, scroll: args.scroll})
+  }
 
   if (args.item.window_id) {
     await browser.windows.update(args.item.window_id, {focused: true})
@@ -354,10 +367,10 @@ App.tabs_action = async (item, from, scroll) => {
     }
   }
 
-  App.select_item({item: item, scroll: `nearest_smooth`})
-
   await App.focus_tab({
     item: item,
+    select: true,
+    scroll: `nearest_smooth`,
   })
 
   App.on_action(`tabs`)
