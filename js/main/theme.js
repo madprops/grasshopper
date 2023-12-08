@@ -259,16 +259,12 @@ App.do_apply_theme = (args = {}) => {
       document.body.classList.remove(`text_glow`)
     }
 
-    let hb = App.get_setting(`hover_button`)
+    for (let side of [`left`, `right`]) {
+      main.classList.remove(`hover_button_${side}`)
+    }
 
-    if (hb === `left`) {
-      main.classList.add(`hover_button_left`)
-      main.classList.remove(`hover_button_right`)
-    }
-    else if (hb === `right`) {
-      main.classList.remove(`hover_button_left`)
-      main.classList.add(`hover_button_right`)
-    }
+    let hb = App.get_setting(`hover_button`)
+    main.classList.add(`hover_button_${hb}`)
 
     let ie = App.get_setting(`icon_effect`)
     let ies = [`none`, `spin`, `invert`, `border`]
@@ -393,6 +389,12 @@ App.do_apply_theme = (args = {}) => {
     }
     else {
       main.classList.remove(`favorites_autohide`)
+    }
+
+    let active_bgs = [`none`, `normal`, `tab_box`, `everywhere`]
+
+    for (let bg of active_bgs) {
+      main.classList.remove(`active_background_${bg}`)
     }
 
     let active_bg = App.get_setting(`background_color_active_mode`)
