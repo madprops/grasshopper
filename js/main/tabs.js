@@ -370,7 +370,7 @@ App.tabs_action = async (item, from, scroll) => {
   await App.focus_tab({
     item: item,
     select: true,
-    scroll: `nearest_smooth`,
+    scroll: scroll,
   })
 
   App.on_action(`tabs`)
