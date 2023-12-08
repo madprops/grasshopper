@@ -880,6 +880,15 @@ App.settings_menu_items = () => {
     })
   }
 
+  App.sep(items)
+
+  items.push({
+    text: `Data`,
+    get_items: () => {
+      return App.settings_data_items()
+    }
+  })
+
   return items
 }
 
@@ -899,13 +908,6 @@ App.settings_actions = (category) => {
     action: () => {
       App.reset_settings(category)
     }
-  })
-
-  items.push({
-    text: `Data`,
-    get_items: () => {
-      return App.settings_data_items()
-    },
   })
 
   let btn = DOM.el(`#settings_actions_${category}`)
