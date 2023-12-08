@@ -17,7 +17,7 @@ App.stor_compat = []
 
 App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
-App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `loaded`, `visible`, `other`]
+App.close_tabs_types = [`normal`, `playing`, `unloaded`, `loaded`, `duplicate`, `visible`, `other`]
 App.tab_box_modes = [`recent`, `pins`, `playing`, `colors`, `tags`, `icons`, `headers`]
 App.no_favicons = [`history`, `bookmarks`]
 App.fonts = [`serif`, `sans-serif`, `monospace`, `Nova Square`]
