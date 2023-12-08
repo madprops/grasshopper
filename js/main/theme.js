@@ -395,6 +395,9 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`favorites_autohide`)
     }
 
+    let active_bg = App.get_setting(`background_color_active_mode`)
+    main.classList.add(`active_background_${active_bg}`)
+
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_custom_css()
