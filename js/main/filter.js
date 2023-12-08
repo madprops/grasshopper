@@ -1073,7 +1073,7 @@ App.show_filter_context_menu = (mode, e) => {
   App.show_context({items: items, e: e})
 }
 
-App.update_filter_history = (mode) => {
+App.update_filter_history = (mode = App.window_mode) => {
   App.debug(`Update Filter History`)
   let value = App.get_filter(mode).trim()
 
@@ -1693,6 +1693,8 @@ App.show_refine_filters = (e) => {
         text: App.command_name(command, true),
         info: command.info,
         action: (e) => {
+          App.update_filter_history()
+
           App.run_command({
             e: e,
             cmd: command.cmd,
@@ -1700,6 +1702,8 @@ App.show_refine_filters = (e) => {
           })
         },
         alt_action: (e) => {
+          App.update_filter_history()
+
           App.run_command({
             e: e,
             cmd: command.cmd,
