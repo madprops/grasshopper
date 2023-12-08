@@ -583,16 +583,16 @@ App.insert_color_css = () => {
   let css = ``
 
   css += `.border_fallback_color {
-    border-color: grey !important;
+    border-color: grey;
   }`
 
   css += `.background_fallback_color {
-    background-color: grey !important;
-    color: grey !important;
+    background-color: grey;
+    color: grey;
   }`
 
   css += `.text_fallback_color {
-    color: grey !important;
+    color: grey;
   }`
 
   for (let color of App.colors()) {
@@ -624,7 +624,6 @@ App.insert_color_css = () => {
 
 App.insert_tab_color_css = () => {
   let css = ``
-  let important = [`active`]
 
   for (let type of App.color_types.slice(0).reverse()) {
     let text_color, bg_color
@@ -637,40 +636,21 @@ App.insert_tab_color_css = () => {
       bg_color = App.get_setting(`background_color_${type}`)
     }
 
-    if (important.includes(type)) {
-      css += `.tab_text_color_${type} {
-        color: ${text_color} !important;
-      }`
-    }
-    else {
+    if (text_color) {
       css += `.tab_text_color_${type} {
         color: ${text_color};
       }`
     }
 
     if (bg_color) {
-      if (important.includes(type)) {
-        css += `.tab_background_color_${type} {
-          background-color: ${bg_color} !important;
-        }`
-      }
-      else {
-        css += `.tab_background_color_${type} {
-          background-color: ${bg_color};
-        }`
-      }
+      css += `.tab_background_color_${type} {
+        background-color: ${bg_color};
+      }`
 
       if (text_color) {
-        if (important.includes(type)) {
-          css += `.tab_background_color_${type} {
-            color: ${text_color} !important;
-          }`
-        }
-        else {
-          css += `.tab_background_color_${type} {
-            color: ${text_color};
-          }`
-        }
+        css += `.tab_background_color_${type} {
+          color: ${text_color};
+        }`
       }
     }
   }
