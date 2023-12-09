@@ -1038,6 +1038,13 @@ App.show_filter_context_menu = (mode, e) => {
   }
 
   items.push({
+    text: `Refine`,
+    get_items: () => {
+      return App.get_refine_items()
+    }
+  })
+
+  items.push({
     text: `Exact`,
     get_items: () => {
       return App.get_filter_exact(mode)
@@ -1693,7 +1700,7 @@ App.set_filter_item = (mode, filter_mode, item) => {
   return App[`filter_items_${mode}`][filter_mode] = item
 }
 
-App.show_refine_filters = (e) => {
+App.get_refine_items = () => {
   let items = []
 
   for (let cmd of App.get_setting(`refine_filters`)) {
@@ -1701,7 +1708,6 @@ App.show_refine_filters = (e) => {
 
     if (command) {
       items.push({
-        e: e,
         icon: command.icon,
         text: App.command_name(command, true),
         info: command.info,
@@ -1726,6 +1732,12 @@ App.show_refine_filters = (e) => {
       })
     }
   }
+
+  return items
+}
+
+App.show_refine_filters = (e) => {
+  let items = App.get_refine_items()
 
   App.show_context({
     e: e,
