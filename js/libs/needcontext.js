@@ -610,6 +610,7 @@ NeedContext.init = () => {
       width: 1.11rem;
       height: 1.11rem;
       object-fit: contain;
+      margin-right: 0.1rem;
     }
 
     .needcontext-bold {
