@@ -1636,7 +1636,7 @@ App.show_favorite_filters = (mode, e) => {
     }
   }
 
-  App.show_context({items: items, e: e})
+  App.show_context({items: items, e: e, title: `Favorites`})
 }
 
 App.cycle_filters = (mode, direction) => {
