@@ -74,7 +74,7 @@ App.setup_commands = () => {
           from: args.from,
         })
       },
-      info: `Filter items with this color (${color.name})`,
+      info: `Filter color (${color.name})`,
     })
 
     icon = App.color_icon(color.id)
@@ -233,7 +233,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Show media items (${media})`,
+      info: `Filter media (${media})`,
     })
   }
 
@@ -446,7 +446,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.previous_filter(args.mode)
       },
-      info: `Show the previous filter used before going back to All`,
+      info: `Use the previous filter used before going back to All`,
     },
     {
       name: `Open`,
@@ -1370,7 +1370,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_filter_tag_menu(args.mode, args.e)
       },
-      info: `Filter the filter tag menu`,
+      info: `Show the filter tag menu`,
     },
     {
       name: `Filter All Tags`,
@@ -1383,7 +1383,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_tag({mode: args.mode, tag: `all`, from: args.from})
       },
-      info: `Filter all tagged tabs`,
+      info: `Filter all tags`,
     },
     {
       name: `Filter Icon`,
@@ -1409,7 +1409,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_icon({mode: args.mode, icon: `all`, from: args.from})
       },
-      info: `Filter all tagged tabs`,
+      info: `Filter all icons`,
     },
     {
       name: `Filter Icon Menu`,
@@ -1565,7 +1565,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Filter tabs that have custom properties`,
+      info: `Filter tabs that are edited`,
     },
     {
       name: `Filter Header`,
@@ -1622,7 +1622,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_exact_filters(args.mode, args.e)
       },
-      info: `Show the Exact filters`,
+      info: `Show the Exact Filters`,
     },
     {
       name: `Show Custom Filters`,
