@@ -2616,7 +2616,8 @@ App.build_settings = () => {
     media: {
       info: `How to view media items
       An icon appears to the left of items
-      You can make it view media when clicking the icons, the whole item, or never`,
+      You can make it view media when clicking the icons, the whole item, or never
+      Some files, like local files and others, won't be able to load`,
     },
     favorites: {
       info: `Configure favorite commands
