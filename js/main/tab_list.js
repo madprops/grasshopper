@@ -29,12 +29,12 @@ App.show_tab_list = (what, e) => {
 	else if (what.startsWith(`tag_`)) {
 		let tag = what.split(`_`)[1]
 		tabs = App.get_tag_tabs(tag)
-    title = tag
+    title = `Tag: ${tag}`
 	}
 	else if (what.startsWith(`icon_`)) {
 		let icon = what.split(`_`)[1]
 		tabs = App.get_icon_tabs(icon)
-    title = icon
+    title = `Icon: ${icon}`
 	}
 
 	let items = []
