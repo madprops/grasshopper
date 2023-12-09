@@ -16,6 +16,10 @@ App.show_tab_list = (what, e) => {
 		let color_id = what.split(`_`)[1]
 		tabs = App.get_color_tabs(color_id)
 	}
+	else if (what.startsWith(`tag_`)) {
+		let tag_id = what.split(`_`)[1]
+		tabs = App.get_tag_tabs(tag_id)
+	}
 
 	let items = []
   let playing_icon = App.get_setting(`playing_icon`) || App.audio_icon

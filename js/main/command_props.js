@@ -1379,6 +1379,17 @@ App.setup_commands = () => {
       info: `Show the filter tag menu`,
     },
     {
+      name: `Show Tag`,
+      short_name: `Tag`,
+      cmd: `show_tag`,
+      modes: [`items`],
+      icon: tag_icon,
+      action: (args) => {
+        App.show_filter_tag_menu(args.mode, args.e, true)
+      },
+      info: `Show the filter tag menu for showing instead of filtering`,
+    },
+    {
       name: `Filter All Tags`,
       short_name: `All Tags`,
       cmd: `filter_tag_all`,

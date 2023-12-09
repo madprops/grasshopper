@@ -339,7 +339,7 @@ App.filter_tag_pick = (item, e) => {
   App.show_context({items: items, e: e})
 }
 
-App.get_tag_items = (mode) => {
+App.get_tag_items = (mode, show = false) => {
   function fav_sort(a, b) {
     let ai = App.tag_history.indexOf(a)
     let bi = App.tag_history.indexOf(b)
@@ -363,26 +363,38 @@ App.get_tag_items = (mode) => {
     tags.sort(fav_sort)
     let icon = App.tag_icon
 
-    items.push({
-      icon: icon,
-      text: `All`,
-      action: () => {
-        App.filter_tag({mode: mode, tag: `all`})
-      },
-      alt_action: () => {
-        App.filter_tag({mode: mode, tag: `all`, from: App.refine_string})
-      },
-    })
+    if (!show) {
+      items.push({
+        icon: icon,
+        text: `All`,
+        action: () => {
+          App.filter_tag({mode: mode, tag: `all`})
+        },
+        alt_action: () => {
+          App.filter_tag({mode: mode, tag: `all`, from: App.refine_string})
+        },
+      })
+    }
 
     for (let tag of tags.slice(0, App.max_tag_picks)) {
       items.push({
         icon: icon,
         text: tag,
-        action: () => {
-          App.filter_tag({mode: mode, tag: tag})
+        action: (e) => {
+          if (show) {
+            App.show_tab_list(`tag_${tag}`, e)
+          }
+          else {
+            App.filter_tag({mode: mode, tag: tag})
+          }
         },
-        alt_action: () => {
-          App.filter_tag({mode: mode, tag: tag, from: App.refine_string})
+        alt_action: (e) => {
+          if (show) {
+            //
+          }
+          else {
+            App.filter_tag({mode: mode, tag: tag, from: App.refine_string})
+          }
         },
       })
     }
@@ -403,8 +415,8 @@ App.tagged = (item) => {
   return Boolean((item.custom_tags.length) || item.rule_tags.length)
 }
 
-App.show_filter_tag_menu = (mode, e) => {
-  let items = App.get_tag_items(mode)
+App.show_filter_tag_menu = (mode, e, show = false) => {
+  let items = App.get_tag_items(mode, show)
   App.show_context({items: items, e: e})
 }
 
@@ -653,4 +665,20 @@ App.get_tagged_items = (mode) => {
   }
 
   return items
+}
+
+App.get_tag_tabs = (tag) => {
+  let tabs = []
+
+  for (let item of App.get_items(`tabs`)) {
+    let tags = App.get_tags(item)
+
+    if (tags.length) {
+      if (tags.includes(tag)) {
+        tabs.push(item)
+      }
+    }
+  }
+
+  return tabs
 }
