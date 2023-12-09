@@ -1632,8 +1632,7 @@ App.setup_commands = () => {
       info: `Filter items that are not open in a tab`,
     },
     {
-      name: `Show Favorite Filters`,
-      short_name: `Favorite Filters`,
+      name: `Favorite Filters`,
       cmd: `show_favorite_filters`,
       modes: [`items`],
       icon: filter_icon,
@@ -1643,8 +1642,7 @@ App.setup_commands = () => {
       info: `Show the Favorite Filters`,
     },
     {
-      name: `Show Refine Filters`,
-      short_name: `Refine Filters`,
+      name: `Refine Filters`,
       cmd: `show_refine_filters`,
       modes: [`items`],
       icon: filter_icon,
@@ -1654,8 +1652,7 @@ App.setup_commands = () => {
       info: `Show the Refine Filters`,
     },
     {
-      name: `Show Exact Filters`,
-      short_name: `Exact Filters`,
+      name: `Exact Filters`,
       cmd: `show_exact_filters`,
       modes: [`items`],
       icon: filter_icon,
@@ -1665,8 +1662,7 @@ App.setup_commands = () => {
       info: `Show the Exact Filters`,
     },
     {
-      name: `Show Custom Filters`,
-      short_name: `Custom Filters`,
+      name: `Custom Filters`,
       cmd: `show_custom_filters`,
       modes: [`items`],
       icon: filter_icon,
