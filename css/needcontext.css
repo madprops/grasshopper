@@ -1,0 +1,30 @@
+#needcontext-main {
+  background-color: var(--overlay_color) !important;
+  scrollbar-color: var(--alt_color_2) var(--alt_color_1) !important;
+}
+
+#needcontext-container {
+  background-color: var(--background_color) !important;
+  color: var(--text_color) !important;
+  border-color: var(--alt_color_2) !important;
+  font-size: var(--font_size) !important;
+  font-family: var(--font) !important;
+}
+
+.no_rounded #needcontext-container {
+  border-radius: 0 !important;
+}
+
+.needcontext-item-selected {
+  background-color: var(--alt_color_1) !important;
+}
+
+.needcontext-item-selected:active {
+  background-color: var(--alt_color_1) !important;
+}
+
+#needcontext-title {
+	background-color: var(--alt_color_0) !important;
+	border-bottom: 1px solid var(--alt_color_0) !important;
+	color: var(--text_color) !important;
+}

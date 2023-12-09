@@ -2448,7 +2448,6 @@ App.build_settings = () => {
       name: `Mirror Settings`,
       type: `checkbox`,
       value: true,
-      actions: [`theme`],
       info: `Sync / mirror settings between instances
       For example, changing a setting in the popup triggers a reload in the sidebar`,
       version: 1,
@@ -2457,9 +2456,15 @@ App.build_settings = () => {
       name: `Mirror Edits`,
       type: `checkbox`,
       value: true,
-      actions: [`theme`],
       info: `Sync / mirror edits between instances
       For example, making a color change in the popup triggers an item update in the sidebar`,
+      version: 1,
+    },
+    context_titles: {
+      name: `Context Titles`,
+      type: `checkbox`,
+      value: true,
+      info: `Show titles at the top of some context menus`,
       version: 1,
     },
     item_pointer: {

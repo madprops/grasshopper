@@ -177,6 +177,19 @@ NeedContext.show = (args = {}) => {
   c.innerHTML = ``
   let index = 0
 
+  if (args.title) {
+    let title = document.createElement(`div`)
+    title.id = `needcontext-title`
+    title.textContent = args.title.trim()
+    c.append(title)
+    c.classList.add(`with_title`)
+    c.classList.remove(`without_title`)
+  }
+  else {
+    c.classList.remove(`with_title`)
+    c.classList.add(`without_title`)
+  }
+
   if (!args.root) {
     c.append(NeedContext.back_button())
   }
@@ -511,12 +524,25 @@ NeedContext.init = () => {
       user-select: none;
       border: 1px solid #2B2F39;
       border-radius: 5px;
-      padding-top: 6px;
-      padding-bottom: 6px;
+      padding-bottom: 5px;
       max-height: 80vh;
       overflow: auto;
       text-align: left;
       max-width: 98%;
+    }
+
+    #needcontext-container.without_title {
+      padding-top: 5px;
+    }
+
+    #needcontext-title {
+      font-weight: bold;
+      padding-left: 5px;
+      padding-right: 5px;
+      background-color: rgba(67, 220, 255, 0.47);
+      padding-top: 3px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid grey;
     }
 
     #needcontext-filter {

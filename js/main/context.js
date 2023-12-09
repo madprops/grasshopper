@@ -19,6 +19,10 @@ App.show_context = (args = {}) => {
     })
   }
 
+  if (!App.get_setting(`context_titles`)) {
+    args.title = undefined
+  }
+
   NeedContext.show(args)
 }
 
