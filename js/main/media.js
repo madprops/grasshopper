@@ -226,7 +226,7 @@ App.media_show_loading = (what) => {
 }
 
 App.media_show_error = (what) => {
-  DOM.el(`#media_${what}_loading`).textContent = `Error`
+  DOM.el(`#media_${what}_loading`).textContent = `Unable to load`
 }
 
 App.open_media = (what = App.window_mode) => {
