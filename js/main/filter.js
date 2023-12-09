@@ -346,6 +346,31 @@ App.filter_check = (args) => {
   }
 
   if (!match) {
+    let title = App.title(args.item)
+    title = App.clean_filter(title)
+
+    for (let regex of args.regexes) {
+      if (args.by_what === `all` || args.by_what === `re`) {
+        match = regex.test(title)
+
+        if (!match && !args.item.header) {
+          match = regex.test(args.item.path)
+        }
+      }
+      else if (args.by_what.includes(`title`)) {
+        match = regex.test(title)
+      }
+      else if (args.by_what.includes(`url`)) {
+        match = regex.test(args.item.path)
+      }
+
+      if (match) {
+        break
+      }
+    }
+  }
+
+  if (!match) {
     if (args.by_what.startsWith(`color`) || App.get_setting(`filter_colors`)) {
       let color_id = App.get_color(args.item)
 
@@ -380,31 +405,6 @@ App.filter_check = (args) => {
       }
       else if ((args.value_lower === `audio`) || (args.value_lower === `audios`)) {
         match = args.item.audio
-      }
-    }
-  }
-
-  if (!match) {
-    let title = App.title(args.item)
-    title = App.clean_filter(title)
-
-    for (let regex of args.regexes) {
-      if (args.by_what === `all` || args.by_what === `re`) {
-        match = regex.test(title)
-
-        if (!match && !args.item.header) {
-          match = regex.test(args.item.path)
-        }
-      }
-      else if (args.by_what.includes(`title`)) {
-        match = regex.test(title)
-      }
-      else if (args.by_what.includes(`url`)) {
-        match = regex.test(args.item.path)
-      }
-
-      if (match) {
-        break
       }
     }
   }
