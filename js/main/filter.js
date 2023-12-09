@@ -740,7 +740,7 @@ App.get_custom_filters = (mode) => {
 
 App.show_custom_filters = (mode, e) => {
   let items = App.get_custom_filters(mode)
-  App.show_context({items: items, e: e})
+  App.show_context({items: items, e: e, title: `Custom`})
 }
 
 App.set_custom_filter = (mode, filter) => {
@@ -1581,7 +1581,7 @@ App.filter_cmd_name = (cmd) => {
 
 App.show_exact_filters = (mode, e) => {
   let items = App.get_filter_exact(mode)
-  App.show_context({items: items, e: e})
+  App.show_context({items: items, e: e, title: `Exact`})
 }
 
 App.filter_menu_context = (mode, e) => {
