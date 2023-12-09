@@ -860,7 +860,7 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Don't show the pins
-      Might be used in combination with the Tab Box`,
+      Might be used in combination with the Tab Box or Show Pins`,
       version: 1,
     },
     active_trace: {
