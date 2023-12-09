@@ -1039,15 +1039,15 @@ App.show_filter_context_menu = (mode, e) => {
 
   items.push({
     text: `Exact`,
-    action: (e) => {
-      return App.show_exact_filters(mode, e)
+    get_items: () => {
+      return App.get_filter_exact(mode)
     }
   })
 
   items.push({
     text: `Custom`,
-    action: (e) => {
-      App.show_custom_filters(mode, e)
+    get_items: () => {
+      return App.get_custom_filters(mode)
     }
   })
 
