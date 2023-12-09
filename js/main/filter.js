@@ -162,7 +162,6 @@ App.do_filter = async (args = {}) => {
       let match
 
       if (insensitive) {
-
         if (alias.a.toLowerCase().startsWith(value_lower)) {
           match = alias.b
         }
