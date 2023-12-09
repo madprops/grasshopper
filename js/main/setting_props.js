@@ -1122,18 +1122,18 @@ App.build_settings = () => {
         ])
       },
     },
+    favorites_blur: {
+      name: `Favorites Blur`,
+      type: `checkbox`,
+      value: true,
+      info: `Add a blur effect to the background of favorite bars`,
+      version: 1,
+    },
     favorites_autohide: {
       name: `Favorites Autohide`,
       type: `checkbox`,
       value: false,
       info: `Autohide the Favorites Bar when on left or right mode`,
-      version: 1,
-    },
-    favorites_blur: {
-      name: `Favorites Blur`,
-      type: `checkbox`,
-      value: false,
-      info: `Add a blur effect to the background of favorite bars`,
       version: 1,
     },
   }
