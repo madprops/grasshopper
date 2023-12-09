@@ -259,6 +259,7 @@ App.single_space = (s) => {
   return s.replace(/ +/g, ` `)
 }
 
+// | is ommitted on purpose
 App.remove_special = (s) => {
   return s.replace(/[\'\"\-\!\?\@\#\$\%\^\&\*\+\<\>\[\]\(\)\_]/g, ``)
 }
