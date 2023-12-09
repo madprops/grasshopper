@@ -1330,6 +1330,10 @@ a:hover
   flex-direction: column;
 }
 
+.favorites_blur .favorites_bar {
+  backdrop-filter: var(--backdrop);
+}
+
 .favorites_bar_item {
   height: 1.5rem;
   flex-shrink: 0;

@@ -1129,6 +1129,13 @@ App.build_settings = () => {
       info: `Autohide the Favorites Bar when on left or right mode`,
       version: 1,
     },
+    favorites_blur: {
+      name: `Favorites Blur`,
+      type: `checkbox`,
+      value: false,
+      info: `Add a blur effect to the background of favorite bars`,
+      version: 1,
+    },
   }
 
   add_props()
