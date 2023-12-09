@@ -607,8 +607,8 @@ NeedContext.init = () => {
     }
 
     .needcontext-image {
-      width: 1.25rem;
-      height: 1.25rem;
+      width: 1.11rem;
+      height: 1.11rem;
       object-fit: contain;
     }
 
