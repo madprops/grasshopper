@@ -21,6 +21,7 @@ NeedContext.layers = {}
 NeedContext.level = 0
 NeedContext.gap = `0.45rem`
 NeedContext.center_top = 20
+NeedContext.side_padding = `10px`
 
 // Set defaults
 NeedContext.set_defaults = () => {
@@ -537,8 +538,8 @@ NeedContext.init = () => {
 
     #needcontext-title {
       font-weight: bold;
-      padding-left: 5px;
-      padding-right: 5px;
+      padding-left: ${NeedContext.side_padding};
+      padding-right: ${NeedContext.side_padding};
       background-color: rgba(67, 220, 255, 0.47);
       padding-top: 4px;
       padding-bottom: 4px;
@@ -558,8 +559,8 @@ NeedContext.init = () => {
     }
 
     .needcontext-normal {
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: ${NeedContext.side_padding};
+      padding-right: ${NeedContext.side_padding};
       padding-top: ${NeedContext.item_sep};
       padding-bottom: ${NeedContext.item_sep};
       cursor: pointer;
@@ -571,8 +572,8 @@ NeedContext.init = () => {
     }
 
     .needcontext-button {
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: ${NeedContext.side_padding};
+      padding-right: ${NeedContext.side_padding};
       padding-top: ${NeedContext.item_sep};
       padding-bottom: ${NeedContext.item_sep};
       display: flex;
@@ -588,8 +589,8 @@ NeedContext.init = () => {
 
     .needcontext-separator {
       border-top: 1px solid currentColor;
-      margin-left: 10px;
-      margin-right: 10px;
+      margin-left: ${NeedContext.side_padding};
+      margin-right: ${NeedContext.side_padding};
       margin-top: ${NeedContext.item_sep};
       margin-bottom: ${NeedContext.item_sep};
       opacity: 0.7;
