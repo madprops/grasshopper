@@ -372,7 +372,7 @@ App.filter_check = (args) => {
   }
 
   if (!match) {
-    if (App.get_setting(`filter_media`)) {
+    if ((args.by_what === `all`) && App.get_setting(`filter_media`)) {
       if ((args.value_lower === `image`) || (args.value_lower === `images`)) {
         match = args.item.image
       }
