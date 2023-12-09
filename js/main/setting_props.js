@@ -537,6 +537,13 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.media_modes)
       },
     },
+    filter_media: {
+      name: `Filter Media`,
+      type: `checkbox`,
+      value: true,
+      info: `Consider media when using the filter normally, like typing 'image'`,
+      version: 1,
+    },
   }
 
   add_props()

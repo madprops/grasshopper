@@ -358,15 +358,29 @@ App.filter_check = (args) => {
         }
       }
     }
+  }
 
-    if (!match) {
-      if (args.by_what.startsWith(`tag`) || App.get_setting(`filter_tags`)) {
-        for (let tag of App.tags(args.item)) {
-          if (App.clean_filter(tag).toLowerCase().startsWith(args.value_lower)) {
-            match = true
-            break
-          }
+  if (!match) {
+    if (args.by_what.startsWith(`tag`) || App.get_setting(`filter_tags`)) {
+      for (let tag of App.tags(args.item)) {
+        if (App.clean_filter(tag).toLowerCase().startsWith(args.value_lower)) {
+          match = true
+          break
         }
+      }
+    }
+  }
+
+  if (!match) {
+    if (App.get_setting(`filter_media`)) {
+      if ((args.value_lower === `image`) || (args.value_lower === `images`)) {
+        match = args.item.image
+      }
+      else if ((args.value_lower === `video`) || (args.value_lower === `videos`)) {
+        match = args.item.video
+      }
+      else if ((args.value_lower === `audio`) || (args.value_lower === `audios`)) {
+        match = args.item.audio
       }
     }
   }
