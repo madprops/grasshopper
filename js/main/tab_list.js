@@ -12,6 +12,10 @@ App.show_tab_list = (what, e) => {
 	else if (what === `playing`) {
 		tabs = App.get_playing_tabs()
 	}
+	else if (what.startsWith(`color_`)) {
+		let color_id = what.split(`_`)[1]
+		tabs = App.get_color_tabs(color_id)
+	}
 
 	let items = []
   let playing_icon = App.get_setting(`playing_icon`) || App.audio_icon

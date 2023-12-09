@@ -554,3 +554,19 @@ App.do_replace_color = (color_1, color_2) => {
     }
   }
 }
+
+App.get_color_tabs = (color_id) => {
+  let tabs = []
+
+  for (let item of App.get_items(`tabs`)) {
+    let color = App.get_color(item)
+
+    if (color) {
+      if (color === color_id) {
+        tabs.push(item)
+      }
+    }
+  }
+
+  return tabs
+}

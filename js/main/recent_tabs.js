@@ -75,7 +75,3 @@ App.go_to_previous_tab = () => {
     }
   }
 }
-
-App.show_recent_tabs = (e) => {
-  App.show_tab_list(`recent`, e)
-}

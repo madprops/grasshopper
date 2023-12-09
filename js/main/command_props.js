@@ -78,6 +78,22 @@ App.setup_commands = () => {
     })
 
     icon = App.color_icon(color.id)
+    name = `Show ${color.name}`
+
+    color_filters.push({
+      name: name,
+      short_name: color.name,
+      cmd: `show_color_${color.id}`,
+      modes: [`items`],
+      icon: icon,
+      filter_mode: true,
+      action: (args) => {
+        App.show_tab_list(`color_${color.id}`, args.e)
+      },
+      info: `Show color (${color.name})`,
+    })
+
+    icon = App.color_icon(color.id)
     name = `Color ${color.name}`
     short = color.name
 
@@ -284,16 +300,6 @@ App.setup_commands = () => {
         App.step_back()
       },
       info: `Do the Step Back action. What it does depend on the current state`,
-    },
-    {
-      name: `Recent Tabs`,
-      cmd: `show_recent_tabs`,
-      modes: [`items`],
-      icon: tabs_icon,
-      action: (args) => {
-        App.show_recent_tabs()
-      },
-      info: `Show the recent previous tabs`,
     },
     {
       name: `Select All`,
@@ -1439,7 +1445,7 @@ App.setup_commands = () => {
       name: `Show Pins`,
       short_name: `Pins`,
       cmd: `show_pinned_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: pin_icon,
       filter_mode: true,
       action: (args) => {
@@ -1475,13 +1481,25 @@ App.setup_commands = () => {
       name: `Show Playing`,
       short_name: `Playing`,
       cmd: `show_playing_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: playing_icon,
       filter_mode: true,
       action: (args) => {
         App.show_tab_list(`playing`, args.e)
       },
       info: `Show playing tabs`,
+    },
+    {
+      name: `Show Recent`,
+      short_name: `Recent`,
+      cmd: `show_recent_tabs`,
+      modes: [`items`],
+      icon: tabs_icon,
+      filter_mode: true,
+      action: (args) => {
+        App.show_tab_list(`recent`, args.e)
+      },
+      info: `Show recent tabs`,
     },
     {
       name: `Filter Loaded`,
