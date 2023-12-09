@@ -25,6 +25,5 @@
 
 #needcontext-title {
 	background-color: var(--alt_color_0) !important;
-	border-bottom: 1px solid var(--alt_color_0) !important;
 	color: var(--text_color) !important;
 }

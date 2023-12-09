@@ -540,9 +540,9 @@ NeedContext.init = () => {
       padding-left: 5px;
       padding-right: 5px;
       background-color: rgba(67, 220, 255, 0.47);
-      padding-top: 3px;
-      padding-bottom: 3px;
-      border-bottom: 1px solid grey;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      margin-bottom: 1px;
     }
 
     #needcontext-filter {
