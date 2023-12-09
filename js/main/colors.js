@@ -289,7 +289,7 @@ App.color_menu_items = (item) => {
 
 App.show_color_menu = (item, e) => {
   let items = App.color_menu_items(item)
-  App.show_context({items: items, e: e})
+  App.show_context({items: items, e: e, title: `Colors`})
 }
 
 App.get_color_items = (mode) => {

@@ -417,7 +417,7 @@ App.tagged = (item) => {
 
 App.show_filter_tag_menu = (mode, e, show = false) => {
   let items = App.get_tag_items(mode, show)
-  App.show_context({items: items, e: e})
+  App.show_context({items: items, e: e, title: `Tags`})
 }
 
 App.create_taglist = () => {
