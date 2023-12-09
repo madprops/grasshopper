@@ -1331,8 +1331,9 @@ App.create_filter_menu = (mode) => {
   }
 
   fmodes.push(separator())
-  fmodes.push({cmd: `exact`, text: `Exact`, skip: true, info: `Use exact modes when typing a filter`})
-  fmodes.push({cmd: `custom`, text: `Custom`, skip: true, info: `Pick a custom filter`})
+  fmodes.push({cmd: `refine`, text: `Refine`, skip: true, info: `Show the Refine Filters`})
+  fmodes.push({cmd: `exact`, text: `Exact`, skip: true, info: `Show the Exact Filters`})
+  fmodes.push({cmd: `custom`, text: `Custom`, skip: true, info: `Show the Custom Filters`})
   App[`${mode}_filter_modes_all`] = fmodes
 
   DOM.ev(btn, `click`, (e) => {
@@ -1407,6 +1408,16 @@ App.show_filter_menu = (mode) => {
         })
 
         continue
+      }
+      else if (filter_mode.cmd === `refine`) {
+        items.push({
+          icon: filter_mode.icon,
+          text: filter_mode.text,
+          get_items: () => {
+            return App.get_refine_items()
+          },
+          info: filter_mode.info,
+        })
       }
       else if (filter_mode.cmd === `exact`) {
         items.push({
