@@ -1206,6 +1206,10 @@ a:hover
   padding-bottom: 0.188rem;
 }
 
+.tab_box_blur #tab_box_title {
+  backdrop-filter: var(--backdrop);
+}
+
 .box_container {
   padding-top: 0.15rem;
   padding-bottom: 0.15rem;

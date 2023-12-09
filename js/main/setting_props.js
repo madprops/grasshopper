@@ -1015,6 +1015,13 @@ App.build_settings = () => {
       info: `Enable tab blink effect when selecting an item from the Tab Box`,
       version: 1,
     },
+    tab_box_blur: {
+      name: `Tab Box Blur`,
+      type: `checkbox`,
+      value: true,
+      info: `Add a blur effect to the title of the Tab Box`,
+      version: 1,
+    },
     tab_box_headers: {
       name: `Tab Box Headers`,
       type: `checkbox`,
