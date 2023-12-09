@@ -113,14 +113,6 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (e.key === `Delete`) {
-      if (mode === `tabs` && App.is_filtered(mode)) {
-        App.close_visible_tabs()
-      }
-
-      e.preventDefault()
-      return
-    }
 
     if (!isNaN(e.key)) {
       App.pick_active_trace(parseInt(e.key))
