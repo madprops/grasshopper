@@ -1718,5 +1718,6 @@ App.show_refine_filters = (e) => {
     e: e,
     items: items,
     no_items: `Add Refine Filters in the Filter settings`,
+    title: `Refine`,
   })
 }
