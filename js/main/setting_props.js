@@ -1059,7 +1059,6 @@ App.build_settings = () => {
       name: `Favorites Menu`,
       type: `list`,
       value: [
-        {cmd: `show_settings`, alt: `show_about`},
         {cmd: `show_pinned_tabs`, alt: `show_recent_tabs`},
         {cmd: `toggle_color_red`, alt: `filter_color_red`},
         {cmd: `toggle_color_green`, alt: `filter_color_green`},
