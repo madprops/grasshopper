@@ -51,7 +51,7 @@ App.setup_commands = () => {
         from: args.from,
       })
     },
-    info: `Show all colors`,
+    info: `Filter all colors`,
   })
 
   for (let color of App.colors()) {
@@ -436,7 +436,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_all(args.mode)
       },
-      info: `Show all items`,
+      info: `Filter all items`,
     },
     {
       name: `Previous Filter`,
@@ -1317,7 +1317,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_domain(args.item, true)
       },
-      info: `Show same domain`,
+      info: `Filter same domain`,
     },
     {
       name: `Filter Title`,
@@ -1329,7 +1329,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_title(args.item)
       },
-      info: `Show same title`,
+      info: `Filter same title`,
     },
     {
       name: `Filter Color`,
@@ -1347,7 +1347,7 @@ App.setup_commands = () => {
           from: args.from,
         })
       },
-      info: `Show same color`,
+      info: `Filter same color`,
     },
     {
       name: `Filter Tag`,
@@ -1433,6 +1433,18 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
+      info: `Filter pinned tabs`,
+    },
+    {
+      name: `Show Pins`,
+      short_name: `Pins`,
+      cmd: `show_pinned_tabs`,
+      modes: [`tabs`],
+      icon: pin_icon,
+      filter_mode: true,
+      action: (args) => {
+        App.show_tab_list(`pins`, args.e)
+      },
       info: `Show pinned tabs`,
     },
     {
@@ -1445,7 +1457,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Show normal tabs`,
+      info: `Filter normal tabs`,
     },
     {
       name: `Filter Playing`,
@@ -1456,6 +1468,18 @@ App.setup_commands = () => {
       filter_mode: true,
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter playing tabs`,
+    },
+    {
+      name: `Show Playing`,
+      short_name: `Playing`,
+      cmd: `show_playing_tabs`,
+      modes: [`tabs`],
+      icon: playing_icon,
+      filter_mode: true,
+      action: (args) => {
+        App.show_tab_list(`playing`, args.e)
       },
       info: `Show playing tabs`,
     },
@@ -1469,7 +1493,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Show loaded tabs`,
+      info: `Filter loaded tabs`,
     },
     {
       name: `Filter Unloaded`,
@@ -1481,7 +1505,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Show unloaded tabs`,
+      info: `Filter unloaded tabs`,
     },
     {
       name: `Filter Duplicates`,
@@ -1493,7 +1517,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Show duplicate tabs`,
+      info: `Filter duplicate tabs`,
     },
     {
       name: `Filter Unread`,
@@ -1505,7 +1529,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Show unread tabs`,
+      info: `Filter unread tabs`,
     },
     {
       name: `Filter Titled`,
@@ -1517,7 +1541,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Show tabs that have a custom title`,
+      info: `Filter tabs that have a custom title`,
     },
     {
       name: `Filter Notes`,
@@ -1529,7 +1553,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Show tabs that have notes`,
+      info: `Filter tabs that have notes`,
     },
     {
       name: `Filter Edited`,
@@ -1541,7 +1565,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Show tabs that have custom properties`,
+      info: `Filter tabs that have custom properties`,
     },
     {
       name: `Filter Header`,
@@ -1553,7 +1577,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Show header tabs`,
+      info: `Filter header tabs`,
     },
     {
       name: `Filter No Tab`,
@@ -1565,7 +1589,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Show items that are not open in a tab`,
+      info: `Filter items that are not open in a tab`,
     },
     {
       name: `Show Favorite Filters`,

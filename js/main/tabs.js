@@ -325,8 +325,8 @@ App.tabs_action = async (item, from, scroll) => {
         App.blink_item(it)
       }
     }
-    else if ([`recent_tabs`].includes(from)) {
-      if (App.get_setting(`recent_tabs_blink`)) {
+    else if ([`tab_list`].includes(from)) {
+      if (App.get_setting(`tab_list_blink`)) {
         App.blink_item(it)
       }
     }

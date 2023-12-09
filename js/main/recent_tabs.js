@@ -77,40 +77,5 @@ App.go_to_previous_tab = () => {
 }
 
 App.show_recent_tabs = (e) => {
-  let items = []
-  let max = App.get_setting(`max_recent_tabs`)
-  let active = App.get_setting(`recent_active`)
-  let tabs = App.get_recent_tabs({max: max, active: active})
-  let playing_icon = App.get_setting(`playing_icon`)
-
-  for (let item of tabs) {
-    let title = App.title(item)
-
-    if (item.audible && playing_icon) {
-      title = `${playing_icon} ${title}`
-    }
-
-    let obj = {
-      image: item.favicon,
-      text: title,
-      action: async () => {
-        await App.check_on_tabs()
-        App.tabs_action(item, `recent_tabs`)
-      },
-      alt_action: () => {
-        App.close_tabs(item)
-      },
-      context_action: (e) => {
-        App.show_item_menu({item: item, e: e})
-      },
-    }
-
-    if (item.active) {
-      obj.bold = true
-    }
-
-    items.push(obj)
-  }
-
-  App.show_context({items: items, e: e})
+  App.show_tab_list(`recent`, e)
 }

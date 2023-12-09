@@ -9,7 +9,7 @@ App.create_playing_icon = (mode) => {
 
   DOM.ev(btn, `contextmenu`, (e) => {
     e.preventDefault()
-    App.filter_playing()
+    App.show_tab_list(`playing`, e)
   })
 
   DOM.ev(btn, `auxclick`, (e) => {
