@@ -29,8 +29,8 @@ App.start_about = () => {
         `Ctrl + Dot goes to a tab emitting sound (Playing Tab)`,
         `Ctrl + Comma goes to the previously visited tab (Recent Tab)`,
         `Delete closes selected tabs`,
-        `Double click on empty tabs space opens a new tab`,
-        `Command palette commands take into account selected items`,
+        `Double click on empty space opens a new tab (Configurable)`,
+        `Command palette commands take into account selected items and mode (Context Aware)`,
         `To filter by title start with title:`,
         `To filter by URL start with url:`,
         `To filter with regex start with re:`,
@@ -39,8 +39,8 @@ App.start_about = () => {
         `To filter by color start with color:`,
         `To filter by tag start with tag:`,
         `Alt + Click selects items without triggering actions`,
-        `Right Click on the Main Menu button to show the palette`,
-        `Right Click on the Filter Menu to show filter commands`,
+        `Right Click on the Main Menu to show the Palette`,
+        `Right Click on the Filter Menu to show Favorite Filters or filter commands on the Palette (Configurable)`,
         `Right Click on the Go To Playing button to show Playing Tabs`,
         `Right Click on the Step Back button to show Recent Tabs`,
         `Right Click on the Actions button to show the Browser Menu`,
@@ -49,8 +49,8 @@ App.start_about = () => {
         `In the filter, $month resolves to the current month name`,
         `In the filter, $year resolves to the year number`,
         `Context menus support filtering, just start typing something`,
-        `Middle click filter items to further refine the filter`,
-        `Middle click the filter input to show Refine Filters`,
+        `Middle Click filter items to further refine the filter`,
+        `Middle Click the filter input to show Refine Filters`,
       ]
 
       let close = DOM.el(`#about_close`)
