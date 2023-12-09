@@ -1441,6 +1441,17 @@ App.setup_commands = () => {
       info: `Show the filter icon menu`,
     },
     {
+      name: `Show Icon`,
+      short_name: `Icon`,
+      cmd: `show_icon`,
+      modes: [`items`],
+      icon: bot_icon,
+      action: (args) => {
+        App.show_filter_icon_menu(args.mode, args.e, true)
+      },
+      info: `Show the filter tag menu for showing instead of filtering`,
+    },
+    {
       name: `Filter Pins`,
       short_name: `Pins`,
       cmd: `filter_pinned_tabs`,

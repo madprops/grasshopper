@@ -17,8 +17,12 @@ App.show_tab_list = (what, e) => {
 		tabs = App.get_color_tabs(color_id)
 	}
 	else if (what.startsWith(`tag_`)) {
-		let tag_id = what.split(`_`)[1]
-		tabs = App.get_tag_tabs(tag_id)
+		let tag = what.split(`_`)[1]
+		tabs = App.get_tag_tabs(tag)
+	}
+	else if (what.startsWith(`icon_`)) {
+		let id = what.split(`_`)[1]
+		tabs = App.get_icon_tabs(id)
 	}
 
 	let items = []

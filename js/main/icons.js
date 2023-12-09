@@ -525,7 +525,7 @@ App.add_custom_icon = (item) => {
   item.element.append(icon)
 }
 
-App.get_icon_items = (mode) => {
+App.get_icon_items = (mode, show = false) => {
   function icon_sort(a, b) {
     let ai = App.icon_history.indexOf(a)
     let bi = App.icon_history.indexOf(b)
@@ -550,24 +550,36 @@ App.get_icon_items = (mode) => {
   if (icons.length) {
     icons.sort(icon_sort)
 
-    items.push({
-      text: `All`,
-      action: () => {
-        App.filter_icon({mode: mode, icon: `all`})
-      },
-      alt_action: () => {
-        App.filter_icon({mode: mode, icon: `all`, from: App.refine_string})
-      },
-    })
+    if (!show) {
+      items.push({
+        text: `All`,
+        action: () => {
+          App.filter_icon({mode: mode, icon: `all`})
+        },
+        alt_action: () => {
+          App.filter_icon({mode: mode, icon: `all`, from: App.refine_string})
+        },
+      })
+    }
 
     for (let icon of icons.slice(0, App.max_icon_picks)) {
       items.push({
         text: icon,
-        action: () => {
-          App.filter_icon({mode: mode, icon: icon})
+        action: (e) => {
+          if (show) {
+            App.show_tab_list(`icon_${icon}`, e)
+          }
+          else {
+            App.filter_icon({mode: mode, icon: icon})
+          }
         },
-        alt_action: () => {
-          App.filter_icon({mode: mode, icon: icon, from: App.refine_string})
+        alt_action: (e) => {
+          if (show) {
+            //
+          }
+          else {
+            App.filter_icon({mode: mode, icon: icon, from: App.refine_string})
+          }
         },
       })
     }
@@ -634,8 +646,8 @@ App.change_icon = (item) => {
   App.edit_prompt({what: `icon`, item: item})
 }
 
-App.show_filter_icon_menu = (mode, e) => {
-  let items = App.get_icon_items(mode)
+App.show_filter_icon_menu = (mode, e, show = false) => {
+  let items = App.get_icon_items(mode, show)
   App.show_context({items: items, e: e})
 }
 
@@ -649,4 +661,20 @@ App.get_iconed_items = (mode) => {
   }
 
   return items
+}
+
+App.get_icon_tabs = (icon) => {
+  let tabs = []
+
+  for (let item of App.get_items(`tabs`)) {
+    let item_icon = App.get_icon(item)
+
+    if (item_icon) {
+      if (item_icon === icon) {
+        tabs.push(item)
+      }
+    }
+  }
+
+  return tabs
 }
