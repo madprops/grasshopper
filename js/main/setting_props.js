@@ -1049,18 +1049,24 @@ App.build_settings = () => {
   category = `favorites`
 
   props = {
-    favorites_mode: {
-      name: `Favorites Mode`,
+    show_favorites: {
+      name: `Show Favorites`,
+      type: `checkbox`,
+      value: false,
+      no_mirror: true,
+      info: `Enable or disable the Favorites bar or button`,
+      version: 2,
+    },
+    favorites_position: {
+      name: `Favorites Position`,
       type: `menu`,
-      value: `none`,
+      value: `top`,
       no_mirror: true,
       info: `How to show the Favorites Menu
       Either a bar, or a button at the top right`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: App.separator_string},
           {text: `Top`, value: `top`},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},

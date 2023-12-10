@@ -9,9 +9,13 @@ App.setup_favorites = () => {
 }
 
 App.favorites_bar_active = () => {
-  let fav_mode = App.get_setting(`favorites_mode`)
+  if (!App.get_setting(`show_favorites`)) {
+    return false
+  }
 
-  if ((fav_mode === `none`) || (fav_mode === `button`)) {
+  let fav_pos = App.get_setting(`favorites_position`)
+
+  if (fav_pos === `button`) {
     return false
   }
 
@@ -19,9 +23,9 @@ App.favorites_bar_active = () => {
 }
 
 App.favorites_bar_side = () => {
-  let fav_mode = App.get_setting(`favorites_mode`)
+  let fav_pos = App.get_setting(`favorites_position`)
 
-  if ((fav_mode === `left`) || (fav_mode === `right`)) {
+  if ((fav_pos === `left`) || (fav_pos === `right`)) {
     return true
   }
 
@@ -33,7 +37,7 @@ App.create_favorites_bar = (mode) => {
     return
   }
 
-  let fav_mode = App.get_setting(`favorites_mode`)
+  let fav_pos = App.get_setting(`favorites_position`)
   let autohide = App.get_setting(`favorites_autohide`)
   let container = DOM.create(`div`, `favorites_bar_container`, `favorites_bar_container_${mode}`)
   let cls = `favorites_bar`
@@ -45,16 +49,16 @@ App.create_favorites_bar = (mode) => {
   let bar = DOM.create(`div`, cls, `favorites_bar_${mode}`)
   bar.title = App.favorites_title
 
-  if (fav_mode === `top`) {
+  if (fav_pos === `top`) {
     bar.classList.add(`fav_top`)
   }
-  else if (fav_mode === `left`) {
+  else if (fav_pos === `left`) {
     bar.classList.add(`fav_left`)
   }
-  else if (fav_mode === `right`) {
+  else if (fav_pos === `right`) {
     bar.classList.add(`fav_right`)
   }
-  else if (fav_mode === `bottom`) {
+  else if (fav_pos === `bottom`) {
     bar.classList.add(`fav_bottom`)
   }
 
@@ -117,7 +121,7 @@ App.fill_favorites_bar = (mode) => {
   }
 
   let favs = App.get_favorites()
-  let fav_mode = App.get_setting(`favorites_mode`)
+  let fav_pos = App.get_setting(`favorites_position`)
   let c = DOM.el(`#favorites_bar_${mode}`)
   c.innerHTML = ``
 
@@ -173,7 +177,7 @@ App.show_favorites_menu = (e) => {
   App.sep(items)
 
   let modes = []
-  let c_mode = App.get_setting(`favorites_mode`)
+  let c_mode = App.get_setting(`favorites_position`)
   let mode_opts = [`top`, `left`, `right`, `bottom`, `button`].filter(x => x !== c_mode)
 
   for (let mode of mode_opts) {
@@ -188,7 +192,7 @@ App.show_favorites_menu = (e) => {
 
   items.push({
     icon: App.heart_icon,
-    text: `Modes`,
+    text: `Mode`,
     items: modes,
   })
 

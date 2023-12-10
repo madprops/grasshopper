@@ -1098,7 +1098,12 @@ App.build_item_window = (mode) => {
   top.append(main_top)
   let container_main = DOM.create(`div`, `item_container_main`)
   let container = DOM.create(`div`, `item_container`, `${mode}_container`)
-  let fav_mode = App.get_setting(`favorites_mode`)
+  let fav_pos
+
+  if (App.get_setting(`show_favorites`)) {
+    fav_pos = App.get_setting(`favorites_position`)
+  }
+
   let favorites_bar, scroller
 
   if (App.favorites_bar_active()) {
@@ -1118,19 +1123,19 @@ App.build_item_window = (mode) => {
 
   container_col.append(container)
 
-  if (fav_mode === `left`) {
+  if (fav_pos === `left`) {
     container_main.append(favorites_bar)
   }
 
   container_main.append(container_col)
 
-  if (fav_mode === `right`) {
+  if (fav_pos === `right`) {
     container_main.append(favorites_bar)
   }
 
   content.append(container_main)
 
-  if (fav_mode === `bottom`) {
+  if (fav_pos === `bottom`) {
     content.append(favorites_bar)
   }
 
@@ -1146,7 +1151,7 @@ App.build_item_window = (mode) => {
   main_top.append(btns)
   main_top.append(bar)
 
-  if (fav_mode === `top`) {
+  if (fav_pos === `top`) {
     middle.append(favorites_bar)
   }
 
@@ -1188,7 +1193,7 @@ App.build_item_window = (mode) => {
     right_btns.append(actions_menu)
   }
 
-  if (fav_mode === `button`) {
+  if (fav_pos === `button`) {
     let fav_button = App.create_favorites_button(mode)
     right_btns.append(fav_button)
   }
