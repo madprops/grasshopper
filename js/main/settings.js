@@ -1320,7 +1320,7 @@ App.pick_background = (e) => {
       action: () => {
         App.do_pick_background(num)
       },
-      image: App.background_path(num)
+      image: App.background_path(num),
     })
   }
 
