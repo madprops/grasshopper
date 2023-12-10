@@ -276,3 +276,9 @@ App.clear_favorite_bar_autohide = () => {
   App.favorites_bar_show_debouncer.cancel()
   App.favorites_bar_hide_debouncer.cancel()
 }
+
+App.toggle_favorites = () => {
+  let show = App.get_setting(`show_favorites`)
+  App.set_setting(`show_favorites`, !show)
+  App.clear_show()
+}

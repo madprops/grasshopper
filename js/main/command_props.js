@@ -385,14 +385,14 @@ App.setup_commands = () => {
       info: `Show the Palette`,
     },
     {
-      name: `Toggle Taglist`,
-      cmd: `toggle_taglist`,
+      name: `Toggle Favorites`,
+      cmd: `toggle_favorites`,
       modes: [`items`],
-      icon: tag_icon,
+      icon: heart_icon,
       action: (args) => {
-        App.toggle_taglist(args.mode)
+        App.toggle_favorites()
       },
-      info: `Show or hide the Taglist`,
+      info: `Show or hide the Favorites bar or button`,
     },
     {
       name: `Toggle Tab Box`,
@@ -403,6 +403,16 @@ App.setup_commands = () => {
         App.toggle_tab_box()
       },
       info: `Show or hide the Tab Box`,
+    },
+    {
+      name: `Toggle Taglist`,
+      cmd: `toggle_taglist`,
+      modes: [`items`],
+      icon: tag_icon,
+      action: (args) => {
+        App.toggle_taglist(args.mode)
+      },
+      info: `Show or hide the Taglist`,
     },
     {
       name: `Fullscreen`,
