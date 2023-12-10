@@ -190,7 +190,6 @@ select {
 .item_container,
 .box_container
 {
-  margin-bottom: var(--item_margin);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -1177,6 +1176,10 @@ a:hover
 
 .show_tab_box #tab_box {
   display: flex;
+}
+
+#tab_box_container {
+  background-color: var(--tab_box_color);
 }
 
 #tab_box.size_tiny {

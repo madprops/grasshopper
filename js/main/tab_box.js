@@ -253,6 +253,7 @@ App.tab_box_menu = (e) => {
   }
 
   items.push({
+    icon: App.settings_icons.tab_box,
     text: `Size`,
     items: sizes,
   })
@@ -281,24 +282,17 @@ App.tab_box_menu = (e) => {
   }
 
   items.push({
+    icon: App.settings_icons.tab_box,
     text: `Position`,
     items: positions,
   })
 
   items.push({
+    icon: App.settings_icons.tab_box,
     text: `Settings`,
     action: () => {
       App.show_settings_category(`tab_box`)
     }
-  })
-
-  App.sep(items)
-
-  items.push({
-    text: `Hide`,
-    action: (e) => {
-      App.hide_tab_box()
-    },
   })
 
   App.show_context({items: items, e: e})

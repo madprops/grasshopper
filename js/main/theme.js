@@ -384,6 +384,13 @@ App.do_apply_theme = (args = {}) => {
       }
     }
 
+    if (App.get_setting(`tab_box_color_enabled`)) {
+      App.set_css_var(`tab_box_color`, App.get_setting(`tab_box_color`))
+    }
+    else {
+      App.set_css_var(`tab_box_color`, `transparent`)
+    }
+
     if (App.get_setting(`favorites_autohide`)) {
       main.classList.add(`favorites_autohide`)
     }

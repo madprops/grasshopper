@@ -936,6 +936,24 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.color_displays)
       },
     },
+    tab_box_color_enabled: {
+      name: `Tab Box Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable the background color of the Tab Box`,
+      version: 1,
+    },
+    tab_box_color: {
+      name: `Tab Box Color`,
+      hide_name: true,
+      type: `color`,
+      value: App.default_color,
+      info: `Background color of the Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
     tab_box_max: {
       name: `Tab Box Max`,
       type: `number`,
