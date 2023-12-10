@@ -1004,7 +1004,7 @@ App.build_settings = () => {
     tab_box_count: {
       name: `Tab Box Count`,
       type: `checkbox`,
-      value: false,
+      value: true,
       info: `Show the number of items in the Tab Box`,
       version: 1,
     },
