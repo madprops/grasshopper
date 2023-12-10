@@ -96,11 +96,7 @@ App.tab_box_show = (mode, o_items) => {
 
   let items = App.get_tab_box_items(o_items, mode)
   App.fill_tab_box(items)
-
-  if (App.get_setting(`tab_box_count`)) {
-    let count = DOM.el(`#tab_box_title_count`)
-    count.textContent = `(${items.length})`
-  }
+  App.update_tab_box_count(items.length)
 }
 
 App.update_tab_box_recent = () => {
@@ -547,5 +543,12 @@ App.check_tab_box_scroll = () => {
 
   if (mode === `recent`) {
     App.scroll_tab_box_top()
+  }
+}
+
+App.update_tab_box_count = (count) => {
+  if (App.get_setting(`tab_box_count`)) {
+    let el = DOM.el(`#tab_box_title_count`)
+    el.textContent = `(${count})`
   }
 }
