@@ -377,10 +377,6 @@ App.tabs_action = async (item, from, scroll) => {
 
   App.on_action(`tabs`)
   blink(item)
-
-  if (from === `tab_box`) {
-    App.check_tab_box_scroll()
-  }
 }
 
 App.duplicate_tab = async (item) => {
@@ -861,6 +857,8 @@ App.on_tab_activated = async (info) => {
   for (let item of old_active) {
     App.update_item(`tabs`, item.id, item)
   }
+
+  App.check_tab_box_scroll()
 }
 
 App.move_tabs_to_window = async (item, window_id) => {
