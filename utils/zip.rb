@@ -11,9 +11,11 @@ name = manifest["name"].downcase.split.join("_")
 # Delete the old zip file
 old_name = Dir.glob("#{name}*.zip").first
 
-if File.exist?(old_name)
-	File.delete(old_name)
-	puts "Removed #{old_name}"
+if old_name
+	if File.exist?(old_name)
+		File.delete(old_name)
+		puts "Removed #{old_name}"
+	end
 end
 
 # Create the new zip file
