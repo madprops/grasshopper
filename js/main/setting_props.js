@@ -1168,7 +1168,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Sort tags alphabetically in the Taglist`,
-      separator: true,
       version: 1,
     },
   }
