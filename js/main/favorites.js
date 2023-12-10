@@ -185,6 +185,7 @@ App.show_favorites_menu = (e) => {
       text: App.capitalize(mode),
       action: () => {
         App.set_setting(`favorites_position`, mode)
+        App.do_apply_theme()
         App.clear_show()
       },
     })

@@ -1260,9 +1260,13 @@ a:hover
 
 .favorites_bar.fav_top,
 .favorites_bar.fav_bottom
- {
+{
   flex-direction: row;
   width: 100%;
+}
+
+.favorites_bar.fav_top {
+  margin-bottom: 0.1rem;
 }
 
 .favorites_bar.fav_left,
