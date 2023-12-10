@@ -744,60 +744,6 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-    taglist: {
-      name: `Taglist`,
-      type: `menu`,
-      value: `none`,
-      info: `A special widget to display the tags of a tab`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: `Above`, value: `above`},
-          {text: `Below`, value: `below`},
-          {text: `Left`, value: `left`},
-          {text: `Right`, value: `right`},
-        ])
-      },
-    },
-    taglist_mode: {
-      name: `Taglist Mode`,
-      type: `menu`,
-      value: `filter`,
-      info: `What to do when clicking the Taglist items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: `Menu`, value: `menu`},
-          {text: `Edit`, value: `edit`},
-          {text: `Filter`, value: `filter`},
-          {text: `Remove`, value: `remove`},
-        ])
-      },
-    },
-    taglist_add: {
-      name: `Taglist Add`,
-      type: `checkbox`,
-      value: false,
-      info: `Show the Taglist add button`,
-      version: 1,
-    },
-    autohide_taglist: {
-      name: `Autohide Taglist`,
-      type: `checkbox`,
-      value: false,
-      info: `If the Taglist mode is above or below, only show tags when the item is selected`,
-      version: 1,
-    },
-    sort_taglist: {
-      name: `Sort Taglist`,
-      type: `checkbox`,
-      value: false,
-      info: `Sort tags alphabetically in the Taglist`,
-      separator: true,
-      version: 1,
-    },
     show_pinline: {
       name: `Show Pinline`,
       type: `menu`,
@@ -1155,6 +1101,73 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Autohide the Favorites Bar when on left or right mode`,
+      version: 1,
+    },
+  }
+
+  add_props()
+  category = `taglist`
+
+  props = {
+    show_taglist: {
+      name: `Show Taglist`,
+      type: `checkbox`,
+      value: false,
+      no_mirror: true,
+      info: `Enable or disable the Taglist`,
+      version: 2,
+    },
+    taglist_position: {
+      name: `Taglist Position`,
+      type: `menu`,
+      value: `below`,
+      info: `Where to display the Taglist`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Above`, value: `above`},
+          {text: `Below`, value: `below`},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+        ])
+      },
+    },
+    taglist_mode: {
+      name: `Taglist Mode`,
+      type: `menu`,
+      value: `filter`,
+      info: `What to do when clicking the Taglist items`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: `Menu`, value: `menu`},
+          {text: `Edit`, value: `edit`},
+          {text: `Filter`, value: `filter`},
+          {text: `Remove`, value: `remove`},
+        ])
+      },
+    },
+    taglist_add: {
+      name: `Taglist Add`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the Taglist add button`,
+      version: 1,
+    },
+    autohide_taglist: {
+      name: `Autohide Taglist`,
+      type: `checkbox`,
+      value: false,
+      info: `If the Taglist mode is above or below, only show tags when the item is selected`,
+      version: 1,
+    },
+    sort_taglist: {
+      name: `Sort Taglist`,
+      type: `checkbox`,
+      value: false,
+      info: `Sort tags alphabetically in the Taglist`,
+      separator: true,
       version: 1,
     },
   }
@@ -2625,6 +2638,10 @@ App.build_settings = () => {
       An icon appears to the left of items
       You can make it view media when clicking the icons, the whole item, or never
       Some files, like local files and others, won't be able to load`,
+    },
+    taglist: {
+      info: `Configure the Taglist
+      This is a component that shows item tags in various ways`,
     },
     favorites: {
       info: `Configure favorite commands

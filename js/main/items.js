@@ -320,12 +320,8 @@ App.create_item_element = (item) => {
   let text = DOM.create(`div`, `item_text`)
   let text_1 = DOM.create(`div`, `item_text_line item_text_1`)
   let text_2 = DOM.create(`div`, `item_text_line item_text_2 hidden`)
-  let taglist_pos = App.get_setting(`taglist`)
-  let taglist
-
-  if (taglist_pos !== `none`) {
-    taglist = App.create_taglist()
-  }
+  let taglist_pos = App.get_setting(`taglist_position`)
+  let taglist = App.create_taglist()
 
   if (taglist_pos === `above`) {
     content.append(taglist)

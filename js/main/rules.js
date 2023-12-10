@@ -41,7 +41,7 @@ App.copy_rule = (item, rule) => {
   for (let key in App.edit_props) {
     if (key === `tags`) {
       if (rule[key].length) {
-        item[`rule_${key}`] = App.taglist(rule[key])
+        item[`rule_${key}`] = App.split_list(rule[key])
         item.ruled = true
         item.rule = rule
       }

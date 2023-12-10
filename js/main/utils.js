@@ -490,7 +490,7 @@ App.def_args = (def, args) => {
   }
 }
 
-App.taglist = (s) => {
+App.split_list = (s) => {
   return s.split(/[, ]+/).map(x => x.trim())
 }
 

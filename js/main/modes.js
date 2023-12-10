@@ -146,6 +146,7 @@ App.do_show_mode = async (args = {}) => {
     App.check_filtered(args.mode)
     App.init_favorites()
     App.init_tab_box()
+    App.init_taglist()
   }
 }
 

@@ -1360,8 +1360,12 @@ a:hover
 }
 
 .taglist {
-  display: flex;
+  display: none;
   flex-direction: row;
+}
+
+.show_taglist .taglist {
+  display: flex;
 }
 
 .taglist_container {
