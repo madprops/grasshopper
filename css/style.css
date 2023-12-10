@@ -1411,7 +1411,6 @@ a:hover
 }
 
 .taglist.hover {
-  display: flex;
   position: absolute;
   background-color: var(--text_color_darker);
   color: var(--background_color);
@@ -1420,7 +1419,7 @@ a:hover
   opacity: 0;
 }
 
-.item:hover .taglist.hover {
+.show_taglist .item:hover .taglist.hover {
   opacity: 1;
 }
 
