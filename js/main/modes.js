@@ -140,13 +140,13 @@ App.do_show_mode = async (args = {}) => {
 
   App[`${args.mode}_changed`] = false
   App.check_playing(args.mode)
+  App.check_filtered(args.mode)
+  App.init_favorites(args.mode)
+  App.init_taglist()
 
   if (args.mode === `tabs`) {
     App.check_pinline()
-    App.check_filtered(args.mode)
-    App.init_favorites(args.mode)
     App.init_tab_box()
-    App.init_taglist()
   }
 }
 
