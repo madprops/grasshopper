@@ -27,7 +27,6 @@ App.process_info_list = (mode, info_list) => {
   App.check_playing(mode)
   App.update_footer_count(mode)
   App.do_check_pinline()
-  App.check_tab_box_playing()
 
   if (mode === `tabs`) {
     App.check_tab_session()

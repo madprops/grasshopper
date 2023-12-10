@@ -25,20 +25,27 @@ App.create_playing_icon = (mode) => {
 
 App.show_playing = (mode) => {
   DOM.el(`#playing_icon_${mode}`).classList.remove(`hidden`)
+  App.playing = true
 }
 
 App.hide_playing = (mode) => {
   DOM.el(`#playing_icon_${mode}`).classList.add(`hidden`)
+  App.playing = false
 }
 
 App.check_playing = (mode = App.active_mode) => {
   let playing = App.get_playing_tabs()
 
   if (playing.length) {
-    App.show_playing(mode)
+    if (!App.playing) {
+      App.show_playing(mode)
+      App.check_tab_box_playing()
+    }
   }
   else {
-    App.hide_playing(mode)
+    if (App.playing) {
+      App.hide_playing(mode)
+    }
   }
 }
 
