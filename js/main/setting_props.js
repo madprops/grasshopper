@@ -846,17 +846,6 @@ App.build_settings = () => {
       info: `Enable or disable the Tab Box`,
       version: 3,
     },
-    tab_box_size: {
-      name: `Tab Box Size`,
-      type: `menu`,
-      value: `normal`,
-      no_mirror: true,
-      info: `The size of the Tab Box`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sizes)
-      },
-    },
     tab_box_position: {
       name: `Tab Box Position`,
       type: `menu`,
@@ -869,6 +858,17 @@ App.build_settings = () => {
           {text: `Top`, value: `top`},
           {text: `Bottom`, value: `bottom`},
         ])
+      },
+    },
+    tab_box_size: {
+      name: `Tab Box Size`,
+      type: `menu`,
+      value: `normal`,
+      no_mirror: true,
+      info: `The size of the Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes)
       },
     },
     tab_box_mode: {
