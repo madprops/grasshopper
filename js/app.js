@@ -151,6 +151,7 @@ App.muted_icon = `🔇`
 App.sleeping_icon = `💤`
 App.circle_icon = `⭕`
 App.globe_icon = `🌎`
+App.data_icon = `💾`
 
 App.sizes = [
   {text: `Tiny`, value: `tiny`},

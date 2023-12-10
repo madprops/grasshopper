@@ -883,6 +883,7 @@ App.settings_menu_items = () => {
   App.sep(items)
 
   items.push({
+    icon: App.data_icon,
     text: `Data`,
     get_items: () => {
       return App.settings_data_items()
