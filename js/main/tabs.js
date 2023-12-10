@@ -377,6 +377,10 @@ App.tabs_action = async (item, from, scroll) => {
 
   App.on_action(`tabs`)
   blink(item)
+
+  if (from === `tab_box`) {
+    App.check_tab_box_scroll()
+  }
 }
 
 App.duplicate_tab = async (item) => {

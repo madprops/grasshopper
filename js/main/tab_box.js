@@ -101,7 +101,6 @@ App.update_tab_box_recent = () => {
   })
 
   App.tab_box_show(`recent`, o_items)
-  App.scroll_tab_box_top()
 }
 
 App.update_tab_box_pins = () => {
@@ -525,5 +524,17 @@ App.toggle_tab_box = () => {
     if (visible) {
       App.scroll_to_selected(`tabs`)
     }
+  }
+}
+
+App.check_tab_box_scroll = () => {
+  if (!App.tab_box_enabled()) {
+    return
+  }
+
+  let mode = App.get_setting(`tab_box_mode`)
+
+  if (mode === `recent`) {
+    App.scroll_tab_box_top()
   }
 }
