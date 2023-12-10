@@ -764,6 +764,7 @@ App.build_settings = () => {
       value: `right`,
       info: `How to show the Close Button on tabs`,
       version: 1,
+      separator: true,
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
