@@ -1171,8 +1171,12 @@ a:hover
 }
 
 #tab_box {
-  display: flex;
+  display: none;
   transition: height 0.35s ease;
+}
+
+.show_tab_box #tab_box {
+  display: flex;
 }
 
 #tab_box.size_tiny {
@@ -1243,10 +1247,14 @@ a:hover
 }
 
 .favorites_bar_container {
-  display: flex;
+  display: none;
   min-width: 1px;
   flex-shrink: 0;
   overflow: hidden;
+}
+
+.show_favorites .favorites_bar_container {
+  display: flex;
 }
 
 .favorites_bar {

@@ -17,7 +17,7 @@ App.setup_tab_box = () => {
 }
 
 App.create_tab_box = () => {
-  let tab_box = DOM.create(`div`, `box hidden`, `tab_box`)
+  let tab_box = DOM.create(`div`, `box`, `tab_box`)
   let title = DOM.create(`div`, `box_title glowbox`, `tab_box_title`)
   title.title = `This is the Tab Box`
 
@@ -382,34 +382,6 @@ App.do_check_tab_box_playing = () => {
   }
 }
 
-App.show_tab_box = (refresh = true) => {
-  DOM.el(`#tab_box`).classList.remove(`hidden`)
-  App.set_show_tab_box(true)
-
-  if (refresh) {
-    App.refresh_tab_box()
-  }
-}
-
-App.hide_tab_box = () => {
-  DOM.el(`#tab_box`).classList.add(`hidden`)
-  App.set_show_tab_box(false)
-}
-
-App.toggle_tab_box = () => {
-  if (App.get_setting(`show_tab_box`)) {
-    App.hide_tab_box()
-  }
-  else {
-    let visible = App.selected_visible(`tabs`)
-    App.show_tab_box()
-
-    if (visible) {
-      App.scroll_to_selected(`tabs`)
-    }
-  }
-}
-
 App.check_tab_box_grow = () => {
   let auto = App.get_setting(`tab_box_auto_grow`)
 
@@ -520,5 +492,35 @@ App.init_tab_box = () => {
 
   if (App.get_setting(`show_tab_box`)) {
     App.show_tab_box()
+  }
+}
+
+App.show_tab_box = (refresh = true) => {
+	let main = DOM.el(`#main`)
+	main.classList.add(`show_tab_box`)
+  App.set_show_tab_box(true)
+
+  if (refresh) {
+    App.refresh_tab_box()
+  }
+}
+
+App.hide_tab_box = () => {
+	let main = DOM.el(`#main`)
+	main.classList.remove(`show_tab_box`)
+  App.set_show_tab_box(false)
+}
+
+App.toggle_tab_box = () => {
+  if (App.get_setting(`show_tab_box`)) {
+    App.hide_tab_box()
+  }
+  else {
+    let visible = App.selected_visible(`tabs`)
+    App.show_tab_box()
+
+    if (visible) {
+      App.scroll_to_selected(`tabs`)
+    }
   }
 }

@@ -35,7 +35,7 @@ App.create_favorites_bar = (mode) => {
 
   let fav_pos = App.get_setting(`favorites_position`)
   let autohide = App.get_setting(`favorites_autohide`)
-  let container = DOM.create(`div`, `favorites_bar_container hidden`, `favorites_bar_container_${mode}`)
+  let container = DOM.create(`div`, `favorites_bar_container`, `favorites_bar_container_${mode}`)
   let cls = `favorites_bar`
 
   if (autohide) {
@@ -175,7 +175,7 @@ App.show_favorites_menu = (e) => {
     positions.push({
       text: App.capitalize(mode),
       action: () => {
-        App.set_setting(`favorites_position`, mode)
+        App.set_favorites_position(mode)
         App.do_apply_theme()
         App.clear_show()
       },
@@ -268,6 +268,14 @@ App.clear_favorite_bar_autohide = () => {
   App.favorites_bar_hide_debouncer.cancel()
 }
 
+App.set_show_favorites = (what) => {
+  App.set_setting(`show_favorites`, what)
+}
+
+App.set_favorites_position = (pos) => {
+  App.set_setting(`favorites_position`, pos)
+}
+
 App.init_favorites = () => {
   if (App.get_setting(`show_favorites`)) {
     App.show_favorites()
@@ -275,30 +283,19 @@ App.init_favorites = () => {
 }
 
 App.show_favorites = () => {
-  for (let mode of App.modes) {
-    let c = DOM.el(`#favorites_bar_container_${mode}`)
-
-    if (c) {
-      c.classList.remove(`hidden`)
-    }
-  }
+	let main = DOM.el(`#main`)
+	main.classList.add(`show_favorites`)
+  App.set_show_favorites(true)
 }
 
 App.hide_favorites = () => {
-  for (let mode of App.modes) {
-    let c = DOM.el(`#favorites_bar_container_${mode}`)
-
-    if (c) {
-      c.classList.add(`hidden`)
-    }
-  }
+	let main = DOM.el(`#main`)
+	main.classList.remove(`show_favorites`)
+  App.set_show_favorites(false)
 }
 
 App.toggle_favorites = () => {
-  let show = App.get_setting(`show_favorites`)
-  App.set_setting(`show_favorites`, !show)
-
-  if (show) {
+  if (App.get_setting(`show_favorites`)) {
     App.hide_favorites()
   }
   else {

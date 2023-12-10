@@ -210,6 +210,10 @@ App.taglist_scroll = (taglist, direction) => {
   }
 }
 
+App.set_show_taglist = (what) => {
+  App.set_setting(`show_taglist`, what)
+}
+
 App.init_taglist = () => {
   if (App.get_setting(`show_taglist`)) {
     App.show_taglist()
@@ -219,18 +223,17 @@ App.init_taglist = () => {
 App.show_taglist = () => {
 	let main = DOM.el(`#main`)
 	main.classList.add(`show_taglist`)
+	App.set_show_taglist(true)
 }
 
 App.hide_taglist = () => {
 	let main = DOM.el(`#main`)
 	main.classList.remove(`show_taglist`)
+	App.set_show_taglist(false)
 }
 
 App.toggle_taglist = () => {
-  let show = App.get_setting(`show_taglist`)
-  App.set_setting(`show_taglist`, !show)
-
-  if (show) {
+  if (App.get_setting(`show_taglist`)) {
     App.hide_taglist()
   }
   else {
