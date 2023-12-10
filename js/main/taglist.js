@@ -178,7 +178,7 @@ App.taglist_remove = (e, item) => {
   App.remove_tag(item, tag)
 }
 
-App.taglist_active = () => {
+App.taglist_enabled = () => {
   if (!App.get_setting(`show_taglist`)) {
     return false
   }
@@ -186,8 +186,8 @@ App.taglist_active = () => {
   return true
 }
 
-App.taglist_add_active = () => {
-  if (!App.taglist_active()) {
+App.taglist_add_enabled = () => {
+  if (!App.taglist_enabled()) {
     return false
   }
 

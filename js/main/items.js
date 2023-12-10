@@ -464,9 +464,6 @@ App.setup_item_window = (mode) => {
 
     App.build_item_window(mode)
   }
-  args.after_show = () => {
-    App.fill_favorites_bar(mode)
-  }
 
   App.create_window(args)
 }
@@ -1097,7 +1094,7 @@ App.build_item_window = (mode) => {
   let fav_pos = App.get_setting(`favorites_position`)
   let favorites_bar, scroller
 
-  if (App.favorites_bar_active()) {
+  if (App.favorites_bar_enabled()) {
     favorites_bar = App.create_favorites_bar(mode)
   }
 

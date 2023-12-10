@@ -390,7 +390,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: heart_icon,
       action: (args) => {
-        App.toggle_favorites()
+        App.toggle_favorites(args.mode)
       },
       info: `Show or hide the Favorites bar or button`,
     },

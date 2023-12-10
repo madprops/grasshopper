@@ -151,7 +151,7 @@ App.mouse_click_action = (mode, e) => {
       }
     }
 
-    if (App.taglist_active()) {
+    if (App.taglist_enabled()) {
       if (e.target.closest(`.taglist`)) {
         if (e.target.classList.contains(`taglist_item`)) {
           App.taglist_action(item, e)
@@ -172,7 +172,7 @@ App.mouse_click_action = (mode, e) => {
       }
     }
 
-    if (App.taglist_add_active()) {
+    if (App.taglist_add_enabled()) {
       if (e.target.classList.contains(`taglist_add`)) {
         App.add_tags(item)
         return
@@ -239,7 +239,7 @@ App.mouse_double_click_action = (mode, e) => {
     return
   }
 
-  if (App.taglist_active()) {
+  if (App.taglist_enabled()) {
     if (e.target.closest(`.taglist`)) {
       return
     }
@@ -303,7 +303,7 @@ App.mouse_context_action = (mode, e) => {
     }
   }
 
-  if (App.taglist_active()) {
+  if (App.taglist_enabled()) {
     if (e.target.closest(`.taglist`)) {
       if (e.target.classList.contains(`taglist_item`)) {
         App.show_taglist_menu(e, item)
@@ -370,7 +370,7 @@ App.mouse_middle_action = (mode, e) => {
       }
     }
 
-    if (App.taglist_active()) {
+    if (App.taglist_enabled()) {
       if (e.target.closest(`.taglist`)) {
         if (e.target.classList.contains(`taglist_item`)) {
           App.taglist_remove(e, item)

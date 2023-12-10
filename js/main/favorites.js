@@ -8,7 +8,7 @@ App.setup_favorites = () => {
   }, App.favorites_bar_hide_delay)
 }
 
-App.favorites_bar_active = () => {
+App.favorites_bar_enabled = () => {
   let fav_pos = App.get_setting(`favorites_position`)
 
   if (fav_pos === `button`) {
@@ -29,7 +29,7 @@ App.favorites_bar_side = () => {
 }
 
 App.create_favorites_bar = (mode) => {
-  if (!App.favorites_bar_active()) {
+  if (!App.favorites_bar_enabled()) {
     return
   }
 
@@ -112,7 +112,7 @@ App.create_favorites_button = (mode) => {
 }
 
 App.fill_favorites_bar = (mode) => {
-  if (!App.favorites_bar_side()) {
+  if (!App.favorites_bar_enabled()) {
     return
   }
 
@@ -280,16 +280,17 @@ App.set_favorites_position = (pos) => {
   App.set_setting(`favorites_position`, pos)
 }
 
-App.init_favorites = () => {
+App.init_favorites = (mode) => {
   if (App.get_setting(`show_favorites`)) {
-    App.show_favorites()
+    App.show_favorites(mode)
   }
 }
 
-App.show_favorites = () => {
+App.show_favorites = (mode) => {
 	let main = DOM.el(`#main`)
 	main.classList.add(`show_favorites`)
   App.set_show_favorites(true)
+  App.fill_favorites_bar(mode)
 }
 
 App.hide_favorites = () => {
@@ -298,11 +299,11 @@ App.hide_favorites = () => {
   App.set_show_favorites(false)
 }
 
-App.toggle_favorites = () => {
+App.toggle_favorites = (mode) => {
   if (App.get_setting(`show_favorites`)) {
-    App.hide_favorites()
+    App.hide_favorites(mode)
   }
   else {
-    App.show_favorites()
+    App.show_favorites(mode)
   }
 }
