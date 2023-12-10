@@ -176,15 +176,15 @@ App.show_favorites_menu = (e) => {
 
   App.sep(items)
 
-  let modes = []
-  let c_mode = App.get_setting(`favorites_position`)
-  let mode_opts = [`top`, `left`, `right`, `bottom`, `button`].filter(x => x !== c_mode)
+  let positions = []
+  let c_pos = App.get_setting(`favorites_position`)
+  let pos_opts = [`top`, `left`, `right`, `bottom`, `button`].filter(x => x !== c_pos)
 
-  for (let mode of mode_opts) {
-    modes.push({
+  for (let mode of pos_opts) {
+    positions.push({
       text: App.capitalize(mode),
       action: () => {
-        App.set_setting(`favorites_mode`, mode)
+        App.set_setting(`favorites_position`, mode)
         App.clear_show()
       },
     })
@@ -192,8 +192,8 @@ App.show_favorites_menu = (e) => {
 
   items.push({
     icon: App.heart_icon,
-    text: `Mode`,
-    items: modes,
+    text: `Position`,
+    items: positions,
   })
 
   items.push({
