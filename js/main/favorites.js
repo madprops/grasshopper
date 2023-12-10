@@ -112,6 +112,10 @@ App.create_favorites_button = (mode) => {
 }
 
 App.fill_favorites_bar = (mode) => {
+  if (!App.favorites_bar_side()) {
+    return
+  }
+
   let favs = App.get_favorites()
   let c = DOM.el(`#favorites_bar_${mode}`)
   c.innerHTML = ``
