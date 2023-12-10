@@ -958,7 +958,6 @@ App.build_settings = () => {
       name: `Tab Box Taglist`,
       type: `checkbox`,
       value: true,
-      no_mirror: true,
       info: `Enable the Taglist in the items of the Tab Box`,
       version: 1,
     },
