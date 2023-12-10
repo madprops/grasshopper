@@ -27,7 +27,10 @@ App.setup_tabs = () => {
 
     if (info.windowId === App.window_id) {
       await App.refresh_tab({id: id, info: info})
-      App.check_playing()
+
+      if (changed.audible !== undefined) {
+        App.check_playing()
+      }
     }
   })
 
@@ -40,7 +43,6 @@ App.setup_tabs = () => {
 
     if (info.windowId === App.window_id) {
       await App.on_tab_activated(info)
-      App.check_playing()
     }
   })
 
@@ -66,7 +68,6 @@ App.setup_tabs = () => {
 
     if (info.windowId === App.window_id) {
       App.move_item(`tabs`, info.fromIndex, info.toIndex)
-      App.check_playing()
     }
   })
 
@@ -184,7 +185,6 @@ App.focus_tab = async (args = {}) => {
   catch (err) {
     App.error(err)
     App.remove_closed_tab(args.item.id)
-    App.check_playing()
   }
 
   App.after_focus(args)
