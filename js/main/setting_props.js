@@ -1001,6 +1001,13 @@ App.build_settings = () => {
       info: `Add a blur effect to the title of the Tab Box`,
       version: 1,
     },
+    tab_box_count: {
+      name: `Tab Box Count`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the number of items in the Tab Box`,
+      version: 1,
+    },
     tab_box_headers: {
       name: `Tab Box Headers`,
       type: `checkbox`,

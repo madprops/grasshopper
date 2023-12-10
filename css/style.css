@@ -1204,6 +1204,7 @@ a:hover
 
 .box_title {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   background-color: var(--slight_shade);
@@ -1211,6 +1212,15 @@ a:hover
   border-bottom: 1px solid var(--alt_color_1);
   padding-top: 0.188rem;
   padding-bottom: 0.188rem;
+  gap: 0.5rem;
+}
+
+#tab_box_title_count {
+  display: none;
+}
+
+.tab_box_count #tab_box_title_count {
+  display: flex;
 }
 
 .tab_box_blur #tab_box_title {

@@ -20,6 +20,10 @@ App.create_tab_box = () => {
   let tab_box = DOM.create(`div`, `box`, `tab_box`)
   let title = DOM.create(`div`, `box_title glowbox`, `tab_box_title`)
   title.title = `This is the Tab Box`
+  let title_main = DOM.create(`div`, `box_title_main`, `tab_box_title_main`)
+  title.append(title_main)
+  let title_count = DOM.create(`div`, `box_title_count`, `tab_box_title_count`)
+  title.append(title_count)
 
   DOM.evs(title, [`click`, `contextmenu`], (e) => {
     e.preventDefault()
@@ -92,6 +96,11 @@ App.tab_box_show = (mode, o_items) => {
 
   let items = App.get_tab_box_items(o_items, mode)
   App.fill_tab_box(items)
+
+  if (App.get_setting(`tab_box_count`)) {
+    let count = DOM.el(`#tab_box_title_count`)
+    count.textContent = `(${items.length})`
+  }
 }
 
 App.update_tab_box_recent = () => {
@@ -161,11 +170,11 @@ App.get_tab_box_items = (o_items, mode) => {
 
 App.set_tab_box_title = () => {
   let mode = App.get_setting(`tab_box_mode`)
-  let title = DOM.el(`#tab_box_title`)
-  title.innerHTML = ``
+  let title_main = DOM.el(`#tab_box_title_main`)
+  title_main.innerHTML = ``
   let icon = App.tab_box_icon(mode)
   let text = App.capitalize(mode)
-  title.append(App.button_text(icon, text, true))
+  title_main.append(App.button_text(icon, text, true))
 }
 
 App.scroll_tab_box_top = () => {

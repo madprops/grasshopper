@@ -421,6 +421,13 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`tab_box_blur`)
     }
 
+    if (App.get_setting(`tab_box_count`)) {
+      main.classList.add(`tab_box_count`)
+    }
+    else {
+      main.classList.remove(`tab_box_count`)
+    }
+
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_custom_css()
