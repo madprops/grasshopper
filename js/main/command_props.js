@@ -15,6 +15,7 @@ App.setup_commands = () => {
   let filter_icon = App.settings_icons.filter
   let media_icon = App.settings_icons.media
   let tab_box_icon = App.settings_icons.tab_box
+  let favorites_icon = App.settings_icons.favorites
   let tabs_icon =  App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
   let closed_icon = App.mode_icons.closed
@@ -25,7 +26,6 @@ App.setup_commands = () => {
   let up_icon = App.up_arrow_icon
   let down_icon = App.down_arrow_icon
   let left_icon = App.left_arrow_icon
-  let heart_icon = App.heart_icon
   let close_icon = App.close_icon
   let tag_icon = App.tag_icon
   let zone_icon = App.zone_icon
@@ -388,7 +388,7 @@ App.setup_commands = () => {
       name: `Toggle Favorites`,
       cmd: `toggle_favorites`,
       modes: [`items`],
-      icon: heart_icon,
+      icon: favorites_icon,
       action: (args) => {
         App.toggle_favorites(args.mode)
       },
@@ -435,10 +435,11 @@ App.setup_commands = () => {
       info: `Show the Item Menu`,
     },
     {
-      name: `Favorites`,
+      name: `Show Favorites`,
+      short_name: `Favorites`,
       cmd: `show_favorites_menu`,
       modes: [`items`],
-      icon: heart_icon,
+      icon: favorites_icon,
       action: (args) => {
         App.show_favorites_menu(args.e)
       },

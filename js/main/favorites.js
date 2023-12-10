@@ -91,7 +91,7 @@ App.create_favorites_bar = (mode) => {
 
 App.create_favorites_button = (mode) => {
   let btn = DOM.create(`div`, `favorites_button button`, `favorites_button_${mode}`)
-  btn.textContent = App.heart_icon
+  btn.textContent = App.settings_icons.favorites
   btn.title = App.favorites_title
 
   DOM.ev(btn, `click`, (e) => {
@@ -187,13 +187,13 @@ App.show_favorites_menu = (e) => {
   }
 
   items.push({
-    icon: App.heart_icon,
+    icon: App.settings_icons.favorites,
     text: `Position`,
     items: positions,
   })
 
   items.push({
-    icon: App.heart_icon,
+    icon: App.settings_icons.favorites,
     text: `Settings`,
     action: () => {
       App.show_settings_category(`favorites`)
