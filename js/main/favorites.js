@@ -284,26 +284,35 @@ App.init_favorites = (mode) => {
   if (App.get_setting(`show_favorites`)) {
     App.show_favorites(mode)
   }
+  else {
+    App.hide_favorites()
+  }
 }
 
-App.show_favorites = (mode) => {
+App.show_favorites = (mode, set = false) => {
 	let main = DOM.el(`#main`)
 	main.classList.add(`show_favorites`)
-  App.set_show_favorites(true)
   App.fill_favorites_bar(mode)
+
+  if (set) {
+    App.set_show_favorites(true)
+  }
 }
 
-App.hide_favorites = () => {
+App.hide_favorites = (set = false) => {
 	let main = DOM.el(`#main`)
 	main.classList.remove(`show_favorites`)
-  App.set_show_favorites(false)
+
+  if (set) {
+    App.set_show_favorites(true)
+  }
 }
 
 App.toggle_favorites = (mode) => {
   if (App.get_setting(`show_favorites`)) {
-    App.hide_favorites(mode)
+    App.hide_favorites(true)
   }
   else {
-    App.show_favorites(mode)
+    App.show_favorites(mode, true)
   }
 }

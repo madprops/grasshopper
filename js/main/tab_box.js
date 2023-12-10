@@ -487,31 +487,40 @@ App.init_tab_box = () => {
   if (App.get_setting(`show_tab_box`)) {
     App.show_tab_box()
   }
+  else {
+    App.hide_tab_box()
+  }
 }
 
-App.show_tab_box = (refresh = true) => {
+App.show_tab_box = (refresh = true, set = false) => {
 	let main = DOM.el(`#main`)
 	main.classList.add(`show_tab_box`)
-  App.set_show_tab_box(true)
 
   if (refresh) {
     App.refresh_tab_box()
   }
+
+  if (set) {
+    App.set_show_tab_box(true)
+  }
 }
 
-App.hide_tab_box = () => {
+App.hide_tab_box = (set = false) => {
 	let main = DOM.el(`#main`)
 	main.classList.remove(`show_tab_box`)
-  App.set_show_tab_box(false)
+
+  if (set) {
+    App.set_show_tab_box(false)
+  }
 }
 
 App.toggle_tab_box = () => {
   if (App.get_setting(`show_tab_box`)) {
-    App.hide_tab_box()
+    App.hide_tab_box(true)
   }
   else {
     let visible = App.selected_visible(`tabs`)
-    App.show_tab_box()
+    App.show_tab_box(true, true)
 
     if (visible) {
       App.scroll_to_selected(`tabs`)

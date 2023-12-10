@@ -218,25 +218,34 @@ App.init_taglist = () => {
   if (App.get_setting(`show_taglist`)) {
     App.show_taglist()
   }
+  else {
+    App.hide_taglist()
+  }
 }
 
-App.show_taglist = () => {
+App.show_taglist = (set = false) => {
 	let main = DOM.el(`#main`)
 	main.classList.add(`show_taglist`)
-	App.set_show_taglist(true)
+
+  if (set) {
+    App.set_show_taglist(true)
+  }
 }
 
-App.hide_taglist = () => {
+App.hide_taglist = (set = false) => {
 	let main = DOM.el(`#main`)
 	main.classList.remove(`show_taglist`)
-	App.set_show_taglist(false)
+
+  if (set) {
+    App.set_show_taglist(false)
+  }
 }
 
 App.toggle_taglist = () => {
   if (App.get_setting(`show_taglist`)) {
-    App.hide_taglist()
+    App.hide_taglist(true)
   }
   else {
-    App.show_taglist()
+    App.show_taglist(true)
   }
 }
