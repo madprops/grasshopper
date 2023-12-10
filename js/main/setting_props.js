@@ -1053,6 +1053,7 @@ App.build_settings = () => {
       name: `Favorites Mode`,
       type: `menu`,
       value: `none`,
+      no_mirror: true,
       info: `How to show the Favorites Menu
       Either a bar, or a button at the top right`,
       version: 1,

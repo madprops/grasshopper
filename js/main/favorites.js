@@ -172,6 +172,26 @@ App.show_favorites_menu = (e) => {
 
   App.sep(items)
 
+  let modes = []
+  let c_mode = App.get_setting(`favorites_mode`)
+  let mode_opts = [`top`, `left`, `right`, `bottom`, `button`].filter(x => x !== c_mode)
+
+  for (let mode of mode_opts) {
+    modes.push({
+      text: App.capitalize(mode),
+      action: () => {
+        App.set_setting(`favorites_mode`, mode)
+        App.clear_show()
+      },
+    })
+  }
+
+  items.push({
+    icon: App.heart_icon,
+    text: `Modes`,
+    items: modes,
+  })
+
   items.push({
     icon: App.heart_icon,
     text: `Settings`,
