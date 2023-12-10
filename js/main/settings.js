@@ -715,21 +715,24 @@ App.settings_data_items = () => {
   let items = []
 
   items.push({
-    text: `Export`,
+    icon: App.data_icon,
+    text: `Export Settings`,
     action: () => {
       App.export_settings()
     }
   })
 
   items.push({
-    text: `Import`,
+    icon: App.data_icon,
+    text: `Import Settings`,
     action: () => {
       App.import_settings()
     }
   })
 
   items.push({
-    text: `Reset All`,
+    icon: App.data_icon,
+    text: `Reset Settings`,
     action: () => {
       App.reset_all_settings()
     }
