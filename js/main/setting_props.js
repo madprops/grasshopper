@@ -1122,6 +1122,7 @@ App.build_settings = () => {
       name: `Taglist Position`,
       type: `menu`,
       value: `below`,
+      no_mirror: true,
       info: `Where to display the Taglist`,
       version: 1,
       setup: (key) => {
