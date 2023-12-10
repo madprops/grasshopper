@@ -304,7 +304,7 @@ App.hide_favorites = (set = false) => {
 	main.classList.remove(`show_favorites`)
 
   if (set) {
-    App.set_show_favorites(true)
+    App.set_show_favorites(false)
   }
 }
 
