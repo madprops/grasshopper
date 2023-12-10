@@ -532,6 +532,10 @@ App.check_tab_box_scroll = () => {
     return
   }
 
+  if (!App.get_setting(`tab_box_scroll`)) {
+    return
+  }
+
   let mode = App.get_setting(`tab_box_mode`)
 
   if (mode === `recent`) {

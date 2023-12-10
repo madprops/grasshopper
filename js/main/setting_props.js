@@ -979,6 +979,14 @@ App.build_settings = () => {
       info: `Enable the Taglist in the items of the Tab Box`,
       version: 1,
     },
+    tab_box_scroll: {
+      name: `Tab Box Scroll`,
+      type: `checkbox`,
+      value: true,
+      info: `Scroll to the top of the Tab Box in some cases
+      Like when clicking an item in Recent mode`,
+      version: 1,
+    },
     tab_box_blink: {
       name: `Tab Box Blink`,
       type: `checkbox`,
