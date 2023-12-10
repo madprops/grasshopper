@@ -144,6 +144,7 @@ App.do_show_mode = async (args = {}) => {
   if (args.mode === `tabs`) {
     App.check_pinline()
     App.check_filtered(args.mode)
+    App.init_favorites()
     App.init_tab_box()
   }
 }

@@ -1098,12 +1098,7 @@ App.build_item_window = (mode) => {
   top.append(main_top)
   let container_main = DOM.create(`div`, `item_container_main`)
   let container = DOM.create(`div`, `item_container`, `${mode}_container`)
-  let fav_pos
-
-  if (App.get_setting(`show_favorites`)) {
-    fav_pos = App.get_setting(`favorites_position`)
-  }
-
+  let fav_pos = App.get_setting(`favorites_position`)
   let favorites_bar, scroller
 
   if (App.favorites_bar_active()) {
