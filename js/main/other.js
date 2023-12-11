@@ -93,13 +93,11 @@ App.show_browser_menu = (e) => {
 }
 
 App.toggle_fullscreen = () => {
-  let main = DOM.el(`#main`)
-
   if (main.classList.contains(`fullscreen`)) {
-    main.classList.remove(`fullscreen`)
+    App.main_remove(`fullscreen`)
   }
   else {
-    main.classList.add(`fullscreen`)
+    App.main_add(`fullscreen`)
   }
 }
 
