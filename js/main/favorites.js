@@ -98,6 +98,11 @@ App.create_favorites_button = (mode) => {
     App.show_favorites_menu(e)
   })
 
+  DOM.ev(btn, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.show_favorites_menu(e)
+  })
+
   DOM.ev(btn, `dblclick`, (e) => {
     App.favorites_double_click(e)
   })
