@@ -40,10 +40,6 @@ App.hide_playing = (mode) => {
 }
 
 App.check_playing = () => {
-
-}
-
-App.check_playing = () => {
   App.check_playing_debouncer.call(App.active_mode)
 }
 
