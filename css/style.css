@@ -1380,6 +1380,10 @@ a:hover
   top: -25rem;
 }
 
+.fullscreen .footer {
+  display: none;
+}
+
 .taglist {
   display: none;
   flex-direction: row;
