@@ -1146,11 +1146,7 @@ App.build_item_window = (mode) => {
     main_top.append(tab_box)
   }
 
-  let footer
-
-  if (App.get_setting(`show_footer`)) {
-    footer = App.create_footer(mode)
-  }
+  let footer = App.create_footer(mode)
 
   if (tab_box && tab_box_pos === `bottom`) {
     content.append(tab_box)

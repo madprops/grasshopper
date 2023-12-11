@@ -29,7 +29,6 @@ App.do_update_footer_info = (item) => {
       info = item.footer
     }
 
-    App.footer_item = item
     App.set_footer_info(item.mode, info)
   }
   else {
@@ -38,7 +37,6 @@ App.do_update_footer_info = (item) => {
 }
 
 App.empty_footer_info = () => {
-  App.footer_item = undefined
   App.set_footer_info(App.window_mode, `No Results`)
 }
 
@@ -156,8 +154,17 @@ App.init_footer = () => {
   }
 }
 
-App.show_footer = (set = false) => {
+App.refresh_footer = () => {
+  App.update_footer_count(App.window_mode)
+  App.update_footer_info(App.get_selected(App.window_mode))
+}
+
+App.show_footer = (refresh = false, set = false) => {
   App.main_add(`show_footer`)
+
+  if (refresh) {
+    App.refresh_footer()
+  }
 
   if (set) {
     App.set_show_footer(true)
@@ -177,6 +184,6 @@ App.toggle_footer = () => {
     App.hide_footer(true)
   }
   else {
-    App.show_footer(true)
+    App.show_footer(true, true)
   }
 }

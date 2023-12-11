@@ -127,13 +127,6 @@ App.do_apply_theme = (args = {}) => {
 
     let main = DOM.el(`#main`)
 
-    if (App.get_setting(`show_footer`)) {
-      main.classList.remove(`hide_footer`)
-    }
-    else {
-      main.classList.add(`hide_footer`)
-    }
-
     if (App.get_setting(`show_scroller`)) {
       main.classList.remove(`hide_scroller`)
     }
