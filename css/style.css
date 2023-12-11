@@ -20,7 +20,7 @@
 
 @font-face {
   font-family: "Nova Square";
-  src: url("../fonts/NovaSquare-Regular.ttf") format('truetype');
+  src: url("../fonts/NovaSquare-Regular.ttf") format("truetype");
 }
 
 @keyframes spin {
