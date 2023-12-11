@@ -164,3 +164,13 @@ App.permission_msg = (what) => {
   let s2 = `Open the top left menu and click on the mode you want to enable`
   App.alert(`${s1} ${s2}`)
 }
+
+App.main_add = (cls) => {
+  let main = DOM.el(`#main`)
+	main.classList.add(cls)
+}
+
+App.main_remove = (cls) => {
+  let main = DOM.el(`#main`)
+	main.classList.remove(cls)
+}

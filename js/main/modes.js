@@ -143,6 +143,7 @@ App.do_show_mode = async (args = {}) => {
   App.check_filtered(args.mode)
   App.init_favorites(args.mode)
   App.init_taglist()
+  App.init_footer()
 
   if (args.mode === `tabs`) {
     App.check_pinline()

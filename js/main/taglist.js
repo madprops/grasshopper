@@ -224,8 +224,7 @@ App.init_taglist = () => {
 }
 
 App.show_taglist = (set = false) => {
-	let main = DOM.el(`#main`)
-	main.classList.add(`show_taglist`)
+  App.main_add(`show_taglist`)
 
   if (set) {
     App.set_show_taglist(true)
@@ -233,8 +232,7 @@ App.show_taglist = (set = false) => {
 }
 
 App.hide_taglist = (set = false) => {
-	let main = DOM.el(`#main`)
-	main.classList.remove(`show_taglist`)
+  App.main_remove(`show_taglist`)
 
   if (set) {
     App.set_show_taglist(false)

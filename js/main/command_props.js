@@ -415,6 +415,16 @@ App.setup_commands = () => {
       info: `Show or hide the Taglist`,
     },
     {
+      name: `Toggle Footer`,
+      cmd: `toggle_footer`,
+      modes: [`items`],
+      icon: command_icon,
+      action: (args) => {
+        App.toggle_footer()
+      },
+      info: `Show or hide the Footer`,
+    },
+    {
       name: `Fullscreen`,
       cmd: `toggle_fullscreen`,
       icon: command_icon,

@@ -495,8 +495,7 @@ App.init_tab_box = () => {
 }
 
 App.show_tab_box = (refresh = true, set = false) => {
-	let main = DOM.el(`#main`)
-	main.classList.add(`show_tab_box`)
+  App.main_add(`show_tab_box`)
 
   if (refresh) {
     App.refresh_tab_box()
@@ -508,8 +507,7 @@ App.show_tab_box = (refresh = true, set = false) => {
 }
 
 App.hide_tab_box = (set = false) => {
-	let main = DOM.el(`#main`)
-	main.classList.remove(`show_tab_box`)
+  App.main_remove(`show_tab_box`)
 
   if (set) {
     App.set_show_tab_box(false)

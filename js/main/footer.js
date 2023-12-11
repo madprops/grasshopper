@@ -142,3 +142,41 @@ App.do_update_footer_count = (mode) => {
 
   el.textContent = count
 }
+
+App.set_show_footer = (what) => {
+  App.set_setting(`show_footer`, what)
+}
+
+App.init_footer = () => {
+  if (App.get_setting(`show_footer`)) {
+    App.show_footer()
+  }
+  else {
+    App.hide_footer()
+  }
+}
+
+App.show_footer = (set = false) => {
+  App.main_add(`show_footer`)
+
+  if (set) {
+    App.set_show_footer(true)
+  }
+}
+
+App.hide_footer = (set = false) => {
+  App.main_remove(`show_footer`)
+
+  if (set) {
+    App.set_show_footer(false)
+  }
+}
+
+App.toggle_footer = () => {
+  if (App.get_setting(`show_footer`)) {
+    App.hide_footer(true)
+  }
+  else {
+    App.show_footer(true)
+  }
+}

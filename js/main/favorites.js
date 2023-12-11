@@ -295,8 +295,7 @@ App.init_favorites = (mode) => {
 }
 
 App.show_favorites = (mode, set = false) => {
-	let main = DOM.el(`#main`)
-	main.classList.add(`show_favorites`)
+  App.main_add(`show_favorites`)
   App.fill_favorites_bar(mode)
 
   if (set) {
@@ -305,8 +304,7 @@ App.show_favorites = (mode, set = false) => {
 }
 
 App.hide_favorites = (set = false) => {
-	let main = DOM.el(`#main`)
-	main.classList.remove(`show_favorites`)
+  App.main_remove(`show_favorites`)
 
   if (set) {
     App.set_show_favorites(false)

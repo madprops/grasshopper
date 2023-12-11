@@ -1020,7 +1020,7 @@ a:hover
 }
 
 .footer {
-  display: flex;
+  display: none;
   flex-direction: row;
   align-items: center;
   background-color: var(--slight_shade);
@@ -1032,6 +1032,10 @@ a:hover
   flex-shrink: 0;
   flex-grow: 0;
   gap: 0.5rem;
+}
+
+.show_footer .footer {
+  display: flex;
 }
 
 #footer_tab_box {
