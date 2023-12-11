@@ -1,3 +1,9 @@
+App.setup_playing = () => {
+  App.check_playing_debouncer = App.create_debouncer((mode) => {
+    App.do_check_playing(mode)
+  }, App.check_playing_delay)
+}
+
 App.create_playing_icon = (mode) => {
   btn = DOM.create(`div`, `button icon_button playing_icon hidden`, `playing_icon_${mode}`)
   btn.title = `Go To Playing Tab (Ctrl + Dot) - Right Click to show Playing Tabs`
@@ -33,7 +39,15 @@ App.hide_playing = (mode) => {
   App.playing = false
 }
 
-App.check_playing = (mode = App.active_mode, force = false) => {
+App.check_playing = () => {
+
+}
+
+App.check_playing = () => {
+  App.check_playing_debouncer.call(App.active_mode)
+}
+
+App.do_check_playing = (mode = App.active_mode, force = false) => {
   let playing = App.get_playing_tabs()
 
   if (playing.length) {

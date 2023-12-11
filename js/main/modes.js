@@ -139,7 +139,7 @@ App.do_show_mode = async (args = {}) => {
   }
 
   App[`${args.mode}_changed`] = false
-  App.check_playing(args.mode, App.playing)
+  App.do_check_playing(args.mode, App.playing)
   App.check_filtered(args.mode)
   App.init_favorites(args.mode)
   App.init_taglist()
