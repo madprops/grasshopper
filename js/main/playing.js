@@ -33,13 +33,16 @@ App.hide_playing = (mode) => {
   App.playing = false
 }
 
-App.check_playing = (mode = App.active_mode) => {
+App.check_playing = (mode = App.active_mode, force = false) => {
   let playing = App.get_playing_tabs()
 
   if (playing.length) {
-    if (!App.playing) {
+    if (!App.playing || force) {
       App.show_playing(mode)
-      App.check_tab_box_playing()
+
+      if (mode === `tabs`) {
+        App.check_tab_box_playing()
+      }
     }
   }
   else {

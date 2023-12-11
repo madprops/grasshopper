@@ -24,7 +24,6 @@ App.process_info_list = (mode, info_list) => {
     container.append(item.element)
   }
 
-  App.check_playing(mode)
   App.update_footer_count(mode)
   App.do_check_pinline()
 
