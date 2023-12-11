@@ -430,10 +430,6 @@ App.tab_box_clear_grow = () => {
 }
 
 App.check_tab_box_footer = () => {
-  if (!App.get_setting(`show_footer`)) {
-    return
-  }
-
   let btn = DOM.el(`#footer_tab_box`)
 
   if (!btn) {
