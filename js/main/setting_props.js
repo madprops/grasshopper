@@ -791,6 +791,7 @@ App.build_settings = () => {
       name: `Show Footer`,
       type: `checkbox`,
       value: true,
+      no_mirror: true,
       info: `Show a footer at the bottom with some information
       Clicking this scrolls the item list to the bottom`,
       version: 1,
