@@ -1313,11 +1313,11 @@ App.check_tab_loading = (item) => {
     let effects = [`fade`, `spin`, `icon`]
 
     for (let effect of effects) {
-      item.element.classList.remove(`${effect}_effect`)
+      item.element.classList.remove(`loading_${effect}_effect`)
     }
   }
   else {
-    item.element.classList.add(`${effect}_effect`)
+    item.element.classList.add(`loading_${effect}_effect`)
   }
 }
 

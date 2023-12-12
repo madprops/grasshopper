@@ -352,18 +352,18 @@ svg {
   padding-right: calc(var(--item_gap) * 2);
 }
 
-.item.fade_effect {
-  animation: fade 1s linear 60;
-}
-
-.item.icon_effect .loading_icon,
-.item.spin_effect .loading_icon
+.item.loading_icon_effect .loading_icon,
+.item.loading_spin_effect .loading_icon
 {
   display: flex !important;
 }
 
-.item.spin_effect .loading_icon {
+.item.loading_spin_effect .loading_icon {
   animation: spin 1s linear 60;
+}
+
+.item.loading_fade_effect {
+  animation: fade 1s linear 60;
 }
 
 .item_container .header_item {
