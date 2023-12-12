@@ -356,12 +356,14 @@ svg {
   animation: fade 1s linear 60;
 }
 
-.item.spin_effect .item_icon {
-  animation: spin 1s linear 60;
+.item.icon_effect .loading_icon,
+.item.spin_effect .loading_icon
+{
+  display: flex !important;
 }
 
-.item.icon_effect .loading_icon {
-  display: flex !important;
+.item.spin_effect .loading_icon {
+  animation: spin 1s linear 60;
 }
 
 .item_container .header_item {
