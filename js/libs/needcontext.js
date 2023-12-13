@@ -349,7 +349,9 @@ NeedContext.hide = (e) => {
 NeedContext.select_item = (index) => {
   let els = Array.from(document.querySelectorAll(`.needcontext-normal`))
 
-  for (let [i, el] of els.entries()) {
+  for (let el of els) {
+    let i = parseInt(el.dataset.index)
+
     if (i === index) {
       el.classList.add(`needcontext-item-selected`)
     }
@@ -361,11 +363,16 @@ NeedContext.select_item = (index) => {
   NeedContext.index = index
 }
 
-// Select an item above
-NeedContext.select_up = () => {
+// Select an item above or below
+NeedContext.select_next = (direction = `down`, bounce = false) => {
   let waypoint = false
   let first_visible
-  let items = NeedContext.get_layer().normal_items.slice(0).reverse()
+  let items = NeedContext.get_layer().normal_items.slice(0)
+  items = items.filter(x => !x.removed)
+
+  if (direction === `up`) {
+    items.reverse()
+  }
 
   for (let item of items) {
     if (!NeedContext.is_visible(item.element)) {
@@ -386,35 +393,13 @@ NeedContext.select_up = () => {
     }
   }
 
-  NeedContext.select_item(first_visible)
-}
-
-// Select an item below
-NeedContext.select_down = () => {
-  let waypoint = false
-  let first_visible
-  let items = NeedContext.get_layer().normal_items
-
-  for (let item of items) {
-    if (!NeedContext.is_visible(item.element)) {
-      continue
-    }
-
-    if (first_visible === undefined) {
-      first_visible = item.index
-    }
-
-    if (waypoint) {
-      NeedContext.select_item(item.index)
-      return
-    }
-
-    if (item.index === NeedContext.index) {
-      waypoint = true
-    }
+  if (!bounce) {
+    NeedContext.select_item(first_visible)
+    return true
   }
-
-  NeedContext.select_item(first_visible)
+  else {
+    NeedContext.select_next(`up`)
+  }
 }
 
 // Do the selected action
@@ -672,11 +657,11 @@ NeedContext.init = () => {
     NeedContext.keydown = true
 
     if (e.key === `ArrowUp`) {
-      NeedContext.select_up()
+      NeedContext.select_next(`up`)
       e.preventDefault()
     }
     else if (e.key === `ArrowDown`) {
-      NeedContext.select_down()
+      NeedContext.select_next()
       e.preventDefault()
     }
     else if (e.key === `Backspace`) {
@@ -921,8 +906,17 @@ NeedContext.alt_action = (item, e) => {
     NeedContext.args.after_alt_action(e)
   }
 
-  NeedContext.hide(e)
+  let remove = NeedContext.args.alt_action_remove
+
+  if (!remove) {
+    NeedContext.hide(e)
+  }
+
   item.alt_action(e)
+
+  if (remove) {
+    NeedContext.remove_item(item)
+  }
 }
 
 // Context (right click) action
@@ -939,6 +933,13 @@ NeedContext.context_action = (item, e) => {
 
   NeedContext.hide(e)
   item.context_action(e)
+}
+
+// Remove an item
+NeedContext.remove_item = (item) => {
+  NeedContext.select_next(`down`, true)
+  item.removed = true
+  item.element.remove()
 }
 
 // Start

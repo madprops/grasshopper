@@ -55,7 +55,7 @@ App.show_tab_list = (what, e) => {
         App.tabs_action(tab, `tab_list`)
       },
       alt_action: () => {
-        App.close_tabs(tab)
+        // App.close_tab_or_tabs(tab.id)
       },
       context_action: (e) => {
         App.show_item_menu({item: tab, e: e})
@@ -69,5 +69,9 @@ App.show_tab_list = (what, e) => {
     items.push(obj)
   }
 
-  App.show_context({items: items, e: e, title: title})
+  App.show_context({
+    items: items, e: e,
+    title: title,
+    alt_action_remove: true,
+  })
 }
