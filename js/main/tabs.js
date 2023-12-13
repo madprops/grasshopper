@@ -1390,3 +1390,7 @@ App.paste_tabs = async (item) => {
     App.toggle_selected({item: tab, what: true, select: false})
   }
 }
+
+App.new_pin_tab = () => {
+  App.open_new_tab({pinned: true})
+}

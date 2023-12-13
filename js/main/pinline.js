@@ -53,6 +53,7 @@ App.do_check_pinline = () => {
 
   DOM.ev(pinline, `click`, (e) => {
     let cmds = [
+      `new_pinned_tab`,
       `select_pinned_tabs`,
       `select_normal_tabs`,
       `select_unloaded_tabs`,

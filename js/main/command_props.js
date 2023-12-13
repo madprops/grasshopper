@@ -717,6 +717,16 @@ App.setup_commands = () => {
       info: `Pin or unpin tabs`,
     },
     {
+      name: `New Pin`,
+      cmd: `new_pinned_tab`,
+      modes: [`tabs`],
+      icon: pin_icon,
+      action: (args) => {
+        App.new_pin_tab(args.item)
+      },
+      info: `Make a new tab and pin it automatically`,
+    },
+    {
       name: `Mute`,
       cmd: `mute_tabs`,
       modes: [`tabs`],
