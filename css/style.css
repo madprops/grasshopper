@@ -155,6 +155,10 @@ select {
   backdrop-filter: unset !important;
 }
 
+.auto_blur .scroller {
+  display: none !important;
+}
+
 .window_content {
   display: flex;
   flex-direction: column;
