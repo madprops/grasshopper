@@ -588,7 +588,7 @@ App.setup_commands = () => {
       info: `Show the browser menu`,
     },
     {
-      name: `New`,
+      name: `New Tab`,
       cmd: `open_new_tab`,
       icon: tabs_icon,
       action: (args) => {
