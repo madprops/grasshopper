@@ -248,3 +248,15 @@ App.show_windows_menu = async (item, e) => {
     App.show_context({items: items, e: e})
   }
 }
+
+App.toggle_auto_blur = () => {
+  let setting = !App.get_setting(`auto_blur`)
+  App.set_setting(`auto_blur`, setting)
+
+  if (setting) {
+    App.alert_autohide(`Auto Blur Enabled`)
+  }
+  else {
+    App.alert_autohide(`Auto Blur Disabled`)
+  }
+}

@@ -425,6 +425,15 @@ App.setup_commands = () => {
       info: `Show or hide the Footer`,
     },
     {
+      name: `Toggle Auto Blur`,
+      cmd: `toggle_auto_blur`,
+      icon: command_icon,
+      action: (args) => {
+        App.toggle_auto_blur()
+      },
+      info: `Enable or disable Auto Blur`,
+    },
+    {
       name: `Fullscreen`,
       cmd: `toggle_fullscreen`,
       icon: command_icon,
