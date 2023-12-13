@@ -146,12 +146,12 @@ select {
 }
 
 .auto_blur .window_content,
-.auto_blur .window_top,
-.auto_blur .favorites_bar,
-.auto_blur .box_title,
-.auto_blur .footer
+.auto_blur .window_top
 {
   filter: blur(3px) !important;
+}
+
+.auto_blur * {
   backdrop-filter: unset !important;
 }
 
