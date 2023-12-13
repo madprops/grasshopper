@@ -906,17 +906,14 @@ NeedContext.alt_action = (item, e) => {
     NeedContext.args.after_alt_action(e)
   }
 
-  let remove = NeedContext.args.alt_action_remove
-
-  if (!remove) {
+  if (NeedContext.args.alt_action_remove) {
+    NeedContext.remove_item(item)
+  }
+  else {
     NeedContext.hide(e)
   }
 
   item.alt_action(e)
-
-  if (remove) {
-    NeedContext.remove_item(item)
-  }
 }
 
 // Context (right click) action
