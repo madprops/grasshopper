@@ -237,6 +237,7 @@ App.build_settings = () => {
       name: `Auto Blur`,
       type: `checkbox`,
       value: false,
+      no_mirror: true,
       info: `Blur the sidebar automatically then the mouse moves out, for privacy`,
       version: 1,
     },
