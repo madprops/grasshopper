@@ -361,16 +361,21 @@ svg {
 }
 
 .item.loading_icon_effect .loading_icon,
-.item.loading_spin_effect .loading_icon
+.item.loading_icon_spin_effect .loading_icon,
+.item.loading_icon_fade_effect .loading_icon
 {
   display: flex !important;
 }
 
-.item.loading_spin_effect .loading_icon {
+.item.loading_icon_spin_effect .loading_icon {
   animation: spin 1s linear 60;
 }
 
-.item.loading_fade_effect {
+.item.loading_icon_fade_effect .loading_icon {
+  animation: fade 1s linear 60;
+}
+
+.item.loading_item_fade_effect {
   animation: fade 1s linear 60;
 }
 

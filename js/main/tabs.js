@@ -1310,7 +1310,7 @@ App.check_tab_loading = (item) => {
   }
 
   if (App.tab_ready(item)) {
-    let effects = [`fade`, `spin`, `icon`]
+    let effects = App.loading_effects.map(x => x.value)
 
     for (let effect of effects) {
       item.element.classList.remove(`loading_${effect}_effect`)

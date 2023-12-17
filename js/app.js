@@ -225,6 +225,14 @@ App.media_modes = [
   {text: `On Item Click`, value: `item`},
 ]
 
+App.loading_effects = [
+  {text: `None`, value: `none`},
+  {text: `Icon`, value: `icon`},
+  {text: `Icon Spin`, value: `icon_spin`},
+  {text: `Icon Fade`, value: `icon_fade`},
+  {text: `Item Fade`, value: `item_fade`},
+]
+
 App.favorites_title = `Favorites`
 
 App.filter_whats = [
