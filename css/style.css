@@ -211,7 +211,7 @@ select {
 }
 
 .text {
-  background-color: var(--slight_shade);
+  background-color: transparent;
   color: var(--text_color);
   outline: 1px solid var(--alt_color_1);
   border-width: 0;
@@ -709,6 +709,13 @@ svg {
   max-width: var(--widget_width_smaller);
   text-align: center;
 	font-size: 1rem;
+}
+
+.settings_text,
+.settings_textarea,
+.settings_number
+{
+  background-color: var(--slight_shade);
 }
 
 .settings_info {
