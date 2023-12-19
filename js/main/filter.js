@@ -1038,16 +1038,16 @@ App.show_filter_context_menu = (mode, e) => {
   }
 
   items.push({
-    text: `Refine`,
+    text: `Exact`,
     get_items: () => {
-      return App.get_refine_items()
+      return App.get_filter_exact(mode)
     }
   })
 
   items.push({
-    text: `Exact`,
+    text: `Refine`,
     get_items: () => {
-      return App.get_filter_exact(mode)
+      return App.get_refine_items()
     }
   })
 
@@ -1331,8 +1331,8 @@ App.create_filter_menu = (mode) => {
   }
 
   fmodes.push(separator())
-  fmodes.push({cmd: `refine`, text: `Refine`, skip: true, info: `Show the Refine Filters`})
   fmodes.push({cmd: `exact`, text: `Exact`, skip: true, info: `Show the Exact Filters`})
+  fmodes.push({cmd: `refine`, text: `Refine`, skip: true, info: `Show the Refine Filters`})
   fmodes.push({cmd: `custom`, text: `Custom`, skip: true, info: `Show the Custom Filters`})
   App[`${mode}_filter_modes_all`] = fmodes
 
