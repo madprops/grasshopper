@@ -224,6 +224,13 @@ NeedContext.show = (args = {}) => {
       if (item.icon) {
         let icon = document.createElement(`div`)
         icon.classList.add(`needcontext-icon`)
+
+        if (item.icon_action) {
+          icon.addEventListener(`click`, (e) => {
+            item.icon_action(e, icon)
+          })
+        }
+
         icon.append(item.icon)
         el.append(icon)
       }
@@ -852,6 +859,10 @@ NeedContext.action = (item, e) => {
     if (!NeedContext.is_visible(item.element)) {
       return
     }
+  }
+
+  if (item.icon_action) {
+    return
   }
 
   let args = NeedContext.args

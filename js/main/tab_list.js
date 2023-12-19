@@ -39,16 +39,22 @@ App.show_tab_list = (what, e) => {
 
 	let items = []
   let playing_icon = App.get_setting(`playing_icon`) || App.audio_icon
+  let muted_icon = App.get_setting(`muted_icon`) || App.muted_icon
 
   for (let tab of tabs) {
     let title = App.title(tab)
+    let icon
 
-    if (tab.audible) {
-      title = `${playing_icon} ${title}`
+    if (tab.muted) {
+      icon = muted_icon
+    }
+    else if (tab.audible) {
+      icon = playing_icon
     }
 
     let obj = {
       image: tab.favicon,
+      icon: icon,
       text: title,
       action: async () => {
         await App.check_on_tabs()
@@ -59,6 +65,22 @@ App.show_tab_list = (what, e) => {
       },
       context_action: (e) => {
         App.show_item_menu({item: tab, e: e})
+      },
+      icon_action: async (e, icon) => {
+        if (tab.muted) {
+          await App.unmute_tab(tab.id)
+
+          if (!tab.audible) {
+            icon.innerHTML = ``
+          }
+          else {
+            icon.innerHTML = playing_icon
+          }
+        }
+        else if (tab.audible) {
+          await App.mute_tab(tab.id)
+          icon.innerHTML = muted_icon
+        }
       },
     }
 
