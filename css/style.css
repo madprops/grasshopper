@@ -211,7 +211,7 @@ select {
 }
 
 .text {
-  background-color: transparent;
+  background-color: var(--slight_shade);
   color: var(--text_color);
   outline: 1px solid var(--alt_color_1);
   border-width: 0;
