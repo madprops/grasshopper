@@ -330,6 +330,11 @@ App.tabs_action = async (item, from, scroll) => {
         App.blink_item(it)
       }
     }
+    else if ([`previous_tab`].includes(from)) {
+      if (App.get_setting(`previous_tab_blink`)) {
+        App.blink_item(it)
+      }
+    }
   }
 
   if (from === `tab_box`) {
@@ -369,10 +374,17 @@ App.tabs_action = async (item, from, scroll) => {
     }
   }
 
+  let method
+
+  if (from === `previous_tab`) {
+    method = `previous`
+  }
+
   await App.focus_tab({
     item: item,
     select: true,
     scroll: scroll,
+    method: method,
   })
 
   App.on_action(`tabs`)

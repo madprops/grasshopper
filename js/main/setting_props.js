@@ -2485,6 +2485,13 @@ App.build_settings = () => {
       info: `Show the notes when clicking the notes icon`,
       version: 1,
     },
+    previous_tab_blink: {
+      name: `Previous Tab Blink`,
+      type: `checkbox`,
+      value: true,
+      info: `Blink when using Step Back to go to the previous tab`,
+      version: 1,
+    },
     tab_list_blink: {
       name: `Tab List Blink`,
       type: `checkbox`,
