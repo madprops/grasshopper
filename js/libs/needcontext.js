@@ -859,10 +859,12 @@ NeedContext.action = (item, e) => {
     if (!NeedContext.is_visible(item.element)) {
       return
     }
-  }
 
-  if (item.icon_action) {
-    return
+    if (e.target.closest(`.needcontext-icon`)) {
+      if (item.icon_action) {
+        return
+      }
+    }
   }
 
   let args = NeedContext.args
