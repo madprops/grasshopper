@@ -319,7 +319,6 @@ App.remove_closed_tab = (id) => {
 }
 
 App.tabs_action = async (item, from, scroll) => {
-  console.log(from)
   function blink(it) {
     let no_blink = [`click`, `enter`]
 
