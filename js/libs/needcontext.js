@@ -19,9 +19,9 @@ NeedContext.clear_text = `Clear`
 NeedContext.item_sep = `4px`
 NeedContext.layers = {}
 NeedContext.level = 0
-NeedContext.gap = `0.45rem`
+NeedContext.gap = `0.5rem`
+NeedContext.side_padding = `0.5rem`
 NeedContext.center_top = 20
-NeedContext.side_padding = `10px`
 
 // Set defaults
 NeedContext.set_defaults = () => {
@@ -547,7 +547,7 @@ NeedContext.init = () => {
       margin-bottom: 2px;
       display: flex;
       flex-direction: row;
-      gap: 0.5rem;
+      gap: ${NeedContext.gap};
       align-items: center;
       justify-content: flex-start;
     }
