@@ -106,12 +106,16 @@ App.start_about = () => {
         App.clear_about_filter()
       }
 
-      DOM.el(`#about_started`).textContent = `Started: ${App.timeago(App.start_date)}`
-      DOM.el(`#about_installed`).textContent = `Installed: ${App.timeago(App.first_time.date)}`
+      let info = ``
+      info += `Started: ${App.timeago(App.start_date)}\n`
+      info += `Installed: ${App.timeago(App.first_time.date)}`
+
       let image = DOM.el(`#about_image`)
       image.classList.remove(`rotate_1`)
       image.classList.remove(`invert`)
       image.classList.remove(`flipped`)
+      image.title = info
+
       filter.focus()
     },
     colored_top: true,
