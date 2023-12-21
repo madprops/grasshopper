@@ -1,5 +1,5 @@
 App.show_tab_list = (what, e) => {
-  let tabs, title
+  let tabs, title, title_icon
 
   if (what === `recent`) {
     let max = App.get_setting(`max_recent_tabs`)
@@ -25,6 +25,7 @@ App.show_tab_list = (what, e) => {
 
 		tabs = App.get_color_tabs(color_id)
     title = color.name
+    title_icon = App.color_icon(color_id)
 	}
 	else if (what.startsWith(`tag_`)) {
 		let tag = what.split(`_`)[1]
@@ -94,6 +95,7 @@ App.show_tab_list = (what, e) => {
   App.show_context({
     items: items, e: e,
     title: title,
+    title_icon: title_icon,
     alt_action_remove: true,
   })
 }

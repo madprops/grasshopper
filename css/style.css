@@ -1134,7 +1134,7 @@ a:hover
 
 .color_icon {
   height: 1rem;
-  min-width: 1rem;
+  width: 1rem;
   border-radius: 50%;
   flex-shrink: 0;
   flex-grow: 0;

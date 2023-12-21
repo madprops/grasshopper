@@ -181,7 +181,16 @@ NeedContext.show = (args = {}) => {
   if (args.title) {
     let title = document.createElement(`div`)
     title.id = `needcontext-title`
-    title.textContent = args.title.trim()
+
+    if (args.title_icon) {
+      let icon = document.createElement(`div`)
+      icon.classList.add(`needcontext-title-icon`)
+      title.append(args.title_icon)
+    }
+
+    let text = document.createElement(`div`)
+    text.textContent = args.title.trim()
+    title.append(text)
     c.append(title)
     c.classList.add(`with_title`)
     c.classList.remove(`without_title`)
@@ -536,6 +545,11 @@ NeedContext.init = () => {
       padding-top: 4px;
       padding-bottom: 4px;
       margin-bottom: 2px;
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: flex-start;
     }
 
     #needcontext-filter {
