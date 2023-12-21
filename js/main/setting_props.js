@@ -1085,7 +1085,7 @@ App.build_settings = () => {
       },
     },
     favorites_bar_double_click: {
-      name: `Fav Bar Dbl Click`,
+      name: `Fav Bar Double Click`,
       type: `menu`,
       value: `none`,
       info: `Command to run when double clicking the empty area from the Favorites Bar`,
