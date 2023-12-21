@@ -1028,7 +1028,7 @@ App.build_settings = () => {
     show_favorites: {
       name: `Show Favorites`,
       type: `checkbox`,
-      value: false,
+      value: true,
       no_mirror: true,
       info: `Enable or disable the Favorites bar or button`,
       version: 2,
@@ -1036,7 +1036,7 @@ App.build_settings = () => {
     favorites_position: {
       name: `Favorites Position`,
       type: `menu`,
-      value: `top`,
+      value: `left`,
       no_mirror: true,
       info: `How to show the Favorites Menu
       Either a bar, or a button at the top right`,
