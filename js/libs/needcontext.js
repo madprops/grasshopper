@@ -528,7 +528,8 @@ NeedContext.init = () => {
       border-radius: 5px;
       padding-bottom: 5px;
       max-height: 80vh;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       text-align: left;
       max-width: 98%;
     }
