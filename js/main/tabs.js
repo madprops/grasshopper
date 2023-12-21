@@ -330,8 +330,13 @@ App.tabs_action = async (item, from, scroll) => {
         App.blink_item(it)
       }
     }
-    else if ([`previous_tab`].includes(from)) {
+    else if ([`previous`].includes(from)) {
       if (App.get_setting(`previous_tab_blink`)) {
+        App.blink_item(it)
+      }
+    }
+    else if ([`playing`].includes(from)) {
+      if (App.get_setting(`playing_tab_blink`)) {
         App.blink_item(it)
       }
     }
@@ -376,8 +381,8 @@ App.tabs_action = async (item, from, scroll) => {
 
   let method
 
-  if (from === `previous_tab`) {
-    method = `previous`
+  if (from === `previous`) {
+    method = from
   }
 
   await App.focus_tab({

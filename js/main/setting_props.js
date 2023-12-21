@@ -2492,6 +2492,13 @@ App.build_settings = () => {
       info: `Blink when using Step Back to go to the previous tab`,
       version: 1,
     },
+    playing_tab_blink: {
+      name: `Playing Tab Blink`,
+      type: `checkbox`,
+      value: true,
+      info: `Blink when using Go To Playing Tab`,
+      version: 1,
+    },
     tab_list_blink: {
       name: `Tab List Blink`,
       type: `checkbox`,
