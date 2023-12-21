@@ -1057,9 +1057,9 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `show_pinned_tabs`, alt: `show_recent_tabs`},
-        {cmd: `toggle_color_red`, alt: `filter_color_red`},
-        {cmd: `toggle_color_green`, alt: `filter_color_green`},
-        {cmd: `toggle_color_blue`, alt: `filter_color_blue`},
+        {cmd: `show_color_red`, alt: `filter_color_red`},
+        {cmd: `show_color_green`, alt: `filter_color_green`},
+        {cmd: `show_color_blue`, alt: `filter_color_blue`},
         {cmd: `set_random_light_colors`, alt: `set_light_colors`},
         {cmd: `set_random_dark_colors`, alt: `set_dark_colors`},
       ],
