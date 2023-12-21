@@ -108,7 +108,9 @@ App.start_about = () => {
 
       let info = ``
       info += `Started: ${App.timeago(App.start_date)}\n`
-      info += `Installed: ${App.timeago(App.first_time.date)}`
+      info += `Installed: ${App.timeago(App.first_time.date)}\n`
+      info += `Commands: ${Object.keys(App.commands).length}\n`
+      info += `Settings: ${Object.keys(App.settings).length}`
 
       let image = DOM.el(`#about_image`)
       image.classList.remove(`rotate_1`)
