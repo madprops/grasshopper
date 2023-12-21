@@ -215,7 +215,7 @@ App.mouse_click_action = (mode, e) => {
     from = `tab_box`
   }
   else {
-    from = `item_container`
+    from = `click`
   }
 
   App[`${mode}_action`](item, from)
