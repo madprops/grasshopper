@@ -203,6 +203,13 @@ App.build_settings = () => {
       info: `Enable smooth list scrolling in some cases`,
       version: 1,
     },
+    tab_blink: {
+      name: `Tab Blink`,
+      type: `checkbox`,
+      value: true,
+      info: `Blink when focusing tabs through certain actions when not directly clicking them`,
+      version: 1,
+    },
     wrap_text: {
       name: `Wrap Text`,
       type: `checkbox`,
@@ -982,13 +989,6 @@ App.build_settings = () => {
       value: true,
       info: `Scroll to the top of the Tab Box in some cases
       Like when clicking an item in Recent mode`,
-      version: 1,
-    },
-    tab_box_blink: {
-      name: `Tab Box Blink`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable tab blink effect when selecting an item from the Tab Box`,
       version: 1,
     },
     tab_box_blur: {
@@ -2483,28 +2483,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the notes when clicking the notes icon`,
-      version: 1,
-    },
-    previous_tab_blink: {
-      name: `Previous Tab Blink`,
-      type: `checkbox`,
-      value: true,
-      info: `Blink when using Step Back to go to the previous tab`,
-      version: 1,
-    },
-    playing_tab_blink: {
-      name: `Playing Tab Blink`,
-      type: `checkbox`,
-      value: true,
-      info: `Blink when using Go To Playing Tab`,
-      version: 1,
-    },
-    tab_list_blink: {
-      name: `Tab List Blink`,
-      type: `checkbox`,
-      value: true,
-      info: `Blink on focus when using a tab list
-      For instance when using Show Pins`,
       version: 1,
     },
     custom_icon_click: {

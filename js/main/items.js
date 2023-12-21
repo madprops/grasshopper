@@ -1254,9 +1254,12 @@ App.selected_visible = (mode = App.window_mode) => {
 
 // It's better to do this manually than dealing with CSS classes
 App.blink_item = (item) => {
-  if (item.blink_interval) {
-    clearInterval(item.blink_interval)
-    item.blink_interval = undefined
+  for (let it of App.get_items(item.mode)) {
+    if (it.blink_interval) {
+      clearInterval(it.blink_interval)
+      it.blink_interval = undefined
+      it.element.style.opacity = 1
+    }
   }
 
   let opacity = 1

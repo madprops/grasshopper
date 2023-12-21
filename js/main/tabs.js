@@ -320,23 +320,14 @@ App.remove_closed_tab = (id) => {
 
 App.tabs_action = async (item, from, scroll) => {
   function blink(it) {
-    if ([`tab_box`, `header_first`].includes(from)) {
-      if (App.get_setting(`tab_box_blink`)) {
-        App.blink_item(it)
-      }
-    }
-    else if ([`tab_list`].includes(from)) {
-      if (App.get_setting(`tab_list_blink`)) {
-        App.blink_item(it)
-      }
-    }
-    else if ([`previous`].includes(from)) {
-      if (App.get_setting(`previous_tab_blink`)) {
-        App.blink_item(it)
-      }
-    }
-    else if ([`playing`].includes(from)) {
-      if (App.get_setting(`playing_tab_blink`)) {
+    let blinks = [
+      `tab_box`, `header_first`,
+      `tab_list`, `previous`, `playing`,
+      `active_trace`,
+    ]
+
+    if (blinks.includes(from)) {
+      if (App.get_setting(`tab_blink`)) {
         App.blink_item(it)
       }
     }
