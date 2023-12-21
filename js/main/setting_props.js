@@ -880,6 +880,7 @@ App.build_settings = () => {
       name: `Tab Box Mode`,
       type: `menu`,
       value: `recent`,
+      no_mirror: true,
       info: `What to show in the Tab Box`,
       version: 4,
       setup: (key) => {
