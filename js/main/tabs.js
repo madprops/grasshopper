@@ -830,6 +830,11 @@ App.update_tabs_index = async (items, old_index) => {
       include_all: true,
     })
 
+    let index_2 = App.get_item_element_index({
+      mode: `tabs`,
+      element: item.element,
+    })
+
     if (item.pinned) {
       if (index > pinline) {
         await App.unpin_tab(item.id)
@@ -841,7 +846,7 @@ App.update_tabs_index = async (items, old_index) => {
       }
     }
 
-    await App.do_move_tab_index(item.id, index)
+    await App.do_move_tab_index(item.id, index_2)
   }
 }
 
