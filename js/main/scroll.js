@@ -49,7 +49,7 @@ App.scroll_to_item = (args = {}) => {
       App.do_check_scroller(args.item.mode)
     }
     else if (behavior === `smooth`) {
-      let index = App.get_item_element_index(args.item.mode, args.item.element)
+      let index = App.get_item_element_index({mode: args.item.mode, element: args.item.element})
 
       if (index === 0) {
         App.hide_scroller(args.item.mode)

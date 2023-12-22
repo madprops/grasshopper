@@ -45,7 +45,13 @@ App.dragstart_action = (mode, e) => {
   App.drag_y = e.clientY
   let id = App.drag_element.dataset.id
   App.drag_item = App.get_item_by_id(mode, id)
-  App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
+
+  App.drag_start_index = App.get_item_element_index({
+    mode: mode,
+    element: App.drag_element,
+    include_all: true,
+  })
+
   e.dataTransfer.setDragImage(new Image(), 0, 0)
   e.dataTransfer.setData(`text/plain`, App.drag_item.url)
   e.dataTransfer.setData(`text/uri-list`, App.drag_item.url)
@@ -91,7 +97,12 @@ App.dragenter_action = (mode, e) => {
     return false
   }
 
-  let el = e.target.closest(`.grasshopper_item`)
+  let el = e.target.closest(`.element`)
+
+  if (!el) {
+    e.preventDefault()
+    return false
+  }
 
   if (el === App.drag_element) {
     e.preventDefault()
@@ -101,35 +112,19 @@ App.dragenter_action = (mode, e) => {
   let direction = e.clientY > App.drag_y ? `down` : `up`
   App.drag_y = e.clientY
 
-  if (App.cursor_on_item(mode, e)) {
-    if (App.drag_els.includes(el)) {
-      e.preventDefault()
-      return false
-    }
-
-    let target = App.get_item_by_id(mode, el.dataset.id)
-
-    for (let item of App.drag_items) {
-      if ((target.pinned && !item.pinned) || (!target.pinned && item.pinned)) {
-        e.preventDefault()
-        return false
-      }
-    }
-
-    let leader
-
-    if (direction === `down`) {
-      leader = `bottom`
-      el.after(...App.drag_els)
-    }
-    else {
-      leader = `top`
-      el.before(...App.drag_els)
-    }
-
-    App.drag_moved = true
+  if (App.drag_els.includes(el)) {
+    e.preventDefault()
+    return false
   }
 
+  if (direction === `down`) {
+    el.after(...App.drag_els)
+  }
+  else {
+    el.before(...App.drag_els)
+  }
+
+  App.drag_moved = true
   e.preventDefault()
   return false
 }
@@ -154,5 +149,5 @@ App.dragend_action = (mode, e) => {
     return false
   }
 
-  App.update_tabs_index(App.drag_items)
+  App.update_tabs_index(App.drag_items, App.drag_start_index)
 }

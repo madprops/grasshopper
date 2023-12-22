@@ -292,7 +292,7 @@ App.refresh_item_element = (item) => {
 }
 
 App.create_item_element = (item) => {
-  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
+  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item element ${item.mode}_element`)
   item.element.dataset.id = item.id
   App.check_header(item)
   App.add_close_button(item, `left`)
@@ -507,8 +507,19 @@ App.update_item = (mode, id, info) => {
   }
 }
 
-App.get_item_element_index = (mode, el) => {
-  return DOM.els(`.${mode}_item`).indexOf(el)
+App.get_item_element_index = (args = {}) => {
+  let def_args = {
+    include_all: false,
+  }
+
+  App.def_args(def_args, args)
+
+  if (args.include_all) {
+    return DOM.els(`.${args.mode}_element`).indexOf(args.element)
+  }
+  else {
+    return DOM.els(`.${args.mode}_item`).indexOf(args.element)
+  }
 }
 
 App.move_item = (mode, from_index, to_index) => {

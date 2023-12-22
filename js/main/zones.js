@@ -1,7 +1,7 @@
 App.insert_header = async (item, full = true) => {
   let active = App.get_active_items({mode: item.mode, item: item})
   let first = active.at(0)
-  let index = App.get_item_element_index(first.mode, first.element)
+  let index = App.get_item_element_index({mode: first.mode, element: first.element})
   let tab = await App.open_new_tab({url: App.header_url, index: index, pinned: item.pinned, active: false})
   let header = App.get_item_by_id(item.mode, tab.id)
 

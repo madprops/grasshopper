@@ -42,7 +42,7 @@ App.do_check_pinline = () => {
     }
   }
 
-  let pinline = DOM.create(`div`, `pinline glowbox`)
+  let pinline = DOM.create(`div`, `element tabs_element glowbox`, `pinline`)
   let n1 = tabs.pinned_f.length
   let n2 = tabs.normal_f.length
   let s1 = App.plural(n1, `Pin`, `Pins`)
@@ -82,7 +82,13 @@ App.do_check_pinline = () => {
 }
 
 App.remove_pinline = () => {
-  for (let el of DOM.els(`.pinline`, DOM.el(`#tabs_container`))) {
-    el.remove()
+  let pinline = DOM.el(`#pinline`)
+
+  if (pinline) {
+    pinline.remove()
   }
+}
+
+App.pinline_index = () => {
+  return DOM.els(`.tabs_element`).indexOf(DOM.el(`#pinline`))
 }

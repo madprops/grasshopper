@@ -798,20 +798,19 @@ App.open_tab = async (item) => {
   }
 }
 
-App.update_tabs_index = async (items) => {
-  let info = await App.get_tab_info(items[0].id)
+App.update_tabs_index = async (items, old_index) => {
+  let first_index = App.get_item_element_index({
+    mode: `tabs`,
+    element: items[0].element,
+    include_all: true,
+  })
 
-  if (!info) {
-    return
-  }
-
-  let first_index = App.get_item_element_index(`tabs`, items[0].element)
   let direction
 
-  if (first_index < info.index) {
+  if (first_index < old_index) {
     direction = `up`
   }
-  else if (first_index > info.index) {
+  else if (first_index > old_index) {
     direction = `down`
   }
   else {
@@ -822,8 +821,26 @@ App.update_tabs_index = async (items) => {
     items = items.slice(0).reverse()
   }
 
+  let pinline = App.pinline_index()
+
   for (let item of items) {
-    let index = App.get_item_element_index(`tabs`, item.element)
+    let index = App.get_item_element_index({
+      mode: `tabs`,
+      element: item.element,
+      include_all: true,
+    })
+
+    if (item.pinned) {
+      if (index > pinline) {
+        await App.unpin_tab(item.id)
+      }
+    }
+    else {
+      if (index < pinline) {
+        await App.pin_tab(item.id)
+      }
+    }
+
     await App.do_move_tab_index(item.id, index)
   }
 }
@@ -1372,9 +1389,9 @@ App.paste_tabs = async (item) => {
     }
   }
 
-  let index = App.get_item_element_index(`tabs`, item.element)
+  let index = App.get_item_element_index({mode: `tabs`, element: item.element})
   let tabs = App.copied_tabs.slice(0)
-  let index_og = App.get_item_element_index(`tabs`, tabs[0].element)
+  let index_og = App.get_item_element_index({mode: `tabs`, element: tabs[0].element})
   let i
 
   if (index < index_og) {
