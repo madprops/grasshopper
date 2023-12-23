@@ -2,6 +2,14 @@ App.setup_pinline = () => {
   App.pinline_debouncer = App.create_debouncer(() => {
     App.do_check_pinline()
   }, App.pinline_delay)
+
+  App.pinline_commands = [
+    `new_pinned_tab`,
+    `select_pinned_tabs`,
+    `select_normal_tabs`,
+    `select_unloaded_tabs`,
+    `select_all_items`,
+  ]
 }
 
 App.check_pinline = () => {
@@ -34,28 +42,6 @@ App.do_check_pinline = () => {
   let sep = `&nbsp;&nbsp;+&nbsp;&nbsp;`
   pinline.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
   pinline.title = `This is the Pinline. Pinned tabs above. Normal tabs below`
-
-  DOM.ev(pinline, `click`, (e) => {
-    let cmds = [
-      `new_pinned_tab`,
-      `select_pinned_tabs`,
-      `select_normal_tabs`,
-      `select_unloaded_tabs`,
-      `select_all_items`,
-    ]
-
-    let items = App.cmd_list(cmds)
-    App.show_context({items: items, e: e})
-  })
-
-  DOM.ev(pinline, `auxclick`, (e) => {
-    if (e.button !== 1) {
-      return
-    }
-
-    let cmd = App.get_setting(`middle_click_pinline`)
-    App.run_command({cmd: cmd, from: `pinline`, e: e})
-  })
 
   if (tabs.pinned_f.length) {
     tabs.pinned_f.at(-1).element.after(pinline)

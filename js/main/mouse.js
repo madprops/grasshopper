@@ -73,6 +73,11 @@ App.mouse_click_action = (mode, e) => {
   App.reset_triggers()
 
   if (!App.cursor_on_item(mode, e)) {
+    if (e.target.closest(`#pinline`)) {
+      let items = App.cmd_list(App.pinline_commands)
+      App.show_context({items: items, e: e})
+    }
+
     return
   }
 
@@ -334,6 +339,11 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   if (!App.cursor_on_item(mode, e)) {
+    if (e.target.closest(`#pinline`)) {
+      let cmd = App.get_setting(`middle_click_pinline`)
+      App.run_command({cmd: cmd, from: `pinline`, e: e})
+    }
+
     return
   }
 
