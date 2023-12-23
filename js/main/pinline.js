@@ -4,45 +4,29 @@ App.setup_pinline = () => {
   }, App.pinline_delay)
 }
 
-App.pinline_enabled = () => {
-  if (App.get_setting(`show_pinline`) === `never`) {
-    return false
-  }
-
-  if (!App.tabs_normal()) {
-    return false
-  }
-
-  return true
-}
-
 App.check_pinline = () => {
   App.pinline_debouncer.call()
 }
 
 App.do_check_pinline = () => {
   App.pinline_debouncer.cancel()
-
-  if (!App.pinline_enabled()) {
-    return
-  }
-
   let show = App.get_setting(`show_pinline`)
   App.debug(`Checking pinline`)
   App.remove_pinline()
   let tabs = App.divide_tabs(`visible`)
+  let cls = `element tabs_element glowbox`
 
   if ((!tabs.pinned_f.length) && (!tabs.normal_f.length)) {
-    return
+    cls += ` hidden`
   }
 
   if (show === `auto`) {
     if ((!tabs.pinned_f.length) || (!tabs.normal_f.length)) {
-      return
+      cls += ` hidden`
     }
   }
 
-  let pinline = DOM.create(`div`, `element tabs_element glowbox`, `pinline`)
+  let pinline = DOM.create(`div`, cls, `pinline`)
   let n1 = tabs.pinned_f.length
   let n2 = tabs.normal_f.length
   let s1 = App.plural(n1, `Pin`, `Pins`)
