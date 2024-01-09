@@ -46,7 +46,7 @@ App.do_check_pinline = () => {
   if (tabs.pinned_f.length) {
     tabs.pinned_f.at(-1).element.after(pinline)
   }
-  else {
+  else if (tabs.normal_f.length) {
     tabs.normal_f.at(0).element.before(pinline)
   }
 }
