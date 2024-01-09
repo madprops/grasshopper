@@ -578,10 +578,8 @@ App.select_range = (item) => {
           unselect = true
         }
       }
-      else {
-        if (i < index_1) {
-          unselect = true
-        }
+      else if (i < index_1) {
+        unselect = true
       }
 
       if (unselect) {
