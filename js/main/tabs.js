@@ -1113,7 +1113,7 @@ App.select_tabs = (type = `pins`) => {
     }
     else {
       if (item.selected) {
-        App.toggle_selected({item: item, fwhat: alse, select: false})
+        App.toggle_selected({item: item, what: false, select: false})
       }
     }
   }
