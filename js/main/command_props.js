@@ -86,7 +86,6 @@ App.setup_commands = () => {
       cmd: `show_color_${color.id}`,
       modes: [`items`],
       icon: icon,
-      filter_mode: true,
       action: (args) => {
         App.show_tab_list(`color_${color.id}`, args.e)
       },
@@ -1509,7 +1508,6 @@ App.setup_commands = () => {
       cmd: `show_pinned_tabs`,
       modes: [`items`],
       icon: pin_icon,
-      filter_mode: true,
       action: (args) => {
         App.show_tab_list(`pins`, args.e)
       },
@@ -1545,7 +1543,6 @@ App.setup_commands = () => {
       cmd: `show_playing_tabs`,
       modes: [`items`],
       icon: playing_icon,
-      filter_mode: true,
       action: (args) => {
         App.show_tab_list(`playing`, args.e)
       },
@@ -1557,7 +1554,6 @@ App.setup_commands = () => {
       cmd: `show_recent_tabs`,
       modes: [`items`],
       icon: tabs_icon,
-      filter_mode: true,
       action: (args) => {
         App.show_tab_list(`recent`, args.e)
       },
