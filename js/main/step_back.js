@@ -39,7 +39,7 @@ App.step_back = (mode = App.window_mode, e) => {
   else if (item && !App.item_is_visible(item)) {
     App.select_item({item: item, scroll: scroll})
   }
-  else if (tabs && !item.active) {
+  else if (tabs && item && !item.active) {
     App.focus_current_tab(scroll)
   }
   else if (tabs && (e && e.key !== `Escape`)) {
