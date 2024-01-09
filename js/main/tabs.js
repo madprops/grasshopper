@@ -1111,10 +1111,8 @@ App.select_tabs = (type = `pins`) => {
 
       selected = true
     }
-    else {
-      if (item.selected) {
-        App.toggle_selected({item: item, what: false, select: false})
-      }
+    else if (item.selected) {
+      App.toggle_selected({item: item, what: false, select: false})
     }
   }
 

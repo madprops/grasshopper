@@ -102,7 +102,7 @@ App.build_settings = () => {
     loading_effect: {
       name: `Loading Effect`,
       type: `menu`,
-      value: `icon_spin`,
+      value: `icon`,
       info: `Which effect to show on loading tabs`,
       version: 2,
       setup: (key) => {
