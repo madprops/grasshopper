@@ -1385,7 +1385,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_root(args.item)
       },
-      info: `Filter the tabs that were opened through the selected tab`,
+      info: `Filter the tabs that were opened through this tab`,
     },
     {
       name: `Filter Color`,
