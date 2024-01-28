@@ -1377,6 +1377,17 @@ App.setup_commands = () => {
       info: `Filter same title`,
     },
     {
+      name: `Filter Root`,
+      cmd: `filter_root`,
+      modes: [`tabs`],
+      item: true,
+      icon: filter_icon,
+      action: (args) => {
+        App.filter_root(args.item)
+      },
+      info: `Filter the tabs that were opened through the selected tab`,
+    },
+    {
       name: `Filter Color`,
       cmd: `filter_color`,
       modes: [`items`],

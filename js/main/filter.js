@@ -437,6 +437,14 @@ App.filter_check = (args) => {
         match = App.get_icon(args.item) === args.f_value
       }
     }
+    else if (args.filter_mode === `root`) {
+      if (args.item.root) {
+        match = args.item.root.toString() === args.f_value
+      }
+      else {
+        match = false
+      }
+    }
     else if (args.filter_mode === `filter_media_image`) {
       match = args.item.image
     }
@@ -948,6 +956,11 @@ App.filter_title = (item) => {
   }
 
   App.set_filter({mode: item.mode, text: title})
+}
+
+App.filter_root = (item) => {
+  App.set_custom_filter_mode(item.mode, `root-${item.id}`, `Root`)
+  App.do_filter({mode: item.mode})
 }
 
 App.filter_all = (mode = App.window_mode, from) => {

@@ -102,6 +102,7 @@ App.process_info = (args = {}) => {
     item.last_accessed = args.info.lastAccessed
     item.opener = args.info.openerTabId
     item.status = args.info.status
+    item.root = args.info.openerTabId
   }
   else if (args.mode === `history`) {
     item.last_visit = args.info.lastVisitTime

@@ -91,6 +91,7 @@ App.common_menu_items = (args = {}) => {
   App.item_menu_item(filter_items, `filter_color`, {item: args.item})
   App.item_menu_item(filter_items, `filter_tag`, {item: args.item})
   App.item_menu_item(filter_items, `filter_icon`, {item: args.item})
+  App.item_menu_item(filter_items, `filter_root`, {item: args.item})
 
   items.push({
     icon: App.settings_icons.filter,
