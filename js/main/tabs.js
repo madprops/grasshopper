@@ -1420,15 +1420,3 @@ App.paste_tabs = async (item) => {
 App.new_pin_tab = () => {
   App.open_new_tab({pinned: true})
 }
-
-App.get_tab_spawns = (tab) => {
-  let spawns = []
-
-  for (let item of App.get_items(`tabs`)) {
-    if (item.opener === tab.id) {
-      spawns.push(item)
-    }
-  }
-
-  return spawns
-}
