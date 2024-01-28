@@ -188,6 +188,8 @@ App.do_filter = async (args = {}) => {
     }
   }
 
+  let f_value_lower = f_value ? f_value.toLowerCase() : ``
+
   function check_match (item) {
     let args = {
       item: item,
@@ -198,6 +200,7 @@ App.do_filter = async (args = {}) => {
       value: value,
       value_lower: value.toLowerCase(),
       f_value: f_value,
+      f_value_lower: f_value_lower,
       search: search,
     }
 
@@ -345,20 +348,22 @@ App.filter_check = (args) => {
     match = true
   }
 
+  let title = App.title(args.item)
+  let lower_title = title.toLowerCase()
+
   if (!match) {
-    let title = App.title(args.item)
-    title = App.clean_filter(title)
+    let clean_title = App.clean_filter(title)
 
     for (let regex of args.regexes) {
       if (args.by_what === `all` || args.by_what === `re`) {
-        match = regex.test(title)
+        match = regex.test(clean_title)
 
         if (!match && !args.item.header) {
           match = regex.test(args.item.path)
         }
       }
       else if (args.by_what.includes(`title`)) {
-        match = regex.test(title)
+        match = regex.test(clean_title)
       }
       else if (args.by_what.includes(`url`)) {
         match = regex.test(args.item.path)
@@ -413,6 +418,20 @@ App.filter_check = (args) => {
     if (args.filter_mode === `all`) {
       match = true
     }
+    else if (args.filter_mode === `domain`) {
+      match = args.item.hostname.startsWith(args.f_value)
+    }
+    else if (args.filter_mode === `title`) {
+      match = lower_title.includes(args.f_value_lower)
+    }
+    else if (args.filter_mode === `root`) {
+      if (args.item.root) {
+        match = args.item.root.toString() === args.f_value
+      }
+      else {
+        match = false
+      }
+    }
     else if (args.filter_mode === `color`) {
       if (args.f_value === `all`) {
         match = App.get_color(args.item)
@@ -435,14 +454,6 @@ App.filter_check = (args) => {
       }
       else {
         match = App.get_icon(args.item) === args.f_value
-      }
-    }
-    else if (args.filter_mode === `root`) {
-      if (args.item.root) {
-        match = args.item.root.toString() === args.f_value
-      }
-      else {
-        match = false
       }
     }
     else if (args.filter_mode === `filter_media_image`) {
@@ -911,56 +922,35 @@ App.get_last_filter_value = (cycle) => {
   return value
 }
 
-App.filter_domain = (item, toggle = false) => {
-  if (!item) {
-    item = App.get_selected(mode)
+App.filter_domain = (item) => {
+  if (App.filter_mode(item.mode).startsWith(`domain`)) {
+    App.filter_all(item.mode)
   }
-
-  if (!item) {
-    return
+  else {
+    App.set_custom_filter_mode(item.mode, `domain-${item.hostname}`, `Domain`)
+    App.do_filter({mode: item.mode})
   }
-
-  let hostname = item.hostname
-
-  if (!hostname && item.url.includes(`:`)) {
-    hostname = item.url.split(`:`)[0] + `:`
-  }
-
-  if (!hostname) {
-    return
-  }
-
-  if (toggle) {
-    if (App.get_filter(item.mode) === hostname) {
-      App.filter_all(item.mode)
-      return
-    }
-  }
-
-  App.set_filter({mode: item.mode, text: hostname})
 }
 
 App.filter_title = (item) => {
-  if (!item) {
-    item = App.get_selected(mode)
+  if (App.filter_mode(item.mode).startsWith(`title`)) {
+    App.filter_all(item.mode)
   }
-
-  if (!item) {
-    return
+  else {
+    let title = App.title(item)
+    App.set_custom_filter_mode(item.mode, `title-${title}`, `Title`)
+    App.do_filter({mode: item.mode})
   }
-
-  let title = App.title(item)
-
-  if (!title) {
-    return
-  }
-
-  App.set_filter({mode: item.mode, text: title})
 }
 
 App.filter_root = (item) => {
-  App.set_custom_filter_mode(item.mode, `root-${item.id}`, `Root`)
-  App.do_filter({mode: item.mode})
+  if (App.filter_mode(item.mode).startsWith(`root`)) {
+    App.filter_all(item.mode)
+  }
+  else {
+    App.set_custom_filter_mode(item.mode, `root-${item.id}`, `Root`)
+    App.do_filter({mode: item.mode})
+  }
 }
 
 App.filter_all = (mode = App.window_mode, from) => {

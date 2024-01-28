@@ -1360,7 +1360,7 @@ App.setup_commands = () => {
       some_no_header: true,
       icon: filter_icon,
       action: (args) => {
-        App.filter_domain(args.item, true)
+        App.filter_domain(args.item)
       },
       info: `Filter same domain`,
     },
