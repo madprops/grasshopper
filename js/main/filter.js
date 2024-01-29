@@ -922,35 +922,32 @@ App.get_last_filter_value = (cycle) => {
   return value
 }
 
-App.filter_domain = (item) => {
-  if (App.filter_mode(item.mode).startsWith(`domain`)) {
-    App.filter_all(item.mode)
+App.filter_common = (args = {}) => {
+  if (App.filter_mode(args.item.mode).startsWith(args.name)) {
+    App.filter_all(args.item.mode)
   }
   else {
-    App.set_custom_filter_mode(item.mode, `domain-${item.hostname}`, `Domain`)
-    App.do_filter({mode: item.mode})
+    App.set_custom_filter_mode(
+      args.item.mode,
+      `${args.name}-${args.prop}`,
+      `${App.notepad_icon} ${args.full}`,
+    )
+
+    App.do_filter({mode: args.item.mode})
   }
+}
+
+App.filter_domain = (item) => {
+  App.filter_common({name: `domain`, full: `Domain`, prop: item.hostname, item: item})
 }
 
 App.filter_title = (item) => {
-  if (App.filter_mode(item.mode).startsWith(`title`)) {
-    App.filter_all(item.mode)
-  }
-  else {
-    let title = App.title(item)
-    App.set_custom_filter_mode(item.mode, `title-${title}`, `Title`)
-    App.do_filter({mode: item.mode})
-  }
+  let title = App.title(item)
+  App.filter_common({name: `title`, full: `Title`, prop: title, item: item})
 }
 
 App.filter_root = (item) => {
-  if (App.filter_mode(item.mode).startsWith(`root`)) {
-    App.filter_all(item.mode)
-  }
-  else {
-    App.set_custom_filter_mode(item.mode, `root-${item.id}`, `Root`)
-    App.do_filter({mode: item.mode})
-  }
+  App.filter_common({name: `root`, full: `Root`, prop: item.id, item: item})
 }
 
 App.filter_all = (mode = App.window_mode, from) => {
