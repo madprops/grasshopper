@@ -938,16 +938,29 @@ App.filter_common = (args = {}) => {
 }
 
 App.filter_domain = (item) => {
-  App.filter_common({name: `domain`, full: `Domain`, prop: item.hostname, item: item})
+  App.filter_common({
+    name: `domain`,
+    full: `Domain`,
+    prop: item.hostname,
+    item: item,
+  })
 }
 
 App.filter_title = (item) => {
-  let title = App.title(item)
-  App.filter_common({name: `title`, full: `Title`, prop: title, item: item})
+  App.filter_common({name: `title`,
+    full: `Title`,
+    prop: App.title(item),
+    item: item,
+  })
 }
 
 App.filter_root = (item) => {
-  App.filter_common({name: `root`, full: `Root`, prop: item.id, item: item})
+  App.filter_common({
+    name: `root`,
+    full: `Root`,
+    prop: item.id,
+    item: item,
+  })
 }
 
 App.filter_all = (mode = App.window_mode, from) => {
