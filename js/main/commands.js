@@ -278,7 +278,6 @@ App.check_command = (command, args = {}) => {
   check_1(`some_no_split_bottom`)
   check_1(`some_header`)
   check_1(`some_no_header`)
-  //
   check_1(`some_edits`)
   check_1(`some_color`)
   check_1(`some_no_color`)
@@ -300,9 +299,9 @@ App.check_command = (command, args = {}) => {
   check_1(`some_no_notes`)
   check_1(`some_custom_notes`)
   check_1(`some_no_custom_notes`)
-  //
+
   check_2(`media`, args.media)
-  //
+
   check_3(`some_color_id`)
   check_3(`some_no_color_id`)
   check_3(`some_custom_color_id`)
