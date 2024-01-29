@@ -925,16 +925,16 @@ App.get_last_filter_value = (cycle) => {
 App.filter_common = (args = {}) => {
   if (App.filter_mode(args.item.mode).startsWith(args.name)) {
     App.filter_all(args.item.mode)
+    return
   }
-  else {
-    App.set_custom_filter_mode(
-      args.item.mode,
-      `${args.name}-${args.prop}`,
-      `${App.notepad_icon} ${args.full}`,
-    )
 
-    App.do_filter({mode: args.item.mode})
-  }
+  App.set_custom_filter_mode(
+    args.item.mode,
+    `${args.name}-${args.prop}`,
+    `${App.notepad_icon} ${args.full}`,
+  )
+
+  App.do_filter({mode: args.item.mode})
 }
 
 App.filter_domain = (item) => {
