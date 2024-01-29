@@ -1381,6 +1381,7 @@ App.setup_commands = () => {
       cmd: `filter_root`,
       modes: [`tabs`],
       item: true,
+      single: true,
       icon: filter_icon,
       action: (args) => {
         App.filter_root(args.item)
@@ -1411,6 +1412,7 @@ App.setup_commands = () => {
       modes: [`items`],
       some_tags: true,
       item: true,
+      single: true,
       icon: tag_icon,
       action: (args) => {
         App.filter_tag_pick(args.item, args.e)
