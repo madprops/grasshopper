@@ -101,7 +101,7 @@ App.get_other_item = (args = {}, reverse = false) => {
   let def_args = {
     only_visible: true,
     no_selected: false,
-    no_discarded: false,
+    no_unloaded: false,
     no_header: true,
     wrap: true,
   }
@@ -143,8 +143,8 @@ App.get_other_item = (args = {}, reverse = false) => {
         }
       }
 
-      if (args.no_discarded) {
-        if (item.discarded) {
+      if (args.no_unloaded) {
+        if (item.unloaded) {
           continue
         }
       }

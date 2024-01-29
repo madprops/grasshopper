@@ -136,7 +136,7 @@ App.check_command = (command, args = {}) => {
         args.some_unmuted = true
       }
 
-      if (item.discarded) {
+      if (item.unloaded) {
         args.some_unloaded = true
       }
       else {

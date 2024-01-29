@@ -201,7 +201,7 @@ App.check_icons = (item) => {
   if (App.get_setting(`loaded_icon`)) {
     let icon = DOM.el(`.loaded_icon`, item.element)
 
-    if (!item.discarded) {
+    if (!item.unloaded) {
       icon.classList.remove(`hidden`)
     }
     else {
@@ -212,7 +212,7 @@ App.check_icons = (item) => {
   if (App.get_setting(`unloaded_icon`)) {
     let icon = DOM.el(`.unloaded_icon`, item.element)
 
-    if (item.discarded) {
+    if (item.unloaded) {
       icon.classList.remove(`hidden`)
     }
     else {
@@ -223,7 +223,7 @@ App.check_icons = (item) => {
   if (App.get_setting(`playing_icon`)) {
     let icon = DOM.el(`.playing_icon`, item.element)
 
-    if (item.audible && !item.muted) {
+    if (item.playing && !item.muted) {
       icon.classList.remove(`hidden`)
     }
     else {

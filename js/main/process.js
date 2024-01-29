@@ -96,11 +96,10 @@ App.process_info = (args = {}) => {
   if (args.mode === `tabs`) {
     item.active = args.info.active
     item.pinned = args.info.pinned
-    item.audible = args.info.audible
+    item.playing = args.info.audible
     item.muted = args.info.mutedInfo.muted
-    item.discarded = args.info.discarded
-    item.last_accessed = args.info.lastAccessed
-    item.opener = args.info.openerTabId
+    item.unloaded = args.info.discarded
+    item.last_access = args.info.lastAccessed
     item.status = args.info.status
     item.root = args.info.openerTabId
   }
@@ -124,7 +123,7 @@ App.process_info = (args = {}) => {
   }
   else {
     if (!args.list) {
-      if ((args.mode === `tabs`) && !item.active && item.opener) {
+      if ((args.mode === `tabs`) && !item.active && item.root) {
         item.unread = true
       }
     }

@@ -129,12 +129,12 @@ App.get_normal_tabs_items = (pins, unloaded) => {
       continue
     }
 
-    if (it.audible) {
+    if (it.playing) {
       continue
     }
 
     if (!unloaded) {
-      if (it.discarded) {
+      if (it.unloaded) {
         continue
       }
     }
@@ -160,7 +160,7 @@ App.get_playing_tabs_items = (pins, unloaded) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (!it.audible) {
+    if (!it.playing) {
       continue
     }
 
@@ -191,7 +191,7 @@ App.get_loaded_tabs_items = (pins, unloaded) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (it.discarded) {
+    if (it.unloaded) {
       continue
     }
 
@@ -222,7 +222,7 @@ App.get_unloaded_tabs_items = (pins, unloaded) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (!it.discarded) {
+    if (!it.unloaded) {
       continue
     }
 
@@ -253,14 +253,14 @@ App.get_duplicate_tabs_items = (pins, unloaded) => {
   let tabs = App.get_items(`tabs`)
   let duplicates = App.find_duplicates(tabs, `url`)
   let items = App.get_excess(duplicates, `url`)
-  items = items.filter(x => !x.audible)
+  items = items.filter(x => !x.playing)
 
   if (!pins) {
     items = items.filter(x => !x.pinned)
   }
 
   if (!unloaded) {
-    items = items.filter(x => !x.discarded)
+    items = items.filter(x => !x.unloaded)
   }
 
   return items
@@ -279,14 +279,14 @@ App.close_duplicate_tabs = (pins, unloaded) => {
 
 App.get_visible_tabs_items = (pins, unloaded) => {
   let items = App.get_visible(`tabs`)
-  items = items.filter(x => !x.audible)
+  items = items.filter(x => !x.playing)
 
   if (!pins) {
     items = items.filter(x => !x.pinned)
   }
 
   if (!unloaded) {
-    items = items.filter(x => !x.discarded)
+    items = items.filter(x => !x.unloaded)
   }
 
   return items
@@ -320,7 +320,7 @@ App.get_other_tabs_items = (pins, unloaded) => {
   }
 
   if (!unloaded) {
-    items = items.filter(x => !x.discarded)
+    items = items.filter(x => !x.unloaded)
   }
 
   return items

@@ -275,7 +275,7 @@ App.do_filter = async (args = {}) => {
     }
 
     if (last_item) {
-      if ((sticky_filter === `activate`) && !last_item.discarded) {
+      if ((sticky_filter === `activate`) && !last_item.unloaded) {
         App.focus_tab({item: last_item, scroll: `center`, method: `sticky_filter`})
       }
       else {
@@ -480,13 +480,13 @@ App.filter_check = (args) => {
       match = !args.item.pinned
     }
     else if (args.filter_mode === `filter_playing_tabs`) {
-      match = args.item.audible || args.item.muted
+      match = args.item.playing || args.item.muted
     }
     else if (args.filter_mode === `filter_loaded_tabs`) {
-      match = !args.item.discarded
+      match = !args.item.unloaded
     }
     else if (args.filter_mode === `filter_unloaded_tabs`) {
-      match = args.item.discarded
+      match = args.item.unloaded
     }
     else if (args.filter_mode === `filter_duplicate_tabs`) {
       match = args.duplicates.includes(args.item)

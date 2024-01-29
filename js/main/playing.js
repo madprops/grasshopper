@@ -63,7 +63,7 @@ App.do_check_playing = (mode = App.active_mode, force = false) => {
 }
 
 App.get_playing_tabs = () => {
-  return App.get_items(`tabs`).filter(x => x.audible)
+  return App.get_items(`tabs`).filter(x => x.playing)
 }
 
 App.go_to_playing_tab = () => {
@@ -77,7 +77,7 @@ App.go_to_playing_tab = () => {
   }
 
   for (let item of items) {
-    if (item.audible) {
+    if (item.playing) {
       if (!first) {
         first = item
       }

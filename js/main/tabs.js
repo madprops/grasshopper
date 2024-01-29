@@ -28,7 +28,7 @@ App.setup_tabs = () => {
     if (info.windowId === App.window_id) {
       await App.refresh_tab({id: id, info: info})
 
-      if (changed.audible !== undefined) {
+      if (changed.playing !== undefined) {
         App.check_playing()
       }
     }
@@ -294,11 +294,11 @@ App.get_muted_tabs = () => {
 }
 
 App.get_loaded_tabs = () => {
-  return App.get_items(`tabs`).filter(x => !x.discarded)
+  return App.get_items(`tabs`).filter(x => !x.unloaded)
 }
 
 App.get_unloaded_tabs = () => {
-  return App.get_items(`tabs`).filter(x => x.discarded)
+  return App.get_items(`tabs`).filter(x => x.unloaded)
 }
 
 App.get_unread_tabs = () => {
@@ -431,7 +431,7 @@ App.pin_tabs = (item) => {
   let items = []
 
   for (let it of App.get_active_items({mode: `tabs`, item: item})) {
-    if (it.pinned || it.discarded) {
+    if (it.pinned || it.unloaded) {
       continue
     }
 
@@ -460,7 +460,7 @@ App.unpin_tabs = (item) => {
   let items = []
 
   for (let it of App.get_active_items({mode: `tabs`, item: item})) {
-    if (!it.pinned || it.discarded) {
+    if (!it.pinned || it.unloaded) {
       continue
     }
 
@@ -490,7 +490,7 @@ App.unload_tabs = (item, multiple = true) => {
   let active = false
 
   for (let it of App.get_active_items({mode: `tabs`, item: item, multiple: multiple})) {
-    if (it.discarded || App.is_new_tab(it.url)) {
+    if (it.unloaded || App.is_new_tab(it.url)) {
       continue
     }
 
@@ -515,10 +515,10 @@ App.unload_tabs = (item, multiple = true) => {
         let next
 
         if (ids.length > 1) {
-          next = App.get_next_item(`tabs`, {mode: `tabs`, no_selected: true, no_discarded: true})
+          next = App.get_next_item(`tabs`, {mode: `tabs`, no_selected: true, no_unloaded: true})
         }
         else {
-          next = App.get_next_item(`tabs`, {mode: `tabs`, no_discarded: true, item: items[0]})
+          next = App.get_next_item(`tabs`, {mode: `tabs`, no_unloaded: true, item: items[0]})
         }
 
         if (next) {
@@ -573,7 +573,7 @@ App.unload_other_tabs = (item) => {
       continue
     }
 
-    if (it.discarded) {
+    if (it.unloaded) {
       continue
     }
 
@@ -1097,7 +1097,7 @@ App.select_tabs = (type = `pins`) => {
       valid = !item.pinned
     }
     else if (type === `unloaded`) {
-      valid = item.discarded
+      valid = item.unloaded
     }
 
     if (item.visible && valid) {
@@ -1230,7 +1230,7 @@ App.load_tabs = (item) => {
   let items = []
 
   for (let it of App.get_active_items({mode: `tabs`, item: item})) {
-    if (!it.discarded) {
+    if (!it.unloaded) {
       continue
     }
 

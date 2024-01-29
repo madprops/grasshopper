@@ -49,7 +49,7 @@ App.show_tab_list = (what, e) => {
     if (tab.muted) {
       icon = muted_icon
     }
-    else if (tab.audible) {
+    else if (tab.playing) {
       icon = playing_icon
     }
 
@@ -71,14 +71,14 @@ App.show_tab_list = (what, e) => {
         if (tab.muted) {
           await App.unmute_tab(tab.id)
 
-          if (!tab.audible) {
+          if (!tab.playing) {
             icon.innerHTML = ``
           }
           else {
             icon.innerHTML = playing_icon
           }
         }
-        else if (tab.audible) {
+        else if (tab.playing) {
           await App.mute_tab(tab.id)
           icon.innerHTML = muted_icon
         }

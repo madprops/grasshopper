@@ -57,7 +57,7 @@ App.check_tab_colors = (item) => {
       return true
     }
 
-    if (item.audible && check(`playing`, mode)) {
+    if (item.playing && check(`playing`, mode)) {
       return true
     }
 
@@ -65,11 +65,11 @@ App.check_tab_colors = (item) => {
       return true
     }
 
-    if (item.discarded && check(`unloaded`, mode)) {
+    if (item.unloaded && check(`unloaded`, mode)) {
       return true
     }
 
-    if (!item.discarded && check(`loaded`, mode)) {
+    if (!item.unloaded && check(`loaded`, mode)) {
       return true
     }
 
