@@ -28,7 +28,7 @@ App.setup_tabs = () => {
     if (info.windowId === App.window_id) {
       await App.refresh_tab({id: id, info: info})
 
-      if (changed.playing !== undefined) {
+      if (changed.audible !== undefined) {
         App.check_playing()
       }
     }
