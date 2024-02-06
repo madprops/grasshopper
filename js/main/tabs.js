@@ -966,15 +966,15 @@ App.move_tabs_vertically = (direction, item) => {
   let active = App.get_active_items({mode: item.mode, item: item})
 
   if (active[0].pinned) {
-    for (let item of active) {
-      if (!item.pinned) {
+    for (let it of active) {
+      if (!it.pinned) {
         return
       }
     }
   }
   else {
-    for (let item of active) {
-      if (item.pinned) {
+    for (let it of active) {
+      if (it.pinned) {
         return
       }
     }
