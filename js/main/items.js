@@ -197,13 +197,9 @@ App.clear_selected = (mode) => {
 }
 
 App.get_items = (mode) => {
-  let item_string = `${mode}_items`
-
-  if (App[item_string]) {
-    App[item_string] = App[item_string].filter(x => x !== undefined)
-  }
-
-  return App[item_string] || []
+  let items = App[`${mode}_items`] || []
+  App.remove_undefined(items)
+  return items
 }
 
 App.select_first_item = (mode, by_active = false, scroll = `center`) => {

@@ -963,17 +963,17 @@ App.move_tabs_vertically = (direction, item) => {
     return
   }
 
-  let items = App.get_active_items({mode: item.mode, item: item})
+  let active = App.get_active_items({mode: item.mode, item: item})
 
-  if (items[0].pinned) {
-    for (let item of items) {
+  if (active[0].pinned) {
+    for (let item of active) {
       if (!item.pinned) {
         return
       }
     }
   }
   else {
-    for (let item of items) {
+    for (let item of active) {
       if (item.pinned) {
         return
       }
@@ -981,7 +981,9 @@ App.move_tabs_vertically = (direction, item) => {
   }
 
   let first, last
-  let els = items.map(x => x.element)
+  let els = active.map(x => x.element)
+  let items = App.get_items(`tabs`)
+  let o_index = items.indexOf(item)
 
   if (direction === `top`) {
     if (item.pinned) {
@@ -991,20 +993,20 @@ App.move_tabs_vertically = (direction, item) => {
       first = App.get_first_normal_index()
     }
 
-    App.get_items(`tabs`)[first].element.before(...els)
+    items[first].element.before(...els)
   }
   else if (direction === `bottom`) {
     if (item.pinned) {
       last = App.get_last_pin_index()
     }
     else {
-      last = App.get_items(`tabs`).length - 1
+      last = items.length - 1
     }
 
-    App.get_items(`tabs`)[last].element.after(...els)
+    items[last].element.after(...els)
   }
 
-  App.update_tabs_index(items)
+  App.update_tabs_index(active, o_index)
 }
 
 App.get_first_normal_index = () => {
