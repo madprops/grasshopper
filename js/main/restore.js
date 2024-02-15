@@ -35,8 +35,11 @@ App.restore = () => {
 
   let mode = App.active_mode
 
-  if ((mode !== App.primary_mode) || App.is_filtered(mode)) {
-    App.show_primary_mode()
+  if (mode !== App.primary_mode) {
+    App.show_primary_mode(mode)
+  }
+  else if (App.is_filtered(mode)) {
+    App.filter_all(mode)
   }
   else {
     let item = App.get_selected(mode)

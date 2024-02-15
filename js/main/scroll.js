@@ -143,3 +143,13 @@ App.container_is_scrolled = (mode) => {
   let container = DOM.el(`#${mode}_container`)
   return container.scrollHeight > container.clientHeight
 }
+
+App.scroll_to_selected = (mode) => {
+  let selected = App.get_selected(mode)
+
+  if (selected) {
+    if (!App.item_is_visible(selected)) {
+      App.scroll_to_item({item: selected, scroll: `nearest_instant`, force: true})
+    }
+  }
+}
