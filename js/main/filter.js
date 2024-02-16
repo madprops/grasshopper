@@ -262,6 +262,7 @@ App.do_filter = async (args = {}) => {
 
   if (args.select) {
     App.clear_selected(args.mode)
+
     let sticky_filter = App.get_setting(`sticky_filter`)
     let last_item
 
