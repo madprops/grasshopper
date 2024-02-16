@@ -123,6 +123,11 @@ App.check_items_keyboard = (e) => {
 
   if (e.shiftKey && !e.ctrlKey) {
     if (e.key === `Enter`) {
+      if (!item) {
+        e.preventDefault()
+        return
+      }
+
       App.show_item_menu({item: item})
       e.preventDefault()
       return
@@ -187,6 +192,11 @@ App.check_items_keyboard = (e) => {
         }
       }
 
+      if (!item) {
+        e.preventDefault()
+        return
+      }
+
       App[`${mode}_action`](item, `enter`)
       e.preventDefault()
       return
@@ -231,8 +241,13 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Delete`) {
-      if (item && mode === `tabs`) {
+      if (mode === `tabs`) {
         if (!filter_focus || !filter_filled || filter_end) {
+          if (!item) {
+            e.preventDefault()
+            return
+          }
+
           App.close_tabs(item)
           e.preventDefault()
         }
