@@ -309,9 +309,11 @@ App.replace_filter_vars = (value) => {
   let day = dateFormat(date, `dddd`).toLowerCase()
   let month = dateFormat(date, `mmmm`).toLowerCase()
   let year = dateFormat(date, `yyyy`)
+
   value = value.replace(/\$day/g, day)
   value = value.replace(/\$month/g, month)
   value = value.replace(/\$year/g, year)
+
   return value
 }
 
@@ -1159,6 +1161,7 @@ App.clean_filter = (s) => {
   s = App.no_space(s)
   s = App.remove_special(s)
   s = s.trim()
+
   return s
 }
 
@@ -1352,6 +1355,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push({cmd: `exact`, text: `Exact`, skip: true, info: `Show the Exact Filters`})
   fmodes.push({cmd: `refine`, text: `Refine`, skip: true, info: `Show the Refine Filters`})
   fmodes.push({cmd: `custom`, text: `Custom`, skip: true, info: `Show the Custom Filters`})
+
   App[`${mode}_filter_modes_all`] = fmodes
 
   DOM.ev(btn, `click`, (e) => {
