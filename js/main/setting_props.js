@@ -126,7 +126,7 @@ App.build_settings = () => {
     auto_restore: {
       name: `Auto-Restore`,
       type: `menu`,
-      value: `never`,
+      value: `action`,
       info: `When to auto-restore after the mouse leaves the window
       Or if it should restore instantly after an action
       Restore means going back to the primary mode and clearing the filter`,
@@ -187,6 +187,16 @@ App.build_settings = () => {
       placeholder: `Folder Name`,
       no_empty: true,
       info: `Where to save bookmarks`,
+      version: 1,
+    },
+    max_recent_tabs: {
+      name: `Max Recent Tabs`,
+      type: `number`,
+      value: 16,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Max items to show in Recent Tabs`,
       version: 1,
     },
     fetch_favicons: {
@@ -348,7 +358,7 @@ App.build_settings = () => {
       name: `Font`,
       type: `text`,
       actions: [`theme`],
-      value: `sans-serif`,
+      value: `Nova Square`,
       placeholder: `Font Name`,
       btns: [`pick`],
       info: `Font to use for the text
@@ -363,7 +373,7 @@ App.build_settings = () => {
     font_size: {
       name: `Font Size`,
       type: `number`,
-      value: 16,
+      value: 17,
       actions: [`theme`],
       placeholder: `Px`,
       min: 6,
@@ -2579,16 +2589,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Enable some features for developers`,
-      version: 1,
-    },
-    max_recent_tabs: {
-      name: `Max Recent Tabs`,
-      type: `number`,
-      value: 10,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Max items to show in Recent Tabs`,
       version: 1,
     },
   }
