@@ -192,7 +192,7 @@ App.build_settings = () => {
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,
-      value: 16,
+      value: 15,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
@@ -1067,6 +1067,7 @@ App.build_settings = () => {
       name: `Favorites Menu`,
       type: `list`,
       value: [
+        {cmd: `show_recent_tabs`, alt: `filter_unread_tabs`},
         {cmd: `show_pinned_tabs`, alt: `filter_pinned_tabs`},
         {cmd: `show_color_red`, alt: `filter_color_red`},
         {cmd: `show_color_green`, alt: `filter_color_green`},
