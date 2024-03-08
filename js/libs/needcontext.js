@@ -1,4 +1,4 @@
-// NeedContext v4.0
+// NeedContext v5.0
 
 // Main object
 const NeedContext = {}
@@ -192,6 +192,13 @@ NeedContext.show = (args = {}) => {
     text.textContent = args.title.trim()
     title.append(text)
     c.append(title)
+
+    if (args.title_number) {
+      let number = document.createElement(`div`)
+      number.classList.add(`needcontext-title-number`)
+      title.append(number)
+    }
+
     c.classList.add(`with_title`)
     c.classList.remove(`without_title`)
   }
@@ -340,6 +347,7 @@ NeedContext.show = (args = {}) => {
 
   container.style.minHeight = NeedContext.min_height
   NeedContext.select_item(selected_index)
+  NeedContext.update_title()
   NeedContext.open = true
   NeedContext.after_show()
 
@@ -965,6 +973,33 @@ NeedContext.remove_item = (item) => {
   NeedContext.select_next(`down`, true)
   item.removed = true
   item.element.remove()
+  NeedContext.update_title()
+}
+
+// Update the title
+NeedContext.update_title = () => {
+  let title = document.querySelector(`#needcontext-title`)
+
+  if (!title) {
+    return
+  }
+
+  let number = title.querySelector(`.needcontext-title-number`)
+
+  if (!number) {
+    return
+  }
+
+  let num_items = NeedContext.count_items()
+  number.textContent = `(${num_items})`
+}
+
+// Count the number of items
+NeedContext.count_items = () => {
+  items = NeedContext.get_layer().normal_items
+  items = items.filter(x => !x.removed)
+  items = items.filter(x => !x.fake)
+  return items.length
 }
 
 // Start

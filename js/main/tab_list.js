@@ -97,5 +97,6 @@ App.show_tab_list = (what, e) => {
     title: title,
     title_icon: title_icon,
     alt_action_remove: true,
+    title_number: true,
   })
 }

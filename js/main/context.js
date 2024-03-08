@@ -16,6 +16,7 @@ App.show_context = (args = {}) => {
           App.alert(args.no_items)
         }
       },
+      fake: true,
     })
   }
 
