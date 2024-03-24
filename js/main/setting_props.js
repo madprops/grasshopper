@@ -1471,7 +1471,7 @@ App.build_settings = () => {
     warn_on_unload_tabs: {
       name: `Warn On Unload Tabs`,
       type: `menu`,
-      value: `special`,
+      value: `multiple`,
       info: `Warn when unloading tabs`,
       version: 1,
       setup: (key) => {
