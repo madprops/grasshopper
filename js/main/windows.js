@@ -167,7 +167,7 @@ App.setup_window = () => {
       App.start_auto_restore()
     }
 
-    App.start_hide_all()
+    App.start_context_auto_hide()
     App.auto_blur()
   })
 
@@ -176,21 +176,21 @@ App.setup_window = () => {
       App.clear_restore()
     }
 
-    App.clear_hide_all()
+    App.clear_context_auto_hide()
     App.remove_auto_blur()
   })
 }
 
-App.start_hide_all = () => {
-  App.clear_hide_all()
+App.start_context_auto_hide = () => {
+  App.clear_context_auto_hide()
 
-  App.hide_all_timeout = setTimeout(() => {
+  App.context_auto_hide_timeout = setTimeout(() => {
     App.hide_context()
-  }, App.auto_hide_delay)
+  }, App.context_auto_hide_delay)
 }
 
-App.clear_hide_all = () => {
-  clearTimeout(App.hide_all_timeout)
+App.clear_context_auto_hide = () => {
+  clearTimeout(App.context_auto_hide_timeout)
 }
 
 App.window_goto_top = (mode) => {
