@@ -167,6 +167,7 @@ App.setup_window = () => {
       App.start_auto_restore()
     }
 
+    App.start_hide_all()
     App.auto_blur()
   })
 
@@ -175,9 +176,21 @@ App.setup_window = () => {
       App.clear_restore()
     }
 
+    App.clear_hide_all()
     App.remove_auto_blur()
   })
+}
 
+App.start_hide_all = () => {
+  App.clear_hide_all()
+
+  App.hide_all_timeout = setTimeout(() => {
+    App.hide_context()
+  }, App.auto_hide_delay)
+}
+
+App.clear_hide_all = () => {
+  clearTimeout(App.hide_all_timeout)
 }
 
 App.window_goto_top = (mode) => {
