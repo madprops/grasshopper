@@ -682,7 +682,6 @@ App.setup_commands = () => {
       cmd: `pin_tabs`,
       modes: [`tabs`],
       item: true,
-      some_loaded: true,
       some_unpinned: true,
       icon: pin_icon,
       action: (args) => {
@@ -695,7 +694,6 @@ App.setup_commands = () => {
       cmd: `unpin_tabs`,
       modes: [`tabs`],
       item: true,
-      some_loaded: true,
       some_pinned: true,
       icon: pin_icon,
       action: (args) => {

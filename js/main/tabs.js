@@ -431,7 +431,7 @@ App.pin_tabs = (item) => {
   let items = []
 
   for (let it of App.get_active_items({mode: `tabs`, item: item})) {
-    if (it.pinned || it.unloaded) {
+    if (it.pinned) {
       continue
     }
 
@@ -460,7 +460,7 @@ App.unpin_tabs = (item) => {
   let items = []
 
   for (let it of App.get_active_items({mode: `tabs`, item: item})) {
-    if (!it.pinned || it.unloaded) {
+    if (!it.pinned) {
       continue
     }
 
