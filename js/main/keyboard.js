@@ -173,6 +173,19 @@ App.check_items_keyboard = (e) => {
     }
   }
 
+  if (e.ctrlKey && e.shiftKey) {
+    if (e.key === `ArrowUp`) {
+      App.select_vertically(mode, `up`)
+      e.preventDefault()
+      return
+    }
+    else if (e.key === `ArrowDown`) {
+      App.select_vertically(mode, `down`)
+      e.preventDefault()
+      return
+    }
+  }
+
   if (!e.ctrlKey && !e.shiftKey) {
     if (e.key === `Escape`) {
       App.step_back(mode, e)

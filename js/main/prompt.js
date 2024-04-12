@@ -11,6 +11,10 @@ App.setup_prompt = () => {
     App.show_prompt_list()
   })
 
+  DOM.ev(DOM.el(`#prompt_fill`), `click`, (e) => {
+    App.fill_prompt()
+  })
+
   DOM.el(`#prompt_list`).textContent = App.smiley_icon
 }
 
@@ -26,7 +30,8 @@ App.show_prompt = (args = {}) => {
     highlight: false,
     append: false,
     show_list: false,
-    list: []
+    list: [],
+    fill: ``,
   }
 
   App.def_args(def_args, args)
@@ -45,6 +50,14 @@ App.show_prompt = (args = {}) => {
     list.classList.add(`hidden`)
   }
 
+  if (args.fill) {
+    DOM.el(`#prompt_fill`).classList.remove(`hidden`)
+  }
+  else {
+    DOM.el(`#prompt_fill`).classList.add(`hidden`)
+  }
+
+  App.prompt_fill = args.fill
   App.prompt_args = args
   input.focus()
 
@@ -167,4 +180,13 @@ App.show_prompt_list = (from = `click`) => {
       }
     },
   })
+}
+
+// Fill the prompt with the fill value if any
+App.fill_prompt = () => {
+  if (App.prompt_fill) {
+    let input = DOM.el(`#prompt_input`)
+    input.value = App.prompt_fill
+    input.focus()
+  }
 }

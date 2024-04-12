@@ -311,6 +311,26 @@ App.setup_commands = () => {
       info: `Select all items`,
     },
     {
+      name: `Select Up`,
+      cmd: `select_items_up`,
+      modes: [`items`],
+      icon: command_icon,
+      action: (args) => {
+        App.select_vertically(args.mode, `up`)
+      },
+      info: `Select all items below this item`,
+    },
+    {
+      name: `Select Down`,
+      cmd: `select_items_down`,
+      modes: [`items`],
+      icon: command_icon,
+      action: (args) => {
+        App.select_vertically(args.mode, `down`)
+      },
+      info: `Select all items above this item`,
+    },
+    {
       name: `Copy Tabs`,
       cmd: `copy_tabs`,
       modes: [`tabs`],

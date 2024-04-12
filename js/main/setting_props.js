@@ -2534,6 +2534,13 @@ App.build_settings = () => {
       info: `Show titles at the top of some context menus`,
       version: 1,
     },
+    edit_title_auto: {
+      name: `Edit Title Auto`,
+      type: `checkbox`,
+      value: true,
+      info: `Auto-fill the title on edit and select it`,
+      version: 1,
+    },
     item_pointer: {
       name: `Item Pointer`,
       type: `checkbox`,

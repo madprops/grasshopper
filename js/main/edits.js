@@ -145,6 +145,10 @@ App.edit_prompt = (args = {}) => {
     }
   }
 
+  if (args.highlight && args.value) {
+    value = args.value
+  }
+
   let name = App.capitalize(args.what)
   let suggestions = []
   let tags, titles, icons
@@ -231,6 +235,8 @@ App.edit_prompt = (args = {}) => {
     unique_words: unique_words,
     ignore_words: ignore_words,
     append: append,
+    fill: args.fill,
+    highlight: args.highlight,
     on_submit: (ans) => {
       let obj = {}
       obj[args.what] = ans
