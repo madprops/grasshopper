@@ -30,7 +30,7 @@ App.setup_bookmarks = () => {
       let item = App.get_item_by_id(`bookmarks`, id)
 
       if (item) {
-        App.update_item(`bookmarks`, item.id, info)
+        App.update_item({mode: `bookmarks`, id: item.id, info: info})
       }
     }
   })

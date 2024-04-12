@@ -345,7 +345,7 @@ App.apply_edit = (args = {}) => {
 
   if (!App.same_edit(args.what, args.item, new_value, `custom`)) {
     args.item[`custom_${args.what}`] = new_value
-    App.update_item(args.item.mode, args.item.id, args.item)
+    App.update_item({mode: args.item.mode, id: args.item.id, info: args.item})
 
     if (args.on_change) {
       args.on_change(new_value)

@@ -491,11 +491,14 @@ App.get_visible = (mode) => {
   return App.get_items(mode).filter(x => x.visible)
 }
 
-App.update_item = (mode, id, info) => {
-  for (let item of App.get_items(mode)) {
-    if (item.id === id) {
-      App.process_info({mode: mode, info: info, o_item: item})
-      App.check_filter(mode)
+App.update_item = (args = {}) => {
+  let def_args = {}
+  App.def_args(def_args, args)
+
+  for (let item of App.get_items(args.mode)) {
+    if (item.id === args.id) {
+      App.process_info({mode: args.mode, info: args.info, o_item: item, url: args.url})
+      App.check_filter(args.mode)
       App.update_active_trace()
       App.refresh_tab_box()
       break

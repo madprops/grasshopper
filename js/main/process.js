@@ -46,7 +46,10 @@ App.process_info = (args = {}) => {
   }
 
   if (args.o_item) {
-    args.info = Object.assign({}, args.o_item.original_data, args.info)
+    if (!args.url) {
+      args.info = Object.assign({}, args.o_item.original_data, args.info)
+    }
+
     args.o_item.original_data = args.info
   }
 

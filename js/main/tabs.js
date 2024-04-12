@@ -26,7 +26,7 @@ App.setup_tabs = () => {
     App.debug(`Tab Updated: ID: ${id}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      await App.refresh_tab({id: id, info: info})
+      await App.refresh_tab({id: id, info: info, url: changed.url})
 
       if (changed.audible !== undefined) {
         App.check_playing()
@@ -249,7 +249,7 @@ App.refresh_tab = async (args = {}) => {
       App.check_pinline()
     }
 
-    App.update_item(`tabs`, item.id, args.info)
+    App.update_item({mode: `tabs`, id: item.id, info: args.info, url: args.url})
   }
   else {
     item = App.insert_item(`tabs`, args.info)
@@ -883,7 +883,7 @@ App.on_tab_activated = async (info) => {
   new_active.unread = false
 
   for (let item of old_active) {
-    App.update_item(`tabs`, item.id, item)
+    App.update_item({mode: `tabs`, id: item.id, info: item})
   }
 
   App.check_tab_box_scroll()
