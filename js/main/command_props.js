@@ -316,9 +316,9 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: command_icon,
       action: (args) => {
-        App.select_vertically(args.mode, `up`)
+        App.select_to_edge(args.mode, `up`)
       },
-      info: `Select all items below this item`,
+      info: `Select all items above this item`,
     },
     {
       name: `Select Down`,
@@ -326,9 +326,9 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: command_icon,
       action: (args) => {
-        App.select_vertically(args.mode, `down`)
+        App.select_to_edge(args.mode, `down`)
       },
-      info: `Select all items above this item`,
+      info: `Select all items below this item`,
     },
     {
       name: `Copy Tabs`,

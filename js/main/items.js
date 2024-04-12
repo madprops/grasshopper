@@ -1305,29 +1305,3 @@ App.blink_item = (item) => {
 
   item.blink_interval = interval
 }
-
-// Select items all the way down or up from current item
-App.select_vertically = (mode, dir) => {
-  let item = App.get_selected(mode)
-
-  if (!item) {
-    return
-  }
-
-  let items = App.get_items(mode).slice(0)
-  let waypoint = false
-
-  if (dir === `up`) {
-    items.reverse()
-  }
-
-  for (let it of items) {
-    if (waypoint) {
-      App.toggle_selected({item: it, what: true, select: false})
-    }
-
-    if (it === item) {
-      waypoint = true
-    }
-  }
-}

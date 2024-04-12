@@ -175,12 +175,12 @@ App.check_items_keyboard = (e) => {
 
   if (e.ctrlKey && e.shiftKey) {
     if (e.key === `ArrowUp`) {
-      App.select_vertically(mode, `up`)
+      App.select_to_edge(mode, `up`)
       e.preventDefault()
       return
     }
     else if (e.key === `ArrowDown`) {
-      App.select_vertically(mode, `down`)
+      App.select_to_edge(mode, `down`)
       e.preventDefault()
       return
     }
