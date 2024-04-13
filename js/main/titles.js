@@ -25,9 +25,10 @@ App.edit_tab_title = (args = {}) => {
 App.edit_title = (item) => {
   auto = App.get_setting(`edit_title_auto`)
   highlight = auto ? true : false
+  value = auto ? App.title(item) : ``
 
   App.edit_prompt({what: `title`, item: item,
-    fill: item.title, value: App.title(item), highlight: highlight})
+    fill: item.title, value: value, highlight: highlight})
 }
 
 App.push_to_title_history = (titles) => {

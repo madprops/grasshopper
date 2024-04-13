@@ -130,7 +130,10 @@ App.edit_prompt = (args = {}) => {
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let value = ``
 
-  if (!args.add) {
+  if ((active.length === 1) && args.value) {
+    value = args.value
+  }
+  else if (!args.add) {
     value = App.edit_to_string(args.what, active[0])
 
     for (let it of active) {
@@ -143,10 +146,6 @@ App.edit_prompt = (args = {}) => {
         break
       }
     }
-  }
-
-  if (args.highlight && args.value) {
-    value = args.value
   }
 
   let name = App.capitalize(args.what)
