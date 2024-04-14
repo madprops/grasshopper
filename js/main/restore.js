@@ -1,5 +1,6 @@
 App.check_restore = () => {
   if (App.get_setting(`auto_restore`) === `action`) {
+    App.update_filter_history()
     App.restore()
   }
 }
