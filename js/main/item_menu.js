@@ -209,13 +209,23 @@ App.item_menu_item = (items, cmd, obj) => {
 }
 
 App.item_menu_tags = (items, item) => {
-  let tag_items = []
-  App.item_menu_item(tag_items, `edit_tags`, {item: item, short: false}),
-  App.item_menu_item(tag_items, `add_tags`, {item: item, short: false}),
+  if (App.item_menu_active.length > 1) {
+    let tag_items = []
+    App.item_menu_item(tag_items, `edit_tags`, {item: item, short: false})
+    App.item_menu_item(tag_items, `add_tags`, {item: item, short: false})
 
-  items.push({
-    icon: App.tag_icon,
-    text: `Tags`,
-    items: tag_items,
-  })
+    items.push({
+      icon: App.tag_icon,
+      text: `Tags`,
+      items: tag_items,
+    })
+  }
+  else {
+    if (item.custom_tags.length) {
+      App.item_menu_item(items, `edit_tags`, {item: item})
+    }
+    else {
+      App.item_menu_item(items, `add_tags`, {item: item})
+    }
+  }
 }

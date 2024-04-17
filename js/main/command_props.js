@@ -1111,6 +1111,7 @@ App.setup_commands = () => {
     },
     {
       name: `Add Tags`,
+      short_name: `Tags`,
       cmd: `add_tags`,
       modes: [`tabs`],
       item: true,
