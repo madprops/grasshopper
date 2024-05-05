@@ -28,7 +28,7 @@ App.insert_header = async (item, full = true) => {
       App.edit_tab_split({item: header, which: `top`})
     }
 
-    App.edit_title(header)
+    App.edit_title(header, false)
   }
 }
 
