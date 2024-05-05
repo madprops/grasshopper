@@ -74,6 +74,19 @@ App.scroll = (mode, direction) => {
   }
 }
 
+App.scroll_page = (mode, direction) => {
+  console.log(direction)
+  let el = DOM.el(`#${mode}_container`)
+  height = el.offsetHeight
+
+  if (direction === `up`) {
+    el.scrollTop -= height + 66
+  }
+  else if (direction === `down`) {
+    el.scrollTop += height - 66
+  }
+}
+
 App.show_scroller = (mode) => {
   if (!App.get_setting(`show_scroller`)) {
     return

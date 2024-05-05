@@ -215,12 +215,12 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `PageUp`) {
-      App.scroll(mode, `up`)
+      App.scroll_page(mode, `up`)
       e.preventDefault()
       return
     }
     else if (e.key === `PageDown`) {
-      App.scroll(mode, `down`)
+      App.scroll_page(mode, `down`)
       e.preventDefault()
       return
     }
