@@ -24,12 +24,16 @@ App.do_check_pinline = () => {
   let tabs = App.divide_tabs(`visible`)
   let cls = `element tabs_element glowbox`
 
-  if ((!tabs.pinned_f.length) && (!tabs.normal_f.length)) {
+  if (show === `never`) {
     cls += ` hidden`
   }
-
-  if (show === `auto`) {
+  else if (show === `auto`) {
     if ((!tabs.pinned_f.length) || (!tabs.normal_f.length)) {
+      cls += ` hidden`
+    }
+  }
+  else {
+    if ((!tabs.pinned_f.length) && (!tabs.normal_f.length)) {
       cls += ` hidden`
     }
   }
