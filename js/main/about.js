@@ -52,7 +52,6 @@ App.start_about = () => {
         `Context menus support filtering, just start typing something`,
         `Middle Click filter items to further refine the filter`,
         `Middle Click the filter input to show Refine Filters`,
-        `PageUp and PageDown scroll one screen at a time`,
       ]
 
       let close = DOM.el(`#about_close`)

@@ -2541,6 +2541,13 @@ App.build_settings = () => {
       info: `Auto-fill the title on edit and select it`,
       version: 1,
     },
+    page_scrolls: {
+      name: `Page Scrolls`,
+      type: `checkbox`,
+      value: true,
+      info: `PageUp and PageDown do full page scrolls`,
+      version: 1,
+    },
     item_pointer: {
       name: `Item Pointer`,
       type: `checkbox`,
