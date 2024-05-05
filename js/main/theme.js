@@ -645,7 +645,7 @@ App.insert_color_css = () => {
 
 App.insert_tab_color_css = () => {
   let css = ``
-  let important = [`active`]
+  let important = [`active`, `header`, `subheader`]
 
   for (let type of App.color_types.slice(0).reverse()) {
     let text_color, bg_color
