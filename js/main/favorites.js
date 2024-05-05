@@ -164,7 +164,6 @@ App.fill_favorites_bar = (mode) => {
       })
     }
 
-    some_cmds = true
     c.append(btn)
   }
 }
