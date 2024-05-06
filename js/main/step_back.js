@@ -1,6 +1,6 @@
 App.create_step_back_button = (mode) => {
   let btn = DOM.create(`div`, `button icon_button`, `${mode}_back`)
-  btn.title = `Step Back (Esc)\nRight Click to show Recent Tabs`
+  btn.title = `Step Back (Esc)\nRight Click: Show Recent Tabs`
   btn.append(App.get_svg_icon(`back`))
 
   DOM.ev(btn, `click`, (e) => {

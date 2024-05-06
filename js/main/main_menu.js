@@ -3,7 +3,7 @@ App.create_main_menu = (mode) => {
   let icon = App.mode_icons[mode]
   let text = App.get_mode_name(mode)
   btn.append(App.button_text(icon, text))
-  btn.title = `Main Menu (Ctrl + Left)\nRight Click to show the Palette`
+  btn.title = `Main Menu (Ctrl + Left)\nRight Click: Show the Palette`
 
   DOM.ev(btn, `click`, () => {
     App.show_main_menu(mode)
