@@ -297,6 +297,13 @@ App.create_item_element = (item) => {
 
   if (App.get_setting(`item_icon`) !== `none`) {
     let icon_container = DOM.create(`div`, `item_icon_container item_node`)
+
+    if (App.get_setting(`show_tooltips`)) {
+      if (App.get_setting(`icon_pick`)) {
+        icon_container.title = `Click: Select item\nRight Click: Single select item`
+      }
+    }
+
     item.element.append(icon_container)
     App.check_item_icon(item)
   }

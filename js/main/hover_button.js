@@ -1,7 +1,11 @@
 App.create_hover_button = () => {
   let btn = DOM.create(`div`, `hover_button`)
   btn.textContent = App.command_icon
-  btn.title = `Hover Button`
+
+  if (App.get_setting(`show_tooltips`)) {
+    btn.title = `Hover Button`
+  }
+
   return btn
 }
 

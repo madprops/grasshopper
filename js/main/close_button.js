@@ -17,7 +17,11 @@ App.add_close_button = (item, side) => {
     }
 
     let btn = DOM.create(`div`, `close_button ${cb_setting} item_node`)
-    btn.title = `Close`
+
+    if (App.get_setting(`show_tooltips`)) {
+      btn.title = `Close`
+    }
+
     btn.textContent = App.close_tab_icon
     item.element.append(btn)
   }
