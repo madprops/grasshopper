@@ -220,6 +220,14 @@ App.build_settings = () => {
       info: `Blink when focusing tabs through certain actions when not directly clicking them`,
       version: 1,
     },
+    icon_pick: {
+      name: `Icon Pick`,
+      type: `checkbox`,
+      value: false,
+      info: `Clicking the icons (favicon) of items toggles select
+      Right clicking the icon on an item deselects all items except that one`,
+      version: 1,
+    },
     wrap_text: {
       name: `Wrap Text`,
       type: `checkbox`,
@@ -232,14 +240,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Click to select without triggering an action`,
-      version: 1,
-    },
-    icon_pick: {
-      name: `Icon Pick`,
-      type: `checkbox`,
-      value: false,
-      info: `Clicking the icons (favicon) of items toggles select
-      Right clicking the icon on an item deselects all items except that one`,
       version: 1,
     },
     lock_drag: {
@@ -693,36 +693,6 @@ App.build_settings = () => {
   category = `show`
 
   props = {
-    extra_menu_mode: {
-      name: `Extra Menu Mode`,
-      type: `menu`,
-      value: `none`,
-      info: `How to show the Extra Menu on right click
-      Either on its own submenu, flat at the root level, or totally replace the Item Menu
-      This menu only appears in Tabs mode`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: `Normal`, value: `normal`},
-          {text: `Flat`, value: `flat`},
-          {text: `Total`, value: `total`},
-        ])
-      },
-    },
-    extra_menu: {
-      name: `Extra Menu`,
-      type: `list`,
-      value: [
-        {cmd: `toggle_color_red`, alt: `filter_color_red`},
-        {cmd: `toggle_color_green`, alt: `filter_color_green`},
-        {cmd: `toggle_color_blue`, alt: `filter_color_blue`},
-        {cmd: `toggle_color_yellow`, alt: `filter_color_yellow`},
-      ],
-      info: `Extra menu to show when right clicking items`,
-      separator: true,
-      version: 4,
-    },
     hover_button: {
       name: `Hover Button`,
       type: `menu`,
@@ -756,6 +726,36 @@ App.build_settings = () => {
       info: `Pick items when right clicking the Hover Button`,
       separator: true,
       version: 1,
+    },
+    extra_menu_mode: {
+      name: `Extra Menu Mode`,
+      type: `menu`,
+      value: `none`,
+      info: `How to show the Extra Menu on right click
+      Either on its own submenu, flat at the root level, or totally replace the Item Menu
+      This menu only appears in Tabs mode`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: `Normal`, value: `normal`},
+          {text: `Flat`, value: `flat`},
+          {text: `Total`, value: `total`},
+        ])
+      },
+    },
+    extra_menu: {
+      name: `Extra Menu`,
+      type: `list`,
+      value: [
+        {cmd: `toggle_color_red`, alt: `filter_color_red`},
+        {cmd: `toggle_color_green`, alt: `filter_color_green`},
+        {cmd: `toggle_color_blue`, alt: `filter_color_blue`},
+        {cmd: `toggle_color_yellow`, alt: `filter_color_yellow`},
+      ],
+      info: `Extra menu to show when right clicking items`,
+      separator: true,
+      version: 4,
     },
     show_pinline: {
       name: `Show Pinline`,
