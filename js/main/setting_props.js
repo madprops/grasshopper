@@ -223,7 +223,7 @@ App.build_settings = () => {
     icon_pick: {
       name: `Icon Pick`,
       type: `checkbox`,
-      value: false,
+      value: true,
       info: `Clicking the icons (favicon) of items toggles select
       Right clicking the icon on an item deselects all items except that one`,
       version: 1,
