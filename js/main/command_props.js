@@ -894,6 +894,17 @@ App.setup_commands = () => {
       },
       info: `Close other tabs`,
     },
+    {
+      name: `Close Empty`,
+      cmd: `close_empty_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: close_icon,
+      action: (args) => {
+        App.close_tabs_popup(`empty`, args.item)
+      },
+      info: `Close empty tabs`,
+    },
 
     ...color_closers,
 
