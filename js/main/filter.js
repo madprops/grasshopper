@@ -1700,7 +1700,6 @@ App.cycle_filters = (mode, direction) => {
   }
 
   if (direction === `up`) {
-    console.log(8)
     filters.reverse()
   }
 
