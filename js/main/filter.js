@@ -1700,7 +1700,7 @@ App.cycle_filters = (mode, direction) => {
   }
 
   if (direction === `up`) {
-    filters = filters.reverse()
+    filters.reverse()
   }
 
   let next

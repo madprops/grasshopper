@@ -74,16 +74,45 @@ App.scroll = (mode, direction) => {
   }
 }
 
-App.scroll_page = (mode, direction) => {
-  console.log(direction)
+App.get_scroll_waypoints = (mode) => {
   let el = DOM.el(`#${mode}_container`)
-  height = el.offsetHeight
+  let height = el.offsetHeight
+  let num_screens = Math.ceil(el.scrollHeight / height)
+  let waypoints = []
+
+  for (let i = 0; i < num_screens; i++) {
+    waypoints.push(i * height * 0.8)
+  }
+
+  return waypoints
+}
+
+App.scroll_page = (mode, direction) => {
+  let waypoints = App.get_scroll_waypoints(mode)
+  let el = DOM.el(`#${mode}_container`)
+  let current = el.scrollTop
 
   if (direction === `up`) {
-    el.scrollTop -= height + 66
+    waypoints.reverse()
   }
-  else if (direction === `down`) {
-    el.scrollTop += height - 66
+
+  for (let waypoint of waypoints) {
+    if (Math.abs(waypoint - current) < 3) {
+      continue
+    }
+
+    if (direction === `up`) {
+      if (waypoint < current) {
+        el.scrollTop = waypoint
+        break
+      }
+    }
+    else if (direction === `down`) {
+      if (waypoint > current) {
+        el.scrollTop = waypoint
+        break
+      }
+    }
   }
 }
 
