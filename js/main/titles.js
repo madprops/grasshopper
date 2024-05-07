@@ -23,7 +23,7 @@ App.edit_tab_title = (args = {}) => {
 }
 
 App.edit_title = (item, add_value = true) => {
-  let value = ""
+  let value = ``
   let highlight = false
 
   if (add_value) {
