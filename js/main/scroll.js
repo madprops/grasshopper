@@ -84,8 +84,10 @@ App.get_scroll_waypoints = (mode) => {
     waypoints.push(i * height * 0.8)
   }
 
-  if (waypoints[waypoints.length - 1] < el.scrollHeight) {
-    waypoints.push(el.scrollHeight)
+  if (waypoints.length) {
+    if (waypoints[waypoints.length - 1] < el.scrollHeight) {
+      waypoints.push(el.scrollHeight)
+    }
   }
 
   return waypoints
