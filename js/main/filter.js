@@ -1700,6 +1700,7 @@ App.cycle_filters = (mode, direction) => {
   }
 
   if (direction === `up`) {
+    console.log(8)
     filters.reverse()
   }
 
@@ -1707,7 +1708,7 @@ App.cycle_filters = (mode, direction) => {
   let waypoint = false
   let current = App.get_filter(mode)
 
-  for (let it of App.filter_history) {
+  for (let it of filters) {
     if (waypoint) {
       next = it
       break
@@ -1719,7 +1720,7 @@ App.cycle_filters = (mode, direction) => {
   }
 
   if (!next) {
-    next = App.filter_history[0]
+    next = filters[0]
   }
 
   App.set_filter({mode: mode, text: next, to_history: false})
