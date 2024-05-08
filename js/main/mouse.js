@@ -43,12 +43,7 @@ App.setup_container_mouse = (mode, container) => {
           let item = App.get_mouse_item(mode, e)
 
           if (item) {
-            if (item.selected) {
-              App.toggle_selected({item: item, what: false})
-            }
-            else {
-              App.toggle_selected({item: item, what: true})
-            }
+            App.pick(item)
 
             if (item.selected) {
               App.icon_pick_down = true
