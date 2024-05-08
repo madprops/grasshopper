@@ -20,6 +20,12 @@ App.setup_mouse = () => {
       e.preventDefault()
     }
   })
+
+  DOM.ev(window, `mouseup`, (e) => {
+    if (e.button === 0) {
+      App.icon_pick_down = false
+    }
+  })
 }
 
 App.setup_mode_mouse = (mode) => {
@@ -30,6 +36,26 @@ App.setup_mode_mouse = (mode) => {
 App.setup_container_mouse = (mode, container) => {
   DOM.ev(container, `mousedown`, (e) => {
     App.reset_triggers()
+
+    if (App.get_setting("icon_pick")) {
+      if (e.button === 0) {
+        if (e.target.closest(`.item_icon_container`)) {
+          let item = App.get_mouse_item(mode, e)
+
+          if (item) {
+            if (item.selected) {
+              App.toggle_selected({item: item, what: false})
+            }
+            else {
+              App.icon_pick_down = true
+              App.toggle_selected({item: item, what: true})
+            }
+
+            return
+          }
+        }
+      }
+    }
 
     if (e.button === 0 || e.button === 1) {
       if (App.cursor_on_item(mode, e)) {
@@ -125,7 +151,6 @@ App.mouse_click_action = (mode, e) => {
         return
       }
       else if (App.get_setting(`icon_pick`)) {
-        App.pick(item)
         return
       }
     }
@@ -407,6 +432,11 @@ App.mouse_over_action = (mode, e) => {
   let item = App.get_mouse_item(mode, e)
 
   if (!item) {
+    return
+  }
+
+  if (App.icon_pick_down) {
+    App.toggle_selected({item: item, what: true})
     return
   }
 

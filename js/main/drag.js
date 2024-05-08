@@ -2,6 +2,11 @@ App.setup_drag = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `dragstart`, (e) => {
+    if (App.icon_pick_down) {
+      e.preventDefault()
+      return false
+    }
+
     App.dragstart_action(mode, e)
   })
 
@@ -10,6 +15,11 @@ App.setup_drag = (mode) => {
   })
 
   DOM.ev(container, `dragend`, (e) => {
+    if (App.icon_pick_down) {
+      App.icon_pick_down = false
+      return
+    }
+
     App.dragend_action(mode, e)
   })
 }
