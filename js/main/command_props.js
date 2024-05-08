@@ -500,6 +500,17 @@ App.setup_commands = () => {
       info: `Show the Item Menu`,
     },
     {
+      name: `Item Action`,
+      cmd: `item_action`,
+      modes: [`items`],
+      item: true,
+      icon: command_icon,
+      action: (args) => {
+        App[`${args.mode}_action`](args.item, `click`)
+      },
+      info: `Trigger the action for the selected item`,
+    },
+    {
       name: `Show Favorites`,
       short_name: `Favorites`,
       cmd: `show_favorites_menu`,
