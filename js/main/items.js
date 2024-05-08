@@ -1064,7 +1064,7 @@ App.get_persistent_items = () => {
 App.clear_show = async () => {
   App.clear_all_items()
   App.rebuild_items()
-  App.show_primary_mode()
+  App.show_main_mode()
 }
 
 App.select_item_by_id = (mode, id) => {

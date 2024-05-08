@@ -712,6 +712,9 @@ App.restart_settings = () => {
   if (App.on_settings()) {
     App.show_settings_category(`general`)
   }
+  else {
+    App.show_main_mode()
+  }
 }
 
 App.settings_data_items = () => {

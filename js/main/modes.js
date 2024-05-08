@@ -163,8 +163,8 @@ App.get_mode_name = (mode) => {
   return App.capitalize(mode)
 }
 
-App.show_primary_mode = () => {
-  App.do_show_mode({mode: App.primary_mode})
+App.show_main_mode = () => {
+  App.do_show_mode({mode: App.main_mode()})
 }
 
 App.cycle_modes = async (reverse, reuse_filter = true) => {
@@ -212,8 +212,8 @@ App.cycle_modes = async (reverse, reuse_filter = true) => {
   App.show_mode({mode: new_mode, reuse_filter: reuse_filter})
 }
 
-App.show_primary_mode = (allow_same = true) => {
-  let mode = App.primary_mode
+App.show_main_mode = (allow_same = true) => {
+  let mode = App.main_mode()
 
   if (!allow_same) {
     if (App.active_mode === mode) {
@@ -232,4 +232,8 @@ App.getting = (mode, force = false) => {
 
 App.on_action = (mode) => {
   App.update_filter_history(mode)
+}
+
+App.main_mode = () => {
+  return App.get_setting(`main_mode`)
 }

@@ -14,6 +14,22 @@ App.build_settings = () => {
   category = `general`
 
   props = {
+    main_mode: {
+      name: `Main Mode`,
+      type: `menu`,
+      value: `tabs`,
+      info: `The mode to show by default when starting`,
+      version: 1,
+      setup: (key) => {
+        let values = []
+
+        for (let mode of App.modes) {
+          values.push({text: App.get_mode_name(mode), value: mode})
+        }
+
+        App.settings_make_menu(key, values)
+      },
+    },
     text_mode: {
       name: `Text Mode`,
       type: `menu`,

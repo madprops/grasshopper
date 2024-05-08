@@ -50,8 +50,8 @@ App.step_back = (mode = App.window_mode, e) => {
       App.go_to_previous_tab()
     }
   }
-  else if (mode !== App.primary_mode) {
-    App.show_primary_mode()
+  else if (mode !== App.main_mode()) {
+    App.show_main_mode()
   }
   else {
     App.blur_filter(mode)
