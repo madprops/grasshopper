@@ -47,8 +47,11 @@ App.setup_container_mouse = (mode, container) => {
               App.toggle_selected({item: item, what: false})
             }
             else {
-              App.icon_pick_down = true
               App.toggle_selected({item: item, what: true})
+            }
+
+            if (item.selected) {
+              App.icon_pick_down = true
             }
 
             return
