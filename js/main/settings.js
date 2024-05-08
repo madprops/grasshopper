@@ -708,7 +708,10 @@ App.import_settings = () => {
 
 App.restart_settings = () => {
   App.refresh_settings()
-  App.show_settings_category(`general`)
+
+  if (App.on_settings()) {
+    App.show_settings_category(`general`)
+  }
 }
 
 App.settings_data_items = () => {

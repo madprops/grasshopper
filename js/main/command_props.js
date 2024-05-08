@@ -386,6 +386,33 @@ App.setup_commands = () => {
       info: `Show the Settings window`,
     },
     {
+      name: `Export Settings`,
+      cmd: `export_settings`,
+      icon: settings_icon,
+      action: (args) => {
+        App.export_settings()
+      },
+      info: `Import settings`,
+    },
+    {
+      name: `Import Settings`,
+      cmd: `import_settings`,
+      icon: settings_icon,
+      action: (args) => {
+        App.import_settings()
+      },
+      info: `Import settings`,
+    },
+    {
+      name: `Reset Settings`,
+      cmd: `reset_settings`,
+      icon: settings_icon,
+      action: (args) => {
+        App.reset_all_settings()
+      },
+      info: `Reset all settings`,
+    },
+    {
       name: `Show About`,
       cmd: `show_about`,
       icon: bot_icon,
