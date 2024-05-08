@@ -37,7 +37,7 @@ App.setup_container_mouse = (mode, container) => {
   DOM.ev(container, `mousedown`, (e) => {
     App.reset_triggers()
 
-    if (App.get_setting("icon_pick")) {
+    if (App.get_setting(`icon_pick`)) {
       if (e.button === 0) {
         if (e.target.closest(`.item_icon_container`)) {
           let item = App.get_mouse_item(mode, e)
