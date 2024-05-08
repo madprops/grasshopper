@@ -225,7 +225,8 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Clicking the icons (favicon) of items toggles select
-      Right clicking the icon on an item deselects all items except that one`,
+      Right click an icon to deselect all items except that one
+      Click and drag to select other items`,
       version: 1,
     },
     wrap_text: {
