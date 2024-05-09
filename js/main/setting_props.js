@@ -18,7 +18,7 @@ App.build_settings = () => {
       name: `Main Mode`,
       type: `menu`,
       value: `tabs`,
-      info: `The mode to show by default when starting`,
+      info: `The mode to show by default`,
       version: 1,
       setup: (key) => {
         let values = []
@@ -245,11 +245,11 @@ App.build_settings = () => {
       Click and drag to select other items`,
       version: 1,
     },
-    unloaded_lock: {
-      name: `Unloaded Lock`,
+    load_lock: {
+      name: `Load Lock`,
       type: `checkbox`,
       value: true,
-      info: `Require a double click or command to unload`,
+      info: `Require a double click or command to load`,
       version: 1,
     },
     wrap_text: {

@@ -236,7 +236,7 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  if (App.get_setting(`unloaded_lock`)) {
+  if (App.get_setting(`load_lock`)) {
     if (item.unloaded) {
       App.select_item({item: item, scroll: `nearest_smooth`})
       return
@@ -293,7 +293,7 @@ App.mouse_double_click_action = (mode, e) => {
     }
   }
 
-  if (App.get_setting(`unloaded_lock`)) {
+  if (App.get_setting(`load_lock`)) {
     if (item.unloaded) {
       App[`${mode}_action`](item, `click`)
       return
