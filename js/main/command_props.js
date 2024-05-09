@@ -977,6 +977,28 @@ App.setup_commands = () => {
       info: `Reverse the order of selected tabs`,
     },
     {
+      name: `Sort Asc`,
+      cmd: `sort_tabs_asc`,
+      modes: [`tabs`],
+      icon: tabs_icon,
+      multiple: true,
+      action: (args) => {
+        App.sort_selected_tabs(`asc`)
+      },
+      info: `Sort alphabetically the selected tabs in ascending order`,
+    },
+    {
+      name: `Sort Desc`,
+      cmd: `sort_tabs_desc`,
+      modes: [`tabs`],
+      icon: tabs_icon,
+      multiple: true,
+      action: (args) => {
+        App.sort_selected_tabs(`desc`)
+      },
+      info: `Sort alphabetically the selected tabs in descending order`,
+    },
+    {
       name: `Show Info`,
       cmd: `show_tabs_info`,
       modes: [`items`],

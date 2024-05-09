@@ -1431,13 +1431,49 @@ App.reverse_tabs = async () => {
   }
 
   let index_top = App.get_items(`tabs`).indexOf(items[0])
-  let new_items = items.slice(0).reverse()
+  let new_items = items.slice(0)
 
   let all_pinned = new_items.every(x => x.pinned)
   let all_normal = new_items.every(x => !x.pinned)
 
   if (!all_pinned && !all_normal) {
     return
+  }
+
+  new_items.reverse()
+
+  for (let [i, item] of new_items.entries()) {
+    let index = index_top + i
+    await App.do_move_tab_index(item.id, index)
+  }
+}
+
+App.sort_selected_tabs = async (direction) => {
+  let items = App.get_active_items({mode: `tabs`})
+
+  if (!items.length) {
+    return
+  }
+
+  let index_top = App.get_items(`tabs`).indexOf(items[0])
+  let new_items = items.slice(0)
+
+  let all_pinned = new_items.every(x => x.pinned)
+  let all_normal = new_items.every(x => !x.pinned)
+
+  if (!all_pinned && !all_normal) {
+    return
+  }
+
+  if (direction === `asc`) {
+    new_items.sort((a, b) => {
+      return a.title.localeCompare(b.title)
+    })
+  }
+  else {
+    new_items.sort((a, b) => {
+      return b.title.localeCompare(a.title)
+    })
   }
 
   for (let [i, item] of new_items.entries()) {
