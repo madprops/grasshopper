@@ -236,6 +236,13 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
+  if (App.get_setting(`unloaded_lock`)) {
+    if (item.unloaded) {
+      App.select_item({item: item, scroll: `nearest_smooth`})
+      return
+    }
+  }
+
   let from
   let tab_box = e.target.closest(`#tab_box`)
 
@@ -283,6 +290,13 @@ App.mouse_double_click_action = (mode, e) => {
         App.select_header_group(item)
         return
       }
+    }
+  }
+
+  if (App.get_setting(`unloaded_lock`)) {
+    if (item.unloaded) {
+      App[`${mode}_action`](item, `click`)
+      return
     }
   }
 

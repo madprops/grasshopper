@@ -245,6 +245,13 @@ App.build_settings = () => {
       Click and drag to select other items`,
       version: 1,
     },
+    unloaded_lock: {
+      name: `Unloaded Lock`,
+      type: `checkbox`,
+      value: true,
+      info: `Require a double click or command to unload`,
+      version: 1,
+    },
     wrap_text: {
       name: `Wrap Text`,
       type: `checkbox`,
