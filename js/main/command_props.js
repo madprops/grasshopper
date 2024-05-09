@@ -956,7 +956,7 @@ App.setup_commands = () => {
       info: `Go the tab emitting sound`,
     },
     {
-      name: `Sort`,
+      name: `Sort All`,
       cmd: `sort_tabs`,
       modes: [`items`],
       icon: tabs_icon,
