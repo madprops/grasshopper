@@ -1433,10 +1433,7 @@ App.reverse_tabs = async () => {
   let index_top = App.get_items(`tabs`).indexOf(items[0])
   let new_items = items.slice(0)
 
-  let all_pinned = new_items.every(x => x.pinned)
-  let all_normal = new_items.every(x => !x.pinned)
-
-  if (!all_pinned && !all_normal) {
+  if (!App.tabs_in_same_place(new_items)) {
     return
   }
 
@@ -1458,10 +1455,7 @@ App.sort_selected_tabs = async (direction) => {
   let index_top = App.get_items(`tabs`).indexOf(items[0])
   let new_items = items.slice(0)
 
-  let all_pinned = new_items.every(x => x.pinned)
-  let all_normal = new_items.every(x => !x.pinned)
-
-  if (!all_pinned && !all_normal) {
+  if (!App.tabs_in_same_place(new_items)) {
     return
   }
 
@@ -1480,4 +1474,10 @@ App.sort_selected_tabs = async (direction) => {
     let index = index_top + i
     await App.do_move_tab_index(item.id, index)
   }
+}
+
+App.tabs_in_same_place = (items) => {
+  let all_pinned = items.every(x => x.pinned)
+  let all_normal = items.every(x => !x.pinned)
+  return all_pinned || all_normal
 }
