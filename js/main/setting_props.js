@@ -1592,6 +1592,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.warn_modes)
       },
     },
+    warn_on_sort_tabs: {
+      name: `Warn On Sort Tabs`,
+      type: `menu`,
+      value: `always`,
+      info: `Warn when sorting tabs with reverse, asc, or desc`,
+      version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
+    },
     max_warn_limit: {
       name: `Max Warn Limit`,
       type: `number`,

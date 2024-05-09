@@ -1423,28 +1423,6 @@ App.new_pin_tab = () => {
   App.open_new_tab({pinned: true})
 }
 
-App.reverse_tabs = async () => {
-  let items = App.get_active_items({mode: `tabs`})
-
-  if (!items.length) {
-    return
-  }
-
-  let index_top = App.get_items(`tabs`).indexOf(items[0])
-  let new_items = items.slice(0)
-
-  if (!App.tabs_in_same_place(new_items)) {
-    return
-  }
-
-  new_items.reverse()
-
-  for (let [i, item] of new_items.entries()) {
-    let index = index_top + i
-    await App.do_move_tab_index(item.id, index)
-  }
-}
-
 App.sort_selected_tabs = async (direction) => {
   let items = App.get_active_items({mode: `tabs`})
 
@@ -1464,16 +1442,27 @@ App.sort_selected_tabs = async (direction) => {
       return a.title.localeCompare(b.title)
     })
   }
-  else {
+  else if (direction === `desc`) {
     new_items.sort((a, b) => {
       return b.title.localeCompare(a.title)
     })
   }
-
-  for (let [i, item] of new_items.entries()) {
-    let index = index_top + i
-    await App.do_move_tab_index(item.id, index)
+  else if (direction === `reverse`) {
+    new_items.reverse()
   }
+
+  let force = App.check_force(`warn_on_sort_tabs`, items)
+
+  App.show_confirm({
+    message: `Sort tabs? (${new_items.length})`,
+    confirm_action: async () => {
+      for (let [i, item] of new_items.entries()) {
+        let index = index_top + i
+        await App.do_move_tab_index(item.id, index)
+      }
+    },
+    force: force,
+  })
 }
 
 App.tabs_in_same_place = (items) => {

@@ -972,7 +972,7 @@ App.setup_commands = () => {
       icon: tabs_icon,
       multiple: true,
       action: (args) => {
-        App.reverse_tabs()
+        App.sort_selected_tabs(`reverse`)
       },
       info: `Reverse the order of selected tabs`,
     },
