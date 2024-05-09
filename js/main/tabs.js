@@ -1422,3 +1422,26 @@ App.paste_tabs = async (item) => {
 App.new_pin_tab = () => {
   App.open_new_tab({pinned: true})
 }
+
+App.reverse_tabs = async () => {
+  let items = App.get_active_items({mode: `tabs`})
+
+  if (!items.length) {
+    return
+  }
+
+  let index_top = App.get_items(`tabs`).indexOf(items[0])
+  let new_items = items.slice(0).reverse()
+
+  let all_pinned = new_items.every(x => x.pinned)
+  let all_normal = new_items.every(x => !x.pinned)
+
+  if (!all_pinned && !all_normal) {
+    return
+  }
+
+  for (let [i, item] of new_items.entries()) {
+    let index = index_top + i
+    await App.do_move_tab_index(item.id, index)
+  }
+}

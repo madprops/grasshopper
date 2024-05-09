@@ -966,6 +966,17 @@ App.setup_commands = () => {
       info: `Open the sort tabs window`,
     },
     {
+      name: `Reverse`,
+      cmd: `reverse_tabs`,
+      modes: [`tabs`],
+      icon: tabs_icon,
+      multiple: true,
+      action: (args) => {
+        App.reverse_tabs()
+      },
+      info: `Reverse the order of selected tabs`,
+    },
+    {
       name: `Show Info`,
       cmd: `show_tabs_info`,
       modes: [`items`],
