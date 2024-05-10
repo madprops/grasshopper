@@ -248,7 +248,7 @@ App.build_settings = () => {
     load_lock: {
       name: `Load Lock`,
       type: `checkbox`,
-      value: true,
+      value: false,
       info: `Require a double click or command to load`,
       version: 1,
     },
