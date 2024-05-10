@@ -487,6 +487,7 @@ svg {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  transition: text-shadow var(--transition_delay);
   overflow: hidden;
 }
 
@@ -790,7 +791,7 @@ svg {
   margin-bottom: 0.7rem;
   border-top: 1px solid var(--alt_color_1);
   border-bottom: 1px solid var(--alt_color_1);
-  transition: box-shadow var(--transition_delay);
+  transition: box-shadow var(--transition_delay), text-shadow var(--transition_delay);
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
   width: 100%;
