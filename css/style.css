@@ -1619,3 +1619,7 @@ a:hover
   overflow-x: hidden;
   position: relative;
 }
+
+.item_icon {
+  pointer-events: none;
+}
