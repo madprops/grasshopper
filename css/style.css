@@ -405,6 +405,10 @@ svg {
   align-items: center;
 }
 
+.close_button {
+  transition: background-color var(--transition_delay);
+}
+
 .close_button:hover {
   cursor: pointer;
   background-color: var(--alt_color_0);

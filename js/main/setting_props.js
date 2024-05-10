@@ -236,6 +236,13 @@ App.build_settings = () => {
       info: `Blink when focusing tabs through certain actions when not directly clicking them`,
       version: 1,
     },
+    wrap_text: {
+      name: `Wrap Text`,
+      type: `checkbox`,
+      value: false,
+      info: `Allow long lines to wrap into multiple lines, increasing the height of some items`,
+      version: 1,
+    },
     icon_pick: {
       name: `Icon Pick`,
       type: `checkbox`,
@@ -250,13 +257,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Require a double click or command to load`,
-      version: 1,
-    },
-    wrap_text: {
-      name: `Wrap Text`,
-      type: `checkbox`,
-      value: false,
-      info: `Allow long lines to wrap into multiple lines, increasing the height of some items`,
       version: 1,
     },
     click_select: {
