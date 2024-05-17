@@ -684,22 +684,6 @@ App.build_settings = () => {
       info: `Icon for tabs with notes`,
       version: 1,
     },
-    close_icon: {
-      name: `Close Icon`,
-      type: `text_smaller`,
-      value: `x`,
-      placeholder: App.icon_placeholder,
-      info: `Icon for the close buttons`,
-      version: 1,
-    },
-    hover_icon: {
-      name: `Hover Icon`,
-      type: `text_smaller`,
-      value: `🔆`,
-      placeholder: App.icon_placeholder,
-      info: `Icon for the hover buttons`,
-      version: 1,
-    },
     edited_icon: {
       name: `Edited Icon`,
       type: `text_smaller`,
@@ -725,6 +709,22 @@ App.build_settings = () => {
       placeholder: App.icon_placeholder,
       info: `Icon for subheheader tabs
       Leave empty to use an arrow`,
+      version: 1,
+    },
+    close_icon: {
+      name: `Close Icon`,
+      type: `text_smaller`,
+      value: `x`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for the close buttons`,
+      version: 1,
+    },
+    hover_icon: {
+      name: `Hover Icon`,
+      type: `text_smaller`,
+      value: `🔆`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for the hover buttons`,
       version: 1,
     },
   }
