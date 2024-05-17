@@ -62,21 +62,21 @@ App.dragstart_action = (mode, e) => {
     include_all: true,
   })
 
-  e.dataTransfer.setDragImage(new Image(), 0, 0)
-  e.dataTransfer.setData(`text/plain`, App.drag_item.url)
-  e.dataTransfer.setData(`text/uri-list`, App.drag_item.url)
-  e.dataTransfer.setData(`text/x-moz-url`, `${App.drag_item.url}\n${App.drag_item.title}`)
-
   if (!App.drag_active(mode, e)) {
     return
   }
 
   App.drag_items = []
+  let urls = []
+  let moz_urls = []
 
   if (App.drag_item.selected) {
     for (let item of App.get_items(mode)) {
       if (item.selected) {
         App.drag_items.push(item)
+        urls.push(item.url)
+
+        moz_urls.push(`${item.url}\n${item.title}`)
       }
     }
   }
@@ -89,6 +89,12 @@ App.dragstart_action = (mode, e) => {
   for (let item of App.drag_items) {
     App.drag_els.push(item.element)
   }
+
+  let uri_list = urls.join("\r\n")
+  e.dataTransfer.setDragImage(new Image(), 0, 0)
+  e.dataTransfer.setData(`text/x-moz-url`, moz_urls.join("\r\n"))
+  e.dataTransfer.setData(`text/uri-list`, uri_list)
+  e.dataTransfer.setData(`text/plain`, uri_list)
 
   let leader_top_id = App.drag_els[0].dataset.id
   let leader_bottom_id = App.drag_els.at(-1).dataset.id
