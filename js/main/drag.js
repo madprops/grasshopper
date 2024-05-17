@@ -90,9 +90,9 @@ App.dragstart_action = (mode, e) => {
     App.drag_els.push(item.element)
   }
 
-  let uri_list = urls.join("\r\n")
+  let uri_list = urls.join(`\r\n`)
   e.dataTransfer.setDragImage(new Image(), 0, 0)
-  e.dataTransfer.setData(`text/x-moz-url`, moz_urls.join("\r\n"))
+  e.dataTransfer.setData(`text/x-moz-url`, moz_urls.join(`\r\n`))
   e.dataTransfer.setData(`text/uri-list`, uri_list)
   e.dataTransfer.setData(`text/plain`, uri_list)
 
