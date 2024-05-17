@@ -163,10 +163,6 @@ App.get_mode_name = (mode) => {
   return App.capitalize(mode)
 }
 
-App.show_main_mode = () => {
-  App.do_show_mode({mode: App.main_mode()})
-}
-
 App.cycle_modes = async (reverse, reuse_filter = true) => {
   let modes = App.modes
   let history_perm = await browser.permissions.contains({permissions: [`history`]})
@@ -212,7 +208,7 @@ App.cycle_modes = async (reverse, reuse_filter = true) => {
   App.show_mode({mode: new_mode, reuse_filter: reuse_filter})
 }
 
-App.show_main_mode = (allow_same = true) => {
+App.show_main_mode = (allow_same = true, force = false) => {
   let mode = App.main_mode()
 
   if (!allow_same) {
@@ -221,7 +217,7 @@ App.show_main_mode = (allow_same = true) => {
     }
   }
 
-  App.do_show_mode({mode: mode})
+  App.do_show_mode({mode: mode, force: force})
 }
 
 App.getting = (mode, force = false) => {
