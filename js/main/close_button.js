@@ -22,7 +22,7 @@ App.add_close_button = (item, side) => {
       btn.title = `Close`
     }
 
-    btn.textContent = App.get_setting(`close_icon`) || `x`
+    btn.textContent = App.get_setting(`close_icon`) || App.close_tab_icon
     item.element.append(btn)
   }
 }
