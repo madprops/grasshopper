@@ -419,7 +419,6 @@ App.refresh_settings = () => {
   App.setup_commands()
   App.fill_palette()
   App.build_tab_filters()
-  App.clear_all_items()
 }
 
 App.build_setting_cmds = () => {
@@ -714,7 +713,7 @@ App.restart_settings = () => {
     App.show_settings_category(`general`)
   }
   else {
-    App.show_main_mode(true, true)
+    App.clear_show()
   }
 }
 
