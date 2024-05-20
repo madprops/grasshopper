@@ -214,6 +214,8 @@ App.do_filter = async (args = {}) => {
   let headers = filter_mode === `filter_header_tabs`
   let header_match = 0
   let max_header = App.get_setting(`header_filter_context`)
+  let force_pins = Boolean(value) || (filter_mode === `pins`)
+  let check_pins = App.get_setting(`hide_pins`)
 
   for (let item of items) {
     if (!item.element) {
@@ -249,6 +251,12 @@ App.do_filter = async (args = {}) => {
     }
 
     if (match) {
+      if (check_pins) {
+        if (item.pinned) {
+          App.check_pins(item, force_pins)
+        }
+      }
+
       App.show_item(item)
       some_matched = true
 
