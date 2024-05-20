@@ -65,6 +65,7 @@ App.copied_tabs = []
 App.filter_menus = {}
 App.refine_string = `refine_filter`
 App.default_color = `rgba(100, 100, 100, 1)`
+App.last_restore_date = 0
 
 App.settings_done = false
 App.settings_ready = false
@@ -103,6 +104,7 @@ App.check_tab_box_playing_delay = 50
 App.update_active_trace_delay = 50
 App.check_playing_delay = 50
 App.context_auto_hide_delay = 1000
+App.restore_delay = 600
 
 App.settings_icons = {
   general: `⚡`,
