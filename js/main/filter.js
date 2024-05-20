@@ -25,6 +25,8 @@ App.check_filter = (mode) => {
 }
 
 App.filter = (args) => {
+  args.sticky = false
+
   if (App.search_modes.includes(args.mode)) {
     App.filter_debouncer_search.call(args)
   }
@@ -48,6 +50,7 @@ App.do_filter = async (args = {}) => {
     select: true,
     from: `normal`,
     refine: false,
+    sticky: true,
   }
 
   App.def_args(def_args, args)
@@ -264,7 +267,7 @@ App.do_filter = async (args = {}) => {
     App.clear_selected(args.mode)
     let sticky_filter = App.get_setting(`sticky_filter`)
 
-    if (args.mode !== `tabs`) {
+    if (!args.sticky || (args.mode !== `tabs`)) {
       sticky_filter = `none`
     }
 
