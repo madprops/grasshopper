@@ -207,6 +207,7 @@ App.do_filter = async (args = {}) => {
     return App.filter_check(args)
   }
 
+  let some_matched = false
   let headers = filter_mode === `filter_header_tabs`
   let header_match = 0
   let max_header = App.get_setting(`header_filter_context`)
@@ -246,6 +247,7 @@ App.do_filter = async (args = {}) => {
 
     if (match) {
       App.show_item(item)
+      some_matched = true
 
       if (headers) {
         if (item.header) {
@@ -260,6 +262,30 @@ App.do_filter = async (args = {}) => {
 
   if (args.select) {
     App.clear_selected(args.mode)
+
+    let sticky_filter = App.get_setting(`sticky_filter`)
+    let last_item
+
+    if ((sticky_filter !== `none`) && (args.from !== `step_back`)) {
+      let f_mode = App.filter_mode(args.mode)
+      let f_item = App.get_filter_item(args.mode, f_mode)
+
+      if (f_item && !f_item.removed && f_item.visible) {
+        last_item = f_item
+      }
+    }
+
+    if (last_item) {
+      if ((sticky_filter === `activate`) && !last_item.unloaded) {
+        App.focus_tab({item: last_item, scroll: `center`, method: `sticky_filter`})
+      }
+      else {
+        App.select_item({item: last_item, deselect: false})
+      }
+    }
+    else if (some_matched) {
+      App.select_first_item(args.mode, !App.is_filtered(args.mode))
+    }
   }
 
   let selected = App.get_selected(args.mode)
@@ -1697,6 +1723,14 @@ App.cycle_filters = (mode, direction) => {
   }
 
   App.set_filter({mode: mode, text: next, to_history: false})
+}
+
+App.get_filter_item = (mode, filter_mode) => {
+  return App[`filter_items_${mode}`][filter_mode]
+}
+
+App.set_filter_item = (mode, filter_mode, item) => {
+  return App[`filter_items_${mode}`][filter_mode] = item
 }
 
 App.get_refine_items = () => {
