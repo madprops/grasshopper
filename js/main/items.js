@@ -1245,14 +1245,6 @@ App.remove_auto_blur = () => {
   }
 }
 
-App.scroll_to_selected = (mode = App.window_mode, scroll = `nearest`) => {
-  let selected = App.get_selected(mode)
-
-  if (selected) {
-    App.scroll_to_item({item: selected, scroll: scroll})
-  }
-}
-
 App.selected_visible = (mode = App.window_mode) => {
   let selected = App.get_selected(mode)
 
