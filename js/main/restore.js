@@ -2,7 +2,6 @@ App.check_restore = () => {
   if (App.get_setting(`auto_restore`) === `action`) {
     if (App.last_restore_date > 0) {
       if ((Date.now() - App.last_restore_date) < App.restore_delay) {
-        console.log(4)
         return
       }
     }
