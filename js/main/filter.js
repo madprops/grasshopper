@@ -207,7 +207,6 @@ App.do_filter = async (args = {}) => {
     return App.filter_check(args)
   }
 
-  let some_matched = false
   let headers = filter_mode === `filter_header_tabs`
   let header_match = 0
   let max_header = App.get_setting(`header_filter_context`)
@@ -247,7 +246,6 @@ App.do_filter = async (args = {}) => {
 
     if (match) {
       App.show_item(item)
-      some_matched = true
 
       if (headers) {
         if (item.header) {
