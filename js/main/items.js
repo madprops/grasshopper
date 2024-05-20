@@ -787,8 +787,6 @@ App.after_open = (shift = false) => {
   if (App.get_setting(`close_on_open`)) {
     App.close_window()
   }
-
-  App.check_restore()
 }
 
 App.open_items = (item, shift, multiple = true) => {
