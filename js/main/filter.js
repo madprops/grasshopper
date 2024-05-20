@@ -262,8 +262,12 @@ App.do_filter = async (args = {}) => {
 
   if (args.select) {
     App.clear_selected(args.mode)
-
     let sticky_filter = App.get_setting(`sticky_filter`)
+
+    if (args.mode !== `tabs`) {
+      sticky_filter = `none`
+    }
+
     let last_item
 
     if ((sticky_filter !== `none`) && (args.from !== `step_back`)) {
