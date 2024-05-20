@@ -71,7 +71,6 @@ App.do_show_mode = async (args = {}) => {
     }
   }
 
-  App[`filter_items_${args.mode}`] = {}
   let value = App.get_last_filter_value(args.reuse_filter)
   App.active_mode = args.mode
   App.empty_footer_info()
@@ -228,6 +227,7 @@ App.getting = (mode, force = false) => {
 
 App.on_action = (mode) => {
   App.update_filter_history(mode)
+  App.check_restore()
 }
 
 App.main_mode = () => {

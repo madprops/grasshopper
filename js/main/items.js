@@ -177,12 +177,6 @@ App.set_selected = (item) => {
   }
 
   App[`last_selected_${item.mode}`] = item
-
-  if (App.get_setting(`sticky_filter`) !== `none`) {
-    let f_mode = App.filter_mode(item.mode)
-    App.set_filter_item(item.mode, f_mode, item)
-  }
-
   App.update_footer_info(item)
 }
 
@@ -777,8 +771,6 @@ App.after_focus = (args = {}) => {
       App.do_show_mode({mode: `tabs`})
     }
   }
-
-  App.check_restore()
 }
 
 App.after_open = (shift = false) => {
@@ -789,8 +781,6 @@ App.after_open = (shift = false) => {
   if (App.get_setting(`close_on_open`)) {
     App.close_window()
   }
-
-  App.check_restore()
 }
 
 App.open_items = (item, shift, multiple = true) => {

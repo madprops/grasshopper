@@ -2174,21 +2174,6 @@ App.build_settings = () => {
       Used to further refine filtered items`,
       version: 1,
     },
-    sticky_filter: {
-      name: `Sticky Filter`,
-      type: `menu`,
-      value: `none`,
-      info: `Remember the items that were last selected when switching filter views
-      In activate mode it auto activates the items instead of just selecting them`,
-      version: 2,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: `Select`, value: `select`},
-          {text: `Activate`, value: `activate`},
-        ])
-      },
-    },
     clean_filter: {
       name: `Clean Filter`,
       type: `checkbox`,
