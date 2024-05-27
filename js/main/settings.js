@@ -947,7 +947,7 @@ App.show_all_settings = () => {
     lines.push(`${key} (${item.type})`)
   }
 
-  App.show_textarea(`List of settings`, lines.join(`\n`))
+  App.show_textarea(`All Settings`, lines.join(`\n`))
 }
 
 App.get_background_effect = (value) => {
