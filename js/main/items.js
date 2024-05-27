@@ -966,12 +966,12 @@ App.insert_item = (mode, info) => {
 }
 
 App.copy_url = (item) => {
-  App.copy_to_clipboard(item.url, `URL`)
+  App.copy_to_clipboard(item.url)
 }
 
 App.copy_title = (item) => {
   let title = App.title(item)
-  App.copy_to_clipboard(title, `Title`)
+  App.copy_to_clipboard(title)
 }
 
 App.on_items = (mode = App.window_mode, check_popups = false) => {

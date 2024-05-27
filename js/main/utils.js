@@ -44,7 +44,7 @@ App.remove_protocol = (url) => {
   return url.replace(/^https?:\/\//, ``)
 }
 
-App.copy_to_clipboard = (text, what = `Text`) => {
+App.copy_to_clipboard = (text) => {
   if (!text) {
     return
   }
