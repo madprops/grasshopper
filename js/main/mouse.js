@@ -531,5 +531,19 @@ App.on_mouse_wheel = (e) => {
         App.scroll(mode, `down`)
       }
     }
+
+    e.preventDefault()
+  }
+  else if (e.target.closest(`.item_container`)) {
+    if (e.shiftKey) {
+      if (direction === `up`) {
+        App.scroll_page(mode, `up`)
+      }
+      else if (direction === `down`) {
+        App.scroll_page(mode, `down`)
+      }
+
+      e.preventDefault()
+    }
   }
 }

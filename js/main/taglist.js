@@ -27,11 +27,11 @@ App.create_taglist = () => {
         e.preventDefault()
         let direction = App.wheel_direction(e)
 
-        if (direction === `down`) {
-          App.taglist_scroll(taglist, `right`)
-        }
-        else if (direction === `up`) {
+        if (direction === `up`) {
           App.taglist_scroll(taglist, `left`)
+        }
+        else if (direction === `down`) {
+          App.taglist_scroll(taglist, `right`)
         }
       }
     }

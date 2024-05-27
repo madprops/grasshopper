@@ -144,11 +144,11 @@ App.dragenter_action = (mode, e) => {
     return false
   }
 
-  if (direction === `down`) {
-    el.after(...App.drag_els)
-  }
-  else {
+  if (direction === `up`) {
     el.before(...App.drag_els)
+  }
+  else if (direction === `down`) {
+    el.after(...App.drag_els)
   }
 
   App.drag_moved = true

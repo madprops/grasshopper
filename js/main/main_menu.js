@@ -24,11 +24,11 @@ App.create_main_menu = (mode) => {
   DOM.ev(btn, `wheel`, (e) => {
     let direction = App.wheel_direction(e)
 
-    if (direction === `down`) {
-      App.cycle_modes(false)
-    }
-    else if (direction === `up`) {
+    if (direction === `up`) {
       App.cycle_modes(true)
+    }
+    else if (direction === `down`) {
+      App.cycle_modes(false)
     }
   })
 

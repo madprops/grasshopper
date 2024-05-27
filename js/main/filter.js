@@ -1397,11 +1397,11 @@ App.create_filter_menu = (mode) => {
   DOM.ev(btn, `wheel`, (e) => {
     let direction = App.wheel_direction(e)
 
-    if (direction === `down`) {
-      App.cycle_filter_modes(mode, false, e)
-    }
-    else if (direction === `up`) {
+    if (direction === `up`) {
       App.cycle_filter_modes(mode, true, e)
+    }
+    else if (direction === `down`) {
+      App.cycle_filter_modes(mode, false, e)
     }
   })
 

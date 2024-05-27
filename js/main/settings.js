@@ -469,11 +469,11 @@ App.start_settings = () => {
       direction = App.wheel_direction(e)
     }
 
-    if (direction === `down`) {
-      App.show_next_settings()
-    }
-    else if (direction === `up`) {
+    if (direction === `up`) {
       App.show_prev_settings()
+    }
+    else if (direction === `down`) {
+      App.show_next_settings()
     }
   }, App.wheel_delay)
 

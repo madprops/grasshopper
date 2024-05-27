@@ -104,11 +104,11 @@ App.start_media = (what) => {
   App.media_wheel = App.create_debouncer((e, what) => {
     let direction = App.wheel_direction(e)
 
-    if (direction === `down`) {
-      App.media_next(what)
-    }
-    else if (direction === `up`) {
+    if (direction === `up`) {
       App.media_prev(what)
+    }
+    else if (direction === `down`) {
+      App.media_next(what)
     }
   }, App.wheel_delay)
 }
