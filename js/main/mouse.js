@@ -515,11 +515,21 @@ App.on_mouse_wheel = (e) => {
 
   if (e.target.closest(`.favorites_bar`) ||
   (e.target.closest(`.scroller`))) {
-    if (direction === `down`) {
-      App.scroll(mode, `down`)
+    if (direction === `up`) {
+      if (e.shiftKey) {
+        App.scroll_page(mode, `up`)
+      }
+      else {
+        App.scroll(mode, `up`)
+      }
     }
-    else if (direction === `up`) {
-      App.scroll(mode, `up`)
+    else if (direction === `down`) {
+      if (e.shiftKey) {
+        App.scroll_page(mode, `down`)
+      }
+      else {
+        App.scroll(mode, `down`)
+      }
     }
   }
 }
