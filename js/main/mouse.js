@@ -26,6 +26,10 @@ App.setup_mouse = () => {
       App.icon_pick_down = false
     }
   })
+
+  DOM.ev(window, `wheel`, (e) => {
+    App.on_mouse_wheel(e)
+  })
 }
 
 App.setup_mode_mouse = (mode) => {
@@ -501,6 +505,20 @@ App.click_press_action = (mode, e) => {
   if (cmd) {
     if (App.run_command({cmd: cmd, from: `click_press`, item: item, e: e})) {
       App.click_press_triggered = true
+    }
+  }
+}
+
+App.on_mouse_wheel = (e) => {
+  let direction = App.wheel_direction(e)
+  let mode = App.window_mode
+
+  if (e.target.closest(`.favorites_bar`)) {
+    if (direction === `down`) {
+      App.scroll(mode, `down`)
+    }
+    else if (direction === `up`) {
+      App.scroll(mode, `up`)
     }
   }
 }
