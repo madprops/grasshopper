@@ -4,10 +4,6 @@ App.setup_closed = () => {
       App.closed_changed = true
     }
   })
-
-  App.closed_actions = [
-    `forget_closed`,
-  ]
 }
 
 App.get_closed = async () => {

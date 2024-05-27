@@ -11,11 +11,6 @@ App.setup_history = () => {
     }
   })
 
-  App.history_actions = [
-    `deep_search`,
-    `show_search_media_menu`,
-  ]
-
   App.setup_history_ready = true
 }
 

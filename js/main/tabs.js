@@ -83,16 +83,6 @@ App.setup_tabs = () => {
       App.check_playing()
     }
   })
-
-  App.tabs_actions = [
-    `open_new_tab`,
-    `reopen_tab`,
-    `sort_tabs`,
-    `show_tabs_info`,
-    `show_tab_urls`,
-    `open_tab_urls`,
-    `show_close_tabs_menu`,
-  ]
 }
 
 App.build_tab_filters = () => {

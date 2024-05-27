@@ -1192,6 +1192,10 @@ App.setup_settings_addlist = () => {
     `hover_menu`,
     `empty_menu`,
     `footer_menu`,
+    `tabs_menu`,
+    `history_menu`,
+    `bookmarks_menu`,
+    `closed_menu`,
   ]
 
   for (let key in App.setting_props) {

@@ -826,6 +826,52 @@ App.build_settings = () => {
         ])
       },
     },
+    tabs_menu: {
+      name: `Tabs Menu`,
+      type: `list`,
+      value: [
+        {cmd: `open_new_tab`},
+        {cmd: `reopen_tab`},
+        {cmd: `sort_tabs`},
+        {cmd: `show_tabs_info`},
+        {cmd: `show_tab_urls`},
+        {cmd: `open_tab_urls`},
+        {cmd: `show_close_tabs_menu`},
+      ],
+      info: `Menu to show when clicking the tabs menu`,
+      version: 1,
+    },
+    history_menu: {
+      name: `History Menu`,
+      type: `list`,
+      value: [
+        {cmd: `deep_search`},
+        {cmd: `show_search_media_menu`},
+      ],
+      info: `Menu to show when clicking the history menu`,
+      version: 1,
+    },
+    bookmarks_menu: {
+      name: `Bookmarks Menu`,
+      type: `list`,
+      value: [
+        {cmd: `deep_search`},
+        {cmd: `show_search_media_menu`},
+        {cmd: `bookmark_page`},
+      ],
+      info: `Menu to show when clicking the tabs menu`,
+      version: 1,
+    },
+    closed_menu: {
+      name: `Closed Menu`,
+      type: `list`,
+      value: [
+        {cmd: `forget_closed`},
+      ],
+      separator: true,
+      info: `Menu to show when clicking the closed menu`,
+      version: 1,
+    },
     empty_menu: {
       name: `Empty Menu`,
       type: `list`,

@@ -35,12 +35,6 @@ App.setup_bookmarks = () => {
     }
   })
 
-  App.bookmarks_actions = [
-    `deep_search`,
-    `show_search_media_menu`,
-    `bookmark_page`,
-  ]
-
   App.setup_bookmarks_ready = true
 }
 
