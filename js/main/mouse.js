@@ -257,11 +257,9 @@ App.mouse_click_action = (mode, e) => {
 }
 
 App.mouse_double_click_action = (mode, e) => {
-  if (App.get_setting(`double_click_new`)) {
-    if (e.target.classList.contains(`item_container`)) {
-      App.new_tab()
-      return
-    }
+  if (e.target.classList.contains(`item_container`)) {
+    let cmd = App.get_setting(`empty_double_click_command`)
+    App.run_command({cmd: cmd, from: `mouse`, e: e})
   }
 
   if (!App.cursor_on_item(mode, e)) {

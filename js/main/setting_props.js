@@ -2382,6 +2382,16 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the middle mouse button on an item for a short time`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    empty_double_click_command: {
+      name: `On Empty Double Click`,
+      type: `menu`,
+      value: `open_new_tab`,
+      info: `What command to run when double clicking empty space`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -2487,13 +2497,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Un-Mute tabs when clicking on the mute icon`,
-      version: 1,
-    },
-    double_click_new: {
-      name: `Double Click New`,
-      type: `checkbox`,
-      value: true,
-      info: `Open a new tab when double clicking the empty space at the bottom of items`,
       version: 1,
     },
     rounded_corners: {
