@@ -50,7 +50,6 @@ App.copy_to_clipboard = (text, what = `Text`) => {
   }
 
   navigator.clipboard.writeText(text)
-  App.alert_autohide(`${what} copied to clipboard`)
 }
 
 App.plural = (n, singular, plural) => {

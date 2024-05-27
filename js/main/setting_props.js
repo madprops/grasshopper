@@ -829,12 +829,22 @@ App.build_settings = () => {
     empty_menu: {
       name: `Empty Menu`,
       type: `list`,
-      separator: true,
       value: [
         {cmd: `open_new_tab`},
         {cmd: `select_all_items`},
       ],
       info: `Menu to show when right clicking empty space`,
+      version: 1,
+    },
+    footer_menu: {
+      name: `Footer Menu`,
+      type: `list`,
+      separator: true,
+      value: [
+        {cmd: `copy_item_url`},
+        {cmd: `copy_item_title`},
+      ],
+      info: `Menu to show when right clicking the footer`,
       version: 1,
     },
     show_tooltips: {
