@@ -889,16 +889,6 @@ App.settings_menu_items = () => {
     })
   }
 
-  App.sep(items)
-
-  items.push({
-    icon: App.data_icon,
-    text: `Data`,
-    get_items: () => {
-      return App.settings_data_items()
-    }
-  })
-
   return items
 }
 
@@ -924,6 +914,16 @@ App.settings_actions = (category) => {
     text: `Show All`,
     action: () => {
       App.show_all_settings()
+    }
+  })
+
+  App.sep(items)
+
+  items.push({
+    icon: App.data_icon,
+    text: `Data`,
+    get_items: () => {
+      return App.settings_data_items()
     }
   })
 
