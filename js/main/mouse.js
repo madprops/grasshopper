@@ -98,7 +98,10 @@ App.mouse_click_action = (mode, e) => {
 
   if (!App.cursor_on_item(mode, e)) {
     if (e.target.closest(`#pinline`)) {
-      let items = App.cmd_list(App.pinline_commands)
+      let items = App.custom_menu_items({
+        name: `pinline_menu`,
+      })
+
       App.show_context({items: items, e: e})
     }
 

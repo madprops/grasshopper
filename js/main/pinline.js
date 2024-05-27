@@ -2,14 +2,6 @@ App.setup_pinline = () => {
   App.pinline_debouncer = App.create_debouncer(() => {
     App.do_check_pinline()
   }, App.pinline_delay)
-
-  App.pinline_commands = [
-    `new_pinned_tab`,
-    `select_pinned_tabs`,
-    `select_normal_tabs`,
-    `select_unloaded_tabs`,
-    `select_all_items`,
-  ]
 }
 
 App.check_pinline = () => {

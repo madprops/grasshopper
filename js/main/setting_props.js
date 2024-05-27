@@ -811,6 +811,20 @@ App.build_settings = () => {
         ])
       },
     },
+    pinline_menu: {
+      name: `Pinline Menu`,
+      type: `list`,
+      value: [
+        {cmd: `new_pinned_tab`},
+        {cmd: `select_pinned_tabs`},
+        {cmd: `select_normal_tabs`},
+        {cmd: `select_unloaded_tabs`},
+        {cmd: `select_all_items`},
+      ],
+      info: `Menu to show when clicking the Pinline`,
+      separator: true,
+      version: 1,
+    },
     close_button: {
       name: `Close Button`,
       type: `menu`,
