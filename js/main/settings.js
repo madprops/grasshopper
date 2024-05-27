@@ -920,8 +920,34 @@ App.settings_actions = (category) => {
     }
   })
 
+  items.push({
+    text: `Show All`,
+    action: () => {
+      App.show_all_settings()
+    }
+  })
+
   let btn = DOM.el(`#settings_actions_${category}`)
   App.show_context({element: btn, items: items, expand: true, margin: btn.clientHeight})
+}
+
+App.show_all_settings = () => {
+  let lines = []
+  let category = ``
+
+  for (let key in App.setting_props) {
+    let item = App.setting_props[key]
+
+    if (item.category !== category) {
+      let left = category ? `\n` : ``
+      lines.push(`${left}${item.category}\n`)
+      category = item.category
+    }
+
+    lines.push(`${key} (${item.type})`)
+  }
+
+  App.show_textarea(`List of settings`, lines.join(`\n`))
 }
 
 App.get_background_effect = (value) => {
