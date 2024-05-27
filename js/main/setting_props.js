@@ -826,6 +826,17 @@ App.build_settings = () => {
         ])
       },
     },
+    empty_menu: {
+      name: `Empty Menu`,
+      type: `list`,
+      separator: true,
+      value: [
+        {cmd: `open_new_tab`},
+        {cmd: `select_all_items`},
+      ],
+      info: `Menu to show when right clicking empty space`,
+      version: 1,
+    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,

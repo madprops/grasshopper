@@ -1190,6 +1190,7 @@ App.setup_settings_addlist = () => {
     `favorites_menu`,
     `extra_menu`,
     `hover_menu`,
+    `empty_menu`,
   ]
 
   for (let key in App.setting_props) {

@@ -107,12 +107,10 @@ App.reset_triggers = () => {
 }
 
 App.show_empty_menu = (e) => {
-  let cmds = [
-    `open_new_tab`,
-    `select_all_items`,
-  ]
+  let items = App.custom_menu_items({
+    name: `empty_menu`,
+  })
 
-  let items = App.cmd_list(cmds)
   App.show_context({items: items, e: e})
 }
 
