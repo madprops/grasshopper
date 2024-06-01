@@ -15,9 +15,10 @@ App.do_check_pinline = () => {
   App.remove_pinline()
   let tabs = App.divide_tabs(`visible`)
   let cls = `element tabs_element glowbox`
+  let hide_pins = App.get_setting(`hide_pins`)
 
   if (show === `auto`) {
-    if (App.get_setting(`hide_pins`)) {
+    if (hide_pins) {
       if (!App.is_filtered_pins(`tabs`)) {
         show = `never`
       }
@@ -44,8 +45,15 @@ App.do_check_pinline = () => {
   let s1 = App.plural(n1, `Pin`, `Pins`)
   let s2 = `Normal`
   let sep = `&nbsp;&nbsp;+&nbsp;&nbsp;`
-  pinline.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
-  pinline.title = `This is the Pinline. Pinned tabs above. Normal tabs below`
+
+  if (hide_pins) {
+    pinline.innerHTML = `${n2} Tabs`
+    pinline.title = `This is the Pinline. Normal tabs below`
+  }
+  else {
+    pinline.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
+    pinline.title = `This is the Pinline. Pinned tabs above. Normal tabs below`
+  }
 
   if (tabs.pinned_f.length) {
     tabs.pinned_f.at(-1).element.after(pinline)
