@@ -800,7 +800,7 @@ App.build_settings = () => {
     show_pinline: {
       name: `Show Pinline`,
       type: `menu`,
-      value: `always`,
+      value: `auto`,
       info: `Show a separator between pinned and normal tabs`,
       version: 3,
       setup: (key) => {
