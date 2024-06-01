@@ -1744,7 +1744,12 @@ App.cycle_filters = (mode, direction) => {
   }
 
   if (!next) {
-    next = filters[0]
+    if (current) {
+      next = ``
+    }
+    else {
+      next = filters[0]
+    }
   }
 
   App.set_filter({mode: mode, text: next, to_history: false})
