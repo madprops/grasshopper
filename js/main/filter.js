@@ -546,8 +546,12 @@ App.focus_filter = (mode = App.window_mode) => {
   App.get_filter_el(mode).focus()
 }
 
-App.is_filtered = (mode) => {
-  return App.filter_has_value(mode) || App.filter_mode(mode) !== `all`
+App.is_filtered = (mode = App.window_mode) => {
+  return App.filter_has_value(mode) || (App.filter_mode(mode) !== `all`)
+}
+
+App.is_filtered_pins = (mode = App.window_mode) => {
+  return App.filter_has_value(mode) || (App.filter_mode(mode) === `filter_pinned_tabs`)
 }
 
 App.clear_filter = (mode = App.window_mode) => {
@@ -629,6 +633,12 @@ App.get_filter_el = (mode) => {
 }
 
 App.get_filter = (mode) => {
+  let el = App.get_filter_el(mode)
+
+  if (!el) {
+    return ``
+  }
+
   return App.get_filter_el(mode).value
 }
 
