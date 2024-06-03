@@ -996,6 +996,7 @@ App.move_tabs_vertically = (direction, item) => {
     items[last].element.after(...els)
   }
 
+  App.do_check_pinline()
   App.update_tabs_index(active, o_index)
 }
 
