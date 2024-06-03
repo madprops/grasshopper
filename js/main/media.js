@@ -12,6 +12,7 @@ App.start_media = (what) => {
     setup: () => {
       let media = DOM.el(`#media_${what}_player`)
       let buttons = DOM.el(`#media_${what}_buttons`)
+      let content = DOM.el(`#window_content_media_${what}`)
 
       let prev = DOM.create(`div`, `button arrow_btn arrow_prev`, `media_${what}_prev`)
       prev.textContent = `<`
@@ -86,11 +87,13 @@ App.start_media = (what) => {
         App.media_wheel.call(e, what)
       })
 
-      DOM.ev(DOM.el(`#media_${what}_player`), `click`, () => {
-        App.media_focus_tab()
+      DOM.ev(media, `click`, () => {
+        if (what === `image`) {
+          App.media_focus_tab()
+        }
       })
 
-      DOM.ev(DOM.el(`#window_content_media_${what}`), `click`, (e) => {
+      DOM.ev(content, `click`, (e) => {
         if (e.target.classList.contains(`window_content_media`)) {
           App.hide_window()
         }
