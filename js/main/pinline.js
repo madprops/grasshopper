@@ -24,18 +24,24 @@ App.do_check_pinline = () => {
     }
   }
 
+  App.pinline_visible = true
+
   if (show === `never`) {
-    cls += ` hidden`
+    App.pinline_visible = false
   }
   else if (show === `auto`) {
     if ((!tabs.pinned_f.length) || (!tabs.normal_f.length)) {
-      cls += ` hidden`
+      App.pinline_visible = false
     }
   }
   else {
     if ((!tabs.pinned_f.length) && (!tabs.normal_f.length)) {
-      cls += ` hidden`
+      App.pinline_visible = false
     }
+  }
+
+  if (!App.pinline_visible) {
+    cls += ` hidden`
   }
 
   let pinline = DOM.create(`div`, cls, `pinline`)
@@ -64,5 +70,9 @@ App.remove_pinline = () => {
 }
 
 App.pinline_index = () => {
+  if (!App.pinline_visible) {
+    return -1
+  }
+
   return DOM.els(`.tabs_element`).indexOf(DOM.el(`#pinline`))
 }

@@ -66,6 +66,7 @@ App.filter_menus = {}
 App.refine_string = `refine_filter`
 App.default_color = `rgba(100, 100, 100, 1)`
 App.last_restore_date = 0
+App.pinline_visible = false
 
 App.settings_done = false
 App.settings_ready = false
