@@ -9,6 +9,7 @@ App.setup_commands = () => {
   let notes_icon = App.get_setting(`notes_icon`) || App.notepad_icon
   let header_icon = App.get_setting(`header_icon`) || App.zone_icon
   let subheader_icon = App.get_setting(`subheader_icon`) || App.zone_icon
+  let image_icon = App.get_setting(`image_icon`) || App.settings_icons.media
   let command_icon = App.command_icon
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
@@ -443,6 +444,7 @@ App.setup_commands = () => {
     {
       name: `Toggle Favorites Autohide`,
       cmd: `toggle_favorites_autohide`,
+      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.toggle_favorites_autohide()
@@ -1879,11 +1881,20 @@ App.setup_commands = () => {
       info: `Set a random dark color theme`,
     },
     {
+      name: `Background Opacity`,
+      cmd: `cycle_background_opacity`,
+      icon: theme_icon,
+      action: (args) => {
+        App.cycle_background_opacity()
+      },
+      info: `Change background opacity in increments`,
+    },
+    {
       name: `Background`,
       cmd: `set_background_image`,
       media: `image`,
       item: true,
-      icon: theme_icon,
+      icon: image_icon,
       action: (args) => {
         App.change_background(args.item.url)
       },
