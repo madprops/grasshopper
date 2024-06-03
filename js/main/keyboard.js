@@ -57,12 +57,12 @@ App.check_items_keyboard = (e) => {
 
   if (e.ctrlKey && !e.shiftKey) {
     if (e.key === `ArrowUp`) {
-      App.move_tabs_vertically(`top`)
+      App.move_tabs_vertically(`up`)
       e.preventDefault()
       return
     }
     else if (e.key === `ArrowDown`) {
-      App.move_tabs_vertically(`bottom`)
+      App.move_tabs_vertically(`down`)
       e.preventDefault()
       return
     }

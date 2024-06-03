@@ -730,7 +730,7 @@ App.setup_commands = () => {
       item: true,
       icon: up_icon,
       action: (args) => {
-        App.move_tabs_vertically(`top`, args.item)
+        App.move_tabs_vertically(`up`, args.item)
       },
       info: `Move tabs to the top`,
     },
@@ -742,7 +742,7 @@ App.setup_commands = () => {
       item: true,
       icon: down_icon,
       action: (args) => {
-        App.move_tabs_vertically(`bottom`, args.item)
+        App.move_tabs_vertically(`down`, args.item)
       },
       info: `Move tabs to the bottom`,
     },

@@ -788,25 +788,7 @@ App.open_tab = async (item) => {
   }
 }
 
-App.update_tabs_index = async (items, old_index) => {
-  let first_index = App.get_item_element_index({
-    mode: `tabs`,
-    element: items[0].element,
-    include_all: true,
-  })
-
-  let direction
-
-  if (first_index < old_index) {
-    direction = `up`
-  }
-  else if (first_index > old_index) {
-    direction = `down`
-  }
-  else {
-    return
-  }
-
+App.update_tabs_index = async (items, direction) => {
   if (direction === `down`) {
     items = items.slice(0).reverse()
   }
@@ -973,9 +955,8 @@ App.move_tabs_vertically = (direction, item) => {
   let first, last
   let els = active.map(x => x.element)
   let items = App.get_items(`tabs`)
-  let o_index = items.indexOf(item)
 
-  if (direction === `top`) {
+  if (direction === `up`) {
     if (item.pinned) {
       first = 0
     }
@@ -985,7 +966,7 @@ App.move_tabs_vertically = (direction, item) => {
 
     items[first].element.before(...els)
   }
-  else if (direction === `bottom`) {
+  else if (direction === `down`) {
     if (item.pinned) {
       last = App.get_last_pin_index()
     }
@@ -996,7 +977,7 @@ App.move_tabs_vertically = (direction, item) => {
     items[last].element.after(...els)
   }
 
-  App.update_tabs_index(active, o_index)
+  App.update_tabs_index(active, direction)
 }
 
 App.get_first_normal_index = () => {

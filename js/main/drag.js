@@ -176,5 +176,17 @@ App.dragend_action = (mode, e) => {
     return false
   }
 
-  App.update_tabs_index(App.drag_items, App.drag_start_index)
+  let drag_end_index = App.get_item_element_index({
+    mode: mode,
+    element: App.drag_items[0].element,
+    include_all: true,
+  })
+
+  if (App.drag_start_index === drag_end_index) {
+    e.preventDefault()
+    return false
+  }
+
+  let dir = drag_end_index > App.drag_start_index ? `down` : `up`
+  App.update_tabs_index(App.drag_items, dir)
 }
