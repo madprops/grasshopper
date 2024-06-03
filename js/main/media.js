@@ -86,6 +86,10 @@ App.start_media = (what) => {
         App.media_wheel.call(e, what)
       })
 
+      DOM.ev(DOM.el(`#media_${what}_player`), `click`, () => {
+        App.media_focus_tab()
+      })
+
       DOM.ev(DOM.el(`#window_content_media_${what}`), `click`, (e) => {
         if (e.target.classList.contains(`window_content_media`)) {
           App.hide_window()
@@ -134,6 +138,7 @@ App.view_media = (o_item) => {
     return
   }
 
+  App.media_o_item = o_item
   App.start_media(what)
   let item = App.soft_copy_item(o_item)
   App.hide_media_elements(what)
@@ -415,4 +420,8 @@ App.check_view_media = (item) => {
   else {
     view_media.classList.add(`hidden`)
   }
+}
+
+App.media_focus_tab = () => {
+  App.focus_tab({item: App.media_o_item, method: `media`})
 }
