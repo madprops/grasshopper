@@ -187,6 +187,6 @@ App.dragend_action = (mode, e) => {
     return false
   }
 
-  let dir = drag_end_index > App.drag_start_index ? `down` : `up`
-  App.update_tabs_index(App.drag_items, dir)
+  let direction = drag_end_index > App.drag_start_index ? `down` : `up`
+  App.update_tabs_index(App.drag_items, direction)
 }
