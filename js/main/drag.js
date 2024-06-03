@@ -56,12 +56,6 @@ App.dragstart_action = (mode, e) => {
   let id = App.drag_element.dataset.id
   App.drag_item = App.get_item_by_id(mode, id)
 
-  App.drag_start_index = App.get_item_element_index({
-    mode: mode,
-    element: App.drag_element,
-    include_all: true,
-  })
-
   if (!App.drag_active(mode, e)) {
     return
   }
@@ -88,6 +82,12 @@ App.dragstart_action = (mode, e) => {
   else {
     App.drag_items.push(App.drag_item)
   }
+
+  App.drag_start_index = App.get_item_element_index({
+    mode: mode,
+    element: App.drag_items[0].element,
+    include_all: true,
+  })
 
   App.drag_els = []
 
