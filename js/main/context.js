@@ -28,6 +28,10 @@ App.show_context = (args = {}) => {
 }
 
 App.hide_context = () => {
+  if (NeedContext.dragging) {
+    return
+  }
+
   NeedContext.hide()
 }
 

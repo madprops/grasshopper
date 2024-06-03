@@ -1,4 +1,4 @@
-// NeedContext v5.0
+// NeedContext v5.1
 
 // Main object
 const NeedContext = {}
@@ -22,6 +22,7 @@ NeedContext.level = 0
 NeedContext.gap = `0.5rem`
 NeedContext.side_padding = `0.5rem`
 NeedContext.center_top = 20
+NeedContext.dragging = false
 
 // Set defaults
 NeedContext.set_defaults = () => {
@@ -753,6 +754,7 @@ NeedContext.create = () => {
   })
 
   NeedContext.container.addEventListener(`dragstart`, (e) => {
+    NeedContext.dragging = true
     NeedContext.dragstart_action(e)
   })
 
@@ -761,6 +763,7 @@ NeedContext.create = () => {
   })
 
   NeedContext.container.addEventListener(`dragend`, (e) => {
+    NeedContext.dragging = false
     NeedContext.dragend_action(e)
   })
 
