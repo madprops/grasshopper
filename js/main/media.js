@@ -85,6 +85,12 @@ App.start_media = (what) => {
       DOM.ev(buttons, `wheel`, (e) => {
         App.media_wheel.call(e, what)
       })
+
+      DOM.ev(DOM.el(`#window_content_media_${what}`), `click`, (e) => {
+        if (e.target.classList.contains(`window_content_media`)) {
+          App.hide_window()
+        }
+      })
     },
     after_hide: () => {
       if (what === `video` || what === `audio`) {
@@ -240,7 +246,7 @@ App.open_media = (what = App.window_mode) => {
 }
 
 App.media_copy = (what) => {
-  App.copy_url(App[`current_media_${what}_item`])
+  App.copy_url(App[`current_media_${what}_item`], true)
 }
 
 App.media_background = (what = App.window_mode) => {

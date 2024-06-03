@@ -44,12 +44,16 @@ App.remove_protocol = (url) => {
   return url.replace(/^https?:\/\//, ``)
 }
 
-App.copy_to_clipboard = (text) => {
+App.copy_to_clipboard = (text, what = ``) => {
   if (!text) {
     return
   }
 
   navigator.clipboard.writeText(text)
+
+  if (what) {
+    App.alert_autohide(`${what} copied to clipboard`)
+  }
 }
 
 App.plural = (n, singular, plural) => {
