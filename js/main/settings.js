@@ -944,10 +944,11 @@ App.show_all_settings = () => {
       category = item.category
     }
 
-    lines.push(`${key} (${item.type})`)
+    let info = App.periods(item.info)
+    lines.push(`${key} (${item.type}) ${info}`)
   }
 
-  App.show_textarea(`All Settings`, lines.join(`\n`))
+  App.show_textarea(`All Settings`, lines.join(`\n`), true)
 }
 
 App.get_background_effect = (value) => {
