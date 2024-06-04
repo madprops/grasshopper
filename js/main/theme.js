@@ -763,7 +763,18 @@ App.import_theme = () => {
       ]
 
       for (let line of lines) {
-        let [key, value] = line.split(`=`)
+        let split = line.split(`=`)
+
+        if (split.lengh < 2) {
+          continue
+        }
+
+        let key = split[0].trim()
+        let value = split.slice(1).join(`=`).trim()
+
+        if (!key || !value) {
+          continue
+        }
 
         if (key && value) {
           if (setts.includes(key)) {
