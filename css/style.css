@@ -725,6 +725,7 @@ svg {
 .settings_info {
   text-align: center;
   max-width: 18rem;
+  user-select: text;
 }
 
 .settings_title {
