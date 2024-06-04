@@ -2475,6 +2475,16 @@ App.build_settings = () => {
       type: `menu`,
       value: `open_new_tab`,
       info: `What command to run when double clicking empty space`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    filter_double_click_command: {
+      name: `On Filter Double Click`,
+      type: `menu`,
+      value: `edit_global_notes`,
+      info: `What command to run when double clicking the text filter`,
       separator: true,
       version: 1,
       setup: (key) => {

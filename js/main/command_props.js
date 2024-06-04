@@ -1203,6 +1203,15 @@ App.setup_commands = () => {
       info: `Edit tab notes`,
     },
     {
+      name: `Global Notes`,
+      cmd: `edit_notes`,
+      icon: notes_icon,
+      action: (args) => {
+        App.edit_notes(args.item)
+      },
+      info: `Edit global notes`,
+    },
+    {
       name: `Add Tags`,
       short_name: `Tags`,
       cmd: `add_tags`,

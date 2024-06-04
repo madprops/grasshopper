@@ -624,7 +624,7 @@ App.filter_by = (mode, cmd) => {
   App.set_filter({mode: mode, text: new_text})
 }
 
-App.filter_has_value = (mode) => {
+App.filter_has_value = (mode = App.active_mode) => {
   return App.get_filter(mode) !== ``
 }
 
@@ -777,6 +777,22 @@ App.create_filter = (mode) => {
     if (e.button === 1) {
       App.show_refine_filters(e)
     }
+  })
+
+  DOM.ev(filter, `dblclick`, (e) => {
+    if (App.filter_has_value(mode)) {
+      return
+    }
+
+    e.preventDefault()
+
+    let cmd = App.get_setting(`filter_double_click_command`)
+
+    if (!cmd) {
+      return
+    }
+
+    App.run_command({cmd: cmd, from: `filter`, e: e})
   })
 
   DOM.ev(filter, `wheel`, (e) => {

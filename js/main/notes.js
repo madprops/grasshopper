@@ -50,3 +50,20 @@ App.remove_item_notes = (item, single = false) => {
 App.remove_notes = (item) => {
   App.remove_item_notes(item, true)
 }
+
+App.edit_global_notes = () => {
+  App.show_input({
+    message: `Notes`,
+    button: `Save`,
+    action: (text) => {
+      App.notes = text
+      App.stor_save_notes()
+      return true
+    },
+    value: App.get_notes(item),
+    autosave: true,
+    bottom: true,
+    wrap: true,
+    readonly: item.mode !== `tabs`,
+  })
+}

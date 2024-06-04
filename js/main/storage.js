@@ -125,3 +125,13 @@ App.stor_save_first_time = () => {
   App.debug(`Stor: Saving first_time`)
   App.save_local_storage(App.stor_first_time_name, App.first_time)
 }
+
+App.stor_get_notes = async () => {
+  App.notes = await App.get_local_storage(App.stor_notes_name, ``)
+  App.debug(`Stor: Got notes`)
+}
+
+App.stor_save_notes = () => {
+  App.debug(`Stor: Saving notes`)
+  App.save_local_storage(App.stor_notes_name, App.notes)
+}

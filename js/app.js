@@ -7,6 +7,7 @@ App.stor_tag_history_name = `tag_history_v200`
 App.stor_title_history_name = `title_history_v200`
 App.stor_icon_history_name = `icon_history_v200`
 App.stor_first_time_name = `first_time_v200`
+App.stor_notes_name = `notes_v200`
 
 // Backwards compatibility check
 // This should only be used if the structure of the objects have not changed
