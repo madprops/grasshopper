@@ -56,7 +56,7 @@ App.edit_global_notes = () => {
     message: `Global Notes`,
     button: `Save`,
     action: (text) => {
-      App.notes = text
+      App.notes = App.single_linebreak(text)
       App.stor_save_notes()
       return true
     },
