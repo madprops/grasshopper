@@ -466,18 +466,9 @@ App.set_colors = (c1, c2) => {
   App.check_theme_refresh()
 }
 
-App.change_background = (url, bg_eff, bg_tiles) => {
-  App.set_setting(`background_image`, url, false)
-
-  if (bg_eff) {
-    App.set_setting(`background_effect`, bg_eff, false)
-  }
-
-  if (bg_tiles) {
-    App.set_setting(`background_tiles`, bg_tiles, false)
-  }
-
+App.change_background = (url) => {
   App.reset_theme()
+  App.set_setting(`background_image`, url, false)
   App.check_theme_refresh()
 }
 
