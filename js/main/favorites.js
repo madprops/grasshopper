@@ -75,20 +75,28 @@ App.create_favorites_bar = (mode) => {
 
   DOM.ev(container, `mouseenter`, () => {
     if (App.get_setting(`favorites_autohide`)) {
-      App.clear_favorite_bar_autohide()
-      App.favorites_bar_show_debouncer.call(mode)
+      App.on_favorites_enter(mode)
     }
   })
 
   DOM.ev(container, `mouseleave`, () => {
     if (App.get_setting(`favorites_autohide`)) {
-      App.clear_favorite_bar_autohide()
-      App.favorites_bar_hide_debouncer.call(mode)
+      App.on_favorites_leave(mode)
     }
   })
 
   container.append(bar)
   return container
+}
+
+App.on_favorites_enter = (mode) => {
+  App.clear_favorite_bar_autohide()
+  App.favorites_bar_show_debouncer.call(mode)
+}
+
+App.on_favorites_leave = (mode) => {
+  App.clear_favorite_bar_autohide()
+  App.favorites_bar_hide_debouncer.call(mode)
 }
 
 App.create_favorites_button = (mode) => {
@@ -327,8 +335,10 @@ App.toggle_favorites_autohide = () => {
 
   if (autohide) {
     App.alert_autohide(`Favorites Autohide Enabled`)
+    App.on_favorites_leave(App.active_mode)
   }
   else {
     App.alert_autohide(`Favorites Autohide Disabled`)
+    App.on_favorites_enter(App.active_mode)
   }
 }
