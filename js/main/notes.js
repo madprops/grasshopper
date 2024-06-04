@@ -60,10 +60,9 @@ App.edit_global_notes = () => {
       App.stor_save_notes()
       return true
     },
-    value: App.get_notes(item),
+    value: App.notes,
     autosave: true,
     bottom: true,
     wrap: true,
-    readonly: item.mode !== `tabs`,
   })
 }

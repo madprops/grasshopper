@@ -13,6 +13,7 @@ App.init = async () => {
   await App.stor_get_title_history()
   await App.stor_get_icon_history()
   await App.stor_get_first_time()
+  await App.stor_get_notes()
   App.setup_commands()
   App.setup_tabs()
   App.setup_closed()

@@ -1204,10 +1204,10 @@ App.setup_commands = () => {
     },
     {
       name: `Global Notes`,
-      cmd: `edit_notes`,
+      cmd: `edit_global_notes`,
       icon: notes_icon,
       action: (args) => {
-        App.edit_notes(args.item)
+        App.edit_global_notes()
       },
       info: `Edit global notes`,
     },
