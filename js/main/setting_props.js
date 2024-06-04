@@ -2766,7 +2766,7 @@ App.build_settings = () => {
       Use the top buttons to navigate and save/load data`,
     },
     theme: {
-      info: `Here you can change the appearance of the interface`,
+      info: `Change the appearance`,
       buttons: [
         [
           {
