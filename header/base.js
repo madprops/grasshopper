@@ -265,7 +265,6 @@ App.image_click = (image) => {
   image.classList.remove(`rotate_3`)
 
   App.image_state += 1
-  console.log(App.image_state)
 
   if (App.image_state === 1) {
     image.classList.add(`invert`)

@@ -83,6 +83,7 @@ body, html {
   color: var(--color_2);
   user-select: none;
   gap: 1rem;
+  font-size: 1.2rem;
 }
 
 #top_left {
