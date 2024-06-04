@@ -747,7 +747,18 @@ App.create_filter = (mode) => {
   filter.autocomplete = `off`
   filter.spellcheck = false
   filter.tabIndex = 0
-  filter.title = `Type to filter or search\nRight Click: Context\nMiddle Click: Refine`
+  let title = `Type to filter or search\nRight Click: Context\nMiddle Click: Refine`
+  let dcmd = App.get_setting(`filter_double_click_command`)
+
+  if (dcmd) {
+    let cmd = App.get_command(dcmd)
+
+    if (cmd) {
+      title += `\nDouble Click: ${cmd.name}`
+    }
+  }
+
+  filter.title = title
 
   if (App.search_modes.includes(mode)) {
     filter.placeholder = `Search`
