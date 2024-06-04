@@ -806,6 +806,7 @@ svg {
   display: flex;
   flex-direction: column;
   align-items: center;
+  user-select: text;
   gap: 0.5rem;
   width: 100%;
 }
