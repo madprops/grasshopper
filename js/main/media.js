@@ -88,19 +88,19 @@ App.start_media = (what) => {
         App.media_wheel.call(e, what)
       })
 
-      DOM.ev(media, `click`, () => {
+      DOM.ev(media, `dblclick`, () => {
         if (what === `image`) {
           App.media_focus_tab()
         }
       })
 
-      DOM.ev(content, `click`, (e) => {
+      DOM.ev(content, `dblclick`, (e) => {
         if (e.target.classList.contains(`window_content_media`)) {
           App.hide_window()
         }
       })
 
-      DOM.ev(loading, `click`, (e) => {
+      DOM.ev(loading, `dblclick`, (e) => {
         App.hide_window()
       })
     },
