@@ -1,3 +1,4 @@
+// This is meant only to show information not edit it
 App.show_textarea = (message, text) => {
   App.start_popups()
   let textarea = DOM.el(`#textarea_text`)
