@@ -477,6 +477,7 @@ App.change_background = (url, bg_eff, bg_tiles) => {
     App.set_setting(`background_tiles`, bg_tiles, false)
   }
 
+  App.reset_theme()
   App.check_theme_refresh()
 }
 
@@ -724,4 +725,9 @@ App.cycle_background_opacity = () => {
 
   App.set_setting(`background_opacity`, opacity, false)
   App.apply_theme()
+}
+
+App.reset_theme = () => {
+  App.set_setting(`background_effect`, `none`, false)
+  App.set_setting(`background_tiles`, `none`, false)
 }
