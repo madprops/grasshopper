@@ -10,6 +10,15 @@ App.setup_input = () => {
   DOM.ev(DOM.el(`#input_close`), `click`, () => {
     App.hide_input()
   })
+
+  DOM.ev(DOM.el(`#input_text`), `keydown`, (e) => {
+    if (e.key === `Enter`) {
+      if (e.ctrlKey) {
+        App.input_enter()
+        e.preventDefault()
+      }
+    }
+  })
 }
 
 App.show_input = (args = {}) => {
