@@ -765,7 +765,7 @@ App.import_theme = () => {
       for (let line of lines) {
         let split = line.split(`=`)
 
-        if (split.lengh < 2) {
+        if (split.length < 2) {
           continue
         }
 
