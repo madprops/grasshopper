@@ -732,12 +732,13 @@ App.export_theme = () => {
   let opacity = App.get_setting(`background_opacity`)
 
   let data = ``
-  data += `text_color=${c1}\n`
-  data += `background_color=${c2}\n`
-  data += `background_image=${bg}\n`
-  data += `background_effect=${eff}\n`
-  data += `background_tiles=${tiles}\n`
-  data += `background_opacity=${opacity}`
+  let eq = ` = `
+  data += `text_color${eq}${c1}\n`
+  data += `background_color${eq}${c2}\n`
+  data += `background_image${eq}${bg}\n`
+  data += `background_effect${eq}${eff}\n`
+  data += `background_tiles${eq}${tiles}\n`
+  data += `background_opacity${eq}${opacity}`
 
   App.show_textarea(`Copy theme data`, data)
 }
