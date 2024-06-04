@@ -2,6 +2,10 @@
 
 [Advanced Tab Manager For Firefox](https://addons.mozilla.org/en-US/firefox/addon/grasshopper-urls/)
 
+Programmed by [madprops](https://github.com/madprops)
+
+Lots of ideas by [N3C2L](https://github.com/N3C2L)
+
 ---
 
 ![](img/grasshopper.png)
