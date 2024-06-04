@@ -722,3 +722,59 @@ App.reset_theme = () => {
   App.set_setting(`background_effect`, `none`, false)
   App.set_setting(`background_tiles`, `none`, false)
 }
+
+App.export_theme = () => {
+  let c1 = App.get_setting(`text_color`)
+  let c2 = App.get_setting(`background_color`)
+  let bg = App.get_setting(`background_image`)
+  let eff = App.get_setting(`background_effect`)
+  let tiles = App.get_setting(`background_tiles`)
+  let opacity = App.get_setting(`background_opacity`)
+
+  let data = ``
+  data += `text_color=${c1}\n`
+  data += `background_color=${c2}\n`
+  data += `background_image=${bg}\n`
+  data += `background_effect=${eff}\n`
+  data += `background_tiles=${tiles}\n`
+  data += `background_opacity=${opacity}`
+
+  App.show_textarea(`Copy theme data`, data)
+}
+
+App.import_theme = () => {
+  App.show_input({
+    message: `Paste theme data`,
+    button: `Apply`,
+    action: (text) => {
+      if (!text.trim()) {
+        return true
+      }
+
+      let lines = text.split(`\n`)
+
+      let setts = [
+        `text_color`,
+        `background_color`,
+        `background_image`,
+        `background_effect`,
+        `background_tiles`,
+        `background_opacity`,
+      ]
+
+      for (let line of lines) {
+        let [key, value] = line.split(`=`)
+
+        if (key && value) {
+          if (setts.includes(key)) {
+            App.set_setting(key, value, false)
+          }
+        }
+      }
+
+      App.show_settings_category(`theme`)
+      App.apply_theme()
+      return true
+    },
+  })
+}

@@ -2796,6 +2796,20 @@ App.build_settings = () => {
             },
           },
         ],
+        [
+          {
+            text: `Export Theme`,
+            action: () => {
+              App.export_theme()
+            },
+          },
+          {
+            text: `Import Theme`,
+            action: () => {
+              App.import_theme()
+            },
+          },
+        ],
       ]
     },
     colors: {
