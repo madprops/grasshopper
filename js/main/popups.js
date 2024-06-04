@@ -108,6 +108,10 @@ App.start_popups = () => {
       DOM.ev(DOM.el(`#textarea_copy`), `click`, () => {
         App.textarea_copy()
       })
+
+      DOM.ev(DOM.el(`#textarea_close`), `click`, () => {
+        App.hide_popup(`textarea`)
+      })
     },
   })
 
