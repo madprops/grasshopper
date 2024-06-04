@@ -1,6 +1,6 @@
 App.edit_notes = (item) => {
   App.show_input({
-    message: `Notes`,
+    message: `Tab Notes`,
     button: `Save`,
     action: (text) => {
       let notes = App.single_linebreak(text)
@@ -53,7 +53,7 @@ App.remove_notes = (item) => {
 
 App.edit_global_notes = () => {
   App.show_input({
-    message: `Notes`,
+    message: `Global Notes`,
     button: `Save`,
     action: (text) => {
       App.notes = text
