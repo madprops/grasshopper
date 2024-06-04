@@ -1,16 +1,8 @@
-App.show_textarea = (message, text, readonly = false) => {
+App.show_textarea = (message, text) => {
   App.start_popups()
   let textarea = DOM.el(`#textarea_text`)
   DOM.el(`#textarea_message`).textContent = message
   textarea.value = text
-
-  if (readonly) {
-    textarea.setAttribute(`readonly`, `readonly`)
-  }
-  else {
-    textarea.removeAttribute(`readonly`)
-  }
-
   App.show_popup(`textarea`)
 
   requestAnimationFrame(() => {
