@@ -405,6 +405,15 @@ App.setup_commands = () => {
       info: `Import settings`,
     },
     {
+      name: `All Settings`,
+      cmd: `show_all_settings`,
+      icon: settings_icon,
+      action: (args) => {
+        App.show_all_settings()
+      },
+      info: `Show all settings`,
+    },
+    {
       name: `Reset Settings`,
       cmd: `reset_settings`,
       icon: settings_icon,

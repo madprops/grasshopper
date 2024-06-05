@@ -966,7 +966,8 @@ App.show_all_settings = () => {
     lines.push(`${key} (${item.type}) ${info}`)
   }
 
-  App.show_textarea(`All Settings`, lines.join(`\n`))
+  let n = Object.keys(App.settings).length
+  App.show_textarea(`Settings (${n})`, lines.join(`\n`))
 }
 
 App.get_background_effect = (value) => {
