@@ -904,6 +904,22 @@ App.settings_actions = (category) => {
   let items = []
 
   items.push({
+    text: `To Top`,
+    action: () => {
+      App.settings_top()
+    }
+  })
+
+  items.push({
+    text: `Bottom`,
+    action: () => {
+      App.settings_bottom()
+    }
+  })
+
+  App.sep(items)
+
+  items.push({
     text: `Reset`,
     action: () => {
       App.reset_settings(category)
@@ -1473,4 +1489,18 @@ App.mirror_settings = async () => {
     await browser.runtime.sendMessage({action: `mirror_settings`})
   }
   catch (err) {}
+}
+
+App.settings_content = () => {
+  return DOM.el(`#window_content_settings_${App.settings_category}`)
+}
+
+App.settings_top = () => {
+  el = App.settings_content()
+  el.scrollTop = 0
+}
+
+App.settings_bottom = () => {
+  let el = App.settings_content()
+  el.scrollTop = el.scrollHeight
 }
