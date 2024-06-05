@@ -712,7 +712,7 @@ App.cycle_background_opacity = (how = `cycle`) => {
   if (how === `cycle`) {
     opacity -= 5
 
-    if (opacity < 65) {
+    if (opacity < 60) {
       opacity = 100
     }
   }
