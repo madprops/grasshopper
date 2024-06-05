@@ -414,6 +414,24 @@ App.setup_commands = () => {
       info: `Reset all settings`,
     },
     {
+      name: `Export Theme`,
+      cmd: `export_theme`,
+      icon: theme_icon,
+      action: (args) => {
+        App.export_theme()
+      },
+      info: `Import theme`,
+    },
+    {
+      name: `Import Theme`,
+      cmd: `import_theme`,
+      icon: theme_icon,
+      action: (args) => {
+        App.import_theme()
+      },
+      info: `Import theme`,
+    },
+    {
       name: `Show About`,
       cmd: `show_about`,
       icon: bot_icon,

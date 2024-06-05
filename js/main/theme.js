@@ -784,7 +784,10 @@ App.import_theme = () => {
         }
       }
 
-      App.show_settings_category(`theme`)
+      if (App.on_settings()) {
+        App.show_settings_category(`theme`)
+      }
+
       App.apply_theme()
       return true
     },
