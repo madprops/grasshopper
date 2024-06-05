@@ -1,4 +1,4 @@
-// NeedContext v5.1
+// NeedContext v5.2
 
 // Main object
 const NeedContext = {}
@@ -379,6 +379,7 @@ NeedContext.select_item = (index) => {
 
     if (i === index) {
       el.classList.add(`needcontext-item-selected`)
+      el.scrollIntoView({block: `center`})
     }
     else {
       el.classList.remove(`needcontext-item-selected`)
