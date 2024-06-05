@@ -1,4 +1,4 @@
-// NeedContext v5.2
+// NeedContext v5.3
 
 // Main object
 const NeedContext = {}
@@ -349,6 +349,7 @@ NeedContext.show = (args = {}) => {
   container.style.minHeight = NeedContext.min_height
   NeedContext.select_item(selected_index)
   NeedContext.update_title()
+  NeedContext.scroll_to_selected()
   NeedContext.open = true
   NeedContext.after_show()
 
@@ -379,7 +380,6 @@ NeedContext.select_item = (index) => {
 
     if (i === index) {
       el.classList.add(`needcontext-item-selected`)
-      el.scrollIntoView({block: `center`})
     }
     else {
       el.classList.remove(`needcontext-item-selected`)
@@ -387,6 +387,14 @@ NeedContext.select_item = (index) => {
   }
 
   NeedContext.index = index
+}
+
+NeedContext.scroll_to_selected = (block = `center`) => {
+  let el = document.querySelector(`.needcontext-item-selected`)
+
+  if (el) {
+    el.scrollIntoView({block: block})
+  }
 }
 
 // Select an item above or below
@@ -411,6 +419,7 @@ NeedContext.select_next = (direction = `down`, bounce = false) => {
 
     if (waypoint) {
       NeedContext.select_item(item.index)
+      NeedContext.scroll_to_selected(`nearest`)
       return
     }
 
@@ -421,6 +430,7 @@ NeedContext.select_next = (direction = `down`, bounce = false) => {
 
   if (!bounce) {
     NeedContext.select_item(first_visible)
+    NeedContext.scroll_to_selected(`nearest`)
     return true
   }
   else {
