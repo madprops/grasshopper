@@ -1188,7 +1188,6 @@ App.build_settings = () => {
       name: `Favorites Menu`,
       type: `list`,
       value: [
-        {cmd: `edit_notes`, alt: `edit_global_notes`},
         {cmd: `show_recent_tabs`, alt: `filter_unread_tabs`},
         {cmd: `show_pinned_tabs`, alt: `filter_pinned_tabs`},
         {cmd: `show_color_red`, alt: `filter_color_red`},
@@ -1196,6 +1195,7 @@ App.build_settings = () => {
         {cmd: `show_color_blue`, alt: `filter_color_blue`},
         {cmd: `set_random_dark_colors`, alt: `set_random_light_colors`},
         {cmd: `set_background_image`, alt: `cycle_background_opacity`},
+        {cmd: `edit_notes`, alt: `edit_global_notes`},
         {cmd: `toggle_auto_blur`, alt: `toggle_favorites_autohide`},
       ],
       info: `List of commands that can appear in various forms`,

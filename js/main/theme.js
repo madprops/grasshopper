@@ -706,12 +706,29 @@ App.insert_font_css = () => {
   App.insert_css(`font_css`, css)
 }
 
-App.cycle_background_opacity = () => {
+App.cycle_background_opacity = (how = `cycle`) => {
   let opacity = App.get_setting(`background_opacity`)
-  opacity -= 5
 
-  if (opacity < 70) {
-    opacity = 90
+  if (how === `cycle`) {
+    opacity -= 5
+
+    if (opacity < 65) {
+      opacity = 100
+    }
+  }
+  else if (how === `increase`) {
+    opacity += 5
+
+    if (opacity > 100) {
+      opacity = 100
+    }
+  }
+  else if (how === `decrease`) {
+    opacity -= 5
+
+    if (opacity < 0) {
+      opacity = 0
+    }
   }
 
   App.set_setting(`background_opacity`, opacity, false)

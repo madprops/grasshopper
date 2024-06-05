@@ -1926,6 +1926,24 @@ App.setup_commands = () => {
       info: `Change background opacity in increments`,
     },
     {
+      name: `Increase Opacity`,
+      cmd: `increase_background_opacity`,
+      icon: theme_icon,
+      action: (args) => {
+        App.cycle_background_opacity(`increase`)
+      },
+      info: `Increase the background opacity`,
+    },
+    {
+      name: `Decrease Opacity`,
+      cmd: `decrease_background_opacity`,
+      icon: theme_icon,
+      action: (args) => {
+        App.cycle_background_opacity(`decrease`)
+      },
+      info: `Decrease the background opacity`,
+    },
+    {
       name: `Background`,
       cmd: `set_background_image`,
       media: `image`,
