@@ -1,4 +1,4 @@
-// NeedContext v5.3
+// NeedContext v5.4
 
 // Main object
 const NeedContext = {}
@@ -96,6 +96,8 @@ NeedContext.do_filter = () => {
       back.classList.remove(`needcontext-hidden`)
     }
   }
+
+  NeedContext.scroll_to_selected()
 }
 
 // Fill arg objects
