@@ -956,7 +956,9 @@ App.show_all_settings = () => {
 
     if (item.category !== category) {
       let left = category ? `\n` : ``
-      lines.push(`${left}${item.category}\n`)
+      let cat = App.setting_catprops[item.category]
+      let c_info = App.periods(cat.info)
+      lines.push(`${left}${item.category} (${c_info})\n`)
       category = item.category
     }
 
