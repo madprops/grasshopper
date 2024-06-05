@@ -958,7 +958,8 @@ App.show_all_settings = () => {
       let left = category ? `\n` : ``
       let cat = App.setting_catprops[item.category]
       let c_info = App.periods(cat.info)
-      lines.push(`${left}${item.category} (${c_info})\n`)
+      let s_cat = App.category_string(item.category)
+      lines.push(`${left}# ${s_cat} (${c_info})\n`)
       category = item.category
     }
 
