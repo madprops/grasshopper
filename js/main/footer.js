@@ -185,3 +185,16 @@ App.toggle_footer = () => {
     App.show_footer(true, true)
   }
 }
+
+App.footer_message = (msg) => {
+  clearTimeout(App.footer_message_timeout)
+  App.set_footer_info(App.active_mode, msg)
+
+  App.footer_message_timeout = setTimeout(() => {
+    App.restore_footer_info()
+  }, App.footer_message_delay)
+}
+
+App.restore_footer_info = () => {
+  App.update_footer_info(App.get_selected())
+}

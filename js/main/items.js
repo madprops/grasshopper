@@ -166,7 +166,7 @@ App.get_other_item = (args = {}, reverse = false) => {
   }
 }
 
-App.get_selected = (mode = App.window_mode) => {
+App.get_selected = (mode = App.active_mode) => {
   return App[`last_selected_${mode}`]
 }
 
@@ -750,7 +750,7 @@ App.do_check_selected = (mode) => {
   }
 }
 
-App.selected_items = (mode = App.window_mode) => {
+App.selected_items = (mode = App.active_mode) => {
   return App.get_items(mode).filter(x => x.selected)
 }
 
@@ -825,7 +825,7 @@ App.open_items = (item, shift, multiple = true) => {
   }
 }
 
-App.goto_top = (mode = App.window_mode, select = false) => {
+App.goto_top = (mode = App.active_mode, select = false) => {
   if (select) {
     App.select_item({item: App.get_visible(mode).at(0), scroll: `nearest`})
   }
@@ -841,7 +841,7 @@ App.goto_top = (mode = App.window_mode, select = false) => {
   App.do_check_scroller(mode)
 }
 
-App.goto_bottom = (mode = App.window_mode, select = false) => {
+App.goto_bottom = (mode = App.active_mode, select = false) => {
   if (select) {
     App.select_item({item: App.get_visible(mode).at(-1), scroll: `nearest`})
   }
@@ -857,7 +857,7 @@ App.goto_bottom = (mode = App.window_mode, select = false) => {
   App.do_check_scroller(mode)
 }
 
-App.select_all = (mode = App.window_mode, toggle = false) => {
+App.select_all = (mode = App.active_mode, toggle = false) => {
   let items = App.get_items(mode)
 
   if (toggle) {
@@ -1249,7 +1249,7 @@ App.remove_auto_blur = () => {
   }
 }
 
-App.selected_visible = (mode = App.window_mode) => {
+App.selected_visible = (mode = App.active_mode) => {
   let selected = App.get_selected(mode)
 
   if (selected) {

@@ -542,19 +542,19 @@ App.filter_check = (args) => {
   return Boolean(match)
 }
 
-App.focus_filter = (mode = App.window_mode) => {
+App.focus_filter = (mode = App.active_mode) => {
   App.get_filter_el(mode).focus()
 }
 
-App.is_filtered = (mode = App.window_mode) => {
+App.is_filtered = (mode = App.active_mode) => {
   return App.filter_has_value(mode) || (App.filter_mode(mode) !== `all`)
 }
 
-App.is_filtered_pins = (mode = App.window_mode) => {
+App.is_filtered_pins = (mode = App.active_mode) => {
   return App.filter_has_value(mode) || (App.filter_mode(mode) === `filter_pinned_tabs`)
 }
 
-App.clear_filter = (mode = App.window_mode) => {
+App.clear_filter = (mode = App.active_mode) => {
   if (App.filter_has_value(mode)) {
     App.set_filter({mode: mode})
   }
@@ -1022,7 +1022,7 @@ App.filter_root = (item) => {
   })
 }
 
-App.filter_all = (mode = App.window_mode, from) => {
+App.filter_all = (mode = App.active_mode, from) => {
   if (App.is_filtered(mode)) {
     App.set_filter_mode({mode: mode, cmd: `all`, filter: false})
     App.set_filter({mode: mode, from: from})
@@ -1165,7 +1165,7 @@ App.show_filter_context_menu = (mode, e) => {
   App.show_context({items: items, e: e})
 }
 
-App.update_filter_history = (mode = App.window_mode) => {
+App.update_filter_history = (mode = App.active_mode) => {
   App.debug(`Update Filter History`)
   let value = App.get_filter(mode).trim()
 

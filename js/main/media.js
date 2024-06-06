@@ -248,7 +248,7 @@ App.media_show_error = (what) => {
   DOM.el(`#media_${what}_loading`).textContent = `Unable to load`
 }
 
-App.open_media = (what = App.window_mode) => {
+App.open_media = (what = App.current_media_type) => {
   if (what === `video` || what === `audio`) {
     App.stop_media_player(what)
   }
@@ -262,7 +262,7 @@ App.media_copy = (what) => {
   App.copy_url(App[`current_media_${what}_item`], true)
 }
 
-App.media_background = (what = App.window_mode) => {
+App.media_background = (what) => {
   if (what === `image`) {
     let item = App[`current_media_${what}_item`]
     App.change_background(item.url)
@@ -351,11 +351,11 @@ App.search_media = (mode, e) => {
   App.show_context({items: items, e: e})
 }
 
-App.scroll_media_up = (what = App.window_mode) => {
+App.scroll_media_up = (what = App.active_mode) => {
   DOM.el(`#window_content_media_${what}`).scrollTop -= App.media_scroll
 }
 
-App.scroll_media_down = (what = App.window_mode) => {
+App.scroll_media_down = (what = App.active_mode) => {
   DOM.el(`#window_content_media_${what}`).scrollTop += App.media_scroll
 }
 

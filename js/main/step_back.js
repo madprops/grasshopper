@@ -22,7 +22,7 @@ App.create_step_back_button = (mode) => {
   return btn
 }
 
-App.step_back = (mode = App.window_mode, e) => {
+App.step_back = (mode = App.active_mode, e) => {
   let item = App.get_selected(mode)
   let scroll = `center_smooth`
   let tabs = mode === `tabs`

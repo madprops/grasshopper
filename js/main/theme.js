@@ -733,6 +733,7 @@ App.cycle_background_opacity = (how = `cycle`) => {
 
   App.set_setting(`background_opacity`, opacity, false)
   App.apply_theme()
+  App.footer_message(`Opacity: ${opacity}%`)
 }
 
 App.reset_theme = () => {

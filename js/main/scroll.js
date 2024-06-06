@@ -144,7 +144,7 @@ App.check_scroller = (mode) => {
   App.scroller_debouncer.call(mode)
 }
 
-App.do_check_scroller = (mode = App.window_mode) => {
+App.do_check_scroller = (mode = App.active_mode) => {
   App.scroller_debouncer.cancel()
 
   if (!App.get_setting(`show_scroller`)) {
