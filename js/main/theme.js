@@ -713,7 +713,7 @@ App.cycle_background_opacity = (how = `cycle`) => {
     opacity -= 5
 
     if (opacity < 60) {
-      if ((Date.now() - App.last_opacity_cycle_date) < 800) {
+      if ((Date.now() - App.last_opacity_cycle_date) < 1000) {
         return
       }
 
