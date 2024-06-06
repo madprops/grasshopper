@@ -9,15 +9,15 @@ App.setup_footer = () => {
 }
 
 App.update_footer_info = (item) => {
-  if (App.footer_showing_message) {
-    return
-  }
-
   App.update_footer_info_debouncer.call(item)
 }
 
 App.do_update_footer_info = (item) => {
   App.update_footer_info_debouncer.cancel()
+
+  if (App.footer_showing_message) {
+    return
+  }
 
   if (!App.get_setting(`show_footer`)) {
     return
