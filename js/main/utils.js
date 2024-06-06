@@ -407,6 +407,7 @@ App.SECOND = 1000
 App.MINUTE = 60 * App.SECOND
 App.HOUR = 60 * App.MINUTE
 App.DAY = 24 * App.HOUR
+App.MONTH = 30 * App.DAY
 App.YEAR = 365 * App.DAY
 
 App.timeago = (date) => {
@@ -436,7 +437,7 @@ App.timeago = (date) => {
       s = `${n} hrs ago`
     }
   }
-  else if (diff >= App.DAY && diff < App.YEAR) {
+  else if (diff >= App.DAY && diff < App.MONTH) {
     let n = Math.floor(diff / App.DAY)
 
     if (n === 1) {
@@ -444,6 +445,16 @@ App.timeago = (date) => {
     }
     else {
       s = `${n} days ago`
+    }
+  }
+  else if (diff >= App.MONTH && diff < App.YEAR) {
+    let n = Math.floor(diff / App.MONTH)
+
+    if (n === 1) {
+      s = `${n} month ago`
+    }
+    else {
+      s = `${n} months ago`
     }
   }
   else if (diff >= App.YEAR) {
