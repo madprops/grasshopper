@@ -412,63 +412,36 @@ App.YEAR = 365 * App.DAY
 
 App.timeago = (date) => {
   let diff = App.now() - date
-  let s
 
   if (diff < App.MINUTE) {
-    s = `just now`
+    return `Just now`
   }
-  else if (diff < App.HOUR) {
-    let n = Math.round(diff / App.MINUTE)
 
-    if (n === 1) {
-      s = `${n} min ago`
-    }
-    else {
-      s = `${n} mins ago`
-    }
+  let n = 0
+  let m = ``
+
+  if (diff < App.HOUR) {
+    n = Math.round(diff / App.MINUTE)
+    m = App.plural(n, `minute`, `minutes`)
   }
   else if (diff >= App.HOUR && diff < App.DAY) {
-    let n = Math.round(diff / App.HOUR)
-
-    if (n === 1) {
-      s = `${n} hr ago`
-    }
-    else {
-      s = `${n} hrs ago`
-    }
+    n = Math.round(diff / App.HOUR)
+    m = App.plural(n, `hour`, `hours`)
   }
   else if (diff >= App.DAY && diff < App.MONTH) {
-    let n = Math.round(diff / App.DAY)
-
-    if (n === 1) {
-      s = `${n} day ago`
-    }
-    else {
-      s = `${n} days ago`
-    }
+    n = Math.round(diff / App.DAY)
+    m = App.plural(n, `day`, `days`)
   }
   else if (diff >= App.MONTH && diff < App.YEAR) {
-    let n = Math.round(diff / App.MONTH)
-
-    if (n === 1) {
-      s = `${n} month ago`
-    }
-    else {
-      s = `${n} months ago`
-    }
+    n = Math.round(diff / App.MONTH)
+    m = App.plural(n, `month`, `months`)
   }
   else if (diff >= App.YEAR) {
-    let n = Math.round(diff / App.YEAR)
-
-    if (n === 1) {
-      s = `${n} year ago`
-    }
-    else {
-      s = `${n} years ago`
-    }
+    n = Math.round(diff / App.YEAR)
+    m = App.plural(n, `year`, `years`)
   }
 
-  return s
+  return `${n} ${m}`
 }
 
 App.obj = (str) => {
