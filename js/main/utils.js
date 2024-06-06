@@ -373,13 +373,13 @@ App.parse_delay = (s) => {
   let split = s.split(`_`)
 
   if (split[1] === `seconds`) {
-    delay = split[0] * 1000
+    delay = split[0] * App.SECOND
   }
   else if (split[1] === `minutes`) {
-    delay = split[0] * 1000 * 60
+    delay = split[0] * App.MINUTE
   }
   else if (split[1] === `hours`) {
-    delay = split[0] * 1000 * 60 * 60
+    delay = split[0] * App.HOUR
   }
 
   return delay
@@ -403,6 +403,7 @@ App.to_set = (array) => {
   return Array.from(new Set(array))
 }
 
+App.SECOND = 1000
 App.MINUTE = 60000
 App.HOUR = 3600000
 App.DAY = 86400000
