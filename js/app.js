@@ -83,6 +83,7 @@ App.setup_history_ready = false
 App.setup_bookmarks_ready = false
 App.domain_rules_ready = false
 App.playing = false
+App.last_opacity_cycle_date = 0
 
 App.empty_previous_tabs_delay = 2000
 App.alert_autohide_delay = 1500
