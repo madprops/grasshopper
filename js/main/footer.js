@@ -9,6 +9,10 @@ App.setup_footer = () => {
 }
 
 App.update_footer_info = (item) => {
+  if (App.footer_showing_message) {
+    return
+  }
+
   App.update_footer_info_debouncer.call(item)
 }
 
@@ -189,8 +193,10 @@ App.toggle_footer = () => {
 App.footer_message = (msg) => {
   clearTimeout(App.footer_message_timeout)
   App.set_footer_info(App.active_mode, msg)
+  App.footer_showing_message = true
 
   App.footer_message_timeout = setTimeout(() => {
+    App.footer_showing_message = false
     App.restore_footer_info()
   }, App.footer_message_delay)
 }

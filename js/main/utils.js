@@ -54,6 +54,9 @@ App.copy_to_clipboard = (text, what = ``) => {
   if (what) {
     App.alert_autohide(`${what} copied to clipboard`)
   }
+  else {
+    App.footer_message(`Copied to clipboard`)
+  }
 }
 
 App.plural = (n, singular, plural) => {
