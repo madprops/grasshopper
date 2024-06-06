@@ -404,10 +404,10 @@ App.to_set = (array) => {
 }
 
 App.SECOND = 1000
-App.MINUTE = 60000
-App.HOUR = 3600000
-App.DAY = 86400000
-App.YEAR = 31536000000
+App.MINUTE = 60 * App.SECOND
+App.HOUR = 60 * App.MINUTE
+App.DAY = 24 * App.HOUR
+App.YEAR = 365 * App.DAY
 
 App.timeago = (date) => {
   let diff = App.now() - date
@@ -417,7 +417,7 @@ App.timeago = (date) => {
     s = `just now`
   }
   else if (diff < App.HOUR) {
-    let n = Math.floor(diff / 60 / 1000)
+    let n = Math.floor(diff / App.MINUTE)
 
     if (n === 1) {
       s = `${n} min ago`
@@ -427,7 +427,7 @@ App.timeago = (date) => {
     }
   }
   else if (diff >= App.HOUR && diff < App.DAY) {
-    let n = Math.floor(diff / 60 / 60 / 1000)
+    let n = Math.floor(diff / App.HOUR)
 
     if (n === 1) {
       s = `${n} hr ago`
@@ -437,7 +437,7 @@ App.timeago = (date) => {
     }
   }
   else if (diff >= App.DAY && diff < App.YEAR) {
-    let n = Math.floor(diff / 24 / 60 / 60 / 1000)
+    let n = Math.floor(diff / App.DAY)
 
     if (n === 1) {
       s = `${n} day ago`
@@ -447,7 +447,7 @@ App.timeago = (date) => {
     }
   }
   else if (diff >= App.YEAR) {
-    let n = Math.floor(diff / 365 / 24 / 60 / 60 / 1000)
+    let n = Math.floor(diff / App.YEAR)
 
     if (n === 1) {
       s = `${n} year ago`
