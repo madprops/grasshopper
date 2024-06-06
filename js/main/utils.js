@@ -418,7 +418,7 @@ App.timeago = (date) => {
     s = `just now`
   }
   else if (diff < App.HOUR) {
-    let n = Math.floor(diff / App.MINUTE)
+    let n = Math.round(diff / App.MINUTE)
 
     if (n === 1) {
       s = `${n} min ago`
@@ -428,7 +428,7 @@ App.timeago = (date) => {
     }
   }
   else if (diff >= App.HOUR && diff < App.DAY) {
-    let n = Math.floor(diff / App.HOUR)
+    let n = Math.round(diff / App.HOUR)
 
     if (n === 1) {
       s = `${n} hr ago`
@@ -438,7 +438,7 @@ App.timeago = (date) => {
     }
   }
   else if (diff >= App.DAY && diff < App.MONTH) {
-    let n = Math.floor(diff / App.DAY)
+    let n = Math.round(diff / App.DAY)
 
     if (n === 1) {
       s = `${n} day ago`
@@ -448,7 +448,7 @@ App.timeago = (date) => {
     }
   }
   else if (diff >= App.MONTH && diff < App.YEAR) {
-    let n = Math.floor(diff / App.MONTH)
+    let n = Math.round(diff / App.MONTH)
 
     if (n === 1) {
       s = `${n} month ago`
@@ -458,7 +458,7 @@ App.timeago = (date) => {
     }
   }
   else if (diff >= App.YEAR) {
-    let n = Math.floor(diff / App.YEAR)
+    let n = Math.round(diff / App.YEAR)
 
     if (n === 1) {
       s = `${n} year ago`
