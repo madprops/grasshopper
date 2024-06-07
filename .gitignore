@@ -1,3 +1,5 @@
 *.zip
 .directory
 js/bundle*
+node_modules/
+package-lock.json
