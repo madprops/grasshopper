@@ -451,7 +451,7 @@ App.timeago = (date) => {
     n = Math.round(n)
   }
 
-  w = App.plural(n, m[0], m[1])
+  let w = App.plural(n, m[0], m[1])
   return `${n} ${w}`
 }
 
