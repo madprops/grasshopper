@@ -7,6 +7,16 @@ App.setup_playing = () => {
 App.create_playing_icon = (mode) => {
   let btn = DOM.create(`div`, `button icon_button playing_icon hidden`, `playing_icon_${mode}`)
   btn.title = `Go To Playing Tab (Ctrl + Dot)\nRight Click: Show Playing Tabs`
+  let dcmd = App.get_setting(`middle_click_playing`)
+
+  if (dcmd) {
+    let cmd = App.get_command(dcmd)
+
+    if (cmd) {
+      btn.title += `\nMiddle Click: ${cmd.name}`
+    }
+  }
+
   let icon = App.get_svg_icon(`speaker`)
 
   DOM.ev(btn, `click`, () => {
