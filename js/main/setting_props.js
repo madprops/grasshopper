@@ -1219,7 +1219,7 @@ App.build_settings = () => {
         App.start_color_picker(key, true)
       },
     },
-    favorites_bar_double_click: {
+    double_click_favorites: {
       name: `Fav Bar Double Click`,
       type: `menu`,
       value: `open_new_tab`,
@@ -1229,11 +1229,21 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    favorites_middle_click: {
+    middle_click_favorites: {
       name: `Fav Middle Click`,
       type: `menu`,
-      value: `none`,
+      value: `close_tabs`,
       info: `Command to run when middle clicking the Favorites Bar or Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    middle_click_favorites_button: {
+      name: `Fav Middle Click Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when middle clicking the Favorites Button`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
@@ -1534,16 +1544,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_normal_tabs`,
       info: `Command to run when middle clicking the Pinline`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist)
-      },
-    },
-    middle_click_favorites: {
-      name: `Middle Click Favorites`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when middle clicking the Favorites Button`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
@@ -2441,7 +2441,7 @@ App.build_settings = () => {
       separator: true,
       version: 4,
     },
-    double_click_command: {
+    double_click_item: {
       name: `On Double Click`,
       type: `menu`,
       value: `item_action`,
@@ -2451,7 +2451,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    left_click_press_command: {
+    left_click_press_item: {
       name: `On Left Click Press`,
       type: `menu`,
       value: `none`,
@@ -2461,7 +2461,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    middle_click_press_command: {
+    middle_click_press_item: {
       name: `On Middle Click Press`,
       type: `menu`,
       value: `none`,
@@ -2471,7 +2471,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    filter_double_click_command: {
+    double_click_filter: {
       name: `On Filter Double Click`,
       type: `menu`,
       value: `edit_global_notes`,

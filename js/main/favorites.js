@@ -240,7 +240,7 @@ App.favorites_double_click = (e) => {
     return
   }
 
-  let cmd = App.get_setting(`favorites_bar_double_click`)
+  let cmd = App.get_setting(`double_click_favorites`)
   let command = App.get_command(cmd)
 
   if (command) {
@@ -258,7 +258,11 @@ App.favorites_middle_click = (e) => {
     return
   }
 
-  let cmd = App.get_setting(`favorites_middle_click`)
+  if (e.target.classList.contains(`favorites_button`)) {
+    return
+  }
+
+  let cmd = App.get_setting(`middle_click_favorites`)
   let command = App.get_command(cmd)
 
   if (command) {

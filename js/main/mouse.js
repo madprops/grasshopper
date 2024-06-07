@@ -305,7 +305,7 @@ App.mouse_double_click_action = (mode, e) => {
     }
   }
 
-  let cmd = App.get_setting(`double_click_command`)
+  let cmd = App.get_setting(`double_click_item`)
 
   if (cmd === `item_action`) {
     if (!App.get_setting(`click_select`)) {
@@ -375,7 +375,7 @@ App.mouse_middle_action = (mode, e) => {
   App.reset_triggers()
 
   if (e.target.classList.contains(`favorites_button`)) {
-    let cmd = App.get_setting(`middle_click_favorites`)
+    let cmd = App.get_setting(`middle_click_favorites_button`)
     App.run_command({cmd: cmd, from: `favorites_button`, e: e})
     return
   }
@@ -496,10 +496,10 @@ App.click_press_action = (mode, e) => {
   let cmd
 
   if (App.click_press_button === 0) {
-    cmd = App.get_setting(`left_click_press_command`)
+    cmd = App.get_setting(`left_click_press_item`)
   }
   else if (App.click_press_button === 1) {
-    cmd = App.get_setting(`middle_click_press_command`)
+    cmd = App.get_setting(`middle_click_press_item`)
   }
 
   if (cmd) {

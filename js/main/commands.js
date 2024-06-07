@@ -339,7 +339,7 @@ App.check_dead_commands = () => {
     else {
       let value = App.setting_props[key].value
 
-      if (key === `double_click_command`) {
+      if (key === `double_click_item`) {
         check(value, key)
       }
       else if (key.startsWith(`middle_click_`)) {

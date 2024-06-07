@@ -749,7 +749,7 @@ App.create_filter = (mode) => {
   filter.spellcheck = false
   filter.tabIndex = 0
   let title = `Type to filter or search\nRight Click: Context\nMiddle Click: Refine`
-  let dcmd = App.get_setting(`filter_double_click_command`)
+  let dcmd = App.get_setting(`double_click_filter`)
 
   if (dcmd) {
     let cmd = App.get_command(dcmd)
@@ -798,7 +798,7 @@ App.create_filter = (mode) => {
 
     e.preventDefault()
 
-    let cmd = App.get_setting(`filter_double_click_command`)
+    let cmd = App.get_setting(`double_click_filter`)
 
     if (!cmd) {
       return
