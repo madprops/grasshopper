@@ -44,25 +44,8 @@ App.create_favorites_bar = (mode) => {
 
   let bar = DOM.create(`div`, cls, `favorites_bar_${mode}`)
   bar.title = App.favorites_title
-  let dcmd = App.get_setting(`double_click_favorites`)
-
-  if (dcmd) {
-    let cmd = App.get_command(dcmd)
-
-    if (cmd) {
-      bar.title += `\nDouble Click: ${cmd.name}`
-    }
-  }
-
-  dcmd = App.get_setting(`middle_click_favorites`)
-
-  if (dcmd) {
-    let cmd = App.get_command(dcmd)
-
-    if (cmd) {
-      bar.title += `\nDouble Click: ${cmd.name}`
-    }
-  }
+  App.trigger_title(bar, `double_click_favorites`)
+  App.trigger_title(bar, `middle_click_favorites`)
 
   if (fav_pos === `top`) {
     bar.classList.add(`fav_top`)
@@ -122,15 +105,7 @@ App.create_favorites_button = (mode) => {
   let btn = DOM.create(`div`, `favorites_button button`, `favorites_button_${mode}`)
   btn.textContent = App.settings_icons.favorites
   btn.title = App.favorites_title
-  let dcmd = App.get_setting(`middle_click_favorites_button`)
-
-  if (dcmd) {
-    let cmd = App.get_command(dcmd)
-
-    if (cmd) {
-      btn.title += `\nMiddle Click: ${cmd.name}`
-    }
-  }
+  App.trigger_title(btn, `middle_click_favorites_button`)
 
   DOM.ev(btn, `click`, (e) => {
     App.show_favorites_menu(e)

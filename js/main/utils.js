@@ -550,3 +550,20 @@ App.remove_undefined = (arr) => {
     }
   })
 }
+
+App.trigger_title = (el, name) => {
+  let dcmd = App.get_setting(name)
+
+  if (dcmd) {
+    let cmd = App.get_command(dcmd)
+
+    if (cmd) {
+      if (name.startsWith(`middle_click`)) {
+        el.title += `\nMiddle Click: ${cmd.name}`
+      }
+      else if (name.startsWith(`double_click`)) {
+        el.title += `\nDouble Click: ${cmd.name}`
+      }
+    }
+  }
+}

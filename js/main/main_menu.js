@@ -4,15 +4,7 @@ App.create_main_menu = (mode) => {
   let text = App.get_mode_name(mode)
   btn.append(App.button_text(icon, text))
   btn.title = `Main Menu (Ctrl + Left)\nRight Click: Show the Palette`
-  let dcmd = App.get_setting(`middle_click_main_menu`)
-
-  if (dcmd) {
-    let cmd = App.get_command(dcmd)
-
-    if (cmd) {
-      btn.title += `\nMiddle Click: ${cmd.name}`
-    }
-  }
+  App.trigger_title(btn, `middle_click_main_menu`)
 
   DOM.ev(btn, `click`, () => {
     App.show_main_menu(mode)

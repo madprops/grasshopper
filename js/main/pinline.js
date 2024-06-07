@@ -52,15 +52,7 @@ App.do_check_pinline = () => {
   let sep = `&nbsp;&nbsp;+&nbsp;&nbsp;`
   pinline.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
   pinline.title = `This is the Pinline.\nPinned tabs above. Normal tabs below`
-  let dcmd = App.get_setting(`middle_click_pinline`)
-
-  if (dcmd) {
-    let cmd = App.get_command(dcmd)
-
-    if (cmd) {
-      pinline.title += `\nMiddle Click: ${cmd.name}`
-    }
-  }
+  App.trigger_title(pinline, `middle_click_pinline`)
 
   if (tabs.pinned_f.length) {
     tabs.pinned_f.at(-1).element.after(pinline)
