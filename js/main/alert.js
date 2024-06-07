@@ -16,6 +16,7 @@ App.alert = (message, autohide_delay = 0) => {
 App.alert_autohide = (message, force = false) => {
   if (!force) {
     if (!App.get_setting(`show_feedback`)) {
+      App.footer_message(message)
       return
     }
   }

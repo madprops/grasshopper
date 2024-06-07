@@ -421,27 +421,29 @@ App.timeago = (date) => {
   let m = ``
 
   if (diff < App.HOUR) {
-    n = Math.round(diff / App.MINUTE)
-    m = App.plural(n, `minute`, `minutes`)
+    n = diff / App.MINUTE
+    m = [`minute`, `minutes`]
   }
   else if (diff >= App.HOUR && diff < App.DAY) {
-    n = Math.round(diff / App.HOUR)
-    m = App.plural(n, `hour`, `hours`)
+    n = diff / App.HOUR
+    m = [`hour`, `hours`]
   }
   else if (diff >= App.DAY && diff < App.MONTH) {
-    n = Math.round(diff / App.DAY)
-    m = App.plural(n, `day`, `days`)
+    n = diff / App.DAY
+    m = [`day`, `days`]
   }
   else if (diff >= App.MONTH && diff < App.YEAR) {
-    n = Math.round(diff / App.MONTH)
-    m = App.plural(n, `month`, `months`)
+    n = diff / App.MONTH
+    m = [`month`, `months`]
   }
   else if (diff >= App.YEAR) {
-    n = Math.round(diff / App.YEAR)
-    m = App.plural(n, `year`, `years`)
+    n = diff / App.YEAR
+    m = [`year`, `years`]
   }
 
-  return `${n} ${m}`
+  n = Math.round(n)
+  let w = App.plural(n, m[0], m[1])
+  return `${n} ${w}`
 }
 
 App.obj = (str) => {
