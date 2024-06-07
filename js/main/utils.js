@@ -412,17 +412,20 @@ App.YEAR = 365 * App.DAY
 
 App.timeago = (date) => {
   let diff = App.now() - date
-
-  if (diff < App.MINUTE) {
-    return `Just now`
-  }
+  let decimals = true
 
   let n = 0
   let m = ``
 
-  if (diff < App.HOUR) {
+  if (diff < App.MINUTE) {
+    n = diff / App.SECOND
+    m = [`second`, `seconds`]
+    decimals = false
+  }
+  else if (diff < App.HOUR) {
     n = diff / App.MINUTE
     m = [`minute`, `minutes`]
+    decimals = false
   }
   else if (diff >= App.HOUR && diff < App.DAY) {
     n = diff / App.HOUR
@@ -441,7 +444,13 @@ App.timeago = (date) => {
     m = [`year`, `years`]
   }
 
-  n = App.round(n, 1)
+  if (decimals) {
+    n = App.round(n, 1)
+  }
+  else {
+    n = Math.round(n)
+  }
+
   w = App.plural(n, m[0], m[1])
   return `${n} ${w}`
 }
