@@ -269,7 +269,7 @@ App.single_space = (s) => {
 
 // | is ommitted on purpose
 App.remove_special = (s) => {
-  return s.replace(/[\'\"\-\!\?\@\#\$\%\^\&\*\+\<\>\[\]\(\)\_]/g, ``)
+  return s.replace(/[.*+?^${}()[\]\\]/g, `\\$&`)
 }
 
 App.wheel_direction = (e) => {
@@ -319,7 +319,7 @@ App.text_with_empty_lines = () => {
 }
 
 App.make_html_safe = (s) => {
-  return s.replace(/\</g, `&lt;`).replace(/\>/g, `&gt;`)
+  return s.replace(/</g, `&lt;`).replace(/>/g, `&gt;`)
 }
 
 App.is_object = (o) => {

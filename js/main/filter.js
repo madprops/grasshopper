@@ -619,7 +619,7 @@ App.filter_by = (mode, cmd) => {
   let current = App.get_filter(mode)
 
   if (current) {
-    let regex = new RegExp(/^(\w+\:)/)
+    let regex = new RegExp(/^(\w+:)/)
     let cleaned = current.replace(regex, ``).trim()
     new_text += cleaned
   }
