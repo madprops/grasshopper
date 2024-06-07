@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.settings_do_actions = (actions) => {
   if (!App.on_settings()) {
     return
@@ -1502,7 +1504,7 @@ App.settings_content = () => {
 }
 
 App.settings_top = () => {
-  el = App.settings_content()
+  let el = App.settings_content()
   el.scrollTop = 0
 }
 

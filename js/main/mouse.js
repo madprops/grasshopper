@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.get_mouse_item = (mode, e) => {
   let el = e.target.closest(`.${mode}_item`)
   let item = App.get_item_by_id(mode, el.dataset.id)

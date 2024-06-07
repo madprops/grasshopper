@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.setup_drag = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 

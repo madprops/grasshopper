@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.setup_tab_box = () => {
   App.update_tab_box_debouncer = App.create_debouncer((what) => {
     App.do_update_tab_box(what)

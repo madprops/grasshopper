@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.setup_filter = () => {
   App.stor_get_filter_history()
   App.start_filter_debouncers()

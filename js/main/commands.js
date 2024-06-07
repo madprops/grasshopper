@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.update_command_history = (cmd) => {
   App.command_history = App.command_history.filter(x => x !== cmd)
 

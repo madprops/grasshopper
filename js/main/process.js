@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.process_info_list = (mode, info_list) => {
   let container = DOM.el(`#${mode}_container`)
   App[`${mode}_idx`] = 0

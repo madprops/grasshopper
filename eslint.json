@@ -17,7 +17,6 @@
   "plugins": [
   ],
   "rules": {
-    "no-undef": "off",
     "no-useless-escape": "off",
     "no-unused-vars": "off",
     "semi": "off",

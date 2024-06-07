@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.setup_playing = () => {
   App.check_playing_debouncer = App.create_debouncer((mode) => {
     App.do_check_playing(mode)

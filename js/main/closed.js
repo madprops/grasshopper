@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.setup_closed = () => {
   browser.sessions.onChanged.addListener(() => {
     if (App.active_mode === `closed`) {

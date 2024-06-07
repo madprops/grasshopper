@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.add_icons = (item) => {
   if (item.mode === `tabs`) {
     if (App.get_setting(`active_icon`)) {

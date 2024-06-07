@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.check_restore = () => {
   if (App.get_setting(`auto_restore`) === `action`) {
     if (App.last_restore_date > 0) {

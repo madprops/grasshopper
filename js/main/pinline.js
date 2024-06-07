@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.setup_pinline = () => {
   App.pinline_debouncer = App.create_debouncer(() => {
     App.do_check_pinline()

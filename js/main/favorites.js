@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.setup_favorites = () => {
   App.favorites_bar_show_debouncer = App.create_debouncer((mode) => {
     App.do_favorites_bar_show(mode)

@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.insert_header = async (item, full = true) => {
   let active = App.get_active_items({mode: item.mode, item: item})
   let first = active.at(0)

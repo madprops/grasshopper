@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.setup_active_trace = () => {
   App.update_active_trace_debouncer = App.create_debouncer((what) => {
     App.do_update_active_trace(what)

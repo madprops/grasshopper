@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.alert = (message, autohide_delay = 0) => {
   App.start_popups()
   let msg = DOM.el(`#alert_message`)

@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.create_main_menu = (mode) => {
   let btn = DOM.create(`div`, `button icon_button`, `${mode}_main_menu`)
   let icon = App.mode_icons[mode]

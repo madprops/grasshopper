@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.add_close_button = (item, side) => {
   let cb_setting = App.get_setting(`close_button`)
 

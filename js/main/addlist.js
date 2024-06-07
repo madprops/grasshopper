@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 const Addlist = {}
 
 Addlist.values = (id) => {
@@ -274,7 +276,7 @@ Addlist.edit = (args = {}) => {
   let widgets = oargs.widgets
   let first_menu
 
-  for (key of oargs.keys) {
+  for (let key of oargs.keys) {
     let value = args.items[key]
     let el = Addlist.widget(args.id, key)
     let w = widgets[key]

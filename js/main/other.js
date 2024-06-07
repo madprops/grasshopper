@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.check_first_time = () => {
   if (!App.first_time.date) {
     App.show_intro_message()
@@ -93,6 +95,8 @@ App.show_browser_menu = (e) => {
 }
 
 App.toggle_fullscreen = () => {
+  let main = DOM.el(`#main`)
+
   if (main.classList.contains(`fullscreen`)) {
     App.main_remove(`fullscreen`)
   }

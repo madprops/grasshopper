@@ -1,3 +1,5 @@
+/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
+
 App.setup_recent_tabs = () => {
   App.empty_previous_tabs_debouncer = App.create_debouncer(() => {
     App.do_empty_previous_tabs()
