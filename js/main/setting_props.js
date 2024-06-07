@@ -1220,7 +1220,7 @@ App.build_settings = () => {
       },
     },
     double_click_favorites: {
-      name: `Fav Bar Double Click`,
+      name: `Double Click Fav Bar`,
       type: `menu`,
       value: `open_new_tab`,
       info: `Command to run when double clicking the empty area from the Favorites Bar`,
@@ -1230,7 +1230,7 @@ App.build_settings = () => {
       },
     },
     middle_click_favorites: {
-      name: `Fav Middle Click`,
+      name: `Middle Click Fav Bar`,
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the Favorites Bar or Button`,
@@ -1240,7 +1240,7 @@ App.build_settings = () => {
       },
     },
     middle_click_favorites_button: {
-      name: `Fav Middle Click Button`,
+      name: `Middle Click Fav Button`,
       type: `menu`,
       value: `none`,
       info: `Command to run when middle clicking the Favorites Button`,
@@ -1519,7 +1519,7 @@ App.build_settings = () => {
       },
     },
     middle_click_actions_menu: {
-      name: `Middle Click Actions Menu`,
+      name: `Middle Click Actions`,
       type: `menu`,
       value: `browser_reload`,
       info: `Command to run when middle clicking the Actions Menu`,
@@ -1550,7 +1550,7 @@ App.build_settings = () => {
       },
     },
     middle_click_hover_button: {
-      name: `Middle Click Hover Button`,
+      name: `Middle Click Hover`,
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the Hover Button`,
@@ -1560,7 +1560,7 @@ App.build_settings = () => {
       },
     },
     middle_click_close_button: {
-      name: `Middle Click Close Button`,
+      name: `Middle Click Close`,
       type: `menu`,
       value: `unload_tabs`,
       info: `Command to run when middle clicking the Close Button`,
@@ -2258,6 +2258,16 @@ App.build_settings = () => {
       Used to further refine filtered items`,
       version: 1,
     },
+    double_click_filter: {
+      name: `Double Click Filter`,
+      type: `menu`,
+      value: `edit_global_notes`,
+      info: `What command to run when double clicking the text filter`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
     sticky_filter: {
       name: `Sticky Filter`,
       type: `menu`,
@@ -2471,18 +2481,8 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    double_click_filter: {
-      name: `Filter Double Click`,
-      type: `menu`,
-      value: `edit_global_notes`,
-      info: `What command to run when double clicking the text filter`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist)
-      },
-    },
     double_click_empty: {
-      name: `Empty Double Click`,
+      name: `Double Click Empty`,
       type: `menu`,
       value: `open_new_tab`,
       info: `What command to run when double clicking empty space`,
