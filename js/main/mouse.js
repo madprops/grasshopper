@@ -265,7 +265,7 @@ App.mouse_click_action = (mode, e) => {
 
 App.mouse_double_click_action = (mode, e) => {
   if (e.target.classList.contains(`item_container`)) {
-    let cmd = App.get_setting(`empty_double_click_command`)
+    let cmd = App.get_setting(`double_click_empty`)
     App.run_command({cmd: cmd, from: `mouse`, e: e})
   }
 

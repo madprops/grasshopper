@@ -2442,7 +2442,7 @@ App.build_settings = () => {
       version: 4,
     },
     double_click_item: {
-      name: `On Double Click`,
+      name: `Double Click`,
       type: `menu`,
       value: `item_action`,
       info: `What command to run when double clicking an item`,
@@ -2452,7 +2452,7 @@ App.build_settings = () => {
       },
     },
     left_click_press_item: {
-      name: `On Left Click Press`,
+      name: `Left Click Press`,
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the left mouse button on an item for a short time`,
@@ -2462,7 +2462,7 @@ App.build_settings = () => {
       },
     },
     middle_click_press_item: {
-      name: `On Middle Click Press`,
+      name: `Middle Click Press`,
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the middle mouse button on an item for a short time`,
@@ -2472,7 +2472,7 @@ App.build_settings = () => {
       },
     },
     double_click_filter: {
-      name: `On Filter Double Click`,
+      name: `Filter Double Click`,
       type: `menu`,
       value: `edit_global_notes`,
       info: `What command to run when double clicking the text filter`,
@@ -2481,8 +2481,8 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    empty_double_click_command: {
-      name: `On Empty Double Click`,
+    double_click_empty: {
+      name: `Empty Double Click`,
       type: `menu`,
       value: `open_new_tab`,
       info: `What command to run when double clicking empty space`,
@@ -2493,7 +2493,7 @@ App.build_settings = () => {
       },
     },
     double_ctrl_command: {
-      name: `On Double Ctrl`,
+      name: `Double Ctrl`,
       type: `menu`,
       value: `show_palette`,
       info: `What command to run when pressing Ctrl twice quickly`,
@@ -2503,7 +2503,7 @@ App.build_settings = () => {
       },
     },
     double_shift_command: {
-      name: `On Double Shift`,
+      name: `Double Shift`,
       type: `menu`,
       value: `previous_filter`,
       info: `What command to run when pressing Shift twice quickly`,
@@ -2513,7 +2513,7 @@ App.build_settings = () => {
       },
     },
     ctrl_press_command: {
-      name: `On Ctrl Press`,
+      name: `Ctrl Press`,
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing and holding Ctrl for a short time`,
@@ -2523,7 +2523,7 @@ App.build_settings = () => {
       },
     },
     shift_press_command: {
-      name: `On Shift Press`,
+      name: `Shift Press`,
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing and holding Shift for a short time`,
