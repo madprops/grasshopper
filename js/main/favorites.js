@@ -44,6 +44,25 @@ App.create_favorites_bar = (mode) => {
 
   let bar = DOM.create(`div`, cls, `favorites_bar_${mode}`)
   bar.title = App.favorites_title
+  let dcmd = App.get_setting(`double_click_favorites`)
+
+  if (dcmd) {
+    let cmd = App.get_command(dcmd)
+
+    if (cmd) {
+      bar.title += `\nDouble Click: ${cmd.name}`
+    }
+  }
+
+  dcmd = App.get_setting(`middle_click_favorites`)
+
+  if (dcmd) {
+    let cmd = App.get_command(dcmd)
+
+    if (cmd) {
+      bar.title += `\nDouble Click: ${cmd.name}`
+    }
+  }
 
   if (fav_pos === `top`) {
     bar.classList.add(`fav_top`)
