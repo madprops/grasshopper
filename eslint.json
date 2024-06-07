@@ -20,9 +20,9 @@
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
     "semi": ["error", "never"],
-    "no-unused-vars": "warn",
     "quotes": ["error", "backtick"],
     "no-undef": "off",
-    "no-useless-escape": "off"
+    "no-useless-escape": "off",
+    "no-unused-vars": "off"
   }
 }

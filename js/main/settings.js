@@ -75,14 +75,14 @@ App.settings_setup_checkboxes = (category) => {
 
       DOM.ev(App.get_settings_label(key), `click`, (e) => {
         App.settings_label_menu(e,
-        [
-          {
-            name: `Reset`, action: () => {
-              App.set_default_setting(key)
-              el.checked = App.get_setting(key)
-            }
-          },
-        ])
+          [
+            {
+              name: `Reset`, action: () => {
+                App.set_default_setting(key)
+                el.checked = App.get_setting(key)
+              }
+            },
+          ])
       })
     }
   }
@@ -305,15 +305,15 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 
   DOM.ev(App.get_settings_label(setting), `click`, (e) => {
     App.settings_label_menu(e,
-    [
-      {
-        name: `Reset`, action: () => {
-          App.set_default_setting(setting)
-          App.set_settings_menu(setting, undefined, false)
-          action()
-        }
-      },
-    ])
+      [
+        {
+          name: `Reset`, action: () => {
+            App.set_default_setting(setting)
+            App.set_settings_menu(setting, undefined, false)
+            action()
+          }
+        },
+      ])
   })
 }
 
@@ -572,14 +572,14 @@ App.start_color_picker = (setting, alpha = false) => {
 
   DOM.ev(App.get_settings_label(setting), `click`, (e) => {
     App.settings_label_menu(e,
-    [
-      {
-        name: `Reset`, action: () => {
-          App[setting].setColor(App.get_default_setting(setting))
-          App.set_default_setting(setting)
-        }
-      },
-    ])
+      [
+        {
+          name: `Reset`, action: () => {
+            App[setting].setColor(App.get_default_setting(setting))
+            App.set_default_setting(setting)
+          }
+        },
+      ])
   })
 }
 
@@ -1492,7 +1492,9 @@ App.mirror_settings = async () => {
   try {
     await browser.runtime.sendMessage({action: `mirror_settings`})
   }
-  catch (err) {}
+  catch (err) {
+    // Do nothing
+  }
 }
 
 App.settings_content = () => {

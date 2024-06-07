@@ -98,7 +98,7 @@ App.show_confirm = (args = {}) => {
 
   let on_dismiss = () => {
     if (args.cancel_action) {
-     args.cancel_action()
+      args.cancel_action()
     }
   }
 

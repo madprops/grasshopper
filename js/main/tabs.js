@@ -630,7 +630,7 @@ App.unmute_tabs = (item) => {
 
   App.show_confirm({
     message: `Unmute items? (${ids.length})`,
-      confirm_action: async () => {
+    confirm_action: async () => {
       for (let id of ids) {
         App.unmute_tab(id)
       }

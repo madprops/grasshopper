@@ -163,10 +163,10 @@ App.permission_msg = (what) => {
 
 App.main_add = (cls) => {
   let main = DOM.el(`#main`)
-	main.classList.add(cls)
+  main.classList.add(cls)
 }
 
 App.main_remove = (cls) => {
   let main = DOM.el(`#main`)
-	main.classList.remove(cls)
+  main.classList.remove(cls)
 }

@@ -11,34 +11,34 @@ App.show_tab_list = (what, e) => {
     tabs = App.get_pinned_tabs()
     title = `Pinned Tabs`
   }
-	else if (what === `playing`) {
-		tabs = App.get_playing_tabs()
+  else if (what === `playing`) {
+    tabs = App.get_playing_tabs()
     title = `Playing Tabs`
-	}
-	else if (what.startsWith(`color_`)) {
-		let color_id = what.split(`_`)[1]
+  }
+  else if (what.startsWith(`color_`)) {
+    let color_id = what.split(`_`)[1]
     let color = App.get_color_by_id(color_id)
 
     if (!color) {
       return
     }
 
-		tabs = App.get_color_tabs(color_id)
+    tabs = App.get_color_tabs(color_id)
     title = color.name
     title_icon = App.color_icon(color_id)
-	}
-	else if (what.startsWith(`tag_`)) {
-		let tag = what.split(`_`)[1]
-		tabs = App.get_tag_tabs(tag)
+  }
+  else if (what.startsWith(`tag_`)) {
+    let tag = what.split(`_`)[1]
+    tabs = App.get_tag_tabs(tag)
     title = `Tag: ${tag}`
-	}
-	else if (what.startsWith(`icon_`)) {
-		let icon = what.split(`_`)[1]
-		tabs = App.get_icon_tabs(icon)
+  }
+  else if (what.startsWith(`icon_`)) {
+    let icon = what.split(`_`)[1]
+    tabs = App.get_icon_tabs(icon)
     title = `Icon: ${icon}`
-	}
+  }
 
-	let items = []
+  let items = []
   let playing_icon = App.get_setting(`playing_icon`) || App.audio_icon
   let muted_icon = App.get_setting(`muted_icon`) || App.muted_icon
 
