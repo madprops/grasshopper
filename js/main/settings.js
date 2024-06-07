@@ -959,7 +959,7 @@ App.show_all_settings = () => {
       let cat = App.setting_catprops[item.category]
       let c_info = App.periods(cat.info)
       let s_cat = App.category_string(item.category)
-      lines.push(`${left}# ${s_cat} (${c_info})\n`)
+      lines.push(`${left}# ${s_cat} - ${c_info}\n`)
       category = item.category
     }
 
