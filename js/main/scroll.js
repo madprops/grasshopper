@@ -189,7 +189,16 @@ App.create_scroller = (mode) => {
       return
     }
 
-    App.scroll_page(mode, `up`)
+    if (e.button === 1) {
+      App.scroll_page(mode, `up`)
+    }
+    else if (e.button === 2) {
+      App.scroll(mode, `up`)
+    }
+  })
+
+  DOM.ev(scroller, `contextmenu`, (e) => {
+    e.preventDefault()
   })
 
   return scroller
