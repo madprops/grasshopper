@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.check_items_keyboard = (e) => {
   let mode = App.window_mode
   let item = App.get_selected(mode)

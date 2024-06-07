@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.setup_input = () => {
   DOM.ev(DOM.el(`#input_submit`), `click`, () => {
     App.input_enter()

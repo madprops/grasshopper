@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.title = (item) => {
   let title = App.get_title(item) || item.title || ``
 

@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.setup_prompt = () => {
   DOM.ev(DOM.el(`#prompt_submit`), `click`, () => {
     App.prompt_submit()

@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.create_step_back_button = (mode) => {
   let btn = DOM.create(`div`, `button icon_button`, `${mode}_back`)
   btn.title = `Step Back (Esc)\nRight Click: Show Recent Tabs`

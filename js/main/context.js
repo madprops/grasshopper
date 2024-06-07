@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.setup_context = () => {
   NeedContext.min_width = `1rem`
   NeedContext.center_top = 50

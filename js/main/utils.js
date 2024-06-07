@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.create_debouncer = (func, delay) => {
   if (typeof func !== `function`) {
     App.error(`Invalid debouncer function`)

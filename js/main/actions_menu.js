@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.get_actions = (mode) => {
   let menu = App.get_setting(`${mode}_menu`)
   return menu.map(item => item.cmd) || []

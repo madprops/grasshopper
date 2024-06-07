@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.setup_messages = () => {
   browser.runtime.onMessage.addListener(async (message) => {
     if (message.action === `mirror_settings`) {

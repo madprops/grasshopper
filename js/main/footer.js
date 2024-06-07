@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.setup_footer = () => {
   App.footer_count_debouncer = App.create_debouncer((mode) => {
     App.do_update_footer_count(mode)

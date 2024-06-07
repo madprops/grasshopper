@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.setup_commands = () => {
   let pin_icon = App.get_setting(`pin_icon`) || App.pin_icon
   let normal_icon = App.get_setting(`normal_icon`) || App.mode_icons.tabs

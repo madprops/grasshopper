@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.setup_items = () => {
   App.check_selected_debouncer = App.create_debouncer((mode) => {
     App.do_check_selected(mode)

@@ -1,5 +1,3 @@
-/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */
-
 App.create_taglist = () => {
   let position = App.get_setting(`taglist_position`)
   let taglist = DOM.create(`div`, `taglist`)
