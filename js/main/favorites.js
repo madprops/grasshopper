@@ -69,12 +69,6 @@ App.create_favorites_bar = (mode) => {
     App.favorites_double_click(e)
   })
 
-  DOM.ev(container, `auxclick`, (e) => {
-    if (e.button === 1) {
-      App.favorites_middle_click(e)
-    }
-  })
-
   DOM.ev(container, `mouseenter`, () => {
     if (App.get_setting(`favorites_autohide`)) {
       App.on_favorites_enter(mode)
