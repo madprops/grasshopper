@@ -11,7 +11,7 @@ unless Dir.exist?(directory)
 end
 
 # Define the content to be added at the top of each file
-new_header = "/* global App, DOM, browser, dateFormat, Addlist, AColorPicker, Menubutton, jdenticon, ColorLib, NiceGesture, NeedContext */"
+new_header = "/* Top line */"
 
 # Iterate over each JavaScript file in the directory
 Dir.glob(File.join(directory, "*.js")).each do |file|
