@@ -1372,6 +1372,16 @@ App.create_filter_menu = (mode) => {
 
   let btn = DOM.create(`div`, `button icon_button filter_button`, `${mode}_filter_modes`)
   btn.title = `Filters (Ctrl + F)\nRight Click: Show Favorite Filters or the Palette`
+  let dcmd = App.get_setting(`middle_click_filter_menu`)
+
+  if (dcmd) {
+    let cmd = App.get_command(dcmd)
+
+    if (cmd) {
+      btn.title += `\nMiddle Click: ${cmd.name}`
+    }
+  }
+
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
   let cmd = App.get_command(`filter_all`)
