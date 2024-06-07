@@ -97,7 +97,7 @@ App.close_tabs_popup = (type, item) => {
   if (type === `normal`) {
     pins_c.classList.add(`disabled`)
   }
-  else if (type === `unloaded` || type === `playing` || type === `loaded` || type === `empty`) {
+  else if (type === `unloaded` || type === `playing` || type === `loaded`) {
     unloaded_c.classList.add(`disabled`)
   }
 
