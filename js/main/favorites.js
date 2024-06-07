@@ -103,6 +103,15 @@ App.create_favorites_button = (mode) => {
   let btn = DOM.create(`div`, `favorites_button button`, `favorites_button_${mode}`)
   btn.textContent = App.settings_icons.favorites
   btn.title = App.favorites_title
+  let dcmd = App.get_setting(`middle_click_favorites_button`)
+
+  if (dcmd) {
+    let cmd = App.get_command(dcmd)
+
+    if (cmd) {
+      btn.title += `\nMiddle Click: ${cmd.name}`
+    }
+  }
 
   DOM.ev(btn, `click`, (e) => {
     App.show_favorites_menu(e)
