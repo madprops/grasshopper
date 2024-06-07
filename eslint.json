@@ -17,12 +17,12 @@
   "plugins": [
   ],
   "rules": {
-    "indent": ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    "semi": ["error", "never"],
-    "quotes": ["error", "backtick"],
     "no-undef": "off",
     "no-useless-escape": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "semi": "off",
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "backtick"]
   }
 }
