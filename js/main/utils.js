@@ -441,12 +441,12 @@ App.timeago = (date) => {
     m = [`year`, `years`]
   }
 
-  n = App.round(n, 2)
+  n = App.round(n, 1)
   w = App.plural(n, m[0], m[1])
   return `${n} ${w}`
 }
 
-App.round = (n, decimals = 2) => {
+App.round = (n, decimals) => {
   return Math.round(n * Math.pow(10, decimals)) / Math.pow(10, decimals)
 }
 
