@@ -70,7 +70,9 @@ App.custom_save = async (id, name, value) => {
   try {
     await browser.runtime.sendMessage({action: `mirror_edits`, id: id})
   }
-  catch (err) {}
+  catch (err) {
+    // Do nothing
+  }
 }
 
 App.edited = (item, include_ruled =  true) => {

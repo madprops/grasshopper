@@ -79,7 +79,6 @@ App.do_filter = async (args = {}) => {
     by_what = cmd[0]
   }
   else {
-    value = value
     by_what = `all`
   }
 
@@ -347,7 +346,9 @@ App.make_filter_regex = (value, by_what) => {
         regex = new RegExp(cleaned)
       }
     }
-    catch (err) {}
+    catch (err) {
+      // Do nothing
+    }
   }
   else {
     let cleaned = App.escape_regex(App.clean_filter(value))

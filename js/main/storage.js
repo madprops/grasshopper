@@ -44,7 +44,9 @@ App.stor_compat_check = async () => {
         try {
           localStorage.setItem(`${item.old}_backup`, JSON.stringify(obj))
         }
-        catch (err) {}
+        catch (err) {
+          // Do nothing
+        }
 
         localStorage.removeItem(item.old)
       }

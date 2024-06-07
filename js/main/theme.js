@@ -280,7 +280,7 @@ App.do_apply_theme = (args = {}) => {
         font_str = `custom_font, sans-serif`
       }
       else {
-        let font_link = document.getElementById('custom_font')
+        let font_link = document.getElementById(`custom_font`)
         font_link.href = `https://fonts.googleapis.com/css?family=${font}`
         font_str = `${font}, sans-serif`
       }
