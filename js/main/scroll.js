@@ -184,6 +184,14 @@ App.create_scroller = (mode) => {
     App.goto_top(mode)
   })
 
+  DOM.ev(scroller, `auxclick`, (e) => {
+    if (e.shiftKey || e.ctrlKey) {
+      return
+    }
+
+    App.scroll_page(mode, `up`)
+  })
+
   return scroller
 }
 
