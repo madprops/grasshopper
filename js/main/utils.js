@@ -441,9 +441,13 @@ App.timeago = (date) => {
     m = [`year`, `years`]
   }
 
-  n = Math.round(n)
-  let w = App.plural(n, m[0], m[1])
+  n = App.round(n, 2)
+  w = App.plural(n, m[0], m[1])
   return `${n} ${w}`
+}
+
+App.round = (n, decimals = 2) => {
+  return Math.round(n * Math.pow(10, decimals)) / Math.pow(10, decimals)
 }
 
 App.obj = (str) => {
