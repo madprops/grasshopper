@@ -352,7 +352,7 @@ App.hide_favorites = (set = false) => {
   }
 }
 
-App.toggle_favorites = (mode) => {
+App.toggle_favorites = (mode = App.active_mode) => {
   if (App.get_setting(`show_favorites`)) {
     App.hide_favorites(true)
   }

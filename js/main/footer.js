@@ -64,10 +64,16 @@ App.create_footer = (mode) => {
   if (mode === `tabs`) {
     let tab_box_btn = DOM.create(`div`, `pointer`, `footer_tab_box`)
     tab_box_btn.append(App.get_svg_icon(`arrow_up`))
-    tab_box_btn.title = `Toggle Tab Box`
+    tab_box_btn.title = `Toggle Tab Box\nMiddle Click: Toggle Favorites`
 
     DOM.ev(tab_box_btn, `click`, () => {
       App.toggle_tab_box()
+    })
+
+    DOM.ev(tab_box_btn, `auxclick`, (e) => {
+      if (e.button === 1) {
+        App.toggle_favorites()
+      }
     })
 
     footer.append(tab_box_btn)
