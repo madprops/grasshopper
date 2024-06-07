@@ -188,9 +188,11 @@ App.log = (message, mode = `normal`, date = false) => {
   }
 
   if (mode === `error`) {
+    // eslint-disable-next-line no-console
     console.error(`🔴 ${message}`)
   }
   else if (mode === `normal`) {
+    // eslint-disable-next-line no-console
     console.info(`🟢 ${message}`)
   }
   else if (mode === `debug`) {
@@ -200,15 +202,19 @@ App.log = (message, mode = `normal`, date = false) => {
       }
     }
 
+    // eslint-disable-next-line no-console
     console.info(`🔵 ${message}`)
   }
   else if (mode === `debug_force`) {
+    // eslint-disable-next-line no-console
     console.info(`🔵 ${message}`)
   }
   else if (mode === `green`) {
+    // eslint-disable-next-line no-console
     console.info(`%c${message}`, `color: lightgreen;`)
   }
   else {
+    // eslint-disable-next-line no-console
     console.info(message)
   }
 }
