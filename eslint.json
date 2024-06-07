@@ -32,9 +32,9 @@
     "NeedContext": "writable",
     "Menubutton": "writable",
     "ColorLib": "writable",
-    "browser": "writable",
-    "dateFormat": "writable",
     "AColorPicker": "writable",
-    "jdenticon": "writable"
+    "dateFormat": "writable",
+    "jdenticon": "writable",
+    "browser": "writable"
   }
 }
