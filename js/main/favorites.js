@@ -54,16 +54,16 @@ App.create_favorites_bar = (mode) => {
   App.trigger_title(empty_bottom, `middle_click_favorites_bottom`)
 
   if (fav_pos === `top`) {
-    bar.classList.add(`fav_top`)
+    container.classList.add(`fav_top`)
   }
   else if (fav_pos === `left`) {
-    bar.classList.add(`fav_left`)
+    container.classList.add(`fav_left`)
   }
   else if (fav_pos === `right`) {
-    bar.classList.add(`fav_right`)
+    container.classList.add(`fav_right`)
   }
   else if (fav_pos === `bottom`) {
-    bar.classList.add(`fav_bottom`)
+    container.classList.add(`fav_bottom`)
   }
 
   DOM.ev(bar, `contextmenu`, (e) => {

@@ -1101,6 +1101,12 @@ a:hover
   flex-grow: 1;
 }
 
+.fav_top .favorites_empty,
+.fav_bottom .favorites_empty
+{
+  display: none;
+}
+
 .hide_footer .footer {
   display: none;
 }
@@ -1315,6 +1321,18 @@ a:hover
   display: flex;
 }
 
+.favorites_bar_container.fav_left,
+.favorites_bar_container.fav_right
+{
+  flex-direction: column;
+}
+
+.favorites_bar_container.fav_top,
+.favorites_bar_container.fav_bottom
+{
+  flex-direction: row;
+}
+
 .favorites_bar {
   display: flex;
   flex-wrap: wrap;
@@ -1323,51 +1341,53 @@ a:hover
   gap: 0.35rem;
 }
 
-.favorites_bar.fav_top,
-.favorites_bar.fav_bottom
+.fav_top .favorites_bar,
+.fav_bottom .favorites_bar
 {
   flex-direction: row;
   width: 100%;
 }
 
-.favorites_bar.fav_top {
+.fav_top .favorites_bar {
   margin-bottom: 0.1rem;
 }
 
-.favorites_bar.fav_left .favorites_bar_item,
-.favorites_bar.fav_right .favorites_bar_item
+.fav_left .favorites_bar .favorites_bar_item,
+.fav_right .favorites_bar .favorites_bar_item
 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
 
-.favorites_gravity_top .favorites_bar.fav_left,
-.favorites_gravity_top .favorites_bar.fav_right
+.favorites_gravity_top .fav_left .favorites_bar,
+.favorites_gravity_top .fav_right .favorites_bar
 {
   justify-content: flex-start;
 }
 
-.favorites_gravity_center .favorites_bar.fav_left,
-.favorites_gravity_center .favorites_bar.fav_right
+.favorites_gravity_center .fav_left .favorites_bar,
+.favorites_gravity_center .fav_right .favorites_bar
 {
   justify-content: center;
 }
 
-.favorites_gravity_bottom .favorites_bar.fav_left,
-.favorites_gravity_bottom .favorites_bar.fav_right
+.favorites_gravity_bottom .fav_left .favorites_bar,
+.favorites_gravity_bottom .fav_right .favorites_bar
 {
   justify-content: flex-end;
 }
 
-.favorites_bar.fav_left {
+.fav_left .favorites_bar {
   flex-direction: column;
 }
 
-.favorites_bar.fav_right {
+.fav_right .favorites_bar {
   flex-direction: column;
 }
 
-.favorites_blur .favorites_bar {
+.favorites_blur .favorites_bar_container.fav_left,
+.favorites_blur .favorites_bar_container.fav_right
+{
   backdrop-filter: var(--backdrop);
 }
 
