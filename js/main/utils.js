@@ -569,3 +569,57 @@ App.trigger_title = (el, name) => {
     }
   }
 }
+
+App.similarity = (string_1, string_2) => {
+  let longer = string_1
+  let shorter = string_2
+
+  if (string_1.length < string_2.length) {
+    longer = string_2
+    shorter = string_1
+  }
+
+  let longer_length = longer.length
+
+  if (longer_length == 0) {
+    return 1.0
+  }
+
+  return (longer_length - App.similarity_distance(longer, shorter)) / parseFloat(longer_length)
+}
+
+App.similarity_distance = (string_1, string_2) => {
+  string_1 = string_1.toLowerCase()
+  string_2 = string_2.toLowerCase()
+
+  let costs = new Array()
+
+  for (let i = 0; i <= string_1.length; i++) {
+    let last_value = i
+
+    for (let j = 0; j <= string_2.length; j++) {
+      if (i == 0) {
+        costs[j] = j
+      }
+      else {
+        if (j > 0) {
+          let new_value = costs[j - 1]
+
+          if (string_1.charAt(i - 1) != string_2.charAt(j - 1)) {
+            new_value = Math.min(Math.min(new_value, last_value),
+              costs[j]) + 1
+          }
+
+          costs[j - 1] = last_value
+          last_value = new_value
+        }
+      }
+    }
+
+    if (i > 0) {
+      costs[string_2.length] = last_value
+    }
+  }
+
+  return costs[string_2.length]
+}

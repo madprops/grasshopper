@@ -830,7 +830,7 @@ App.set_custom_filter = (mode, filter) => {
   App.focus_filter(mode)
 }
 
-App.do_filter_2 = (mode) => {
+App.do_filter_2 = (mode, similar = false) => {
   let value = App.clean_filter(App.get_filter(mode)).toLowerCase()
   let type = App.popup_open() ? `popup` : `window`
   let win = DOM.el(`#${type}_${mode}`)
@@ -852,6 +852,9 @@ App.do_filter_2 = (mode) => {
     text = App.clean_filter(text).toLowerCase()
 
     if (text.includes(value)) {
+      item.classList.remove(`hidden`)
+    }
+    else if (similar && (App.similarity(text, value) >= App.similarity_threshold)) {
       item.classList.remove(`hidden`)
     }
     else {
