@@ -1214,6 +1214,7 @@ App.build_settings = () => {
       type: `color`,
       value: App.default_color,
       info: `Background color of the Favorites Bar`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key, true)
@@ -1229,6 +1230,17 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
+    middle_click_favorites_top: {
+      name: `Middle Click Fav Top`,
+      type: `menu`,
+      value: `close_tabs`,
+      info: `Command to run when middle clicking the top empty area of the Favorites Bar`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
     double_click_favorites_bottom: {
       name: `Double Click Fav Bottom`,
       type: `menu`,
@@ -1239,21 +1251,12 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    middle_click_favorites_top: {
-      name: `Middle Click Fav Top`,
-      type: `menu`,
-      value: `close_tabs`,
-      info: `Command to run when middle clicking the top empty area of the Favorites Bar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist)
-      },
-    },
     middle_click_favorites_bottom: {
       name: `Middle Click Fav Bottom`,
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the bottom empty area of the Favorites Bar`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
@@ -1275,6 +1278,7 @@ App.build_settings = () => {
       value: `center`,
       info: `Gravity of the items in side modes of the favorites bar
       Either make them stick to the top, center, or bottom`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
