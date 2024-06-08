@@ -1092,6 +1092,10 @@ a:hover
   white-space: nowrap;
 }
 
+.footer_info {
+  flex-grow: 1;
+}
+
 .hide_footer .footer {
   display: none;
 }

@@ -50,7 +50,8 @@ App.set_footer_info = (mode, text) => {
   if (footer) {
     let info = DOM.el(`.footer_info`, footer)
     info.textContent = text
-    info.title = text
+    info.title = `${text}\nClick to go to bottom`
+    App.trigger_title(info, `middle_click_footer`)
   }
 }
 
@@ -81,9 +82,18 @@ App.create_footer = (mode) => {
 
   let footer_content = DOM.create(`div`, `footer_content glow`)
   let footer_count = DOM.create(`div`, `footer_count`, `${mode}_footer_count`)
+  footer_count.title = `Number of items\nClick to select all`
   footer_content.append(footer_count)
   let footer_info = DOM.create(`div`, `footer_info`, `${mode}_footer_info`)
   footer_content.append(footer_info)
+
+  DOM.ev(footer_count, `click`, (e) => {
+    if (e.shiftKey || e.ctrlKey) {
+      return
+    }
+
+    App.select_all(mode, true)
+  })
 
   DOM.ev(footer_content, `click`, (e) => {
     if (e.shiftKey || e.ctrlKey) {
