@@ -62,7 +62,6 @@ App.edit_global_notes = () => {
     },
     value: App.notes,
     autosave: true,
-    bottom: true,
     wrap: true,
   })
 }

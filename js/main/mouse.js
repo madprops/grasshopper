@@ -374,7 +374,7 @@ App.mouse_middle_action = (mode, e) => {
 
   App.reset_triggers()
 
-  if (e.target.closest(`.favorites_bar`)) {
+  if (e.target.classList.contains(`favorites_bar`)) {
     let cmd = App.get_setting(`middle_click_favorites`)
     App.run_command({cmd: cmd, from: `favorites_button`, e: e})
     return
