@@ -1262,7 +1262,7 @@ App.build_settings = () => {
     middle_click_favorites_button: {
       name: `Middle Click Fav Button`,
       type: `menu`,
-      value: `show_about`,
+      value: `settings_category_favorites`,
       info: `Command to run when middle clicking the Favorites Button`,
       version: 1,
       setup: (key) => {

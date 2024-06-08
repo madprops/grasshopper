@@ -269,6 +269,24 @@ App.setup_commands = () => {
     })
   }
 
+  let settings_categories = []
+
+  for (let category in App.setting_catprops) {
+    let icon = App.settings_icons[category]
+    let c_name = App.category_string(category)
+    let name = `Settings (${c_name})`
+
+    settings_categories.push({
+      name: name,
+      cmd: `settings_category_${category}`,
+      icon: icon,
+      action: (args) => {
+        App.show_settings_category(category)
+      },
+      info: `Show settings (${c_name})`,
+    })
+  }
+
   App.commands = [
     {
       name: `Go To Top`,
@@ -421,6 +439,9 @@ App.setup_commands = () => {
       },
       info: `Reset all settings`,
     },
+
+    ...settings_categories,
+
     {
       name: `Export Theme`,
       cmd: `export_theme`,
