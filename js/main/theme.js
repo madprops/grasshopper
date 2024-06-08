@@ -742,8 +742,9 @@ App.cycle_background_opacity = (how = `cycle`) => {
 }
 
 App.reset_theme = () => {
-  App.set_setting(`background_effect`, `none`, false)
-  App.set_setting(`background_tiles`, `none`, false)
+  App.set_default_setting(`background_effect`, false)
+  App.set_default_setting(`background_tiles`, false)
+  App.set_default_setting(`background_opacity`, false)
 }
 
 App.export_theme = () => {
