@@ -695,7 +695,7 @@ App.toggle_pin = (item) => {
 }
 
 App.toggle_pin_tabs = (item) => {
-  let ids = []
+  let items = []
   let action
 
   for (let it of App.get_active_items({mode: `tabs`, item: item})) {
@@ -719,21 +719,40 @@ App.toggle_pin_tabs = (item) => {
       }
     }
 
-    ids.push(it.id)
+    items.push(it)
   }
 
-  if (!ids.length) {
+  if (!items.length) {
     return
   }
 
-  for (let id of ids) {
-    if (action === `pin`) {
-      App.pin_tab(id)
-    }
-    else {
-      App.unpin_tab(id)
-    }
+  let force = App.check_force(`warn_on_pin_tabs`, items)
+  let ids = items.map(x => x.id)
+  let msg = ``
+
+  if (action === `pin`) {
+    msg = `Pin items?`
   }
+  else {
+    msg = `Unpin items?`
+  }
+
+  msg += ` (${ids.length})`
+
+  App.show_confirm({
+    message: msg,
+    confirm_action: async () => {
+      for (let id of ids) {
+        if (action === `pin`) {
+          App.pin_tab(id)
+        }
+        else {
+          App.unpin_tab(id)
+        }
+      }
+    },
+    force: force,
+  })
 }
 
 App.toggle_mute_tabs = (item) => {
