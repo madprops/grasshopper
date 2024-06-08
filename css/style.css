@@ -1097,7 +1097,6 @@ a:hover
 }
 
 .favorites_empty {
-  background-color: red;
   width: 100%;
   flex-grow: 1;
 }
@@ -1308,11 +1307,12 @@ a:hover
   min-width: 1px;
   flex-shrink: 0;
   overflow: hidden;
+  flex-direction: column;
+  background-color: var(--favorites_bar_color);
 }
 
 .show_favorites .favorites_bar_container {
   display: flex;
-  flex-direction: column;
 }
 
 .favorites_bar {
@@ -1320,7 +1320,6 @@ a:hover
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background-color: var(--favorites_bar_color);
   gap: 0.35rem;
 }
 

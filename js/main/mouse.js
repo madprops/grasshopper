@@ -374,8 +374,14 @@ App.mouse_middle_action = (mode, e) => {
 
   App.reset_triggers()
 
-  if (e.target.classList.contains(`favorites_bar`)) {
-    let cmd = App.get_setting(`middle_click_favorites`)
+  if (e.target.classList.contains(`favorites_empty_top`)) {
+    let cmd = App.get_setting(`middle_click_favorites_top`)
+    App.run_command({cmd: cmd, from: `favorites_button`, e: e})
+    return
+  }
+
+  if (e.target.classList.contains(`favorites_empty_bottom`)) {
+    let cmd = App.get_setting(`middle_click_favorites_bottom`)
     App.run_command({cmd: cmd, from: `favorites_button`, e: e})
     return
   }

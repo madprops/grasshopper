@@ -1219,21 +1219,41 @@ App.build_settings = () => {
         App.start_color_picker(key, true)
       },
     },
-    double_click_favorites: {
-      name: `Double Click Fav Bar`,
+    double_click_favorites_top: {
+      name: `Double Click Fav Top`,
       type: `menu`,
       value: `open_new_tab`,
-      info: `Command to run when double clicking the empty area from the Favorites Bar`,
+      info: `Command to run when double clicking the top empty area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    middle_click_favorites: {
-      name: `Middle Click Fav Bar`,
+    double_click_favorites_bottom: {
+      name: `Double Click Fav Bottom`,
+      type: `menu`,
+      value: `open_new_tab`,
+      info: `Command to run when double clicking the bottom empty area of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    middle_click_favorites_top: {
+      name: `Middle Click Fav Top`,
       type: `menu`,
       value: `close_tabs`,
-      info: `Command to run when middle clicking the Favorites Bar or Button`,
+      info: `Command to run when middle clicking the top empty area of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    middle_click_favorites_bottom: {
+      name: `Middle Click Fav Bottom`,
+      type: `menu`,
+      value: `close_tabs`,
+      info: `Command to run when middle clicking the bottom empty area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)

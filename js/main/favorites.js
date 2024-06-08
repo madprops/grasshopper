@@ -44,11 +44,14 @@ App.create_favorites_bar = (mode) => {
 
   let bar = DOM.create(`div`, cls, `favorites_bar_${mode}`)
   bar.title = App.favorites_title
-  App.trigger_title(bar, `double_click_favorites`)
-  App.trigger_title(bar, `middle_click_favorites`)
 
-  let empty_top = DOM.create(`div`, `favorites_empty`, `favorites_empty_top_${mode}`)
-  let empty_bottom = DOM.create(`div`, `favorites_empty`, `favorites_empty_bottom_${mode}`)
+  let empty_top = DOM.create(`div`, `favorites_empty favorites_empty_top`, `favorites_empty_top_${mode}`)
+  App.trigger_title(empty_top, `double_click_favorites_top`)
+  App.trigger_title(empty_top, `middle_click_favorites_top`)
+
+  let empty_bottom = DOM.create(`div`, `favorites_empty favorites_empty_bottom`, `favorites_empty_bottom_${mode}`)
+  App.trigger_title(empty_bottom, `double_click_favorites_bottom`)
+  App.trigger_title(empty_bottom, `middle_click_favorites_bottom`)
 
   if (fav_pos === `top`) {
     bar.classList.add(`fav_top`)
@@ -68,8 +71,12 @@ App.create_favorites_bar = (mode) => {
     App.show_favorites_menu(e)
   })
 
-  DOM.ev(container, `dblclick`, (e) => {
-    App.favorites_double_click(e)
+  DOM.ev(empty_top, `dblclick`, (e) => {
+    App.favorites_double_click(e, `top`)
+  })
+
+  DOM.ev(empty_bottom, `dblclick`, (e) => {
+    App.favorites_double_click(e, `bottom`)
   })
 
   DOM.ev(container, `mouseenter`, () => {
@@ -113,16 +120,6 @@ App.create_favorites_button = (mode) => {
   DOM.ev(btn, `contextmenu`, (e) => {
     e.preventDefault()
     App.show_favorites_menu(e)
-  })
-
-  DOM.ev(btn, `dblclick`, (e) => {
-    App.favorites_double_click(e)
-  })
-
-  DOM.ev(btn, `auxclick`, (e) => {
-    if (e.button === 1) {
-      App.favorites_middle_click(e)
-    }
   })
 
   return btn
@@ -237,12 +234,8 @@ App.get_favorites = () => {
   return favs
 }
 
-App.favorites_double_click = (e) => {
-  if (e.target.closest(`.favorites_bar_item`)) {
-    return
-  }
-
-  let cmd = App.get_setting(`double_click_favorites`)
+App.favorites_double_click = (e, where) => {
+  let cmd = App.get_setting(`double_click_favorites_${where}`)
   let command = App.get_command(cmd)
 
   if (command) {
