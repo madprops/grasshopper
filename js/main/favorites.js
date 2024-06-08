@@ -47,6 +47,9 @@ App.create_favorites_bar = (mode) => {
   App.trigger_title(bar, `double_click_favorites`)
   App.trigger_title(bar, `middle_click_favorites`)
 
+  let empty_top = DOM.create(`div`, `favorites_empty`, `favorites_empty_top_${mode}`)
+  let empty_bottom = DOM.create(`div`, `favorites_empty`, `favorites_empty_bottom_${mode}`)
+
   if (fav_pos === `top`) {
     bar.classList.add(`fav_top`)
   }
@@ -81,7 +84,9 @@ App.create_favorites_bar = (mode) => {
     }
   })
 
+  container.append(empty_top)
   container.append(bar)
+  container.append(empty_bottom)
   return container
 }
 

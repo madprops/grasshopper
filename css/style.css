@@ -1096,6 +1096,12 @@ a:hover
   flex-grow: 1;
 }
 
+.favorites_empty {
+  background-color: red;
+  width: 100%;
+  flex-grow: 1;
+}
+
 .hide_footer .footer {
   display: none;
 }
@@ -1306,6 +1312,7 @@ a:hover
 
 .show_favorites .favorites_bar_container {
   display: flex;
+  flex-direction: column;
 }
 
 .favorites_bar {
@@ -1326,12 +1333,6 @@ a:hover
 
 .favorites_bar.fav_top {
   margin-bottom: 0.1rem;
-}
-
-.favorites_bar.fav_left,
-.favorites_bar.fav_right
-{
-  height: 100%;
 }
 
 .favorites_bar.fav_left .favorites_bar_item,
