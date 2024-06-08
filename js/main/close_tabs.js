@@ -345,7 +345,7 @@ App.get_all_tabs_items = (pins, unloaded) => {
 }
 
 App.close_all_tabs = (pins, unloaded) => {
-  let items = App.get_all_tabs_items(`tabs`)
+  let items = App.get_all_tabs_items(pins, unloaded)
 
   if (!items.length) {
     App.nothing_to_close()
@@ -376,7 +376,7 @@ App.get_pinned_tabs_items = (pins, unloaded) => {
 }
 
 App.close_pinned_tabs = (pins, unloaded) => {
-  let items = App.get_pinned_tabs_items()
+  let items = App.get_pinned_tabs_items(pins, unloaded)
 
   if (!items.length) {
     App.nothing_to_close()
