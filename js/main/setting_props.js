@@ -1521,7 +1521,7 @@ App.build_settings = () => {
     middle_click_playing: {
       name: `Middle Click Playing`,
       type: `menu`,
-      value: `mute_playing_tabs`,
+      value: `toggle_mute_tabs`,
       info: `Command to run when middle clicking the Playing Button`,
       version: 1,
       setup: (key) => {
