@@ -71,6 +71,16 @@ App.create_favorites_bar = (mode) => {
     App.show_favorites_menu(e)
   })
 
+  DOM.ev(empty_top, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.show_favorites_menu(e)
+  })
+
+  DOM.ev(empty_bottom, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.show_favorites_menu(e)
+  })
+
   DOM.ev(empty_top, `dblclick`, (e) => {
     App.favorites_double_click(e, `top`)
   })
