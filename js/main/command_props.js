@@ -991,6 +991,28 @@ App.setup_commands = () => {
       info: `Close other tabs`,
     },
     {
+      name: `Close Pins`,
+      cmd: `close_pinned_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: close_icon,
+      action: (args) => {
+        App.close_tabs_popup(`pinned`, args.item)
+      },
+      info: `Close pinned tabs`,
+    },
+    {
+      name: `Close All`,
+      cmd: `close_all_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: close_icon,
+      action: (args) => {
+        App.close_tabs_popup(`all`, args.item)
+      },
+      info: `Close all tabs`,
+    },
+    {
       name: `Close Empty`,
       cmd: `close_empty_tabs`,
       modes: [`tabs`],

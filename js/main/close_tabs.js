@@ -93,11 +93,14 @@ App.close_tabs_popup = (type, item) => {
   let unloaded_c = DOM.el(`#close_tabs_include_unloaded_container`)
   pins_c.classList.remove(`disabled`)
   unloaded_c.classList.remove(`disabled`)
+  let no_pins = [`normal`, `all`, `pinned`]
+  let no_unloaded = [`unloaded`, `playing`, `loaded`, `empty`, `all`]
 
-  if (type === `normal`) {
+  if (no_pins.includes(type)) {
     pins_c.classList.add(`disabled`)
   }
-  else if (type === `unloaded` || type === `playing` || type === `loaded`) {
+
+  if (no_unloaded.includes(type)) {
     unloaded_c.classList.add(`disabled`)
   }
 
@@ -328,6 +331,52 @@ App.get_other_tabs_items = (pins, unloaded) => {
 
 App.close_other_tabs = (pins, unloaded) => {
   let items = App.get_other_tabs_items(pins, unloaded)
+
+  if (!items.length) {
+    App.nothing_to_close()
+    return
+  }
+
+  App.close_tabs_method(items)
+}
+
+App.get_all_tabs_items = (pins, unloaded) => {
+  return App.get_items(`tabs`)
+}
+
+App.close_all_tabs = (pins, unloaded) => {
+  let items = App.get_all_tabs_items(`tabs`)
+
+  if (!items.length) {
+    App.nothing_to_close()
+    return
+  }
+
+  App.close_tabs_method(items)
+}
+
+App.get_pinned_tabs_items = (pins, unloaded) => {
+  let items = []
+
+  for (let it of App.get_items(`tabs`)) {
+    if (!it.pinned) {
+      continue
+    }
+
+    if (!unloaded) {
+      if (it.unloaded) {
+        continue
+      }
+    }
+
+    items.push(it)
+  }
+
+  return items
+}
+
+App.close_pinned_tabs = (pins, unloaded) => {
+  let items = App.get_pinned_tabs_items()
 
   if (!items.length) {
     App.nothing_to_close()
