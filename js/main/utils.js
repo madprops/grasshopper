@@ -564,6 +564,8 @@ App.trigger_title = (el, name) => {
       else if (name.startsWith(`double_click`)) {
         el.title += `\nDouble Click: ${cmd.name}`
       }
+
+      el.title = el.title.trim()
     }
   }
 }
