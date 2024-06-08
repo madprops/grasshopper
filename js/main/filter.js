@@ -830,7 +830,7 @@ App.set_custom_filter = (mode, filter) => {
   App.focus_filter(mode)
 }
 
-App.do_filter_2 = (mode, similar = false) => {
+App.do_filter_2 = (mode, similar = true) => {
   let value = App.clean_filter(App.get_filter(mode)).toLowerCase()
   let type = App.popup_open() ? `popup` : `window`
   let win = DOM.el(`#${type}_${mode}`)
