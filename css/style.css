@@ -1104,7 +1104,13 @@ a:hover
 .fav_top .favorites_empty,
 .fav_bottom .favorites_empty
 {
-  display: none;
+  width: 1.5rem;
+}
+
+.fav_left .favorites_empty,
+.fav_right .favorites_empty
+{
+  min-height: 1.5rem;
 }
 
 .hide_footer .footer {
