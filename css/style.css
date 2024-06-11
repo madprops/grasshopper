@@ -1371,6 +1371,12 @@ a:hover
   justify-content: flex-start;
 }
 
+.favorites_gravity_top .fav_left .favorites_empty_top,
+.favorites_gravity_top .fav_right .favorites_empty_top
+{
+  display: none;
+}
+
 .favorites_gravity_center .fav_left .favorites_bar,
 .favorites_gravity_center .fav_right .favorites_bar
 {
@@ -1381,6 +1387,12 @@ a:hover
 .favorites_gravity_bottom .fav_right .favorites_bar
 {
   justify-content: flex-end;
+}
+
+.favorites_gravity_bottom .fav_left .favorites_empty_bottom,
+.favorites_gravity_bottom .fav_right .favorites_empty_bottom
+{
+  display: none;
 }
 
 .fav_left .favorites_bar {
