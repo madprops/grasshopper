@@ -18,7 +18,7 @@ App.do_check_pinline = () => {
 
   if (show === `auto`) {
     if (App.get_setting(`hide_pins`)) {
-      if (!App.is_filtered_pins(`tabs`)) {
+      if (!App.is_filtered(`tabs`)) {
         show = `never`
       }
     }

@@ -948,7 +948,7 @@ App.build_settings = () => {
       name: `Hide Pins`,
       type: `checkbox`,
       value: false,
-      info: `Don't show the pins
+      info: `Don't show the pins in All filter mode.
       Might be used in combination with the Tab Box or Show Pins`,
       version: 1,
     },

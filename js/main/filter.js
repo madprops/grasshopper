@@ -213,7 +213,7 @@ App.do_filter = async (args = {}) => {
   let headers = filter_mode === `filter_header_tabs`
   let header_match = 0
   let max_header = App.get_setting(`header_filter_context`)
-  let force_pins = Boolean(value) || (filter_mode === `filter_pinned_tabs`)
+  let force_pins = App.is_filtered(args.mode)
   let check_pins = App.get_setting(`hide_pins`)
 
   for (let item of items) {
@@ -549,10 +549,6 @@ App.focus_filter = (mode = App.active_mode) => {
 
 App.is_filtered = (mode = App.active_mode) => {
   return App.filter_has_value(mode) || (App.filter_mode(mode) !== `all`)
-}
-
-App.is_filtered_pins = (mode = App.active_mode) => {
-  return App.filter_has_value(mode) || (App.filter_mode(mode) === `filter_pinned_tabs`)
 }
 
 App.clear_filter = (mode = App.active_mode) => {
