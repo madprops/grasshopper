@@ -873,7 +873,7 @@ App.build_settings = () => {
         {cmd: `show_search_media_menu`},
         {cmd: `bookmark_page`},
       ],
-      info: `Menu to show when clicking the tabs menu`,
+      info: `Menu to show when clicking the bookmarks menu`,
       version: 1,
     },
     closed_menu: {
@@ -2895,4 +2895,23 @@ App.build_settings = () => {
       info: `Even more settings`,
     },
   }
+
+  App.check_settings_dups(App.setting_props)
+  App.check_settings_dups(App.setting_catprops)
+}
+
+App.check_settings_dups = (obj) => {
+  let infos = []
+
+  for (let key in obj) {
+    let sett = obj[key]
+
+    if (infos.includes(sett.info)) {
+      console.info(`Duplicate Setting: ${sett.info}`)
+    }
+
+    infos.push(sett.info)
+  }
+
+  return infos
 }
