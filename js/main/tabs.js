@@ -1346,13 +1346,27 @@ App.tab_ready = (item) => {
 App.check_pins = (item, force = false) => {
   if (App.get_setting(`hide_pins`) && !item.tab_box) {
     if (!force && item.pinned) {
-      item.element.classList.add(`hidden_2`)
-      item.visible = false
+      App.hide_pin(item)
     }
     else {
-      item.element.classList.remove(`hidden_2`)
-      item.visible = true
+      App.show_pin(item)
     }
+  }
+}
+
+App.hide_pin = (item) => {
+  item.element.classList.add(`hidden_2`)
+  item.visible = false
+}
+
+App.show_pin = (item) => {
+  item.element.classList.remove(`hidden_2`)
+  item.visible = true
+}
+
+App.show_all_pins = () => {
+  for (let item of App.get_items(`tabs`)) {
+    App.show_pin(item)
   }
 }
 
@@ -1459,4 +1473,15 @@ App.tabs_in_same_place = (items) => {
   let all_pinned = items.every(x => x.pinned)
   let all_normal = items.every(x => !x.pinned)
   return all_pinned || all_normal
+}
+
+App.toggle_show_pins = () => {
+  let hide = App.get_setting(`hide_pins`)
+  App.set_setting(`hide_pins`, !hide)
+
+  if (hide) {
+    App.show_all_pins()
+  }
+
+  App.do_filter({mode: App.active_mode})
 }

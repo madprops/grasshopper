@@ -830,6 +830,18 @@ App.setup_commands = () => {
       info: `Pin or unpin tabs`,
     },
     {
+      name: `Toggle Pins`,
+      cmd: `toggle_show_pins`,
+      modes: [`tabs`],
+      item: true,
+      some_loaded: true,
+      icon: pin_icon,
+      action: (args) => {
+        App.toggle_show_pins(args.item)
+      },
+      info: `Hide or show pins`,
+    },
+    {
       name: `New Pin`,
       cmd: `new_pinned_tab`,
       modes: [`tabs`],
