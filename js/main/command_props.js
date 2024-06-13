@@ -410,7 +410,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.export_settings()
       },
-      info: `Import settings`,
+      info: `Export settings`,
     },
     {
       name: `Import Settings`,
@@ -449,7 +449,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.export_theme()
       },
-      info: `Import theme`,
+      info: `Export theme`,
     },
     {
       name: `Import Theme`,
@@ -1504,7 +1504,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_subheaders(args.item)
       },
-      info: `Close all header tabs`,
+      info: `Close all subheader tabs`,
     },
     {
       name: `Replace Tag`,
@@ -1703,7 +1703,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_filter_icon_menu(args.mode, args.e, true)
       },
-      info: `Show the filter tag menu for showing instead of filtering`,
+      info: `Filter a specific icon`,
     },
     {
       name: `Filter Pins`,
@@ -2018,6 +2018,21 @@ App.setup_commands = () => {
       info: `Restart the extension (For debugging)`,
     }
   ]
+
+  let infos = App.commands.map(command => command.info)
+  let dup_info = infos.filter((info, index) => infos.indexOf(info) !== index)
+  let cmds = App.commands.map(command => command.cmd)
+  let dup_cmds = cmds.filter((cmd, index) => cmds.indexOf(cmd) !== index)
+
+  if (dup_info.length) {
+    console.info(`Duplicate Commands Info:`)
+    console.info(dup_info)
+  }
+
+  if (dup_cmds.length) {
+    console.info(`Duplicate Commands Cmd:`)
+    console.info(dup_cmds)
+  }
 
   App.sort_commands()
 }
