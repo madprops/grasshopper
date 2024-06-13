@@ -2025,13 +2025,11 @@ App.setup_commands = () => {
   let dup_cmds = cmds.filter((cmd, index) => cmds.indexOf(cmd) !== index)
 
   if (dup_info.length) {
-    console.info(`Duplicate Commands Info:`)
-    console.info(dup_info)
+    App.error(`Duplicate Commands Info: ${dup_info}`)
   }
 
   if (dup_cmds.length) {
-    console.info(`Duplicate Commands Cmd:`)
-    console.info(dup_cmds)
+    App.error(`Duplicate Commands Cmd: ${dup_cmds}`)
   }
 
   App.sort_commands()

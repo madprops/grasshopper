@@ -2907,7 +2907,7 @@ App.check_settings_dups = (obj) => {
     let sett = obj[key]
 
     if (infos.includes(sett.info)) {
-      console.info(`Duplicate Setting: ${sett.info}`)
+      App.error(`Duplicate Setting: ${sett.info}`)
     }
 
     infos.push(sett.info)
