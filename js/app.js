@@ -259,16 +259,21 @@ App.filter_whats = [
 
 App.themes = [
   {num: 1, opacity: 90},
-  {num: 2, opacity: 90},
+  {num: 2, opacity: 88},
   {num: 3, opacity: 80},
   {
-    num: 4, opacity: 70,
+    num: 4, opacity: 75,
     text_color: `rgb(207, 213, 255)`,
     background_color: `rgb(33, 61, 101)`
   },
   {
-    num: 5, opacity: 70,
+    num: 5, opacity: 75,
     text_color: `rgb(252, 221, 241)`,
     background_color: `rgb(49, 14, 38)`
+  },
+  {
+    num: 6, opacity: 75,
+    text_color: `rgb(233, 233, 233)`,
+    background_color: `rgb(45, 45, 55)`
   },
 ]
