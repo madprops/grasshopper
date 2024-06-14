@@ -196,7 +196,7 @@ App.clear_selected = (mode) => {
   }
 }
 
-App.get_items = (mode) => {
+App.get_items = (mode = App.active_mode) => {
   let items = App[`${mode}_items`] || []
   App.remove_undefined(items)
   return items
@@ -923,6 +923,7 @@ App.deselect_all = (mode) => {
 App.get_active_items = (args = {}) => {
   let def_args = {
     multiple: true,
+    mode: args.active_mode,
   }
 
   App.def_args(def_args, args)
