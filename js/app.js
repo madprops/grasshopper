@@ -262,12 +262,12 @@ App.themes = [
   {num: 2, opacity: 88},
   {num: 3, opacity: 80},
   {
-    num: 4, opacity: 75,
+    num: 4, opacity: 72,
     text_color: `rgb(207, 213, 255)`,
     background_color: `rgb(33, 61, 101)`
   },
   {
-    num: 5, opacity: 75,
+    num: 5, opacity: 72,
     text_color: `rgb(252, 221, 241)`,
     background_color: `rgb(49, 14, 38)`
   },
