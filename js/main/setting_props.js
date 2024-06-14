@@ -2781,6 +2781,19 @@ App.build_settings = () => {
 
   add_props()
 
+  let theme_pickers = []
+
+  for (let num = 1; num <= App.themes.length; num++) {
+    let obj = {
+      text: num,
+      action: () => {
+        App.set_theme(num)
+      },
+    }
+
+    theme_pickers.push(obj)
+  }
+
   // Category Properties
   App.setting_catprops = {
     general: {
@@ -2834,38 +2847,8 @@ App.build_settings = () => {
             },
           },
         ],
-        [
-          {
-            text: `1`,
-            action: () => {
-              App.set_theme(1)
-            },
-          },
-          {
-            text: `2`,
-            action: () => {
-              App.set_theme(2)
-            },
-          },
-          {
-            text: `3`,
-            action: () => {
-              App.set_theme(3)
-            },
-          },
-          {
-            text: `4`,
-            action: () => {
-              App.set_theme(4)
-            },
-          },
-          {
-            text: `5`,
-            action: () => {
-              App.set_theme(5)
-            },
-          },
-        ],
+
+        theme_pickers
       ]
     },
     colors: {

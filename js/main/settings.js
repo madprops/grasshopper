@@ -1391,6 +1391,23 @@ App.pick_background = (e) => {
   App.show_context({e: e, items: items})
 }
 
+App.show_theme_menu = () => {
+  let items = []
+
+  for (let bg of App.themes) {
+    items.push({
+      text: `Theme ${bg.num}`,
+      action: () => {
+        App.set_theme(bg.num)
+      },
+      image: App.background_path(bg.num),
+    })
+  }
+
+  App.show_context({items: items})
+
+}
+
 App.set_previous_theme = () => {
   let bg = App.get_setting(`background_image`)
   let num = App.themes.length + 1
