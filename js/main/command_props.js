@@ -329,6 +329,16 @@ App.setup_commands = () => {
       info: `Select all items`,
     },
     {
+      name: `Deselect All`,
+      cmd: `dselect_all_items`,
+      modes: [`items`],
+      icon: command_icon,
+      action: (args) => {
+        App.deselect_all(args.mode, true)
+      },
+      info: `Deselect all items`,
+    },
+    {
       name: `Select Up`,
       cmd: `select_items_up`,
       modes: [`items`],

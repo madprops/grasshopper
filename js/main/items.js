@@ -885,14 +885,7 @@ App.select_all = (mode = App.active_mode, toggle = false) => {
     }
 
     if (all_selected) {
-      let filtered = App.is_filtered(mode)
-      let select = `selected`
-
-      if ((mode === `tabs`) && !filtered) {
-        select = `active`
-      }
-
-      App.deselect({mode: mode, select: select})
+      App.deselect_all(mode)
       return
     }
   }
@@ -914,6 +907,17 @@ App.select_all = (mode = App.active_mode, toggle = false) => {
   if (first) {
     App.set_selected(first)
   }
+}
+
+App.deselect_all = (mode) => {
+  let filtered = App.is_filtered(mode)
+  let select = `selected`
+
+  if ((mode === `tabs`) && !filtered) {
+    select = `active`
+  }
+
+  App.deselect({mode: mode, select: select})
 }
 
 App.get_active_items = (args = {}) => {
