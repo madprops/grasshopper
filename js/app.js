@@ -257,7 +257,9 @@ App.filter_whats = [
   `tags`,
 ]
 
+// Suggestions:
 // Keep this at 5 items
+// Don't go lower than 75 opacity
 App.themes = [
   {num: 1, opacity: 90},
   {num: 2, opacity: 88},
@@ -267,7 +269,5 @@ App.themes = [
     text_color: `rgb(207, 213, 255)`,
     background_color: `rgb(33, 61, 101)`
   },
-  {
-    num: 5, opacity: 75,
-  },
+  {num: 5, opacity: 75},
 ]
