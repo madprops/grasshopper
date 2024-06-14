@@ -2353,7 +2353,7 @@ App.build_settings = () => {
       name: `Filter Effect`,
       type: `checkbox`,
       value: true,
-      info: `Make it clear that a filter is active`,
+      info: `Make it clear that the filter has text through contrast`,
       version: 1,
     },
     clear_on_all: {
