@@ -1382,7 +1382,7 @@ App.pick_background = (e) => {
     items.push({
       text: `Background ${bg.num}`,
       action: () => {
-        App.do_pick_background(bg)
+        App.do_pick_background(bg.num)
       },
       image: App.background_path(bg.num),
     })
@@ -1391,7 +1391,20 @@ App.pick_background = (e) => {
   App.show_context({e: e, items: items})
 }
 
-App.do_pick_background = (bg) => {
+App.do_pick_background = (num) => {
+  let bg
+
+  for (let bg_ of App.backgrounds) {
+    if (bg_.num === num) {
+      bg = bg_
+      break
+    }
+  }
+
+  if (!bg) {
+    return
+  }
+
   let value = `Background ${bg.num}`
   DOM.el(`#settings_background_image`).value = value
 
