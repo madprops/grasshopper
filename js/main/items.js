@@ -885,13 +885,11 @@ App.select_all = (mode = App.active_mode, toggle = false) => {
     }
 
     if (all_selected) {
-      let select
+      let filtered = App.is_filtered(mode)
+      let select = `selected`
 
-      if (mode === `tabs`) {
+      if ((mode === `tabs`) && !filtered) {
         select = `active`
-      }
-      else {
-        select = `selected`
       }
 
       App.deselect({mode: mode, select: select})
