@@ -477,7 +477,6 @@ App.check_theme_refresh = () => {
     if (App.settings_category === `theme`) {
       App.background_color.setColor(App.get_setting(`background_color`), true)
       App.text_color.setColor(App.get_setting(`text_color`), true)
-      DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
       App.set_settings_menu(`background_effect`, undefined, false)
       App.set_settings_menu(`background_tiles`, undefined, false)
     }
