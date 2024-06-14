@@ -498,6 +498,15 @@ App.setup_commands = () => {
       info: `Show the theme menu`,
     },
     {
+      name: `Background Menu`,
+      cmd: `show_background_menu`,
+      icon: theme_icon,
+      action: (args) => {
+        App.show_background_menu()
+      },
+      info: `Show the background menu`,
+    },
+    {
       name: `Show About`,
       cmd: `show_about`,
       icon: bot_icon,

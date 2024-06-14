@@ -1405,7 +1405,22 @@ App.show_theme_menu = () => {
   }
 
   App.show_context({items: items})
+}
 
+App.show_background_menu = () => {
+  let items = []
+
+  for (let bg of App.themes) {
+    items.push({
+      text: `Background ${bg.num}`,
+      action: () => {
+        App.set_background_image(bg.num)
+      },
+      image: App.background_path(bg.num),
+    })
+  }
+
+  App.show_context({items: items})
 }
 
 App.set_previous_theme = () => {
