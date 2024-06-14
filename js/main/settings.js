@@ -1391,6 +1391,23 @@ App.pick_background = (e) => {
   App.show_context({e: e, items: items})
 }
 
+App.set_previous_theme = () => {
+  let bg = App.get_setting(`background_image`)
+  let num = App.themes.length + 1
+
+  if (bg.startsWith(`Background`)) {
+    num = parseInt(bg.split(` `)[1])
+  }
+
+  let prev = num - 1
+
+  if (prev < 1) {
+    prev = App.themes.length
+  }
+
+  App.set_theme(prev)
+}
+
 App.set_next_theme = () => {
   let bg = App.get_setting(`background_image`)
   let num = 0
