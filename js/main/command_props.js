@@ -1080,6 +1080,26 @@ App.setup_commands = () => {
       },
       info: `Close empty tabs`,
     },
+    {
+      name: `Close First`,
+      cmd: `close_first_tab`,
+      modes: [`tabs`],
+      icon: close_icon,
+      action: (args) => {
+        App.close_first_tab()
+      },
+      info: `Close the first tab`,
+    },
+    {
+      name: `Close Last`,
+      cmd: `close_last_tab`,
+      modes: [`tabs`],
+      icon: close_icon,
+      action: (args) => {
+        App.close_last_tab()
+      },
+      info: `Close the last tab`,
+    },
 
     ...color_closers,
 

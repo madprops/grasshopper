@@ -469,3 +469,13 @@ App.close_tabs_next = (reverse = false) => {
 App.nothing_to_close = () => {
   App.alert(`Nothing to close`)
 }
+
+App.close_first_tab = () => {
+  let first = App.get_items(`tabs`)[0]
+  App.close_tabs(first)
+}
+
+App.close_last_tab = () => {
+  let last = App.get_items(`tabs`).slice(-1)[0]
+  App.close_tabs(last)
+}
