@@ -471,6 +471,15 @@ App.setup_commands = () => {
       info: `Import theme`,
     },
     {
+      name: `Next Theme`,
+      cmd: `set_next_theme`,
+      icon: theme_icon,
+      action: (args) => {
+        App.set_next_theme()
+      },
+      info: `Set the next theme`,
+    },
+    {
       name: `Theme 1`,
       cmd: `set_theme_1`,
       icon: theme_icon,
