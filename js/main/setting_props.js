@@ -2839,31 +2839,31 @@ App.build_settings = () => {
           {
             text: `1`,
             action: () => {
-              App.do_pick_background(1)
+              App.set_theme(1)
             },
           },
           {
             text: `2`,
             action: () => {
-              App.do_pick_background(2)
+              App.set_theme(2)
             },
           },
           {
             text: `3`,
             action: () => {
-              App.do_pick_background(3)
+              App.set_theme(3)
             },
           },
           {
             text: `4`,
             action: () => {
-              App.do_pick_background(4)
+              App.set_theme(4)
             },
           },
           {
             text: `5`,
             action: () => {
-              App.do_pick_background(5)
+              App.set_theme(5)
             },
           },
         ],

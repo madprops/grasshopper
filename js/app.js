@@ -257,7 +257,7 @@ App.filter_whats = [
   `tags`,
 ]
 
-App.backgrounds = [
+App.themes = [
   {num: 1, opacity: 90},
   {num: 2, opacity: 90},
   {num: 3, opacity: 80},

@@ -532,7 +532,7 @@ App.set_background = (url) => {
 
     let num = parseInt(match[0])
 
-    if (num > App.backgrounds.length) {
+    if (num > App.themes.length) {
       unset()
       return
     }

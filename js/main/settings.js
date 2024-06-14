@@ -1378,11 +1378,11 @@ App.settings_build_category = (key) => {
 App.pick_background = (e) => {
   let items = []
 
-  for (let bg of App.backgrounds) {
+  for (let bg of App.themes) {
     items.push({
       text: `Background ${bg.num}`,
       action: () => {
-        App.do_pick_background(bg.num)
+        App.set_background_image(bg.num)
       },
       image: App.background_path(bg.num),
     })
@@ -1391,10 +1391,10 @@ App.pick_background = (e) => {
   App.show_context({e: e, items: items})
 }
 
-App.do_pick_background = (num) => {
+App.set_theme = (num) => {
   let bg
 
-  for (let bg_ of App.backgrounds) {
+  for (let bg_ of App.themes) {
     if (bg_.num === num) {
       bg = bg_
       break
@@ -1404,9 +1404,6 @@ App.do_pick_background = (num) => {
   if (!bg) {
     return
   }
-
-  let value = `Background ${bg.num}`
-  DOM.el(`#settings_background_image`).value = value
 
   if (bg.opacity) {
     App.set_setting(`background_opacity`, bg.opacity, false)
@@ -1429,8 +1426,14 @@ App.do_pick_background = (num) => {
     App.set_default_setting(`background_color`, false)
   }
 
-  App.set_setting(`background_image`, value)
+  App.set_background_image(bg.num)
   App.show_settings_category(`theme`)
+}
+
+App.set_background_image = (num) => {
+  let bg_image = `Background ${num}`
+  DOM.el(`#settings_background_image`).value = bg_image
+  App.set_setting(`background_image`, bg_image)
 }
 
 App.background_path = (num) => {
