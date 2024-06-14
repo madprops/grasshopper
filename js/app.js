@@ -266,4 +266,9 @@ App.backgrounds = [
     text_color: `rgb(207, 213, 255)`,
     background_color: `rgb(33, 61, 101)`
   },
+  {
+    num: 5, opacity: 70,
+    text_color: `rgb(252, 221, 241)`,
+    background_color: `rgb(49, 14, 38)`
+  },
 ]
