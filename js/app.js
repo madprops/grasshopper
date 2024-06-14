@@ -263,7 +263,7 @@ App.themes = [
   {num: 2, opacity: 88},
   {num: 3, opacity: 80},
   {
-    num: 4, opacity: 72,
+    num: 4, opacity: 75,
     text_color: `rgb(207, 213, 255)`,
     background_color: `rgb(33, 61, 101)`
   },
