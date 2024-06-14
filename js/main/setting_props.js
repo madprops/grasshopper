@@ -2866,12 +2866,6 @@ App.build_settings = () => {
               App.set_theme(5)
             },
           },
-          {
-            text: `6`,
-            action: () => {
-              App.set_theme(6)
-            },
-          },
         ],
       ]
     },
