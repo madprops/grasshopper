@@ -1432,6 +1432,7 @@ App.set_theme = (num) => {
 
 App.set_background_image = (num) => {
   let bg_image = `Background ${num}`
+  DOM.el(`#settings_background_image`).value = bg_image
   App.set_setting(`background_image`, bg_image, false)
   App.apply_theme()
 }
