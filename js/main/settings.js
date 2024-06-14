@@ -1378,23 +1378,46 @@ App.settings_build_category = (key) => {
 App.pick_background = (e) => {
   let items = []
 
-  for (let num=1; num<=App.num_backgrounds; num++) {
+  for (let bg of App.backgrounds) {
     items.push({
-      text: `Background ${num}`,
+      text: `Background ${bg.num}`,
       action: () => {
-        App.do_pick_background(num)
+        App.do_pick_background(bg)
       },
-      image: App.background_path(num),
+      image: App.background_path(bg.num),
     })
   }
 
   App.show_context({e: e, items: items})
 }
 
-App.do_pick_background = (num) => {
-  let value = `Background ${num}`
+App.do_pick_background = (bg) => {
+  let value = `Background ${bg.num}`
   DOM.el(`#settings_background_image`).value = value
+
+  if (bg.opacity) {
+    App.set_setting(`background_opacity`, bg.opacity, false)
+  }
+  else {
+    App.set_default_setting(`background_opacity`, false)
+  }
+
+  if (bg.text_color) {
+    App.set_setting(`text_color`, bg.text_color, false)
+  }
+  else {
+    App.set_default_setting(`text_color`, false)
+  }
+
+  if (bg.background_color) {
+    App.set_setting(`background_color`, bg.background_color, false)
+  }
+  else {
+    App.set_default_setting(`background_color`, false)
+  }
+
   App.set_setting(`background_image`, value)
+  App.show_settings_category(`theme`)
 }
 
 App.background_path = (num) => {

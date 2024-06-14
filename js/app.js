@@ -47,7 +47,6 @@ App.persistent_modes = [`tabs`]
 App.close_text = `Close`
 App.filter_search_date = 0
 App.backgrounds_dir = `/img/backgrounds/`
-App.num_backgrounds = 3
 App.number_min = 1
 App.number_max = 99999
 App.tag_history_max = 10
@@ -256,4 +255,15 @@ App.filter_whats = [
   `colors`,
   `tag`,
   `tags`,
+]
+
+App.backgrounds = [
+  {num: 1, opacity: 90},
+  {num: 2, opacity: 90},
+  {num: 3, opacity: 80},
+  {
+    num: 4, opacity: 70,
+    text_color: `rgb(207, 213, 255)`,
+    background_color: `rgb(33, 61, 101)`
+  },
 ]
