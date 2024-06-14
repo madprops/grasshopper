@@ -69,6 +69,7 @@ App.last_restore_date = 0
 App.pinline_visible = false
 App.similarity_threshold = 0.7
 App.palette_threshold = 100
+App.item_menu_threshold = 100
 
 App.settings_done = false
 App.settings_ready = false

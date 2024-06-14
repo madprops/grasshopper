@@ -5,6 +5,7 @@ App.show_item_menu = async (args = {}) => {
 
   App.item_menu_args = args
   App.item_menu_active = App.get_active_items({mode: args.item.mode, item: args.item})
+  App.item_menu_too_many = App.item_menu_active.length > App.item_menu_threshold
   let items = []
 
   if (App.get_setting(`extra_menu_mode`) === `total`) {
@@ -196,7 +197,7 @@ App.extra_menu_items = (o_items) => {
 App.item_menu_item = (items, cmd, obj) => {
   let command = App.get_command(cmd)
 
-  if (command && App.check_command(command, obj)) {
+  if (App.item_menu_too_many || (command && App.check_command(command, obj))) {
     obj.from = `item_menu`
     obj.e = App.item_menu_args.e
     obj.mode = App.item_menu_args.item.mode
