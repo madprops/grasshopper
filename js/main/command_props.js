@@ -461,6 +461,51 @@ App.setup_commands = () => {
       info: `Import theme`,
     },
     {
+      name: `Theme 1`,
+      cmd: `set_theme_1`,
+      icon: theme_icon,
+      action: (args) => {
+        App.set_theme(1)
+      },
+      info: `Set theme 1`,
+    },
+    {
+      name: `Theme 2`,
+      cmd: `set_theme_2`,
+      icon: theme_icon,
+      action: (args) => {
+        App.set_theme(2)
+      },
+      info: `Set theme 2`,
+    },
+    {
+      name: `Theme 3`,
+      cmd: `set_theme_3`,
+      icon: theme_icon,
+      action: (args) => {
+        App.set_theme(3)
+      },
+      info: `Set theme 3`,
+    },
+    {
+      name: `Theme 4`,
+      cmd: `set_theme_4`,
+      icon: theme_icon,
+      action: (args) => {
+        App.set_theme(4)
+      },
+      info: `Set theme 4`,
+    },
+    {
+      name: `Theme 5`,
+      cmd: `set_theme_5`,
+      icon: theme_icon,
+      action: (args) => {
+        App.set_theme(5)
+      },
+      info: `Set theme 5`,
+    },
+    {
       name: `Show About`,
       cmd: `show_about`,
       icon: bot_icon,
