@@ -1195,7 +1195,6 @@ App.build_settings = () => {
         {cmd: `show_color_green`, alt: `filter_color_green`},
         {cmd: `show_color_blue`, alt: `filter_color_blue`},
         {cmd: `set_random_dark_colors`, alt: `set_random_light_colors`},
-        {cmd: `set_background_image`, alt: `cycle_background_opacity`},
         {cmd: `edit_notes`, alt: `edit_global_notes`},
         {cmd: `toggle_auto_blur`, alt: `toggle_favorites_autohide`},
       ],
