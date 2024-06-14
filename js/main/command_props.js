@@ -2036,7 +2036,7 @@ App.setup_commands = () => {
       info: `Set a random dark color theme`,
     },
     {
-      name: `Background Opacity`,
+      name: `Cycle Opacity`,
       cmd: `cycle_background_opacity`,
       icon: theme_icon,
       action: (args) => {
