@@ -891,6 +891,7 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `open_new_tab`},
+        {cmd: `reopen_tab`},
         {cmd: `select_all_items`},
       ],
       info: `Menu to show when right clicking empty space`,

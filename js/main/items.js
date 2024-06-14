@@ -654,7 +654,6 @@ App.deselect = (args = {}) => {
   }
 
   let next_item
-
   if (args.select === `up`) {
     if (first) {
       next_item = first
@@ -670,6 +669,13 @@ App.deselect = (args = {}) => {
 
     if (selected) {
       next_item = selected
+    }
+  }
+  else if (args.select === `active`) {
+    let active = App.get_active_tab_item()
+
+    if (active) {
+      next_item = active
     }
   }
 
@@ -871,7 +877,16 @@ App.select_all = (mode = App.active_mode, toggle = false) => {
     }
 
     if (all_selected) {
-      App.deselect({mode: mode, select: `selected`})
+      let select
+
+      if (mode === `tabs`) {
+        select = `active`
+      }
+      else {
+        select = `selected`
+      }
+
+      App.deselect({mode: mode, select: select})
       return
     }
   }
