@@ -757,6 +757,7 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `edit_main_title`},
+        {cmd: `edit_global_notes`},
       ],
       info: `Menu to show when clicking the Main Title`,
       version: 1,
