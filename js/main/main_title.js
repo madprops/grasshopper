@@ -17,6 +17,10 @@ App.create_main_title = (mode) => {
     App.show_context({items: items, e: e})
   })
 
+  DOM.ev(el, `dblclick`, () => {
+    App.edit_main_title()
+  })
+
   return el
 }
 
