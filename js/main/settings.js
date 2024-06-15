@@ -555,7 +555,7 @@ App.add_settings_switchers = (category) => {
 App.start_color_picker = (setting, alpha = false) => {
   let el = DOM.el(`#settings_${setting}`)
 
-  App[setting] = AColorPicker.createPicker(el, {
+  let picker = AColorPicker.createPicker(el, {
     showAlpha: alpha,
     showHSL: false,
     showRGB: true,
@@ -563,7 +563,7 @@ App.start_color_picker = (setting, alpha = false) => {
     color: App.get_setting(setting)
   })
 
-  App[setting].on(`change`, (picker, color) => {
+  picker.on(`change`, (picker, color) => {
     let rgb
 
     if (alpha) {
@@ -581,7 +581,7 @@ App.start_color_picker = (setting, alpha = false) => {
       [
         {
           name: `Reset`, action: () => {
-            App[setting].setColor(App.get_default_setting(setting))
+            picker.setColor(App.get_default_setting(setting))
             App.set_default_setting(setting)
           }
         },

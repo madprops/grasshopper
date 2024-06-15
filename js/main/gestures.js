@@ -40,6 +40,9 @@ App.settings_gestures = (el) => {
     right: () => {
       App.show_next_settings()
     },
+    default: () => {
+      //
+    }
   }
 
   NiceGesture.start(el, obj)
