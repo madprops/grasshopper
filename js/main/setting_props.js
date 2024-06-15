@@ -1323,6 +1323,7 @@ App.build_settings = () => {
         {cmd: `edit_main_title`},
         {cmd: `edit_global_notes`},
         {cmd: `show_theme_menu`},
+        {cmd: `settings_category_title`},
       ],
       info: `Menu to show when clicking the Main Title`,
       version: 1,
