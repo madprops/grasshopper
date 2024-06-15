@@ -14,6 +14,9 @@ App.settings_do_actions = (actions) => {
     else if (action === `filters`) {
       App.start_filter_debouncers()
     }
+    else if (action === `gestures`) {
+      App.refresh_gestures()
+    }
   }
 }
 
@@ -458,6 +461,9 @@ App.start_settings = () => {
         if (catprops.setup) {
           catprops.setup()
         }
+
+        let container = DOM.el(`#settings_${key}_container`)
+        App.settings_gestures(container)
       },
     }))
   }

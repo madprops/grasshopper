@@ -1380,6 +1380,7 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Enable mouse gestures`,
+      actions: [`gestures`],
       version: 1,
     },
     gestures_threshold: {
