@@ -2086,6 +2086,24 @@ App.setup_commands = () => {
       info: `Edit the main title`,
     },
     {
+      name: `Open Sidebar`,
+      cmd: `open_sidebar`,
+      icon: bot_icon,
+      action: (args) => {
+        App.open_sidebar()
+      },
+      info: `Open the browser sidebar`,
+    },
+    {
+      name: `Close Sidebar`,
+      cmd: `close_sidebar`,
+      icon: bot_icon,
+      action: (args) => {
+        App.close_sidebar()
+      },
+      info: `Close the browser sidebar`,
+    },
+    {
       name: `Restart`,
       cmd: `restart_extension`,
       icon: bot_icon,

@@ -172,3 +172,11 @@ App.main_remove = (cls) => {
   let main = DOM.el(`#main`)
   main.classList.remove(cls)
 }
+
+App.open_sidebar = () => {
+  browser.sidebarAction.open()
+}
+
+App.close_sidebar = () => {
+  browser.sidebarAction.close()
+}
