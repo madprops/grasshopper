@@ -115,22 +115,23 @@ App.footer_message_delay = 1000
 App.settings_icons = {
   general: `⚡`,
   theme: `🎨`,
-  colors: `🎨`,
+  colors: `🇿🇼`,
   zones: `🚥`,
   edits: `📝`,
   icons: `🖼️`,
   media: `📷`,
-  icons: `👁️`,
+  icons: `😀`,
   show: `👁️`,
   tab_box: `📦`,
   favorites: `❤️`,
   taglist: `✝️`,
-  gestures: `🖱️`,
+  gestures: `⏫`,
   auxclick: `🖱️`,
   warns: `🚨`,
   filter: `🔍`,
   triggers: `🔮`,
   more: `💠`,
+  title: `✍🏻`
 }
 
 App.mode_icons = {

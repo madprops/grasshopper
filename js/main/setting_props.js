@@ -733,46 +733,6 @@ App.build_settings = () => {
   category = `show`
 
   props = {
-    main_title: {
-      name: `Main Title`,
-      type: `text`,
-      value: ``,
-      placeholder: `Title at the Top`,
-      info: `Title to show at the top`,
-      version: 1,
-    },
-    main_title_menu: {
-      name: `Title Menu`,
-      type: `list`,
-      value: [
-        {cmd: `edit_main_title`},
-        {cmd: `edit_global_notes`},
-        {cmd: `show_theme_menu`},
-      ],
-      info: `Menu to show when clicking the Main Title`,
-      version: 1,
-    },
-    double_click_main_title: {
-      name: `Double Click Title`,
-      type: `menu`,
-      value: `edit_main_title`,
-      info: `Command to run when double clicking the main title`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist)
-      },
-    },
-    main_title_font_size: {
-      name: `Title Font Size`,
-      type: `number`,
-      value: 18,
-      placeholder: `Px`,
-      min: 6,
-      max: 28,
-      info: `Font size for the main title`,
-      separator: true,
-      version: 1,
-    },
     hover_button: {
       name: `Hover Button`,
       type: `menu`,
@@ -1340,6 +1300,61 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Autohide the Favorites Bar when on left or right mode`,
+      version: 1,
+    },
+  }
+
+  add_props()
+  category = `title`
+
+  props = {
+    main_title: {
+      name: `Main Title`,
+      type: `text`,
+      value: ``,
+      placeholder: `Title At The Top`,
+      info: `Title to show at the top`,
+      version: 1,
+    },
+    main_title_menu: {
+      name: `Title Menu`,
+      type: `list`,
+      value: [
+        {cmd: `edit_main_title`},
+        {cmd: `edit_global_notes`},
+        {cmd: `show_theme_menu`},
+      ],
+      info: `Menu to show when clicking the Main Title`,
+      version: 1,
+    },
+    double_click_main_title: {
+      name: `Double Click Title`,
+      type: `menu`,
+      value: `edit_main_title`,
+      info: `Command to run when double clicking the Main Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    middle_click_main_title: {
+      name: `Middle Click Title`,
+      type: `menu`,
+      value: `edit_main_title`,
+      info: `Command to run when middle clicking the Main Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    main_title_font_size: {
+      name: `Title Font Size`,
+      type: `number`,
+      value: 18,
+      placeholder: `Px`,
+      min: 6,
+      max: 28,
+      info: `Font size for the main title`,
       version: 1,
     },
   }
@@ -2916,6 +2931,10 @@ App.build_settings = () => {
       An icon appears to the left of items
       You can make it view media when clicking the icons, the whole item, or never
       Some files, like local files and others, won't be able to load`,
+    },
+    title: {
+      info: `Configure the Main Title
+      The title is text that appears at the top`,
     },
     taglist: {
       info: `Configure the Taglist
