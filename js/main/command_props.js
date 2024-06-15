@@ -10,6 +10,7 @@ App.setup_commands = () => {
   let header_icon = App.get_setting(`header_icon`) || App.zone_icon
   let subheader_icon = App.get_setting(`subheader_icon`) || App.zone_icon
   let image_icon = App.get_setting(`image_icon`) || App.settings_icons.media
+  let title_icon = App.settings_icons.title
   let command_icon = App.command_icon
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
@@ -2078,7 +2079,7 @@ App.setup_commands = () => {
       name: `Main Title`,
       short_name: `Edit Title`,
       cmd: `edit_main_title`,
-      icon: bot_icon,
+      icon: title_icon,
       action: (args) => {
         App.edit_main_title()
       },
