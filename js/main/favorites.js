@@ -246,16 +246,7 @@ App.get_favorites = () => {
 
 App.favorites_double_click = (e, where) => {
   let cmd = App.get_setting(`double_click_favorites_${where}`)
-  let command = App.get_command(cmd)
-
-  if (command) {
-    let args = {
-      cmd: command.cmd,
-      e: e,
-    }
-
-    App.run_command(args)
-  }
+  App.run_command({cmd: cmd, from: `filter_menu`, e: e})
 }
 
 App.favorites_middle_click = (e) => {

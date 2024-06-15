@@ -87,14 +87,5 @@ App.main_title_double_click = (e) => {
 
 App.main_title_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_main_title`)
-  let command = App.get_command(cmd)
-
-  if (command) {
-    let args = {
-      cmd: command.cmd,
-      e: e,
-    }
-
-    App.run_command(args)
-  }
+  App.run_command({cmd: cmd, from: `filter_menu`, e: e})
 }
