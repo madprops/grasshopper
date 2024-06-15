@@ -734,12 +734,22 @@ App.build_settings = () => {
 
   props = {
     main_title: {
-      name: `Title`,
+      name: `Main Title`,
       type: `text`,
       value: ``,
       placeholder: `Title at the Top`,
-      separator: true,
       info: `Title to show at the top`,
+      version: 1,
+    },
+    main_title_font_size: {
+      name: `Main Title Font Size`,
+      type: `number`,
+      value: 18,
+      placeholder: `Px`,
+      min: 6,
+      max: 28,
+      separator: true,
+      info: `Font size for the main title`,
       version: 1,
     },
     hover_button: {
