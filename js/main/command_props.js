@@ -493,7 +493,7 @@ App.setup_commands = () => {
       cmd: `show_theme_menu`,
       icon: theme_icon,
       action: (args) => {
-        App.show_theme_menu()
+        App.show_theme_menu(args.e)
       },
       info: `Show the theme menu`,
     },
@@ -502,7 +502,7 @@ App.setup_commands = () => {
       cmd: `show_background_menu`,
       icon: theme_icon,
       action: (args) => {
-        App.show_background_menu()
+        App.show_background_menu(args.e)
       },
       info: `Show the background menu`,
     },

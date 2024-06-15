@@ -1398,7 +1398,7 @@ App.pick_background = (e) => {
   App.show_context({e: e, items: items})
 }
 
-App.show_theme_menu = () => {
+App.show_theme_menu = (e) => {
   let items = []
 
   for (let bg of App.themes) {
@@ -1411,10 +1411,10 @@ App.show_theme_menu = () => {
     })
   }
 
-  App.show_context({items: items})
+  App.show_context({items: items, e: e})
 }
 
-App.show_background_menu = () => {
+App.show_background_menu = (e) => {
   let items = []
 
   for (let bg of App.themes) {
@@ -1427,7 +1427,7 @@ App.show_background_menu = () => {
     })
   }
 
-  App.show_context({items: items})
+  App.show_context({items: items, e: e})
 }
 
 App.set_previous_theme = () => {
