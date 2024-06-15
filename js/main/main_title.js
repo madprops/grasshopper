@@ -26,12 +26,13 @@ App.check_main_titles = () => {
 
   for (let el of els) {
     el.textContent = title
+    let p = el.closest(`.main_title`)
 
     if (title) {
-      el.classList.remove(`hidden`)
+      p.classList.remove(`hidden`)
     }
     else {
-      el.classList.add(`hidden`)
+      p.classList.add(`hidden`)
     }
   }
 }
@@ -44,6 +45,7 @@ App.edit_main_title = () => {
       let title = ans.trim()
       App.set_setting(`main_title`, title)
       App.check_main_titles()
+      App.apply_theme()
     },
   })
 }

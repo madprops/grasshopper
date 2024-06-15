@@ -1177,7 +1177,6 @@ App.build_item_window = (mode) => {
   }
 
   let title = App.create_main_title()
-  App.check_main_titles()
   let btns = DOM.create(`div`, `item_top_buttons`)
   let bar = DOM.create(`div`, `item_top_bar`, `item_top_bar_${mode}`)
   main_top.append(title)
@@ -1217,6 +1216,7 @@ App.build_item_window = (mode) => {
   left_btns.append(filter)
   right_btns.append(playing)
   right_btns.append(back)
+  App.check_main_titles()
 
   if (actions_menu) {
     right_btns.append(actions_menu)
