@@ -752,6 +752,15 @@ App.build_settings = () => {
       info: `Font size for the main title`,
       version: 1,
     },
+    main_title_menu: {
+      name: `Title Menu`,
+      type: `list`,
+      value: [
+        {cmd: `edit_main_title`},
+      ],
+      info: `Menu to show when clicking the Main Title`,
+      version: 1,
+    },
     hover_button: {
       name: `Hover Button`,
       type: `menu`,

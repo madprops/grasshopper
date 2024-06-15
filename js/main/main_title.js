@@ -7,14 +7,7 @@ App.create_main_title = (mode) => {
   inner.textContent = title
 
   DOM.ev(el, `contextmenu`, (e) => {
-    let cmds = [
-      `edit_main_title`,
-      `copy_main_title`,
-    ]
-
-    e.preventDefault()
-    let items = App.cmd_list(cmds, true)
-    App.show_context({items: items, e: e})
+    App.main_title_right_click(e)
   })
 
   DOM.ev(el, `dblclick`, () => {
@@ -60,4 +53,14 @@ App.edit_main_title = () => {
 
 App.copy_main_title = () => {
   App.copy_to_clipboard(App.get_setting(`main_title`))
+}
+
+App.main_title_right_click = (e) => {
+  e.preventDefault()
+
+  let items = App.custom_menu_items({
+    name: `main_title_menu`,
+  })
+
+  App.show_context({items: items, e: e})
 }
