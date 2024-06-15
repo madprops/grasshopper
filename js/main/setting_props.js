@@ -1340,7 +1340,7 @@ App.build_settings = () => {
     middle_click_main_title: {
       name: `Middle Click Title`,
       type: `menu`,
-      value: `edit_main_title`,
+      value: `reopen_tab`,
       info: `Command to run when middle clicking the Main Title`,
       version: 1,
       setup: (key) => {
