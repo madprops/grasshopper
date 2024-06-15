@@ -741,17 +741,6 @@ App.build_settings = () => {
       info: `Title to show at the top`,
       version: 1,
     },
-    main_title_font_size: {
-      name: `Title Font Size`,
-      type: `number`,
-      value: 18,
-      placeholder: `Px`,
-      min: 6,
-      max: 28,
-      separator: true,
-      info: `Font size for the main title`,
-      version: 1,
-    },
     main_title_menu: {
       name: `Title Menu`,
       type: `list`,
@@ -761,6 +750,27 @@ App.build_settings = () => {
         {cmd: `show_theme_menu`},
       ],
       info: `Menu to show when clicking the Main Title`,
+      version: 1,
+    },
+    double_click_main_title: {
+      name: `Double Click Title`,
+      type: `menu`,
+      value: `edit_main_title`,
+      info: `Command to run when double clicking the main title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    main_title_font_size: {
+      name: `Title Font Size`,
+      type: `number`,
+      value: 18,
+      placeholder: `Px`,
+      min: 6,
+      max: 28,
+      info: `Font size for the main title`,
+      separator: true,
       version: 1,
     },
     hover_button: {

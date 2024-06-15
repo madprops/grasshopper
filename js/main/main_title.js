@@ -10,8 +10,8 @@ App.create_main_title = (mode) => {
     App.main_title_right_click(e)
   })
 
-  DOM.ev(el, `dblclick`, () => {
-    App.edit_main_title()
+  DOM.ev(el, `dblclick`, (e) => {
+    App.main_title_double_click(e)
   })
 
   return el
@@ -63,4 +63,18 @@ App.main_title_right_click = (e) => {
   })
 
   App.show_context({items: items, e: e})
+}
+
+App.main_title_double_click = (e) => {
+  let cmd = App.get_setting(`double_click_main_title`)
+  let command = App.get_command(cmd)
+
+  if (command) {
+    let args = {
+      cmd: command.cmd,
+      e: e,
+    }
+
+    App.run_command(args)
+  }
 }
