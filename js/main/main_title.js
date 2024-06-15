@@ -42,9 +42,13 @@ App.check_main_titles = () => {
 }
 
 App.edit_main_title = () => {
+  let auto = App.get_setting(`edit_title_auto`)
+  let highlight = auto ? true : false
+
   App.show_prompt({
     value: App.get_setting(`main_title`),
     placeholder: `Title`,
+    highlight: highlight,
     on_submit: (ans) => {
       let title = ans.trim()
       App.set_setting(`main_title`, title)

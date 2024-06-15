@@ -742,7 +742,7 @@ App.build_settings = () => {
       version: 1,
     },
     main_title_font_size: {
-      name: `Main Title Font Size`,
+      name: `Title Font Size`,
       type: `number`,
       value: 18,
       placeholder: `Px`,
