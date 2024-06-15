@@ -1250,6 +1250,7 @@ App.setup_settings_addlist = () => {
     `history_menu`,
     `bookmarks_menu`,
     `closed_menu`,
+    `main_title_menu`,
   ]
 
   for (let key in App.setting_props) {
