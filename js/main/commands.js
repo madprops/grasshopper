@@ -385,11 +385,11 @@ App.cmd_item = (args = {}) => {
   }
 }
 
-App.cmd_list = (cmds) => {
+App.cmd_list = (cmds, short = false) => {
   let items = []
 
   for (let cmd of cmds) {
-    items.push(App.cmd_item({cmd: cmd}))
+    items.push(App.cmd_item({cmd: cmd, short: short}))
   }
 
   return items

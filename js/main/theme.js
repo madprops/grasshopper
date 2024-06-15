@@ -342,11 +342,11 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`autohide_taglist`)
     }
 
-    if (App.get_setting(`title`)) {
-      main.classList.add(`with_title`)
+    if (App.get_setting(`main_title`)) {
+      main.classList.add(`with_main_title`)
     }
     else {
-      main.classList.remove(`with_title`)
+      main.classList.remove(`with_main_title`)
     }
 
     if (App.get_setting(`item_pointer`)) {

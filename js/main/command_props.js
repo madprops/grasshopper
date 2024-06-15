@@ -2075,7 +2075,8 @@ App.setup_commands = () => {
       info: `Change the background to the selected image`,
     },
     {
-      name: `Edit Title`,
+      name: `Edit Main Title`,
+      short_name: `Edit Title`,
       cmd: `edit_main_title`,
       icon: bot_icon,
       action: (args) => {
@@ -2084,7 +2085,8 @@ App.setup_commands = () => {
       info: `Edit the main title`,
     },
     {
-      name: `Copy Title`,
+      name: `Copy Main Title`,
+      short_name: `Copy Title`,
       cmd: `copy_main_title`,
       icon: bot_icon,
       action: (args) => {

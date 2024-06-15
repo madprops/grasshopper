@@ -182,7 +182,7 @@ select {
   padding-bottom: 0.71rem;
 }
 
-.with_title .window_top_mode {
+.with_main_title .window_top_mode {
   padding-top: 0;
 }
 
@@ -1648,14 +1648,14 @@ a:hover
   pointer-events: none;
 }
 
-.title {
+.main_title {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-.title_inner {
+.main_title_inner {
   padding: 0.5rem;
   text-align: center;
   user-select: text;

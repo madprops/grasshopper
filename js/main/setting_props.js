@@ -733,7 +733,7 @@ App.build_settings = () => {
   category = `show`
 
   props = {
-    title: {
+    main_title: {
       name: `Title`,
       type: `text`,
       value: ``,
