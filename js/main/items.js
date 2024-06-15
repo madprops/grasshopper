@@ -1176,8 +1176,10 @@ App.build_item_window = (mode) => {
     tab_box = App.create_tab_box()
   }
 
+  let title = App.create_title()
   let btns = DOM.create(`div`, `item_top_buttons`)
   let bar = DOM.create(`div`, `item_top_bar`, `item_top_bar_${mode}`)
+  main_top.append(title)
   main_top.append(btns)
   main_top.append(bar)
 

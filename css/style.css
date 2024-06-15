@@ -182,6 +182,10 @@ select {
   padding-bottom: 0.71rem;
 }
 
+.with_title .window_top_mode {
+  padding-top: 0;
+}
+
 .colored_top {
   background-color: var(--alt_color_0);
   margin-bottom: 1.8rem;
@@ -1642,4 +1646,17 @@ a:hover
 
 .item_icon {
   pointer-events: none;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.title_inner {
+  padding: 0.5rem;
+  text-align: center;
+  user-select: text;
 }

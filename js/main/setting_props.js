@@ -733,6 +733,14 @@ App.build_settings = () => {
   category = `show`
 
   props = {
+    title: {
+      name: `Title`,
+      type: `text`,
+      value: ``,
+      placeholder: `Title at the Top`,
+      info: `Title to show at the top`,
+      version: 1,
+    },
     hover_button: {
       name: `Hover Button`,
       type: `menu`,
