@@ -55,5 +55,5 @@ App.edit_main_title = () => {
 }
 
 App.copy_main_title = () => {
-  App.copy_to_clipboard(App.get_setting(`main_title`), `title`)
+  App.copy_to_clipboard(App.get_setting(`main_title`))
 }

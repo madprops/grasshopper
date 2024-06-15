@@ -738,6 +738,7 @@ App.build_settings = () => {
       type: `text`,
       value: ``,
       placeholder: `Title at the Top`,
+      separator: true,
       info: `Title to show at the top`,
       version: 1,
     },
