@@ -274,3 +274,9 @@ App.themes = [
   },
   {num: 5, opacity: 75},
 ]
+
+App.aligns = [
+  {text: `Left`, value: `left`},
+  {text: `Center`, value: `center`},
+  {text: `Right`, value: `right`},
+]

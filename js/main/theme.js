@@ -359,12 +359,14 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`main_title_background_color`, `unset`)
     }
 
-    if (App.get_setting(`main_title_margin`)) {
-      main.classList.add(`main_title_margin`)
+    let title_align = App.get_setting(`main_title_align`)
+    let aligns = [`left`, `center`, `right`]
+
+    for (let align of aligns) {
+      main.classList.remove(`main_title_align_${align}`)
     }
-    else {
-      main.classList.remove(`main_title_margin`)
-    }
+
+    main.classList.add(`main_title_align_${title_align}`)
 
     if (App.get_setting(`item_pointer`)) {
       main.classList.add(`item_pointer`)

@@ -1652,7 +1652,6 @@ a:hover
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
   color: var(--main_title_text_color);
   background-color: var(--main_title_background_color);
 }
@@ -1663,6 +1662,29 @@ a:hover
 
 .main_title_inner {
   padding: 0.5rem;
-  text-align: center;
   font-size: var(--main_title_font_size);
+}
+
+.main_title_align_left .main_title {
+  justify-content: flex-start;
+}
+
+.main_title_align_left .main_title_inner {
+  text-align: left;
+}
+
+.main_title_align_center .main_title {
+  justify-content: center;
+}
+
+.main_title_align_center .main_title_inner {
+  text-align: center;
+}
+
+.main_title_align_right .main_title {
+  justify-content: flex-end;
+}
+
+.main_title_align_right .main_title_inner {
+  text-align: right;
 }

@@ -1348,6 +1348,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
+    main_title_align: {
+      name: `Title Align`,
+      type: `menu`,
+      value: `center`,
+      info: `How to align the title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.aligns)
+      },
+    },
     main_title_font_size: {
       name: `Title Font Size`,
       type: `number`,
