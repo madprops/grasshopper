@@ -362,6 +362,9 @@ App.do_apply_theme = (args = {}) => {
     if (App.get_setting(`main_title_margin`)) {
       main.classList.add(`main_title_margin`)
     }
+    else {
+      main.classList.remove(`main_title_margin`)
+    }
 
     if (App.get_setting(`item_pointer`)) {
       main.classList.add(`item_pointer`)
