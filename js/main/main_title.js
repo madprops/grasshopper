@@ -93,3 +93,26 @@ App.main_title_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_main_title`)
   App.run_command({cmd: cmd, from: `filter_menu`, e: e})
 }
+
+App.color_main_title = (what) => {
+  let bg_color
+
+  if (what === `red`) {
+    bg_color = App.red_title
+  }
+  else if (what === `green`) {
+    bg_color = App.green_title
+  }
+  else if (what === `blue`) {
+    bg_color = App.blue_title
+  }
+  else {
+    return
+  }
+
+  let text_color = `white`
+  let background_color = bg_color
+  App.set_setting(`main_title_text_color`, text_color)
+  App.set_setting(`main_title_background_color`, background_color)
+  App.apply_theme()
+}

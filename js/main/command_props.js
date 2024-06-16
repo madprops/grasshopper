@@ -2095,6 +2095,33 @@ App.setup_commands = () => {
       info: `Edit the main title`,
     },
     {
+      name: `Red Title`,
+      cmd: `color_main_title_red`,
+      icon: title_icon,
+      action: (args) => {
+        App.color_main_title(`red`)
+      },
+      info: `Apply red color to the main title`,
+    },
+    {
+      name: `Green Title`,
+      cmd: `color_main_title_green`,
+      icon: title_icon,
+      action: (args) => {
+        App.color_main_title(`green`)
+      },
+      info: `Apply green color to the main title`,
+    },
+    {
+      name: `Blue Title`,
+      cmd: `color_main_title_blue`,
+      icon: title_icon,
+      action: (args) => {
+        App.color_main_title(`blue`)
+      },
+      info: `Apply blue color to the main title`,
+    },
+    {
       name: `Open Sidebar`,
       cmd: `open_sidebar`,
       icon: bot_icon,

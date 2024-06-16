@@ -23,6 +23,10 @@ App.DAY = 24 * App.HOUR
 App.MONTH = 30 * App.DAY
 App.YEAR = 365 * App.DAY
 
+App.RED = `rgba(255, 0, 0, 1)`
+App.GREEN = `rgba(0, 255, 0, 1)`
+App.BLUE = `rgba(0, 0, 255, 1)`
+
 App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 App.close_tabs_types = [`normal`, `playing`, `unloaded`, `loaded`, `duplicate`, `visible`, `empty`, `other`, `pinned`, `all`]
@@ -79,6 +83,9 @@ App.palette_threshold = 100
 App.item_menu_threshold = 100
 App.filter_placeholder = `Filter`
 App.last_filter_placeholder = ``
+App.red_title = `rgb(166, 84, 107, 1)`
+App.green_title = `rgb(88, 132, 118, 1)`
+App.blue_title = `rgb(93, 93, 188, 1)`
 
 App.settings_done = false
 App.settings_ready = false
