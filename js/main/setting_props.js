@@ -212,7 +212,7 @@ App.build_settings = () => {
       value: ``,
       placeholder: `URL To Open`,
       no_empty: true,
-      info: `URL (1) to use in commands`,
+      info: `URL One to use in commands`,
       version: 1,
     },
     url_two: {
@@ -221,7 +221,7 @@ App.build_settings = () => {
       value: ``,
       placeholder: `URL To Open`,
       no_empty: true,
-      info: `URL (2) to use in commands`,
+      info: `URL Two to use in commands`,
       version: 1,
     },
     url_three: {
@@ -230,7 +230,7 @@ App.build_settings = () => {
       value: ``,
       placeholder: `URL To Open`,
       no_empty: true,
-      info: `URL (3) to use in commands`,
+      info: `URL Three to use in commands`,
       separator: true,
       version: 1,
     },
