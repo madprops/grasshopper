@@ -94,6 +94,14 @@ App.check_command = (command, args = {}) => {
     return true
   }
 
+  let urls = [`open_url_one`, `open_url_two`, `open_url_three`]
+
+  if (urls.includes(command.cmd)) {
+    let what = command.cmd.replace(`open_url_`, ``)
+    let url = App.get_setting(`url_${what}`)
+    return Boolean(url)
+  }
+
   if (args.item) {
     for (let media of App.media_types) {
       if (args.item[media]) {
