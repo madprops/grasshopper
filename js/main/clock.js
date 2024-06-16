@@ -13,12 +13,12 @@ App.start_clock = () => {
 
 App.check_clock = (force = false) => {
   let placeholder
-  let sett = App.get_setting(`clock`)
+  let clock = App.get_setting(`clock`)
 
-  if (sett !== `none`) {
+  if (clock !== `none`) {
     let date = App.now()
 
-    if (sett === `show_24`) {
+    if (clock === `show_24`) {
       placeholder = dateFormat(date, `HH:MM`)
     }
     else {
@@ -45,12 +45,12 @@ App.check_clock = (force = false) => {
 }
 
 App.cycle_clock = () => {
-  let sett = App.get_setting(`clock`)
+  let clock = App.get_setting(`clock`)
 
-  if (sett === `none`) {
+  if (clock === `none`) {
     App.set_setting(`clock`, `show_12`, false)
   }
-  else if (sett === `show_12`) {
+  else if (clock === `show_12`) {
     App.set_setting(`clock`, `show_24`, false)
   }
   else {
