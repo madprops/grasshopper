@@ -1325,7 +1325,7 @@ App.build_settings = () => {
         {cmd: `show_theme_menu`},
         {cmd: `settings_category_title`},
       ],
-      info: `Menu to show when clicking the Title`,
+      info: `Menu to show when right clicking the Title`,
       version: 1,
     },
     double_click_main_title: {
