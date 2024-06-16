@@ -212,7 +212,7 @@ App.build_settings = () => {
       value: ``,
       placeholder: `URL To Open`,
       no_empty: true,
-      info: `URL to use in commands`,
+      info: `URL (1) to use in commands`,
       version: 1,
     },
     url_two: {
@@ -221,7 +221,7 @@ App.build_settings = () => {
       value: ``,
       placeholder: `URL To Open`,
       no_empty: true,
-      info: `URL to use in commands`,
+      info: `URL (2) to use in commands`,
       version: 1,
     },
     url_three: {
@@ -230,7 +230,7 @@ App.build_settings = () => {
       value: ``,
       placeholder: `URL To Open`,
       no_empty: true,
-      info: `URL to use in commands`,
+      info: `URL (3) to use in commands`,
       separator: true,
       version: 1,
     },
@@ -762,6 +762,21 @@ App.build_settings = () => {
   category = `show`
 
   props = {
+    clock: {
+      name: `Clock`,
+      type: `menu`,
+      value: `show_12`,
+      info: `Show the time in the Filter input`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: `12 hours`, value: `show_12`},
+          {text: `24 hours`, value: `show_24`},
+        ])
+      },
+    },
     hover_button: {
       name: `Hover Button`,
       type: `menu`,
@@ -972,13 +987,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the item count on the Footer`,
-      version: 1,
-    },
-    show_clock: {
-      name: `Clock In Filter`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the time in the Filter input`,
       version: 1,
     },
     hide_pins: {

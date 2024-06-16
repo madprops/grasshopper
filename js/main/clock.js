@@ -13,10 +13,17 @@ App.start_clock = () => {
 
 App.check_clock = (force = false) => {
   let placeholder = App.filter_placeholder
+  let sett = App.get_setting(`clock`)
 
-  if (App.get_setting(`show_clock`)) {
+  if (sett !== `none`) {
     let date = App.now()
-    placeholder = dateFormat(date, `h:MM tt`)
+
+    if (sett === `show_24`) {
+      placeholder = dateFormat(date, `HH:MM`)
+    }
+    else {
+      placeholder = dateFormat(date, `h:MM tt`)
+    }
   }
 
   if (!force) {

@@ -2146,7 +2146,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.open_setting_url(2)
       },
-      info: `Open the first URL defined in settings`,
+      info: `Open the second URL defined in settings`,
     },
     {
       name: `Open URL Three`,
@@ -2155,7 +2155,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.open_setting_url(3)
       },
-      info: `Open the first URL defined in settings`,
+      info: `Open the third URL defined in settings`,
     },
     {
       name: `Open Sidebar`,
