@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-eslint -c --fix eslint.config.mjs js/main/*.js
+eslint --fix -c eslint.config.mjs js/main/*.js
