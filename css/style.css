@@ -1653,6 +1653,12 @@ a:hover
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  color: var(--main_title_text_color);
+  background-color: var(--main_title_background_color);
+}
+
+.main_title_margin .main_title {
+  margin-bottom: 0.51rem;
 }
 
 .main_title_inner {

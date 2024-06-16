@@ -350,6 +350,19 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`with_main_title`)
     }
 
+    if (App.get_setting(`main_title_colors`)) {
+      App.set_css_var(`main_title_text_color`, App.get_setting(`main_title_text_color`))
+      App.set_css_var(`main_title_background_color`, App.get_setting(`main_title_background_color`))
+    }
+    else {
+      App.set_css_var(`main_title_text_color`, `unset`)
+      App.set_css_var(`main_title_background_color`, `unset`)
+    }
+
+    if (App.get_setting(`main_title_margin`)) {
+      main.classList.add(`main_title_margin`)
+    }
+
     if (App.get_setting(`item_pointer`)) {
       main.classList.add(`item_pointer`)
     }

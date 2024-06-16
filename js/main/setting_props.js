@@ -1355,8 +1355,42 @@ App.build_settings = () => {
       placeholder: `Px`,
       min: 6,
       max: 28,
-      info: `Font size for the main title`,
+      info: `Font size for the Title`,
       version: 1,
+    },
+    main_title_colors: {
+      name: `Title Colors`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom colors on the Title`,
+      version: 2,
+    },
+    main_title_text_color: {
+      name: `Title Text Color`,
+      type: `color`,
+      value: App.default_color,
+      info: `Text color of the Title`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    main_title_background_color: {
+      name: `Title Background Color`,
+      type: `color`,
+      value: App.default_color,
+      info: `Background color of the Title`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    main_title_margin: {
+      name: `Title Margin`,
+      type: `checkbox`,
+      value: false,
+      info: `Extra margin below the Title`,
+      version: 2,
     },
   }
 
