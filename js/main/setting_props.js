@@ -1407,7 +1407,7 @@ App.build_settings = () => {
     main_title_font_size: {
       name: `Title Font Size`,
       type: `number`,
-      value: 18,
+      value: 17,
       placeholder: `Px`,
       min: 6,
       max: 28,

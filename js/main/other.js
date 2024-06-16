@@ -86,6 +86,10 @@ App.show_browser_menu = (e) => {
     `browser_back`,
     `browser_forward`,
     `browser_reload`,
+    App.separator_string,
+    `open_url_one`,
+    `open_url_two`,
+    `open_url_three`,
   ]
 
   let items = App.cmd_list(cmds)
@@ -204,4 +208,5 @@ App.open_setting_url = (num) => {
   }
 
   App.open_new_tab({url: url})
+  App.after_focus({show_tabs: true})
 }

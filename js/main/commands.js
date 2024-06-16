@@ -389,7 +389,12 @@ App.cmd_list = (cmds, short = false) => {
   let items = []
 
   for (let cmd of cmds) {
-    items.push(App.cmd_item({cmd: cmd, short: short}))
+    if (cmd === App.separator_string) {
+      items.push({separator: true})
+    }
+    else {
+      items.push(App.cmd_item({cmd: cmd, short: short}))
+    }
   }
 
   return items
