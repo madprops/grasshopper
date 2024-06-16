@@ -86,6 +86,7 @@ App.last_filter_placeholder = ``
 App.red_title = `rgb(166, 84, 107, 1)`
 App.green_title = `rgb(88, 132, 118, 1)`
 App.blue_title = `rgb(93, 93, 188, 1)`
+App.default_font_size = 17
 
 App.settings_done = false
 App.settings_ready = false

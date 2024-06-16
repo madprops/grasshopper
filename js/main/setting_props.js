@@ -426,7 +426,7 @@ App.build_settings = () => {
     font_size: {
       name: `Font Size`,
       type: `number`,
-      value: 17,
+      value: App.default_font_size,
       actions: [`theme`],
       placeholder: `Px`,
       min: 6,
@@ -1407,7 +1407,7 @@ App.build_settings = () => {
     main_title_font_size: {
       name: `Title Font Size`,
       type: `number`,
-      value: 17,
+      value: App.default_font_size,
       placeholder: `Px`,
       min: 6,
       max: 28,
