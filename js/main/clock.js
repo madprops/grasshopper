@@ -14,11 +14,17 @@ App.check_clock = () => {
     placeholder = dateFormat(date, `h:MM tt`)
   }
 
+  if (placeholder === App.last_filter_placeholder) {
+    return
+  }
+
   let filters = DOM.els(`.mode_filter`)
 
   for (let el of filters) {
     el.placeholder = placeholder
   }
+
+  App.last_filter_placeholder = placeholder
 }
 
 App.toggle_clock = () => {

@@ -78,6 +78,7 @@ App.similarity_threshold = 0.7
 App.palette_threshold = 100
 App.item_menu_threshold = 100
 App.filter_placeholder = `Filter`
+App.last_filter_placeholder = ``
 
 App.settings_done = false
 App.settings_ready = false
