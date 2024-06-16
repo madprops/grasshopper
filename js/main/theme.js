@@ -359,6 +359,13 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`main_title_background_color`, `unset`)
     }
 
+    if (App.get_setting(`main_title_margin`)) {
+      main.classList.add(`main_title_margin`)
+    }
+    else {
+      main.classList.remove(`main_title_margin`)
+    }
+
     let title_align = App.get_setting(`main_title_align`)
     let aligns = [`left`, `center`, `right`]
 
