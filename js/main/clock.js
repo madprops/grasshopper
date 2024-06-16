@@ -12,7 +12,7 @@ App.start_clock = () => {
 }
 
 App.check_clock = (force = false) => {
-  let placeholder = App.filter_placeholder
+  let placeholder
   let sett = App.get_setting(`clock`)
 
   if (sett !== `none`) {
@@ -24,6 +24,9 @@ App.check_clock = (force = false) => {
     else {
       placeholder = dateFormat(date, `h:MM tt`)
     }
+  }
+  else {
+    placeholder = App.filter_placeholder
   }
 
   if (!force) {
@@ -42,6 +45,17 @@ App.check_clock = (force = false) => {
 }
 
 App.toggle_clock = () => {
-  App.toggle_setting(`show_clock`, false)
+  let sett = App.get_setting(`clock`)
+
+  if (sett === `none`) {
+    App.set_setting(`clock`, `show_12`, false)
+  }
+  else if (sett === `show_12`) {
+    App.set_setting(`clock`, `show_24`, false)
+  }
+  else {
+    App.set_setting(`clock`, `none`, false)
+  }
+
   App.check_clock(true)
 }
