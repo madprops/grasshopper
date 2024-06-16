@@ -2131,6 +2131,33 @@ App.setup_commands = () => {
       info: `Remove colors from the main title`,
     },
     {
+      name: `Open URL One`,
+      cmd: `open_url_one`,
+      icon: browser_icon,
+      action: (args) => {
+        App.open_setting_url(1)
+      },
+      info: `Open the first URL defined in settings`,
+    },
+    {
+      name: `Open URL Two`,
+      cmd: `open_url_two`,
+      icon: browser_icon,
+      action: (args) => {
+        App.open_setting_url(2)
+      },
+      info: `Open the first URL defined in settings`,
+    },
+    {
+      name: `Open URL Three`,
+      cmd: `open_url_three`,
+      icon: browser_icon,
+      action: (args) => {
+        App.open_setting_url(3)
+      },
+      info: `Open the first URL defined in settings`,
+    },
+    {
       name: `Open Sidebar`,
       cmd: `open_sidebar`,
       icon: bot_icon,

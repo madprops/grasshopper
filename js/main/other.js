@@ -180,3 +180,28 @@ App.open_sidebar = () => {
 App.close_sidebar = () => {
   browser.sidebarAction.close()
 }
+
+App.open_setting_url = (num) => {
+  let name
+
+  if (num === 1) {
+    name = `one`
+  }
+  else if (num === 2) {
+    name = `two`
+  }
+  else if (num === 3) {
+    name = `three`
+  }
+  else {
+    return
+  }
+
+  let url = App.get_setting(`url_${name}`)
+
+  if (!url) {
+    return
+  }
+
+  App.open_new_tab({url: url})
+}
