@@ -1328,8 +1328,10 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `edit_main_title`},
-        {cmd: `edit_global_notes`},
-        {cmd: `show_theme_menu`},
+        {cmd: `color_main_title_red`},
+        {cmd: `color_main_title_green`},
+        {cmd: `color_main_title_blue`},
+        {cmd: `uncolor_main_title`},
         {cmd: `settings_category_title`},
       ],
       info: `Menu to show when right clicking the Title`,
