@@ -409,13 +409,6 @@ App.to_set = (array) => {
   return Array.from(new Set(array))
 }
 
-App.SECOND = 1000
-App.MINUTE = 60 * App.SECOND
-App.HOUR = 60 * App.MINUTE
-App.DAY = 24 * App.HOUR
-App.MONTH = 30 * App.DAY
-App.YEAR = 365 * App.DAY
-
 App.timeago = (date) => {
   let diff = App.now() - date
   let decimals = true

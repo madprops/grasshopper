@@ -739,7 +739,7 @@ App.filter_mode_text = (args = {}) => {
 }
 
 App.create_filter = (mode) => {
-  let filter = DOM.create(`input`, `text filter`, `${mode}_filter`)
+  let filter = DOM.create(`input`, `text filter mode_filter`, `${mode}_filter`)
   filter.type = `text`
   filter.autocomplete = `off`
   filter.spellcheck = false

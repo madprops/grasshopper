@@ -945,6 +945,13 @@ App.build_settings = () => {
       info: `Show the item count on the Footer`,
       version: 1,
     },
+    show_clock: {
+      name: `Clock In Filter`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the time in the Filter input`,
+      version: 1,
+    },
     hide_pins: {
       name: `Hide Pins`,
       type: `checkbox`,

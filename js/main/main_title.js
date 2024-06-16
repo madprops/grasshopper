@@ -6,6 +6,7 @@ App.create_main_title = (mode) => {
   let title = App.get_setting(`main_title`)
   inner.textContent = title
 
+  el.title = `Right Click: Show the Title Menu`
   App.trigger_title(el, `middle_click_main_title`)
   App.trigger_title(el, `double_click_main_title`)
 

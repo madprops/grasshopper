@@ -16,6 +16,13 @@ App.stor_notes_name = `notes_v200`
 App.stor_compat_check_name = `compat_check_v1`
 App.stor_compat = []
 
+App.SECOND = 1000
+App.MINUTE = 60 * App.SECOND
+App.HOUR = 60 * App.MINUTE
+App.DAY = 24 * App.HOUR
+App.MONTH = 30 * App.DAY
+App.YEAR = 365 * App.DAY
+
 App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 App.close_tabs_types = [`normal`, `playing`, `unloaded`, `loaded`, `duplicate`, `visible`, `empty`, `other`, `pinned`, `all`]
@@ -111,6 +118,7 @@ App.check_playing_delay = 50
 App.context_auto_hide_delay = 1000
 App.restore_delay = 600
 App.footer_message_delay = 1000
+App.check_clock_delay = App.SECOND * 10
 
 App.settings_icons = {
   general: `⚡`,
