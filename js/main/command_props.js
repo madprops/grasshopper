@@ -2122,6 +2122,15 @@ App.setup_commands = () => {
       info: `Apply blue color to the main title`,
     },
     {
+      name: `Uncolor Title`,
+      cmd: `uncolor_main_title`,
+      icon: title_icon,
+      action: (args) => {
+        App.uncolor_main_title()
+      },
+      info: `Remove colors from the main title`,
+    },
+    {
       name: `Open Sidebar`,
       cmd: `open_sidebar`,
       icon: bot_icon,
