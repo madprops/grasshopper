@@ -1310,6 +1310,11 @@ App.blink_item = (item) => {
   let step = 0.05
   let delay = 22
 
+  if (!delay) {
+    App.error(`Blink delay is invalid`)
+    return
+  }
+
   let interval = setInterval(() => {
     item.element.style.opacity = opacity
 
