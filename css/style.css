@@ -1648,6 +1648,8 @@ a:hover
   pointer-events: none;
 }
 
+/*  */
+
 .main_title {
   display: flex;
   flex-direction: row;
@@ -1665,6 +1667,8 @@ a:hover
   font-size: var(--main_title_font_size);
 }
 
+/*  */
+
 .main_title_align_left .main_title {
   justify-content: flex-start;
 }
@@ -1673,6 +1677,8 @@ a:hover
   text-align: left;
 }
 
+/*  */
+
 .main_title_align_center .main_title {
   justify-content: center;
 }
@@ -1680,6 +1686,8 @@ a:hover
 .main_title_align_center .main_title_inner {
   text-align: center;
 }
+
+/*  */
 
 .main_title_align_right .main_title {
   justify-content: flex-end;
