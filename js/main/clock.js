@@ -2,11 +2,9 @@ App.start_clock = () => {
   setInterval(() => {
     App.check_clock()
   }, App.check_clock_delay)
-
-  App.check_clock()
 }
 
-App.check_clock = () => {
+App.check_clock = (force = false) => {
   let placeholder = App.filter_placeholder
 
   if (App.get_setting(`show_clock`)) {
@@ -14,8 +12,10 @@ App.check_clock = () => {
     placeholder = dateFormat(date, `h:MM tt`)
   }
 
-  if (placeholder === App.last_filter_placeholder) {
-    return
+  if (!force) {
+    if (placeholder === App.last_filter_placeholder) {
+      return
+    }
   }
 
   let filters = DOM.els(`.mode_filter`)
@@ -29,5 +29,5 @@ App.check_clock = () => {
 
 App.toggle_clock = () => {
   App.toggle_setting(`show_clock`, false)
-  App.check_clock()
+  App.check_clock(true)
 }

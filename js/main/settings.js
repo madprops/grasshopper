@@ -17,9 +17,6 @@ App.settings_do_actions = (actions) => {
     else if (action === `gestures`) {
       App.refresh_gestures()
     }
-    else if (action === `clock`) {
-      App.check_clock()
-    }
   }
 }
 
@@ -631,7 +628,7 @@ App.reset_all_settings = () => {
     message: `Reset all settings?`,
     confirm_action: () => {
       for (let key in App.setting_props) {
-        App.set_default_setting(key)
+        App.set_default_setting(key, false)
       }
 
       App.restart_settings()

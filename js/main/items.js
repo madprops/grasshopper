@@ -1229,6 +1229,7 @@ App.build_item_window = (mode) => {
 
   btns.append(left_btns)
   btns.append(right_btns)
+  App.check_clock(true)
 
   DOM.ev(container, `scroll`, () => {
     App.check_scroller(mode)
