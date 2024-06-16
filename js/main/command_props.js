@@ -2076,8 +2076,7 @@ App.setup_commands = () => {
       info: `Change the background to the selected image`,
     },
     {
-      name: `Main Title`,
-      short_name: `Edit Title`,
+      name: `Edit Title`,
       cmd: `edit_main_title`,
       icon: title_icon,
       action: (args) => {

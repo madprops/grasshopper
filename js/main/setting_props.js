@@ -1309,7 +1309,7 @@ App.build_settings = () => {
 
   props = {
     main_title: {
-      name: `Main Title`,
+      name: `Title`,
       type: `text`,
       value: ``,
       placeholder: `Title At The Top`,
@@ -1325,14 +1325,14 @@ App.build_settings = () => {
         {cmd: `show_theme_menu`},
         {cmd: `settings_category_title`},
       ],
-      info: `Menu to show when clicking the Main Title`,
+      info: `Menu to show when clicking the Title`,
       version: 1,
     },
     double_click_main_title: {
       name: `Double Click Title`,
       type: `menu`,
       value: `edit_main_title`,
-      info: `Command to run when double clicking the Main Title`,
+      info: `Command to run when double clicking the Title`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
@@ -1342,7 +1342,7 @@ App.build_settings = () => {
       name: `Middle Click Title`,
       type: `menu`,
       value: `reopen_tab`,
-      info: `Command to run when middle clicking the Main Title`,
+      info: `Command to run when middle clicking the Title`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
@@ -2934,7 +2934,7 @@ App.build_settings = () => {
       Some files, like local files and others, won't be able to load`,
     },
     title: {
-      info: `Configure the Main Title
+      info: `Configure the Title
       The title is text that appears at the top`,
     },
     taglist: {
