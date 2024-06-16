@@ -948,7 +948,7 @@ App.build_settings = () => {
     show_clock: {
       name: `Clock In Filter`,
       type: `checkbox`,
-      value: true,
+      value: false,
       info: `Show the time in the Filter input`,
       version: 1,
     },
