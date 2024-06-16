@@ -1402,13 +1402,6 @@ App.build_settings = () => {
         App.start_color_picker(key, true)
       },
     },
-    main_title_margin: {
-      name: `Title Margin`,
-      type: `checkbox`,
-      value: false,
-      info: `Extra margin below the Title`,
-      version: 2,
-    },
   }
 
   add_props()
