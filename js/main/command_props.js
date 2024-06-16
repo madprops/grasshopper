@@ -586,13 +586,13 @@ App.setup_commands = () => {
       info: `Enable or disable Auto Blur`,
     },
     {
-      name: `Toggle Clock`,
-      cmd: `toggle_clock`,
+      name: `Cycle Clock`,
+      cmd: `cycle_clock`,
       icon: time_icon,
       action: (args) => {
-        App.toggle_clock()
+        App.cycle_clock()
       },
-      info: `Enable or disable the Clock`,
+      info: `Cycle clock modes`,
     },
     {
       name: `Fullscreen`,

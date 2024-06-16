@@ -44,7 +44,7 @@ App.check_clock = (force = false) => {
   App.last_filter_placeholder = placeholder
 }
 
-App.toggle_clock = () => {
+App.cycle_clock = () => {
   let sett = App.get_setting(`clock`)
 
   if (sett === `none`) {
