@@ -751,7 +751,7 @@ App.create_filter = (mode) => {
     filter.placeholder = `Search`
   }
   else {
-    filter.placeholder = `Filter`
+    filter.placeholder = App.filter_placeholder
   }
 
   DOM.ev(filter, `contextmenu`, (e) => {

@@ -7,15 +7,21 @@ App.start_clock = () => {
 }
 
 App.check_clock = () => {
-  if (!App.get_setting(`show_clock`)) {
-    return
+  let placeholder = App.filter_placeholder
+
+  if (App.get_setting(`show_clock`)) {
+    let date = App.now()
+    placeholder = dateFormat(date, `h:MM tt`)
   }
 
-  let date = App.now()
-  let time = dateFormat(date, `h:MM tt`)
   let filters = DOM.els(`.mode_filter`)
 
   for (let el of filters) {
-    el.placeholder = time
+    el.placeholder = placeholder
   }
+}
+
+App.toggle_clock = () => {
+  App.toggle_setting(`show_clock`, false)
+  App.check_clock()
 }

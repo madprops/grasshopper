@@ -17,6 +17,9 @@ App.settings_do_actions = (actions) => {
     else if (action === `gestures`) {
       App.refresh_gestures()
     }
+    else if (action === `clock`) {
+      App.check_clock()
+    }
   }
 }
 
@@ -1629,4 +1632,9 @@ App.settings_top = () => {
 App.settings_bottom = () => {
   let el = App.settings_content()
   el.scrollTop = el.scrollHeight
+}
+
+App.toggle_setting = (setting, do_action = true) => {
+  let value = App.get_setting(setting)
+  App.set_setting(setting, !value, do_action)
 }

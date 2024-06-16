@@ -10,6 +10,7 @@ App.setup_commands = () => {
   let header_icon = App.get_setting(`header_icon`) || App.zone_icon
   let subheader_icon = App.get_setting(`subheader_icon`) || App.zone_icon
   let image_icon = App.get_setting(`image_icon`) || App.settings_icons.media
+  let time_icon = App.time_icon
   let title_icon = App.settings_icons.title
   let command_icon = App.command_icon
   let settings_icon = App.settings_icons.general
@@ -583,6 +584,15 @@ App.setup_commands = () => {
         App.toggle_auto_blur()
       },
       info: `Enable or disable Auto Blur`,
+    },
+    {
+      name: `Toggle Clock`,
+      cmd: `toggle_clock`,
+      icon: time_icon,
+      action: (args) => {
+        App.toggle_clock()
+      },
+      info: `Enable or disable the Clock`,
     },
     {
       name: `Fullscreen`,

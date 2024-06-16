@@ -77,6 +77,7 @@ App.pinline_visible = false
 App.similarity_threshold = 0.7
 App.palette_threshold = 100
 App.item_menu_threshold = 100
+App.filter_placeholder = `Filter`
 
 App.settings_done = false
 App.settings_ready = false
@@ -118,7 +119,7 @@ App.check_playing_delay = 50
 App.context_auto_hide_delay = 1000
 App.restore_delay = 600
 App.footer_message_delay = 1000
-App.check_clock_delay = App.SECOND * 10
+App.check_clock_delay = App.SECOND * 20
 
 App.settings_icons = {
   general: `⚡`,
@@ -171,6 +172,7 @@ App.sleeping_icon = `💤`
 App.circle_icon = `⭕`
 App.globe_icon = `🌎`
 App.data_icon = `💾`
+App.time_icon = `⏰`
 
 App.sizes = [
   {text: `Tiny`, value: `tiny`},
