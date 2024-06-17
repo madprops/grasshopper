@@ -787,7 +787,6 @@ App.get_setting = (setting) => {
 App.set_setting = (args = {}) => {
   let def_args = {
     action: false,
-    refresh: false,
   }
 
   App.def_args(def_args, args)
@@ -804,10 +803,6 @@ App.set_setting = (args = {}) => {
       if (props.actions) {
         App.settings_do_actions(props.actions)
       }
-    }
-
-    if (refresh) {
-      App.check_refresh_settings()
     }
   }
 }

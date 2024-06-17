@@ -297,10 +297,12 @@ App.clear_favorite_bar_autohide = () => {
 
 App.set_show_favorites = (what) => {
   App.set_setting({setting: `show_favorites`, value: what})
+  App.check_refresh_settings()
 }
 
 App.set_favorites_position = (pos) => {
   App.set_setting({setting: `favorites_position`, value: pos})
+  App.check_refresh_settings()
 }
 
 App.init_favorites = (mode) => {
@@ -341,6 +343,7 @@ App.toggle_favorites = (mode = App.active_mode) => {
 App.toggle_favorites_autohide = () => {
   let autohide = !App.get_setting(`favorites_autohide`)
   App.set_setting({setting: `favorites_autohide`, value: autohide})
+  App.check_refresh_settings()
 
   if (autohide) {
     App.alert_autohide(`Favorites Autohide Enabled`)

@@ -491,12 +491,14 @@ App.set_light_colors = () => {
 App.set_colors = (c1, c2) => {
   App.set_setting({setting: `background_color`, value: c1})
   App.set_setting({setting: `text_color`, value: c2})
+  App.check_refresh_settings()
   App.apply_theme()
 }
 
 App.change_background = (url) => {
   App.reset_theme()
   App.set_setting({setting: `background_image`, value: url})
+  App.check_refresh_settings()
   App.apply_theme()
 }
 
@@ -523,6 +525,7 @@ App.random_color = (what, type) => {
 
   color = App.colorlib.hex_to_rgb(color)
   App.set_setting({setting: `${what}_color`, value: color})
+  App.check_refresh_settings()
   App.apply_theme()
 }
 
@@ -750,6 +753,7 @@ App.cycle_background_opacity = (how = `cycle`) => {
   }
 
   App.set_setting({setting: `background_opacity`, value: opacity})
+  App.check_refresh_settings()
   App.footer_message(`Opacity: ${opacity}%`)
   App.last_opacity_cycle_date = Date.now()
   App.apply_theme()
@@ -818,6 +822,7 @@ App.import_theme = () => {
         if (key && value) {
           if (setts.includes(key)) {
             App.set_setting({setting: key, value: value})
+            App.check_refresh_settings()
           }
         }
       }
@@ -931,6 +936,7 @@ App.set_theme = (num) => {
 
   App.set_default_setting(`background_effect`)
   App.set_default_setting(`background_tiles`)
+  App.check_refresh_settings()
   App.set_background_image(bg.num)
 }
 
@@ -942,6 +948,7 @@ App.set_background_image = (num) => {
   }
 
   App.set_setting({setting: `background_image`, value: bg_image})
+  App.check_refresh_settings()
   App.apply_theme()
 }
 

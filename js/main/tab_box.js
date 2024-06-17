@@ -451,20 +451,24 @@ App.check_tab_box_footer = () => {
 
 App.set_show_tab_box = (what) => {
   App.set_setting({setting: `show_tab_box`, value: what})
+  App.check_refresh_settings()
   App.check_tab_box_footer()
 }
 
 App.set_tab_box_size = (what) => {
   App.set_setting({setting: `tab_box_size`, value: what})
+  App.check_refresh_settings()
   App.tab_box_check_size()
 }
 
 App.set_tab_box_mode = (what) => {
   App.set_setting({setting: `tab_box_mode`, value: what})
+  App.check_refresh_settings()
 }
 
 App.set_tab_box_position = (what) => {
   App.set_setting({setting: `tab_box_position`, value: what})
+  App.check_refresh_settings()
 }
 
 App.tab_box_check_size = () => {

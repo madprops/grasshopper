@@ -1478,6 +1478,7 @@ App.tabs_in_same_place = (items) => {
 App.toggle_show_pins = () => {
   let hide = App.get_setting(`hide_pins`)
   App.set_setting({setting: `hide_pins`, value: !hide})
+  App.check_refresh_settings()
 
   if (hide) {
     App.show_all_pins()

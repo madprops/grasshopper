@@ -57,5 +57,6 @@ App.cycle_clock = () => {
     App.set_setting({setting: `clock`, value: `none`})
   }
 
+  App.check_refresh_settings()
   App.check_clock(true)
 }

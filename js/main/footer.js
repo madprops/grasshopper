@@ -161,6 +161,7 @@ App.do_update_footer_count = (mode) => {
 
 App.set_show_footer = (what) => {
   App.set_setting({setting: `show_footer`, value: what})
+  App.check_refresh_settings()
 }
 
 App.init_footer = () => {
