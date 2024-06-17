@@ -791,7 +791,7 @@ App.set_setting = (args = {}) => {
 
   App.def_args(def_args, args)
 
-  if (App.str(App.settings[args.setting].args.value) !== App.str(args.value)) {
+  if (App.str(App.settings[args.setting].value) !== App.str(args.value)) {
     let props = App.setting_props[args.setting]
     App.settings[args.setting].value = args.value
     let mirror = !props.no_mirror
