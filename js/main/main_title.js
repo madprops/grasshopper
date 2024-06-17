@@ -55,6 +55,7 @@ App.edit_main_title = () => {
     on_submit: (ans) => {
       let title = ans.trim()
       App.set_setting(`main_title`, title)
+      App.check_refresh_settings(`main_title`)
       App.check_main_titles()
       App.apply_theme()
     },
@@ -112,10 +113,12 @@ App.color_main_title = (what) => {
   App.set_setting(`main_title_colors`, true)
   App.set_setting(`main_title_text_color`, text_color)
   App.set_setting(`main_title_background_color`, background_color)
+  App.check_refresh_settings(`main_title`)
   App.apply_theme()
 }
 
 App.uncolor_main_title = () => {
   App.set_setting(`main_title_colors`, false)
+  App.check_refresh_settings(`main_title`)
   App.apply_theme()
 }

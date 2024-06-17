@@ -491,26 +491,14 @@ App.set_light_colors = () => {
 App.set_colors = (c1, c2) => {
   App.set_setting(`background_color`, c1, false)
   App.set_setting(`text_color`, c2, false)
-  App.check_theme_refresh()
+  App.check_refresh_settings(`text_color`)
+  App.apply_theme()
 }
 
 App.change_background = (url) => {
   App.reset_theme()
   App.set_setting(`background_image`, url, false)
-  App.check_theme_refresh()
-}
-
-App.check_theme_refresh = () => {
-  if (App.on_settings()) {
-    if (App.settings_category === `theme`) {
-      App.background_color.setColor(App.get_setting(`background_color`), true)
-      App.text_color.setColor(App.get_setting(`text_color`), true)
-      DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
-      App.set_settings_menu(`background_effect`, undefined, false)
-      App.set_settings_menu(`background_tiles`, undefined, false)
-    }
-  }
-
+  App.check_refresh_settings(`background_image`)
   App.apply_theme()
 }
 
@@ -537,7 +525,8 @@ App.random_color = (what, type) => {
 
   color = App.colorlib.hex_to_rgb(color)
   App.set_setting(`${what}_color`, color)
-  App.check_theme_refresh()
+  App.check_refresh_settings(`background_color`)
+  App.apply_theme()
 }
 
 App.set_background = (url) => {
@@ -764,9 +753,10 @@ App.cycle_background_opacity = (how = `cycle`) => {
   }
 
   App.set_setting(`background_opacity`, opacity, false)
-  App.apply_theme()
   App.footer_message(`Opacity: ${opacity}%`)
   App.last_opacity_cycle_date = Date.now()
+  App.check_refresh_settings(`background_opacity`)
+  App.apply_theme()
 }
 
 App.reset_theme = () => {
@@ -836,10 +826,7 @@ App.import_theme = () => {
         }
       }
 
-      if (App.on_settings()) {
-        App.show_settings_category(`theme`)
-      }
-
+      App.check_refresh_settings(`background_image`)
       App.apply_theme()
       return true
     },
@@ -950,10 +937,6 @@ App.set_theme = (num) => {
   App.set_default_setting(`background_effect`, false)
   App.set_default_setting(`background_tiles`, false)
   App.set_background_image(bg.num)
-
-  if (App.on_settings()) {
-    App.show_settings_category(`theme`)
-  }
 }
 
 App.set_background_image = (num) => {
@@ -964,6 +947,7 @@ App.set_background_image = (num) => {
   }
 
   App.set_setting(`background_image`, bg_image, false)
+  App.check_refresh_settings(`background_image`)
   App.apply_theme()
 }
 

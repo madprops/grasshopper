@@ -793,6 +793,20 @@ App.set_setting = (setting, value, do_action = true) => {
   }
 }
 
+App.check_refresh_settings = (setting) => {
+  if (App.on_settings()) {
+    let category = App.get_setting_category(setting)
+
+    if (category === App.settings_category) {
+      App.show_settings_category(category)
+    }
+  }
+}
+
+App.get_setting_category = (setting) => {
+  return App.setting_props[setting].category
+}
+
 App.get_default_setting = (setting) => {
   let value = App.setting_props[setting].value
 
