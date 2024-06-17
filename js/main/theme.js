@@ -845,3 +845,128 @@ App.import_theme = () => {
     },
   })
 }
+
+App.show_theme_menu = (e) => {
+  let items = []
+
+  for (let bg of App.themes) {
+    items.push({
+      text: `Theme ${bg.num}`,
+      action: () => {
+        App.set_theme(bg.num)
+      },
+      image: App.background_path(bg.num),
+    })
+  }
+
+  App.show_context({items: items, e: e})
+}
+
+App.show_background_menu = (e) => {
+  let items = []
+
+  for (let bg of App.themes) {
+    items.push({
+      text: `Background ${bg.num}`,
+      action: () => {
+        App.set_background_image(bg.num)
+      },
+      image: App.background_path(bg.num),
+    })
+  }
+
+  App.show_context({items: items, e: e})
+}
+
+App.set_previous_theme = () => {
+  let bg = App.get_setting(`background_image`)
+  let num = App.themes.length + 1
+
+  if (bg.startsWith(`Background`)) {
+    num = parseInt(bg.split(` `)[1])
+  }
+
+  let prev = num - 1
+
+  if (prev < 1) {
+    prev = App.themes.length
+  }
+
+  App.set_theme(prev)
+}
+
+App.set_next_theme = () => {
+  let bg = App.get_setting(`background_image`)
+  let num = 0
+
+  if (bg.startsWith(`Background`)) {
+    num = parseInt(bg.split(` `)[1])
+  }
+
+  let next = num + 1
+
+  if (next > App.themes.length) {
+    next = 1
+  }
+
+  App.set_theme(next)
+}
+
+App.set_theme = (num) => {
+  let bg
+
+  for (let bg_ of App.themes) {
+    if (bg_.num === num) {
+      bg = bg_
+      break
+    }
+  }
+
+  if (!bg) {
+    return
+  }
+
+  if (bg.opacity) {
+    App.set_setting(`background_opacity`, bg.opacity, false)
+  }
+  else {
+    App.set_default_setting(`background_opacity`, false)
+  }
+
+  if (bg.text_color) {
+    App.set_setting(`text_color`, bg.text_color, false)
+  }
+  else {
+    App.set_default_setting(`text_color`, false)
+  }
+
+  if (bg.background_color) {
+    App.set_setting(`background_color`, bg.background_color, false)
+  }
+  else {
+    App.set_default_setting(`background_color`, false)
+  }
+
+  App.set_default_setting(`background_effect`, false)
+  App.set_default_setting(`background_tiles`, false)
+  App.set_background_image(bg.num)
+
+  if (App.on_settings()) {
+    App.show_settings_category(`theme`)
+  }
+}
+
+App.set_background_image = (num) => {
+  let bg_image = `Background ${num}`
+
+  if (App.on_settings()) {
+    DOM.el(`#settings_background_image`).value = bg_image
+  }
+
+  App.set_setting(`background_image`, bg_image, false)
+  App.apply_theme()
+}
+
+App.background_path = (num) => {
+  return App.backgrounds_dir + `background_${num}.jpg`
+}
