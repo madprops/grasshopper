@@ -73,7 +73,7 @@ App.settings_setup_checkboxes = (category) => {
       el.checked = App.get_setting(key)
 
       DOM.ev(el, `change`, () => {
-        App.set_setting(key, el.checked)
+        App.set_setting({setting: key, value: el.checked})
       })
 
       DOM.ev(App.get_settings_label(key), `click`, (e) => {
@@ -120,7 +120,7 @@ App.settings_setup_texts = (category) => {
 
       el.value = value
       el.scrollTop = 0
-      App.set_setting(key, value)
+      App.set_setting({setting: key, value: value})
     })
 
     let menu = [
@@ -177,7 +177,7 @@ App.settings_setup_texts = (category) => {
             message: `Clear setting?`,
             confirm_action: () => {
               el.value = ``
-              App.set_setting(key, ``)
+              App.set_setting({setting: key, value: ``})
               el.focus()
             },
             force: force,
@@ -226,7 +226,7 @@ App.settings_setup_numbers = (category) => {
       }
 
       el.value = value
-      App.set_setting(key, value)
+      App.set_setting({setting: key, value: value})
     })
 
     let menu = [
@@ -298,7 +298,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     selected: App.get_setting(setting),
     wrap: !no_wrap.includes(setting),
     on_change: (args, opt) => {
-      App.set_setting(setting, opt.value)
+      App.set_setting({setting: setting, value: opt.value})
       action()
     },
     get_value: () => {
@@ -486,6 +486,10 @@ App.start_settings = () => {
   App.filter_settings_debouncer = App.create_debouncer(() => {
     App.do_filter_settings()
   }, App.filter_delay_2)
+
+  App.check_refresh_settings_debouncer = App.create_debouncer(() => {
+    App.do_check_refresh_settings()
+  }, App.check_refresh_settings_delay)
 }
 
 App.add_settings_switchers = (category) => {
@@ -573,7 +577,7 @@ App.start_color_picker = (setting, alpha = false) => {
       rgb = AColorPicker.parseColor(color, `rgbcss`)
     }
 
-    App.set_setting(setting, rgb)
+    App.set_setting({setting: setting, value: rgb})
   })
 
   DOM.ev(App.get_settings_label(setting), `click`, (e) => {
@@ -599,8 +603,12 @@ App.settings_default_category = (category) => {
   }
 }
 
-App.set_default_setting = (setting, do_action) => {
-  App.set_setting(setting, App.default_setting_string, do_action)
+App.set_default_setting = (setting, action) => {
+  App.set_setting({
+    setting: setting,
+    value: App.default_setting_string,
+    action: action
+  })
 }
 
 App.category_string = (category) => {
@@ -776,35 +784,50 @@ App.get_setting = (setting) => {
   return value
 }
 
-App.set_setting = (setting, value, do_action = true) => {
-  if (App.str(App.settings[setting].value) !== App.str(value)) {
-    let props = App.setting_props[setting]
-    App.settings[setting].value = value
+App.set_setting = (args = {}) => {
+  let def_args = {
+    action: false,
+    refresh: false,
+  }
+
+  App.def_args(def_args, args)
+
+  if (App.str(App.settings[args.setting].args.value) !== App.str(args.value)) {
+    let props = App.setting_props[args.setting]
+    App.settings[args.setting].value = args.value
     let mirror = !props.no_mirror
     App.save_settings_debouncer.call(mirror)
 
-    if (do_action) {
-      let props = App.setting_props[setting]
+    if (args.action) {
+      let props = App.setting_props[args.setting]
 
       if (props.actions) {
         App.settings_do_actions(props.actions)
       }
     }
-  }
-}
 
-App.check_refresh_settings = (setting) => {
-  if (App.on_settings()) {
-    let category = App.get_setting_category(setting)
-
-    if (category === App.settings_category) {
-      App.show_settings_category(category)
+    if (refresh) {
+      App.check_refresh_settings()
     }
   }
 }
 
-App.get_setting_category = (setting) => {
-  return App.setting_props[setting].category
+App.check_refresh_settings = () => {
+  if (App.on_settings()) {
+    App.check_refresh_settings_debouncer.call()
+  }
+}
+
+App.do_check_refresh_settings = () => {
+  App.check_refresh_settings_debouncer.cancel()
+
+  if (App.on_settings()) {
+    App.refresh_settings_category()
+  }
+}
+
+App.refresh_settings_category = () => {
+  App.show_settings_category(App.settings_category)
 }
 
 App.get_default_setting = (setting) => {
@@ -1429,7 +1452,7 @@ App.pick_font = (e) => {
 
 App.do_pick_font = (font) => {
   DOM.el(`#settings_font`).value = font
-  App.set_setting(`font`, font)
+  App.set_setting({setting: `font`, value: font})
 }
 
 App.edit_text_setting = (key) => {
@@ -1441,7 +1464,7 @@ App.edit_text_setting = (key) => {
     button: `Save`,
     action: (text) => {
       let value = text.trim()
-      App.set_setting(key, value)
+      App.set_setting({setting: setting, value: value})
       el.value = App.get_setting(key)
       App.scroll_to_top(el)
       return true
@@ -1488,7 +1511,7 @@ App.get_setting_addlist_objects = () => {
 
   let set_data = (id, value) => {
     let key = id.replace(`settings_`, ``)
-    App.set_setting(key, value)
+    App.set_setting({setting: key, value: value})
   }
 
   let regobj = {
@@ -1522,7 +1545,7 @@ App.settings_bottom = () => {
   el.scrollTop = el.scrollHeight
 }
 
-App.toggle_setting = (setting, do_action = true) => {
+App.toggle_setting = (setting, action = true) => {
   let value = App.get_setting(setting)
-  App.set_setting(setting, !value, do_action)
+  App.set_setting({setting: setting, value: !value, action: action})
 }

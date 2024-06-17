@@ -246,7 +246,16 @@ App.get_favorites = () => {
 
 App.favorites_double_click = (e, where) => {
   let cmd = App.get_setting(`double_click_favorites_${where}`)
-  App.run_command({cmd: cmd, from: `filter_menu`, e: e})
+  let command = App.get_command(cmd)
+
+  if (command) {
+    let args = {
+      cmd: command.cmd,
+      e: e,
+    }
+
+    App.run_command(args)
+  }
 }
 
 App.favorites_middle_click = (e) => {
@@ -287,11 +296,11 @@ App.clear_favorite_bar_autohide = () => {
 }
 
 App.set_show_favorites = (what) => {
-  App.set_setting(`show_favorites`, what)
+  App.set_setting({setting: `show_favorites`, value: what})
 }
 
 App.set_favorites_position = (pos) => {
-  App.set_setting(`favorites_position`, pos)
+  App.set_setting({setting: `favorites_position`, value: pos})
 }
 
 App.init_favorites = (mode) => {
@@ -331,7 +340,7 @@ App.toggle_favorites = (mode = App.active_mode) => {
 
 App.toggle_favorites_autohide = () => {
   let autohide = !App.get_setting(`favorites_autohide`)
-  App.set_setting(`favorites_autohide`, autohide)
+  App.set_setting({setting: `favorites_autohide`, value: autohide})
 
   if (autohide) {
     App.alert_autohide(`Favorites Autohide Enabled`)

@@ -48,13 +48,13 @@ App.cycle_clock = () => {
   let clock = App.get_setting(`clock`)
 
   if (clock === `none`) {
-    App.set_setting(`clock`, `show_12`, false)
+    App.set_setting({setting:`clock`, value: `show_12`})
   }
   else if (clock === `show_12`) {
-    App.set_setting(`clock`, `show_24`, false)
+    App.set_setting({setting:`clock`, value: `show_24`})
   }
   else {
-    App.set_setting(`clock`, `none`, false)
+    App.set_setting({setting: `clock`, value: `none`})
   }
 
   App.check_clock(true)

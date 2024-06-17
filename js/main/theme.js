@@ -489,16 +489,14 @@ App.set_light_colors = () => {
 }
 
 App.set_colors = (c1, c2) => {
-  App.set_setting(`background_color`, c1, false)
-  App.set_setting(`text_color`, c2, false)
-  App.check_refresh_settings(`text_color`)
+  App.set_setting({setting: `background_color`, value: c1})
+  App.set_setting({setting: `text_color`, value: c2})
   App.apply_theme()
 }
 
 App.change_background = (url) => {
   App.reset_theme()
-  App.set_setting(`background_image`, url, false)
-  App.check_refresh_settings(`background_image`)
+  App.set_setting({setting: `background_image`, value: url})
   App.apply_theme()
 }
 
@@ -524,8 +522,7 @@ App.random_color = (what, type) => {
   }
 
   color = App.colorlib.hex_to_rgb(color)
-  App.set_setting(`${what}_color`, color)
-  App.check_refresh_settings(`background_color`)
+  App.set_setting({setting: `${what}_color`, value: color})
   App.apply_theme()
 }
 
@@ -752,10 +749,9 @@ App.cycle_background_opacity = (how = `cycle`) => {
     }
   }
 
-  App.set_setting(`background_opacity`, opacity, false)
+  App.set_setting({setting: `background_opacity`, value: opacity})
   App.footer_message(`Opacity: ${opacity}%`)
   App.last_opacity_cycle_date = Date.now()
-  App.check_refresh_settings(`background_opacity`)
   App.apply_theme()
 }
 
@@ -821,12 +817,11 @@ App.import_theme = () => {
 
         if (key && value) {
           if (setts.includes(key)) {
-            App.set_setting(key, value, false)
+            App.set_setting({setting: key, value: value})
           }
         }
       }
 
-      App.check_refresh_settings(`background_image`)
       App.apply_theme()
       return true
     },
@@ -914,21 +909,21 @@ App.set_theme = (num) => {
   }
 
   if (bg.opacity) {
-    App.set_setting(`background_opacity`, bg.opacity, false)
+    App.set_setting({setting: `background_opacity`, value: bg.opacity})
   }
   else {
     App.set_default_setting(`background_opacity`, false)
   }
 
   if (bg.text_color) {
-    App.set_setting(`text_color`, bg.text_color, false)
+    App.set_setting({setting: `text_color`, value: bg.text_color})
   }
   else {
     App.set_default_setting(`text_color`, false)
   }
 
   if (bg.background_color) {
-    App.set_setting(`background_color`, bg.background_color, false)
+    App.set_setting({setting: `background_color`, value: bg.background_color})
   }
   else {
     App.set_default_setting(`background_color`, false)
@@ -946,8 +941,7 @@ App.set_background_image = (num) => {
     DOM.el(`#settings_background_image`).value = bg_image
   }
 
-  App.set_setting(`background_image`, bg_image, false)
-  App.check_refresh_settings(`background_image`)
+  App.set_setting({setting: `background_image`, value: bg_image})
   App.apply_theme()
 }
 
