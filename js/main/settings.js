@@ -73,7 +73,7 @@ App.settings_setup_checkboxes = (category) => {
       el.checked = App.get_setting(key)
 
       DOM.ev(el, `change`, () => {
-        App.set_setting({setting: key, value: el.checked})
+        App.set_setting({setting: key, value: el.checked, action: true})
       })
 
       DOM.ev(App.get_settings_label(key), `click`, (e) => {
@@ -81,7 +81,7 @@ App.settings_setup_checkboxes = (category) => {
           [
             {
               name: `Reset`, action: () => {
-                App.set_default_setting(key)
+                App.set_default_setting(key, true)
                 el.checked = App.get_setting(key)
               }
             },
@@ -120,7 +120,7 @@ App.settings_setup_texts = (category) => {
 
       el.value = value
       el.scrollTop = 0
-      App.set_setting({setting: key, value: value})
+      App.set_setting({setting: key, value: value, action: true})
     })
 
     let menu = [
@@ -135,7 +135,7 @@ App.settings_setup_texts = (category) => {
           App.show_confirm({
             message: `Reset setting?`,
             confirm_action: () => {
-              App.set_default_setting(key)
+              App.set_default_setting(key, true)
               el.value = App.get_setting(key)
               App.scroll_to_top(el)
             },
@@ -177,7 +177,7 @@ App.settings_setup_texts = (category) => {
             message: `Clear setting?`,
             confirm_action: () => {
               el.value = ``
-              App.set_setting({setting: key, value: ``})
+              App.set_setting({setting: key, value: ``, action: true})
               el.focus()
             },
             force: force,
@@ -226,13 +226,13 @@ App.settings_setup_numbers = (category) => {
       }
 
       el.value = value
-      App.set_setting({setting: key, value: value})
+      App.set_setting({setting: key, value: value, action: true})
     })
 
     let menu = [
       {
         name: `Reset`,  action: () => {
-          App.set_default_setting(key)
+          App.set_default_setting(key, true)
           let value = App.get_setting(key)
           el.value = value
         },
@@ -273,7 +273,7 @@ App.setting_setup_lists = (category) => {
             App.show_confirm({
               message: `Reset setting?`,
               confirm_action: () => {
-                App.set_default_setting(key)
+                App.set_default_setting(key, true)
                 Addlist.update_count(`settings_${key}`)
               },
               force: force,
@@ -298,7 +298,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     selected: App.get_setting(setting),
     wrap: !no_wrap.includes(setting),
     on_change: (args, opt) => {
-      App.set_setting({setting: setting, value: opt.value})
+      App.set_setting({setting: setting, value: opt.value, action: true})
       action()
     },
     get_value: () => {
@@ -311,7 +311,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
       [
         {
           name: `Reset`, action: () => {
-            App.set_default_setting(setting)
+            App.set_default_setting(setting, true)
             App.set_settings_menu(setting, undefined, false)
             action()
           }
@@ -577,7 +577,7 @@ App.start_color_picker = (setting, alpha = false) => {
       rgb = AColorPicker.parseColor(color, `rgbcss`)
     }
 
-    App.set_setting({setting: setting, value: rgb})
+    App.set_setting({setting: setting, value: rgb, action: true})
   })
 
   DOM.ev(App.get_settings_label(setting), `click`, (e) => {
@@ -586,7 +586,7 @@ App.start_color_picker = (setting, alpha = false) => {
         {
           name: `Reset`, action: () => {
             picker.setColor(App.get_default_setting(setting))
-            App.set_default_setting(setting)
+            App.set_default_setting(setting, true)
           }
         },
       ])
@@ -598,12 +598,12 @@ App.settings_default_category = (category) => {
     let props = App.setting_props[key]
 
     if (props.category === category) {
-      App.set_default_setting(key, false)
+      App.set_default_setting(key)
     }
   }
 }
 
-App.set_default_setting = (setting, action) => {
+App.set_default_setting = (setting, action = false) => {
   App.set_setting({
     setting: setting,
     value: App.default_setting_string,
@@ -636,7 +636,7 @@ App.reset_all_settings = () => {
     message: `Reset all settings?`,
     confirm_action: () => {
       for (let key in App.setting_props) {
-        App.set_default_setting(key, false)
+        App.set_default_setting(key)
       }
 
       App.restart_settings()

@@ -756,9 +756,9 @@ App.cycle_background_opacity = (how = `cycle`) => {
 }
 
 App.reset_theme = () => {
-  App.set_default_setting(`background_effect`, false)
-  App.set_default_setting(`background_tiles`, false)
-  App.set_default_setting(`background_opacity`, false)
+  App.set_default_setting(`background_effect`)
+  App.set_default_setting(`background_tiles`)
+  App.set_default_setting(`background_opacity`)
 }
 
 App.export_theme = () => {
@@ -912,25 +912,25 @@ App.set_theme = (num) => {
     App.set_setting({setting: `background_opacity`, value: bg.opacity})
   }
   else {
-    App.set_default_setting(`background_opacity`, false)
+    App.set_default_setting(`background_opacity`)
   }
 
   if (bg.text_color) {
     App.set_setting({setting: `text_color`, value: bg.text_color})
   }
   else {
-    App.set_default_setting(`text_color`, false)
+    App.set_default_setting(`text_color`)
   }
 
   if (bg.background_color) {
     App.set_setting({setting: `background_color`, value: bg.background_color})
   }
   else {
-    App.set_default_setting(`background_color`, false)
+    App.set_default_setting(`background_color`)
   }
 
-  App.set_default_setting(`background_effect`, false)
-  App.set_default_setting(`background_tiles`, false)
+  App.set_default_setting(`background_effect`)
+  App.set_default_setting(`background_tiles`)
   App.set_background_image(bg.num)
 }
 
