@@ -1419,7 +1419,7 @@ App.edit_text_setting = (key) => {
     button: `Save`,
     action: (text) => {
       let value = text.trim()
-      App.set_setting({setting: setting, value: value})
+      App.set_setting({setting: key, value: value, action: true})
       el.value = App.get_setting(key)
       App.scroll_to_top(el)
       return true
@@ -1466,7 +1466,7 @@ App.get_setting_addlist_objects = () => {
 
   let set_data = (id, value) => {
     let key = id.replace(`settings_`, ``)
-    App.set_setting({setting: key, value: value})
+    App.set_setting({setting: key, value: value, action: true})
   }
 
   let regobj = {
