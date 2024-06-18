@@ -3024,18 +3024,6 @@ App.build_settings = () => {
       These are the icons used for various states
       You can leave them empty to not show anything`,
     },
-    zones: {
-      info: `Customize headers and splits`,
-    },
-    filter: {
-      info: `Adjust the filter and search`,
-    },
-    media: {
-      info: `How to view media items
-      An icon appears to the left of items
-      You can make it view media when clicking the icons, the whole item, or never
-      Some files, like local files and others, won't be able to load`,
-    },
     title: {
       info: `Configure the Title
       The title is text that appears at the top`,
@@ -3053,6 +3041,18 @@ App.build_settings = () => {
       info: `Configure the Tab Box
       This is a component that appears below or above the tabs
       It shows different kinds of tabs so you can jump around`,
+    },
+    zones: {
+      info: `Customize headers and splits`,
+    },
+    filter: {
+      info: `Adjust the filter and search`,
+    },
+    media: {
+      info: `How to view media items
+      An icon appears to the left of items
+      You can make it view media when clicking the icons, the whole item, or never
+      Some files, like local files and others, won't be able to load`,
     },
     triggers: {
       info: `Run commands on certain keyboard and mouse actions`,
