@@ -131,7 +131,7 @@ App.start_main_title_date = () => {
   let delay = App.check_main_title_date_delay
 
   if (!delay || (delay < App.SECOND)) {
-    App.error(`Main title URL delay is invalid`)
+    App.error(`Main title date delay is invalid`)
     return
   }
 
