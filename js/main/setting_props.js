@@ -767,6 +767,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `show_12`,
       info: `Show the time in the Filter input`,
+      no_mirror: true,
       separator: true,
       version: 1,
       setup: (key) => {
