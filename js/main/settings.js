@@ -663,15 +663,11 @@ App.show_settings = (e) => {
   }
 }
 
-App.show_settings_category = (category, after_show) => {
+App.show_settings_category = (category) => {
   App.start_settings()
   App.get_settings_with_list()
   App.settings_category = category
   App.show_window(`settings_${category}`)
-
-  if (after_show) {
-    after_show()
-  }
 }
 
 App.show_prev_settings = () => {
@@ -1412,42 +1408,6 @@ App.settings_build_category = (key) => {
   let sub = DOM.create(`div`, `settings_subcontainer`, `setting_${key}`)
   c.append(sub)
   return c
-}
-
-App.pick_background = (e) => {
-  let items = []
-
-  for (let bg of App.themes) {
-    items.push({
-      text: `Background ${bg.num}`,
-      action: () => {
-        App.set_background_image(bg.num)
-      },
-      image: App.background_path(bg.num),
-    })
-  }
-
-  App.show_context({e: e, items: items})
-}
-
-App.pick_font = (e) => {
-  let items = []
-
-  for (let font of App.fonts) {
-    items.push({
-      text: font,
-      action: () => {
-        App.do_pick_font(font)
-      },
-    })
-  }
-
-  App.show_context({e: e, items: items})
-}
-
-App.do_pick_font = (font) => {
-  DOM.el(`#settings_font`).value = font
-  App.set_setting({setting: `font`, value: font})
 }
 
 App.edit_text_setting = (key) => {
