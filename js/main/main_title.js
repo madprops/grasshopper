@@ -28,8 +28,6 @@ App.create_main_title = () => {
 }
 
 App.check_main_title = (title = ``) => {
-  let els = DOM.els(`.main_title_inner`)
-
   if (!title) {
     title = App.get_setting(`main_title`)
   }
@@ -39,6 +37,8 @@ App.check_main_title = (title = ``) => {
       return
     }
   }
+
+  let els = DOM.els(`.main_title_inner`)
 
   for (let el of els) {
     el.textContent = title
