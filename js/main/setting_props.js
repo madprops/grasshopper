@@ -1437,6 +1437,7 @@ App.build_settings = () => {
       type: `color`,
       value: App.default_color,
       info: `Background color of the Title`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key, true)
