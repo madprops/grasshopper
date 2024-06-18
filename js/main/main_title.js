@@ -27,7 +27,7 @@ App.create_main_title = () => {
   return el
 }
 
-App.check_main_title = () => {
+App.check_main_title = (check = false) => {
   let title
 
   if (App.get_setting(`main_title_date`)) {
@@ -37,9 +37,11 @@ App.check_main_title = () => {
     title = App.get_setting(`main_title`)
   }
 
-  if (App.last_main_title !== undefined) {
-    if (title === App.last_main_title) {
-      return
+  if (check) {
+    if (App.last_main_title !== undefined) {
+      if (title === App.last_main_title) {
+        return
+      }
     }
   }
 
@@ -157,7 +159,7 @@ App.start_main_title_date = () => {
 
 App.check_main_title_date = () => {
   if (App.get_setting(`main_title_date`)) {
-    App.check_main_title()
+    App.check_main_title(true)
   }
 }
 
