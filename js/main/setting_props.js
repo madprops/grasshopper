@@ -1366,6 +1366,7 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `edit_main_title`},
+        {cmd: `toggle_main_title_date`},
         {cmd: `color_main_title_red`},
         {cmd: `color_main_title_green`},
         {cmd: `color_main_title_blue`},
