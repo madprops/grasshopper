@@ -41,6 +41,7 @@ App.init = async () => {
   App.make_window_visible()
   App.check_first_time()
   App.start_clock()
+  App.start_main_title_date()
   App.start_date = App.now()
 }
 
