@@ -27,9 +27,12 @@ App.create_main_title = () => {
   return el
 }
 
-App.check_main_title = () => {
+App.check_main_title = (title = ``) => {
   let els = DOM.els(`.main_title_inner`)
-  let title = App.get_setting(`main_title`)
+
+  if (!title) {
+    title = App.get_setting(`main_title`)
+  }
 
   for (let el of els) {
     el.textContent = title
@@ -153,5 +156,17 @@ App.check_main_title_date = () => {
 
   let format = App.get_setting(`main_title_date_format`)
   let date = dateFormat(App.now(), format)
-  App.set_main_title(date)
+  App.check_main_title(date)
+}
+
+App.toggle_main_title_date = () => {
+  let show_date = !App.get_setting(`main_title_date`)
+  App.set_setting({setting: `main_title_date`, value: show_date})
+
+  if (show_date) {
+    App.check_main_title_date()
+  }
+  else {
+    App.check_main_title()
+  }
 }

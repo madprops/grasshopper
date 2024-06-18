@@ -2131,6 +2131,15 @@ App.setup_commands = () => {
       info: `Remove colors from the main title`,
     },
     {
+      name: `Toggle Date`,
+      cmd: `toggle_main_title_date`,
+      icon: title_icon,
+      action: (args) => {
+        App.toggle_main_title_date()
+      },
+      info: `Show or hide the date in the main title`,
+    },
+    {
       name: `Open URL One`,
       cmd: `open_url_one`,
       icon: browser_icon,

@@ -936,17 +936,11 @@ App.set_theme = (num) => {
 
   App.set_default_setting(`background_effect`)
   App.set_default_setting(`background_tiles`)
-  App.check_refresh_settings()
   App.set_background_image(bg.num)
 }
 
 App.set_background_image = (num) => {
   let bg_image = `Background ${num}`
-
-  if (App.on_settings()) {
-    DOM.el(`#settings_background_image`).value = bg_image
-  }
-
   App.set_setting({setting: `background_image`, value: bg_image})
   App.check_refresh_settings()
   App.apply_theme()
