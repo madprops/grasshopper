@@ -87,6 +87,7 @@ App.red_title = `rgb(166, 84, 107, 1)`
 App.green_title = `rgb(88, 132, 118, 1)`
 App.blue_title = `rgb(93, 93, 188, 1)`
 App.default_font_size = 17
+App.last_main_title = undefined
 
 App.settings_done = false
 App.settings_ready = false
@@ -129,7 +130,7 @@ App.context_auto_hide_delay = 1000
 App.restore_delay = 600
 App.footer_message_delay = 1000
 App.check_clock_delay = App.SECOND * 10
-App.check_main_title_date_delay = App.MINUTE * 1
+App.check_main_title_date_delay = App.SECOND * 10
 App.check_refresh_settings_delay = 100
 
 App.settings_icons = {

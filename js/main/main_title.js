@@ -34,15 +34,22 @@ App.check_main_title = (title = ``) => {
     title = App.get_setting(`main_title`)
   }
 
+  if (App.last_main_title !== undefined) {
+    if (title === App.last_main_title) {
+      return
+    }
+  }
+
   for (let el of els) {
     el.textContent = title
-    let p = el.closest(`.main_title`)
+    App.last_main_title = title
+    let elm = el.closest(`.main_title`)
 
     if (title) {
-      p.classList.remove(`hidden`)
+      elm.classList.remove(`hidden`)
     }
     else {
-      p.classList.add(`hidden`)
+      elm.classList.add(`hidden`)
     }
   }
 }
@@ -150,21 +157,19 @@ App.check_main_title_date = () => {
 
   let format = App.get_setting(`main_title_date_format`)
   let date = dateFormat(App.now(), format)
-  App.check_refresh_settings()
   App.check_main_title(date)
-  App.apply_theme()
 }
 
 App.toggle_main_title_date = () => {
   let show_date = !App.get_setting(`main_title_date`)
   App.set_setting({setting: `main_title_date`, value: show_date})
   App.check_refresh_settings()
+  App.apply_theme()
 
   if (show_date) {
     App.check_main_title_date()
   }
   else {
     App.check_main_title()
-    App.apply_theme()
   }
 }
