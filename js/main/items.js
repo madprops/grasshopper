@@ -1217,6 +1217,7 @@ App.build_item_window = (mode) => {
   right_btns.append(playing)
   right_btns.append(back)
   App.check_main_title()
+  App.check_main_title_date()
 
   if (actions_menu) {
     right_btns.append(actions_menu)

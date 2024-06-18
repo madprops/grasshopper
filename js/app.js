@@ -129,6 +129,7 @@ App.context_auto_hide_delay = 1000
 App.restore_delay = 600
 App.footer_message_delay = 1000
 App.check_clock_delay = App.SECOND * 10
+App.check_main_title_date_delay = App.MINUTE * 1
 App.check_refresh_settings_delay = 100
 
 App.settings_icons = {

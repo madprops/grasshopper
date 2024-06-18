@@ -1442,6 +1442,22 @@ App.build_settings = () => {
         App.start_color_picker(key, true)
       },
     },
+    main_title_date: {
+      name: `Title Date`,
+      type: `checkbox`,
+      value: true,
+      no_mirror: true,
+      info: `Show the current date as the Title`,
+      version: 2,
+    },
+    main_title_date_format: {
+      name: `Title Date Format`,
+      type: `text`,
+      value: `dddd dS mmmm yyyy`,
+      placeholder: `Date Format`,
+      info: `Format to use when showing the date as the Title`,
+      version: 1,
+    },
   }
 
   add_props()

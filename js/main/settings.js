@@ -414,6 +414,10 @@ App.setup_settings = () => {
   }, App.settings_save_delay)
 
   App.settings_categories = Object.keys(App.setting_catprops)
+
+  App.check_refresh_settings_debouncer = App.create_debouncer(() => {
+    App.do_check_refresh_settings()
+  }, App.check_refresh_settings_delay)
 }
 
 App.refresh_settings = () => {
@@ -486,10 +490,6 @@ App.start_settings = () => {
   App.filter_settings_debouncer = App.create_debouncer(() => {
     App.do_filter_settings()
   }, App.filter_delay_2)
-
-  App.check_refresh_settings_debouncer = App.create_debouncer(() => {
-    App.do_check_refresh_settings()
-  }, App.check_refresh_settings_delay)
 }
 
 App.add_settings_switchers = (category) => {
@@ -873,6 +873,10 @@ App.check_settings = () => {
 }
 
 App.on_settings = (mode = App.window_mode) => {
+  if (!mode) {
+    return false
+  }
+
   return mode.startsWith(`settings_`)
 }
 

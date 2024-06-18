@@ -1,4 +1,4 @@
-App.create_main_title = (mode) => {
+App.create_main_title = () => {
   let el = DOM.create(`div`, `main_title`)
   let inner = DOM.create(`div`, `main_title_inner`)
   el.append(inner)
@@ -54,12 +54,16 @@ App.edit_main_title = () => {
     highlight: highlight,
     on_submit: (ans) => {
       let title = ans.trim()
-      App.set_setting({setting: `main_title`, value: title})
-      App.check_refresh_settings()
-      App.check_main_title()
-      App.apply_theme()
+      App.set_main_title(title)
     },
   })
+}
+
+App.set_main_title = (title) => {
+  App.set_setting({setting: `main_title`, value: title})
+  App.check_refresh_settings()
+  App.check_main_title()
+  App.apply_theme()
 }
 
 App.copy_main_title = () => {
@@ -121,4 +125,27 @@ App.uncolor_main_title = () => {
   App.set_setting({setting: `main_title_colors`, value: false})
   App.check_refresh_settings()
   App.apply_theme()
+}
+
+App.start_main_title_date = () => {
+  let delay = App.check_main_title_date_delay
+
+  if (!delay || (delay < App.SECOND)) {
+    App.error(`Main title URL delay is invalid`)
+    return
+  }
+
+  setInterval(() => {
+    App.check_main_title_date()
+  }, delay)
+}
+
+App.check_main_title_date = () => {
+  if (!App.get_setting(`main_title_date`)) {
+    return
+  }
+
+  let format = App.get_setting(`main_title_date_format`)
+  let date = dateFormat(App.now(), format)
+  App.set_main_title(date)
 }
