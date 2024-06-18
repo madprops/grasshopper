@@ -63,14 +63,17 @@ App.edit_main_title = () => {
   })
 }
 
-App.set_main_title = (title) => {
+App.set_main_title = (title, set_setting = true) => {
   if (title === App.get_setting(`main_title`)) {
     return false
   }
 
-  App.set_setting({setting: `main_title`, value: title})
+  if (set_setting) {
+    App.set_setting({setting: `main_title`, value: title})
+  }
+
   App.check_refresh_settings()
-  App.check_main_title()
+  App.check_main_title(title)
   App.apply_theme()
   return true
 }
@@ -156,17 +159,19 @@ App.check_main_title_date = () => {
 
   let format = App.get_setting(`main_title_date_format`)
   let date = dateFormat(App.now(), format)
-  App.check_main_title(date)
+  App.set_main_title(date, false)
 }
 
 App.toggle_main_title_date = () => {
   let show_date = !App.get_setting(`main_title_date`)
   App.set_setting({setting: `main_title_date`, value: show_date})
+  App.check_refresh_settings()
 
   if (show_date) {
     App.check_main_title_date()
   }
   else {
     App.check_main_title()
+    App.apply_theme()
   }
 }
