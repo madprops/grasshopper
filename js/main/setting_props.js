@@ -2445,7 +2445,7 @@ App.build_settings = () => {
     double_click_filter: {
       name: `Double Click Filter`,
       type: `menu`,
-      value: `edit_global_notes`,
+      value: `toggle_main_title_date`,
       info: `What command to run when double clicking the text filter`,
       version: 1,
       setup: (key) => {
