@@ -27,8 +27,13 @@ App.create_main_title = () => {
   return el
 }
 
-App.check_main_title = (title = ``) => {
-  if (!title) {
+App.check_main_title = () => {
+  let title
+
+  if (App.get_setting(`main_title_date`)) {
+    title = App.get_main_title_date()
+  }
+  else {
     title = App.get_setting(`main_title`)
   }
 
@@ -64,15 +69,15 @@ App.edit_main_title = () => {
     highlight: highlight,
     on_submit: (ans) => {
       App.set_main_title(ans.trim())
-      App.set_setting({setting: `main_title_date`, value: false})
     },
   })
 }
 
 App.set_main_title = (title) => {
   App.set_setting({setting: `main_title`, value: title})
+  App.set_setting({setting: `main_title_date`, value: false})
   App.check_refresh_settings()
-  App.check_main_title(title)
+  App.check_main_title()
   App.apply_theme()
 }
 
@@ -151,13 +156,14 @@ App.start_main_title_date = () => {
 }
 
 App.check_main_title_date = () => {
-  if (!App.get_setting(`main_title_date`)) {
-    return
+  if (App.get_setting(`main_title_date`)) {
+    App.check_main_title()
   }
+}
 
+App.get_main_title_date = () => {
   let format = App.get_setting(`main_title_date_format`)
-  let date = dateFormat(App.now(), format)
-  App.check_main_title(date)
+  return dateFormat(App.now(), format)
 }
 
 App.toggle_main_title_date = () => {
@@ -165,11 +171,5 @@ App.toggle_main_title_date = () => {
   App.set_setting({setting: `main_title_date`, value: show_date})
   App.check_refresh_settings()
   App.apply_theme()
-
-  if (show_date) {
-    App.check_main_title_date()
-  }
-  else {
-    App.check_main_title()
-  }
+  App.check_main_title()
 }
