@@ -56,17 +56,14 @@ App.edit_main_title = () => {
     placeholder: `Title`,
     highlight: highlight,
     on_submit: (ans) => {
-      App.set_setting({setting: `main_title_date`, value: false})
       App.set_main_title(ans.trim())
+      App.set_setting({setting: `main_title_date`, value: false})
     },
   })
 }
 
-App.set_main_title = (title, set_setting = true) => {
-  if (set_setting) {
-    App.set_setting({setting: `main_title`, value: title})
-  }
-
+App.set_main_title = (title) => {
+  App.set_setting({setting: `main_title`, value: title})
   App.check_refresh_settings()
   App.check_main_title(title)
   App.apply_theme()
@@ -153,7 +150,9 @@ App.check_main_title_date = () => {
 
   let format = App.get_setting(`main_title_date_format`)
   let date = dateFormat(App.now(), format)
-  App.set_main_title(date, false)
+  App.check_refresh_settings()
+  App.check_main_title(date)
+  App.apply_theme()
 }
 
 App.toggle_main_title_date = () => {
