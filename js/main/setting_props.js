@@ -1412,6 +1412,7 @@ App.build_settings = () => {
       placeholder: `Px`,
       min: 6,
       max: 28,
+      separator: true,
       info: `Font size for the Title`,
       version: 1,
     },
