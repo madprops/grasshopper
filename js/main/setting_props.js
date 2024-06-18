@@ -1448,7 +1448,7 @@ App.build_settings = () => {
     main_title_date: {
       name: `Title Date`,
       type: `checkbox`,
-      value: true,
+      value: false,
       no_mirror: true,
       info: `Show the current date as the Title`,
       version: 2,
