@@ -54,6 +54,7 @@ App.edit_main_title = () => {
     highlight: highlight,
     on_submit: (ans) => {
       let title = ans.trim()
+      App.set_setting({setting: `main_title_date`, value: false})
       App.set_main_title(title)
     },
   })
