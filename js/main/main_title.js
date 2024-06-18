@@ -53,18 +53,23 @@ App.edit_main_title = () => {
     placeholder: `Title`,
     highlight: highlight,
     on_submit: (ans) => {
-      let title = ans.trim()
-      App.set_setting({setting: `main_title_date`, value: false})
-      App.set_main_title(title)
+      if (App.set_main_title(ans.trim())) {
+        App.set_setting({setting: `main_title_date`, value: false})
+      }
     },
   })
 }
 
 App.set_main_title = (title) => {
+  if (title === App.get_setting(`main_title`)) {
+    return false
+  }
+
   App.set_setting({setting: `main_title`, value: title})
   App.check_refresh_settings()
   App.check_main_title()
   App.apply_theme()
+  return true
 }
 
 App.copy_main_title = () => {
