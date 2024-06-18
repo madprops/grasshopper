@@ -1216,7 +1216,7 @@ App.build_item_window = (mode) => {
   left_btns.append(filter)
   right_btns.append(playing)
   right_btns.append(back)
-  App.check_main_titles()
+  App.check_main_title()
 
   if (actions_menu) {
     right_btns.append(actions_menu)

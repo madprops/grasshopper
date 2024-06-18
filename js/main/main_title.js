@@ -27,7 +27,7 @@ App.create_main_title = (mode) => {
   return el
 }
 
-App.check_main_titles = () => {
+App.check_main_title = () => {
   let els = DOM.els(`.main_title_inner`)
   let title = App.get_setting(`main_title`)
 
@@ -56,7 +56,7 @@ App.edit_main_title = () => {
       let title = ans.trim()
       App.set_setting({setting: `main_title`, value: title})
       App.check_refresh_settings()
-      App.check_main_titles()
+      App.check_main_title()
       App.apply_theme()
     },
   })
