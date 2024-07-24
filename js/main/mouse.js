@@ -525,7 +525,7 @@ App.on_mouse_wheel = (e) => {
   let direction = App.wheel_direction(e)
   let mode = App.window_mode
 
-  if (e.target.closest(`.favorites_bar`) ||
+  if (e.target.closest(`.favorites_bar_container`) ||
   (e.target.closest(`.scroller`) || e.target.closest(`.footer`))) {
     if (direction === `up`) {
       if (e.shiftKey) {
