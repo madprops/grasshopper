@@ -799,8 +799,22 @@ App.toggle_mute_tabs = (item) => {
 
 App.open_tab = async (item) => {
   try {
-    let tab = await browser.tabs.create({url: item.url})
-    return tab
+    return await browser.tabs.create({url: item.url})
+  }
+  catch (err) {
+    App.error(err)
+  }
+}
+
+App.change_tab = async (item) => {
+  try {
+    let current = await App.get_active_tab()
+
+    if (!current) {
+      return
+    }
+
+    return await browser.tabs.update(current.id, {url: item.url})
   }
   catch (err) {
     App.error(err)

@@ -244,6 +244,13 @@ App.build_settings = () => {
       info: `Max items to show in Recent Tabs`,
       version: 1,
     },
+    open_in_new_tab: {
+      name: `Open In New Tab`,
+      type: `checkbox`,
+      value: true,
+      info: `Open items like from History or Bookmarks in a new tab instead of on the same tab`,
+      version: 1,
+    },
     fetch_favicons: {
       name: `Fetch Favicons`,
       type: `checkbox`,

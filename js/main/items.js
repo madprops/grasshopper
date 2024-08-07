@@ -479,7 +479,13 @@ App.focus_or_open_item = async (item) => {
     }
   }
 
-  App.open_tab(item)
+  if (App.get_setting(`open_in_new_tab`)) {
+    App.open_tab(item)
+  }
+  else {
+    App.change_tab(item)
+  }
+
   App.after_open()
   return `opened`
 }
