@@ -43,7 +43,13 @@ App.get_recent_tabs = (args = {}) => {
 }
 
 App.get_previous_tabs = () => {
-  App.previous_tabs = App.get_recent_tabs({active: false})
+  App.previous_tabs = App.get_recent_tabs()
+
+  if (App.previous_tabs.length > 1) {
+    let first_tab = App.previous_tabs.shift()
+    App.previous_tabs.push(first_tab)
+  }
+
   App.previous_tabs_index = 0
 }
 
