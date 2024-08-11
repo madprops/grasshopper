@@ -524,3 +524,14 @@ App.custom_menu_items = (args = {}) => {
     check: args.check,
   })
 }
+
+// Get command name
+App.get_cmd_name = (cmd) => {
+  let command = App.get_command(cmd)
+
+  if (command) {
+    return command.name
+  }
+
+  return `Unknown`
+}

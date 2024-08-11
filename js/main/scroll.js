@@ -168,7 +168,10 @@ App.do_check_scroller = (mode = App.active_mode) => {
 App.create_scroller = (mode) => {
   let scroller = DOM.create(`div`, `scroller glowbox`, `${mode}_scroller`)
   let content = DOM.create(`div`, `scroller_content`)
-  scroller.title = `This is the Scroller\nClick: Go to the top\nRight Click: Scroll one step up\nMiddle Click: Scroll one page up`
+  let top = App.get_cmd_name(`go_to_top`)
+  let scroll_up = App.get_cmd_name(`scroll_up`)
+  let page_up = App.get_cmd_name(`page_up`)
+  scroller.title = `This is the Scroller\nClick: ${top}\nRight Click: ${scroll_up}\nMiddle Click: ${page_up}`
   let text = DOM.create(`div`)
   text.textContent = `Go To Top`
   let percentage = DOM.create(`div`, ``, `${mode}_scroller_percentage`)

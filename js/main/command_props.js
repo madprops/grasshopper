@@ -311,6 +311,46 @@ App.setup_commands = () => {
       info: `Go to the bottom of the list`,
     },
     {
+      name: `Scroll Up`,
+      cmd: `scroll_up`,
+      modes: [`items`],
+      icon: up_icon,
+      action: (args) => {
+        App.scroll(mode, `up`)
+      },
+      info: `Scroll up one step`,
+    },
+    {
+      name: `Scroll Down`,
+      cmd: `scroll_down`,
+      modes: [`items`],
+      icon: up_icon,
+      action: (args) => {
+        App.scroll(mode, `down`)
+      },
+      info: `Scroll down one step`,
+    },
+    {
+      name: `Page Up`,
+      cmd: `page_up`,
+      modes: [`items`],
+      icon: up_icon,
+      action: (args) => {
+        App.scroll_page(mode, `up`)
+      },
+      info: `Scroll up one page`,
+    },
+    {
+      name: `Page Down`,
+      cmd: `page_down`,
+      modes: [`items`],
+      icon: up_icon,
+      action: (args) => {
+        App.scroll_page(mode, `down`)
+      },
+      info: `Scroll down one page`,
+    },
+    {
       name: `Step Back`,
       cmd: `step_back`,
       modes: [`items`],
