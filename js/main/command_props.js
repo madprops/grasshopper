@@ -324,7 +324,7 @@ App.setup_commands = () => {
       name: `Scroll Down`,
       cmd: `scroll_down`,
       modes: [`items`],
-      icon: up_icon,
+      icon: down_icon,
       action: (args) => {
         App.scroll(args.mode, `down`)
       },
@@ -344,7 +344,7 @@ App.setup_commands = () => {
       name: `Page Down`,
       cmd: `page_down`,
       modes: [`items`],
-      icon: up_icon,
+      icon: down_icon,
       action: (args) => {
         App.scroll_page(args.mode, `down`)
       },
