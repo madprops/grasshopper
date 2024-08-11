@@ -7,7 +7,8 @@ App.create_actions_menu = (mode) => {
   App[`${mode}_actions`] = App.get_actions(mode)
   let btn = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
   btn.append(App.get_svg_icon(`sun`))
-  btn.title = `Actions (Ctrl + Right)\nRight Click: Show the Browser Menu`
+  let rclick = App.get_cmd_name(`show_browser_menu`)
+  btn.title = `Actions (Ctrl + Right)\nRight Click: ${rclick}`
   App.trigger_title(btn, `middle_click_actions_menu`)
 
   DOM.ev(btn, `click`, () => {

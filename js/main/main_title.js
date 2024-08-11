@@ -6,12 +6,13 @@ App.create_main_title = () => {
   let title = App.get_setting(`main_title`)
   inner.textContent = title
 
-  el.title = `Right Click: Show the Title Menu`
+  let rclick = App.get_cmd_name(`show_main_title_menu`)
+  el.title = `Right Click: ${rclick}`
   App.trigger_title(el, `middle_click_main_title`)
   App.trigger_title(el, `double_click_main_title`)
 
   DOM.ev(el, `contextmenu`, (e) => {
-    App.main_title_right_click(e)
+    App.show_main_title_menu(e)
   })
 
   DOM.ev(el, `dblclick`, (e) => {
@@ -87,7 +88,7 @@ App.copy_main_title = () => {
   App.copy_to_clipboard(App.get_setting(`main_title`))
 }
 
-App.main_title_right_click = (e) => {
+App.show_main_title_menu = (e) => {
   e.preventDefault()
 
   let items = App.custom_menu_items({

@@ -744,7 +744,9 @@ App.create_filter = (mode) => {
   filter.autocomplete = `off`
   filter.spellcheck = false
   filter.tabIndex = 0
-  filter.title = `Type to filter or search\nRight Click: Context\nMiddle Click: Refine`
+  let rclick = App.get_cmd_name(`show_filter_context_menu`)
+  let mclick = App.get_cmd_name(`show_refine_filters`)
+  filter.title = `Type to filter or search\nRight Click: ${rclick}\nMiddle Click: ${mclick}`
   App.trigger_title(filter, `double_click_filter`)
 
   if (App.search_modes.includes(mode)) {
@@ -1360,7 +1362,18 @@ App.create_filter_menu = (mode) => {
   }
 
   let btn = DOM.create(`div`, `button icon_button filter_button`, `${mode}_filter_modes`)
-  btn.title = `Filters (Ctrl + F)\nRight Click: Show Favorite Filters or the Palette`
+  let rclick = ``
+
+  if (App.get_setting(`favorite_filters`)) {
+    if (App.get_setting(`favorite_filters`).length) {
+      rclick = App.get_cmd_name(`show_favorite_filters`)
+    }
+    else {
+      rclick = App.get_cmd_name(`show_palette`)
+    }
+  }
+
+  btn.title = `Filters (Ctrl + F)\nRight Click: ${rclick}`
   App.trigger_title(btn, `middle_click_filter_menu`)
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []

@@ -300,7 +300,7 @@ App.create_item_element = (item) => {
 
     if (App.get_setting(`show_tooltips`)) {
       if (App.get_setting(`icon_pick`)) {
-        icon_container.title = `Click: Select item\nRight Click: Single select item`
+        icon_container.title = `Click: Select Item\nRight Click: Single Select Item`
       }
     }
 

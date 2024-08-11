@@ -316,7 +316,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: up_icon,
       action: (args) => {
-        App.scroll(mode, `up`)
+        App.scroll(args.mode, `up`)
       },
       info: `Scroll up one step`,
     },
@@ -326,7 +326,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: up_icon,
       action: (args) => {
-        App.scroll(mode, `down`)
+        App.scroll(args.mode, `down`)
       },
       info: `Scroll down one step`,
     },
@@ -336,7 +336,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: up_icon,
       action: (args) => {
-        App.scroll_page(mode, `up`)
+        App.scroll_page(args.mode, `up`)
       },
       info: `Scroll up one page`,
     },
@@ -346,7 +346,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: up_icon,
       action: (args) => {
-        App.scroll_page(mode, `down`)
+        App.scroll_page(args.mode, `down`)
       },
       info: `Scroll down one page`,
     },
@@ -2133,6 +2133,15 @@ App.setup_commands = () => {
         App.edit_main_title()
       },
       info: `Edit the main title`,
+    },
+    {
+      name: `Show Title Menu`,
+      cmd: `show_main_title_menu`,
+      icon: title_icon,
+      action: (args) => {
+        App.show_main_title_menu(args.e)
+      },
+      info: `Show the main title menu`,
     },
     {
       name: `Red Title`,

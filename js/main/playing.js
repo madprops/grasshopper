@@ -6,7 +6,8 @@ App.setup_playing = () => {
 
 App.create_playing_icon = (mode) => {
   let btn = DOM.create(`div`, `button icon_button playing_icon hidden`, `playing_icon_${mode}`)
-  btn.title = `Go To Playing Tab (Ctrl + Dot)\nRight Click: Show Playing Tabs`
+  let rclick = App.get_cmd_name(`show_playing_tabs`)
+  btn.title = `Go To Playing Tab (Ctrl + Dot)\nRight Click: ${rclick}`
   App.trigger_title(btn, `middle_click_playing`)
   let icon = App.get_svg_icon(`speaker`)
 
