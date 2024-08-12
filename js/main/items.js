@@ -414,15 +414,11 @@ App.set_item_text = (item) => {
       tips.push(`Tags: ${tags.join(`, `)}`)
     }
 
-    tips.push(`Click: Item Action`)
-    tips.push(`Right Click: Item Menu`)
-
-    if (item.mode === `tabs`) {
-      tips.push(`Middle Click: Close Tab`)
-    }
-    else {
-      tips.push(`Middle Click: Open Item`)
-    }
+    let rclick = App.get_cmd_name(`show_item_menu`)
+    tips.push(`Right Click: ${rclick}`)
+    let sett = App.get_setting(`middle_click_${item.mode}`)
+    let mclick = App.get_cmd_name(sett)
+    tips.push(`Middle Click: ${mclick}`)
 
     item.element.title = tips.join(`\n`)
   }
