@@ -1362,6 +1362,7 @@ App.create_filter_menu = (mode) => {
   }
 
   let btn = DOM.create(`div`, `button icon_button filter_button`, `${mode}_filter_modes`)
+  let click = App.get_cmd_name(`show_filter_menu`)
   let rclick = ``
 
   if (App.get_setting(`favorite_filters`)) {
@@ -1373,7 +1374,7 @@ App.create_filter_menu = (mode) => {
     }
   }
 
-  btn.title = `Filters (Ctrl + F)\nRight Click: ${rclick}`
+  btn.title = `Click: ${click} (Ctrl + F)\nRight Click: ${rclick}`
   App.trigger_title(btn, `middle_click_filter_menu`)
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []

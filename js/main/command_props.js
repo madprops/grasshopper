@@ -791,6 +791,36 @@ App.setup_commands = () => {
       info: `Reload the current page`,
     },
     {
+      name: `Main Menu`,
+      cmd: `show_main_menu`,
+      modes: [`items`],
+      icon: tabs_icon,
+      action: (args) => {
+        App.show_main_menu(args.mode)
+      },
+      info: `Show the main menu`,
+    },
+    {
+      name: `Filter Menu`,
+      cmd: `show_filter_menu`,
+      modes: [`items`],
+      icon: filter_icon,
+      action: (args) => {
+        App.show_filter_menu(args.mode)
+      },
+      info: `Show the filter menu`,
+    },
+    {
+      name: `Actions Menu`,
+      cmd: `show_actions_menu`,
+      modes: [`items`],
+      icon: command_icon,
+      action: (args) => {
+        App.show_actions_menu(args.mode)
+      },
+      info: `Show the actions menu`,
+    },
+    {
       name: `Browser Menu`,
       cmd: `show_browser_menu`,
       icon: browser_icon,

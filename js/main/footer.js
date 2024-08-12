@@ -66,8 +66,9 @@ App.create_footer = (mode) => {
   if (mode === `tabs`) {
     let tab_box_btn = DOM.create(`div`, `pointer`, `footer_tab_box`)
     tab_box_btn.append(App.get_svg_icon(`arrow_up`))
+    let click = App.get_cmd_name(`toggle_tab_box`)
     let mclick = App.get_cmd_name(`toggle_favorites`)
-    tab_box_btn.title = `Toggle Tab Box\nMiddle Click: ${mclick}`
+    tab_box_btn.title = `Click: ${click}\nMiddle Click: ${mclick}`
 
     DOM.ev(tab_box_btn, `click`, () => {
       App.toggle_tab_box()

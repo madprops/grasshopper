@@ -414,6 +414,8 @@ App.set_item_text = (item) => {
       tips.push(`Tags: ${tags.join(`, `)}`)
     }
 
+    tips.push(`Click: Item Action`)
+    tips.push(`Right Click: Item Menu`)
     item.element.title = tips.join(`\n`)
   }
 

@@ -1,7 +1,8 @@
 App.create_step_back_button = (mode) => {
   let btn = DOM.create(`div`, `button icon_button`, `${mode}_back`)
+  let click = App.get_cmd_name(`step_back`)
   let rclick = App.get_cmd_name(`show_recent_tabs`)
-  btn.title = `Step Back (Esc)\nRight Click: ${rclick}`
+  btn.title = `Click: ${click} (Esc)\nRight Click: ${rclick}`
   App.trigger_title(btn, `middle_click_step_back`)
   btn.append(App.get_svg_icon(`back`))
 
