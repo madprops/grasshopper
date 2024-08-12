@@ -416,6 +416,14 @@ App.set_item_text = (item) => {
 
     tips.push(`Click: Item Action`)
     tips.push(`Right Click: Item Menu`)
+
+    if (item.mode === `tabs`) {
+      tips.push(`Middle Click: Close Tab`)
+    }
+    else {
+      tips.push(`Middle Click: Open Item`)
+    }
+
     item.element.title = tips.join(`\n`)
   }
 
