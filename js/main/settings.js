@@ -22,7 +22,7 @@ App.settings_do_actions = (actions) => {
 
 App.get_settings_label = (setting) => {
   let item = DOM.el(`#settings_${setting}`)
-  let container = item.closest(`.settings_item`)
+  let container = DOM.parent(item, [`.settings_item`])
   let label = DOM.el(`.settings_label`, container)
   return label
 }
@@ -549,7 +549,7 @@ App.add_settings_switchers = (category) => {
     }
   })
 
-  DOM.ev(title.closest(`.window_top`), `wheel`, (e) => {
+  DOM.ev(DOM.parent(title, [`.window_top`]), `wheel`, (e) => {
     App.settings_wheel.call(e)
   })
 

@@ -51,7 +51,7 @@ App.check_main_title = (check = false) => {
   for (let el of els) {
     el.textContent = title
     App.last_main_title = title
-    let elm = el.closest(`.main_title`)
+    let elm = DOM.parent(el, [`.main_title`])
 
     if (title) {
       elm.classList.remove(`hidden`)

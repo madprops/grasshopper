@@ -138,10 +138,12 @@ DOM.class = (el, classes) => {
 // Check if it contains any of these classes up the hierarchy
 DOM.parent = (el, classes) => {
   for (let cls of classes) {
-    if (el.closest(cls)) {
-      return true
+    let parent = el.closest(cls)
+
+    if (parent) {
+      return parent
     }
   }
 
-  return false
+  return undefined
 }

@@ -259,11 +259,11 @@ App.favorites_double_click = (e, where) => {
 }
 
 App.favorites_middle_click = (e) => {
-  if (e.target.closest(`.favorites_bar_item`)) {
+  if (DOM.parent(e.target, [`.favorites_bar_item`])) {
     return
   }
 
-  if (DOM.class(e.target.classList, [`favorites_button`])) {
+  if (DOM.class(e.target, [`favorites_button`])) {
     return
   }
 

@@ -44,7 +44,7 @@ App.dragstart_action = (mode, e) => {
     return false
   }
 
-  App.drag_element = e.target.closest(`.grasshopper_item`)
+  App.drag_element = DOM.parent(e.target, [`.grasshopper_item`])
 
   if (!App.drag_element) {
     e.preventDefault()
@@ -124,7 +124,7 @@ App.dragenter_action = (mode, e) => {
     return false
   }
 
-  let el = e.target.closest(`.element`)
+  let el = DOM.parent(e.target, [`.element`])
 
   if (!el) {
     e.preventDefault()

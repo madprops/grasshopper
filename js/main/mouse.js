@@ -1,5 +1,5 @@
 App.get_mouse_item = (mode, e) => {
-  let el = e.target.closest(`.${mode}_item`)
+  let el = DOM.parent(e.target, [`.${mode}_item`])
   let item = App.get_item_by_id(mode, el.dataset.id)
 
   if (!item) {
@@ -11,7 +11,7 @@ App.get_mouse_item = (mode, e) => {
 }
 
 App.cursor_on_item = (mode, e) => {
-  return e.target.closest(`.${mode}_item`)
+  return DOM.parent(e.target, [`.${mode}_item`])
 }
 
 App.setup_mouse = () => {
@@ -43,7 +43,7 @@ App.setup_container_mouse = (mode, container) => {
 
     if (App.get_setting(`icon_pick`)) {
       if (e.button === 0) {
-        if (e.target.closest(`.item_icon_container`)) {
+        if (DOM.parent(e.target, [`.item_icon_container`])) {
           let item = App.get_mouse_item(mode, e)
 
           if (item) {
@@ -101,7 +101,7 @@ App.mouse_click_action = (mode, e) => {
   App.reset_triggers()
 
   if (!App.cursor_on_item(mode, e)) {
-    if (e.target.closest(`#pinline`)) {
+    if (DOM.parent(e.target, [`#pinline`])) {
       let items = App.custom_menu_items({
         name: `pinline_menu`,
       })
@@ -147,10 +147,10 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  let item_container = e.target.closest(`.item_container`)
+  let item_container = DOM.parent(e.target, [`.item_container`])
 
   if (item_container) {
-    if (e.target.closest(`.item_icon_container`)) {
+    if (DOM.parent(e.target, [`.item_icon_container`])) {
       if (item.header && App.get_setting(`header_icon_pick`)) {
         App.select_header_group(item)
         return
@@ -162,7 +162,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (App.get_setting(`hover_button`)) {
-    if (e.target.closest(`.hover_button`)) {
+    if (DOM.parent(e.target, [`.hover_button`])) {
       App.show_hover_menu(e, item)
       return
     }
@@ -186,7 +186,7 @@ App.mouse_click_action = (mode, e) => {
     }
 
     if (App.taglist_enabled()) {
-      if (e.target.closest(`.taglist`)) {
+      if (DOM.parent(e.target, [`.taglist`])) {
         if (DOM.class(e.target, [`taglist_item`])) {
           App.taglist_action(item, e)
           return
@@ -215,7 +215,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (App.get_setting(`color_icon_click`)) {
-    if (e.target.closest(`.color_icon_container`)) {
+    if (DOM.parent(e.target, [`.color_icon_container`])) {
       App.show_color_menu(item, e, false)
       return
     }
@@ -250,7 +250,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   let from
-  let tab_box = e.target.closest(`#tab_box`)
+  let tab_box = DOM.parent(e.target, [`#tab_box`])
 
   if (tab_box) {
     from = `tab_box`
@@ -279,17 +279,17 @@ App.mouse_double_click_action = (mode, e) => {
   }
 
   if (App.taglist_enabled()) {
-    if (e.target.closest(`.taglist`)) {
+    if (DOM.parent(e.target, [`.taglist`])) {
       return
     }
   }
 
-  if (e.target.closest(`.item_icon_container`)) {
+  if (DOM.parent(e.target, [`.item_icon_container`])) {
     return
   }
 
   if (App.get_setting(`double_click_header`)) {
-    if (e.target.closest(`.item_text`)) {
+    if (DOM.parent(e.target, [`.item_text`])) {
       if (item.header) {
         App.select_header_group(item)
         return
@@ -331,18 +331,18 @@ App.mouse_context_action = (mode, e) => {
 
   if (App.get_setting(`hover_button`)) {
     if (App.get_setting(`hover_button_pick`)) {
-      if (e.target.closest(`.hover_button`)) {
+      if (DOM.parent(e.target, [`.hover_button`])) {
         App.pick(item)
         return
       }
     }
   }
 
-  let item_container = e.target.closest(`.item_container`)
+  let item_container = DOM.parent(e.target, [`.item_container`])
 
   if (item_container)  {
     if (App.get_setting(`icon_pick`)) {
-      if (e.target.closest(`.item_icon_container`)) {
+      if (DOM.parent(e.target, [`.item_icon_container`])) {
         App.select_item({item: item, scroll: `nearest`, deselect: true})
         return
       }
@@ -350,7 +350,7 @@ App.mouse_context_action = (mode, e) => {
   }
 
   if (App.taglist_enabled()) {
-    if (e.target.closest(`.taglist`)) {
+    if (DOM.parent(e.target, [`.taglist`])) {
       if (DOM.class(e.target, [`taglist_item`])) {
         App.show_taglist_menu(e, item)
         return
@@ -392,7 +392,7 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   if (!App.cursor_on_item(mode, e)) {
-    if (e.target.closest(`#pinline`)) {
+    if (DOM.parent(e.target, [`#pinline`])) {
       let cmd = App.get_setting(`middle_click_pinline`)
       App.run_command({cmd: cmd, from: `pinline`, e: e})
     }
@@ -420,21 +420,21 @@ App.mouse_middle_action = (mode, e) => {
 
   if (mode === `tabs`) {
     if (App.get_setting(`color_icon_click`)) {
-      if (e.target.closest(`.color_icon_container`)) {
+      if (DOM.parent(e.target, [`.color_icon_container`])) {
         App.edit_tab_color({item: item})
         return
       }
     }
 
     if (App.get_setting(`notes_icon_click`)) {
-      if (e.target.closest(`.notes_icon`)) {
+      if (DOM.parent(e.target, [`.notes_icon`])) {
         App.remove_notes(item)
         return
       }
     }
 
     if (App.taglist_enabled()) {
-      if (e.target.closest(`.taglist`)) {
+      if (DOM.parent(e.target, [`.taglist`])) {
         if (DOM.class(e.target, [`taglist_item`])) {
           App.taglist_remove(e, item)
           return
@@ -524,8 +524,7 @@ App.on_mouse_wheel = (e) => {
   let direction = App.wheel_direction(e)
   let mode = App.window_mode
 
-  if (e.target.closest(`.favorites_bar_container`) ||
-  (e.target.closest(`.scroller`) || e.target.closest(`.footer`))) {
+  if (DOM.parent(e.target, [`.favorites_bar_container`, `.scroller`, `.footer`])) {
     if (direction === `up`) {
       if (e.shiftKey) {
         App.scroll_page(mode, `up`)
@@ -545,7 +544,7 @@ App.on_mouse_wheel = (e) => {
 
     e.preventDefault()
   }
-  else if (e.target.closest(`.item_container`)) {
+  else if (DOM.parent(e.target, [`.item_container`])) {
     if (e.shiftKey) {
       if (direction === `up`) {
         App.scroll_page(mode, `up`)
