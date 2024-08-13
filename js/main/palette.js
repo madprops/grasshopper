@@ -71,7 +71,7 @@ App.palette_select = (el) => {
 }
 
 App.palette_item_hidden = (el) => {
-  return el.classList.contains(`hidden`) || el.classList.contains(`hidden_2`)
+  return DOM.class(el, [`hidden`, `hidden_2`])
 }
 
 App.palette_select_first = () => {
@@ -134,7 +134,7 @@ App.palette_action = (el) => {
     return
   }
 
-  let item = el.closest(`.palette_item`)
+  let item = DOM.parent(el, [`.palette_item`])
 
   if (!item) {
     return

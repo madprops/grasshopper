@@ -95,7 +95,7 @@ App.start_media = (what) => {
       })
 
       DOM.ev(content, `dblclick`, (e) => {
-        if (e.target.classList.contains(`window_content_media`)) {
+        if (DOM.class(e.target, [`window_content_media`])) {
           App.hide_window()
         }
       })

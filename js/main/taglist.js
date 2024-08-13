@@ -22,7 +22,7 @@ App.create_taglist = () => {
 
   DOM.ev(taglist, `wheel`, (e) => {
     if (position === `left` || position === `right`) {
-      if (taglist.classList.contains(`overflow`)) {
+      if (DOM.class(taglist, [`overflow`])) {
         e.stopPropagation()
         e.preventDefault()
         let direction = App.wheel_direction(e)

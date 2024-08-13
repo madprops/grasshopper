@@ -254,7 +254,7 @@ App.get_excess = (objects, property) => {
 App.text_with_value_focused = () => {
   let el = document.activeElement
 
-  if (el.classList.contains(`text`)) {
+  if (DOM.class(el, [`text`])) {
     if (el.value.trim()) {
       return true
     }

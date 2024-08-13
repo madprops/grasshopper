@@ -364,7 +364,7 @@ App.clear_settings_filter = () => {
 }
 
 App.settings_filter_focused = () => {
-  return document.activeElement.classList.contains(`settings_filter`)
+  return DOM.class(document.activeElement, [`settings_filter`])
 }
 
 App.prepare_settings_category = (category) => {

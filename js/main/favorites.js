@@ -263,7 +263,7 @@ App.favorites_middle_click = (e) => {
     return
   }
 
-  if (e.target.classList.contains(`favorites_button`)) {
+  if (DOM.class(e.target.classList, [`favorites_button`])) {
     return
   }
 

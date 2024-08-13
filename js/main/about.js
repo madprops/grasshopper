@@ -65,14 +65,14 @@ App.start_about = () => {
       let image = DOM.el(`#about_image`)
 
       DOM.ev(image, `click`, () => {
-        if (image.classList.contains(`rotate_1`)) {
+        if (DOM.class(image, [`rotate_1`])) {
           image.classList.remove(`rotate_1`)
           image.classList.add(`invert`)
         }
-        else if (image.classList.contains(`invert`)) {
+        else if (DOM.class(image, [`invert`])) {
           image.classList.remove(`invert`)
 
-          if (image.classList.contains(`flipped`)) {
+          if (DOM.class(image, [`flipped`])) {
             image.classList.remove(`flipped`)
           }
           else {

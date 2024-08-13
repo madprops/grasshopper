@@ -134,7 +134,7 @@ App.mouse_click_action = (mode, e) => {
     let media_setting = App.get_setting(`view_${media_type}_${mode}`)
 
     if (media_setting === `icon`) {
-      if (e.target.classList.contains(`view_media_button`)) {
+      if (DOM.class(e.target, [`view_media_button`])) {
         App.select_item({item: item, scroll: `nearest`})
         App.view_media(item)
         return
@@ -170,7 +170,7 @@ App.mouse_click_action = (mode, e) => {
 
   if (mode === `tabs`) {
     if (App.get_setting(`close_button`) !== `none`) {
-      if (e.target.classList.contains(`close_button`)) {
+      if (DOM.class(e.target, [`close_button`])) {
         App.close_tabs(item)
         return
       }
@@ -178,8 +178,7 @@ App.mouse_click_action = (mode, e) => {
 
     if (App.get_setting(`mute_click`)) {
       if (App.get_setting(`muted_icon`) || App.get_setting(`playing_icon`)) {
-        if (e.target.classList.contains(`playing_icon`) ||
-          e.target.classList.contains(`muted_icon`)) {
+        if (DOM.class(e.target, [`playing_icon`, `muted_icon`])) {
           App.toggle_mute_tabs(item)
           return
         }
@@ -188,18 +187,18 @@ App.mouse_click_action = (mode, e) => {
 
     if (App.taglist_enabled()) {
       if (e.target.closest(`.taglist`)) {
-        if (e.target.classList.contains(`taglist_item`)) {
+        if (DOM.class(e.target, [`taglist_item`])) {
           App.taglist_action(item, e)
           return
         }
 
-        if (e.target.classList.contains(`taglist_left_scroll`)) {
+        if (DOM.class(e.target, [`taglist_left_scroll`])) {
           let taglist = DOM.el(`.taglist`, item.element)
           App.taglist_scroll(taglist, `left`)
           return
         }
 
-        if (e.target.classList.contains(`taglist_right_scroll`)) {
+        if (DOM.class(e.target, [`taglist_right_scroll`])) {
           let taglist = DOM.el(`.taglist`, item.element)
           App.taglist_scroll(taglist, `right`)
           return
@@ -208,7 +207,7 @@ App.mouse_click_action = (mode, e) => {
     }
 
     if (App.taglist_add_enabled()) {
-      if (e.target.classList.contains(`taglist_add`)) {
+      if (DOM.class(e.target, [`taglist_add`])) {
         App.add_tags(item)
         return
       }
@@ -224,7 +223,7 @@ App.mouse_click_action = (mode, e) => {
 
   if (App.get_setting(`notes_icon_click`)) {
     if (App.get_setting(`notes_icon`)) {
-      if (e.target.classList.contains(`notes_icon`)) {
+      if (DOM.class(e.target, [`notes_icon`])) {
         App.edit_notes(item)
         return
       }
@@ -232,7 +231,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (App.get_setting(`custom_icon_click`)) {
-    if (e.target.classList.contains(`custom_icon`)) {
+    if (DOM.class(e.target, [`custom_icon`])) {
       App.custom_icon_menu(item, e)
       return
     }
@@ -264,7 +263,7 @@ App.mouse_click_action = (mode, e) => {
 }
 
 App.mouse_double_click_action = (mode, e) => {
-  if (e.target.classList.contains(`item_container`)) {
+  if (DOM.class(e.target, [`item_container`])) {
     let cmd = App.get_setting(`double_click_empty`)
     App.run_command({cmd: cmd, from: `mouse`, e: e})
   }
@@ -352,7 +351,7 @@ App.mouse_context_action = (mode, e) => {
 
   if (App.taglist_enabled()) {
     if (e.target.closest(`.taglist`)) {
-      if (e.target.classList.contains(`taglist_item`)) {
+      if (DOM.class(e.target, [`taglist_item`])) {
         App.show_taglist_menu(e, item)
         return
       }
@@ -374,19 +373,19 @@ App.mouse_middle_action = (mode, e) => {
 
   App.reset_triggers()
 
-  if (e.target.classList.contains(`favorites_empty_top`)) {
+  if (DOM.class(e.target, [`favorites_empty_top`])) {
     let cmd = App.get_setting(`middle_click_favorites_top`)
     App.run_command({cmd: cmd, from: `favorites_button`, e: e})
     return
   }
 
-  if (e.target.classList.contains(`favorites_empty_bottom`)) {
+  if (DOM.class(e.target, [`favorites_empty_bottom`])) {
     let cmd = App.get_setting(`middle_click_favorites_bottom`)
     App.run_command({cmd: cmd, from: `favorites_button`, e: e})
     return
   }
 
-  if (e.target.classList.contains(`favorites_button`)) {
+  if (DOM.class(e.target, [`favorites_button`])) {
     let cmd = App.get_setting(`middle_click_favorites_button`)
     App.run_command({cmd: cmd, from: `favorites_button`, e: e})
     return
@@ -407,13 +406,13 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  if (e.target.classList.contains(`close_button`)) {
+  if (DOM.class(e.target, [`close_button`])) {
     let cmd = App.get_setting(`middle_click_close_button`)
     App.run_command({cmd: cmd, item: item, from: `close_button`, e: e})
     return
   }
 
-  if (e.target.classList.contains(`hover_button`)) {
+  if (DOM.class(e.target, [`hover_button`])) {
     let cmd = App.get_setting(`middle_click_hover_button`)
     App.run_command({cmd: cmd, item: item, from: `hover_button`, e: e})
     return
@@ -436,14 +435,14 @@ App.mouse_middle_action = (mode, e) => {
 
     if (App.taglist_enabled()) {
       if (e.target.closest(`.taglist`)) {
-        if (e.target.classList.contains(`taglist_item`)) {
+        if (DOM.class(e.target, [`taglist_item`])) {
           App.taglist_remove(e, item)
           return
         }
       }
     }
 
-    if (e.target.classList.contains(`custom_icon`)) {
+    if (DOM.class(e.target, [`custom_icon`])) {
       App.remove_item_icon(item)
       return
     }

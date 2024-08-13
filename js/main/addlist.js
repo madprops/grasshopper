@@ -805,7 +805,7 @@ Addlist.filled = (id) => {
 }
 
 Addlist.key = () => {
-  return document.activeElement.classList.contains(`addlist_key`)
+  return DOM.class(document.activeElement, [`addlist_key`])
 }
 
 Addlist.list = (args) => {

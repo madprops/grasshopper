@@ -123,3 +123,25 @@ DOM.next_all = function* (e, selector) {
 DOM.index = (el) => {
   return Array.from(el.parentNode.children).indexOf(el)
 }
+
+// Check if it contains any of these classes
+DOM.class = (el, classes) => {
+  for (let cls of classes) {
+    if (el.classList.contains(cls)) {
+      return true
+    }
+  }
+
+  return false
+}
+
+// Check if it contains any of these classes up the hierarchy
+DOM.parent = (el, classes) => {
+  for (let cls of classes) {
+    if (el.closest(cls)) {
+      return true
+    }
+  }
+
+  return false
+}
