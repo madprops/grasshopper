@@ -126,6 +126,8 @@ DOM.index = (el) => {
 
 // Check if it contains any of these classes
 DOM.class = (el, classes) => {
+  el = DOM.element(el)
+
   for (let cls of classes) {
     if (el.classList.contains(DOM.clean_dot(cls))) {
       return true
@@ -137,6 +139,8 @@ DOM.class = (el, classes) => {
 
 // Check if it contains any of these queries up the hierarchy
 DOM.parent = (el, queries) => {
+  el = DOM.element(el)
+
   for (let query of queries) {
     let parent = el.closest(query)
 
@@ -154,21 +158,15 @@ DOM.clean_dot = (query) => {
 }
 
 // Show an element
-DOM.show = (item, num = 1) => {
-  if (typeof item === `string`) {
-    item = DOM.el(item)
-  }
-
-  item.classList.remove(DOM.hidden(num))
+DOM.show = (el, num = 1) => {
+  el = DOM.element(el)
+  el.classList.remove(DOM.hidden(num))
 }
 
 // Hide an element
-DOM.hide = (item, num = 1) => {
-  if (typeof item === `string`) {
-    item = DOM.el(item)
-  }
-
-  item.classList.add(DOM.hidden(num))
+DOM.hide = (el, num = 1) => {
+  el = DOM.element(el)
+  el.classList.add(DOM.hidden(num))
 }
 
 // Get hidden class
@@ -180,4 +178,13 @@ DOM.hidden = (num = 1) => {
   }
 
   return cls
+}
+
+// Resolve the element
+DOM.element = (el) => {
+  if (typeof el === `string`) {
+    return DOM.el(el)
+  }
+
+  return el
 }
