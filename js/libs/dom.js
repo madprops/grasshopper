@@ -48,9 +48,10 @@ DOM.clone = (el) => {
 }
 
 // Clone element children
-DOM.clone_children = (query) => {
+DOM.clone_children = (el) => {
+  el = DOM.element(el)
+  let children = Array.from(el.children)
   let items = []
-  let children = Array.from(DOM.el(query).children)
 
   for (let c of children) {
     items.push(DOM.clone(c))
@@ -61,11 +62,12 @@ DOM.clone_children = (query) => {
 
 // Data set manager
 DOM.dataset = (el, value, setvalue) => {
+  el = DOM.element(el)
+
   if (!el) {
     return
   }
 
-  el = DOM.element(el)
   let id = el.dataset.dataset_id
 
   if (!id) {
