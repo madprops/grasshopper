@@ -1,17 +1,17 @@
 App.setup_input = () => {
-  DOM.ev(DOM.el(`#input_submit`), `click`, () => {
+  DOM.ev(`#input_submit`, `click`, () => {
     App.input_enter()
   })
 
-  DOM.ev(DOM.el(`#input_clear`), `click`, () => {
+  DOM.ev(`#input_clear`, `click`, () => {
     App.clear_input()
   })
 
-  DOM.ev(DOM.el(`#input_close`), `click`, () => {
+  DOM.ev(`#input_close`, `click`, () => {
     App.hide_input()
   })
 
-  DOM.ev(DOM.el(`#input_text`), `keydown`, (e) => {
+  DOM.ev(`#input_text`, `keydown`, (e) => {
     if (e.key === `Enter`) {
       if (e.ctrlKey) {
         App.input_enter()

@@ -13,7 +13,7 @@ App.start_palette = () => {
         App.palette_action(e.target)
       })
 
-      DOM.ev(DOM.el(`#palette_filter`), `input`, () => {
+      DOM.ev(`#palette_filter`, `input`, () => {
         App.filter_palette()
       })
     },

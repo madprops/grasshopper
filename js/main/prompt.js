@@ -1,17 +1,17 @@
 App.setup_prompt = () => {
-  DOM.ev(DOM.el(`#prompt_submit`), `click`, () => {
+  DOM.ev(`#prompt_submit`, `click`, () => {
     App.prompt_submit()
   })
 
-  DOM.ev(DOM.el(`#prompt_clear`), `click`, () => {
+  DOM.ev(`#prompt_clear`, `click`, () => {
     App.prompt_clear()
   })
 
-  DOM.ev(DOM.el(`#prompt_list`), `click`, (e) => {
+  DOM.ev(`#prompt_list`, `click`, (e) => {
     App.show_prompt_list()
   })
 
-  DOM.ev(DOM.el(`#prompt_fill`), `click`, (e) => {
+  DOM.ev(`#prompt_fill`, `click`, (e) => {
     App.fill_prompt()
   })
 

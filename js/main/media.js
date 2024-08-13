@@ -72,15 +72,15 @@ App.start_media = (what) => {
         App.hide_window()
       })
 
-      DOM.ev(DOM.el(`#media_${what}_prev`), `click`, () => {
+      DOM.ev(`#media_${what}_prev`, `click`, () => {
         App.media_prev(what)
       })
 
-      DOM.ev(DOM.el(`#media_${what}_next`), `click`, () => {
+      DOM.ev(`#media_${what}_next`, `click`, () => {
         App.media_next(what)
       })
 
-      DOM.ev(DOM.el(`#media_${what}_url`), `click`, () => {
+      DOM.ev(`#media_${what}_url`, `click`, () => {
         App.media_copy(what)
       })
 

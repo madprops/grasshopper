@@ -942,23 +942,23 @@ Addlist.add_buttons = (id) => {
   data.textContent = `Data`
   el.append(data)
 
-  DOM.ev(DOM.el(`#addlist_button_${id}_count`), `click`, () => {
+  DOM.ev(`#addlist_button_${id}_count`, `click`, () => {
     Addlist.list({id: id})
   })
 
-  DOM.ev(DOM.el(`#addlist_button_${id}_add`), `click`, () => {
+  DOM.ev(`#addlist_button_${id}_add`, `click`, () => {
     Addlist.edit({id: id, items: {}})
   })
 
-  DOM.ev(DOM.el(`#addlist_button_${id}_list`), `click`, () => {
+  DOM.ev(`#addlist_button_${id}_list`, `click`, () => {
     Addlist.list({id: id})
   })
 
-  DOM.ev(DOM.el(`#addlist_button_${id}_edit`), `click`, () => {
+  DOM.ev(`#addlist_button_${id}_edit`, `click`, () => {
     Addlist.edit_first(id)
   })
 
-  DOM.ev(DOM.el(`#addlist_button_${id}_data`), `click`, () => {
+  DOM.ev(`#addlist_button_${id}_data`, `click`, () => {
     Addlist.data_menu(id)
   })
 

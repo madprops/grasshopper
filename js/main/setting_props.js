@@ -358,7 +358,7 @@ App.build_settings = () => {
       Pick from the list or enter a URL`,
       version: 1,
       setup: (key) => {
-        DOM.ev(DOM.el(`#settings_${key}_pick`), `click`, (e) => {
+        DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
           App.pick_background(e)
         })
       },
@@ -425,7 +425,7 @@ App.build_settings = () => {
       Pick from the list, or enter a Google Font name, or enter a font URL`,
       version: 1,
       setup: (key) => {
-        DOM.ev(DOM.el(`#settings_${key}_pick`), `click`, (e) => {
+        DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
           App.pick_font(e)
         })
       },

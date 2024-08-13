@@ -6,27 +6,27 @@ App.start_close_tabs = () => {
   App.create_popup({
     id: `close_tabs`,
     setup: () => {
-      DOM.ev(DOM.el(`#close_tabs_include_pins`), `change`, () => {
+      DOM.ev(`#close_tabs_include_pins`, `change`, () => {
         App.update_close_tabs_popup_button(App.close_tabs_type)
       })
 
-      DOM.ev(DOM.el(`#close_tabs_include_unloaded`), `change`, () => {
+      DOM.ev(`#close_tabs_include_unloaded`, `change`, () => {
         App.update_close_tabs_popup_button(App.close_tabs_type)
       })
 
-      DOM.ev(DOM.el(`#close_tabs_button`), `click`, () => {
+      DOM.ev(`#close_tabs_button`, `click`, () => {
         App.close_tabs_action()
       })
 
-      DOM.ev(DOM.el(`#close_tabs_prev`), `click`, () => {
+      DOM.ev(`#close_tabs_prev`, `click`, () => {
         App.close_tabs_next(true)
       })
 
-      DOM.ev(DOM.el(`#close_tabs_next`), `click`, () => {
+      DOM.ev(`#close_tabs_next`, `click`, () => {
         App.close_tabs_next()
       })
 
-      DOM.ev(DOM.el(`#close_tabs_title`), `click`, (e) => {
+      DOM.ev(`#close_tabs_title`, `click`, (e) => {
         App.show_close_tabs_menu(e)
       })
     },

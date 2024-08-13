@@ -106,7 +106,7 @@ App.start_sort_tabs = () => {
   App.create_popup({
     id: `sort_tabs`,
     setup: () => {
-      DOM.ev(DOM.el(`#sort_tabs_button`), `click`, () => {
+      DOM.ev(`#sort_tabs_button`, `click`, () => {
         App.sort_tabs_action()
       })
     },

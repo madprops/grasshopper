@@ -15,6 +15,7 @@ DOM.els = (query, root = document) => {
 
 // Select a single element or self
 DOM.el_or_self = (query, root = document) => {
+  root = DOM.element(root)
   let el = root.querySelector(query)
 
   if (!el) {
@@ -28,6 +29,7 @@ DOM.el_or_self = (query, root = document) => {
 
 // Select an array of elements or self
 DOM.els_or_self = (query, root = document) => {
+  root = DOM.element(root)
   let els = Array.from(root.querySelectorAll(query))
 
   if (els.length === 0) {
@@ -41,6 +43,7 @@ DOM.els_or_self = (query, root = document) => {
 
 // Clone element
 DOM.clone = (el) => {
+  el = DOM.element(el)
   return el.cloneNode(true)
 }
 
@@ -62,6 +65,7 @@ DOM.dataset = (el, value, setvalue) => {
     return
   }
 
+  el = DOM.element(el)
   let id = el.dataset.dataset_id
 
   if (!id) {
@@ -99,14 +103,17 @@ DOM.create = (type, classes = ``, id = ``) => {
 }
 
 // Add an event listener
-DOM.ev = (element, event, callback, extra) => {
-  element.addEventListener(event, callback, extra)
+DOM.ev = (el, event, callback, extra) => {
+  el = DOM.element(el)
+  el.addEventListener(event, callback, extra)
 }
 
 // Add multiple event listeners
-DOM.evs = (element, events, callback, extra) => {
+DOM.evs = (el, events, callback, extra) => {
+  el = DOM.element(el)
+
   for (let event of events) {
-    element.addEventListener(event, callback, extra)
+    el.addEventListener(event, callback, extra)
   }
 }
 
@@ -121,6 +128,7 @@ DOM.next_all = function* (e, selector) {
 
 // Get item index
 DOM.index = (el) => {
+  el = DOM.element(el)
   return Array.from(el.parentNode.children).indexOf(el)
 }
 
