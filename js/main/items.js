@@ -1123,7 +1123,7 @@ App.item_is_visible = (item) => {
   if (App.get_setting(`show_scroller`)) {
     let scroller = DOM.el(`#${item.mode}_scroller`)
 
-    if (!DOM.class(scroller, [`hidden`]))
+    if (!DOM.class(scroller, [`hidden`])) {
       top += scroller.clientHeight
     }
   }
