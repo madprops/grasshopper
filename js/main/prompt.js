@@ -44,17 +44,17 @@ App.show_prompt = (args = {}) => {
   let list = DOM.el(`#prompt_list`)
 
   if (args.list.length) {
-    list.classList.remove(`hidden`)
+    DOM.show(list)
   }
   else {
-    list.classList.add(`hidden`)
+    DOM.hide(list)
   }
 
   if (args.fill) {
-    DOM.el(`#prompt_fill`).classList.remove(`hidden`)
+    DOM.show(DOM.el(`#prompt_fill`))
   }
   else {
-    DOM.el(`#prompt_fill`).classList.add(`hidden`)
+    DOM.hide(DOM.el(`#prompt_fill`))
   }
 
   App.prompt_fill = args.fill

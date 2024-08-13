@@ -1077,7 +1077,7 @@ App.fill_settings = (category) => {
       label.textContent = props.name
 
       if (props.hide_name) {
-        label.classList.add(`hidden`)
+        DOM.hide(label)
       }
 
       el.append(label)

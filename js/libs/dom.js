@@ -18,7 +18,7 @@ DOM.el_or_self = (query, root = document) => {
   let el = root.querySelector(query)
 
   if (!el) {
-    if (root.classList.contains(query.replace(`.`, ``))) {
+    if (root.classList.contains(DOM.clean_dot(query))) {
       el = root
     }
   }
@@ -31,7 +31,7 @@ DOM.els_or_self = (query, root = document) => {
   let els = Array.from(root.querySelectorAll(query))
 
   if (els.length === 0) {
-    if (root.classList.contains(query.replace(`.`, ``))) {
+    if (root.classList.contains(DOM.clean_dot(query))) {
       els = [root]
     }
   }
@@ -127,7 +127,7 @@ DOM.index = (el) => {
 // Check if it contains any of these classes
 DOM.class = (el, classes) => {
   for (let cls of classes) {
-    if (el.classList.contains(cls)) {
+    if (el.classList.contains(DOM.clean_dot(cls))) {
       return true
     }
   }
@@ -135,10 +135,10 @@ DOM.class = (el, classes) => {
   return false
 }
 
-// Check if it contains any of these classes up the hierarchy
-DOM.parent = (el, classes) => {
-  for (let cls of classes) {
-    let parent = el.closest(cls)
+// Check if it contains any of these queries up the hierarchy
+DOM.parent = (el, queries) => {
+  for (let query of queries) {
+    let parent = el.closest(query)
 
     if (parent) {
       return parent
@@ -146,4 +146,38 @@ DOM.parent = (el, classes) => {
   }
 
   return undefined
+}
+
+// Remove dot from classes
+DOM.clean_dot = (query) => {
+  return query.replace(`.`, ``)
+}
+
+// Show an element
+DOM.show = (item, num = 1) => {
+  if (typeof item === `string`) {
+    item = DOM.el(item)
+  }
+
+  item.classList.remove(DOM.hidden(num))
+}
+
+// Hide an element
+DOM.hide = (item, num = 1) => {
+  if (typeof item === `string`) {
+    item = DOM.el(item)
+  }
+
+  item.classList.add(DOM.hidden(num))
+}
+
+// Get hidden class
+DOM.hidden = (num = 1) => {
+  let cls = `hidden`
+
+  if (num > 1) {
+    cls += `_${num}`
+  }
+
+  return cls
 }

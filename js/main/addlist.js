@@ -461,23 +461,23 @@ Addlist.check_buttons = (args) => {
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
   let next_el = DOM.el(`#addlist_next_${args.id}`)
   let date_el = DOM.el(`#addlist_date_${args.id}`)
-  menu_el.classList.add(`hidden`)
-  prev_el.classList.add(`hidden`)
-  next_el.classList.add(`hidden`)
-  date_el.classList.add(`hidden`)
+  DOM.hide(menu_el)
+  DOM.hide(prev_el)
+  DOM.hide(next_el)
+  DOM.hide(date_el)
 
   if (args.edit) {
     let num = Addlist.get_data(args.id).length
-    menu_el.classList.remove(`hidden`)
+    DOM.show(menu_el)
 
     if (args.items._date_) {
-      date_el.classList.remove(`hidden`)
+      DOM.show(date_el)
       date_el.textContent = App.nice_date(args.items._date_)
     }
 
     if (num > 1) {
-      prev_el.classList.remove(`hidden`)
-      next_el.classList.remove(`hidden`)
+      DOM.show(prev_el)
+      DOM.show(next_el)
     }
   }
 }

@@ -1369,12 +1369,12 @@ App.check_pins = (item, force = false) => {
 }
 
 App.hide_pin = (item) => {
-  item.element.classList.add(`hidden_2`)
+  DOM.hide(item.element, 2)
   item.visible = false
 }
 
 App.show_pin = (item) => {
-  item.element.classList.remove(`hidden_2`)
+  DOM.show(item.element, 2)
   item.visible = true
 }
 

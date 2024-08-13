@@ -211,7 +211,7 @@ App.hide_window = (bypass = false) => {
 }
 
 App.make_window_visible = () => {
-  DOM.el(`#all`).classList.remove(`hidden`)
+  DOM.show(DOM.el(`#all`))
 }
 
 App.close_window = () => {

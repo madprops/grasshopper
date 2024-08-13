@@ -43,15 +43,15 @@ App.start_media = (what) => {
       if (what === `image`) {
         DOM.ev(media, `load`, () => {
           App.stop_media_timeout(what)
-          media.classList.remove(`hidden`)
-          DOM.el(`#media_${what}_loading`).classList.add(`hidden`)
+          DOM.show(media)
+          DOM.hide(DOM.el(`#media_${what}_loading`))
         })
       }
       else if (what === `video` || what === `audio`) {
         DOM.ev(media, `canplay`, () => {
           App.stop_media_timeout(what)
-          media.classList.remove(`hidden`)
-          DOM.el(`#media_${what}_loading`).classList.add(`hidden`)
+          DOM.show(media)
+          DOM.hide(DOM.el(`#media_${what}_loading`))
           media.play()
         })
       }
@@ -156,7 +156,7 @@ App.view_media = (o_item) => {
   App.stop_media_timeout(what)
 
   App[`media_${what}_loading_timeout`] = setTimeout(() => {
-    DOM.el(`#media_${what}_loading`).classList.remove(`hidden`)
+    DOM.show(DOM.el(`#media_${what}_loading`))
   }, 500)
 
   let url_el = DOM.el(`#media_${what}_url`)
@@ -186,8 +186,8 @@ App.stop_media_player = (what) => {
 }
 
 App.hide_media_elements = (what) => {
-  DOM.el(`#media_${what}_player`).classList.add(`hidden`)
-  DOM.el(`#media_${what}_loading`).classList.add(`hidden`)
+  DOM.hide(DOM.el(`#media_${what}_player`))
+  DOM.hide(DOM.el(`#media_${what}_loading`))
 }
 
 App.stop_media_timeout = (what) => {
@@ -419,14 +419,14 @@ App.check_view_media = (item) => {
   if (icon) {
     view_media.textContent = icon
     view_media.title = App.capitalize(type)
-    view_media.classList.remove(`hidden`)
+    DOM.show(view_media)
 
     if (App.get_setting(`view_${type}_${item.mode}`) !== `never`) {
       view_media.classList.add(`grower`)
     }
   }
   else {
-    view_media.classList.add(`hidden`)
+    DOM.hide(view_media)
   }
 }
 

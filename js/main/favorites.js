@@ -282,12 +282,12 @@ App.favorites_middle_click = (e) => {
 
 App.do_favorites_bar_show = (mode) => {
   let bar = DOM.el(`#favorites_bar_${mode}`)
-  bar.classList.remove(`hidden`)
+  DOM.show(bar)
 }
 
 App.do_favorites_bar_hide = (mode) => {
   let bar = DOM.el(`#favorites_bar_${mode}`)
-  bar.classList.add(`hidden`)
+  DOM.hide(bar)
 }
 
 App.clear_favorite_bar_autohide = () => {

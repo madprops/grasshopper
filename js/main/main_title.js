@@ -54,10 +54,10 @@ App.check_main_title = (check = false) => {
     let elm = DOM.parent(el, [`.main_title`])
 
     if (title) {
-      elm.classList.remove(`hidden`)
+      DOM.show(elm)
     }
     else {
-      elm.classList.add(`hidden`)
+      DOM.hide(elm)
     }
   }
 }

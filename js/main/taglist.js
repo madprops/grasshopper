@@ -62,7 +62,7 @@ App.check_taglist = (item) => {
 
   if (!App.tagged(item)) {
     item.element.classList.remove(`tagged`)
-    taglist.classList.add(`hidden`)
+    DOM.hide(taglist)
   }
   else {
     let container = DOM.el(`.taglist_container`, taglist)
@@ -101,7 +101,7 @@ App.check_taglist = (item) => {
       container.append(add)
     }
 
-    taglist.classList.remove(`hidden`)
+    DOM.show(taglist)
 
     if (position === `left` || position === `right`) {
       if (container.scrollWidth > container.clientWidth) {

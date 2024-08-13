@@ -128,7 +128,7 @@ App.show_scroller = (mode) => {
   }
 
   let scroller = DOM.el(`#${mode}_scroller`)
-  scroller.classList.remove(`hidden`)
+  DOM.show(scroller)
 }
 
 App.hide_scroller = (mode) => {
@@ -137,7 +137,7 @@ App.hide_scroller = (mode) => {
   }
 
   let scroller = DOM.el(`#${mode}_scroller`)
-  scroller.classList.add(`hidden`)
+  DOM.hide(scroller)
 }
 
 App.check_scroller = (mode) => {

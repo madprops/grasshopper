@@ -112,10 +112,10 @@ App.apply_color_mode = (item) => {
     if (color) {
       el.innerHTML = ``
       el.append(App.color_icon(color))
-      el.classList.remove(`hidden`)
+      DOM.show(el)
     }
     else {
-      el.classList.add(`hidden`)
+      DOM.hide(el)
     }
 
     let c_obj = App.get_color_by_id(color)

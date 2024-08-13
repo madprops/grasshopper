@@ -248,12 +248,12 @@ App.remove_item = (item) => {
 }
 
 App.show_item = (it) => {
-  it.element.classList.remove(`hidden`)
+  DOM.show(it.element)
   it.visible = true
 }
 
 App.hide_item = (it) => {
-  it.element.classList.add(`hidden`)
+  DOM.hide(it.element)
   it.visible = false
 }
 
@@ -430,7 +430,7 @@ App.set_item_text = (item) => {
 
     let text = line.substring(0, App.max_text_length).trim()
     let text_el = DOM.el(`.item_text_${i + 1}`, item.element)
-    text_el.classList.remove(`hidden`)
+    DOM.show(text_el)
     text_el.textContent = text
   }
 }

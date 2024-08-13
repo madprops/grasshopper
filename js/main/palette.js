@@ -34,14 +34,14 @@ App.show_palette = (prefilter = ``) => {
   let too_many = active.length > App.palette_threshold
 
   for (let el of els) {
-    el.classList.remove(`hidden`)
+    DOM.show(el)
     let command = App.get_command(el.dataset.command)
 
     if (too_many || App.check_command(command, {from: `palette`})) {
-      el.classList.remove(`hidden_2`)
+      DOM.show(el, 2)
     }
     else {
-      el.classList.add(`hidden_2`)
+      DOM.hide(el, 2)
     }
   }
 

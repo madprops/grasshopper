@@ -142,10 +142,10 @@ App.do_update_footer_count = (mode) => {
   let el = DOM.el(`#${mode}_footer_count`)
 
   if (App.get_setting(`show_footer_count`)) {
-    el.classList.remove(`hidden`)
+    DOM.show(el)
   }
   else {
-    el.classList.add(`hidden`)
+    DOM.hide(el)
     return
   }
 

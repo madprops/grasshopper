@@ -108,10 +108,10 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.notes_icon`, item.element)
 
     if (App.get_notes(item)) {
-      icon.classList.remove(`hidden`)
+      DOM.show(icon)
     }
     else {
-      icon.classList.add(`hidden`)
+      DOM.hide(icon)
     }
   }
 
@@ -120,10 +120,10 @@ App.check_icons = (item) => {
       let icon = DOM.el(`.titled_icon`, item.element)
 
       if (App.get_title(item)) {
-        icon.classList.remove(`hidden`)
+        DOM.show(icon)
       }
       else {
-        icon.classList.add(`hidden`)
+        DOM.hide(icon)
       }
     }
   }
@@ -132,10 +132,10 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.tagged_icon`, item.element)
 
     if (App.tagged(item)) {
-      icon.classList.remove(`hidden`)
+      DOM.show(icon)
     }
     else {
-      icon.classList.add(`hidden`)
+      DOM.hide(icon)
     }
   }
 
@@ -143,10 +143,10 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.edited_icon`, item.element)
 
     if (App.edited(item)) {
-      icon.classList.remove(`hidden`)
+      DOM.show(icon)
     }
     else {
-      icon.classList.add(`hidden`)
+      DOM.hide(icon)
     }
   }
 
@@ -155,10 +155,10 @@ App.check_icons = (item) => {
 
   if (custom_icon) {
     custom_icon_el.innerHTML = custom_icon
-    custom_icon_el.classList.remove(`hidden`)
+    DOM.show(custom_icon_el)
   }
   else {
-    custom_icon_el.classList.add(`hidden`)
+    DOM.hide(custom_icon_el)
   }
 
   if (item.mode !== `tabs`) {
@@ -169,10 +169,10 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.active_icon`, item.element)
 
     if (item.active) {
-      icon.classList.remove(`hidden`)
+      DOM.show(icon)
     }
     else {
-      icon.classList.add(`hidden`)
+      DOM.hide(icon)
     }
   }
 
@@ -180,10 +180,10 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.pin_icon`, item.element)
 
     if (item.pinned) {
-      icon.classList.remove(`hidden`)
+      DOM.show(icon)
     }
     else {
-      icon.classList.add(`hidden`)
+      DOM.hide(icon)
     }
   }
 
@@ -191,10 +191,10 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.normal_icon`, item.element)
 
     if (!item.pinned) {
-      icon.classList.remove(`hidden`)
+      DOM.show(icon)
     }
     else {
-      icon.classList.add(`hidden`)
+      DOM.hide(icon)
     }
   }
 
@@ -202,10 +202,10 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.loaded_icon`, item.element)
 
     if (!item.unloaded) {
-      icon.classList.remove(`hidden`)
+      DOM.show(icon)
     }
     else {
-      icon.classList.add(`hidden`)
+      DOM.hide(icon)
     }
   }
 
@@ -213,10 +213,10 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.unloaded_icon`, item.element)
 
     if (item.unloaded) {
-      icon.classList.remove(`hidden`)
+      DOM.show(icon)
     }
     else {
-      icon.classList.add(`hidden`)
+      DOM.hide(icon)
     }
   }
 
@@ -224,10 +224,10 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.playing_icon`, item.element)
 
     if (item.playing && !item.muted) {
-      icon.classList.remove(`hidden`)
+      DOM.show(icon)
     }
     else {
-      icon.classList.add(`hidden`)
+      DOM.hide(icon)
     }
   }
 
@@ -235,10 +235,10 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.muted_icon`, item.element)
 
     if (item.muted) {
-      icon.classList.remove(`hidden`)
+      DOM.show(icon)
     }
     else {
-      icon.classList.add(`hidden`)
+      DOM.hide(icon)
     }
   }
 
@@ -246,10 +246,10 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.unread_icon`, item.element)
 
     if (item.unread) {
-      icon.classList.remove(`hidden`)
+      DOM.show(icon)
     }
     else {
-      icon.classList.add(`hidden`)
+      DOM.hide(icon)
     }
   }
 }
@@ -267,10 +267,10 @@ App.check_item_icon = (item) => {
     if (ans.icon) {
       container.innerHTML = ``
       container.append(ans.icon)
-      container.classList.remove(`hidden`)
+      DOM.show(container)
     }
     else {
-      container.classList.add(`hidden`)
+      DOM.hide(container)
     }
   }
 }

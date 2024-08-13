@@ -37,7 +37,7 @@ App.create_popup = (args) => {
 
   p.show = () => {
     p.setup()
-    p.element.classList.remove(`hidden`)
+    DOM.show(p.element)
     container.focus()
     p.open = true
   }
@@ -51,7 +51,7 @@ App.create_popup = (args) => {
       args.on_hide(args.id)
     }
     else {
-      p.element.classList.add(`hidden`)
+      DOM.hide(p.element)
       p.open = false
 
       if (args.after_hide) {

@@ -21,7 +21,7 @@ App.do_update_active_trace = () => {
 
   for (let item of App.get_items(`tabs`)) {
     let trace = DOM.el(`.item_trace`, item.element)
-    trace.classList.add(`hidden`)
+    DOM.hide(trace)
   }
 
   let n = 1
@@ -33,7 +33,7 @@ App.do_update_active_trace = () => {
     }
 
     let trace = DOM.el(`.item_trace`, item.element)
-    trace.classList.remove(`hidden`)
+    DOM.show(trace)
     trace.textContent = n
 
     if (n === 9) {

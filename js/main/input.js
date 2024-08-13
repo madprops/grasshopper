@@ -52,13 +52,13 @@ App.show_input = (args = {}) => {
 
     if (args.readonly) {
       textarea.setAttribute(`readonly`, `readonly`)
-      clear_btn.classList.add(`hidden`)
-      submit_btn.classList.add(`hidden`)
+      DOM.show(clear_btn)
+      DOM.show(submit_btn)
     }
     else {
       textarea.removeAttribute(`readonly`)
-      clear_btn.classList.remove(`hidden`)
-      submit_btn.classList.remove(`hidden`)
+      DOM.hide(clear_btn)
+      DOM.hide(submit_btn)
     }
 
     App.focus_textarea(textarea)

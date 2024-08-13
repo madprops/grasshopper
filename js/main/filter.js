@@ -838,10 +838,10 @@ App.do_filter_2 = (mode, similar = true) => {
 
   for (let item of ignore) {
     if (value) {
-      item.classList.add(`hidden`)
+      DOM.hide(item)
     }
     else {
-      item.classList.remove(`hidden`)
+      DOM.show(item)
     }
   }
 
@@ -850,13 +850,13 @@ App.do_filter_2 = (mode, similar = true) => {
     text = App.clean_filter(text).toLowerCase()
 
     if (text.includes(value)) {
-      item.classList.remove(`hidden`)
+      DOM.show(item)
     }
     else if (similar && (App.similarity(text, value) >= App.similarity_threshold)) {
-      item.classList.remove(`hidden`)
+      DOM.show(item)
     }
     else {
-      item.classList.add(`hidden`)
+      DOM.hide(item)
     }
   }
 }
