@@ -33,12 +33,12 @@ App.create_playing_icon = (mode) => {
 }
 
 App.show_playing = (mode) => {
-  DOM.show(DOM.el(`#playing_icon_${mode}`))
+  DOM.show(`#playing_icon_${mode}`)
   App.playing = true
 }
 
 App.hide_playing = (mode) => {
-  DOM.hide(DOM.el(`#playing_icon_${mode}`))
+  DOM.hide(`#playing_icon_${mode}`)
   App.playing = false
 }
 

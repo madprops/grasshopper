@@ -44,14 +44,14 @@ App.start_media = (what) => {
         DOM.ev(media, `load`, () => {
           App.stop_media_timeout(what)
           DOM.show(media)
-          DOM.hide(DOM.el(`#media_${what}_loading`))
+          DOM.hide(`#media_${what}_loading`)
         })
       }
       else if (what === `video` || what === `audio`) {
         DOM.ev(media, `canplay`, () => {
           App.stop_media_timeout(what)
           DOM.show(media)
-          DOM.hide(DOM.el(`#media_${what}_loading`))
+          DOM.hide(`#media_${what}_loading`)
           media.play()
         })
       }
@@ -156,7 +156,7 @@ App.view_media = (o_item) => {
   App.stop_media_timeout(what)
 
   App[`media_${what}_loading_timeout`] = setTimeout(() => {
-    DOM.show(DOM.el(`#media_${what}_loading`))
+    DOM.show(`#media_${what}_loading`)
   }, 500)
 
   let url_el = DOM.el(`#media_${what}_url`)
@@ -186,8 +186,8 @@ App.stop_media_player = (what) => {
 }
 
 App.hide_media_elements = (what) => {
-  DOM.hide(DOM.el(`#media_${what}_player`))
-  DOM.hide(DOM.el(`#media_${what}_loading`))
+  DOM.hide(`#media_${what}_player`)
+  DOM.hide(`#media_${what}_loading`)
 }
 
 App.stop_media_timeout = (what) => {

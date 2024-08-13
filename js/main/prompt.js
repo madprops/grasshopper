@@ -51,10 +51,10 @@ App.show_prompt = (args = {}) => {
   }
 
   if (args.fill) {
-    DOM.show(DOM.el(`#prompt_fill`))
+    DOM.show(`#prompt_fill`)
   }
   else {
-    DOM.hide(DOM.el(`#prompt_fill`))
+    DOM.hide(`#prompt_fill`)
   }
 
   App.prompt_fill = args.fill
