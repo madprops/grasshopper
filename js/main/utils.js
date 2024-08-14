@@ -307,7 +307,7 @@ App.contains_number = (str) => {
 }
 
 App.escape_regex = (s) => {
-  return s.replace(/[^A-Za-z0-9|]/g, `\\$&`)
+  return s.replace(/[^A-Za-z0-9|]/g, `\$&`)
 }
 
 App.hostname_full = (item) => {
