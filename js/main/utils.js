@@ -272,7 +272,7 @@ App.single_space = (s) => {
 }
 
 // | is ommitted on purpose
-App.remove_special = (s) => {
+App.escape_regex = (s) => {
   return s.replace(/[.*+?^${}()[\]\\]/g, `\\$&`)
 }
 
@@ -304,10 +304,6 @@ App.clean_lines = (s) => {
 
 App.contains_number = (str) => {
   return /\d/.test(str)
-}
-
-App.escape_regex = (s) => {
-  return s.replace(/[^A-Za-z0-9|]/g, `\$&`)
 }
 
 App.hostname_full = (item) => {

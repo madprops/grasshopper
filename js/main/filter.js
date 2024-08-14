@@ -351,7 +351,7 @@ App.make_filter_regex = (value, by_what) => {
     }
   }
   else {
-    let cleaned = App.escape_regex(App.clean_filter(value))
+    let cleaned = App.clean_filter(value)
 
     if (App.get_setting(`case_insensitive`)) {
       regex = new RegExp(cleaned, `i`)
@@ -1203,7 +1203,7 @@ App.clean_filter = (s) => {
   }
 
   s = App.no_space(s)
-  s = App.remove_special(s)
+  s = App.escape_regex(s)
   s = s.trim()
 
   return s
