@@ -376,7 +376,7 @@ App.filter_check = (args) => {
   let lower_title = title.toLowerCase()
 
   if (!match) {
-    let clean_title = App.clean_filter(title, false)
+    let clean_title = App.clean_filter(title)
 
     for (let regex of args.regexes) {
       if (args.by_what === `all` || args.by_what === `re`) {
@@ -407,7 +407,7 @@ App.filter_check = (args) => {
         let color = App.get_color_by_id(color_id)
 
         if (color) {
-          match = App.clean_filter(color.name).toLowerCase().startsWith(args.value_lower)
+          match = App.clean_filter(color.name, true).startsWith(args.value_lower)
         }
       }
     }
@@ -416,7 +416,7 @@ App.filter_check = (args) => {
   if (!match) {
     if (args.by_what.startsWith(`tag`) || App.get_setting(`filter_tags`)) {
       for (let tag of App.tags(args.item)) {
-        if (App.clean_filter(tag).toLowerCase().startsWith(args.value_lower)) {
+        if (App.clean_filter(tag, true).startsWith(args.value_lower)) {
           match = true
           break
         }
@@ -830,7 +830,7 @@ App.set_custom_filter = (mode, filter) => {
 }
 
 App.do_filter_2 = (mode, similar = true) => {
-  let value = App.clean_filter(App.get_filter(mode)).toLowerCase()
+  let value = App.clean_filter(App.get_filter(mode), true)
   let type = App.popup_open() ? `popup` : `window`
   let win = DOM.el(`#${type}_${mode}`)
   let container = DOM.el_or_self(`.filter_container`, win)
@@ -848,7 +848,7 @@ App.do_filter_2 = (mode, similar = true) => {
 
   for (let item of items) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
-    text = App.clean_filter(text).toLowerCase()
+    text = App.clean_filter(text, true)
 
     if (text.includes(value)) {
       DOM.show(item)
@@ -1198,12 +1198,13 @@ App.filter_at_end = (mode) => {
   filter.selectionEnd === filter.value.length
 }
 
-App.clean_filter = (s) => {
-  if (!App.get_setting(`clean_filter`)) {
-    return s
+App.clean_filter = (s, lower_case = false) => {
+  s = s.trim()
+
+  if (lower_case) {
+    s = s.toLowerCase()
   }
 
-  s = s.trim()
   return s
 }
 

@@ -2474,13 +2474,6 @@ App.build_settings = () => {
         ])
       },
     },
-    clean_filter: {
-      name: `Clean Filter`,
-      type: `checkbox`,
-      value: true,
-      info: `Remove special characters from the filter`,
-      version: 1,
-    },
     case_insensitive: {
       name: `Case Insensitive`,
       type: `checkbox`,
