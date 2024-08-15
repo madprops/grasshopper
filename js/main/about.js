@@ -23,7 +23,7 @@ App.start_about = () => {
         `(Ctrl) Home goes to the top`,
         `(Ctrl) End goes to the bottom`,
         `Ctrl + Left toggles the Main Menu`,
-        `Ctrl + Right toggles Actions`,
+        `Ctrl + Right toggles the Actions Menu`,
         `Ctrl + Up moves tabs to the top`,
         `Ctrl + Down moves tabs to the bottom`,
         `Ctrl + F shows the Filter Menu`,
