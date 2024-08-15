@@ -2588,7 +2588,7 @@ App.build_settings = () => {
     filter_delay: {
       name: `Filter Delay`,
       type: `number`,
-      value: 50,
+      value: 100,
       actions: [`filters`],
       placeholder: `Number`,
       min: App.number_min,
