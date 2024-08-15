@@ -352,6 +352,7 @@ App.make_filter_regex = (value, by_what) => {
   }
   else {
     let cleaned = App.clean_filter(value)
+    cleaned = App.escape_regex(cleaned)
 
     if (App.get_setting(`case_insensitive`)) {
       regex = new RegExp(cleaned, `i`)
@@ -375,7 +376,7 @@ App.filter_check = (args) => {
   let lower_title = title.toLowerCase()
 
   if (!match) {
-    let clean_title = App.clean_filter(title)
+    let clean_title = App.clean_filter(title, false)
 
     for (let regex of args.regexes) {
       if (args.by_what === `all` || args.by_what === `re`) {
@@ -1202,10 +1203,7 @@ App.clean_filter = (s) => {
     return s
   }
 
-  s = App.no_space(s)
-  s = App.escape_regex(s)
   s = s.trim()
-
   return s
 }
 

@@ -263,10 +263,6 @@ App.text_with_value_focused = () => {
   return false
 }
 
-App.no_space = (s) => {
-  return s.replace(/\s+/g, ``)
-}
-
 App.single_space = (s) => {
   return s.replace(/ +/g, ` `)
 }
