@@ -182,6 +182,10 @@ App.setup_window = () => {
 }
 
 App.start_context_auto_hide = () => {
+  if (!App.get_setting(`autohide_context`)) {
+    return
+  }
+
   App.clear_context_auto_hide()
 
   App.context_auto_hide_timeout = setTimeout(() => {
