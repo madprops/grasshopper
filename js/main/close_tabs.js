@@ -27,7 +27,7 @@ App.start_close_tabs = () => {
       })
 
       DOM.ev(`#close_tabs_title`, `click`, (e) => {
-        App.show_close_tabs_menu(e)
+        App.show_close_tabs_menu(e, undefined, false)
       })
     },
   })
@@ -415,22 +415,24 @@ App.close_empty_tabs = (pins, unloaded) => {
   App.close_tabs_method(items)
 }
 
-App.show_close_tabs_menu = (e, item) => {
+App.show_close_tabs_menu = (e, item, all = true) => {
   let items = []
 
-  items.push(App.cmd_item({
-    cmd: `close_color_all`,
-    from: `close_tabs`,
-    item: item,
-  }))
+  if (all) {
+    items.push(App.cmd_item({
+      cmd: `close_color_all`,
+      from: `close_tabs`,
+      item: item,
+    }))
 
-  items.push(App.cmd_item({
-    cmd: `close_tag_all`,
-    from: `close_tabs`,
-    item: item,
-  }))
+    items.push(App.cmd_item({
+      cmd: `close_tag_all`,
+      from: `close_tabs`,
+      item: item,
+    }))
 
-  App.sep(items)
+    App.sep(items)
+  }
 
   for (let type of App.close_tabs_types) {
     if (type === `all`) {
