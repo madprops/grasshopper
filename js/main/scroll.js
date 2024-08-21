@@ -19,7 +19,7 @@ App.scroll_to_item = (args = {}) => {
 
     if (!args.force) {
       if (args.item.last_scroll > 0) {
-        if ((Date.now() - args.item.last_scroll) < App.last_scroll_delay) {
+        if ((App.now() - args.item.last_scroll) < App.last_scroll_delay) {
           return
         }
       }
@@ -59,7 +59,7 @@ App.scroll_to_item = (args = {}) => {
       }
     }
 
-    args.item.last_scroll = Date.now()
+    args.item.last_scroll = App.now()
   })
 }
 

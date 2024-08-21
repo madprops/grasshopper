@@ -1,12 +1,12 @@
 App.check_restore = () => {
   if (App.get_setting(`auto_restore`) === `action`) {
     if (App.last_restore_date > 0) {
-      if ((Date.now() - App.last_restore_date) < App.restore_delay) {
+      if ((App.now() - App.last_restore_date) < App.restore_delay) {
         return
       }
     }
 
-    App.last_restore_date = Date.now()
+    App.last_restore_date = App.now()
     App.update_filter_history()
     App.restore()
   }

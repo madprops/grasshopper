@@ -730,7 +730,7 @@ App.cycle_background_opacity = (how = `cycle`) => {
     opacity -= 5
 
     if (opacity < 60) {
-      if ((Date.now() - App.last_opacity_cycle_date) < App.SECOND) {
+      if ((App.now() - App.last_opacity_cycle_date) < App.SECOND) {
         return
       }
 
@@ -755,7 +755,7 @@ App.cycle_background_opacity = (how = `cycle`) => {
   App.set_setting({setting: `background_opacity`, value: opacity})
   App.check_refresh_settings()
   App.footer_message(`Opacity: ${opacity}%`)
-  App.last_opacity_cycle_date = Date.now()
+  App.last_opacity_cycle_date = App.now()
   App.apply_theme()
 }
 

@@ -29,7 +29,7 @@ App.BLUE = `rgba(0, 0, 255, 1)`
 
 App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
-App.close_tabs_types = [`normal`, `playing`, `unloaded`, `loaded`, `duplicate`, `visible`, `empty`, `other`, `pinned`, `all`]
+App.close_tabs_types = [`normal`, `pinned`, `playing`, `unloaded`, `loaded`, `duplicate`, `visible`, `empty`, `other`, `all`]
 App.tab_box_modes = [`recent`, `pins`, `playing`, `colors`, `tags`, `icons`, `headers`]
 App.no_favicons = [`history`, `bookmarks`]
 App.fonts = [`serif`, `sans-serif`, `monospace`, `Nova Square`]
@@ -104,6 +104,7 @@ App.setup_bookmarks_ready = false
 App.domain_rules_ready = false
 App.playing = false
 App.last_opacity_cycle_date = 0
+App.filter_click_date = 0
 
 App.empty_previous_tabs_delay = 2000
 App.alert_autohide_delay = 1500

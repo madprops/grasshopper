@@ -418,16 +418,6 @@ App.close_empty_tabs = (pins, unloaded) => {
 App.show_close_tabs_menu = (e, item) => {
   let items = []
 
-  for (let type of App.close_tabs_types) {
-    items.push(App.cmd_item({
-      cmd: `close_${type}_tabs`,
-      from: `close_tabs`,
-      item: item,
-    }))
-  }
-
-  App.sep(items)
-
   items.push(App.cmd_item({
     cmd: `close_color_all`,
     from: `close_tabs`,
@@ -439,6 +429,20 @@ App.show_close_tabs_menu = (e, item) => {
     from: `close_tabs`,
     item: item,
   }))
+
+  App.sep(items)
+
+  for (let type of App.close_tabs_types) {
+    if (type === `all`) {
+      App.sep(items)
+    }
+
+    items.push(App.cmd_item({
+      cmd: `close_${type}_tabs`,
+      from: `close_tabs`,
+      item: item,
+    }))
+  }
 
   App.show_context({items: items, e: e})
 }

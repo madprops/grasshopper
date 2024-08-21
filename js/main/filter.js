@@ -780,12 +780,24 @@ App.create_filter = (mode) => {
     }
   })
 
+  DOM.ev(filter, `click`, (e) => {
+    if (App.filter_has_value(mode)) {
+      return
+    }
+
+    if (e.detail === 1) {
+      App.filter_click_date = App.now()
+    }
+  })
+
   DOM.ev(filter, `dblclick`, (e) => {
     if (App.filter_has_value(mode)) {
       return
     }
 
-    e.preventDefault()
+    if ((App.now() - App.filter_click_date) > 350) {
+      return
+    }
 
     let cmd = App.get_setting(`double_click_filter`)
 
