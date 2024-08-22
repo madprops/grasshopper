@@ -2264,6 +2264,15 @@ App.setup_commands = () => {
       info: `Close the browser sidebar`,
     },
     {
+      name: `madprops`,
+      cmd: `madprops_settings`,
+      icon: bot_icon,
+      action: (args) => {
+        App.madprops_settings()
+      },
+      info: `Use the preferred settings for madprops`,
+    },
+    {
       name: `Restart`,
       cmd: `restart_extension`,
       icon: bot_icon,
