@@ -1544,8 +1544,8 @@ App.toggle_setting = (setting, action = true) => {
 
 App.madprops_settings = () => {
   App.set_theme(3)
-  App.set_setting({setting: `load_lock`, value: true, action: true})
-  App.set_setting({setting: `autohide_context`, value: true, action: true})
+  App.set_setting({setting: `load_lock`, value: true})
+  App.set_setting({setting: `autohide_context`, value: true})
 
   let urls = [
     {
@@ -1559,6 +1559,8 @@ App.madprops_settings = () => {
     },
   ]
 
-  App.set_setting({setting: `custom_urls`, value: urls, action: true})
+  App.set_setting({setting: `custom_urls`, value: urls})
+  App.refresh_settings()
+  App.clear_show()
   App.alert_autohide(`Settings applied`)
 }
