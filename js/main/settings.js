@@ -1426,7 +1426,7 @@ App.setup_settings_addlist = () => {
         url: `URL`,
       },
       list_icon: (items) => {
-        return ""
+        return ``
       },
       list_text: (items) => {
         return items.url
