@@ -154,7 +154,9 @@ App.hide_all_popups = () => {
 }
 
 App.hide_popup = (id, bypass = false) => {
-  App.popups[id].hide(bypass)
+  if (App.popups[id]) {
+    App.popups[id].hide(bypass)
+  }
 }
 
 App.open_popup_list = () => {
