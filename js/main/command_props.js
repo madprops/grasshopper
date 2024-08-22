@@ -291,13 +291,12 @@ App.setup_commands = () => {
 
   let custom_urls = []
 
-  for (let [i, url] of App.get_setting(`custom_urls`).entries()) {
+  for (let [i, item] of App.get_setting(`custom_urls`).entries()) {
     let n = i + 1
     let icon = App.browser_icon
-    let name = `Open URL ${n}`
 
     custom_urls.push({
-      name: name,
+      name: item.name,
       cmd: `open_url_${n}`,
       icon: icon,
       action: (args) => {

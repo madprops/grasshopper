@@ -1417,19 +1417,21 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`url`],
+      keys: [`name`, `url`],
       pk: `url`,
       widgets: {
+        name: `text`,
         url: `text`,
       },
       labels: {
+        name: `Name`,
         url: `URL`,
       },
       list_icon: (items) => {
         return ``
       },
       list_text: (items) => {
-        return items.url
+        return items.name
       },
       title: props.name,
     }))
@@ -1549,12 +1551,15 @@ App.madprops_settings = () => {
 
   let urls = [
     {
+      name: `Mikaeli`,
       url: `https://www.youtube.com/watch?v=spdfnqS3bDg`,
     },
     {
+      name: `Raven Forest`,
       url: `https://www.youtube.com/watch?v=2iCHRQJnZRM`,
     },
     {
+      name: `Dead Bent`,
       url: `https://www.youtube.com/watch?v=VdCodNxbc40`,
     },
   ]
