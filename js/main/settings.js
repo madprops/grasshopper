@@ -1433,6 +1433,10 @@ App.setup_settings_addlist = () => {
       list_text: (items) => {
         return items.name
       },
+      required: {
+        name: true,
+        url: true,
+      },
       title: props.name,
     }))
   }))
