@@ -1521,5 +1521,8 @@ App.madprops_settings = () => {
   App.set_theme(3)
   App.set_setting({setting: `load_lock`, value: true, action: true})
   App.set_setting({setting: `autohide_context`, value: true, action: true})
+  App.set_setting({setting: `url_one`, value: `https://www.youtube.com/watch?v=spdfnqS3bDg`, action: true})
+  App.set_setting({setting: `url_two`, value: `https://www.youtube.com/watch?v=2iCHRQJnZRM`, action: true})
+  App.set_setting({setting: `url_three`, value: `https://www.youtube.com/watch?v=VdCodNxbc40`, action: true})
   App.alert_autohide(`Settings applied`)
 }
