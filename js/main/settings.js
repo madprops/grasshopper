@@ -1513,4 +1513,5 @@ App.madprops_settings = () => {
   App.set_theme(3)
   App.set_setting({setting: `load_lock`, value: true, action: true})
   App.set_setting({setting: `autohide_context`, value: true, action: true})
+  App.alert(`Settings applied`)
 }
