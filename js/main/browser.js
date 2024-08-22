@@ -28,7 +28,7 @@ App.show_browser_menu = (e) => {
 App.open_custom_url = (num) => {
   let urls = App.get_setting(`custom_urls`)
 
-  if (!urls) {
+  if (!urls.length) {
     return
   }
 
