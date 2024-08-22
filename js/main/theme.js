@@ -933,8 +933,20 @@ App.set_theme = (num) => {
     App.set_default_setting(`background_color`)
   }
 
-  App.set_default_setting(`background_effect`)
-  App.set_default_setting(`background_tiles`)
+  if (bg.effect) {
+    App.set_setting({setting: `background_effect`, value: bg.effect})
+  }
+  else {
+    App.set_default_setting(`background_effect`)
+  }
+
+  if (bg.tiles) {
+    App.set_setting({setting: `background_tiles`, value: bg.tiles})
+  }
+  else {
+    App.set_default_setting(`background_tiles`)
+  }
+
   App.set_background_image(bg.num)
 }
 

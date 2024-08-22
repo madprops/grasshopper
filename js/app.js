@@ -283,17 +283,19 @@ App.filter_whats = [
   `tags`,
 ]
 
-// Suggestions:
-// Keep this at 5 items
-// Don't go lower than 75 opacity
 App.themes = [
   {num: 1, opacity: 90},
   {num: 2, opacity: 88},
-  {num: 3, opacity: 80},
   {
-    num: 4, opacity: 75,
-    text_color: `rgb(207, 213, 255)`,
-    background_color: `rgb(33, 61, 101)`
+    num: 3, opacity: 80,
+    text_color: `rgb(207, 228, 204)`,
+    background_color: `rgb(54, 49, 55)`,
+    effect: `rotate_1`,
+  },
+  {
+    num: 4, opacity: 70,
+    text_color: `rgb(253, 244, 207)`,
+    background_color: `rgb(49, 45, 49)`,
   },
   {num: 5, opacity: 75},
 ]

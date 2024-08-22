@@ -57,6 +57,10 @@ App.show_palette = (prefilter = ``) => {
   }
 }
 
+App.hide_palette = () => {
+  App.hide_popup(`palette`)
+}
+
 App.palette_select = (el) => {
   let container = DOM.el(`#palette_items`)
   let els = DOM.els(`.palette_item`, container)

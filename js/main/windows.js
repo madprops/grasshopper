@@ -190,6 +190,7 @@ App.start_context_auto_hide = () => {
 
   App.context_auto_hide_timeout = setTimeout(() => {
     App.hide_context()
+    App.hide_palette()
   }, App.context_auto_hide_delay)
 }
 
