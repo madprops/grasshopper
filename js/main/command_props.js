@@ -2270,6 +2270,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.madprops_settings()
       },
+      skip_settings: true,
       info: `Use the preferred settings for madprops`,
     },
     {

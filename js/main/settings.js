@@ -891,6 +891,10 @@ App.settings_commands = (include_none = true) => {
   }
 
   for (let cmd of App.commands) {
+    if (cmd.skip_settings) {
+      continue
+    }
+
     items.push({text: cmd.name, value: cmd.cmd, icon: cmd.icon, info: cmd.info})
   }
 
@@ -901,6 +905,10 @@ App.get_filter_cmds = () => {
   let items = []
 
   for (let cmd of App.commands) {
+    if (cmd.skip_settings) {
+      continue
+    }
+
     if (cmd.filter_mode) {
       items.push({text: cmd.name, value: cmd.cmd, icon: cmd.icon, info: cmd.info})
     }
