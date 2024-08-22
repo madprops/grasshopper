@@ -210,7 +210,6 @@ App.build_settings = () => {
       placeholder: `Folder Name`,
       no_empty: true,
       info: `Where to save bookmarks`,
-      separator: true,
       version: 1,
     },
     max_recent_tabs: {
