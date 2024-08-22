@@ -1513,7 +1513,7 @@ App.madprops_settings = () => {
   App.set_theme(3)
   App.set_setting({setting: `load_lock`, value: true, action: true})
   App.set_setting({setting: `autohide_context`, value: true, action: true})
-  App.set_setting({setting: `url_one`, value: `https://merkoba.com`, action: true})
-  App.set_setting({setting: `url_two`, value: `https://zombo.com`, action: true})
+  App.set_setting({setting: `url_one`, value: `https://lab.serotoninphobia.info`, action: true})
+  App.set_setting({setting: `url_two`, value: `https://arngren.net/`, action: true})
   App.set_setting({setting: `url_three`, value: `https://www.youtube.com/watch?v=spdfnqS3bDg`, action: true})
 }
