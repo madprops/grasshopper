@@ -289,6 +289,24 @@ App.setup_commands = () => {
     })
   }
 
+  let custom_urls = []
+
+  for (let [i, url] of App.get_setting(`custom_urls`).entries()) {
+    let n = i + 1
+    let icon = App.browser_icon
+    let name = `Open URL ${n}`
+
+    custom_urls.push({
+      name: name,
+      cmd: `open_url_${n}`,
+      icon: icon,
+      action: (args) => {
+        App.open_custom_url(n)
+      },
+      info: `Open Custom URL (${n})`,
+    })
+  }
+
   App.commands = [
     {
       name: `Go To Top`,
@@ -2218,33 +2236,9 @@ App.setup_commands = () => {
       },
       info: `Show or hide the date in the main title`,
     },
-    {
-      name: `Open URL One`,
-      cmd: `open_url_one`,
-      icon: browser_icon,
-      action: (args) => {
-        App.open_setting_url(1)
-      },
-      info: `Open the first URL defined in settings`,
-    },
-    {
-      name: `Open URL Two`,
-      cmd: `open_url_two`,
-      icon: browser_icon,
-      action: (args) => {
-        App.open_setting_url(2)
-      },
-      info: `Open the second URL defined in settings`,
-    },
-    {
-      name: `Open URL Three`,
-      cmd: `open_url_three`,
-      icon: browser_icon,
-      action: (args) => {
-        App.open_setting_url(3)
-      },
-      info: `Open the third URL defined in settings`,
-    },
+
+    ...custom_urls,
+
     {
       name: `Open Sidebar`,
       cmd: `open_sidebar`,

@@ -1,29 +1,23 @@
 App.show_browser_menu = (e) => {
-  let url_one = App.get_setting(`url_one`)
-  let url_two = App.get_setting(`url_two`)
-  let url_three = App.get_setting(`url_three`)
-
   let cmds = [
     `browser_back`,
     `browser_forward`,
     `browser_reload`,
   ]
 
-  let urls = [url_one, url_two, url_three].some(url => url != ``)
+  let urls = App.get_setting(`custom_urls`)
 
   if (urls) {
     cmds.push(App.separator_string)
 
-    if (url_one) {
-      cmds.push(`open_url_one`)
-    }
+    for (let i = 0; i < 3; i++) {
+      let url = urls[i]
 
-    if (url_two) {
-      cmds.push(`open_url_two`)
-    }
+      if (!url) {
+        break
+      }
 
-    if (url_three) {
-      cmds.push(`open_url_three`)
+      cmds.push(`open_url_${i + 1}`)
     }
   }
 
@@ -31,23 +25,14 @@ App.show_browser_menu = (e) => {
   App.show_context({items: items, e: e})
 }
 
-App.open_setting_url = (num) => {
-  let name
+App.open_custom_url = (num) => {
+  let urls = App.get_setting(`custom_urls`)
 
-  if (num === 1) {
-    name = `one`
-  }
-  else if (num === 2) {
-    name = `two`
-  }
-  else if (num === 3) {
-    name = `three`
-  }
-  else {
+  if (!urls) {
     return
   }
 
-  let url = App.get_setting(`url_${name}`)
+  let url = urls[num - 1].url
 
   if (!url) {
     return

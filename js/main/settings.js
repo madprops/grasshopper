@@ -1409,6 +1409,31 @@ App.setup_settings_addlist = () => {
       title: props.name,
     }))
   }))
+
+  id = `settings_custom_urls`
+  props = App.setting_props.custom_urls
+
+  App.create_popup(Object.assign({}, popobj, {
+    id: `addlist_${id}`,
+    element: Addlist.register(Object.assign({}, regobj, {
+      id: id,
+      keys: [`url`],
+      pk: `url`,
+      widgets: {
+        url: `text`,
+      },
+      labels: {
+        url: `URL`,
+      },
+      list_icon: (items) => {
+        return ""
+      },
+      list_text: (items) => {
+        return items.url
+      },
+      title: props.name,
+    }))
+  }))
 }
 
 App.settings_build_category = (key) => {
@@ -1521,8 +1546,19 @@ App.madprops_settings = () => {
   App.set_theme(3)
   App.set_setting({setting: `load_lock`, value: true, action: true})
   App.set_setting({setting: `autohide_context`, value: true, action: true})
-  App.set_setting({setting: `url_one`, value: `https://www.youtube.com/watch?v=spdfnqS3bDg`, action: true})
-  App.set_setting({setting: `url_two`, value: `https://www.youtube.com/watch?v=2iCHRQJnZRM`, action: true})
-  App.set_setting({setting: `url_three`, value: `https://www.youtube.com/watch?v=VdCodNxbc40`, action: true})
+
+  let urls = [
+    {
+      url: `https://www.youtube.com/watch?v=spdfnqS3bDg`,
+    },
+    {
+      url: `https://www.youtube.com/watch?v=2iCHRQJnZRM`,
+    },
+    {
+      url: `https://www.youtube.com/watch?v=VdCodNxbc40`,
+    },
+  ]
+
+  App.set_setting({setting: `custom_urls`, value: urls, action: true})
   App.alert_autohide(`Settings applied`)
 }
