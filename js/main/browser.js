@@ -7,7 +7,7 @@ App.show_browser_menu = (e) => {
 
   let urls = App.get_setting(`custom_urls`)
 
-  if (urls) {
+  if (urls.length) {
     cmds.push(App.separator_string)
 
     for (let i = 0; i < 3; i++) {
