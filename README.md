@@ -6,6 +6,12 @@ Programmed by [madprops](https://github.com/madprops)
 
 Lots of ideas by [N3C2L](https://github.com/N3C2L)
 
+### Donation
+
+I'm experimenting with `Monero/XMR`. Here's an address where you can send funds if you so choose:
+
+87tZaKNZH936TphDEqBZNYbfTS6B8h3pUfrY51Twy6xWgNNKXziPgwk8kE6SQPXMsj3bGC8vTj7WAZMnd7mFXKFC7MzKB8B
+
 ---
 
 ![](img/grasshopper.png)
