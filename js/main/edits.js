@@ -264,9 +264,17 @@ App.remove_edits = (args = {}) => {
       }
 
       for (let what of args.what) {
-        if (item[`custom_${what}`]) {
-          args.items.push(item)
-          break
+        if (what === `tags`) {
+          if (item.custom_tags.length) {
+            args.items.push(item)
+            break
+          }
+        }
+        else {
+          if (item[`custom_${what}`]) {
+            args.items.push(item)
+            break
+          }
         }
       }
     }
