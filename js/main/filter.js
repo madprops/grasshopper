@@ -407,7 +407,7 @@ App.filter_check = (args) => {
         let color = App.get_color_by_id(color_id)
 
         if (color) {
-          match = App.clean_filter(color.name, true).startsWith(args.value_lower)
+          match = App.clean_filter(color.name, true) === args.value_lower
         }
       }
     }
@@ -416,7 +416,7 @@ App.filter_check = (args) => {
   if (!match) {
     if (args.by_what.startsWith(`tag`) || App.get_setting(`filter_tags`)) {
       for (let tag of App.tags(args.item)) {
-        if (App.clean_filter(tag, true).startsWith(args.value_lower)) {
+        if (App.clean_filter(tag, true) === args.value_lower) {
           match = true
           break
         }
@@ -426,13 +426,13 @@ App.filter_check = (args) => {
 
   if (!match) {
     if ((args.by_what === `all`) && App.get_setting(`filter_media`)) {
-      if ((args.value_lower === `image`) || (args.value_lower === `images`)) {
+      if ([`image`, `images`].some(v => args.value_lower.includes(v))) {
         match = args.item.image
       }
-      else if ((args.value_lower === `video`) || (args.value_lower === `videos`)) {
+      else if ([`video`, `videos`].some(v => args.value_lower.includes(v))) {
         match = args.item.video
       }
-      else if ((args.value_lower === `audio`) || (args.value_lower === `audios`)) {
+      else if ([`audio`, `audios`].some(v => args.value_lower.includes(v))) {
         match = args.item.audio
       }
     }
