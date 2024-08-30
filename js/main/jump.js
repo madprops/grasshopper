@@ -1,3 +1,21 @@
+App.jump_action = (item) => {
+  App.tabs_action(item, `jump`)
+}
+
+App.jump_first_action = (item, first) => {
+  if (first) {
+    if (first !== item) {
+      App.jump_action(first)
+    }
+  }
+}
+
+App.jump_vars = (item) => {
+  let items = App.get_items(`tabs`)
+  let index = items.indexOf(item)
+  return {items, index}
+}
+
 App.jump_tabs_tag = (num) => {
   let item = App.get_active_tab_item()
   let target
@@ -11,8 +29,7 @@ App.jump_tabs_tag = (num) => {
 
   let waypoint = false
   let first = undefined
-  let items = App.get_items(`tabs`)
-  let index = items.indexOf(item)
+  let {items, index} = App.jump_vars(item)
 
   function check_first(it) {
     if (!first) {
@@ -35,22 +52,19 @@ App.jump_tabs_tag = (num) => {
         continue
       }
 
-      App.tabs_action(item_, `jump`)
+      App.jump_action(item_)
       return
     }
   }
 
-  if (first) {
-    App.tabs_action(first, `jump`)
-  }
+  App.jump_first_action(item, first)
 }
 
 App.jump_tabs_color = (id) => {
   let item = App.get_active_tab_item()
   let waypoint = false
   let first = undefined
-  let items = App.get_items(`tabs`)
-  let index = items.indexOf(item)
+  let {items, index} = App.jump_vars(item)
 
   function check_first(it) {
     if (!first) {
@@ -77,12 +91,10 @@ App.jump_tabs_color = (id) => {
         continue
       }
 
-      App.tabs_action(item_, `jump`)
+      App.jump_action(item_)
       return
     }
   }
 
-  if (first) {
-    App.tabs_action(first, `jump`)
-  }
+  App.jump_first_action(item, first)
 }
