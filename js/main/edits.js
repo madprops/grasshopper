@@ -288,10 +288,6 @@ App.remove_edits = (args = {}) => {
     args.force = App.check_force(`warn_on_edit_tabs`, args.items)
   }
 
-  if (args.what.includes(`notes`)) {
-    args.force = false
-  }
-
   App.show_confirm({
     message: `Remove ${args.text}? (${args.items.length})`,
     confirm_action: () => {
