@@ -19,5 +19,5 @@ def find_duplicate_functions(file_path)
   end
 end
 
-file_path = "/home/yo/code/grasshopper/js/bundle.main.js"
+file_path = "js/bundle.main.js"
 find_duplicate_functions(file_path)
