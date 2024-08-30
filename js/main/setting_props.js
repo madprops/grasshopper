@@ -2857,18 +2857,18 @@ App.build_settings = () => {
       info: `PageUp and PageDown do full page scrolls`,
       version: 1,
     },
-    jump_unloaded: {
-      name: `Jump Unloaded`,
-      type: `checkbox`,
-      value: true,
-      info: `Consider unloaded tabs when jumping`,
-      version: 1,
-    },
     autohide_context: {
       name: `Autohide Context`,
       type: `checkbox`,
       value: false,
       info: `Autohide context menus when the mouse moves away from the window`,
+      version: 1,
+    },
+    jump_unloaded: {
+      name: `Jump Unloaded`,
+      type: `checkbox`,
+      value: true,
+      info: `Consider unloaded tabs when jumping`,
       version: 1,
     },
     item_pointer: {
