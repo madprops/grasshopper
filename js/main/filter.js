@@ -426,13 +426,13 @@ App.filter_check = (args) => {
 
   if (!match) {
     if ((args.by_what === `all`) && App.get_setting(`filter_media`)) {
-      if ([`image`, `images`].some(v => args.value_lower.includes(v))) {
+      if (App.item_or_items(args.value_lower, `image`)) {
         match = args.item.image
       }
-      else if ([`video`, `videos`].some(v => args.value_lower.includes(v))) {
+      else if (App.item_or_items(args.value_lower, `video`)) {
         match = args.item.video
       }
-      else if ([`audio`, `audios`].some(v => args.value_lower.includes(v))) {
+      else if (App.item_or_items(args.value_lower, `audio`)) {
         match = args.item.audio
       }
     }

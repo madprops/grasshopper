@@ -608,3 +608,8 @@ App.similarity_distance = (string_1, string_2) => {
 
   return costs[string_2.length]
 }
+
+App.item_or_items = (value, what) => {
+  let items = [what, `${what}s`]
+  return items.some(v => value.includes(v))
+}
