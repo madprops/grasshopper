@@ -253,6 +253,7 @@ App.remove_edits = (args = {}) => {
     force: false,
     items: [],
     text: `edits`,
+    force_ask: false,
   }
 
   App.def_args(def_args, args)
@@ -286,6 +287,10 @@ App.remove_edits = (args = {}) => {
 
   if (!args.force) {
     args.force = App.check_force(`warn_on_edit_tabs`, args.items)
+  }
+
+  if (args.force_ask) {
+    args.force = false
   }
 
   App.show_confirm({

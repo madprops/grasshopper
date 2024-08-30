@@ -380,11 +380,10 @@ App.remove_color = (color) => {
     return
   }
 
-  App.show_confirm({
-    message: `Remove color? (${items.length})`,
-    confirm_action: () => {
-      App.remove_edits({what: [`color`], force: true, items: items, text: `colors`})
-    },
+  App.remove_edits({
+    what: [`color`],
+    items: items,
+    text: `colors`,
   })
 }
 
