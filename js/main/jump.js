@@ -1,4 +1,5 @@
-App.jump_tabs_tag = (item, num) => {
+App.jump_tabs_tag = (num) => {
+  let item = App.get_active_tab_item()
   let target
 
   if (num === 1) {
@@ -44,7 +45,8 @@ App.jump_tabs_tag = (item, num) => {
   }
 }
 
-App.jump_tabs_color = (item, id) => {
+App.jump_tabs_color = (id) => {
+  let item = App.get_active_tab_item()
   let waypoint = false
   let first = undefined
   let items = App.get_items(`tabs`)

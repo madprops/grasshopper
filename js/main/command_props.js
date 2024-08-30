@@ -166,11 +166,10 @@ App.setup_commands = () => {
     color_closers.push({
       name: name,
       cmd: `jump_tabs_color_${color.id}`,
-      modes: [`tabs`],
-      item: true,
+      modes: [`items`],
       icon: icon,
       action: (args) => {
-        App.jump_tabs_color(args.item, color.id)
+        App.jump_tabs_color(color.id)
       },
       info: `Jump to tabs with this color (${color.name})`,
     })
@@ -1478,33 +1477,30 @@ App.setup_commands = () => {
     {
       name: `Jump`,
       cmd: `jump_tabs_tag_1`,
-      modes: [`tabs`],
-      item: true,
+      modes: [`items`],
       icon: right_icon,
       action: (args) => {
-        App.jump_tabs_tag(args.item, 1)
+        App.jump_tabs_tag(1)
       },
       info: `Jump to tabs with the 'jump' tag`,
     },
     {
       name: `Jump 2`,
       cmd: `jump_tabs_tag_2`,
-      modes: [`tabs`],
-      item: true,
+      modes: [`items`],
       icon: right_icon,
       action: (args) => {
-        App.jump_tabs_tag(args.item, 2)
+        App.jump_tabs_tag(2)
       },
       info: `Jump to tabs with the 'jump2' tag`,
     },
     {
       name: `Jump 3`,
       cmd: `jump_tabs_tag_3`,
-      modes: [`tabs`],
-      item: true,
+      modes: [`items`],
       icon: right_icon,
       action: (args) => {
-        App.jump_tabs_tag(args.item, 3)
+        App.jump_tabs_tag(3)
       },
       info: `Jump to tabs with the 'jump3' tag`,
     },
