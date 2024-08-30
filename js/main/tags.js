@@ -185,7 +185,7 @@ App.add_tags = (item) => {
 
 App.remove_item_tags = (item) => {
   let active = App.get_active_items({mode: item.mode, item: item})
-  App.remove_edits({what: [`tags`], items: active})
+  App.remove_edits({what: [`tags`], items: active, text: `tags`})
 }
 
 App.replace_tag = () => {

@@ -506,7 +506,7 @@ App.remove_item_icon = (item) => {
     }
   }
 
-  App.remove_edits({what: [`icon`], items: active})
+  App.remove_edits({what: [`icon`], items: active, text: `icons`})
 }
 
 App.fetch_favicon_url = (item) => {

@@ -300,11 +300,11 @@ App.remove_item_split = (item) => {
     }
   }
 
-  App.remove_edits({what: [`split_top`, `split_bottom`], items: active})
+  App.remove_edits({what: [`split_top`, `split_bottom`], items: active, text: `splits`})
 }
 
 App.remove_all_splits = (force = false) => {
-  App.remove_edits({what: [`split_top`, `split_bottom`], force: force})
+  App.remove_edits({what: [`split_top`, `split_bottom`], force: force, text: `splits`})
 }
 
 App.apply_splits = (item) => {

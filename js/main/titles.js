@@ -94,5 +94,5 @@ App.remove_item_title = (item) => {
     }
   }
 
-  App.remove_edits({what: [`title`], items: active})
+  App.remove_edits({what: [`title`], items: active, text: `titles`})
 }

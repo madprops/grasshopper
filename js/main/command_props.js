@@ -221,7 +221,7 @@ App.setup_commands = () => {
     item: true,
     icon: theme_icon,
     action: (args) => {
-      App.remove_edits({what: [`color`]})
+      App.remove_edits({what: [`color`], text: `colors`})
     },
     info: `Remove all colors from tabs`,
   })
@@ -1571,7 +1571,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: notepad_icon,
       action: (args) => {
-        App.remove_edits({what: [`title`]})
+        App.remove_edits({what: [`title`], text: `titles`})
       },
       info: `Remove all titles from tabs`,
     },
@@ -1593,7 +1593,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: bot_icon,
       action: (args) => {
-        App.remove_edits({what: [`icon`]})
+        App.remove_edits({what: [`icon`], text: `icons`})
       },
       info: `Remove all icons from tabs`,
     },
@@ -1649,7 +1649,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: tag_icon,
       action: (args) => {
-        App.remove_edits({what: [`tags`]})
+        App.remove_edits({what: [`tags`], text: `tags`})
       },
       info: `Remove all tags from tabs`,
     },
@@ -1659,7 +1659,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: notes_icon,
       action: (args) => {
-        App.remove_edits({what: [`notes`]})
+        App.remove_edits({what: [`notes`], text: `notes`})
       },
       info: `Remove all notes from tabs`,
     },

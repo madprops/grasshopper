@@ -252,6 +252,7 @@ App.remove_edits = (args = {}) => {
   let def_args = {
     force: false,
     items: [],
+    text: `edits`,
   }
 
   App.def_args(def_args, args)
@@ -284,7 +285,7 @@ App.remove_edits = (args = {}) => {
   }
 
   App.show_confirm({
-    message: `Remove edits? (${args.items.length})`,
+    message: `Remove ${args.text}? (${args.items.length})`,
     confirm_action: () => {
       for (let item of args.items) {
         for (let what of args.what) {

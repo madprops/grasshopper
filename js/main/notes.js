@@ -44,7 +44,7 @@ App.remove_item_notes = (item, single = false) => {
     }
   }
 
-  App.remove_edits({what: [`notes`], items: active})
+  App.remove_edits({what: [`notes`], items: active, text: `notes`})
 }
 
 App.remove_notes = (item) => {
