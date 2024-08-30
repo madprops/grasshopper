@@ -1455,7 +1455,7 @@ App.build_settings = () => {
     show_taglist: {
       name: `Show Taglist`,
       type: `checkbox`,
-      value: true,
+      value: false,
       no_mirror: true,
       info: `Enable or disable the Taglist`,
       version: 2,

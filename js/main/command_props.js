@@ -29,6 +29,7 @@ App.setup_commands = () => {
   let up_icon = App.up_arrow_icon
   let down_icon = App.down_arrow_icon
   let left_icon = App.left_arrow_icon
+  let right_icon = App.right_arrow_icon
   let close_icon = App.close_icon
   let tag_icon = App.tag_icon
   let zone_icon = App.zone_icon
@@ -157,6 +158,21 @@ App.setup_commands = () => {
         App.close_color(color.id)
       },
       info: `Close tabs with this color (${color.name})`,
+    })
+
+    icon = App.color_icon(color.id)
+    name = `Jump ${color.name}`
+
+    color_closers.push({
+      name: name,
+      cmd: `jump_tabs_color_${color.id}`,
+      modes: [`tabs`],
+      item: true,
+      icon: icon,
+      action: (args) => {
+        App.jump_tabs_color(args.item, color.id)
+      },
+      info: `Jump to tabs with this color (${color.name})`,
     })
   }
 
@@ -1436,6 +1452,18 @@ App.setup_commands = () => {
       info: `Edit tab tags`,
     },
     {
+      name: `Add Tags`,
+      short_name: `Tags`,
+      cmd: `add_tags`,
+      modes: [`tabs`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.add_tags(args.item)
+      },
+      info: `Add tags to tabs`,
+    },
+    {
       name: `Edit Notes`,
       short_name: `Notes`,
       cmd: `edit_notes`,
@@ -1448,6 +1476,39 @@ App.setup_commands = () => {
       info: `Edit tab notes`,
     },
     {
+      name: `Jump`,
+      cmd: `jump_tabs_tag_1`,
+      modes: [`tabs`],
+      item: true,
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(args.item, 1)
+      },
+      info: `Jump to tabs with the 'jump' tag`,
+    },
+    {
+      name: `Jump 2`,
+      cmd: `jump_tabs_tag_2`,
+      modes: [`tabs`],
+      item: true,
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(args.item, 1)
+      },
+      info: `Jump to tabs with the 'jump2' tag`,
+    },
+    {
+      name: `Jump 3`,
+      cmd: `jump_tabs_tag_3`,
+      modes: [`tabs`],
+      item: true,
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(args.item, 1)
+      },
+      info: `Jump to tabs with the 'jump3' tag`,
+    },
+    {
       name: `Global Notes`,
       cmd: `edit_global_notes`,
       icon: notes_icon,
@@ -1455,18 +1516,6 @@ App.setup_commands = () => {
         App.edit_global_notes()
       },
       info: `Edit global notes`,
-    },
-    {
-      name: `Add Tags`,
-      short_name: `Tags`,
-      cmd: `add_tags`,
-      modes: [`tabs`],
-      item: true,
-      icon: tag_icon,
-      action: (args) => {
-        App.add_tags(args.item)
-      },
-      info: `Add tags to tabs`,
     },
     {
       name: `Split Both`,
