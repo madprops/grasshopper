@@ -28,6 +28,7 @@ App.jump_tabs_tag = (num) => {
   let waypoint = false
   let first = undefined
   let {items, index} = App.jump_vars(item)
+  let skip_unloaded = !App.get_setting(`jump_unloaded`)
 
   function check_first(it) {
     if (!first) {
@@ -44,7 +45,12 @@ App.jump_tabs_tag = (num) => {
 
     let tags = App.get_tags(item_)
 
+    // Check
     if (tags.includes(target)) {
+      if (item_.unloaded && skip_unloaded) {
+        continue
+      }
+
       if (!waypoint) {
         check_first(item_)
         continue
@@ -63,6 +69,7 @@ App.jump_tabs_color = (id) => {
   let waypoint = false
   let first = undefined
   let {items, index} = App.jump_vars(item)
+  let skip_unloaded = !App.get_setting(`jump_unloaded`)
 
   function check_first(it) {
     if (!first) {
@@ -83,7 +90,12 @@ App.jump_tabs_color = (id) => {
       continue
     }
 
+    // Check
     if (id_ === id) {
+      if (item_.unloaded && skip_unloaded) {
+        continue
+      }
+
       if (!waypoint) {
         check_first(item_)
         continue
