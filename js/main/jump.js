@@ -3,10 +3,8 @@ App.jump_action = (item) => {
 }
 
 App.jump_first = (item, first) => {
-  if (first) {
-    if (first !== item) {
-      App.jump_action(first)
-    }
+  if (first && (first !== item)) {
+    App.jump_action(first)
   }
 }
 
