@@ -52,6 +52,7 @@ App.start_about = () => {
         `Context menus support filtering, just start typing something`,
         `Middle Click filter items to further refine the filter`,
         `Middle Click the filter input to show Refine Filters`,
+        `There are 3 special tags: jump, jump2, and jump3`
       ]
 
       let close = DOM.el(`#about_close`)
