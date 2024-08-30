@@ -10,20 +10,27 @@ App.jump_tabs_tag = (item, num) => {
 
   let waypoint = false
   let first = undefined
+  let items = App.get_items(`tabs`)
+  let index = items.indexOf(item)
 
-  for (let item_ of App.get_items(`tabs`)) {
+  function check_first(it) {
+    if (!first) {
+      first = it
+    }
+  }
+
+  for (let [i, item_] of items.entries()) {
+    if (i === index) {
+      waypoint = true
+      check_first(item_)
+      continue
+    }
+
     let tags = App.get_tags(item_)
 
     if (tags.includes(target)) {
       if (!waypoint) {
-        if (!first) {
-          first = item_
-        }
-
-        if (item_ === item) {
-          waypoint = true
-        }
-
+        check_first(item_)
         continue
       }
 
@@ -40,8 +47,22 @@ App.jump_tabs_tag = (item, num) => {
 App.jump_tabs_color = (item, id) => {
   let waypoint = false
   let first = undefined
+  let items = App.get_items(`tabs`)
+  let index = items.indexOf(item)
 
-  for (let item_ of App.get_items(`tabs`)) {
+  function check_first(it) {
+    if (!first) {
+      first = it
+    }
+  }
+
+  for (let [i, item_] of items.entries()) {
+    if (i === index) {
+      waypoint = true
+      check_first(item_)
+      continue
+    }
+
     let id_ = App.get_color(item_)
 
     if (!id_) {
@@ -50,14 +71,7 @@ App.jump_tabs_color = (item, id) => {
 
     if (id_ === id) {
       if (!waypoint) {
-        if (!first) {
-          first = item_
-        }
-
-        if (item_ === item) {
-          waypoint = true
-        }
-
+        check_first(item_)
         continue
       }
 
