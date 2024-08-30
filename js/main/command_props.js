@@ -1493,7 +1493,7 @@ App.setup_commands = () => {
       item: true,
       icon: right_icon,
       action: (args) => {
-        App.jump_tabs_tag(args.item, 1)
+        App.jump_tabs_tag(args.item, 2)
       },
       info: `Jump to tabs with the 'jump2' tag`,
     },
@@ -1504,7 +1504,7 @@ App.setup_commands = () => {
       item: true,
       icon: right_icon,
       action: (args) => {
-        App.jump_tabs_tag(args.item, 1)
+        App.jump_tabs_tag(args.item, 3)
       },
       info: `Jump to tabs with the 'jump3' tag`,
     },
