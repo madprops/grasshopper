@@ -2,7 +2,7 @@ App.jump_action = (item) => {
   App.tabs_action(item, `jump`)
 }
 
-App.jump_first_action = (item, first) => {
+App.jump_first = (item, first) => {
   if (first) {
     if (first !== item) {
       App.jump_action(first)
@@ -57,7 +57,7 @@ App.jump_tabs_tag = (num) => {
     }
   }
 
-  App.jump_first_action(item, first)
+  App.jump_first(item, first)
 }
 
 App.jump_tabs_color = (id) => {
@@ -96,5 +96,5 @@ App.jump_tabs_color = (id) => {
     }
   }
 
-  App.jump_first_action(item, first)
+  App.jump_first(item, first)
 }
