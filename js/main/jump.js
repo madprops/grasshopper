@@ -77,6 +77,7 @@ App.jump_tabs_tag = (num, reverse = false) => {
   let first = undefined
   let {items} = App.jump_vars(item)
   let skip_unloaded = !App.get_setting(`jump_unloaded`)
+  let has_tag = false
 
   if (reverse) {
     items = items.slice(0).reverse()
@@ -99,6 +100,8 @@ App.jump_tabs_tag = (num, reverse = false) => {
 
     // Check
     if (tags.includes(target)) {
+      has_tag = true
+
       if (item_.unloaded && skip_unloaded) {
         continue
       }
@@ -111,6 +114,10 @@ App.jump_tabs_tag = (num, reverse = false) => {
       App.jump_action(item_)
       return
     }
+  }
+
+  if (!has_tag) {
+    App.alert(`To use jump give tabs the 'jump', 'jump2', or 'jump3' tags. Jump commands will then cycle between those tabs depending on which jump tag they have`)
   }
 
   App.jump_first(item, first)
