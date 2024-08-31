@@ -1357,7 +1357,7 @@ App.blink_item = (item) => {
 
 App.select_item_up = (mode) => {
   let item = App.get_selected(mode)
-  let items = App.get_items(mode)
+  let items = App.get_visible(mode)
 
   if (items.length <= 1) {
     return
@@ -1375,7 +1375,7 @@ App.select_item_up = (mode) => {
 
 App.select_item_down = (mode) => {
   let item = App.get_selected(mode)
-  let items = App.get_items(mode)
+  let items = App.get_visible(mode)
 
   if (items.length <= 1) {
     return

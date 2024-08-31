@@ -310,7 +310,7 @@ App.remove_closed_tab = (id) => {
 
 App.tabs_action = async (item, from, scroll) => {
   function blink(it) {
-    let no_blink = [`click`, `enter`]
+    let no_blink = [`click`, `enter`, `tab_cmd`]
 
     if (no_blink.includes(from)) {
       return
@@ -1504,6 +1504,7 @@ App.toggle_show_pins = () => {
 App.tab_up = () => {
   let item = App.get_active_tab_item()
   let items = App.get_items(`tabs`)
+  items = items.filter(x => !x.unloaded)
 
   if (items.length <= 1) {
     return
@@ -1522,6 +1523,7 @@ App.tab_up = () => {
 App.tab_down = () => {
   let item = App.get_active_tab_item()
   let items = App.get_items(`tabs`)
+  items = items.filter(x => !x.unloaded)
 
   if (items.length <= 1) {
     return
