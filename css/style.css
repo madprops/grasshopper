@@ -901,6 +901,7 @@ a:hover
 .textarea_simple {
   resize: none;
   height: unset !important;
+  text-align: center;
 }
 
 .pre_wrap {
