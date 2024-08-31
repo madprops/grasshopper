@@ -175,7 +175,7 @@ App.setup_commands = () => {
     })
 
     icon = App.color_icon(color.id)
-    name = `Jump Up ${color.name}`
+    name = `Jump ${color.name} Up`
 
     color_closers.push({
       name: name,
@@ -1529,7 +1529,7 @@ App.setup_commands = () => {
       info: `Jump in reverse to tabs with the 'jump' tag`,
     },
     {
-      name: `Jump Up 2`,
+      name: `Jump 2 Up`,
       cmd: `jump_tabs_tag_2_up`,
       modes: [`items`],
       icon: right_icon,
@@ -1539,7 +1539,7 @@ App.setup_commands = () => {
       info: `Jump in reverse to tabs with the 'jump2' tag`,
     },
     {
-      name: `Jump Up 3`,
+      name: `Jump 3 Up`,
       cmd: `jump_tabs_tag_3_up`,
       modes: [`items`],
       icon: right_icon,
