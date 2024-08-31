@@ -179,7 +179,7 @@ App.setup_commands = () => {
 
     color_closers.push({
       name: name,
-      cmd: `jump_up_tabs_color_${color.id}`,
+      cmd: `jump_tabs_color_${color.id}_up`,
       modes: [`items`],
       icon: icon,
       action: (args) => {
@@ -1520,7 +1520,7 @@ App.setup_commands = () => {
     },
     {
       name: `Jump Up`,
-      cmd: `jump_up_tabs_tag_1`,
+      cmd: `jump_tabs_tag_1_up`,
       modes: [`items`],
       icon: right_icon,
       action: (args) => {
@@ -1530,7 +1530,7 @@ App.setup_commands = () => {
     },
     {
       name: `Jump Up 2`,
-      cmd: `jump_up_tabs_tag_2`,
+      cmd: `jump_tabs_tag_2_up`,
       modes: [`items`],
       icon: right_icon,
       action: (args) => {
@@ -1540,7 +1540,7 @@ App.setup_commands = () => {
     },
     {
       name: `Jump Up 3`,
-      cmd: `jump_up_tabs_tag_3`,
+      cmd: `jump_tabs_tag_3_up`,
       modes: [`items`],
       icon: right_icon,
       action: (args) => {
