@@ -10,25 +10,19 @@ App.jump_first = (item, first) => {
 
 App.jump_vars = (item) => {
   let items = App.get_items(`tabs`)
-  let index = items.indexOf(item)
-  return {items, index}
+  return {items}
 }
 
-App.jump_tabs_tag = (num) => {
+App.jump_tabs_color = (id, reverse = false) => {
   let item = App.get_active_tab_item()
-  let target
-
-  if (num === 1) {
-    target = `jump`
-  }
-  else {
-    target = `jump${num}`
-  }
-
   let waypoint = false
   let first = undefined
-  let {items, index} = App.jump_vars(item)
+  let {items} = App.jump_vars(item)
   let skip_unloaded = !App.get_setting(`jump_unloaded`)
+
+  if (reverse) {
+    items = items.slice(0).reverse()
+  }
 
   function check_first(it) {
     if (!first) {
@@ -36,17 +30,21 @@ App.jump_tabs_tag = (num) => {
     }
   }
 
-  for (let [i, item_] of items.entries()) {
-    if (i === index) {
+  for (let item_ of items) {
+    if (item_ === item) {
       waypoint = true
       check_first(item_)
       continue
     }
 
-    let tags = App.get_tags(item_)
+    let id_ = App.get_color(item_)
+
+    if (!id_) {
+      continue
+    }
 
     // Check
-    if (tags.includes(target)) {
+    if (id_ === id) {
       if (item_.unloaded && skip_unloaded) {
         continue
       }
@@ -64,12 +62,25 @@ App.jump_tabs_tag = (num) => {
   App.jump_first(item, first)
 }
 
-App.jump_tabs_color = (id) => {
+App.jump_tabs_tag = (num, reverse = false) => {
   let item = App.get_active_tab_item()
+  let target
+
+  if (num === 1) {
+    target = `jump`
+  }
+  else {
+    target = `jump${num}`
+  }
+
   let waypoint = false
   let first = undefined
-  let {items, index} = App.jump_vars(item)
+  let {items} = App.jump_vars(item)
   let skip_unloaded = !App.get_setting(`jump_unloaded`)
+
+  if (reverse) {
+    items = items.slice(0).reverse()
+  }
 
   function check_first(it) {
     if (!first) {
@@ -77,21 +88,17 @@ App.jump_tabs_color = (id) => {
     }
   }
 
-  for (let [i, item_] of items.entries()) {
-    if (i === index) {
+  for (let item_ of items) {
+    if (item_ === item) {
       waypoint = true
       check_first(item_)
       continue
     }
 
-    let id_ = App.get_color(item_)
-
-    if (!id_) {
-      continue
-    }
+    let tags = App.get_tags(item_)
 
     // Check
-    if (id_ === id) {
+    if (tags.includes(target)) {
       if (item_.unloaded && skip_unloaded) {
         continue
       }

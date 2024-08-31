@@ -173,6 +173,20 @@ App.setup_commands = () => {
       },
       info: `Jump to tabs with this color (${color.name})`,
     })
+
+    icon = App.color_icon(color.id)
+    name = `Jump Up ${color.name}`
+
+    color_closers.push({
+      name: name,
+      cmd: `jump_tabs_up_color_${color.id}`,
+      modes: [`items`],
+      icon: icon,
+      action: (args) => {
+        App.jump_tabs_color(color.id, true)
+      },
+      info: `Jump in reverse to tabs with this color (${color.name})`,
+    })
   }
 
   color_filters.push({
@@ -1503,6 +1517,36 @@ App.setup_commands = () => {
         App.jump_tabs_tag(3)
       },
       info: `Jump to tabs with the 'jump3' tag`,
+    },
+    {
+      name: `Jump Up`,
+      cmd: `jump_tabs_up_tag_1`,
+      modes: [`items`],
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(1, true)
+      },
+      info: `Jump in reverse to tabs with the 'jump' tag`,
+    },
+    {
+      name: `Jump Up 2`,
+      cmd: `jump_tabs_up_tag_2`,
+      modes: [`items`],
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(2, true)
+      },
+      info: `Jump in reverse to tabs with the 'jump2' tag`,
+    },
+    {
+      name: `Jump Up 3`,
+      cmd: `jump_tabs_up_tag_3`,
+      modes: [`items`],
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(3, true)
+      },
+      info: `Jump in reverse to tabs with the 'jump3' tag`,
     },
     {
       name: `Global Notes`,

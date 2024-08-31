@@ -1360,7 +1360,7 @@ App.setup_settings_addlist = () => {
           },
           sources: {
             cmd: () => {
-              return App.filter_cmds.slice(0)
+              return App.cmdlist.slice(0)
             },
           },
           list_icon: (items) => {

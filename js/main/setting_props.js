@@ -1265,6 +1265,47 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the top empty area of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    mousewheel_up_favorites_top: {
+      name: `Mousewheel Up Fav Top`,
+      type: `menu`,
+      value: `scroll_up`,
+      info: `Command to run when using the mousewheel up on the top empty area of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    mousewheel_down_favorites_top: {
+      name: `Mousewheel Down Fav Top`,
+      type: `menu`,
+      value: `scroll_down`,
+      info: `Command to run when using the mousewheel down on the top empty area of the Favorites Bar`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    mousewheel_up_favorites_center: {
+      name: `Mousewheel Up Fav Center`,
+      type: `menu`,
+      value: `scroll_up`,
+      info: `Command to run when using the mousewheel up on the center area of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    mousewheel_down_favorites_center: {
+      name: `Mousewheel Down Fav Center`,
+      type: `menu`,
+      value: `scroll_down`,
+      info: `Command to run when using the mousewheel down on the center area of the Favorites Bar`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -1286,6 +1327,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the bottom empty area of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    mousewheel_up_favorites_bottom: {
+      name: `Mousewheel Up Fav Bottom`,
+      type: `menu`,
+      value: `scroll_up`,
+      info: `Command to run when using the mousewheel up on the bottom empty area of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    mousewheel_down_favorites_bottom: {
+      name: `Mousewheel Down Fav Bottom`,
+      type: `menu`,
+      value: `scroll_down`,
+      info: `Command to run when using the mousewheel down on the bottom empty area of the Favorites Bar`,
       separator: true,
       version: 1,
       setup: (key) => {
