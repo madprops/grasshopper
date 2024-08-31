@@ -1504,7 +1504,10 @@ App.toggle_show_pins = () => {
 App.tab_up = () => {
   let item = App.get_active_tab_item()
   let items = App.get_items(`tabs`)
-  items = items.filter(x => !x.unloaded)
+
+  if (!App.get_setting(`next_tab_unloaded`)) {
+    items = items.filter(x => !x.unloaded)
+  }
 
   if (items.length <= 1) {
     return
@@ -1523,7 +1526,10 @@ App.tab_up = () => {
 App.tab_down = () => {
   let item = App.get_active_tab_item()
   let items = App.get_items(`tabs`)
-  items = items.filter(x => !x.unloaded)
+
+  if (!App.get_setting(`next_tab_unloaded`)) {
+    items = items.filter(x => !x.unloaded)
+  }
 
   if (items.length <= 1) {
     return

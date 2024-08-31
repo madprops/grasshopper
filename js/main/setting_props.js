@@ -2928,8 +2928,15 @@ App.build_settings = () => {
     jump_unloaded: {
       name: `Jump Unloaded`,
       type: `checkbox`,
-      value: true,
+      value: false,
       info: `Consider unloaded tabs when jumping`,
+      version: 1,
+    },
+    next_tab_unloaded: {
+      name: `Next Unloaded`,
+      type: `checkbox`,
+      value: false,
+      info: `Consider unloaded tabs when using tab up/down commands`,
       version: 1,
     },
     item_pointer: {
