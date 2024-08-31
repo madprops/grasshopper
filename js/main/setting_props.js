@@ -1270,7 +1270,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    mousewheel_up_favorites_top: {
+    wheel_up_favorites_top: {
       name: `Mousewheel Up Fav Top`,
       type: `menu`,
       value: `scroll_up`,
@@ -1280,7 +1280,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    mousewheel_down_favorites_top: {
+    wheel_down_favorites_top: {
       name: `Mousewheel Down Fav Top`,
       type: `menu`,
       value: `scroll_down`,
@@ -1291,7 +1291,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    mousewheel_up_favorites_center: {
+    wheel_up_favorites_center: {
       name: `Mousewheel Up Fav Center`,
       type: `menu`,
       value: `scroll_up`,
@@ -1301,7 +1301,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    mousewheel_down_favorites_center: {
+    wheel_down_favorites_center: {
       name: `Mousewheel Down Fav Center`,
       type: `menu`,
       value: `scroll_down`,
@@ -1332,7 +1332,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    mousewheel_up_favorites_bottom: {
+    wheel_up_favorites_bottom: {
       name: `Mousewheel Up Fav Bottom`,
       type: `menu`,
       value: `scroll_up`,
@@ -1342,7 +1342,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
-    mousewheel_down_favorites_bottom: {
+    wheel_down_favorites_bottom: {
       name: `Mousewheel Down Fav Bottom`,
       type: `menu`,
       value: `scroll_down`,

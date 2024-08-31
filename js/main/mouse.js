@@ -546,11 +546,11 @@ App.on_mouse_wheel = (e) => {
   }
   else if (e.target.closest(`.favorites_empty_top`)) {
     if (direction === `up`) {
-      let cmd = App.get_setting(`mousewheel_up_favorites_top`)
+      let cmd = App.get_setting(`wheel_up_favorites_top`)
       App.run_command({cmd: cmd, from: `mouse`, e: e})
     }
     else if (direction === `down`) {
-      let cmd = App.get_setting(`mousewheel_down_favorites_top`)
+      let cmd = App.get_setting(`wheel_down_favorites_top`)
       App.run_command({cmd: cmd, from: `mouse`, e: e})
     }
 
@@ -558,11 +558,11 @@ App.on_mouse_wheel = (e) => {
   }
   else if (e.target.closest(`.favorites_bar`)) {
     if (direction === `up`) {
-      let cmd = App.get_setting(`mousewheel_up_favorites_center`)
+      let cmd = App.get_setting(`wheel_up_favorites_center`)
       App.run_command({cmd: cmd, from: `mouse`, e: e})
     }
     else if (direction === `down`) {
-      let cmd = App.get_setting(`mousewheel_down_favorites_center`)
+      let cmd = App.get_setting(`wheel_down_favorites_center`)
       App.run_command({cmd: cmd, from: `mouse`, e: e})
     }
 
@@ -570,11 +570,11 @@ App.on_mouse_wheel = (e) => {
   }
   else if (e.target.closest(`.favorites_empty_bottom`)) {
     if (direction === `up`) {
-      let cmd = App.get_setting(`mousewheel_up_favorites_bottom`)
+      let cmd = App.get_setting(`wheel_up_favorites_bottom`)
       App.run_command({cmd: cmd, from: `mouse`, e: e})
     }
     else if (direction === `down`) {
-      let cmd = App.get_setting(`mousewheel_down_favorites_bottom`)
+      let cmd = App.get_setting(`wheel_down_favorites_bottom`)
       App.run_command({cmd: cmd, from: `mouse`, e: e})
     }
 

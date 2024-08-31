@@ -549,6 +549,12 @@ App.trigger_title = (el, name) => {
       else if (name.startsWith(`double_click`)) {
         el.title += `\nDouble Click: ${cmd.name}`
       }
+      else if (name.startsWith(`wheel_up`)) {
+        el.title += `\nWheel Up: ${cmd.name}`
+      }
+      else if (name.startsWith(`wheel_down`)) {
+        el.title += `\nWheel Down: ${cmd.name}`
+      }
 
       el.title = el.title.trim()
     }
