@@ -2363,7 +2363,15 @@ App.setup_commands = () => {
     },
 
     ...custom_urls,
-
+    {
+      name: `Password`,
+      cmd: `generate_password`,
+      icon: bot_icon,
+      action: (args) => {
+        App.generate_password()
+      },
+      info: `Generate a random password to use in websites`,
+    },
     {
       name: `Open Sidebar`,
       cmd: `open_sidebar`,

@@ -169,3 +169,8 @@ App.open_sidebar = () => {
 App.close_sidebar = () => {
   browser.sidebarAction.close()
 }
+
+App.generate_password = () => {
+  let password = App.random_string(App.password_length)
+  App.show_textarea(`Random Password`, password, true)
+}

@@ -89,6 +89,7 @@ App.blue_title = `rgb(93, 93, 188, 1)`
 App.default_font_size = 17
 App.last_main_title = undefined
 App.max_browser_urls = 5
+App.password_length = 20
 
 App.settings_done = false
 App.settings_ready = false
