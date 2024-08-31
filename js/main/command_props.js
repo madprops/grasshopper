@@ -427,24 +427,44 @@ App.setup_commands = () => {
       info: `Deselect all items`,
     },
     {
-      name: `Select Up`,
-      cmd: `select_items_up`,
+      name: `Select Above`,
+      cmd: `select_items_above`,
       modes: [`items`],
-      icon: command_icon,
+      icon: up_icon,
       action: (args) => {
         App.select_to_edge(args.mode, `up`)
       },
       info: `Select all items above this item`,
     },
     {
-      name: `Select Down`,
-      cmd: `select_items_down`,
+      name: `Select Below`,
+      cmd: `select_items_below`,
       modes: [`items`],
-      icon: command_icon,
+      icon: down_icon,
       action: (args) => {
         App.select_to_edge(args.mode, `down`)
       },
       info: `Select all items below this item`,
+    },
+    {
+      name: `Select Up`,
+      cmd: `select_item_up`,
+      modes: [`items`],
+      icon: up_icon,
+      action: (args) => {
+        App.select_item_up(args.mode)
+      },
+      info: `Select the item above`,
+    },
+    {
+      name: `Select Down`,
+      cmd: `select_item_down`,
+      modes: [`items`],
+      icon: down_icon,
+      action: (args) => {
+        App.select_item_down(args.mode)
+      },
+      info: `Select the item below`,
     },
     {
       name: `Copy Tabs`,
@@ -1230,7 +1250,24 @@ App.setup_commands = () => {
     },
 
     ...color_closers,
-
+    {
+      name: `Tab Up`,
+      cmd: `tab_up`,
+      icon: up_icon,
+      action: (args) => {
+        App.tab_up()
+      },
+      info: `Go to the tab above`,
+    },
+    {
+      name: `Tab Down`,
+      cmd: `tab_down`,
+      icon: down_icon,
+      action: (args) => {
+        App.tab_down()
+      },
+      info: `Go to the tab below`,
+    },
     {
       name: `Go To Playing`,
       cmd: `go_to_playing_tab`,

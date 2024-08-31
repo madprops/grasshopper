@@ -1500,3 +1500,39 @@ App.toggle_show_pins = () => {
 
   App.do_filter({mode: App.active_mode})
 }
+
+App.tab_up = () => {
+  let item = App.get_active_tab_item()
+  let items = App.get_items(`tabs`)
+
+  if (items.length <= 1) {
+    return
+  }
+
+  let index = items.indexOf(item)
+
+  if (index === 0) {
+    return
+  }
+
+  let prev = items[index - 1]
+  App.tabs_action(prev, `tab_cmd`)
+}
+
+App.tab_down = () => {
+  let item = App.get_active_tab_item()
+  let items = App.get_items(`tabs`)
+
+  if (items.length <= 1) {
+    return
+  }
+
+  let index = items.indexOf(item)
+
+  if (index === (items.length - 1)) {
+    return
+  }
+
+  let next = items[index + 1]
+  App.tabs_action(next, `tab_cmd`)
+}

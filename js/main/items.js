@@ -1354,3 +1354,39 @@ App.blink_item = (item) => {
 
   item.blink_interval = interval
 }
+
+App.select_item_up = (mode) => {
+  let item = App.get_selected(mode)
+  let items = App.get_items(mode)
+
+  if (items.length <= 1) {
+    return
+  }
+
+  let index = items.indexOf(item)
+
+  if (index === 0) {
+    return
+  }
+
+  let prev = items[index - 1]
+  App.select_item({item: prev, scroll: `nearest`})
+}
+
+App.select_item_down = (mode) => {
+  let item = App.get_selected(mode)
+  let items = App.get_items(mode)
+
+  if (items.length <= 1) {
+    return
+  }
+
+  let index = items.indexOf(item)
+
+  if (index === (items.length - 1)) {
+    return
+  }
+
+  let next = items[index + 1]
+  App.select_item({item: next, scroll: `nearest`})
+}
