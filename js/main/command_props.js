@@ -161,20 +161,6 @@ App.setup_commands = () => {
     })
 
     icon = App.color_icon(color.id)
-    name = `Jump ${color.name}`
-
-    color_closers.push({
-      name: name,
-      cmd: `jump_tabs_color_${color.id}`,
-      modes: [`items`],
-      icon: icon,
-      action: (args) => {
-        App.jump_tabs_color(color.id)
-      },
-      info: `Jump to tabs with this color (${color.name})`,
-    })
-
-    icon = App.color_icon(color.id)
     name = `Jump ${color.name} Up`
 
     color_closers.push({
@@ -186,6 +172,20 @@ App.setup_commands = () => {
         App.jump_tabs_color(color.id, true)
       },
       info: `Jump in reverse to tabs with this color (${color.name})`,
+    })
+
+    icon = App.color_icon(color.id)
+    name = `Jump ${color.name} Down`
+
+    color_closers.push({
+      name: name,
+      cmd: `jump_tabs_color_${color.id}_down`,
+      modes: [`items`],
+      icon: icon,
+      action: (args) => {
+        App.jump_tabs_color(color.id)
+      },
+      info: `Jump to tabs with this color (${color.name})`,
     })
   }
 
@@ -1526,36 +1526,6 @@ App.setup_commands = () => {
       info: `Edit tab notes`,
     },
     {
-      name: `Jump`,
-      cmd: `jump_tabs_tag_1`,
-      modes: [`items`],
-      icon: right_icon,
-      action: (args) => {
-        App.jump_tabs_tag(1)
-      },
-      info: `Jump to tabs with the 'jump' tag`,
-    },
-    {
-      name: `Jump 2`,
-      cmd: `jump_tabs_tag_2`,
-      modes: [`items`],
-      icon: right_icon,
-      action: (args) => {
-        App.jump_tabs_tag(2)
-      },
-      info: `Jump to tabs with the 'jump2' tag`,
-    },
-    {
-      name: `Jump 3`,
-      cmd: `jump_tabs_tag_3`,
-      modes: [`items`],
-      icon: right_icon,
-      action: (args) => {
-        App.jump_tabs_tag(3)
-      },
-      info: `Jump to tabs with the 'jump3' tag`,
-    },
-    {
       name: `Jump Up`,
       cmd: `jump_tabs_tag_1_up`,
       modes: [`items`],
@@ -1571,7 +1541,6 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: right_icon,
       action: (args) => {
-        App.jump_tabs_tag(2, true)
       },
       info: `Jump in reverse to tabs with the 'jump2' tag`,
     },
@@ -1584,6 +1553,36 @@ App.setup_commands = () => {
         App.jump_tabs_tag(3, true)
       },
       info: `Jump in reverse to tabs with the 'jump3' tag`,
+    },
+    {
+      name: `Jump Down`,
+      cmd: `jump_tabs_tag_1_down`,
+      modes: [`items`],
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(1)
+      },
+      info: `Jump to tabs with the 'jump' tag`,
+    },
+    {
+      name: `Jump 2 Down`,
+      cmd: `jump_tabs_tag_2_down`,
+      modes: [`items`],
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(2)
+      },
+      info: `Jump to tabs with the 'jump2' tag`,
+    },
+    {
+      name: `Jump 3 Down`,
+      cmd: `jump_tabs_tag_3_down`,
+      modes: [`items`],
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(3)
+      },
+      info: `Jump to tabs with the 'jump3' tag`,
     },
     {
       name: `Global Notes`,

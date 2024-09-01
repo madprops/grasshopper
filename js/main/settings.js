@@ -1553,6 +1553,9 @@ App.madprops_settings = () => {
 
   App.set_setting({setting: `load_lock`, value: true})
   App.set_setting({setting: `autohide_context`, value: true})
+
+  App.set_setting({setting: `wheel_up_favorites_top`, value: `jump_tabs_tag_1_up`})
+  App.set_setting({setting: `wheel_down_favorites_top`, value: `jump_tabs_tag_1_down`})
   App.set_setting({setting: `wheel_up_favorites_center`, value: `tab_up`})
   App.set_setting({setting: `wheel_down_favorites_center`, value: `tab_down`})
 
