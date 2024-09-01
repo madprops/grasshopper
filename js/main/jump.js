@@ -117,7 +117,7 @@ App.jump_tabs_tag = (num, reverse = false) => {
   }
 
   if (!has_tag) {
-    App.alert(`To use jump give tabs the 'jump', 'jump2', or 'jump3' tags. Jump commands will then cycle between those tabs depending on which jump tag they have`)
+    App.alert(`To use jump give tabs the 'jump', 'jump2', or 'jump3' tags`)
   }
 
   App.jump_first(item, first)
