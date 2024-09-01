@@ -1577,6 +1577,10 @@ App.madprops_settings = () => {
       name: `Purr`,
       url: `https://www.youtube.com/watch?v=1FRQfLFzi1U`,
     },
+    {
+      name: `Dark Chambers`,
+      url: `https://www.youtube.com/watch?v=WYjIjut8SA0`,
+    },
   ]
 
   App.set_setting({setting: `custom_urls`, value: urls})
