@@ -1170,13 +1170,6 @@ App.build_settings = () => {
       Clicking this scrolls the item list to the bottom`,
       version: 1,
     },
-    show_footer_count: {
-      name: `Count In Footer`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the item count on the Footer`,
-      version: 1,
-    },
     footer_menu: {
       name: `Footer Menu`,
       type: `list`,
@@ -1216,6 +1209,13 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
       },
+    },
+    show_footer_count: {
+      name: `Count In Footer`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the item count on the Footer`,
+      version: 1,
     },
   }
 
