@@ -1255,7 +1255,7 @@ App.setup_commands = () => {
       cmd: `tab_up`,
       icon: up_icon,
       action: (args) => {
-        App.tab_up()
+        App.tab_up_down(`up`)
       },
       info: `Go to the tab above`,
     },
@@ -1264,7 +1264,7 @@ App.setup_commands = () => {
       cmd: `tab_down`,
       icon: down_icon,
       action: (args) => {
-        App.tab_down()
+        App.tab_up_down(`down`)
       },
       info: `Go to the tab below`,
     },
