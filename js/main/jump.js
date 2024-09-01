@@ -1,10 +1,10 @@
-App.jump_action = (item) => {
-  App.tabs_action(item, `jump`)
+App.jump_action = (item, what = `jump`) => {
+  App.tabs_action(item, what)
 }
 
-App.jump_first = (item, first) => {
+App.jump_first = (item, first, what = `jump`) => {
   if (first && (first !== item)) {
-    App.jump_action(first)
+    App.jump_action(first, what)
   }
 }
 
@@ -132,4 +132,52 @@ App.jump_tabs_tag = (num, reverse = false) => {
   }
 
   App.jump_first(item, first)
+}
+
+App.jump_tabs_header = (reverse = false) => {
+  let item = App.get_active_tab_item()
+  let {items, unloaded, playing} = App.jump_vars(item)
+  let waypoint = false
+  let first = undefined
+
+  if (reverse) {
+    items = items.slice(0).reverse()
+  }
+
+  function check_first(it) {
+    if (!first) {
+      first = it
+    }
+  }
+
+  for (let item_ of items) {
+    if (item_ === item) {
+      waypoint = true
+      check_first(item_)
+      continue
+    }
+
+    let match = false
+
+    // Check
+    if (item_.header) {
+      match = true
+    }
+
+    if (match) {
+      if (item_.unloaded && !unloaded) {
+        continue
+      }
+
+      if (!waypoint) {
+        check_first(item_)
+        continue
+      }
+
+      App.jump_action(item_, `jump_header`)
+      return
+    }
+  }
+
+  App.jump_first(item, first, `jump_header`)
 }

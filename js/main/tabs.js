@@ -310,7 +310,7 @@ App.remove_closed_tab = (id) => {
 
 App.tabs_action = async (item, from, scroll) => {
   function blink(it) {
-    let no_blink = [`click`, `enter`, `tab_cmd`, `jump`]
+    let no_blink = [`click`, `enter`, `tab_cmd`, `jump`, `jump_header`]
 
     if (no_blink.includes(from)) {
       return
@@ -333,6 +333,9 @@ App.tabs_action = async (item, from, scroll) => {
     }
     else if (from === `jump`) {
       scroll = `nearest_instant`
+    }
+    else if (from === `jump_header`) {
+      scroll = `center_smooth`
     }
     else if (from === `tab_cmd`) {
       scroll = `nearest_instant`

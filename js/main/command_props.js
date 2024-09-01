@@ -1536,26 +1536,6 @@ App.setup_commands = () => {
       info: `Jump in reverse to tabs with the 'jump' tag`,
     },
     {
-      name: `Jump 2 Up`,
-      cmd: `jump_tabs_tag_2_up`,
-      modes: [`items`],
-      icon: right_icon,
-      action: (args) => {
-        App.jump_tabs_tag(2, true)
-      },
-      info: `Jump in reverse to tabs with the 'jump2' tag`,
-    },
-    {
-      name: `Jump 3 Up`,
-      cmd: `jump_tabs_tag_3_up`,
-      modes: [`items`],
-      icon: right_icon,
-      action: (args) => {
-        App.jump_tabs_tag(3, true)
-      },
-      info: `Jump in reverse to tabs with the 'jump3' tag`,
-    },
-    {
       name: `Jump Down`,
       cmd: `jump_tabs_tag_1_down`,
       modes: [`items`],
@@ -1564,6 +1544,16 @@ App.setup_commands = () => {
         App.jump_tabs_tag(1)
       },
       info: `Jump to tabs with the 'jump' tag`,
+    },
+    {
+      name: `Jump 2 Up`,
+      cmd: `jump_tabs_tag_2_up`,
+      modes: [`items`],
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(2, true)
+      },
+      info: `Jump in reverse to tabs with the 'jump2' tag`,
     },
     {
       name: `Jump 2 Down`,
@@ -1576,6 +1566,16 @@ App.setup_commands = () => {
       info: `Jump to tabs with the 'jump2' tag`,
     },
     {
+      name: `Jump 3 Up`,
+      cmd: `jump_tabs_tag_3_up`,
+      modes: [`items`],
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(3, true)
+      },
+      info: `Jump in reverse to tabs with the 'jump3' tag`,
+    },
+    {
       name: `Jump 3 Down`,
       cmd: `jump_tabs_tag_3_down`,
       modes: [`items`],
@@ -1584,6 +1584,26 @@ App.setup_commands = () => {
         App.jump_tabs_tag(3)
       },
       info: `Jump to tabs with the 'jump3' tag`,
+    },
+    {
+      name: `Jump Header Up`,
+      cmd: `jump_tabs_header_up`,
+      modes: [`items`],
+      icon: header_icon,
+      action: (args) => {
+        App.jump_tabs_header(true)
+      },
+      info: `Jump in reverse to the next header`,
+    },
+    {
+      name: `Jump Header Down`,
+      cmd: `jump_tabs_header_down`,
+      modes: [`items`],
+      icon: header_icon,
+      action: (args) => {
+        App.jump_tabs_header()
+      },
+      info: `Jump to the next header`,
     },
     {
       name: `Global Notes`,
