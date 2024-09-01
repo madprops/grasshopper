@@ -1802,7 +1802,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: close_icon,
       action: (args) => {
-        App.close_headers(args.item)
+        App.close_headers()
       },
       info: `Close all header tabs`,
     },
@@ -1812,7 +1812,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: close_icon,
       action: (args) => {
-        App.close_subheaders(args.item)
+        App.close_subheaders()
       },
       info: `Close all subheader tabs`,
     },
