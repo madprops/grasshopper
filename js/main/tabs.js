@@ -1514,12 +1514,15 @@ App.tab_up = () => {
   }
 
   let index = items.indexOf(item)
+  let prev
 
   if (index === 0) {
-    return
+    prev = items[items.length - 1]
+  }
+  else {
+    prev = items[index - 1]
   }
 
-  let prev = items[index - 1]
   App.tabs_action(prev, `tab_cmd`)
 }
 
@@ -1536,11 +1539,14 @@ App.tab_down = () => {
   }
 
   let index = items.indexOf(item)
+  let next
 
   if (index === (items.length - 1)) {
-    return
+    next = items[0]
+  }
+  else {
+    next = items[index + 1]
   }
 
-  let next = items[index + 1]
   App.tabs_action(next, `tab_cmd`)
 }
