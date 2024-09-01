@@ -2954,7 +2954,7 @@ App.build_settings = () => {
       name: `Jump Playing`,
       type: `checkbox`,
       value: true,
-      info: `Consider playing tabs when jumping`,
+      info: `Consider any playing tab when jumping`,
       version: 1,
     },
     jump_unloaded: {
