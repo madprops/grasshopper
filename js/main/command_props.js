@@ -1541,6 +1541,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: right_icon,
       action: (args) => {
+        App.jump_tabs_tag(2, true)
       },
       info: `Jump in reverse to tabs with the 'jump2' tag`,
     },
