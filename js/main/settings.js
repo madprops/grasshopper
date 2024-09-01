@@ -1594,5 +1594,5 @@ App.madprops_settings = () => {
   App.set_setting({setting: `custom_urls`, value: urls})
   App.refresh_settings()
   App.clear_show()
-  App.alert_autohide(`Settings applied`)
+  App.alert_autohide(`Welcome madprops`)
 }
