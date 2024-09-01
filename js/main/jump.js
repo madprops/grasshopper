@@ -10,13 +10,14 @@ App.jump_first = (item, first) => {
 
 App.jump_vars = (item) => {
   let items = App.get_items(`tabs`)
-  let skip_unloaded = !App.get_setting(`jump_unloaded`)
-  return {items, skip_unloaded}
+  let unloaded = App.get_setting(`jump_unloaded`)
+  let playing = App.get_setting(`jump_playing`)
+  return {items, unloaded, playing}
 }
 
 App.jump_tabs_color = (id, reverse = false) => {
   let item = App.get_active_tab_item()
-  let {items, skip_unloaded} = App.jump_vars(item)
+  let {items, unloaded, playing} = App.jump_vars(item)
   let waypoint = false
   let first = undefined
 
@@ -38,14 +39,18 @@ App.jump_tabs_color = (id, reverse = false) => {
     }
 
     let id_ = App.get_color(item_)
-
-    if (!id_) {
-      continue
-    }
+    let match = false
 
     // Check
-    if (id_ === id) {
-      if (item_.unloaded && skip_unloaded) {
+    if (id && (id_ === id)) {
+      match = true
+    }
+    else if (item_.playing && playing) {
+      match = true
+    }
+
+    if (match) {
+      if (item_.unloaded && !unloaded) {
         continue
       }
 
@@ -64,7 +69,7 @@ App.jump_tabs_color = (id, reverse = false) => {
 
 App.jump_tabs_tag = (num, reverse = false) => {
   let item = App.get_active_tab_item()
-  let {items, skip_unloaded} = App.jump_vars(item)
+  let {items, unloaded, playing} = App.jump_vars(item)
   let waypoint = false
   let first = undefined
   let has_tag = false
@@ -95,12 +100,20 @@ App.jump_tabs_tag = (num, reverse = false) => {
     }
 
     let tags = App.get_tags(item_)
+    let match = false
 
     // Check
     if (tags.includes(target)) {
+      match = true
+    }
+    else if (item_.playing && playing) {
+      match = true
+    }
+
+    if (match) {
       has_tag = true
 
-      if (item_.unloaded && skip_unloaded) {
+      if (item_.unloaded && !unloaded) {
         continue
       }
 
