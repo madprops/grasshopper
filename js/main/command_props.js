@@ -1626,6 +1626,26 @@ App.setup_commands = () => {
       info: `Jump to the next split`,
     },
     {
+      name: `Jump Zone Up`,
+      cmd: `jump_tabs_zone_up`,
+      modes: [`items`],
+      icon: header_icon,
+      action: (args) => {
+        App.jump_tabs_zone(true)
+      },
+      info: `Jump in reverse to the next zone`,
+    },
+    {
+      name: `Jump Zone Down`,
+      cmd: `jump_tabs_zone_down`,
+      modes: [`items`],
+      icon: header_icon,
+      action: (args) => {
+        App.jump_tabs_zone()
+      },
+      info: `Jump to the next zone`,
+    },
+    {
       name: `Global Notes`,
       cmd: `edit_global_notes`,
       icon: notes_icon,

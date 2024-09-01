@@ -231,3 +231,51 @@ App.jump_tabs_split = (reverse = false) => {
 
   App.jump_first(item, first, `jump_zone`)
 }
+
+App.jump_tabs_zone = (reverse = false) => {
+  let item = App.get_active_tab_item()
+  let {items, unloaded, playing} = App.jump_vars(item)
+  let waypoint = false
+  let first = undefined
+
+  if (reverse) {
+    items = items.slice(0).reverse()
+  }
+
+  function check_first(it) {
+    if (!first) {
+      first = it
+    }
+  }
+
+  for (let item_ of items) {
+    if (item_ === item) {
+      waypoint = true
+      check_first(item_)
+      continue
+    }
+
+    let match = false
+
+    // Check
+    if (item_.header || App.get_split_top(item_) || App.get_split_bottom(item_)) {
+      match = true
+    }
+
+    if (match) {
+      if (item_.unloaded && !unloaded) {
+        continue
+      }
+
+      if (!waypoint) {
+        check_first(item_)
+        continue
+      }
+
+      App.jump_action(item_, `jump_zone`)
+      return
+    }
+  }
+
+  App.jump_first(item, first, `jump_zone`)
+}
