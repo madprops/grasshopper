@@ -1187,6 +1187,16 @@ App.build_settings = () => {
       info: `Menu to show when right clicking the footer`,
       version: 1,
     },
+    middle_click_footer: {
+      name: `Middle Click Footer`,
+      type: `menu`,
+      value: `copy_item_url`,
+      info: `Command to run when middle clicking the Footer`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
     wheel_up_footer: {
       name: `Wheel Up Footer`,
       type: `menu`,
@@ -1779,16 +1789,6 @@ App.build_settings = () => {
       value: `browser_reload`,
       info: `Command to run when middle clicking the Actions Menu`,
       separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist)
-      },
-    },
-    middle_click_footer: {
-      name: `Middle Click Footer`,
-      type: `menu`,
-      value: `copy_item_url`,
-      info: `Command to run when middle clicking the Footer`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
