@@ -1606,6 +1606,26 @@ App.setup_commands = () => {
       info: `Jump to the next header`,
     },
     {
+      name: `Jump Split Up`,
+      cmd: `jump_tabs_split_up`,
+      modes: [`items`],
+      icon: header_icon,
+      action: (args) => {
+        App.jump_tabs_split(true)
+      },
+      info: `Jump in reverse to the next split`,
+    },
+    {
+      name: `Jump Split Down`,
+      cmd: `jump_tabs_split_down`,
+      modes: [`items`],
+      icon: header_icon,
+      action: (args) => {
+        App.jump_tabs_split()
+      },
+      info: `Jump to the next split`,
+    },
+    {
       name: `Global Notes`,
       cmd: `edit_global_notes`,
       icon: notes_icon,
