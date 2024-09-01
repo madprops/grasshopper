@@ -1574,7 +1574,7 @@ App.madprops_settings = () => {
       url: `https://www.youtube.com/watch?v=SFWHQmgmW8E`,
     },
     {
-      name: `Sonic Youth`,
+      name: `Purr`,
       url: `https://www.youtube.com/watch?v=1FRQfLFzi1U`,
     },
   ]
