@@ -15,7 +15,7 @@ App.jump_vars = () => {
   return {items, unloaded, playing}
 }
 
-App.jump_tabs = (what, info, reverse) => {
+App.jump_tabs = (what, info, reverse = false) => {
   let item = App.get_active_tab_item()
   let {items, unloaded, playing} = App.jump_vars()
   let waypoint = false
