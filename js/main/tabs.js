@@ -331,6 +331,12 @@ App.tabs_action = async (item, from, scroll) => {
     if (from === `tab_box`) {
       scroll = `center_smooth`
     }
+    else if (from === `jump`) {
+      scroll = `nearest_instant`
+    }
+    else if (from === `tab_cmd`) {
+      scroll = `nearest_instant`
+    }
     else {
       scroll = `nearest_smooth`
     }
