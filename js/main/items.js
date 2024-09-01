@@ -1364,12 +1364,15 @@ App.select_item_up = (mode) => {
   }
 
   let index = items.indexOf(item)
+  let prev
 
   if (index === 0) {
-    return
+    prev = items.at(-1)
+  }
+  else {
+    prev = items[index - 1]
   }
 
-  let prev = items[index - 1]
   App.select_item({item: prev, scroll: `nearest`})
 }
 
@@ -1382,11 +1385,14 @@ App.select_item_down = (mode) => {
   }
 
   let index = items.indexOf(item)
+  let next
 
   if (index === (items.length - 1)) {
-    return
+    next = items[0]
+  }
+  else {
+    next = items[index + 1]
   }
 
-  let next = items[index + 1]
   App.select_item({item: next, scroll: `nearest`})
 }

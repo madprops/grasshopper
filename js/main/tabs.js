@@ -1517,7 +1517,7 @@ App.tab_up = () => {
   let prev
 
   if (index === 0) {
-    prev = items[items.length - 1]
+    prev = items.at(-1)
   }
   else {
     prev = items[index - 1]
