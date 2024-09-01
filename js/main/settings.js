@@ -1570,8 +1570,8 @@ App.madprops_settings = () => {
       url: `https://www.youtube.com/watch?v=VdCodNxbc40`,
     },
     {
-      name: `Dark Chambers`,
-      url: `https://www.youtube.com/watch?v=WYjIjut8SA0`,
+      name: `Funny Bird`,
+      url: `https://www.youtube.com/watch?v=SFWHQmgmW8E`,
     },
     {
       name: `Sonic Youth`,
