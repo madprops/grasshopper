@@ -927,17 +927,6 @@ App.build_settings = () => {
       info: `Menu to show when right clicking empty space`,
       version: 1,
     },
-    footer_menu: {
-      name: `Footer Menu`,
-      type: `list`,
-      separator: true,
-      value: [
-        {cmd: `copy_item_url`},
-        {cmd: `copy_item_title`},
-      ],
-      info: `Menu to show when right clicking the footer`,
-      version: 1,
-    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
@@ -952,27 +941,11 @@ App.build_settings = () => {
       info: `Show a button at the top of a scrolled list to return to the top`,
       version: 1,
     },
-    show_footer: {
-      name: `Show Footer`,
-      type: `checkbox`,
-      value: true,
-      no_mirror: true,
-      info: `Show a footer at the bottom with some information
-      Clicking this scrolls the item list to the bottom`,
-      version: 1,
-    },
     show_feedback: {
       name: `Show Feedback`,
       type: `checkbox`,
       value: true,
       info: `Show feedback messages on certain actions`,
-      version: 1,
-    },
-    show_footer_count: {
-      name: `Count In Footer`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the item count on the Footer`,
       version: 1,
     },
     hide_pins: {
@@ -1185,6 +1158,58 @@ App.build_settings = () => {
   }
 
   add_props()
+  category = `footer`
+
+  props = {
+    show_footer: {
+      name: `Show Footer`,
+      type: `checkbox`,
+      value: true,
+      no_mirror: true,
+      info: `Show a footer at the bottom with some information
+      Clicking this scrolls the item list to the bottom`,
+      version: 1,
+    },
+    show_footer_count: {
+      name: `Count In Footer`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the item count on the Footer`,
+      version: 1,
+    },
+    footer_menu: {
+      name: `Footer Menu`,
+      type: `list`,
+      value: [
+        {cmd: `copy_item_url`},
+        {cmd: `copy_item_title`},
+      ],
+      info: `Menu to show when right clicking the footer`,
+      version: 1,
+    },
+    wheel_up_footer: {
+      name: `Wheel Up Footer`,
+      type: `menu`,
+      value: `scroll_up`,
+      info: `Command to run when using the mousewheel up on the Footer`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_down_footer: {
+      name: `Wheel Down Footer`,
+      type: `menu`,
+      value: `scroll_down`,
+      info: `Command to run when using the mousewheel down on the Footer`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+  }
+
+  add_props()
   category = `favorites`
 
   props = {
@@ -1271,7 +1296,7 @@ App.build_settings = () => {
       },
     },
     wheel_up_favorites_top: {
-      name: `Mousewheel Up Fav Top`,
+      name: `Wheel Up Fav Top`,
       type: `menu`,
       value: `scroll_up`,
       info: `Command to run when using the mousewheel up on the top empty area of the Favorites Bar`,
@@ -1281,7 +1306,7 @@ App.build_settings = () => {
       },
     },
     wheel_down_favorites_top: {
-      name: `Mousewheel Down Fav Top`,
+      name: `Wheel Down Fav Top`,
       type: `menu`,
       value: `scroll_down`,
       info: `Command to run when using the mousewheel down on the top empty area of the Favorites Bar`,
@@ -1292,7 +1317,7 @@ App.build_settings = () => {
       },
     },
     wheel_up_favorites_center: {
-      name: `Mousewheel Up Fav Center`,
+      name: `Wheel Up Fav Center`,
       type: `menu`,
       value: `scroll_up`,
       info: `Command to run when using the mousewheel up on the center area of the Favorites Bar`,
@@ -1302,7 +1327,7 @@ App.build_settings = () => {
       },
     },
     wheel_down_favorites_center: {
-      name: `Mousewheel Down Fav Center`,
+      name: `Wheel Down Fav Center`,
       type: `menu`,
       value: `scroll_down`,
       info: `Command to run when using the mousewheel down on the center area of the Favorites Bar`,
@@ -1333,7 +1358,7 @@ App.build_settings = () => {
       },
     },
     wheel_up_favorites_bottom: {
-      name: `Mousewheel Up Fav Bottom`,
+      name: `Wheel Up Fav Bottom`,
       type: `menu`,
       value: `scroll_up`,
       info: `Command to run when using the mousewheel up on the bottom empty area of the Favorites Bar`,
@@ -1343,7 +1368,7 @@ App.build_settings = () => {
       },
     },
     wheel_down_favorites_bottom: {
-      name: `Mousewheel Down Fav Bottom`,
+      name: `Wheel Down Fav Bottom`,
       type: `menu`,
       value: `scroll_down`,
       info: `Command to run when using the mousewheel down on the bottom empty area of the Favorites Bar`,
@@ -2936,7 +2961,7 @@ App.build_settings = () => {
       name: `Next Unloaded`,
       type: `checkbox`,
       value: false,
-      info: `Consider unloaded tabs when using tab up/down commands`,
+      info: `Consider unloaded tabs when using Tab Up/Down commands`,
       version: 1,
     },
     item_pointer: {
@@ -3101,6 +3126,10 @@ App.build_settings = () => {
       info: `Configure the Tab Box
       This is a component that appears below or above the tabs
       It shows different kinds of tabs so you can jump around`,
+    },
+    footer: {
+      info: `Configure the Footer
+      This is a component that appears at the bottom and shows some information`,
     },
     zones: {
       info: `Customize headers and splits`,

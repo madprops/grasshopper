@@ -524,7 +524,7 @@ App.on_mouse_wheel = (e) => {
   let direction = App.wheel_direction(e)
   let mode = App.window_mode
 
-  if (DOM.parent(e.target, [`.scroller`, `.footer`])) {
+  if (DOM.parent(e.target, [`.scroller`])) {
     if (direction === `up`) {
       if (e.shiftKey) {
         App.scroll_page(mode, `up`)
@@ -575,6 +575,18 @@ App.on_mouse_wheel = (e) => {
     }
     else if (direction === `down`) {
       let cmd = App.get_setting(`wheel_down_favorites_bottom`)
+      App.run_command({cmd: cmd, from: `mouse`, e: e})
+    }
+
+    e.preventDefault()
+  }
+  else if (e.target.closest(`.footer`)) {
+    if (direction === `up`) {
+      let cmd = App.get_setting(`wheel_up_footer`)
+      App.run_command({cmd: cmd, from: `mouse`, e: e})
+    }
+    else if (direction === `down`) {
+      let cmd = App.get_setting(`wheel_down_footer`)
       App.run_command({cmd: cmd, from: `mouse`, e: e})
     }
 

@@ -155,7 +155,8 @@ App.settings_icons = {
   filter: `🔍`,
   triggers: `🔮`,
   more: `💠`,
-  title: `✍🏻`
+  title: `✍🏻`,
+  footer: `⚽`,
 }
 
 App.mode_icons = {
