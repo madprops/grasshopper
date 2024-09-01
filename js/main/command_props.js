@@ -452,7 +452,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: up_icon,
       action: (args) => {
-        App.select_item_up(args.mode)
+        App.select_up_down(args.mode, `up`)
       },
       info: `Select the item above`,
     },
@@ -462,7 +462,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: down_icon,
       action: (args) => {
-        App.select_item_down(args.mode)
+        App.select_up_down(args.mode, `down`)
       },
       info: `Select the item below`,
     },
