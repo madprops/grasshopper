@@ -163,6 +163,9 @@ App.jump_tabs_header = (reverse = false) => {
     if (App.is_header(item_)) {
       match = true
     }
+    else if (item_.playing && playing) {
+      match = true
+    }
 
     if (match) {
       if (item_.unloaded && !unloaded) {
@@ -209,6 +212,9 @@ App.jump_tabs_subheader = (reverse = false) => {
 
     // Check
     if (App.is_subheader(item_)) {
+      match = true
+    }
+    else if (item_.playing && playing) {
       match = true
     }
 
@@ -262,6 +268,10 @@ App.jump_tabs_split = (reverse = false) => {
       }
     }
 
+    if (item_.playing && playing) {
+      match = true
+    }
+
     if (match) {
       if (item_.unloaded && !unloaded) {
         continue
@@ -307,6 +317,9 @@ App.jump_tabs_zone = (reverse = false) => {
 
     // Check
     if (item_.header || App.get_split_top(item_) || App.get_split_bottom(item_)) {
+      match = true
+    }
+    else if (item_.playing && playing) {
       match = true
     }
 
