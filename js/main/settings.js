@@ -1553,6 +1553,8 @@ App.madprops_settings = () => {
 
   App.set_setting({setting: `load_lock`, value: true})
   App.set_setting({setting: `autohide_context`, value: true})
+  App.set_setting({setting: `double_click_favorites_top`, value: `go_to_playing_tab`})
+  App.set_setting({setting: `middle_click_favorites_top`, value: `toggle_pin_tabs`})
 
   App.set_setting({setting: `wheel_up_favorites_top`, value: `jump_tabs_tag_1_up`})
   App.set_setting({setting: `wheel_down_favorites_top`, value: `jump_tabs_tag_1_down`})
