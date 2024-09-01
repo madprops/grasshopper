@@ -912,7 +912,6 @@ App.build_settings = () => {
       value: [
         {cmd: `forget_closed`},
       ],
-      separator: true,
       info: `Menu to show when clicking the closed menu`,
       version: 1,
     },
@@ -924,6 +923,7 @@ App.build_settings = () => {
         {cmd: `reopen_tab`},
         {cmd: `select_all_items`},
       ],
+      separator: true,
       info: `Menu to show when right clicking empty space`,
       version: 1,
     },
