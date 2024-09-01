@@ -13,12 +13,16 @@ App.jump_vars = (item) => {
   return {items}
 }
 
+App.jump_skip_unloaded = () => {
+  return !App.get_setting(`jump_unloaded`)
+}
+
 App.jump_tabs_color = (id, reverse = false) => {
   let item = App.get_active_tab_item()
   let {items} = App.jump_vars(item)
+  let skip_unloaded = App.jump_skip_unloaded()
   let waypoint = false
   let first = undefined
-  let skip_unloaded = !App.get_setting(`jump_unloaded`)
 
   if (reverse) {
     items = items.slice(0).reverse()
@@ -65,10 +69,10 @@ App.jump_tabs_color = (id, reverse = false) => {
 App.jump_tabs_tag = (num, reverse = false) => {
   let item = App.get_active_tab_item()
   let {items} = App.jump_vars(item)
+  let skip_unloaded = App.jump_skip_unloaded()
   let waypoint = false
   let first = undefined
   let has_tag = false
-  let skip_unloaded = !App.get_setting(`jump_unloaded`)
   let target
 
   if (num === 1) {
