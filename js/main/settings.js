@@ -1559,6 +1559,8 @@ App.madprops_settings = () => {
   App.set_setting({setting: `wheel_down_favorites_top`, value: `jump_tabs_tag_1_down`})
   App.set_setting({setting: `wheel_up_favorites_center`, value: `tab_up`})
   App.set_setting({setting: `wheel_down_favorites_center`, value: `tab_down`})
+  App.set_setting({setting: `wheel_up_footer`, value: `jump_tabs_header_up`})
+  App.set_setting({setting: `wheel_down_footer`, value: `jump_tabs_header_down`})
 
   let urls = [
     {
