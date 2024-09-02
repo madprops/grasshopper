@@ -1,23 +1,8 @@
-App.jump_action = (item, what) => {
-  App.tabs_action(item, what)
-}
-
-App.jump_first = (item, first, what) => {
-  if (first && (first !== item)) {
-    App.jump_action(first, what)
-  }
-}
-
-App.jump_vars = () => {
+App.jump_tabs = (what, info, reverse = false) => {
+  let item = App.get_active_tab_item()
   let items = App.get_items(`tabs`)
   let unloaded = App.get_setting(`jump_unloaded`)
   let playing = App.get_setting(`jump_playing`)
-  return {items, unloaded, playing}
-}
-
-App.jump_tabs = (what, info, reverse = false) => {
-  let item = App.get_active_tab_item()
-  let {items, unloaded, playing} = App.jump_vars()
   let matched_once = false
   let waypoint = false
   let first = undefined
@@ -41,6 +26,10 @@ App.jump_tabs = (what, info, reverse = false) => {
 
   if (reverse) {
     items = items.slice(0).reverse()
+  }
+
+  function jump(item) {
+    App.tabs_action(item, action)
   }
 
   function check_first(it) {
@@ -162,7 +151,7 @@ App.jump_tabs = (what, info, reverse = false) => {
         continue
       }
 
-      App.jump_action(it, action)
+      jump(it)
       return
     }
   }
@@ -173,7 +162,9 @@ App.jump_tabs = (what, info, reverse = false) => {
     }
   }
 
-  App.jump_first(item, first, action)
+  if (first && (first !== item)) {
+    jump(first)
+  }
 }
 
 App.jump_tabs_color = (id, reverse = false) => {
