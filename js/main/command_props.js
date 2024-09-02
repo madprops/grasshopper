@@ -467,6 +467,26 @@ App.setup_commands = () => {
       info: `Select the item below`,
     },
     {
+      name: `Select Up Alt`,
+      cmd: `select_item_up_alt`,
+      modes: [`items`],
+      icon: up_icon,
+      action: (args) => {
+        App.select_up_down(args.mode, `up`, true)
+      },
+      info: `Select the item above ignoring unloaded`,
+    },
+    {
+      name: `Select Down Alt`,
+      cmd: `select_item_down_alt`,
+      modes: [`items`],
+      icon: down_icon,
+      action: (args) => {
+        App.select_up_down(args.mode, `down`, true)
+      },
+      info: `Select the item below ignoring unloaded`,
+    },
+    {
       name: `Copy Tabs`,
       cmd: `copy_tabs`,
       modes: [`tabs`],

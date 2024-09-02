@@ -20,7 +20,7 @@ App.check_items_keyboard = (e) => {
         return
       }
 
-      App.select_up_down(mode, direction, alt=e.altKey)
+      App.select_up_down(mode, direction, e.altKey)
     }
 
     e.preventDefault()
