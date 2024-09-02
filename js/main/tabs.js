@@ -1215,13 +1215,13 @@ App.open_tab_urls = () => {
 
       if (urls.length) {
         for (let url of urls) {
-          if (App.is_url(url)) {
-            if (App.get_item_by_url(`tabs`, url)) {
-              continue
-            }
+          let url_ = App.fix_url(url)
 
-            to_open.push(url)
+          if (App.get_item_by_url(`tabs`, url_)) {
+            continue
           }
+
+          to_open.push(url_)
         }
       }
 

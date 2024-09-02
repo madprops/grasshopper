@@ -619,3 +619,12 @@ App.item_or_items = (value, what) => {
   let items = [what, `${what}s`]
   return items.some(v => value.includes(v))
 }
+
+// Add https if protocol is missing
+App.fix_url = (url) => {
+  if (!url.startsWith(`http://` && !url.startsWith(`https://`))) {
+    url = `https://${url}`
+  }
+
+  return url
+}

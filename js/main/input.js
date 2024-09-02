@@ -11,7 +11,7 @@ App.setup_input = () => {
     App.hide_input()
   })
 
-  DOM.ev(`#input_text`, `keydown`, (e) => {
+  DOM.ev(`#input_text`, `keyup`, (e) => {
     if (e.key === `Enter`) {
       if (e.ctrlKey) {
         App.input_enter()
