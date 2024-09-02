@@ -84,6 +84,17 @@ App.do_show_mode = async (args = {}) => {
   let items_ready = false
   let items
 
+  // Mode vars
+  App.mode_vars[args.mode] = {}
+
+  // Tooltip right click info
+  let rclick = App.get_cmd_name(`show_item_menu`)
+  App.mode_vars[args.mode].right_click_info = `Right Click: ${rclick}`
+
+  // Tooltip middle click info
+  let mclick = App.get_cmd_name(App.get_setting(`middle_click_${args.mode}`))
+  App.mode_vars[args.mode].middle_click_info = `Middle Click: ${mclick}`
+
   if (persistent) {
     if (App[`${args.mode}_items`].length) {
       items = App[`${args.mode}_items`]

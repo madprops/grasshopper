@@ -413,11 +413,8 @@ App.set_item_text = (item) => {
       tips.push(`Tags: ${tags.join(`, `)}`)
     }
 
-    let rclick = App.get_cmd_name(`show_item_menu`)
-    tips.push(`Right Click: ${rclick}`)
-    let sett = App.get_setting(`middle_click_${item.mode}`)
-    let mclick = App.get_cmd_name(sett)
-    tips.push(`Middle Click: ${mclick}`)
+    tips.push(App.mode_vars[item.mode].right_click_info)
+    tips.push(App.mode_vars[item.mode].middle_click_info)
 
     item.element.title = tips.join(`\n`)
   }
