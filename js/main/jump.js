@@ -28,8 +28,8 @@ App.jump_tabs = (what, info, reverse = false) => {
     items = items.slice(0).reverse()
   }
 
-  function jump(item) {
-    App.tabs_action(item, action)
+  function jump(it) {
+    App.tabs_action(it, action)
   }
 
   function check_first(it) {
