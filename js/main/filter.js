@@ -1211,7 +1211,7 @@ App.filter_at_end = (mode) => {
 }
 
 App.clean_filter = (s, lower_case = false) => {
-  s = s.trim()
+  s = App.single_space(s).trim()
 
   if (lower_case) {
     s = s.toLowerCase()
