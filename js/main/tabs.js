@@ -357,7 +357,10 @@ App.tabs_action = async (item, from, scroll) => {
       return
     }
     else if (header_action === `select`) {
-      await App.do_show_mode({mode: `tabs`})
+      if (App.active_mode !== `tabs`) {
+        await App.do_show_mode({mode: `tabs`})
+      }
+
       App.select_item({item: item, scroll: scroll})
       blink(item)
       return
