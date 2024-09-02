@@ -2,7 +2,6 @@ App.jump_tabs = (what, info, reverse = false) => {
   let item = App.get_active_tab_item()
   let items = App.get_items(`tabs`)
   let unloaded = App.get_setting(`jump_unloaded`)
-  let playing = App.get_setting(`jump_playing`)
   let matched_once = false
   let waypoint = false
   let first = undefined
@@ -48,9 +47,6 @@ App.jump_tabs = (what, info, reverse = false) => {
       if (id && (id === info)) {
         match = true
       }
-      else if (it.playing && playing) {
-        match = true
-      }
 
       return match
     }
@@ -61,9 +57,6 @@ App.jump_tabs = (what, info, reverse = false) => {
       let tags = App.get_tags(it)
 
       if (tags.includes(target)) {
-        match = true
-      }
-      else if (it.playing && playing) {
         match = true
       }
 
@@ -77,9 +70,6 @@ App.jump_tabs = (what, info, reverse = false) => {
       if (App.is_header(it)) {
         match = true
       }
-      else if (it.playing && playing) {
-        match = true
-      }
 
       return match
     }
@@ -89,9 +79,6 @@ App.jump_tabs = (what, info, reverse = false) => {
       let match = false
 
       if (App.is_subheader(it)) {
-        match = true
-      }
-      else if (it.playing && playing) {
         match = true
       }
 
@@ -116,9 +103,6 @@ App.jump_tabs = (what, info, reverse = false) => {
       let match = false
 
       if (it.header || App.get_split_top(it) || App.get_split_bottom(it)) {
-        match = true
-      }
-      else if (it.playing && playing) {
         match = true
       }
 

@@ -2950,13 +2950,6 @@ App.build_settings = () => {
       info: `Autohide context menus when the mouse moves away from the window`,
       version: 1,
     },
-    jump_playing: {
-      name: `Jump Playing`,
-      type: `checkbox`,
-      value: true,
-      info: `Consider any playing tab when jumping`,
-      version: 1,
-    },
     jump_unloaded: {
       name: `Jump Unloaded`,
       type: `checkbox`,
