@@ -18,6 +18,7 @@ App.jump_vars = () => {
 App.jump_tabs = (what, info, reverse = false) => {
   let item = App.get_active_tab_item()
   let {items, unloaded, playing} = App.jump_vars()
+  let matched_once = false
   let waypoint = false
   let first = undefined
   let target, action
@@ -139,13 +140,19 @@ App.jump_tabs = (what, info, reverse = false) => {
   // -------------------------
 
   for (let item_ of items) {
+    let matched = check(item_)
+
+    if (matched) {
+      matched_once = true
+    }
+
     if (item_ === item) {
       waypoint = true
       check_first(item_)
       continue
     }
 
-    if (check(item_)) {
+    if (matched) {
       if (item_.unloaded && !unloaded) {
         continue
       }
@@ -157,6 +164,12 @@ App.jump_tabs = (what, info, reverse = false) => {
 
       App.jump_action(item_, action)
       return
+    }
+  }
+
+  if (!matched_once) {
+    if (what === `tag`) {
+      App.alert(`To use jump give tabs the 'jump', 'jump2', or 'jump3' tags`)
     }
   }
 
