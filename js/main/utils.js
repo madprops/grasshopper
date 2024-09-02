@@ -620,7 +620,6 @@ App.item_or_items = (value, what) => {
   return items.some(v => value.includes(v))
 }
 
-// Add https if protocol is missing
 App.fix_url = (url) => {
   url = url.toLowerCase().trim()
 
