@@ -148,7 +148,9 @@ App.set_header_text = (item) => {
   let title = App.title(item, false)
   let text_el = DOM.el(`.item_text_1`, item.element)
   text_el.textContent = title
-  item.element.title = `Header: ${title}`
+  let h_title = `Header: ${title}`
+  item.element.title = h_title
+  item.header_title = h_title
 }
 
 App.is_header_url = (url) => {

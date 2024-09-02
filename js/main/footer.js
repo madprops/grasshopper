@@ -27,7 +27,7 @@ App.do_update_footer_info = (item) => {
     let info
 
     if (item.header) {
-      info = item.element.title
+      info = item.header_title
     }
     else {
       info = item.footer
