@@ -139,30 +139,30 @@ App.jump_tabs = (what, info, reverse = false) => {
 
   // -------------------------
 
-  for (let item_ of items) {
-    let matched = check(item_)
+  for (let it of items) {
+    let matched = check(it)
 
     if (matched) {
       matched_once = true
     }
 
-    if (item_ === item) {
+    if (it === item) {
       waypoint = true
-      check_first(item_)
+      check_first(it)
       continue
     }
 
     if (matched) {
-      if (item_.unloaded && !unloaded) {
+      if (it.unloaded && !unloaded) {
         continue
       }
 
       if (!waypoint) {
-        check_first(item_)
+        check_first(it)
         continue
       }
 
-      App.jump_action(item_, action)
+      App.jump_action(it, action)
       return
     }
   }
