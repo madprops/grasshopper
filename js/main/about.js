@@ -52,8 +52,8 @@ App.start_about = () => {
         `Context menus support filtering, just start typing something`,
         `Middle Click filter items to further refine the filter`,
         `Middle Click the filter input to show Refine Filters`,
-        `There are 3 special tags: jump, jump2, and jump3`
-        `Use Alt + Up/Down to select items ignoring unloaded tabs`
+        `There are 3 special tags: jump, jump2, and jump3`,
+        `Use Alt + Up/Down to select items ignoring unloaded tabs`,
       ]
 
       let close = DOM.el(`#about_close`)
