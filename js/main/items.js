@@ -26,26 +26,18 @@ App.select_item = (args = {}) => {
     return
   }
 
-  let prev = App.get_selected(args.item.mode)
-
   if (args.deselect) {
     App.deselect({mode: args.item.mode})
   }
 
   App.toggle_selected({item: args.item, what: true})
-
-  if (prev) {
-    App.scroll_to_item({item: args.item, scroll: args.scroll})
-  }
-  else {
-    App.scroll_to_item({item: args.item, scroll: args.scroll})
-  }
+  App.scroll_to_item({item: args.item, scroll: args.scroll})
 }
 
-App.select_up_down = (mode, direction = `down`) => {
+App.select_up_down = (mode, direction = `down`, alt = false) => {
   let up = direction === `up`
   let no_header = App.is_filtered(mode) ? false : true
-  let item = App.get_other_item({mode: mode, no_header: no_header}, up)
+  let item = App.get_other_item({mode: mode, no_header: no_header, no_unloaded: alt}, up)
 
   if (item) {
     App.select_item({item: item, scroll: `nearest`})
