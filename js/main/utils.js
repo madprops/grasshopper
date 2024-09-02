@@ -622,7 +622,9 @@ App.item_or_items = (value, what) => {
 
 // Add https if protocol is missing
 App.fix_url = (url) => {
-  if (!url.startsWith(`http://` && !url.startsWith(`https://`))) {
+  url = url.toLowerCase().trim()
+
+  if (!url.startsWith(`http://`) && !url.startsWith(`https://`)) {
     url = `https://${url}`
   }
 
