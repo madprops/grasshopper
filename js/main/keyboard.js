@@ -380,8 +380,16 @@ App.setup_keyboard = () => {
           return
         }
       }
-      if (pmode === `input`) {
-        if (e.key === `Escape`) {
+      else if (pmode === `input`) {
+        if (e.key === `Enter`) {
+          if (e.ctrlKey) {
+            App.input_enter()
+            e.preventDefault()
+          }
+
+          return
+        }
+        else if (e.key === `Escape`) {
           App.dismiss_popup(`input`)
           e.preventDefault()
           return
