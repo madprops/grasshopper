@@ -2943,6 +2943,13 @@ App.build_settings = () => {
       info: `PageUp and PageDown do full page scrolls`,
       version: 1,
     },
+    wrap_items: {
+      name: `Wrap Items`,
+      type: `checkbox`,
+      value: true,
+      info: `Wrap first/last when selecting items`,
+      version: 1,
+    },
     autohide_context: {
       name: `Autohide Context`,
       type: `checkbox`,

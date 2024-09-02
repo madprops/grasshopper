@@ -37,7 +37,14 @@ App.select_item = (args = {}) => {
 App.select_up_down = (mode, direction = `down`, alt = false) => {
   let up = direction === `up`
   let no_header = App.is_filtered(mode) ? false : true
-  let item = App.get_other_item({mode: mode, no_header: no_header, no_unloaded: alt}, up)
+  let wrap = App.get_setting(`wrap_items`)
+
+  let item = App.get_other_item({
+    mode: mode,
+    no_header: no_header,
+    no_unloaded: alt,
+    wrap: wrap,
+  }, up)
 
   if (item) {
     App.select_item({item: item, scroll: `nearest`})
