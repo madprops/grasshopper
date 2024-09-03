@@ -147,6 +147,20 @@ App.setup_commands = () => {
     })
 
     icon = App.color_icon(color.id)
+    name = `Remove All ${color.name}`
+
+    color_removers.push({
+      name: name,
+      cmd: `remove_all_color_${color.id}`,
+      modes: [`tabs`],
+      icon: icon,
+      action: (args) => {
+        App.remove_color(color.id)
+      },
+      info: `Remove color from all tabs (${color.name})`,
+    })
+
+    icon = App.color_icon(color.id)
     name = `Close ${color.name}`
 
     color_closers.push({
