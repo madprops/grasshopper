@@ -79,7 +79,7 @@ App.process_info = (args = {}) => {
   let audio = App.is_audio(url)
 
   let title = args.info.title || ``
-  title = App.single_space(title)
+  title = App.single_space(title).trim()
 
   let item = {
     title: title,
