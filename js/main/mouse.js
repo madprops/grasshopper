@@ -584,5 +584,4 @@ App.wheel_action = (direction, name, e) => {
   }
 
   App.run_command({cmd: cmd, from: `mouse`, e: e})
-  e.preventDefault()
 }
