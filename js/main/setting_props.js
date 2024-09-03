@@ -1542,6 +1542,26 @@ App.build_settings = () => {
       info: `Format to use when showing the date as the Title`,
       version: 1,
     },
+    wheel_up_main_title: {
+      name: `Wheel Up Title`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel up on the Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_down_main_title: {
+      name: `Wheel Down Title`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel down on the Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
   }
 
   add_props()

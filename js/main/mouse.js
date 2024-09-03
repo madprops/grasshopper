@@ -545,52 +545,19 @@ App.on_mouse_wheel = (e) => {
     e.preventDefault()
   }
   else if (e.target.closest(`.favorites_empty_top`)) {
-    if (direction === `up`) {
-      let cmd = App.get_setting(`wheel_up_favorites_top`)
-      App.run_command({cmd: cmd, from: `mouse`, e: e})
-    }
-    else if (direction === `down`) {
-      let cmd = App.get_setting(`wheel_down_favorites_top`)
-      App.run_command({cmd: cmd, from: `mouse`, e: e})
-    }
-
-    e.preventDefault()
+    App.wheel_action(direction, `favorites_top`, e)
   }
   else if (e.target.closest(`.favorites_bar`)) {
-    if (direction === `up`) {
-      let cmd = App.get_setting(`wheel_up_favorites_center`)
-      App.run_command({cmd: cmd, from: `mouse`, e: e})
-    }
-    else if (direction === `down`) {
-      let cmd = App.get_setting(`wheel_down_favorites_center`)
-      App.run_command({cmd: cmd, from: `mouse`, e: e})
-    }
-
-    e.preventDefault()
+    App.wheel_action(direction, `favorites_center`, e)
   }
   else if (e.target.closest(`.favorites_empty_bottom`)) {
-    if (direction === `up`) {
-      let cmd = App.get_setting(`wheel_up_favorites_bottom`)
-      App.run_command({cmd: cmd, from: `mouse`, e: e})
-    }
-    else if (direction === `down`) {
-      let cmd = App.get_setting(`wheel_down_favorites_bottom`)
-      App.run_command({cmd: cmd, from: `mouse`, e: e})
-    }
-
-    e.preventDefault()
+    App.wheel_action(direction, `favorites_bottom`, e)
   }
   else if (e.target.closest(`.footer`)) {
-    if (direction === `up`) {
-      let cmd = App.get_setting(`wheel_up_footer`)
-      App.run_command({cmd: cmd, from: `mouse`, e: e})
-    }
-    else if (direction === `down`) {
-      let cmd = App.get_setting(`wheel_down_footer`)
-      App.run_command({cmd: cmd, from: `mouse`, e: e})
-    }
-
-    e.preventDefault()
+    App.wheel_action(direction, `footer`, e)
+  }
+  else if (e.target.closest(`.main_title`)) {
+    App.wheel_action(direction, `main_title`, e)
   }
   else if (DOM.parent(e.target, [`.item_container`])) {
     if (e.shiftKey) {
@@ -604,4 +571,17 @@ App.on_mouse_wheel = (e) => {
       e.preventDefault()
     }
   }
+}
+
+App.wheel_action = (direction, name, e) => {
+  let cmd
+
+  if (direction === `up`) {
+    cmd = App.get_setting(`wheel_up_${name}`)
+  }
+  else if (direction === `down`) {
+    cmd = App.get_setting(`wheel_down_${name}`)
+  }
+
+  App.run_command({cmd: cmd, from: `mouse`, e: e})
 }
