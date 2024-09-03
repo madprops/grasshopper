@@ -7,8 +7,7 @@ App.jump_tabs = (what, info, reverse = false) => {
 
   let items = App.get_items(`tabs`)
   let unloaded = App.get_setting(`jump_unloaded`)
-  let headers = [`header`, `subheader`,  `headers`]
-  let zones = [...headers, `split`, `zone`]
+  let zones = [`header`, `subheader`,  `headers`, `split`, `zone`]
   let index = items.indexOf(item)
   let matched_once = false
   let waypoint = false
@@ -23,7 +22,7 @@ App.jump_tabs = (what, info, reverse = false) => {
       target = `jump${info}`
     }
   }
-  else if (headers.includes(what)) {
+  else if (zones.includes(what)) {
     if (index > 0) {
       let h_action = App.get_setting(`header_action`)
 
@@ -108,7 +107,7 @@ App.jump_tabs = (what, info, reverse = false) => {
     check = function(it) {
       let match = false
 
-      if (App.is_header(it) || App.is_subheader(it)) {
+      if (it.header) {
         match = true
       }
 
