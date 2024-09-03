@@ -1349,10 +1349,6 @@ a:hover
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-
-  /* Avoid accidental middle click on empty areas */
-  padding-top: 1.1rem;
-  padding-bottom: 1.1rem;
 }
 
 .fav_top .favorites_bar,
