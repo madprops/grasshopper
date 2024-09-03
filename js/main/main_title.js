@@ -178,33 +178,35 @@ App.toggle_main_title_date = () => {
 }
 
 App.previous_main_title_color = () => {
+  let enabled = App.get_setting(`main_title_colors`)
   let current = App.get_setting(`main_title_background_color`)
 
-  if (current === App.red_title) {
-    App.color_main_title(`blue`)
-  }
-  else if (current === App.green_title) {
-    App.color_main_title(`red`)
-  }
-  else if (current === App.blue_title) {
+  if (enabled && (current === App.blue_title)) {
     App.color_main_title(`green`)
   }
-  else {
+  else if (enabled && (current === App.green_title)) {
     App.color_main_title(`red`)
+  }
+  else if (enabled && (current === App.red_title)) {
+    App.uncolor_main_title()
+  }
+  else {
+    App.color_main_title(`blue`)
   }
 }
 
 App.next_main_title_color = () => {
+  let enabled = App.get_setting(`main_title_colors`)
   let current = App.get_setting(`main_title_background_color`)
 
-  if (current === App.red_title) {
+  if (enabled && (current === App.red_title)) {
     App.color_main_title(`green`)
   }
-  else if (current === App.green_title) {
+  else if (enabled && (current === App.green_title)) {
     App.color_main_title(`blue`)
   }
-  else if (current === App.blue_title) {
-    App.color_main_title(`red`)
+  else if (enabled && (current === App.blue_title)) {
+    App.uncolor_main_title()
   }
   else {
     App.color_main_title(`red`)
