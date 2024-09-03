@@ -2478,6 +2478,24 @@ App.setup_commands = () => {
       info: `Apply blue color to the main title`,
     },
     {
+      name: `Previous Title Color`,
+      cmd: `previous_main_title_color`,
+      icon: title_icon,
+      action: (args) => {
+        App.previous_main_title_color()
+      },
+      info: `Apply the previous color to the main title`,
+    },
+    {
+      name: `Next Title Color`,
+      cmd: `next_main_title_color`,
+      icon: title_icon,
+      action: (args) => {
+        App.next_main_title_color()
+      },
+      info: `Apply the next color to the main title`,
+    },
+    {
       name: `Uncolor Title`,
       cmd: `uncolor_main_title`,
       icon: title_icon,
