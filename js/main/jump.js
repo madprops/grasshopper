@@ -7,7 +7,7 @@ App.jump_tabs = (what, info, reverse = false) => {
 
   let items = App.get_items(`tabs`)
   let unloaded = App.get_setting(`jump_unloaded`)
-  let headers = [`header`, `subheader`]
+  let headers = [`header`, `subheader`,  `headers`]
   let zones = [...headers, `split`, `zone`]
   let index = items.indexOf(item)
   let matched_once = false
