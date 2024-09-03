@@ -1349,8 +1349,8 @@ a:hover
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.88rem;
+  padding-bottom: 0.88rem;
 }
 
 .fav_top .favorites_bar,
