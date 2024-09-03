@@ -5,15 +5,15 @@ App.show_tab_list = (what, e) => {
     let max = App.get_setting(`max_recent_tabs`)
     let active = App.get_setting(`recent_active`)
     tabs = App.get_recent_tabs({max: max, active: active})
-    title = `Recent Tabs`
+    title = `Recent`
   }
   else if (what === `pins`) {
     tabs = App.get_pinned_tabs()
-    title = `Pinned Tabs`
+    title = `Pinned`
   }
   else if (what === `playing`) {
     tabs = App.get_playing_tabs()
-    title = `Playing Tabs`
+    title = `Playing`
   }
   else if (what.startsWith(`color_`)) {
     let color_id = what.split(`_`)[1]
