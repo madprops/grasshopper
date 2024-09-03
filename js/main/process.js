@@ -74,12 +74,10 @@ App.process_info = (args = {}) => {
   let path = App.get_path(decoded_url)
   let protocol = App.get_protocol(url)
   let hostname = App.get_hostname(url)
+  let title = args.info.title || ``
   let image = App.is_image(url)
   let video = App.is_video(url)
   let audio = App.is_audio(url)
-
-  let title = args.info.title || ``
-  title = App.single_space(title).trim()
 
   let item = {
     title: title,
