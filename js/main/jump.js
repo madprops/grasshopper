@@ -104,6 +104,17 @@ App.jump_tabs = (what, info, reverse = false) => {
       return match
     }
   }
+  else if (what === `headers`) {
+    check = function(it) {
+      let match = false
+
+      if (App.is_header(it) || App.is_subheader(it)) {
+        match = true
+      }
+
+      return match
+    }
+  }
   else if (what === `split`) {
     check = function(it) {
       let match = false
@@ -184,6 +195,10 @@ App.jump_tabs_header = (reverse = false) => {
 
 App.jump_tabs_subheader = (reverse = false) => {
   App.jump_tabs(`subheader`, undefined, reverse)
+}
+
+App.jump_tabs_headers = (reverse = false) => {
+  App.jump_tabs(`headers`, undefined, reverse)
 }
 
 App.jump_tabs_split = (reverse = false) => {

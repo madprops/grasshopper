@@ -1660,6 +1660,26 @@ App.setup_commands = () => {
       info: `Jump to the next subheader`,
     },
     {
+      name: `Jump Headers Up`,
+      cmd: `jump_tabs_headers_up`,
+      modes: [`items`],
+      icon: header_icon,
+      action: (args) => {
+        App.jump_tabs_headers(true)
+      },
+      info: `Jump in reverse to the next header or subheader`,
+    },
+    {
+      name: `Jump Headers Down`,
+      cmd: `jump_tabs_headers_down`,
+      modes: [`items`],
+      icon: header_icon,
+      action: (args) => {
+        App.jump_tabs_headers()
+      },
+      info: `Jump to the next header or subheader`,
+    },
+    {
       name: `Jump Split Up`,
       cmd: `jump_tabs_split_up`,
       modes: [`items`],
