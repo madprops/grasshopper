@@ -192,12 +192,6 @@ App.extra_menu_items = (o_items) => {
     }
   }
 
-  function check_sep() {
-    if (o_items.length) {
-      App.sep(o_items)
-    }
-  }
-
   if (mode === `normal`) {
     if (items.length) {
       o_items.push({
@@ -208,7 +202,9 @@ App.extra_menu_items = (o_items) => {
     }
   }
   else if (mode === `flat`) {
-    check_sep()
+    if (o_items.length) {
+      App.sep(o_items)
+    }
 
     for (let item of items) {
       o_items.push(item)
