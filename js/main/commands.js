@@ -403,6 +403,7 @@ App.cmd_list = (cmds, short = false) => {
 App.show_cmds_menu = (args = {}) => {
   let def_args = {
     check: true,
+    short: false,
   }
 
   App.def_args(def_args, args)
@@ -414,6 +415,7 @@ App.show_cmds_menu = (args = {}) => {
       action: (e) => {
         App.alert(`Add some in Settings`)
       },
+      empty: true,
     })
   }
   else {
@@ -461,7 +463,7 @@ App.show_cmds_menu = (args = {}) => {
       }
 
       let item_obj = {
-        text: App.command_name(cmd),
+        text: App.command_name(cmd, args.short),
         action: (e) => {
           if (cmd_ok) {
             cmd_obj.e = e
@@ -494,7 +496,7 @@ App.show_cmds_menu = (args = {}) => {
   return items
 }
 
-App.command_name = (command, force_short) => {
+App.command_name = (command, force_short = false) => {
   if (command.short_name && App.get_setting(`short_commands`)) {
     return command.short_name
   }
@@ -507,6 +509,11 @@ App.command_name = (command, force_short) => {
 }
 // name, item, check
 App.custom_menu_items = (args = {}) => {
+  let def_args = {
+    short: false,
+  }
+
+  App.def_args(def_args, args)
   let cmds = App.get_setting(args.name)
 
   return App.show_cmds_menu({
@@ -514,6 +521,7 @@ App.custom_menu_items = (args = {}) => {
     from: args.name,
     item: args.item,
     check: args.check,
+    short: args.short,
   })
 }
 

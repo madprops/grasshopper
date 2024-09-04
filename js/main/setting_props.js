@@ -817,12 +817,7 @@ App.build_settings = () => {
     extra_menu: {
       name: `Extra Menu`,
       type: `list`,
-      value: [
-        {cmd: `toggle_color_red`, alt: `filter_color_red`},
-        {cmd: `toggle_color_green`, alt: `filter_color_green`},
-        {cmd: `toggle_color_blue`, alt: `filter_color_blue`},
-        {cmd: `toggle_color_yellow`, alt: `filter_color_yellow`},
-      ],
+      value: [],
       info: `Extra menu to show when right clicking items`,
       separator: true,
       version: 4,

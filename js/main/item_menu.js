@@ -46,7 +46,6 @@ App.show_item_menu = async (args = {}) => {
       }
 
       App.common_menu_items(common_obj)
-      App.extra_menu_items(items)
 
       let more_obj = {
         o_items: items,
@@ -54,6 +53,7 @@ App.show_item_menu = async (args = {}) => {
       }
 
       App.more_menu_items(more_obj)
+      App.extra_menu_items(items)
       App.sep(items)
       App.item_menu_item(items, `close_tabs`, {item: args.item})
     }
@@ -173,7 +173,18 @@ App.extra_menu_items = (o_items) => {
   let items = App.custom_menu_items({
     name: `extra_menu`,
     item: App.item_menu_args.item,
+    short: mode === `flat`,
   })
+
+  if (mode === `flat`) {
+    if (!items || !items.length) {
+      return
+    }
+
+    if ((items.length === 1) && items[0].empty) {
+      return
+    }
+  }
 
   if (mode === `normal`) {
     if (items.length) {
