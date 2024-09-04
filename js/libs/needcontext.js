@@ -1,4 +1,4 @@
-// NeedContext v5.4
+// NeedContext v6
 
 // Main object
 const NeedContext = {}
@@ -303,6 +303,7 @@ NeedContext.show = (args = {}) => {
   }
 
   NeedContext.main.classList.remove(`needcontext-hidden`)
+  NeedContext.update_title()
 
   if (center) {
     c.style.left = `50%`
@@ -318,12 +319,16 @@ NeedContext.show = (args = {}) => {
     args.x = 5
   }
 
-  if ((args.y + c.offsetHeight) + 5 > window.innerHeight) {
-    args.y = window.innerHeight - c.offsetHeight - 5
+  let pad = 5
+
+  if (((args.y + c.offsetHeight) + 5) > window.innerHeight) {
+    let diff = Math.abs((args.y + c.offsetHeight) - window.innerHeight)
+    args.y -= (diff + pad)
   }
 
-  if ((args.x + c.offsetWidth) + 5 > window.innerWidth) {
-    args.x = window.innerWidth - c.offsetWidth - 5
+  if (((args.x + c.offsetWidth) + 5) > window.innerWidth) {
+    let diff = Math.abs((args.x + c.offsetWidth) - window.innerWidth)
+    args.x -= (diff + pad)
   }
 
   NeedContext.last_x = args.x
@@ -350,7 +355,6 @@ NeedContext.show = (args = {}) => {
 
   container.style.minHeight = NeedContext.min_height
   NeedContext.select_item(selected_index)
-  NeedContext.update_title()
   NeedContext.scroll_to_selected()
   NeedContext.open = true
   NeedContext.after_show()
@@ -1017,6 +1021,3 @@ NeedContext.count_items = () => {
   items = items.filter(x => !x.fake)
   return items.length
 }
-
-// Start
-NeedContext.init()
