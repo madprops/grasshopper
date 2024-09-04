@@ -802,8 +802,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `How to show the Extra Menu on right click
-      Either on its own submenu, flat at the root level, or totally replace the Item Menu
-      This menu only appears in Tabs mode`,
+      Either on its own submenu, flat at the root level, or totally replace the Item Menu`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [

@@ -73,6 +73,7 @@ App.show_item_menu = async (args = {}) => {
       }
 
       App.more_menu_items(more_obj)
+      App.extra_menu_items(items)
     }
   }
 
