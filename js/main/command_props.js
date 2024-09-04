@@ -301,11 +301,12 @@ App.setup_commands = () => {
 
   for (let mode of App.modes) {
     let icon = App.mode_icons[mode]
-    let name = `Show ${App.get_mode_name(mode)}`
+    let m_name = App.get_mode_name(mode)
+    let name = `Show ${m_name}`
 
     show_modes.push({
       name: name,
-      short_name: App.capitalize(mode),
+      short_name: m_name,
       cmd: `show_mode_${mode}`,
       icon: icon,
       action: (args) => {
