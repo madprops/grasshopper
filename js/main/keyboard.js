@@ -339,19 +339,19 @@ App.setup_keyboard = () => {
     }
 
     if (App.context_open()) {
-      if (e.shiftKey && e.key === `Enter`) {
+      if (e.shiftKey && (e.key === `Enter`)) {
         App.hide_context()
         e.preventDefault()
       }
-      else if (e.ctrlKey && e.key === `ArrowLeft`) {
+      else if (e.ctrlKey && (e.key === `ArrowLeft`)) {
         App.hide_context()
         e.preventDefault()
       }
-      else if (e.ctrlKey && e.key === `ArrowDown`) {
+      else if (e.ctrlKey && (e.key === `ArrowDown`)) {
         App.hide_context()
         e.preventDefault()
       }
-      else if (e.ctrlKey && e.key === `ArrowRight`) {
+      else if (e.ctrlKey && (e.key === `ArrowRight`)) {
         App.hide_context()
         e.preventDefault()
       }
