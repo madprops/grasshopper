@@ -462,8 +462,11 @@ App.show_cmds_menu = (args = {}) => {
         continue
       }
 
+      let infos = []
+      let name = App.command_name(cmd, args.short)
+
       let item_obj = {
-        text: App.command_name(cmd, args.short),
+        text: name,
         action: (e) => {
           if (cmd_ok) {
             cmd_obj.e = e
@@ -473,6 +476,8 @@ App.show_cmds_menu = (args = {}) => {
         },
         icon: cmd.icon,
       }
+
+      infos.push(cmd.info)
 
       if (alt) {
         item_obj.alt_action = (e) => {
@@ -486,9 +491,10 @@ App.show_cmds_menu = (args = {}) => {
           }
         }
 
-        item_obj.info = `Middle Click: ${alt.name}`
+        infos.push(`Middle Click: ${alt.name}`)
       }
 
+      item_obj.info = infos.join(`\n`)
       items.push(item_obj)
     }
   }

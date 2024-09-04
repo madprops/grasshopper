@@ -816,7 +816,9 @@ App.build_settings = () => {
     extra_menu: {
       name: `Extra Menu`,
       type: `list`,
-      value: [],
+      value: [
+        {cmd: `add_jump_tag_1`, alt: `remove_jump_tag_1`},
+      ],
       info: `Extra menu to show when right clicking items`,
       separator: true,
       version: 4,
