@@ -45,6 +45,11 @@ App.show_main_menu = (mode) => {
     let icon = App.mode_icons[m]
     let name = App.get_mode_name(m)
 
+    // This could be done with cmds but the mouse action
+    // and direct call to do show mode allows the permission prompts
+    // to appear to access History and Bookmarks modes
+    // It also allows more nuanced opts like 'selected'
+
     items.push({
       icon: icon,
       text: name,
