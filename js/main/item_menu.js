@@ -53,6 +53,11 @@ App.show_item_menu = async (args = {}) => {
       }
 
       App.more_menu_items(more_obj)
+
+      if (items.length) {
+        App.sep(items)
+      }
+
       App.extra_menu_items(items)
       App.sep(items)
       App.item_menu_item(items, `close_tabs`, {item: args.item})
@@ -73,6 +78,11 @@ App.show_item_menu = async (args = {}) => {
       }
 
       App.more_menu_items(more_obj)
+
+      if (items.length) {
+        App.sep(items)
+      }
+
       App.extra_menu_items(items)
     }
   }
