@@ -695,7 +695,7 @@ App.show_tab_urls = () => {
 
   urls = App.to_set(urls)
   let s = urls.join(`\n`)
-  App.show_textarea(`All Open Tabs (${urls.length})`, s)
+  App.show_textarea(`All Open URLs (${urls.length})`, s)
 }
 
 App.toggle_pin = (item) => {
