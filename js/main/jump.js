@@ -207,3 +207,14 @@ App.jump_tabs_split = (reverse = false) => {
 App.jump_tabs_zone = (reverse = false) => {
   App.jump_tabs(`zone`, undefined, reverse)
 }
+
+App.add_jump_tag = (num) => {
+  let target
+
+  if (num === 1) {
+    target = `jump`
+  }
+  else {
+    target = `jump${num}`
+  }
+}

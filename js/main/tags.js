@@ -68,6 +68,30 @@ App.get_tag_list = (value) => {
   return unique
 }
 
+App.add_tag = (item, tag) => {
+  let tags = item.custom_tags.slice(0)
+
+  if (tags.includes(tag)) {
+    return
+  }
+
+  tags.push(tag)
+
+  App.apply_edit({what: `tags`, item: item, value: tags, on_change: (value) => {
+    App.custom_save(item.id, `custom_tags`, value)
+  }})
+
+  App.push_to_tag_history([tag])
+}
+
+App.add_tag_all = (item, tag) => {
+  let active = App.get_active_items({mode: item.mode, item: item})
+
+  for (let it of active) {
+    App.add_tag(it, tag)
+  }
+}
+
 App.remove_tag = (item, tag) => {
   if (App.check_tag_rule(item, tag)) {
     return
@@ -78,6 +102,14 @@ App.remove_tag = (item, tag) => {
   App.apply_edit({what: `tags`, item: item, value: tags, on_change: (value) => {
     App.custom_save(item.id, `custom_tags`, value)
   }})
+}
+
+App.remove_tag_all = (item, tag) => {
+  let active = App.get_active_items({mode: item.mode, item: item})
+
+  for (let it of active) {
+    App.remove_tag(it, tag)
+  }
 }
 
 App.wipe_tag = () => {

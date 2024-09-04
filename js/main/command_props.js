@@ -1624,6 +1624,72 @@ App.setup_commands = () => {
       info: `Jump to tabs with the 'jump3' tag`,
     },
     {
+      name: `Add Jump`,
+      cmd: `add_jump_tag_1`,
+      modes: [`items`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.add_tag_all(args.item, `jump`)
+      },
+      info: `Add the 'jump' tag`,
+    },
+    {
+      name: `Remove Jump`,
+      cmd: `remove_jump_tag_1`,
+      modes: [`items`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.remove_tag_all(args.item, `jump`)
+      },
+      info: `Remove the 'jump' tag`,
+    },
+    {
+      name: `Add Jump 2`,
+      cmd: `add_jump_tag_2`,
+      modes: [`items`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.add_tag_all(args.item, `jump2`)
+      },
+      info: `Add the 'jump2' tag`,
+    },
+    {
+      name: `Remove Jump 2`,
+      cmd: `remove_jump_tag_2`,
+      modes: [`items`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.remove_tag_all(args.item, `jump2`)
+      },
+      info: `Remove the 'jump2' tag`,
+    },
+    {
+      name: `Add Jump 3`,
+      cmd: `add_jump_tag_3`,
+      modes: [`items`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.add_tag_all(args.item, `jump3`)
+      },
+      info: `Add the 'jump3' tag`,
+    },
+    {
+      name: `Remove Jump 3`,
+      cmd: `remove_jump_tag_3`,
+      modes: [`items`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.remove_tag_all(args.item, `jump3`)
+      },
+      info: `Remove the 'jump3' tag`,
+    },
+    {
       name: `Jump Header Up`,
       cmd: `jump_tabs_header_up`,
       modes: [`items`],
