@@ -89,7 +89,8 @@ App.stor_save_filter_history = () => {
 }
 
 App.stor_get_tag_history = async () => {
-  App.tag_history = await App.get_local_storage(App.stor_tag_history_name, [])
+  let def = [`jump`]
+  App.tag_history = await App.get_local_storage(App.stor_tag_history_name, def)
   App.debug(`Stor: Got tag history`)
 }
 
