@@ -360,6 +360,17 @@ App.make_item_icon = (item, normal = true) => {
       item.svg_icon = undefined
     }
   }
+  else {
+    let src = `img/favicon.jpg`
+    icon = App.make_favicon(item, src)
+
+    if (normal) {
+      item.favicon_used = icon
+      item.generated_icon = undefined
+      item.text_icon_used = undefined
+      item.svg_icon = undefined
+    }
+  }
 
   return {
     add: true,
@@ -382,7 +393,7 @@ App.get_text_icon = (text_icon) => {
   return icon
 }
 
-App.make_favicon = (item) => {
+App.make_favicon = (item, src = ``) => {
   let icon = DOM.create(`img`, `item_icon`)
   icon.loading = `lazy`
 
@@ -393,7 +404,7 @@ App.make_favicon = (item) => {
     }
   })
 
-  icon.src = item.favicon
+  icon.src = src || item.favicon
   return icon
 }
 
