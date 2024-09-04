@@ -57,6 +57,7 @@ App.show_tab_list = (what, e) => {
       image: tab.favicon,
       icon: icon,
       text: title,
+      info: tab.url,
       action: async () => {
         await App.check_on_tabs()
         App.tabs_action(tab, `tab_list`)
