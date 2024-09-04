@@ -319,7 +319,6 @@ App.setup_keyboard = () => {
     }
 
     let mode = App.window_mode
-    let pmode = App.popup_mode()
 
     if (e.key === `Control` || e.key === `Shift`) {
       App.start_press_timeout()
@@ -358,6 +357,8 @@ App.setup_keyboard = () => {
       }
     }
     else if (App.popup_open()) {
+      let pmode = App.popup_mode()
+
       if (pmode === `dialog`) {
         if (e.key === `Escape`) {
           App.dismiss_popup(`dialog`)
