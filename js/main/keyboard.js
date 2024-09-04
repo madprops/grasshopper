@@ -540,14 +540,6 @@ App.setup_keyboard = () => {
   DOM.ev(document, `keyup`, (e) => {
     App.stop_press_timeout()
 
-    if (e.repeat) {
-      let ok = (e.key === `ArrowUp`) || (e.key === `ArrowDown`)
-
-      if (!ok) {
-        return
-      }
-    }
-
     if (App.popup_open()) {
       let pmode = App.popup_mode()
 
