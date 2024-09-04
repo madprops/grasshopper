@@ -1562,6 +1562,10 @@ App.madprops_settings = () => {
   App.set_setting({setting: `wheel_up_footer`, value: `jump_tabs_header_up`})
   App.set_setting({setting: `wheel_down_footer`, value: `jump_tabs_header_down`})
 
+  let favs = App.get_setting(`favorites_menu`)
+  favs.unshift({cmd: `jump_tabs_tag_1_down`, alt: `jump_tabs_tag_1_up`})
+  App.set_setting({setting: `favorites_menu`, value: favs})
+
   let urls = [
     {
       name: `Mikaeli`,
