@@ -53,8 +53,14 @@ App.show_tab_list = (what, e) => {
       icon = playing_icon
     }
 
+    let favicon = tab.favicon
+
+    if (!favicon) {
+      favicon = `img/favicon.jpg`
+    }
+
     let obj = {
-      image: tab.favicon,
+      image: favicon,
       icon: icon,
       text: title,
       info: tab.url,
