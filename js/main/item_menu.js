@@ -26,9 +26,12 @@ App.show_item_menu = async (args = {}) => {
       App.item_menu_item(items, `edit_notes`, {item: args.item})
 
       let zone_items = []
+
       App.item_menu_item(zone_items, `insert_header`, {item: args.item})
       App.item_menu_item(zone_items, `insert_subheader`, {item: args.item})
+
       App.sep(zone_items)
+
       App.item_menu_item(zone_items, `add_split_both`, {item: args.item})
       App.item_menu_item(zone_items, `add_split_top`, {item: args.item})
       App.item_menu_item(zone_items, `add_split_bottom`, {item: args.item})
@@ -53,13 +56,10 @@ App.show_item_menu = async (args = {}) => {
       }
 
       App.more_menu_items(more_obj)
-
-      if (items.length) {
-        App.sep(items)
-      }
-
       App.extra_menu_items(items)
+
       App.sep(items)
+
       App.item_menu_item(items, `close_tabs`, {item: args.item})
     }
     else {
@@ -78,11 +78,6 @@ App.show_item_menu = async (args = {}) => {
       }
 
       App.more_menu_items(more_obj)
-
-      if (items.length) {
-        App.sep(items)
-      }
-
       App.extra_menu_items(items)
     }
   }
@@ -197,6 +192,12 @@ App.extra_menu_items = (o_items) => {
     }
   }
 
+  function check_sep() {
+    if (o_items.length) {
+      App.sep(o_items)
+    }
+  }
+
   if (mode === `normal`) {
     if (items.length) {
       o_items.push({
@@ -207,6 +208,8 @@ App.extra_menu_items = (o_items) => {
     }
   }
   else if (mode === `flat`) {
+    check_sep()
+
     for (let item of items) {
       o_items.push(item)
     }
