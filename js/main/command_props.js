@@ -650,6 +650,7 @@ App.setup_commands = () => {
     },
     {
       name: `Show About`,
+      short_name: `About`,
       cmd: `show_about`,
       icon: bot_icon,
       action: (args) => {
@@ -659,12 +660,13 @@ App.setup_commands = () => {
     },
     {
       name: `Show Palette`,
+      short_name: `Cmd...`,
       cmd: `show_palette`,
       icon: command_icon,
       action: (args) => {
         App.show_palette()
       },
-      info: `Show the Palette`,
+      info: `Show the command Palette`,
     },
     {
       name: `Toggle Favorites`,

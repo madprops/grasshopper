@@ -57,26 +57,10 @@ App.show_main_menu = (mode) => {
 
   App.sep(items)
   items.push(App.cmd_item({cmd: `show_settings`, short: true}))
-
-  items.push({
-    icon: App.bot_icon,
-    text: `About`,
-    action: () => {
-      App.show_about()
-    }
-  })
-
+  items.push(App.cmd_item({cmd: `show_about`, short: true}))
   App.sep(items)
 
-  items.push({
-    icon: App.command_icon,
-    text: `Cmd...`,
-    action: () => {
-      App.show_palette()
-    },
-    info: `You can also double tap Ctrl to open this`
-  })
-
+  items.push(App.cmd_item({cmd: `show_palette`, short: true}))
   let btn = DOM.el(`#${mode}_main_menu`)
 
   App.show_context({
