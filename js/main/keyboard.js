@@ -359,12 +359,7 @@ App.setup_keyboard = () => {
     }
     else if (App.popup_open()) {
       if (pmode === `dialog`) {
-        if (e.key === `Enter`) {
-          App.dialog_enter()
-          e.preventDefault()
-          return
-        }
-        else if (e.key === `Escape`) {
+        if (e.key === `Escape`) {
           App.dismiss_popup(`dialog`)
           e.preventDefault()
           return
@@ -381,23 +376,8 @@ App.setup_keyboard = () => {
         }
       }
       else if (pmode === `input`) {
-        if (e.key === `Enter`) {
-          if (e.ctrlKey) {
-            App.input_enter()
-            e.preventDefault()
-          }
-
-          return
-        }
-        else if (e.key === `Escape`) {
+        if (e.key === `Escape`) {
           App.dismiss_popup(`input`)
-          e.preventDefault()
-          return
-        }
-      }
-      else if (pmode === `prompt`) {
-        if (e.key === `Enter`) {
-          App.prompt_submit()
           e.preventDefault()
           return
         }
@@ -415,11 +395,6 @@ App.setup_keyboard = () => {
 
           return
         }
-        else if (e.key === `Enter`) {
-          App.palette_enter()
-          e.preventDefault()
-          return
-        }
         else if (e.key === `ArrowUp`) {
           App.palette_next(true)
           e.preventDefault()
@@ -432,25 +407,13 @@ App.setup_keyboard = () => {
         }
       }
       else if (pmode === `close_tabs`) {
-        if (e.key === `Enter`) {
-          App.close_tabs_action()
-          e.preventDefault()
-          return
-        }
-        else if (e.key === `ArrowLeft`) {
+        if (e.key === `ArrowLeft`) {
           App.close_tabs_next(true)
           e.preventDefault()
           return
         }
         else if (e.key === `ArrowRight`) {
           App.close_tabs_next()
-          e.preventDefault()
-          return
-        }
-      }
-      else if (pmode === `sort_tabs`) {
-        if (e.key === `Enter`) {
-          App.sort_tabs_action()
           e.preventDefault()
           return
         }
@@ -575,6 +538,64 @@ App.setup_keyboard = () => {
 
   DOM.ev(document, `keyup`, (e) => {
     App.stop_press_timeout()
+
+    if (e.repeat) {
+      let ok = (e.key === `ArrowUp`) || (e.key === `ArrowDown`)
+
+      if (!ok) {
+        return
+      }
+    }
+
+    if (App.popup_open()) {
+      let pmode = App.popup_mode()
+
+      if (pmode === `dialog`) {
+        if (e.key === `Enter`) {
+          App.dialog_enter()
+          e.preventDefault()
+          return
+        }
+      }
+      else if (pmode === `input`) {
+        if (e.key === `Enter`) {
+          if (e.ctrlKey) {
+            App.input_enter()
+            e.preventDefault()
+          }
+
+          return
+        }
+      }
+      else if (pmode === `palette`) {
+        if (e.key === `Enter`) {
+          App.palette_enter()
+          e.preventDefault()
+          return
+        }
+      }
+      else if (pmode === `prompt`) {
+        if (e.key === `Enter`) {
+          App.prompt_submit()
+          e.preventDefault()
+          return
+        }
+      }
+      else if (pmode === `close_tabs`) {
+        if (e.key === `Enter`) {
+          App.close_tabs_action()
+          e.preventDefault()
+          return
+        }
+      }
+      else if (pmode === `sort_tabs`) {
+        if (e.key === `Enter`) {
+          App.sort_tabs_action()
+          e.preventDefault()
+          return
+        }
+      }
+    }
   })
 }
 
