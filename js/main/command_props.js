@@ -305,6 +305,7 @@ App.setup_commands = () => {
 
     show_modes.push({
       name: name,
+      short_name: App.capitalize(mode),
       cmd: `show_mode_${mode}`,
       icon: icon,
       action: (args) => {

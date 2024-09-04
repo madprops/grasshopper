@@ -42,17 +42,7 @@ App.show_main_menu = (mode) => {
   let items = []
 
   for (let m of App.modes) {
-    let icon = App.mode_icons[m]
-    let name = App.get_mode_name(m)
-
-    items.push({
-      icon: icon,
-      text: name,
-      action: () => {
-        App.do_show_mode({mode: m, reuse_filter: true})
-      },
-      selected: m === mode
-    })
+    items.push(App.cmd_item({cmd: `show_mode_${m}`, short: true}))
   }
 
   App.sep(items)

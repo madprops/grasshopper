@@ -13,7 +13,7 @@ def bundle(what)
     content << File.read(file)
   end
 
-  bundle = content.join("\n")
+  bundle = content.join("\n\n")
   output = File.join("js", "bundle.#{what}.js")
   File.open(output, 'w') { |file| file.write(bundle) }
   blue("Bundled #{what} to #{output}")
