@@ -42,7 +42,7 @@ App.get_recent_tabs = (args = {}) => {
   return tabs
 }
 
-App.get_previous_tabs = () => {
+App.get_previous_tabs = (reverse = false) => {
   App.previous_tabs = App.get_recent_tabs()
 
   if (App.previous_tabs.length > 1) {
@@ -50,10 +50,10 @@ App.get_previous_tabs = () => {
     App.previous_tabs.push(first_tab)
   }
 
-  App.previous_tabs_index = 0
+  App.previous_tabs_index = -1
 }
 
-App.go_to_previous_tab = () => {
+App.go_to_previous_tab = (reverse = false) => {
   if (!App.previous_tabs.length) {
     App.get_previous_tabs()
   }
@@ -64,15 +64,25 @@ App.go_to_previous_tab = () => {
     return
   }
 
-  let prev_tab = App.previous_tabs[App.previous_tabs_index]
-  let item = App.get_item_by_id(`tabs`, prev_tab.id)
+  let items = App.previous_tabs.slice(0)
 
-  if (item) {
-    App.tabs_action(item, `previous`)
+  if (reverse) {
+    App.previous_tabs_index -= 1
+  }
+  else {
     App.previous_tabs_index += 1
+  }
 
-    if (App.previous_tabs_index > (App.previous_tabs.length - 1)) {
-      App.previous_tabs_index = 0
-    }
+  if (App.previous_tabs_index > (items.length - 1)) {
+    App.previous_tabs_index = 0
+  }
+  else if (App.previous_tabs_index < 0) {
+    App.previous_tabs_index = items.length - 1
+  }
+
+  let prev = items[App.previous_tabs_index]
+
+  if (prev) {
+    App.tabs_action(prev, `previous`)
   }
 }

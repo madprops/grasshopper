@@ -1792,7 +1792,7 @@ App.build_settings = () => {
     middle_click_step_back: {
       name: `Middle Click Step Back`,
       type: `menu`,
-      value: `browser_back`,
+      value: `recent_tabs_forwards`,
       info: `Command to run when middle clicking the Step Back Button`,
       version: 1,
       setup: (key) => {
