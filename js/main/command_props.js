@@ -1101,6 +1101,26 @@ App.setup_commands = () => {
       info: `Go to the pin below`,
     },
     {
+      name: `Normal Up`,
+      cmd: `normal_tab_up`,
+      modes: [`tabs`],
+      icon: tabs_icon,
+      action: (args) => {
+        App.normal_up_down(`up`)
+      },
+      info: `Go to the normal tab above`,
+    },
+    {
+      name: `Normal Down`,
+      cmd: `normal_tab_down`,
+      modes: [`tabs`],
+      icon: tabs_icon,
+      action: (args) => {
+        App.normal_up_down(`down`)
+      },
+      info: `Go to the normal tab below`,
+    },
+    {
       name: `Mute`,
       cmd: `mute_tabs`,
       modes: [`tabs`],
