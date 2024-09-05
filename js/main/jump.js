@@ -52,7 +52,27 @@ App.jump_tabs = (what, info, reverse = false) => {
 
   let check
 
-  if (what === `color`) {
+  if (what === `all`) {
+    check = function(it) {
+      return true
+    }
+  }
+  else if (what === `pin`) {
+    check = function(it) {
+      return it.pinned
+    }
+  }
+  else if (what === `normal`) {
+    check = function(it) {
+      return !it.pinned
+    }
+  }
+  else if (what === `unread`) {
+    check = function(it) {
+      return it.unread
+    }
+  }
+  else if (what === `color`) {
     check = function(it) {
       let match = false
       let id = App.get_color(it)
@@ -201,6 +221,22 @@ App.jump_tabs_split = (reverse = false) => {
 
 App.jump_tabs_zone = (reverse = false) => {
   App.jump_tabs(`zone`, undefined, reverse)
+}
+
+App.next_unread_tab = (reverse = false) => {
+  App.jump_tabs(`unread`, undefined, reverse)
+}
+
+App.pin_up_down = (direction) => {
+  App.jump_tabs(`pin`, undefined, direction === `up`)
+}
+
+App.normal_up_down = (direction = `down`) => {
+  App.jump_tabs(`normal`, undefined, direction === `up`)
+}
+
+App.tab_up_down = (direction = `down`) => {
+  App.jump_tabs(`all`, undefined, direction === `up`)
 }
 
 App.get_jump_target = (num) => {
