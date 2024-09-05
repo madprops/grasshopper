@@ -255,7 +255,6 @@ App.open_media = async (what = App.current_media_type) => {
 
   let item = App[`current_media_${what}_item`]
   App.hide_window()
-  await App.check_on_tabs()
   App.focus_or_open_item(item)
 }
 
