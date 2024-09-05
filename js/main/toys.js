@@ -1,7 +1,5 @@
 App.locust_swarm = () => {
-  if (App.locust_swarm_canvas) {
-    App.stop_locust_swarm()
-  }
+  App.stop_locust_swarm()
 
   let canvas = DOM.create(`canvas`, ``, `canvas_locust_swarm`)
   canvas.width = window.innerWidth
@@ -18,7 +16,6 @@ App.locust_swarm = () => {
 
   document.body.appendChild(canvas)
 
-  clearInterval(App.locust_swarm_interval)
   let context = canvas.getContext(`2d`)
   canvas.width = document.body.offsetWidth
   let width = canvas.width
@@ -54,7 +51,11 @@ App.locust_swarm = () => {
 
 App.stop_locust_swarm = () => {
   clearInterval(App.locust_swarm_interval)
-  App.locust_swarm_canvas.remove()
-  App.locust_swarm_canvas = undefined
+
+  if (App.locust_swarm_canvas) {
+    App.locust_swarm_canvas.remove()
+    App.locust_swarm_canvas = undefined
+  }
+
   App.locust_swarm_on = false
 }
