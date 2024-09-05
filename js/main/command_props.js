@@ -1628,7 +1628,7 @@ App.setup_commands = () => {
       name: `Add Jump`,
       short_name: `Jump`,
       cmd: `add_jump_tag_1`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       icon: tag_icon,
       action: (args) => {
@@ -1640,7 +1640,7 @@ App.setup_commands = () => {
       name: `Remove Jump`,
       short_name: `Rem Jump`,
       cmd: `remove_jump_tag_1`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       icon: tag_icon,
       action: (args) => {
@@ -1652,7 +1652,7 @@ App.setup_commands = () => {
       name: `Add Jump 2`,
       short_name: `Jump 2`,
       cmd: `add_jump_tag_2`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       icon: tag_icon,
       action: (args) => {
@@ -1664,7 +1664,7 @@ App.setup_commands = () => {
       name: `Remove Jump 2`,
       short_name: `Rem Jump 2`,
       cmd: `remove_jump_tag_2`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       icon: tag_icon,
       action: (args) => {
@@ -1676,7 +1676,7 @@ App.setup_commands = () => {
       name: `Add Jump 3`,
       short_name: `Jump 3`,
       cmd: `add_jump_tag_3`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       icon: tag_icon,
       action: (args) => {
@@ -1688,7 +1688,7 @@ App.setup_commands = () => {
       name: `Remove Jump 3`,
       short_name: `Rem Jump 3`,
       cmd: `remove_jump_tag_3`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       icon: tag_icon,
       action: (args) => {
