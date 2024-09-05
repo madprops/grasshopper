@@ -1,13 +1,13 @@
-App.madprops_settings = () => {
+App.user_settings = (who) => {
   App.show_confirm({
     message: `Apply settings?`,
     confirm_action: () => {
-      App.do_madprops_settings()
+      App[`user_${who}_settings`]()
     },
   })
 }
 
-App.do_madprops_settings = () => {
+App.user_madprops_settings = () => {
   App.set_theme(3)
 
   App.set_setting({ setting: `load_lock`, value: true })

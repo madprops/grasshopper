@@ -2817,10 +2817,10 @@ App.setup_commands = () => {
     },
     {
       name: `madprops`,
-      cmd: `madprops_settings`,
+      cmd: `user_madprops_settings`,
       icon: bot_icon,
       action: (args) => {
-        App.madprops_settings()
+        App.user_settings(`madprops`)
       },
       skip_settings: true,
       info: `Use the preferred settings for madprops`,
