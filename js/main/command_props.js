@@ -1193,7 +1193,16 @@ App.setup_commands = () => {
       info: `Go to the normal tab below`,
     },
     {
-      name: `Next Unread`,
+      name: `Unread Up`,
+      cmd: `jump_tabs_unread_up`,
+      icon: unread_icon,
+      action: (args) => {
+        App.jump_tabs_unread(true)
+      },
+      info: `Go to the next unread tab above`,
+    },
+    {
+      name: `Unread Down`,
       cmd: `jump_tabs_unread_down`,
       icon: unread_icon,
       action: (args) => {
@@ -1837,7 +1846,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_header(true)
       },
-      info: `Jump in reverse to the next header`,
+      info: `Jump to the next header above`,
     },
     {
       name: `Header Down`,
@@ -1846,7 +1855,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_header()
       },
-      info: `Jump to the next header`,
+      info: `Jump to the next header below`,
     },
     {
       name: `Subheader Up`,
@@ -1855,7 +1864,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_subheader(true)
       },
-      info: `Jump in reverse to the next subheader`,
+      info: `Jump to the next subheader above`,
     },
     {
       name: `Subheader Down`,
@@ -1864,7 +1873,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_subheader()
       },
-      info: `Jump to the next subheader`,
+      info: `Jump to the next subheader below`,
     },
     {
       name: `Headers Up`,
@@ -1873,7 +1882,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_headers(true)
       },
-      info: `Jump in reverse to the next header or subheader`,
+      info: `Jump to the next header or subheader above`,
     },
     {
       name: `Headers Down`,
@@ -1882,7 +1891,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_headers()
       },
-      info: `Jump to the next header or subheader`,
+      info: `Jump to the next header or subheader below`,
     },
     {
       name: `Split Up`,
@@ -1891,7 +1900,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_split(true)
       },
-      info: `Jump in reverse to the next split`,
+      info: `Jump to the next split above`,
     },
     {
       name: `Split Down`,
@@ -1900,7 +1909,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_split()
       },
-      info: `Jump to the next split`,
+      info: `Jump to the next split below`,
     },
     {
       name: `Zone Up`,
@@ -1909,7 +1918,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_zone(true)
       },
-      info: `Jump in reverse to the next zone`,
+      info: `Jump to the next zone above`,
     },
     {
       name: `Zone Down`,
@@ -1918,7 +1927,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_zone()
       },
-      info: `Jump to the next zone`,
+      info: `Jump to the next zone below`,
     },
     {
       name: `Global Notes`,
