@@ -2437,6 +2437,17 @@ App.setup_commands = () => {
       info: `Show recent tabs`,
     },
     {
+      name: `Next Recent`,
+      short_name: `Recent`,
+      cmd: `next_recent_tab`,
+      modes: [`items`],
+      icon: tabs_icon,
+      action: (args) => {
+        App.go_to_previous_tab()
+      },
+      info: `Go to the next recent tab`,
+    },
+    {
       name: `Filter Loaded`,
       short_name: `Loaded`,
       cmd: `filter_loaded_tabs`,
