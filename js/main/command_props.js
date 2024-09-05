@@ -1064,10 +1064,9 @@ App.setup_commands = () => {
       cmd: `toggle_show_pins`,
       modes: [`tabs`],
       item: true,
-      some_loaded: true,
       icon: pin_icon,
       action: (args) => {
-        App.toggle_show_pins(args.item)
+        App.toggle_show_pins()
       },
       info: `Hide or show pins`,
     },
