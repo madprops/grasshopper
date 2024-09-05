@@ -1,7 +1,7 @@
 App.locust_swarm = () => {
   App.stop_locust_swarm()
 
-  let canvas = DOM.create(`canvas`, ``, `canvas_locust_swarm`)
+  let canvas = DOM.create(`canvas`)
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
   canvas.style.zIndex = 999999
