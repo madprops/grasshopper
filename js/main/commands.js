@@ -491,7 +491,7 @@ App.show_cmds_menu = (args = {}) => {
           }
         }
 
-        infos.push(`Middle Click: ${alt.name}`)
+        infos.push(`Alt: ${alt.name}`)
       }
 
       item_obj.info = infos.join(`\n`)
