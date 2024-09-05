@@ -1424,7 +1424,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_playing(true)
       },
-      info: `Go the tab emitting sound`,
+      info: `Jump to the next playing tab above`,
     },
     {
       name: `Playing Down`,
@@ -1433,7 +1433,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_playing()
       },
-      info: `Go the tab emitting sound`,
+      info: `Jump to the next playing tab below`,
     },
     {
       name: `Sort All`,
