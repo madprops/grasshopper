@@ -1569,7 +1569,7 @@ App.first_pinned_tab = () => {
   let first = items.find(x => x.pinned)
 
   if (first) {
-    App.tabs_action(first, `tab_cmd`)
+    App.tabs_action(first)
   }
 }
 
@@ -1578,7 +1578,7 @@ App.last_pinned_tab = () => {
   let last = items.slice(0).reverse().find(x => x.pinned)
 
   if (last) {
-    App.tabs_action(last, `tab_cmd`)
+    App.tabs_action(last)
   }
 }
 
@@ -1587,7 +1587,7 @@ App.first_normal_tab = () => {
   let first = items.find(x => !x.pinned)
 
   if (first) {
-    App.tabs_action(first, `tab_cmd`)
+    App.tabs_action(first)
   }
 }
 
@@ -1596,6 +1596,6 @@ App.last_normal_tab = () => {
   let last = items.slice(0).reverse().find(x => !x.pinned)
 
   if (last) {
-    App.tabs_action(last, `tab_cmd`)
+    App.tabs_action(last)
   }
 }
