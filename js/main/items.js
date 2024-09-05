@@ -1315,7 +1315,7 @@ App.blink_item = (item) => {
   let max_rounds = 2
   let down = true
   let top = 1
-  let bottom = 0.35
+  let bottom = 0.3
   let step = 0.05
   let delay = 22
 
