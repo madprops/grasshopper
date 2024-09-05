@@ -34,6 +34,7 @@ App.setup_commands = () => {
   let tag_icon = App.tag_icon
   let zone_icon = App.zone_icon
   let globe_icon = App.globe_icon
+  let grasshopper_icon = App.grasshopper_icon
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -2812,6 +2813,15 @@ App.setup_commands = () => {
       },
       skip_settings: true,
       info: `Use the preferred settings for madprops`,
+    },
+    {
+      name: `Locust Swarm`,
+      cmd: `locust_swarm`,
+      icon: grasshopper_icon,
+      action: (args) => {
+        App.locust_swarm()
+      },
+      info: `Decimate the crops`,
     },
     {
       name: `Restart`,

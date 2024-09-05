@@ -310,6 +310,10 @@ App.check_items_keyboard = (e) => {
 
 App.setup_keyboard = () => {
   DOM.ev(document, `keydown`, (e) => {
+    if (App.locust_swarm_on) {
+      return
+    }
+
     if (e.repeat) {
       let ok = (e.key === `ArrowUp`) || (e.key === `ArrowDown`)
 
@@ -538,6 +542,11 @@ App.setup_keyboard = () => {
   })
 
   DOM.ev(document, `keyup`, (e) => {
+    if (App.locust_swarm_on) {
+      App.stop_locust_swarm()
+      return
+    }
+
     App.stop_press_timeout()
 
     if (App.popup_open()) {

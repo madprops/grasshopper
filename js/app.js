@@ -91,6 +91,7 @@ App.last_main_title = undefined
 App.max_browser_urls = 5
 App.password_length = 20
 App.mode_vars = {}
+App.locust_swarm_on = false
 
 App.settings_done = false
 App.settings_ready = false
@@ -190,6 +191,7 @@ App.circle_icon = `⭕`
 App.globe_icon = `🌎`
 App.data_icon = `💾`
 App.time_icon = `⏰`
+App.grasshopper_icon = `🦗`
 
 App.sizes = [
   {text: `Tiny`, value: `tiny`},
