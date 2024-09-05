@@ -216,6 +216,20 @@ App.jump_tabs = async (what, info, reverse = false) => {
   }
 }
 
+App.get_jump_target = (num) => {
+  if (num === 1) {
+    return `jump`
+  }
+  else {
+    return `jump${num}`
+  }
+}
+
+App.filter_jump_tag = (mode, num) => {
+  let target = App.get_jump_target(num)
+  App.filter_tag({mode: mode, tag: target, from: `jump`})
+}
+
 App.jump_tabs_all = (reverse = false) => {
   App.jump_tabs(`all`, undefined, reverse)
 }
@@ -262,18 +276,4 @@ App.jump_tabs_unread = (reverse = false) => {
 
 App.jump_tabs_playing = (reverse = false) => {
   App.jump_tabs(`playing`, undefined, reverse)
-}
-
-App.get_jump_target = (num) => {
-  if (num === 1) {
-    return `jump`
-  }
-  else {
-    return `jump${num}`
-  }
-}
-
-App.filter_jump_tag = (mode, num) => {
-  let target = App.get_jump_target(num)
-  App.filter_tag({mode: mode, tag: target, from: `jump`})
 }
