@@ -1288,6 +1288,7 @@ App.setup_commands = () => {
     },
 
     ...color_closers,
+
     {
       name: `Tab Up`,
       cmd: `tab_up`,
@@ -1688,6 +1689,36 @@ App.setup_commands = () => {
         App.remove_tag_all(args.item, `jump3`)
       },
       info: `Remove the 'jump3' tag`,
+    },
+    {
+      name: `Filter Jump`,
+      cmd: `filter_jump_tag_1`,
+      modes: [`items`],
+      icon: tag_icon,
+      action: (args) => {
+        App.filter_jump_tag(args.mode, 1)
+      },
+      info: `Filter the 'jump' tag`,
+    },
+    {
+      name: `Filter Jump 2`,
+      cmd: `filter_jump_tag_2`,
+      modes: [`items`],
+      icon: tag_icon,
+      action: (args) => {
+        App.filter_jump_tag(args.mode, 2)
+      },
+      info: `Filter the 'jump' tag`,
+    },
+    {
+      name: `Filter Jump 3`,
+      cmd: `filter_jump_tag_3`,
+      modes: [`items`],
+      icon: tag_icon,
+      action: (args) => {
+        App.filter_jump_tag(args.mode, 3)
+      },
+      info: `Filter the 'jump3' tag`,
     },
     {
       name: `Jump Header Up`,
@@ -2585,6 +2616,7 @@ App.setup_commands = () => {
     },
 
     ...custom_urls,
+
     {
       name: `Password`,
       cmd: `generate_password`,

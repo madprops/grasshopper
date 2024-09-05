@@ -15,12 +15,7 @@ App.jump_tabs = (what, info, reverse = false) => {
   let target, action
 
   if (what === `tag`) {
-    if (info === 1) {
-      target = `jump`
-    }
-    else {
-      target = `jump${info}`
-    }
+    target = App.get_jump_target(info)
   }
   else if (zones.includes(what)) {
     if (index > 0) {
@@ -208,13 +203,16 @@ App.jump_tabs_zone = (reverse = false) => {
   App.jump_tabs(`zone`, undefined, reverse)
 }
 
-App.add_jump_tag = (num) => {
-  let target
-
+App.get_jump_target = (num) => {
   if (num === 1) {
-    target = `jump`
+    return `jump`
   }
   else {
-    target = `jump${num}`
+    return `jump${num}`
   }
+}
+
+App.filter_jump_tag = (mode, num) => {
+  let target = App.get_jump_target(num)
+  App.filter_tag({mode: mode, tag: target, from: `jump`})
 }
