@@ -6,14 +6,14 @@ App.setup_playing = () => {
 
 App.create_playing_icon = (mode) => {
   let btn = DOM.create(`div`, `button icon_button playing_icon hidden`, `playing_icon_${mode}`)
-  let click = App.get_cmd_name(`go_to_playing_tab`)
+  let click = App.get_cmd_name(`jump_tabs_playing_down`)
   let rclick = App.get_cmd_name(`show_playing_tabs`)
   btn.title = `Click: ${click} (Ctrl + Dot)\nRight Click: ${rclick}`
   App.trigger_title(btn, `middle_click_playing`)
   let icon = App.get_svg_icon(`speaker`)
 
   DOM.ev(btn, `click`, () => {
-    App.go_to_playing_tab()
+    App.jump_tabs_playing()
   })
 
   DOM.ev(btn, `contextmenu`, (e) => {
@@ -67,39 +67,6 @@ App.do_check_playing = (mode = App.active_mode, force = false) => {
 
 App.get_playing_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.playing)
-}
-
-App.go_to_playing_tab = () => {
-  let items = App.get_items(`tabs`)
-  let waypoint = false
-  let first
-
-  async function proc (item) {
-    await App.check_on_tabs()
-    App.tabs_action(item, `playing`)
-  }
-
-  for (let item of items) {
-    if (item.playing) {
-      if (!first) {
-        first = item
-      }
-
-      if (waypoint) {
-        proc(item)
-        return
-      }
-    }
-
-    if (!waypoint && item.active) {
-      waypoint = true
-      continue
-    }
-  }
-
-  if (first) {
-    proc(first)
-  }
 }
 
 App.filter_playing = async () => {

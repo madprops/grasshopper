@@ -77,6 +77,11 @@ App.jump_tabs = (what, info, reverse = false) => {
       return it.unread
     }
   }
+  else if (what === `playing`) {
+    check = function(it) {
+      return it.playing
+    }
+  }
   else if (what === `color`) {
     check = function(it) {
       let match = false
@@ -209,6 +214,18 @@ App.jump_tabs = (what, info, reverse = false) => {
   }
 }
 
+App.jump_tabs_all = (reverse = false) => {
+  App.jump_tabs(`all`, undefined, reverse)
+}
+
+App.jump_tabs_pin = (reverse = false) => {
+  App.jump_tabs(`pin`, undefined, reverse)
+}
+
+App.jump_tabs_normal = (reverse = false) => {
+  App.jump_tabs(`normal`, undefined, reverse)
+}
+
 App.jump_tabs_color = (id, reverse = false) => {
   App.jump_tabs(`color`, id, reverse)
 }
@@ -237,20 +254,12 @@ App.jump_tabs_zone = (reverse = false) => {
   App.jump_tabs(`zone`, undefined, reverse)
 }
 
-App.next_unread_tab = (reverse = false) => {
+App.jump_tabs_unread = (reverse = false) => {
   App.jump_tabs(`unread`, undefined, reverse)
 }
 
-App.pin_up_down = (direction) => {
-  App.jump_tabs(`pin`, undefined, direction === `up`)
-}
-
-App.normal_up_down = (direction = `down`) => {
-  App.jump_tabs(`normal`, undefined, direction === `up`)
-}
-
-App.tab_up_down = (direction = `down`) => {
-  App.jump_tabs(`all`, undefined, direction === `up`)
+App.jump_tabs_playing = (reverse = false) => {
+  App.jump_tabs(`playing`, undefined, reverse)
 }
 
 App.get_jump_target = (num) => {

@@ -94,7 +94,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `.`) {
-      App.go_to_playing_tab()
+      App.jump_tabs_playing()
       e.preventDefault()
       return
     }

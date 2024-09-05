@@ -1143,7 +1143,7 @@ App.setup_commands = () => {
       cmd: `jump_tabs_all_up`,
       icon: up_icon,
       action: (args) => {
-        App.tab_up_down(`up`)
+        App.jump_tabs_all(true)
       },
       info: `Go to the tab above`,
     },
@@ -1152,7 +1152,7 @@ App.setup_commands = () => {
       cmd: `jump_tabs_all_down`,
       icon: down_icon,
       action: (args) => {
-        App.tab_up_down(`down`)
+        App.jump_tabs_all()
       },
       info: `Go to the tab below`,
     },
@@ -1161,7 +1161,7 @@ App.setup_commands = () => {
       cmd: `jump_tabs_pin_up`,
       icon: pin_icon,
       action: (args) => {
-        App.pin_up_down(`up`)
+        App.jump_tabs_pin(true)
       },
       info: `Go to the pin above`,
     },
@@ -1170,7 +1170,7 @@ App.setup_commands = () => {
       cmd: `jump_tabs_pin_down`,
       icon: pin_icon,
       action: (args) => {
-        App.pin_up_down(`down`)
+        App.jump_tabs_pin()
       },
       info: `Go to the pin below`,
     },
@@ -1179,7 +1179,7 @@ App.setup_commands = () => {
       cmd: `jump_tabs_normal_up`,
       icon: tabs_icon,
       action: (args) => {
-        App.normal_up_down(`up`)
+        App.jump_tabs_normal(true)
       },
       info: `Go to the normal tab above`,
     },
@@ -1188,7 +1188,7 @@ App.setup_commands = () => {
       cmd: `jump_tabs_normal_down`,
       icon: tabs_icon,
       action: (args) => {
-        App.normal_up_down(`down`)
+        App.jump_tabs_normal()
       },
       info: `Go to the normal tab below`,
     },
@@ -1197,7 +1197,7 @@ App.setup_commands = () => {
       cmd: `jump_tabs_unread_down`,
       icon: unread_icon,
       action: (args) => {
-        App.next_unread_tab()
+        App.jump_tabs_unread()
       },
       info: `Go to the next unread tab`,
     },
@@ -1409,11 +1409,20 @@ App.setup_commands = () => {
     ...color_closers,
 
     {
-      name: `Go To Playing`,
-      cmd: `go_to_playing_tab`,
-      icon: tabs_icon,
+      name: `Playing Up`,
+      cmd: `jump_tabs_playing_up`,
+      icon: playing_icon,
       action: (args) => {
-        App.go_to_playing_tab()
+        App.jump_tabs_playing(true)
+      },
+      info: `Go the tab emitting sound`,
+    },
+    {
+      name: `Playing Down`,
+      cmd: `jump_tabs_playing_down`,
+      icon: playing_icon,
+      action: (args) => {
+        App.jump_tabs_playing()
       },
       info: `Go the tab emitting sound`,
     },
