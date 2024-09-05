@@ -1,4 +1,6 @@
-App.jump_tabs = (what, info, reverse = false) => {
+App.jump_tabs = async (what, info, reverse = false) => {
+  await App.check_on_tabs()
+
   let item = App.get_selected(`tabs`)
 
   if (!item) {

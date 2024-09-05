@@ -180,6 +180,7 @@ App.setup_commands = () => {
     color_closers.push({
       name: name,
       cmd: `jump_tabs_color_${color.id}_up`,
+      modes: [`items`],
       icon: icon,
       action: (args) => {
         App.jump_tabs_color(color.id, true)
@@ -193,6 +194,7 @@ App.setup_commands = () => {
     color_closers.push({
       name: name,
       cmd: `jump_tabs_color_${color.id}_down`,
+      modes: [`items`],
       icon: icon,
       action: (args) => {
         App.jump_tabs_color(color.id)
@@ -1141,6 +1143,7 @@ App.setup_commands = () => {
     {
       name: `Tab Up`,
       cmd: `jump_tabs_all_up`,
+      modes: [`items`],
       icon: up_icon,
       action: (args) => {
         App.jump_tabs_all(true)
@@ -1150,6 +1153,7 @@ App.setup_commands = () => {
     {
       name: `Tab Down`,
       cmd: `jump_tabs_all_down`,
+      modes: [`items`],
       icon: down_icon,
       action: (args) => {
         App.jump_tabs_all()
@@ -1159,6 +1163,7 @@ App.setup_commands = () => {
     {
       name: `Pin Up`,
       cmd: `jump_tabs_pin_up`,
+      modes: [`items`],
       icon: pin_icon,
       action: (args) => {
         App.jump_tabs_pin(true)
@@ -1168,6 +1173,7 @@ App.setup_commands = () => {
     {
       name: `Pin Down`,
       cmd: `jump_tabs_pin_down`,
+      modes: [`items`],
       icon: pin_icon,
       action: (args) => {
         App.jump_tabs_pin()
@@ -1177,6 +1183,7 @@ App.setup_commands = () => {
     {
       name: `Normal Up`,
       cmd: `jump_tabs_normal_up`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.jump_tabs_normal(true)
@@ -1186,6 +1193,7 @@ App.setup_commands = () => {
     {
       name: `Normal Down`,
       cmd: `jump_tabs_normal_down`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.jump_tabs_normal()
@@ -1195,6 +1203,7 @@ App.setup_commands = () => {
     {
       name: `Unread Up`,
       cmd: `jump_tabs_unread_up`,
+      modes: [`items`],
       icon: unread_icon,
       action: (args) => {
         App.jump_tabs_unread(true)
@@ -1204,6 +1213,7 @@ App.setup_commands = () => {
     {
       name: `Unread Down`,
       cmd: `jump_tabs_unread_down`,
+      modes: [`items`],
       icon: unread_icon,
       action: (args) => {
         App.jump_tabs_unread()
@@ -1420,6 +1430,7 @@ App.setup_commands = () => {
     {
       name: `Playing Up`,
       cmd: `jump_tabs_playing_up`,
+      modes: [`items`],
       icon: playing_icon,
       action: (args) => {
         App.jump_tabs_playing(true)
@@ -1429,6 +1440,7 @@ App.setup_commands = () => {
     {
       name: `Playing Down`,
       cmd: `jump_tabs_playing_down`,
+      modes: [`items`],
       icon: playing_icon,
       action: (args) => {
         App.jump_tabs_playing()
@@ -1686,6 +1698,7 @@ App.setup_commands = () => {
     {
       name: `Jump Up`,
       cmd: `jump_tabs_tag_1_up`,
+      modes: [`items`],
       icon: right_icon,
       action: (args) => {
         App.jump_tabs_tag(1, true)
@@ -1695,6 +1708,7 @@ App.setup_commands = () => {
     {
       name: `Jump Down`,
       cmd: `jump_tabs_tag_1_down`,
+      modes: [`items`],
       icon: right_icon,
       action: (args) => {
         App.jump_tabs_tag(1)
@@ -1704,6 +1718,7 @@ App.setup_commands = () => {
     {
       name: `Jump 2 Up`,
       cmd: `jump_tabs_tag_2_up`,
+      modes: [`items`],
       icon: right_icon,
       action: (args) => {
         App.jump_tabs_tag(2, true)
@@ -1713,6 +1728,7 @@ App.setup_commands = () => {
     {
       name: `Jump 2 Down`,
       cmd: `jump_tabs_tag_2_down`,
+      modes: [`items`],
       icon: right_icon,
       action: (args) => {
         App.jump_tabs_tag(2)
@@ -1722,6 +1738,7 @@ App.setup_commands = () => {
     {
       name: `Jump 3 Up`,
       cmd: `jump_tabs_tag_3_up`,
+      modes: [`items`],
       icon: right_icon,
       action: (args) => {
         App.jump_tabs_tag(3, true)
@@ -1731,6 +1748,7 @@ App.setup_commands = () => {
     {
       name: `Jump 3 Down`,
       cmd: `jump_tabs_tag_3_down`,
+      modes: [`items`],
       icon: right_icon,
       action: (args) => {
         App.jump_tabs_tag(3)
@@ -1842,6 +1860,7 @@ App.setup_commands = () => {
     {
       name: `Header Up`,
       cmd: `jump_tabs_header_up`,
+      modes: [`items`],
       icon: header_icon,
       action: (args) => {
         App.jump_tabs_header(true)
@@ -1851,6 +1870,7 @@ App.setup_commands = () => {
     {
       name: `Header Down`,
       cmd: `jump_tabs_header_down`,
+      modes: [`items`],
       icon: header_icon,
       action: (args) => {
         App.jump_tabs_header()
@@ -1860,6 +1880,7 @@ App.setup_commands = () => {
     {
       name: `Subheader Up`,
       cmd: `jump_tabs_subheader_up`,
+      modes: [`items`],
       icon: header_icon,
       action: (args) => {
         App.jump_tabs_subheader(true)
@@ -1869,6 +1890,7 @@ App.setup_commands = () => {
     {
       name: `Subheader Down`,
       cmd: `jump_tabs_subheader_down`,
+      modes: [`items`],
       icon: header_icon,
       action: (args) => {
         App.jump_tabs_subheader()
@@ -1878,6 +1900,7 @@ App.setup_commands = () => {
     {
       name: `Headers Up`,
       cmd: `jump_tabs_headers_up`,
+      modes: [`items`],
       icon: header_icon,
       action: (args) => {
         App.jump_tabs_headers(true)
@@ -1887,6 +1910,7 @@ App.setup_commands = () => {
     {
       name: `Headers Down`,
       cmd: `jump_tabs_headers_down`,
+      modes: [`items`],
       icon: header_icon,
       action: (args) => {
         App.jump_tabs_headers()
@@ -1896,6 +1920,7 @@ App.setup_commands = () => {
     {
       name: `Split Up`,
       cmd: `jump_tabs_split_up`,
+      modes: [`items`],
       icon: header_icon,
       action: (args) => {
         App.jump_tabs_split(true)
@@ -1905,6 +1930,7 @@ App.setup_commands = () => {
     {
       name: `Split Down`,
       cmd: `jump_tabs_split_down`,
+      modes: [`items`],
       icon: header_icon,
       action: (args) => {
         App.jump_tabs_split()
@@ -1914,6 +1940,7 @@ App.setup_commands = () => {
     {
       name: `Zone Up`,
       cmd: `jump_tabs_zone_up`,
+      modes: [`items`],
       icon: header_icon,
       action: (args) => {
         App.jump_tabs_zone(true)
@@ -1923,6 +1950,7 @@ App.setup_commands = () => {
     {
       name: `Zone Down`,
       cmd: `jump_tabs_zone_down`,
+      modes: [`items`],
       icon: header_icon,
       action: (args) => {
         App.jump_tabs_zone()
