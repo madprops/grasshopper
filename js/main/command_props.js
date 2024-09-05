@@ -1053,7 +1053,6 @@ App.setup_commands = () => {
       cmd: `toggle_pin_tabs`,
       modes: [`tabs`],
       item: true,
-      some_loaded: true,
       icon: pin_icon,
       action: (args) => {
         App.toggle_pin_tabs(args.item)
