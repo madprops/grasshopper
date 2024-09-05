@@ -3,6 +3,7 @@ App.user_settings = (who) => {
     message: `Apply settings?`,
     confirm_action: () => {
       App[`user_${who}_settings`]()
+      App.alert_autohide(`Welcome ${who}`)
     },
   })
 }
@@ -67,5 +68,4 @@ App.user_madprops_settings = () => {
   App.set_setting({ setting: `custom_urls`, value: urls })
   App.refresh_settings()
   App.clear_show()
-  App.alert_autohide(`Welcome madprops`)
 }
