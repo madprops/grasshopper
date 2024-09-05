@@ -1599,3 +1599,76 @@ App.last_normal_tab = () => {
     App.tabs_action(last)
   }
 }
+
+App.waypoint_tab_up_down = (direction) => {
+  let item = App.get_selected(`tabs`)
+  let items = App.get_items(`tabs`)
+
+  if (items.length <= 1) {
+    return
+  }
+
+  let pins = items.filter(x => x.pinned)
+  let normal = items.filter(x => !x.pinned)
+
+  if (!item) {
+    item = App.get_active_tab_item()
+  }
+
+  if (direction === `up`) {
+    if (item.pinned) {
+      if (pins[0] === item) {
+        if (normal.length) {
+          App.last_normal_tab()
+        }
+        else {
+          App.last_pinned_tab()
+        }
+      }
+      else {
+        App.first_pinned_tab()
+      }
+    }
+    else {
+      if (normal[0] === item) {
+        if (pins.length) {
+          App.last_pinned_tab()
+        }
+        else {
+          App.last_normal_tab()
+        }
+      }
+      else {
+        App.first_normal_tab()
+      }
+    }
+  }
+  else if (direction === `down`) {
+    if (item.pinned) {
+      if (pins.at(-1) !== item) {
+        App.last_pinned_tab()
+      }
+      else {
+        if (normal.length) {
+          App.first_normal_tab()
+        }
+        else {
+          App.first_pinned_tab()
+        }
+      }
+    }
+    else {
+      if (normal.at(-1) !== item) {
+        App.last_normal_tab()
+      }
+      else {
+        if (pins.length) {
+          App.first_pinned_tab()
+        }
+        else {
+          App.first_normal_tab()
+        }
+      }
+    }
+  }
+}

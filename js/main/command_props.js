@@ -526,7 +526,7 @@ App.setup_commands = () => {
       name: `First Normal`,
       cmd: `go_to_first_normal_tab`,
       modes: [`items`],
-      icon: pin_icon,
+      icon: tabs_icon,
       action: (args) => {
         App.first_normal_tab()
       },
@@ -536,11 +536,31 @@ App.setup_commands = () => {
       name: `Last Normal`,
       cmd: `go_to_last_normal_tab`,
       modes: [`items`],
-      icon: pin_icon,
+      icon: tabs_icon,
       action: (args) => {
         App.last_normal_tab()
       },
       info: `Go to the last normal tab`,
+    },
+    {
+      name: `Waypoint Up`,
+      cmd: `waypoint_tab_up`,
+      modes: [`items`],
+      icon: tabs_icon,
+      action: (args) => {
+        App.waypoint_tab_up_down(`up`)
+      },
+      info: `Go to the next waypoint up`,
+    },
+    {
+      name: `Waypoint Down`,
+      cmd: `waypoint_tab_down`,
+      modes: [`items`],
+      icon: tabs_icon,
+      action: (args) => {
+        App.waypoint_tab_up_down(`down`)
+      },
+      info: `Go to the next waypoint down`,
     },
     {
       name: `Copy Tabs`,
