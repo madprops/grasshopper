@@ -248,13 +248,14 @@ App.media_show_error = (what) => {
   DOM.el(`#media_${what}_loading`).textContent = `Unable to load`
 }
 
-App.open_media = (what = App.current_media_type) => {
+App.open_media = async (what = App.current_media_type) => {
   if (what === `video` || what === `audio`) {
     App.stop_media_player(what)
   }
 
   let item = App[`current_media_${what}_item`]
   App.hide_window()
+  await App.check_on_tabs()
   App.focus_or_open_item(item)
 }
 
