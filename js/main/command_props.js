@@ -1141,8 +1141,26 @@ App.setup_commands = () => {
       info: `Make a new tab and pin it automatically`,
     },
     {
+      name: `Tab Up`,
+      cmd: `jump_tabs_all_up`,
+      icon: up_icon,
+      action: (args) => {
+        App.tab_up_down(`up`)
+      },
+      info: `Go to the tab above`,
+    },
+    {
+      name: `Tab Down`,
+      cmd: `jump_tabs_all_down`,
+      icon: down_icon,
+      action: (args) => {
+        App.tab_up_down(`down`)
+      },
+      info: `Go to the tab below`,
+    },
+    {
       name: `Pin Up`,
-      cmd: `pinned_tab_up`,
+      cmd: `jump_tabs_pin_up`,
       icon: pin_icon,
       action: (args) => {
         App.pin_up_down(`up`)
@@ -1151,7 +1169,7 @@ App.setup_commands = () => {
     },
     {
       name: `Pin Down`,
-      cmd: `pinned_tab_down`,
+      cmd: `jump_tabs_pin_down`,
       icon: pin_icon,
       action: (args) => {
         App.pin_up_down(`down`)
@@ -1160,7 +1178,7 @@ App.setup_commands = () => {
     },
     {
       name: `Normal Up`,
-      cmd: `normal_tab_up`,
+      cmd: `jump_tabs_normal_up`,
       icon: tabs_icon,
       action: (args) => {
         App.normal_up_down(`up`)
@@ -1169,7 +1187,7 @@ App.setup_commands = () => {
     },
     {
       name: `Normal Down`,
-      cmd: `normal_tab_down`,
+      cmd: `jump_tabs_normal_down`,
       icon: tabs_icon,
       action: (args) => {
         App.normal_up_down(`down`)
@@ -1178,7 +1196,7 @@ App.setup_commands = () => {
     },
     {
       name: `Next Unread`,
-      cmd: `next_unread_tab`,
+      cmd: `jump_tabs_unread_down`,
       icon: unread_icon,
       action: (args) => {
         App.next_unread_tab()
@@ -1392,24 +1410,6 @@ App.setup_commands = () => {
 
     ...color_closers,
 
-    {
-      name: `Tab Up`,
-      cmd: `tab_up`,
-      icon: up_icon,
-      action: (args) => {
-        App.tab_up_down(`up`)
-      },
-      info: `Go to the tab above`,
-    },
-    {
-      name: `Tab Down`,
-      cmd: `tab_down`,
-      icon: down_icon,
-      action: (args) => {
-        App.tab_up_down(`down`)
-      },
-      info: `Go to the tab below`,
-    },
     {
       name: `Go To Playing`,
       cmd: `go_to_playing_tab`,
