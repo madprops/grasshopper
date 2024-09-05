@@ -1565,6 +1565,9 @@ App.madprops_settings = () => {
   App.set_setting({setting: `wheel_down_footer`, value: `jump_tabs_header_down`})
   App.set_setting({setting: `extra_menu_mode`, value: `flat`})
 
+  let cmd = {cmd: `waypoint_tab_down`, alt: `waypoint_tab_up`}
+  App.prepend_list_setting(`favorites_menu`, cmd)
+
   let urls = [
     {
       name: `Mikaeli`,
@@ -1600,4 +1603,16 @@ App.madprops_settings = () => {
   App.refresh_settings()
   App.clear_show()
   App.alert_autohide(`Welcome madprops`)
+}
+
+App.prepend_list_setting = (setting, value, action = true) => {
+  let items = App.get_setting(setting)
+  items.unshift(value)
+  App.set_setting({setting: setting, value: items, action: action})
+}
+
+App.append_list_setting = (setting, value, action = true) => {
+  let items = App.get_setting(setting)
+  items.push(value)
+  App.set_setting({setting: setting, value: items, action: action})
 }
