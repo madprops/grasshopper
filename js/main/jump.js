@@ -12,7 +12,7 @@ App.jump_tabs = (what, info, reverse = false) => {
   let matched_once = false
   let waypoint = false
   let first = undefined
-  let target, action
+  let target
 
   if (what === `tag`) {
     target = App.get_jump_target(info)
@@ -29,18 +29,23 @@ App.jump_tabs = (what, info, reverse = false) => {
     }
   }
 
-  if (zones.includes(what)) {
-    action = `jump_zone`
-  }
-  else {
-    action = `jump`
-  }
-
-  if (reverse) {
-    items = items.slice(0).reverse()
-  }
-
   function jump(it) {
+    let action
+    let index_2 = items.indexOf(it)
+    let diff = Math.abs(index - index_2)
+
+    if (diff <= 1) {
+      action = `jump_fast`
+    }
+    else {
+      if (zones.includes(what)) {
+        action = `jump_zone`
+      }
+      else {
+        action = `jump`
+      }
+    }
+
     App.tabs_action(it, action)
   }
 
@@ -156,7 +161,16 @@ App.jump_tabs = (what, info, reverse = false) => {
 
   // -------------------------
 
-  for (let it of items) {
+  let item_list
+
+  if (reverse) {
+    item_list = items.slice(0).reverse()
+  }
+  else {
+    item_list = items
+  }
+
+  for (let it of item_list) {
     let matched = check(it)
 
     if (matched) {

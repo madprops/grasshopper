@@ -1555,12 +1555,16 @@ App.madprops_settings = () => {
   App.set_setting({setting: `autohide_context`, value: true})
   App.set_setting({setting: `double_click_favorites_top`, value: `toggle_taglist`})
   App.set_setting({setting: `middle_click_favorites_top`, value: `toggle_pin_tabs`})
-  App.set_setting({setting: `wheel_up_favorites_top`, value: `pinned_tab_up`})
-  App.set_setting({setting: `wheel_down_favorites_top`, value: `pinned_tab_down`})
-  App.set_setting({setting: `wheel_up_favorites_center`, value: `tab_up`})
-  App.set_setting({setting: `wheel_down_favorites_center`, value: `tab_down`})
-  App.set_setting({setting: `wheel_up_favorites_bottom`, value: `normal_tab_up`})
-  App.set_setting({setting: `wheel_down_favorites_bottom`, value: `normal_tab_down`})
+
+  App.set_setting({setting: `wheel_up_favorites_top`, value: `jump_tabs_pin_up`})
+  App.set_setting({setting: `wheel_down_favorites_top`, value: `jump_tabs_pin_down`})
+
+  App.set_setting({setting: `wheel_up_favorites_center`, value: `jump_tabs_all_up`})
+  App.set_setting({setting: `wheel_down_favorites_center`, value: `jump_tabs_all_down`})
+
+  App.set_setting({setting: `wheel_up_favorites_bottom`, value: `jump_tabs_normal_up`})
+  App.set_setting({setting: `wheel_down_favorites_bottom`, value: `jump_tabs_normal_down`})
+
   App.set_setting({setting: `wheel_up_footer`, value: `jump_tabs_header_up`})
   App.set_setting({setting: `wheel_down_footer`, value: `jump_tabs_header_down`})
   App.set_setting({setting: `extra_menu_mode`, value: `flat`})
