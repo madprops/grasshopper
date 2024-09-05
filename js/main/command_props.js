@@ -503,6 +503,46 @@ App.setup_commands = () => {
       info: `Select the item below ignoring unloaded`,
     },
     {
+      name: `First Pin`,
+      cmd: `go_to_first_pinned_tab`,
+      modes: [`items`],
+      icon: pin_icon,
+      action: (args) => {
+        App.first_pinned_tab()
+      },
+      info: `Go to the first pinned tab`,
+    },
+    {
+      name: `Last Pin`,
+      cmd: `go_to_last_pinned_tab`,
+      modes: [`items`],
+      icon: pin_icon,
+      action: (args) => {
+        App.last_pinned_tab()
+      },
+      info: `Go to the last pinned tab`,
+    },
+    {
+      name: `First Normal`,
+      cmd: `go_to_first_normal_tab`,
+      modes: [`items`],
+      icon: pin_icon,
+      action: (args) => {
+        App.first_normal_tab()
+      },
+      info: `Go to the first normal tab`,
+    },
+    {
+      name: `Last Normal`,
+      cmd: `go_to_last_normal_tab`,
+      modes: [`items`],
+      icon: pin_icon,
+      action: (args) => {
+        App.last_normal_tab()
+      },
+      info: `Go to the last normal tab`,
+    },
+    {
       name: `Copy Tabs`,
       cmd: `copy_tabs`,
       modes: [`tabs`],

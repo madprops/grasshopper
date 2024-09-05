@@ -1563,3 +1563,39 @@ App.pin_up_down = (direction = `down`) => {
 App.normal_up_down = (direction = `down`) => {
   App.tab_up_down(direction, `normal`)
 }
+
+App.first_pinned_tab = () => {
+  let items = App.get_items(`tabs`)
+  let first = items.find(x => x.pinned)
+
+  if (first) {
+    App.tabs_action(first, `tab_cmd`)
+  }
+}
+
+App.last_pinned_tab = () => {
+  let items = App.get_items(`tabs`)
+  let last = items.slice(0).reverse().find(x => x.pinned)
+
+  if (last) {
+    App.tabs_action(last, `tab_cmd`)
+  }
+}
+
+App.first_normal_tab = () => {
+  let items = App.get_items(`tabs`)
+  let first = items.find(x => !x.pinned)
+
+  if (first) {
+    App.tabs_action(first, `tab_cmd`)
+  }
+}
+
+App.last_normal_tab = () => {
+  let items = App.get_items(`tabs`)
+  let last = items.slice(0).reverse().find(x => !x.pinned)
+
+  if (last) {
+    App.tabs_action(last, `tab_cmd`)
+  }
+}
