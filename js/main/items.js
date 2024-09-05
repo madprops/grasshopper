@@ -175,6 +175,12 @@ App.set_selected = (item) => {
     return
   }
 
+  let prev = App[`last_selected_${item.mode}`]
+
+  if (prev && prev.blink_interval) {
+    App.clear_blink_item(prev)
+  }
+
   App[`last_selected_${item.mode}`] = item
 
   if (App.get_setting(`sticky_filter`) !== `none`) {
@@ -1300,13 +1306,17 @@ App.selected_visible = (mode = App.active_mode) => {
   return false
 }
 
+App.clear_blink_item = (item) => {
+  clearInterval(item.blink_interval)
+  item.blink_interval = undefined
+  item.element.style.opacity = 1
+}
+
 // It's better to do this manually than dealing with CSS classes
 App.blink_item = (item) => {
   for (let it of App.get_items(item.mode)) {
     if (it.blink_interval) {
-      clearInterval(it.blink_interval)
-      it.blink_interval = undefined
-      it.element.style.opacity = 1
+      App.clear_blink_item(it)
     }
   }
 
