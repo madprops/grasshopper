@@ -1,7 +1,9 @@
 App.setup_recent_tabs = () => {
+  let delay = App.get_setting(`recent_tabs_delay`)
+
   App.empty_previous_tabs_debouncer = App.create_debouncer(() => {
     App.do_empty_previous_tabs()
-  }, App.empty_previous_tabs_delay)
+  }, delay)
 }
 
 App.empty_previous_tabs = () => {

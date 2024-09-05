@@ -109,7 +109,6 @@ App.playing = false
 App.last_opacity_cycle_date = 0
 App.filter_click_date = 0
 
-App.empty_previous_tabs_delay = 2000
 App.alert_autohide_delay = 1500
 App.tab_box_shrink_delay = 500
 App.favorites_bar_show_delay = 100

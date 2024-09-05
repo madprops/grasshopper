@@ -2836,6 +2836,16 @@ App.build_settings = () => {
   category = `more`
 
   props = {
+    recent_tabs_delay: {
+      name: `Recent Tabs Delay`,
+      type: `number`,
+      value: 2000,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Empty the recent tabs list these milliseconds after its last use`,
+      version: 1,
+    },
     close_on_focus: {
       name: `Close On Focus`,
       type: `checkbox`,
