@@ -1514,9 +1514,13 @@ App.toggle_show_pins = () => {
   App.do_filter({mode: App.active_mode})
 }
 
-App.tab_up_down = (direction = `down`) => {
+App.tab_up_down = (direction, pins = false) => {
   let item = App.get_active_tab_item()
   let items = App.get_items(`tabs`)
+
+  if (pins) {
+    items = items.filter(x => x.pinned)
+  }
 
   if (!App.get_setting(`next_tab_unloaded`)) {
     items = items.filter(x => !x.unloaded)
@@ -1547,4 +1551,8 @@ App.tab_up_down = (direction = `down`) => {
   }
 
   App.tabs_action(next, `tab_cmd`)
+}
+
+App.pin_up_down = (direction = `down`) => {
+  App.tab_up_down(direction, true)
 }

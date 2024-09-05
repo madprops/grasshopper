@@ -1081,6 +1081,26 @@ App.setup_commands = () => {
       info: `Make a new tab and pin it automatically`,
     },
     {
+      name: `Pin Up`,
+      cmd: `pin_up`,
+      modes: [`tabs`],
+      icon: pin_icon,
+      action: (args) => {
+        App.pin_up_down(`up`)
+      },
+      info: `Go to the pin above`,
+    },
+    {
+      name: `Pin Down`,
+      cmd: `pin_down`,
+      modes: [`tabs`],
+      icon: pin_icon,
+      action: (args) => {
+        App.pin_up_down(`down`)
+      },
+      info: `Go to the pin below`,
+    },
+    {
       name: `Mute`,
       cmd: `mute_tabs`,
       modes: [`tabs`],
