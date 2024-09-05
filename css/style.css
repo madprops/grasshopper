@@ -1705,3 +1705,12 @@ a:hover
 .main_title_align_right .main_title_inner {
   text-align: right;
 }
+
+/*  */
+
+#canvas_locust_swarm {
+  z-index: 999999;
+  position: fixed;
+  top: 0;
+  left: 0;
+}

@@ -5,10 +5,6 @@ App.locust_swarm = () => {
   canvas.id = `canvas_locust_swarm`
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
-  canvas.style.zIndex = 999999
-  canvas.style.position = `fixed`
-  canvas.style.top = 0
-  canvas.style.left = 0
   App.locust_swarm_canvas = canvas
 
   DOM.ev(canvas, `click`, () => {
