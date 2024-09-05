@@ -546,7 +546,7 @@ App.setup_commands = () => {
       name: `Waypoint Up`,
       cmd: `waypoint_tab_up`,
       modes: [`items`],
-      icon: tabs_icon,
+      icon: right_icon,
       action: (args) => {
         App.waypoint_tab_up_down(`up`)
       },
@@ -556,7 +556,7 @@ App.setup_commands = () => {
       name: `Waypoint Down`,
       cmd: `waypoint_tab_down`,
       modes: [`items`],
-      icon: tabs_icon,
+      icon: right_icon,
       action: (args) => {
         App.waypoint_tab_up_down(`down`)
       },
