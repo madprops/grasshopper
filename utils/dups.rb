@@ -11,10 +11,8 @@ def find_duplicate_functions(file_path)
   end
 
   duplicates = functions.select { |_, count| count > 1 }
-  if duplicates.empty?
-    puts "No duplicate functions found."
-  else
-    puts "Duplicate functions found:"
+
+  if not duplicates.empty?
     duplicates.each { |name, count| puts "#{name}: #{count} times" }
   end
 end
