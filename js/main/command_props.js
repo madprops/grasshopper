@@ -1082,7 +1082,7 @@ App.setup_commands = () => {
     },
     {
       name: `Pin Up`,
-      cmd: `pin_up`,
+      cmd: `pinned_tab_up`,
       modes: [`tabs`],
       icon: pin_icon,
       action: (args) => {
@@ -1092,7 +1092,7 @@ App.setup_commands = () => {
     },
     {
       name: `Pin Down`,
-      cmd: `pin_down`,
+      cmd: `pinned_tab_down`,
       modes: [`tabs`],
       icon: pin_icon,
       action: (args) => {

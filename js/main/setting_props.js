@@ -1250,7 +1250,6 @@ App.build_settings = () => {
       name: `Favorites Menu`,
       type: `list`,
       value: [
-        {cmd: `jump_tabs_tag_1_down`, alt: `jump_tabs_tag_1_up`},
         {cmd: `show_recent_tabs`, alt: `filter_unread_tabs`},
         {cmd: `show_pinned_tabs`, alt: `filter_pinned_tabs`},
         {cmd: `show_color_red`, alt: `filter_color_red`},
