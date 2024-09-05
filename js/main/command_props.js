@@ -1638,7 +1638,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove Jump`,
-      short_name: `Rem Jump`,
+      short_name: `Rm Jump`,
       cmd: `remove_jump_tag_1`,
       modes: [`tabs`],
       item: true,
@@ -1662,7 +1662,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove Jump 2`,
-      short_name: `Rem Jump 2`,
+      short_name: `Rm Jump 2`,
       cmd: `remove_jump_tag_2`,
       modes: [`tabs`],
       item: true,
@@ -1686,7 +1686,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove Jump 3`,
-      short_name: `Rem Jump 3`,
+      short_name: `Rm Jump 3`,
       cmd: `remove_jump_tag_3`,
       modes: [`tabs`],
       item: true,
