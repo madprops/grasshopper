@@ -68,8 +68,3 @@ App.do_check_playing = (mode = App.active_mode, force = false) => {
 App.get_playing_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.playing)
 }
-
-App.filter_playing = async () => {
-  await App.check_on_tabs()
-  App.filter_cmd(`tabs`, `filter_playing_tabs`)
-}
