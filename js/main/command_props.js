@@ -317,6 +317,17 @@ App.setup_commands = () => {
     })
   }
 
+  show_modes.push({
+    name: `Show Main Mode`,
+    short_name: `Main Mode`,
+    cmd: `show_main_mode`,
+    icon: tabs_icon,
+    action: (args) => {
+      App.show_main_mode()
+    },
+    info: `Show the main mode`,
+  })
+
   let settings_categories = []
 
   for (let category in App.setting_catprops) {

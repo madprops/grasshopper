@@ -1762,7 +1762,7 @@ App.build_settings = () => {
     middle_click_main_menu: {
       name: `Middle Click Main Menu`,
       type: `menu`,
-      value: `show_mode_tabs`,
+      value: `show_main_mode`,
       info: `Command to run when middle clicking the Main Menu`,
       version: 1,
       setup: (key) => {
