@@ -1550,7 +1550,7 @@ App.last_normal_tab = () => {
   }
 }
 
-App.waypoint_tab_up_down = (direction) => {
+App.edge_tab_up_down = (direction) => {
   let item = App.get_selected(`tabs`)
   let items = App.get_items(`tabs`)
 

@@ -541,24 +541,24 @@ App.setup_commands = () => {
       info: `Go to the last normal tab`,
     },
     {
-      name: `Waypoint Up`,
-      cmd: `waypoint_tab_up`,
+      name: `Edge Up`,
+      cmd: `tabs_edge_up`,
       modes: [`items`],
       icon: right_icon,
       action: (args) => {
-        App.waypoint_tab_up_down(`up`)
+        App.edge_tab_up_down(`up`)
       },
-      info: `Go to the next waypoint up`,
+      info: `Go to the next edge up`,
     },
     {
-      name: `Waypoint Down`,
-      cmd: `waypoint_tab_down`,
+      name: `Edge Down`,
+      cmd: `tabs_edge_down`,
       modes: [`items`],
       icon: right_icon,
       action: (args) => {
-        App.waypoint_tab_up_down(`down`)
+        App.edge_tab_up_down(`down`)
       },
-      info: `Go to the next waypoint down`,
+      info: `Go to the next edge down`,
     },
     {
       name: `Copy Tabs`,
