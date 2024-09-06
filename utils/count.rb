@@ -1,27 +1,35 @@
 #!/usr/bin/env ruby
 
-# Get total line numbers of a file
-def get_lines(file_path)
-  total_lines = 0
-
-  File.open(file_path, "r") do |file|
-    total_lines += file.readlines.size
+def get_lines(path)
+  File.open(path, "r") do |file|
+    return file.readlines.size
   end
-
-  total_lines
 end
 
-# Change directory to subdir and get total line numbers of all files
-def subdir_lines(subdir_path, ext)
-  total_lines = 0
+def get_size(path)
+  File.open(path, "r") do |file|
+    return File.size(file) / 1024.0
+  end
+end
 
-  Dir.chdir(subdir_path) do
+def count_subdir(path, ext)
+  lines = 0
+  size = 0
+
+  Dir.chdir(path) do
     Dir.glob("*.#{ext}").each do |file|
-      total_lines += get_lines(file) if File.file?(file)
+      lines += get_lines(file) if File.file?(file)
+      size += get_size(file) if File.file?(file)
     end
   end
 
-  total_lines
+  return lines, size.round(1)
+end
+
+def count_file(path)
+  lines = get_lines(path)
+  size = get_size(path)
+  return lines, size.round(1)
 end
 
 main_path = "js/main"
@@ -31,22 +39,24 @@ init_file = "js/init.js"
 main_file = "main.html"
 css_file = "css/style.css"
 
-lines_main_path = subdir_lines(main_path, "js")
-lines_libs_path = subdir_lines(libs_path, "js")
-lines_app_file = get_lines(app_file)
-lines_init_file = get_lines(init_file)
-lines_main_file = get_lines(main_file)
-lines_css_file = get_lines(css_file)
+lines_main_path, size_main_path = count_subdir(main_path, "js")
+lines_libs_path, size_libs_path = count_subdir(libs_path, "js")
+lines_app_file, size_app_file = count_file(app_file)
+lines_init_file, size_init_file = count_file(init_file)
+lines_main_file, size_main_file = count_file(main_file)
+lines_css_file, size_css_file = count_file(css_file)
 
-puts "#{main_path}: #{lines_main_path}"
-puts "#{libs_path}: #{lines_libs_path}"
-puts "app.js: #{lines_app_file}"
-puts "init.js: #{lines_init_file}"
-puts "main.html: #{lines_main_file}"
-puts "style.css: #{lines_css_file}"
+puts "#{main_path}: #{lines_main_path} lines | #{size_main_path} KB"
+puts "#{libs_path}: #{lines_libs_path} lines | #{size_libs_path} KB"
+puts "app.js: #{lines_app_file} lines | #{size_app_file} KB"
+puts "init.js: #{lines_init_file} lines| #{size_init_file} KB"
+puts "main.html: #{lines_main_file} lines| #{size_main_file} KB"
+puts "style.css: #{lines_css_file} lines | #{size_css_file} KB"
 
-# Sum all lines
 total_lines = lines_main_path + lines_libs_path +
 lines_app_file + lines_init_file + lines_main_file + lines_css_file
 
-puts "TOTAL: #{total_lines}"
+total_size = size_main_path + size_libs_path + size_app_file +
+size_init_file + size_main_file + size_css_file
+
+puts "TOTAL: #{total_lines} lines | #{total_size} KB"
