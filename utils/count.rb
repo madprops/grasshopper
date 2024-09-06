@@ -79,12 +79,18 @@ def total
   msg = [
     "\e[32mTotal\e[0m",
     "#{$total_lines} lines",
-    "#{$total_size} KB",
+    "#{$total_size.round(1)} KB",
     "#{print_files($total_files)}",
   ]
 
   puts msg.join($separator)
 end
+
+def intro
+  puts "🦗 Grasshopper Stats\n"
+end
+
+intro()
 
 show("js/main")
 show("js/libs")
