@@ -67,6 +67,7 @@ end
 def print_total
   msg = "\e[32mTOTAL:\e[0m"
   msg += " #{$total_lines} lines | #{$total_size} KB"
+  msg += " | #{print_files($total_files)}"
   puts msg
 end
 
