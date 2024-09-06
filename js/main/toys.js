@@ -23,6 +23,10 @@ App.locust_swarm = () => {
   let y_position = Array(columns).fill(0)
   let chars = [`🦗`, `🌿`]
 
+  function random_char() {
+    return chars[Math.floor(Math.random() * chars.length)]
+  }
+
   function matrix() {
     context.fillStyle = `#0001`
     context.fillRect(0, 0, width, height)
@@ -30,7 +34,7 @@ App.locust_swarm = () => {
     context.font = `15pt monospace`
 
     y_position.forEach((y, index) => {
-      let text = chars[Math.floor(Math.random() * chars.length)]
+      let text = random_char()
       let x = index * 20
       context.fillText(text, x, y)
 
