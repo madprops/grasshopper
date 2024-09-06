@@ -27,23 +27,26 @@ end
 main_path = "js/main"
 libs_path = "js/libs"
 app_file = "js/app.js"
+init_file = "js/init.js"
 main_file = "main.html"
 css_file = "css/style.css"
 
 lines_main_path = subdir_lines(main_path, "js")
 lines_libs_path = subdir_lines(libs_path, "js")
 lines_app_file = get_lines(app_file)
+lines_init_file = get_lines(init_file)
 lines_main_file = get_lines(main_file)
 lines_css_file = get_lines(css_file)
 
 puts "#{main_path}: #{lines_main_path}"
 puts "#{libs_path}: #{lines_libs_path}"
-puts "#{app_file}: #{lines_app_file}"
-puts "#{main_file}: #{lines_main_file}"
-puts "#{css_file}: #{lines_css_file}"
+puts "app.js: #{lines_app_file}"
+puts "init.js: #{lines_init_file}"
+puts "main.html: #{lines_main_file}"
+puts "style.css: #{lines_css_file}"
 
 # Sum all lines
 total_lines = lines_main_path + lines_libs_path +
-lines_app_file + lines_main_file + lines_css_file
+lines_app_file + lines_init_file + lines_main_file + lines_css_file
 
 puts "TOTAL: #{total_lines}"
