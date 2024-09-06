@@ -3,6 +3,7 @@
 $total_lines = 0
 $total_size = 0
 $total_files = 0
+$separator = "\e[36m | \e[0m"
 
 def get_lines(path)
   File.open(path, "r") do |file|
@@ -71,7 +72,7 @@ def show(path)
     msg.push("#{print_files(files)}")
   end
 
-  puts msg.join(" | ")
+  puts msg.join($separator)
 end
 
 def total
@@ -82,7 +83,7 @@ def total
     "#{print_files($total_files)}",
   ]
 
-  puts msg.join(" | ")
+  puts msg.join($separator)
 end
 
 show("js/main")
