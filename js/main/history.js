@@ -54,7 +54,16 @@ App.get_history = async (query = ``, deep = false) => {
 }
 
 App.history_action = (args = {}) => {
+  let def_args = {
+    on_action: true,
+  }
+
+  App.def_args(def_args, args)
   App.select_item({item: args.item, scroll: `nearest_smooth`})
-  App.on_action(`history`)
+
+  if (args.on_action) {
+    App.on_action(`history`)
+  }
+
   App.focus_or_open_item(args.item)
 }

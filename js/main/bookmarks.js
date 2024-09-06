@@ -73,8 +73,17 @@ App.get_bookmarks = async (query = ``, deep = false) => {
 }
 
 App.bookmarks_action = (args = {}) => {
+  let def_args = {
+    on_action: true,
+  }
+
+  App.def_args(def_args, args)
   App.select_item({item: args.item, scroll: `nearest_smooth`})
-  App.on_action(`bookmarks`)
+
+  if (args.on_action) {
+    App.on_action(`bookmarks`)
+  }
+
   App.focus_or_open_item(args.item)
 }
 
