@@ -58,10 +58,6 @@ def show(path)
   $total_size += size
   $total_files += files
 
-  if is_subdir
-    path += "/"
-  end
-
   msg = [
     "\e[34m#{path}\e[0m",
     "#{lines} lines",
