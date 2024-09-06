@@ -12,18 +12,20 @@ def get_size(path)
   end
 end
 
-def count_subdir(path, ext)
+def count_subdir(path)
   lines = 0
   size = 0
+  files = 0
 
   Dir.chdir(path) do
-    Dir.glob("*.#{ext}").each do |file|
-      lines += get_lines(file) if File.file?(file)
-      size += get_size(file) if File.file?(file)
+    Dir.glob("*").each do |file|
+      lines += get_lines(file)
+      size += get_size(file)
+      files += 1
     end
   end
 
-  return lines, size.round(1)
+  return lines, size.round(1), files
 end
 
 def count_file(path)
@@ -32,31 +34,42 @@ def count_file(path)
   return lines, size.round(1)
 end
 
-main_path = "js/main"
-libs_path = "js/libs"
-app_file = "js/app.js"
-init_file = "js/init.js"
-main_file = "main.html"
-css_file = "css/style.css"
+def print_files(files)
+  word = files == 1 ? "file" : "files"
+  return "#{files} #{word}"
+end
 
-lines_main_path, size_main_path = count_subdir(main_path, "js")
-lines_libs_path, size_libs_path = count_subdir(libs_path, "js")
-lines_app_file, size_app_file = count_file(app_file)
-lines_init_file, size_init_file = count_file(init_file)
-lines_main_file, size_main_file = count_file(main_file)
-lines_css_file, size_css_file = count_file(css_file)
+$total_lines = 0
+$total_size = 0
+$total_files = 0
 
-puts "#{main_path}: #{lines_main_path} lines | #{size_main_path} KB"
-puts "#{libs_path}: #{lines_libs_path} lines | #{size_libs_path} KB"
-puts "app.js: #{lines_app_file} lines | #{size_app_file} KB"
-puts "init.js: #{lines_init_file} lines | #{size_init_file} KB"
-puts "main.html: #{lines_main_file} lines | #{size_main_file} KB"
-puts "style.css: #{lines_css_file} lines | #{size_css_file} KB"
+def show(path)
+  if path.split(".").length == 1
+    lines, size, files = count_subdir(path)
+  else
+    lines, size = count_file(path)
+    files = 1
+  end
 
-total_lines = lines_main_path + lines_libs_path +
-lines_app_file + lines_init_file + lines_main_file + lines_css_file
+  $total_lines += lines
+  $total_size += size
+  $total_files += files
 
-total_size = size_main_path + size_libs_path + size_app_file +
-size_init_file + size_main_file + size_css_file
+  msg = "#{path}: #{lines} lines | #{size} KB"
 
-puts "TOTAL: #{total_lines} lines | #{total_size} KB"
+  if files > 1
+    msg += " | #{print_files(files)}"
+  end
+
+  puts msg
+end
+
+show("js/main")
+show("js/libs")
+show("js/app.js")
+show("js/init.js")
+show("main.html")
+show("css/style.css")
+show("utils")
+
+puts "TOTAL: #{$total_lines} lines | #{$total_size} KB | #{print_files($total_files)}"
