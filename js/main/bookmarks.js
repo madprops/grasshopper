@@ -72,10 +72,10 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   return bookmarks.slice(0, max_items)
 }
 
-App.bookmarks_action = (item) => {
-  App.select_item({item: item, scroll: `nearest_smooth`})
+App.bookmarks_action = (args = {}) => {
+  App.select_item({item: args.item, scroll: `nearest_smooth`})
   App.on_action(`bookmarks`)
-  App.focus_or_open_item(item)
+  App.focus_or_open_item(args.item)
 }
 
 App.get_bookmarks_folder = async () => {

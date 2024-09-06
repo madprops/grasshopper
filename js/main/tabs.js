@@ -308,11 +308,16 @@ App.remove_closed_tab = (id) => {
   }
 }
 
-App.tabs_action = async (item, from, scroll) => {
+App.tabs_action = async (args = {}) => {
+  let def_args = {
+    on_action: true,
+  }
+
+  App.def_args(def_args, args)
   let no_blink = [`click`, `enter`, `tab_cmd`, `jump_fast`]
 
   function blink(it) {
-    if (no_blink.includes(from)) {
+    if (no_blink.includes(args.from)) {
       return
     }
 
@@ -321,34 +326,34 @@ App.tabs_action = async (item, from, scroll) => {
     }
   }
 
-  if (from === `tab_box`) {
+  if (args.from === `tab_box`) {
     if (App.is_filtered(`tabs`)) {
       App.filter_all(`tabs`)
     }
   }
 
-  if (!scroll) {
-    if (from === `tab_box`) {
-      scroll = `center_smooth`
+  if (!args.scroll) {
+    if (args.from === `tab_box`) {
+      args.scroll = `center_smooth`
     }
-    else if (from === `jump_zone`) {
-      scroll = `center_smooth`
+    else if (args.from === `jump_zone`) {
+      args.scroll = `center_smooth`
     }
-    else if (from === `tab_cmd`) {
-      scroll = `nearest_instant`
+    else if (args.from === `tab_cmd`) {
+      args.scroll = `nearest_instant`
     }
     else {
-      scroll = `nearest_smooth`
+      args.scroll = `nearest_smooth`
     }
   }
 
-  if (item.header) {
+  if (args.item.header) {
     let header_action = App.get_setting(`header_action`)
 
     if (header_action === `none`) {
-      if (from === `tab_box`) {
-        App.select_item({item: item, scroll: scroll})
-        blink(item)
+      if (args.from === `tab_box`) {
+        App.select_item({item: args.item, scroll: args.scroll})
+        blink(args.item)
       }
 
       return
@@ -358,43 +363,34 @@ App.tabs_action = async (item, from, scroll) => {
         await App.do_show_mode({mode: `tabs`})
       }
 
-      App.select_item({item: item, scroll: scroll})
-      blink(item)
+      App.select_item({item: args.item, scroll: args.scroll})
+      blink(args.item)
       return
     }
     else if (header_action === `first`) {
-      App.focus_header_first(item, from, scroll)
+      App.focus_header_first(args.item, args.from, args.scroll)
       return
     }
   }
 
   let method
 
-  if (from === `previous`) {
-    method = from
+  if (args.from === `previous`) {
+    method = args.from
   }
 
   await App.focus_tab({
-    item: item,
+    item: args.item,
     select: true,
-    scroll: scroll,
+    scroll: args.scroll,
     method: method,
   })
 
-  let on_action
-
-  if ([`jump`, `jump_fast`, `jump_zone`].includes(from)) {
-    on_action = false
-  }
-  else {
-    on_action = true
-  }
-
-  if (on_action) {
+  if (args.on_action) {
     App.on_action(`tabs`)
   }
 
-  blink(item)
+  blink(args.item)
 }
 
 App.duplicate_tab = async (item) => {
@@ -1528,7 +1524,7 @@ App.first_pinned_tab = () => {
   let first = items.find(x => x.pinned)
 
   if (first) {
-    App.tabs_action(first)
+    App.tabs_action({item: first})
   }
 }
 
@@ -1537,7 +1533,7 @@ App.last_pinned_tab = () => {
   let last = items.slice(0).reverse().find(x => x.pinned)
 
   if (last) {
-    App.tabs_action(last)
+    App.tabs_action({item: last})
   }
 }
 
@@ -1546,7 +1542,7 @@ App.first_normal_tab = () => {
   let first = items.find(x => !x.pinned)
 
   if (first) {
-    App.tabs_action(first)
+    App.tabs_action({item: first})
   }
 }
 
@@ -1555,7 +1551,7 @@ App.last_normal_tab = () => {
   let last = items.slice(0).reverse().find(x => !x.pinned)
 
   if (last) {
-    App.tabs_action(last)
+    App.tabs_action({item: last})
   }
 }
 

@@ -49,6 +49,6 @@ App.pick_active_trace = (index) => {
   let tab = items[index]
 
   if (tab) {
-    App.tabs_action(tab, `active_trace`)
+    App.tabs_action({item: tab, from: `active_trace`})
   }
 }

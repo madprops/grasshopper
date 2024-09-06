@@ -259,7 +259,7 @@ App.mouse_click_action = (mode, e) => {
     from = `click`
   }
 
-  App[`${mode}_action`](item, from)
+  App[`${mode}_action`]({item: item, from: from})
 }
 
 App.mouse_double_click_action = (mode, e) => {
@@ -299,7 +299,7 @@ App.mouse_double_click_action = (mode, e) => {
 
   if (App.get_setting(`load_lock`)) {
     if (item.unloaded) {
-      App[`${mode}_action`](item, `click`)
+      App[`${mode}_action`]({item: item, from: `click`})
       return
     }
   }

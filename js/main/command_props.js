@@ -837,7 +837,7 @@ App.setup_commands = () => {
       item: true,
       icon: command_icon,
       action: (args) => {
-        App[`${args.mode}_action`](args.item, `click`)
+        App[`${args.mode}_action`]({item: args.item, from: `click`})
       },
       info: `Trigger the action for the selected item`,
     },

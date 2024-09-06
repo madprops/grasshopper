@@ -210,7 +210,7 @@ App.check_items_keyboard = (e) => {
         return
       }
 
-      App[`${mode}_action`](item, `enter`)
+      App[`${mode}_action`]({item: item, from: `enter`})
       e.preventDefault()
       return
     }

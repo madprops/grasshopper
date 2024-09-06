@@ -57,7 +57,7 @@ App.jump_tabs = async (what, info, reverse = false) => {
       }
     }
 
-    App.tabs_action(it, action)
+    App.tabs_action({item: it, from: action, on_action: unfold})
   }
 
   function check_first(it) {

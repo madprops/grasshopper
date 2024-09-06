@@ -66,7 +66,7 @@ App.show_tab_list = (what, e) => {
       info: tab.url,
       action: async () => {
         await App.check_on_tabs()
-        App.tabs_action(tab, `tab_list`)
+        App.tabs_action({item: tab, from: `tab_list`})
       },
       alt_action: () => {
         App.close_tab_or_tabs(tab.id)

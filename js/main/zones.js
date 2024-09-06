@@ -218,7 +218,7 @@ App.focus_header_first = (item, from, scroll = `nearest_smooth`) => {
   let next = App.get_other_item({mode: item.mode, item: item, wrap: false})
 
   if (App.check_header_first(next)) {
-    App.tabs_action(next, from, scroll)
+    App.tabs_action({item: next, from: from, scroll: scroll})
   }
 }
 
