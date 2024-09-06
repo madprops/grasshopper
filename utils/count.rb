@@ -55,7 +55,7 @@ def show(path)
   $total_size += size
   $total_files += files
 
-  msg = "#{path}: #{lines} lines | #{size} KB"
+  msg = "\e[34m#{path}:\e[0m #{lines} lines | #{size} KB"
 
   if files > 1
     msg += " | #{print_files(files)}"
@@ -72,4 +72,4 @@ show("main.html")
 show("css/style.css")
 show("utils")
 
-puts "TOTAL: #{$total_lines} lines | #{$total_size} KB | #{print_files($total_files)}"
+puts "\e[32mTOTAL:\e[0m #{$total_lines} lines | #{$total_size} KB | #{print_files($total_files)}"
