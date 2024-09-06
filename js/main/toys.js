@@ -33,7 +33,7 @@ App.locust_swarm = () => {
     context.fillStyle = `#0f0`
     context.font = `15pt monospace`
 
-    y_position.forEach((y, index) => {
+    for (let [index, y] of y_position.entries()) {
       let text = random_char()
       let x = index * 20
       context.fillText(text, x, y)
@@ -44,7 +44,7 @@ App.locust_swarm = () => {
       else {
         y_position[index] = y + 20
       }
-    })
+    }
   }
 
   App.locust_swarm_on = true
