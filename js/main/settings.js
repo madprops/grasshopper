@@ -543,12 +543,6 @@ App.add_settings_switchers = (category) => {
     App.show_settings_menu(e)
   })
 
-  DOM.ev(title, `auxclick`, (e) => {
-    if (e.button === 1) {
-      App.hide_window()
-    }
-  })
-
   DOM.ev(DOM.parent(title, [`.window_top`]), `wheel`, (e) => {
     App.settings_wheel.call(e)
   })
