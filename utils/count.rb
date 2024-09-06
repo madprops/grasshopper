@@ -44,7 +44,9 @@ def print_files(files)
 end
 
 def show(path)
-  if path.split(".").length == 1
+  is_subdir = path.split(".").length == 1
+
+  if is_subdir
     lines, size, files = count_subdir(path)
   else
     lines, size = count_file(path)
@@ -55,7 +57,11 @@ def show(path)
   $total_size += size
   $total_files += files
 
-  msg = "\e[34m#{path}:\e[0m #{lines} lines | #{size} KB"
+  if is_subdir
+    path += "/"
+  end
+
+  msg = "\e[34m#{path}\e[0m | #{lines} lines | #{size} KB"
 
   if files > 1
     msg += " | #{print_files(files)}"
@@ -65,7 +71,7 @@ def show(path)
 end
 
 def total
-  msg = "\e[32mTOTAL:\e[0m"
+  msg = "\e[32mTOTAL\e[0m |"
   msg += " #{$total_lines} lines | #{$total_size} KB"
   msg += " | #{print_files($total_files)}"
   puts msg
@@ -75,7 +81,7 @@ show("js/main")
 show("js/libs")
 show("js/app.js")
 show("js/init.js")
-show("css/style.css")
+show("css")
 show("main.html")
 show("utils")
 
