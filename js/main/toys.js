@@ -21,6 +21,7 @@ App.locust_swarm = () => {
   context.fillRect(0, 0, width, height)
   let columns = Math.floor(width / 20) + 1
   let y_position = Array(columns).fill(0)
+  let chars = [`🦗`, `🌿`]
 
   function matrix() {
     context.fillStyle = `#0001`
@@ -29,7 +30,7 @@ App.locust_swarm = () => {
     context.font = `15pt monospace`
 
     y_position.forEach((y, index) => {
-      let text = App.grasshopper_icon
+      let text = chars[Math.floor(Math.random() * chars.length)]
       let x = index * 20
       context.fillText(text, x, y)
 
