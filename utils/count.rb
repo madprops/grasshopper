@@ -61,20 +61,28 @@ def show(path)
     path += "/"
   end
 
-  msg = "\e[34m#{path}\e[0m | #{lines} lines | #{size} KB"
+  msg = [
+    "\e[34m#{path}\e[0m",
+    "#{lines} lines",
+    "#{size} KB",
+  ]
 
   if files > 1
-    msg += " | #{print_files(files)}"
+    msg.push("#{print_files(files)}")
   end
 
-  puts msg
+  puts msg.join(" | ")
 end
 
 def total
-  msg = "\e[32mTotal\e[0m |"
-  msg += " #{$total_lines} lines | #{$total_size} KB"
-  msg += " | #{print_files($total_files)}"
-  puts msg
+  msg = [
+    "\e[32mTotal\e[0m",
+    "#{$total_lines} lines",
+    "#{$total_size} KB",
+    "#{print_files($total_files)}",
+  ]
+
+  puts msg.join(" | ")
 end
 
 show("js/main")
