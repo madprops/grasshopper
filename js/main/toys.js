@@ -17,7 +17,7 @@ App.locust_swarm = () => {
   canvas.width = document.body.offsetWidth
   let width = canvas.width
   let height = canvas.height
-  context.fillStyle = `#000000`
+  context.fillStyle = `#000`
   context.fillRect(0, 0, width, height)
   let columns = Math.floor(width / 20) + 1
   let y_position = Array(columns).fill(0)
