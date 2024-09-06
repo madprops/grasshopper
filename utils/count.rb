@@ -64,6 +64,12 @@ def show(path)
   puts msg
 end
 
+def print_total
+  msg = "\e[32mTOTAL:\e[0m"
+  msg += " #{$total_lines} lines | #{$total_size} KB"
+  puts msg
+end
+
 show("js/main")
 show("js/libs")
 show("js/app.js")
@@ -72,4 +78,4 @@ show("main.html")
 show("css/style.css")
 show("utils")
 
-puts "\e[32mTOTAL:\e[0m #{$total_lines} lines | #{$total_size} KB | #{print_files($total_files)}"
+print_total()
