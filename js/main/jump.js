@@ -2,10 +2,7 @@ App.jump_tabs = async (what, info, reverse = false) => {
   let unfold = App.get_setting(`jump_unfold`)
   let unloaded = App.get_setting(`jump_unloaded`)
 
-  if (unfold) {
-    await App.check_on_tabs()
-  }
-
+  await App.check_on_tabs(unfold)
   let item = App.get_selected(`tabs`)
 
   if (!item) {
