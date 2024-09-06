@@ -239,6 +239,7 @@ App.getting = (mode, force = false) => {
 
 App.on_action = (mode) => {
   App.update_filter_history(mode)
+  App.check_restore()
 }
 
 App.main_mode = () => {
