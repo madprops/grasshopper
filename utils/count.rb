@@ -49,8 +49,8 @@ lines_css_file, size_css_file = count_file(css_file)
 puts "#{main_path}: #{lines_main_path} lines | #{size_main_path} KB"
 puts "#{libs_path}: #{lines_libs_path} lines | #{size_libs_path} KB"
 puts "app.js: #{lines_app_file} lines | #{size_app_file} KB"
-puts "init.js: #{lines_init_file} lines| #{size_init_file} KB"
-puts "main.html: #{lines_main_file} lines| #{size_main_file} KB"
+puts "init.js: #{lines_init_file} lines | #{size_init_file} KB"
+puts "main.html: #{lines_main_file} lines | #{size_main_file} KB"
 puts "style.css: #{lines_css_file} lines | #{size_css_file} KB"
 
 total_lines = lines_main_path + lines_libs_path +
