@@ -1,5 +1,10 @@
 App.jump_tabs = async (what, info, reverse = false) => {
-  await App.check_on_tabs()
+  let unfold = App.get_setting(`jump_unfold`)
+  let unloaded = App.get_setting(`jump_unloaded`)
+
+  if (unfold) {
+    await App.check_on_tabs()
+  }
 
   let item = App.get_selected(`tabs`)
 
@@ -8,7 +13,11 @@ App.jump_tabs = async (what, info, reverse = false) => {
   }
 
   let items = App.get_items(`tabs`)
-  let unloaded = App.get_setting(`jump_unloaded`)
+
+  if (!unfold) {
+    items = items.filter(it => it.visible)
+  }
+
   let zones = [`header`, `subheader`,  `headers`, `split`, `zone`]
   let index = items.indexOf(item)
   let matched_once = false

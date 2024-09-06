@@ -2983,18 +2983,18 @@ App.build_settings = () => {
       info: `Autohide context menus when the mouse moves away from the window`,
       version: 1,
     },
+    jump_unfold: {
+      name: `Jump Unfold`,
+      type: `checkbox`,
+      value: false,
+      info: `Show all items when jumping`,
+      version: 1,
+    },
     jump_unloaded: {
       name: `Jump Unloaded`,
       type: `checkbox`,
       value: false,
       info: `Consider unloaded tabs when jumping`,
-      version: 1,
-    },
-    next_tab_unloaded: {
-      name: `Next Unloaded`,
-      type: `checkbox`,
-      value: false,
-      info: `Consider unloaded tabs when using Tab Up/Down commands`,
       version: 1,
     },
     item_pointer: {
