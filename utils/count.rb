@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+$total_lines = 0
+$total_size = 0
+$total_files = 0
+
 def get_lines(path)
   File.open(path, "r") do |file|
     return file.readlines.size
@@ -38,10 +42,6 @@ def print_files(files)
   word = files == 1 ? "file" : "files"
   return "#{files} #{word}"
 end
-
-$total_lines = 0
-$total_size = 0
-$total_files = 0
 
 def show(path)
   if path.split(".").length == 1
