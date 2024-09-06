@@ -102,12 +102,8 @@ App.remove_slashes_end = (s) => {
   return s.replace(/\/+$/g, ``)
 }
 
-App.remove_hash = (url) => {
-  return url.split(`#`)[0]
-}
-
 App.format_url = (url) => {
-  return App.remove_slashes_end(App.remove_hash(url))
+  return App.remove_slashes_end(url)
 }
 
 App.get_path = (url) => {
