@@ -83,7 +83,7 @@ def total
 end
 
 def intro
-  puts "Grasshopper Stats 🦗\n"
+  puts "\e[32mGrasshopper Stats\e[0m 🦗\n"
 end
 
 intro()
