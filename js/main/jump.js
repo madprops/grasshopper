@@ -284,7 +284,7 @@ App.jump_tabs_playing = (reverse = false) => {
   App.jump_tabs(`playing`, undefined, reverse)
 }
 
-App.wipe_jumps = (num) => {
+App.wipe_jump = (num) => {
   let target = App.get_jump_target(num)
   App.do_wipe_tag(target)
 }

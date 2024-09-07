@@ -1792,12 +1792,12 @@ App.setup_commands = () => {
       info: `Remove the 'jump' tag`,
     },
     {
-      name: `Wipe Jumps`,
-      cmd: `wipe_jumps_1`,
+      name: `Wipe Jump`,
+      cmd: `wipe_jump_1`,
       modes: [`tabs`],
       icon: tag_icon,
       action: (args) => {
-        App.wipe_jumps(1)
+        App.wipe_jump(1)
       },
       info: `Remove the 'jump' tag from all items`,
     },
@@ -1826,12 +1826,12 @@ App.setup_commands = () => {
       info: `Remove the 'jump2' tag`,
     },
     {
-      name: `Wipe Jumps 2`,
-      cmd: `wipe_jumps_2`,
+      name: `Wipe Jump 2`,
+      cmd: `wipe_jump_2`,
       modes: [`tabs`],
       icon: tag_icon,
       action: (args) => {
-        App.wipe_jumps(2)
+        App.wipe_jump(2)
       },
       info: `Remove the 'jump2' tag from all items`,
     },
@@ -1860,12 +1860,12 @@ App.setup_commands = () => {
       info: `Remove the 'jump3' tag`,
     },
     {
-      name: `Wipe Jumps 3`,
-      cmd: `wipe_jumps_3`,
+      name: `Wipe Jump 3`,
+      cmd: `wipe_jump_3`,
       modes: [`tabs`],
       icon: tag_icon,
       action: (args) => {
-        App.wipe_jumps(3)
+        App.wipe_jump(3)
       },
       info: `Remove the 'jump3' tag from all items`,
     },
