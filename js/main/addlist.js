@@ -394,6 +394,10 @@ Addlist.remove = (args = {}) => {
       }
 
       Addlist.hide(false)
+
+      if (args.after) {
+        args.after()
+      }
     },
     force: args.force,
   })
@@ -591,11 +595,12 @@ Addlist.menu = () => {
         Addlist.remove({
           id: id,
           value: data.items[oargs.pk],
+          after: () => {
+            if (data.after_done) {
+              data.after_done()
+            }
+          }
         })
-
-        if (data.after_done) {
-          data.after_done()
-        }
       }
     }
   })
