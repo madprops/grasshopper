@@ -1342,6 +1342,19 @@ a:hover
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
+}
+
+.fav_top .favorites_bar {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.fav_bottom .favorites_bar {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.fav_left .favorites_bar, .fav_right .favorites_bar {
   padding-top: 0.88rem;
   padding-bottom: 0.88rem;
 }
