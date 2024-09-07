@@ -118,6 +118,9 @@ App.start_domain_rules = () => {
 
   App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
+    after_hide: () => {
+      App.rules_item = undefined
+    },
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       keys: [
@@ -147,8 +150,13 @@ App.start_domain_rules = () => {
       },
       on_check: {
         by_title: (checked) => {
-          let input = DOM.el(`#addlist_widget_settings_domain_rules_domain`)
           let item = App.rules_item
+
+          if (!item) {
+            return
+          }
+
+          let input = DOM.el(`#addlist_widget_settings_domain_rules_domain`)
 
           if (checked) {
             let title = App.title(item)
