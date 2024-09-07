@@ -157,10 +157,18 @@ App.jump_tabs = async (args = {}) => {
     }
 
     if (matched) {
-      if (waypoint && it.header && (h_action === `first`)) {
+      if (waypoint && it.header) {
         if (headers.includes(args.what)) {
-          App.jump_tabs({what: `tab`, item: it})
-          return
+          if (h_action === `first`) {
+            let next = items.at(items.indexOf(it) + 1)
+
+            if (!next || next.header) {
+              continue
+            }
+
+            App.jump_tabs({what: `tab`, item: it})
+            return
+          }
         }
       }
 
