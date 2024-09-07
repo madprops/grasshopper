@@ -1344,8 +1344,7 @@ a:hover
   gap: 0.35rem;
 }
 
-.fav_top .favorites_bar {
-  padding-top: 0.25rem;
+.fav_top .favorites_bar, .fav_bottom .favorites_bar {
   padding-bottom: 0.25rem;
 }
 
