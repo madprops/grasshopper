@@ -1989,119 +1989,6 @@ App.build_settings = () => {
   category = `zones`
 
   props = {
-    split_width: {
-      name: `Split Width`,
-      type: `number`,
-      value: 2,
-      placeholder: `Number`,
-      min: 1,
-      max: 99,
-      info: `The width of the split borders`,
-      version: 1,
-    },
-    split_color_enabled: {
-      name: `Split Color`,
-      type: `checkbox`,
-      value: false,
-      info: `Use the split custom color
-      Else use a proper color automatically`,
-      version: 1,
-    },
-    split_color: {
-      name: `Split Color`,
-      hide_name: true,
-      type: `color`,
-      value: App.default_color,
-      info: `The color of the splits between tabs`,
-      version: 1,
-      setup: (key) => {
-        App.start_color_picker(key, true)
-      },
-    },
-    text_color_header_mode: {
-      name: `Header Text Color`,
-      type: `menu`,
-      value: `none`,
-      info: `Use a custom text color for Header Tabs`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.color_modes)
-      },
-    },
-    text_color_header: {
-      name: `Header Text Color`,
-      hide_name: true,
-      type: `color`,
-      value: App.default_color,
-      info: `Custom text color for Header Tabs`,
-      version: 1,
-      setup: (key) => {
-        App.start_color_picker(key, true)
-      },
-    },
-    background_color_header_mode: {
-      name: `Header Background Color`,
-      type: `menu`,
-      value: `none`,
-      info: `Use a custom background color for Header Tabs`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.color_modes)
-      },
-    },
-    background_color_header: {
-      name: `Header Background Color`,
-      hide_name: true,
-      type: `color`,
-      value: App.default_color,
-      info: `Custom background color for Header Tabs`,
-      version: 1,
-      setup: (key) => {
-        App.start_color_picker(key, true)
-      },
-    },
-    text_color_subheader_mode: {
-      name: `Subheader Text Color`,
-      type: `menu`,
-      value: `none`,
-      info: `Use a custom text color for Subheader Tabs`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.color_modes)
-      },
-    },
-    text_color_subheader: {
-      name: `Subheader Text Color`,
-      hide_name: true,
-      type: `color`,
-      value: App.default_color,
-      info: `Custom text color for Subheader Tabs`,
-      version: 1,
-      setup: (key) => {
-        App.start_color_picker(key, true)
-      },
-    },
-    background_color_subheader_mode: {
-      name: `Subheader Background Color`,
-      type: `menu`,
-      value: `none`,
-      info: `Use a custom background color for Subheader Tabs`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.color_modes)
-      },
-    },
-    background_color_subheader: {
-      name: `Subheader Background Color`,
-      hide_name: true,
-      type: `color`,
-      value: App.default_color,
-      info: `Custom background color for Subheader Tabs`,
-      version: 1,
-      setup: (key) => {
-        App.start_color_picker(key, true)
-      },
-    },
     header_action: {
       name: `Header Action`,
       type: `menu`,
@@ -2152,6 +2039,124 @@ App.build_settings = () => {
       value: true,
       info: `Enable the header icon pick to select the items below`,
       version: 1,
+    },
+    split_width: {
+      name: `Split Width`,
+      type: `number`,
+      value: 2,
+      placeholder: `Number`,
+      separator: true,
+      min: 1,
+      max: 99,
+      info: `The width of the split borders`,
+      version: 1,
+    },
+    split_color_enabled: {
+      name: `Split Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Use the split custom color
+      Else use a proper color automatically`,
+      version: 1,
+    },
+    split_color: {
+      name: `Split Color`,
+      hide_name: true,
+      type: `color`,
+      separator: true,
+      value: App.default_color,
+      info: `The color of the splits between tabs`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    text_color_header_mode: {
+      name: `Header Text Color`,
+      type: `menu`,
+      value: `none`,
+      info: `Use a custom text color for Header Tabs`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
+    },
+    text_color_header: {
+      name: `Header Text Color`,
+      hide_name: true,
+      type: `color`,
+      separator: true,
+      value: App.default_color,
+      info: `Custom text color for Header Tabs`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    background_color_header_mode: {
+      name: `Header Background Color`,
+      type: `menu`,
+      value: `none`,
+      info: `Use a custom background color for Header Tabs`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
+    },
+    background_color_header: {
+      name: `Header Background Color`,
+      hide_name: true,
+      type: `color`,
+      separator: true,
+      value: App.default_color,
+      info: `Custom background color for Header Tabs`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    text_color_subheader_mode: {
+      name: `Subheader Text Color`,
+      type: `menu`,
+      value: `none`,
+      info: `Use a custom text color for Subheader Tabs`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
+    },
+    text_color_subheader: {
+      name: `Subheader Text Color`,
+      hide_name: true,
+      type: `color`,
+      separator: true,
+      value: App.default_color,
+      info: `Custom text color for Subheader Tabs`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    background_color_subheader_mode: {
+      name: `Subheader Background Color`,
+      type: `menu`,
+      value: `none`,
+      info: `Use a custom background color for Subheader Tabs`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.color_modes)
+      },
+    },
+    background_color_subheader: {
+      name: `Subheader Background Color`,
+      hide_name: true,
+      type: `color`,
+      value: App.default_color,
+      info: `Custom background color for Subheader Tabs`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
     },
   }
 
