@@ -591,7 +591,6 @@ Addlist.menu = () => {
         Addlist.remove({
           id: id,
           value: data.items[oargs.pk],
-          force: true,
         })
 
         if (data.after_done) {
