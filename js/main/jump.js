@@ -6,7 +6,6 @@ App.jump_tabs = async (args = {}) => {
   App.def_args(def_args, args)
   let unfold = App.get_setting(`jump_unfold`)
   let unloaded = App.get_setting(`jump_unloaded`)
-
   await App.check_on_tabs(unfold)
 
   if (!args.item) {
