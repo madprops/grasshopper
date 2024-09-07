@@ -284,15 +284,7 @@ App.jump_tabs_playing = (reverse = false) => {
   App.jump_tabs(`playing`, undefined, reverse)
 }
 
-App.remove_all_jumps = (num) => {
+App.wipe_jumps = (num) => {
   let target = App.get_jump_target(num)
-
-  App.show_confirm({
-    message: `Remove all ${target} tags?`,
-    confirm_action: () => {
-      for (let item of App.get_items(`tabs`)) {
-        App.remove_tag(item, target)
-      }
-    },
-  })
+  App.do_wipe_tag(target)
 }

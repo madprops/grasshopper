@@ -122,28 +122,24 @@ App.wipe_tag = () => {
     show_list: true,
     list_submit: true,
     on_submit: (tag) => {
-      let items = []
+      App.do_wipe_tag(tag)
+    },
+  })
+}
 
-      for (let tab of App.get_items(`tabs`)) {
-        if (tab.custom_tags) {
-          if (tab.custom_tags.includes(tag)) {
-            items.push(tab)
-          }
-        }
+App.do_wipe_tag = (tag) => {
+  let items = App.get_tag_tabs(tag, false)
+
+  if (!items.length) {
+    return
+  }
+
+  App.show_confirm({
+    message: `Wipe tag? (${tag}) (${items.length})`,
+    confirm_action: () => {
+      for (let item of items) {
+        App.remove_tag(item, tag)
       }
-
-      if (!items.length) {
-        return
-      }
-
-      App.show_confirm({
-        message: `Wipe tag? (${tag}) (${items.length})`,
-        confirm_action: () => {
-          for (let item of items) {
-            App.remove_tag(item, tag)
-          }
-        },
-      })
     },
   })
 }
@@ -464,11 +460,11 @@ App.get_tagged_items = (mode) => {
   return items
 }
 
-App.get_tag_tabs = (tag) => {
+App.get_tag_tabs = (tag, rule = true) => {
   let tabs = []
 
   for (let item of App.get_items(`tabs`)) {
-    let tags = App.get_tags(item)
+    let tags = App.get_tags(item, rule)
 
     if (tags.length) {
       if (tags.includes(tag)) {
