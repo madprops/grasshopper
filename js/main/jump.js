@@ -36,7 +36,6 @@ App.jump_tabs = async (args = {}) => {
   }
   else if (zones.includes(args.what)) {
     if (index > 0) {
-
       if (h_action === `first`) {
         if (items[index - 1].header) {
           args.item = items[index - 1]
