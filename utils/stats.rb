@@ -6,15 +6,13 @@ $total_files = 0
 $separator = "\e[36m | \e[0m"
 
 def get_lines(path)
-  File.open(path, "r") do |file|
-    return file.readlines.size
-  end
+  lines = 0
+  File.foreach(path) { lines += 1 }
+  return lines
 end
 
 def get_size(path)
-  File.open(path, "r") do |file|
-    return File.size(file) / 1024.0
-  end
+  return File.size(path) / 1024.0
 end
 
 def count_subdir(path)
