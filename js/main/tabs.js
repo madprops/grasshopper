@@ -890,11 +890,13 @@ App.on_tab_activated = async (info) => {
   let old_active = []
 
   for (let item of App.get_items(`tabs`)) {
-    if (item.active) {
+    let current = item.id === info.tabId
+
+    if (item.active && !current) {
       old_active.push(item)
     }
 
-    item.active = item.id === info.tabId
+    item.active = current
 
     if (item.active) {
       item.unread = false
