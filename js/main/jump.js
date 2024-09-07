@@ -23,7 +23,8 @@ App.jump_tabs = async (args = {}) => {
     items = items.filter(it => it.visible)
   }
 
-  let zones = [`header`, `subheader`,  `headers`, `split`, `zone`]
+  let headers = [`header`, `subheader`, `headers`, `zone`]
+  let zones = [...headers, `zone`]
   let h_action = App.get_setting(`header_action`)
   let index = items.indexOf(args.item)
   let matched_once = false
@@ -157,14 +158,19 @@ App.jump_tabs = async (args = {}) => {
 
     if (matched) {
       if (waypoint && it.header && (h_action === `first`)) {
-        if ([`header`, `subheader`, `headers`, `zone`].includes(args.what)) {
+        if (headers.includes(args.what)) {
           App.jump_tabs({what: `tab`, item: it})
           return
         }
       }
 
-      if (it.unloaded && !unloaded && !it.header) {
-        continue
+      if (it.unloaded && !unloaded) {
+        if (it.header && headers.includes(args.what)) {
+          // Allow unloaded headers
+        }
+        else {
+          continue
+        }
       }
 
       if (!waypoint) {
