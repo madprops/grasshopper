@@ -159,7 +159,7 @@ App.start_domain_rules = () => {
           let input = DOM.el(`#addlist_widget_settings_domain_rules_domain`)
 
           if (checked) {
-            let title = App.title(item)
+            let title = item.title
             input.value = title
           }
           else {
