@@ -105,6 +105,7 @@ Addlist.register = (args = {}) => {
     widgets: {},
     required: {},
     tooltips: {},
+    on_check: {},
     lowercase: false,
     automenu: false,
     list_text: () => {
@@ -214,6 +215,13 @@ Addlist.register = (args = {}) => {
       el = DOM.create(`div`, `addlist_checkbox_container`)
       let checkbox = DOM.create(`input`, `checkbox addlist_checkbox`, id)
       checkbox.type = `checkbox`
+
+      if (args.on_check[key]) {
+        DOM.ev(checkbox, `change`, () => {
+          return args.on_check[key](checkbox.checked)
+        })
+      }
+
       add_label(el, key)
       el.append(checkbox)
     }

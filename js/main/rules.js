@@ -96,28 +96,14 @@ App.edit_domain_rule = (item, e) => {
     edit(obj, false)
   }
 
+  App.rules_item = item
+
   if (item.ruled) {
     edit(item.rule)
     return
   }
 
-  let items = []
-
-  items.push({
-    text: `By URL`,
-    action: () => {
-      add(item.hostname || item.path)
-    }
-  })
-
-  items.push({
-    text: `By Title`,
-    action: () => {
-      add(App.title(item), true)
-    }
-  })
-
-  App.show_context({items: items, e: e})
+  add(item.hostname || item.path)
 }
 
 App.start_domain_rules = () => {
@@ -158,6 +144,20 @@ App.start_domain_rules = () => {
         split_bottom: `checkbox`,
         exact: `checkbox`,
         by_title: `checkbox`,
+      },
+      on_check: {
+        by_title: (checked) => {
+          let input = DOM.el(`#addlist_widget_settings_domain_rules_domain`)
+          let item = App.rules_item
+
+          if (checked) {
+            let title = App.title(item)
+            input.value = title
+          }
+          else {
+            input.value = item.hostname || item.path
+          }
+        },
       },
       labels: {
         domain: `Domain`,
