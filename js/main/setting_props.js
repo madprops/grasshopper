@@ -1989,36 +1989,6 @@ App.build_settings = () => {
   category = `zones`
 
   props = {
-    header_action: {
-      name: `Header Action`,
-      type: `menu`,
-      value: `activate`,
-      info: `What to do when clicking a header`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: `Select`, value: `select`},
-          {text: `Activate`, value: `activate`},
-          {text: `First`, value: `first`},
-        ])
-      },
-    },
-    split_side: {
-      name: `Split Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Which side to show the split side border`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: `Left`, value: `left`},
-          {text: `Right`, value: `right`},
-          {text: `Both`, value: `both`},
-        ])
-      },
-    },
     split_padding: {
       name: `Split Padding`,
       type: `checkbox`,
@@ -2045,11 +2015,41 @@ App.build_settings = () => {
       type: `number`,
       value: 2,
       placeholder: `Number`,
-      separator: true,
       min: 1,
       max: 99,
       info: `The width of the split borders`,
       version: 1,
+    },
+    header_action: {
+      name: `Header Action`,
+      type: `menu`,
+      value: `activate`,
+      info: `What to do when clicking a header`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: `Select`, value: `select`},
+          {text: `Activate`, value: `activate`},
+          {text: `First`, value: `first`},
+        ])
+      },
+    },
+    split_side: {
+      name: `Split Side`,
+      type: `menu`,
+      value: `right`,
+      separator: true,
+      info: `Which side to show the split side border`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+          {text: `Both`, value: `both`},
+        ])
+      },
     },
     split_color_enabled: {
       name: `Split Color`,
