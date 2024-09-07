@@ -1792,6 +1792,17 @@ App.setup_commands = () => {
       info: `Remove the 'jump' tag`,
     },
     {
+      name: `Remove All Jumps`,
+      short_name: `Rm All Jumps`,
+      cmd: `remove_all_jumps_1`,
+      modes: [`tabs`],
+      icon: tag_icon,
+      action: (args) => {
+        App.remove_all_jumps(1)
+      },
+      info: `Remove the 'jump' tag from all items`,
+    },
+    {
       name: `Add Jump 2`,
       short_name: `Jump 2`,
       cmd: `add_jump_tag_2`,
@@ -1816,6 +1827,17 @@ App.setup_commands = () => {
       info: `Remove the 'jump2' tag`,
     },
     {
+      name: `Remove All Jumps 2`,
+      short_name: `Rm All Jumps 2`,
+      cmd: `remove_all_jumps_2`,
+      modes: [`tabs`],
+      icon: tag_icon,
+      action: (args) => {
+        App.remove_all_jumps(2)
+      },
+      info: `Remove the 'jump2' tag from all items`,
+    },
+    {
       name: `Add Jump 3`,
       short_name: `Jump 3`,
       cmd: `add_jump_tag_3`,
@@ -1838,6 +1860,17 @@ App.setup_commands = () => {
         App.remove_tag_all(args.item, `jump3`)
       },
       info: `Remove the 'jump3' tag`,
+    },
+    {
+      name: `Remove All Jumps 3`,
+      short_name: `Rm All Jumps 3`,
+      cmd: `remove_all_jumps_3`,
+      modes: [`tabs`],
+      icon: tag_icon,
+      action: (args) => {
+        App.remove_all_jumps(3)
+      },
+      info: `Remove the 'jump3' tag from all items`,
     },
     {
       name: `Filter Jump`,
