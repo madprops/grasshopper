@@ -236,6 +236,13 @@ App.filter_jump_tag = (mode, num) => {
   App.filter_tag({mode: mode, tag: target, from: `jump`})
 }
 
+App.wipe_jump = (num) => {
+  let target = App.get_jump_target(num)
+  App.do_wipe_tag(target)
+}
+
+// Jump Functions
+
 App.jump_tabs_all = (reverse = false) => {
   App.jump_tabs(`all`, undefined, reverse)
 }
@@ -282,9 +289,4 @@ App.jump_tabs_unread = (reverse = false) => {
 
 App.jump_tabs_playing = (reverse = false) => {
   App.jump_tabs(`playing`, undefined, reverse)
-}
-
-App.wipe_jump = (num) => {
-  let target = App.get_jump_target(num)
-  App.do_wipe_tag(target)
 }
