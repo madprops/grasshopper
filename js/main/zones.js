@@ -230,6 +230,10 @@ App.is_subheader = (item) => {
   return item.header && !App.get_split_top(item)
 }
 
+App.is_split = (item) => {
+  return App.get_split_top(item) || App.get_split_bottom(item)
+}
+
 App.edit_tab_split = (args = {}) => {
   let def_args = {
     which: `top`,

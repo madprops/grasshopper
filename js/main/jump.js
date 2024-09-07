@@ -1,12 +1,20 @@
-App.jump_tabs = async (what, info, reverse = false) => {
+App.jump_tabs = async (args = {}) => {
+  let def_args = {
+    reverse: false,
+  }
+
+  App.def_args(def_args, args)
   let unfold = App.get_setting(`jump_unfold`)
   let unloaded = App.get_setting(`jump_unloaded`)
 
   await App.check_on_tabs(unfold)
-  let item = App.get_selected(`tabs`)
 
-  if (!item) {
-    item = App.get_active_tab_item()
+  if (!args.item) {
+    args.item = App.get_selected(`tabs`)
+  }
+
+  if (!args.item) {
+    args.item = App.get_active_tab_item()
   }
 
   let items = App.get_items(`tabs`)
@@ -16,25 +24,34 @@ App.jump_tabs = async (what, info, reverse = false) => {
   }
 
   let zones = [`header`, `subheader`,  `headers`, `split`, `zone`]
-  let index = items.indexOf(item)
+  let h_action = App.get_setting(`header_action`)
+  let index = items.indexOf(args.item)
   let matched_once = false
   let waypoint = false
   let first = undefined
   let target
 
-  if (what === `tag`) {
-    target = App.get_jump_target(info)
+  if (args.what === `tag`) {
+    target = App.get_jump_target(args.info)
   }
-  else if (zones.includes(what)) {
+  else if (zones.includes(args.what)) {
     if (index > 0) {
-      let h_action = App.get_setting(`header_action`)
 
       if (h_action === `first`) {
         if (items[index - 1].header) {
-          item = items[index - 1]
+          args.item = items[index - 1]
         }
       }
     }
+  }
+
+  let item_list
+
+  if (args.reverse) {
+    item_list = items.slice(0).reverse()
+  }
+  else {
+    item_list = items
   }
 
   function jump(it) {
@@ -46,7 +63,7 @@ App.jump_tabs = async (what, info, reverse = false) => {
       action = `jump_fast`
     }
     else {
-      if (zones.includes(what)) {
+      if (zones.includes(args.what)) {
         action = `jump_zone`
       }
       else {
@@ -63,125 +80,68 @@ App.jump_tabs = async (what, info, reverse = false) => {
     }
   }
 
-  let check
-
-  if (what === `all`) {
-    check = function(it) {
+  function check(it) {
+    if (args.what === `all`) {
       return true
     }
-  }
-  else if (what === `pin`) {
-    check = function(it) {
+    else if (args.what === `pin`) {
       return it.pinned
     }
-  }
-  else if (what === `normal`) {
-    check = function(it) {
+    else if (args.what === `normal`) {
       return !it.pinned
     }
-  }
-  else if (what === `unread`) {
-    check = function(it) {
+    else if (args.what === `tab`) {
+      return !it.header
+    }
+    else if (args.what === `unread`) {
       return it.unread
     }
-  }
-  else if (what === `playing`) {
-    check = function(it) {
+    else if (args.what === `playing`) {
       return it.playing
     }
-  }
-  else if (what === `color`) {
-    check = function(it) {
-      let match = false
+    else if (args.what === `color`) {
       let id = App.get_color(it)
-
-      if (id && (id === info)) {
-        match = true
-      }
-
-      return match
+      return id && (id === args.info)
     }
-  }
-  else if (what === `tag`) {
-    check = function(it) {
-      let match = false
+    else if (args.what === `tag`) {
       let tags = App.get_tags(it)
-
-      if (tags.includes(target)) {
-        match = true
-      }
-
-      return match
+      return tags.includes(target)
     }
-  }
-  else if (what === `header`) {
-    check = function(it) {
-      let match = false
-
-      if (App.is_header(it)) {
-        match = true
-      }
-
-      return match
+    else if (args.what === `header`) {
+      return App.is_header(it)
     }
-  }
-  else if (what === `subheader`) {
-    check = function(it) {
-      let match = false
-
-      if (App.is_subheader(it)) {
-        match = true
-      }
-
-      return match
+    else if (args.what === `subheader`) {
+      return App.is_subheader(it)
     }
-  }
-  else if (what === `headers`) {
-    check = function(it) {
-      let match = false
-
-      if (it.header) {
-        match = true
-      }
-
-      return match
+    else if (args.what === `headers`) {
+      return it.header
     }
-  }
-  else if (what === `split`) {
-    check = function(it) {
-      let match = false
-
+    else if (args.what === `split`) {
       if (App.get_split_top(it) || App.get_split_bottom(it)) {
         if (!it.header) {
-          match = true
+          return true
         }
       }
 
-      return match
+      return false
     }
-  }
-  else if (what === `zone`) {
-    check = function(it) {
-      let match = false
+    else if (args.what === `zone`) {
+      if (it.header) {
+        if (h_action === `first`) {
+          return false
+        }
 
-      if (it.header || App.get_split_top(it) || App.get_split_bottom(it)) {
-        match = true
+        return true
+      }
+      else if (App.is_split(it)) {
+        return true
       }
 
-      return match
+      return false
     }
   }
 
   // -------------------------
-
-  let item_list
-
-  if (reverse) {
-    item_list = items.slice(0).reverse()
-  }
-  else {
-    item_list = items
-  }
 
   for (let it of item_list) {
     let matched = check(it)
@@ -190,13 +150,20 @@ App.jump_tabs = async (what, info, reverse = false) => {
       matched_once = true
     }
 
-    if (it === item) {
+    if (it === args.item) {
       waypoint = true
       check_first(it)
       continue
     }
 
     if (matched) {
+      if (waypoint && it.header && (h_action === `first`)) {
+        if ([`header`, `subheader`, `headers`, `zone`].includes(args.what)) {
+          App.jump_tabs({what: `tab`, item: it})
+          return
+        }
+      }
+
       if (it.unloaded && !unloaded) {
         continue
       }
@@ -212,12 +179,12 @@ App.jump_tabs = async (what, info, reverse = false) => {
   }
 
   if (!matched_once) {
-    if (what === `tag`) {
+    if (args.what === `tag`) {
       App.alert(`To use jump give tabs the 'jump', 'jump2', or 'jump3' tags`)
     }
   }
 
-  if (first && (first !== item)) {
+  if (first && (first !== args.item)) {
     jump(first)
   }
 }
@@ -244,49 +211,49 @@ App.wipe_jump = (num) => {
 // Jump Functions
 
 App.jump_tabs_all = (reverse = false) => {
-  App.jump_tabs(`all`, undefined, reverse)
+  App.jump_tabs({what: `all`, reverse: reverse})
 }
 
 App.jump_tabs_pin = (reverse = false) => {
-  App.jump_tabs(`pin`, undefined, reverse)
+  App.jump_tabs({what: `pin`, reverse: reverse})
 }
 
 App.jump_tabs_normal = (reverse = false) => {
-  App.jump_tabs(`normal`, undefined, reverse)
+  App.jump_tabs({what: `normal`, reverse: reverse})
 }
 
 App.jump_tabs_color = (id, reverse = false) => {
-  App.jump_tabs(`color`, id, reverse)
+  App.jump_tabs({what: `color`, info: id, reverse: reverse})
 }
 
 App.jump_tabs_tag = (num, reverse = false) => {
-  App.jump_tabs(`tag`, num, reverse)
+  App.jump_tabs({what: `tag`, info: num, reverse: reverse})
 }
 
 App.jump_tabs_header = (reverse = false) => {
-  App.jump_tabs(`header`, undefined, reverse)
+  App.jump_tabs({what: `header`, reverse: reverse})
 }
 
 App.jump_tabs_subheader = (reverse = false) => {
-  App.jump_tabs(`subheader`, undefined, reverse)
+  App.jump_tabs({what: `subheader`, reverse: reverse})
 }
 
 App.jump_tabs_headers = (reverse = false) => {
-  App.jump_tabs(`headers`, undefined, reverse)
+  App.jump_tabs({what: `headers`, reverse: reverse})
 }
 
 App.jump_tabs_split = (reverse = false) => {
-  App.jump_tabs(`split`, undefined, reverse)
+  App.jump_tabs({what: `split`, reverse: reverse})
 }
 
 App.jump_tabs_zone = (reverse = false) => {
-  App.jump_tabs(`zone`, undefined, reverse)
+  App.jump_tabs({what: `zone`, reverse: reverse})
 }
 
 App.jump_tabs_unread = (reverse = false) => {
-  App.jump_tabs(`unread`, undefined, reverse)
+  App.jump_tabs({what: `unread`, reverse: reverse})
 }
 
 App.jump_tabs_playing = (reverse = false) => {
-  App.jump_tabs(`playing`, undefined, reverse)
+  App.jump_tabs({what: `playing`, reverse: reverse})
 }
