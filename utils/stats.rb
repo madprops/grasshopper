@@ -83,7 +83,7 @@ def total
 end
 
 def intro
-  puts "🦗 Grasshopper Stats\n"
+  puts "Grasshopper Stats 🦗\n"
 end
 
 intro()
