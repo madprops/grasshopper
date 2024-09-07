@@ -2,7 +2,6 @@ App.create_popup = (args) => {
   let p = {}
   p.setup_done = false
   let popup = DOM.create(`div`, `popup_main hidden`, `popup_${args.id}`)
-  let overlay = DOM.create(`div`, `popup_overlay`, `popup_${args.id}_overlay`)
   let container = DOM.create(`div`, `popup_container`, `popup_${args.id}_container`)
   container.tabIndex = 0
 
@@ -14,15 +13,18 @@ App.create_popup = (args) => {
     container.innerHTML = App.get_template(args.id)
   }
 
-  DOM.ev(overlay, `click`, (e) => {
-    p.dismiss()
+  DOM.ev(popup, `click`, (e) => {
+    if (e.target === popup) {
+      p.dismiss()
+    }
   })
 
-  DOM.ev(overlay, `contextmenu`, (e) => {
-    e.preventDefault()
+  DOM.ev(popup, `contextmenu`, (e) => {
+    if (e.target === popup) {
+      e.preventDefault()
+    }
   })
 
-  popup.append(overlay)
   popup.append(container)
   DOM.el(`#main`).append(popup)
   p.element = popup
