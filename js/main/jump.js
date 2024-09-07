@@ -164,7 +164,7 @@ App.jump_tabs = async (args = {}) => {
         }
       }
 
-      if (it.unloaded && !unloaded) {
+      if (it.unloaded && !unloaded & !it.header) {
         continue
       }
 
