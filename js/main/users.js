@@ -29,8 +29,9 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `wheel_up_footer`, value: `jump_tabs_header_up`})
   App.set_setting({setting: `wheel_down_footer`, value: `jump_tabs_header_down`})
+  App.set_setting({setting: `extra_menu_mode`, value: `flat`})
 
-  let cmd = {cmd: `locust_swarm`, alt: `generate_password`}
+  let cmd = {cmd: `locust_swarm`, alt: `jump_tabs_tag_1_down`}
   App.prepend_list_setting(`favorites_menu`, cmd)
 
   let urls = [

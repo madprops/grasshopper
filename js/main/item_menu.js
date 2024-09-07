@@ -131,33 +131,33 @@ App.more_menu_items = (args = {}) => {
   let items = []
 
   if (args.item.mode === `tabs`) {
-    App.item_menu_item(items, `mute_tabs`, {item: args.item})
-    App.item_menu_item(items, `unmute_tabs`, {item: args.item})
-    App.item_menu_item(items, `unload_tabs`, {item: args.item})
-    App.item_menu_item(items, `reverse_tabs`, {item: args.item})
-    App.item_menu_item(items, `sort_tabs_asc`, {item: args.item})
-    App.item_menu_item(items, `sort_tabs_desc`, {item: args.item})
-    App.item_menu_item(items, `duplicate_tabs`, {item: args.item})
-    App.item_menu_item(items, `remove_item_edits`, {item: args.item})
+    App.item_menu_item(items, `mute_tabs`, {item: args.item, short: false})
+    App.item_menu_item(items, `unmute_tabs`, {item: args.item, short: false})
+    App.item_menu_item(items, `unload_tabs`, {item: args.item, short: false})
+    App.item_menu_item(items, `reverse_tabs`, {item: args.item, short: false})
+    App.item_menu_item(items, `sort_tabs_asc`, {item: args.item, short: false})
+    App.item_menu_item(items, `sort_tabs_desc`, {item: args.item, short: false})
+    App.item_menu_item(items, `duplicate_tabs`, {item: args.item, short: false})
+    App.item_menu_item(items, `remove_item_edits`, {item: args.item, short: false})
   }
 
-  App.item_menu_item(items, `bookmark_items`, {item: args.item})
-  App.item_menu_item(items, `set_background_image`, {item: args.item})
-  App.item_menu_item(items, `edit_domain_rule`, {item: args.item})
+  App.item_menu_item(items, `bookmark_items`, {item: args.item, short: false})
+  App.item_menu_item(items, `set_background_image`, {item: args.item, short: false})
+  App.item_menu_item(items, `edit_domain_rule`, {item: args.item, short: false})
 
   if (args.item.mode === `tabs`) {
     if (items.length) {
       App.sep(items)
     }
 
-    App.item_menu_item(items, `move_tabs_to_top`, {item: args.item})
-    App.item_menu_item(items, `move_tabs_to_bottom`, {item: args.item})
+    App.item_menu_item(items, `move_tabs_to_top`, {item: args.item, short: false})
+    App.item_menu_item(items, `move_tabs_to_bottom`, {item: args.item, short: false})
     App.sep(items)
-    App.item_menu_item(items, `show_windows_menu`, {item: args.item})
+    App.item_menu_item(items, `show_windows_menu`, {item: args.item, short: false})
   }
 
   if (args.item.mode === `closed`) {
-    App.item_menu_item(items, `forget_closed_item`, {item: args.item})
+    App.item_menu_item(items, `forget_closed_item`, {item: args.item, short: false})
   }
 
   if (items.length) {

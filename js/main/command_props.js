@@ -2620,6 +2620,7 @@ App.setup_commands = () => {
     },
     {
       name: `Domain Rule`,
+      short_name: `Rule`,
       cmd: `edit_domain_rule`,
       modes: [`items`],
       single: true,
