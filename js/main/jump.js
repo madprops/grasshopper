@@ -82,22 +82,22 @@ App.jump_tabs = async (args = {}) => {
 
   function check(it) {
     if (args.what === `all`) {
-      return true
+      return !it.header
     }
     else if (args.what === `pin`) {
-      return it.pinned
+      return it.pinned && !it.header
     }
     else if (args.what === `normal`) {
-      return !it.pinned
+      return !it.pinned && !it.header
     }
     else if (args.what === `tab`) {
       return !it.header
     }
     else if (args.what === `unread`) {
-      return it.unread
+      return it.unread && !it.header
     }
     else if (args.what === `playing`) {
-      return it.playing
+      return it.playing && !it.header
     }
     else if (args.what === `color`) {
       let id = App.get_color(it)
@@ -165,12 +165,7 @@ App.jump_tabs = async (args = {}) => {
       }
 
       if (it.unloaded && !unloaded) {
-        if (it.header && headers.includes(args.what)) {
-          // Allow unloaded headers
-        }
-        else {
-          continue
-        }
+        continue
       }
 
       if (!waypoint) {
