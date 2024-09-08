@@ -2835,6 +2835,16 @@ App.build_settings = () => {
       This is the amount of time to hold the mouse button down to trigger the command`,
       version: 1,
     },
+    double_click_delay: {
+      name: `Double Click Delay`,
+      type: `number`,
+      value: 250,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Use this to consider how sensitive double clicks are (milliseconds)`,
+      version: 1,
+    },
   }
 
   add_props()

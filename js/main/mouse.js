@@ -72,10 +72,6 @@ App.setup_container_mouse = (mode, container) => {
     App.mouse_click_action(mode, e)
   })
 
-  DOM.ev(container, `dblclick`, (e) => {
-    App.mouse_double_click_action(mode, e)
-  })
-
   DOM.ev(container, `contextmenu`, (e) => {
     App.mouse_context_action(mode, e)
   })
@@ -98,6 +94,26 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
+  let double_delay = App.get_setting(`double_click_delay`)
+  let date_now = Date.now()
+  let double = false
+
+  // Check if double click
+  if ((date_now - App.click_date) < double_delay) {
+    if (App.click_target === e.target) {
+      double = true
+    }
+  }
+
+  App.click_target = e.target
+
+  if (double) {
+    App.click_date = 0
+    App.mouse_double_click_action(mode, e)
+    return
+  }
+
+  App.click_date = date_now
   App.reset_triggers()
 
   if (!App.cursor_on_item(mode, e)) {
@@ -266,6 +282,7 @@ App.mouse_double_click_action = (mode, e) => {
   if (DOM.class(e.target, [`item_container`])) {
     let cmd = App.get_setting(`double_click_empty`)
     App.run_command({cmd: cmd, from: `mouse`, e: e})
+    return
   }
 
   if (!App.cursor_on_item(mode, e)) {

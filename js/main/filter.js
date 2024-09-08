@@ -815,6 +815,7 @@ App.create_filter = (mode) => {
       return
     }
 
+    App.filter_click_date = 0
     App.run_command({cmd: cmd, from: `filter`, e: e})
   })
 

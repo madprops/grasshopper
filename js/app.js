@@ -92,6 +92,9 @@ App.max_browser_urls = 5
 App.password_length = 20
 App.mode_vars = {}
 App.locust_swarm_on = false
+App.last_opacity_cycle_date = 0
+App.filter_click_date = 0
+App.click_date = 0
 
 App.settings_done = false
 App.settings_ready = false
@@ -107,8 +110,6 @@ App.setup_history_ready = false
 App.setup_bookmarks_ready = false
 App.domain_rules_ready = false
 App.playing = false
-App.last_opacity_cycle_date = 0
-App.filter_click_date = 0
 
 App.alert_autohide_delay = 1500
 App.tab_box_shrink_delay = 500
