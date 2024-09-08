@@ -24,6 +24,16 @@ App.check_filter = (mode) => {
   App.check_filter_debouncer.call({mode: mode})
 }
 
+App.check_filter_special = (mode) => {
+  let modes = [
+    `filter_duplicate_tabs`,
+  ]
+
+  if (modes.includes(App.filter_mode(mode))) {
+    App.check_filter(mode)
+  }
+}
+
 App.filter = (args) => {
   args.sticky = false
 
