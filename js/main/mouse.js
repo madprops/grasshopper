@@ -593,7 +593,7 @@ App.check_double_click = (what, e, action) => {
   }
 
   let double_delay = App.get_setting(`double_click_delay`)
-  let date_now = Date.now()
+  let date_now = App.now()
   let double = false
 
   if ((date_now - App[`click_date_${what}`]) < double_delay) {
