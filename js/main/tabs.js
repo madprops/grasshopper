@@ -1505,7 +1505,7 @@ App.sort_selected_tabs = async (direction) => {
     return
   }
 
-  let index_top = App.get_items(`tabs`).indexOf(items[0])
+  let index_top = App.get_item_index(`tabs`, items[0])
   let new_items = items.slice(0)
 
   if (!App.tabs_in_same_place(new_items)) {
