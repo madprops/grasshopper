@@ -12,7 +12,6 @@ App.locust_swarm = () => {
   })
 
   document.body.appendChild(canvas)
-
   let context = canvas.getContext(`2d`)
   canvas.width = document.body.offsetWidth
   let width = canvas.width
