@@ -195,8 +195,45 @@ App.open_new_tab = async (args = {}) => {
   }
 }
 
-App.new_tab = async () => {
-  await App.open_new_tab()
+App.new_tab = async (item) => {
+  let new_mode = App.get_setting(`new_tab_mode`)
+  let index, pinned
+
+  if (item && (new_mode !== `normal`)) {
+    pinned = item.pinned
+    let indx = App.get_item_index(`tabs`, item) + 1
+
+    if ([`above_all`, `below_all`].includes(new_mode)) {
+      if (new_mode === `above_all`) {
+        index = indx - 1
+      }
+      else if (new_mode === `below_all`) {
+        index = indx + 1
+      }
+    }
+    else if ([`above_special`, `below_special`].includes(new_mode)) {
+      if (item.unloaded) {
+        if (new_mode === `above_special`) {
+          index = indx - 1
+        }
+        else if (new_mode === `below_special`) {
+          index = indx + 1
+        }
+      }
+    }
+  }
+
+  let args = {}
+
+  if (index !== undefined) {
+    args.index = index
+  }
+
+  if (pinned !== undefined) {
+    args.pinned = pinned
+  }
+
+  await App.open_new_tab(args)
   App.after_focus({show_tabs: true})
 }
 

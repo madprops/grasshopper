@@ -139,6 +139,22 @@ App.build_settings = () => {
         ])
       },
     },
+    new_tab_mode: {
+      name: `New Tab Mode`,
+      type: `menu`,
+      value: `normal`,
+      info: `What to do when opening a new tab`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Browser Decides`, value: `normal`},
+          {text: `Above Current`, value: `above_all`},
+          {text: `Below Current`, value: `below_all`},
+          {text: `Above Special`, value: `above_special`},
+          {text: `Below Special`, value: `below_special`},
+        ])
+      },
+    },
     auto_restore: {
       name: `Auto-Restore`,
       type: `menu`,

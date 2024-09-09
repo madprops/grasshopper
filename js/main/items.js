@@ -528,6 +528,14 @@ App.update_item = (args = {}) => {
   }
 }
 
+App.get_item_index = (mode, item) => {
+  for (let [i, it] of App.get_items(mode).entries()) {
+    if (item === it) {
+      return i
+    }
+  }
+}
+
 App.get_item_element_index = (args = {}) => {
   let def_args = {
     include_all: false,
