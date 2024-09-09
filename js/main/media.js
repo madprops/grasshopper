@@ -87,30 +87,6 @@ App.start_media = (what) => {
       DOM.ev(buttons, `wheel`, (e) => {
         App.media_wheel.call(e, what)
       })
-
-      DOM.ev(media, `click`, (e) => {
-        App.check_double_click(`media`, e, () => {
-          if (what === `image`) {
-            App.media_focus_tab()
-          }
-        })
-      })
-
-      DOM.ev(content, `click`, (e) => {
-        App.check_double_click(`media_content`, e, () => {
-          if (what === `image`) {
-            if (DOM.class(e.target, [`window_content_media`])) {
-              App.hide_window()
-            }
-          }
-        })
-      })
-
-      DOM.ev(loading, `click`, (e) => {
-        App.check_double_click(`media_loading`, e, () => {
-          App.hide_window()
-        })
-      })
     },
     after_hide: () => {
       if (what === `video` || what === `audio`) {
@@ -436,8 +412,4 @@ App.check_view_media = (item) => {
   else {
     DOM.hide(view_media)
   }
-}
-
-App.media_focus_tab = () => {
-  App.focus_tab({item: App.media_o_item, method: `media`})
 }
