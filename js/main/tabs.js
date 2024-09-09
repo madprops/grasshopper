@@ -198,14 +198,15 @@ App.open_new_tab = async (args = {}) => {
 App.new_tab = async (item) => {
   let new_mode = App.get_setting(`new_tab_mode`)
   let index, pinned
+  console.log(new_mode)
 
   if (item && (new_mode !== `normal`)) {
     pinned = item.pinned
-    let indx = App.get_item_index(`tabs`, item) + 1
+    let indx = App.get_item_index(`tabs`, item)
 
     if ([`above_all`, `below_all`].includes(new_mode)) {
       if (new_mode === `above_all`) {
-        index = indx - 1
+        index = indx
       }
       else if (new_mode === `below_all`) {
         index = indx + 1
@@ -214,7 +215,7 @@ App.new_tab = async (item) => {
     else if ([`above_special`, `below_special`].includes(new_mode)) {
       if (item.unloaded) {
         if (new_mode === `above_special`) {
-          index = indx - 1
+          index = indx
         }
         else if (new_mode === `below_special`) {
           index = indx + 1
