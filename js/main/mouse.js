@@ -607,8 +607,8 @@ App.check_double_click = (what, e, action) => {
   if (double) {
     App[`click_date_${what}`] = 0
     action()
-    return
   }
-
-  App[`click_date_${what}`] = date_now
+  else {
+    App[`click_date_${what}`] = date_now
+  }
 }
