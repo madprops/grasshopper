@@ -280,7 +280,7 @@ App.mouse_double_click_action = (mode, e) => {
   }
 
   if (App.taglist_enabled()) {
-    if (DOM.parent(e.target, [`.taglist`])) {
+    if (DOM.parent(e.target, [`.taglist_container`])) {
       return
     }
   }
