@@ -588,7 +588,10 @@ App.wheel_action = (direction, name, e) => {
 }
 
 App.check_double_click = (what, e, action) => {
-  if (App[`click_date_${what}`] === undefined) {
+  let click_date = App[`click_date_${what}`]
+  let click_target = App[`click_target_${what}`]
+
+  if (click_date === undefined) {
     App[`click_date_${what}`] = 0
   }
 
@@ -596,8 +599,8 @@ App.check_double_click = (what, e, action) => {
   let date_now = App.now()
   let double = false
 
-  if ((date_now - App[`click_date_${what}`]) < double_delay) {
-    if (App[`click_target_${what}`] === e.target) {
+  if ((date_now - click_date) < double_delay) {
+    if (click_target === e.target) {
       double = true
     }
   }
