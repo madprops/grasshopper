@@ -198,7 +198,6 @@ App.open_new_tab = async (args = {}) => {
 App.new_tab = async (item) => {
   let new_mode = App.get_setting(`new_tab_mode`)
   let index, pinned
-  console.log(new_mode)
 
   if (item && (new_mode !== `normal`)) {
     pinned = item.pinned
