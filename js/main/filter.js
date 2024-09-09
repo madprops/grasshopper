@@ -791,32 +791,9 @@ App.create_filter = (mode) => {
   })
 
   DOM.ev(filter, `click`, (e) => {
-    if (App.filter_has_value(mode)) {
-      return
-    }
-
-    if (e.detail === 1) {
-      App.filter_click_date = App.now()
-    }
-  })
-
-  DOM.ev(filter, `dblclick`, (e) => {
-    if (App.filter_has_value(mode)) {
-      return
-    }
-
-    if ((App.now() - App.filter_click_date) > 350) {
-      return
-    }
-
-    let cmd = App.get_setting(`double_click_filter`)
-
-    if (!cmd) {
-      return
-    }
-
-    App.filter_click_date = 0
-    App.run_command({cmd: cmd, from: `filter`, e: e})
+    App.check_double_click(`filter`, e, () => {
+      App.filter_double_click(mode, e)
+    })
   })
 
   DOM.ev(filter, `wheel`, (e) => {
@@ -1859,4 +1836,18 @@ App.show_refine_filters = (e) => {
     no_items: `Add Refine Filters in the Filter settings`,
     title: `Refine`,
   })
+}
+
+App.filter_double_click = (mode, e) => {
+  if (App.filter_has_value(mode)) {
+    return
+  }
+
+  let cmd = App.get_setting(`double_click_filter`)
+
+  if (!cmd) {
+    return
+  }
+
+  App.run_command({cmd: cmd, from: `filter`, e: e})
 }

@@ -94,26 +94,10 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  let double_delay = App.get_setting(`double_click_delay`)
-  let date_now = Date.now()
-  let double = false
-
-  // Check if double click
-  if ((date_now - App.click_date) < double_delay) {
-    if (App.click_target === e.target) {
-      double = true
-    }
-  }
-
-  App.click_target = e.target
-
-  if (double) {
-    App.click_date = 0
+  App.check_double_click(`mouse`, e, () => {
     App.mouse_double_click_action(mode, e)
-    return
-  }
+  })
 
-  App.click_date = date_now
   App.reset_triggers()
 
   if (!App.cursor_on_item(mode, e)) {
@@ -601,4 +585,30 @@ App.wheel_action = (direction, name, e) => {
   }
 
   App.run_command({cmd: cmd, from: `mouse`, e: e})
+}
+
+App.check_double_click = (what, e, action) => {
+  if (App[`click_date_${what}`] === undefined) {
+    App[`click_date_${what}`] = 0
+  }
+
+  let double_delay = App.get_setting(`double_click_delay`)
+  let date_now = Date.now()
+  let double = false
+
+  if ((date_now - App[`click_date_${what}`]) < double_delay) {
+    if (App[`click_target_${what}`] === e.target) {
+      double = true
+    }
+  }
+
+  App[`click_target_${what}`] = e.target
+
+  if (double) {
+    App[`click_date_${what}`] = 0
+    action()
+    return
+  }
+
+  App[`click_date_${what}`] = date_now
 }

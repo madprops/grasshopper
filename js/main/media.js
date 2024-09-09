@@ -88,20 +88,28 @@ App.start_media = (what) => {
         App.media_wheel.call(e, what)
       })
 
-      DOM.ev(media, `dblclick`, () => {
-        if (what === `image`) {
-          App.media_focus_tab()
-        }
+      DOM.ev(media, `click`, (e) => {
+        App.check_double_click(`media`, e, () => {
+          if (what === `image`) {
+            App.media_focus_tab()
+          }
+        })
       })
 
-      DOM.ev(content, `dblclick`, (e) => {
-        if (DOM.class(e.target, [`window_content_media`])) {
+      DOM.ev(content, `click`, (e) => {
+        App.check_double_click(`media_content`, e, () => {
+          if (what === `image`) {
+            if (DOM.class(e.target, [`window_content_media`])) {
+              App.hide_window()
+            }
+          }
+        })
+      })
+
+      DOM.ev(loading, `click`, (e) => {
+        App.check_double_click(`media_loading`, e, () => {
           App.hide_window()
-        }
-      })
-
-      DOM.ev(loading, `dblclick`, (e) => {
-        App.hide_window()
+        })
       })
     },
     after_hide: () => {

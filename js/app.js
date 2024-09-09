@@ -93,8 +93,6 @@ App.password_length = 20
 App.mode_vars = {}
 App.locust_swarm_on = false
 App.last_opacity_cycle_date = 0
-App.filter_click_date = 0
-App.click_date = 0
 
 App.settings_done = false
 App.settings_ready = false

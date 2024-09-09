@@ -75,22 +75,26 @@ App.create_favorites_bar = (mode) => {
     App.show_favorites_menu(e)
   })
 
+  DOM.ev(empty_top, `click`, (e) => {
+    App.check_double_click(`fav_top`, e, () => {
+      App.favorites_double_click(e, `top`)
+    })
+  })
+
   DOM.ev(empty_top, `contextmenu`, (e) => {
     e.preventDefault()
     App.show_favorites_menu(e)
   })
 
+  DOM.ev(empty_bottom, `click`, (e) => {
+    App.check_double_click(`fav_bottom`, e, () => {
+      App.favorites_double_click(e, `bottom`)
+    })
+  })
+
   DOM.ev(empty_bottom, `contextmenu`, (e) => {
     e.preventDefault()
     App.show_favorites_menu(e)
-  })
-
-  DOM.ev(empty_top, `dblclick`, (e) => {
-    App.favorites_double_click(e, `top`)
-  })
-
-  DOM.ev(empty_bottom, `dblclick`, (e) => {
-    App.favorites_double_click(e, `bottom`)
   })
 
   DOM.ev(container, `mouseenter`, () => {
