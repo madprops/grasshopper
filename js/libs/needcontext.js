@@ -354,8 +354,10 @@ NeedContext.show = (args = {}) => {
   }
 
   container.style.minHeight = NeedContext.min_height
+  NeedContext.filter.value = ``
+  NeedContext.filtered = false
   NeedContext.select_item(selected_index)
-  NeedContext.clear_filter()
+  NeedContext.scroll_to_selected()
   NeedContext.open = true
   NeedContext.after_show()
 
