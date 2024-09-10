@@ -67,7 +67,6 @@ App.close_tabs = (item, multiple = true) => {
   let items = App.get_active_items({mode: `tabs`, item: item, multiple: multiple})
 
   if (!items.length) {
-    App.nothing_to_close()
     return
   }
 
@@ -108,6 +107,7 @@ App.close_tabs_popup = (type, item) => {
   let no_unloaded = [`unloaded`, `playing`, `loaded`, `empty`, `all`]
   let uncheck_normal = [`pinned`]
   let check_pins = [`pinned`]
+  let check_unloaded = [`unloaded`]
 
   if (no_pins.includes(type)) {
     pins_c.classList.add(`disabled`)
@@ -133,6 +133,13 @@ App.close_tabs_popup = (type, item) => {
 
   if (no_unloaded.includes(type)) {
     unloaded_c.classList.add(`disabled`)
+  }
+
+  if (check_unloaded.includes(type)) {
+    DOM.el(`#close_tabs_include_unloaded`).checked = true
+  }
+  else {
+    DOM.el(`#close_tabs_include_unloaded`).checked = false
   }
 
   App.update_close_tabs_popup_button(type)
@@ -184,7 +191,6 @@ App.close_normal_tabs = (pins, normal, unloaded) => {
   let items = App.get_normal_tabs_items(pins, normal, unloaded)
 
   if (!items.length) {
-    App.nothing_to_close()
     return
   }
 
@@ -221,7 +227,6 @@ App.close_playing_tabs = (pins, normal, unloaded) => {
   let items = App.get_playing_tabs_items(pins, normal, unloaded)
 
   if (!items.length) {
-    App.nothing_to_close()
     return
   }
 
@@ -258,7 +263,6 @@ App.close_loaded_tabs = (pins, normal, unloaded) => {
   let items = App.get_loaded_tabs_items(pins, normal, unloaded)
 
   if (!items.length) {
-    App.nothing_to_close()
     return
   }
 
@@ -295,7 +299,6 @@ App.close_unloaded_tabs = (pins, normal, unloaded) => {
   let items = App.get_unloaded_tabs_items(pins, normal, unloaded)
 
   if (!items.length) {
-    App.nothing_to_close()
     return
   }
 
@@ -327,7 +330,6 @@ App.close_duplicate_tabs = (pins, normal, unloaded) => {
   let items = App.get_duplicate_tabs_items(pins, normal, unloaded)
 
   if (!items.length) {
-    App.nothing_to_close()
     return
   }
 
@@ -357,7 +359,6 @@ App.close_visible_tabs = (pins, normal, unloaded) => {
   let items = App.get_visible_tabs_items(pins, normal, unloaded)
 
   if (!items.length) {
-    App.nothing_to_close()
     return
   }
 
@@ -395,7 +396,6 @@ App.close_other_tabs = (pins, normal, unloaded) => {
   let items = App.get_other_tabs_items(pins, normal, unloaded)
 
   if (!items.length) {
-    App.nothing_to_close()
     return
   }
 
@@ -410,7 +410,6 @@ App.close_all_tabs = (pins, normal, unloaded) => {
   let items = App.get_all_tabs_items(pins, normal, unloaded)
 
   if (!items.length) {
-    App.nothing_to_close()
     return
   }
 
@@ -441,7 +440,6 @@ App.close_pinned_tabs = (pins, normal, unloaded) => {
   let items = App.get_pinned_tabs_items(pins, normal, unloaded)
 
   if (!items.length) {
-    App.nothing_to_close()
     return
   }
 
@@ -474,7 +472,6 @@ App.close_empty_tabs = (pins, normal, unloaded) => {
   let items = App.get_empty_tabs_items(pins, normal, unloaded)
 
   if (!items.length) {
-    App.nothing_to_close()
     return
   }
 
@@ -536,10 +533,6 @@ App.close_tabs_next = (reverse = false) => {
   }
 
   App.close_tabs_popup(types[0])
-}
-
-App.nothing_to_close = () => {
-  App.alert(`Nothing to close`)
 }
 
 App.close_first_tab = () => {
