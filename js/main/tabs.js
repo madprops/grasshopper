@@ -197,13 +197,11 @@ App.open_new_tab = async (args = {}) => {
 
 App.new_tab = async (item, from = `normal`) => {
   let new_mode = App.get_setting(`new_tab_mode`)
-  let special = [`hover_menu`, `extra_menu`, `item_menu`]
-  let is_special = item && special.includes(from)
   let index, pinned
 
-  if (is_special && (new_mode !== `normal`)) {
-    pinned = item.pinned
+  if (item && (new_mode !== `normal`)) {
     let indx = App.get_item_index(`tabs`, item)
+    pinned = item.pinned
 
     if ([`above_all`, `below_all`].includes(new_mode)) {
       if (new_mode === `above_all`) {
@@ -214,7 +212,10 @@ App.new_tab = async (item, from = `normal`) => {
       }
     }
     else if ([`above_special`, `below_special`].includes(new_mode)) {
-      if (item.unloaded) {
+      let special = [`hover_menu`, `extra_menu`, `item_menu`]
+      let is_special = special.includes(from)
+
+      if (is_special) {
         if (new_mode === `above_special`) {
           index = indx
         }
