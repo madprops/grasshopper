@@ -1685,9 +1685,6 @@ App.get_new_tab_args = (item, from, args) => {
 
   if (index !== undefined) {
     args.index = index
-  }
-
-  if (pinned !== undefined) {
     args.pinned = pinned
   }
 
