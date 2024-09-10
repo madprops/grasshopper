@@ -562,14 +562,7 @@ App.on_mouse_wheel = (e) => {
   }
   else if (DOM.parent(e.target, [`.item_container`])) {
     if (e.shiftKey) {
-      if (direction === `up`) {
-        App.scroll_page(mode, `up`)
-      }
-      else if (direction === `down`) {
-        App.scroll_page(mode, `down`)
-      }
-
-      e.preventDefault()
+      App.wheel_action(direction, `shift_items`, e)
     }
   }
 }

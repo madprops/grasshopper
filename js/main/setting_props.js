@@ -2822,6 +2822,27 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.cmdlist)
       },
     },
+    wheel_up_shift_items: {
+      name: `Shift Wheel Up`,
+      type: `menu`,
+      value: `page_up`,
+      info: `What to do when scrolling the mousewheel up while holding Shift`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_down_shift_items: {
+      name: `Shift Wheel Down`,
+      type: `menu`,
+      value: `page_down`,
+      info: `What to do when scrolling the mousewheel down while holding Shift`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
     double_key_delay: {
       name: `Double Key Delay`,
       type: `number`,
