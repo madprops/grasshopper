@@ -2826,7 +2826,7 @@ App.build_settings = () => {
       name: `Shift Wheel Up`,
       type: `menu`,
       value: `page_up`,
-      info: `What to do when scrolling the mousewheel up while holding Shift`,
+      info: `What to do when scrolling the mousewheel up on items while holding Shift`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
@@ -2836,7 +2836,7 @@ App.build_settings = () => {
       name: `Shift Wheel Down`,
       type: `menu`,
       value: `page_down`,
-      info: `What to do when scrolling the mousewheel down while holding Shift`,
+      info: `What to do when scrolling the mousewheel down on items while holding Shift`,
       separator: true,
       version: 1,
       setup: (key) => {
