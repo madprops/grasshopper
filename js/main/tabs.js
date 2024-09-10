@@ -196,46 +196,8 @@ App.open_new_tab = async (args = {}) => {
 }
 
 App.new_tab = async (item, from = `normal`) => {
-  let new_mode = App.get_setting(`new_tab_mode`)
-  let index, pinned
-
-  if (item && (new_mode !== `normal`)) {
-    let indx = App.get_item_index(`tabs`, item)
-    pinned = item.pinned
-
-    if ([`above_all`, `below_all`].includes(new_mode)) {
-      if (new_mode === `above_all`) {
-        index = indx
-      }
-      else if (new_mode === `below_all`) {
-        index = indx + 1
-      }
-    }
-    else if ([`above_special`, `below_special`].includes(new_mode)) {
-      let special = [`hover_menu`, `extra_menu`, `item_menu`]
-      let is_special = special.includes(from)
-
-      if (is_special) {
-        if (new_mode === `above_special`) {
-          index = indx
-        }
-        else if (new_mode === `below_special`) {
-          index = indx + 1
-        }
-      }
-    }
-  }
-
   let args = {}
-
-  if (index !== undefined) {
-    args.index = index
-  }
-
-  if (pinned !== undefined) {
-    args.pinned = pinned
-  }
-
+  App.get_new_tab_args(item, from, args)
   await App.open_new_tab(args)
   App.after_focus({show_tabs: true})
 }
@@ -1688,4 +1650,46 @@ App.edge_tab_up_down = (direction) => {
       }
     }
   }
+}
+
+App.get_new_tab_args = (item, from, args) => {
+  let new_mode = App.get_setting(`new_tab_mode`)
+  let index, pinned
+
+  if (item && (new_mode !== `normal`)) {
+    let indx = App.get_item_index(`tabs`, item)
+    pinned = item.pinned
+
+    if ([`above_all`, `below_all`].includes(new_mode)) {
+      if (new_mode === `above_all`) {
+        index = indx
+      }
+      else if (new_mode === `below_all`) {
+        index = indx + 1
+      }
+    }
+    else if ([`above_special`, `below_special`].includes(new_mode)) {
+      let special = [`hover_menu`, `extra_menu`, `item_menu`]
+      let is_special = special.includes(from)
+
+      if (is_special) {
+        if (new_mode === `above_special`) {
+          index = indx
+        }
+        else if (new_mode === `below_special`) {
+          index = indx + 1
+        }
+      }
+    }
+  }
+
+  if (index !== undefined) {
+    args.index = index
+  }
+
+  if (pinned !== undefined) {
+    args.pinned = pinned
+  }
+
+  return args
 }
