@@ -1010,7 +1010,7 @@ App.setup_commands = () => {
       cmd: `open_new_tab`,
       icon: tabs_icon,
       action: (args) => {
-        App.new_tab(args.item)
+        App.new_tab(args.item, args.from)
       },
       info: `Open a new tab`,
     },

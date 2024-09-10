@@ -142,9 +142,8 @@ App.build_settings = () => {
     new_tab_mode: {
       name: `New Tab Mode`,
       type: `menu`,
-      value: `normal`,
-      info: `What to do when opening a new tab
-      Special includes unloaded tabs`,
+      value: `below_special`,
+      info: `What to do when opening a new tab`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
