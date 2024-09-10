@@ -103,7 +103,7 @@ App.close_tabs_popup = (type, item) => {
   let no_normal = [`normal`, `all`, `pinned`]
   let no_unloaded = [`unloaded`, `playing`, `loaded`, `empty`, `all`]
   let uncheck_normal = [`pinned`]
-  let check_pins = [`pinned`]
+  let check_pins = [`pinned`, `all`]
   let check_unloaded = [`unloaded`]
 
   if (no_pins.includes(type)) {
@@ -202,16 +202,12 @@ App.get_playing_tabs_items = (pins, normal, unloaded) => {
       continue
     }
 
-    if (!pins) {
-      if (it.pinned) {
-        continue
-      }
+    if (!pins && it.pinned) {
+      continue
     }
 
-    if (!normal) {
-      if (!it.pinned) {
-        continue
-      }
+    if (!normal && !it.pinned) {
+      continue
     }
 
     items.push(it)
@@ -238,16 +234,12 @@ App.get_loaded_tabs_items = (pins, normal, unloaded) => {
       continue
     }
 
-    if (!pins) {
-      if (it.pinned) {
-        continue
-      }
+    if (!pins && it.pinned) {
+      continue
     }
 
-    if (!normal) {
-      if (!it.pinned) {
-        continue
-      }
+    if (!normal && !it.pinned) {
+      continue
     }
 
     items.push(it)
@@ -274,16 +266,12 @@ App.get_unloaded_tabs_items = (pins, normal, unloaded) => {
       continue
     }
 
-    if (!pins) {
-      if (it.pinned) {
-        continue
-      }
+    if (!pins && it.pinned) {
+      continue
     }
 
-    if (!normal) {
-      if (!it.pinned) {
-        continue
-      }
+    if (!normal && !it.pinned) {
+      continue
     }
 
     items.push(it)
