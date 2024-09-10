@@ -218,6 +218,7 @@ App.build_settings = () => {
       name: `Custom URLs`,
       type: `list`,
       value: [],
+      actions: [`commands`],
       info: `List of URLs that can be used in commands`,
       version: 1,
     },

@@ -1431,6 +1431,11 @@ App.setup_settings_addlist = () => {
         name: true,
         url: true,
       },
+      process: {
+        url: (url) => {
+          return App.fix_url(url)
+        },
+      },
       title: props.name,
     }))
   }))
