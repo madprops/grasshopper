@@ -143,11 +143,13 @@ App.build_settings = () => {
       name: `New Tab Mode`,
       type: `menu`,
       value: `below_special`,
-      info: `What to do when opening a new tab`,
+      info: `What to do when opening a new tab
+      Normal means whatever the browser decides
+      Special means when used through item menus like the Hover Button or the Extra Menu`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
-          {text: `Browser Decides`, value: `normal`},
+          {text: `Normal`, value: `normal`},
           {text: `Above Current`, value: `above_all`},
           {text: `Below Current`, value: `below_all`},
           {text: `Above Special`, value: `above_special`},
