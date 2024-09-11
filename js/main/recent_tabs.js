@@ -47,6 +47,10 @@ App.get_recent_tabs = (args = {}) => {
 App.get_previous_tabs = (reverse = false) => {
   App.previous_tabs = App.get_recent_tabs()
 
+  if (!App.get_setting(`jump_unloaded`)) {
+    App.previous_tabs = App.previous_tabs.filter(x => !x.unloaded)
+  }
+
   if (App.previous_tabs.length > 1) {
     let first_tab = App.previous_tabs.shift()
     App.previous_tabs.push(first_tab)
