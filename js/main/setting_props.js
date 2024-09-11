@@ -2287,6 +2287,13 @@ App.build_settings = () => {
   category = `colors`
 
   props = {
+    color_icon_click: {
+      name: `Color Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the color menu by clicking a color icon`,
+      version: 1,
+    },
     colors: {
       name: `Colors`,
       type: `list`,
@@ -2304,19 +2311,12 @@ App.build_settings = () => {
       name: `Color Mode`,
       type: `menu`,
       value: `icon`,
+      separator: true,
       info: `How to display the colors (green, red, etc) you assign to tabs`,
       version: 2,
       setup: (key) => {
         App.settings_make_menu(key, App.color_displays)
       },
-    },
-    color_icon_click: {
-      name: `Color Icon Click`,
-      type: `checkbox`,
-      value: true,
-      separator: true,
-      info: `Show the color menu by clicking a color icon`,
-      version: 1,
     },
     text_color_active_mode: {
       name: `Active Tabs (Text)`,
