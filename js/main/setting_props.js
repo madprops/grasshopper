@@ -207,19 +207,19 @@ App.build_settings = () => {
         })
       },
     },
-    domain_rules: {
-      name: `Domain Rules`,
-      type: `list`,
-      value: [],
-      info: `Apply rules to domains automatically, like color, title, and tags`,
-      version: 1,
-    },
     custom_urls: {
       name: `Custom URLs`,
       type: `list`,
       value: [],
       actions: [`commands`],
       info: `List of URLs that can be used in commands`,
+      version: 1,
+    },
+    domain_rules: {
+      name: `Domain Rules`,
+      type: `list`,
+      value: [],
+      info: `Apply rules to domains automatically, like color, title, and tags`,
       version: 1,
     },
     bookmarks_folder: {
