@@ -3210,6 +3210,13 @@ App.build_settings = () => {
       Like 'Red' instead of 'Color Red'`,
       version: 1,
     },
+    short_bookmarks: {
+      name: `Short Bookmarks`,
+      type: `checkbox`,
+      value: false,
+      info: `Reduce 'Bookmarks' to 'Bmarks' in some places`,
+      version: 1,
+    },
     step_back_recent: {
       name: `Step Back Recent`,
       type: `checkbox`,
@@ -3229,13 +3236,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Select items when right clicking them to show the Item Menu`,
-      version: 1,
-    },
-    short_bookmarks: {
-      name: `Short Bookmarks`,
-      type: `checkbox`,
-      value: false,
-      info: `Reduce 'Bookmarks' to 'Bmarks' in some places`,
       version: 1,
     },
     debug_mode: {

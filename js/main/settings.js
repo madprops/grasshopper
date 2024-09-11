@@ -696,13 +696,31 @@ App.show_settings_menu = (e) => {
 }
 
 App.export_settings = () => {
-  App.export_data(App.settings)
+  let changed = {}
+
+  for (let key in App.settings) {
+    let props = App.settings[key]
+
+    if (props.value !== App.default_setting_string) {
+      changed[key] = props
+    }
+  }
+
+  App.export_data(changed)
 }
 
 App.import_settings = () => {
   App.import_data((json) => {
     if (App.is_object(json)) {
-      App.settings = json
+      for (let key in App.settings) {
+        if (json[key]) {
+          App.settings[key] = json[key]
+        }
+        else {
+          App.settings[key].value = App.default_setting_string
+        }
+      }
+
       App.check_settings()
       App.stor_save_settings()
       App.restart_settings()
