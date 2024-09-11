@@ -18,8 +18,11 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `double_click_favorites_top`, value: `toggle_taglist`})
   App.set_setting({setting: `middle_click_favorites_top`, value: `toggle_pin_tabs`})
 
-  App.set_setting({setting: `wheel_up_favorites_top`, value: `jump_tabs_pin_up`})
-  App.set_setting({setting: `wheel_down_favorites_top`, value: `jump_tabs_pin_down`})
+  App.set_setting({setting: `wheel_up_favorites_top`, value: `recent_tabs_forwards`})
+  App.set_setting({setting: `wheel_down_favorites_top`, value: `recent_tabs_backwards`})
+
+  App.set_setting({setting: `wheel_up_shift_favorites_top`, value: `jump_tabs_pin_up`})
+  App.set_setting({setting: `wheel_down_shift_favorites_top`, value: `jump_tabs_pin_down`})
 
   App.set_setting({setting: `wheel_up_favorites_center`, value: `jump_tabs_all_up`})
   App.set_setting({setting: `wheel_down_favorites_center`, value: `jump_tabs_all_down`})
@@ -33,9 +36,6 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `wheel_up_shift_items`, value: `recent_tabs_forwards`})
   App.set_setting({setting: `wheel_down_shift_items`, value: `recent_tabs_backwards`})
-
-  App.set_setting({setting: `wheel_up_shift_favorites_top`, value: `recent_tabs_forwards`})
-  App.set_setting({setting: `wheel_down_shift_favorites_top`, value: `recent_tabs_backwards`})
 
   let cmd = {cmd: `locust_swarm`, alt: `jump_tabs_tag_1_down`}
   App.prepend_list_setting(`favorites_menu`, cmd)
