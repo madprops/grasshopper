@@ -546,54 +546,31 @@ App.on_mouse_wheel = (e) => {
     e.preventDefault()
   }
   else if (e.target.closest(`.favorites_empty_top`)) {
-    if (e.shiftKey) {
-      App.wheel_action(direction, `shift_favorites_top`, e)
-    }
-    else {
-      App.wheel_action(direction, `favorites_top`, e)
-    }
+    App.wheel_action(direction, `favorites_top`, e)
   }
   else if (e.target.closest(`.favorites_bar`)) {
-    if (e.shiftKey) {
-      App.wheel_action(direction, `shift_favorites_center`, e)
-    }
-    else {
-      App.wheel_action(direction, `favorites_center`, e)
-    }
+    App.wheel_action(direction, `favorites_center`, e)
   }
   else if (e.target.closest(`.favorites_empty_bottom`)) {
-    if (e.shiftKey) {
-      App.wheel_action(direction, `shift_favorites_bottom`, e)
-    }
-    else {
-      App.wheel_action(direction, `favorites_bottom`, e)
-    }
+    App.wheel_action(direction, `favorites_bottom`, e)
   }
   else if (e.target.closest(`.footer`)) {
-    if (e.shiftKey) {
-      App.wheel_action(direction, `shift_footer`, e)
-    }
-    else {
-      App.wheel_action(direction, `footer`, e)
-    }
+    App.wheel_action(direction, `footer`, e)
   }
   else if (e.target.closest(`.main_title`)) {
-    if (e.shiftKey) {
-      App.wheel_action(direction, `shift_main_title`, e)
-    }
-    else {
-      App.wheel_action(direction, `main_title`, e)
-    }
+    App.wheel_action(direction, `main_title`, e)
   }
   else if (DOM.parent(e.target, [`.item_container`])) {
-    if (e.shiftKey) {
-      App.wheel_action(direction, `shift_items`, e)
-    }
+    App.wheel_action(direction, `items`, e)
   }
 }
 
 App.wheel_action = (direction, name, e) => {
   let cmd
+
+  if (e.shiftKey) {
+    name = `shift_${name}`
+  }
 
   if (direction === `up`) {
     cmd = App.get_setting(`wheel_up_${name}`)
