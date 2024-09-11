@@ -44,7 +44,7 @@ App.get_recent_tabs = (args = {}) => {
   return tabs
 }
 
-App.get_previous_tabs = (reverse = false) => {
+App.get_previous_tabs = () => {
   App.previous_tabs = App.get_recent_tabs()
 
   if (!App.get_setting(`jump_unloaded`)) {
