@@ -31,6 +31,12 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `wheel_down_footer`, value: `jump_tabs_header_down`})
   App.set_setting({setting: `extra_menu_mode`, value: `flat`})
 
+  App.set_setting({setting: `wheel_up_shift_items`, value: `recent_tabs_forwards`})
+  App.set_setting({setting: `wheel_down_shift_items`, value: `recent_tabs_backwards`})
+
+  App.set_setting({setting: `wheel_up_shift_favorites_top`, value: `recent_tabs_forwards`})
+  App.set_setting({setting: `wheel_down_shift_favorites_top`, value: `recent_tabs_backwards`})
+
   let cmd = {cmd: `locust_swarm`, alt: `jump_tabs_tag_1_down`}
   App.prepend_list_setting(`favorites_menu`, cmd)
 
