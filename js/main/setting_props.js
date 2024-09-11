@@ -2305,6 +2305,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `icon`,
       info: `How to display the colors (green, red, etc) you assign to tabs`,
+      separator: true,
       version: 2,
       setup: (key) => {
         App.settings_make_menu(key, App.color_displays)
@@ -2325,6 +2326,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom text color for active tabs`,
       version: 1,
       setup: (key) => {
@@ -2346,6 +2348,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom background color for active tabs`,
       version: 1,
       setup: (key) => {
@@ -2367,6 +2370,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom text color for playing tabs`,
       version: 1,
       setup: (key) => {
@@ -2388,6 +2392,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom background color for playing tabs`,
       version: 1,
       setup: (key) => {
@@ -2409,6 +2414,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom text color for unread tabs`,
       version: 1,
       setup: (key) => {
@@ -2430,6 +2436,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom background color for unread tabs`,
       version: 1,
       setup: (key) => {
@@ -2451,6 +2458,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom text color for unloaded tabs`,
       version: 1,
       setup: (key) => {
@@ -2472,6 +2480,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom background color for unloaded tabs`,
       version: 1,
       setup: (key) => {
@@ -2493,6 +2502,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom text color for loaded tabs`,
       version: 1,
       setup: (key) => {
@@ -2514,6 +2524,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom background color for loaded tabs`,
       version: 1,
       setup: (key) => {
@@ -2535,6 +2546,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom text color for pins`,
       version: 1,
       setup: (key) => {
@@ -2556,6 +2568,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom background color for pins`,
       version: 1,
       setup: (key) => {
@@ -2577,6 +2590,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom text color for normal tabs`,
       version: 1,
       setup: (key) => {
@@ -2598,6 +2612,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Custom background color for normal tabs`,
       version: 1,
       setup: (key) => {
