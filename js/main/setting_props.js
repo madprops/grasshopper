@@ -2940,11 +2940,18 @@ App.build_settings = () => {
       type: `menu`,
       value: `page_down`,
       info: `What to do when scrolling the mousewheel down on items while holding Shift`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
       },
+    },
+    wheel_hover_item: {
+      name: `Wheel Hover Item`,
+      type: `checkbox`,
+      value: true,
+      separator: true,
+      info: `Perform actions on the hovered item when using the mousewheel`,
+      version: 1,
     },
     double_key_delay: {
       name: `Double Key Delay`,

@@ -566,6 +566,8 @@ App.on_mouse_wheel = (e) => {
 }
 
 App.wheel_action = (direction, name, e) => {
+  let mode = App.window_mode
+
   if (e.shiftKey) {
     name = `shift_${name}`
   }
@@ -581,8 +583,16 @@ App.wheel_action = (direction, name, e) => {
     return
   }
 
+  let item
+
+  if (App.get_setting(`wheel_hover_item`)) {
+    if (App.cursor_on_item(mode, e)) {
+      item = App.get_mouse_item(mode, e)
+    }
+  }
+
   let cmd = App.get_setting(name)
-  App.run_command({cmd: cmd, from: `mouse`, e: e})
+  App.run_command({cmd: cmd, item: item, from: `mouse`, e: e})
 }
 
 // Custom double click function which has some advantages
