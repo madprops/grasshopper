@@ -3072,13 +3072,6 @@ App.build_settings = () => {
       info: `Make commands context aware to avoid clutter`,
       version: 1,
     },
-    all_bookmarks: {
-      name: `All Bookmarks`,
-      type: `checkbox`,
-      value: true,
-      info: `Show other bookmarks apart from the configured bookmarks folder`,
-      version: 1,
-    },
     generate_icons: {
       name: `Generate Icons`,
       type: `checkbox`,

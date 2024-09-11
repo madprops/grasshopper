@@ -50,18 +50,9 @@ App.get_bookmarks = async (query = ``, deep = false) => {
     return []
   }
 
-  results = results.filter(x => x.type === `bookmark`)
-  let folder = await App.get_bookmarks_folder()
-  let b1 = results.filter(x => x.parentId === folder.id)
-  b1.sort((a, b) => b.index - a.index)
-  let b2 = []
+  let bookmarks = results.filter(x => x.type === `bookmark`)
+  bookmarks.sort((a, b) => b.dateAdded - a.dateAdded)
 
-  if (App.get_setting(`all_bookmarks`)) {
-    b2 = results.filter(x => x.parentId !== folder.id)
-    b2.sort((a, b) => b.index - a.index)
-  }
-
-  let bookmarks = [...b1, ...b2]
   App.last_bookmarks_query = query
   let max_items = App.get_setting(`max_search_items`)
 
