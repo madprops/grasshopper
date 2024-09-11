@@ -546,19 +546,44 @@ App.on_mouse_wheel = (e) => {
     e.preventDefault()
   }
   else if (e.target.closest(`.favorites_empty_top`)) {
-    App.wheel_action(direction, `favorites_top`, e)
+    if (e.shiftKey) {
+      App.wheel_action(direction, `shift_favorites_top`, e)
+    }
+    else {
+      App.wheel_action(direction, `favorites_top`, e)
+    }
   }
   else if (e.target.closest(`.favorites_bar`)) {
-    App.wheel_action(direction, `favorites_center`, e)
+    if (e.shiftKey) {
+      App.wheel_action(direction, `shift_favorites_center`, e)
+    }
+    else {
+      App.wheel_action(direction, `favorites_center`, e)
+    }
   }
   else if (e.target.closest(`.favorites_empty_bottom`)) {
-    App.wheel_action(direction, `favorites_bottom`, e)
+    if (e.shiftKey) {
+      App.wheel_action(direction, `shift_favorites_bottom`, e)
+    }
+    else {
+      App.wheel_action(direction, `favorites_bottom`, e)
+    }
   }
   else if (e.target.closest(`.footer`)) {
-    App.wheel_action(direction, `footer`, e)
+    if (e.shiftKey) {
+      App.wheel_action(direction, `shift_footer`, e)
+    }
+    else {
+      App.wheel_action(direction, `footer`, e)
+    }
   }
   else if (e.target.closest(`.main_title`)) {
-    App.wheel_action(direction, `main_title`, e)
+    if (e.shiftKey) {
+      App.wheel_action(direction, `shift_main_title`, e)
+    }
+    else {
+      App.wheel_action(direction, `main_title`, e)
+    }
   }
   else if (DOM.parent(e.target, [`.item_container`])) {
     if (e.shiftKey) {

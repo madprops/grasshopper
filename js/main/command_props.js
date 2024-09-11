@@ -597,7 +597,7 @@ App.setup_commands = () => {
       info: `Paste tabs at the current position`,
     },
     {
-      name: `Previous Mode`,
+      name: `Prev Mode`,
       cmd: `show_previous_mode`,
       modes: [`items`],
       icon: command_icon,
@@ -687,7 +687,7 @@ App.setup_commands = () => {
       info: `Import theme`,
     },
     {
-      name: `Previous Theme`,
+      name: `Prev Theme`,
       cmd: `set_previous_theme`,
       icon: theme_icon,
       action: (args) => {
@@ -863,7 +863,7 @@ App.setup_commands = () => {
       info: `Filter all items`,
     },
     {
-      name: `Previous Filter`,
+      name: `Prev Filter`,
       cmd: `previous_filter`,
       modes: [`items`],
       icon: filter_icon,
@@ -2781,7 +2781,7 @@ App.setup_commands = () => {
       info: `Apply blue color to the main title`,
     },
     {
-      name: `Previous Title Color`,
+      name: `Prev Title Color`,
       cmd: `previous_main_title_color`,
       icon: title_icon,
       action: (args) => {

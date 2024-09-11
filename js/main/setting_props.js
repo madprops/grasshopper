@@ -1201,6 +1201,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `copy_item_url`,
       info: `Command to run when middle clicking the Footer`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
@@ -1221,6 +1222,27 @@ App.build_settings = () => {
       type: `menu`,
       value: `scroll_down`,
       info: `Command to run when using the mousewheel down on the Footer`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_up_shift_footer: {
+      name: `Shift Wheel Up Footer`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel up on the Footer while holding Shift`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_down_shift_footer: {
+      name: `Shift Wheel Down Footer`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel down on the Footer while holding Shift`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
@@ -1316,6 +1338,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the top empty area of the Favorites Bar`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
@@ -1336,6 +1359,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `scroll_down`,
       info: `Command to run when using the mousewheel down on the top empty area of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_up_shift_favorites_top: {
+      name: `Shift Wheel Up Fav Top`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel up on the top area of the Favorites Bar while holding Shift`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_down_shift_favorites_top: {
+      name: `Shift Wheel Down Fav Top`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel down on the top area of the Favorites Bar while holding Shift`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -1357,6 +1400,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `scroll_down`,
       info: `Command to run when using the mousewheel down on the center area of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_up_shift_favorites_center: {
+      name: `Shift Wheel Up Fav Center`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel up on the center area of the Favorites Bar while holding Shift`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_down_shift_favorites_center: {
+      name: `Shift Wheel Down Fav Center`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel down on the center area of the Favorites Bar while holding Shift`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -1378,6 +1441,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the bottom empty area of the Favorites Bar`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
@@ -1398,6 +1462,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `scroll_down`,
       info: `Command to run when using the mousewheel down on the bottom empty area of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_up_shift_favorites_bottom: {
+      name: `Shift Wheel Up Fav Bottom`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel up on the bottom area of the Favorites Bar while holding Shift`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_down_shift_favorites_bottom: {
+      name: `Shift Wheel Down Fav Bottom`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel down on the bottom area of the Favorites Bar while holding Shift`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -1555,6 +1639,7 @@ App.build_settings = () => {
       type: `text`,
       value: `dddd dS mmmm yyyy`,
       placeholder: `Date Format`,
+      separator: true,
       info: `Format to use when showing the date as the Title`,
       version: 1,
     },
@@ -1573,6 +1658,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `next_main_title_color`,
       info: `Command to run when using the mousewheel down on the Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_up_shift_main_title: {
+      name: `Shift Wheel Up Title`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel up on the Title while holding Shift`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
+    },
+    wheel_down_shift_main_title: {
+      name: `Shift Wheel Down Title`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel down on the Title while holding Shift`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
