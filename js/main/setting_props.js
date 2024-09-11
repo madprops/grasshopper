@@ -2305,11 +2305,18 @@ App.build_settings = () => {
       type: `menu`,
       value: `icon`,
       info: `How to display the colors (green, red, etc) you assign to tabs`,
-      separator: true,
       version: 2,
       setup: (key) => {
         App.settings_make_menu(key, App.color_displays)
       },
+    },
+    color_icon_click: {
+      name: `Color Icon Click`,
+      type: `checkbox`,
+      value: true,
+      separator: true,
+      info: `Show the color menu by clicking a color icon`,
+      version: 1,
     },
     text_color_active_mode: {
       name: `Active Tabs (Text)`,
@@ -2612,19 +2619,11 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
-      separator: true,
       info: `Custom background color for normal tabs`,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key, true)
       },
-    },
-    color_icon_click: {
-      name: `Color Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the color menu by clicking a color icon`,
-      version: 1,
     },
   }
 
