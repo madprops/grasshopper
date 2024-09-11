@@ -186,6 +186,7 @@ App.edit_tab_color = (args = {}) => {
   let def_args = {
     color: ``,
     toggle: false,
+    force: false,
   }
 
   App.def_args(def_args, args)
@@ -209,7 +210,7 @@ App.edit_tab_color = (args = {}) => {
 
   let c_obj = App.get_color_by_id(args.color)
   let s = args.color ? `Color items?` : `Remove color?`
-  let force = App.check_force(`warn_on_edit_tabs`, active)
+  let force = args.force || App.check_force(`warn_on_edit_tabs`, active)
   let value
 
   if (c_obj) {
@@ -613,11 +614,12 @@ App.cycle_color = (item, direction = `next`) => {
         found = true
       }
     }
-
-    if (!next_color) {
-      next_color = colors[0]
-    }
   }
 
-  App.edit_tab_color({item: item, color: next_color.id})
+  if (!next_color) {
+    App.edit_tab_color({item: item, force: true})
+  }
+  else {
+    App.edit_tab_color({item: item, color: next_color.id, force: true})
+  }
 }
