@@ -47,6 +47,7 @@ NeedContext.clear_filter = () => {
 NeedContext.do_filter = () => {
   let value = NeedContext.filter.value
   let cleaned = NeedContext.remove_spaces(value).toLowerCase()
+  let colons = cleaned.includes(`:`)
   let selected = false
 
   for (let el of document.querySelectorAll(`.needcontext-separator`)) {
@@ -62,6 +63,10 @@ NeedContext.do_filter = () => {
     let el = text_el.closest(`.needcontext-item`)
     let text = text_el.textContent.toLowerCase()
     text = NeedContext.remove_spaces(text)
+
+    if (!colons) {
+      text = text.replace(/:/g, ``)
+    }
 
     if (text.includes(cleaned)) {
       el.classList.remove(`needcontext-hidden`)
