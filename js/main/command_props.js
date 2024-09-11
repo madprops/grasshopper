@@ -333,7 +333,7 @@ App.setup_commands = () => {
   for (let category in App.setting_catprops) {
     let icon = App.settings_icons[category]
     let c_name = App.category_string(category)
-    let name = `Settings (${c_name})`
+    let name = `Settings: ${c_name}`
 
     settings_categories.push({
       name: name,

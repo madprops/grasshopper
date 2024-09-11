@@ -849,6 +849,7 @@ App.do_filter_2 = (mode) => {
   for (let item of items) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
     text = App.clean_filter(text, true)
+    text = text.replace(/:/g, ``)
 
     if (text.includes(value)) {
       DOM.show(item)
