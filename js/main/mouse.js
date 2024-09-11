@@ -566,19 +566,22 @@ App.on_mouse_wheel = (e) => {
 }
 
 App.wheel_action = (direction, name, e) => {
-  let cmd
-
   if (e.shiftKey) {
     name = `shift_${name}`
   }
 
   if (direction === `up`) {
-    cmd = App.get_setting(`wheel_up_${name}`)
+    name = `wheel_up_${name}`
   }
   else if (direction === `down`) {
-    cmd = App.get_setting(`wheel_down_${name}`)
+    name = `wheel_down_${name}`
   }
 
+  if (!App.settings[name]) {
+    return
+  }
+
+  let cmd = App.get_setting(name)
   App.run_command({cmd: cmd, from: `mouse`, e: e})
 }
 
