@@ -51,8 +51,14 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   }
 
   let bookmarks = results.filter(x => x.type === `bookmark`)
-  bookmarks.sort((a, b) => b.dateAdded - a.dateAdded)
 
+  // Show only from Grasshopper dir
+  if (!App.get_setting(`all_bookmarks`)) {
+    let folder = await App.get_bookmarks_folder()
+    bookmarks = bookmarks.filter(x => x.parentId === folder.id)
+  }
+
+  bookmarks.sort((a, b) => b.dateAdded - a.dateAdded)
   App.last_bookmarks_query = query
   let max_items = App.get_setting(`max_search_items`)
 
