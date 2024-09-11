@@ -1085,6 +1085,7 @@ App.build_settings = () => {
       name: `Tab Box Color Mode`,
       type: `menu`,
       value: `icon`,
+      separator: true,
       info: `The color mode inside the Tab Box
       For colors like green, red, etc`,
       version: 1,
@@ -1104,6 +1105,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
+      separator: true,
       info: `Background color of the Tab Box`,
       version: 1,
       setup: (key) => {
