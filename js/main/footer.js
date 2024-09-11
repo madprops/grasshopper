@@ -74,12 +74,6 @@ App.create_footer = (mode) => {
       App.toggle_tab_box()
     })
 
-    DOM.ev(tab_box_btn, `auxclick`, (e) => {
-      if (e.button === 1) {
-        App.toggle_favorites()
-      }
-    })
-
     footer.append(tab_box_btn)
   }
 
@@ -107,7 +101,7 @@ App.create_footer = (mode) => {
     App.goto_bottom(mode)
   })
 
-  DOM.ev(footer_content, `contextmenu`, (e) => {
+  DOM.ev(footer, `contextmenu`, (e) => {
     e.preventDefault()
 
     let items = App.custom_menu_items({
@@ -117,7 +111,7 @@ App.create_footer = (mode) => {
     App.show_context({items: items, e: e})
   })
 
-  DOM.ev(footer_content, `auxclick`, (e) => {
+  DOM.ev(footer, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_footer`)
       App.run_command({cmd: cmd, from: `footer`, e: e})
