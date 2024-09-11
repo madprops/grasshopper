@@ -710,12 +710,12 @@ App.export_settings = () => {
   App.export_data(changed)
 }
 
-App.import_settings = () => {
-  function reset(key) {
-    App.settings[key].value = App.default_setting_string
-    App.settings[key].version = App.setting_props[key].version
-  }
+App.def_setting = (key) => {
+  App.settings[key].value = App.default_setting_string
+  App.settings[key].version = App.setting_props[key].version
+}
 
+App.import_settings = () => {
   App.import_data((json) => {
     if (App.is_object(json)) {
       for (let key in App.settings) {
@@ -723,7 +723,7 @@ App.import_settings = () => {
           App.settings[key] = json[key]
         }
         else {
-          reset(key)
+          App.def_setting(key)
         }
       }
 
@@ -852,11 +852,6 @@ App.get_default_setting = (setting) => {
 App.check_settings = () => {
   let changed = false
 
-  function set_default (setting) {
-    App.settings[setting].value = App.default_setting_string
-    App.settings[setting].version = App.setting_props[setting].version
-  }
-
   for (let key in App.setting_props) {
     // Fill defaults
     if (App.settings[key] === undefined ||
@@ -865,7 +860,7 @@ App.check_settings = () => {
     {
       App.debug(`Stor: Adding setting: ${key}`)
       App.settings[key] = {}
-      set_default(key)
+      App.def_setting(key)
       changed = true
     }
   }
@@ -880,7 +875,7 @@ App.check_settings = () => {
     // Check new version
     else if (App.settings[key].version !== App.setting_props[key].version) {
       App.debug(`Stor: Upgrading setting: ${key}`)
-      set_default(key)
+      App.def_setting(key)
       changed = true
     }
   }
