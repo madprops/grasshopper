@@ -3231,6 +3231,13 @@ App.build_settings = () => {
       info: `Select items when right clicking them to show the Item Menu`,
       version: 1,
     },
+    short_bookmarks: {
+      name: `Short Bookmarks`,
+      type: `checkbox`,
+      value: false,
+      info: `Reduce 'Bookmarks' to 'Bmarks' in some places`,
+      version: 1,
+    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,
