@@ -836,6 +836,7 @@ App.do_filter_2 = (mode) => {
   let container = DOM.el_or_self(`.filter_container`, win)
   let items = DOM.els(`.filter_item`, container)
   let ignore = DOM.els(`.filter_ignore`, container)
+  let colons = value.includes(`:`)
 
   for (let item of ignore) {
     if (value) {
@@ -849,7 +850,10 @@ App.do_filter_2 = (mode) => {
   for (let item of items) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
     text = App.clean_filter(text, true)
-    text = text.replace(/:/g, ``)
+
+    if (!colons) {
+      text = text.replace(/:/g, ``)
+    }
 
     if (text.includes(value)) {
       DOM.show(item)
