@@ -1338,7 +1338,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the top empty area of the Favorites Bar`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
@@ -1441,7 +1440,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the bottom empty area of the Favorites Bar`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
