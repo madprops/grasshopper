@@ -67,8 +67,8 @@ App.create_footer = (mode) => {
     let tab_box_btn = DOM.create(`div`, `pointer`, `footer_tab_box`)
     tab_box_btn.append(App.get_svg_icon(`arrow_up`))
     let click = App.get_cmd_name(`toggle_tab_box`)
-    let mclick = App.get_cmd_name(`toggle_favorites`)
-    tab_box_btn.title = `Click: ${click}\nMiddle Click: ${mclick}`
+    tab_box_btn.title = `Click: ${click}`
+    App.trigger_title(tab_box_btn, `middle_click_footer`)
 
     DOM.ev(tab_box_btn, `click`, () => {
       App.toggle_tab_box()
@@ -81,6 +81,7 @@ App.create_footer = (mode) => {
   let footer_count = DOM.create(`div`, `footer_count`, `${mode}_footer_count`)
   let click = App.get_cmd_name(`select_all_items`)
   footer_count.title = `Number of items\nClick: ${click}`
+  App.trigger_title(footer_count, `middle_click_footer`)
   footer_content.append(footer_count)
   let footer_info = DOM.create(`div`, `footer_info`, `${mode}_footer_info`)
   footer_content.append(footer_info)
