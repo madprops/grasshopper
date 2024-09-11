@@ -52,7 +52,7 @@ App.get_bookmarks = async (query = ``, deep = false) => {
 
   let bookmarks = results.filter(x => x.type === `bookmark`)
 
-  // Show only from Grasshopper dir
+  // Show only from Grasshopper directory
   if (!App.get_setting(`all_bookmarks`)) {
     let folder = await App.get_bookmarks_folder()
     bookmarks = bookmarks.filter(x => x.parentId === folder.id)
