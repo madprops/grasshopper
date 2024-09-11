@@ -1301,6 +1301,7 @@ App.build_settings = () => {
         {cmd: `edit_notes`, alt: `edit_global_notes`},
         {cmd: `toggle_auto_blur`, alt: `toggle_favorites_autohide`},
       ],
+      separator: true,
       info: `List of commands that can appear in various forms`,
       version: 1,
     },
