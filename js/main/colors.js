@@ -577,3 +577,47 @@ App.get_color_tabs = (color_id) => {
 
   return tabs
 }
+
+App.cycle_color = (item, direction = `next`) => {
+  if (!item) {
+    return
+  }
+
+  let colors = App.colors()
+
+  if (!colors.length) {
+    return
+  }
+
+  if (direction === `prev`) {
+    colors = colors.slice().reverse()
+  }
+
+  let current = App.get_color(item)
+  let next_color
+
+  if (!current) {
+    next_color = colors[0]
+  }
+
+  if (!next_color) {
+    let found = false
+
+    for (let color of colors) {
+      if (found) {
+        next_color = color
+        break
+      }
+
+      if (color.id === current) {
+        found = true
+      }
+    }
+
+    if (!next_color) {
+      next_color = colors[0]
+    }
+  }
+
+  App.edit_tab_color({item: item, color: next_color.id})
+}

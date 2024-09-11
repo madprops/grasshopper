@@ -139,7 +139,7 @@ App.check_refresh_settings_delay = 100
 App.settings_icons = {
   general: `⚡`,
   theme: `🎨`,
-  colors: `🇿🇼`,
+  colors: `🇧🇮`,
   zones: `🚥`,
   edits: `📝`,
   icons: `🖼️`,

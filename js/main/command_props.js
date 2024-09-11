@@ -18,6 +18,7 @@ App.setup_commands = () => {
   let filter_icon = App.settings_icons.filter
   let media_icon = App.settings_icons.media
   let tab_box_icon = App.settings_icons.tab_box
+  let colors_icon = App.settings_icons.colors
   let favorites_icon = App.settings_icons.favorites
   let tabs_icon =  App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
@@ -275,6 +276,28 @@ App.setup_commands = () => {
       App.close_color_all(args.e)
     },
     info: `Show the close color menu`,
+  })
+
+  color_closers.push({
+    name: `Prev Color`,
+    cmd: `cycle_color_previous`,
+    modes: [`tabs`],
+    icon: colors_icon,
+    action: (args) => {
+      App.cycle_color(args.item, `prev`)
+    },
+    info: `Cycle colors on the item backwards`,
+  })
+
+  color_closers.push({
+    name: `Next Color`,
+    cmd: `cycle_color_next`,
+    modes: [`tabs`],
+    icon: colors_icon,
+    action: (args) => {
+      App.cycle_color(args.item, `next`)
+    },
+    info: `Cycle colors on the item forwards`,
   })
 
   let media_filters = []
