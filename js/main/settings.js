@@ -701,6 +701,7 @@ App.export_settings = () => {
   for (let key in App.settings) {
     let props = App.settings[key]
 
+    // Only export changed settings
     if (props.value !== App.default_setting_string) {
       changed[key] = props
     }
@@ -710,6 +711,11 @@ App.export_settings = () => {
 }
 
 App.import_settings = () => {
+  function reset(key) {
+    App.settings[key].value = App.default_setting_string
+    App.settings[key].version = App.setting_props[key].version
+  }
+
   App.import_data((json) => {
     if (App.is_object(json)) {
       for (let key in App.settings) {
@@ -717,7 +723,7 @@ App.import_settings = () => {
           App.settings[key] = json[key]
         }
         else {
-          App.settings[key].value = App.default_setting_string
+          reset(key)
         }
       }
 
