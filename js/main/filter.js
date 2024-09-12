@@ -116,6 +116,11 @@ App.do_filter = async (args = {}) => {
 
     if (args.force || (svalue !== App[`last_${args.mode}_query`])) {
       svalue = App.replace_filter_vars(svalue)
+
+      if (quotes_enabled) {
+        svalue = App.remove_quotes(svalue)
+      }
+
       let search_date = App.now()
       App.filter_search_date = search_date
       await App.search_items(args.mode, svalue, args.deep, search_date)
@@ -391,11 +396,6 @@ App.make_filter_regex = (value, by_what, quotes = true) => {
 
 App.filter_check = (args) => {
   let match = false
-
-  if (args.search) {
-    match = true
-  }
-
   let title = App.title(args.item)
   let lower_title = title.toLowerCase()
 
