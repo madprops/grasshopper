@@ -8,7 +8,7 @@ App.import_data = (what, action) => {
     button: `Import`,
     action: (text) => {
       if (!text.trim()) {
-        return true
+        return false
       }
 
       let json
