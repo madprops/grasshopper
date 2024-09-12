@@ -703,11 +703,19 @@ App.def_setting = (key) => {
   App.settings[key].version = App.setting_props[key].version
 }
 
-App.export_settings = () => {
+App.export_settings = (category = ``) => {
   let changed = {}
 
   for (let key in App.settings) {
     let props = App.settings[key]
+
+    if (category) {
+      let cat = App.setting_props[key].category
+
+      if (cat !== category) {
+        continue
+      }
+    }
 
     // Only export changed settings
     if (props.value !== App.default_setting_string) {
@@ -747,13 +755,32 @@ App.restart_settings = () => {
 
 App.settings_data_items = () => {
   let items = []
+  let cat = App.category_string(App.settings_category)
+
+  items.push({
+    icon: App.data_icon,
+    text: `Export ${cat}`,
+    action: () => {
+      App.export_settings(App.settings_category)
+    },
+  })
+
+  items.push({
+    icon: App.data_icon,
+    text: `Reset ${cat}`,
+    action: () => {
+      App.reset_settings(App.settings_category)
+    }
+  })
+
+  App.sep(items)
 
   items.push({
     icon: App.data_icon,
     text: `Export Settings`,
     action: () => {
       App.export_settings()
-    }
+    },
   })
 
   items.push({
@@ -761,15 +788,17 @@ App.settings_data_items = () => {
     text: `Import Settings`,
     action: () => {
       App.import_settings()
-    }
+    },
   })
+
+  App.sep(items)
 
   items.push({
     icon: App.data_icon,
     text: `Reset Settings`,
     action: () => {
       App.reset_all_settings()
-    }
+    },
   })
 
   return items
@@ -977,13 +1006,6 @@ App.settings_actions = (category) => {
   })
 
   App.sep(items)
-
-  items.push({
-    text: `Reset`,
-    action: () => {
-      App.reset_settings(category)
-    }
-  })
 
   items.push({
     text: `Show All`,
