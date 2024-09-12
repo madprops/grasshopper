@@ -764,29 +764,6 @@ App.reset_theme = () => {
   App.set_default_setting(`background_tiles`)
 }
 
-App.export_theme = () => {
-  let data = {}
-
-  for (let sett of App.theme_settings) {
-    data[sett] = App.get_setting(sett)
-  }
-
-  App.export_data(`theme`, data)
-}
-
-App.import_theme = () => {
-  App.import_data(`theme`, (json) => {
-    for (let key in json) {
-      if (App.theme_settings.includes(key)) {
-        App.set_setting({setting: key, value: json[key]})
-        App.check_refresh_settings()
-      }
-    }
-
-    App.apply_theme()
-  })
-}
-
 App.show_theme_menu = (e) => {
   let items = []
 

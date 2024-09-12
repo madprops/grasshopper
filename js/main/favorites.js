@@ -362,24 +362,3 @@ App.toggle_favorites_autohide = () => {
     App.on_favorites_enter(App.active_mode)
   }
 }
-
-App.export_favorites = () => {
-  let data = {
-    favorites_menu: App.get_setting(`favorites_menu`),
-  }
-
-  App.export_data(`favorites`, data)
-}
-
-App.import_favorites = () => {
-  App.import_data(`favorites`, (json) => {
-    for (let key in json) {
-      if (key === `favorites_menu`) {
-        App.set_setting({setting: key, value: json[key]})
-        App.check_refresh_settings()
-      }
-    }
-
-    App.fill_favorites_bar()
-  })
-}

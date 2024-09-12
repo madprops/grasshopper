@@ -692,24 +692,6 @@ App.setup_commands = () => {
     ...settings_categories,
 
     {
-      name: `Export Theme`,
-      cmd: `export_theme`,
-      icon: theme_icon,
-      action: (args) => {
-        App.export_theme()
-      },
-      info: `Export theme`,
-    },
-    {
-      name: `Import Theme`,
-      cmd: `import_theme`,
-      icon: theme_icon,
-      action: (args) => {
-        App.import_theme()
-      },
-      info: `Import theme`,
-    },
-    {
       name: `Prev Theme`,
       cmd: `set_previous_theme`,
       icon: theme_icon,
@@ -784,24 +766,6 @@ App.setup_commands = () => {
         App.toggle_favorites_autohide()
       },
       info: `Enable or disable Favorites autohide`,
-    },
-    {
-      name: `Export Favorites`,
-      cmd: `export_favorites`,
-      icon: favorites_icon,
-      action: (args) => {
-        App.export_favorites()
-      },
-      info: `Export favorites`,
-    },
-    {
-      name: `Import Favorites`,
-      cmd: `import_favorites`,
-      icon: favorites_icon,
-      action: (args) => {
-        App.import_favorites()
-      },
-      info: `Import favorites`,
     },
     {
       name: `Toggle Tab Box`,
