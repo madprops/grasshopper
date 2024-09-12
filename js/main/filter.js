@@ -179,10 +179,6 @@ App.do_filter = async (args = {}) => {
 
   if (reg) {
     regexes.push(reg)
-
-    if (quotes_enabled) {
-      quotes.push(...App.get_filter_quotes(value))
-    }
   }
   else {
     return
@@ -224,10 +220,6 @@ App.do_filter = async (args = {}) => {
 
         if (reg) {
           regexes.push(reg)
-
-          if (quotes_enabled) {
-            quotes.push(...App.get_filter_quotes(match))
-          }
         }
       }
     }
@@ -378,11 +370,6 @@ App.replace_filter_vars = (value) => {
 App.make_filter_regex = (value, by_what, quotes = true) => {
   let regex
   value = App.replace_filter_vars(value)
-
-  if (quotes) {
-    value = App.remove_quotes(value)
-  }
-
   let ci = App.get_setting(`case_insensitive`)
 
   if (by_what.startsWith(`re`)) {
@@ -398,6 +385,11 @@ App.make_filter_regex = (value, by_what, quotes = true) => {
   else {
     let cleaned = App.clean_filter(value)
     cleaned = App.escape_regex(cleaned)
+
+    if (quotes) {
+      cleaned = cleaned.replace(/"/g, `\\b`)
+    }
+
     regex = new RegExp(cleaned, ci ? `i` : ``)
   }
 
@@ -422,10 +414,6 @@ App.filter_check = (args) => {
       }
       else if (args.by_what.includes(`title`)) {
         match = regex.test(clean_title)
-
-        if (match) {
-          match = App.check_filter_quotes(clean_title, args.quotes)
-        }
       }
       else if (args.by_what.includes(`url`)) {
         match = regex.test(args.item.path)
@@ -1883,27 +1871,4 @@ App.filter_double_click = (mode, e) => {
   }
 
   App.run_command({cmd: cmd, from: `filter`, e: e})
-}
-
-App.check_filter_quotes = (value, quotes) => {
-  for (let regex of quotes) {
-    if (!regex.test(value)) {
-      return false
-    }
-  }
-
-  return true
-}
-
-App.get_filter_quotes = (value) => {
-  let ci = App.get_setting(`case_insensitive`)
-  let quotes = App.get_quotes(value)
-  let regexes = []
-
-  for (let quote of quotes) {
-    let regex = new RegExp(`\\b${quote}\\b`, ci ? `i` : ``);
-    regexes.push(regex)
-  }
-
-  return regexes
 }
