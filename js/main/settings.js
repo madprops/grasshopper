@@ -762,57 +762,6 @@ App.restart_settings = () => {
   }
 }
 
-App.settings_data_items = () => {
-  let items = []
-  let cat = App.category_string(App.settings_category)
-
-  items.push({
-    icon: App.data_icon,
-    text: `Export ${cat}`,
-    action: () => {
-      App.export_settings(App.settings_category)
-    },
-  })
-
-  items.push({
-    icon: App.data_icon,
-    text: `Reset ${cat}`,
-    action: () => {
-      App.reset_settings(App.settings_category)
-    }
-  })
-
-  App.sep(items)
-
-  items.push({
-    icon: App.data_icon,
-    text: `Export Settings`,
-    action: () => {
-      App.export_settings()
-    },
-  })
-
-  items.push({
-    icon: App.data_icon,
-    text: `Import Settings`,
-    action: () => {
-      App.import_settings()
-    },
-  })
-
-  App.sep(items)
-
-  items.push({
-    icon: App.data_icon,
-    text: `Reset Settings`,
-    action: () => {
-      App.reset_all_settings()
-    },
-  })
-
-  return items
-}
-
 App.settings_label_menu = (e, args) => {
   let items = []
 
@@ -998,17 +947,18 @@ App.set_settings_menu = (setting, value, on_change) => {
 }
 
 App.settings_actions = (category) => {
+  let cat = App.category_string(App.settings_category)
   let items = []
 
   items.push({
-    text: `To Top`,
+    text: `Go To Top`,
     action: () => {
       App.settings_top()
     }
   })
 
   items.push({
-    text: `Bottom`,
+    text: `Go To Bottom`,
     action: () => {
       App.settings_bottom()
     }
@@ -1017,9 +967,18 @@ App.settings_actions = (category) => {
   App.sep(items)
 
   items.push({
-    text: `Show All`,
+    icon: App.data_icon,
+    text: `Export ${cat}`,
     action: () => {
-      App.show_all_settings()
+      App.export_settings(App.settings_category)
+    },
+  })
+
+  items.push({
+    icon: App.data_icon,
+    text: `Reset ${cat}`,
+    action: () => {
+      App.reset_settings(App.settings_category)
     }
   })
 
@@ -1027,9 +986,36 @@ App.settings_actions = (category) => {
 
   items.push({
     icon: App.data_icon,
-    text: `Data`,
-    get_items: () => {
-      return App.settings_data_items()
+    text: `Export Settings`,
+    action: () => {
+      App.export_settings()
+    },
+  })
+
+  items.push({
+    icon: App.data_icon,
+    text: `Import Settings`,
+    action: () => {
+      App.import_settings()
+    },
+  })
+
+  App.sep(items)
+
+  items.push({
+    icon: App.data_icon,
+    text: `Reset Settings`,
+    action: () => {
+      App.reset_all_settings()
+    },
+  })
+
+  App.sep(items)
+
+  items.push({
+    text: `Settings List`,
+    action: () => {
+      App.show_all_settings()
     }
   })
 
