@@ -54,6 +54,7 @@ App.start_about = () => {
         `Middle Click the filter input to show Refine Filters`,
         `There are 3 special tags: jump, jump2, and jump3`,
         `Use Alt + Up/Down to select items ignoring unloaded tabs`,
+        `Use "quotes" in the filters for more "precise matching"`,
       ]
 
       let close = DOM.el(`#about_close`)
