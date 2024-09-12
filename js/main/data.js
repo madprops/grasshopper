@@ -1,10 +1,10 @@
-App.export_data = (obj) => {
-  App.show_textarea(`Copy this to import later`, App.str(obj, true))
+App.export_data = (obj, what = `data`) => {
+  App.show_textarea(`Copy ${what}`, App.str(obj, true))
 }
 
-App.import_data = (action) => {
+App.import_data = (action, what = `data`) => {
   App.show_input({
-    message: `Paste data text here`,
+    message: `Paste ${what}`,
     button: `Import`,
     action: (text) => {
       if (!text.trim()) {

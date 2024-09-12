@@ -707,7 +707,7 @@ App.export_settings = () => {
     }
   }
 
-  App.export_data(changed)
+  App.export_data(changed, `settings data`)
 }
 
 App.def_setting = (key) => {
@@ -731,7 +731,7 @@ App.import_settings = () => {
       App.stor_save_settings()
       App.restart_settings()
     }
-  })
+  }, `settings data`)
 }
 
 App.restart_settings = () => {
