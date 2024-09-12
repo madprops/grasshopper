@@ -153,11 +153,13 @@ App.do_filter = async (args = {}) => {
     duplicates = duplicates.filter(x => !x.header)
   }
 
+  let quotes = []
   let regexes = []
   let reg = App.make_filter_regex(value, by_what)
 
   if (reg) {
     regexes.push(reg)
+    quotes.push(...App.get_filter_quotes(value))
   }
   else {
     return
@@ -195,6 +197,7 @@ App.do_filter = async (args = {}) => {
 
         if (reg) {
           regexes.push(reg)
+          quotes.push(...App.get_filter_quotes(match))
         }
       }
     }
@@ -214,7 +217,7 @@ App.do_filter = async (args = {}) => {
       f_value: f_value,
       f_value_lower: f_value_lower,
       search: search,
-      quotes: App.get_filter_quotes(value),
+      quotes: quotes,
     }
 
     return App.filter_check(args)
