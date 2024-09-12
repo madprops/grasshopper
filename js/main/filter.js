@@ -92,16 +92,20 @@ App.do_filter = async (args = {}) => {
     by_what = `all`
   }
 
-  let quotes_enabled = false
-
-  if (App.get_setting(`special_quotes`)) {
-    if (value.includes(`"`)) {
-      if (!by_what.includes(`re`)) {
-        by_what = `title`
-        quotes_enabled = true
+  function check_quotes_enabled(val) {
+    if (App.get_setting(`special_quotes`)) {
+      if (val.includes(`"`)) {
+        if (!by_what.includes(`re`)) {
+          by_what = `title`
+          return true
+        }
       }
     }
+
+    return false
   }
+
+  let quotes_enabled = check_quotes_enabled(value)
 
   if (by_what !== `all`) {
     if (!value) {
@@ -212,6 +216,10 @@ App.do_filter = async (args = {}) => {
       }
 
       if (match) {
+        if (!quotes_enabled) {
+          quotes_enabled = check_quotes_enabled(match)
+        }
+
         let reg = App.make_filter_regex(match, by_what, quotes_enabled)
 
         if (reg) {
