@@ -1862,7 +1862,6 @@ App.filter_double_click = (mode, e) => {
 
 App.check_filter_quotes = (value, quotes) => {
   for (let regex of quotes) {
-    console.log(regex, value)
     if (!regex.test(value)) {
       return false
     }
