@@ -349,17 +349,13 @@ App.make_filter_regex = (value, by_what) => {
   let regex
   value = App.replace_filter_vars(value)
   value = App.remove_quotes(value)
+  let ci = App.get_setting(`case_insensitive`)
 
   if (by_what.startsWith(`re`)) {
     let cleaned = value.replace(/\\+$/, ``)
 
     try {
-      if (App.get_setting(`case_insensitive`)) {
-        regex = new RegExp(cleaned, `i`)
-      }
-      else {
-        regex = new RegExp(cleaned)
-      }
+      regex = new RegExp(cleaned, ci ? `i` : ``)
     }
     catch (err) {
       // Do nothing
@@ -368,13 +364,7 @@ App.make_filter_regex = (value, by_what) => {
   else {
     let cleaned = App.clean_filter(value)
     cleaned = App.escape_regex(cleaned)
-
-    if (App.get_setting(`case_insensitive`)) {
-      regex = new RegExp(cleaned, `i`)
-    }
-    else {
-      regex = new RegExp(cleaned)
-    }
+    regex = new RegExp(cleaned, ci ? `i` : ``)
   }
 
   return regex
@@ -1872,6 +1862,7 @@ App.filter_double_click = (mode, e) => {
 
 App.check_filter_quotes = (value, quotes) => {
   for (let regex of quotes) {
+    console.log(regex, value)
     if (!regex.test(value)) {
       return false
     }
@@ -1881,11 +1872,13 @@ App.check_filter_quotes = (value, quotes) => {
 }
 
 App.get_filter_quotes = (value) => {
+  let ci = App.get_setting(`case_insensitive`)
   let quotes = App.get_quotes(value)
   let regexes = []
 
   for (let quote of quotes) {
-    regexes.push(new RegExp(`\\b` + quote + `\\b`))
+    let regex = new RegExp(`\\b${quote}\\b`, ci ? `i` : ``);
+    regexes.push(regex)
   }
 
   return regexes
