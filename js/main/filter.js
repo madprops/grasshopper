@@ -176,7 +176,6 @@ App.do_filter = async (args = {}) => {
     duplicates = duplicates.filter(x => !x.header)
   }
 
-  let quotes = []
   let regexes = []
   let reg = App.make_filter_regex(value, by_what, quotes_enabled)
 
@@ -242,7 +241,6 @@ App.do_filter = async (args = {}) => {
       f_value: f_value,
       f_value_lower: f_value_lower,
       search: search,
-      quotes: quotes,
     }
 
     return App.filter_check(args)
