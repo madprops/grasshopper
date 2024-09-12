@@ -214,6 +214,7 @@ App.do_filter = async (args = {}) => {
       f_value: f_value,
       f_value_lower: f_value_lower,
       search: search,
+      quotes: App.get_filter_quotes(value),
     }
 
     return App.filter_check(args)
@@ -344,6 +345,7 @@ App.replace_filter_vars = (value) => {
 App.make_filter_regex = (value, by_what) => {
   let regex
   value = App.replace_filter_vars(value)
+  value = App.remove_quotes(value)
 
   if (by_what.startsWith(`re`)) {
     let cleaned = value.replace(/\\+$/, ``)
@@ -392,12 +394,20 @@ App.filter_check = (args) => {
       if (args.by_what === `all` || args.by_what === `re`) {
         match = regex.test(clean_title)
 
+        if (match) {
+          match = App.check_filter_quotes(clean_title, args.quotes)
+        }
+
         if (!match && !args.item.header) {
           match = regex.test(args.item.path)
         }
       }
       else if (args.by_what.includes(`title`)) {
         match = regex.test(clean_title)
+
+        if (match) {
+          match = App.check_filter_quotes(clean_title, args.quotes)
+        }
       }
       else if (args.by_what.includes(`url`)) {
         match = regex.test(args.item.path)
@@ -1855,4 +1865,25 @@ App.filter_double_click = (mode, e) => {
   }
 
   App.run_command({cmd: cmd, from: `filter`, e: e})
+}
+
+App.check_filter_quotes = (value, quotes) => {
+  for (let regex of quotes) {
+    if (!regex.test(value)) {
+      return false
+    }
+  }
+
+  return true
+}
+
+App.get_filter_quotes = (value) => {
+  let quotes = App.get_quotes(value)
+  let regexes = []
+
+  for (let quote of quotes) {
+    regexes.push(new RegExp(`\\b` + quote + `\\b`))
+  }
+
+  return regexes
 }

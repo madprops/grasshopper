@@ -571,3 +571,13 @@ App.fix_url = (url) => {
 
   return url
 }
+
+App.get_quotes = (str) => {
+  let regex = /"([^"]*)"/g
+  let matches = str.match(regex) || []
+  return matches.map(match => match.replace(/"/g, ``))
+}
+
+App.remove_quotes = (str) => {
+  return str.replace(/"/g, ``)
+}
