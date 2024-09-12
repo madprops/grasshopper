@@ -786,6 +786,24 @@ App.setup_commands = () => {
       info: `Enable or disable Favorites autohide`,
     },
     {
+      name: `Export Favorites`,
+      cmd: `export_favorites`,
+      icon: favorites_icon,
+      action: (args) => {
+        App.export_favorites()
+      },
+      info: `Export favorites`,
+    },
+    {
+      name: `Import Favorites`,
+      cmd: `import_favorites`,
+      icon: favorites_icon,
+      action: (args) => {
+        App.import_favorites()
+      },
+      info: `Import favorites`,
+    },
+    {
       name: `Toggle Tab Box`,
       cmd: `toggle_tab_box`,
       modes: [`tabs`],
