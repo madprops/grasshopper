@@ -92,6 +92,15 @@ App.do_filter = async (args = {}) => {
     by_what = `all`
   }
 
+  let quotes_enabled = false
+
+  if (value.includes(`"`)) {
+    if (!by_what.includes(`re`)) {
+      by_what = `title`
+      quotes_enabled = true
+    }
+  }
+
   if (by_what !== `all`) {
     if (!value) {
       return
@@ -155,11 +164,14 @@ App.do_filter = async (args = {}) => {
 
   let quotes = []
   let regexes = []
-  let reg = App.make_filter_regex(value, by_what)
+  let reg = App.make_filter_regex(value, by_what, quotes_enabled)
 
   if (reg) {
     regexes.push(reg)
-    quotes.push(...App.get_filter_quotes(value))
+
+    if (quotes_enabled) {
+      quotes.push(...App.get_filter_quotes(value))
+    }
   }
   else {
     return
@@ -193,11 +205,14 @@ App.do_filter = async (args = {}) => {
       }
 
       if (match) {
-        let reg = App.make_filter_regex(match, by_what)
+        let reg = App.make_filter_regex(match, by_what, quotes_enabled)
 
         if (reg) {
           regexes.push(reg)
-          quotes.push(...App.get_filter_quotes(match))
+
+          if (quotes_enabled) {
+            quotes.push(...App.get_filter_quotes(match))
+          }
         }
       }
     }
@@ -345,10 +360,14 @@ App.replace_filter_vars = (value) => {
   return value
 }
 
-App.make_filter_regex = (value, by_what) => {
+App.make_filter_regex = (value, by_what, quotes = true) => {
   let regex
   value = App.replace_filter_vars(value)
-  value = App.remove_quotes(value)
+
+  if (quotes) {
+    value = App.remove_quotes(value)
+  }
+
   let ci = App.get_setting(`case_insensitive`)
 
   if (by_what.startsWith(`re`)) {
@@ -386,10 +405,6 @@ App.filter_check = (args) => {
     for (let regex of args.regexes) {
       if (args.by_what === `all` || args.by_what === `re`) {
         match = regex.test(clean_title)
-
-        if (match) {
-          match = App.check_filter_quotes(clean_title, args.quotes)
-        }
 
         if (!match && !args.item.header) {
           match = regex.test(args.item.path)
