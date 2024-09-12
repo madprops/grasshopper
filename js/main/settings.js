@@ -951,6 +951,7 @@ App.settings_actions = (category) => {
   let items = []
 
   items.push({
+    icon: App.up_arrow_icon,
     text: `Go To Top`,
     action: () => {
       App.settings_top()
@@ -958,6 +959,7 @@ App.settings_actions = (category) => {
   })
 
   items.push({
+    icon: App.down_arrow_icon,
     text: `Go To Bottom`,
     action: () => {
       App.settings_bottom()
@@ -1013,7 +1015,8 @@ App.settings_actions = (category) => {
   App.sep(items)
 
   items.push({
-    text: `Settings List`,
+    icon: App.settings_icons.general,
+    text: `All Settings`,
     action: () => {
       App.show_all_settings()
     }
