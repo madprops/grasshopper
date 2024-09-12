@@ -289,8 +289,12 @@ App.filter_whats = [
 ]
 
 App.themes = [
-  {num: 1, opacity: 90},
-  {num: 2, opacity: 88},
+  {
+    num: 1, opacity: 90,
+  },
+  {
+    num: 2, opacity: 88,
+  },
   {
     num: 3, opacity: 80,
     text_color: `rgb(207, 228, 204)`,
@@ -302,7 +306,9 @@ App.themes = [
     text_color: `rgb(253, 244, 207)`,
     background_color: `rgb(49, 45, 49)`,
   },
-  {num: 5, opacity: 75},
+  {
+    num: 5, opacity: 75,
+  },
 ]
 
 App.aligns = [
