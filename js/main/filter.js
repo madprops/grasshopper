@@ -96,7 +96,10 @@ App.do_filter = async (args = {}) => {
     if (App.get_setting(`special_quotes`)) {
       if (val.includes(`"`)) {
         if (!by_what.includes(`re`)) {
-          by_what = `title`
+          if (by_what === `all`) {
+            by_what = `title`
+          }
+
           return true
         }
       }
