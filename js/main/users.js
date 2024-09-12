@@ -2,6 +2,7 @@ App.user_settings = (who) => {
   App.show_confirm({
     message: `Apply settings?`,
     confirm_action: () => {
+      App.def_all_settings()
       App[`user_${who}_settings`]()
       App.alert_autohide(`Welcome ${who}`)
     },

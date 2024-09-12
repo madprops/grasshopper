@@ -625,14 +625,17 @@ App.reset_settings = (category) => {
   })
 }
 
+App.def_all_settings = () => {
+  for (let key in App.setting_props) {
+    App.set_default_setting(key)
+  }
+}
+
 App.reset_all_settings = () => {
   App.show_confirm({
     message: `Reset all settings?`,
     confirm_action: () => {
-      for (let key in App.setting_props) {
-        App.set_default_setting(key)
-      }
-
+      App.def_all_settings()
       App.restart_settings()
     },
   })
