@@ -310,12 +310,3 @@ App.aligns = [
   {text: `Center`, value: `center`},
   {text: `Right`, value: `right`},
 ]
-
-App.theme_settings = [
-  `text_color`,
-  `background_color`,
-  `background_image`,
-  `background_effect`,
-  `background_tiles`,
-  `background_opacity`,
-]
