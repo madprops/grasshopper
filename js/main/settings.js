@@ -725,9 +725,6 @@ App.import_settings = () => {
         if (json[key]) {
           App.settings[key] = json[key]
         }
-        else {
-          App.def_setting(key)
-        }
       }
 
       App.check_settings()
