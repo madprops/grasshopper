@@ -695,6 +695,11 @@ App.show_settings_menu = (e) => {
   App.show_context({items: items, e: e})
 }
 
+App.def_setting = (key) => {
+  App.settings[key].value = App.default_setting_string
+  App.settings[key].version = App.setting_props[key].version
+}
+
 App.export_settings = () => {
   let changed = {}
 
@@ -707,16 +712,11 @@ App.export_settings = () => {
     }
   }
 
-  App.export_data(changed, `settings data`)
-}
-
-App.def_setting = (key) => {
-  App.settings[key].value = App.default_setting_string
-  App.settings[key].version = App.setting_props[key].version
+  App.export_data(`settings`, changed)
 }
 
 App.import_settings = () => {
-  App.import_data((json) => {
+  App.import_data(`settings`, (json) => {
     if (App.is_object(json)) {
       for (let key in App.settings) {
         if (json[key]) {
@@ -731,7 +731,7 @@ App.import_settings = () => {
       App.stor_save_settings()
       App.restart_settings()
     }
-  }, `settings data`)
+  })
 }
 
 App.restart_settings = () => {

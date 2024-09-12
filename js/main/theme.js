@@ -765,70 +765,25 @@ App.reset_theme = () => {
 }
 
 App.export_theme = () => {
-  let c1 = App.get_setting(`text_color`)
-  let c2 = App.get_setting(`background_color`)
-  let bg = App.get_setting(`background_image`)
-  let eff = App.get_setting(`background_effect`)
-  let tiles = App.get_setting(`background_tiles`)
-  let opacity = App.get_setting(`background_opacity`)
+  let data = {}
 
-  let data = ``
-  let eq = ` = `
-  data += `text_color${eq}${c1}\n`
-  data += `background_color${eq}${c2}\n`
-  data += `background_image${eq}${bg}\n`
-  data += `background_effect${eq}${eff}\n`
-  data += `background_tiles${eq}${tiles}\n`
-  data += `background_opacity${eq}${opacity}`
+  for (let sett of App.theme_settings) {
+    data[sett] = App.get_setting(sett)
+  }
 
-  App.show_textarea(`Copy theme data`, data)
+  App.export_data(`theme`, data)
 }
 
 App.import_theme = () => {
-  App.show_input({
-    message: `Paste theme data`,
-    button: `Apply`,
-    action: (text) => {
-      if (!text.trim()) {
-        return true
+  App.import_data(`theme`, (json) => {
+    for (let key in json) {
+      if (App.theme_settings.includes(key)) {
+        App.set_setting({setting: key, value: json[key]})
+        App.check_refresh_settings()
       }
+    }
 
-      let lines = text.split(`\n`)
-
-      let setts = [
-        `text_color`,
-        `background_color`,
-        `background_image`,
-        `background_effect`,
-        `background_tiles`,
-        `background_opacity`,
-      ]
-
-      for (let line of lines) {
-        let split = line.split(`=`)
-
-        if (split.length < 2) {
-          continue
-        }
-
-        let key = split[0].trim()
-        let value = split.slice(1).join(`=`).trim()
-
-        if (!key || !value) {
-          continue
-        }
-
-        if (key && value) {
-          if (setts.includes(key)) {
-            App.set_setting({setting: key, value: value})
-            App.check_refresh_settings()
-          }
-        }
-      }
-
-      App.apply_theme()
-      return true
-    },
+    App.apply_theme()
   })
 }
 
