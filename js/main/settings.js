@@ -723,11 +723,20 @@ App.export_settings = (category = ``) => {
     }
   }
 
-  App.export_data(`settings`, changed)
+  let name
+
+  if (category) {
+    name = App.category_string(category)
+  }
+  else {
+    name = `Settings`
+  }
+
+  App.export_data(name, changed)
 }
 
 App.import_settings = () => {
-  App.import_data(`settings`, (json) => {
+  App.import_data(`Settings`, (json) => {
     if (App.is_object(json)) {
       for (let key in App.settings) {
         if (json[key]) {
