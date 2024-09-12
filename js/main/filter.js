@@ -94,10 +94,12 @@ App.do_filter = async (args = {}) => {
 
   let quotes_enabled = false
 
-  if (value.includes(`"`)) {
-    if (!by_what.includes(`re`)) {
-      by_what = `title`
-      quotes_enabled = true
+  if (App.get_setting(`special_quotes`)) {
+    if (value.includes(`"`)) {
+      if (!by_what.includes(`re`)) {
+        by_what = `title`
+        quotes_enabled = true
+      }
     }
   }
 

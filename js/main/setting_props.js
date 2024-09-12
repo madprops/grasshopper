@@ -2741,6 +2741,16 @@ App.build_settings = () => {
       info: `Make it clear that the filter has text through contrast`,
       version: 1,
     },
+    special_quotes: {
+      name: `Special Quotes`,
+      type: `checkbox`,
+      value: true,
+      info: `Use quotes to find exact words or phrases
+      For example "dat" might match: His name was Dat
+      Using them makes the filters 'by title' automatically
+      Else use quotes as is`,
+      version: 1,
+    },
     clear_on_all: {
       name: `Clear On All`,
       type: `checkbox`,
