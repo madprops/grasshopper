@@ -59,13 +59,16 @@ App.jump_tabs = async (args = {}) => {
     let diff = Math.abs(index - index_2)
 
     if (diff <= 1) {
+      // If the items are next to each other jump without animation
       action = `jump_fast`
     }
     else {
+      // If it's a header, subheader etc, jump centered
       if (zones.includes(args.what)) {
         action = `jump_zone`
       }
       else {
+        // Jump with smooth animation
         action = `jump`
       }
     }
