@@ -402,30 +402,6 @@ App.set_item_text = (item) => {
     item.footer = title || url
   }
 
-  if (App.get_setting(`show_tooltips`)) {
-    let tips = []
-    tips.push(`Title: ${title}`)
-    tips.push(`URL: ${url}`)
-
-    if (item.last_visit) {
-      tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)
-    }
-
-    if (item.date_added) {
-      tips.push(`Date Added: ${App.nice_date(item.date_added)}`)
-    }
-
-    if (App.tagged(item)) {
-      let tags = App.tags(item)
-      tips.push(`Tags: ${tags.join(`, `)}`)
-    }
-
-    tips.push(App.mode_vars[item.mode].right_click_info)
-    tips.push(App.mode_vars[item.mode].middle_click_info)
-
-    item.element.title = tips.join(`\n`)
-  }
-
   for (let [i, line] of lines.entries()) {
     if (!line) {
       line = `Empty`
@@ -436,6 +412,10 @@ App.set_item_text = (item) => {
     DOM.show(text_el)
     text_el.textContent = text
   }
+
+  item.proc_title = title
+  item.proc_url = url
+  item.has_title = false
 }
 
 App.get_item_by_id = (mode, id) => {
@@ -1365,4 +1345,37 @@ App.blink_item = (item) => {
   }, delay)
 
   item.blink_interval = interval
+}
+
+App.set_item_title = (item) => {
+  if (!App.get_setting(`show_tooltips`)) {
+    return
+  }
+
+  if (item.has_title || !item.proc_title || !item.proc_url) {
+    return
+  }
+
+  let tips = []
+  tips.push(`Title: ${item.proc_title}`)
+  tips.push(`URL: ${item.proc_url}`)
+
+  if (item.last_visit) {
+    tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)
+  }
+
+  if (item.date_added) {
+    tips.push(`Date Added: ${App.nice_date(item.date_added)}`)
+  }
+
+  if (App.tagged(item)) {
+    let tags = App.tags(item)
+    tips.push(`Tags: ${tags.join(`, `)}`)
+  }
+
+  tips.push(App.mode_vars[item.mode].right_click_info)
+  tips.push(App.mode_vars[item.mode].middle_click_info)
+
+  item.element.title = tips.join(`\n`)
+  item.has_title = true
 }

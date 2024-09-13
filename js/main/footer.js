@@ -50,9 +50,6 @@ App.set_footer_info = (mode, text) => {
   if (footer) {
     let info = DOM.el(`.footer_info`, footer)
     info.textContent = text
-    let click = App.get_cmd_name(`go_to_bottom`)
-    info.title = `${text}\nClick: ${click}`
-    App.trigger_title(info, `middle_click_footer`)
   }
 }
 
@@ -84,6 +81,9 @@ App.create_footer = (mode) => {
   App.trigger_title(footer_count, `middle_click_footer`)
   footer_content.append(footer_count)
   let footer_info = DOM.create(`div`, `footer_info`, `${mode}_footer_info`)
+  click = App.get_cmd_name(`go_to_bottom`)
+  footer_info.title = `Click: ${click}`
+  App.trigger_title(footer_info, `middle_click_footer`)
   footer_content.append(footer_info)
 
   DOM.ev(footer_count, `click`, (e) => {
@@ -94,7 +94,7 @@ App.create_footer = (mode) => {
     App.select_all(mode, true)
   })
 
-  DOM.ev(footer_content, `click`, (e) => {
+  DOM.ev(footer_info, `click`, (e) => {
     if (e.shiftKey || e.ctrlKey) {
       return
     }

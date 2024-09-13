@@ -464,6 +464,8 @@ App.mouse_over_action = (mode, e) => {
     return
   }
 
+  App.set_item_title(item)
+
   if (App.icon_pick_down) {
     App.toggle_selected({item: item, what: true})
     return

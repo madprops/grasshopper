@@ -1096,8 +1096,17 @@ a:hover
   white-space: nowrap;
 }
 
+.footer_count {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 .footer_info {
   flex-grow: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .favorites_empty {
