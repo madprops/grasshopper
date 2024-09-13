@@ -236,7 +236,6 @@ App.build_settings = () => {
       type: `password`,
       value: ``,
       placeholder: `Password`,
-      no_empty: true,
       info: `Require this password when unlocking the screen`,
       version: 1,
     },

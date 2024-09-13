@@ -40,7 +40,7 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `short_bookmarks`, value: true})
 
-  let cmd = {cmd: `locust_swarm`, alt: `jump_tabs_tag_1_down`}
+  let cmd = {cmd: `locust_swarm`, alt: `lock_screen`}
   App.prepend_list_setting(`favorites_menu`, cmd)
 
   let urls = [
