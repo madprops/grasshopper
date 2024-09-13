@@ -1352,13 +1352,16 @@ App.set_item_title = (item) => {
     return
   }
 
-  if (item.has_title || !item.proc_title || !item.proc_url) {
+  if (item.has_title) {
     return
   }
 
   let tips = []
-  tips.push(`Title: ${item.proc_title}`)
-  tips.push(`URL: ${item.proc_url}`)
+  let title = item.proc_title || `No Title`
+  let url = item.proc_url || `No URL`
+
+  tips.push(`Title: ${title}`)
+  tips.push(`URL: ${url}`)
 
   if (item.last_visit) {
     tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)
