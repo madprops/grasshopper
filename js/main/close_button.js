@@ -17,13 +17,6 @@ App.add_close_button = (item, side) => {
     }
 
     let btn = DOM.create(`div`, `close_button ${cb_setting} item_node`)
-
-    if (App.get_setting(`show_tooltips`)) {
-      let click = App.get_cmd_name(`close_tabs`)
-      btn.title = `Click: ${click}`
-    }
-
-    App.trigger_title(btn, `middle_click_close_button`)
     btn.textContent = App.get_setting(`close_icon`) || App.close_tab_icon
     item.element.append(btn)
   }

@@ -303,13 +303,6 @@ App.create_item_element = (item) => {
 
   if (App.get_setting(`item_icon`) !== `none`) {
     let icon_container = DOM.create(`div`, `item_icon_container item_node`)
-
-    if (App.get_setting(`show_tooltips`)) {
-      if (App.get_setting(`icon_pick`)) {
-        icon_container.title = `Click: Select Item\nRight Click: Single Select Item`
-      }
-    }
-
     item.element.append(icon_container)
     App.check_item_icon(item)
   }
@@ -1378,6 +1371,16 @@ App.set_item_title = (item) => {
 
   tips.push(App.mode_vars[item.mode].right_click_info)
   tips.push(App.mode_vars[item.mode].middle_click_info)
+
+  if (App.get_setting(`icon_pick`)) {
+    let icon_container = DOM.el(`.item_icon_container`, item.element)
+    icon_container.title = `Click: Select Item\nRight Click: Single Select Item`
+  }
+
+  let close_btn = DOM.el(`.close_button`, item.element)
+  let click = App.get_cmd_name(`close_tabs`)
+  close_btn.title = `Click: ${click}`
+  App.trigger_title(close_btn, `middle_click_close_button`)
 
   item.element.title = tips.join(`\n`)
   item.has_title = true
