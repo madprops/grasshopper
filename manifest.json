@@ -1,50 +1,80 @@
 {
-    "manifest_version": 2,
-    "name": "Grasshopper",
-    "version": "3080",
-    "description": "Godspeed You Tab Emperor",
-    "permissions": [
-        "tabs",
-        "sessions",
-        "storage"
+  "manifest_version": 2,
+  "name": "Grasshopper",
+  "version": "3080",
+  "description": "Godspeed You Tab Emperor",
+  "permissions": [
+    "tabs",
+    "sessions",
+    "storage"
+  ],
+  "optional_permissions": [
+    "history",
+    "bookmarks",
+    "clipboardRead"
+  ],
+  "icons": {
+    "128": "img/icon128.png"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
     ],
-    "optional_permissions": [
-        "history",
-        "bookmarks",
-        "clipboardRead"
-    ],
-    "icons": {
-        "128": "img/icon128.png"
+    "persistent": false
+  },
+  "browser_action": {
+    "default_icon": {
+      "128": "img/icon128.png"
     },
-    "browser_action": {
-        "default_icon": {
-            "128": "img/icon128.png"
-        },
-        "default_title": "Grasshopper",
-        "default_popup": "main.html"
+    "default_title": "Grasshopper",
+    "default_popup": "main.html"
+  },
+  "sidebar_action": {
+    "default_title": "Grasshopper",
+    "default_panel": "main.html",
+    "default_icon": "img/icon128.png"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Space"
+      },
+      "description": "Toggle the popup"
     },
-    "sidebar_action": {
-        "default_title": "Grasshopper",
-        "default_panel": "main.html",
-        "default_icon": "img/icon128.png"
+    "_execute_sidebar_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Space"
+      },
+      "description": "Toggle the sidebar"
     },
-    "commands": {
-        "_execute_browser_action": {
-            "suggested_key": {
-                "default": "Ctrl+Space"
-            },
-            "description": "Toggle the popup"
-        },
-        "_execute_sidebar_action": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+Space"
-            },
-            "description": "Toggle the sidebar"
-        }
+    "popup_tabs": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1"
+      },
+      "description": "Open in Tabs mode"
     },
-    "browser_specific_settings": {
-        "gecko": {
-          "id": "{23aee10d-1130-4694-80ef-428e287ba83d}"
-        }
+    "popup_history": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2"
+      },
+      "description": "Open in History mode"
+    },
+    "popup_bookmarks": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+3"
+      },
+      "description": "Open in Bookmarks mode"
+    },
+    "popup_closed": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+4"
+      },
+      "description": "Open in Closed mode"
     }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{23aee10d-1130-4694-80ef-428e287ba83d}"
+    }
+  }
 }

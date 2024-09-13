@@ -234,7 +234,15 @@ App.cycle_modes = async (reverse, reuse_filter = true) => {
 }
 
 App.show_main_mode = (allow_same = true, force = false) => {
-  let mode = App.main_mode()
+  let mode
+
+  if (App.init_mode) {
+    mode = App.init_mode
+    App.init_mode = undefined
+  }
+  else {
+    mode = App.main_mode()
+  }
 
   if (!allow_same) {
     if (App.active_mode === mode) {
@@ -258,4 +266,29 @@ App.on_action = (mode) => {
 
 App.main_mode = () => {
   return App.get_setting(`main_mode`)
+}
+
+App.check_init_mode = async () => {
+  let init_date = localStorage.getItem(`init_date`)
+  let init_mode = localStorage.getItem(`init_mode`)
+
+  if (App.now() - init_date < App.max_init_delay) {
+    if (init_mode === `history`) {
+      let perm = await browser.permissions.contains({permissions: [`history`]})
+      console.log(perm)
+
+      if (!perm) {
+        return
+      }
+    }
+    else if (init_mode === `bookmarks`) {
+      let perm = await browser.permissions.contains({permissions: [`bookmarks`]})
+
+      if (!perm) {
+        return
+      }
+    }
+
+    App.init_mode = init_mode
+  }
 }

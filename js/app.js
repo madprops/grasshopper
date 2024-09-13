@@ -129,12 +129,13 @@ App.update_tab_box_delay = 100
 App.check_tab_box_playing_delay = 100
 App.update_active_trace_delay = 100
 App.check_playing_delay = 100
-App.context_auto_hide_delay = 1000
+App.context_auto_hide_delay = App.SECOND
 App.restore_delay = 600
-App.footer_message_delay = 1000
+App.footer_message_delay = App.SECOND
 App.check_clock_delay = App.SECOND * 10
 App.check_main_title_date_delay = App.SECOND * 10
 App.check_refresh_settings_delay = 100
+App.max_init_delay = App.SECOND * 2
 
 App.settings_icons = {
   general: `⚡`,
