@@ -1,5 +1,4 @@
 function open_popup(mode) {
-  localStorage.setItem(`init_date`, Date.now())
   localStorage.setItem(`init_mode`, mode)
   browser.browserAction.openPopup()
 }

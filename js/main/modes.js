@@ -269,10 +269,10 @@ App.main_mode = () => {
 }
 
 App.check_init_mode = async () => {
-  let init_date = localStorage.getItem(`init_date`)
   let init_mode = localStorage.getItem(`init_mode`)
+  localStorage.setItem(`init_mode`, `nothing`)
 
-  if (App.now() - init_date < App.max_init_delay) {
+  if (App.modes.includes(init_mode)) {
     if (init_mode === `history`) {
       let perm = await browser.permissions.contains({permissions: [`history`]})
 

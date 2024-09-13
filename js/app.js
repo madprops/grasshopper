@@ -135,7 +135,6 @@ App.footer_message_delay = App.SECOND
 App.check_clock_delay = App.SECOND * 10
 App.check_main_title_date_delay = App.SECOND * 10
 App.check_refresh_settings_delay = 100
-App.max_init_delay = App.SECOND * 2
 
 App.settings_icons = {
   general: `⚡`,
