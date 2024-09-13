@@ -24,6 +24,7 @@ App.start_lock_screen = () => {
 
 App.lock_screen = () => {
   App.start_lock_screen()
+  App.hide_window()
   App.show_window(`lock_screen`)
 }
 
