@@ -1379,9 +1379,11 @@ App.set_item_tooltips = (item) => {
   }
 
   let close_btn = DOM.el(`.close_button`, item.element)
-  let click = App.get_cmd_name(`close_tabs`)
-  close_btn.title = `Click: ${click}`
-  App.trigger_title(close_btn, `middle_click_close_button`)
+
+  let cb_tips = []
+  cb_tips.push(App.mode_vars[item.mode].close_button_click_info)
+  cb_tips.push(App.mode_vars[item.mode].close_button_middle_click_info)
+  close_btn.title = cb_tips.join(`\n`)
 
   let hover_btn = DOM.el(`.hover_button`, item.element)
   hover_btn.title = `Hover Button`
