@@ -406,9 +406,9 @@ App.set_item_text = (item) => {
     text_el.textContent = text
   }
 
-  item.proc_title = title
-  item.proc_url = url
-  item.has_title = false
+  item.tooltips_title = title
+  item.tooltips_url = url
+  item.has_tooltips = false
 }
 
 App.get_item_by_id = (mode, id) => {
@@ -1340,18 +1340,18 @@ App.blink_item = (item) => {
   item.blink_interval = interval
 }
 
-App.set_item_title = (item) => {
+App.set_item_tooltips = (item) => {
   if (!App.get_setting(`show_tooltips`)) {
     return
   }
 
-  if (item.has_title) {
+  if (item.has_tooltips) {
     return
   }
 
   let tips = []
-  let title = item.proc_title || `No Title`
-  let url = item.proc_url || `No URL`
+  let title = item.tooltips_title || `No Title`
+  let url = item.tooltips_url || `No URL`
 
   tips.push(`Title: ${title}`)
   tips.push(`URL: ${url}`)
@@ -1386,5 +1386,5 @@ App.set_item_title = (item) => {
   let hover_btn = DOM.el(`.hover_button`, item.element)
   hover_btn.title = `Hover Button`
 
-  item.has_title = true
+  item.has_tooltips = true
 }
