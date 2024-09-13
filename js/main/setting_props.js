@@ -933,21 +933,28 @@ App.build_settings = () => {
       info: `Menu to show when right clicking empty space`,
       version: 1,
     },
-    screen_lock_password: {
-      name: `Screen Lock Password`,
+    lock_screen_password: {
+      name: `Lock Screen Password`,
       type: `password`,
       value: ``,
       placeholder: `Password`,
       info: `Require this password when unlocking the screen`,
       version: 1,
     },
-    screen_lock_image: {
-      name: `Screen Lock Image`,
+    lock_screen_image: {
+      name: `Lock Screen Image`,
       type: `text`,
       value: ``,
       placeholder: `Image URL`,
-      separator: true,
       info: `Image to use for the lock screen`,
+      version: 1,
+    },
+    empty_lock_screen: {
+      name: `Empty Lock Screen`,
+      type: `checkbox`,
+      value: false,
+      separator: true,
+      info: `Don't show an image on the lock screen`,
       version: 1,
     },
     show_tooltips: {
