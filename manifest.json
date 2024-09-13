@@ -45,7 +45,7 @@
       "suggested_key": {
         "default": "Ctrl+Shift+Space"
       },
-      "description": "Open the sidebar"
+      "description": "Toggle the sidebar"
     },
     "popup_tabs": {
       "suggested_key": {
