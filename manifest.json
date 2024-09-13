@@ -39,13 +39,13 @@
       "suggested_key": {
         "default": "Ctrl+Space"
       },
-      "description": "Toggle the popup"
+      "description": "Open the popup"
     },
     "_execute_sidebar_action": {
       "suggested_key": {
         "default": "Ctrl+Shift+Space"
       },
-      "description": "Toggle the sidebar"
+      "description": "Open the sidebar"
     },
     "popup_tabs": {
       "suggested_key": {
