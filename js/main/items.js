@@ -1371,6 +1371,7 @@ App.set_item_title = (item) => {
 
   tips.push(App.mode_vars[item.mode].right_click_info)
   tips.push(App.mode_vars[item.mode].middle_click_info)
+  item.element.title = tips.join(`\n`)
 
   if (App.get_setting(`icon_pick`)) {
     let icon_container = DOM.el(`.item_icon_container`, item.element)
@@ -1382,6 +1383,8 @@ App.set_item_title = (item) => {
   close_btn.title = `Click: ${click}`
   App.trigger_title(close_btn, `middle_click_close_button`)
 
-  item.element.title = tips.join(`\n`)
+  let hover_btn = DOM.el(`.hover_button`, item.element)
+  hover_btn.title = `Hover Button`
+
   item.has_title = true
 }
