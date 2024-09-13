@@ -51,25 +51,25 @@
       "suggested_key": {
         "default": "Ctrl+Shift+1"
       },
-      "description": "Open in Tabs mode"
+      "description": "Open the popup in Tabs mode"
     },
     "popup_history": {
       "suggested_key": {
         "default": "Ctrl+Shift+2"
       },
-      "description": "Open in History mode"
+      "description": "Open the popup in History mode"
     },
     "popup_bookmarks": {
       "suggested_key": {
         "default": "Ctrl+Shift+3"
       },
-      "description": "Open in Bookmarks mode"
+      "description": "Open the popup in Bookmarks mode"
     },
     "popup_closed": {
       "suggested_key": {
         "default": "Ctrl+Shift+4"
       },
-      "description": "Open in Closed mode"
+      "description": "Open the popup in Closed mode"
     }
   },
   "browser_specific_settings": {
