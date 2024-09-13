@@ -36,6 +36,7 @@ App.setup_commands = () => {
   let zone_icon = App.zone_icon
   let globe_icon = App.globe_icon
   let grasshopper_icon = App.grasshopper_icon
+  let lock_icon = App.lock_icon
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -2827,7 +2828,7 @@ App.setup_commands = () => {
     {
       name: `Lock Screen`,
       cmd: `lock_screen`,
-      icon: bot_icon,
+      icon: lock_icon,
       action: (args) => {
         App.lock_screen()
       },
