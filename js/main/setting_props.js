@@ -231,32 +231,6 @@ App.build_settings = () => {
       info: `Where to save bookmarks`,
       version: 1,
     },
-    screen_lock_password: {
-      name: `Screen Lock Password`,
-      type: `password`,
-      value: ``,
-      placeholder: `Password`,
-      info: `Require this password when unlocking the screen`,
-      version: 1,
-    },
-    screen_lock_image: {
-      name: `Screen Lock Image`,
-      type: `text`,
-      value: ``,
-      placeholder: `Image URL`,
-      info: `Image to use for the lock screen`,
-      version: 1,
-    },
-    max_recent_tabs: {
-      name: `Max Recent Tabs`,
-      type: `number`,
-      value: 12,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Max items to show in Recent Tabs`,
-      version: 1,
-    },
     open_in_new_tab: {
       name: `Open In New Tab`,
       type: `checkbox`,
@@ -3045,6 +3019,16 @@ App.build_settings = () => {
   category = `more`
 
   props = {
+    max_recent_tabs: {
+      name: `Max Recent Tabs`,
+      type: `number`,
+      value: 12,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Max items to show in Recent Tabs`,
+      version: 1,
+    },
     recent_tabs_delay: {
       name: `Recent Tabs Delay`,
       type: `number`,
@@ -3053,6 +3037,22 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Empty the recent tabs list these milliseconds after its last use`,
+      version: 1,
+    },
+    screen_lock_password: {
+      name: `Screen Lock Password`,
+      type: `password`,
+      value: ``,
+      placeholder: `Password`,
+      info: `Require this password when unlocking the screen`,
+      version: 1,
+    },
+    screen_lock_image: {
+      name: `Screen Lock Image`,
+      type: `text`,
+      value: ``,
+      placeholder: `Image URL`,
+      info: `Image to use for the lock screen`,
       version: 1,
     },
     close_on_focus: {
