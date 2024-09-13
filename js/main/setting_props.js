@@ -231,6 +231,15 @@ App.build_settings = () => {
       info: `Where to save bookmarks`,
       version: 1,
     },
+    screen_lock_password: {
+      name: `Screen Lock Password`,
+      type: `password`,
+      value: ``,
+      placeholder: `Password`,
+      no_empty: true,
+      info: `Require this password when unlocking the screen`,
+      version: 1,
+    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,

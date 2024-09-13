@@ -30,6 +30,7 @@ App.show_prompt = (args = {}) => {
     highlight: false,
     append: false,
     show_list: false,
+    password: false,
     list: [],
     fill: ``,
   }
@@ -41,6 +42,14 @@ App.show_prompt = (args = {}) => {
   let input = DOM.el(`#prompt_input`)
   input.value = args.value
   input.placeholder = args.placeholder
+
+  if (args.password) {
+    input.type = `password`
+  }
+  else {
+    input.type = `text`
+  }
+
   let list = DOM.el(`#prompt_list`)
 
   if (args.list.length) {

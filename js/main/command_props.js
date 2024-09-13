@@ -2825,6 +2825,15 @@ App.setup_commands = () => {
     ...custom_urls,
 
     {
+      name: `Lock Screen`,
+      cmd: `lock_screen`,
+      icon: bot_icon,
+      action: (args) => {
+        App.lock_screen()
+      },
+      info: `Lock the screen which might require a code to unlock`,
+    },
+    {
       name: `Password`,
       cmd: `generate_password`,
       icon: bot_icon,

@@ -99,7 +99,12 @@ App.settings_setup_texts = (category) => {
       continue
     }
 
-    if (props.type !== `text` && props.type !== `text_smaller` && props.type !== `textarea`) {
+    if (![
+      `text`,
+      `text_smaller`,
+      `password`,
+      `textarea`,
+    ].includes(props.type)) {
       continue
     }
 
@@ -1134,6 +1139,9 @@ App.fill_settings = (category) => {
       else if (props.type === `text_smaller`) {
         widget = input(`text`, `settings_text text_smaller`, props.placeholder)
       }
+      else if (props.type === `password`) {
+        widget = input(`password`, `settings_text`, props.placeholder)
+      }
       else if (props.type === `textarea`) {
         widget = input(`textarea`, `settings_textarea`, props.placeholder)
       }
@@ -1519,7 +1527,7 @@ App.check_setting_default = (setting) => {
 App.check_setting_empty = (setting) => {
   let props = App.setting_props[setting]
   let value = App.get_setting(setting)
-  let text_types = [`text`, `text_smaller`, `textarea`, `number`]
+  let text_types = [`text`, `text_smaller`, `password`, `textarea`, `number`]
 
   if (text_types.includes(props.type)) {
     return value === ``

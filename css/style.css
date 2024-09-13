@@ -65,6 +65,7 @@ html
 }
 
 input[type=text],
+input[type=password],
 textarea,
 select
 {
@@ -1719,4 +1720,9 @@ a:hover
   position: fixed;
   top: 0;
   left: 0;
+}
+
+#lock_screen_image {
+  width: 90%;
+  height: auto;
 }
