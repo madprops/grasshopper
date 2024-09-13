@@ -275,7 +275,6 @@ App.check_init_mode = async () => {
   if (App.now() - init_date < App.max_init_delay) {
     if (init_mode === `history`) {
       let perm = await browser.permissions.contains({permissions: [`history`]})
-      console.log(perm)
 
       if (!perm) {
         return
