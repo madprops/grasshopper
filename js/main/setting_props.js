@@ -239,6 +239,14 @@ App.build_settings = () => {
       info: `Require this password when unlocking the screen`,
       version: 1,
     },
+    screen_lock_image: {
+      name: `Screen Lock Image`,
+      type: `text`,
+      value: ``,
+      placeholder: `Image URL`,
+      info: `Image to use for the lock screen`,
+      version: 1,
+    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,
