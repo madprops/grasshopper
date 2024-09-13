@@ -1378,9 +1378,8 @@ App.set_item_tooltips = (item) => {
     icon_container.title = `Click: Select Item\nRight Click: Single Select Item`
   }
 
-  let close_btn = DOM.el(`.close_button`, item.element)
-
   let cb_tips = []
+  let close_btn = DOM.el(`.close_button`, item.element)
   cb_tips.push(App.mode_vars[item.mode].close_button_click_info)
   cb_tips.push(App.mode_vars[item.mode].close_button_middle_click_info)
   close_btn.title = cb_tips.join(`\n`)
