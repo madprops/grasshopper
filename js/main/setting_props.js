@@ -936,44 +936,6 @@ App.build_settings = () => {
       info: `Menu to show when right clicking empty space`,
       version: 1,
     },
-    lock_screen_password: {
-      name: `Lock Screen Password`,
-      type: `password`,
-      value: ``,
-      placeholder: `Password`,
-      info: `Require this password when unlocking the screen`,
-      version: 1,
-    },
-    lock_screen_image: {
-      name: `Lock Screen Image`,
-      type: `text`,
-      value: ``,
-      placeholder: `Image URL`,
-      info: `Image to use for the lock screen`,
-      version: 1,
-    },
-    lock_screen_cmds: {
-      name: `Lock Screen Cmds`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when locking the screen`,
-      version: 1,
-    },
-    unlock_screen_cmds: {
-      name: `Unlock Screen Cmds`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when unlocking the screen`,
-      version: 1,
-    },
-    empty_lock_screen: {
-      name: `Empty Lock Screen`,
-      type: `checkbox`,
-      value: false,
-      separator: true,
-      info: `Don't show an image on the lock screen`,
-      version: 1,
-    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
@@ -3065,6 +3027,49 @@ App.build_settings = () => {
   }
 
   add_props()
+  category = `lock`
+
+  props = {
+    lock_screen_password: {
+      name: `Lock Screen Password`,
+      type: `password`,
+      value: ``,
+      placeholder: `Password`,
+      info: `Require this password when unlocking the screen`,
+      version: 1,
+    },
+    lock_screen_image: {
+      name: `Lock Screen Image`,
+      type: `text`,
+      value: ``,
+      placeholder: `Image URL`,
+      info: `Image to use for the lock screen`,
+      version: 1,
+    },
+    lock_screen_cmds: {
+      name: `Lock Screen Cmds`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when locking the screen`,
+      version: 1,
+    },
+    unlock_screen_cmds: {
+      name: `Unlock Screen Cmds`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when unlocking the screen`,
+      version: 1,
+    },
+    empty_lock_screen: {
+      name: `Empty Lock Screen`,
+      type: `checkbox`,
+      value: false,
+      info: `Don't show an image on the lock screen`,
+      version: 1,
+    },
+  }
+
+  add_props()
   category = `more`
 
   props = {
@@ -3425,6 +3430,9 @@ App.build_settings = () => {
       info: `When to show the confirmation dialog on certain actions
       'Special' forces a confirm depending if tabs have a certain state like pinned, playing, or colored
       'Multiple' forces a confirm if multiple items are selected`,
+    },
+    lock: {
+      info: `Configure the Lock Screen`,
     },
     more: {
       info: `Even more settings`,

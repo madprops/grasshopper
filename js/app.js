@@ -158,6 +158,7 @@ App.settings_icons = {
   more: `💠`,
   title: `✍🏻`,
   footer: `⚽`,
+  lock: `🔒`,
 }
 
 App.mode_icons = {
