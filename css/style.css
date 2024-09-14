@@ -1746,7 +1746,7 @@ a:hover
 }
 
 .signal_item:hover .signal_name {
-  outline: 1px solid var(--alt_color_2);
+  border: 1px solid var(--alt_color_2);
 }
 
 .signal_name {
@@ -1762,4 +1762,8 @@ a:hover
   padding: 0.1rem;
   font-size: 1rem;
   flex-grow: 0;
+}
+
+.signal_button:hover {
+  background-color: var(--alt_color_1);
 }
