@@ -1535,7 +1535,6 @@ App.setup_settings_addlist = () => {
             {text: `DELETE`, value: `DELETE`},
           ]
         },
-        feedback: () => { return true }
       },
       title: props.name,
     }))
