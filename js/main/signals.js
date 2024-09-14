@@ -78,7 +78,7 @@ App.send_signal = async (signal) => {
     res = await fetch(signal.url, {method: signal.method})
   }
   catch (err) {
-    App.error(`Signal Error: ${signal.name}`)
+    App.alert(`Signal Error: ${signal.name}`)
     return
   }
 
