@@ -53,43 +53,43 @@ App.user_madprops_settings = () => {
 
   // Signals
 
-  cmd = {name: `Post Test`, url: `http://127.0.0.1:5000/post-test`, method: `POST`, icon: `🤣`, feedback: true, arguments: `{"num": 3}`, _id_: `sig_test`}
-  App.prepend_list_setting(`signals`, cmd)
-
-  cmd = {name: `Music Prev`, url: `http://127.0.0.1:5000/music-prev`, method: `POST`, icon: `⏮`, feedback: false, _id_: `sig_prev`}
-  App.prepend_list_setting(`signals`, cmd)
-
-  cmd = {name: `Music Next`, url: `http://127.0.0.1:5000/music-next`, method: `POST`, icon: `⏭`, feedback: false, _id_: `sig_next`}
-  App.prepend_list_setting(`signals`, cmd)
+  cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, feedback: true, _id_: `sig_np`}
+  App.append_list_setting(`signals`, cmd)
 
   cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `🎵`, feedback: false, _id_: `sig_play`}
-  App.prepend_list_setting(`signals`, cmd)
+  App.append_list_setting(`signals`, cmd)
 
-  cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, feedback: true, _id_: `sig_np`}
-  App.prepend_list_setting(`signals`, cmd)
+  cmd = {name: `Music Next`, url: `http://127.0.0.1:5000/music-next`, method: `POST`, icon: `⏭`, feedback: false, _id_: `sig_next`}
+  App.append_list_setting(`signals`, cmd)
+
+  cmd = {name: `Music Prev`, url: `http://127.0.0.1:5000/music-prev`, method: `POST`, icon: `⏮`, feedback: false, _id_: `sig_prev`}
+  App.append_list_setting(`signals`, cmd)
+
+  cmd = {name: `Post Test`, url: `http://127.0.0.1:5000/post-test`, method: `POST`, icon: `🤣`, feedback: true, arguments: `{"num": 3}`, _id_: `sig_test`}
+  App.append_list_setting(`signals`, cmd)
 
   // Custom URLs
 
-  cmd = {name: `Fresh`, url: `https://www.youtube.com/watch?v=lkIIOaxyR0k`}
-  App.prepend_list_setting(`custom_urls`, cmd)
-
-  cmd = {name: `Dark Chambers`, url: `https://www.youtube.com/watch?v=WYjIjut8SA0`}
-  App.prepend_list_setting(`custom_urls`, cmd)
-
-  cmd = {name: `Purr`, url: `https://www.youtube.com/watch?v=1FRQfLFzi1U`}
-  App.prepend_list_setting(`custom_urls`, cmd)
-
-  cmd = {name: `Funny Bird`, url: `https://www.youtube.com/watch?v=SFWHQmgmW8E`}
-  App.prepend_list_setting(`custom_urls`, cmd)
-
-  cmd = {name: `Dead Bent`, url: `https://www.youtube.com/watch?v=VdCodNxbc40`}
-  App.prepend_list_setting(`custom_urls`, cmd)
+  cmd = {name: `Mikaeli`, url: `https://www.youtube.com/watch?v=spdfnqS3bDg`}
+  App.append_list_setting(`custom_urls`, cmd)
 
   cmd = {name: `Raven Forest`, url: `https://www.youtube.com/watch?v=2iCHRQJnZRM`}
-  App.prepend_list_setting(`custom_urls`, cmd)
+  App.append_list_setting(`custom_urls`, cmd)
 
-  cmd = {name: `Mikaeli`, url: `https://www.youtube.com/watch?v=spdfnqS3bDg`}
-  App.prepend_list_setting(`custom_urls`, cmd)
+  cmd = {name: `Dead Bent`, url: `https://www.youtube.com/watch?v=VdCodNxbc40`}
+  App.append_list_setting(`custom_urls`, cmd)
+
+  cmd = {name: `Funny Bird`, url: `https://www.youtube.com/watch?v=SFWHQmgmW8E`}
+  App.append_list_setting(`custom_urls`, cmd)
+
+  cmd = {name: `Purr`, url: `https://www.youtube.com/watch?v=1FRQfLFzi1U`}
+  App.append_list_setting(`custom_urls`, cmd)
+
+  cmd = {name: `Dark Chambers`, url: `https://www.youtube.com/watch?v=WYjIjut8SA0`}
+  App.append_list_setting(`custom_urls`, cmd)
+
+  cmd = {name: `Fresh`, url: `https://www.youtube.com/watch?v=lkIIOaxyR0k`}
+  App.append_list_setting(`custom_urls`, cmd)
 
   App.refresh_settings()
   App.clear_show()

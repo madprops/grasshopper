@@ -1660,19 +1660,28 @@ App.toggle_setting = (setting, action = true) => {
 }
 
 App.prepend_list_setting = (setting, value, action = true) => {
+  App.add_list_setting(`prepend`, setting, value, action)
+}
+
+App.append_list_setting = (setting, value, action = true) => {
+  App.add_list_setting(`append`, setting, value, action)
+}
+
+App.add_list_setting = (what, setting, value, action) => {
   if (value._id_ === undefined) {
     value._id_ = `00_${App.settings_list_id}`
     App.settings_list_id += 1
   }
 
   let items = App.get_setting(setting)
-  items.unshift(value)
-  App.set_setting({setting: setting, value: items, action: action})
-}
 
-App.append_list_setting = (setting, value, action = true) => {
-  let items = App.get_setting(setting)
-  items.push(value)
+  if (what === `append`) {
+    items.push(value)
+  }
+  else if (what === `prepend`) {
+    items.unshift(value)
+  }
+
   App.set_setting({setting: setting, value: items, action: action})
 }
 
