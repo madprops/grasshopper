@@ -1235,8 +1235,8 @@ App.setup_settings_addlist = () => {
         a: `Term A`,
         b: `Term B`,
       },
-      list_text: (items) => {
-        return `${items.a} = ${items.b}`
+      list_text: (item) => {
+        return `${item.a} = ${item.b}`
       },
       title: props.name,
       required: {
@@ -1260,8 +1260,8 @@ App.setup_settings_addlist = () => {
       labels: {
         filter: `Filter`,
       },
-      list_text: (items) => {
-        return items.filter
+      list_text: (item) => {
+        return item.filter
       },
       title: props.name,
     }))
@@ -1304,12 +1304,12 @@ App.setup_settings_addlist = () => {
           return false
         },
       },
-      list_icon: (items) => {
-        return cmd_icon(items.cmd)
+      list_icon: (item) => {
+        return cmd_icon(item.cmd)
       },
-      list_text: (items) => {
-        let cmd = cmd_name(items.cmd)
-        return `${items.key} = ${cmd}`
+      list_text: (item) => {
+        let cmd = cmd_name(item.cmd)
+        return `${item.key} = ${cmd}`
       },
       title: props.name,
       required: {
@@ -1359,11 +1359,11 @@ App.setup_settings_addlist = () => {
               return App.cmdlist.slice(0)
             },
           },
-          list_icon: (items) => {
-            return cmd_icon(items.cmd)
+          list_icon: (item) => {
+            return cmd_icon(item.cmd)
           },
-          list_text: (items) => {
-            return cmd_name(items.cmd)
+          list_text: (item) => {
+            return cmd_name(item.cmd)
           },
           title: props.name,
           tooltips: {
@@ -1402,11 +1402,11 @@ App.setup_settings_addlist = () => {
               return App.filter_cmds.slice(0)
             },
           },
-          list_icon: (items) => {
-            return cmd_icon(items.cmd)
+          list_icon: (item) => {
+            return cmd_icon(item.cmd)
           },
-          list_text: (items) => {
-            return cmd_name(items.cmd)
+          list_text: (item) => {
+            return cmd_name(item.cmd)
           },
           title: props.name,
           automenu: true,
@@ -1436,11 +1436,11 @@ App.setup_settings_addlist = () => {
         value: `Value`,
         text: `Text`
       },
-      list_icon: (items) => {
-        return App.color_icon(items._id_)
+      list_icon: (item) => {
+        return App.color_icon(item._id_)
       },
-      list_text: (items) => {
-        return items.name
+      list_text: (item) => {
+        return item.name
       },
       required: {
         value: true,
@@ -1466,11 +1466,11 @@ App.setup_settings_addlist = () => {
         name: `Name`,
         url: `URL`,
       },
-      list_icon: (items) => {
+      list_icon: (item) => {
         return ``
       },
-      list_text: (items) => {
-        return items.name
+      list_text: (item) => {
+        return item.name
       },
       required: {
         name: true,
@@ -1492,25 +1492,28 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`name`, `url`, `method`, `feedback`],
+      keys: [`name`, `url`, `method`, `feedback`, `icon`],
       pk: `name`,
       widgets: {
         name: `text`,
         url: `text`,
         method: `menu`,
         feedback: `checkbox`,
+        icon: `text`,
       },
       labels: {
         name: `Name`,
         url: `URL`,
         method: `Method`,
         feedback: `Feedback`,
+        icon: `Icon`,
       },
-      list_icon: (items) => {
+      list_icon: (item) => {
         return ``
       },
-      list_text: (items) => {
-        return items.name
+      list_text: (item) => {
+        let icon = item.icon || App.signal_icon
+        return `${icon} ${item.name}`
       },
       required: {
         name: true,
@@ -1531,6 +1534,7 @@ App.setup_settings_addlist = () => {
             {text: `DELETE`, value: `DELETE`},
           ]
         },
+        feedback: () => { return true }
       },
       title: props.name,
     }))

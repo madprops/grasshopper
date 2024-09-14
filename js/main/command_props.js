@@ -393,12 +393,11 @@ App.setup_commands = () => {
 
   for (let [i, item] of App.get_setting(`signals`).entries()) {
     let num = i + 1
-    let icon = App.browser_icon
 
     signals.push({
       name: item.name,
       cmd: `send_signal_${num}`,
-      icon: icon,
+      icon: item.icon || signal_icon,
       action: (args) => {
         App.send_signal(item)
       },
