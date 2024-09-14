@@ -1492,15 +1492,19 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`name`, `url`],
-      pk: `url`,
+      keys: [`name`, `url`, `method`, `feedback`],
+      pk: `name`,
       widgets: {
         name: `text`,
         url: `text`,
+        method: `menu`,
+        feedback: `checkbox`,
       },
       labels: {
         name: `Name`,
         url: `URL`,
+        method: `Method`,
+        feedback: `Feedback`,
       },
       list_icon: (items) => {
         return ``
@@ -1511,10 +1515,21 @@ App.setup_settings_addlist = () => {
       required: {
         name: true,
         url: true,
+        method: true,
       },
       process: {
         url: (url) => {
           return App.fix_url(url)
+        },
+      },
+      sources: {
+        method: () => {
+          return [
+            {text: `GET`, value: `GET`},
+            {text: `POST`, value: `POST`},
+            {text: `PUT`, value: `PUT`},
+            {text: `DELETE`, value: `DELETE`},
+          ]
         },
       },
       title: props.name,

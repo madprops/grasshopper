@@ -46,14 +46,7 @@ App.fill_signals = () => {
 
     DOM.ev(btn, `click`, () => {
       App.freeze_signal(el)
-      App.send_signal(signal.url)
-    })
-
-    DOM.ev(btn, `auxclick`, (e) => {
-      if (e.button === 1) {
-        App.freeze_signal(el)
-        App.send_signal(signal.url, `POST`)
-      }
+      App.send_signal(signal)
     })
 
     btn.textContent = `Go`
@@ -74,12 +67,15 @@ App.freeze_signal = (el) => {
 App.signal_info = () => {
   let s = `Here you can send signals
   First you have to add some in Triggers Settings
-  When you click the button it sends a GET request to the URL
-  If you use middle click it sends a POST request
-  You can use this with a webserver to trigger actions`
+  You can use these with a webserver to trigger actions`
   App.alert(App.periods(s))
 }
 
-App.send_signal = (url, method = `GET`) => {
-  fetch(url, {method: method})
+App.send_signal = async (signal) => {
+  let res = await fetch(signal.url, {method: signal.method})
+
+  if (res && signal.feedback) {
+    let text = await res.text()
+    App.alert(text)
+  }
 }

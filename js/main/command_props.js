@@ -396,23 +396,13 @@ App.setup_commands = () => {
     let icon = App.browser_icon
 
     signals.push({
-      name: `${item.name} (G)`,
-      cmd: `send_get_signal_${num}`,
+      name: item.name,
+      cmd: `send_signal_${num}`,
       icon: icon,
       action: (args) => {
-        App.send_signal(item.url, `GET`)
+        App.send_signal(item)
       },
-      info: `Send a GET request (${num})`,
-    })
-
-    signals.push({
-      name: `${item.name} (P)`,
-      cmd: `send_post_signal_${num}`,
-      icon: icon,
-      action: (args) => {
-        App.send_signal(item.url, `POST`)
-      },
-      info: `Send a POST request (${num})`,
+      info: `Send this signal (${num})`,
     })
   }
 
