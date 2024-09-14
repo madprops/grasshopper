@@ -12,6 +12,12 @@ App.start_signals = () => {
         App.signal_info()
       })
 
+      let add = DOM.el(`#signals_add`)
+
+      DOM.ev(add, `click`, () => {
+        App.show_settings_category(`triggers`)
+      })
+
       let close = DOM.el(`#signals_close`)
 
       DOM.ev(close, `click`, () => {
