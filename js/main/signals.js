@@ -93,7 +93,7 @@ App.send_signal = async (signal) => {
     text = text.trim()
 
     if (text) {
-      App.alert(text)
+      App.show_textarea(signal.name, text, true)
     }
   }
 }

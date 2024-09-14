@@ -892,10 +892,11 @@ a:hover
   white-space: pre;
 }
 
-.textarea_simple {
-  resize: none;
-  height: unset !important;
+#textarea_simple {
+  width: 66vw;
+  background-color: var(--alt_color_0);
   text-align: center;
+  padding: 0.1rem;
 }
 
 .pre_wrap {

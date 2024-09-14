@@ -1,19 +1,23 @@
 // This is meant only to show information not edit it
 App.show_textarea = (message, text, simple = false) => {
+  text = text.trim()
   App.start_popups()
   let textarea = DOM.el(`#textarea_text`)
+  let simplearea = DOM.el(`#textarea_simple`)
   DOM.el(`#textarea_message`).textContent = message
-  textarea.value = text
 
   if (simple) {
-    textarea.classList.add(`textarea_simple`)
-    textarea.rows = 1
+    DOM.hide(textarea)
+    DOM.show(simplearea)
+    simplearea.textContent = text
   }
   else {
-    textarea.classList.remove(`textarea_simple`)
-    textarea.removeAttribute(`rows`)
+    DOM.hide(simplearea)
+    DOM.show(textarea)
+    textarea.value = text
   }
 
+  App.textarea_text = text
   App.show_popup(`textarea`)
 
   requestAnimationFrame(() => {
@@ -23,7 +27,7 @@ App.show_textarea = (message, text, simple = false) => {
 
 App.textarea_copy = () => {
   App.hide_popup(`textarea`)
-  App.copy_to_clipboard(DOM.el(`#textarea_text`).value.trim())
+  App.copy_to_clipboard(App.textarea_text)
 }
 
 App.focus_textarea = (el) => {
