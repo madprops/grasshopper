@@ -72,7 +72,15 @@ App.signal_info = () => {
 }
 
 App.send_signal = async (signal) => {
-  let res = await fetch(signal.url, {method: signal.method})
+  let res
+
+  try {
+    res = await fetch(signal.url, {method: signal.method})
+  }
+  catch (err) {
+    App.error(`Signal Error: ${signal.name}`)
+    return
+  }
 
   if (res && signal.feedback) {
     let text = await res.text()
