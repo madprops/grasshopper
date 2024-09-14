@@ -543,6 +543,13 @@ App.setup_keyboard = () => {
         return
       }
     }
+    else if (mode === `signals`) {
+      if (e.key === `Escape`) {
+        App.hide_window()
+        e.preventDefault()
+        return
+      }
+    }
   })
 
   DOM.ev(document, `keyup`, (e) => {

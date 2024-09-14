@@ -957,6 +957,14 @@ App.build_settings = () => {
       info: `Don't show an image on the lock screen`,
       version: 1,
     },
+    signals: {
+      name: `Signals`,
+      type: `list`,
+      value: [],
+      separator: true,
+      info: `The list of signal items to use with the Signals command`,
+      version: 1,
+    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,

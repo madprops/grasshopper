@@ -1484,6 +1484,42 @@ App.setup_settings_addlist = () => {
       title: props.name,
     }))
   }))
+
+  id = `settings_signals`
+  props = App.setting_props.signals
+
+  App.create_popup(Object.assign({}, popobj, {
+    id: `addlist_${id}`,
+    element: Addlist.register(Object.assign({}, regobj, {
+      id: id,
+      keys: [`name`, `url`],
+      pk: `url`,
+      widgets: {
+        name: `text`,
+        url: `text`,
+      },
+      labels: {
+        name: `Name`,
+        url: `URL`,
+      },
+      list_icon: (items) => {
+        return ``
+      },
+      list_text: (items) => {
+        return items.name
+      },
+      required: {
+        name: true,
+        url: true,
+      },
+      process: {
+        url: (url) => {
+          return App.fix_url(url)
+        },
+      },
+      title: props.name,
+    }))
+  }))
 }
 
 App.settings_build_category = (key) => {

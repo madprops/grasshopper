@@ -2845,6 +2845,15 @@ App.setup_commands = () => {
       info: `Generate a random password to use in websites`,
     },
     {
+      name: `Signals`,
+      cmd: `show_signals`,
+      icon: key_icon,
+      action: (args) => {
+        App.show_signals()
+      },
+      info: `Show the window to send signals`,
+    },
+    {
       name: `Open Sidebar`,
       cmd: `open_sidebar`,
       icon: bot_icon,
