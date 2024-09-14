@@ -468,7 +468,7 @@ App.now = () => {
 }
 
 App.clone = (obj) => {
-  return JSON.parse(JSON.stringify(obj))
+  return App.obj(App.str(obj))
 }
 
 App.sep = (items) => {

@@ -451,7 +451,7 @@ App.start_settings = () => {
     colored_top: true,
     after_show: () => {
       DOM.el(`#settings_${App.settings_category}_filter`).focus()
-      App.initial_settings = JSON.stringify(App.settings)
+      App.initial_settings = App.str(App.settings)
     },
     on_hide: async () => {
       if (App.settings_changed()) {
@@ -1666,6 +1666,6 @@ App.append_list_setting = (setting, value, action = true) => {
 }
 
 App.settings_changed = () => {
-  let current = JSON.stringify(App.settings)
+  let current = App.str(App.settings)
   return current !== App.initial_settings
 }

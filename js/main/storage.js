@@ -42,7 +42,7 @@ App.stor_compat_check = async () => {
         await App.save_local_storage(item.new, obj)
 
         try {
-          localStorage.setItem(`${item.old}_backup`, JSON.stringify(obj))
+          localStorage.setItem(`${item.old}_backup`, App.str(obj))
         }
         catch (err) {
           // Do nothing
