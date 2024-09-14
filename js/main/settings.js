@@ -451,10 +451,16 @@ App.start_settings = () => {
     colored_top: true,
     after_show: () => {
       DOM.el(`#settings_${App.settings_category}_filter`).focus()
+      App.initial_settings = JSON.stringify(App.settings)
     },
     on_hide: async () => {
-      App.refresh_settings()
-      App.clear_show()
+      if (App.settings_changed()) {
+        App.refresh_settings()
+        App.clear_show()
+      }
+      else {
+        App.show_main_mode()
+      }
     },
   }
 
@@ -1657,4 +1663,9 @@ App.append_list_setting = (setting, value, action = true) => {
   let items = App.get_setting(setting)
   items.push(value)
   App.set_setting({setting: setting, value: items, action: action})
+}
+
+App.settings_changed = () => {
+  let current = JSON.stringify(App.settings)
+  return current !== App.initial_settings
 }

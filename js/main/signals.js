@@ -72,7 +72,7 @@ App.fill_signals = () => {
 
 App.signal_info = () => {
   let s = `Here you can send signals
-  First you have to add some in Triggers Settings
+  First you have to add some in Trigger Settings
   You can use these with a webserver to trigger actions`
   App.alert(App.periods(s))
 }
