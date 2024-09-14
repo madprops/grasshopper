@@ -43,6 +43,18 @@ App.user_madprops_settings = () => {
   let cmd = {cmd: `locust_swarm`, alt: `lock_screen`}
   App.prepend_list_setting(`favorites_menu`, cmd)
 
+  cmd = {cmd: `show_signals`}
+  App.prepend_list_setting(`favorites_menu`, cmd)
+
+  cmd = {name: `Music Prev`, url: `http://127.0.0.1:5000/music-prev`, method: `POST`, icon: `⏮`, feedback: false}
+  App.prepend_list_setting(`signals`, cmd)
+
+  cmd = {name: `Music Next`, url: `http://127.0.0.1:5000/music-next`, method: `POST`, icon: `⏭`, feedback: false}
+  App.prepend_list_setting(`signals`, cmd)
+
+  cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `📻`, feedback: false}
+  App.prepend_list_setting(`signals`, cmd)
+
   let urls = [
     {
       name: `Mikaeli`,

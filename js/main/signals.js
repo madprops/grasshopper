@@ -59,7 +59,6 @@ App.fill_signals = () => {
     btn.title = `Send request`
 
     DOM.ev(btn, `click`, () => {
-      App.freeze_signal(el)
       App.send_signal(signal)
     })
 
@@ -69,15 +68,6 @@ App.fill_signals = () => {
     el.append(btn)
     container.append(el)
   }
-}
-
-App.freeze_signal = (el) => {
-  let cls = `no_pointer`
-  el.classList.add(cls)
-
-  setTimeout(() => {
-    el.classList.remove(cls)
-  }, App.signal_freeze_delay)
 }
 
 App.signal_info = () => {
