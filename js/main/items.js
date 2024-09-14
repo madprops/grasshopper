@@ -1378,14 +1378,17 @@ App.set_item_tooltips = (item) => {
     icon_container.title = `Click: Select Item\nRight Click: Single Select Item`
   }
 
-  let cb_tips = []
+  tips = []
   let close_btn = DOM.el(`.close_button`, item.element)
-  cb_tips.push(App.mode_vars[item.mode].close_button_click_info)
-  cb_tips.push(App.mode_vars[item.mode].close_button_middle_click_info)
-  close_btn.title = cb_tips.join(`\n`)
+  tips.push(App.mode_vars[item.mode].close_button_click_info)
+  tips.push(App.mode_vars[item.mode].close_button_middle_click_info)
+  close_btn.title = tips.join(`\n`)
 
+  tips = []
   let hover_btn = DOM.el(`.hover_button`, item.element)
-  hover_btn.title = `Hover Button`
+  tips.push(`Click: Hover Menu`)
+  tips.push(App.mode_vars[item.mode].hover_button_middle_click_info)
+  hover_btn.title = tips.join(`\n`)
 
   item.has_tooltips = true
 }

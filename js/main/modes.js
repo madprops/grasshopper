@@ -96,13 +96,16 @@ App.do_show_mode = async (args = {}) => {
   App.mode_vars[args.mode].middle_click_info = `Middle Click: ${mclick}`
 
   // Close button click info
-  let cb_click = App.get_cmd_name(`close_tabs`)
-  App.mode_vars[args.mode].close_button_click_info = `Click: ${cb_click}`
+  let click = App.get_cmd_name(`close_tabs`)
+  App.mode_vars[args.mode].close_button_click_info = `Click: ${click}`
 
   // Close button middle click info
-  let cb_mclick_sett = App.get_setting(`middle_click_close_button`)
-  let cb_mclick = App.get_cmd_name(cb_mclick_sett)
-  App.mode_vars[args.mode].close_button_middle_click_info = `Middle Click: ${cb_mclick}`
+  mclick = App.get_cmd_name(App.get_setting(`middle_click_close_button`))
+  App.mode_vars[args.mode].close_button_middle_click_info = `Middle Click: ${mclick}`
+
+  // Hover button middle click info
+  mclick = App.get_cmd_name(App.get_setting(`middle_click_hover_button`))
+  App.mode_vars[args.mode].hover_button_middle_click_info = `Middle Click: ${mclick}`
 
   if (persistent) {
     if (App[`${args.mode}_items`].length) {
