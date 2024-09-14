@@ -11,6 +11,12 @@ def music(what):
     subprocess.run(["playerctl", "-p", "audacious", what])
 
 
+def metadata(what):
+    return subprocess.run([
+        "playerctl", "metadata", "-p", "audacious", "--format", what
+    ], capture_output=True)
+
+
 @app.route("/music-play", methods=["POST"])
 def music_play():
     music("play-pause")
@@ -31,7 +37,7 @@ def music_prev():
 
 @app.route("/music-np", methods=["GET"])
 def music_np():
-    np = subprocess.run(["playerctl", "metadata", "-p", "audacious", "--format", "{{ artist }} - {{ title }}"], capture_output=True)
+    np = metadata("{{ artist }} - {{ title }}")
     return np.stdout.decode("utf-8")
 
 
