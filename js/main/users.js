@@ -40,27 +40,32 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `short_bookmarks`, value: true})
 
+  // Favorites
+
   let cmd = {cmd: `locust_swarm`, alt: `lock_screen`}
   App.prepend_list_setting(`favorites_menu`, cmd)
-
-  // Signals
 
   cmd = {cmd: `show_signals`}
   App.prepend_list_setting(`favorites_menu`, cmd)
 
-  cmd = {name: `Post Test`, url: `http://127.0.0.1:5000/post-test`, method: `POST`, icon: `🤣`, feedback: true, arguments: `{"num": 3}`}
+  cmd = {cmd: `send_signal_sig_next`, alt: `send_signal_sig_prev`}
+  App.prepend_list_setting(`favorites_menu`, cmd)
+
+  // Signals
+
+  cmd = {name: `Post Test`, url: `http://127.0.0.1:5000/post-test`, method: `POST`, icon: `🤣`, feedback: true, arguments: `{"num": 3}`, _id_: `sig_test`}
   App.prepend_list_setting(`signals`, cmd)
 
-  cmd = {name: `Music Prev`, url: `http://127.0.0.1:5000/music-prev`, method: `POST`, icon: `⏮`, feedback: false}
+  cmd = {name: `Music Prev`, url: `http://127.0.0.1:5000/music-prev`, method: `POST`, icon: `⏮`, feedback: false, _id_: `sig_prev`}
   App.prepend_list_setting(`signals`, cmd)
 
-  cmd = {name: `Music Next`, url: `http://127.0.0.1:5000/music-next`, method: `POST`, icon: `⏭`, feedback: false}
+  cmd = {name: `Music Next`, url: `http://127.0.0.1:5000/music-next`, method: `POST`, icon: `⏭`, feedback: false, _id_: `sig_next`}
   App.prepend_list_setting(`signals`, cmd)
 
-  cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `🎵`, feedback: false}
+  cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `🎵`, feedback: false, _id_: `sig_play`}
   App.prepend_list_setting(`signals`, cmd)
 
-  cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, feedback: true}
+  cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, feedback: true, _id_: `sig_np`}
   App.prepend_list_setting(`signals`, cmd)
 
   // Custom URLs

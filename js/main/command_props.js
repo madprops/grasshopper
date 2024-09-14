@@ -376,10 +376,11 @@ App.setup_commands = () => {
 
   for (let [i, item] of App.get_setting(`custom_urls`).entries()) {
     let num = i + 1
+    let id = item._id_
 
     custom_urls.push({
       name: item.name,
-      cmd: `open_url_${num}`,
+      cmd: `open_url_${id}`,
       icon: item.icon || browser_icon,
       action: (args) => {
         App.open_custom_url(args.item, num, args.from)
@@ -392,10 +393,11 @@ App.setup_commands = () => {
 
   for (let [i, item] of App.get_setting(`signals`).entries()) {
     let num = i + 1
+    let id = item._id_
 
     signals.push({
       name: item.name,
-      cmd: `send_signal_${num}`,
+      cmd: `send_signal_${id}`,
       icon: item.icon || signal_icon,
       action: (args) => {
         App.send_signal(item)
