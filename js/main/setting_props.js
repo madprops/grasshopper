@@ -952,6 +952,20 @@ App.build_settings = () => {
       info: `Image to use for the lock screen`,
       version: 1,
     },
+    lock_screen_cmds: {
+      name: `Lock Screen Cmds`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when locking the screen`,
+      version: 1,
+    },
+    unlock_screen_cmds: {
+      name: `Unlock Screen Cmds`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when unlocking the screen`,
+      version: 1,
+    },
     empty_lock_screen: {
       name: `Empty Lock Screen`,
       type: `checkbox`,

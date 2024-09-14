@@ -14,9 +14,19 @@ App.start_lock_screen = () => {
     },
     after_show: () => {
       App.screen_locked = true
+      let cmds = App.get_setting(`lock_screen_cmds`)
+
+      for (let cmd of cmds) {
+        App.run_command({cmd: cmd.cmd})
+      }
     },
     after_hide: () => {
       App.screen_locked = false
+      let cmds = App.get_setting(`unlock_screen_cmds`)
+
+      for (let cmd of cmds) {
+        App.run_command({cmd: cmd.cmd})
+      }
     },
     colored_top: true,
   })

@@ -55,7 +55,7 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `show_signals`}
   App.append_list_setting(`favorites_menu`, cmd)
 
-  cmd = {cmd: `locust_swarm`}
+  cmd = {cmd: `locust_swarm`, alt: `generate_password`}
   App.append_list_setting(`favorites_menu`, cmd)
 
   cmd = {cmd: `set_random_dark_colors`, alt: `set_random_light_colors`}

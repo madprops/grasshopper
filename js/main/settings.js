@@ -1336,6 +1336,8 @@ App.setup_settings_addlist = () => {
     `bookmarks_menu`,
     `closed_menu`,
     `main_title_menu`,
+    `lock_screen_cmds`,
+    `unlock_screen_cmds`,
   ]
 
   for (let key in App.setting_props) {
