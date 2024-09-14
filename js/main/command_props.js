@@ -39,6 +39,8 @@ App.setup_commands = () => {
   let lock_icon = App.lock_icon
   let key_icon = App.key_icon
   let signal_icon = App.signal_icon
+  let rewind_icon = App.rewind_icon
+  let new_icon = App.new_icon
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -1033,7 +1035,7 @@ App.setup_commands = () => {
     {
       name: `New`,
       cmd: `open_new_tab`,
-      icon: tabs_icon,
+      icon: new_icon,
       action: (args) => {
         App.new_tab(args.item, args.from)
       },
@@ -1560,7 +1562,7 @@ App.setup_commands = () => {
     {
       name: `Reopen`,
       cmd: `reopen_tab`,
-      icon: tabs_icon,
+      icon: rewind_icon,
       action: (args) => {
         App.reopen_tab()
       },
