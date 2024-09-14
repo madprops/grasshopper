@@ -1760,8 +1760,11 @@ a:hover
   cursor: pointer;
   color: var(--font_color);
   background-color: var(--alt_color_0);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
   border-width: 1px;
-  padding: 0.1rem;
   font-size: 1rem;
   flex-grow: 0;
 }
