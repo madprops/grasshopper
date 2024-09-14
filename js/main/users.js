@@ -55,6 +55,9 @@ App.user_madprops_settings = () => {
   cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `🎵`, feedback: false}
   App.prepend_list_setting(`signals`, cmd)
 
+  cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, feedback: true}
+  App.prepend_list_setting(`signals`, cmd)
+
   let urls = [
     {
       name: `Mikaeli`,
