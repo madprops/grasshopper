@@ -10,6 +10,8 @@ App.user_settings = (who) => {
 }
 
 App.user_madprops_settings = () => {
+  let cmd
+
   App.set_theme(3)
 
   App.set_setting({setting: `load_lock`, value: true})
@@ -42,14 +44,28 @@ App.user_madprops_settings = () => {
 
   // Favorites
 
-  let cmd = {cmd: `locust_swarm`, alt: `lock_screen`}
-  App.prepend_list_setting(`favorites_menu`, cmd)
-
-  cmd = {cmd: `send_signal_sig_next`, alt: `send_signal_sig_prev`}
-  App.prepend_list_setting(`favorites_menu`, cmd)
+  App.set_setting({setting: `favorites_menu`, value: []})
 
   cmd = {cmd: `send_signal_sig_play`, alt: `send_signal_sig_np`}
-  App.prepend_list_setting(`favorites_menu`, cmd)
+  App.append_list_setting(`favorites_menu`, cmd)
+
+  cmd = {cmd: `send_signal_sig_next`, alt: `send_signal_sig_prev`}
+  App.append_list_setting(`favorites_menu`, cmd)
+
+  cmd = {cmd: `show_signals`}
+  App.append_list_setting(`favorites_menu`, cmd)
+
+  cmd = {cmd: `locust_swarm`, alt: `lock_screen`}
+  App.append_list_setting(`favorites_menu`, cmd)
+
+  cmd = {cmd: `set_random_dark_colors`, alt: `set_random_light_colors`}
+  App.append_list_setting(`favorites_menu`, cmd)
+
+  cmd = {cmd: `show_settings`}
+  App.append_list_setting(`favorites_menu`, cmd)
+
+  cmd = {cmd: `reopen_tab`}
+  App.append_list_setting(`favorites_menu`, cmd)
 
   // Signals
 
