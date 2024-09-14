@@ -1456,18 +1456,20 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`name`, `url`],
+      keys: [`name`, `url`, `icon`],
       pk: `url`,
       widgets: {
         name: `text`,
         url: `text`,
+        icon: `text`,
       },
       labels: {
         name: `Name`,
         url: `URL`,
+        icon: `Icon`,
       },
       list_icon: (item) => {
-        return ``
+        return item.icon || App.browser_icon
       },
       list_text: (item) => {
         return item.name
