@@ -1492,7 +1492,7 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`name`, `url`, `method`, `feedback`, `icon`],
+      keys: [`name`, `url`, `icon`, `method`, `feedback`],
       pk: `name`,
       widgets: {
         name: `text`,
