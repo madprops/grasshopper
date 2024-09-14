@@ -7,14 +7,15 @@ app = Flask(__name__)
 CORS(app)
 
 
+player = ["playerctl", "-p", "audacious"]
+
+
 def music(what):
-    subprocess.run(["playerctl", "-p", "audacious", what])
+    subprocess.run([*player, what])
 
 
 def metadata(what):
-    return subprocess.run([
-        "playerctl", "metadata", "-p", "audacious", "--format", what
-    ], capture_output=True)
+    return subprocess.run([*player, "metadata", "--format", what], capture_output=True)
 
 
 @app.route("/music-play", methods=["POST"])
