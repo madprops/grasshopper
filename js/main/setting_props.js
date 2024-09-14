@@ -957,14 +957,6 @@ App.build_settings = () => {
       info: `Don't show an image on the lock screen`,
       version: 1,
     },
-    signals: {
-      name: `Signals`,
-      type: `list`,
-      value: [],
-      separator: true,
-      info: `The list of signal items to use with the Signals command`,
-      version: 1,
-    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
@@ -2883,13 +2875,20 @@ App.build_settings = () => {
   category = `triggers`
 
   props = {
+    signals: {
+      name: `Signals`,
+      type: `list`,
+      value: [],
+      info: `The list of signal items to use with the Signals command`,
+      version: 1,
+    },
     keyboard_shortcuts: {
       name: `Keyboard Shortcuts`,
       type: `list`,
       value: [],
+      separator: true,
       info: `Extra keyboard shortcuts
       If these are triggered the default shortcuts get ignored`,
-      separator: true,
       version: 4,
     },
     double_click_item: {

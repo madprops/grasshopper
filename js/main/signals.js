@@ -73,7 +73,7 @@ App.freeze_signal = (el) => {
 
 App.signal_info = () => {
   let s = `Here you can send signals
-  First you have to add some in Show Settings
+  First you have to add some in Triggers Settings
   When you click the button it sends a GET request to the URL
   If you use middle click it sends a POST request
   You can use this with a webserver to trigger actions`
