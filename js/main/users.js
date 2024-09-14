@@ -18,8 +18,7 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `autohide_context`, value: true})
   App.set_setting({setting: `max_recent_tabs`, value: 20})
 
-  App.set_setting({setting: `double_click_favorites_top`, value: `toggle_taglist`})
-  App.set_setting({setting: `middle_click_favorites_top`, value: `toggle_pin_tabs`})
+  // Wheel
 
   App.set_setting({setting: `wheel_up_favorites_top`, value: `recent_tabs_forwards`})
   App.set_setting({setting: `wheel_down_favorites_top`, value: `recent_tabs_backwards`})
@@ -44,6 +43,8 @@ App.user_madprops_settings = () => {
 
   // Favorites
 
+  App.set_setting({setting: `double_click_favorites_top`, value: `toggle_taglist`})
+  App.set_setting({setting: `middle_click_favorites_top`, value: `toggle_pin_tabs`})
   App.set_setting({setting: `favorites_menu`, value: []})
 
   cmd = {cmd: `send_signal_sig_play`, alt: `send_signal_sig_np`}
