@@ -45,10 +45,10 @@ App.user_madprops_settings = () => {
   let cmd = {cmd: `locust_swarm`, alt: `lock_screen`}
   App.prepend_list_setting(`favorites_menu`, cmd)
 
-  cmd = {cmd: `show_signals`}
+  cmd = {cmd: `send_signal_sig_next`, alt: `send_signal_sig_prev`}
   App.prepend_list_setting(`favorites_menu`, cmd)
 
-  cmd = {cmd: `send_signal_sig_next`, alt: `send_signal_sig_prev`}
+  cmd = {cmd: `send_signal_sig_play`, alt: `send_signal_sig_np`}
   App.prepend_list_setting(`favorites_menu`, cmd)
 
   // Signals
