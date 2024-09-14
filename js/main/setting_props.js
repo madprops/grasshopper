@@ -1285,25 +1285,6 @@ App.build_settings = () => {
       info: `Enable or disable the Favorites bar or button`,
       version: 2,
     },
-    favorites_position: {
-      name: `Favorites Position`,
-      type: `menu`,
-      value: `left`,
-      no_mirror: true,
-      info: `How to show the Favorites Menu
-      Either a bar, or a button at the top right`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Top`, value: `top`},
-          {text: `Left`, value: `left`},
-          {text: `Right`, value: `right`},
-          {text: `Bottom`, value: `bottom`},
-          {text: App.separator_string},
-          {text: `Button`, value: `button`},
-        ])
-      },
-    },
     favorites_menu: {
       name: `Favorites Menu`,
       type: `list`,
@@ -1317,9 +1298,28 @@ App.build_settings = () => {
         {cmd: `edit_notes`, alt: `edit_global_notes`},
         {cmd: `toggle_auto_blur`, alt: `toggle_favorites_autohide`},
       ],
-      separator: true,
       info: `List of commands that can appear in various forms`,
       version: 1,
+    },
+    favorites_position: {
+      name: `Favorites Position`,
+      type: `menu`,
+      value: `left`,
+      no_mirror: true,
+      separator: true,
+      info: `How to show the Favorites Menu
+      Either a bar, or a button at the top right`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Top`, value: `top`},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+          {text: `Bottom`, value: `bottom`},
+          {text: App.separator_string},
+          {text: `Button`, value: `button`},
+        ])
+      },
     },
     favorites_bar_color_enabled: {
       name: `Favorites Bar Color`,
@@ -2879,6 +2879,7 @@ App.build_settings = () => {
       name: `Signals`,
       type: `list`,
       value: [],
+      actions: [`commands`],
       info: `The list of signal items to use with the Signals command`,
       version: 1,
     },

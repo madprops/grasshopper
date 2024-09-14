@@ -389,6 +389,33 @@ App.setup_commands = () => {
     })
   }
 
+  let signals = []
+
+  for (let [i, item] of App.get_setting(`signals`).entries()) {
+    let num = i + 1
+    let icon = App.browser_icon
+
+    signals.push({
+      name: `${item.name} (G)`,
+      cmd: `send_get_signal_${num}`,
+      icon: icon,
+      action: (args) => {
+        App.send_signal(item.url, `GET`)
+      },
+      info: `Send a GET request (${num})`,
+    })
+
+    signals.push({
+      name: `${item.name} (P)`,
+      cmd: `send_post_signal_${num}`,
+      icon: icon,
+      action: (args) => {
+        App.send_signal(item.url, `POST`)
+      },
+      info: `Send a POST request (${num})`,
+    })
+  }
+
   App.commands = [
     {
       name: `Go To Top`,
@@ -2826,6 +2853,7 @@ App.setup_commands = () => {
     },
 
     ...custom_urls,
+    ...signals,
 
     {
       name: `Lock Screen`,
