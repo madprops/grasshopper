@@ -55,7 +55,7 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `show_signals`}
   App.append_list_setting(`favorites_menu`, cmd)
 
-  cmd = {cmd: `locust_swarm`, alt: `lock_screen`}
+  cmd = {cmd: `locust_swarm`}
   App.append_list_setting(`favorites_menu`, cmd)
 
   cmd = {cmd: `set_random_dark_colors`, alt: `set_random_light_colors`}
@@ -65,6 +65,9 @@ App.user_madprops_settings = () => {
   App.append_list_setting(`favorites_menu`, cmd)
 
   cmd = {cmd: `reopen_tab`}
+  App.append_list_setting(`favorites_menu`, cmd)
+
+  cmd = {cmd: `lock_screen`}
   App.append_list_setting(`favorites_menu`, cmd)
 
   // Signals
