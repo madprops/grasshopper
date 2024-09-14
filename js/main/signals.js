@@ -38,18 +38,26 @@ App.fill_signals = () => {
 
   for (let signal of signals) {
     let el = DOM.create(`div`, `signal_item`)
-    let input = DOM.create(`input`, `signal_input`)
-    input.type = `text`
-    input.value = signal.name
+    let name = DOM.create(`div`, `signal_name`)
+    name.textContent = signal.name
+    name.title = signal.url
     let btn = DOM.create(`button`, `signal_button`)
+    btn.title = `Click: GET\nMiddle Click: POST`
 
     DOM.ev(btn, `click`, () => {
-      App.send_signal(signal.url)
       App.freeze_signal(el)
+      App.send_signal(signal.url)
+    })
+
+    DOM.ev(btn, `auxclick`, (e) => {
+      if (e.button === 1) {
+        App.freeze_signal(el)
+        App.send_signal(signal.url, `POST`)
+      }
     })
 
     btn.textContent = `Go`
-    el.append(input)
+    el.append(name)
     el.append(btn)
     container.append(el)
   }
@@ -71,6 +79,6 @@ App.signal_info = () => {
   App.alert(App.periods(s))
 }
 
-App.send_signal = (url) => {
-  fetch(url)
+App.send_signal = (url, method = `GET`) => {
+  fetch(url, {method: method})
 }

@@ -1742,14 +1742,13 @@ a:hover
   gap: 0.6rem;
   align-items: center;
   justify-content: center;
+  width: 80%;
 }
 
-.signal_input {
-  color: var(--font_color);
-  background-color: var(--alt_color_0);
+.signal_name {
   border: 1px solid var(--alt_color_2);
   padding: 0.15rem;
-  outline: none;
+  flex-grow: 1;
 }
 
 .signal_button {
@@ -1757,4 +1756,5 @@ a:hover
   background-color: var(--alt_color_0);
   padding: 0.1rem;
   font-size: 1rem;
+  flex-grow: 0;
 }
