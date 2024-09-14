@@ -409,6 +409,20 @@ App.setup_commands = () => {
     })
   }
 
+  let theme_nums = []
+
+  for (let i = 1; i <= 5; i++) {
+    theme_nums.push({
+      name: `Theme ${i}`,
+      cmd: `set_theme_${i}`,
+      icon: theme_icon,
+      action: (args) => {
+        App.set_theme(i)
+      },
+      info: `Set theme number ${i}`,
+    })
+  }
+
   App.commands = [
     {
       name: `Go To Top`,
@@ -2725,6 +2739,9 @@ App.setup_commands = () => {
       },
       info: `Set a random dark color theme`,
     },
+
+    ...theme_nums,
+
     {
       name: `Cycle Opacity`,
       cmd: `cycle_background_opacity`,

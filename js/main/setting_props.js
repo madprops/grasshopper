@@ -3046,14 +3046,14 @@ App.build_settings = () => {
       info: `Image to use for the lock screen`,
       version: 1,
     },
-    lock_screen_cmds: {
+    lock_screen_commands: {
       name: `Lock Screen Cmds`,
       type: `list`,
       value: [],
       info: `Run these commands when locking the screen`,
       version: 1,
     },
-    unlock_screen_cmds: {
+    unlock_screen_commands: {
       name: `Unlock Screen Cmds`,
       type: `list`,
       value: [],

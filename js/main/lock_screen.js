@@ -14,19 +14,11 @@ App.start_lock_screen = () => {
     },
     after_show: () => {
       App.screen_locked = true
-      let cmds = App.get_setting(`lock_screen_cmds`)
-
-      for (let cmd of cmds) {
-        App.run_command({cmd: cmd.cmd})
-      }
+      App.run_command_list(`lock_screen_commands`)
     },
     after_hide: () => {
       App.screen_locked = false
-      let cmds = App.get_setting(`unlock_screen_cmds`)
-
-      for (let cmd of cmds) {
-        App.run_command({cmd: cmd.cmd})
-      }
+      App.run_command_list(`unlock_screen_commands`)
     },
     colored_top: true,
   })

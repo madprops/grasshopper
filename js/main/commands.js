@@ -531,7 +531,6 @@ App.custom_menu_items = (args = {}) => {
   })
 }
 
-// Get command name
 App.get_cmd_name = (cmd) => {
   let command = App.get_command(cmd)
 
@@ -540,4 +539,12 @@ App.get_cmd_name = (cmd) => {
   }
 
   return `Unknown`
+}
+
+App.run_command_list = (setting) => {
+  let cmds = App.get_setting(setting)
+
+  for (let cmd of cmds) {
+    App.run_command({cmd: cmd.cmd})
+  }
 }

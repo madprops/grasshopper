@@ -1382,8 +1382,8 @@ App.setup_settings_addlist = () => {
   }
 
   menukeys = [
-    `lock_screen_cmds`,
-    `unlock_screen_cmds`,
+    `lock_screen_commands`,
+    `unlock_screen_commands`,
   ]
 
   for (let key in App.setting_props) {
