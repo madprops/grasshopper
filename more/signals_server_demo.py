@@ -37,7 +37,7 @@ def music_prev():
 
 @app.route("/music-np", methods=["GET"])
 def music_np():
-    np = metadata("{{ artist }} - {{ title }}")
+    np = metadata("{{artist}} - {{title}}")
     return np.stdout.decode("utf-8")
 
 
