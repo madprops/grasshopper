@@ -38,6 +38,7 @@ App.setup_commands = () => {
   let grasshopper_icon = App.grasshopper_icon
   let lock_icon = App.lock_icon
   let key_icon = App.key_icon
+  let signal_icon = App.signal_icon
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -2847,7 +2848,7 @@ App.setup_commands = () => {
     {
       name: `Signals`,
       cmd: `show_signals`,
-      icon: key_icon,
+      icon: signal_icon,
       action: (args) => {
         App.show_signals()
       },

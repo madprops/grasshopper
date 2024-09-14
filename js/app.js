@@ -194,6 +194,7 @@ App.time_icon = `⏰`
 App.grasshopper_icon = `🦗`
 App.lock_icon = `🔒`
 App.key_icon = `🔑`
+App.signal_icon = `📡`
 
 App.sizes = [
   {text: `Tiny`, value: `tiny`},
