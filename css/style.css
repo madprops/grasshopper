@@ -1749,6 +1749,10 @@ a:hover
   width: 80%;
 }
 
+.signal_icon {
+  flex-grow: 0;
+}
+
 .signal_name {
   border: 1px solid var(--alt_color_1);
   padding: 0.125rem;
