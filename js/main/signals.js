@@ -55,7 +55,7 @@ App.fill_signals = () => {
     }
 
     name.title = title
-    let btn = DOM.create(`button`, `signal_button`)
+    let btn = DOM.create(`div`, `button signal_button`)
     btn.title = `Send request`
 
     DOM.ev(btn, `click`, () => {

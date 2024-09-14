@@ -1761,15 +1761,11 @@ a:hover
 }
 
 .signal_button {
-  cursor: pointer;
-  color: var(--font_color);
-  background-color: var(--alt_color_0);
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
   border-width: 1px;
-  font-size: 1rem;
   flex-grow: 0;
 }
 
