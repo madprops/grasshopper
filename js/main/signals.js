@@ -81,9 +81,22 @@ App.send_signal = async (signal) => {
   let res
 
   try {
-    res = await fetch(signal.url, {method: signal.method})
+    let obj = {
+      method: signal.method,
+    }
+
+    if (signal.arguments) {
+      obj.headers = {
+        "Content-Type": `application/json`,
+      }
+
+      obj.body = signal.arguments
+    }
+
+    res = await fetch(signal.url, obj)
   }
   catch (err) {
+    App.error(err)
     App.alert(`Signal Error: ${signal.name}`)
     return
   }
