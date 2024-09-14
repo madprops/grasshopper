@@ -911,6 +911,10 @@ a:hover
   pointer-events: none;
 }
 
+.no_pointer {
+  pointer-events: none;
+}
+
 .media_url {
   white-space: nowrap;
   overflow: hidden;
@@ -1743,10 +1747,6 @@ a:hover
   align-items: center;
   justify-content: center;
   width: 80%;
-}
-
-.signal_item:hover .signal_name {
-  border: 1px solid var(--alt_color_2);
 }
 
 .signal_name {

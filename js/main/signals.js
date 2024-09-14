@@ -44,9 +44,17 @@ App.fill_signals = () => {
 
   for (let signal of signals) {
     let el = DOM.create(`div`, `signal_item`)
+    let icon = DOM.create(`div`, `signal_icon`)
+    icon.textContent = signal.icon || App.signal_icon
     let name = DOM.create(`div`, `signal_name`)
     name.textContent = signal.name
-    name.title = `${signal.url} (${signal.method})`
+    let title = `${signal.url} (${signal.method})`
+
+    if (signal.feedback) {
+      title += ` (Feedback)`
+    }
+
+    name.title = title
     let btn = DOM.create(`button`, `signal_button`)
     btn.title = `Send request`
 
@@ -56,6 +64,7 @@ App.fill_signals = () => {
     })
 
     btn.textContent = `Go`
+    el.append(icon)
     el.append(name)
     el.append(btn)
     container.append(el)
@@ -63,7 +72,7 @@ App.fill_signals = () => {
 }
 
 App.freeze_signal = (el) => {
-  let cls = `disabled`
+  let cls = `no_pointer`
   el.classList.add(cls)
 
   setTimeout(() => {
