@@ -1,5 +1,5 @@
 import subprocess
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 
 
@@ -40,6 +40,12 @@ def music_prev():
 def music_np():
     np = metadata("{{artist}} - {{title}}")
     return np.stdout.decode("utf-8")
+
+
+@app.route("/post-test", methods=["POST"])
+def post_test():
+    num = request.json.get("num")
+    return f"You sent {num}"
 
 
 if __name__ == "__main__":
