@@ -40,9 +40,9 @@ App.fill_signals = () => {
     let el = DOM.create(`div`, `signal_item`)
     let name = DOM.create(`div`, `signal_name`)
     name.textContent = signal.name
-    name.title = signal.url
+    name.title = `${signal.url} (${signal.method})`
     let btn = DOM.create(`button`, `signal_button`)
-    btn.title = `Click: GET\nMiddle Click: POST`
+    btn.title = `Send request`
 
     DOM.ev(btn, `click`, () => {
       App.freeze_signal(el)
