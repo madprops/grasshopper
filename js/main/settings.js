@@ -1509,11 +1509,10 @@ App.setup_settings_addlist = () => {
         icon: `Icon`,
       },
       list_icon: (item) => {
-        return ``
+        return item.icon || App.signal_icon
       },
       list_text: (item) => {
-        let icon = item.icon || App.signal_icon
-        return `${icon} ${item.name}`
+        return item.name
       },
       required: {
         name: true,
