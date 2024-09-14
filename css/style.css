@@ -1758,6 +1758,7 @@ a:hover
   padding: 0.125rem;
   flex-grow: 1;
   user-select: text;
+  max-width: 300px;
 }
 
 .signal_button {
