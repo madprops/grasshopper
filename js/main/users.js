@@ -70,6 +70,8 @@ App.user_madprops_settings = () => {
 
   // Custom URLs
 
+  App.set_setting({setting: `custom_urls`, value: []})
+
   cmd = {name: `Mikaeli`, url: `https://www.youtube.com/watch?v=spdfnqS3bDg`}
   App.append_list_setting(`custom_urls`, cmd)
 
