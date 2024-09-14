@@ -1745,13 +1745,18 @@ a:hover
   width: 80%;
 }
 
+.signal_item:hover .signal_name {
+  outline: 1px solid var(--alt_color_1);
+}
+
 .signal_name {
-  border: 1px solid var(--alt_color_2);
+  border: 1px solid var(--alt_color_0);
   padding: 0.15rem;
   flex-grow: 1;
 }
 
 .signal_button {
+  cursor: pointer;
   color: var(--font_color);
   background-color: var(--alt_color_0);
   padding: 0.1rem;
