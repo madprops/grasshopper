@@ -197,6 +197,7 @@ App.key_icon = `🔑`
 App.signal_icon = `📡`
 App.rewind_icon = `⏪`
 App.new_icon = `🆕`
+App.duplicate_icon = `👭🏻`
 
 App.sizes = [
   {text: `Tiny`, value: `tiny`},

@@ -41,6 +41,7 @@ App.setup_commands = () => {
   let signal_icon = App.signal_icon
   let rewind_icon = App.rewind_icon
   let new_icon = App.new_icon
+  let duplicate_icon = App.duplicate_icon
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -1082,7 +1083,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_no_header: true,
-      icon: tabs_icon,
+      icon: duplicate_icon,
       action: (args) => {
         App.duplicate_tabs(args.item)
       },
@@ -2556,7 +2557,7 @@ App.setup_commands = () => {
       short_name: `Duplicates`,
       cmd: `filter_duplicate_tabs`,
       modes: [`tabs`],
-      icon: tabs_icon,
+      icon: duplicate_icon,
       filter_mode: true,
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
