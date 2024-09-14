@@ -57,10 +57,11 @@ App.fill_signals = () => {
 }
 
 App.freeze_signal = (el) => {
-  el.classList.add(`disabled`)
+  let cls = `disabled`
+  el.classList.add(cls)
 
   setTimeout(() => {
-    el.classList.remove(`disabled`)
+    el.classList.remove(cls)
   }, App.signal_freeze_delay)
 }
 
