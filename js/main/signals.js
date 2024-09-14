@@ -76,6 +76,10 @@ App.send_signal = async (signal) => {
 
   if (res && signal.feedback) {
     let text = await res.text()
-    App.alert(text)
+    text = text.trim()
+
+    if (text) {
+      App.alert(text)
+    }
   }
 }
