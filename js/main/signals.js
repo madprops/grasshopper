@@ -6,6 +6,12 @@ App.start_signals = () => {
   App.create_window({
     id: `signals`,
     setup: () => {
+      let info = DOM.el(`#signals_info`)
+
+      DOM.ev(info, `click`, () => {
+        App.signal_info()
+      })
+
       let close = DOM.el(`#signals_close`)
 
       DOM.ev(close, `click`, () => {
@@ -38,6 +44,7 @@ App.fill_signals = () => {
     let btn = DOM.create(`button`, `signal_button`)
 
     DOM.ev(btn, `click`, () => {
+      App.send_signal(signal.url)
       App.freeze_signal(el)
     })
 
@@ -54,4 +61,16 @@ App.freeze_signal = (el) => {
   setTimeout(() => {
     el.classList.remove(`disabled`)
   }, App.signal_freeze_delay)
+}
+
+App.signal_info = () => {
+  let s = `Here you can send signals
+  First you have to add some in Show Settings
+  When you click the button it sends a GET request to the URL
+  You can use this with your own webserver for instance to trigger actions`
+  App.alert(App.periods(s))
+}
+
+App.send_signal = (url) => {
+  fetch(url)
 }
