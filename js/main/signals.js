@@ -75,7 +75,8 @@ App.signal_info = () => {
   let s = `Here you can send signals
   First you have to add some in Show Settings
   When you click the button it sends a GET request to the URL
-  You can use this with your own webserver for instance to trigger actions`
+  If you use middle click it sends a POST request
+  You can use this with a webserver to trigger actions`
   App.alert(App.periods(s))
 }
 
