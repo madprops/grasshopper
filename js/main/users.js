@@ -70,38 +70,27 @@ App.user_madprops_settings = () => {
 
   // Custom URLs
 
-  let urls = [
-    {
-      name: `Mikaeli`,
-      url: `https://www.youtube.com/watch?v=spdfnqS3bDg`,
-    },
-    {
-      name: `Raven Forest`,
-      url: `https://www.youtube.com/watch?v=2iCHRQJnZRM`,
-    },
-    {
-      name: `Dead Bent`,
-      url: `https://www.youtube.com/watch?v=VdCodNxbc40`,
-    },
-    {
-      name: `Funny Bird`,
-      url: `https://www.youtube.com/watch?v=SFWHQmgmW8E`,
-    },
-    {
-      name: `Purr`,
-      url: `https://www.youtube.com/watch?v=1FRQfLFzi1U`,
-    },
-    {
-      name: `Dark Chambers`,
-      url: `https://www.youtube.com/watch?v=WYjIjut8SA0`,
-    },
-    {
-      name: `Fresh`,
-      url: `https://www.youtube.com/watch?v=lkIIOaxyR0k`,
-    },
-  ]
+  cmd = {name: `Fresh`, url: `https://www.youtube.com/watch?v=lkIIOaxyR0k`}
+  App.prepend_list_setting(`custom_urls`, cmd)
 
-  App.set_setting({ setting: `custom_urls`, value: urls })
+  cmd = {name: `Dark Chambers`, url: `https://www.youtube.com/watch?v=WYjIjut8SA0`}
+  App.prepend_list_setting(`custom_urls`, cmd)
+
+  cmd = {name: `Purr`, url: `https://www.youtube.com/watch?v=1FRQfLFzi1U`}
+  App.prepend_list_setting(`custom_urls`, cmd)
+
+  cmd = {name: `Funny Bird`, url: `https://www.youtube.com/watch?v=SFWHQmgmW8E`}
+  App.prepend_list_setting(`custom_urls`, cmd)
+
+  cmd = {name: `Dead Bent`, url: `https://www.youtube.com/watch?v=VdCodNxbc40`}
+  App.prepend_list_setting(`custom_urls`, cmd)
+
+  cmd = {name: `Raven Forest`, url: `https://www.youtube.com/watch?v=2iCHRQJnZRM`}
+  App.prepend_list_setting(`custom_urls`, cmd)
+
+  cmd = {name: `Mikaeli`, url: `https://www.youtube.com/watch?v=spdfnqS3bDg`}
+  App.prepend_list_setting(`custom_urls`, cmd)
+
   App.refresh_settings()
   App.clear_show()
 }

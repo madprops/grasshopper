@@ -1660,6 +1660,11 @@ App.toggle_setting = (setting, action = true) => {
 }
 
 App.prepend_list_setting = (setting, value, action = true) => {
+  if (value._id_ === undefined) {
+    value._id_ = `00_${App.settings_list_id}`
+    App.settings_list_id += 1
+  }
+
   let items = App.get_setting(setting)
   items.unshift(value)
   App.set_setting({setting: setting, value: items, action: action})

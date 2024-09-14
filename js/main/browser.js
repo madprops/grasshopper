@@ -10,14 +10,8 @@ App.show_browser_menu = (e) => {
   if (urls.length) {
     cmds.push(App.separator_string)
 
-    for (let i = 0; i < App.max_browser_urls; i++) {
-      let url = urls[i]
-
-      if (!url) {
-        break
-      }
-
-      cmds.push(`open_url_${i + 1}`)
+    for (let url of urls.slice(0, 5)) {
+      cmds.push(`open_url_${url._id_}`)
     }
   }
 
