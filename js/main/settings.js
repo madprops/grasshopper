@@ -1336,8 +1336,6 @@ App.setup_settings_addlist = () => {
     `bookmarks_menu`,
     `closed_menu`,
     `main_title_menu`,
-    `lock_screen_cmds`,
-    `unlock_screen_cmds`,
   ]
 
   for (let key in App.setting_props) {
@@ -1377,6 +1375,51 @@ App.setup_settings_addlist = () => {
           tooltips: {
             cmd: `Command on click`,
             alt: `Command on middle click`
+          },
+        }))
+      }))
+    }
+  }
+
+  menukeys = [
+    `lock_screen_cmds`,
+    `unlock_screen_cmds`,
+  ]
+
+  for (let key in App.setting_props) {
+    if (menukeys.includes(key)) {
+      let id = `settings_${key}`
+      let props = App.setting_props[key]
+
+      App.create_popup(Object.assign({}, popobj, {
+        id: `addlist_${id}`,
+        element: Addlist.register(Object.assign({}, regobj, {
+          id: id,
+          keys: [`cmd`],
+          pk: `cmd`,
+          widgets: {
+            cmd: `menu`,
+          },
+          labels: {
+            cmd: `Command`,
+          },
+          sources: {
+            cmd: () => {
+              return App.cmdlist_2.slice(0)
+            },
+            alt: () => {
+              return App.cmdlist.slice(0)
+            },
+          },
+          list_icon: (item) => {
+            return cmd_icon(item.cmd)
+          },
+          list_text: (item) => {
+            return cmd_name(item.cmd)
+          },
+          title: props.name,
+          tooltips: {
+            cmd: `Command on click`,
           },
         }))
       }))
