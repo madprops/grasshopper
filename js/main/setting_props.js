@@ -885,10 +885,12 @@ App.build_settings = () => {
       value: [
         {cmd: `open_new_tab`},
         {cmd: `reopen_tab`},
+        {cmd: App.separator_string},
         {cmd: `sort_tabs`},
         {cmd: `show_tabs_info`},
         {cmd: `show_tab_urls`},
         {cmd: `open_tab_urls`},
+        {cmd: App.separator_string},
         {cmd: `show_close_tabs_menu`},
       ],
       info: `Menu to show when clicking the tabs menu`,
