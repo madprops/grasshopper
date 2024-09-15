@@ -1528,12 +1528,20 @@ App.build_settings = () => {
   category = `title`
 
   props = {
+    main_title_enabled: {
+      name: `Title Enabled`,
+      type: `checkbox`,
+      value: false,
+      no_mirror: true,
+      info: `Show the title at the top`,
+      version: 1,
+    },
     main_title: {
       name: `Title`,
       type: `text`,
       value: ``,
       placeholder: `Title At The Top`,
-      info: `Title to show at the top`,
+      info: `The text to show in the title`,
       version: 1,
     },
     main_title_menu: {
@@ -1595,10 +1603,9 @@ App.build_settings = () => {
       name: `Wrap Title`,
       type: `checkbox`,
       value: false,
-      no_mirror: true,
       separator: true,
       info: `Make the title text wrap on long titles`,
-      version: 2,
+      version: 1,
     },
     main_title_colors: {
       name: `Title Colors`,
@@ -2699,7 +2706,7 @@ App.build_settings = () => {
     double_click_filter: {
       name: `Double Click Filter`,
       type: `menu`,
-      value: `toggle_main_title_date`,
+      value: `toggle_main_title`,
       info: `What command to run when double clicking the text filter`,
       version: 1,
       setup: (key) => {

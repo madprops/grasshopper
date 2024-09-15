@@ -2865,6 +2865,15 @@ App.setup_commands = () => {
       },
       info: `Show or hide the date in the main title`,
     },
+    {
+      name: `Toggle Title`,
+      cmd: `toggle_main_title`,
+      icon: title_icon,
+      action: (args) => {
+        App.toggle_main_title()
+      },
+      info: `Show or hide the main title`,
+    },
 
     ...custom_urls,
     ...signals,

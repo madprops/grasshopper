@@ -94,8 +94,9 @@ App.mode_vars = {}
 App.locust_swarm_on = false
 App.last_opacity_cycle_date = 0
 App.settings_list_id = 1
-
+App.playing = false
 App.settings_done = false
+
 App.settings_ready = false
 App.media_image_ready = false
 App.media_video_ready = false
@@ -108,7 +109,6 @@ App.close_tabs_ready = false
 App.setup_history_ready = false
 App.setup_bookmarks_ready = false
 App.domain_rules_ready = false
-App.playing = false
 
 App.alert_autohide_delay = 1500
 App.tab_box_shrink_delay = 500

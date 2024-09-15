@@ -69,6 +69,10 @@ App.check_main_title = (check = false) => {
     title = App.get_setting(`main_title`)
   }
 
+  if (!title) {
+    title = `No Title`
+  }
+
   if (check) {
     if (App.last_main_title !== undefined) {
       if (title === App.last_main_title) {
@@ -79,17 +83,17 @@ App.check_main_title = (check = false) => {
 
   App.last_main_title = title
   App.set_main_title_text(title)
+  App.set_setting({setting: `main_title_enabled`, value: Boolean(title)})
+  App.refresh_main_title()
+}
 
-  for (let el of DOM.els(`.main_title`)) {
-    if (title) {
-      DOM.show(el)
-    }
-    else {
-      DOM.hide(el)
-    }
+App.set_main_title_text = (text) => {
+  let els = DOM.els(`.main_title_inner`)
+
+  for (let el of els) {
+    el.textContent = text
+    el.title = `${text}\n${App.main_title_tooltip}`
   }
-
-  App.main_title_enabled = Boolean(title)
 }
 
 App.edit_main_title = () => {
@@ -111,7 +115,6 @@ App.set_main_title = (title) => {
   App.set_setting({setting: `main_title_date`, value: false})
   App.check_refresh_settings()
   App.check_main_title()
-  App.apply_theme()
 }
 
 App.copy_main_title = () => {
@@ -190,7 +193,6 @@ App.toggle_main_title_date = () => {
   let show_date = !App.get_setting(`main_title_date`)
   App.set_setting({setting: `main_title_date`, value: show_date})
   App.check_refresh_settings()
-  App.apply_theme()
   App.check_main_title()
 }
 
@@ -231,7 +233,7 @@ App.next_main_title_color = () => {
 }
 
 App.main_title_signal = async () => {
-  if (!App.main_title_enabled) {
+  if (!App.get_setting(`main_title_enabled`)) {
     return
   }
 
@@ -248,17 +250,24 @@ App.main_title_signal = async () => {
   }
 
   let text = await App.send_signal(signal, false)
-
-  if (text) {
-    App.set_main_title_text(text)
-  }
+  App.set_main_title(text)
 }
 
-App.set_main_title_text = (text) => {
-  let els = DOM.els(`.main_title_inner`)
+App.toggle_main_title = () => {
+  let new_value = !App.get_setting(`main_title_enabled`)
+  App.set_setting({setting: `main_title_enabled`, value: new_value})
+  App.refresh_main_title()
+}
 
-  for (let el of els) {
-    el.textContent = text
-    el.title = `${text}\n${App.main_title_tooltip}`
+App.refresh_main_title = () => {
+  for (let el of DOM.els(`.main_title`)) {
+    if (App.get_setting(`main_title_enabled`)) {
+      DOM.show(el)
+    }
+    else {
+      DOM.hide(el)
+    }
   }
+
+  App.apply_theme()
 }
