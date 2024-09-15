@@ -1548,6 +1548,7 @@ App.build_settings = () => {
       name: `Title Menu`,
       type: `list`,
       value: [
+        {cmd: `copy_main_title`},
         {cmd: `edit_main_title`},
         {cmd: `toggle_main_title_date`},
         {cmd: `color_main_title_red`},

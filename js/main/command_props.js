@@ -2874,6 +2874,15 @@ App.setup_commands = () => {
       },
       info: `Show or hide the main title`,
     },
+    {
+      name: `Copy Title`,
+      cmd: `copy_main_title`,
+      icon: title_icon,
+      action: (args) => {
+        App.copy_main_title()
+      },
+      info: `Copy the main title`,
+    },
 
     ...custom_urls,
     ...signals,
