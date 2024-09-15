@@ -116,7 +116,7 @@ App.send_signal = async (signal, from = `cmd`) => {
         }
 
         if (signal.update_title) {
-          App.set_main_title(text)
+          App.main_title_signal_text(text)
         }
       }
     }

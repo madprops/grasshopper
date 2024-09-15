@@ -296,6 +296,18 @@ App.main_title_signal = async () => {
     return
   }
 
+  App.main_title_signal_text(text)
+}
+
+App.main_title_signal_text = (text) => {
+  if (!App.main_title_enabled()) {
+    return
+  }
+
+  if (App.get_setting(`main_title_date`)) {
+    return
+  }
+
   if (App.get_setting(`main_title_signal_icon`)) {
     if (signal.icon) {
       text = `${signal.icon} ${text}`
