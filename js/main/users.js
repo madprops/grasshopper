@@ -18,6 +18,8 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `autohide_context`, value: true})
   App.set_setting({setting: `max_recent_tabs`, value: 20})
   App.set_setting({setting: `main_title_signal`, value: `send_signal_sig_np`})
+  App.set_setting({setting: `show_main_title`, value: true})
+  App.set_setting({setting: `main_title`, value: `Loading...`})
 
   // Wheel
 
