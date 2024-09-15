@@ -30,6 +30,9 @@ debug = False
 # Your music player
 player = ["playerctl", "-p", "audacious"]
 
+# Format when returning metadata
+track_info = "{{artist}} - {{title}}"
+
 
 # ----------
 
@@ -93,7 +96,7 @@ def volume_down():
 
 @app.route("/music-np", methods=["GET"])
 def music_np():
-    np = metadata("{{artist}} - {{title}}")
+    np = metadata(track_info)
     return np.stdout.decode("utf-8")
 
 
