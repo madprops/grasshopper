@@ -351,13 +351,14 @@ App.main_title_auto_scroll = () => {
 
   let el = DOM.el(`.main_title_inner`)
   let dir = App.main_title_auto_scroll_direction
+  let pauses = App.main_title_auto_scroll_pauses
 
   if (dir === `right`) {
     App.scroll_main_title(`right`)
 
     if (el.scrollLeft >= (el.scrollWidth - el.clientWidth)) {
       App.main_title_auto_scroll_direction = `left`
-      App.main_title_auto_scroll_pause = 2
+      App.main_title_auto_scroll_pause = pauses
     }
   }
   else if (dir === `left`) {
@@ -365,7 +366,7 @@ App.main_title_auto_scroll = () => {
 
     if (el.scrollLeft <= 0) {
       App.main_title_auto_scroll_direction = `right`
-      App.main_title_auto_scroll_pause = 2
+      App.main_title_auto_scroll_pause = pauses
     }
   }
 }
