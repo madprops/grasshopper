@@ -1655,7 +1655,12 @@ App.cycle_filter_modes = (mode, reverse, e) => {
   }
 
   if (first) {
-    proc(first.cmd)
+    if (reverse) {
+      proc(modes.at(-1).cmd)
+    }
+    else {
+      proc(modes[0].cmd)
+    }
   }
 }
 
