@@ -344,6 +344,11 @@ App.main_title_auto_scroll = () => {
     return
   }
 
+  if (App.main_title_auto_scroll_pause > 0) {
+    App.main_title_auto_scroll_pause -= 1
+    return
+  }
+
   let el = DOM.el(`.main_title_inner`)
   let dir = App.main_title_auto_scroll_direction
 
@@ -352,6 +357,7 @@ App.main_title_auto_scroll = () => {
 
     if (el.scrollLeft >= (el.scrollWidth - el.clientWidth)) {
       App.main_title_auto_scroll_direction = `left`
+      App.main_title_auto_scroll_pause = 2
     }
   }
   else if (dir === `left`) {
@@ -359,6 +365,7 @@ App.main_title_auto_scroll = () => {
 
     if (el.scrollLeft <= 0) {
       App.main_title_auto_scroll_direction = `right`
+      App.main_title_auto_scroll_pause = 2
     }
   }
 }

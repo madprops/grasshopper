@@ -97,9 +97,10 @@ App.settings_list_id = 1
 App.playing = false
 App.settings_done = false
 App.fullscreen = false
-App.main_title_scroll = 20
-App.main_title_auto_scroll_delay = 600
+App.main_title_scroll = 10
+App.main_title_auto_scroll_delay = 300
 App.main_title_auto_scroll_direction = `right`
+App.main_title_auto_scroll_pause = 0
 
 App.settings_ready = false
 App.media_image_ready = false
