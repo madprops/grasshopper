@@ -2881,6 +2881,24 @@ App.setup_commands = () => {
       },
       info: `Copy the main title`,
     },
+    {
+      name: `Scroll Title Left`,
+      cmd: `scroll_main_title_left`,
+      icon: title_icon,
+      action: (args) => {
+        App.scroll_main_title(`left`)
+      },
+      info: `Scroll the main title to the left`,
+    },
+    {
+      name: `Scroll Title Right`,
+      cmd: `scroll_main_title_right`,
+      icon: title_icon,
+      action: (args) => {
+        App.scroll_main_title(`right`)
+      },
+      info: `Scroll the main title to the right`,
+    },
 
     ...custom_urls,
     ...signals,

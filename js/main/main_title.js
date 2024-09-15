@@ -305,3 +305,14 @@ App.refresh_main_title = () => {
 
   App.apply_theme()
 }
+
+App.scroll_main_title = (dir) => {
+  let el = DOM.el(`.main_title_inner`)
+
+  if (dir === `left`) {
+    el.scrollLeft -= App.main_title_scroll
+  }
+  else if (dir === `right`) {
+    el.scrollLeft += App.main_title_scroll
+  }
+}

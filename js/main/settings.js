@@ -434,12 +434,16 @@ App.refresh_settings = () => {
 }
 
 App.build_setting_cmds = () => {
-  App.cmdlist_single = App.settings_commands(true, false)
-  App.cmdlist_menu = App.settings_commands(false, true)
-  App.cmdlist_pure = App.settings_commands(false, false)
+  let single = [true, false]
+  let menu = [false, true]
+  let pure = [false, false]
 
-  App.filter_cmds_menu = App.get_filter_cmds(false, true)
-  App.signal_cmds_single = App.get_signal_cmds(true, false)
+  App.cmdlist_single = App.settings_commands(...single)
+  App.cmdlist_menu = App.settings_commands(...menu)
+  App.cmdlist_pure = App.settings_commands(...pure)
+
+  App.filter_cmds_menu = App.get_filter_cmds(...menu)
+  App.signal_cmds_single = App.get_signal_cmds(...single)
 }
 
 App.start_settings = () => {

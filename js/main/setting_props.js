@@ -1670,7 +1670,7 @@ App.build_settings = () => {
     wheel_up_main_title: {
       name: `Wheel Up Title`,
       type: `menu`,
-      value: `none`,
+      value: `scroll_main_title_left`,
       info: `Command to run when using the mousewheel up on the Title`,
       version: 1,
       setup: (key) => {
@@ -1680,7 +1680,7 @@ App.build_settings = () => {
     wheel_down_main_title: {
       name: `Wheel Down Title`,
       type: `menu`,
-      value: `none`,
+      value: `scroll_main_title_right`,
       info: `Command to run when using the mousewheel down on the Title`,
       version: 1,
       setup: (key) => {
