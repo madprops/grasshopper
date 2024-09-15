@@ -449,6 +449,13 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`tab_box_count`)
     }
 
+    if (App.get_setting(`wrap_main_title`)) {
+      main.classList.remove(`main_title_no_wrap`)
+    }
+    else {
+      main.classList.add(`main_title_no_wrap`)
+    }
+
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_custom_css()

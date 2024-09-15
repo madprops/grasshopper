@@ -1588,9 +1588,17 @@ App.build_settings = () => {
       placeholder: `Px`,
       min: 6,
       max: 28,
-      separator: true,
       info: `Font size for the Title`,
       version: 1,
+    },
+    wrap_main_title: {
+      name: `Wrap Title`,
+      type: `checkbox`,
+      value: false,
+      no_mirror: true,
+      separator: true,
+      info: `Make the title text wrap on long titles`,
+      version: 2,
     },
     main_title_colors: {
       name: `Title Colors`,
