@@ -439,11 +439,15 @@ App.build_setting_cmds = () => {
   let menu = [false, true]
   let pure = [false, false]
 
+  // All commands
   App.cmdlist_single = App.settings_commands(...single)
   App.cmdlist_menu = App.settings_commands(...menu)
   App.cmdlist_pure = App.settings_commands(...pure)
 
+  // Only filter commands
   App.filter_cmds_menu = App.get_filter_cmds(...menu)
+
+  // Only signal commands
   App.signal_cmds_single = App.get_signal_cmds(...single)
 }
 
