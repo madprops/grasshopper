@@ -77,7 +77,7 @@ App.signal_info = () => {
   App.alert(App.periods(s))
 }
 
-App.send_signal = async (signal, popup = true) => {
+App.send_signal = async (signal, from = `cmd`) => {
   let res, text
 
   try {
@@ -105,13 +105,19 @@ App.send_signal = async (signal, popup = true) => {
     return
   }
 
-  if (res && signal.feedback) {
+  if (res) {
     text = await res.text()
     text = text.trim()
 
     if (text) {
-      if (popup) {
-        App.show_textarea(signal.name, text, true)
+      if (from === `cmd`) {
+        if (signal.feedback) {
+          App.show_textarea(signal.name, text, true)
+        }
+
+        if (signal.update_title) {
+          App.set_main_title(text)
+        }
       }
     }
   }

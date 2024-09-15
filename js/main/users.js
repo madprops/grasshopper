@@ -30,7 +30,6 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `main_title_text_color`, value: `rgba(255, 255, 255, 1)`})
   App.set_setting({setting: `main_title_background_color`, value: `rgba(54, 54, 54, 1)`})
   App.set_setting({setting: `main_title_signal`, value: `send_signal_sig_np`})
-  App.set_setting({setting: `main_title_signal_delay`, value: 3000})
 
   // Wheel
 
@@ -100,10 +99,10 @@ App.user_madprops_settings = () => {
   cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `🎵`, feedback: false, _id_: `sig_play`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Music Next`, url: `http://127.0.0.1:5000/music-next`, method: `POST`, icon: `⏭`, feedback: false, _id_: `sig_next`}
+  cmd = {name: `Music Next`, url: `http://127.0.0.1:5000/music-next`, method: `POST`, icon: `⏭`, feedback: false, _id_: `sig_next`, update_title: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Music Prev`, url: `http://127.0.0.1:5000/music-prev`, method: `POST`, icon: `⏮`, feedback: false, _id_: `sig_prev`}
+  cmd = {name: `Music Prev`, url: `http://127.0.0.1:5000/music-prev`, method: `POST`, icon: `⏮`, feedback: false, _id_: `sig_prev`, update_title: true}
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Volume Up`, url: `http://127.0.0.1:5000/volume-up`, method: `POST`, icon: `🔊`, feedback: false, _id_: `sig_volup`}

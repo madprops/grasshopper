@@ -290,7 +290,7 @@ App.main_title_signal = async () => {
     return
   }
 
-  let text = await App.send_signal(signal, false)
+  let text = await App.send_signal(signal, `main_title`)
 
   if (!text) {
     return
