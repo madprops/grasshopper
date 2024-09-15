@@ -364,6 +364,11 @@ App.main_title_auto_scroll = () => {
   let el = DOM.el(`.main_title_inner`)
   let dir = App.main_title_auto_scroll_direction
   let pauses = App.main_title_auto_scroll_pauses
+  let overflow = el.scrollWidth - el.clientWidth
+
+  if (overflow < 40) {
+    return
+  }
 
   if (dir === `right`) {
     App.scroll_main_title(`right`)
