@@ -3364,7 +3364,7 @@ App.build_settings = () => {
       name: `Signal Errors`,
       type: `checkbox`,
       value: false,
-      info: `Show an alert popup when signals error`,
+      info: `Show an alert popup on signal errors`,
       version: 1,
     },
     debug_mode: {
