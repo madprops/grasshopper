@@ -59,6 +59,7 @@ App.create_main_title = () => {
     }
   })
 
+  App.last_main_title = ``
   return el
 }
 
@@ -284,7 +285,7 @@ App.main_title_signal = async () => {
 
 App.toggle_main_title = () => {
   let new_value = !App.get_setting(`show_main_title`)
-  App.set_setting({setting: `show_main_title`, value: new_value})
+  App.set_setting({setting: `show_main_title`, value: new_value, action: true})
   App.refresh_main_title()
 }
 
