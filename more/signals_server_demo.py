@@ -34,20 +34,28 @@ player = ["playerctl", "-p", "audacious"]
 # ----------
 
 
+def run(args):
+    subprocess.run(args)
+
+
+def output(args):
+    return subprocess.run(args, capture_output=True)
+
+
 def music(what):
-    subprocess.run([*player, what])
-
-
-def metadata(what):
-    return subprocess.run([*player, "metadata", "--format", what], capture_output=True)
+    run([*player, what])
 
 
 def inc_volume():
-    subprocess.run(["awesome-client", "Utils.increase_volume()"])
+    run(["awesome-client", "Utils.increase_volume()"])
 
 
 def dec_volume():
-    subprocess.run(["awesome-client", "Utils.decrease_volume()"])
+    run(["awesome-client", "Utils.decrease_volume()"])
+
+
+def metadata(what):
+    return output([*player, "metadata", "--format", what])
 
 
 # ----------
