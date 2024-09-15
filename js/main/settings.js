@@ -1262,7 +1262,7 @@ App.setup_settings_addlist = () => {
     let c = App.get_command(cmd)
 
     if (c) {
-      return App.resolve_icon(c.icon)
+      return c.icon
     }
     else {
       return ``
@@ -1293,6 +1293,7 @@ App.setup_settings_addlist = () => {
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       keys: [`a`, `b`],
+      pk: `a`,
       widgets: {
         a: `text`,
         b: `text`,
@@ -1319,6 +1320,7 @@ App.setup_settings_addlist = () => {
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       keys: [`filter`],
+      pk: `filter`,
       widgets: {
         filter: `text`,
       },
@@ -1340,6 +1342,7 @@ App.setup_settings_addlist = () => {
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
+      pk: `_id_`,
       widgets: {
         key: `key`,
         cmd: `menu`,
@@ -1406,6 +1409,7 @@ App.setup_settings_addlist = () => {
         element: Addlist.register(Object.assign({}, regobj, {
           id: id,
           keys: [`cmd`, `alt`],
+          pk: `cmd`,
           widgets: {
             cmd: `menu`,
             alt: `menu`,
@@ -1453,6 +1457,7 @@ App.setup_settings_addlist = () => {
         element: Addlist.register(Object.assign({}, regobj, {
           id: id,
           keys: [`cmd`],
+          pk: `cmd`,
           widgets: {
             cmd: `menu`,
           },
@@ -1497,6 +1502,7 @@ App.setup_settings_addlist = () => {
         element: Addlist.register(Object.assign({}, regobj, {
           id: id,
           keys: [`cmd`],
+          pk: `cmd`,
           widgets: {
             cmd: `menu`,
           },
@@ -1531,6 +1537,7 @@ App.setup_settings_addlist = () => {
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       keys: [`name`, `value`, `text`],
+      pk: `name`,
       widgets: {
         name: `text`,
         value: `color`,
@@ -1562,6 +1569,7 @@ App.setup_settings_addlist = () => {
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       keys: [`name`, `url`, `icon`],
+      pk: `url`,
       widgets: {
         name: `text`,
         url: `text`,
@@ -1599,6 +1607,7 @@ App.setup_settings_addlist = () => {
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       keys: [`name`, `url`, `arguments`, `icon`, `method`, `feedback`],
+      pk: `_id_`,
       widgets: {
         name: `text`,
         url: `text`,
