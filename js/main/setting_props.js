@@ -1666,7 +1666,7 @@ App.build_settings = () => {
     wheel_up_main_title: {
       name: `Wheel Up Title`,
       type: `menu`,
-      value: `previous_main_title_color`,
+      value: `none`,
       info: `Command to run when using the mousewheel up on the Title`,
       version: 1,
       setup: (key) => {
@@ -1676,7 +1676,7 @@ App.build_settings = () => {
     wheel_down_main_title: {
       name: `Wheel Down Title`,
       type: `menu`,
-      value: `next_main_title_color`,
+      value: `none`,
       info: `Command to run when using the mousewheel down on the Title`,
       version: 1,
       setup: (key) => {
@@ -1686,7 +1686,7 @@ App.build_settings = () => {
     wheel_up_shift_main_title: {
       name: `Shift Wheel Up Title`,
       type: `menu`,
-      value: `none`,
+      value: `previous_main_title_color`,
       info: `Command to run when using the mousewheel up on the Title while holding Shift`,
       version: 1,
       setup: (key) => {
@@ -1696,7 +1696,7 @@ App.build_settings = () => {
     wheel_down_shift_main_title: {
       name: `Shift Wheel Down Title`,
       type: `menu`,
-      value: `none`,
+      value: `next_main_title_color`,
       separator: true,
       info: `Command to run when using the mousewheel down on the Title while holding Shift`,
       version: 1,
