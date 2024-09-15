@@ -1682,7 +1682,7 @@ App.build_settings = () => {
       name: `Title Signal`,
       type: `menu`,
       value: `none`,
-      info: `Show the response of this signal on the main title periodically`,
+      info: `Show the response of this signal on the title periodically`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.signal_cmds)
