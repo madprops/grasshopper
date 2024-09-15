@@ -434,10 +434,14 @@ App.refresh_settings = () => {
 }
 
 App.build_setting_cmds = () => {
-  App.cmdlist = App.settings_commands()
-  App.cmdlist_2 = App.settings_commands(false)
-  App.filter_cmds = App.get_filter_cmds()
-  App.signal_cmds = App.get_signal_cmds()
+  App.cmdlist_single = App.settings_commands(true, false)
+  App.cmdlist_menu = App.settings_commands(false, true)
+
+  App.filter_cmds_single = App.get_filter_cmds(true, false)
+  App.filter_cmds_menu = App.get_filter_cmds(false, true)
+
+  App.signal_cmds_single = App.get_signal_cmds(true, false)
+  App.signal_cmds_menu = App.get_signal_cmds(false, true)
 }
 
 App.start_settings = () => {
@@ -892,15 +896,24 @@ App.on_settings = (mode = App.window_mode) => {
   return mode.startsWith(`settings_`)
 }
 
-App.settings_commands = (include_none = true) => {
+App.add_setting_headers = (items, include_none, include_sep) => {
+  if (include_none) {
+    items.push({text: `Do Nothing`, value: `none`})
+  }
+
+  if (include_sep) {
+    items.push({text: `-- Separator --`, value: App.separator_string})
+  }
+
+  if (items.length) {
+    items.push({text: App.separator_string})
+  }
+}
+
+App.settings_commands = (include_none, include_sep) => {
   let items = []
 
-  if (include_none) {
-    items = [
-      {text: `Do Nothing`, value: `none`},
-      {text: App.separator_string},
-    ]
-  }
+  App.add_setting_headers(items, include_none, include_sep)
 
   for (let cmd of App.commands) {
     if (cmd.skip_settings) {
@@ -922,8 +935,10 @@ App.add_settings_cmd = (items, cmd) => {
   })
 }
 
-App.get_filter_cmds = () => {
+App.get_filter_cmds = (include_none, include_sep) => {
   let items = []
+
+  App.add_setting_headers(items, include_none, include_sep)
 
   for (let cmd of App.commands) {
     if (cmd.skip_settings) {
@@ -938,8 +953,10 @@ App.get_filter_cmds = () => {
   return items
 }
 
-App.get_signal_cmds = (include_none = true) => {
+App.get_signal_cmds = (include_none, include_sep) => {
   let items = []
+
+  App.add_setting_headers(items, include_none, include_sep)
 
   if (include_none) {
     items = [
@@ -1246,6 +1263,10 @@ App.setup_settings_addlist = () => {
   }
 
   function cmd_name (cmd) {
+    if (cmd === App.separator_string) {
+      return `-- Separator --`
+    }
+
     let c = App.get_command(cmd)
 
     if (c) {
@@ -1331,7 +1352,7 @@ App.setup_settings_addlist = () => {
       },
       sources: {
         cmd: () => {
-          return App.cmdlist_2.slice(0)
+          return App.cmdlist_menu.slice(0)
         },
         ctrl: () => {
           return true
@@ -1392,10 +1413,10 @@ App.setup_settings_addlist = () => {
           },
           sources: {
             cmd: () => {
-              return App.cmdlist_2.slice(0)
+              return App.cmdlist_menu.slice(0)
             },
             alt: () => {
-              return App.cmdlist.slice(0)
+              return App.cmdlist_single.slice(0)
             },
           },
           list_icon: (item) => {
@@ -1438,10 +1459,10 @@ App.setup_settings_addlist = () => {
           },
           sources: {
             cmd: () => {
-              return App.cmdlist_2.slice(0)
+              return App.cmdlist_menu.slice(0)
             },
             alt: () => {
-              return App.cmdlist.slice(0)
+              return App.cmdlist_single.slice(0)
             },
           },
           list_icon: (item) => {
@@ -1483,7 +1504,7 @@ App.setup_settings_addlist = () => {
           },
           sources: {
             cmd: () => {
-              return App.filter_cmds.slice(0)
+              return App.filter_cmds_menu.slice(0)
             },
           },
           list_icon: (item) => {

@@ -420,6 +420,11 @@ App.show_cmds_menu = (args = {}) => {
   }
   else {
     for (let obj of args.cmds) {
+      if (obj.cmd === App.separator_string) {
+        App.sep(items)
+        continue
+      }
+
       let cmd = App.get_command(obj.cmd)
 
       if (!cmd) {
