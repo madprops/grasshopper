@@ -42,6 +42,8 @@ App.create_main_title = () => {
   App.update_main_title_tooltips(el)
 
   DOM.ev(el, `click`, (e) => {
+    App.main_title_click(e)
+
     App.check_double_click(`main_title`, e, () => {
       App.main_title_double_click(e)
     })
@@ -152,9 +154,14 @@ App.main_title_double_click = (e) => {
   }
 }
 
+App.main_title_click = (e) => {
+  let cmd = App.get_setting(`click_main_title`)
+  App.run_command({cmd: cmd, from: `main_title`, e: e})
+}
+
 App.main_title_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_main_title`)
-  App.run_command({cmd: cmd, from: `filter_menu`, e: e})
+  App.run_command({cmd: cmd, from: `main_title`, e: e})
 }
 
 App.color_main_title = (what) => {

@@ -1533,7 +1533,7 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       no_mirror: true,
-      info: `Show the title at the top`,
+      info: `Show the Title at the top`,
       version: 1,
     },
     main_title: {
@@ -1541,7 +1541,7 @@ App.build_settings = () => {
       type: `text`,
       value: ``,
       placeholder: `Title At The Top`,
-      info: `The text to show in the title`,
+      info: `The text to show in the Title`,
       version: 1,
     },
     main_title_menu: {
@@ -1559,6 +1559,16 @@ App.build_settings = () => {
       ],
       info: `Menu to show when right clicking the Title`,
       version: 1,
+    },
+    click_main_title: {
+      name: `Click Title`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when clicking the Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist)
+      },
     },
     double_click_main_title: {
       name: `Double Click Title`,
@@ -1584,7 +1594,7 @@ App.build_settings = () => {
       name: `Title Align`,
       type: `menu`,
       value: `center`,
-      info: `How to align the title`,
+      info: `How to align the Title`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.aligns)
@@ -1698,7 +1708,7 @@ App.build_settings = () => {
       name: `Title Signal`,
       type: `menu`,
       value: `none`,
-      info: `Show the response of this signal on the title periodically`,
+      info: `Show the response of this signal on the Title periodically`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.signal_cmds)
@@ -1711,14 +1721,14 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Update the title with the signal every X milliseconds`,
+      info: `Send the Title Signal every x milliseconds`,
       version: 1,
     },
     main_title_signal_icon: {
       name: `Title Signal Icon`,
       type: `checkbox`,
       value: false,
-      info: `Show the icon of the signal in the title`,
+      info: `Show the icon of the signal in the Title`,
       version: 1,
     },
   }
