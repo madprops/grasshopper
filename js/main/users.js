@@ -30,6 +30,7 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `main_title_text_color`, value: `rgba(255, 255, 255, 1)`})
   App.set_setting({setting: `main_title_background_color`, value: `rgba(54, 54, 54, 1)`})
   App.set_setting({setting: `main_title_signal`, value: `send_signal_sig_np`})
+  App.set_setting({setting: `main_title_signal_delay`, value: 3000})
 
   // Wheel
 
