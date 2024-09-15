@@ -38,6 +38,7 @@ App.create_main_title = () => {
   el.title = `Right Click: ${rclick}`
   App.trigger_title(el, `middle_click_main_title`)
   App.trigger_title(el, `double_click_main_title`)
+  App.main_title_tooltip = el.title
 
   DOM.ev(el, `click`, (e) => {
     App.check_double_click(`main_title`, e, () => {
@@ -76,16 +77,16 @@ App.check_main_title = (check = false) => {
     }
   }
 
-  let el = DOM.el(`.main_title_inner`)
-  el.textContent = title
   App.last_main_title = title
-  let elm = DOM.parent(el, [`.main_title`])
+  App.set_main_title_text(title)
 
-  if (title) {
-    DOM.show(elm)
-  }
-  else {
-    DOM.hide(elm)
+  for (let el of DOM.els(`.main_title`)) {
+    if (title) {
+      DOM.show(el)
+    }
+    else {
+      DOM.hide(el)
+    }
   }
 
   App.main_title_enabled = Boolean(title)
@@ -249,7 +250,15 @@ App.main_title_signal = async () => {
   let text = await App.send_signal(signal, false)
 
   if (text) {
-    let el = DOM.el(`.main_title_inner`)
+    App.set_main_title_text(text)
+  }
+}
+
+App.set_main_title_text = (text) => {
+  let els = DOM.els(`.main_title_inner`)
+
+  for (let el of els) {
     el.textContent = text
+    el.title = `${text}\n${App.main_title_tooltip}`
   }
 }
