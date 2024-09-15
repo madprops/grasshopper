@@ -434,6 +434,7 @@ App.refresh_settings = () => {
 }
 
 App.build_setting_cmds = () => {
+  // None | Separator
   let single = [true, false]
   let menu = [false, true]
   let pure = [false, false]
