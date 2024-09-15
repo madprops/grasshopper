@@ -18,7 +18,7 @@ from flask_cors import CORS
 # Main flask app
 app = Flask(__name__)
 
-# Alow cross-origin requests
+# Allow cross-origin requests
 CORS(app)
 
 # The port to run the server on
