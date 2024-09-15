@@ -73,13 +73,13 @@ def music_prev():
 
 @app.route("/volume-up", methods=["POST"])
 def volume_up():
-    inc_volume(5)
+    inc_volume()
     return "ok"
 
 
 @app.route("/volume-down", methods=["POST"])
 def volume_down():
-    dec_volume(5)
+    dec_volume()
     return "ok"
 
 
