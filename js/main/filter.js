@@ -1737,7 +1737,7 @@ App.show_favorite_filters = (mode, e) => {
   let all = App.filter_modes(mode)[0]
 
   items.push({
-    icon: all.icon,
+    icon: App.resolve_icon(all.icon),
     text: all.text,
     action: () => {
       App.filter_all(mode)
@@ -1755,7 +1755,7 @@ App.show_favorite_filters = (mode, e) => {
     if (command) {
       items.push({
         e: e,
-        icon: command.icon,
+        icon: App.resolve_icon(command.icon),
         text: App.command_name(command, true),
         info: command.info,
         action: (e) => {
@@ -1832,7 +1832,7 @@ App.get_refine_items = () => {
 
     if (command) {
       items.push({
-        icon: command.icon,
+        icon: App.resolve_icon(command.icon),
         text: App.command_name(command, true),
         info: command.info,
         action: (e) => {

@@ -689,3 +689,12 @@ App.get_icon_tabs = (icon) => {
 
   return tabs
 }
+
+App.resolve_icon = (icon) => {
+  if (typeof icon === `string`) {
+    return icon
+  }
+  else {
+    return DOM.clone(icon)
+  }
+}
