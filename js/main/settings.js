@@ -1342,7 +1342,7 @@ App.setup_settings_addlist = () => {
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
-      pk: `_id_`,
+      pk: `cmd`,
       widgets: {
         key: `key`,
         cmd: `menu`,
@@ -1359,7 +1359,7 @@ App.setup_settings_addlist = () => {
       },
       sources: {
         cmd: () => {
-          return App.cmdlist_menu.slice(0)
+          return App.cmdlist_single.slice(0)
         },
         ctrl: () => {
           return true
@@ -1607,7 +1607,7 @@ App.setup_settings_addlist = () => {
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       keys: [`name`, `url`, `arguments`, `icon`, `method`, `feedback`],
-      pk: `_id_`,
+      pk: `name`,
       widgets: {
         name: `text`,
         url: `text`,
