@@ -22,6 +22,10 @@ App.user_madprops_settings = () => {
     {cmd: `open_new_tab`},
   ]})
 
+  App.set_setting({setting: `unlock_screen_commands`, value: [
+    {cmd: `close_last_tab`},
+  ]})
+
   // Main Title
 
   App.set_setting({setting: `show_main_title`, value: true})
