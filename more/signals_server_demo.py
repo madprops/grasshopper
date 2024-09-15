@@ -1,3 +1,12 @@
+# This is a simple webserver to listen to signals from the browser
+# It mostly does music and volume operations, but can be extended
+
+# requirements.txt:
+# -----------------
+# Flask == 3.0.3
+# Flask-Cors == 4.0.1
+
+
 import subprocess
 from flask import Flask, request
 from flask_cors import CORS
