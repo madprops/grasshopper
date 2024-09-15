@@ -1639,8 +1639,8 @@ App.setup_settings_addlist = () => {
       },
       tooltips: {
         arguments: `JSON string to use as arguments for POST`,
-        feedback: `Show the returned message`,
-        update_title: `Update the Title with the returned message`,
+        feedback: `Show the response in a popup`,
+        update_title: `Update the Title with the response`,
       },
       process: {
         url: (url) => {
