@@ -42,11 +42,11 @@ def metadata(what):
     return subprocess.run([*player, "metadata", "--format", what], capture_output=True)
 
 
-def inc_volume(what):
+def inc_volume():
     subprocess.run(["awesome-client", "Utils.increase_volume()"])
 
 
-def dec_volume(what):
+def dec_volume():
     subprocess.run(["awesome-client", "Utils.decrease_volume()"])
 
 
