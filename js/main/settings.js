@@ -438,11 +438,8 @@ App.build_setting_cmds = () => {
   App.cmdlist_menu = App.settings_commands(false, true)
   App.cmdlist_pure = App.settings_commands(false, false)
 
-  App.filter_cmds_single = App.get_filter_cmds(true, false)
   App.filter_cmds_menu = App.get_filter_cmds(false, true)
-
   App.signal_cmds_single = App.get_signal_cmds(true, false)
-  App.signal_cmds_menu = App.get_signal_cmds(false, true)
 }
 
 App.start_settings = () => {

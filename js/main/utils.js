@@ -575,3 +575,7 @@ App.fix_url = (url) => {
 App.remove_quotes = (str) => {
   return str.replace(/"/g, ``)
 }
+
+App.remove_separators = (cmds) => {
+  return cmds.filter(x => x.cmd !== App.separator_string)
+}

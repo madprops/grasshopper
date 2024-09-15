@@ -2398,7 +2398,6 @@ App.setup_commands = () => {
       short_name: `All Tags`,
       cmd: `filter_tag_all`,
       modes: [`items`],
-      item: true,
       icon: tag_icon,
       filter_mode: true,
       action: (args) => {
@@ -2424,7 +2423,6 @@ App.setup_commands = () => {
       short_name: `All Icons`,
       cmd: `filter_icon_all`,
       modes: [`items`],
-      item: true,
       icon: bot_icon,
       filter_mode: true,
       action: (args) => {

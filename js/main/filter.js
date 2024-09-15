@@ -1588,6 +1588,7 @@ App.show_filter_menu = (mode) => {
 App.cycle_filter_modes = (mode, reverse, e) => {
   let f_modes = App.filter_modes(mode)
   let favorites = App.get_setting(`favorite_filters`)
+  favorites = App.remove_separators(favorites)
   let modes = []
 
   function proc (cmd) {
@@ -1633,21 +1634,21 @@ App.cycle_filter_modes = (mode, reverse, e) => {
 
   let first
 
-  for (let filter_mode of modes) {
-    if (filter_mode.skip) {
+  for (let fmode of modes) {
+    if (fmode.skip) {
       continue
     }
 
     if (!first) {
-      first = filter_mode
+      first = fmode
     }
 
     if (waypoint) {
-      proc(filter_mode.cmd)
+      proc(fmode.cmd)
       return
     }
 
-    let name = filter_mode.name || filter_mode.cmd
+    let name = fmode.name || fmode.cmd
 
     if (name === App.filter_mode(mode)) {
       waypoint = true
@@ -1744,6 +1745,11 @@ App.show_favorite_filters = (mode, e) => {
   })
 
   for (let cmd of App.get_setting(`favorite_filters`)) {
+    if (cmd.cmd === App.separator_string) {
+      App.sep(items)
+      continue
+    }
+
     let command = App.get_command(cmd.cmd)
 
     if (command) {
