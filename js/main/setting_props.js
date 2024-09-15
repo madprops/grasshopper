@@ -3360,6 +3360,13 @@ App.build_settings = () => {
       info: `Select items when right clicking them to show the Item Menu`,
       version: 1,
     },
+    show_signal_errors: {
+      name: `Signal Errors`,
+      type: `checkbox`,
+      value: false,
+      info: `Show an alert popup when signals error`,
+      version: 1,
+    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,

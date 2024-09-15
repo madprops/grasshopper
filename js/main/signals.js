@@ -97,7 +97,11 @@ App.send_signal = async (signal, popup = true) => {
   }
   catch (err) {
     App.error(err)
-    App.alert(`Signal Error: ${signal.name}`)
+
+    if (App.get_setting(`show_signal_errors`)) {
+      App.alert(`Signal Error: ${signal.name}`)
+    }
+
     return
   }
 
