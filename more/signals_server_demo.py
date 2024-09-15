@@ -6,8 +6,11 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-
+# Your music player
 player = ["playerctl", "-p", "audacious"]
+
+# Max volume limit
+vol_limit = 75
 
 
 def music(what):
@@ -19,7 +22,7 @@ def metadata(what):
 
 
 def inc_volume(what):
-    subprocess.run(["pamixer", "--increase", str(what), "--set-limit", "75"])
+    subprocess.run(["pamixer", "--increase", str(what), "--set-limit", str(vol_limit)])
 
 
 def dec_volume(what):
