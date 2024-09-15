@@ -436,6 +436,7 @@ App.refresh_settings = () => {
 App.build_setting_cmds = () => {
   App.cmdlist_single = App.settings_commands(true, false)
   App.cmdlist_menu = App.settings_commands(false, true)
+  App.cmdlist_pure = App.settings_commands(false, false)
 
   App.filter_cmds_single = App.get_filter_cmds(true, false)
   App.filter_cmds_menu = App.get_filter_cmds(false, true)
@@ -1459,7 +1460,7 @@ App.setup_settings_addlist = () => {
           },
           sources: {
             cmd: () => {
-              return App.cmdlist_menu.slice(0)
+              return App.cmdlist_pure.slice(0)
             },
             alt: () => {
               return App.cmdlist_single.slice(0)
