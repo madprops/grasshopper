@@ -40,6 +40,7 @@ App.create_main_title = () => {
   App.trigger_title(el, `double_click_main_title`)
   App.main_title_tooltip = el.title
   App.update_main_title_tooltips(el)
+  App.last_main_title = ``
 
   DOM.ev(el, `click`, (e) => {
     App.main_title_click(e)
@@ -59,7 +60,6 @@ App.create_main_title = () => {
     }
   })
 
-  App.last_main_title = ``
   return el
 }
 
