@@ -18,6 +18,10 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `autohide_context`, value: true})
   App.set_setting({setting: `max_recent_tabs`, value: 20})
 
+  App.set_setting({setting: `lock_screen_commands`, value: [
+    {cmd: `open_new_tab`},
+  ]})
+
   // Main Title
 
   App.set_setting({setting: `show_main_title`, value: true})
