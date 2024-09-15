@@ -296,10 +296,10 @@ App.main_title_signal = async () => {
     return
   }
 
-  App.main_title_signal_text(text)
+  App.main_title_signal_text(signal, text)
 }
 
-App.main_title_signal_text = (text) => {
+App.main_title_signal_text = (signal, text) => {
   if (!App.main_title_enabled()) {
     return
   }
