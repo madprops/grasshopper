@@ -1688,6 +1688,7 @@ a:hover
   color: var(--main_title_text_color);
   background-color: var(--main_title_background_color);
   margin-bottom: 0.2rem;
+  user-select: text;
 }
 
 .main_title_margin .main_title {

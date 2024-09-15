@@ -59,7 +59,7 @@ App.create_main_title = () => {
   return el
 }
 
-App.check_main_title = (check = false) => {
+App.check_main_title = () => {
   let title
 
   if (App.get_setting(`main_title_date`)) {
@@ -73,11 +73,9 @@ App.check_main_title = (check = false) => {
     title = `No Title`
   }
 
-  if (check) {
-    if (App.last_main_title !== undefined) {
-      if (title === App.last_main_title) {
-        return
-      }
+  if (App.last_main_title !== undefined) {
+    if (title === App.last_main_title) {
+      return
     }
   }
 
@@ -178,7 +176,7 @@ App.uncolor_main_title = () => {
 
 App.check_main_title_date = () => {
   if (App.get_setting(`main_title_date`)) {
-    App.check_main_title(true)
+    App.check_main_title()
   }
 }
 
