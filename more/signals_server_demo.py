@@ -18,6 +18,14 @@ def metadata(what):
     return subprocess.run([*player, "metadata", "--format", what], capture_output=True)
 
 
+def inc_volume(what):
+    subprocess.run(["pamixer", "--increase", str(what), "--set-limit", "75"])
+
+
+def dec_volume(what):
+    subprocess.run(["pamixer", "--decrease", str(what)])
+
+
 @app.route("/music-play", methods=["POST"])
 def music_play():
     music("play-pause")
@@ -33,6 +41,18 @@ def music_next():
 @app.route("/music-prev", methods=["POST"])
 def music_prev():
     music("previous")
+    return "ok"
+
+
+@app.route("/volume-up", methods=["POST"])
+def volume_up():
+    inc_volume(5)
+    return "ok"
+
+
+@app.route("/volume-down", methods=["POST"])
+def volume_down():
+    dec_volume(5)
     return "ok"
 
 
