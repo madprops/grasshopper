@@ -1655,12 +1655,7 @@ App.cycle_filter_modes = (mode, reverse, e) => {
   }
 
   if (first) {
-    if (reverse) {
-      proc(modes.at(-1).cmd)
-    }
-    else {
-      proc(modes[0].cmd)
-    }
+    proc(modes[0].cmd)
   }
 }
 
@@ -1702,6 +1697,11 @@ App.filter_cmd_name = (cmd) => {
   if (cmd.startsWith(`filter_tag_`)) {
     let tag = cmd.replace(`filter_tag_`, ``)
     return `tag-${tag}`
+  }
+
+  if (cmd.startsWith(`filter_jump_tag_`)) {
+    let tag = cmd.replace(`filter_jump_tag_`, ``)
+    return `tag-jump${tag}`
   }
 
   if (cmd.startsWith(`filter_icon_`)) {
