@@ -235,6 +235,10 @@ App.main_title_signal = async () => {
     return
   }
 
+  if (App.get_setting(`main_title_date`)) {
+    return
+  }
+
   let cmd = App.get_setting(`main_title_signal`)
 
   if (cmd === `none`) {
