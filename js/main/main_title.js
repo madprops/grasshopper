@@ -261,6 +261,17 @@ App.main_title_signal = async () => {
   }
 
   let text = await App.send_signal(signal, false)
+
+  if (!text) {
+    return
+  }
+
+  if (App.get_setting(`main_title_signal_icon`)) {
+    if (signal.icon) {
+      text = `${signal.icon} ${text}`
+    }
+  }
+
   App.set_main_title(text)
 }
 

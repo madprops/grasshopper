@@ -1714,6 +1714,13 @@ App.build_settings = () => {
       info: `Update the title with the signal every X milliseconds`,
       version: 1,
     },
+    main_title_signal_icon: {
+      name: `Title Signal Icon`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the icon of the signal in the title`,
+      version: 1,
+    },
   }
 
   add_props()
