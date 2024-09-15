@@ -437,6 +437,7 @@ App.build_setting_cmds = () => {
   App.cmdlist = App.settings_commands()
   App.cmdlist_2 = App.settings_commands(false)
   App.filter_cmds = App.get_filter_cmds()
+  App.signal_cmds = App.get_signal_cmds()
 }
 
 App.start_settings = () => {
@@ -906,10 +907,19 @@ App.settings_commands = (include_none = true) => {
       continue
     }
 
-    items.push({text: cmd.name, value: cmd.cmd, icon: cmd.icon, info: cmd.info})
+    App.add_settings_cmd(items, cmd)
   }
 
   return items
+}
+
+App.add_settings_cmd = (items, cmd) => {
+  items.push({
+    text: cmd.name,
+    value: cmd.cmd,
+    icon: cmd.icon,
+    info: cmd.info,
+  })
 }
 
 App.get_filter_cmds = () => {
@@ -921,7 +931,30 @@ App.get_filter_cmds = () => {
     }
 
     if (cmd.filter_mode) {
-      items.push({text: cmd.name, value: cmd.cmd, icon: cmd.icon, info: cmd.info})
+      App.add_settings_cmd(items, cmd)
+    }
+  }
+
+  return items
+}
+
+App.get_signal_cmds = (include_none = true) => {
+  let items = []
+
+  if (include_none) {
+    items = [
+      {text: `Do Nothing`, value: `none`},
+      {text: App.separator_string},
+    ]
+  }
+
+  for (let cmd of App.commands) {
+    if (cmd.skip_settings) {
+      continue
+    }
+
+    if (cmd.signal_mode) {
+      App.add_settings_cmd(items, cmd)
     }
   }
 
@@ -1281,7 +1314,7 @@ App.setup_settings_addlist = () => {
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
-      pk: `key`,
+      pk: `_id_`,
       widgets: {
         key: `key`,
         cmd: `menu`,
@@ -1546,7 +1579,7 @@ App.setup_settings_addlist = () => {
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       keys: [`name`, `url`, `arguments`, `icon`, `method`, `feedback`],
-      pk: `name`,
+      pk: `_id_`,
       widgets: {
         name: `text`,
         url: `text`,

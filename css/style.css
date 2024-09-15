@@ -1697,6 +1697,8 @@ a:hover
 .main_title_inner {
   padding: 0.45rem;
   font-size: var(--main_title_font_size);
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /*  */

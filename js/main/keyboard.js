@@ -26,6 +26,8 @@ App.check_items_keyboard = (e) => {
     e.preventDefault()
   }
 
+  let ran_shortcut = false
+
   for (let sc of App.get_setting(`keyboard_shortcuts`)) {
     if (sc.key !== e.code) {
       continue
@@ -52,6 +54,10 @@ App.check_items_keyboard = (e) => {
     App.run_command({cmd: sc.cmd, from: `keyboard_shortcut`})
     e.preventDefault()
     e.stopPropagation()
+    ran_shortcut = true
+  }
+
+  if (ran_shortcut) {
     return
   }
 

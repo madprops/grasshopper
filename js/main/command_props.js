@@ -402,6 +402,7 @@ App.setup_commands = () => {
       name: item.name,
       cmd: `send_signal_${id}`,
       icon: item.icon || signal_icon,
+      signal_mode: true,
       action: (args) => {
         App.send_signal(item)
       },
@@ -1915,6 +1916,7 @@ App.setup_commands = () => {
       name: `Filter Jump`,
       cmd: `filter_jump_tag_1`,
       modes: [`items`],
+      filter_mode: true,
       icon: tag_icon,
       action: (args) => {
         App.filter_jump_tag(args.mode, 1)
@@ -1925,6 +1927,7 @@ App.setup_commands = () => {
       name: `Filter Jump 2`,
       cmd: `filter_jump_tag_2`,
       modes: [`items`],
+      filter_mode: true,
       icon: tag_icon,
       action: (args) => {
         App.filter_jump_tag(args.mode, 2)
@@ -1935,6 +1938,7 @@ App.setup_commands = () => {
       name: `Filter Jump 3`,
       cmd: `filter_jump_tag_3`,
       modes: [`items`],
+      filter_mode: true,
       icon: tag_icon,
       action: (args) => {
         App.filter_jump_tag(args.mode, 3)

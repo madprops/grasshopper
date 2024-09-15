@@ -1671,11 +1671,32 @@ App.build_settings = () => {
       name: `Shift Wheel Down Title`,
       type: `menu`,
       value: `none`,
+      separator: true,
       info: `Command to run when using the mousewheel down on the Title while holding Shift`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.cmdlist)
       },
+    },
+    main_title_signal: {
+      name: `Title Signal`,
+      type: `menu`,
+      value: `none`,
+      info: `Show the response of this signal on the main title periodically`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.signal_cmds)
+      },
+    },
+    main_title_signal_delay: {
+      name: `Title Signal Delay`,
+      type: `number`,
+      value: 5000,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Update the title with the signal every X milliseconds`,
+      version: 1,
     },
   }
 

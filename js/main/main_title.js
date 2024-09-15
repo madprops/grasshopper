@@ -1,3 +1,31 @@
+App.start_main_title = () => {
+  // Date
+
+  let delay = App.check_main_title_date_delay
+
+  if (!delay || (delay < App.SECOND)) {
+    App.error(`Main title date delay is invalid`)
+    return
+  }
+
+  setInterval(() => {
+    App.check_main_title_date()
+  }, delay)
+
+  // Signal
+
+  delay = App.get_setting(`main_title_signal_delay`)
+
+  if (!delay || (delay < 250)) {
+    App.error(`Clock delay is invalid`)
+    return
+  }
+
+  setInterval(() => {
+    App.main_title_signal()
+  }, delay)
+}
+
 App.create_main_title = () => {
   let el = DOM.create(`div`, `main_title`)
   let inner = DOM.create(`div`, `main_title_inner`)
@@ -48,20 +76,19 @@ App.check_main_title = (check = false) => {
     }
   }
 
-  let els = DOM.els(`.main_title_inner`)
+  let el = DOM.el(`.main_title_inner`)
+  el.textContent = title
+  App.last_main_title = title
+  let elm = DOM.parent(el, [`.main_title`])
 
-  for (let el of els) {
-    el.textContent = title
-    App.last_main_title = title
-    let elm = DOM.parent(el, [`.main_title`])
-
-    if (title) {
-      DOM.show(elm)
-    }
-    else {
-      DOM.hide(elm)
-    }
+  if (title) {
+    DOM.show(elm)
   }
+  else {
+    DOM.hide(elm)
+  }
+
+  App.main_title_enabled = Boolean(title)
 }
 
 App.edit_main_title = () => {
@@ -147,19 +174,6 @@ App.uncolor_main_title = () => {
   App.apply_theme()
 }
 
-App.start_main_title_date = () => {
-  let delay = App.check_main_title_date_delay
-
-  if (!delay || (delay < App.SECOND)) {
-    App.error(`Main title date delay is invalid`)
-    return
-  }
-
-  setInterval(() => {
-    App.check_main_title_date()
-  }, delay)
-}
-
 App.check_main_title_date = () => {
   if (App.get_setting(`main_title_date`)) {
     App.check_main_title(true)
@@ -212,5 +226,30 @@ App.next_main_title_color = () => {
   }
   else {
     App.color_main_title(`red`)
+  }
+}
+
+App.main_title_signal = async () => {
+  if (!App.main_title_enabled) {
+    return
+  }
+
+  let cmd = App.get_setting(`main_title_signal`)
+
+  if (cmd === `none`) {
+    return
+  }
+
+  let signal = App.get_signal(cmd)
+
+  if (!signal) {
+    return
+  }
+
+  let text = await App.send_signal(signal, false)
+
+  if (text) {
+    let el = DOM.el(`.main_title_inner`)
+    el.textContent = text
   }
 }

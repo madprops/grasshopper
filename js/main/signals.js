@@ -77,8 +77,8 @@ App.signal_info = () => {
   App.alert(App.periods(s))
 }
 
-App.send_signal = async (signal) => {
-  let res
+App.send_signal = async (signal, popup = true) => {
+  let res, text
 
   try {
     let obj = {
@@ -102,11 +102,26 @@ App.send_signal = async (signal) => {
   }
 
   if (res && signal.feedback) {
-    let text = await res.text()
+    text = await res.text()
     text = text.trim()
 
     if (text) {
-      App.show_textarea(signal.name, text, true)
+      if (popup) {
+        App.show_textarea(signal.name, text, true)
+      }
+    }
+  }
+
+  return text
+}
+
+App.get_signal = (cmd) => {
+  let id = cmd.replace(`send_signal_`, ``)
+  let signals = App.get_setting(`signals`)
+
+  for (let signal of signals) {
+    if (signal._id_ === id) {
+      return signal
     }
   }
 }
