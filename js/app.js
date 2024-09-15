@@ -98,6 +98,8 @@ App.playing = false
 App.settings_done = false
 App.fullscreen = false
 App.main_title_scroll = 20
+App.main_title_auto_scroll_delay = 600
+App.main_title_auto_scroll_direction = `right`
 
 App.settings_ready = false
 App.media_image_ready = false

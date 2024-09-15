@@ -24,6 +24,12 @@ App.start_main_title = () => {
   setInterval(() => {
     App.main_title_signal()
   }, delay)
+
+  // Auto Scroll
+
+  setInterval(() => {
+    App.main_title_auto_scroll()
+  }, App.main_title_auto_scroll_delay)
 }
 
 App.create_main_title = () => {
@@ -194,6 +200,10 @@ App.uncolor_main_title = () => {
 }
 
 App.check_main_title_date = () => {
+  if (!App.main_title_enabled()) {
+    return
+  }
+
   if (App.get_setting(`main_title_date`)) {
     App.check_main_title()
   }
@@ -247,12 +257,20 @@ App.next_main_title_color = () => {
   }
 }
 
-App.main_title_signal = async () => {
+App.main_title_enabled = () => {
   if (!App.get_setting(`show_main_title`)) {
-    return
+    return false
   }
 
   if (App.fullscreen) {
+    return false
+  }
+
+  return true
+}
+
+App.main_title_signal = async () => {
+  if (!App.main_title_enabled()) {
     return
   }
 
@@ -314,5 +332,33 @@ App.scroll_main_title = (dir) => {
   }
   else if (dir === `right`) {
     el.scrollLeft += App.main_title_scroll
+  }
+}
+
+App.main_title_auto_scroll = () => {
+  if (!App.main_title_enabled()) {
+    return
+  }
+
+  if (!App.get_setting(`main_title_auto_scroll`)) {
+    return
+  }
+
+  let el = DOM.el(`.main_title_inner`)
+  let dir = App.main_title_auto_scroll_direction
+
+  if (dir === `right`) {
+    App.scroll_main_title(`right`)
+
+    if (el.scrollLeft >= (el.scrollWidth - el.clientWidth)) {
+      App.main_title_auto_scroll_direction = `left`
+    }
+  }
+  else if (dir === `left`) {
+    App.scroll_main_title(`left`)
+
+    if (el.scrollLeft <= 0) {
+      App.main_title_auto_scroll_direction = `right`
+    }
   }
 }

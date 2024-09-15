@@ -1618,8 +1618,15 @@ App.build_settings = () => {
       name: `Wrap Title`,
       type: `checkbox`,
       value: false,
-      separator: true,
       info: `Make the title text wrap on long titles`,
+      version: 1,
+    },
+    main_title_auto_scroll: {
+      name: `Title Auto Scroll`,
+      type: `checkbox`,
+      value: false,
+      separator: true,
+      info: `Scroll left and right automatically on long titles`,
       version: 1,
     },
     main_title_colors: {
