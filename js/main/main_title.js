@@ -39,6 +39,7 @@ App.create_main_title = () => {
   App.trigger_title(el, `middle_click_main_title`)
   App.trigger_title(el, `double_click_main_title`)
   App.main_title_tooltip = el.title
+  App.update_main_title_tooltips(el)
 
   DOM.ev(el, `click`, (e) => {
     App.check_double_click(`main_title`, e, () => {
@@ -89,8 +90,18 @@ App.set_main_title_text = (text) => {
 
   for (let el of els) {
     el.textContent = text
-    el.title = `${text}\n${App.main_title_tooltip}`
+    App.update_main_title_tooltips(el)
   }
+}
+
+App.update_main_title_tooltips = (el) => {
+  let text = App.last_main_title
+
+  if (!text) {
+    return
+  }
+
+  el.title = `${text}\n${App.main_title_tooltip}`
 }
 
 App.edit_main_title = () => {
