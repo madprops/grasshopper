@@ -21,17 +21,14 @@ app = Flask(__name__)
 # Alow cross-origin requests
 CORS(app)
 
-# Your music player
-player = ["playerctl", "-p", "audacious"]
-
-# Max volume limit
-vol_limit = 75
-
 # The port to run the server on
 port = 5000
 
 # Enable debug mode
 debug = False
+
+# Your music player
+player = ["playerctl", "-p", "audacious"]
 
 
 # ----------
@@ -46,11 +43,11 @@ def metadata(what):
 
 
 def inc_volume(what):
-    subprocess.run(["pamixer", "--increase", str(what), "--set-limit", str(vol_limit)])
+    subprocess.run(["awesome-client", "Utils.increase_volume()"])
 
 
 def dec_volume(what):
-    subprocess.run(["pamixer", "--decrease", str(what)])
+    subprocess.run(["awesome-client", "Utils.decrease_volume()"])
 
 
 # ----------
