@@ -343,7 +343,7 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`autohide_taglist`)
     }
 
-    if (App.get_setting(`main_title_enabled`)) {
+    if (App.get_setting(`show_main_title`)) {
       main.classList.add(`with_main_title`)
     }
     else {

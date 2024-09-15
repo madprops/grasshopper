@@ -83,7 +83,6 @@ App.check_main_title = (check = false) => {
 
   App.last_main_title = title
   App.set_main_title_text(title)
-  App.set_setting({setting: `main_title_enabled`, value: Boolean(title)})
   App.refresh_main_title()
 }
 
@@ -233,7 +232,7 @@ App.next_main_title_color = () => {
 }
 
 App.main_title_signal = async () => {
-  if (!App.get_setting(`main_title_enabled`)) {
+  if (!App.get_setting(`show_main_title`)) {
     return
   }
 
@@ -254,14 +253,14 @@ App.main_title_signal = async () => {
 }
 
 App.toggle_main_title = () => {
-  let new_value = !App.get_setting(`main_title_enabled`)
-  App.set_setting({setting: `main_title_enabled`, value: new_value})
+  let new_value = !App.get_setting(`show_main_title`)
+  App.set_setting({setting: `show_main_title`, value: new_value})
   App.refresh_main_title()
 }
 
 App.refresh_main_title = () => {
   for (let el of DOM.els(`.main_title`)) {
-    if (App.get_setting(`main_title_enabled`)) {
+    if (App.get_setting(`show_main_title`)) {
       DOM.show(el)
     }
     else {

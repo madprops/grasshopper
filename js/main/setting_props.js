@@ -1528,8 +1528,8 @@ App.build_settings = () => {
   category = `title`
 
   props = {
-    main_title_enabled: {
-      name: `Title Enabled`,
+    show_main_title: {
+      name: `Show The Title`,
       type: `checkbox`,
       value: false,
       no_mirror: true,
