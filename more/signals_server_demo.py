@@ -58,7 +58,13 @@ def dec_volume():
 
 
 def metadata(what):
-    return output([*player, "metadata", "--format", what])
+    ans = output([*player, "metadata", "--format", what])
+    text = ans.stdout.decode("utf-8").strip()
+
+    if text == "-":
+        text = "Not Playing"
+
+    return text
 
 
 # ----------
@@ -73,13 +79,13 @@ def music_play():
 @app.route("/music-next", methods=["POST"])
 def music_next():
     music("next")
-    return "ok"
+    return metadata(track_info)
 
 
 @app.route("/music-prev", methods=["POST"])
 def music_prev():
     music("previous")
-    return "ok"
+    return metadata(track_info)
 
 
 @app.route("/volume-up", methods=["POST"])
@@ -96,8 +102,7 @@ def volume_down():
 
 @app.route("/music-np", methods=["GET"])
 def music_np():
-    np = metadata(track_info)
-    return np.stdout.decode("utf-8")
+    return metadata(track_info)
 
 
 @app.route("/post-test", methods=["POST"])
