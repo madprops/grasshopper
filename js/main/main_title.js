@@ -74,7 +74,7 @@ App.check_main_title = () => {
   }
 
   if (App.last_main_title !== undefined) {
-    if (title === App.last_main_title) {
+    if (App.last_main_title === title) {
       return
     }
   }
