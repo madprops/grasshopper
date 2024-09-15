@@ -17,12 +17,15 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `load_lock`, value: true})
   App.set_setting({setting: `autohide_context`, value: true})
   App.set_setting({setting: `max_recent_tabs`, value: 20})
-  App.set_setting({setting: `main_title_signal`, value: `send_signal_sig_np`})
+
+  // Main Title
+
   App.set_setting({setting: `show_main_title`, value: true})
   App.set_setting({setting: `main_title`, value: `Loading...`})
   App.set_setting({setting: `main_title_colors`, value: true})
   App.set_setting({setting: `main_title_text_color`, value: `rgba(255, 255, 255, 1)`})
   App.set_setting({setting: `main_title_background_color`, value: `rgba(60, 60, 60, 1)`})
+  App.set_setting({setting: `main_title_signal`, value: `send_signal_sig_np`})
 
   // Wheel
 
