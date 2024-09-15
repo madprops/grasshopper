@@ -82,14 +82,14 @@ App.check_force = (warn_setting, items) => {
 }
 
 App.toggle_fullscreen = () => {
-  let main = DOM.el(`#main`)
-
-  if (DOM.class(main, [`fullscreen`])) {
+  if (App.fullscreen) {
     App.main_remove(`fullscreen`)
   }
   else {
     App.main_add(`fullscreen`)
   }
+
+  App.fullscreen = !App.fullscreen
 }
 
 App.reset_triggers = () => {

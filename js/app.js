@@ -96,6 +96,7 @@ App.last_opacity_cycle_date = 0
 App.settings_list_id = 1
 App.playing = false
 App.settings_done = false
+App.fullscreen = false
 
 App.settings_ready = false
 App.media_image_ready = false

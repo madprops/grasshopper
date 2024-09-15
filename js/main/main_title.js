@@ -252,6 +252,10 @@ App.main_title_signal = async () => {
     return
   }
 
+  if (App.fullscreen) {
+    return
+  }
+
   if (App.get_setting(`main_title_date`)) {
     return
   }
