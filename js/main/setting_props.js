@@ -1614,19 +1614,19 @@ App.build_settings = () => {
       info: `Font size for the Title`,
       version: 1,
     },
+    main_title_auto_scroll: {
+      name: `Title Auto Scroll`,
+      type: `checkbox`,
+      value: true,
+      info: `Scroll left and right automatically on long titles`,
+      version: 1,
+    },
     wrap_main_title: {
       name: `Wrap Title`,
       type: `checkbox`,
       value: false,
-      info: `Make the title text wrap on long titles`,
-      version: 1,
-    },
-    main_title_auto_scroll: {
-      name: `Title Auto Scroll`,
-      type: `checkbox`,
-      value: false,
       separator: true,
-      info: `Scroll left and right automatically on long titles`,
+      info: `Make the title text wrap on long titles`,
       version: 1,
     },
     main_title_colors: {
