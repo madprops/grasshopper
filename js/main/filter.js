@@ -1101,7 +1101,7 @@ App.show_filter_context_menu = (mode, e) => {
       action: () => {
         App.set_filter({mode: mode, text: value})
       },
-      alt_action: () => {
+      middle_action: () => {
         App.forget_filter_history_item(value)
         App.show_filter_context_menu(mode, e)
       }
@@ -1568,7 +1568,7 @@ App.show_filter_menu = (mode) => {
             action: (e) => {
               App.run_command({cmd: cmd.cmd, from: `filter_menu`, e: e})
             },
-            alt_action: (e) => {
+            middle_action: (e) => {
               App.run_command({cmd: cmd.cmd, from: App.refine_string, e: e})
             },
             selected: selected,
@@ -1764,7 +1764,7 @@ App.show_favorite_filters = (mode, e) => {
             cmd: command.cmd,
           })
         },
-        alt_action: (e) => {
+        middle_action: (e) => {
           App.run_command({
             e: e,
             cmd: command.cmd,
@@ -1844,7 +1844,7 @@ App.get_refine_items = () => {
             from: App.refine_string,
           })
         },
-        alt_action: (e) => {
+        middle_action: (e) => {
           App.update_filter_history()
 
           App.run_command({

@@ -398,7 +398,7 @@ App.get_tag_items = (mode, show = false) => {
         action: () => {
           App.filter_tag({mode: mode, tag: `all`})
         },
-        alt_action: () => {
+        middle_action: () => {
           App.filter_tag({mode: mode, tag: `all`, from: App.refine_string})
         },
       })
@@ -416,7 +416,7 @@ App.get_tag_items = (mode, show = false) => {
             App.filter_tag({mode: mode, tag: tag})
           }
         },
-        alt_action: (e) => {
+        middle_action: (e) => {
           if (show) {
             //
           }

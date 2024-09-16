@@ -116,7 +116,7 @@ Menubutton.create = (args = {}) => {
       after_dismiss: args.after_dismiss,
       after_hide: args.after_hide,
       after_action: args.after_action,
-      after_alt_action: args.after_alt_action,
+      after_middle_action: args.after_middle_action,
     })
   }
 

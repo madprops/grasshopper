@@ -68,7 +68,7 @@ App.show_tab_list = (what, e) => {
         await App.check_on_tabs()
         App.tabs_action({item: tab, from: `tab_list`})
       },
-      alt_action: () => {
+      middle_action: () => {
         App.close_tab_or_tabs(tab.id)
       },
       context_action: (e) => {

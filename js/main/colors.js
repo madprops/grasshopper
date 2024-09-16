@@ -313,7 +313,7 @@ App.get_color_items = (mode) => {
         action: () => {
           App.filter_color({mode: mode, id: `all`})
         },
-        alt_action: () => {
+        middle_action: () => {
           App.filter_color({mode: mode, id: `all`, from: App.refine_string})
         },
       })
@@ -333,7 +333,7 @@ App.get_color_items = (mode) => {
         action: () => {
           App.filter_color({mode: mode, id: color.id})
         },
-        alt_action: () => {
+        middle_action: () => {
           App.filter_color({mode: mode, id: color.id, from: App.refine_string})
         },
       })
