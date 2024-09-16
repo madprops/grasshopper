@@ -100,7 +100,11 @@ App.set_main_title_text = (text) => {
   for (let el of els) {
     el.textContent = text
     App.update_main_title_tooltips(el)
+    el.scrollLeft = 0
   }
+
+  let pauses = App.main_title_auto_scroll_pauses
+  App.main_title_auto_scroll_pause = pauses
 }
 
 App.update_main_title_tooltips = (el) => {
@@ -383,11 +387,15 @@ App.main_title_auto_scroll = () => {
     return el.scrollLeft >= (el.scrollWidth - el.clientWidth)
   }
 
+  function set_dir (new_dir) {
+    App.main_title_auto_scroll_direction = new_dir
+  }
+
   function do_left () {
     App.scroll_main_title(`left`, false)
 
     if (at_left()) {
-      App.main_title_auto_scroll_direction = `right`
+      set_dir(`right`)
       App.main_title_auto_scroll_pause = pauses
     }
   }
@@ -396,18 +404,18 @@ App.main_title_auto_scroll = () => {
     App.scroll_main_title(`right`, false)
 
     if (at_right()) {
-      App.main_title_auto_scroll_direction = `left`
+      set_dir(`left`)
       App.main_title_auto_scroll_pause = pauses
     }
   }
 
   if ((dir === `left`) && at_left()) {
     dir = `right`
-    App.main_title_auto_scroll_direction = dir
+    set_dir(dir)
   }
   else if ((dir === `right`) && at_right()) {
     dir = `left`
-    App.main_title_auto_scroll_direction = dir
+    set_dir(dir)
   }
 
   if (dir === `right`) {
