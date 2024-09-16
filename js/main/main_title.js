@@ -336,7 +336,7 @@ App.refresh_main_title = () => {
   App.apply_theme()
 }
 
-App.scroll_main_title = (dir) => {
+App.scroll_main_title = (dir, manual = true) => {
   let el = DOM.el(`.main_title_inner`)
 
   if (dir === `left`) {
@@ -344,6 +344,11 @@ App.scroll_main_title = (dir) => {
   }
   else if (dir === `right`) {
     el.scrollLeft += App.main_title_scroll
+  }
+
+  if (manual) {
+    let pauses = App.main_title_auto_scroll_pauses
+    App.main_title_auto_scroll_pause = pauses
   }
 }
 
@@ -370,20 +375,47 @@ App.main_title_auto_scroll = () => {
     return
   }
 
-  if (dir === `right`) {
-    App.scroll_main_title(`right`)
+  function at_left () {
+    return el.scrollLeft <= 0
+  }
 
-    if (el.scrollLeft >= (el.scrollWidth - el.clientWidth)) {
+  function at_right () {
+    return el.scrollLeft >= (el.scrollWidth - el.clientWidth)
+  }
+
+  function do_left () {
+    App.scroll_main_title(`left`, false)
+
+    if (at_left()) {
+      App.main_title_auto_scroll_direction = `right`
+      App.main_title_auto_scroll_pause = pauses
+    }
+  }
+
+  function do_right () {
+    App.scroll_main_title(`right`, false)
+
+    if (at_right()) {
       App.main_title_auto_scroll_direction = `left`
       App.main_title_auto_scroll_pause = pauses
     }
   }
-  else if (dir === `left`) {
-    App.scroll_main_title(`left`)
 
-    if (el.scrollLeft <= 0) {
-      App.main_title_auto_scroll_direction = `right`
-      App.main_title_auto_scroll_pause = pauses
+  if (dir === `left`) {
+    if (at_left()) {
+      dir = `right`
     }
+  }
+  else if (dir === `right`) {
+    if (at_right()) {
+      dir = `left`
+    }
+  }
+
+  if (dir === `right`) {
+    do_right()
+  }
+  else if (dir === `left`) {
+    do_left()
   }
 }
