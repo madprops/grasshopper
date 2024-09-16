@@ -1444,7 +1444,7 @@ App.setup_settings_addlist = () => {
           },
           title: props.name,
           tooltips: {
-            cmd: `Command on click`,
+            cmd: `Command on Click`,
             shift: `Command on Shift + Click`,
             ctrl: `Command on Ctrl + Click`,
             middle: `Command on Middle Click`,
@@ -1489,7 +1489,7 @@ App.setup_settings_addlist = () => {
           },
           title: props.name,
           tooltips: {
-            cmd: `Command on click`,
+            cmd: `Command on Click`,
           },
         }))
       }))
