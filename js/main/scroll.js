@@ -168,10 +168,13 @@ App.do_check_scroller = (mode = App.active_mode) => {
 App.create_scroller = (mode) => {
   let scroller = DOM.create(`div`, `scroller glowbox`, `${mode}_scroller`)
   let content = DOM.create(`div`, `scroller_content`)
-  let click = App.get_cmd_name(`go_to_top`)
-  let rclick = App.get_cmd_name(`scroll_up`)
-  let mclick = App.get_cmd_name(`page_up`)
-  scroller.title = `This is the Scroller\nClick: ${click}\nRight Click: ${rclick}\nMiddle Click: ${mclick}`
+
+  if (App.get_setting(`show_tooltips`)) {
+    let click = App.get_cmd_name(`go_to_top`)
+    let rclick = App.get_cmd_name(`scroll_up`)
+    let mclick = App.get_cmd_name(`page_up`)
+    scroller.title = `This is the Scroller\nClick: ${click}\nRight Click: ${rclick}\nMiddle Click: ${mclick}`
+  }
   let text = DOM.create(`div`)
   text.textContent = `Go To Top`
   let percentage = DOM.create(`div`, ``, `${mode}_scroller_percentage`)
