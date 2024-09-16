@@ -51,8 +51,11 @@ App.do_check_pinline = () => {
   let s2 = `Normal`
   let sep = `&nbsp;&nbsp;+&nbsp;&nbsp;`
   pinline.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
-  pinline.title = `This is the Pinline.\nPinned tabs above. Normal tabs below`
-  App.trigger_title(pinline, `middle_click_pinline`)
+
+  if (App.get_setting(`show_tooltips`)) {
+    pinline.title = `This is the Pinline.\nPinned tabs above. Normal tabs below`
+    App.trigger_title(pinline, `middle_click_pinline`)
+  }
 
   if (tabs.pinned_f.length) {
     tabs.pinned_f.at(-1).element.after(pinline)
