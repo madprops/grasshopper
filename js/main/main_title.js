@@ -377,7 +377,7 @@ App.main_title_auto_scroll = () => {
   let dir = App.main_title_auto_scroll_direction
   let overflow = el.scrollWidth - el.clientWidth
 
-  if (overflow <= App.main_title_min_overflow) {
+  if (overflow < App.main_title_min_overflow) {
     return
   }
 
