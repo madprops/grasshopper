@@ -285,8 +285,6 @@ App.loading_effects = [
   {text: `Item Fade`, value: `item_fade`},
 ]
 
-App.favorites_title = `Favorites`
-
 App.filter_whats = [
   `title`,
   `titles`,

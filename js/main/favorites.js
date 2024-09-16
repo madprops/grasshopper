@@ -42,20 +42,25 @@ App.create_favorites_bar = (mode) => {
     cls += ` hidden`
   }
 
+  let tips = App.get_setting(`show_tooltips`)
   let bar = DOM.create(`div`, cls, `favorites_bar_${mode}`)
-  bar.title = App.favorites_title
-
   let empty_top = DOM.create(`div`, `favorites_empty favorites_empty_top`, `favorites_empty_top_${mode}`)
-  App.trigger_title(empty_top, `double_click_favorites_top`)
-  App.trigger_title(empty_top, `middle_click_favorites_top`)
-  App.trigger_title(empty_top, `wheel_up_favorites_top`)
-  App.trigger_title(empty_top, `wheel_down_favorites_top`)
+
+  if (tips) {
+    App.trigger_title(empty_top, `double_click_favorites_top`)
+    App.trigger_title(empty_top, `middle_click_favorites_top`)
+    App.trigger_title(empty_top, `wheel_up_favorites_top`)
+    App.trigger_title(empty_top, `wheel_down_favorites_top`)
+  }
 
   let empty_bottom = DOM.create(`div`, `favorites_empty favorites_empty_bottom`, `favorites_empty_bottom_${mode}`)
-  App.trigger_title(empty_bottom, `double_click_favorites_bottom`)
-  App.trigger_title(empty_bottom, `middle_click_favorites_bottom`)
-  App.trigger_title(empty_bottom, `wheel_up_favorites_bottom`)
-  App.trigger_title(empty_bottom, `wheel_down_favorites_bottom`)
+
+  if (tips) {
+    App.trigger_title(empty_bottom, `double_click_favorites_bottom`)
+    App.trigger_title(empty_bottom, `middle_click_favorites_bottom`)
+    App.trigger_title(empty_bottom, `wheel_up_favorites_bottom`)
+    App.trigger_title(empty_bottom, `wheel_down_favorites_bottom`)
+  }
 
   if (fav_pos === `top`) {
     container.classList.add(`fav_top`)
@@ -128,7 +133,7 @@ App.on_favorites_leave = (mode) => {
 App.create_favorites_button = (mode) => {
   let btn = DOM.create(`div`, `favorites_button button`, `favorites_button_${mode}`)
   btn.textContent = App.settings_icons.favorites
-  btn.title = App.favorites_title
+  btn.title = `Favorites`
   App.trigger_title(btn, `middle_click_favorites_button`)
 
   DOM.ev(btn, `click`, (e) => {
@@ -189,10 +194,13 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
       App.run_command(args)
     })
 
+    let tips = App.get_setting(`show_tooltips`)
     let middle = App.get_command(fav.fav.middle)
 
     if (middle) {
-      btn.title += `\nMiddle: ${middle.name}`
+      if (tips) {
+        btn.title += `\nMiddle: ${middle.name}`
+      }
 
       DOM.ev(btn, `auxclick`, (e) => {
         if (e.button === 1) {
@@ -206,22 +214,24 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
       })
     }
 
-    let shift = App.get_command(fav.fav.shift)
+    if (tips) {
+      let shift = App.get_command(fav.fav.shift)
 
-    if (shift) {
-      btn.title += `\nShift: ${shift.name}`
-    }
+      if (shift) {
+        btn.title += `\nShift: ${shift.name}`
+      }
 
-    let ctrl = App.get_command(fav.fav.ctrl)
+      let ctrl = App.get_command(fav.fav.ctrl)
 
-    if (ctrl) {
-      btn.title += `\nCtrl: ${ctrl.name}`
-    }
+      if (ctrl) {
+        btn.title += `\nCtrl: ${ctrl.name}`
+      }
 
-    let alt = App.get_command(fav.fav.alt)
+      let alt = App.get_command(fav.fav.alt)
 
-    if (alt) {
-      btn.title += `\nAlt: ${alt.name}`
+      if (alt) {
+        btn.title += `\nAlt: ${alt.name}`
+      }
     }
 
     c.append(btn)
