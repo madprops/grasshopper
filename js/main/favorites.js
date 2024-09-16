@@ -194,13 +194,10 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
       App.run_command(args)
     })
 
-    let tips = App.get_setting(`show_tooltips`)
     let middle = App.get_command(fav.fav.middle)
 
     if (middle) {
-      if (tips) {
-        btn.title += `\nMiddle: ${middle.name}`
-      }
+      btn.title += `\nMiddle: ${middle.name}`
 
       DOM.ev(btn, `auxclick`, (e) => {
         if (e.button === 1) {
@@ -214,24 +211,22 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
       })
     }
 
-    if (tips) {
-      let shift = App.get_command(fav.fav.shift)
+    let shift = App.get_command(fav.fav.shift)
 
-      if (shift) {
-        btn.title += `\nShift: ${shift.name}`
-      }
+    if (shift) {
+      btn.title += `\nShift: ${shift.name}`
+    }
 
-      let ctrl = App.get_command(fav.fav.ctrl)
+    let ctrl = App.get_command(fav.fav.ctrl)
 
-      if (ctrl) {
-        btn.title += `\nCtrl: ${ctrl.name}`
-      }
+    if (ctrl) {
+      btn.title += `\nCtrl: ${ctrl.name}`
+    }
 
-      let alt = App.get_command(fav.fav.alt)
+    let alt = App.get_command(fav.fav.alt)
 
-      if (alt) {
-        btn.title += `\nAlt: ${alt.name}`
-      }
+    if (alt) {
+      btn.title += `\nAlt: ${alt.name}`
     }
 
     c.append(btn)
