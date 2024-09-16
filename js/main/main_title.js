@@ -368,6 +368,10 @@ App.main_title_auto_scroll = () => {
     return
   }
 
+  if (App.get_setting(`wrap_main_title`)) {
+    return
+  }
+
   if (App.main_title_auto_scroll_pause > 0) {
     App.main_title_auto_scroll_pause -= 1
     return
