@@ -1408,7 +1408,7 @@ App.setup_settings_addlist = () => {
         id: `addlist_${id}`,
         element: Addlist.register(Object.assign({}, regobj, {
           id: id,
-          keys: [`cmd`, `shift`, `ctrl`, `middle`],
+          keys: [`cmd`, `middle`, `shift`, `ctrl`],
           pk: `cmd`,
           widgets: {
             cmd: `menu`,
