@@ -72,7 +72,7 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `send_signal_sig_next`, middle: `send_signal_sig_prev`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `send_signal_sig_volup`, middle: `send_signal_sig_voldown`}
+  cmd = {cmd: `send_signal_sig_volup`, middle: `send_signal_sig_voldown`, shift: `send_signal_sig_volmax`, ctrl: `send_signal_sig_volmin`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `show_signals`}
@@ -113,6 +113,12 @@ App.user_madprops_settings = () => {
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Volume Down`, url: `http://127.0.0.1:5000/volume-down`, method: `POST`, icon: `🔉`, feedback: false, _id_: `sig_voldown`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Max Volume`, url: `http://127.0.0.1:5000/volume-max`, method: `POST`, icon: `🔊`, feedback: false, _id_: `sig_volmax`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Min Volume`, url: `http://127.0.0.1:5000/volume-min`, method: `POST`, icon: `🔉`, feedback: false, _id_: `sig_volmin`}
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Post Test`, url: `http://127.0.0.1:5000/post-test`, method: `POST`, icon: `🤣`, feedback: true, arguments: `{"num": 3}`, _id_: `sig_test`}
