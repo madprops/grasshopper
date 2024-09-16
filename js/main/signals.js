@@ -50,6 +50,10 @@ App.fill_signals = () => {
     name.textContent = signal.name
     let title = `${signal.url} (${signal.method})`
 
+    if (signal.arguments) {
+      title += ` (Arguments)`
+    }
+
     if (signal.feedback) {
       title += ` (Feedback)`
     }
