@@ -1480,9 +1480,6 @@ App.setup_settings_addlist = () => {
             cmd: () => {
               return App.cmdlist_pure.slice(0)
             },
-            alt: () => {
-              return App.cmdlist_single.slice(0)
-            },
           },
           list_icon: (item) => {
             return cmd_icon(item.cmd)

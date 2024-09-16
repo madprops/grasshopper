@@ -66,22 +66,22 @@ App.user_madprops_settings = () => {
 
   sett = `favorites_menu`
 
-  cmd = {cmd: `send_signal_sig_play`, alt: `send_signal_sig_np`}
+  cmd = {cmd: `send_signal_sig_play`, middle: `send_signal_sig_np`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `send_signal_sig_next`, alt: `send_signal_sig_prev`}
+  cmd = {cmd: `send_signal_sig_next`, middle: `send_signal_sig_prev`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `send_signal_sig_volup`, alt: `send_signal_sig_voldown`}
+  cmd = {cmd: `send_signal_sig_volup`, middle: `send_signal_sig_voldown`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `show_signals`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `locust_swarm`, alt: `generate_password`}
+  cmd = {cmd: `locust_swarm`, middle: `generate_password`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `set_random_dark_colors`, alt: `set_random_light_colors`}
+  cmd = {cmd: `set_random_dark_colors`, middle: `set_random_light_colors`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `show_settings`}
