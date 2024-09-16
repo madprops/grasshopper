@@ -403,9 +403,11 @@ App.main_title_auto_scroll = () => {
 
   if ((dir === `left`) && at_left()) {
     dir = `right`
+    App.main_title_auto_scroll_direction = dir
   }
   else if ((dir === `right`) && at_right()) {
     dir = `left`
+    App.main_title_auto_scroll_direction = dir
   }
 
   if (dir === `right`) {
