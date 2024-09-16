@@ -12,8 +12,8 @@ App.create_actions_menu = (mode) => {
   btn.title = `Click: ${click} (Ctrl + Right)\nRight Click: ${rclick}`
   App.trigger_title(btn, `middle_click_actions_menu`)
 
-  DOM.ev(btn, `click`, () => {
-    App.show_actions_menu(mode)
+  DOM.ev(btn, `click`, (e) => {
+    App.show_actions_menu(mode, e)
   })
 
   DOM.ev(btn, `contextmenu`, (e) => {
@@ -31,14 +31,8 @@ App.create_actions_menu = (mode) => {
   return btn
 }
 
-App.show_actions_menu = (mode) => {
-  let items = App.cmd_list(App[`${mode}_actions`])
+App.show_actions_menu = (mode, e) => {
   let btn = DOM.el(`#${mode}_actions`)
-
-  App.show_context({
-    element: btn,
-    items: items,
-    expand: true,
-    margin: btn.clientHeight,
-  })
+  let items = App.custom_menu_items({name: `${mode}_menu`})
+  App.show_context({items: items, e: e, element: btn})
 }
