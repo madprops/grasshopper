@@ -1688,6 +1688,8 @@ a:hover
   color: var(--main_title_text_color);
   background-color: var(--main_title_background_color);
   margin-bottom: 0.2rem;
+  padding-left: 0.66rem;
+  padding-right: 0.66rem;
 }
 
 .main_title_margin .main_title {
@@ -1695,7 +1697,8 @@ a:hover
 }
 
 .main_title_inner {
-  padding: 0.45rem;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
   font-size: var(--main_title_font_size);
 }
 
