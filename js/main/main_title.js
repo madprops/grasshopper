@@ -401,15 +401,11 @@ App.main_title_auto_scroll = () => {
     }
   }
 
-  if (dir === `left`) {
-    if (at_left()) {
-      dir = `right`
-    }
+  if ((dir === `left`) && at_left()) {
+    dir = `right`
   }
-  else if (dir === `right`) {
-    if (at_right()) {
-      dir = `left`
-    }
+  else if ((dir === `right`) && at_right()) {
+    dir = `left`
   }
 
   if (dir === `right`) {
