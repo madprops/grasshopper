@@ -118,13 +118,15 @@ App.apply_color_mode = (item) => {
       DOM.hide(el)
     }
 
-    let c_obj = App.get_color_by_id(color)
+    if (App.get_setting(`show_tooltips`)) {
+      let c_obj = App.get_color_by_id(color)
 
-    if (c_obj) {
-      el.title = c_obj.name
-    }
-    else {
-      el.title = `Color doesn't exist`
+      if (c_obj) {
+        el.title = c_obj.name
+      }
+      else {
+        el.title = `Color doesn't exist`
+      }
     }
   }
 
