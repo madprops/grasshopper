@@ -87,7 +87,6 @@ App.red_title = `rgb(166, 84, 107, 1)`
 App.green_title = `rgb(88, 132, 118, 1)`
 App.blue_title = `rgb(93, 93, 188, 1)`
 App.default_font_size = 17
-App.last_main_title = ``
 App.max_browser_urls = 5
 App.password_length = 20
 App.mode_vars = {}
@@ -97,8 +96,8 @@ App.settings_list_id = 1
 App.playing = false
 App.settings_done = false
 App.fullscreen = false
+App.last_main_title = ``
 App.main_title_scroll = 12
-App.main_title_auto_scroll_delay = 350
 App.main_title_auto_scroll_direction = `right`
 App.main_title_auto_scroll_pause = 3
 App.main_title_auto_scroll_pauses = 3
@@ -143,6 +142,7 @@ App.footer_message_delay = App.SECOND
 App.check_clock_delay = App.SECOND * 10
 App.check_main_title_date_delay = App.SECOND * 10
 App.check_refresh_settings_delay = 100
+App.main_title_auto_scroll_delay = 350
 
 App.settings_icons = {
   general: `⚡`,
