@@ -166,23 +166,35 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
     btn.title = fav.cmd.name
 
     DOM.ev(btn, `click`, (e) => {
+      let cmd
+
+      if (e.shiftKey) {
+        cmd = fav.fav.shift
+      }
+      else if (e.ctrlKey) {
+        cmd = fav.fav.ctrl
+      }
+      else {
+        cmd = fav.cmd.cmd
+      }
+
       let args = {
-        cmd: fav.cmd.cmd,
+        cmd: cmd,
         e: e,
       }
 
       App.run_command(args)
     })
 
-    let alt = App.get_command(fav.fav.alt)
+    let middle = App.get_command(fav.fav.middle)
 
-    if (alt) {
-      btn.title += `\nAlt: ${alt.name}`
+    if (middle) {
+      btn.title += `\nAlt: ${middle.name}`
 
       DOM.ev(btn, `auxclick`, (e) => {
         if (e.button === 1) {
           let args = {
-            cmd: alt.cmd,
+            cmd: middle.cmd,
             e: e,
           }
 

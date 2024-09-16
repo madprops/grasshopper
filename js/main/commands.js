@@ -322,6 +322,8 @@ App.check_dead_commands = () => {
     }
   }
 
+  let keys = [`cmd`, `shift`, `ctrl`, `middle`]
+
   for (let key in App.setting_props) {
     let value = App.setting_props[key].value
 
@@ -329,7 +331,7 @@ App.check_dead_commands = () => {
       for (let item of value) {
         if (typeof item === `object`) {
           for (let key2 in item) {
-            if (key2 === `cmd` || key2 === `alt`) {
+            if (keys.includes(key2)) {
               check(item[key2], key)
             }
           }
@@ -436,23 +438,39 @@ App.show_cmds_menu = (args = {}) => {
         item: args.item,
       }
 
-      let alt
+      let shift
 
-      if (obj.alt) {
-        alt = App.get_command(obj.alt)
+      if (obj.shift) {
+        shift = App.get_command(obj.shift)
+      }
+
+      let ctrl
+
+      if (obj.ctrl) {
+        ctrl = App.get_command(obj.ctrl)
+      }
+
+      let middle
+
+      if (obj.middle) {
+        middle = App.get_command(obj.middle)
       }
 
       let ok = true
       let cmd_ok = true
-      let alt_ok = true
+      let shift_ok = true
+      let ctrl_ok = true
+      let middle_ok = true
 
       if (args.check) {
         cmd_ok = App.check_command(cmd, cmd_obj)
 
-        if (alt) {
-          alt_ok = App.check_command(alt, cmd_obj)
+        if (shift || ctrl || middle) {
+          shift_ok = App.check_command(shift, cmd_obj)
+          ctrl_ok = App.check_command(ctrl, cmd_obj)
+          middle_ok = App.check_command(middle, cmd_obj)
 
-          if (!cmd_ok && !alt_ok) {
+          if ([cmd_ok, shift_ok, ctrl_ok, middle_ok].every(c => !c)) {
             ok = false
           }
         }
@@ -484,20 +502,26 @@ App.show_cmds_menu = (args = {}) => {
 
       infos.push(cmd.info)
 
-      if (alt) {
-        item_obj.alt_action = (e) => {
-          if (alt_ok) {
-            App.run_command({
-              cmd: alt.cmd,
-              from: args.from,
-              item: args.item,
-              e: e,
-            })
+      function add_cmd(what, is_ok, cmd, str) {
+        if (what) {
+          item_obj[`${str}_action`] = (e) => {
+            if (is_ok) {
+              App.run_command({
+                cmd: cmd.cmd,
+                from: args.from,
+                item: args.item,
+                e: e,
+              })
+            }
           }
-        }
 
-        infos.push(`Alt: ${alt.name}`)
+          infos.push(`Shift: ${cmd.name}`)
+        }
       }
+
+      add_cmd(shift, shift_ok, shift, `shift`)
+      add_cmd(ctrl, ctrl_ok, ctrl, `ctrl`)
+      add_cmd(middle, middle_ok, middle, `middle`)
 
       item_obj.info = infos.join(`\n`)
       items.push(item_obj)

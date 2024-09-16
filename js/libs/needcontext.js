@@ -1,4 +1,4 @@
-// NeedContext v6.2
+// NeedContext v7.0
 
 // Main object
 const NeedContext = {}
@@ -505,11 +505,23 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
   }
 
   if (e.button === 0) {
-    check_item()
+    if (e.shiftKey) {
+      if (item.shift_action) {
+        NeedContext.shift_action(item, e)
+      }
+    }
+    else if (e.ctrlKey) {
+      if (item.ctrl_action) {
+        NeedContext.ctrl_action(item, e)
+      }
+    }
+    else {
+      check_item()
+    }
   }
   else if (e.button === 1) {
-    if (item.alt_action) {
-      NeedContext.alt_action(item, e)
+    if (item.middle_action) {
+      NeedContext.middle_action(item, e)
     }
   }
   else if (e.button === 2) {
@@ -957,26 +969,58 @@ NeedContext.dismiss = (e) => {
   NeedContext.hide(e)
 }
 
-// Alternative action
-NeedContext.alt_action = (item, e) => {
+// Shift Click action
+NeedContext.shift_action = (item, e) => {
   if (item.element) {
     if (!NeedContext.is_visible(item.element)) {
       return
     }
   }
 
-  if (NeedContext.args.after_alt_action) {
-    NeedContext.args.after_alt_action(e)
+  if (NeedContext.args.after_shift_action) {
+    NeedContext.args.after_shift_action(e)
   }
 
-  if (NeedContext.args.alt_action_remove) {
+  NeedContext.hide(e)
+  item.shift_action(e)
+}
+
+// Ctrl Click action
+NeedContext.ctrl_action = (item, e) => {
+  if (item.element) {
+    if (!NeedContext.is_visible(item.element)) {
+      return
+    }
+  }
+
+  if (NeedContext.args.after_ctrl_action) {
+    NeedContext.args.after_ctrl_action(e)
+  }
+
+  NeedContext.hide(e)
+  item.ctrl_action(e)
+}
+
+// Middle Click action
+NeedContext.middle_action = (item, e) => {
+  if (item.element) {
+    if (!NeedContext.is_visible(item.element)) {
+      return
+    }
+  }
+
+  if (NeedContext.args.after_middle_action) {
+    NeedContext.args.after_middle_action(e)
+  }
+
+  if (NeedContext.args.middle_action_remove) {
     NeedContext.remove_item(item)
   }
   else {
     NeedContext.hide(e)
   }
 
-  item.alt_action(e)
+  item.middle_action(e)
 }
 
 // Context (right click) action
