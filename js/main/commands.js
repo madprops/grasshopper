@@ -317,12 +317,16 @@ App.check_dead_commands = () => {
       return
     }
 
+    if (cmd === App.separator_string) {
+      return
+    }
+
     if (!App.get_command(cmd)) {
       App.error(`Dead command: ${cmd} in ${key}`)
     }
   }
 
-  let keys = [`cmd`, `shift`, `ctrl`, `middle`]
+  let keys = [`cmd`, `middle`, `shift`, `ctrl`]
 
   for (let key in App.setting_props) {
     let value = App.setting_props[key].value
