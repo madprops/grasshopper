@@ -54,6 +54,14 @@ def dec_volume():
     run(["awesome-client", "Utils.decrease_volume()"])
 
 
+def max_volume():
+    run(["awesome-client", "Utils.max_volume()"])
+
+
+def min_volume():
+    run(["awesome-client", "Utils.min_volume()"])
+
+
 def get_metadata(what):
     result = output([*player, "metadata", "--format", what])
     return result.stdout.decode("utf-8").strip()
@@ -105,6 +113,18 @@ def volume_up():
 @app.route("/volume-down", methods=["POST"])
 def volume_down():
     dec_volume()
+    return "ok"
+
+
+@app.route("/volume-max", methods=["POST"])
+def volume_max():
+    max_volume()
+    return "ok"
+
+
+@app.route("/volume-min", methods=["POST"])
+def volume_min():
+    min_volume()
     return "ok"
 
 
