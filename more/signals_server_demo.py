@@ -30,9 +30,6 @@ debug = False
 # Your music player
 player = ["playerctl", "-p", "audacious"]
 
-# Format when returning metadata
-track_info = "{{artist}} - {{title}}"
-
 
 # ----------
 
@@ -57,14 +54,25 @@ def dec_volume():
     run(["awesome-client", "Utils.decrease_volume()"])
 
 
-def metadata(what):
-    ans = output([*player, "metadata", "--format", what])
-    text = ans.stdout.decode("utf-8").strip()
+def get_metadata(what):
+    result = output([*player, "metadata", "--format", what])
+    return result.stdout.decode("utf-8").strip()
 
-    if text == "-":
-        text = "Not Playing"
 
-    return text
+def metadata():
+    artist = get_metadata("{{artist}}")
+    title = get_metadata("{{title}}")
+
+    if artist and title:
+        info = f"{artist} - {title}"
+    elif artist:
+        info = artist
+    elif title:
+        info = title
+    else:
+        info = "Not Playing"
+
+    return info
 
 
 # ----------
@@ -79,13 +87,13 @@ def music_play():
 @app.route("/music-next", methods=["POST"])
 def music_next():
     music("next")
-    return metadata(track_info)
+    return metadata()
 
 
 @app.route("/music-prev", methods=["POST"])
 def music_prev():
     music("previous")
-    return metadata(track_info)
+    return metadata()
 
 
 @app.route("/volume-up", methods=["POST"])
@@ -102,7 +110,7 @@ def volume_down():
 
 @app.route("/music-np", methods=["GET"])
 def music_np():
-    return metadata(track_info)
+    return metadata()
 
 
 @app.route("/post-test", methods=["POST"])
