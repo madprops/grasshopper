@@ -103,6 +103,10 @@ App.set_main_title_text = (text) => {
     el.scrollLeft = 0
   }
 
+  App.fill_main_title_pauses()
+}
+
+App.fill_main_title_pauses = () => {
   let pauses = App.main_title_auto_scroll_pauses
   App.main_title_auto_scroll_pause = pauses
 }
@@ -351,8 +355,7 @@ App.scroll_main_title = (dir, manual = true) => {
   }
 
   if (manual) {
-    let pauses = App.main_title_auto_scroll_pauses
-    App.main_title_auto_scroll_pause = pauses
+    App.fill_main_title_pauses()
   }
 }
 
@@ -372,7 +375,6 @@ App.main_title_auto_scroll = () => {
 
   let el = DOM.el(`.main_title_inner`)
   let dir = App.main_title_auto_scroll_direction
-  let pauses = App.main_title_auto_scroll_pauses
   let overflow = el.scrollWidth - el.clientWidth
 
   if (overflow < 40) {
@@ -396,7 +398,7 @@ App.main_title_auto_scroll = () => {
 
     if (at_left()) {
       set_dir(`right`)
-      App.main_title_auto_scroll_pause = pauses
+      App.fill_main_title_pauses()
     }
   }
 
@@ -405,7 +407,7 @@ App.main_title_auto_scroll = () => {
 
     if (at_right()) {
       set_dir(`left`)
-      App.main_title_auto_scroll_pause = pauses
+      App.fill_main_title_pauses()
     }
   }
 
