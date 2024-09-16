@@ -118,6 +118,7 @@ Menubutton.create = (args = {}) => {
       after_action: args.after_action,
       after_shift_action: args.after_shift_action,
       after_ctrl_action: args.after_ctrl_action,
+      after_alt_action: args.after_alt_action,
       after_middle_action: args.after_middle_action,
     })
   }

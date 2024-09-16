@@ -326,7 +326,7 @@ App.check_dead_commands = () => {
     }
   }
 
-  let keys = [`cmd`, `middle`, `shift`, `ctrl`]
+  let keys = [`cmd`, `middle`, `shift`, `ctrl`, `alt`]
 
   for (let key in App.setting_props) {
     let value = App.setting_props[key].value
@@ -454,6 +454,12 @@ App.show_cmds_menu = (args = {}) => {
         ctrl = App.get_command(obj.ctrl)
       }
 
+      let alt
+
+      if (obj.alt) {
+        alt = App.get_command(obj.alt)
+      }
+
       let middle
 
       if (obj.middle) {
@@ -464,17 +470,19 @@ App.show_cmds_menu = (args = {}) => {
       let cmd_ok = true
       let shift_ok = true
       let ctrl_ok = true
+      let alt_ok = true
       let middle_ok = true
 
       if (args.check) {
         cmd_ok = App.check_command(cmd, cmd_obj)
 
-        if (shift || ctrl || middle) {
+        if (shift || ctrl || alt || middle) {
+          middle_ok = App.check_command(middle, cmd_obj)
           shift_ok = App.check_command(shift, cmd_obj)
           ctrl_ok = App.check_command(ctrl, cmd_obj)
-          middle_ok = App.check_command(middle, cmd_obj)
+          alt_ok = App.check_command(alt, cmd_obj)
 
-          if ([cmd_ok, shift_ok, ctrl_ok, middle_ok].every(c => !c)) {
+          if ([cmd_ok, shift_ok, ctrl_ok, alt_ok, middle_ok].every(c => !c)) {
             ok = false
           }
         }
@@ -506,8 +514,8 @@ App.show_cmds_menu = (args = {}) => {
 
       infos.push(cmd.info)
 
-      function add_cmd(what, is_ok, cmd, str, name) {
-        if (what) {
+      function add_cmd(is_ok, cmd, str, name) {
+        if (cmd) {
           item_obj[`${str}_action`] = (e) => {
             if (is_ok) {
               App.run_command({
@@ -523,9 +531,10 @@ App.show_cmds_menu = (args = {}) => {
         }
       }
 
-      add_cmd(middle, middle_ok, middle, `middle`, `Middle`)
-      add_cmd(shift, shift_ok, shift, `shift`, `Shift`)
-      add_cmd(ctrl, ctrl_ok, ctrl, `ctrl`, `Ctrl`)
+      add_cmd(middle_ok, middle, `middle`, `Middle`)
+      add_cmd(shift_ok, shift, `shift`, `Shift`)
+      add_cmd(ctrl_ok, ctrl, `ctrl`, `Ctrl`)
+      add_cmd(alt_ok, alt, `alt`, `Alt`)
 
       item_obj.info = infos.join(`\n`)
       items.push(item_obj)

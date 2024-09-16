@@ -174,6 +174,9 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
       else if (e.ctrlKey) {
         cmd = fav.fav.ctrl
       }
+      else if (e.altKey) {
+        cmd = fav.fav.alt
+      }
       else {
         cmd = fav.cmd.cmd
       }
@@ -213,6 +216,12 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
 
     if (ctrl) {
       btn.title += `\nCtrl: ${ctrl.name}`
+    }
+
+    let alt = App.get_command(fav.fav.alt)
+
+    if (alt) {
+      btn.title += `\nAlt: ${alt.name}`
     }
 
     c.append(btn)

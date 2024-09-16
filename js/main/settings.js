@@ -1408,19 +1408,21 @@ App.setup_settings_addlist = () => {
         id: `addlist_${id}`,
         element: Addlist.register(Object.assign({}, regobj, {
           id: id,
-          keys: [`cmd`, `middle`, `shift`, `ctrl`],
+          keys: [`cmd`, `middle`, `shift`, `ctrl`, `alt`],
           pk: `cmd`,
           widgets: {
             cmd: `menu`,
             middle: `menu`,
             shift: `menu`,
             ctrl: `menu`,
+            alt: `menu`,
           },
           labels: {
             cmd: `Command`,
             middle: `Middle`,
             shift: `Shift`,
             ctrl: `Ctrl`,
+            alt: `Alt`,
           },
           sources: {
             cmd: () => {
@@ -1435,6 +1437,9 @@ App.setup_settings_addlist = () => {
             ctrl: () => {
               return App.cmdlist_single.slice(0)
             },
+            alt: () => {
+              return App.cmdlist_single.slice(0)
+            },
           },
           list_icon: (item) => {
             return cmd_icon(item.cmd)
@@ -1445,9 +1450,10 @@ App.setup_settings_addlist = () => {
           title: props.name,
           tooltips: {
             cmd: `Command on Click`,
+            middle: `Command on Middle Click`,
             shift: `Command on Shift + Click`,
             ctrl: `Command on Ctrl + Click`,
-            middle: `Command on Middle Click`,
+            alt: `Command on Alt + Click`,
           },
         }))
       }))

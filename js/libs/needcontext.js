@@ -1,4 +1,4 @@
-// NeedContext v7.0
+// NeedContext v7.1
 
 // Main object
 const NeedContext = {}
@@ -488,10 +488,19 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
   async function check_item () {
     if (item.action) {
       if (e.shiftKey) {
-        NeedContext.shift_action(item, e)
+        if (item.shift_action) {
+          NeedContext.shift_action(item, e)
+        }
       }
       else if (e.ctrlKey) {
-        NeedContext.ctrl_action(item, e)
+        if (item.ctrl_action) {
+          NeedContext.ctrl_action(item, e)
+        }
+      }
+      else if (e.altKey) {
+        if (item.alt_action) {
+          NeedContext.alt_action(item, e)
+        }
       }
       else {
         NeedContext.action(item, e)
@@ -995,6 +1004,22 @@ NeedContext.ctrl_action = (item, e) => {
 
   NeedContext.hide(e)
   item.ctrl_action(e)
+}
+
+// Alt Click action
+NeedContext.alt_action = (item, e) => {
+  if (item.element) {
+    if (!NeedContext.is_visible(item.element)) {
+      return
+    }
+  }
+
+  if (NeedContext.args.after_alt_action) {
+    NeedContext.args.after_alt_action(e)
+  }
+
+  NeedContext.hide(e)
+  item.alt_action(e)
 }
 
 // Middle Click action
