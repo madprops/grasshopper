@@ -487,7 +487,16 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
 
   async function check_item () {
     if (item.action) {
-      NeedContext.action(item, e)
+      if (e.shiftKey) {
+        NeedContext.shift_action(item, e)
+      }
+      else if (e.ctrlKey) {
+        NeedContext.ctrl_action(item, e)
+      }
+      else {
+        NeedContext.action(item, e)
+      }
+
       return
     }
     else if (item.items) {
@@ -717,10 +726,6 @@ NeedContext.init = () => {
       return
     }
 
-    if (NeedContext.modkey(e)) {
-      return
-    }
-
     NeedContext.keydown = true
 
     if (e.key === `ArrowUp`) {
@@ -745,10 +750,6 @@ NeedContext.init = () => {
     }
 
     if (!NeedContext.keydown) {
-      return
-    }
-
-    if (NeedContext.modkey(e)) {
       return
     }
 
@@ -908,11 +909,6 @@ NeedContext.clear_button = () => {
   el.append(text)
   el.title = `Type to filter. Click to clear`
   return el
-}
-
-// Return true if a mod key is pressed
-NeedContext.modkey = (e) => {
-  return e.ctrlKey || e.altKey || e.shiftKey || e.metaKey
 }
 
 // Do an action

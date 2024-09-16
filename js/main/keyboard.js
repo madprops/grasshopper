@@ -324,6 +324,10 @@ App.setup_keyboard = () => {
       return
     }
 
+    if (NeedContext.open) {
+      return
+    }
+
     if (e.repeat) {
       let ok = (e.key === `ArrowUp`) || (e.key === `ArrowDown`)
 
@@ -561,6 +565,10 @@ App.setup_keyboard = () => {
   DOM.ev(document, `keyup`, (e) => {
     if (App.locust_swarm_on) {
       App.stop_locust_swarm()
+      return
+    }
+
+    if (NeedContext.open) {
       return
     }
 
