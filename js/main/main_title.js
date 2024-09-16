@@ -41,9 +41,13 @@ App.create_main_title = () => {
   inner.textContent = title
 
   let rclick = App.get_cmd_name(`show_main_title_menu`)
-  el.title = `Right Click: ${rclick}`
-  App.trigger_title(el, `middle_click_main_title`)
-  App.trigger_title(el, `double_click_main_title`)
+
+  if (App.get_setting(`show_tooltips`)) {
+    el.title = `Right Click: ${rclick}`
+    App.trigger_title(el, `middle_click_main_title`)
+    App.trigger_title(el, `double_click_main_title`)
+  }
+
   App.main_title_tooltip = el.title
   App.update_main_title_tooltips(el)
   App.last_main_title = ``
@@ -112,6 +116,10 @@ App.fill_main_title_pauses = () => {
 }
 
 App.update_main_title_tooltips = (el) => {
+  if (!App.get_setting(`show_tooltips`)) {
+    return
+  }
+
   let text = App.last_main_title
 
   if (!text) {

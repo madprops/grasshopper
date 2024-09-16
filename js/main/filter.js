@@ -774,8 +774,11 @@ App.create_filter = (mode) => {
   filter.tabIndex = 0
   let rclick = App.get_cmd_name(`show_filter_context_menu`)
   let mclick = App.get_cmd_name(`show_refine_filters`)
-  filter.title = `Type to filter or search\nRight Click: ${rclick}\nMiddle Click: ${mclick}`
-  App.trigger_title(filter, `double_click_filter`)
+
+  if (App.get_setting(`show_tooltips`)) {
+    filter.title = `Type to filter or search\nRight Click: ${rclick}\nMiddle Click: ${mclick}`
+    App.trigger_title(filter, `double_click_filter`)
+  }
 
   if (App.search_modes.includes(mode)) {
     filter.placeholder = `Search`
@@ -1392,8 +1395,11 @@ App.create_filter_menu = (mode) => {
     }
   }
 
-  btn.title = `Click: ${click} (Ctrl + F)\nRight Click: ${rclick}`
-  App.trigger_title(btn, `middle_click_filter_menu`)
+  if (App.get_setting(`show_tooltips`)) {
+    btn.title = `Click: ${click} (Ctrl + F)\nRight Click: ${rclick}`
+    App.trigger_title(btn, `middle_click_filter_menu`)
+  }
+
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
   let cmd = App.get_command(`filter_all`)

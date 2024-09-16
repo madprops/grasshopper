@@ -9,8 +9,11 @@ App.create_actions_menu = (mode) => {
   btn.append(App.get_svg_icon(`sun`))
   let click = App.get_cmd_name(`show_actions_menu`)
   let rclick = App.get_cmd_name(`show_browser_menu`)
-  btn.title = `Click: ${click} (Ctrl + Right)\nRight Click: ${rclick}`
-  App.trigger_title(btn, `middle_click_actions_menu`)
+
+  if (App.get_setting(`show_tooltips`)) {
+    btn.title = `Click: ${click} (Ctrl + Right)\nRight Click: ${rclick}`
+    App.trigger_title(btn, `middle_click_actions_menu`)
+  }
 
   DOM.ev(btn, `click`, (e) => {
     App.show_actions_menu(mode, e)

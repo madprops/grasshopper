@@ -19,7 +19,11 @@ App.setup_tab_box = () => {
 App.create_tab_box = () => {
   let tab_box = DOM.create(`div`, `box`, `tab_box`)
   let title = DOM.create(`div`, `box_title glowbox`, `tab_box_title`)
-  title.title = `This is the Tab Box`
+
+  if (App.get_setting(`show_tooltips`)) {
+    title.title = `This is the Tab Box`
+  }
+
   let title_main = DOM.create(`div`, `box_title_main`, `tab_box_title_main`)
   title.append(title_main)
   let title_count = DOM.create(`div`, `box_title_count`, `tab_box_title_count`)

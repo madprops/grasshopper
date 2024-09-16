@@ -63,9 +63,12 @@ App.create_footer = (mode) => {
   if (mode === `tabs`) {
     let tab_box_btn = DOM.create(`div`, `pointer`, `footer_tab_box`)
     tab_box_btn.append(App.get_svg_icon(`arrow_up`))
-    let click = App.get_cmd_name(`toggle_tab_box`)
-    tab_box_btn.title = `Click: ${click}`
-    App.trigger_title(tab_box_btn, `middle_click_footer`)
+
+    if (App.get_setting(`show_tooltips`)) {
+      let click = App.get_cmd_name(`toggle_tab_box`)
+      tab_box_btn.title = `Click: ${click}`
+      App.trigger_title(tab_box_btn, `middle_click_footer`)
+    }
 
     DOM.ev(tab_box_btn, `click`, () => {
       App.toggle_tab_box()
@@ -74,16 +77,25 @@ App.create_footer = (mode) => {
     footer.append(tab_box_btn)
   }
 
+  let tips = App.get_setting(`show_tooltips`)
   let footer_content = DOM.create(`div`, `footer_content glow`)
   let footer_count = DOM.create(`div`, `footer_count`, `${mode}_footer_count`)
-  let click = App.get_cmd_name(`select_all_items`)
-  footer_count.title = `Number of items\nClick: ${click}`
-  App.trigger_title(footer_count, `middle_click_footer`)
+
+  if (tips) {
+    let click = App.get_cmd_name(`select_all_items`)
+    footer_count.title = `Number of items\nClick: ${click}`
+    App.trigger_title(footer_count, `middle_click_footer`)
+  }
+
   footer_content.append(footer_count)
   let footer_info = DOM.create(`div`, `footer_info`, `${mode}_footer_info`)
-  click = App.get_cmd_name(`go_to_bottom`)
-  footer_info.title = `Click: ${click}`
-  App.trigger_title(footer_info, `middle_click_footer`)
+
+  if (tips) {
+    let click = App.get_cmd_name(`go_to_bottom`)
+    footer_info.title = `Click: ${click}`
+    App.trigger_title(footer_info, `middle_click_footer`)
+  }
+
   footer_content.append(footer_info)
 
   DOM.ev(footer_count, `click`, (e) => {

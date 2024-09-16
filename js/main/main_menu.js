@@ -5,8 +5,11 @@ App.create_main_menu = (mode) => {
   btn.append(App.button_text(icon, text))
   let click = App.get_cmd_name(`show_main_menu`)
   let rclick = App.get_cmd_name(`show_palette`)
-  btn.title = `Click: ${click} (Ctrl + Left)\nRight Click: ${rclick}`
-  App.trigger_title(btn, `middle_click_main_menu`)
+
+  if (App.get_setting(`show_tooltips`)) {
+    btn.title = `Click: ${click} (Ctrl + Left)\nRight Click: ${rclick}`
+    App.trigger_title(btn, `middle_click_main_menu`)
+  }
 
   DOM.ev(btn, `click`, () => {
     App.show_main_menu(mode)
