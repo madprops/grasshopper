@@ -189,7 +189,7 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
     let middle = App.get_command(fav.fav.middle)
 
     if (middle) {
-      btn.title += `\nAlt: ${middle.name}`
+      btn.title += `\nMiddle: ${middle.name}`
 
       DOM.ev(btn, `auxclick`, (e) => {
         if (e.button === 1) {
@@ -201,6 +201,18 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
           App.run_command(args)
         }
       })
+    }
+
+    let shift = App.get_command(fav.fav.shift)
+
+    if (shift) {
+      btn.title += `\nShift: ${shift.name}`
+    }
+
+    let ctrl = App.get_command(fav.fav.ctrl)
+
+    if (ctrl) {
+      btn.title += `\nCtrl: ${ctrl.name}`
     }
 
     c.append(btn)

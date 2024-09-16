@@ -502,7 +502,7 @@ App.show_cmds_menu = (args = {}) => {
 
       infos.push(cmd.info)
 
-      function add_cmd(what, is_ok, cmd, str) {
+      function add_cmd(what, is_ok, cmd, str, name) {
         if (what) {
           item_obj[`${str}_action`] = (e) => {
             if (is_ok) {
@@ -515,13 +515,13 @@ App.show_cmds_menu = (args = {}) => {
             }
           }
 
-          infos.push(`Shift: ${cmd.name}`)
+          infos.push(`${name}: ${cmd.name}`)
         }
       }
 
-      add_cmd(shift, shift_ok, shift, `shift`)
-      add_cmd(ctrl, ctrl_ok, ctrl, `ctrl`)
-      add_cmd(middle, middle_ok, middle, `middle`)
+      add_cmd(middle, middle_ok, middle, `middle`, `Middle`)
+      add_cmd(shift, shift_ok, shift, `shift`, `Shift`)
+      add_cmd(ctrl, ctrl_ok, ctrl, `ctrl`, `Ctrl`)
 
       item_obj.info = infos.join(`\n`)
       items.push(item_obj)
