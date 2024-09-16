@@ -73,14 +73,14 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `ArrowLeft`) {
-      if (!filter_focus) {
+      if (!filter_focus || !filter_filled) {
         App.show_main_menu(mode)
         e.preventDefault()
         return
       }
     }
     else if (e.key === `ArrowRight`) {
-      if (!filter_focus) {
+      if (!filter_focus || !filter_filled) {
         App.show_actions_menu(mode)
         e.preventDefault()
         return
