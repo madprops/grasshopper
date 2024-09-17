@@ -4,7 +4,7 @@ function open_popup(mode) {
 }
 
 function commands(num) {
-  browser.runtime.sendMessage({action: "browser_commands", number: num})
+  browser.runtime.sendMessage({action: "browser_command", number: num})
 }
 
 browser.commands.onCommand.addListener((command) => {
@@ -22,31 +22,31 @@ browser.commands.onCommand.addListener((command) => {
     open_popup(`closed`)
   }
   // Commands
-  else if (command === `browser_commands_1`) {
-    commands(1)
+  else if (command === `browser_command_1`) {
+    command(1)
   }
-  else if (command === `browser_commands_2`) {
-    commands(2)
+  else if (command === `browser_command_2`) {
+    command(2)
   }
-  else if (command === `browser_commands_3`) {
-    commands(3)
+  else if (command === `browser_command_3`) {
+    command(3)
   }
-  else if (command === `browser_commands_4`) {
-    commands(4)
+  else if (command === `browser_command_4`) {
+    command(4)
   }
-  else if (command === `browser_commands_5`) {
-    commands(5)
+  else if (command === `browser_command_5`) {
+    command(5)
   }
-  else if (command === `browser_commands_6`) {
-    commands(6)
+  else if (command === `browser_command_6`) {
+    command(6)
   }
-  else if (command === `browser_commands_7`) {
-    commands(7)
+  else if (command === `browser_command_7`) {
+    command(7)
   }
-  else if (command === `browser_commands_8`) {
-    commands(8)
+  else if (command === `browser_command_8`) {
+    command(8)
   }
-  else if (command === `browser_commands_9`) {
-    commands(9)
+  else if (command === `browser_command_9`) {
+    command(9)
   }
 })

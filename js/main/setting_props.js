@@ -3139,67 +3139,94 @@ App.build_settings = () => {
       info: `List of URLs that can be used in commands`,
       version: 1,
     },
-    browser_commands_1: {
-      name: `Browser Commands 1`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when using the browser shortcut`,
+    browser_command_1: {
+      name: `Browser Command 1`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut (1)`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist_single)
+      },
       version: 1,
     },
-    browser_commands_2: {
-      name: `Browser Commands 2`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when using the browser shortcut`,
+    browser_command_2: {
+      name: `Browser Command 2`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut (2)`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist_single)
+      },
       version: 1,
     },
-    browser_commands_3: {
-      name: `Browser Commands 3`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when using the browser shortcut`,
+    browser_command_3: {
+      name: `Browser Command 3`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut (3)`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist_single)
+      },
       version: 1,
     },
-    browser_commands_4: {
-      name: `Browser Commands 4`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when using the browser shortcut`,
+    browser_command_4: {
+      name: `Browser Command 4`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut (4)`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist_single)
+      },
       version: 1,
     },
-    browser_commands_5: {
-      name: `Browser Commands 5`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when using the browser shortcut`,
+    browser_command_5: {
+      name: `Browser Command 5`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut (5)`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist_single)
+      },
       version: 1,
     },
-    browser_commands_6: {
-      name: `Browser Commands 6`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when using the browser shortcut`,
+    browser_command_6: {
+      name: `Browser Command 6`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut (6)`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist_single)
+      },
       version: 1,
     },
-    browser_commands_7: {
-      name: `Browser Commands 7`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when using the browser shortcut`,
+    browser_command_7: {
+      name: `Browser Command 7`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut (7)`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist_single)
+      },
       version: 1,
     },
-    browser_commands_8: {
-      name: `Browser Commands 8`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when using the browser shortcut`,
+    browser_command_8: {
+      name: `Browser Command 8`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut (8)`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist_single)
+      },
       version: 1,
     },
-    browser_commands_9: {
-      name: `Browser Commands 9`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when using the browser shortcut`,
+    browser_command_9: {
+      name: `Browser Command 9`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut (9)`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist_single)
+      },
       version: 1,
     },
   }

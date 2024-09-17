@@ -40,3 +40,16 @@ App.open_custom_url = (item, num, from = `normal`) => {
   App.open_new_tab(args)
   App.after_focus({show_tabs: true})
 }
+
+App.run_browser_commands = (num) => {
+  let cmds = App.get_setting(`browser_commands_${num}`)
+
+  if (!cmds.length) {
+    return
+  }
+
+  for (let cmd of cmds) {
+    console.log(cmd)
+    App.run_command({cmd: cmd, from: `browser_commands`})
+  }
+}

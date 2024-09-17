@@ -71,32 +71,32 @@
       },
       "description": "Open the popup in Closed mode"
     },
-    "browser_commands_1": {
-      "description": "Browser Commands 1"
+    "browser_command_1": {
+      "description": "Browser Command 1"
     },
-    "browser_commands_2": {
-      "description": "Browser Commands 2"
+    "browser_command_2": {
+      "description": "Browser Command 2"
     },
-    "browser_commands_3": {
-      "description": "Browser Commands 3"
+    "browser_command_3": {
+      "description": "Browser Command 3"
     },
-    "browser_commands_4": {
-      "description": "Browser Commands 4"
+    "browser_command_4": {
+      "description": "Browser Command 4"
     },
-    "browser_commands_5": {
-      "description": "Browser Commands 5"
+    "browser_command_5": {
+      "description": "Browser Command 5"
     },
-    "browser_commands_6": {
-      "description": "Browser Commands 6"
+    "browser_command_6": {
+      "description": "Browser Command 6"
     },
-    "browser_commands_7": {
-      "description": "Browser Commands 7"
+    "browser_command_7": {
+      "description": "Browser Command 7"
     },
-    "browser_commands_8": {
-      "description": "Browser Commands 8"
+    "browser_command_8": {
+      "description": "Browser Command 8"
     },
-    "browser_commands_9": {
-      "description": "Browser Commands 9"
+    "browser_command_9": {
+      "description": "Browser Command 9"
     }
   },
   "browser_specific_settings": {

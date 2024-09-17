@@ -1,5 +1,6 @@
 App.setup_messages = () => {
   browser.runtime.onMessage.addListener(async (message) => {
+    console.log(message.action)
     if (message.action === `mirror_settings`) {
       if (App.get_setting(`mirror_settings`)) {
         await App.stor_get_settings()
@@ -13,8 +14,8 @@ App.setup_messages = () => {
         App.check_tab_session([item], true)
       }
     }
-    else if (message.action === `browser_commands`) {
-      console.log(message.number)
+    else if (message.action === `browser_command`) {
+      App.run_browser_commands(message.number)
     }
   })
 }
