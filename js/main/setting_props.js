@@ -3101,14 +3101,14 @@ App.build_settings = () => {
       version: 1,
     },
     lock_screen_commands: {
-      name: `Lock Screen Cmds`,
+      name: `On Lock Screen`,
       type: `list`,
       value: [],
       info: `Run these commands when locking the screen`,
       version: 1,
     },
     unlock_screen_commands: {
-      name: `Unlock Screen Cmds`,
+      name: `On Unlock Screen`,
       type: `list`,
       value: [],
       info: `Run these commands when unlocking the screen`,
