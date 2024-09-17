@@ -3229,6 +3229,16 @@ App.build_settings = () => {
       },
       version: 1,
     },
+    browser_command_10: {
+      name: `Browser Command 10`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut (10)`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.cmdlist_single)
+      },
+      version: 1,
+    },
   }
 
   add_props()

@@ -85,6 +85,9 @@
     },
     "browser_command_9": {
       "description": "Browser Command 9"
+    },
+    "browser_command_10": {
+      "description": "Browser Command 10"
     }
   },
   "browser_specific_settings": {

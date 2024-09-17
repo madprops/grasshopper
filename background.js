@@ -49,4 +49,7 @@ browser.commands.onCommand.addListener((command) => {
   else if (command === `browser_command_9`) {
     browser_command(9)
   }
+  else if (command === `browser_command_10`) {
+    browser_command(10)
+  }
 })
