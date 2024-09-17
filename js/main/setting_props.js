@@ -3288,6 +3288,13 @@ App.build_settings = () => {
       info: `Wrap first/last when selecting items`,
       version: 1,
     },
+    smart_tab_switch: {
+      name: `Smart Tab Switch`,
+      type: `checkbox`,
+      value: true,
+      info: `Pick the next normal loaded tab when closing the active tab instead of letting the browser decide`,
+      version: 1,
+    },
     autohide_context: {
       name: `Autohide Context`,
       type: `checkbox`,

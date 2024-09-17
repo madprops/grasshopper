@@ -497,6 +497,7 @@ App.unpin_tabs = (item) => {
 
 App.unload_tabs = (item, multiple = true) => {
   App.tabchange_control({
+    what: `unload`,
     item: item,
     multiple: multiple,
     warn: `warn_on_unload_tabs`,
@@ -509,6 +510,7 @@ App.unload_tabs = (item, multiple = true) => {
 
 App.close_tabs = (item, multiple = true) => {
   App.tabchange_control({
+    what: `close`,
     item: item,
     multiple: multiple,
     warn: `warn_on_close_tabs`,
@@ -547,11 +549,16 @@ App.tabchange_control = (args = {}) => {
 
   let force = App.check_force(args.warn, items)
   let ids = items.map(x => x.id)
+  let smart_switch = App.get_setting(`smart_tab_switch`)
+
+  if (args.what === `unload`) {
+    smart_switch = true
+  }
 
   App.show_confirm({
     message: `${args.message} (${ids.length})`,
     confirm_action: async () => {
-      if (active) {
+      if (active && smart_switch) {
         let next
 
         if (ids.length > 1) {
