@@ -19,6 +19,7 @@ App.start_lock_screen = () => {
     after_hide: () => {
       App.screen_locked = false
       App.run_command_list(`unlock_screen_commands`)
+      App.main_title_signal()
     },
     colored_top: true,
   })
