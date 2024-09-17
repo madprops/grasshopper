@@ -532,8 +532,14 @@ App.tabchange_control = (args = {}) => {
   let active = false
 
   for (let it of App.get_active_items({mode: `tabs`, item: args.item, multiple: args.multiple})) {
-    if (it.unloaded || App.is_new_tab(it.url)) {
+    if (it.unloaded) {
       continue
+    }
+
+    if (args.what === `unload`) {
+      if (App.is_new_tab(it.url)) {
+        continue
+      }
     }
 
     if (it.active) {
