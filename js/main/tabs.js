@@ -526,7 +526,7 @@ App.unload_tabs = (item, multiple = true) => {
     message: `Unload tabs? (${ids.length})`,
     confirm_action: async () => {
       if (active) {
-        await App.tabcontrol_next(items, `unload`)
+        App.swith_to_prev_tab(items, `unload`)
       }
 
       App.do_unload_tabs(ids)
@@ -558,7 +558,7 @@ App.close_tabs = (item, multiple = true) => {
     message: `Close tabs? (${items.length})`,
     confirm_action: async () => {
       if (active && smart_switch) {
-        await App.tabcontrol_next(items, `close`)
+        App.swith_to_prev_tab(items, `close`)
       }
 
       App.close_tabs_method(items, true)
@@ -567,21 +567,20 @@ App.close_tabs = (item, multiple = true) => {
   })
 }
 
-App.tabcontrol_next = async (items, method) => {
-  let next
+App.swith_to_prev_tab = (items, method) => {
+  let recent = App.get_recent_tabs()
 
-  if (items.length > 1) {
-    next = App.get_next_item(`tabs`, {mode: `tabs`, no_selected: true, no_unloaded: true})
+  for (let it of items) {
+    recent = recent.filter(x => x !== it)
   }
-  else {
-    next = App.get_next_item(`tabs`, {mode: `tabs`, no_unloaded: true, item: items[0]})
-  }
+
+  let next = recent.at(0)
 
   if (next) {
-    await App.focus_tab({item: next, scroll: `nearest`, method: method})
+    App.focus_tab({item: next, scroll: `nearest`, method: method})
   }
   else {
-    await App.open_new_tab({url: `about:blank`})
+    App.open_new_tab({url: `about:blank`})
   }
 }
 
