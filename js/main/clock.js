@@ -6,7 +6,6 @@ App.start_clock = () => {
     return
   }
 
-
   setInterval(() => {
     App.check_clock()
   }, delay)

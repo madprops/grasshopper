@@ -274,15 +274,15 @@ App.next_main_title_color = () => {
 }
 
 App.main_title_enabled = () => {
+  if (!App.get_setting(`show_main_title`)) {
+    return false
+  }
+
   if (App.fullscreen) {
     return false
   }
 
   if (App.screen_locked) {
-    return false
-  }
-
-  if (!App.get_setting(`show_main_title`)) {
     return false
   }
 
