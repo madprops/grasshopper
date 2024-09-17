@@ -1825,3 +1825,38 @@ App.settings_changed = () => {
   let current = App.str(App.settings)
   return current !== App.initial_settings
 }
+
+App.swap_settings = (setting_1, setting_2) => {
+  let btn_1 = App[`settings_menubutton_${setting_1}`]
+  let btn_2 = App[`settings_menubutton_${setting_2}`]
+
+  let value_1 = btn_1.value
+  let value_2 = btn_2.value
+
+  let ok_1 = false
+  let ok_2 = false
+
+  for (let opt of btn_1.opts) {
+    if (opt.value === value_2) {
+      ok_1 = true
+      break
+    }
+  }
+
+  for (let opt of btn_2.opts) {
+    if (opt.value === value_1) {
+      ok_2 = true
+      break
+    }
+  }
+
+  if (!ok_1 || !ok_2) {
+    return
+  }
+
+  App.set_setting({setting: setting_1, value: value_2})
+  App.set_setting({setting: setting_2, value: value_1})
+
+  btn_1.set(value_2)
+  btn_2.set(value_1)
+}

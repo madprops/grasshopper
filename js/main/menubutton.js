@@ -12,6 +12,31 @@ Menubutton.create = (args = {}) => {
   }
 
   args.container = DOM.create(`div`, `menubutton_container`)
+
+  args.button.draggable = true
+
+  args.button.ondragstart = (e) => {
+    e.dataTransfer.setData(`text/plain`, args.button.id)
+  }
+
+  args.container.ondragover = (e) => {
+    e.preventDefault()
+  }
+
+  args.container.ondrop = (e) => {
+    e.preventDefault()
+    let id = e.dataTransfer.getData(`text/plain`)
+
+    if (!id) {
+      return
+    }
+
+    let setting_1 = args.button.id.replace(`settings_`, ``)
+    let setting_2 = id.replace(`settings_`, ``)
+
+    App.swap_settings(setting_1, setting_2)
+  }
+
   let prev = DOM.create(`div`, `button arrow_btn`)
   prev.textContent = `<`
   let next = DOM.create(`div`, `button arrow_btn`)
