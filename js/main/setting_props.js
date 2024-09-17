@@ -3613,7 +3613,10 @@ App.build_settings = () => {
       info: `Run commands when middle clicking various components`,
     },
     browser: {
-      info: `Configure Browser related settings`,
+      info: `Configure Browser related settings
+      Browser Commands are shortcuts that you configure on the browser
+      Click 'Manage Extension', then click the cog on the top right
+      Then click 'Manage Extension Shortcuts' and add the shortcuts you need`
     },
     warns: {
       info: `When to show the confirmation dialog on certain actions
