@@ -48,27 +48,15 @@
       "description": "Toggle the sidebar"
     },
     "popup_tabs": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+1"
-      },
       "description": "Open the popup in Tabs mode"
     },
     "popup_history": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+2"
-      },
       "description": "Open the popup in History mode"
     },
     "popup_bookmarks": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+3"
-      },
       "description": "Open the popup in Bookmarks mode"
     },
     "popup_closed": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+4"
-      },
       "description": "Open the popup in Closed mode"
     },
     "browser_command_1": {
