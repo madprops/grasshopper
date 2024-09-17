@@ -3,7 +3,7 @@ function open_popup(mode) {
   browser.browserAction.openPopup()
 }
 
-function commands(num) {
+function browser_command(num) {
   browser.runtime.sendMessage({action: "browser_command", number: num})
 }
 
@@ -23,30 +23,30 @@ browser.commands.onCommand.addListener((command) => {
   }
   // Commands
   else if (command === `browser_command_1`) {
-    command(1)
+    browser_command(1)
   }
   else if (command === `browser_command_2`) {
-    command(2)
+    browser_command(2)
   }
   else if (command === `browser_command_3`) {
-    command(3)
+    browser_command(3)
   }
   else if (command === `browser_command_4`) {
-    command(4)
+    browser_command(4)
   }
   else if (command === `browser_command_5`) {
-    command(5)
+    browser_command(5)
   }
   else if (command === `browser_command_6`) {
-    command(6)
+    browser_command(6)
   }
   else if (command === `browser_command_7`) {
-    command(7)
+    browser_command(7)
   }
   else if (command === `browser_command_8`) {
-    command(8)
+    browser_command(8)
   }
   else if (command === `browser_command_9`) {
-    command(9)
+    browser_command(9)
   }
 })

@@ -1,6 +1,5 @@
 App.setup_messages = () => {
   browser.runtime.onMessage.addListener(async (message) => {
-    console.log(message.action)
     if (message.action === `mirror_settings`) {
       if (App.get_setting(`mirror_settings`)) {
         await App.stor_get_settings()
@@ -15,7 +14,7 @@ App.setup_messages = () => {
       }
     }
     else if (message.action === `browser_command`) {
-      App.run_browser_commands(message.number)
+      App.run_browser_command(message.number)
     }
   })
 }

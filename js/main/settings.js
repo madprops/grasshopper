@@ -917,6 +917,15 @@ App.add_setting_headers = (items, include_none, include_sep) => {
   }
 }
 
+App.clean_setting_headers = (items) => {
+  if (!items.length) {
+    return
+  }
+
+  if (items.at(-1).text === App.separator_string) {
+    items.pop()
+  }
+}
 App.settings_commands = (include_none, include_sep) => {
   let items = []
 
@@ -930,6 +939,7 @@ App.settings_commands = (include_none, include_sep) => {
     App.add_settings_cmd(items, cmd)
   }
 
+  App.clean_setting_headers(items)
   return items
 }
 
@@ -957,6 +967,7 @@ App.get_filter_cmds = (include_none, include_sep) => {
     }
   }
 
+  App.clean_setting_headers(items)
   return items
 }
 
@@ -982,6 +993,7 @@ App.get_signal_cmds = (include_none, include_sep) => {
     }
   }
 
+  App.clean_setting_headers(items)
   return items
 }
 
