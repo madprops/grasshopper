@@ -12,14 +12,14 @@ App.start_lock_screen = () => {
         App.unlock_screen()
       })
     },
-    after_show: () => {
+    after_show: async () => {
       App.screen_locked = true
       App.run_command_list(`lock_screen_commands`)
     },
-    after_hide: () => {
+    after_hide: async () => {
       App.screen_locked = false
-      App.run_command_list(`unlock_screen_commands`)
       App.main_title_signal()
+      App.run_command_list(`unlock_screen_commands`)
     },
     colored_top: true,
   })

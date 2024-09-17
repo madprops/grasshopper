@@ -536,7 +536,16 @@ App.unload_tabs = (item, multiple = true) => {
 }
 
 App.close_tabs = (item, multiple = true) => {
-  let items = App.get_active_items({mode: `tabs`, item: item, multiple: multiple})
+  let items = []
+  let active = false
+
+  for (let it of App.get_active_items({mode: `tabs`, item: item, multiple: multiple})) {
+    if (it.active) {
+      active = true
+    }
+
+    items.push(it)
+  }
 
   if (!items.length) {
     return
@@ -548,7 +557,7 @@ App.close_tabs = (item, multiple = true) => {
   App.show_confirm({
     message: `Close tabs? (${items.length})`,
     confirm_action: async () => {
-      if (smart_switch) {
+      if (active && smart_switch) {
         await App.tabcontrol_next(items, `close`)
       }
 

@@ -25,6 +25,7 @@ App.user_madprops_settings = () => {
   ]})
 
   App.set_setting({setting: `unlock_screen_commands`, value: [
+    {cmd: `recent_tabs_backwards`},
     {cmd: `close_last_tab`},
   ]})
 

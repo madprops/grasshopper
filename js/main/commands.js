@@ -583,10 +583,11 @@ App.get_cmd_name = (cmd) => {
   return `Unknown`
 }
 
-App.run_command_list = (setting) => {
+App.run_command_list = async (setting) => {
   let cmds = App.get_setting(setting)
 
   for (let cmd of cmds) {
     App.run_command({cmd: cmd.cmd})
+    await App.sleep(App.command_list_delay)
   }
 }

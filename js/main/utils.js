@@ -579,3 +579,6 @@ App.remove_quotes = (str) => {
 App.remove_separators = (cmds) => {
   return cmds.filter(x => x.cmd !== App.separator_string)
 }
+
+// Async sleep function
+App.sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
