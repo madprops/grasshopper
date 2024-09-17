@@ -1837,6 +1837,10 @@ App.swap_settings = (setting_1, setting_2) => {
   let value_1 = btn_1.value
   let value_2 = btn_2.value
 
+  if (value_1 === value_2) {
+    return
+  }
+
   let ok_1 = false
   let ok_2 = false
 
