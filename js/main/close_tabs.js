@@ -63,17 +63,6 @@ App.close_tabs_method = (items, force = false) => {
   })
 }
 
-App.close_tabs = (item, multiple = true) => {
-  let items = App.get_active_items({mode: `tabs`, item: item, multiple: multiple})
-
-  if (!items.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_close_tabs`, items)
-  App.close_tabs_method(items, force)
-}
-
 App.close_tabs_title = (type) => {
   if (type === `duplicate`) {
     type = `duplicates`

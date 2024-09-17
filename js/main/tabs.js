@@ -496,10 +496,40 @@ App.unpin_tabs = (item) => {
 }
 
 App.unload_tabs = (item, multiple = true) => {
+  App.tabchange_control({
+    item: item,
+    multiple: multiple,
+    warn: `warn_on_unload_tabs`,
+    message: `Unload tabs?`,
+    action: (items, ids) => {
+      App.do_unload_tabs(ids)
+    },
+  })
+}
+
+App.close_tabs = (item, multiple = true) => {
+  App.tabchange_control({
+    item: item,
+    multiple: multiple,
+    warn: `warn_on_close_tabs`,
+    message: `Close tabs?`,
+    action: (items, ids) => {
+      App.close_tabs_method(items, true)
+    },
+  })
+}
+
+App.tabchange_control = (args = {}) => {
+  let def_args = {
+    multiple: true,
+  }
+
+  App.def_args(def_args, args)
+
   let items = []
   let active = false
 
-  for (let it of App.get_active_items({mode: `tabs`, item: item, multiple: multiple})) {
+  for (let it of App.get_active_items({mode: `tabs`, item: args.item, multiple: args.multiple})) {
     if (it.unloaded || App.is_new_tab(it.url)) {
       continue
     }
@@ -515,11 +545,11 @@ App.unload_tabs = (item, multiple = true) => {
     return
   }
 
-  let force = App.check_force(`warn_on_unload_tabs`, items)
+  let force = App.check_force(args.warn, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm({
-    message: `Unload tabs? (${ids.length})`,
+    message: `${args.message} (${ids.length})`,
     confirm_action: async () => {
       if (active) {
         let next
@@ -539,7 +569,7 @@ App.unload_tabs = (item, multiple = true) => {
         }
       }
 
-      App.do_unload_tabs(ids)
+      args.action(items, ids)
     },
     force: force,
   })
