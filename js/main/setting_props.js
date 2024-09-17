@@ -214,15 +214,6 @@ App.build_settings = () => {
       info: `Apply rules to domains automatically, like color, title, and tags`,
       version: 1,
     },
-    bookmarks_folder: {
-      name: `Bookmarks Folder`,
-      type: `text`,
-      value: `Grasshopper`,
-      placeholder: `Folder Name`,
-      no_empty: true,
-      info: `Where to save bookmarks`,
-      version: 1,
-    },
     open_in_new_tab: {
       name: `Open In New Tab`,
       type: `checkbox`,
@@ -3127,6 +3118,15 @@ App.build_settings = () => {
   category = `browser`
 
   props = {
+    bookmarks_folder: {
+      name: `Bookmarks Folder`,
+      type: `text`,
+      value: `Grasshopper`,
+      placeholder: `Folder Name`,
+      no_empty: true,
+      info: `Where to save bookmarks`,
+      version: 1,
+    },
     custom_urls: {
       name: `Custom URLs`,
       type: `list`,
