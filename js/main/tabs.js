@@ -529,7 +529,6 @@ App.unload_tabs = (item, multiple = true) => {
         await App.swith_to_prev_tab(items, `unload`)
       }
 
-      console.log(ids)
       App.do_unload_tabs(ids)
     },
     force: force,
