@@ -498,6 +498,7 @@ App.unpin_tabs = (item) => {
 App.unload_tabs = (item, multiple = true) => {
   let items = []
   let active = false
+  let selected = false
 
   for (let it of App.get_active_items({mode: `tabs`, item: item, multiple: multiple})) {
     if (it.unloaded) {
@@ -510,6 +511,10 @@ App.unload_tabs = (item, multiple = true) => {
 
     if (it.active) {
       active = true
+    }
+
+    if (it.selected) {
+      selected = true
     }
 
     items.push(it)
@@ -525,7 +530,7 @@ App.unload_tabs = (item, multiple = true) => {
   App.show_confirm({
     message: `Unload tabs? (${ids.length})`,
     confirm_action: async () => {
-      if (active) {
+      if (active || selected) {
         await App.swith_to_prev_tab(items, `unload`)
       }
 
@@ -538,10 +543,15 @@ App.unload_tabs = (item, multiple = true) => {
 App.close_tabs = (item, multiple = true) => {
   let items = []
   let active = false
+  let selected = false
 
   for (let it of App.get_active_items({mode: `tabs`, item: item, multiple: multiple})) {
     if (it.active) {
       active = true
+    }
+
+    if (it.selected) {
+      selected = true
     }
 
     items.push(it)
@@ -557,7 +567,7 @@ App.close_tabs = (item, multiple = true) => {
   App.show_confirm({
     message: `Close tabs? (${items.length})`,
     confirm_action: async () => {
-      if (active && smart_switch) {
+      if ((active || selected) && smart_switch) {
         await App.swith_to_prev_tab(items, `close`)
       }
 
