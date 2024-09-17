@@ -397,49 +397,41 @@ App.main_title_auto_scroll = () => {
     return
   }
 
-  function at_left () {
-    return el.scrollLeft <= 0
-  }
-
-  function at_right () {
-    return el.scrollLeft >= (el.scrollWidth - el.clientWidth)
-  }
-
-  function set_dir (new_dir) {
-    App.main_title_auto_scroll_direction = new_dir
-  }
-
-  function do_left () {
-    App.scroll_main_title(`left`, false)
-
-    if (at_left()) {
-      set_dir(`right`)
-      App.fill_main_title_pauses()
-    }
-  }
-
-  function do_right () {
-    App.scroll_main_title(`right`, false)
-
-    if (at_right()) {
-      set_dir(`left`)
-      App.fill_main_title_pauses()
-    }
-  }
-
-  if ((dir === `left`) && at_left()) {
+  if ((dir === `left`) && App.at_left(el)) {
     dir = `right`
-    set_dir(dir)
   }
-  else if ((dir === `right`) && at_right()) {
+  else if ((dir === `right`) && App.at_right(el)) {
     dir = `left`
-    set_dir(dir)
   }
+
+  App.main_title_set_dir(dir)
 
   if (dir === `right`) {
-    do_right()
+    App.main_title_right(el)
   }
   else if (dir === `left`) {
-    do_left()
+    App.main_title_left(el)
+  }
+}
+
+App.main_title_set_dir = (dir) => {
+  App.main_title_auto_scroll_direction = dir
+}
+
+App.main_title_left = (el) => {
+  App.scroll_main_title(`left`, false)
+
+  if (App.at_left(el)) {
+    App.main_title_set_dir(`right`)
+    App.fill_main_title_pauses()
+  }
+}
+
+App.main_title_right = (el) => {
+  App.scroll_main_title(`right`, false)
+
+  if (App.at_right(el)) {
+    App.main_title_set_dir(`left`)
+    App.fill_main_title_pauses()
   }
 }

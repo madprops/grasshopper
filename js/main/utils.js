@@ -1,3 +1,5 @@
+App.sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
 App.create_debouncer = (func, delay) => {
   if (typeof func !== `function`) {
     App.error(`Invalid debouncer function`)
@@ -580,5 +582,10 @@ App.remove_separators = (cmds) => {
   return cmds.filter(x => x.cmd !== App.separator_string)
 }
 
-// Async sleep function
-App.sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+App.at_left = (el) => {
+  return el.scrollLeft <= 0
+}
+
+App.at_right = (el) => {
+  return el.scrollLeft >= (el.scrollWidth - el.clientWidth)
+}
