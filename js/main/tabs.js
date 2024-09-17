@@ -502,6 +502,7 @@ App.unload_tabs = (item, multiple = true) => {
     multiple: multiple,
     warn: `warn_on_unload_tabs`,
     message: `Unload tabs?`,
+    method: `unload`,
     action: (items, ids) => {
       App.do_unload_tabs(ids)
     },
@@ -515,6 +516,7 @@ App.close_tabs = (item, multiple = true) => {
     multiple: multiple,
     warn: `warn_on_close_tabs`,
     message: `Close tabs?`,
+    method: `normal`,
     action: (items, ids) => {
       App.close_tabs_method(items, true)
     },
@@ -575,7 +577,7 @@ App.tabchange_control = (args = {}) => {
         }
 
         if (next) {
-          await App.focus_tab({item: next, scroll: `nearest`, method: `unload`})
+          await App.focus_tab({item: next, scroll: `nearest`, method: args.method})
         }
         else {
           await App.open_new_tab({url: `about:blank`})
