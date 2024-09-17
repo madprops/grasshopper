@@ -681,24 +681,41 @@ App.double_key_action = (key) => {
   App.reset_triggers()
 }
 
-App.trigger_esc_key = () => {
-  let event = new KeyboardEvent(`keydown`, {
-    key: `Escape`,
-    code: `Escape`,
+App.keyboard_event = (what) => {
+  return new KeyboardEvent(`keydown`, {
+    key: what,
+    code: what,
     bubbles: true,
     cancelable: true
   })
+}
 
+App.trigger_esc_key = () => {
+  let event = App.keyboard_event(`Escape`)
   document.dispatchEvent(event)
 }
 
 App.trigger_enter_key = () => {
-  let event = new KeyboardEvent(`keydown`, {
-    key: `Enter`,
-    code: `Enter`,
-    bubbles: true,
-    cancelable: true
-  })
+  let event = App.keyboard_event(`Enter`)
+  document.dispatchEvent(event)
+}
 
+App.trigger_up_key = () => {
+  let event = App.keyboard_event(`ArrowUp`)
+  document.dispatchEvent(event)
+}
+
+App.trigger_down_key = () => {
+  let event = App.keyboard_event(`ArrowDown`)
+  document.dispatchEvent(event)
+}
+
+App.trigger_left_key = () => {
+  let event = App.keyboard_event(`ArrowLeft`)
+  document.dispatchEvent(event)
+}
+
+App.trigger_right_key = () => {
+  let event = App.keyboard_event(`ArrowRight`)
   document.dispatchEvent(event)
 }

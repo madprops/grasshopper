@@ -515,6 +515,42 @@ App.setup_commands = () => {
       info: `Trigger the Enter key`,
     },
     {
+      name: `Up Key`,
+      cmd: `trigger_up_key`,
+      icon: keyboard_icon,
+      action: (args) => {
+        App.trigger_up_key()
+      },
+      info: `Trigger the Up key`,
+    },
+    {
+      name: `Down Key`,
+      cmd: `trigger_down_key`,
+      icon: keyboard_icon,
+      action: (args) => {
+        App.trigger_down_key()
+      },
+      info: `Trigger the Down key`,
+    },
+    {
+      name: `Left Key`,
+      cmd: `trigger_left_key`,
+      icon: keyboard_icon,
+      action: (args) => {
+        App.trigger_left_key()
+      },
+      info: `Trigger the Left key`,
+    },
+    {
+      name: `Right Key`,
+      cmd: `trigger_right_key`,
+      icon: keyboard_icon,
+      action: (args) => {
+        App.trigger_right_key()
+      },
+      info: `Trigger the Right key`,
+    },
+    {
       name: `Select All`,
       cmd: `select_all_items`,
       modes: [`items`],
