@@ -1830,6 +1830,10 @@ App.swap_settings = (setting_1, setting_2) => {
   let btn_1 = App[`settings_menubutton_${setting_1}`]
   let btn_2 = App[`settings_menubutton_${setting_2}`]
 
+  if (!btn_1 || !btn_2) {
+    return
+  }
+
   let value_1 = btn_1.value
   let value_2 = btn_2.value
 
