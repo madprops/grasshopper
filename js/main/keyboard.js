@@ -680,3 +680,14 @@ App.double_key_action = (key) => {
 
   App.reset_triggers()
 }
+
+App.trigger_esc_key = () => {
+  let event = new KeyboardEvent(`keydown`, {
+    key: `Escape`,
+    code: `Escape`,
+    bubbles: true,
+    cancelable: true
+  })
+
+  document.dispatchEvent(event)
+}

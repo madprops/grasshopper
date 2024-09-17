@@ -42,6 +42,7 @@ App.setup_commands = () => {
   let rewind_icon = App.rewind_icon
   let new_icon = App.new_icon
   let duplicate_icon = App.duplicate_icon
+  let keyboard_icon = App.keyboard_icon
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -494,6 +495,15 @@ App.setup_commands = () => {
         App.step_back()
       },
       info: `Do the Step Back action. What it does depend on the current state`,
+    },
+    {
+      name: `Esc Key`,
+      cmd: `trigger_esc_key`,
+      icon: keyboard_icon,
+      action: (args) => {
+        App.trigger_esc_key()
+      },
+      info: `Trigger the Esc key`,
     },
     {
       name: `Select All`,
