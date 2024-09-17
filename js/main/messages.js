@@ -13,5 +13,8 @@ App.setup_messages = () => {
         App.check_tab_session([item], true)
       }
     }
+    else if (message.action === `browser_commands`) {
+      console.log(message.number)
+    }
   })
 }

@@ -207,17 +207,6 @@ App.build_settings = () => {
         })
       },
     },
-    custom_urls: {
-      name: `Custom URLs`,
-      type: `list`,
-      value: [
-        {_id_: `store`, name: `Store`, url: `https://addons.mozilla.org/firefox/addon/grasshopper-urls`, icon: `🦊`},
-        {_id_: `repo`, name: `Repo`, url: `https://github.com/madprops/grasshopper`, icon: `🐙`},
-      ],
-      actions: [`commands`],
-      info: `List of URLs that can be used in commands`,
-      version: 1,
-    },
     domain_rules: {
       name: `Domain Rules`,
       type: `list`,
@@ -3135,6 +3124,87 @@ App.build_settings = () => {
   }
 
   add_props()
+  category = `browser`
+
+  props = {
+    custom_urls: {
+      name: `Custom URLs`,
+      type: `list`,
+      value: [
+        {_id_: `store`, name: `Store`, url: `https://addons.mozilla.org/firefox/addon/grasshopper-urls`, icon: `🦊`},
+        {_id_: `repo`, name: `Repo`, url: `https://github.com/madprops/grasshopper`, icon: `🐙`},
+      ],
+      actions: [`commands`],
+      separator: true,
+      info: `List of URLs that can be used in commands`,
+      version: 1,
+    },
+    browser_commands_1: {
+      name: `Browser Commands 1`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when using the browser shortcut`,
+      version: 1,
+    },
+    browser_commands_2: {
+      name: `Browser Commands 2`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when using the browser shortcut`,
+      version: 1,
+    },
+    browser_commands_3: {
+      name: `Browser Commands 3`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when using the browser shortcut`,
+      version: 1,
+    },
+    browser_commands_4: {
+      name: `Browser Commands 4`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when using the browser shortcut`,
+      version: 1,
+    },
+    browser_commands_5: {
+      name: `Browser Commands 5`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when using the browser shortcut`,
+      version: 1,
+    },
+    browser_commands_6: {
+      name: `Browser Commands 6`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when using the browser shortcut`,
+      version: 1,
+    },
+    browser_commands_7: {
+      name: `Browser Commands 7`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when using the browser shortcut`,
+      version: 1,
+    },
+    browser_commands_8: {
+      name: `Browser Commands 8`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when using the browser shortcut`,
+      version: 1,
+    },
+    browser_commands_9: {
+      name: `Browser Commands 9`,
+      type: `list`,
+      value: [],
+      info: `Run these commands when using the browser shortcut`,
+      version: 1,
+    },
+  }
+
+  add_props()
   category = `more`
 
   props = {
@@ -3504,6 +3574,9 @@ App.build_settings = () => {
     },
     auxclick: {
       info: `Run commands when middle clicking various components`,
+    },
+    browser: {
+      info: `Configure Browser related settings`,
     },
     warns: {
       info: `When to show the confirmation dialog on certain actions

@@ -1463,6 +1463,15 @@ App.setup_settings_addlist = () => {
   menukeys = [
     `lock_screen_commands`,
     `unlock_screen_commands`,
+    `browser_commands_1`,
+    `browser_commands_2`,
+    `browser_commands_3`,
+    `browser_commands_4`,
+    `browser_commands_5`,
+    `browser_commands_6`,
+    `browser_commands_7`,
+    `browser_commands_8`,
+    `browser_commands_9`,
   ]
 
   for (let key in App.setting_props) {

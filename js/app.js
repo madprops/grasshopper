@@ -166,6 +166,7 @@ App.settings_icons = {
   title: `✍🏻`,
   footer: `⚽`,
   lock: `🔒`,
+  browser: `🌐`,
 }
 
 App.mode_icons = {
