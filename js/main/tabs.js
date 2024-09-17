@@ -1730,3 +1730,12 @@ App.get_new_tab_args = (item, from, args) => {
 
   return args
 }
+
+App.focus_tab_number = (num) => {
+  let items = App.get_items(`tabs`)
+  let item = items.at(num - 1)
+
+  if (item) {
+    App.tabs_action({item: item})
+  }
+}

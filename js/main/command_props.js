@@ -425,6 +425,20 @@ App.setup_commands = () => {
     })
   }
 
+  let tabnums = []
+
+  for (let i = 1; i <= App.max_tab_num; i++) {
+    tabnums.push({
+      name: `Focus Tab ${i}`,
+      cmd: `focus_tab_${i}`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.focus_tab_number(i)
+      },
+      info: `Focus a tab at the top (${i})`,
+    })
+  }
+
   App.commands = [
     {
       name: `Go To Top`,
@@ -670,6 +684,9 @@ App.setup_commands = () => {
       },
       info: `Go to the last normal tab`,
     },
+
+    ...tabnums,
+
     {
       name: `Edge Up`,
       cmd: `tabs_edge_up`,

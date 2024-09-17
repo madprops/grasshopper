@@ -102,6 +102,7 @@ App.main_title_auto_scroll_direction = `right`
 App.main_title_auto_scroll_pause = 3
 App.main_title_auto_scroll_pauses = 3
 App.main_title_min_overflow = 20
+App.max_tab_num = 10
 
 App.settings_ready = false
 App.media_image_ready = false
