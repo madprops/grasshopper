@@ -691,3 +691,14 @@ App.trigger_esc_key = () => {
 
   document.dispatchEvent(event)
 }
+
+App.trigger_enter_key = () => {
+  let event = new KeyboardEvent(`keydown`, {
+    key: `Enter`,
+    code: `Enter`,
+    bubbles: true,
+    cancelable: true
+  })
+
+  document.dispatchEvent(event)
+}

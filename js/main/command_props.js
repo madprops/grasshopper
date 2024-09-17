@@ -506,6 +506,15 @@ App.setup_commands = () => {
       info: `Trigger the Esc key`,
     },
     {
+      name: `Enter Key`,
+      cmd: `trigger_enter_key`,
+      icon: keyboard_icon,
+      action: (args) => {
+        App.trigger_enter_key()
+      },
+      info: `Trigger the Enter key`,
+    },
+    {
       name: `Select All`,
       cmd: `select_all_items`,
       modes: [`items`],
