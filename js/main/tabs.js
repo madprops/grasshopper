@@ -496,52 +496,16 @@ App.unpin_tabs = (item) => {
 }
 
 App.unload_tabs = (item, multiple = true) => {
-  App.tabchange_control({
-    what: `unload`,
-    item: item,
-    multiple: multiple,
-    warn: `warn_on_unload_tabs`,
-    message: `Unload tabs?`,
-    method: `unload`,
-    action: (items, ids) => {
-      App.do_unload_tabs(ids)
-    },
-  })
-}
-
-App.close_tabs = (item, multiple = true) => {
-  App.tabchange_control({
-    what: `close`,
-    item: item,
-    multiple: multiple,
-    warn: `warn_on_close_tabs`,
-    message: `Close tabs?`,
-    method: `normal`,
-    action: (items, ids) => {
-      App.close_tabs_method(items, true)
-    },
-  })
-}
-
-App.tabchange_control = (args = {}) => {
-  let def_args = {
-    multiple: true,
-  }
-
-  App.def_args(def_args, args)
-
   let items = []
   let active = false
 
-  for (let it of App.get_active_items({mode: `tabs`, item: args.item, multiple: args.multiple})) {
-    if (args.what === `unload`) {
-      if (it.unloaded) {
-        continue
-      }
+  for (let it of App.get_active_items({mode: `tabs`, item: item, multiple: multiple})) {
+    if (it.unloaded) {
+      continue
+    }
 
-      if (App.is_new_tab(it.url)) {
-        continue
-      }
+    if (App.is_new_tab(it.url)) {
+      continue
     }
 
     if (it.active) {
@@ -555,39 +519,61 @@ App.tabchange_control = (args = {}) => {
     return
   }
 
-  let force = App.check_force(args.warn, items)
+  let force = App.check_force(`warn_on_unload_tabs`, items)
   let ids = items.map(x => x.id)
-  let smart_switch = App.get_setting(`smart_tab_switch`)
-
-  if (args.what === `unload`) {
-    smart_switch = true
-  }
 
   App.show_confirm({
-    message: `${args.message} (${ids.length})`,
+    message: `Unload tabs? (${ids.length})`,
     confirm_action: async () => {
-      if (active && smart_switch) {
-        let next
-
-        if (ids.length > 1) {
-          next = App.get_next_item(`tabs`, {mode: `tabs`, no_selected: true, no_unloaded: true})
-        }
-        else {
-          next = App.get_next_item(`tabs`, {mode: `tabs`, no_unloaded: true, item: items[0]})
-        }
-
-        if (next) {
-          await App.focus_tab({item: next, scroll: `nearest`, method: args.method})
-        }
-        else {
-          await App.open_new_tab({url: `about:blank`})
-        }
+      if (active) {
+        await App.tabcontrol_next(items, `unload`)
       }
 
-      args.action(items, ids)
+      App.do_unload_tabs(ids)
     },
     force: force,
   })
+}
+
+App.close_tabs = (item, multiple = true) => {
+  let items = App.get_active_items({mode: `tabs`, item: item, multiple: multiple})
+
+  if (!items.length) {
+    return
+  }
+
+  let force = App.check_force(`warn_on_close_tabs`, items)
+  let smart_switch = App.get_setting(`smart_tab_switch`)
+
+  App.show_confirm({
+    message: `Close tabs? (${items.length})`,
+    confirm_action: async () => {
+      if (smart_switch) {
+        await App.tabcontrol_next(items, `close`)
+      }
+
+      App.close_tabs_method(items, true)
+    },
+    force: force,
+  })
+}
+
+App.tabcontrol_next = async (items, method) => {
+  let next
+
+  if (items.length > 1) {
+    next = App.get_next_item(`tabs`, {mode: `tabs`, no_selected: true, no_unloaded: true})
+  }
+  else {
+    next = App.get_next_item(`tabs`, {mode: `tabs`, no_unloaded: true, item: items[0]})
+  }
+
+  if (next) {
+    await App.focus_tab({item: next, scroll: `nearest`, method: method})
+  }
+  else {
+    await App.open_new_tab({url: `about:blank`})
+  }
 }
 
 App.do_unload_tabs = async (ids) => {
