@@ -1385,8 +1385,8 @@ a:hover
 }
 
 .fav_left .favorites_bar, .fav_right .favorites_bar {
-  padding-top: 0.88rem;
-  padding-bottom: 0.88rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .fav_top .favorites_bar,
