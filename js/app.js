@@ -313,7 +313,7 @@ App.themes = [
     num: 1, opacity: 90,
   },
   {
-    num: 2, opacity: 88,
+    num: 2, opacity: 85,
   },
   {
     num: 3, opacity: 80,
