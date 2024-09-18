@@ -3047,7 +3047,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_breathe_effect()
       },
-      info: `Let me breathe`,
+      info: `Let the grasshopper breathe`,
     },
     {
       name: `Restart`,

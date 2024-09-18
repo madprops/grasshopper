@@ -81,7 +81,7 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `show_signals`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `locust_swarm`, middle: `generate_password`}
+  cmd = {cmd: `locust_swarm`, middle: `breathe_effect`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `set_random_dark_colors`, middle: `set_random_light_colors`}
