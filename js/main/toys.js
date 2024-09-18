@@ -21,6 +21,7 @@ App.locust_swarm = () => {
   let columns = Math.floor(width / 20) + 1
   let y_position = Array(columns).fill(0)
   let chars = [`🦗`, `🌿`]
+  let delay = 50
 
   function random_char() {
     return chars[Math.floor(Math.random() * chars.length)]
@@ -46,8 +47,13 @@ App.locust_swarm = () => {
     }
   }
 
+  if (!delay || (delay < 1)) {
+    App.error(`Locust Swarm delay is invalid`)
+    return
+  }
+
   App.locust_swarm_on = true
-  App.locust_swarm_interval = setInterval(matrix, 50)
+  App.locust_swarm_interval = setInterval(matrix, delay)
 }
 
 App.stop_locust_swarm = () => {

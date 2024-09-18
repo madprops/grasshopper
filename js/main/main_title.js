@@ -27,9 +27,16 @@ App.start_main_title = () => {
 
   // Auto Scroll
 
+  delay = App.main_title_auto_scroll_delay
+
+  if (!delay || (delay < 1)) {
+    App.error(`Title auto-scroll delay is invalid`)
+    return
+  }
+
   setInterval(() => {
     App.main_title_auto_scroll()
-  }, App.main_title_auto_scroll_delay)
+  }, delay)
 }
 
 App.create_main_title = (mode) => {
