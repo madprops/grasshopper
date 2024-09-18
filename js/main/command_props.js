@@ -3041,13 +3041,13 @@ App.setup_commands = () => {
       info: `Decimate the crops`,
     },
     {
-      name: `Breath Effect`,
-      cmd: `breath_effect`,
+      name: `Breathe`,
+      cmd: `breathe_effect`,
       icon: tree_icon,
       action: (args) => {
-        App.toggle_breath_effect()
+        App.toggle_breathe_effect()
       },
-      info: `Let the extension breath`,
+      info: `Let me breathe`,
     },
     {
       name: `Restart`,

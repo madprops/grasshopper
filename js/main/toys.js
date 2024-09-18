@@ -62,7 +62,7 @@ App.stop_locust_swarm = () => {
 }
 
 
-App.toggle_breath_effect = () => {
-  App.breath_effect_on = !App.breath_effect_on
+App.toggle_breathe_effect = () => {
+  App.breathe_effect_on = !App.breathe_effect_on
   App.apply_theme()
 }
