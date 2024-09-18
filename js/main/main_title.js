@@ -348,6 +348,7 @@ App.toggle_main_title = () => {
   let new_value = !App.get_setting(`show_main_title`)
   App.set_setting({setting: `show_main_title`, value: new_value, action: true})
   App.refresh_main_title()
+  App.apply_theme()
 }
 
 App.refresh_main_title = () => {
@@ -359,8 +360,6 @@ App.refresh_main_title = () => {
       DOM.hide(el)
     }
   }
-
-  App.apply_theme()
 }
 
 App.scroll_main_title = (dir, manual = true) => {
