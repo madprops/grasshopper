@@ -121,7 +121,7 @@ App.check_items_keyboard = (e) => {
     }
 
     if (!isNaN(e.key)) {
-      App.pick_active_trace(parseInt(e.key))
+      App.on_number_key(e.key)
       e.preventDefault()
       return
     }
@@ -718,4 +718,16 @@ App.trigger_left_key = () => {
 App.trigger_right_key = () => {
   let event = App.keyboard_event(`ArrowRight`)
   document.dispatchEvent(event)
+}
+
+App.on_number_key = (key) => {
+  let num = parseInt(key)
+  let active = App.get_setting(`active_trace`)
+
+  if (active) {
+    App.pick_active_trace(num)
+  }
+  else {
+    App.focus_tab_number(num)
+  }
 }
