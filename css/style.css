@@ -50,6 +50,15 @@
   }
 }
 
+@keyframes breathe {
+  0%, 20%, 80%, 100% {
+    letter-spacing: normal;
+  }
+  50% {
+    letter-spacing: 5px;
+  }
+}
+
 body,
 html
 {
@@ -485,15 +494,6 @@ svg {
   flex-grow: 1;
   flex-shrink: 1;
   overflow: hidden;
-}
-
-@keyframes breathe {
-  0%, 20%, 80%, 100% {
-    letter-spacing: normal;
-  }
-  50% {
-    letter-spacing: 5px;
-  }
 }
 
 .item_text {
