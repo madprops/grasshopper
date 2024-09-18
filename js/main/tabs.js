@@ -316,16 +316,33 @@ App.tabs_action = async (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  let no_blink = [`click`, `enter`, `tab_cmd`, `jump_fast`]
+  let no_blink = [`click`, `enter`, `tab_cmd`]
+  let items = App.get_items(`tabs`)
+  let selected = items.filter(x => x.selected)
+  let index_1 = 0
+
+  if (selected.length) {
+    index_1 = items.indexOf(selected[0])
+  }
+
+  let index_2 = items.indexOf(args.item)
+  let index_diff = Math.abs(index_1 - index_2)
 
   function blink(it) {
+    if (!App.get_setting(`tab_blink`)) {
+      return
+    }
+
     if (no_blink.includes(args.from)) {
       return
     }
 
-    if (App.get_setting(`tab_blink`)) {
-      App.blink_item(it)
+    // Don't blink if the items are next to each other
+    if (index_diff <= 1) {
+      return
     }
+
+    App.blink_item(it)
   }
 
   if (args.from === `tab_box`) {
