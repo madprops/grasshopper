@@ -65,9 +65,9 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `double_click_favorites_top`, value: `toggle_taglist`})
   App.set_setting({setting: `middle_click_favorites_top`, value: `toggle_pin_tabs`})
-  App.set_setting({setting: `favorites_menu`, value: []})
 
   sett = `favorites_menu`
+  App.set_setting({setting: sett, value: []})
 
   cmd = {cmd: `send_signal_sig_play`, middle: `send_signal_sig_np`}
   App.append_list_setting(sett, cmd)
