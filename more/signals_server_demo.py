@@ -31,14 +31,17 @@ debug = False
 player = ["playerctl", "-p", "audacious"]
 
 # Delay to wait for metadata to update
-metadata_delay = "0.2"
+metadata_delay = "0.18"
 
 
 # ----------
 
-
 def run(args):
     subprocess.run(args)
+
+
+def sleep(secs):
+    run(["sleep", secs])
 
 
 def output(args):
@@ -98,13 +101,14 @@ def music_play():
 @app.route("/music-next", methods=["POST"])
 def music_next():
     music("next")
-    run(["sleep", metadata_delay])
+    sleep(metadata_delay)
     return metadata()
 
 
 @app.route("/music-prev", methods=["POST"])
 def music_prev():
-    run(["sleep", metadata_delay])
+    music("previous")
+    sleep(metadata_delay)
     return metadata()
 
 
