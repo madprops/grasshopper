@@ -10,9 +10,8 @@ App.setup_commands = () => {
   let header_icon = App.get_setting(`header_icon`) || App.zone_icon
   let subheader_icon = App.get_setting(`subheader_icon`) || App.zone_icon
   let image_icon = App.get_setting(`image_icon`) || App.settings_icons.media
-  let time_icon = App.time_icon
+
   let title_icon = App.settings_icons.title
-  let command_icon = App.command_icon
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
   let filter_icon = App.settings_icons.filter
@@ -20,6 +19,10 @@ App.setup_commands = () => {
   let tab_box_icon = App.settings_icons.tab_box
   let colors_icon = App.settings_icons.colors
   let favorites_icon = App.settings_icons.favorites
+  let combo_icon = App.settings_icons.combos
+
+  let time_icon = App.time_icon
+  let command_icon = App.command_icon
   let tabs_icon =  App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
   let closed_icon = App.mode_icons.closed
@@ -44,6 +47,7 @@ App.setup_commands = () => {
   let duplicate_icon = App.duplicate_icon
   let keyboard_icon = App.keyboard_icon
   let tree_icon = App.tree_icon
+
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -440,6 +444,20 @@ App.setup_commands = () => {
     })
   }
 
+  let cmd_combos = []
+
+  for (let i = 1; i <= App.num_command_combos; i++) {
+    cmd_combos.push({
+      name: `Command Combo ${i}`,
+      cmd: `run_command_combo_${i}`,
+      icon: combo_icon,
+      action: (args) => {
+        App.run_command_combo(i)
+      },
+      info: `Run command combo (${i})`,
+    })
+  }
+
   App.commands = [
     {
       name: `Go To Top`,
@@ -687,6 +705,8 @@ App.setup_commands = () => {
     },
 
     ...tabnums,
+
+    ...cmd_combos,
 
     {
       name: `Edge Up`,

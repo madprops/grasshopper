@@ -591,3 +591,7 @@ App.run_command_list = async (setting) => {
     await App.sleep(App.command_list_delay)
   }
 }
+
+App.run_command_combo = (num) => {
+  App.run_command_list(`command_combo_${num}`)
+}

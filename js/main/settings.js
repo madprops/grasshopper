@@ -1477,6 +1477,10 @@ App.setup_settings_addlist = () => {
     `unlock_screen_commands`,
   ]
 
+  for (let i = 1; i <= App.num_command_combos; i++) {
+    menukeys.push(`command_combo_${i}`)
+  }
+
   for (let key in App.setting_props) {
     if (menukeys.includes(key)) {
       let id = `settings_${key}`
@@ -1881,4 +1885,44 @@ App.setting_steps = (min, max, step) => {
 
 App.settings_cmdlist_single = (key) => {
   return App.settings_make_menu(key, App.cmdlist_single)
+}
+
+App.settings_command_combos = () => {
+  let props = {}
+
+  for (let i = 1; i <= App.num_command_combos; i++) {
+    let name = `command_combo_${i}`
+
+    props[name] = {
+      name: `Command Combo ${i}`,
+      type: `list`,
+      actions: [`commands`],
+      value: [],
+      info: `These commands run together with a small delay between them (${i})`,
+      version: 1,
+    }
+  }
+
+  return props
+}
+
+App.setting_browser_commands = () => {
+  let props = {}
+
+  for (let i = 1; i <= App.num_command_combos; i++) {
+    let name = `browser_command_${i}`
+
+    props[name] = {
+      name: `Browser Command ${i}`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut (${i})`,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+      version: 1,
+    }
+  }
+
+  return props
 }

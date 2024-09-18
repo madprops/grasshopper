@@ -147,6 +147,7 @@ App.check_main_title_date_delay = App.SECOND * 10
 App.check_refresh_settings_delay = 100
 App.main_title_auto_scroll_delay = 350
 App.command_list_delay = 100
+App.num_command_combos = 10
 
 App.settings_icons = {
   general: `⚡`,
@@ -171,6 +172,7 @@ App.settings_icons = {
   footer: `⚽`,
   lock: `🔒`,
   browser: `🌐`,
+  combos: `🍔`,
 }
 
 App.mode_icons = {

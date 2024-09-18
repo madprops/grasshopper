@@ -3133,110 +3133,12 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `browser`
+  category = `combos`
+  props = App.settings_command_combos()
 
-  props = {
-    browser_command_1: {
-      name: `Browser Command 1`,
-      type: `menu`,
-      value: `none`,
-      info: `Run this command when using the browser shortcut (1)`,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-      version: 1,
-    },
-    browser_command_2: {
-      name: `Browser Command 2`,
-      type: `menu`,
-      value: `none`,
-      info: `Run this command when using the browser shortcut (2)`,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-      version: 1,
-    },
-    browser_command_3: {
-      name: `Browser Command 3`,
-      type: `menu`,
-      value: `none`,
-      info: `Run this command when using the browser shortcut (3)`,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-      version: 1,
-    },
-    browser_command_4: {
-      name: `Browser Command 4`,
-      type: `menu`,
-      value: `none`,
-      info: `Run this command when using the browser shortcut (4)`,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-      version: 1,
-    },
-    browser_command_5: {
-      name: `Browser Command 5`,
-      type: `menu`,
-      value: `none`,
-      info: `Run this command when using the browser shortcut (5)`,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-      version: 1,
-    },
-    browser_command_6: {
-      name: `Browser Command 6`,
-      type: `menu`,
-      value: `none`,
-      info: `Run this command when using the browser shortcut (6)`,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-      version: 1,
-    },
-    browser_command_7: {
-      name: `Browser Command 7`,
-      type: `menu`,
-      value: `none`,
-      info: `Run this command when using the browser shortcut (7)`,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-      version: 1,
-    },
-    browser_command_8: {
-      name: `Browser Command 8`,
-      type: `menu`,
-      value: `none`,
-      info: `Run this command when using the browser shortcut (8)`,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-      version: 1,
-    },
-    browser_command_9: {
-      name: `Browser Command 9`,
-      type: `menu`,
-      value: `none`,
-      info: `Run this command when using the browser shortcut (9)`,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-      version: 1,
-    },
-    browser_command_10: {
-      name: `Browser Command 10`,
-      type: `menu`,
-      value: `none`,
-      info: `Run this command when using the browser shortcut (10)`,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-      version: 1,
-    },
-  }
+  add_props()
+  category = `browser`
+  props = App.setting_browser_commands()
 
   add_props()
   category = `more`
@@ -3621,6 +3523,9 @@ App.build_settings = () => {
     },
     lock: {
       info: `Configure the Lock Screen`,
+    },
+    combos: {
+      info: `Define command combos`,
     },
     more: {
       info: `Even more settings`,
