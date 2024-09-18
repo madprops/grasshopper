@@ -337,7 +337,7 @@ App.tabs_action = async (args = {}) => {
       return
     }
 
-    // Don't blink if the items are next to each other
+    // Don't blink if the items are close to each other
     if (index_diff <= App.tab_blink_diff) {
       return
     }
