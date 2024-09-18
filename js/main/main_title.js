@@ -27,7 +27,7 @@ App.start_main_title = () => {
 
   // Auto Scroll
 
-  delay = App.main_title_auto_scroll_delay
+  delay = App.main_title_scroll_delay
 
   if (!delay || (delay < 1)) {
     App.error(`Title auto-scroll delay is invalid`)
@@ -118,8 +118,8 @@ App.set_main_title_text = (text) => {
 }
 
 App.fill_main_title_pauses = () => {
-  let pauses = App.main_title_auto_scroll_pauses
-  App.main_title_auto_scroll_pause = pauses
+  let pauses = App.main_title_scroll_pauses
+  App.main_title_scroll_pause = pauses
 }
 
 App.update_main_title_tooltips = (el) => {
@@ -391,14 +391,14 @@ App.main_title_auto_scroll = () => {
     return
   }
 
-  if (App.main_title_auto_scroll_pause > 0) {
-    App.main_title_auto_scroll_pause -= 1
+  if (App.main_title_scroll_pause > 0) {
+    App.main_title_scroll_pause -= 1
     return
   }
 
   let mode = App.active_mode
   let el = DOM.el(`#main_title_inner_${mode}`)
-  let dir = App.main_title_auto_scroll_direction
+  let dir = App.main_title_scroll_direction
   let overflow = el.scrollWidth - el.clientWidth
 
   if (overflow < App.main_title_min_overflow) {
@@ -423,7 +423,7 @@ App.main_title_auto_scroll = () => {
 }
 
 App.main_title_set_dir = (dir) => {
-  App.main_title_auto_scroll_direction = dir
+  App.main_title_scroll_direction = dir
 }
 
 App.main_title_left = (el) => {

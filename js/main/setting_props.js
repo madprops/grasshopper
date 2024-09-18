@@ -3525,7 +3525,9 @@ App.build_settings = () => {
       info: `Configure the Lock Screen`,
     },
     combos: {
-      info: `Define command combos`,
+      info: `Command Combos are lists of commands
+      Each command in a list is executed with a small delay in between
+      You can use these like other normal commands`,
     },
     more: {
       info: `Even more settings`,
