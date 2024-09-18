@@ -722,6 +722,11 @@ App.trigger_right_key = () => {
 
 App.on_number_key = (key) => {
   let num = parseInt(key)
+
+  if (num === 0) {
+    num = 10
+  }
+
   let active = App.get_setting(`active_trace`)
 
   if (active) {
