@@ -185,26 +185,24 @@ App.build_settings = () => {
       name: `Popup Width`,
       type: `menu`,
       value: 75,
+      actions: [`theme`],
       info: `Width of the popup
       It doesn't affect the sidebar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.get_size_options(), () => {
-          App.apply_theme()
-        })
+        App.settings_make_menu(key, App.get_size_options())
       },
     },
     height: {
       name: `Popup Height`,
       type: `menu`,
       value: 85,
+      actions: [`theme`],
       info: `Height of the popup
       It doesn't affect the sidebar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.get_size_options(), () => {
-          App.apply_theme()
-        })
+        App.settings_make_menu(key, App.get_size_options())
       },
     },
     bookmarks_folder: {
@@ -361,9 +359,7 @@ App.build_settings = () => {
       info: `The effect on the background image`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.background_effects, () => {
-          App.apply_theme()
-        })
+        App.settings_make_menu(key, App.background_effects)
       },
     },
     background_tiles: {
@@ -387,22 +383,21 @@ App.build_settings = () => {
           {text: `400px`, value: `400px`},
           {text: `450px`, value: `450px`},
           {text: `500px`, value: `500px`},
-        ], () => {
-          App.apply_theme()
-        })
+        ])
       },
     },
     background_opacity: {
       name: `Background Opacity`,
-      type: `number`,
+      type: `menu`,
       value: 90,
       actions: [`theme`],
       placeholder: `Opacity`,
-      min: 0,
-      max: 100,
       info: `The lower the number, the more the background image is shown`,
       separator: true,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(0, 100, 5))
+      },
     },
     font: {
       name: `Font`,
@@ -422,16 +417,17 @@ App.build_settings = () => {
     },
     font_size: {
       name: `Font Size`,
-      type: `number`,
+      type: `menu`,
       value: App.default_font_size,
       actions: [`theme`],
       placeholder: `Px`,
-      min: 6,
-      max: 28,
       info: `The font size in pixels to use for text
       The interface scales accordingly`,
       separator: true,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(6, 28, 1))
+      },
     },
     custom_css: {
       name: `Custom CSS`,

@@ -1868,3 +1868,13 @@ App.swap_settings = (setting_1, setting_2) => {
   btn_1.set(value_2)
   btn_2.set(value_1)
 }
+
+App.setting_steps = (min, max, step) => {
+  let items = []
+
+  for (let i = min; i <= max; i += step) {
+    items.push({value: i, text: `${i}`})
+  }
+
+  return items
+}

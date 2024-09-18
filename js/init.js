@@ -45,6 +45,7 @@ App.init = async () => {
   App.start_main_title()
   App.main_title_signal()
   App.start_date = App.now()
+  App.number_steps(0, 100, 10)
 }
 
 App.init()
