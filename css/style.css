@@ -488,17 +488,11 @@ svg {
 }
 
 @keyframes breath {
-  0% {
-    letter-spacing: 3px;
-  }
-  33.33% {
+  0%, 20%, 80%, 100% {
     letter-spacing: normal;
   }
-  66.66% {
-    letter-spacing: normal;
-  }
-  100% {
-    letter-spacing: 3px;
+  50% {
+    letter-spacing: 5px;
   }
 }
 
@@ -511,7 +505,7 @@ svg {
 }
 
 .breath_effect .item_text {
-  animation: breath 3s infinite alternate;
+  animation: breath 3s infinite linear;
 }
 
 .no_wrap .item_text_line {
