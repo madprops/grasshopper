@@ -40,12 +40,16 @@ def run(args):
     subprocess.run(args)
 
 
-def sleep(secs):
-    run(["sleep", secs])
-
-
 def output(args):
     return subprocess.run(args, capture_output=True)
+
+
+def get_arg(name):
+    return request.json.get(name)
+
+
+def sleep(secs):
+    run(["sleep", secs])
 
 
 def music(what):
@@ -143,7 +147,7 @@ def music_np():
 
 @app.route("/post-test", methods=["POST"])
 def post_test():
-    num = request.json.get("num")
+    num = get_arg("num")
     return f"You sent {num}"
 
 
