@@ -1602,13 +1602,14 @@ App.build_settings = () => {
     },
     main_title_font_size: {
       name: `Title Font Size`,
-      type: `number`,
+      type: `menu`,
       value: App.default_font_size,
       placeholder: `Px`,
-      min: 6,
-      max: 28,
       info: `Font size for the Title`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(6, 28, 1))
+      },
     },
     main_title_auto_scroll: {
       name: `Title Auto Scroll`,
@@ -2192,13 +2193,14 @@ App.build_settings = () => {
     },
     split_width: {
       name: `Split Width`,
-      type: `number`,
+      type: `menu`,
       value: 2,
       placeholder: `Number`,
-      min: 1,
-      max: 99,
       info: `The width of the split borders`,
       version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(1, 20, 1))
+      },
     },
     header_action: {
       name: `Header Action`,
