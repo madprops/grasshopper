@@ -1878,3 +1878,7 @@ App.setting_steps = (min, max, step) => {
 
   return items
 }
+
+App.settings_cmdlist_single = (key) => {
+  return App.settings_make_menu(key, App.cmdlist_single)
+}

@@ -1197,7 +1197,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_up_footer: {
@@ -1207,7 +1207,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel up on the Footer`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_down_footer: {
@@ -1217,7 +1217,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel down on the Footer`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_up_shift_footer: {
@@ -1227,7 +1227,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel up on the Footer while holding Shift`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_down_shift_footer: {
@@ -1238,7 +1238,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     show_footer_count: {
@@ -1324,7 +1324,7 @@ App.build_settings = () => {
       info: `Command to run when double clicking the top empty area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_favorites_top: {
@@ -1334,7 +1334,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the top empty area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_up_favorites_top: {
@@ -1344,7 +1344,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel up on the top empty area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_down_favorites_top: {
@@ -1354,7 +1354,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel down on the top empty area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_up_shift_favorites_top: {
@@ -1364,7 +1364,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel up on the top area of the Favorites Bar while holding Shift`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_down_shift_favorites_top: {
@@ -1375,7 +1375,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_up_favorites_center: {
@@ -1385,7 +1385,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel up on the center area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_down_favorites_center: {
@@ -1395,7 +1395,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel down on the center area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_up_shift_favorites_center: {
@@ -1405,7 +1405,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel up on the center area of the Favorites Bar while holding Shift`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_down_shift_favorites_center: {
@@ -1416,7 +1416,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     double_click_favorites_bottom: {
@@ -1426,7 +1426,7 @@ App.build_settings = () => {
       info: `Command to run when double clicking the bottom empty area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_favorites_bottom: {
@@ -1436,7 +1436,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the bottom empty area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_up_favorites_bottom: {
@@ -1446,7 +1446,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel up on the bottom empty area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_down_favorites_bottom: {
@@ -1456,7 +1456,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel down on the bottom empty area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_up_shift_favorites_bottom: {
@@ -1466,7 +1466,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel up on the bottom area of the Favorites Bar while holding Shift`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_down_shift_favorites_bottom: {
@@ -1477,7 +1477,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_favorites_button: {
@@ -1487,7 +1487,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the Favorites Button`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     favorites_gravity: {
@@ -1567,7 +1567,7 @@ App.build_settings = () => {
       info: `Command to run when clicking the Title`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     double_click_main_title: {
@@ -1577,7 +1577,7 @@ App.build_settings = () => {
       info: `Command to run when double clicking the Title`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_main_title: {
@@ -1587,7 +1587,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the Title`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     main_title_align: {
@@ -1677,7 +1677,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel up on the Title`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_down_main_title: {
@@ -1687,7 +1687,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel down on the Title`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_up_shift_main_title: {
@@ -1697,7 +1697,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel up on the Title while holding Shift`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_down_shift_main_title: {
@@ -1708,7 +1708,7 @@ App.build_settings = () => {
       info: `Command to run when using the mousewheel down on the Title while holding Shift`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     main_title_signal: {
@@ -1839,7 +1839,7 @@ App.build_settings = () => {
       info: `Up gesture`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     gesture_down: {
@@ -1849,7 +1849,7 @@ App.build_settings = () => {
       info: `Down gesture`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     gesture_left: {
@@ -1859,7 +1859,7 @@ App.build_settings = () => {
       info: `Left gesture`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     gesture_right: {
@@ -1869,7 +1869,7 @@ App.build_settings = () => {
       info: `Right gesture`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     gesture_up_and_down: {
@@ -1879,7 +1879,7 @@ App.build_settings = () => {
       info: `Up and Down gesture`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     gesture_left_and_right: {
@@ -1889,7 +1889,7 @@ App.build_settings = () => {
       info: `Left and Right gesture`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
   }
@@ -1905,7 +1905,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking tab items`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_history: {
@@ -1915,7 +1915,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking history items`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_bookmarks: {
@@ -1925,7 +1925,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking bookmark items`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_closed: {
@@ -1936,7 +1936,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_main_menu: {
@@ -1946,7 +1946,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the Main Menu`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_filter_menu: {
@@ -1956,7 +1956,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the Filter Menu`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_playing: {
@@ -1966,7 +1966,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the Playing Button`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_step_back: {
@@ -1976,7 +1976,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the Step Back Button`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_actions_menu: {
@@ -1987,7 +1987,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_pinline: {
@@ -1997,7 +1997,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the Pinline`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_hover_button: {
@@ -2007,7 +2007,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the Hover Button`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_close_button: {
@@ -2017,7 +2017,7 @@ App.build_settings = () => {
       info: `Command to run when middle clicking the Close Button`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
   }
@@ -2735,7 +2735,7 @@ App.build_settings = () => {
       info: `What command to run when double clicking the text filter`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     sticky_filter: {
@@ -2939,7 +2939,7 @@ App.build_settings = () => {
       info: `What command to run when double clicking an item`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     left_click_press_item: {
@@ -2949,7 +2949,7 @@ App.build_settings = () => {
       info: `What command to run when pressing the left mouse button on an item for a short time`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     middle_click_press_item: {
@@ -2959,7 +2959,7 @@ App.build_settings = () => {
       info: `What command to run when pressing the middle mouse button on an item for a short time`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     double_click_empty: {
@@ -2970,7 +2970,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     double_ctrl_command: {
@@ -2980,7 +2980,7 @@ App.build_settings = () => {
       info: `What command to run when pressing Ctrl twice quickly`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     double_shift_command: {
@@ -2990,7 +2990,7 @@ App.build_settings = () => {
       info: `What command to run when pressing Shift twice quickly`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     ctrl_press_command: {
@@ -3000,7 +3000,7 @@ App.build_settings = () => {
       info: `What command to run when pressing and holding Ctrl for a short time`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     shift_press_command: {
@@ -3011,7 +3011,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_up_shift_items: {
@@ -3021,7 +3021,7 @@ App.build_settings = () => {
       info: `What to do when scrolling the mousewheel up on items while holding Shift`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_down_shift_items: {
@@ -3031,7 +3031,7 @@ App.build_settings = () => {
       info: `What to do when scrolling the mousewheel down on items while holding Shift`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
     },
     wheel_hover_item: {
@@ -3140,7 +3140,7 @@ App.build_settings = () => {
       value: `none`,
       info: `Run this command when using the browser shortcut (1)`,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
       version: 1,
     },
@@ -3150,7 +3150,7 @@ App.build_settings = () => {
       value: `none`,
       info: `Run this command when using the browser shortcut (2)`,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
       version: 1,
     },
@@ -3160,7 +3160,7 @@ App.build_settings = () => {
       value: `none`,
       info: `Run this command when using the browser shortcut (3)`,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
       version: 1,
     },
@@ -3170,7 +3170,7 @@ App.build_settings = () => {
       value: `none`,
       info: `Run this command when using the browser shortcut (4)`,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
       version: 1,
     },
@@ -3180,7 +3180,7 @@ App.build_settings = () => {
       value: `none`,
       info: `Run this command when using the browser shortcut (5)`,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
       version: 1,
     },
@@ -3190,7 +3190,7 @@ App.build_settings = () => {
       value: `none`,
       info: `Run this command when using the browser shortcut (6)`,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
       version: 1,
     },
@@ -3200,7 +3200,7 @@ App.build_settings = () => {
       value: `none`,
       info: `Run this command when using the browser shortcut (7)`,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
       version: 1,
     },
@@ -3210,7 +3210,7 @@ App.build_settings = () => {
       value: `none`,
       info: `Run this command when using the browser shortcut (8)`,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
       version: 1,
     },
@@ -3220,7 +3220,7 @@ App.build_settings = () => {
       value: `none`,
       info: `Run this command when using the browser shortcut (9)`,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
       version: 1,
     },
@@ -3230,7 +3230,7 @@ App.build_settings = () => {
       value: `none`,
       info: `Run this command when using the browser shortcut (10)`,
       setup: (key) => {
-        App.settings_make_menu(key, App.cmdlist_single)
+        App.settings_cmdlist_single(key)
       },
       version: 1,
     },
