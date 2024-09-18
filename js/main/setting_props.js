@@ -207,6 +207,26 @@ App.build_settings = () => {
         })
       },
     },
+    bookmarks_folder: {
+      name: `Bookmarks Folder`,
+      type: `text`,
+      value: `Grasshopper`,
+      placeholder: `Folder Name`,
+      no_empty: true,
+      info: `Where to save bookmarks`,
+      version: 1,
+    },
+    custom_urls: {
+      name: `Custom URLs`,
+      type: `list`,
+      value: [
+        {_id_: `store`, name: `Store`, url: `https://addons.mozilla.org/firefox/addon/grasshopper-urls`, icon: `🦊`},
+        {_id_: `repo`, name: `Repo`, url: `https://github.com/madprops/grasshopper`, icon: `🐙`},
+      ],
+      actions: [`commands`],
+      info: `List of URLs that can be used in commands`,
+      version: 1,
+    },
     domain_rules: {
       name: `Domain Rules`,
       type: `list`,
@@ -3118,27 +3138,6 @@ App.build_settings = () => {
   category = `browser`
 
   props = {
-    bookmarks_folder: {
-      name: `Bookmarks Folder`,
-      type: `text`,
-      value: `Grasshopper`,
-      placeholder: `Folder Name`,
-      no_empty: true,
-      info: `Where to save bookmarks`,
-      version: 1,
-    },
-    custom_urls: {
-      name: `Custom URLs`,
-      type: `list`,
-      value: [
-        {_id_: `store`, name: `Store`, url: `https://addons.mozilla.org/firefox/addon/grasshopper-urls`, icon: `🦊`},
-        {_id_: `repo`, name: `Repo`, url: `https://github.com/madprops/grasshopper`, icon: `🐙`},
-      ],
-      actions: [`commands`],
-      separator: true,
-      info: `List of URLs that can be used in commands`,
-      version: 1,
-    },
     browser_command_1: {
       name: `Browser Command 1`,
       type: `menu`,
@@ -3613,8 +3612,7 @@ App.build_settings = () => {
       info: `Run commands when middle clicking various components`,
     },
     browser: {
-      info: `Configure Browser related settings
-      Browser Commands are shortcuts that you configure on the browser
+      info: `Browser Commands are shortcuts that you configure on the browser
       Click 'Manage Extension', then click the cog on the top right
       Then click 'Manage Extension Shortcuts' and add the shortcuts you need`
     },
