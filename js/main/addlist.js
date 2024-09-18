@@ -1,6 +1,10 @@
 const Addlist = {}
 Addlist.fill_id = 1
 
+Addlist.check_append = () => {
+  return App.get_setting(`addlist_append`)
+}
+
 Addlist.values = (id) => {
   let data = Addlist.data
   let oargs = Addlist.oargs(id)
@@ -77,7 +81,7 @@ Addlist.save = (id, hide = true) => {
   }
 
   if (data.index === undefined) {
-    if (oargs.append) {
+    if (Addlist.check_append()) {
       lines.push(values)
     }
     else {
@@ -101,7 +105,6 @@ Addlist.register = (args = {}) => {
   let def_args = {
     pk: `_id_`,
     sources: {},
-    append: true,
     process: {},
     labels: {},
     widgets: {},

@@ -103,7 +103,8 @@ App.close_tabs_popup = (type, item) => {
     DOM.el(`#close_tabs_include_pins`).checked = true
   }
   else {
-    DOM.el(`#close_tabs_include_pins`).checked = false
+    let force = App.get_setting(`tab_close_pins`)
+    DOM.el(`#close_tabs_include_pins`).checked = force
   }
 
   if (no_normal.includes(type)) {
@@ -125,7 +126,8 @@ App.close_tabs_popup = (type, item) => {
     DOM.el(`#close_tabs_include_unloaded`).checked = true
   }
   else {
-    DOM.el(`#close_tabs_include_unloaded`).checked = false
+    let force = App.get_setting(`tab_close_unloaded`)
+    DOM.el(`#close_tabs_include_unloaded`).checked = force
   }
 
   App.update_close_tabs_popup_button(type)

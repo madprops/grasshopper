@@ -3301,6 +3301,13 @@ App.build_settings = () => {
       info: `Pick the next normal loaded tab when closing the active tab instead of letting the browser decide`,
       version: 1,
     },
+    addlist_append: {
+      name: `Append To Lists`,
+      type: `checkbox`,
+      value: true,
+      info: `When adding items to settings lists, append at the bottom instead of prepending at the top`,
+      version: 1,
+    },
     autohide_context: {
       name: `Autohide Context`,
       type: `checkbox`,
@@ -3385,6 +3392,20 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Show an alert popup on signal errors`,
+      version: 1,
+    },
+    tab_close_pins: {
+      name: `Tab Close Pins`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-pick 'Pins' when on the Close Tab Dialog`,
+      version: 1,
+    },
+    tab_close_unloaded: {
+      name: `Tab Close Unloaded`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-pick 'Unloaded' when on the Close Tab Dialog`,
       version: 1,
     },
     debug_mode: {
