@@ -30,6 +30,9 @@ debug = False
 # Your music player
 player = ["playerctl", "-p", "audacious"]
 
+# Delay to wait for metadata to update
+metadata_delay = "0.2"
+
 
 # ----------
 
@@ -95,12 +98,13 @@ def music_play():
 @app.route("/music-next", methods=["POST"])
 def music_next():
     music("next")
+    run(["sleep", metadata_delay])
     return metadata()
 
 
 @app.route("/music-prev", methods=["POST"])
 def music_prev():
-    music("previous")
+    run(["sleep", metadata_delay])
     return metadata()
 
 
