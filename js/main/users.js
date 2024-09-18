@@ -84,7 +84,7 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `locust_swarm`, middle: `breathe_effect`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `set_random_dark_colors`, middle: `set_random_light_colors`}
+  cmd = {cmd: `set_random_dark_colors`, middle: `set_random_light_colors`, shift: `set_next_theme`, ctrl: `set_previous_theme`, alt: `settings_category_theme`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `show_settings`}
