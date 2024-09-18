@@ -3109,19 +3109,25 @@ App.build_settings = () => {
       info: `Image to use for the lock screen`,
       version: 1,
     },
-    lock_screen_commands: {
+    lock_screen_command: {
       name: `On Lock Screen`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when locking the screen`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when locking the screen`,
       version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
     },
-    unlock_screen_commands: {
+    unlock_screen_command: {
       name: `On Unlock Screen`,
-      type: `list`,
-      value: [],
-      info: `Run these commands when unlocking the screen`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when unlocking the screen`,
       version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
     },
     empty_lock_screen: {
       name: `Empty Lock Screen`,

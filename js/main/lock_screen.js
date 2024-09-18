@@ -12,14 +12,16 @@ App.start_lock_screen = () => {
         App.unlock_screen()
       })
     },
-    after_show: async () => {
+    after_show: () => {
       App.screen_locked = true
-      App.run_command_list(`lock_screen_commands`)
+      let cmd = App.get_setting(`lock_screen_command`)
+      App.run_command({cmd: cmd, from: `lock_screen`})
     },
-    after_hide: async () => {
+    after_hide: () => {
       App.screen_locked = false
       App.main_title_signal()
-      App.run_command_list(`unlock_screen_commands`)
+      let cmd = App.get_setting(`unlock_screen_command`)
+      App.run_command({cmd: cmd, from: `lock_screen`})
     },
     colored_top: true,
   })

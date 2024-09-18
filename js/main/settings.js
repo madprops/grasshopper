@@ -1472,10 +1472,7 @@ App.setup_settings_addlist = () => {
     }
   }
 
-  menukeys = [
-    `lock_screen_commands`,
-    `unlock_screen_commands`,
-  ]
+  menukeys = []
 
   for (let i = 1; i <= App.num_command_combos; i++) {
     menukeys.push(`command_combo_${i}`)
