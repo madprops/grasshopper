@@ -3526,8 +3526,8 @@ App.build_settings = () => {
     },
     combos: {
       info: `Command Combos are lists of commands
-      Each command in a list is executed with a small delay in between
-      You can use these like other normal commands`,
+      Each command in a list is ran with a small delay in between
+      You can use these like other normal commands and assign them`,
     },
     more: {
       info: `Even more settings`,
