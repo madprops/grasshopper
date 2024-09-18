@@ -505,7 +505,7 @@ svg {
 }
 
 .breathe_effect .item_text {
-  animation: breathe 3s infinite linear;
+  animation: breathe 3s 60 linear;
 }
 
 .no_wrap .item_text_line {
