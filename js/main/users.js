@@ -157,7 +157,7 @@ App.user_madprops_settings = () => {
   // Browser Commands
 
   App.set_setting({setting: `browser_command_1`, value: `set_random_dark_colors`})
-  App.set_setting({setting: `browser_command_3`, value: `restart_extension`})
+  App.set_setting({setting: `browser_command_2`, value: `restart_extension`})
 
   // Refresh
 

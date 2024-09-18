@@ -533,6 +533,11 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
         NeedContext.ctrl_action(item, e)
       }
     }
+    else if (e.altKey) {
+      if (item.alt_action) {
+        NeedContext.alt_action(item, e)
+      }
+    }
     else {
       check_item()
     }
