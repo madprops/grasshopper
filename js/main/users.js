@@ -154,6 +154,12 @@ App.user_madprops_settings = () => {
   cmd = {name: `Fresh`, url: `https://www.youtube.com/watch?v=lkIIOaxyR0k`}
   App.append_list_setting(sett, cmd)
 
+  // Browser Commands
+
+  App.set_setting({setting: `browser_command_1`, value: `set_random_dark_colors`})
+
+  // Refresh
+
   App.refresh_settings()
   App.clear_show()
 }
