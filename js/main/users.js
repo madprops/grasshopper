@@ -20,15 +20,6 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `max_recent_tabs`, value: 20})
   App.set_setting({setting: `show_tooltips`, value: false})
 
-  App.set_setting({setting: `lock_screen_commands`, value: [
-    {cmd: `open_new_tab`},
-  ]})
-
-  App.set_setting({setting: `unlock_screen_commands`, value: [
-    {cmd: `recent_tabs_backwards`},
-    {cmd: `close_last_tab`},
-  ]})
-
   // Main Title
 
   App.set_setting({setting: `show_main_title`, value: true})
@@ -95,6 +86,22 @@ App.user_madprops_settings = () => {
 
   cmd = {cmd: `lock_screen`}
   App.append_list_setting(sett, cmd)
+
+  // Combos
+
+  cmd = {cmd: `open_new_tab`},
+  App.append_list_setting(`command_combo_1`, cmd)
+
+  cmd = {cmd: `recent_tabs_backwards`},
+  App.append_list_setting(`command_combo_2`, cmd)
+
+  cmd = {cmd: `close_last_tab`},
+  App.append_list_setting(`command_combo_2`, cmd)
+
+  // Lock Screen
+
+  App.set_setting({setting: `lock_screen_command`, value: `run_command_combo_1`})
+  App.set_setting({setting: `unlock_screen_command`, value: `run_command_combo_2`})
 
   // Signals
 
