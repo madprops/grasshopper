@@ -681,8 +681,8 @@ App.double_key_action = (key) => {
   App.reset_triggers()
 }
 
-App.keyboard_event = (what) => {
-  return new KeyboardEvent(`keydown`, {
+App.keyboard_event = (what, when) => {
+  return new KeyboardEvent(when, {
     key: what,
     code: what,
     bubbles: true,
@@ -691,33 +691,51 @@ App.keyboard_event = (what) => {
 }
 
 App.trigger_esc_key = () => {
-  let event = App.keyboard_event(`Escape`)
-  document.dispatchEvent(event)
+  let down = App.keyboard_event(`Escape`, `keydown`)
+  document.dispatchEvent(down)
+
+  let up = App.keyboard_event(`Escape`, `keyup`)
+  document.dispatchEvent(up)
 }
 
 App.trigger_enter_key = () => {
-  let event = App.keyboard_event(`Enter`)
-  document.dispatchEvent(event)
+  let down = App.keyboard_event(`Enter`, `keydown`)
+  document.dispatchEvent(down)
+
+  let up = App.keyboard_event(`Enter`, `keyup`)
+  document.dispatchEvent(up)
 }
 
 App.trigger_up_key = () => {
-  let event = App.keyboard_event(`ArrowUp`)
-  document.dispatchEvent(event)
+  let down = App.keyboard_event(`ArrowUp`, `keydown`)
+  document.dispatchEvent(down)
+
+  let up = App.keyboard_event(`ArrowUp`, `keyup`)
+  document.dispatchEvent(up)
 }
 
 App.trigger_down_key = () => {
-  let event = App.keyboard_event(`ArrowDown`)
-  document.dispatchEvent(event)
+  let down = App.keyboard_event(`ArrowDown`, `keydown`)
+  document.dispatchEvent(down)
+
+  let up = App.keyboard_event(`ArrowDown`, `keyup`)
+  document.dispatchEvent(up)
 }
 
 App.trigger_left_key = () => {
-  let event = App.keyboard_event(`ArrowLeft`)
-  document.dispatchEvent(event)
+  let down = App.keyboard_event(`ArrowLeft`, `keydown`)
+  document.dispatchEvent(down)
+
+  let up = App.keyboard_event(`ArrowLeft`, `keyup`)
+  document.dispatchEvent(up)
 }
 
 App.trigger_right_key = () => {
-  let event = App.keyboard_event(`ArrowRight`)
-  document.dispatchEvent(event)
+  let down = App.keyboard_event(`ArrowRight`, `keydown`)
+  document.dispatchEvent(down)
+
+  let up = App.keyboard_event(`ArrowRight`, `keyup`)
+  document.dispatchEvent(up)
 }
 
 App.on_number_key = (key) => {
