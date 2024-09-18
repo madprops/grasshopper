@@ -448,7 +448,7 @@ App.setup_commands = () => {
 
   for (let i = 1; i <= App.num_command_combos; i++) {
     cmd_combos.push({
-      name: `Command Combo ${i}`,
+      name: `Cmd Combo ${i}`,
       cmd: `run_command_combo_${i}`,
       icon: combo_icon,
       action: (args) => {
