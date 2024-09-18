@@ -316,33 +316,43 @@ App.tabs_action = async (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  let no_blink = [`click`, `enter`, `tab_cmd`]
-  let items = App.get_items(`tabs`)
-  let selected = items.filter(x => x.selected)
-  let index_1 = 0
 
-  if (selected.length) {
-    index_1 = items.indexOf(selected[0])
-  }
-
-  let index_2 = items.indexOf(args.item)
-  let index_diff = Math.abs(index_1 - index_2)
-
-  function blink(it) {
+  function check_blink() {
     if (!App.get_setting(`tab_blink`)) {
-      return
+      return false
     }
+
+    let no_blink = [`click`, `enter`, `tab_cmd`]
 
     if (no_blink.includes(args.from)) {
-      return
+      return false
     }
+
+    let items = App.get_items(`tabs`)
+    let selected = items.filter(x => x.selected)
+    let index_old = 0
+
+    if (selected.length) {
+      index_old = items.indexOf(selected[0])
+    }
+
+    let index_new = items.indexOf(args.item)
+    let index_diff = Math.abs(index_old - index_new)
 
     // Don't blink if the items are close to each other
     if (index_diff <= App.tab_blink_diff) {
-      return
+      return false
     }
 
-    App.blink_item(it)
+    return true
+  }
+
+  let do_blink = check_blink()
+
+  function blink_item() {
+    if (do_blink) {
+      App.blink_item(args.item)
+    }
   }
 
   if (args.from === `tab_box`) {
@@ -372,7 +382,7 @@ App.tabs_action = async (args = {}) => {
     if (header_action === `none`) {
       if (args.from === `tab_box`) {
         App.select_item({item: args.item, scroll: args.scroll})
-        blink(args.item)
+        blink_item()
       }
 
       return
@@ -383,7 +393,7 @@ App.tabs_action = async (args = {}) => {
       }
 
       App.select_item({item: args.item, scroll: args.scroll})
-      blink(args.item)
+      blink_item()
       return
     }
     else if (header_action === `first`) {
@@ -409,7 +419,7 @@ App.tabs_action = async (args = {}) => {
     App.on_action(`tabs`)
   }
 
-  blink(args.item)
+  blink_item()
 }
 
 App.duplicate_tab = async (item) => {
