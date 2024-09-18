@@ -43,6 +43,7 @@ App.setup_commands = () => {
   let new_icon = App.new_icon
   let duplicate_icon = App.duplicate_icon
   let keyboard_icon = App.keyboard_icon
+  let tree_icon = App.tree_icon
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -3038,6 +3039,15 @@ App.setup_commands = () => {
         App.locust_swarm()
       },
       info: `Decimate the crops`,
+    },
+    {
+      name: `Breath Effect`,
+      cmd: `breath_effect`,
+      icon: tree_icon,
+      action: (args) => {
+        App.toggle_breath_effect()
+      },
+      info: `Let the extension breath`,
     },
     {
       name: `Restart`,

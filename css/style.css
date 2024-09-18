@@ -487,12 +487,31 @@ svg {
   overflow: hidden;
 }
 
+@keyframes breath {
+  0% {
+    letter-spacing: 3px;
+  }
+  33.33% {
+    letter-spacing: normal;
+  }
+  66.66% {
+    letter-spacing: normal;
+  }
+  100% {
+    letter-spacing: 3px;
+  }
+}
+
 .item_text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   overflow: hidden;
+}
+
+.breath_effect .item_text {
+  animation: breath 3s infinite alternate;
 }
 
 .no_wrap .item_text_line {

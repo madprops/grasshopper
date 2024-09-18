@@ -419,6 +419,13 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`favorites_autohide`)
     }
 
+    if (App.breath_effect_on) {
+      main.classList.add(`breath_effect`)
+    }
+    else {
+      main.classList.remove(`breath_effect`)
+    }
+
     let active_bgs = [`none`, `normal`, `tab_box`, `everywhere`]
 
     for (let bg of active_bgs) {
