@@ -209,7 +209,7 @@ App.build_settings = () => {
       name: `Prompt Mode`,
       type: `menu`,
       value: `at_end`,
-      info: `How to show the prompt`,
+      info: `Controls the position of the caret and higlight mode on text prompts`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
