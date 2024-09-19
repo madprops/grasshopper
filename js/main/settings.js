@@ -17,9 +17,6 @@ App.settings_do_actions = (actions) => {
     else if (action === `gestures`) {
       App.refresh_gestures()
     }
-    else if (action === `title`) {
-      App.start_main_title_intervals()
-    }
   }
 }
 
@@ -434,6 +431,7 @@ App.refresh_settings = () => {
   App.setup_commands()
   App.fill_palette()
   App.build_tab_filters()
+  App.refresh_main_title()
 }
 
 App.build_setting_cmds = () => {
@@ -466,7 +464,6 @@ App.start_settings = () => {
     colored_top: true,
     after_show: () => {
       DOM.el(`#settings_${App.settings_category}_filter`).focus()
-      App.initial_settings = App.str(App.settings)
     },
     on_hide: async () => {
       if (App.settings_changed()) {
@@ -687,6 +684,10 @@ App.show_settings = (e) => {
 }
 
 App.show_settings_category = (category) => {
+  if (!App.on_settings()) {
+    App.initial_settings = App.str(App.settings)
+  }
+
   App.start_settings()
   App.get_settings_with_list()
   App.settings_category = category

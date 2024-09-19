@@ -2,6 +2,11 @@ App.start_main_title = () => {
   App.start_main_title_intervals()
 }
 
+App.reset_main_title = () => {
+  App.refresh_main_title()
+  App.start_main_title_intervals()
+}
+
 App.start_main_title_intervals = () => {
   clearInterval(App.main_title_date_interval)
   clearInterval(App.main_title_signal_interval)
