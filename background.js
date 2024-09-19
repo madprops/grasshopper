@@ -5,12 +5,12 @@ function open_popup() {
 
 // Set local storage to read at init
 function set_item(what, value) {
-  localStorage.setItem(what, value)
+  localStorage.setItem(`init_${what}`, value)
 }
 
 // Open the popup in a specific mode
 function open_popup_mode(mode) {
-  set_item(`init_mode`, mode)
+  set_item(`mode`, mode)
   open_popup()
 }
 
@@ -22,7 +22,7 @@ function browser_command(num) {
 
 // Open the popup and run a command
 async function popup_command(num) {
-  set_item(`init_popup_command`, num)
+  set_item(`popup_command`, num)
   open_popup()
 }
 
