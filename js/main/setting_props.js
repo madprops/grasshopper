@@ -1742,7 +1742,6 @@ App.build_settings = () => {
       value: `next_main_title_color`,
       separator: true,
       info: `Command to run when using the mousewheel down on the Title while holding Shift`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
