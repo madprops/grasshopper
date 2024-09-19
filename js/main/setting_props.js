@@ -208,7 +208,7 @@ App.build_settings = () => {
     prompt_mode: {
       name: `Prompt Mode`,
       type: `menu`,
-      value: `at_start`,
+      value: `at_end`,
       info: `How to show the prompt`,
       version: 1,
       setup: (key) => {
