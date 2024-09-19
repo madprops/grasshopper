@@ -3304,7 +3304,7 @@ App.build_settings = () => {
       name: `Edit Title Auto`,
       type: `checkbox`,
       value: true,
-      info: `Auto-fill the title on edit and select it`,
+      info: `Auto-fill the title on edit`,
       version: 1,
     },
     page_scrolls: {
@@ -3333,6 +3333,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `When adding items to settings lists, append at the bottom instead of prepending at the top`,
+      version: 1,
+    },
+    edit_title_highlight: {
+      name: `Edit Title Highlight`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-highlight the title on edit`,
       version: 1,
     },
     autohide_context: {

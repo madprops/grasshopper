@@ -80,10 +80,10 @@ App.show_prompt = (args = {}) => {
   }
   else {
     App.input_deselect(input)
-  }
 
-  if (args.at_start) {
-    App.input_at_start(input)
+    if (args.at_start) {
+      App.input_at_start(input)
+    }
   }
 }
 

@@ -158,9 +158,12 @@ App.update_main_title_tooltips = (el) => {
 }
 
 App.edit_main_title = () => {
+  let highlight = App.get_setting(`edit_title_highlight`)
+
   App.show_prompt({
     value: App.get_setting(`main_title`),
     placeholder: `Title`,
+    highlight: highlight,
     on_submit: (ans) => {
       App.set_main_title(ans.trim())
     },
