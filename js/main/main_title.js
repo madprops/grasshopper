@@ -36,11 +36,6 @@ App.start_main_title_intervals = () => {
   App.main_title_scroll_do_timeout()
 }
 
-App.main_title_scroll_action = () => {
-  App.main_title_auto_scroll()
-  App.main_title_scroll_do_timeout()
-}
-
 App.main_title_scroll_do_timeout = () => {
   if (App.main_title_scroll_pause) {
     let delay = App.main_title_scroll_pause_delay
@@ -59,7 +54,8 @@ App.main_title_scroll_do_timeout = () => {
     }
 
     App.main_title_scroll_timeout = setTimeout(() => {
-      App.main_title_scroll_action()
+      App.main_title_auto_scroll()
+      App.main_title_scroll_do_timeout()
     }, delay)
   }
 }
