@@ -27,11 +27,9 @@ App.show_prompt = (args = {}) => {
     word_mode: false,
     unique_words: false,
     ignore_words: [],
-    highlight: false,
     append: false,
     show_list: false,
     password: false,
-    at_start: true,
     list: [],
     fill: ``,
   }
@@ -43,6 +41,7 @@ App.show_prompt = (args = {}) => {
   let input = DOM.el(`#prompt_input`)
   input.value = args.value
   input.placeholder = args.placeholder
+  let prompt_mode = App.get_setting(`prompt_mode`)
 
   if (args.password) {
     input.type = `password`
@@ -75,14 +74,17 @@ App.show_prompt = (args = {}) => {
     App.show_prompt_list(`show_list`)
   }
 
-  if (args.highlight && !args.show_list) {
+  if ((prompt_mode === `highlight`) && !args.show_list) {
     input.select()
   }
   else {
     App.input_deselect(input)
 
-    if (args.at_start) {
+    if (prompt_mode === `at_start`) {
       App.input_at_start(input)
+    }
+    else if (prompt_mode === `at_end`) {
+      App.input_at_end(input)
     }
   }
 }

@@ -205,6 +205,20 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.get_size_options())
       },
     },
+    prompt_mode: {
+      name: `Prompt Mode`,
+      type: `menu`,
+      value: `at_start`,
+      info: `How to show the prompt`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `At Start`, value: `at_start`},
+          {text: `At End`, value: `at_end`},
+          {text: `Highlight`, value: `highlight`},
+        ])
+      },
+    },
     bookmarks_folder: {
       name: `Bookmarks Folder`,
       type: `text`,
@@ -3333,13 +3347,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `When adding items to settings lists, append at the bottom instead of prepending at the top`,
-      version: 1,
-    },
-    edit_title_highlight: {
-      name: `Edit Title Highlight`,
-      type: `checkbox`,
-      value: false,
-      info: `Auto-highlight the title on edit`,
       version: 1,
     },
     autohide_context: {

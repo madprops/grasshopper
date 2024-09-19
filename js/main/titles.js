@@ -33,10 +33,8 @@ App.edit_title = (item, add_value = true) => {
     value = ``
   }
 
-  let highlight = App.get_setting(`edit_title_highlight`)
-
   App.edit_prompt({what: `title`, item: item,
-    fill: item.title, value: value, highlight: highlight})
+    fill: item.title, value: value})
 }
 
 App.push_to_title_history = (titles) => {

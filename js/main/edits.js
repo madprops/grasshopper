@@ -237,7 +237,6 @@ App.edit_prompt = (args = {}) => {
     ignore_words: ignore_words,
     append: append,
     fill: args.fill,
-    highlight: args.highlight,
     on_submit: (ans) => {
       let obj = {}
       obj[args.what] = ans

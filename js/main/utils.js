@@ -593,3 +593,7 @@ App.at_right = (el) => {
 App.input_at_start = (input) => {
   input.setSelectionRange(0, 0)
 }
+
+App.input_at_end = (input) => {
+  input.setSelectionRange(input.value.length, input.value.length)
+}
