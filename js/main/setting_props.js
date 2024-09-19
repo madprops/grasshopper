@@ -1611,13 +1611,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.setting_steps(6, 28, 1))
       },
     },
-    main_title_auto_scroll: {
-      name: `Title Auto Scroll`,
-      type: `checkbox`,
-      value: true,
-      info: `Scroll left and right automatically on long titles`,
-      version: 1,
-    },
     wrap_main_title: {
       name: `Wrap Title`,
       type: `checkbox`,
@@ -1739,6 +1732,13 @@ App.build_settings = () => {
       value: false,
       separator: true,
       info: `Show the icon of the signal in the Title`,
+      version: 1,
+    },
+    main_title_auto_scroll: {
+      name: `Title Auto Scroll`,
+      type: `checkbox`,
+      value: true,
+      info: `Scroll left and right automatically on long titles`,
       version: 1,
     },
     main_title_scroll_amount: {
