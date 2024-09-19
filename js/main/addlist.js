@@ -443,8 +443,9 @@ Addlist.enter = () => {
   }
 }
 
-Addlist.left = (save = true) => {
+Addlist.left = () => {
   let id = Addlist.data.id
+  let save = Addlist.data.edit
 
   if (save) {
     Addlist.save(id, false)
@@ -453,8 +454,9 @@ Addlist.left = (save = true) => {
   Addlist.next(id, true)
 }
 
-Addlist.right = (save = true) => {
+Addlist.right = () => {
   let id = Addlist.data.id
+  let save = Addlist.data.edit
 
   if (save) {
     Addlist.save(id, false)
