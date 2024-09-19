@@ -548,6 +548,15 @@ App.setup_commands = () => {
       info: `Trigger the Enter key`,
     },
     {
+      name: `Backspace Key`,
+      cmd: `trigger_backspace_key`,
+      icon: keyboard_icon,
+      action: (args) => {
+        App.trigger_backspace_key()
+      },
+      info: `Trigger the Backspace key`,
+    },
+    {
       name: `Up Key`,
       cmd: `trigger_up_key`,
       icon: keyboard_icon,

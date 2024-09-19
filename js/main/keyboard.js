@@ -681,61 +681,51 @@ App.double_key_action = (key) => {
   App.reset_triggers()
 }
 
-App.keyboard_event = (what, when) => {
-  return new KeyboardEvent(when, {
+App.keyboard_event = (what) => {
+  let keydown = new KeyboardEvent(`keydown`, {
     key: what,
     code: what,
     bubbles: true,
     cancelable: true
   })
+
+  let keyup = new KeyboardEvent(`keyup`, {
+    key: what,
+    code: what,
+    bubbles: true,
+    cancelable: true
+  })
+
+  document.dispatchEvent(keydown)
+  document.dispatchEvent(keyup)
 }
 
 App.trigger_esc_key = () => {
-  let down = App.keyboard_event(`Escape`, `keydown`)
-  document.dispatchEvent(down)
-
-  let up = App.keyboard_event(`Escape`, `keyup`)
-  document.dispatchEvent(up)
+  App.keyboard_event(`Escape`)
 }
 
 App.trigger_enter_key = () => {
-  let down = App.keyboard_event(`Enter`, `keydown`)
-  document.dispatchEvent(down)
+  App.keyboard_event(`Enter`)
+}
 
-  let up = App.keyboard_event(`Enter`, `keyup`)
-  document.dispatchEvent(up)
+App.trigger_backspace_key = () => {
+  App.keyboard_event(`Backspace`)
 }
 
 App.trigger_up_key = () => {
-  let down = App.keyboard_event(`ArrowUp`, `keydown`)
-  document.dispatchEvent(down)
-
-  let up = App.keyboard_event(`ArrowUp`, `keyup`)
-  document.dispatchEvent(up)
+  App.keyboard_event(`ArrowUp`)
 }
 
 App.trigger_down_key = () => {
-  let down = App.keyboard_event(`ArrowDown`, `keydown`)
-  document.dispatchEvent(down)
-
-  let up = App.keyboard_event(`ArrowDown`, `keyup`)
-  document.dispatchEvent(up)
+  App.keyboard_event(`ArrowDown`)
 }
 
 App.trigger_left_key = () => {
-  let down = App.keyboard_event(`ArrowLeft`, `keydown`)
-  document.dispatchEvent(down)
-
-  let up = App.keyboard_event(`ArrowLeft`, `keyup`)
-  document.dispatchEvent(up)
+  App.keyboard_event(`ArrowLeft`)
 }
 
 App.trigger_right_key = () => {
-  let down = App.keyboard_event(`ArrowRight`, `keydown`)
-  document.dispatchEvent(down)
-
-  let up = App.keyboard_event(`ArrowRight`, `keyup`)
-  document.dispatchEvent(up)
+  App.keyboard_event(`ArrowRight`)
 }
 
 App.on_number_key = (key) => {
