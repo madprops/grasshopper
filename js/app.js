@@ -97,14 +97,15 @@ App.playing = false
 App.settings_done = false
 App.fullscreen = false
 App.last_main_title = ``
-App.main_title_scroll = 6
 App.main_title_scroll_direction = `right`
-App.main_title_scroll_pause = 3
-App.main_title_scroll_pauses = 3
+App.main_title_scroll_pause = 4
+App.main_title_scroll_pauses = 4
 App.main_title_min_overflow = 12
 App.max_tab_num = 10
 App.breathe_effect_on = false
 App.tab_blink_diff = 2
+App.num_command_combos = 10
+App.main_title_scroll_pause = false
 
 App.settings_ready = false
 App.media_image_ready = false
@@ -145,8 +146,7 @@ App.footer_message_delay = App.SECOND
 App.check_clock_delay = App.SECOND * 10
 App.check_main_title_date_delay = App.SECOND * 10
 App.check_refresh_settings_delay = 100
-App.main_title_scroll_delay = 200
-App.num_command_combos = 10
+App.main_title_scroll_pause_delay = App.SECOND
 
 App.settings_icons = {
   general: `⚡`,

@@ -1,4 +1,12 @@
 App.start_main_title = () => {
+  App.start_main_title_intervals()
+}
+
+App.start_main_title_intervals = () => {
+  clearInterval(App.main_title_date_interval)
+  clearInterval(App.main_title_signal_interval)
+  clearInterval(App.main_title_scroll_timeout)
+
   // Date
 
   let delay = App.check_main_title_date_delay
@@ -8,7 +16,7 @@ App.start_main_title = () => {
     return
   }
 
-  setInterval(() => {
+  App.main_title_date_interval = setInterval(() => {
     App.check_main_title_date()
   }, delay)
 
@@ -21,22 +29,39 @@ App.start_main_title = () => {
     return
   }
 
-  setInterval(() => {
+  App.main_title_signal_interval = setInterval(() => {
     App.main_title_signal()
   }, delay)
 
-  // Auto Scroll
+  App.main_title_scroll_do_timeout()
+}
 
-  delay = App.main_title_scroll_delay
+App.main_title_scroll_action = () => {
+  App.main_title_auto_scroll()
+  App.main_title_scroll_do_timeout()
+}
 
-  if (!delay || (delay < 1)) {
-    App.error(`Title auto-scroll delay is invalid`)
-    return
+App.main_title_scroll_do_timeout = () => {
+  if (App.main_title_scroll_pause) {
+    let delay = App.main_title_scroll_pause_delay
+    App.main_title_scroll_pause = false
+
+    App.main_title_scroll_timeout = setTimeout(() => {
+      App.main_title_scroll_do_timeout()
+    }, delay)
   }
+  else {
+    let delay = App.get_setting(`main_title_scroll_delay`)
 
-  setInterval(() => {
-    App.main_title_auto_scroll()
-  }, delay)
+    if (!delay || (delay < 1)) {
+      App.error(`Title auto-scroll delay is invalid`)
+      return
+    }
+
+    App.main_title_scroll_timeout = setTimeout(() => {
+      App.main_title_scroll_action()
+    }, delay)
+  }
 }
 
 App.create_main_title = (mode) => {
@@ -114,12 +139,7 @@ App.set_main_title_text = (text) => {
     el.scrollLeft = 0
   }
 
-  App.fill_main_title_pauses()
-}
-
-App.fill_main_title_pauses = () => {
-  let pauses = App.main_title_scroll_pauses
-  App.main_title_scroll_pause = pauses
+  App.main_title_pause()
 }
 
 App.update_main_title_tooltips = (el) => {
@@ -365,16 +385,24 @@ App.refresh_main_title = () => {
 App.scroll_main_title = (dir, manual = true) => {
   let mode = App.active_mode
   let el = DOM.el(`#main_title_inner_${mode}`)
+  let amount
+
+  if (manual) {
+    amount = 20
+  }
+  else {
+    amount = App.get_setting(`main_title_scroll_amount`)
+  }
 
   if (dir === `left`) {
-    el.scrollLeft -= App.main_title_scroll
+    el.scrollLeft -= amount
   }
   else if (dir === `right`) {
-    el.scrollLeft += App.main_title_scroll
+    el.scrollLeft += amount
   }
 
   if (manual) {
-    App.fill_main_title_pauses()
+    App.main_title_pause()
   }
 }
 
@@ -388,11 +416,6 @@ App.main_title_auto_scroll = () => {
   }
 
   if (App.get_setting(`wrap_main_title`)) {
-    return
-  }
-
-  if (App.main_title_scroll_pause > 0) {
-    App.main_title_scroll_pause -= 1
     return
   }
 
@@ -431,7 +454,7 @@ App.main_title_left = (el) => {
 
   if (App.at_left(el)) {
     App.main_title_set_dir(`right`)
-    App.fill_main_title_pauses()
+    App.main_title_pause()
   }
 }
 
@@ -440,6 +463,10 @@ App.main_title_right = (el) => {
 
   if (App.at_right(el)) {
     App.main_title_set_dir(`left`)
-    App.fill_main_title_pauses()
+    App.main_title_pause()
   }
+}
+
+App.main_title_pause = () => {
+  App.main_title_scroll_pause = true
 }

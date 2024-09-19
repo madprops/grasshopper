@@ -17,6 +17,9 @@ App.settings_do_actions = (actions) => {
     else if (action === `gestures`) {
       App.refresh_gestures()
     }
+    else if (action === `title`) {
+      App.start_main_title_intervals()
+    }
   }
 }
 
