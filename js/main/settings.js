@@ -1884,7 +1884,19 @@ App.settings_cmdlist_single = (key) => {
 }
 
 App.settings_command_combos = () => {
-  let props = {}
+  let props = {
+    command_combo_delay: {
+      name: `Command Combo Delay`,
+      type: `number`,
+      value: 100,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      separator: true,
+      info: `Wait this time in milliseconds between each command`,
+      version: 1,
+    },
+  }
 
   for (let i = 1; i <= App.num_command_combos; i++) {
     let name = `command_combo_${i}`
