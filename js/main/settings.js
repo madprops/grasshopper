@@ -1919,6 +1919,7 @@ App.settings_command_combos = () => {
 
 App.setting_browser_commands = () => {
   let props = {}
+  let item
 
   for (let i = 1; i <= App.num_command_combos; i++) {
     let name = `browser_command_${i}`
