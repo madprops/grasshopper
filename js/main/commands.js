@@ -589,7 +589,10 @@ App.run_command_list = async (setting) => {
 
   for (let cmd of cmds) {
     App.run_command({cmd: cmd.cmd})
-    await App.sleep(delay)
+
+    if (delay > 0) {
+      await App.sleep(delay)
+    }
   }
 }
 

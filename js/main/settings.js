@@ -1890,7 +1890,7 @@ App.settings_command_combos = () => {
       type: `number`,
       value: 100,
       placeholder: `Number`,
-      min: App.number_min,
+      min: 0,
       max: App.number_max,
       separator: true,
       info: `Wait this time in milliseconds between each command`,
