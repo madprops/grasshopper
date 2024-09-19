@@ -15,7 +15,7 @@ function open_popup_mode(mode) {
 }
 
 // Run a browser command
-// Could be the sidebar
+// Can be listened by the sidebar or the popup
 function browser_command(num) {
   browser.runtime.sendMessage({action: "browser_command", number: num})
 }
