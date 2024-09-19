@@ -5,7 +5,7 @@ App.start_main_title = () => {
 App.start_main_title_intervals = () => {
   clearInterval(App.main_title_date_interval)
   clearInterval(App.main_title_signal_interval)
-  clearInterval(App.main_title_scroll_timeout)
+  clearTimeout(App.main_title_scroll_timeout)
 
   // Date
 
