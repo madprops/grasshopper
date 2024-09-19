@@ -31,6 +31,7 @@ App.show_prompt = (args = {}) => {
     append: false,
     show_list: false,
     password: false,
+    at_start: true,
     list: [],
     fill: ``,
   }
@@ -79,6 +80,10 @@ App.show_prompt = (args = {}) => {
   }
   else {
     App.input_deselect(input)
+  }
+
+  if (args.at_start) {
+    App.input_at_start(input)
   }
 }
 

@@ -589,3 +589,7 @@ App.at_left = (el) => {
 App.at_right = (el) => {
   return el.scrollLeft >= (el.scrollWidth - el.clientWidth)
 }
+
+App.input_at_start = (input) => {
+  input.setSelectionRange(0, 0)
+}
