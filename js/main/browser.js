@@ -56,6 +56,8 @@ App.check_init_commands = () => {
   localStorage.setItem(`init_popup_command`, `nothing`)
 
   if (init_cmd !== `nothing`) {
+    App.prompt_mode = true
+
     setTimeout(() => {
       App.run_popup_command(parseInt(init_cmd))
     }, App.popup_commands_delay)

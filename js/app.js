@@ -104,6 +104,7 @@ App.breathe_effect_on = false
 App.tab_blink_diff = 2
 App.num_command_combos = 10
 App.main_title_scroll_pause = false
+App.prompt_mode = false
 
 App.settings_ready = false
 App.media_image_ready = false
@@ -146,6 +147,7 @@ App.check_main_title_date_delay = App.SECOND * 10
 App.check_refresh_settings_delay = 100
 App.main_title_scroll_pause_delay = App.SECOND
 App.popup_commands_delay = 250
+App.prompt_close_delay = 250
 
 App.settings_icons = {
   general: `⚡`,
