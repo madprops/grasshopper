@@ -3349,6 +3349,13 @@ App.build_settings = () => {
       info: `When adding items to settings lists, append at the bottom instead of prepending at the top`,
       version: 1,
     },
+    prompt_mode_close: {
+      name: `Prompt Mode Close`,
+      type: `checkbox`,
+      value: true,
+      info: `Auto-close the popup after hiding the prompt on a Popup Command`,
+      version: 1,
+    },
     autohide_context: {
       name: `Autohide Context`,
       type: `checkbox`,
