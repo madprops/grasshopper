@@ -88,6 +88,36 @@
     },
     "browser_command_10": {
       "description": "Browser Command 10"
+    },
+    "popup_command_1": {
+      "description": "Popup Command 1"
+    },
+    "popup_command_2": {
+      "description": "Popup Command 2"
+    },
+    "popup_command_3": {
+      "description": "Popup Command 3"
+    },
+    "popup_command_4": {
+      "description": "Popup Command 4"
+    },
+    "popup_command_5": {
+      "description": "Popup Command 5"
+    },
+    "popup_command_6": {
+      "description": "Popup Command 6"
+    },
+    "popup_command_7": {
+      "description": "Popup Command 7"
+    },
+    "popup_command_8": {
+      "description": "Popup Command 8"
+    },
+    "popup_command_9": {
+      "description": "Popup Command 9"
+    },
+    "popup_command_10": {
+      "description": "Popup Command 10"
     }
   },
   "browser_specific_settings": {

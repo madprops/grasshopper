@@ -45,3 +45,19 @@ App.run_browser_command = (num) => {
   let cmd = App.get_setting(`browser_command_${num}`)
   App.run_command({cmd: cmd, from: `browser_command`})
 }
+
+App.run_popup_command = (num) => {
+  let cmd = App.get_setting(`popup_command_${num}`)
+  App.run_command({cmd: cmd, from: `popup_command`})
+}
+
+App.check_init_commands = () => {
+  let init_cmd = localStorage.getItem(`init_popup_command`)
+  localStorage.setItem(`init_popup_command`, `nothing`)
+
+  if (init_cmd !== `nothing`) {
+    setTimeout(() => {
+      App.run_popup_command(parseInt(init_cmd))
+    }, App.popup_commands_delay)
+  }
+}

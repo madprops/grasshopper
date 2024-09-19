@@ -1923,11 +1923,30 @@ App.setting_browser_commands = () => {
   for (let i = 1; i <= App.num_command_combos; i++) {
     let name = `browser_command_${i}`
 
-    props[name] = {
+    item = {
       name: `Browser Command ${i}`,
       type: `menu`,
       value: `none`,
       info: `Run this command when using the browser shortcut (${i})`,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+      version: 1,
+    }
+
+    props[name] = item
+  }
+
+  item.separator = true
+
+  for (let i = 1; i <= App.num_command_combos; i++) {
+    let name = `popup_command_${i}`
+
+    props[name] = {
+      name: `Popup Command ${i}`,
+      type: `menu`,
+      value: `none`,
+      info: `Run this command when using the browser shortcut but open the popup first (${i})`,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },

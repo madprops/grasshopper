@@ -3576,7 +3576,8 @@ App.build_settings = () => {
     browser: {
       info: `Browser Commands are shortcuts that you configure on the browser
       Click 'Manage Extension', then click the cog on the top right
-      Then click 'Manage Extension Shortcuts' and add the shortcuts you need`
+      Then click 'Manage Extension Shortcuts' and add the shortcuts you need
+      Popup Commands open the popup first before running the command`,
     },
     warns: {
       info: `When to show the confirmation dialog on certain actions
