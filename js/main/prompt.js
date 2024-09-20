@@ -206,13 +206,3 @@ App.fill_prompt = () => {
     input.focus()
   }
 }
-
-App.check_prompt_mode = () => {
-  if (App.prompt_mode) {
-    if (App.get_setting(`prompt_mode_close`)) {
-      setTimeout(() => {
-        App.close_window()
-      }, App.prompt_close_delay)
-    }
-  }
-}

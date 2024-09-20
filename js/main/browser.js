@@ -63,3 +63,13 @@ App.check_init_commands = () => {
     }, App.popup_commands_delay)
   }
 }
+
+App.check_popup_command_close = () => {
+  if (App.prompt_mode) {
+    if (App.get_setting(`popup_command_close`)) {
+      setTimeout(() => {
+        App.close_window()
+      }, App.prompt_close_delay)
+    }
+  }
+}
