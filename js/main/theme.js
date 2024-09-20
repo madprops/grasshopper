@@ -466,6 +466,9 @@ App.do_apply_theme = (args = {}) => {
     let cb_padding = App.get_setting(`close_button_padding`)
     App.set_css_var(`close_button_padding`, `${cb_padding}px`)
 
+    let hb_padding = App.get_setting(`hover_button_padding`)
+    App.set_css_var(`hover_button_padding`, `${hb_padding}px`)
+
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_custom_css()

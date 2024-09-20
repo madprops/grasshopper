@@ -349,7 +349,7 @@ svg {
   border-top-width: 2px;
 }
 
-.item > div {
+.item > div:not(.hover_button) {
   padding-left: var(--item_gap);
   padding-right: var(--item_gap);
 }
@@ -1468,6 +1468,8 @@ a:hover
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-left: var(--hover_button_padding);
+  padding-right: var(--hover_button_padding);
 }
 
 .hover_button_left .hover_button {
