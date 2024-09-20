@@ -843,7 +843,7 @@ App.build_settings = () => {
     hover_button_padding: {
       name: `Hover Button Padding`,
       type: `number`,
-      value: 8,
+      value: 7,
       placeholder: `Px`,
       min: 0,
       max: App.max_padding_setting,
