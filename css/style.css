@@ -374,6 +374,14 @@ svg {
   padding-right: calc(var(--item_gap) * 2);
 }
 
+.item .close_button.hover {
+  display: none;
+}
+
+.item:hover .close_button.hover {
+  display: flex;
+}
+
 .item.loading_icon_effect .loading_icon,
 .item.loading_icon_spin_effect .loading_icon,
 .item.loading_icon_fade_effect .loading_icon

@@ -785,6 +785,23 @@ App.build_settings = () => {
         ])
       },
     },
+    close_button: {
+      name: `Close Button`,
+      type: `menu`,
+      value: `right`,
+      info: `How to show the Close Button on tabs`,
+      version: 1,
+      separator: true,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+          {text: `Left Hover`, value: `left_hover`},
+          {text: `Right Hover`, value: `right_hover`},
+        ])
+      },
+    },
     hover_button: {
       name: `Hover Button`,
       type: `menu`,
@@ -873,21 +890,6 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Pinline`,
       separator: true,
       version: 1,
-    },
-    close_button: {
-      name: `Close Button`,
-      type: `menu`,
-      value: `right`,
-      info: `How to show the Close Button on tabs`,
-      version: 1,
-      separator: true,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: `Left`, value: `left`},
-          {text: `Right`, value: `right`},
-        ])
-      },
     },
     tabs_menu: {
       name: `Tabs Menu`,
