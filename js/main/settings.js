@@ -1513,6 +1513,7 @@ App.setup_settings_addlist = () => {
           tooltips: {
             cmd: `Command on Click`,
           },
+          automenu: true,
         }))
       }))
     }
