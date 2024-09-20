@@ -3353,7 +3353,7 @@ App.build_settings = () => {
       name: `Prompt Mode Close`,
       type: `checkbox`,
       value: true,
-      info: `Auto-close the popup after hiding the prompt on a Popup Command`,
+      info: `Auto-close after hiding the prompt or input on a Popup Command`,
       version: 1,
     },
     autohide_context: {
