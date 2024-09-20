@@ -124,6 +124,9 @@ App.start_popups = () => {
     },
     on_dismiss: () => {
       App.on_input_dismiss()
+    },
+    after_hide: () => {
+      App.check_prompt_mode()
     }
   })
 

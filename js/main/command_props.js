@@ -3006,6 +3006,15 @@ App.setup_commands = () => {
     ...signals,
 
     {
+      name: `Repeat Command`,
+      cmd: `repeat_command`,
+      icon: command_icon,
+      action: (args) => {
+        App.repeat_command()
+      },
+      info: `Repeat the last command`,
+    },
+    {
       name: `Lock Screen`,
       cmd: `lock_screen`,
       icon: lock_icon,

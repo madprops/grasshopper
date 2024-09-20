@@ -61,6 +61,19 @@ App.run_command = (args) => {
     }
 
     args.self = command
+
+    let last_args = {
+      cmd: args.cmd,
+      item: args.item,
+      from: args.from,
+    }
+
+    let no_repat = [`repeat_command`, `show_palette`]
+
+    if (!no_repat.includes(args.cmd)) {
+      App.last_command = last_args
+    }
+
     command.action(args)
   }
 
@@ -598,4 +611,12 @@ App.run_command_list = async (setting) => {
 
 App.run_command_combo = (num) => {
   App.run_command_list(`command_combo_${num}`)
+}
+
+App.repeat_command = () => {
+  if (!App.last_command) {
+    return
+  }
+
+  App.run_command(App.last_command)
 }
