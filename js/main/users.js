@@ -19,6 +19,7 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `autohide_context`, value: true})
   App.set_setting({setting: `max_recent_tabs`, value: 20})
   App.set_setting({setting: `show_tooltips`, value: false})
+  App.set_setting({setting: `middle_click_main_menu`, value: `repeat_command`})
 
   // Main Title
 
@@ -165,6 +166,7 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `browser_command_1`, value: `set_random_dark_colors`})
   App.set_setting({setting: `browser_command_2`, value: `restart_extension`})
+  App.set_setting({setting: `popup_command_1`, value: `edit_notes`})
 
   // Refresh
 
