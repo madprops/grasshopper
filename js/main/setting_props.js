@@ -795,8 +795,10 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
+          {text: App.separator_string},
           {text: `Left Hover`, value: `left_hover`},
           {text: `Right Hover`, value: `right_hover`},
         ])
