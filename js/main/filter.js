@@ -1831,39 +1831,10 @@ App.set_filter_item = (mode, filter_mode, item) => {
 }
 
 App.get_refine_items = () => {
-  let items = []
-
-  for (let cmd of App.get_setting(`refine_filters`)) {
-    let command = App.get_command(cmd.cmd)
-
-    if (command) {
-      items.push({
-        icon: command.icon,
-        text: App.command_name(command, true),
-        info: command.info,
-        action: (e) => {
-          App.update_filter_history()
-
-          App.run_command({
-            e: e,
-            cmd: command.cmd,
-            from: App.refine_string,
-          })
-        },
-        middle_action: (e) => {
-          App.update_filter_history()
-
-          App.run_command({
-            e: e,
-            cmd: command.cmd,
-            from: App.refine_string,
-          })
-        },
-      })
-    }
-  }
-
-  return items
+  return App.custom_menu_items({
+    name: `refine_filters`,
+    from: App.refine_string,
+  })
 }
 
 App.show_refine_filters = (e) => {
