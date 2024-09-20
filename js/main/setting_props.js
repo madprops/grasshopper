@@ -791,7 +791,6 @@ App.build_settings = () => {
       value: `right`,
       info: `How to show the Close Button on tabs`,
       version: 1,
-      separator: true,
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
@@ -803,6 +802,17 @@ App.build_settings = () => {
           {text: `Right Hover`, value: `right_hover`},
         ])
       },
+    },
+    close_button_padding: {
+      name: `Close Button Padding`,
+      type: `number`,
+      value: 15,
+      placeholder: `Px`,
+      min: 0,
+      max: 100,
+      info: `Horizontal padding for the Close Buttons`,
+      version: 1,
+      separator: true,
     },
     hover_button: {
       name: `Hover Button`,

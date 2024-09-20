@@ -367,11 +367,11 @@ svg {
 }
 
 .item .close_button.right {
-  padding-left: calc(var(--item_gap) * 2);
+  padding-left: var(--close_button_padding);
 }
 
 .item .close_button.left {
-  padding-right: calc(var(--item_gap) * 2);
+  padding-right: var(--close_button_padding);
 }
 
 .item .close_button.hover {

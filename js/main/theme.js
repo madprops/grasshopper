@@ -463,6 +463,9 @@ App.do_apply_theme = (args = {}) => {
       main.classList.add(`main_title_no_wrap`)
     }
 
+    let cb_padding = App.get_setting(`close_button_padding`)
+    App.set_css_var(`close_button_padding`, `${cb_padding}px`)
+
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_custom_css()
