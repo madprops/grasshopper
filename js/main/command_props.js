@@ -1047,9 +1047,9 @@ App.setup_commands = () => {
       some_no_header: true,
       icon: bookmarks_icon,
       action: (args) => {
-        App.bookmark_items(args.item)
+        App.bookmark_items({item: args.item})
       },
-      info: `Bookmark this item`,
+      info: `Bookmark the selected items`,
     },
     {
       name: `Bookmark Page`,
@@ -1059,6 +1059,18 @@ App.setup_commands = () => {
         App.bookmark_active()
       },
       info: `Bookmark the current page`,
+    },
+    {
+      name: `Bookmark Folder`,
+      cmd: `bookmark_items_folder`,
+      modes: [`items`],
+      item: true,
+      some_no_header: true,
+      icon: bookmarks_icon,
+      action: (args) => {
+        App.bookmark_items({item: args.item, pick_folder: true})
+      },
+      info: `Bookmark the selected items by picking a folder`,
     },
     {
       name: `Copy URL`,

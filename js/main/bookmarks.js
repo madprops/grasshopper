@@ -30,7 +30,7 @@ App.setup_bookmarks = () => {
       let item = App.get_item_by_id(`bookmarks`, id)
 
       if (item) {
-        App.update_item({mode: `bookmarks`, id: item.id, info: info})
+        App.update_item({ mode: `bookmarks`, id: item.id, info: info })
       }
     }
   })
@@ -43,7 +43,7 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   let results = []
 
   try {
-    results = await browser.bookmarks.search({query: query})
+    results = await browser.bookmarks.search({ query: query })
   }
   catch (err) {
     App.error(err)
@@ -75,7 +75,7 @@ App.bookmarks_action = (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  App.select_item({item: args.item, scroll: `nearest_smooth`})
+  App.select_item({ item: args.item, scroll: `nearest_smooth` })
 
   if (args.on_action) {
     App.on_action(`bookmarks`)
@@ -91,7 +91,7 @@ App.get_bookmarks_folder = async () => {
     bookmarks_folder = App.get_default_setting(`bookmarks_folder`)
   }
 
-  let results = await browser.bookmarks.search({title: bookmarks_folder})
+  let results = await browser.bookmarks.search({ title: bookmarks_folder })
   let folder
 
   for (let res of results) {
@@ -102,25 +102,41 @@ App.get_bookmarks_folder = async () => {
   }
 
   if (!folder) {
-    folder = await browser.bookmarks.create({title: bookmarks_folder})
+    folder = await browser.bookmarks.create({ title: bookmarks_folder })
   }
 
   return folder
 }
 
-App.bookmark_items = async (item, active, feedback = true) => {
+App.bookmark_items = async (args = {}) => {
+  let def_args = {
+    feedback: true,
+    pick_folder: false,
+  }
+
+  App.def_args(def_args, args)
   let perm = await App.ask_permission(`bookmarks`)
 
   if (!perm) {
     return
   }
 
-  if (!active) {
-    active = App.get_active_items({mode: item.mode, item: item})
+  if (!args.active) {
+    args.active = App.get_active_items({ mode: args.item.mode, item: args.item })
   }
 
-  let folder = await App.get_bookmarks_folder()
-  let bookmarks = await browser.bookmarks.getChildren(folder.id)
+  if (args.pick_folder && !args.folder) {
+    App.pick_bookmarks_folder(args)
+    return
+  }
+
+  if (!args.folder) {
+    args.folder = await App.get_bookmarks_folder()
+  }
+
+  console.log(args.folder)
+
+  let bookmarks = await browser.bookmarks.getChildren(args.folder.id)
 
   for (let b of bookmarks) {
     b.url = App.format_url(b.url || ``)
@@ -129,7 +145,7 @@ App.bookmark_items = async (item, active, feedback = true) => {
   let add = []
   let bump = []
 
-  for (let item of active) {
+  for (let item of args.active) {
     if (item.header) {
       continue
     }
@@ -177,14 +193,14 @@ App.bookmark_items = async (item, active, feedback = true) => {
     confirm_action: async () => {
       for (let item of add) {
         let title = App.title(item)
-        await browser.bookmarks.create({parentId: folder.id, title: title, url: item.url})
+        await browser.bookmarks.create({ parentId: args.folder.id, title: title, url: item.url })
       }
 
       for (let id of bump) {
-        await browser.bookmarks.move(id, {index: bookmarks.length - 1})
+        await browser.bookmarks.move(id, { index: bookmarks.length - 1 })
       }
 
-      if (feedback) {
+      if (args.feedback) {
         App.alert_autohide(`Bookmarked`)
       }
     },
@@ -206,5 +222,40 @@ App.bookmark_active = async () => {
     url: App.format_url(tab.url || ``),
   }
 
-  App.bookmark_items(undefined, [item])
+  App.bookmark_items({ active: [item] })
+}
+
+App.pick_bookmarks_folder = async (args) => {
+  let folders = await App.get_bookmark_folders()
+  folders = folders.filter(x => x.title)
+  let items = []
+
+  for (let folder of folders) {
+    items.push({
+      text: folder.title,
+      action: async () => {
+        args.folder = folder
+        App.bookmark_items(args)
+      },
+    })
+  }
+
+  App.show_context({items: items})
+}
+
+App.get_bookmark_folders = async () => {
+  let folders = []
+  let nodes = await browser.bookmarks.getTree()
+
+  function traverse(bookmarks) {
+    for (let bookmark of bookmarks) {
+      if (bookmark.children) {
+        folders.push(bookmark)
+        traverse(bookmark.children)
+      }
+    }
+  }
+
+  traverse(nodes)
+  return folders
 }

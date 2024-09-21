@@ -294,7 +294,7 @@ App.show_media_menu = (what) => {
     icon: App.mode_icons.bookmarks,
     text: `Bookmark`,
     action: () => {
-      App.bookmark_items(item)
+      App.bookmark_items({item: item})
     }
   })
 
