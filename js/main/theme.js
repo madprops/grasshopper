@@ -847,18 +847,25 @@ App.set_next_theme = () => {
     next = 1
   }
 
+  let theme = App.get_theme_item(next)
+
+  if (theme.opacity === 100) {
+    next = 1
+  }
+
   App.set_theme(next)
 }
 
-App.set_theme = (num) => {
-  let theme
-
-  for (let theme_ of App.themes) {
-    if (theme_.num === num) {
-      theme = theme_
-      break
+App.get_theme_item = (num) => {
+  for (let theme of App.themes) {
+    if (theme.num === num) {
+      return theme
     }
   }
+}
+
+App.set_theme = (num) => {
+  let theme = App.get_theme_item(num)
 
   if (!theme) {
     return
@@ -899,17 +906,19 @@ App.set_theme = (num) => {
     App.set_default_setting(`background_tiles`)
   }
 
-  if (theme.opacity < 100) {
-    App.set_background_image(theme.num)
-  }
-  else {
-    App.check_refresh_settings()
-    App.apply_theme()
-  }
+  App.set_background_image(theme.num, theme.opacity)
 }
 
-App.set_background_image = (num) => {
-  let bg_image = `Background ${num}`
+App.set_background_image = (num, opacity) => {
+  let bg_image
+
+  if (opacity === 100) {
+    bg_image = ``
+  }
+  else {
+    bg_image = `Background ${num}`
+  }
+
   App.set_setting({setting: `background_image`, value: bg_image})
   App.check_refresh_settings()
   App.apply_theme()
