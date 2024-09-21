@@ -264,6 +264,12 @@ App.get_bookmark_folders = async () => {
 }
 
 App.select_bookmarks_folder = async () => {
+  let perm = await App.ask_permission(`bookmarks`)
+
+  if (!perm) {
+    return
+  }
+
   let folders = await App.get_bookmark_folders()
   folders = folders.filter(x => x.title)
   folders.sort((a, b) => b.dateGroupModified - a.dateGroupModified)
