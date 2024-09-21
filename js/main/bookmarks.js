@@ -138,8 +138,6 @@ App.bookmark_items = async (args = {}) => {
     args.folder = await App.get_bookmarks_folder()
   }
 
-  console.log(args.folder)
-
   let bookmarks = await browser.bookmarks.getChildren(args.folder.id)
 
   for (let b of bookmarks) {
