@@ -1075,7 +1075,7 @@ App.setup_commands = () => {
     {
       name: `Select Bookmarks`,
       cmd: `select_bookmarks_folder`,
-      modes: [`bookmarks`],
+      modes: [`items`],
       icon: bookmarks_icon,
       action: (args) => {
         App.select_bookmarks_folder()
