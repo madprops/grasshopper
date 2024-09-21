@@ -987,24 +987,13 @@ Addlist.add_buttons = (id) => {
 Addlist.get_data = (id) => {
   let oargs = Addlist.oargs(id)
   let lines = App.clone(oargs.get_data(id))
-  let changed = false
 
   // Check for empty _id_ and _date_
   for (let item of lines) {
     if (!item._id_) {
-      item._id_ = `${App.now()}_${Addlist.fill_id}`
+      item._id_ = `autoid_${Addlist.fill_id}`
       Addlist.fill_id += 1
-      changed = true
     }
-
-    if (!item._date_) {
-      item._date_ = App.now()
-      changed = true
-    }
-  }
-
-  if (changed) {
-    Addlist.set_data(id, lines)
   }
 
   return lines
