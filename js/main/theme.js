@@ -787,13 +787,13 @@ App.reset_theme = () => {
 App.show_theme_menu = (e) => {
   let items = []
 
-  for (let bg of App.themes) {
+  for (let theme of App.themes) {
     items.push({
-      text: `Theme ${bg.num}`,
+      text: `Theme ${theme.num}`,
       action: () => {
-        App.set_theme(bg.num)
+        App.set_theme(theme.num)
       },
-      image: App.background_path(bg.num),
+      image: App.background_path(theme.num),
     })
   }
 
@@ -851,55 +851,61 @@ App.set_next_theme = () => {
 }
 
 App.set_theme = (num) => {
-  let bg
+  let theme
 
-  for (let bg_ of App.themes) {
-    if (bg_.num === num) {
-      bg = bg_
+  for (let theme_ of App.themes) {
+    if (theme_.num === num) {
+      theme = theme_
       break
     }
   }
 
-  if (!bg) {
+  if (!theme) {
     return
   }
 
-  if (bg.opacity) {
-    App.set_setting({setting: `background_opacity`, value: bg.opacity})
+  if (theme.opacity) {
+    App.set_setting({setting: `background_opacity`, value: theme.opacity})
   }
   else {
     App.set_default_setting(`background_opacity`)
   }
 
-  if (bg.text_color) {
-    App.set_setting({setting: `text_color`, value: bg.text_color})
+  if (theme.text_color) {
+    App.set_setting({setting: `text_color`, value: theme.text_color})
   }
   else {
     App.set_default_setting(`text_color`)
   }
 
-  if (bg.background_color) {
-    App.set_setting({setting: `background_color`, value: bg.background_color})
+  if (theme.background_color) {
+    App.set_setting({setting: `background_color`, value: theme.background_color})
   }
   else {
     App.set_default_setting(`background_color`)
   }
 
-  if (bg.effect) {
-    App.set_setting({setting: `background_effect`, value: bg.effect})
+  if (theme.effect) {
+    App.set_setting({setting: `background_effect`, value: theme.effect})
   }
   else {
     App.set_default_setting(`background_effect`)
   }
 
-  if (bg.tiles) {
-    App.set_setting({setting: `background_tiles`, value: bg.tiles})
+  if (theme.tiles) {
+    App.set_setting({setting: `background_tiles`, value: theme.tiles})
   }
   else {
     App.set_default_setting(`background_tiles`)
   }
 
-  App.set_background_image(bg.num)
+  if (theme.opacity < 100) {
+    App.set_background_image(theme.num)
+  }
+  else {
+    App.check_refresh_settings()
+    App.apply_theme()
+  }
 }
 
 App.set_background_image = (num) => {
