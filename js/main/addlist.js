@@ -988,7 +988,7 @@ Addlist.get_data = (id) => {
   let oargs = Addlist.oargs(id)
   let lines = App.clone(oargs.get_data(id))
 
-  // Check for empty _id_ and _date_
+  // Check for empty _id_ and fill it
   for (let item of lines) {
     if (!item._id_) {
       item._id_ = `autoid_${Addlist.fill_id}`
