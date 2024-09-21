@@ -1073,6 +1073,18 @@ App.setup_commands = () => {
       info: `Bookmark the selected items by picking a folder`,
     },
     {
+      name: `Bookmark Folder 2`,
+      cmd: `bookmark_items_folder_2`,
+      modes: [`items`],
+      item: true,
+      some_no_header: true,
+      icon: bookmarks_icon,
+      action: (args) => {
+        App.bookmark_items({item: args.item, search_folder: true})
+      },
+      info: `Bookmark the selected items by searching a folder`,
+    },
+    {
       name: `Select Bookmarks`,
       cmd: `select_bookmarks_folder`,
       modes: [`items`],
