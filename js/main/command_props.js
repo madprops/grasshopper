@@ -418,7 +418,7 @@ App.setup_commands = () => {
 
   let theme_nums = []
 
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= App.themes.length; i++) {
     theme_nums.push({
       name: `Theme ${i}`,
       cmd: `set_theme_${i}`,
