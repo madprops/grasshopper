@@ -182,7 +182,7 @@ App.get_mode_index = (mode) => {
   }
 }
 
-App.get_mode_name = (mode, shorten = true) => {
+App.get_mode_name = (mode, shorten = false) => {
   if ((mode === `bookmarks`) && shorten) {
     return App.bookmarks_name()
   }

@@ -1,7 +1,7 @@
 App.create_main_menu = (mode) => {
   let btn = DOM.create(`div`, `button icon_button`, `${mode}_main_menu`)
   let icon = App.mode_icons[mode]
-  let text = App.get_mode_name(mode)
+  let text = App.get_mode_name(mode, true)
   btn.append(App.button_text(icon, text))
   let click = App.get_cmd_name(`show_main_menu`)
   let rclick = App.get_cmd_name(`show_palette`)
@@ -46,7 +46,7 @@ App.show_main_menu = (mode) => {
 
   for (let m of App.modes) {
     let icon = App.mode_icons[m]
-    let name = App.get_mode_name(m)
+    let name = App.get_mode_name(m, true)
 
     // This could be done with cmds but the mouse action
     // and direct call to do show mode allows the permission prompts
