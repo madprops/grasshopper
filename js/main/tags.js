@@ -113,7 +113,7 @@ App.remove_tag_all = (item, tag) => {
 }
 
 App.wipe_tag = () => {
-  let tags =  App.get_all_tags(false)
+  let tags = App.get_all_tags(false)
 
   App.show_prompt({
     placeholder: `Wipe Tag`,

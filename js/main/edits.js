@@ -75,7 +75,7 @@ App.custom_save = async (id, name, value) => {
   }
 }
 
-App.edited = (item, include_ruled =  true) => {
+App.edited = (item, include_ruled = true) => {
   let edited = false
 
   for (let key in App.edit_props) {

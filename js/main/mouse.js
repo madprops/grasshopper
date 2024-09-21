@@ -341,7 +341,7 @@ App.mouse_context_action = (mode, e) => {
 
   let item_container = DOM.parent(e.target, [`.item_container`])
 
-  if (item_container)  {
+  if (item_container) {
     if (App.get_setting(`icon_pick`)) {
       if (DOM.parent(e.target, [`.item_icon_container`])) {
         App.select_item({item: item, scroll: `nearest`, deselect: true})

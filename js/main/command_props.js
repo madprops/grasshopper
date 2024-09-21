@@ -23,7 +23,7 @@ App.setup_commands = () => {
 
   let time_icon = App.time_icon
   let command_icon = App.command_icon
-  let tabs_icon =  App.mode_icons.tabs
+  let tabs_icon = App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
   let closed_icon = App.mode_icons.closed
   let browser_icon = App.browser_icon

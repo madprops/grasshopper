@@ -130,7 +130,7 @@ App.settings_setup_texts = (category) => {
 
     let menu = [
       {
-        name: `Reset`,  action: () => {
+        name: `Reset`, action: () => {
           let force = App.check_setting_default(key) || App.check_setting_empty(key)
 
           if (props.type !== `textarea`) {
@@ -149,7 +149,7 @@ App.settings_setup_texts = (category) => {
         },
       },
       {
-        name: `Copy`,  action: () => {
+        name: `Copy`, action: () => {
           if (el.value === ``) {
             return
           }
@@ -160,14 +160,14 @@ App.settings_setup_texts = (category) => {
     ]
 
     menu.push({
-      name: `Edit`,  action: () => {
+      name: `Edit`, action: () => {
         App.edit_text_setting(key)
       },
     })
 
     if (!props.no_empty) {
       menu.push({
-        name: `Clear`,  action: () => {
+        name: `Clear`, action: () => {
           if (el.value === ``) {
             return
           }
@@ -236,14 +236,14 @@ App.settings_setup_numbers = (category) => {
 
     let menu = [
       {
-        name: `Reset`,  action: () => {
+        name: `Reset`, action: () => {
           App.set_default_setting(key, true)
           let value = App.get_setting(key)
           el.value = value
         },
       },
       {
-        name: `Copy`,  action: () => {
+        name: `Copy`, action: () => {
           if (el.value === ``) {
             return
           }
@@ -272,7 +272,7 @@ App.setting_setup_lists = (category) => {
 
       let menu = [
         {
-          name: `Reset`,  action: () => {
+          name: `Reset`, action: () => {
             let force = App.check_setting_default(key) || App.check_setting_empty(key)
 
             App.show_confirm({
@@ -1007,7 +1007,7 @@ App.settings_menu_items = () => {
   for (let c of App.settings_categories) {
     let icon = App.settings_icons[c]
     let name = App.category_string(c)
-    let props =  App.setting_catprops[c]
+    let props = App.setting_catprops[c]
 
     items.push({
       icon: icon,
