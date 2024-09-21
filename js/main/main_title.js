@@ -43,6 +43,7 @@ App.start_main_title_intervals = () => {
 
 App.main_title_scroll_do_timeout = () => {
   if (App.main_title_scroll_pause) {
+    clearTimeout(App.main_title_scroll_timeout)
     let delay = App.main_title_scroll_pause_delay
     App.main_title_scroll_pause = false
 
