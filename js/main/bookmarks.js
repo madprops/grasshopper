@@ -30,7 +30,7 @@ App.setup_bookmarks = () => {
       let item = App.get_item_by_id(`bookmarks`, id)
 
       if (item) {
-        App.update_item({ mode: `bookmarks`, id: item.id, info: info })
+        App.update_item({mode: `bookmarks`, id: item.id, info: info})
       }
     }
   })
@@ -43,17 +43,19 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   let results = []
 
   try {
-    results = await browser.bookmarks.search({ query: query })
+    results = await browser.bookmarks.search({query: query})
   }
   catch (err) {
     App.error(err)
     return []
-  }
+  }1
 
   let bookmarks = results.filter(x => x.type === `bookmark`)
 
-  // Show only from Grasshopper directory
-  if (!App.get_setting(`all_bookmarks`)) {
+  if (App.bookmarks_folder) {
+    bookmarks = bookmarks.filter(x => x.parentId === App.bookmarks_folder.id)
+  }
+  else if (!App.get_setting(`all_bookmarks`)) {
     let folder = await App.get_bookmarks_folder()
     bookmarks = bookmarks.filter(x => x.parentId === folder.id)
   }
@@ -75,7 +77,7 @@ App.bookmarks_action = (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  App.select_item({ item: args.item, scroll: `nearest_smooth` })
+  App.select_item({item: args.item, scroll: `nearest_smooth`})
 
   if (args.on_action) {
     App.on_action(`bookmarks`)
@@ -84,25 +86,27 @@ App.bookmarks_action = (args = {}) => {
   App.focus_or_open_item(args.item)
 }
 
-App.get_bookmarks_folder = async () => {
-  let bookmarks_folder = App.get_setting(`bookmarks_folder`)
+App.get_bookmarks_folder = async (title) => {
+  if (!title) {
+    title = App.get_setting(`bookmarks_folder`)
 
-  if (!bookmarks_folder) {
-    bookmarks_folder = App.get_default_setting(`bookmarks_folder`)
+    if (!title) {
+      title = App.get_default_setting(`bookmarks_folder`)
+    }
   }
 
-  let results = await browser.bookmarks.search({ title: bookmarks_folder })
+  let results = await browser.bookmarks.search({title: title})
   let folder
 
   for (let res of results) {
-    if (res.title === bookmarks_folder && res.type === `folder`) {
+    if ((res.title === title) && (res.type === `folder`)) {
       folder = res
       break
     }
   }
 
   if (!folder) {
-    folder = await browser.bookmarks.create({ title: bookmarks_folder })
+    folder = await browser.bookmarks.create({title: title})
   }
 
   return folder
@@ -122,7 +126,7 @@ App.bookmark_items = async (args = {}) => {
   }
 
   if (!args.active) {
-    args.active = App.get_active_items({ mode: args.item.mode, item: args.item })
+    args.active = App.get_active_items({mode: args.item.mode, item: args.item})
   }
 
   if (args.pick_folder && !args.folder) {
@@ -193,11 +197,11 @@ App.bookmark_items = async (args = {}) => {
     confirm_action: async () => {
       for (let item of add) {
         let title = App.title(item)
-        await browser.bookmarks.create({ parentId: args.folder.id, title: title, url: item.url })
+        await browser.bookmarks.create({parentId: args.folder.id, title: title, url: item.url})
       }
 
       for (let id of bump) {
-        await browser.bookmarks.move(id, { index: bookmarks.length - 1 })
+        await browser.bookmarks.move(id, {index: bookmarks.length - 1})
       }
 
       if (args.feedback) {
@@ -222,7 +226,7 @@ App.bookmark_active = async () => {
     url: App.format_url(tab.url || ``),
   }
 
-  App.bookmark_items({ active: [item] })
+  App.bookmark_items({active: [item]})
 }
 
 App.pick_bookmarks_folder = async (args) => {
@@ -258,4 +262,30 @@ App.get_bookmark_folders = async () => {
 
   traverse(nodes)
   return folders
+}
+
+App.select_bookmarks_folder = async () => {
+  let folders = await App.get_bookmark_folders()
+  folders = folders.filter(x => x.title)
+  let items = []
+
+  items.push({
+    text: `All`,
+    action: async () => {
+      App.bookmarks_folder = undefined
+      App.show_mode({mode: `bookmarks`, force: true})
+    },
+  })
+
+  for (let folder of folders) {
+    items.push({
+      text: folder.title,
+      action: async () => {
+        App.bookmarks_folder = folder
+        App.show_mode({mode: `bookmarks`, force: true})
+      },
+    })
+  }
+
+  App.show_context({items: items})
 }

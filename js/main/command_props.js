@@ -1073,6 +1073,16 @@ App.setup_commands = () => {
       info: `Bookmark the selected items by picking a folder`,
     },
     {
+      name: `Select Bookmarks`,
+      cmd: `select_bookmarks_folder`,
+      modes: [`bookmarks`],
+      icon: bookmarks_icon,
+      action: (args) => {
+        App.select_bookmarks_folder()
+      },
+      info: `Select a specific bookmarks folder to show`,
+    },
+    {
       name: `Copy URL`,
       cmd: `copy_item_url`,
       modes: [`items`],
