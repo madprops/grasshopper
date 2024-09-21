@@ -337,7 +337,7 @@ App.setup_commands = () => {
 
   for (let mode of App.modes) {
     let icon = App.mode_icons[mode]
-    let m_name = App.get_mode_name(mode)
+    let m_name = App.get_mode_name(mode, false)
     let name = `Show ${m_name}`
 
     show_modes.push({
