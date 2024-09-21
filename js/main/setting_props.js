@@ -3504,7 +3504,7 @@ App.build_settings = () => {
 
   let theme_pickers = []
 
-  for (let num = 1; num <= 5; num++) {
+  for (let num = 1; num <= App.bg_themes; num++) {
     let obj = {
       text: num,
       action: () => {
@@ -3517,7 +3517,7 @@ App.build_settings = () => {
 
   let theme_pickers_2 = []
 
-  for (let num = 6; num <= 10; num++) {
+  for (let num = (App.bg_themes + 1); num <= 10; num++) {
     let obj = {
       text: num,
       action: () => {

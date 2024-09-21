@@ -106,6 +106,7 @@ App.num_command_combos = 10
 App.main_title_scroll_pause = false
 App.prompt_mode = false
 App.max_padding_setting = 100
+App.bg_themes = 5
 
 App.settings_ready = false
 App.media_image_ready = false

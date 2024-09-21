@@ -827,7 +827,7 @@ App.set_previous_theme = () => {
   let prev = num - 1
 
   if (prev < 1) {
-    prev = App.themes.length
+    prev = App.bg_themes
   }
 
   App.set_theme(prev)
@@ -843,13 +843,7 @@ App.set_next_theme = () => {
 
   let next = num + 1
 
-  if (next > App.themes.length) {
-    next = 1
-  }
-
-  let theme = App.get_theme_item(next)
-
-  if (theme.opacity === 100) {
+  if (next > App.bg_themes) {
     next = 1
   }
 
