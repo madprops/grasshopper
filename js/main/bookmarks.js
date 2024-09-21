@@ -229,8 +229,7 @@ App.bookmark_active = async () => {
 
 App.pick_bookmarks_folder = async (args) => {
   let folders = await App.get_bookmark_folders()
-  folders = folders.filter(x => x.title)
-  folders.sort((a, b) => b.dateGroupModified - a.dateGroupModified)
+  App.sort_bookmarks_folders(folders)
   let items = []
 
   for (let folder of folders) {
@@ -246,14 +245,25 @@ App.pick_bookmarks_folder = async (args) => {
   App.show_context({items: items})
 }
 
-App.get_bookmark_folders = async () => {
+App.get_bookmark_folders = async (title = ``) => {
   let folders = []
   let nodes = await browser.bookmarks.getTree()
+  let max = App.get_setting(`max_bookmark_folders`)
+  title = title.toLowerCase()
 
   function traverse(bookmarks) {
     for (let bookmark of bookmarks) {
       if (bookmark.children) {
-        folders.push(bookmark)
+        if (bookmark.title) {
+          if (bookmark.title.toLowerCase().includes(title)) {
+            folders.push(bookmark)
+          }
+        }
+
+        if (folders.length >= max) {
+          break
+        }
+
         traverse(bookmark.children)
       }
     }
@@ -271,9 +281,11 @@ App.select_bookmarks_folder = async () => {
   }
 
   let folders = await App.get_bookmark_folders()
-  folders = folders.filter(x => x.title)
-  folders.sort((a, b) => b.dateGroupModified - a.dateGroupModified)
+  App.sort_bookmarks_folders(folders)
+  App.do_select_bookmarks_folder(folders)
+}
 
+App.do_select_bookmarks_folder = (folders) => {
   let items = []
 
   items.push({
@@ -295,4 +307,29 @@ App.select_bookmarks_folder = async () => {
   }
 
   App.show_context({items: items})
+}
+
+App.search_bookmarks_folder = async () => {
+  let perm = await App.ask_permission(`bookmarks`)
+
+  if (!perm) {
+    return
+  }
+
+  App.show_prompt({
+    placeholder: `Search Folder`,
+    on_submit: (title) => {
+      App.do_search_bookmarks_folder(title)
+    }
+  })
+}
+
+App.do_search_bookmarks_folder = async (title) => {
+  let folders = await App.get_bookmark_folders(title)
+  App.sort_bookmarks_folders(folders)
+  App.do_select_bookmarks_folder(folders)
+}
+
+App.sort_bookmarks_folders = (folders) => {
+  folders.sort((a, b) => b.dateGroupModified - a.dateGroupModified)
 }

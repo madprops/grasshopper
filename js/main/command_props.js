@@ -1083,6 +1083,16 @@ App.setup_commands = () => {
       info: `Select a specific bookmarks folder to show`,
     },
     {
+      name: `Search Bookmarks`,
+      cmd: `search_bookmarks_folder`,
+      modes: [`items`],
+      icon: bookmarks_icon,
+      action: (args) => {
+        App.search_bookmarks_folder()
+      },
+      info: `Search a specific bookmarks folder to show`,
+    },
+    {
       name: `Copy URL`,
       cmd: `copy_item_url`,
       modes: [`items`],

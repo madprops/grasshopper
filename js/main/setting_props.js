@@ -3230,6 +3230,16 @@ App.build_settings = () => {
       info: `Empty the recent tabs list these milliseconds after its last use`,
       version: 1,
     },
+    max_bookmark_folders: {
+      name: `Max Bookmark Folders`,
+      type: `number`,
+      value: 25,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Max bookmark folders to fetch`,
+      version: 1,
+    },
     close_on_focus: {
       name: `Close On Focus`,
       type: `checkbox`,
