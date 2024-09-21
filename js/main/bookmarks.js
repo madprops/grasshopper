@@ -230,6 +230,7 @@ App.bookmark_active = async () => {
 App.pick_bookmarks_folder = async (args) => {
   let folders = await App.get_bookmark_folders()
   folders = folders.filter(x => x.title)
+  folders.sort((a, b) => b.dateGroupModified - a.dateGroupModified)
   let items = []
 
   for (let folder of folders) {
@@ -265,6 +266,8 @@ App.get_bookmark_folders = async () => {
 App.select_bookmarks_folder = async () => {
   let folders = await App.get_bookmark_folders()
   folders = folders.filter(x => x.title)
+  folders.sort((a, b) => b.dateGroupModified - a.dateGroupModified)
+
   let items = []
 
   items.push({
