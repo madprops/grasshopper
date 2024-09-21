@@ -3233,7 +3233,7 @@ App.build_settings = () => {
     max_bookmark_folders: {
       name: `Max Bookmark Folders`,
       type: `number`,
-      value: 25,
+      value: 100,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
