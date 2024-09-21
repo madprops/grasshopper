@@ -225,11 +225,15 @@ App.color_main_title = (what) => {
     bg_color = App.blue_title
   }
 
-  let text_color = `white`
-  let background_color = bg_color
+  let text = `white`
+  let bg = bg_color
+  App.set_main_title_color(text, bg)
+}
+
+App.set_main_title_color = (text, bg) => {
   App.set_setting({setting: `main_title_colors`, value: true})
-  App.set_setting({setting: `main_title_text_color`, value: text_color})
-  App.set_setting({setting: `main_title_background_color`, value: background_color})
+  App.set_setting({setting: `main_title_text_color`, value: text})
+  App.set_setting({setting: `main_title_background_color`, value: bg})
   App.check_refresh_settings()
   App.apply_theme()
 }
@@ -467,4 +471,16 @@ App.main_title_right = (el) => {
 
 App.main_title_pause = () => {
   App.main_title_scroll_pause = true
+}
+
+App.dark_main_title = () => {
+  let text = App.colorlib.get_light_color()
+  let bg = App.colorlib.get_dark_color()
+  App.set_main_title_color(text, bg)
+}
+
+App.light_main_title = () => {
+  let text = App.colorlib.get_dark_color()
+  let bg = App.colorlib.get_light_color()
+  App.set_main_title_color(text, bg)
 }

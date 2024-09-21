@@ -2974,6 +2974,24 @@ App.setup_commands = () => {
       info: `Apply blue color to the main title`,
     },
     {
+      name: `Dark Title Theme`,
+      cmd: `set_random_dark_main_title_theme`,
+      icon: title_icon,
+      action: (args) => {
+        App.dark_main_title()
+      },
+      info: `Apply a random dark color theme to the main title`,
+    },
+    {
+      name: `Light Title Theme`,
+      cmd: `set_random_light_main_title_theme`,
+      icon: title_icon,
+      action: (args) => {
+        App.light_main_title()
+      },
+      info: `Apply a random light color theme to the main title`,
+    },
+    {
       name: `Prev Title Color`,
       cmd: `previous_main_title_color`,
       icon: title_icon,
