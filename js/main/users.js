@@ -5,7 +5,6 @@ App.user_settings = (who) => {
       App.def_all_settings()
       App[`user_${who}_settings`]()
       App.alert_autohide(`Welcome ${who}`)
-      App.main_title_signal()
     },
   })
 }

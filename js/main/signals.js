@@ -150,3 +150,22 @@ App.get_signal = (cmd) => {
     }
   }
 }
+
+App.start_signal_intervals = () => {
+  for (let interval of App.signal_intervals) {
+    clearInterval(interval)
+  }
+
+  App.signal_intervals = []
+
+  for (let signal of App.get_setting(`signals`)) {
+    if (signal.interval && (signal.interval >= (App.SECOND * 3))) {
+      App.log(`Signal: ${signal.name} Interval: ${signal.interval}`)
+      let id = setInterval(() => {
+        App.send_signal(signal)
+      }, signal.interval)
+
+      App.signal_intervals.push(id)
+    }
+  }
+}

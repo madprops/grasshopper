@@ -42,6 +42,7 @@
 }
 
 .addlist_text {
+  font-size: 1rem;
   min-width: var(--widget_width);
   max-width: var(--widget_width);
   text-align: center;

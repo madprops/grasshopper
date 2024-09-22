@@ -43,8 +43,8 @@ App.init = async () => {
   App.check_first_time()
   App.start_clock()
   App.start_main_title()
-  App.main_title_signal()
   App.check_init_commands()
+  App.start_signal_intervals()
   App.start_date = App.now()
 }
 

@@ -431,7 +431,8 @@ App.refresh_settings = () => {
   App.setup_commands()
   App.fill_palette()
   App.build_tab_filters()
-  App.refresh_main_title()
+  App.set_main_title()
+  App.start_signal_intervals()
 }
 
 App.build_setting_cmds = () => {
@@ -1638,7 +1639,7 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`name`, `url`, `arguments`, `icon`, `method`, `feedback`, `update_title`, `send_tabs`],
+      keys: [`name`, `url`, `arguments`, `icon`, `method`, `interval`, `feedback`, `update_title`, `send_tabs`],
       pk: `name`,
       widgets: {
         name: `text`,
@@ -1649,6 +1650,7 @@ App.setup_settings_addlist = () => {
         arguments: `text`,
         update_title: `checkbox`,
         send_tabs: `checkbox`,
+        interval: `number`,
       },
       labels: {
         name: `Name`,
@@ -1659,6 +1661,7 @@ App.setup_settings_addlist = () => {
         arguments: `Arguments`,
         update_title: `Update Title`,
         send_tabs: `Send Tabs`,
+        interval: `Interval`,
       },
       list_icon: (item) => {
         return item.icon || App.signal_icon
@@ -1676,11 +1679,17 @@ App.setup_settings_addlist = () => {
         feedback: `Show the response in a popup`,
         update_title: `Update the Title with the response`,
         send_tabs: `Send all open tab URLs as the 'tabs' argument`,
+        Interval: `Run this signal every x milliseconds`,
       },
       process: {
         url: (url) => {
           return App.fix_url(url)
         },
+        interval: (num) => {
+          num = parseInt(num)
+          num = Math.max(App.signal_min_delay, num)
+          return num
+        }
       },
       sources: {
         method: () => {

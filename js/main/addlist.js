@@ -169,6 +169,11 @@ Addlist.register = (args = {}) => {
       el.autocomplete = false
       el.placeholder = args.labels[key]
     }
+    else if (w === `number`) {
+      el = DOM.create(`input`, `text addlist_text`, id)
+      el.type = `number`
+      el.placeholder = args.labels[key]
+    }
     else if (w === `textarea`) {
       el = DOM.create(`textarea`, `text addlist_textarea`, id)
       el.spellcheck = false
@@ -292,7 +297,7 @@ Addlist.edit = (args = {}) => {
     let el = Addlist.widget(args.id, key)
     let w = widgets[key]
 
-    if (w === `text` || w === `textarea` || w === `key`) {
+    if (w === `text` || w === `textarea` || w === `key` || w === `number`) {
       if (value) {
         el.value = value
       }
@@ -717,7 +722,7 @@ Addlist.get_value = (key) => {
   let el = Addlist.widget(id, key)
   let value
 
-  if (w === `text` || w === `textarea` || w === `key`) {
+  if (w === `text` || w === `textarea` || w === `key` || w === `number`) {
     value = el.value.trim()
 
     if (oargs.lowercase) {

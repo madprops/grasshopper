@@ -19,7 +19,6 @@ App.start_lock_screen = () => {
     },
     after_hide: () => {
       App.screen_locked = false
-      App.main_title_signal()
       let cmd = App.get_setting(`unlock_screen_command`)
       App.run_command({cmd: cmd, from: `lock_screen`})
     },

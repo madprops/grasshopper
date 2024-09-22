@@ -107,6 +107,7 @@ App.main_title_scroll_pause = false
 App.prompt_mode = false
 App.max_padding_setting = 100
 App.bg_themes = 5
+App.signal_intervals = []
 
 App.settings_ready = false
 App.media_image_ready = false
@@ -150,6 +151,7 @@ App.check_refresh_settings_delay = 100
 App.main_title_scroll_pause_delay = App.SECOND
 App.popup_commands_delay = 250
 App.prompt_close_delay = 250
+App.signal_min_delay = 3000
 
 App.settings_icons = {
   general: `⚡`,

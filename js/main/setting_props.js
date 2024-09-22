@@ -1772,26 +1772,6 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    main_title_signal: {
-      name: `Title Signal`,
-      type: `menu`,
-      value: `none`,
-      info: `Show the response of this signal on the Title periodically`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.signal_cmds_single)
-      },
-    },
-    main_title_signal_delay: {
-      name: `Title Signal Delay`,
-      type: `number`,
-      value: 5000,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Send the Title Signal every x milliseconds`,
-      version: 1,
-    },
     main_title_signal_icon: {
       name: `Title Signal Icon`,
       type: `checkbox`,

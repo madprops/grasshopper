@@ -9,7 +9,6 @@ App.reset_main_title = () => {
 
 App.start_main_title_intervals = () => {
   clearInterval(App.main_title_date_interval)
-  clearInterval(App.main_title_signal_interval)
   clearTimeout(App.main_title_scroll_timeout)
 
   // Date
@@ -24,21 +23,6 @@ App.start_main_title_intervals = () => {
   App.main_title_date_interval = setInterval(() => {
     App.check_main_title_date()
   }, delay)
-
-  // Signal
-
-  delay = App.get_setting(`main_title_signal_delay`)
-
-  if (!delay || (delay < 250)) {
-    App.error(`Clock delay is invalid`)
-    return
-  }
-
-  App.main_title_signal_interval = setInterval(() => {
-    App.main_title_signal()
-  }, delay)
-
-  App.main_title_scroll_do_timeout()
 }
 
 App.main_title_scroll_do_timeout = () => {
@@ -316,36 +300,6 @@ App.main_title_enabled = () => {
   }
 
   return true
-}
-
-App.main_title_signal = async () => {
-  if (!App.main_title_enabled()) {
-    return
-  }
-
-  if (App.get_setting(`main_title_date`)) {
-    return
-  }
-
-  let cmd = App.get_setting(`main_title_signal`)
-
-  if (cmd === `none`) {
-    return
-  }
-
-  let signal = App.get_signal(cmd)
-
-  if (!signal) {
-    return
-  }
-
-  let text = await App.send_signal(signal, `main_title`)
-
-  if (!text) {
-    return
-  }
-
-  App.main_title_signal_text(signal, text)
 }
 
 App.main_title_signal_text = (signal, text) => {
