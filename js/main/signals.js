@@ -90,6 +90,14 @@ App.fill_signals = () => {
 }
 
 App.send_signal = async (signal, from = `cmd`) => {
+  if (App.screen_locked) {
+    return
+  }
+
+  if (App.on_settings()) {
+    return
+  }
+
   let res, text
 
   try {

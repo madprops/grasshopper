@@ -299,6 +299,10 @@ App.main_title_enabled = () => {
     return false
   }
 
+  if (App.on_settings()) {
+    return false
+  }
+
   return true
 }
 
