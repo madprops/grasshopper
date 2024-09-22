@@ -1577,6 +1577,7 @@ App.build_settings = () => {
       name: `Title`,
       type: `text`,
       value: ``,
+      no_mirror: true,
       placeholder: `Title At The Top`,
       info: `The text to show in the Title`,
       version: 1,
