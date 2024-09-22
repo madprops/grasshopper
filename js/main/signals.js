@@ -42,6 +42,11 @@ App.fill_signals = () => {
     icon.textContent = signal.icon || App.settings_icons.signals
     let name = DOM.create(`div`, `signal_name`)
     name.textContent = signal.name
+
+    if (signal.interval) {
+      name.textContent += ` (${signal.interval})`
+    }
+
     let title = `${signal.url} (${signal.method})`
 
     if (signal.arguments) {
@@ -50,6 +55,22 @@ App.fill_signals = () => {
 
     if (signal.feedback) {
       title += ` (Feedback)`
+    }
+
+    if (signal.update_title) {
+      title += ` (Title)`
+    }
+
+    if (signal.send_tabs) {
+      title += ` (Tabs)`
+    }
+
+    if (signal.interval) {
+      title += ` (${signal.interval})`
+    }
+
+    if (signal.startup) {
+      title += ` (Startup)`
     }
 
     name.title = title
