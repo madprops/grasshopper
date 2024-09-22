@@ -159,12 +159,12 @@ App.start_signal_intervals = () => {
   App.signal_intervals = []
 
   for (let signal of App.get_setting(`signals`)) {
-    if (signal.interval && (signal.interval >= (App.SECOND * 3))) {
+    if (signal.interval && (signal.interval >= App.signal_min_delay)) {
       App.log(`Signal: ${signal.name} Interval: ${signal.interval}`)
 
       let id = setInterval(() => {
         App.send_signal(signal)
-      }, signal.interval)
+      }, signal.interval * 1000)
 
       App.signal_intervals.push(id)
     }

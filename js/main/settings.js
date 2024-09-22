@@ -1679,7 +1679,7 @@ App.setup_settings_addlist = () => {
         feedback: `Show the response in a popup`,
         update_title: `Update the Title with the response`,
         send_tabs: `Send all open tab URLs as the 'tabs' argument`,
-        Interval: `Run this signal every x milliseconds`,
+        Interval: `Run this signal every x seconds`,
       },
       process: {
         url: (url) => {
