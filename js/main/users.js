@@ -27,7 +27,6 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `main_title_colors`, value: true})
   App.set_setting({setting: `main_title_text_color`, value: `rgba(255, 255, 255, 1)`})
   App.set_setting({setting: `main_title_background_color`, value: `rgba(54, 54, 54, 1)`})
-  App.set_setting({setting: `main_title_signal`, value: `send_signal_sig_np`})
 
   // Wheel
 
@@ -107,28 +106,28 @@ App.user_madprops_settings = () => {
 
   sett = `signals`
 
-  cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, feedback: true, _id_: `sig_np`}
+  cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, interval: 5, update_title: true, startup: true, _id_: `sig_np`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `🎵`, feedback: false, _id_: `sig_play`}
+  cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `🎵`, _id_: `sig_play`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Music Next`, url: `http://127.0.0.1:5000/music-next`, method: `POST`, icon: `⏭️`, feedback: false, _id_: `sig_next`, update_title: true}
+  cmd = {name: `Music Next`, url: `http://127.0.0.1:5000/music-next`, method: `POST`, icon: `⏭️`, _id_: `sig_next`, update_title: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Music Prev`, url: `http://127.0.0.1:5000/music-prev`, method: `POST`, icon: `⏮️`, feedback: false, _id_: `sig_prev`, update_title: true}
+  cmd = {name: `Music Prev`, url: `http://127.0.0.1:5000/music-prev`, method: `POST`, icon: `⏮️`, _id_: `sig_prev`, update_title: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Volume Up`, url: `http://127.0.0.1:5000/volume-up`, method: `POST`, icon: `🔊`, feedback: false, _id_: `sig_volup`}
+  cmd = {name: `Volume Up`, url: `http://127.0.0.1:5000/volume-up`, method: `POST`, icon: `🔊`, _id_: `sig_volup`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Volume Down`, url: `http://127.0.0.1:5000/volume-down`, method: `POST`, icon: `🔉`, feedback: false, _id_: `sig_voldown`}
+  cmd = {name: `Volume Down`, url: `http://127.0.0.1:5000/volume-down`, method: `POST`, icon: `🔉`, _id_: `sig_voldown`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Max Volume`, url: `http://127.0.0.1:5000/volume-max`, method: `POST`, icon: `🔊`, feedback: false, _id_: `sig_volmax`}
+  cmd = {name: `Max Volume`, url: `http://127.0.0.1:5000/volume-max`, method: `POST`, icon: `🔊`, _id_: `sig_volmax`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Min Volume`, url: `http://127.0.0.1:5000/volume-min`, method: `POST`, icon: `🔉`, feedback: false, _id_: `sig_volmin`}
+  cmd = {name: `Min Volume`, url: `http://127.0.0.1:5000/volume-min`, method: `POST`, icon: `🔉`, _id_: `sig_volmin`}
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Post Test`, url: `http://127.0.0.1:5000/post-test`, method: `POST`, icon: `🤣`, feedback: true, arguments: `{"num": 3}`, send_tabs: true, _id_: `sig_test`}
