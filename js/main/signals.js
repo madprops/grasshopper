@@ -157,8 +157,9 @@ App.start_signal_intervals = () => {
   }
 
   App.signal_intervals = []
+  let signals = App.get_setting(`signals`)
 
-  for (let signal of App.get_setting(`signals`)) {
+  for (let signal of signals) {
     if (signal.interval && (signal.interval >= App.signal_min_delay)) {
       App.log(`Signal: ${signal.name} Interval: ${signal.interval}`)
 
@@ -167,6 +168,12 @@ App.start_signal_intervals = () => {
       }, signal.interval * 1000)
 
       App.signal_intervals.push(id)
+    }
+  }
+
+  for (let signal of signals) {
+    if (signal.startup) {
+      App.send_signal(signal)
     }
   }
 }

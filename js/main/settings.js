@@ -1639,7 +1639,7 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`name`, `url`, `arguments`, `icon`, `method`, `interval`, `feedback`, `update_title`, `send_tabs`],
+      keys: [`name`, `url`, `arguments`, `icon`, `method`, `interval`, `feedback`, `update_title`, `send_tabs`, `startup`],
       pk: `name`,
       widgets: {
         name: `text`,
@@ -1651,6 +1651,7 @@ App.setup_settings_addlist = () => {
         update_title: `checkbox`,
         send_tabs: `checkbox`,
         interval: `number`,
+        startup: `checkbox`,
       },
       labels: {
         name: `Name`,
@@ -1662,6 +1663,7 @@ App.setup_settings_addlist = () => {
         update_title: `Update Title`,
         send_tabs: `Send Tabs`,
         interval: `Interval`,
+        startup: `Startup`,
       },
       list_icon: (item) => {
         return item.icon || App.signal_icon
@@ -1679,7 +1681,8 @@ App.setup_settings_addlist = () => {
         feedback: `Show the response in a popup`,
         update_title: `Update the Title with the response`,
         send_tabs: `Send all open tab URLs as the 'tabs' argument`,
-        Interval: `Run this signal every x seconds`,
+        interval: `Run this signal every x seconds`,
+        startup: `Run this signal at startup`,
       },
       process: {
         url: (url) => {
