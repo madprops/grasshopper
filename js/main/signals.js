@@ -131,10 +131,19 @@ App.send_signal = async (signal, from = `cmd`) => {
         }
 
         if (signal.update_title) {
-          App.main_title_signal_text(signal, text)
+          text = App.add_signal_icon(signal, text)
+          App.set_main_title(text)
         }
       }
     }
+  }
+
+  return text
+}
+
+App.add_signal_icon = (signal, text) => {
+  if (signal.icon && App.get_setting(`main_title_signal_icon`)) {
+    text = `${signal.icon} ${text}`
   }
 
   return text

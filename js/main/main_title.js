@@ -302,24 +302,6 @@ App.main_title_enabled = () => {
   return true
 }
 
-App.main_title_signal_text = (signal, text) => {
-  if (!App.main_title_enabled()) {
-    return
-  }
-
-  if (App.get_setting(`main_title_date`)) {
-    return
-  }
-
-  if (App.get_setting(`main_title_signal_icon`)) {
-    if (signal.icon) {
-      text = `${signal.icon} ${text}`
-    }
-  }
-
-  App.set_main_title(text)
-}
-
 App.toggle_main_title = () => {
   let new_value = !App.get_setting(`show_main_title`)
   App.set_setting({setting: `show_main_title`, value: new_value, action: true})
