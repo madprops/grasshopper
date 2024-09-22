@@ -1765,7 +1765,6 @@ App.build_settings = () => {
       name: `Shift Wheel Down Title`,
       type: `menu`,
       value: `next_main_title_color`,
-      separator: true,
       info: `Command to run when using the mousewheel down on the Title while holding Shift`,
       version: 1,
       setup: (key) => {
