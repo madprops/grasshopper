@@ -261,8 +261,13 @@ App.get_bookmark_folders = async (title = ``) => {
   let nodes = await browser.bookmarks.getTree()
   let max = App.get_setting(`max_bookmark_folders`)
   title = title.toLowerCase()
+  let max_depth = 3
 
-  function traverse(bookmarks) {
+  function traverse(bookmarks, depth) {
+    if (depth > max_depth) {
+      return
+    }
+
     for (let bookmark of bookmarks) {
       if (bookmark.children) {
         if (bookmark.title) {
@@ -275,12 +280,12 @@ App.get_bookmark_folders = async (title = ``) => {
           return
         }
 
-        traverse(bookmark.children)
+        traverse(bookmark.children, depth + 1)
       }
     }
   }
 
-  traverse(nodes)
+  traverse(nodes, 1)
   return folders
 }
 
