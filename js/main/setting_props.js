@@ -3499,7 +3499,7 @@ App.build_settings = () => {
 
   let theme_pickers = []
 
-  for (let num = 1; num <= App.bg_themes; num++) {
+  for (let num = 1; num <= App.themes.length; num++) {
     let obj = {
       text: num,
       action: () => {
@@ -3508,19 +3508,6 @@ App.build_settings = () => {
     }
 
     theme_pickers.push(obj)
-  }
-
-  let theme_pickers_2 = []
-
-  for (let num = (App.bg_themes + 1); num <= 10; num++) {
-    let obj = {
-      text: num,
-      action: () => {
-        App.set_theme(num)
-      },
-    }
-
-    theme_pickers_2.push(obj)
   }
 
   // Category Properties
@@ -3563,7 +3550,6 @@ App.build_settings = () => {
           },
         ],
         theme_pickers,
-        theme_pickers_2,
       ]
     },
     colors: {

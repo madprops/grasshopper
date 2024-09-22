@@ -106,7 +106,6 @@ App.num_command_combos = 10
 App.main_title_scroll_pause = false
 App.prompt_mode = false
 App.max_padding_setting = 100
-App.bg_themes = 5
 App.signal_intervals = []
 
 App.settings_ready = false
@@ -333,31 +332,6 @@ App.themes = [
   },
   {
     num: 5, opacity: 75,
-  },
-  {
-    num: 6, opacity: 100,
-    text_color: `rgb(255, 255, 255)`,
-    background_color: `rgb(123, 128, 83)`,
-  },
-  {
-    num: 7, opacity: 100,
-    text_color: `rgb(105, 251, 86)`,
-    background_color: `rgb(0, 0, 0)`,
-  },
-  {
-    num: 8, opacity: 100,
-    text_color: `rgb(134, 244, 252)`,
-    background_color: `rgb(66, 75, 130)`,
-  },
-  {
-    num: 9, opacity: 100,
-    text_color: `rgb(197, 255, 193)`,
-    background_color: `rgb(65, 129, 77)`,
-  },
-  {
-    num: 10, opacity: 100,
-    text_color: `rgb(255, 255, 255)`,
-    background_color: `rgb(139, 62, 62)`,
   },
 ]
 

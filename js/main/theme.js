@@ -501,10 +501,12 @@ App.get_css_var = (name) => {
 }
 
 App.set_dark_colors = () => {
+  App.set_setting({setting: `background_opacity`, value: 100})
   App.set_colors(App.dark_colors.background, App.dark_colors.text)
 }
 
 App.set_light_colors = () => {
+  App.set_setting({setting: `background_opacity`, value: 100})
   App.set_colors(App.light_colors.background, App.light_colors.text)
 }
 
@@ -827,7 +829,7 @@ App.set_previous_theme = () => {
   let prev = num - 1
 
   if (prev < 1) {
-    prev = App.bg_themes
+    prev = App.themes.length
   }
 
   App.set_theme(prev)
@@ -843,7 +845,7 @@ App.set_next_theme = () => {
 
   let next = num + 1
 
-  if (next > App.bg_themes) {
+  if (next > App.themes.length) {
     next = 1
   }
 
@@ -900,19 +902,11 @@ App.set_theme = (num) => {
     App.set_default_setting(`background_tiles`)
   }
 
-  App.set_background_image(theme.num, theme.opacity)
+  App.set_background_image(theme.num)
 }
 
-App.set_background_image = (num, opacity) => {
-  let bg_image
-
-  if (opacity === 100) {
-    bg_image = ``
-  }
-  else {
-    bg_image = `Background ${num}`
-  }
-
+App.set_background_image = (num) => {
+  let bg_image = `Background ${num}`
   App.set_setting({setting: `background_image`, value: bg_image})
   App.check_refresh_settings()
   App.apply_theme()
