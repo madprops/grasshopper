@@ -145,8 +145,6 @@ Addlist.register = (args = {}) => {
   top.append(title)
   top.append(btn_next)
   container.append(top)
-  let date = DOM.create(`div`, `addlist_date hidden`, `addlist_date_${args.id}`)
-  container.append(date)
   let els = []
 
   function add_label (el, key) {
@@ -484,20 +482,14 @@ Addlist.check_buttons = (args) => {
   let menu_el = DOM.el(`#addlist_menu_${args.id}`)
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
   let next_el = DOM.el(`#addlist_next_${args.id}`)
-  let date_el = DOM.el(`#addlist_date_${args.id}`)
+
   DOM.hide(menu_el)
   DOM.hide(prev_el)
   DOM.hide(next_el)
-  DOM.hide(date_el)
 
   if (args.edit) {
     let num = Addlist.get_data(args.id).length
     DOM.show(menu_el)
-
-    if (args.items._date_) {
-      DOM.show(date_el)
-      date_el.textContent = App.nice_date(args.items._date_)
-    }
 
     if (num > 1) {
       DOM.show(prev_el)

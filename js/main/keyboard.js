@@ -444,7 +444,7 @@ App.setup_keyboard = () => {
           return
         }
         else if (e.key === `Escape`) {
-          Addlist.hide(true, `escape`)
+          Addlist.hide(false, `escape`)
           e.preventDefault()
           return
         }
