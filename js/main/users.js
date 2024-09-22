@@ -5,6 +5,8 @@ App.user_settings = (who) => {
       App.def_all_settings()
       App[`user_${who}_settings`]()
       App.alert_autohide(`Welcome ${who}`)
+      App.refresh_settings()
+      App.clear_show()
     },
   })
 }
@@ -165,9 +167,4 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `browser_command_1`, value: `set_random_dark_colors`})
   App.set_setting({setting: `browser_command_2`, value: `restart_extension`})
   App.set_setting({setting: `popup_command_1`, value: `edit_notes`})
-
-  // Refresh
-
-  App.refresh_settings()
-  App.clear_show()
 }
