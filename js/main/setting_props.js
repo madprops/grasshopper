@@ -3239,7 +3239,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Limit bookmark depth when fetching bookmarks`,
+      info: `Limit bookmark depth when fetching folders`,
       version: 1,
     },
     close_on_focus: {
