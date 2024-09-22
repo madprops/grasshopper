@@ -1772,13 +1772,6 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    main_title_signal_icon: {
-      name: `Title Signal Icon`,
-      type: `checkbox`,
-      value: false,
-      info: `Show the icon of the signal in the Title`,
-      version: 1,
-    },
   }
 
   add_props()
@@ -2957,14 +2950,6 @@ App.build_settings = () => {
   category = `triggers`
 
   props = {
-    signals: {
-      name: `Signals`,
-      type: `list`,
-      value: [],
-      actions: [`commands`],
-      info: `The list of signal items to use with the Signals command`,
-      version: 1,
-    },
     keyboard_shortcuts: {
       name: `Keyboard Shortcuts`,
       type: `list`,
@@ -3125,6 +3110,34 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Use this to consider how sensitive double clicks are (milliseconds)`,
+      version: 1,
+    },
+  }
+
+  add_props()
+  category = `signals`
+
+  props = {
+    signals: {
+      name: `Signals`,
+      type: `list`,
+      value: [],
+      actions: [`commands`],
+      info: `The list of signal items to use with the Signals command`,
+      version: 1,
+    },
+    main_title_signal_icon: {
+      name: `Title Signal Icon`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the icon of the signal in the Title`,
+      version: 1,
+    },
+    show_signal_errors: {
+      name: `Signal Errors`,
+      type: `checkbox`,
+      value: false,
+      info: `Show an alert popup on signal errors`,
       version: 1,
     },
   }
@@ -3450,13 +3463,6 @@ App.build_settings = () => {
       info: `Select items when right clicking them to show the Item Menu`,
       version: 1,
     },
-    show_signal_errors: {
-      name: `Signal Errors`,
-      type: `checkbox`,
-      value: false,
-      info: `Show an alert popup on signal errors`,
-      version: 1,
-    },
     tab_close_pins: {
       name: `Tab Close Pins`,
       type: `checkbox`,
@@ -3600,6 +3606,14 @@ App.build_settings = () => {
     },
     triggers: {
       info: `Run commands on certain keyboard and mouse actions`,
+    },
+    signals: {
+      info: `Signals are network requests the extension does
+      You can configure them to use GET, or POST, etc
+      You can define what arguments are sent
+      Signals are able to show feedback in a popup message
+      or update the Title on response. They can also run automatically
+      at a specified time interval, measured in seconds`,
     },
     gestures: {
       info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button

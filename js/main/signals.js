@@ -15,7 +15,7 @@ App.start_signals = () => {
       let add = DOM.el(`#signals_add`)
 
       DOM.ev(add, `click`, () => {
-        App.show_settings_category(`triggers`)
+        App.show_settings_category(`signals`)
       })
 
       let close = DOM.el(`#signals_close`)
@@ -45,7 +45,7 @@ App.fill_signals = () => {
   for (let signal of signals) {
     let el = DOM.create(`div`, `signal_item`)
     let icon = DOM.create(`div`, `signal_icon`)
-    icon.textContent = signal.icon || App.signal_icon
+    icon.textContent = signal.icon || App.settings_icons.signals
     let name = DOM.create(`div`, `signal_name`)
     name.textContent = signal.name
     let title = `${signal.url} (${signal.method})`

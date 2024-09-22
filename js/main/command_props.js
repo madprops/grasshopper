@@ -20,13 +20,14 @@ App.setup_commands = () => {
   let colors_icon = App.settings_icons.colors
   let favorites_icon = App.settings_icons.favorites
   let combo_icon = App.settings_icons.combos
+  let signal_icon = App.settings_icons.signals
+  let browser_icon = App.settings_icons.browser
 
   let time_icon = App.time_icon
   let command_icon = App.command_icon
   let tabs_icon = App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
   let closed_icon = App.mode_icons.closed
-  let browser_icon = App.browser_icon
   let clipboard_icon = App.clipboard_icon
   let notepad_icon = App.notepad_icon
   let bot_icon = App.bot_icon
@@ -41,7 +42,6 @@ App.setup_commands = () => {
   let grasshopper_icon = App.grasshopper_icon
   let lock_icon = App.lock_icon
   let key_icon = App.key_icon
-  let signal_icon = App.signal_icon
   let rewind_icon = App.rewind_icon
   let new_icon = App.new_icon
   let duplicate_icon = App.duplicate_icon

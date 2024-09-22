@@ -1614,7 +1614,7 @@ App.setup_settings_addlist = () => {
         icon: `Icon`,
       },
       list_icon: (item) => {
-        return item.icon || App.browser_icon
+        return item.icon || App.settings_icons.browser
       },
       list_text: (item) => {
         return item.name
@@ -1666,7 +1666,7 @@ App.setup_settings_addlist = () => {
         startup: `Startup`,
       },
       list_icon: (item) => {
-        return item.icon || App.signal_icon
+        return item.icon || App.settings_icons.signal
       },
       list_text: (item) => {
         return item.name

@@ -171,6 +171,7 @@ App.settings_icons = {
   warns: `🚨`,
   filter: `🔍`,
   triggers: `🔮`,
+  signals: `📡`,
   more: `💠`,
   title: `✍🏻`,
   footer: `⚽`,
@@ -190,7 +191,6 @@ App.clipboard_icon = `📋`
 App.bot_icon = `🤖`
 App.icon_placeholder = `Icon`
 App.notepad_icon = `📝`
-App.browser_icon = `🌐`
 App.command_icon = `🔆`
 App.up_arrow_icon = `⬆️`
 App.down_arrow_icon = `⬇️`
@@ -213,7 +213,6 @@ App.time_icon = `⏰`
 App.grasshopper_icon = `🦗`
 App.lock_icon = `🔒`
 App.key_icon = `🔑`
-App.signal_icon = `📡`
 App.rewind_icon = `⏪`
 App.new_icon = `🆕`
 App.duplicate_icon = `👭🏻`
