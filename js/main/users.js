@@ -4,9 +4,9 @@ App.user_settings = (who) => {
     confirm_action: () => {
       App.def_all_settings()
       App[`user_${who}_settings`]()
-      App.alert_autohide(`Welcome ${who}`)
       App.refresh_settings()
       App.clear_show()
+      App.alert_autohide(`Welcome ${who}`)
     },
   })
 }
