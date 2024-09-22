@@ -3,7 +3,6 @@ App.init = async () => {
   App.window_id = win.id
   App.manifest = browser.runtime.getManifest()
   App.header_url = browser.extension.getURL("header/index.html")
-  App.mines_url = browser.extension.getURL("toys/mines/index.html")
   App.extension_id = browser.runtime.id
   App.print_intro()
   App.build_settings()

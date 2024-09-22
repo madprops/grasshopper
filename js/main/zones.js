@@ -1,5 +1,4 @@
 App.insert_header = async (item, full = true) => {
-  console.log(App.header_url)
   let active = App.get_active_items({mode: item.mode, item: item})
   let first = active.at(0)
   let index = App.get_item_element_index({mode: first.mode, element: first.element})

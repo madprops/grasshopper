@@ -217,7 +217,6 @@ App.new_icon = `🆕`
 App.duplicate_icon = `👭🏻`
 App.keyboard_icon = `⌨️`
 App.tree_icon = `🌳`
-App.bomb_icon = `💣`
 
 App.sizes = [
   {text: `Tiny`, value: `tiny`},
