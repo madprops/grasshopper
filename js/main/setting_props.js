@@ -3232,6 +3232,16 @@ App.build_settings = () => {
       info: `Max bookmark folders to fetch`,
       version: 1,
     },
+    max_bookmark_depth: {
+      name: `Max Bookmark Depth`,
+      type: `number`,
+      value: 3,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Limit bookmark depth when fetching bookmarks`,
+      version: 1,
+    },
     close_on_focus: {
       name: `Close On Focus`,
       type: `checkbox`,
