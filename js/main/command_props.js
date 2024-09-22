@@ -47,6 +47,7 @@ App.setup_commands = () => {
   let duplicate_icon = App.duplicate_icon
   let keyboard_icon = App.keyboard_icon
   let tree_icon = App.tree_icon
+  let bomb_icon = App.bomb_icon
 
   let color_filters = []
   let color_changers = []
@@ -3148,6 +3149,15 @@ App.setup_commands = () => {
         App.toggle_breathe_effect()
       },
       info: `Let the grasshopper breathe`,
+    },
+    {
+      name: `Mines`,
+      cmd: `open_mines`,
+      icon: bomb_icon,
+      action: (args) => {
+        App.open_mines()
+      },
+      info: `Start the minesweeper game`,
     },
     {
       name: `Restart`,

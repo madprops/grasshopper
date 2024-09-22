@@ -71,3 +71,7 @@ App.toggle_breathe_effect = () => {
   App.breathe_effect_on = !App.breathe_effect_on
   App.apply_theme()
 }
+
+App.open_mines = () => {
+  App.open_new_tab({url: App.mines_url})
+}
