@@ -147,8 +147,23 @@ def music_np():
 
 @app.route("/post-test", methods=["POST"])
 def post_test():
-    num = get_arg("num")
-    return f"You sent {num}"
+    msg = ""
+
+    if request.content_type == "application/json":
+        num = get_arg("num")
+        tabs = get_arg("tabs")
+
+        if num is not None:
+            msg += f"You sent {num}"
+
+        if tabs is not None:
+            msg += f" and {len(tabs)} tabs"
+
+    if not msg:
+        msg = "You sent nothing"
+
+    return msg
+
 
 
 # ----------

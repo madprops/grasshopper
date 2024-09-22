@@ -89,12 +89,23 @@ App.send_signal = async (signal, from = `cmd`) => {
       method: signal.method,
     }
 
-    if (signal.arguments) {
+    if (signal.arguments || signal.send_tabs) {
       obj.headers = {
         "Content-Type": `application/json`,
       }
 
-      obj.body = signal.arguments
+      let args = {}
+
+      if (signal.arguments) {
+        let parsed = JSON.parse(signal.arguments)
+        args = Object.assign(args, parsed)
+      }
+
+      if (signal.send_tabs) {
+        args.tabs = App.get_url_list()
+      }
+
+      obj.body = JSON.stringify(args)
     }
 
     res = await fetch(signal.url, obj)

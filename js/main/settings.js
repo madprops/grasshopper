@@ -1638,7 +1638,7 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`name`, `url`, `arguments`, `icon`, `method`, `feedback`, `update_title`],
+      keys: [`name`, `url`, `arguments`, `icon`, `method`, `feedback`, `update_title`, `send_tabs`],
       pk: `name`,
       widgets: {
         name: `text`,
@@ -1648,6 +1648,7 @@ App.setup_settings_addlist = () => {
         icon: `text`,
         arguments: `text`,
         update_title: `checkbox`,
+        send_tabs: `checkbox`,
       },
       labels: {
         name: `Name`,
@@ -1657,6 +1658,7 @@ App.setup_settings_addlist = () => {
         icon: `Icon`,
         arguments: `Arguments`,
         update_title: `Update Title`,
+        send_tabs: `Send Tabs`,
       },
       list_icon: (item) => {
         return item.icon || App.signal_icon
@@ -1673,6 +1675,7 @@ App.setup_settings_addlist = () => {
         arguments: `JSON string to use as arguments for POST`,
         feedback: `Show the response in a popup`,
         update_title: `Update the Title with the response`,
+        send_tabs: `Send all open tab URLs as the 'tabs' argument`,
       },
       process: {
         url: (url) => {

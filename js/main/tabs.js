@@ -762,7 +762,7 @@ App.show_tabs_info = () => {
   App.alert(items.join(`\n`))
 }
 
-App.show_tab_urls = () => {
+App.get_url_list = () => {
   let urls = []
 
   for (let item of App.get_items(`tabs`)) {
@@ -777,7 +777,11 @@ App.show_tab_urls = () => {
     urls.push(item.url)
   }
 
-  urls = App.to_set(urls)
+  return App.to_set(urls)
+}
+
+App.show_tab_urls = () => {
+  let urls = App.get_url_list()
   let s = urls.join(`\n`)
   App.show_textarea(`All Open URLs (${urls.length})`, s)
 }
