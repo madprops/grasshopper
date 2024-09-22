@@ -6,15 +6,9 @@ App.start_signals = () => {
   App.create_window({
     id: `signals`,
     setup: () => {
-      let info = DOM.el(`#signals_info`)
+      let edit = DOM.el(`#signals_edit`)
 
-      DOM.ev(info, `click`, () => {
-        App.signal_info()
-      })
-
-      let add = DOM.el(`#signals_add`)
-
-      DOM.ev(add, `click`, () => {
+      DOM.ev(edit, `click`, () => {
         App.show_settings_category(`signals`)
       })
 
@@ -72,13 +66,6 @@ App.fill_signals = () => {
     el.append(btn)
     container.append(el)
   }
-}
-
-App.signal_info = () => {
-  let s = `Here you can send signals
-  First you have to add some in Trigger Settings
-  You can use them on webservers to trigger actions or get information`
-  App.alert(App.periods(s))
 }
 
 App.send_signal = async (signal, from = `cmd`) => {
