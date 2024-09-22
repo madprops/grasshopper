@@ -295,7 +295,7 @@ App.setting_setup_lists = (category) => {
 }
 
 App.settings_make_menu = (setting, opts, action = () => {}) => {
-  let no_wrap = [`font_size`, `width`, `height`]
+  let no_wrap = [`font_size`, `width`, `height`, `background_opacity`, `font_size`]
 
   App[`settings_menubutton_${setting}`] = Menubutton.create({
     opts: opts,
