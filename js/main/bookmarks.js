@@ -272,7 +272,7 @@ App.get_bookmark_folders = async (title = ``) => {
         }
 
         if (folders.length >= max) {
-          break
+          return
         }
 
         traverse(bookmark.children)
