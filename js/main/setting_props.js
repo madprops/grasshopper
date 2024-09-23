@@ -944,6 +944,7 @@ App.build_settings = () => {
       name: `Bookmarks Menu`,
       type: `list`,
       value: [
+        {cmd: `deep_search`},
         {cmd: `show_search_media_menu`},
         {cmd: `bookmark_page`},
         {cmd: `select_bookmarks_folder`},
@@ -3283,16 +3284,6 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Empty the recent tabs list these milliseconds after its last use`,
-      version: 1,
-    },
-    max_bookmark_items: {
-      name: `Max Bookmark Items`,
-      type: `number`,
-      value: 500,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Max number of bookmark results to show at once`,
       version: 1,
     },
     max_bookmark_folders: {
