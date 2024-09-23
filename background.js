@@ -132,11 +132,16 @@ async function refresh_bookmarks() {
   function traverse(bookmarks) {
     for (let bookmark of bookmarks) {
       if (bookmark.children) {
-        folders.push(bookmark)
+        if (bookmark.title) {
+          folders.push(bookmark)
+        }
+
         traverse(bookmark.children)
       }
       else {
-        items.push(bookmark)
+        if (bookmark.title) {
+          items.push(bookmark)
+        }
       }
     }
   }
