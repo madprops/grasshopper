@@ -78,19 +78,29 @@ def get_metadata(what):
 
 
 def metadata():
-    artist = get_metadata("{{artist}}")
-    title = get_metadata("{{title}}")
+    info = ""
+    # Return empty if not playing to ignore title change
+    # But this can be changed to "Not Playing" or similar
 
-    if artist and title:
-        info = f"{artist} - {title}"
-    elif artist:
-        info = artist
-    elif title:
-        info = title
-    else:
-        info = "Not Playing"
+    status = player_status()
+
+    if status == "Playing":
+        artist = get_metadata("{{artist}}")
+        title = get_metadata("{{title}}")
+
+        if artist and title:
+            info = f"{artist} - {title}"
+        elif artist:
+            info = artist
+        elif title:
+            info = title
 
     return info
+
+
+def player_status():
+    result = output([*player, "status"])
+    return result.stdout.decode("utf-8").strip()
 
 
 # ----------
@@ -163,7 +173,6 @@ def post_test():
         msg = "You sent nothing"
 
     return msg
-
 
 
 # ----------
