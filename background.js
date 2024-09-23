@@ -147,8 +147,13 @@ async function refresh_bookmarks() {
   }
 
   traverse(nodes)
+
+  items.sort((a, b) => b.dateAdded - a.dateAdded)
+  folders.sort((a, b) => b.dateGroupModified - a.dateGroupModified)
+
   bookmark_items = items
   bookmark_folders = folders
+
   console.info(`BG: Bookmarks refreshed: ${folders.length} folders and ${items.length} items.`)
 }
 

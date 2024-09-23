@@ -231,6 +231,11 @@ App.pick_bookmarks_folder = async (args) => {
   App.show_context({items: items})
 }
 
+App.filter_bookmark_nodes = (title, nodes) => {
+  title = title.toLowerCase()
+  return nodes.filter(x => x.title.toLowerCase().includes(title))
+}
+
 App.get_bookmark_items = async (title = ``, deep = false) => {
   let res = await browser.runtime.sendMessage({action: `get_bookmark_items`})
 
@@ -241,11 +246,9 @@ App.get_bookmark_items = async (title = ``, deep = false) => {
   let items = res.items || []
 
   if (title) {
-    title = title.toLowerCase()
-    items = items.filter(x => x.title.toLowerCase().includes(title))
+    items = App.filter_bookmark_nodes(title, items)
   }
 
-  items.sort((a, b) => b.dateAdded - a.dateAdded)
   let max_items
 
   if (deep) {
@@ -269,10 +272,9 @@ App.get_bookmark_folders = async (title = ``) => {
 
   if (title) {
     title = title.toLowerCase()
-    folders = folders.filter(x => x.title.toLowerCase().includes(title))
+    folders = App.filter_bookmark_nodes(title, folders)
   }
 
-  folders.sort((a, b) => b.dateGroupModified - a.dateGroupModified)
   return folders.slice(0, App.get_setting(`max_bookmark_folders`))
 }
 
