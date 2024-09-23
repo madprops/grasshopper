@@ -1,3 +1,4 @@
+let doing_init_bookmarks = false
 let bookmarks_active = false
 let bookmark_items = []
 let bookmark_folders = []
@@ -183,16 +184,19 @@ async function start_bookmarks(refresh = true) {
 }
 
 async function init_bookmarks() {
-  if (bookmarks_active) {
+  if (doing_init_bookmarks || bookmarks_active) {
     return
   }
 
+  doing_init_bookmarks = true
   await start_bookmarks(false)
 
   if (bookmarks_active) {
     await refresh_bookmarks()
     browser.runtime.sendMessage({action: `show_bookmarks`})
   }
+
+  doing_init_bookmarks = false
 }
 
 start_bookmarks()
