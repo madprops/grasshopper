@@ -43,7 +43,7 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   let results = []
 
   try {
-    results = await App.get_bookmark_items(query)
+    results = await App.get_bookmark_items(query, deep)
   }
   catch (err) {
     App.error(err)
@@ -60,15 +60,8 @@ App.get_bookmarks = async (query = ``, deep = false) => {
     bookmarks = bookmarks.filter(x => x.parentId === folder.id)
   }
 
-  bookmarks.sort((a, b) => b.dateAdded - a.dateAdded)
   App.last_bookmarks_query = query
-  let max_items = App.get_setting(`max_search_items`)
-
-  if (deep) {
-    max_items = App.get_setting(`deep_max_search_items`)
-  }
-
-  return bookmarks.slice(0, max_items)
+  return bookmarks
 }
 
 App.bookmarks_action = (args = {}) => {
@@ -238,7 +231,7 @@ App.pick_bookmarks_folder = async (args) => {
   App.show_context({items: items})
 }
 
-App.get_bookmark_items = async (title = ``) => {
+App.get_bookmark_items = async (title = ``, deep = false) => {
   let res = await browser.runtime.sendMessage({action: `get_bookmark_items`})
 
   if (!res) {
@@ -247,13 +240,22 @@ App.get_bookmark_items = async (title = ``) => {
 
   let items = res.items || []
   items = items.filter(x => x.title)
+  items.sort((a, b) => b.dateAdded - a.dateAdded)
+  let max_items
+
+  if (deep) {
+    max_items = App.get_setting(`deep_max_search_items`)
+  }
+  else {
+    App.get_setting(`max_search_items`)
+  }
 
   if (title) {
     title = title.toLowerCase()
     items = items.filter(x => x.title.toLowerCase().includes(title))
   }
 
-  App.sort_bookmarks_items(items)
+  items = items.slice(0, max_items)
   return items
 }
 
