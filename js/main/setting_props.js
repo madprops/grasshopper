@@ -1988,6 +1988,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `previous_filter`,
       info: `Command to run when middle clicking the Filter Menu`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -1998,6 +1999,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `browser_reload`,
       info: `Command to run when middle clicking the Actions Menu`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_actions: {
+      name: `Wheel Up Actions`,
+      type: `menu`,
+      value: `select_item_up_alt`,
+      info: `Command to run when using the mousewheel up on the Actions Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_actions: {
+      name: `Wheel Down Actions`,
+      type: `menu`,
+      value: `select_item_down_alt`,
+      info: `Command to run when using the mousewheel down on the Actions Button`,
       separator: true,
       version: 1,
       setup: (key) => {

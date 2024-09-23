@@ -1,5 +1,5 @@
 App.create_step_back_button = (mode) => {
-  let btn = DOM.create(`div`, `step_back button icon_button`, `${mode}_back`)
+  let btn = DOM.create(`div`, `step_back_button button icon_button`, `${mode}_back`)
   let click = App.get_cmd_name(`step_back`)
   let rclick = App.get_cmd_name(`show_recent_tabs`)
 
