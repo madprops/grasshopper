@@ -578,7 +578,11 @@ Addlist.modified = (id) => {
   let values = Addlist.values(id)
 
   for (let key in values) {
-    if (values[key] !== data.items[key]) {
+    if (key === `_date_`) {
+      continue
+    }
+
+    if (!Addlist.equals(values[key], data.items[key])) {
       return true
     }
   }
@@ -1120,4 +1124,20 @@ Addlist.check_remove = () => {
 
 Addlist.edit_object = (id, obj, edit, after_done) => {
   Addlist.edit({id: id, items: obj, edit: edit, after_done: after_done})
+}
+
+Addlist.equals = (a, b) => {
+  function falsey(x) {
+    return (x === undefined) || (x === null) || (isNaN(x)) || (x === ``)
+  }
+
+  if (falsey(a)) {
+    a = false
+  }
+
+  if (falsey(b)) {
+    b = false
+  }
+
+  return a === b
 }

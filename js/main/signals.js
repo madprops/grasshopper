@@ -41,7 +41,7 @@ App.fill_signals = () => {
     container.innerHTML = `No signals registered yet`
   }
 
-  for (let signal of signals) {
+  for (let [i, signal] of signals.entries()) {
     let el = DOM.create(`div`, `signal_item`)
     let icon = DOM.create(`div`, `signal_icon`)
     icon.textContent = signal.icon || App.settings_icons.signals
@@ -86,11 +86,21 @@ App.fill_signals = () => {
       App.send_signal(signal)
     })
 
-    btn.textContent = `Go`
+    btn.textContent = `Run`
     el.append(icon)
     el.append(name)
     el.append(btn)
     container.append(el)
+
+    let edbtn = DOM.create(`div`, `button signal_button`)
+    edbtn.title = `Edit signal`
+
+    DOM.ev(edbtn, `click`, () => {
+      App.edit_signal(i)
+    })
+
+    edbtn.textContent = `Edit`
+    el.append(edbtn)
   }
 }
 
@@ -213,4 +223,104 @@ App.set_signals_info = (amount) => {
   else {
     el.textContent = `Signals`
   }
+}
+
+App.edit_signal = (index) => {
+  App.start_signals_addlist()
+  let items = Addlist.get_data(`settings_signals`)[index]
+
+  let after_done = () => {
+    App.start_signal_intervals()
+    App.fill_signals()
+  }
+
+  let args = {id: `settings_signals`, items: items, edit: true, after_done: after_done}
+  Addlist.edit(args)
+}
+
+App.start_signals_addlist = () => {
+  if (App.signals_addlist_ready) {
+    return
+  }
+
+  App.debug(`Start signals addlist`)
+  let id = `settings_signals`
+  let objs = App.get_setting_addlist_objects()
+  let popobj = objs[0]
+  let regobj = objs[1]
+
+  App.create_popup(Object.assign({}, popobj, {
+    id: `addlist_${id}`,
+    element: Addlist.register(Object.assign({}, regobj, {
+      id: id,
+      keys: [`name`, `url`, `arguments`, `icon`, `method`, `interval`, `feedback`, `update_title`, `send_tabs`, `startup`],
+      pk: `name`,
+      widgets: {
+        name: `text`,
+        url: `text`,
+        method: `menu`,
+        feedback: `checkbox`,
+        icon: `text`,
+        arguments: `text`,
+        update_title: `checkbox`,
+        send_tabs: `checkbox`,
+        interval: `number`,
+        startup: `checkbox`,
+      },
+      labels: {
+        name: `Name`,
+        url: `URL`,
+        method: `Method`,
+        feedback: `Feedback`,
+        icon: `Icon`,
+        arguments: `Arguments`,
+        update_title: `Update Title`,
+        send_tabs: `Send Tabs`,
+        interval: `Interval`,
+        startup: `Startup`,
+      },
+      list_icon: (item) => {
+        return item.icon || App.settings_icons.signal
+      },
+      list_text: (item) => {
+        return item.name
+      },
+      required: {
+        name: true,
+        url: true,
+        method: true,
+      },
+      tooltips: {
+        arguments: `JSON string to use as arguments for POST`,
+        feedback: `Show the response in a popup`,
+        update_title: `Update the Title with the response`,
+        send_tabs: `Send all open tab URLs as the 'tabs' argument`,
+        interval: `Run this signal every x seconds`,
+        startup: `Run this signal at startup`,
+      },
+      process: {
+        url: (url) => {
+          return App.fix_url(url)
+        },
+        interval: (num) => {
+          num = parseInt(num)
+          num = Math.max(App.signal_min_delay, num)
+          return num
+        }
+      },
+      sources: {
+        method: () => {
+          return [
+            {text: `GET`, value: `GET`},
+            {text: `POST`, value: `POST`},
+            {text: `PUT`, value: `PUT`},
+            {text: `DELETE`, value: `DELETE`},
+          ]
+        },
+      },
+      title: `Signals`,
+    }))
+  }))
+
+  App.signals_addlist_ready = true
 }

@@ -1561,6 +1561,7 @@ App.setup_settings_addlist = () => {
   }
 
   App.start_domain_rules()
+  App.start_signals_addlist()
 
   id = `settings_colors`
   props = App.setting_props.colors
@@ -1626,82 +1627,6 @@ App.setup_settings_addlist = () => {
       process: {
         url: (url) => {
           return App.fix_url(url)
-        },
-      },
-      title: props.name,
-    }))
-  }))
-
-  id = `settings_signals`
-  props = App.setting_props.signals
-
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
-    element: Addlist.register(Object.assign({}, regobj, {
-      id: id,
-      keys: [`name`, `url`, `arguments`, `icon`, `method`, `interval`, `feedback`, `update_title`, `send_tabs`, `startup`],
-      pk: `name`,
-      widgets: {
-        name: `text`,
-        url: `text`,
-        method: `menu`,
-        feedback: `checkbox`,
-        icon: `text`,
-        arguments: `text`,
-        update_title: `checkbox`,
-        send_tabs: `checkbox`,
-        interval: `number`,
-        startup: `checkbox`,
-      },
-      labels: {
-        name: `Name`,
-        url: `URL`,
-        method: `Method`,
-        feedback: `Feedback`,
-        icon: `Icon`,
-        arguments: `Arguments`,
-        update_title: `Update Title`,
-        send_tabs: `Send Tabs`,
-        interval: `Interval`,
-        startup: `Startup`,
-      },
-      list_icon: (item) => {
-        return item.icon || App.settings_icons.signal
-      },
-      list_text: (item) => {
-        return item.name
-      },
-      required: {
-        name: true,
-        url: true,
-        method: true,
-      },
-      tooltips: {
-        arguments: `JSON string to use as arguments for POST`,
-        feedback: `Show the response in a popup`,
-        update_title: `Update the Title with the response`,
-        send_tabs: `Send all open tab URLs as the 'tabs' argument`,
-        interval: `Run this signal every x seconds`,
-        startup: `Run this signal at startup`,
-      },
-      process: {
-        url: (url) => {
-          return App.fix_url(url)
-        },
-        interval: (num) => {
-          num = parseInt(num)
-          num = Math.max(App.signal_min_delay, num)
-          return num
-        }
-      },
-      sources: {
-        method: () => {
-          return [
-            {text: `GET`, value: `GET`},
-            {text: `POST`, value: `POST`},
-            {text: `PUT`, value: `PUT`},
-            {text: `DELETE`, value: `DELETE`},
-          ]
         },
       },
       title: props.name,
@@ -1784,7 +1709,7 @@ App.get_setting_addlist_objects = () => {
     set_data: set_data,
   }
 
-  return popobj, regobj
+  return [popobj, regobj]
 }
 
 App.mirror_settings = async () => {

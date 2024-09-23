@@ -120,6 +120,7 @@ App.close_tabs_ready = false
 App.setup_history_ready = false
 App.setup_bookmarks_ready = false
 App.domain_rules_ready = false
+App.signals_addlist_ready = false
 
 App.alert_autohide_delay = 1500
 App.tab_box_shrink_delay = 500
