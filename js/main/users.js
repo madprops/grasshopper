@@ -61,7 +61,7 @@ App.user_madprops_settings = () => {
   sett = `favorites_menu`
   App.set_setting({setting: sett, value: []})
 
-  cmd = {cmd: `send_signal_sig_play`, middle: `send_signal_sig_np`}
+  cmd = {cmd: `send_signal_sig_play`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `send_signal_sig_next`, middle: `send_signal_sig_prev`}
