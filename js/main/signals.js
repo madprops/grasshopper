@@ -240,7 +240,7 @@ App.edit_signal = (index) => {
     items: items,
     index: index,
     edit: true,
-    after_done: after_done
+    after_done: after_done,
   }
 
   Addlist.edit(args)
