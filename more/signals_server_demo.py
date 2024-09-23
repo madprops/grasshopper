@@ -36,6 +36,7 @@ metadata_delay = "0.18"
 
 # ----------
 
+
 def run(args):
     subprocess.run(args)
 
@@ -79,9 +80,6 @@ def get_metadata(what):
 
 def metadata():
     info = ""
-    # Return empty if not playing to ignore title change
-    # But this can be changed to "Not Playing" or similar
-
     status = player_status()
 
     if status == "Playing":
@@ -178,6 +176,5 @@ def post_test():
 # ----------
 
 
-# Start the server
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=port, debug=debug)
