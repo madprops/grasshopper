@@ -3126,8 +3126,8 @@ App.build_settings = () => {
       info: `The list of signal items to use with the Signals command`,
       version: 1,
     },
-    main_title_signal_icon: {
-      name: `Title Signal Icon`,
+    signal_title_icon: {
+      name: `Signal Title Icon`,
       type: `checkbox`,
       value: false,
       info: `Show the icon of the signal in the Title`,

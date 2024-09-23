@@ -94,10 +94,6 @@ App.send_signal = async (signal, from = `cmd`) => {
     return
   }
 
-  if (App.on_settings()) {
-    return
-  }
-
   let res, text
 
   try {
@@ -158,7 +154,7 @@ App.send_signal = async (signal, from = `cmd`) => {
 }
 
 App.add_signal_icon = (signal, text) => {
-  if (signal.icon && App.get_setting(`main_title_signal_icon`)) {
+  if (signal.icon && App.get_setting(`signal_title_icon`)) {
     text = `${signal.icon} ${text}`
   }
 
