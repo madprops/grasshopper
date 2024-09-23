@@ -1,9 +1,9 @@
 let bookmarks_active = false
 let bookmark_debouncer
 
-browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((request, sender, send_response) => {
   if (request.action === `refresh_bookmarks`) {
-    refresh_bookmarks()
+    refresh
   }
 })
 
