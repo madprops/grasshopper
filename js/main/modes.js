@@ -32,14 +32,14 @@ App.do_show_mode = async (args = {}) => {
     }
   }
   else if (args.mode === `bookmarks`) {
-    let [perm, had_perm] = await App.bookmarks_permission()
+    let had_perm = App.permissions[`bookmarks`]
+    let perm = await App.ask_permission(`bookmarks`)
 
     if (!perm) {
       App.permission_msg(`Bookmarks`)
     }
 
     if (!had_perm) {
-      browser.runtime.sendMessage({action: `refresh_bookmarks`})
       return
     }
   }

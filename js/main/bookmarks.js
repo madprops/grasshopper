@@ -112,9 +112,8 @@ App.bookmark_items = async (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  let perm = App.bookmarks_permission()
 
-  if (!perm) {
+  if (!App.permissions[`bookmarks`]) {
     return
   }
 
@@ -198,9 +197,7 @@ App.bookmark_items = async (args = {}) => {
 }
 
 App.bookmark_active = async () => {
-  let perm = await App.bookmarks_permission()
-
-  if (!perm) {
+  if (!App.permissions[`bookmarks`]) {
     return
   }
 
@@ -284,9 +281,7 @@ App.get_bookmark_folders = async (title = ``) => {
 }
 
 App.select_bookmarks_folder = async () => {
-  let perm = await App.bookmarks_permission()
-
-  if (!perm) {
+  if (!App.permissions[`bookmarks`]) {
     return
   }
 
@@ -334,9 +329,7 @@ App.do_select_bookmarks_folder = (folders, callback) => {
 }
 
 App.search_bookmarks_folder = async (callback) => {
-  let perm = await App.bookmarks_permission()
-
-  if (!perm) {
+  if (!App.permissions[`bookmarks`]) {
     return
   }
 
@@ -351,11 +344,4 @@ App.search_bookmarks_folder = async (callback) => {
 App.do_search_bookmarks_folder = async (title, callback) => {
   let folders = await App.get_bookmark_folders(title)
   App.do_select_bookmarks_folder(folders, callback)
-}
-
-App.bookmarks_permission = async () => {
-  let had_perm = App.permissions[`bookmarks`]
-  let perm = await App.ask_permission(`bookmarks`)
-  App.permissions[`bookmarks`] = perm
-  return [perm, had_perm]
 }
