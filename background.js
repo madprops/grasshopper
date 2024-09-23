@@ -3,7 +3,7 @@ let bookmark_debouncer
 
 browser.runtime.onMessage.addListener((request, sender, send_response) => {
   if (request.action === `refresh_bookmarks`) {
-    refresh
+    refresh_bookmarks()
   }
 })
 
