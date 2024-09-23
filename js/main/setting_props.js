@@ -2007,7 +2007,7 @@ App.build_settings = () => {
     wheel_up_actions: {
       name: `Wheel Up Actions`,
       type: `menu`,
-      value: `select_item_up_alt`,
+      value: `jump_tabs_all_up`,
       info: `Command to run when using the mousewheel up on the Actions Button`,
       version: 1,
       setup: (key) => {
@@ -2017,7 +2017,7 @@ App.build_settings = () => {
     wheel_down_actions: {
       name: `Wheel Down Actions`,
       type: `menu`,
-      value: `select_item_down_alt`,
+      value: `jump_tabs_all_down`,
       info: `Command to run when using the mousewheel down on the Actions Button`,
       separator: true,
       version: 1,
