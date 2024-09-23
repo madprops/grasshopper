@@ -1,7 +1,12 @@
+let bookmark_items = []
 let bookmark_folders = []
 let bookmark_debouncer
 
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === `get_bookmark_items`) {
+    sendResponse({items: bookmark_items})
+  }
+
   if (request.action === `get_bookmark_folders`) {
     sendResponse({folders: bookmark_folders})
   }
@@ -107,6 +112,7 @@ browser.commands.onCommand.addListener((command) => {
 })
 
 async function refresh_bookmarks() {
+  bookmark_items = []
   bookmark_folders = []
   let nodes = await browser.bookmarks.getTree()
 
@@ -115,6 +121,9 @@ async function refresh_bookmarks() {
       if (bookmark.children) {
         bookmark_folders.push(bookmark)
         traverse(bookmark.children)
+      }
+      else {
+        bookmark_items.push(bookmark)
       }
     }
   }

@@ -43,7 +43,7 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   let results = []
 
   try {
-    results = await browser.bookmarks.search({query: query})
+    results = await App.get_bookmark_items(query)
   }
   catch (err) {
     App.error(err)
@@ -238,6 +238,25 @@ App.pick_bookmarks_folder = async (args) => {
   App.show_context({items: items})
 }
 
+App.get_bookmark_items = async (title = ``) => {
+  let res = await browser.runtime.sendMessage({action: `get_bookmark_items`})
+
+  if (!res) {
+    return []
+  }
+
+  let items = res.items || []
+  items = items.filter(x => x.title)
+
+  if (title) {
+    title = title.toLowerCase()
+    items = items.filter(x => x.title.toLowerCase().includes(title))
+  }
+
+  App.sort_bookmarks_items(items)
+  return items
+}
+
 App.get_bookmark_folders = async (title = ``) => {
   let res = await browser.runtime.sendMessage({action: `get_bookmark_folders`})
 
@@ -253,7 +272,7 @@ App.get_bookmark_folders = async (title = ``) => {
     folders = folders.filter(x => x.title.toLowerCase().includes(title))
   }
 
-  App.sort_bookmarks_folders(folders)
+  App.sort_bookmarks_items(folders)
   folders = folders.slice(0, App.get_setting(`max_bookmark_folders`))
   return folders
 }
@@ -328,6 +347,6 @@ App.do_search_bookmarks_folder = async (title, callback) => {
   App.do_select_bookmarks_folder(folders, callback)
 }
 
-App.sort_bookmarks_folders = (folders) => {
+App.sort_bookmarks_items = (folders) => {
   folders.sort((a, b) => b.dateGroupModified - a.dateGroupModified)
 }
