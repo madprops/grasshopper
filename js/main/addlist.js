@@ -1,6 +1,22 @@
 const Addlist = {}
 Addlist.fill_id = 1
 
+Addlist.check_widget = (target) => {
+  if (target.closest(`.addlist_widget`)) {
+    Addlist.data.has_change = true
+  }
+}
+
+Addlist.start_listeners = () => {
+  document.body.addEventListener(`keydown`, (e) => {
+    Addlist.check_widget(e.target)
+  })
+
+  document.body.addEventListener(`click`, (e) => {
+    Addlist.check_widget(e.target)
+  })
+}
+
 Addlist.check_append = () => {
   return App.get_setting(`addlist_append`)
 }
@@ -161,25 +177,25 @@ Addlist.register = (args = {}) => {
     let id = `addlist_widget_${args.id}_${key}`
 
     if (w === `text`) {
-      el = DOM.create(`input`, `text addlist_text`, id)
+      el = DOM.create(`input`, `text addlist_text addlist_widget`, id)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
       el.placeholder = args.labels[key]
     }
     else if (w === `number`) {
-      el = DOM.create(`input`, `text addlist_text`, id)
+      el = DOM.create(`input`, `text addlist_text addlist_widget`, id)
       el.type = `number`
       el.placeholder = args.labels[key]
     }
     else if (w === `textarea`) {
-      el = DOM.create(`textarea`, `text addlist_textarea`, id)
+      el = DOM.create(`textarea`, `text addlist_textarea addlist_widget`, id)
       el.spellcheck = false
       el.autocomplete = false
       el.placeholder = args.labels[key]
     }
     else if (w === `menu`) {
-      el = DOM.create(`div`, `addlist_menu`)
+      el = DOM.create(`div`, `addlist_menu addlist_widget`)
 
       App[`addlist_menubutton_${args.id}_${key}`] = Menubutton.create({
         id: id,
@@ -208,7 +224,7 @@ Addlist.register = (args = {}) => {
       el.append(mb.container)
     }
     else if (w === `key`) {
-      el = DOM.create(`input`, `text addlist_text addlist_key`, id)
+      el = DOM.create(`input`, `text addlist_text addlist_key addlist_widget`, id)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
@@ -220,7 +236,7 @@ Addlist.register = (args = {}) => {
       })
     }
     else if (w === `checkbox`) {
-      el = DOM.create(`div`, `addlist_checkbox_container`)
+      el = DOM.create(`div`, `addlist_checkbox_container addlist_widget`)
       let checkbox = DOM.create(`input`, `checkbox addlist_checkbox`, id)
       checkbox.type = `checkbox`
 
@@ -234,7 +250,7 @@ Addlist.register = (args = {}) => {
       el.append(checkbox)
     }
     else if (w === `color`) {
-      el = DOM.create(`div`, `addlist_color_container`)
+      el = DOM.create(`div`, `addlist_color_container addlist_widget`)
       let color = DOM.create(`div`, `addlist_color`)
 
       App[`addlist_color_${args.id}_${key}`] = AColorPicker.createPicker(color, {
@@ -350,6 +366,7 @@ Addlist.edit = (args = {}) => {
     }
   }
 
+  args.has_change = false
   Addlist.data = args
   Addlist.check_focus(args.id)
 
@@ -571,23 +588,7 @@ Addlist.modified = (id) => {
     return false
   }
 
-  if (!Object.keys(data.items).length) {
-    return false
-  }
-
-  let values = Addlist.values(id)
-
-  for (let key in values) {
-    if (key === `_date_`) {
-      continue
-    }
-
-    if (!Addlist.equals(values[key], data.items[key])) {
-      return true
-    }
-  }
-
-  return false
+  return data.has_change
 }
 
 Addlist.menu = () => {
@@ -1124,20 +1125,4 @@ Addlist.check_remove = () => {
 
 Addlist.edit_object = (id, obj, edit, after_done) => {
   Addlist.edit({id: id, items: obj, edit: edit, after_done: after_done})
-}
-
-Addlist.equals = (a, b) => {
-  function falsey(x) {
-    return (x === undefined) || (x === null) || (isNaN(x)) || (x === ``)
-  }
-
-  if (falsey(a)) {
-    a = false
-  }
-
-  if (falsey(b)) {
-    b = false
-  }
-
-  return a === b
 }
