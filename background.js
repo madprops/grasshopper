@@ -67,29 +67,23 @@ function debouncer(func, delay) {
   return obj
 }
 
-// Open the popup
 function open_popup() {
   browser.browserAction.openPopup()
 }
 
-// Set local storage to read at init
 function set_item(what, value) {
   localStorage.setItem(`init_${what}`, value)
 }
 
-// Open the popup in a specific mode
 function open_popup_mode(mode) {
   set_item(`mode`, mode)
   open_popup()
 }
 
-// Run a browser command
-// Can be listened by the sidebar or the popup
 function browser_command(num) {
   browser.runtime.sendMessage({action: `browser_command`, number: num})
 }
 
-// Open the popup and run a command
 async function popup_command(num) {
   set_item(`popup_command`, num)
   open_popup()
