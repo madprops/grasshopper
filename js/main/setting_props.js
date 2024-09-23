@@ -1993,11 +1993,43 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    middle_click_actions_menu: {
+      name: `Middle Click Actions`,
+      type: `menu`,
+      value: `browser_reload`,
+      info: `Command to run when middle clicking the Actions Menu`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     middle_click_playing: {
       name: `Middle Click Playing`,
       type: `menu`,
       value: `toggle_mute_tabs`,
       info: `Command to run when middle clicking the Playing Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_playing: {
+      name: `Wheel Up Playing`,
+      type: `menu`,
+      value: `jump_tabs_playing_down`,
+      info: `Command to run when using the mousewheel up on the Playing Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_playing: {
+      name: `Wheel Down Playing`,
+      type: `menu`,
+      value: `jump_tabs_playing_up`,
+      info: `Command to run when using the mousewheel down on the Playing Button`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -2013,11 +2045,21 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_actions_menu: {
-      name: `Middle Click Actions`,
+    wheel_up_step_back: {
+      name: `Wheel Up Step Back`,
       type: `menu`,
-      value: `browser_reload`,
-      info: `Command to run when middle clicking the Actions Menu`,
+      value: `recent_tabs_forwards`,
+      info: `Command to run when using the mousewheel up on the Step Back Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_step_back: {
+      name: `Wheel Down Step Back`,
+      type: `menu`,
+      value: `recent_tabs_backwards`,
+      info: `Command to run when using the mousewheel down on the Step Back Button`,
       separator: true,
       version: 1,
       setup: (key) => {

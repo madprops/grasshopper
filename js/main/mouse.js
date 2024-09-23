@@ -565,6 +565,12 @@ App.on_mouse_wheel = (e) => {
   else if (DOM.parent(e.target, [`.item_container`])) {
     App.wheel_action(direction, `items`, e)
   }
+  else if (DOM.parent(e.target, [`.playing_icon`])) {
+    App.wheel_action(direction, `playing`, e)
+  }
+  else if (DOM.parent(e.target, [`.step_back`])) {
+    App.wheel_action(direction, `step_back`, e)
+  }
 }
 
 App.wheel_action = (direction, name, e) => {
