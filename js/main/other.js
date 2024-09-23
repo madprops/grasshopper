@@ -147,9 +147,8 @@ App.ask_permission = async (what) => {
     perm = await browser.permissions.contains({permissions: [what]})
   }
 
-  if (perm) {
-    App.permissions[what] = true
-  }
+  App.permissions[what] = perm
+  return perm
 }
 
 App.permission_msg = (what) => {

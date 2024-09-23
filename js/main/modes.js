@@ -40,7 +40,7 @@ App.do_show_mode = async (args = {}) => {
     }
 
     if (!had_perm) {
-      return
+      browser.runtime.sendMessage({action: `refresh_bookmarks`})
     }
   }
 
