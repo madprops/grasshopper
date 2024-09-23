@@ -1,14 +1,27 @@
+let bookmarks_active = false
 let bookmark_items = []
 let bookmark_folders = []
 let bookmark_debouncer
 
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === `get_bookmark_items`) {
-    sendResponse({items: bookmark_items})
+    if (!bookmarks_active) {
+      init_bookmarks()
+      sendResponse({items: []})
+    }
+    else {
+      sendResponse({items: bookmark_items})
+    }
   }
 
   if (request.action === `get_bookmark_folders`) {
-    sendResponse({folders: bookmark_folders})
+    if (!bookmarks_active) {
+      init_bookmarks()
+      sendResponse({folders: []})
+    }
+    else {
+      sendResponse({folders: bookmark_folders})
+    }
   }
 })
 
@@ -73,7 +86,7 @@ function open_popup_mode(mode) {
 // Run a browser command
 // Can be listened by the sidebar or the popup
 function browser_command(num) {
-  browser.runtime.sendMessage({action: "browser_command", number: num})
+  browser.runtime.sendMessage({action: `browser_command`, number: num})
 }
 
 // Open the popup and run a command
@@ -129,10 +142,10 @@ async function refresh_bookmarks() {
   }
 
   traverse(nodes)
-  console.log(`BG: Bookmarks refreshed: ${bookmark_folders.length} folders`)
+  console.info(`BG: Bookmarks refreshed: ${bookmark_folders.length} folders and ${bookmark_items.length} items.`)
 }
 
-async function start_bookmarks() {
+async function start_bookmarks(refresh = true) {
   let perm = await browser.permissions.contains({permissions: [`bookmarks`]})
 
   if (!perm) {
@@ -156,7 +169,24 @@ async function start_bookmarks() {
     bookmark_debouncer.call()
   })
 
-  bookmark_debouncer.call()
+  if (refresh) {
+    bookmark_debouncer.call()
+  }
+
+  bookmarks_active = true
+}
+
+async function init_bookmarks() {
+  if (bookmarks_active) {
+    return
+  }
+
+  await start_bookmarks(false)
+
+  if (bookmarks_active) {
+    await refresh_bookmarks()
+    browser.runtime.sendMessage({action: `show_bookmarks`})
+  }
 }
 
 start_bookmarks()

@@ -19,5 +19,8 @@ App.setup_messages = () => {
     else if (message.action === `popup_command`) {
       App.run_popup_command(message.number)
     }
+    else if (message.action === `show_bookmarks`) {
+      App.show_mode({mode: `bookmarks`, force: true})
+    }
   })
 }
