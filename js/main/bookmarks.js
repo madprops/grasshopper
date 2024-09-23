@@ -258,7 +258,6 @@ App.get_bookmark_items = async (title = ``, deep = false) => {
     max_items = App.get_setting(`max_search_items`)
   }
 
-  console.log(max_items)
   return items.slice(0, max_items)
 }
 
