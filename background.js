@@ -125,24 +125,26 @@ browser.commands.onCommand.addListener((command) => {
 })
 
 async function refresh_bookmarks() {
-  bookmark_items = []
-  bookmark_folders = []
+  let items = []
+  let folders = []
   let nodes = await browser.bookmarks.getTree()
 
   function traverse(bookmarks) {
     for (let bookmark of bookmarks) {
       if (bookmark.children) {
-        bookmark_folders.push(bookmark)
+        folders.push(bookmark)
         traverse(bookmark.children)
       }
       else {
-        bookmark_items.push(bookmark)
+        items.push(bookmark)
       }
     }
   }
 
   traverse(nodes)
-  console.info(`BG: Bookmarks refreshed: ${bookmark_folders.length} folders and ${bookmark_items.length} items.`)
+  bookmark_items = items
+  bookmark_folders = folders
+  console.info(`BG: Bookmarks refreshed: ${folders.length} folders and ${items.length} items.`)
 }
 
 async function start_bookmarks(refresh = true) {
