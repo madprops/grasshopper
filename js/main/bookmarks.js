@@ -5,6 +5,7 @@ App.setup_bookmarks = () => {
 
   browser.bookmarks.onCreated.addListener((id, info) => {
     App.debug(`Bookmark Created: ID: ${id}`)
+    App.bookmarks_changed = true
 
     if (App.active_mode === `bookmarks`) {
       App.insert_item(`bookmarks`, info)
@@ -13,6 +14,7 @@ App.setup_bookmarks = () => {
 
   browser.bookmarks.onRemoved.addListener((id, info) => {
     App.debug(`Bookmark Removed: ID: ${id}`)
+    App.bookmarks_changed = true
 
     if (App.active_mode === `bookmarks`) {
       let item = App.get_item_by_id(`bookmarks`, id)
@@ -25,6 +27,7 @@ App.setup_bookmarks = () => {
 
   browser.bookmarks.onChanged.addListener((id, info) => {
     App.debug(`Bookmark Changed: ID: ${id}`)
+    App.bookmarks_changed = true
 
     if (App.active_mode === `bookmarks`) {
       let item = App.get_item_by_id(`bookmarks`, id)
@@ -249,13 +252,23 @@ App.filter_bookmark_nodes = (title, nodes, max) => {
 }
 
 App.get_bookmark_items = async (title = ``, deep = false) => {
-  let res = await browser.runtime.sendMessage({action: `get_bookmark_items`})
+  let items
 
-  if (!res) {
-    return []
+  if (!App.bookmarks_changed && App.bookmark_items_cache.length) {
+    items = App.bookmark_items_cache
+  }
+  else {
+    let res = await browser.runtime.sendMessage({action: `get_bookmark_items`})
+
+    if (!res) {
+      return []
+    }
+
+    items = res.items || []
+    App.bookmark_items_cache = items
+    App.bookmarks_changed = false
   }
 
-  let items = res.items || []
   let max
 
   if (deep) {
@@ -276,13 +289,23 @@ App.get_bookmark_items = async (title = ``, deep = false) => {
 }
 
 App.get_bookmark_folders = async (title = ``) => {
-  let res = await browser.runtime.sendMessage({action: `get_bookmark_folders`})
+  let items
 
-  if (!res) {
-    return []
+  if (!App.bookmarks_changed && App.bookmark_folders_cache.length) {
+    return App.bookmark_folders_cache
+  }
+  else {
+    let res = await browser.runtime.sendMessage({action: `get_bookmark_folders`})
+
+    if (!res) {
+      return []
+    }
+
+    items = res.folders || []
+    App.bookmark_folders_cache = items
+    App.bookmarks_changed = false
   }
 
-  let items = res.folders || []
   let max = App.get_setting(`max_bookmark_folders`)
 
   if (title) {

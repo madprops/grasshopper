@@ -149,6 +149,7 @@ async function refresh_bookmarks() {
   bookmark_items = items
   bookmark_folders = folders
 
+  browser.runtime.sendMessage({action: "refresh_bookmarks", items: items, folders: folders})
   console.info(`BG: Bookmarks refreshed: ${folders.length} folders and ${items.length} items.`)
 }
 

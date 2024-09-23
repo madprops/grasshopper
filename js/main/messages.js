@@ -22,5 +22,10 @@ App.setup_messages = () => {
     else if (message.action === `show_bookmarks`) {
       App.show_mode({mode: `bookmarks`, force: true})
     }
+    else if (message.action === `refresh_bookmarks`) {
+      App.bookmark_items_cache = message.items
+      App.bookmark_folders_cache = message.folders
+      App.bookmarks_changed = false
+    }
   })
 }
