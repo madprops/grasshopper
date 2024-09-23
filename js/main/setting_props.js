@@ -1399,7 +1399,7 @@ App.build_settings = () => {
     wheel_up_shift_favorites_top: {
       name: `Shift Wheel Up Fav Top`,
       type: `menu`,
-      value: `none`,
+      value: `page_up`,
       info: `Command to run when using the mousewheel up on the top area of the Favorites Bar while holding Shift`,
       version: 1,
       setup: (key) => {
@@ -1409,7 +1409,7 @@ App.build_settings = () => {
     wheel_down_shift_favorites_top: {
       name: `Shift Wheel Down Fav Top`,
       type: `menu`,
-      value: `none`,
+      value: `page_down`,
       info: `Command to run when using the mousewheel down on the top area of the Favorites Bar while holding Shift`,
       separator: true,
       version: 1,
@@ -1440,7 +1440,7 @@ App.build_settings = () => {
     wheel_up_shift_favorites_center: {
       name: `Shift Wheel Up Fav Center`,
       type: `menu`,
-      value: `none`,
+      value: `page_up`,
       info: `Command to run when using the mousewheel up on the center area of the Favorites Bar while holding Shift`,
       version: 1,
       setup: (key) => {
@@ -1450,7 +1450,7 @@ App.build_settings = () => {
     wheel_down_shift_favorites_center: {
       name: `Shift Wheel Down Fav Center`,
       type: `menu`,
-      value: `none`,
+      value: `page_down`,
       info: `Command to run when using the mousewheel down on the center area of the Favorites Bar while holding Shift`,
       separator: true,
       version: 1,
@@ -1501,7 +1501,7 @@ App.build_settings = () => {
     wheel_up_shift_favorites_bottom: {
       name: `Shift Wheel Up Fav Bottom`,
       type: `menu`,
-      value: `none`,
+      value: `page_up`,
       info: `Command to run when using the mousewheel up on the bottom area of the Favorites Bar while holding Shift`,
       version: 1,
       setup: (key) => {
@@ -1511,7 +1511,7 @@ App.build_settings = () => {
     wheel_down_shift_favorites_bottom: {
       name: `Shift Wheel Down Fav Bottom`,
       type: `menu`,
-      value: `none`,
+      value: `page_down`,
       info: `Command to run when using the mousewheel down on the bottom area of the Favorites Bar while holding Shift`,
       separator: true,
       version: 1,
