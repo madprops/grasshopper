@@ -240,7 +240,6 @@ App.bookmark_active = async () => {
 
 App.pick_bookmarks_folder = async (args) => {
   let folders = await App.get_bookmark_folders()
-  App.sort_bookmarks_folders(folders)
   let items = []
 
   for (let folder of folders) {
@@ -257,35 +256,22 @@ App.pick_bookmarks_folder = async (args) => {
 }
 
 App.get_bookmark_folders = async (title = ``) => {
-  let folders = []
-  let nodes = await browser.bookmarks.getTree()
-  let max = App.get_setting(`max_bookmark_folders`)
-  title = title.toLowerCase().trim()
-  let max_depth = App.get_setting(`max_bookmark_depth`)
+  let res = await browser.runtime.sendMessage({action: `get_bookmark_folders`})
 
-  function traverse(bookmarks, depth) {
-    if (depth > max_depth) {
-      return
-    }
-
-    for (let bookmark of bookmarks) {
-      if (bookmark.children) {
-        if (bookmark.title) {
-          if (bookmark.title.toLowerCase().includes(title)) {
-            folders.push(bookmark)
-          }
-        }
-
-        if (folders.length >= max) {
-          return
-        }
-
-        traverse(bookmark.children, depth + 1)
-      }
-    }
+  if (!res) {
+    return []
   }
 
-  traverse(nodes, 1)
+  let folders = res.folders || []
+  folders = folders.filter(x => x.title)
+
+  if (title) {
+    title = title.toLowerCase()
+    folders = folders.filter(x => x.title.toLowerCase().includes(title))
+  }
+
+  App.sort_bookmarks_folders(folders)
+  folders = folders.slice(0, App.get_setting(`max_bookmark_folders`))
   return folders
 }
 
@@ -297,7 +283,6 @@ App.select_bookmarks_folder = async () => {
   }
 
   let folders = await App.get_bookmark_folders()
-  App.sort_bookmarks_folders(folders)
   App.do_select_bookmarks_folder(folders)
 }
 
@@ -357,7 +342,6 @@ App.search_bookmarks_folder = async (callback) => {
 
 App.do_search_bookmarks_folder = async (title, callback) => {
   let folders = await App.get_bookmark_folders(title)
-  App.sort_bookmarks_folders(folders)
   App.do_select_bookmarks_folder(folders, callback)
 }
 

@@ -1,3 +1,54 @@
+let bookmark_folders = []
+let bookmark_debouncer
+
+browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === `get_bookmark_folders`) {
+    sendResponse({folders: bookmark_folders})
+  }
+})
+
+function debouncer(func, delay) {
+  if (typeof func !== `function`) {
+    App.error(`Invalid debouncer function`)
+    return
+  }
+
+  if (!delay) {
+    App.error(`Invalid debouncer delay`)
+    return
+  }
+
+  let timer
+  let obj = {}
+
+  function clear () {
+    clearTimeout(timer)
+  }
+
+  function run (...args) {
+    func(...args)
+  }
+
+  obj.call = (...args) => {
+    clear()
+
+    timer = setTimeout(() => {
+      run(...args)
+    }, delay)
+  }
+
+  obj.now = (...args) => {
+    clear()
+    run(...args)
+  }
+
+  obj.cancel = () => {
+    clear()
+  }
+
+  return obj
+}
+
 // Open the popup
 function open_popup() {
   browser.browserAction.openPopup()
@@ -54,3 +105,49 @@ browser.commands.onCommand.addListener((command) => {
     }
   }
 })
+
+async function refresh_bookmarks() {
+  bookmark_folders = []
+  let nodes = await browser.bookmarks.getTree()
+
+  function traverse(bookmarks) {
+    for (let bookmark of bookmarks) {
+      if (bookmark.children) {
+        bookmark_folders.push(bookmark)
+        traverse(bookmark.children)
+      }
+    }
+  }
+
+  traverse(nodes)
+  console.log(`BG: Bookmarks refreshed: ${bookmark_folders.length} folders`)
+}
+
+async function start_bookmarks() {
+  let perm = await browser.permissions.contains({permissions: [`bookmarks`]})
+
+  if (!perm) {
+    console.info(`BG: No bookmarks permission.`)
+    return
+  }
+
+  bookmark_debouncer = debouncer(() => {
+    refresh_bookmarks()
+  }, 1000)
+
+  browser.bookmarks.onCreated.addListener((id, info) => {
+    bookmark_debouncer.call()
+  })
+
+  browser.bookmarks.onRemoved.addListener((id, info) => {
+    bookmark_debouncer.call()
+  })
+
+  browser.bookmarks.onChanged.addListener((id, info) => {
+    bookmark_debouncer.call()
+  })
+
+  bookmark_debouncer.call()
+}
+
+start_bookmarks()
