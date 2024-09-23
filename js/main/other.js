@@ -138,11 +138,17 @@ App.periods = (str) => {
 }
 
 App.ask_permission = async (what) => {
+  let perm
+
   try {
-    return await browser.permissions.request({permissions: [what]})
+    perm = await browser.permissions.request({permissions: [what]})
   }
   catch (err) {
-    return await browser.permissions.contains({permissions: [what]})
+    perm = await browser.permissions.contains({permissions: [what]})
+  }
+
+  if (perm) {
+    App.permissions[what] = true
   }
 }
 

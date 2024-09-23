@@ -5,7 +5,6 @@ App.setup_bookmarks = () => {
 
   browser.bookmarks.onCreated.addListener((id, info) => {
     App.debug(`Bookmark Created: ID: ${id}`)
-    App.bookmarks_changed = true
 
     if (App.active_mode === `bookmarks`) {
       App.insert_item(`bookmarks`, info)
@@ -14,7 +13,6 @@ App.setup_bookmarks = () => {
 
   browser.bookmarks.onRemoved.addListener((id, info) => {
     App.debug(`Bookmark Removed: ID: ${id}`)
-    App.bookmarks_changed = true
 
     if (App.active_mode === `bookmarks`) {
       let item = App.get_item_by_id(`bookmarks`, id)
@@ -27,7 +25,6 @@ App.setup_bookmarks = () => {
 
   browser.bookmarks.onChanged.addListener((id, info) => {
     App.debug(`Bookmark Changed: ID: ${id}`)
-    App.bookmarks_changed = true
 
     if (App.active_mode === `bookmarks`) {
       let item = App.get_item_by_id(`bookmarks`, id)
@@ -115,7 +112,7 @@ App.bookmark_items = async (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  let perm = await App.ask_permission(`bookmarks`)
+  let perm = App.bookmarks_permission()
 
   if (!perm) {
     return
@@ -201,7 +198,7 @@ App.bookmark_items = async (args = {}) => {
 }
 
 App.bookmark_active = async () => {
-  let perm = await App.ask_permission(`bookmarks`)
+  let perm = await App.bookmarks_permission()
 
   if (!perm) {
     return
@@ -252,23 +249,7 @@ App.filter_bookmark_nodes = (title, nodes, max) => {
 }
 
 App.get_bookmark_items = async (title = ``, deep = false) => {
-  let items
-
-  if (!App.bookmarks_changed && App.bookmark_items_cache.length) {
-    items = App.bookmark_items_cache
-  }
-  else {
-    let res = await browser.runtime.sendMessage({action: `get_bookmark_items`})
-
-    if (!res) {
-      return []
-    }
-
-    items = res.items || []
-    App.bookmark_items_cache = items
-    App.bookmarks_changed = false
-  }
-
+  let items = App.bookmark_items_cache
   let max
 
   if (deep) {
@@ -289,23 +270,7 @@ App.get_bookmark_items = async (title = ``, deep = false) => {
 }
 
 App.get_bookmark_folders = async (title = ``) => {
-  let items
-
-  if (!App.bookmarks_changed && App.bookmark_folders_cache.length) {
-    return App.bookmark_folders_cache
-  }
-  else {
-    let res = await browser.runtime.sendMessage({action: `get_bookmark_folders`})
-
-    if (!res) {
-      return []
-    }
-
-    items = res.folders || []
-    App.bookmark_folders_cache = items
-    App.bookmarks_changed = false
-  }
-
+  let items = App.bookmark_folders_cache
   let max = App.get_setting(`max_bookmark_folders`)
 
   if (title) {
@@ -319,7 +284,7 @@ App.get_bookmark_folders = async (title = ``) => {
 }
 
 App.select_bookmarks_folder = async () => {
-  let perm = await App.ask_permission(`bookmarks`)
+  let perm = await App.bookmarks_permission()
 
   if (!perm) {
     return
@@ -369,7 +334,7 @@ App.do_select_bookmarks_folder = (folders, callback) => {
 }
 
 App.search_bookmarks_folder = async (callback) => {
-  let perm = await App.ask_permission(`bookmarks`)
+  let perm = await App.bookmarks_permission()
 
   if (!perm) {
     return
@@ -386,4 +351,11 @@ App.search_bookmarks_folder = async (callback) => {
 App.do_search_bookmarks_folder = async (title, callback) => {
   let folders = await App.get_bookmark_folders(title)
   App.do_select_bookmarks_folder(folders, callback)
+}
+
+App.bookmarks_permission = async () => {
+  let had_perm = App.permissions[`bookmarks`]
+  let perm = await App.ask_permission(`bookmarks`)
+  App.permissions[`bookmarks`] = perm
+  return [perm, had_perm]
 }

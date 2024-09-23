@@ -1,28 +1,9 @@
-let doing_init_bookmarks = false
 let bookmarks_active = false
-let bookmark_items = []
-let bookmark_folders = []
 let bookmark_debouncer
 
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === `get_bookmark_items`) {
-    if (!bookmarks_active) {
-      init_bookmarks()
-      sendResponse({items: []})
-    }
-    else {
-      sendResponse({items: bookmark_items})
-    }
-  }
-
-  if (request.action === `get_bookmark_folders`) {
-    if (!bookmarks_active) {
-      init_bookmarks()
-      sendResponse({folders: []})
-    }
-    else {
-      sendResponse({folders: bookmark_folders})
-    }
+  if (request.action === `refresh_bookmarks`) {
+    sendResponse({folders: bookmark_folders})
   }
 })
 
@@ -146,9 +127,6 @@ async function refresh_bookmarks() {
   items.sort((a, b) => b.dateAdded - a.dateAdded)
   folders.sort((a, b) => b.dateGroupModified - a.dateGroupModified)
 
-  bookmark_items = items
-  bookmark_folders = folders
-
   browser.runtime.sendMessage({action: "refresh_bookmarks", items: items, folders: folders})
   console.info(`BG: Bookmarks refreshed: ${folders.length} folders and ${items.length} items.`)
 }
@@ -182,22 +160,6 @@ async function start_bookmarks(refresh = true) {
   }
 
   bookmarks_active = true
-}
-
-async function init_bookmarks() {
-  if (doing_init_bookmarks || bookmarks_active) {
-    return
-  }
-
-  doing_init_bookmarks = true
-  await start_bookmarks(false)
-
-  if (bookmarks_active) {
-    await refresh_bookmarks()
-    browser.runtime.sendMessage({action: `show_bookmarks`})
-  }
-
-  doing_init_bookmarks = false
 }
 
 start_bookmarks()
