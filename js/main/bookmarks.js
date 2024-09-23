@@ -156,44 +156,31 @@ App.bookmark_items = async (args = {}) => {
   }
 
   let add = []
-  let bump = []
 
   for (let item of args.active) {
     if (item.header) {
       continue
     }
 
-    let bumped = false
+    let ok = true
 
-    for (let b of bookmarks) {
-      if (item.url === b.url) {
-        bump.push(b.id)
-        bumped = true
+    for (let a of add) {
+      if (a.url === item.url) {
+        ok = false
         break
       }
     }
 
-    if (!bumped) {
-      let ok = true
-
-      for (let a of add) {
-        if (a.url === item.url) {
-          ok = false
-          break
-        }
-      }
-
-      if (ok) {
-        add.push(item)
-      }
+    if (ok) {
+      add.push(item)
     }
   }
 
-  if (!add.length && !bump.length) {
+  if (!add.length) {
     return
   }
 
-  let items = [...add, ...bump]
+  let items = [...add]
 
   if (!items.length) {
     return
@@ -207,10 +194,6 @@ App.bookmark_items = async (args = {}) => {
       for (let item of add) {
         let title = App.title(item)
         await browser.bookmarks.create({parentId: args.folder.id, title: title, url: item.url})
-      }
-
-      for (let id of bump) {
-        await browser.bookmarks.move(id, {index: bookmarks.length - 1})
       }
 
       if (args.feedback) {
