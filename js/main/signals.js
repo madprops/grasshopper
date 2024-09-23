@@ -35,6 +35,11 @@ App.fill_signals = () => {
   let container = DOM.el(`#signals_container`)
   container.innerHTML = ``
   let signals = App.get_setting(`signals`)
+  App.set_signals_info(signals.length)
+
+  if (!signals.length) {
+    container.innerHTML = `No signals registered yet`
+  }
 
   for (let signal of signals) {
     let el = DOM.create(`div`, `signal_item`)
@@ -196,5 +201,16 @@ App.start_signal_intervals = () => {
     if (signal.startup) {
       App.send_signal(signal)
     }
+  }
+}
+
+App.set_signals_info = (amount) => {
+  let el = DOM.el(`#signals_info`)
+
+  if (amount) {
+    el.textContent = `Signals (${amount})`
+  }
+  else {
+    el.textContent = `Signals`
   }
 }

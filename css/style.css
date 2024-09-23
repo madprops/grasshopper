@@ -1807,3 +1807,7 @@ a:hover
 .signal_button:hover {
   background-color: var(--alt_color_1);
 }
+
+#signals_container {
+  padding-bottom: 3rem;
+}
