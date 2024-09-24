@@ -4,7 +4,7 @@ let bookmark_folders = []
 let bookmarks_active = false
 let bookmark_debouncer
 
-browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((request, sender, respond) => {
   if (request.action === `init_bookmarks`) {
     if (bookmark_items.length || bookmark_folders.length) {
       send_bookmarks(true)
@@ -145,6 +145,15 @@ async function refresh_bookmarks(send = true) {
   console.info(`BG: Bookmarks refreshed: ${folders.length} folders and ${items.length} items.`)
 }
 
+function send_bookmarks(show_mode = false) {
+  browser.runtime.sendMessage({
+    action: "refresh_bookmarks",
+    items: bookmark_items,
+    folders: bookmark_folders,
+    show_mode: show_mode,
+  })
+}
+
 async function start_bookmarks(refresh = true) {
   let perm = await browser.permissions.contains({permissions: [`bookmarks`]})
 
@@ -186,15 +195,6 @@ async function init_bookmarks() {
   await refresh_bookmarks(false)
   await send_bookmarks(true)
   doing_init_bookmarks = false
-}
-
-function send_bookmarks(show_mode = false) {
-  browser.runtime.sendMessage({
-    action: "refresh_bookmarks",
-    items: bookmark_items,
-    folders: bookmark_folders,
-    show_mode: show_mode,
-  })
 }
 
 start_bookmarks()
