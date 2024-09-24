@@ -3540,6 +3540,13 @@ App.build_settings = () => {
       info: `Auto-pick 'Unloaded' when on the Close Tab Dialog`,
       version: 1,
     },
+    direct_bookmarks_folder: {
+      name: `Direct Bookmarks Folder`,
+      type: `checkbox`,
+      value: false,
+      info: `Create new bookmark folders at the default root instead of asking for location`,
+      version: 1,
+    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,

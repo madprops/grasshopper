@@ -379,6 +379,11 @@ App.create_bookmarks_folder = () => {
         return
       }
 
+      if (App.get_setting(`direct_bookmarks_folder`)) {
+        action(title)
+        return
+      }
+
       let folders = await App.get_bookmark_folders()
 
       if (!folders.length) {
