@@ -107,7 +107,6 @@ App.get_bookmarks_folder = async (title) => {
 
 App.bookmark_items = async (args = {}) => {
   let def_args = {
-    feedback: true,
     pick_folder: false,
   }
 
@@ -175,7 +174,9 @@ App.bookmark_items = async (args = {}) => {
         await browser.bookmarks.create({parentId: args.folder.id, title: title, url: item.url})
       }
 
-      if (args.feedback) {
+      let feedback = App.get_setting(`show_feedback`)
+
+      if (feedback) {
         App.alert_autohide(`Bookmarked`)
       }
     },
