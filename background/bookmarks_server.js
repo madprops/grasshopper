@@ -7,8 +7,9 @@ let bookmark_debouncer
 browser.runtime.onMessage.addListener((request, sender, respond) => {
   if (request.action === `init_bookmarks`) {
     print(`BG: Init bookmarks request`)
+
     if (bookmark_items.length || bookmark_folders.length) {
-      send_bookmarks(true)
+      send_bookmarks()
     }
     else if (!bookmarks_active) {
       init_bookmarks()
