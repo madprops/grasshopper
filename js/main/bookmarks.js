@@ -42,6 +42,12 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   App.getting(`bookmarks`)
   let results = []
 
+  if (query) {
+    if (App.get_setting(`auto_deep_search_bookmarks`)) {
+      deep = true
+    }
+  }
+
   try {
     results = await App.get_bookmark_items(query, deep)
   }
@@ -242,10 +248,10 @@ App.get_bookmark_items = async (title = ``, deep = false) => {
   let max
 
   if (deep) {
-    max = App.get_setting(`deep_max_search_items`)
+    max = App.get_setting(`deep_max_search_items_bookmarks`)
   }
   else {
-    max = App.get_setting(`max_search_items`)
+    max = App.get_setting(`max_search_items_bookmarks`)
   }
 
   if (title) {

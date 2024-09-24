@@ -2842,6 +2842,7 @@ App.build_settings = () => {
       value: `none`,
       info: `Remember the items that were last selected when switching filter views
       In activate mode it auto activates the items instead of just selecting them`,
+      separator: true,
       version: 2,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -2851,24 +2852,24 @@ App.build_settings = () => {
         ])
       },
     },
-    max_search_items: {
-      name: `Max Search Items`,
+    max_search_items_history: {
+      name: `Max Search (History)`,
       type: `number`,
       value: 500,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Max items to return on search modes, like History and Bookmarks`,
+      info: `Max items to return on search modes (History)`,
       version: 1,
     },
-    deep_max_search_items: {
-      name: `Deep Max Search Items`,
+    deep_max_search_items_history: {
+      name: `Deep Max Search (History)`,
       type: `number`,
       value: 5000,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Max search items to return in Deep Mode (more items)`,
+      info: `Max search items to return on Deep Search (History)`,
       version: 1,
     },
     history_max_months: {
@@ -2888,7 +2889,29 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `How many months back to consider when searching History in Deep Mode (more months)`,
+      separator: true,
+      info: `How many months back to consider when searching History in Deep Search`,
+      version: 1,
+    },
+    max_search_items_bookmarks: {
+      name: `Max Search (Bookmarks)`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Max items to return on search modes (Bookmarks)`,
+      version: 1,
+    },
+    deep_max_search_items_bookmarks: {
+      name: `Deep Max Search (Bookmarks)`,
+      type: `number`,
+      value: 5000,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      separator: true,
+      info: `Max search items to return on Deep Search (Bookmarks)`,
       version: 1,
     },
     filter_delay: {
@@ -2983,6 +3006,20 @@ App.build_settings = () => {
       For example "dat" might match: His name was Dat
       Using them makes the filters 'by title' automatically
       Else use quotes as is`,
+      version: 1,
+    },
+    auto_deep_search_history: {
+      name: `Auto Deep History`,
+      type: `checkbox`,
+      value: false,
+      info: `Do a deep search automatically when using a text query (History)`,
+      version: 1,
+    },
+    auto_deep_search_bookmarks: {
+      name: `Auto Deep Bookmarks`,
+      type: `checkbox`,
+      value: false,
+      info: `Do a deep search automatically when using a text query (Bookmarks)`,
       version: 1,
     },
     clear_on_all: {
