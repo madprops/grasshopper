@@ -210,19 +210,12 @@ App.pick_bookmarks_folder = async (args) => {
     return
   }
 
-  let items = []
-
-  for (let folder of folders) {
-    items.push({
-      text: folder.title,
-      action: async () => {
-        args.folder = folder
-        App.bookmark_items(args)
-      },
-    })
+  function action(folder) {
+    args.folder = folder
+    App.bookmark_items(args)
   }
 
-  App.show_context({items: items})
+  App.do_select_bookmarks_folder(folders, action, false)
 }
 
 App.filter_bookmark_nodes = (title, nodes, max) => {
@@ -331,7 +324,7 @@ App.do_select_bookmarks_folder = (folders, callback, include_all = true) => {
     return
   }
 
-  App.show_context({items: items})
+  App.show_context({items: items, title: `Select Folder`})
 }
 
 App.search_bookmarks_folder = async (callback) => {
