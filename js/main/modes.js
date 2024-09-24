@@ -280,7 +280,7 @@ App.main_mode = () => {
 }
 
 App.check_init_mode = async () => {
-  let init_mode = localStorage.getItem(`init_mode`)
+  let init_mode = localStorage.getItem(`init_mode`) || `nothing`
   localStorage.setItem(`init_mode`, `nothing`)
 
   if (App.modes.includes(init_mode)) {

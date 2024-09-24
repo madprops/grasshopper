@@ -52,7 +52,7 @@ App.run_popup_command = (num) => {
 }
 
 App.check_init_commands = () => {
-  let init_cmd = localStorage.getItem(`init_popup_command`)
+  let init_cmd = localStorage.getItem(`init_popup_command`) || `nothing`
   localStorage.setItem(`init_popup_command`, `nothing`)
 
   if (init_cmd !== `nothing`) {
