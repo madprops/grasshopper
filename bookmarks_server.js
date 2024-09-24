@@ -22,14 +22,16 @@ async function refresh_bookmarks(send = true) {
 
     function traverse(bookmarks) {
       for (let bookmark of bookmarks) {
-        if (bookmark.children) {
+        if (bookmark.type === `folder`) {
           if (bookmark.title) {
             folders.push(bookmark)
           }
 
-          traverse(bookmark.children)
+          if (bookmark.children) {
+            traverse(bookmark.children)
+          }
         }
-        else {
+        else if (bookmark.type === `bookmark`) {
           if (bookmark.title) {
             items.push(bookmark)
           }

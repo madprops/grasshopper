@@ -88,12 +88,12 @@ App.get_bookmarks_folder = async (title) => {
     }
   }
 
-  let results = await browser.bookmarks.search({title: title})
+  let folders = App.bookmark_folders_cache
   let folder
 
-  for (let res of results) {
-    if ((res.title === title) && (res.type === `folder`)) {
-      folder = res
+  for (let f of folders) {
+    if (f.title === title) {
+      folder = f
       break
     }
   }
@@ -113,7 +113,7 @@ App.bookmark_items = async (args = {}) => {
 
   App.def_args(def_args, args)
 
-  let perm = await App.bookmarks_permission()
+  let perm = await App.ask_permission(`bookmarks`)
 
   if (!perm) {
     return
@@ -199,7 +199,7 @@ App.bookmark_items = async (args = {}) => {
 }
 
 App.bookmark_active = async () => {
-  let perm = await App.bookmarks_permission()
+  let perm = await App.ask_permission(`bookmarks`)
 
   if (!perm) {
     return
@@ -303,7 +303,7 @@ App.get_bookmark_folders = async (title = ``) => {
 }
 
 App.select_bookmarks_folder = async () => {
-  let perm = await App.bookmarks_permission()
+  let perm = await App.ask_permission(`bookmarks`)
 
   if (!perm) {
     return
@@ -353,7 +353,7 @@ App.do_select_bookmarks_folder = (folders, callback) => {
 }
 
 App.search_bookmarks_folder = async (callback) => {
-  let perm = await App.bookmarks_permission()
+  let perm = await App.ask_permission(`bookmarks`)
 
   if (!perm) {
     return
