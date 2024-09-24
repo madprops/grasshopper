@@ -1,7 +1,14 @@
-let doing_init_bookmarks = false
+// Here bookmarks are cached for fast retrieval on the sidebar or popup
+// On bookmark modifications the cache is updated to refresh the data
+// On refresh the bookmarks are sent to the applications
+// Updates work with a 1 second bouncer to avoid many updates in a short time
+// The applications store this data in their own cache arrays that they get from here
+// This is a persistent background script and should be always accesible
+
+let bookmarks_active = false
+let initing_bookmarks = false
 let bookmark_items = []
 let bookmark_folders = []
-let bookmarks_active = false
 let bookmark_debouncer
 
 browser.runtime.onMessage.addListener((request, sender, respond) => {
@@ -93,6 +100,10 @@ async function start_bookmarks(refresh = true) {
     bookmark_debouncer.call()
   })
 
+  browser.bookmarks.onMoved.addListener((id, info) => {
+    bookmark_debouncer.call()
+  })
+
   if (refresh) {
     bookmark_debouncer.call()
   }
@@ -101,12 +112,12 @@ async function start_bookmarks(refresh = true) {
 }
 
 async function init_bookmarks() {
-  if (doing_init_bookmarks || bookmarks_active) {
+  if (initing_bookmarks || bookmarks_active) {
     return
   }
 
   print(`BG: Init Bookmarks`)
-  doing_init_bookmarks = true
+  initing_bookmarks = true
   await start_bookmarks(false)
 
   if (bookmarks_active) {
@@ -114,7 +125,7 @@ async function init_bookmarks() {
     await send_bookmarks(true)
   }
 
-  doing_init_bookmarks = false
+  initing_bookmarks = false
 }
 
 start_bookmarks()
