@@ -43,7 +43,7 @@ App.step_back = (mode = App.active_mode, e) => {
   else if (App[`${mode}_filter_mode`] !== `all`) {
     App.filter_all(mode, `step_back`)
   }
-  else if (item && !App.item_is_visible(item)) {
+  else if (item && item.element && !App.item_is_visible(item)) {
     App.select_item({item: item, scroll: scroll})
   }
   else if (tabs && item && !item.active) {

@@ -99,7 +99,7 @@ App.get_bookmarks_folder = async (title) => {
   }
 
   if (!folder) {
-    folder = await browser.bookmarks.create({title: title})
+    folder = await App.make_bookmarks_folder(title)
   }
 
   return folder
@@ -143,38 +143,23 @@ App.bookmark_items = async (args = {}) => {
     args.folder = await App.get_bookmarks_folder()
   }
 
-  let bookmarks = await browser.bookmarks.getChildren(args.folder.id)
-
-  for (let b of bookmarks) {
-    b.url = App.format_url(b.url || ``)
-  }
-
-  let add = []
+  let items = []
 
   for (let item of args.active) {
     if (item.header) {
       continue
     }
 
-    let ok = true
+    let exists = items.some(it => it.url === item.url)
 
-    for (let a of add) {
-      if (a.url === item.url) {
-        ok = false
-        break
-      }
-    }
-
-    if (ok) {
-      add.push(item)
+    if (!exists) {
+      items.push(item);
     }
   }
 
-  if (!add.length) {
+  if (!items.length) {
     return
   }
-
-  let items = [...add]
 
   if (!items.length) {
     return
@@ -185,7 +170,7 @@ App.bookmark_items = async (args = {}) => {
   App.show_confirm({
     message: `Bookmark items? (${items.length})`,
     confirm_action: async () => {
-      for (let item of add) {
+      for (let item of items) {
         let title = App.title(item)
         await browser.bookmarks.create({parentId: args.folder.id, title: title, url: item.url})
       }
@@ -374,4 +359,19 @@ App.do_search_bookmarks_folder = async (title, callback) => {
 
 App.request_bookmarks = () => {
   browser.runtime.sendMessage({action: `refresh_bookmarks`})
+}
+
+App.make_bookmarks_folder = async (title) => {
+  return await browser.bookmarks.create({title: title})
+}
+
+App.create_bookmarks_folder = () => {
+  App.show_prompt({
+    placeholder: `Folder Name`,
+    on_submit: (title) => {
+      if (App.make_bookmarks_folder(title)) {
+        App.alert_autohide(`Folder Created`)
+      }
+    }
+  })
 }

@@ -1061,7 +1061,7 @@ App.setup_commands = () => {
       info: `Bookmark the current page`,
     },
     {
-      name: `Bookmark Folder`,
+      name: `Bookmark To Folder`,
       cmd: `bookmark_items_folder`,
       modes: [`items`],
       item: true,
@@ -1073,7 +1073,7 @@ App.setup_commands = () => {
       info: `Bookmark the selected items by picking a folder`,
     },
     {
-      name: `Bookmark Folder 2`,
+      name: `Bookmark To Folder 2`,
       cmd: `bookmark_items_folder_2`,
       modes: [`items`],
       item: true,
@@ -1103,6 +1103,16 @@ App.setup_commands = () => {
         App.search_bookmarks_folder()
       },
       info: `Search a specific bookmarks folder to show`,
+    },
+    {
+      name: `Create Bookmarks Folder`,
+      cmd: `create_bookmarks_folder`,
+      modes: [`items`],
+      icon: bookmarks_icon,
+      action: (args) => {
+        App.create_bookmarks_folder()
+      },
+      info: `Create a new bookmarks folder`,
     },
     {
       name: `Copy URL`,
