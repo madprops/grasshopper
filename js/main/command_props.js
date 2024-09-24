@@ -146,9 +146,11 @@ App.setup_commands = () => {
 
     icon = App.color_icon(color.id)
     name = `Remove ${color.name}`
+    short = `Rm ${color.name}`
 
     color_removers.push({
       name: name,
+      short_name: short,
       cmd: `remove_color_${color.id}`,
       modes: [`tabs`],
       some_custom_color_id: color.id,
@@ -162,9 +164,11 @@ App.setup_commands = () => {
 
     icon = App.color_icon(color.id)
     name = `Remove All ${color.name}`
+    short = `Rm All ${color.name}`
 
     color_removers.push({
       name: name,
+      short_name: short,
       cmd: `remove_all_color_${color.id}`,
       modes: [`tabs`],
       icon: icon,
@@ -245,6 +249,7 @@ App.setup_commands = () => {
 
   color_removers.push({
     name: `Remove Color`,
+    short_name: `Rm Color`,
     cmd: `remove_color`,
     modes: [`tabs`],
     item: true,
@@ -258,6 +263,7 @@ App.setup_commands = () => {
 
   color_removers.push({
     name: `Remove All Colors`,
+    short_name: `Rm Colors`,
     cmd: `remove_all_colors`,
     modes: [`tabs`],
     item: true,
