@@ -263,7 +263,7 @@ App.show_windows_menu = async (item, e) => {
   let items = await App.get_window_menu_items(item)
 
   if (items) {
-    App.show_context({items: items, e: e})
+    App.show_context({items: items, e: e, title: `Pick Window`})
   }
 }
 

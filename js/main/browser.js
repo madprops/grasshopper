@@ -16,7 +16,7 @@ App.show_browser_menu = (e) => {
   }
 
   let items = App.cmd_list(cmds)
-  App.show_context({items: items, e: e, title: `Browser`})
+  App.show_context({items: items, e: e})
 }
 
 App.open_custom_url = (item, num, from = `normal`) => {
