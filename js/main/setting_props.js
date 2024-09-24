@@ -2851,80 +2851,6 @@ App.build_settings = () => {
         ])
       },
     },
-    case_insensitive: {
-      name: `Case Insensitive`,
-      type: `checkbox`,
-      value: true,
-      info: `Make the filter case insensitive`,
-      version: 1,
-    },
-    filter_context_menu: {
-      name: `Filter Context`,
-      type: `checkbox`,
-      value: true,
-      info: `Show a special menu when using right click on the Filter input`,
-      version: 1,
-    },
-    filter_colors: {
-      name: `Filter Colors`,
-      type: `checkbox`,
-      value: true,
-      info: `Consider colors when using the filter normally, like typing 'red'`,
-      version: 1,
-    },
-    filter_tags: {
-      name: `Filter Tags`,
-      type: `checkbox`,
-      value: true,
-      info: `Consider tags when using the filter normally, by typing a tag name`,
-      version: 1,
-    },
-    reuse_filter: {
-      name: `Re-Use Filter`,
-      type: `checkbox`,
-      value: true,
-      info: `Re-use the filter when moving across modes`,
-      version: 1,
-    },
-    filter_effect: {
-      name: `Filter Effect`,
-      type: `checkbox`,
-      value: true,
-      info: `Make it clear that the filter has text through contrast`,
-      version: 1,
-    },
-    special_quotes: {
-      name: `Special Quotes`,
-      type: `checkbox`,
-      value: true,
-      info: `Use quotes to find exact words or phrases
-      For example "dat" might match: His name was Dat
-      Using them makes the filters 'by title' automatically
-      Else use quotes as is`,
-      version: 1,
-    },
-    clear_on_all: {
-      name: `Clear On All`,
-      type: `checkbox`,
-      value: false,
-      info: `Clear the filter when clicking All`,
-      version: 1,
-    },
-    filter_enter: {
-      name: `Filter Enter`,
-      type: `checkbox`,
-      value: false,
-      info: `Require pressing Enter to trigger the filter`,
-      version: 1,
-    },
-    favorite_filters_click: {
-      name: `Favorite Filters Click`,
-      type: `checkbox`,
-      value: false,
-      info: `Use the left click to show the Favorite Filters
-      Use right click to open the Filter Menu instead`,
-      version: 1,
-    },
     max_search_items: {
       name: `Max Search Items`,
       type: `number`,
@@ -3005,6 +2931,80 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `How many tabs from each header to show when using the Header filter mode`,
+      version: 1,
+    },
+    case_insensitive: {
+      name: `Case Insensitive`,
+      type: `checkbox`,
+      value: true,
+      info: `Make the filter case insensitive`,
+      version: 1,
+    },
+    filter_context_menu: {
+      name: `Filter Context`,
+      type: `checkbox`,
+      value: true,
+      info: `Show a special menu when using right click on the Filter input`,
+      version: 1,
+    },
+    filter_colors: {
+      name: `Filter Colors`,
+      type: `checkbox`,
+      value: true,
+      info: `Consider colors when using the filter normally, like typing 'red'`,
+      version: 1,
+    },
+    filter_tags: {
+      name: `Filter Tags`,
+      type: `checkbox`,
+      value: true,
+      info: `Consider tags when using the filter normally, by typing a tag name`,
+      version: 1,
+    },
+    reuse_filter: {
+      name: `Re-Use Filter`,
+      type: `checkbox`,
+      value: true,
+      info: `Re-use the filter when moving across modes`,
+      version: 1,
+    },
+    filter_effect: {
+      name: `Filter Effect`,
+      type: `checkbox`,
+      value: true,
+      info: `Make it clear that the filter has text through contrast`,
+      version: 1,
+    },
+    special_quotes: {
+      name: `Special Quotes`,
+      type: `checkbox`,
+      value: true,
+      info: `Use quotes to find exact words or phrases
+      For example "dat" might match: His name was Dat
+      Using them makes the filters 'by title' automatically
+      Else use quotes as is`,
+      version: 1,
+    },
+    clear_on_all: {
+      name: `Clear On All`,
+      type: `checkbox`,
+      value: false,
+      info: `Clear the filter when clicking All`,
+      version: 1,
+    },
+    filter_enter: {
+      name: `Filter Enter`,
+      type: `checkbox`,
+      value: false,
+      info: `Require pressing Enter to trigger the filter`,
+      version: 1,
+    },
+    favorite_filters_click: {
+      name: `Favorite Filters Click`,
+      type: `checkbox`,
+      value: false,
+      info: `Use the left click to show the Favorite Filters
+      Use right click to open the Filter Menu instead`,
       version: 1,
     },
   }
