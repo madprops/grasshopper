@@ -108,8 +108,12 @@ async function init_bookmarks() {
   print(`BG: Init Bookmarks`)
   doing_init_bookmarks = true
   await start_bookmarks(false)
-  await refresh_bookmarks(false)
-  await send_bookmarks(true)
+
+  if (bookmarks_active) {
+    await refresh_bookmarks(false)
+    await send_bookmarks(true)
+  }
+
   doing_init_bookmarks = false
 }
 
