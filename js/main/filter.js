@@ -1097,6 +1097,7 @@ App.previous_filter = (mode) => {
 App.show_filter_context_menu = (mode, e) => {
   let items = []
   let value = App.get_filter(mode)
+  let filter_icon = App.settings_icons.filter
 
   for (let value of App.filter_history) {
     items.push({
@@ -1126,6 +1127,7 @@ App.show_filter_context_menu = (mode, e) => {
 
   items.push({
     text: `Exact`,
+    icon: filter_icon,
     get_items: () => {
       return App.get_filter_exact(mode)
     }
@@ -1133,6 +1135,7 @@ App.show_filter_context_menu = (mode, e) => {
 
   items.push({
     text: `Refine`,
+    icon: filter_icon,
     get_items: () => {
       return App.get_refine_items()
     }
@@ -1140,6 +1143,7 @@ App.show_filter_context_menu = (mode, e) => {
 
   items.push({
     text: `Custom`,
+    icon: filter_icon,
     get_items: () => {
       return App.get_custom_filters(mode)
     }
@@ -1432,10 +1436,12 @@ App.create_filter_menu = (mode) => {
     fmodes.push({cmd: `filter_no_tab`})
   }
 
+  let filter_icon = App.settings_icons.filter
+
   fmodes.push(separator())
-  fmodes.push({cmd: `exact`, text: `Exact`, skip: true, info: `Show the Exact Filters`})
-  fmodes.push({cmd: `refine`, text: `Refine`, skip: true, info: `Show the Refine Filters`})
-  fmodes.push({cmd: `custom`, text: `Custom`, skip: true, info: `Show the Custom Filters`})
+  fmodes.push({cmd: `exact`, text: `Exact`, icon: filter_icon, skip: true, info: `Show the Exact Filters`})
+  fmodes.push({cmd: `refine`, text: `Refine`, icon: filter_icon, skip: true, info: `Show the Refine Filters`})
+  fmodes.push({cmd: `custom`, text: `Custom`, icon: filter_icon, skip: true, info: `Show the Custom Filters`})
 
   App[`${mode}_filter_modes_all`] = fmodes
 
