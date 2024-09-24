@@ -461,6 +461,7 @@ App.setup_commands = () => {
   App.commands = [
     {
       name: `Go To Top`,
+      short_name: `Top`,
       cmd: `go_to_top`,
       modes: [`items`],
       icon: up_icon,
@@ -471,6 +472,7 @@ App.setup_commands = () => {
     },
     {
       name: `Go To Bottom`,
+      short_name: `Bottom`,
       cmd: `go_to_bottom`,
       modes: [`items`],
       icon: down_icon,
@@ -549,6 +551,7 @@ App.setup_commands = () => {
     },
     {
       name: `Backspace Key`,
+      short_name: `Backspace`,
       cmd: `trigger_backspace_key`,
       icon: keyboard_icon,
       action: (args) => {
@@ -594,6 +597,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select All`,
+      short_name: `Select`,
       cmd: `select_all_items`,
       modes: [`items`],
       icon: command_icon,
@@ -604,6 +608,7 @@ App.setup_commands = () => {
     },
     {
       name: `Deselect All`,
+      short_name: `Deselect`,
       cmd: `dselect_all_items`,
       modes: [`items`],
       icon: command_icon,
@@ -614,6 +619,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Above`,
+      short_name: `Above`,
       cmd: `select_items_above`,
       modes: [`items`],
       icon: up_icon,
@@ -624,6 +630,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Below`,
+      short_name: `Below`,
       cmd: `select_items_below`,
       modes: [`items`],
       icon: down_icon,
@@ -654,6 +661,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Up Alt`,
+      short_name: `Select Up`,
       cmd: `select_item_up_alt`,
       modes: [`items`],
       icon: up_icon,
@@ -664,6 +672,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Down Alt`,
+      short_name: `Select Down`,
       cmd: `select_item_down_alt`,
       modes: [`items`],
       icon: down_icon,
@@ -794,6 +803,7 @@ App.setup_commands = () => {
     },
     {
       name: `Export Settings`,
+      short_name: `Export`,
       cmd: `export_settings`,
       icon: settings_icon,
       action: (args) => {
@@ -803,6 +813,7 @@ App.setup_commands = () => {
     },
     {
       name: `Import Settings`,
+      short_name: `Import`,
       cmd: `import_settings`,
       icon: settings_icon,
       action: (args) => {
@@ -860,6 +871,7 @@ App.setup_commands = () => {
     },
     {
       name: `Background Menu`,
+      short_name: `BG Menu`,
       cmd: `show_background_menu`,
       icon: theme_icon,
       action: (args) => {
@@ -889,6 +901,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Favorites`,
+      short_name: `Favs`,
       cmd: `toggle_favorites`,
       modes: [`items`],
       icon: favorites_icon,
@@ -899,6 +912,7 @@ App.setup_commands = () => {
     },
     {
       name: `Favorites Autohide`,
+      short_name: `Favs Autohide`,
       cmd: `toggle_favorites_autohide`,
       modes: [`items`],
       icon: favorites_icon,
@@ -909,6 +923,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Tab Box`,
+      short_name: `Tab Box`,
       cmd: `toggle_tab_box`,
       modes: [`tabs`],
       icon: tab_box_icon,
@@ -919,6 +934,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Taglist`,
+      short_name: `Taglist`,
       cmd: `toggle_taglist`,
       modes: [`items`],
       icon: tag_icon,
@@ -929,6 +945,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Footer`,
+      short_name: `Footer`,
       cmd: `toggle_footer`,
       modes: [`items`],
       icon: command_icon,
@@ -939,6 +956,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Auto Blur`,
+      short_name: `Auto Blur`,
       cmd: `toggle_auto_blur`,
       icon: command_icon,
       action: (args) => {
@@ -999,6 +1017,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter All`,
+      short_name: `All`,
       cmd: `filter_all`,
       modes: [`items`],
       icon: globe_icon,
@@ -1146,6 +1165,7 @@ App.setup_commands = () => {
     },
     {
       name: `Go Back`,
+      short_name: `Back`,
       cmd: `browser_back`,
       icon: browser_icon,
       action: (args) => {
@@ -1155,6 +1175,7 @@ App.setup_commands = () => {
     },
     {
       name: `Go Forward`,
+      short_name: `Forward`,
       cmd: `browser_forward`,
       icon: browser_icon,
       action: (args) => {
@@ -1164,6 +1185,7 @@ App.setup_commands = () => {
     },
     {
       name: `Reload Page`,
+      short_name: `Reload`,
       cmd: `browser_reload`,
       icon: browser_icon,
       action: (args) => {
@@ -1173,6 +1195,7 @@ App.setup_commands = () => {
     },
     {
       name: `Main Menu`,
+      short_name: `Menu`,
       cmd: `show_main_menu`,
       modes: [`items`],
       icon: tabs_icon,
@@ -1183,6 +1206,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Menu`,
+      short_name: `Filter`,
       cmd: `show_filter_menu`,
       modes: [`items`],
       icon: filter_icon,
@@ -1193,6 +1217,7 @@ App.setup_commands = () => {
     },
     {
       name: `Actions Menu`,
+      short_name: `Actions`,
       cmd: `show_actions_menu`,
       modes: [`items`],
       icon: command_icon,
@@ -1203,6 +1228,7 @@ App.setup_commands = () => {
     },
     {
       name: `Browser Menu`,
+      short_name: `Browser`,
       cmd: `show_browser_menu`,
       icon: browser_icon,
       action: (args) => {
@@ -1327,6 +1353,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Pin`,
+      short_name: `Pin`,
       cmd: `toggle_pin_tabs`,
       modes: [`tabs`],
       item: true,
@@ -1338,6 +1365,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Pins`,
+      short_name: `Pins`,
       cmd: `toggle_show_pins`,
       modes: [`tabs`],
       item: true,
@@ -1465,6 +1493,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Mute`,
+      short_name: `Mute`,
       cmd: `toggle_mute_tabs`,
       modes: [`tabs`],
       item: true,
@@ -1476,6 +1505,7 @@ App.setup_commands = () => {
     },
     {
       name: `Mute Playing`,
+      short_name: `Mute`,
       cmd: `mute_playing_tabs`,
       modes: [`tabs`],
       item: true,
@@ -1487,6 +1517,7 @@ App.setup_commands = () => {
     },
     {
       name: `Unmute All`,
+      short_name: `Unmute`,
       cmd: `mute_all_tabs`,
       modes: [`tabs`],
       item: true,
@@ -1509,6 +1540,7 @@ App.setup_commands = () => {
     },
     {
       name: `Close Menu`,
+      short_name: `Close`,
       cmd: `show_close_tabs_menu`,
       modes: [`tabs`],
       icon: close_icon,
@@ -1666,6 +1698,7 @@ App.setup_commands = () => {
     },
     {
       name: `Sort All`,
+      short_name: `Sort`,
       cmd: `sort_tabs`,
       modes: [`items`],
       icon: tabs_icon,
@@ -1709,6 +1742,7 @@ App.setup_commands = () => {
     },
     {
       name: `Show Info`,
+      short_name: `Info`,
       cmd: `show_tabs_info`,
       modes: [`items`],
       icon: tabs_icon,
@@ -1719,6 +1753,7 @@ App.setup_commands = () => {
     },
     {
       name: `Show URLs`,
+      short_name: `URLs`,
       cmd: `show_tab_urls`,
       modes: [`items`],
       icon: tabs_icon,
@@ -1729,6 +1764,7 @@ App.setup_commands = () => {
     },
     {
       name: `Open URLs`,
+      short_name: `Open`,
       cmd: `open_tab_urls`,
       modes: [`items`],
       icon: tabs_icon,
@@ -1812,6 +1848,7 @@ App.setup_commands = () => {
     },
     {
       name: `Deep Search`,
+      short_name: `Deep`,
       cmd: `deep_search`,
       modes: [`search`],
       icon: filter_icon,
@@ -1822,6 +1859,7 @@ App.setup_commands = () => {
     },
     {
       name: `Search Media`,
+      short_name: `Media`,
       cmd: `show_search_media_menu`,
       modes: [`items`],
       icon: media_icon,
@@ -1832,6 +1870,7 @@ App.setup_commands = () => {
     },
     {
       name: `Forget Closed`,
+      short_name: `Forget`,
       cmd: `forget_closed`,
       modes: [`closed`],
       icon: closed_icon,
@@ -2209,6 +2248,7 @@ App.setup_commands = () => {
     },
     {
       name: `Global Notes`,
+      short_name: `Notes`,
       cmd: `edit_global_notes`,
       icon: notes_icon,
       action: (args) => {
@@ -2218,6 +2258,7 @@ App.setup_commands = () => {
     },
     {
       name: `Split Both`,
+      short_name: `Split`,
       cmd: `add_split_both`,
       modes: [`tabs`],
       item: true,
@@ -2230,6 +2271,7 @@ App.setup_commands = () => {
     },
     {
       name: `Split Top`,
+      short_name: `Split`,
       cmd: `add_split_top`,
       modes: [`tabs`],
       item: true,
@@ -2242,6 +2284,7 @@ App.setup_commands = () => {
     },
     {
       name: `Split Bottom`,
+      short_name: `Split`,
       cmd: `add_split_bottom`,
       modes: [`tabs`],
       item: true,
@@ -2258,6 +2301,7 @@ App.setup_commands = () => {
 
     {
       name: `Remove Title`,
+      short_name: `Rm Title`,
       cmd: `remove_title`,
       modes: [`tabs`],
       item: true,
@@ -2270,6 +2314,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove All Titles`,
+      short_name: `Rm Titles`,
       cmd: `remove_all_titles`,
       modes: [`tabs`],
       icon: notepad_icon,
@@ -2280,6 +2325,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove Icon`,
+      short_name: `Rm Icon`,
       cmd: `remove_icon`,
       modes: [`tabs`],
       item: true,
@@ -2292,6 +2338,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove All Icons`,
+      short_name: `Rm Icons`,
       cmd: `remove_all_icons`,
       modes: [`tabs`],
       icon: bot_icon,
@@ -2313,6 +2360,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove Notes`,
+      short_name: `Rm Notes`,
       cmd: `remove_notes`,
       modes: [`tabs`],
       item: true,
@@ -2335,6 +2383,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove Tags`,
+      short_name: `Rm Tags`,
       cmd: `remove_tags`,
       modes: [`tabs`],
       item: true,
@@ -2347,7 +2396,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove All Tags`,
-      short_name: `All Tags`,
+      short_name: `Rm Tags`,
       cmd: `remove_all_tags`,
       modes: [`tabs`],
       icon: tag_icon,
@@ -2358,6 +2407,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove All Notes`,
+      short_name: `Rm Notes`,
       cmd: `remove_all_notes`,
       modes: [`tabs`],
       icon: notes_icon,
@@ -2368,6 +2418,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove Split`,
+      short_name: `Rm Split`,
       cmd: `remove_split`,
       modes: [`tabs`],
       some_custom_split: true,
@@ -2380,6 +2431,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove All Splits`,
+      short_name: `Rm Splits`,
       cmd: `remove_all_splits`,
       modes: [`tabs`],
       icon: zone_icon,
@@ -2390,6 +2442,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove All Zones`,
+      short_name: `Rm Zones`,
       cmd: `remove_all_zones`,
       modes: [`tabs`],
       icon: zone_icon,
@@ -2440,6 +2493,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove All Edits`,
+      short_name: `Rm Edits`,
       cmd: `remove_all_edits`,
       modes: [`tabs`],
       icon: notepad_icon,
@@ -2450,6 +2504,7 @@ App.setup_commands = () => {
     },
     {
       name: `Remove Edits`,
+      short_name: `Rm Edits`,
       cmd: `remove_item_edits`,
       modes: [`tabs`],
       item: true,
@@ -2816,6 +2871,7 @@ App.setup_commands = () => {
     },
     {
       name: `Favorite Filters`,
+      short_name: `Fav Filters`,
       cmd: `show_favorite_filters`,
       modes: [`items`],
       icon: filter_icon,
@@ -2869,6 +2925,7 @@ App.setup_commands = () => {
     },
     {
       name: `Light Colors`,
+      short_name: `Light`,
       cmd: `set_light_colors`,
       icon: theme_icon,
       action: (args) => {
@@ -2878,6 +2935,7 @@ App.setup_commands = () => {
     },
     {
       name: `Dark Colors`,
+      short_name: `Dark`,
       cmd: `set_dark_colors`,
       icon: theme_icon,
       action: (args) => {
@@ -2908,6 +2966,7 @@ App.setup_commands = () => {
 
     {
       name: `Cycle Opacity`,
+      short_name: `Opacity`,
       cmd: `cycle_background_opacity`,
       icon: theme_icon,
       action: (args) => {
@@ -2917,6 +2976,7 @@ App.setup_commands = () => {
     },
     {
       name: `Increase Opacity`,
+      short_name: `Opacity +`,
       cmd: `increase_background_opacity`,
       icon: theme_icon,
       action: (args) => {
@@ -2926,6 +2986,7 @@ App.setup_commands = () => {
     },
     {
       name: `Decrease Opacity`,
+      short_name: `Opacity -`,
       cmd: `decrease_background_opacity`,
       icon: theme_icon,
       action: (args) => {
@@ -2955,6 +3016,7 @@ App.setup_commands = () => {
     },
     {
       name: `Show Title Menu`,
+      short_name: `Title Menu`,
       cmd: `show_main_title_menu`,
       icon: title_icon,
       action: (args) => {
@@ -2991,6 +3053,7 @@ App.setup_commands = () => {
     },
     {
       name: `Dark Title Theme`,
+      short_name: `Dark Title`,
       cmd: `set_random_dark_main_title_theme`,
       icon: title_icon,
       action: (args) => {
@@ -3000,6 +3063,7 @@ App.setup_commands = () => {
     },
     {
       name: `Light Title Theme`,
+      short_name: `Light Title`,
       cmd: `set_random_light_main_title_theme`,
       icon: title_icon,
       action: (args) => {
@@ -3036,6 +3100,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Date`,
+      short_name: `Date`,
       cmd: `toggle_main_title_date`,
       icon: title_icon,
       action: (args) => {
@@ -3045,6 +3110,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Title`,
+      short_name: `Title`,
       cmd: `toggle_main_title`,
       icon: title_icon,
       action: (args) => {
@@ -3063,6 +3129,7 @@ App.setup_commands = () => {
     },
     {
       name: `Scroll Title Left`,
+      short_name: `Title Left`,
       cmd: `scroll_main_title_left`,
       icon: title_icon,
       action: (args) => {
@@ -3072,6 +3139,7 @@ App.setup_commands = () => {
     },
     {
       name: `Scroll Title Right`,
+      short_name: `Title Right`,
       cmd: `scroll_main_title_right`,
       icon: title_icon,
       action: (args) => {
@@ -3085,6 +3153,7 @@ App.setup_commands = () => {
 
     {
       name: `Repeat Command`,
+      short_name: `Repeat`,
       cmd: `repeat_command`,
       icon: command_icon,
       action: (args) => {
@@ -3094,6 +3163,7 @@ App.setup_commands = () => {
     },
     {
       name: `Lock Screen`,
+      short_name: `Lock`,
       cmd: `lock_screen`,
       icon: lock_icon,
       action: (args) => {
@@ -3121,6 +3191,7 @@ App.setup_commands = () => {
     },
     {
       name: `Open Sidebar`,
+      short_name: `Sidebar`,
       cmd: `open_sidebar`,
       icon: bot_icon,
       action: (args) => {
@@ -3130,6 +3201,7 @@ App.setup_commands = () => {
     },
     {
       name: `Close Sidebar`,
+      short_name: `Sidebar`,
       cmd: `close_sidebar`,
       icon: bot_icon,
       action: (args) => {
@@ -3149,6 +3221,7 @@ App.setup_commands = () => {
     },
     {
       name: `Locust Swarm`,
+      short_name: `Swarm`,
       cmd: `locust_swarm`,
       icon: grasshopper_icon,
       action: (args) => {
