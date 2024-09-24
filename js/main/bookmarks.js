@@ -160,10 +160,6 @@ App.bookmark_items = async (args = {}) => {
     return
   }
 
-  if (!items.length) {
-    return
-  }
-
   let force = App.check_force(`warn_on_bookmark`, items)
 
   App.show_confirm({
