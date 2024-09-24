@@ -370,7 +370,11 @@ App.create_bookmarks_folder = () => {
     placeholder: `Folder Name`,
     on_submit: (title) => {
       if (App.make_bookmarks_folder(title)) {
-        App.alert_autohide(`Folder Created`)
+        let feedback = App.get_setting(`show_feedback`)
+
+        if (feedback) {
+          App.alert_autohide(`Folder Created`)
+        }
       }
     }
   })
