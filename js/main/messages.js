@@ -20,6 +20,7 @@ App.setup_messages = () => {
       App.run_popup_command(message.number)
     }
     else if (message.action === `refresh_bookmarks`) {
+      App.bookmarks_received = true
       App.bookmark_items_cache = message.items
       App.bookmark_folders_cache = message.folders
 

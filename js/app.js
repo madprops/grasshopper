@@ -109,6 +109,7 @@ App.max_padding_setting = 100
 App.signal_intervals = []
 App.bookmark_items_cache = []
 App.bookmark_folders_cache = []
+App.bookmarks_received = false
 
 App.settings_ready = false
 App.media_image_ready = false

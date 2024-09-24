@@ -12,8 +12,18 @@ let bookmark_items = []
 let bookmark_folders = []
 let bookmark_debouncer
 
+browser.runtime.onMessage.addListener(async (request, sender, respond) => {
+  if (request.action === `send_bookmarks`) {
+    if (bookmarks_active) {
+      send_bookmarks()
+    }
+  }
+})
+
 browser.permissions.onAdded.addListener(async (obj) => {
   if (obj.permissions.includes(`bookmarks`)) {
+    print(`BG: Bookmarks permission granted`)
+
     if (!bookmarks_active) {
       await start_bookmarks(false)
       await refresh_bookmarks(false)
