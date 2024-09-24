@@ -62,7 +62,7 @@ function browser_command(num) {
   browser.runtime.sendMessage({action: `browser_command`, number: num})
 }
 
-async function popup_command(num) {
+function popup_command(num) {
   set_item(`popup_command`, num)
   open_popup()
 }
