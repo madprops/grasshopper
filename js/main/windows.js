@@ -245,8 +245,7 @@ App.get_window_menu_items = async (item) => {
       continue
     }
 
-    let s = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
-    let text = `Move To: ${s}`
+    let text = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
 
     items.push({
       text: text,
@@ -263,7 +262,7 @@ App.show_windows_menu = async (item, e) => {
   let items = await App.get_window_menu_items(item)
 
   if (items) {
-    App.show_context({items: items, e: e, title: `Pick Window`})
+    App.show_context({items: items, e: e, title: `Move To Window`})
   }
 }
 
