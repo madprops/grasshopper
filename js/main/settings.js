@@ -1301,7 +1301,7 @@ App.setup_settings_addlist = () => {
     }
   }
 
-  let popobj, regobj = App.get_setting_addlist_objects()
+  let [popobj, regobj] = App.get_setting_addlist_objects()
   let id = `settings_aliases`
   let props = App.setting_props.aliases
 
