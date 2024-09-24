@@ -107,10 +107,8 @@ App.main_title_scroll_pause = false
 App.prompt_mode = false
 App.max_padding_setting = 100
 App.signal_intervals = []
-App.bookmarks_changed = false
 App.bookmark_items_cache = []
 App.bookmark_folders_cache = []
-App.bookmarks_changed = false
 
 App.settings_ready = false
 App.media_image_ready = false

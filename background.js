@@ -6,7 +6,10 @@ let bookmark_debouncer
 
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === `init_bookmarks`) {
-    if (!bookmarks_active) {
+    if (bookmark_items.length || bookmark_folders.length) {
+      send_bookmarks(true)
+    }
+    else if (!bookmarks_active) {
       init_bookmarks()
     }
   }
@@ -105,7 +108,7 @@ browser.commands.onCommand.addListener((command) => {
   }
 })
 
-async function refresh_bookmarks(show_mode = false) {
+async function refresh_bookmarks(send = true) {
   let items = []
   let folders = []
   let nodes = await browser.bookmarks.getTree()
@@ -135,7 +138,10 @@ async function refresh_bookmarks(show_mode = false) {
   bookmark_items = items
   bookmark_folders = folders
 
-  browser.runtime.sendMessage({action: "refresh_bookmarks", items: items, folders: folders, show_mode: show_mode})
+  if (send) {
+    send_bookmarks()
+  }
+
   console.info(`BG: Bookmarks refreshed: ${folders.length} folders and ${items.length} items.`)
 }
 
@@ -176,13 +182,19 @@ async function init_bookmarks() {
   }
 
   doing_init_bookmarks = true
-
-  if (!bookmarks_active) {
-    await start_bookmarks(false)
-  }
-
-  await refresh_bookmarks(true)
+  await start_bookmarks(false)
+  await refresh_bookmarks(false)
+  await send_bookmarks(true)
   doing_init_bookmarks = false
+}
+
+function send_bookmarks(show_mode = false) {
+  browser.runtime.sendMessage({
+    action: "refresh_bookmarks",
+    items: bookmark_items,
+    folders: bookmark_folders,
+    show_mode: show_mode,
+  })
 }
 
 start_bookmarks()
