@@ -23,11 +23,19 @@ App.start_main_title_intervals = () => {
   App.main_title_date_interval = setInterval(() => {
     App.check_main_title_date()
   }, delay)
+
+  if (App.get_setting(`main_title_auto_scroll`)) {
+    App.main_title_scroll_do_timeout()
+  }
+  else {
+    clearTimeout(App.main_title_scroll_timeout)
+  }
 }
 
 App.main_title_scroll_do_timeout = () => {
+  clearTimeout(App.main_title_scroll_timeout)
+
   if (App.main_title_scroll_pause) {
-    clearTimeout(App.main_title_scroll_timeout)
     let delay = App.main_title_scroll_pause_delay
     App.main_title_scroll_pause = false
 

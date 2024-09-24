@@ -431,7 +431,7 @@ App.refresh_settings = () => {
   App.setup_commands()
   App.fill_palette()
   App.build_tab_filters()
-  App.set_main_title()
+  App.reset_main_title()
   App.start_signal_intervals()
 }
 
