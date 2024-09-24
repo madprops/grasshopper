@@ -236,16 +236,7 @@ App.filter_bookmark_nodes = (title, nodes, max) => {
 }
 
 App.get_bookmark_items = async (title = ``, deep = false) => {
-  let items
-
-  if (App.bookmark_items_cache.length) {
-    items = App.bookmark_items_cache
-  }
-  else {
-    browser.runtime.sendMessage({action: `init_bookmarks`})
-    return []
-  }
-
+  let items = App.bookmark_items_cache
   let max
 
   if (deep) {
@@ -266,16 +257,7 @@ App.get_bookmark_items = async (title = ``, deep = false) => {
 }
 
 App.get_bookmark_folders = async (title = ``) => {
-  let items
-
-  if (App.bookmark_folders_cache.length) {
-    items = App.bookmark_folders_cache
-  }
-  else {
-    browser.runtime.sendMessage({action: `init_bookmarks`})
-    return []
-  }
-
+  let items = App.bookmark_folders_cache
   let max = App.get_setting(`max_bookmark_folders`)
 
   if (title) {
@@ -292,6 +274,10 @@ App.select_bookmarks_folder = async () => {
   let perm = await App.ask_permission(`bookmarks`)
 
   if (!perm) {
+    return
+  }
+
+  if (App.bookmark_folders_cache.length) {
     return
   }
 

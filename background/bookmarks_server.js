@@ -8,21 +8,14 @@
 // Since the native getTree function is currently slow
 
 let bookmarks_active = false
-let initing_bookmarks = false
 let bookmark_items = []
 let bookmark_folders = []
 let bookmark_debouncer
 
-browser.runtime.onMessage.addListener((request, sender, respond) => {
-  if (request.action === `init_bookmarks`) {
-    print(`BG: Init bookmarks request`)
-
-    if (bookmark_items.length || bookmark_folders.length) {
-      send_bookmarks()
-    }
-    else if (!bookmarks_active) {
-      init_bookmarks()
-    }
+browser.permissions.onAdded.addListener(async (obj) => {
+  if (obj.permissions.includes(`bookmarks`)) {
+    await refresh_bookmarks(false)
+    send_bookmarks(true)
   }
 })
 
@@ -111,23 +104,6 @@ async function start_bookmarks(refresh = true) {
   }
 
   bookmarks_active = true
-}
-
-async function init_bookmarks() {
-  if (initing_bookmarks || bookmarks_active) {
-    return
-  }
-
-  print(`BG: Init Bookmarks`)
-  initing_bookmarks = true
-  await start_bookmarks(false)
-
-  if (bookmarks_active) {
-    await refresh_bookmarks(false)
-    await send_bookmarks(true)
-  }
-
-  initing_bookmarks = false
 }
 
 start_bookmarks()
