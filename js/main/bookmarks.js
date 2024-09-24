@@ -289,10 +289,10 @@ App.select_bookmarks_folder = async () => {
   App.do_select_bookmarks_folder(folders)
 }
 
-App.do_select_bookmarks_folder = (folders, callback) => {
+App.do_select_bookmarks_folder = (folders, callback, include_all = true) => {
   let items = []
 
-  if (!callback) {
+  if (include_all) {
     items.push({
       text: `All`,
       action: async () => {
@@ -345,28 +345,50 @@ App.search_bookmarks_folder = async (callback) => {
 
 App.do_search_bookmarks_folder = async (title, callback) => {
   let folders = await App.get_bookmark_folders(title)
-  App.do_select_bookmarks_folder(folders, callback)
+  App.do_select_bookmarks_folder(folders, callback, false)
 }
 
 App.request_bookmarks = () => {
   browser.runtime.sendMessage({action: `refresh_bookmarks`})
 }
 
-App.make_bookmarks_folder = async (title) => {
-  return await browser.bookmarks.create({title: title})
+App.make_bookmarks_folder = async (title, parent = ``) => {
+  if (parent) {
+    return await browser.bookmarks.create({title: title, parentId: parent.id})
+  }
+  else {
+    return await browser.bookmarks.create({title: title})
+  }
 }
 
 App.create_bookmarks_folder = () => {
+  function action(title, parent = ``) {
+    if (App.make_bookmarks_folder(title, parent)) {
+      let feedback = App.get_setting(`show_feedback`)
+
+      if (feedback) {
+        App.alert_autohide(`Folder Created`)
+      }
+    }
+  }
+
   App.show_prompt({
     placeholder: `Folder Name`,
-    on_submit: (title) => {
-      if (App.make_bookmarks_folder(title)) {
-        let feedback = App.get_setting(`show_feedback`)
-
-        if (feedback) {
-          App.alert_autohide(`Folder Created`)
-        }
+    on_submit: async (title) => {
+      if (!title) {
+        return
       }
+
+      let folders = await App.get_bookmark_folders()
+
+      if (!folders.length) {
+        action(title)
+        return
+      }
+
+      App.do_select_bookmarks_folder(folders, (folder) => {
+        action(title, folder)
+      }, false)
     }
   })
 }
