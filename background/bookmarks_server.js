@@ -4,6 +4,8 @@
 // Updates work with a 1 second bouncer to avoid many updates in a short time
 // The applications store this data in their own cache arrays that they get from here
 // This is a persistent background script and should be always accesible
+// The idea of this is to make bookmark retrieval much faster when many bookmarks exist
+// Since the native getTree function is currently slow
 
 let bookmarks_active = false
 let initing_bookmarks = false
