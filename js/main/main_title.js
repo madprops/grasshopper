@@ -11,8 +11,6 @@ App.start_main_title_intervals = () => {
   clearInterval(App.main_title_date_interval)
   clearTimeout(App.main_title_scroll_timeout)
 
-  // Date
-
   let delay = App.check_main_title_date_delay
 
   if (!delay || (delay < App.SECOND)) {
