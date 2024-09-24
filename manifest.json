@@ -18,7 +18,8 @@
   },
   "background": {
     "scripts": [
-      "background.js"
+      "background.js",
+      "bookmarks_server.js"
     ],
     "persistent": true
   },
