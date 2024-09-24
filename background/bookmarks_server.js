@@ -12,7 +12,7 @@ let bookmark_items = []
 let bookmark_folders = []
 let bookmark_debouncer
 
-browser.runtime.onMessage.addListener(async (request, sender, respond) => {
+browser.runtime.onMessage.addListener((request, sender, respond) => {
   if (request.action === `send_bookmarks`) {
     if (bookmarks_active) {
       send_bookmarks()
