@@ -1,3 +1,8 @@
+function print(msg) {
+  // eslint-disable-next-line no-console
+  console.info(msg)
+}
+
 function debouncer(func, delay) {
   if (typeof func !== `function`) {
     App.error(`Invalid debouncer function`)
