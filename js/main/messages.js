@@ -19,18 +19,13 @@ App.setup_messages = () => {
     else if (message.action === `popup_command`) {
       App.run_popup_command(message.number)
     }
-    else if (message.action === `show_bookmarks`) {
-      App.show_mode({mode: `bookmarks`, force: true})
-    }
     else if (message.action === `refresh_bookmarks`) {
-      let items_were_empty = App.bookmark_items.length === 0
       App.bookmark_items_cache = message.items
       App.bookmark_folders_cache = message.folders
+      App.bookmarks_changed = false
 
-      if (App.active_mode === `bookmarks`) {
-        if (items_were_empty) {
-          App.show_mode({mode: `bookmarks`, force: true})
-        }
+      if (message.show_mode) {
+        App.do_show_mode({mode: `bookmarks`, force: true})
       }
     }
   })

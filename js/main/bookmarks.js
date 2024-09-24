@@ -5,6 +5,7 @@ App.setup_bookmarks = () => {
 
   browser.bookmarks.onCreated.addListener((id, info) => {
     App.debug(`Bookmark Created: ID: ${id}`)
+    App.bookmarks_changed = true
 
     if (App.active_mode === `bookmarks`) {
       App.insert_item(`bookmarks`, info)
@@ -13,6 +14,7 @@ App.setup_bookmarks = () => {
 
   browser.bookmarks.onRemoved.addListener((id, info) => {
     App.debug(`Bookmark Removed: ID: ${id}`)
+    App.bookmarks_changed = true
 
     if (App.active_mode === `bookmarks`) {
       let item = App.get_item_by_id(`bookmarks`, id)
@@ -25,6 +27,7 @@ App.setup_bookmarks = () => {
 
   browser.bookmarks.onChanged.addListener((id, info) => {
     App.debug(`Bookmark Changed: ID: ${id}`)
+    App.bookmarks_changed = true
 
     if (App.active_mode === `bookmarks`) {
       let item = App.get_item_by_id(`bookmarks`, id)
@@ -246,7 +249,16 @@ App.filter_bookmark_nodes = (title, nodes, max) => {
 }
 
 App.get_bookmark_items = async (title = ``, deep = false) => {
-  let items = App.bookmark_items_cache
+  let items
+
+  if (!App.bookmarks_changed && App.bookmark_items_cache.length) {
+    items = App.bookmark_items_cache
+  }
+  else {
+    browser.runtime.sendMessage({action: `init_bookmarks`})
+    return
+  }
+
   let max
 
   if (deep) {
@@ -267,7 +279,16 @@ App.get_bookmark_items = async (title = ``, deep = false) => {
 }
 
 App.get_bookmark_folders = async (title = ``) => {
-  let items = App.bookmark_folders_cache
+  let items
+
+  if (!App.bookmarks_changed && App.bookmark_folders_cache.length) {
+    items = App.bookmark_folders_cache
+  }
+  else {
+    browser.runtime.sendMessage({action: `init_bookmarks`})
+    return
+  }
+
   let max = App.get_setting(`max_bookmark_folders`)
 
   if (title) {
@@ -344,4 +365,8 @@ App.search_bookmarks_folder = async (callback) => {
 App.do_search_bookmarks_folder = async (title, callback) => {
   let folders = await App.get_bookmark_folders(title)
   App.do_select_bookmarks_folder(folders, callback)
+}
+
+App.request_bookmarks = () => {
+  browser.runtime.sendMessage({action: `refresh_bookmarks`})
 }

@@ -110,7 +110,7 @@ App.signal_intervals = []
 App.bookmarks_changed = false
 App.bookmark_items_cache = []
 App.bookmark_folders_cache = []
-App.permissions = {}
+App.bookmarks_changed = false
 
 App.settings_ready = false
 App.media_image_ready = false
