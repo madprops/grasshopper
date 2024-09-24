@@ -284,10 +284,6 @@ App.select_bookmarks_folder = async () => {
     return
   }
 
-  if (App.bookmark_folders_cache.length) {
-    return
-  }
-
   let folders = await App.get_bookmark_folders()
 
   if (!folders.length) {
