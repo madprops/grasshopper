@@ -2863,7 +2863,7 @@ App.build_settings = () => {
       version: 1,
     },
     deep_max_search_items_history: {
-      name: `Deep Max Search (History)`,
+      name: `Deep Search (History)`,
       type: `number`,
       value: 5000,
       placeholder: `Number`,
@@ -2873,7 +2873,7 @@ App.build_settings = () => {
       version: 1,
     },
     history_max_months: {
-      name: `History Max Months`,
+      name: `History Months`,
       type: `number`,
       value: 18,
       placeholder: `Number`,
@@ -2883,7 +2883,7 @@ App.build_settings = () => {
       version: 1,
     },
     deep_history_max_months: {
-      name: `Deep History Max Months`,
+      name: `Deep History Months`,
       type: `number`,
       value: 54,
       placeholder: `Number`,
@@ -2904,7 +2904,7 @@ App.build_settings = () => {
       version: 1,
     },
     deep_max_search_items_bookmarks: {
-      name: `Deep Max Search (Bookmarks)`,
+      name: `Deep Search (Bookmarks)`,
       type: `number`,
       value: 5000,
       placeholder: `Number`,
@@ -2926,7 +2926,7 @@ App.build_settings = () => {
       version: 1,
     },
     filter_delay_search: {
-      name: `Filter Delay (Search)`,
+      name: `Search Delay`,
       type: `number`,
       value: 250,
       actions: [`filters`],
