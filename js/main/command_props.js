@@ -1106,6 +1106,7 @@ App.setup_commands = () => {
     },
     {
       name: `Create Bookmarks Folder`,
+      short_name: `Folder`,
       cmd: `create_bookmarks_folder`,
       modes: [`items`],
       icon: bookmarks_icon,
