@@ -1293,6 +1293,14 @@ App.build_settings = () => {
   category = `favorites`
 
   props = {
+    show_favorites: {
+      name: `Show Favorites`,
+      type: `checkbox`,
+      value: true,
+      no_mirror: true,
+      info: `Enable or disable the Favorites bar or button`,
+      version: 2,
+    },
     favorites_menu: {
       name: `Favorites Menu`,
       type: `list`,
@@ -1308,14 +1316,6 @@ App.build_settings = () => {
       ],
       info: `List of commands that can appear in various forms`,
       version: 1,
-    },
-    show_favorites: {
-      name: `Show Favorites`,
-      type: `checkbox`,
-      value: true,
-      no_mirror: true,
-      info: `Enable or disable the Favorites bar or button`,
-      version: 2,
     },
     favorites_position: {
       name: `Favorites Position`,
