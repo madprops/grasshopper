@@ -1053,6 +1053,7 @@ App.setup_commands = () => {
     },
     {
       name: `Bookmark Page`,
+      short_name: `Bookmark`,
       cmd: `bookmark_page`,
       icon: bookmarks_icon,
       action: (args) => {
@@ -1062,6 +1063,7 @@ App.setup_commands = () => {
     },
     {
       name: `Bookmark To Folder`,
+      short_name: `To Folder`,
       cmd: `bookmark_items_folder`,
       modes: [`items`],
       item: true,
@@ -1074,6 +1076,7 @@ App.setup_commands = () => {
     },
     {
       name: `Bookmark To Folder 2`,
+      short_name: `To Folder`,
       cmd: `bookmark_items_folder_2`,
       modes: [`items`],
       item: true,
@@ -1086,6 +1089,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Bookmarks`,
+      short_name: `Folders`,
       cmd: `select_bookmarks_folder`,
       modes: [`items`],
       icon: bookmarks_icon,
@@ -1096,6 +1100,7 @@ App.setup_commands = () => {
     },
     {
       name: `Search Bookmarks`,
+      short_name: `Folders`,
       cmd: `search_bookmarks_folder`,
       modes: [`items`],
       icon: bookmarks_icon,
