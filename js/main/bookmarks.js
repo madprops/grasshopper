@@ -203,6 +203,11 @@ App.bookmark_active = async () => {
 
 App.pick_bookmarks_folder = async (args) => {
   let folders = await App.get_bookmark_folders()
+
+  if (!folders.length) {
+    return
+  }
+
   let items = []
 
   for (let folder of folders) {
@@ -282,6 +287,11 @@ App.select_bookmarks_folder = async () => {
   }
 
   let folders = await App.get_bookmark_folders()
+
+  if (!folders.length) {
+    return
+  }
+
   App.do_select_bookmarks_folder(folders)
 }
 

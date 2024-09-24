@@ -14,8 +14,11 @@ let bookmark_debouncer
 
 browser.permissions.onAdded.addListener(async (obj) => {
   if (obj.permissions.includes(`bookmarks`)) {
-    await refresh_bookmarks(false)
-    send_bookmarks(true)
+    if (!bookmarks_active) {
+      await start_bookmarks(false)
+      await refresh_bookmarks(false)
+      send_bookmarks(true)
+    }
   }
 })
 
