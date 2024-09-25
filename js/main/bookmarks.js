@@ -135,7 +135,7 @@ App.bookmark_items = async (args = {}) => {
   }
 
   if (args.pick_folder && !args.folder) {
-    App.pick_bookmarks_folder(args)
+    App.bookmark_items_to_folder(args)
     return
   }
 
@@ -209,7 +209,7 @@ App.bookmark_active = async () => {
   App.bookmark_items({active: [item]})
 }
 
-App.pick_bookmarks_folder = async (args) => {
+App.bookmark_items_to_folder = async (args) => {
   let folders = await App.get_bookmark_folders()
 
   if (!folders.length) {
@@ -306,7 +306,7 @@ App.get_bookmark_folders = async (title = ``) => {
   return items
 }
 
-App.select_bookmarks_folder = async (e) => {
+App.pick_bookmarks_folder = async (e) => {
   let perm = await App.ask_permission(`bookmarks`)
 
   if (!perm) {

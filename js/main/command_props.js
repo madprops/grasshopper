@@ -1114,13 +1114,13 @@ App.setup_commands = () => {
     {
       name: `Pick Folder`,
       short_name: `Folder`,
-      cmd: `select_bookmarks_folder`,
+      cmd: `pick_bookmarks_folder`,
       modes: [`items`],
       icon: bookmarks_icon,
       action: (args) => {
-        App.select_bookmarks_folder(args.e)
+        App.pick_bookmarks_folder(args.e)
       },
-      info: `Select a specific bookmarks folder to show`,
+      info: `Pick a specific bookmarks folder to show`,
     },
     {
       name: `Search Folder`,
