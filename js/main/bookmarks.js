@@ -252,7 +252,6 @@ App.get_bookmark_items = async (folder = ``, title = ``, deep = false) => {
   }
 
   if (folder) {
-    console.log(folder)
     items = items.filter(x => x.parentId === folder.id)
   }
 
@@ -263,7 +262,6 @@ App.get_bookmark_items = async (folder = ``, title = ``, deep = false) => {
     items = items.slice(0, max)
   }
 
-  console.log(items)
   return items
 }
 
