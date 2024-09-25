@@ -241,6 +241,10 @@ App.filter_bookmark_nodes = (title, nodes, max) => {
   return items
 }
 
+App.clean_bookmark_nodes = (nodes) => {
+  return nodes.filter(x => x.type === `bookmark`)
+}
+
 App.get_bookmark_items = async (args = {}) => {
   let def_args = {
     folder: ``,
@@ -260,11 +264,12 @@ App.get_bookmark_items = async (args = {}) => {
       items = App.get_bookmark_subitems(args.folder.id, items)
     }
     else {
-      items = children
+      items = App.clean_bookmark_nodes(children)
     }
   }
-
-  items = items.filter(x => x.type === `bookmark`)
+  else {
+    items = App.clean_bookmark_nodes(items)
+  }
 
   if (args.deep) {
     max = App.get_setting(`deep_max_search_items_bookmarks`)
