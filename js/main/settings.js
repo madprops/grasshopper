@@ -1632,6 +1632,39 @@ App.setup_settings_addlist = () => {
       title: props.name,
     }))
   }))
+
+  id = `settings_bookmark_rules`
+  props = App.setting_props.bookmark_rules
+
+  App.create_popup(Object.assign({}, popobj, {
+    id: `addlist_${id}`,
+    element: Addlist.register(Object.assign({}, regobj, {
+      id,
+      keys: [`url`, `folder`],
+      pk: `url`,
+      widgets: {
+        url: `text`,
+        folder: `text`,
+      },
+      labels: {
+        url: `URL`,
+        folder: `Folder`,
+      },
+      list_text: (item) => {
+        return item.url
+      },
+      required: {
+        url: true,
+        folder: true,
+      },
+      process: {
+        url: (url) => {
+          return App.fix_url(url)
+        },
+      },
+      title: props.name,
+    }))
+  }))
 }
 
 App.settings_build_category = (key) => {

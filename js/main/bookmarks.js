@@ -91,13 +91,26 @@ App.bookmarks_action = (args = {}) => {
   App.focus_or_open_item(args.item)
 }
 
-App.get_bookmarks_folder = async (title) => {
+App.get_bookmarks_folder = async (url) => {
+  let title
+
+  if (url) {
+    let rules = App.get_setting(`bookmark_rules`)
+
+    for (let rule of rules) {
+      if (url.startsWith(rule.url)) {
+        title = rule.folder
+        break
+      }
+    }
+  }
+
   if (!title) {
     title = App.get_setting(`bookmarks_folder`)
+  }
 
-    if (!title) {
-      title = App.get_default_setting(`bookmarks_folder`)
-    }
+  if (!title) {
+    title = App.get_default_setting(`bookmarks_folder`)
   }
 
   let folders = App.bookmark_folders_cache
@@ -150,10 +163,6 @@ App.bookmark_items = async (args = {}) => {
     return
   }
 
-  if (!args.folder) {
-    args.folder = await App.get_bookmarks_folder()
-  }
-
   let items = []
 
   for (let item of args.active) {
@@ -179,7 +188,17 @@ App.bookmark_items = async (args = {}) => {
     confirm_action: async () => {
       for (let item of items) {
         let title = App.title(item)
-        await browser.bookmarks.create({parentId: args.folder.id, title, url: item.url})
+        let folder
+
+        if (!args.folder) {
+          folder = await App.get_bookmarks_folder(item.url)
+        }
+
+        if (!folder) {
+          continue
+        }
+
+        await browser.bookmarks.create({parentId: folder.id, title, url: item.url})
       }
 
       let feedback = App.get_setting(`show_feedback`)

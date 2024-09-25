@@ -228,6 +228,13 @@ App.build_settings = () => {
       info: `Where to save bookmarks`,
       version: 1,
     },
+    bookmark_rules: {
+      name: `Bookmark Rules`,
+      type: `list`,
+      value: [],
+      info: `Save bookmarks on certain folders based on rules`,
+      version: 1,
+    },
     custom_urls: {
       name: `Custom URLs`,
       type: `list`,
