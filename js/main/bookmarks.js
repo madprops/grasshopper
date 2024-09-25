@@ -273,7 +273,7 @@ App.get_bookmark_items = async (args = {}) => {
     max = App.get_setting(`max_search_items_bookmarks`)
   }
 
-  if (args.title) {
+  if (args.title.trim()) {
     items = App.filter_bookmark_nodes(args.title, items, max)
   }
   else {
