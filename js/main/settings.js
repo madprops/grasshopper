@@ -1862,7 +1862,7 @@ App.setting_browser_commands = () => {
   let props = {}
   let item
 
-  for (let i = 1; i <= App.num_command_combos; i++) {
+  for (let i = 1; i <= App.num_browser_commands; i++) {
     let name = `browser_command_${i}`
 
     item = {
@@ -1881,7 +1881,7 @@ App.setting_browser_commands = () => {
 
   item.separator = true
 
-  for (let i = 1; i <= App.num_command_combos; i++) {
+  for (let i = 1; i <= App.num_browser_commands; i++) {
     let name = `popup_command_${i}`
 
     props[name] = {

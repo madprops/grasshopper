@@ -103,6 +103,7 @@ App.max_tab_num = 10
 App.breathe_effect_on = false
 App.tab_blink_diff = 2
 App.num_command_combos = 10
+App.num_browser_commands = 10
 App.main_title_scroll_pause = false
 App.prompt_mode = false
 App.max_padding_setting = 100
