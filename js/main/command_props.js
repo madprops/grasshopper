@@ -1094,7 +1094,7 @@ App.setup_commands = () => {
       some_no_header: true,
       icon: bookmarks_icon,
       action: (args) => {
-        App.bookmark_items({item: args.item, pick_folder: true})
+        App.bookmark_items({item: args.item, pick_folder: true, e: args.e})
       },
       info: `Bookmark the selected items by picking a folder`,
     },
@@ -1118,7 +1118,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: bookmarks_icon,
       action: (args) => {
-        App.select_bookmarks_folder()
+        App.select_bookmarks_folder(args.e)
       },
       info: `Select a specific bookmarks folder to show`,
     },

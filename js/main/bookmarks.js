@@ -216,12 +216,12 @@ App.pick_bookmarks_folder = async (args) => {
     return
   }
 
-  function action(folder) {
+  function callback(folder) {
     args.folder = folder
     App.bookmark_items(args)
   }
 
-  App.do_select_bookmarks_folder(folders, action, false)
+  App.do_select_bookmarks_folder({folders, callback, include_all: false, e: args.e})
 }
 
 App.filter_bookmark_nodes = (title, nodes, max) => {
@@ -306,7 +306,7 @@ App.get_bookmark_folders = async (title = ``) => {
   return items
 }
 
-App.select_bookmarks_folder = async () => {
+App.select_bookmarks_folder = async (e) => {
   let perm = await App.ask_permission(`bookmarks`)
 
   if (!perm) {
@@ -319,13 +319,18 @@ App.select_bookmarks_folder = async () => {
     return
   }
 
-  App.do_select_bookmarks_folder(folders)
+  App.do_select_bookmarks_folder({folders, e: e})
 }
 
-App.do_select_bookmarks_folder = (folders, callback, include_all = true) => {
+App.do_select_bookmarks_folder = (args = {}) => {
+  let def_args = {
+    include_all: true,
+  }
+
+  App.def_args(def_args, args)
   let items = []
 
-  if (include_all) {
+  if (args.include_all) {
     items.push({
       text: `All`,
       action: async () => {
@@ -335,12 +340,12 @@ App.do_select_bookmarks_folder = (folders, callback, include_all = true) => {
     })
   }
 
-  for (let folder of folders) {
+  for (let folder of args.folders) {
     items.push({
       text: folder.title,
       action: async () => {
-        if (callback) {
-          callback(folder)
+        if (args.callback) {
+          args.callback(folder)
         }
         else {
           App.bookmarks_folder = folder
@@ -351,14 +356,14 @@ App.do_select_bookmarks_folder = (folders, callback, include_all = true) => {
   }
 
   if (!items.length) {
-    if (callback) {
-      callback()
+    if (args.callback) {
+      args.callback()
     }
 
     return
   }
 
-  App.show_context({items: items, title: `Select Folder`})
+  App.show_context({items: items, title: `Select Folder`, e: args.e})
 }
 
 App.search_bookmarks_folder = async (callback) => {
@@ -378,7 +383,7 @@ App.search_bookmarks_folder = async (callback) => {
 
 App.do_search_bookmarks_folder = async (title, callback) => {
   let folders = await App.get_bookmark_folders(title)
-  App.do_select_bookmarks_folder(folders, callback, false)
+  App.do_select_bookmarks_folder({folders, callback, include_all: false})
 }
 
 App.request_bookmarks = () => {
@@ -424,9 +429,9 @@ App.create_bookmarks_folder = () => {
         return
       }
 
-      App.do_select_bookmarks_folder(folders, (folder) => {
+      App.do_select_bookmarks_folder({folders, callback: (folder) => {
         action(title, folder)
-      }, false)
+      }, include_all: false})
     }
   })
 }
