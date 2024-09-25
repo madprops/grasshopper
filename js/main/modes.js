@@ -125,6 +125,10 @@ App.do_show_mode = async (args = {}) => {
     App.clear_selected(m)
   }
 
+  if (args.mode !== `bookmarks`) {
+    App.reset_bookmarks()
+  }
+
   if (search && value) {
     items = []
   }

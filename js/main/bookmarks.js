@@ -421,3 +421,7 @@ App.init_bookmarks = async () => {
 
   await browser.runtime.sendMessage({action: `send_bookmarks`})
 }
+
+App.reset_bookmarks = () => {
+  App.bookmarks_folder = undefined
+}
