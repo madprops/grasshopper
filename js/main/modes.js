@@ -125,7 +125,10 @@ App.do_show_mode = async (args = {}) => {
     App.clear_selected(m)
   }
 
-  if (args.mode !== `bookmarks`) {
+  if (args.mode === `bookmarks`) {
+    App.set_bookmarks_title()
+  }
+  else {
     App.reset_bookmarks()
   }
 

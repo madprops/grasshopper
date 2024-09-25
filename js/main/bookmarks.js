@@ -425,3 +425,17 @@ App.init_bookmarks = async () => {
 App.reset_bookmarks = () => {
   App.bookmarks_folder = undefined
 }
+
+App.set_bookmarks_title = () => {
+  let btn = DOM.el(`#bookmarks_main_menu`)
+  let name
+
+  if (App.bookmarks_folder) {
+    name = App.bookmarks_folder.title
+  }
+  else {
+    name = ``
+  }
+
+  App.set_main_menu_text(btn, `bookmarks`, name)
+}

@@ -1,8 +1,5 @@
 App.create_main_menu = (mode) => {
   let btn = DOM.create(`div`, `button icon_button`, `${mode}_main_menu`)
-  let icon = App.mode_icons[mode]
-  let text = App.get_mode_name(mode, true)
-  btn.append(App.button_text(icon, text))
   let click = App.get_cmd_name(`show_main_menu`)
   let rclick = App.get_cmd_name(`show_palette`)
 
@@ -38,6 +35,7 @@ App.create_main_menu = (mode) => {
     }
   })
 
+  App.set_main_menu_text(btn, mode)
   return btn
 }
 
@@ -77,4 +75,19 @@ App.show_main_menu = (mode) => {
     expand: true,
     margin: btn.clientHeight,
   })
+}
+
+App.set_main_menu_text = (btn, mode, name = ``) => {
+  let icon = App.mode_icons[mode]
+
+  if (name) {
+    name = name.substring(0, 12).trim()
+  }
+  else {
+    name = App.get_mode_name(mode, true)
+  }
+
+  let value = App.button_text(icon, name)
+  btn.innerHTML = ``
+  btn.append(value)
 }
