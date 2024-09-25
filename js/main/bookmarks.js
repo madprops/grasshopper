@@ -255,6 +255,7 @@ App.get_bookmark_items = async (args = {}) => {
   App.def_args(def_args, args)
   await App.init_bookmarks()
   let items = App.bookmark_items_cache
+  let clean = true
   let max
 
   if (args.folder) {
@@ -262,12 +263,14 @@ App.get_bookmark_items = async (args = {}) => {
 
     if (args.deep) {
       items = App.get_bookmark_subitems(args.folder.id, items)
+      clean = false
     }
     else {
-      items = App.clean_bookmark_nodes(children)
+      items = children
     }
   }
-  else {
+
+  if (clean) {
     items = App.clean_bookmark_nodes(items)
   }
 

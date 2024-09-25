@@ -39,14 +39,13 @@ async function refresh_bookmarks(send = true) {
 
   function traverse(bookmarks) {
     for (let bookmark of bookmarks) {
-      let type = bookmark.type
       let title = bookmark.title
 
       if (title) {
         items.push(bookmark)
       }
 
-      if (type === `folder`) {
+      if (bookmark.type === `folder`) {
         if (title) {
           folders.push(bookmark)
         }
