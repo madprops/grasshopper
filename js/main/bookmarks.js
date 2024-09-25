@@ -394,15 +394,11 @@ App.search_bookmarks_folder = async (callback) => {
 
   App.show_prompt({
     placeholder: `Search Folder`,
-    on_submit: (title) => {
-      App.do_search_bookmarks_folder(title, callback)
+    on_submit: async (title) => {
+      let folders = await App.get_bookmark_folders(title)
+      App.do_select_bookmarks_folder({folders, callback, include_all: true})
     }
   })
-}
-
-App.do_search_bookmarks_folder = async (title, callback) => {
-  let folders = await App.get_bookmark_folders(title)
-  App.do_select_bookmarks_folder({folders, callback, include_all: false})
 }
 
 App.request_bookmarks = () => {
