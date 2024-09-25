@@ -202,7 +202,7 @@ App.get_jump_target = (num) => {
 
 App.filter_jump_tag = (mode, num) => {
   let target = App.get_jump_target(num)
-  App.filter_tag({mode: mode, tag: target, from: `jump`})
+  App.filter_tag({mode, tag: target, from: `jump`})
 }
 
 App.wipe_jump = (num) => {
@@ -213,49 +213,49 @@ App.wipe_jump = (num) => {
 // Jump Functions
 
 App.jump_tabs_all = (reverse = false) => {
-  App.jump_tabs({what: `all`, reverse: reverse})
+  App.jump_tabs({what: `all`, reverse})
 }
 
 App.jump_tabs_pin = (reverse = false) => {
-  App.jump_tabs({what: `pin`, reverse: reverse})
+  App.jump_tabs({what: `pin`, reverse})
 }
 
 App.jump_tabs_normal = (reverse = false) => {
-  App.jump_tabs({what: `normal`, reverse: reverse})
+  App.jump_tabs({what: `normal`, reverse})
 }
 
 App.jump_tabs_color = (id, reverse = false) => {
-  App.jump_tabs({what: `color`, info: id, reverse: reverse})
+  App.jump_tabs({what: `color`, info: id, reverse})
 }
 
 App.jump_tabs_tag = (num, reverse = false) => {
-  App.jump_tabs({what: `tag`, info: num, reverse: reverse})
+  App.jump_tabs({what: `tag`, info: num, reverse})
 }
 
 App.jump_tabs_header = (reverse = false) => {
-  App.jump_tabs({what: `header`, reverse: reverse})
+  App.jump_tabs({what: `header`, reverse})
 }
 
 App.jump_tabs_subheader = (reverse = false) => {
-  App.jump_tabs({what: `subheader`, reverse: reverse})
+  App.jump_tabs({what: `subheader`, reverse})
 }
 
 App.jump_tabs_headers = (reverse = false) => {
-  App.jump_tabs({what: `headers`, reverse: reverse})
+  App.jump_tabs({what: `headers`, reverse})
 }
 
 App.jump_tabs_split = (reverse = false) => {
-  App.jump_tabs({what: `split`, reverse: reverse})
+  App.jump_tabs({what: `split`, reverse})
 }
 
 App.jump_tabs_zone = (reverse = false) => {
-  App.jump_tabs({what: `zone`, reverse: reverse})
+  App.jump_tabs({what: `zone`, reverse})
 }
 
 App.jump_tabs_unread = (reverse = false) => {
-  App.jump_tabs({what: `unread`, reverse: reverse})
+  App.jump_tabs({what: `unread`, reverse})
 }
 
 App.jump_tabs_playing = (reverse = false) => {
-  App.jump_tabs({what: `playing`, reverse: reverse})
+  App.jump_tabs({what: `playing`, reverse})
 }

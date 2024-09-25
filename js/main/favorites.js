@@ -187,8 +187,8 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
       }
 
       let args = {
-        cmd: cmd,
-        e: e,
+        cmd,
+        e,
       }
 
       App.run_command(args)
@@ -203,7 +203,7 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
         if (e.button === 1) {
           let args = {
             cmd: middle.cmd,
-            e: e,
+            e,
           }
 
           App.run_command(args)
@@ -269,7 +269,7 @@ App.show_favorites_menu = (e) => {
     },
   })
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.get_favorites = () => {
@@ -282,7 +282,7 @@ App.get_favorites = () => {
     if (c) {
       favs.push({
         cmd: c,
-        fav: fav,
+        fav,
       })
     }
   }
@@ -297,7 +297,7 @@ App.favorites_double_click = (e, where) => {
   if (command) {
     let args = {
       cmd: command.cmd,
-      e: e,
+      e,
     }
 
     App.run_command(args)
@@ -319,7 +319,7 @@ App.favorites_middle_click = (e) => {
   if (command) {
     let args = {
       cmd: command.cmd,
-      e: e,
+      e,
     }
 
     App.run_command(args)

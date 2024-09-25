@@ -10,7 +10,7 @@ App.process_info_list = (mode, info_list) => {
   let exclude = []
 
   for (let info of info_list) {
-    let item = App.process_info({mode: mode, info: info, exclude: exclude, list: true})
+    let item = App.process_info({mode, info, exclude, list: true})
 
     if (!item) {
       continue
@@ -80,19 +80,19 @@ App.process_info = (args = {}) => {
   let audio = App.is_audio(url)
 
   let item = {
-    title: title,
-    url: url,
-    path: path,
-    protocol: protocol,
-    hostname: hostname,
+    title,
+    url,
+    path,
+    protocol,
+    hostname,
     favicon: args.info.favIconUrl,
     mode: args.mode,
     window_id: args.info.windowId,
     session_id: args.info.sessionId,
-    decoded_url: decoded_url,
-    image: image,
-    video: video,
-    audio: audio,
+    decoded_url,
+    image,
+    video,
+    audio,
     is_item: true,
   }
 

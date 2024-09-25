@@ -17,7 +17,7 @@ App.create_step_back_button = (mode) => {
   DOM.ev(btn, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_step_back`)
-      App.run_command({cmd: cmd, from: `step_back_aux`, e: e})
+      App.run_command({cmd, from: `step_back_aux`, e})
     }
   })
 
@@ -35,7 +35,7 @@ App.step_back = (mode = App.active_mode, e) => {
   let tabs = mode === `tabs`
 
   if (App.multiple_selected(mode)) {
-    App.deselect({mode: mode, select: `selected`, scroll: scroll})
+    App.deselect({mode, select: `selected`, scroll})
   }
   else if (App.filter_has_value(mode)) {
     App.clear_filter(mode)
@@ -44,7 +44,7 @@ App.step_back = (mode = App.active_mode, e) => {
     App.filter_all(mode, `step_back`)
   }
   else if (item && item.element && !App.item_is_visible(item)) {
-    App.select_item({item: item, scroll: scroll})
+    App.select_item({item, scroll})
   }
   else if (tabs && item && !item.active) {
     App.focus_current_tab(scroll)

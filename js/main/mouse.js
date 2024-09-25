@@ -106,7 +106,7 @@ App.mouse_click_action = (mode, e) => {
         name: `pinline_menu`,
       })
 
-      App.show_context({items: items, e: e})
+      App.show_context({items, e})
     }
 
     return
@@ -135,13 +135,13 @@ App.mouse_click_action = (mode, e) => {
 
     if (media_setting === `icon`) {
       if (DOM.class(e.target, [`view_media_button`])) {
-        App.select_item({item: item, scroll: `nearest`})
+        App.select_item({item, scroll: `nearest`})
         App.view_media(item)
         return
       }
     }
     else if (media_setting === `item`) {
-      App.select_item({item: item, scroll: `nearest`})
+      App.select_item({item, scroll: `nearest`})
       App.view_media(item)
       return
     }
@@ -238,13 +238,13 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (e.altKey || App.get_setting(`click_select`)) {
-    App.select_item({item: item, scroll: `nearest_smooth`})
+    App.select_item({item, scroll: `nearest_smooth`})
     return
   }
 
   if (App.get_setting(`load_lock`)) {
     if (item.unloaded) {
-      App.select_item({item: item, scroll: `nearest_smooth`})
+      App.select_item({item, scroll: `nearest_smooth`})
       return
     }
   }
@@ -259,13 +259,13 @@ App.mouse_click_action = (mode, e) => {
     from = `click`
   }
 
-  App[`${mode}_action`]({item: item, from: from})
+  App[`${mode}_action`]({item, from})
 }
 
 App.mouse_double_click_action = (mode, e) => {
   if (DOM.class(e.target, [`item_container`])) {
     let cmd = App.get_setting(`double_click_empty`)
-    App.run_command({cmd: cmd, from: `mouse`, e: e})
+    App.run_command({cmd, from: `mouse`, e})
     return
   }
 
@@ -300,7 +300,7 @@ App.mouse_double_click_action = (mode, e) => {
 
   if (App.get_setting(`load_lock`)) {
     if (item.unloaded) {
-      App[`${mode}_action`]({item: item, from: `click`})
+      App[`${mode}_action`]({item, from: `click`})
       return
     }
   }
@@ -313,7 +313,7 @@ App.mouse_double_click_action = (mode, e) => {
     }
   }
 
-  App.run_command({cmd: cmd, item: item, from: `double_click`, e: e})
+  App.run_command({cmd, item, from: `double_click`, e})
 }
 
 App.mouse_context_action = (mode, e) => {
@@ -344,7 +344,7 @@ App.mouse_context_action = (mode, e) => {
   if (item_container) {
     if (App.get_setting(`icon_pick`)) {
       if (DOM.parent(e.target, [`.item_icon_container`])) {
-        App.select_item({item: item, scroll: `nearest`, deselect: true})
+        App.select_item({item, scroll: `nearest`, deselect: true})
         return
       }
     }
@@ -360,10 +360,10 @@ App.mouse_context_action = (mode, e) => {
   }
 
   if (App.get_setting(`item_menu_select`)) {
-    App.select_item({item: item, scroll: `nearest`, deselect: !item.selected})
+    App.select_item({item, scroll: `nearest`, deselect: !item.selected})
   }
 
-  App.show_item_menu({item: item, e: e})
+  App.show_item_menu({item, e})
 }
 
 App.mouse_middle_action = (mode, e) => {
@@ -376,26 +376,26 @@ App.mouse_middle_action = (mode, e) => {
 
   if (DOM.class(e.target, [`favorites_empty_top`])) {
     let cmd = App.get_setting(`middle_click_favorites_top`)
-    App.run_command({cmd: cmd, from: `favorites_button`, e: e})
+    App.run_command({cmd, from: `favorites_button`, e})
     return
   }
 
   if (DOM.class(e.target, [`favorites_empty_bottom`])) {
     let cmd = App.get_setting(`middle_click_favorites_bottom`)
-    App.run_command({cmd: cmd, from: `favorites_button`, e: e})
+    App.run_command({cmd, from: `favorites_button`, e})
     return
   }
 
   if (DOM.class(e.target, [`favorites_button`])) {
     let cmd = App.get_setting(`middle_click_favorites_button`)
-    App.run_command({cmd: cmd, from: `favorites_button`, e: e})
+    App.run_command({cmd, from: `favorites_button`, e})
     return
   }
 
   if (!App.cursor_on_item(mode, e)) {
     if (DOM.parent(e.target, [`#pinline`])) {
       let cmd = App.get_setting(`middle_click_pinline`)
-      App.run_command({cmd: cmd, from: `pinline`, e: e})
+      App.run_command({cmd, from: `pinline`, e})
     }
 
     return
@@ -409,20 +409,20 @@ App.mouse_middle_action = (mode, e) => {
 
   if (DOM.class(e.target, [`close_button`])) {
     let cmd = App.get_setting(`middle_click_close_button`)
-    App.run_command({cmd: cmd, item: item, from: `close_button`, e: e})
+    App.run_command({cmd, item, from: `close_button`, e})
     return
   }
 
   if (DOM.class(e.target, [`hover_button`])) {
     let cmd = App.get_setting(`middle_click_hover_button`)
-    App.run_command({cmd: cmd, item: item, from: `hover_button`, e: e})
+    App.run_command({cmd, item, from: `hover_button`, e})
     return
   }
 
   if (mode === `tabs`) {
     if (App.get_setting(`color_icon_click`)) {
       if (DOM.parent(e.target, [`.color_icon_container`])) {
-        App.edit_tab_color({item: item})
+        App.edit_tab_color({item})
         return
       }
     }
@@ -450,7 +450,7 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   let cmd = App.get_setting(`middle_click_${item.mode}`)
-  App.run_command({cmd: cmd, item: item, from: `middle_click`, e: e})
+  App.run_command({cmd, item, from: `middle_click`, e})
 }
 
 App.mouse_over_action = (mode, e) => {
@@ -467,7 +467,7 @@ App.mouse_over_action = (mode, e) => {
   App.set_item_tooltips(item)
 
   if (App.icon_pick_down) {
-    App.toggle_selected({item: item, what: true})
+    App.toggle_selected({item, what: true})
     return
   }
 
@@ -517,7 +517,7 @@ App.click_press_action = (mode, e) => {
   }
 
   if (cmd) {
-    if (App.run_command({cmd: cmd, from: `click_press`, item: item, e: e})) {
+    if (App.run_command({cmd, from: `click_press`, item, e})) {
       App.click_press_triggered = true
     }
   }
@@ -603,7 +603,7 @@ App.wheel_action = (direction, name, e) => {
   }
 
   let cmd = App.get_setting(name)
-  App.run_command({cmd: cmd, item: item, from: `mouse`, e: e})
+  App.run_command({cmd, item, from: `mouse`, e})
 }
 
 // Custom double click function which has some advantages

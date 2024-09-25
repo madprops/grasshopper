@@ -41,12 +41,12 @@ App.edit_tab_tags = (args = {}) => {
         }})
       }
     },
-    force: force,
+    force,
   })
 }
 
 App.edit_tags = (item) => {
-  App.edit_prompt({what: `tags`, item: item})
+  App.edit_prompt({what: `tags`, item})
 }
 
 App.get_tag_list = (value) => {
@@ -77,7 +77,7 @@ App.add_tag = (item, tag) => {
 
   tags.push(tag)
 
-  App.apply_edit({what: `tags`, item: item, value: tags, on_change: (value) => {
+  App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
     App.custom_save(item.id, `custom_tags`, value)
   }})
 
@@ -85,7 +85,7 @@ App.add_tag = (item, tag) => {
 }
 
 App.add_tag_all = (item, tag) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
+  let active = App.get_active_items({mode: item.mode, item})
 
   for (let it of active) {
     App.add_tag(it, tag)
@@ -99,13 +99,13 @@ App.remove_tag = (item, tag) => {
 
   let tags = item.custom_tags.filter(x => x !== tag)
 
-  App.apply_edit({what: `tags`, item: item, value: tags, on_change: (value) => {
+  App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
     App.custom_save(item.id, `custom_tags`, value)
   }})
 }
 
 App.remove_tag_all = (item, tag) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
+  let active = App.get_active_items({mode: item.mode, item})
 
   for (let it of active) {
     App.remove_tag(it, tag)
@@ -208,11 +208,11 @@ App.get_all_tags = (include_rules = true) => {
 }
 
 App.add_tags = (item) => {
-  App.edit_prompt({what: `tags`, item: item, add: true})
+  App.edit_prompt({what: `tags`, item, add: true})
 }
 
 App.remove_item_tags = (item) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
+  let active = App.get_active_items({mode: item.mode, item})
   App.remove_edits({what: [`tags`], items: active, text: `tags`})
 }
 
@@ -249,7 +249,7 @@ App.do_replace_tag = (tag_1, tag_2) => {
     if (item.custom_tags.includes(tag_1)) {
       let tags = item.custom_tags.map(x => x === tag_1 ? tag_2 : x)
 
-      App.apply_edit({what: `tags`, item: item, value: tags, on_change: (value) => {
+      App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
         App.custom_save(item.id, `custom_tags`, value)
         App.push_to_tag_history([tag_2])
       }})
@@ -306,7 +306,7 @@ App.do_edit_tag = (item, tag_1, tag_2) => {
   let tags = item.custom_tags.filter(x => x !== tag_1)
   tags.push(tag_2)
 
-  App.apply_edit({what: `tags`, item: item, value: tags, on_change: (value) => {
+  App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
     App.custom_save(item.id, `custom_tags`, value)
     App.push_to_tag_history([tag_2])
   }})
@@ -358,12 +358,12 @@ App.filter_tag_pick = (item, e) => {
       icon: App.tag_icon,
       text: tag,
       action: () => {
-        App.filter_tag({mode: item.mode, tag: tag})
+        App.filter_tag({mode: item.mode, tag})
       },
     })
   }
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.get_tag_items = (mode, show = false) => {
@@ -392,27 +392,27 @@ App.get_tag_items = (mode, show = false) => {
 
     if (!show) {
       items.push({
-        icon: icon,
+        icon,
         text: `All`,
         action: () => {
-          App.filter_tag({mode: mode, tag: `all`})
+          App.filter_tag({mode, tag: `all`})
         },
         middle_action: () => {
-          App.filter_tag({mode: mode, tag: `all`, from: App.refine_string})
+          App.filter_tag({mode, tag: `all`, from: App.refine_string})
         },
       })
     }
 
     for (let tag of tags.slice(0, App.max_tag_picks)) {
       items.push({
-        icon: icon,
+        icon,
         text: tag,
         action: (e) => {
           if (show) {
             App.show_tab_list(`tag_${tag}`, e)
           }
           else {
-            App.filter_tag({mode: mode, tag: tag})
+            App.filter_tag({mode, tag})
           }
         },
         middle_action: (e) => {
@@ -420,7 +420,7 @@ App.get_tag_items = (mode, show = false) => {
             //
           }
           else {
-            App.filter_tag({mode: mode, tag: tag, from: App.refine_string})
+            App.filter_tag({mode, tag, from: App.refine_string})
           }
         },
       })
@@ -444,7 +444,7 @@ App.tagged = (item) => {
 
 App.show_filter_tag_menu = (mode, e, show = false) => {
   let items = App.get_tag_items(mode, show)
-  App.show_context({items: items, e: e, title: `Tags`})
+  App.show_context({items, e, title: `Tags`})
 }
 
 App.get_tagged_items = (mode) => {

@@ -39,7 +39,7 @@ App.check_tab_session = async (items = [], force = false) => {
         value = App.edit_default(key)
       }
 
-      App.apply_edit({what: key, item: item, value: value})
+      App.apply_edit({what: key, item, value})
     }
   }
 
@@ -68,7 +68,7 @@ App.custom_save = async (id, name, value) => {
   }
 
   try {
-    await browser.runtime.sendMessage({action: `mirror_edits`, id: id})
+    await browser.runtime.sendMessage({action: `mirror_edits`, id})
   }
   catch (err) {
     // Do nothing
@@ -226,16 +226,16 @@ App.edit_prompt = (args = {}) => {
   }
 
   App.show_prompt({
-    value: value,
-    placeholder: placeholder,
-    suggestions: suggestions,
-    list: list,
-    show_list: show_list,
-    list_submit: list_submit,
-    word_mode: word_mode,
-    unique_words: unique_words,
-    ignore_words: ignore_words,
-    append: append,
+    value,
+    placeholder,
+    suggestions,
+    list,
+    show_list,
+    list_submit,
+    word_mode,
+    unique_words,
+    ignore_words,
+    append,
     fill: args.fill,
     on_submit: (ans) => {
       let obj = {}
@@ -297,7 +297,7 @@ App.remove_edits = (args = {}) => {
     confirm_action: () => {
       for (let item of args.items) {
         for (let what of args.what) {
-          App.apply_edit({what: what, item: item, value: App.edit_default(what), on_change: (value) => {
+          App.apply_edit({what, item, value: App.edit_default(what), on_change: (value) => {
             App.custom_save(item.id, `custom_${what}`)
           }})
         }
@@ -319,7 +319,7 @@ App.remove_all_edits = () => {
 }
 
 App.remove_item_edits = (item) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
+  let active = App.get_active_items({mode: item.mode, item})
 
   App.show_confirm({
     message: `Remove edits? (${active.length})`,

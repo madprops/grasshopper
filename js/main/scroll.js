@@ -42,7 +42,7 @@ App.scroll_to_item = (args = {}) => {
 
     args.item.element.scrollIntoView({
       block: args.scroll,
-      behavior: behavior,
+      behavior,
     })
 
     if (behavior === `instant`) {

@@ -226,12 +226,12 @@ App.edit_tab_color = (args = {}) => {
     message: `${s} (${active.length})`,
     confirm_action: () => {
       for (let it of active) {
-        App.apply_edit({what: `color`, item: it, value: value, on_change: (value) => {
+        App.apply_edit({what: `color`, item: it, value, on_change: (value) => {
           App.custom_save(it.id, `custom_color`, value)
         }})
       }
     },
-    force: force,
+    force,
   })
 }
 
@@ -267,12 +267,12 @@ App.color_menu_items = (item) => {
     let c = App.get_command(`color_${color.id}`)
 
     if (c) {
-      if (App.check_command(c, {item: item})) {
+      if (App.check_command(c, {item})) {
         items.push({
           icon: App.color_icon(color.id),
           text: color.name,
           action: () => {
-            App.edit_tab_color({item: item, color: color.id})
+            App.edit_tab_color({item, color: color.id})
           },
         })
 
@@ -289,7 +289,7 @@ App.color_menu_items = (item) => {
     items.push({
       text: `Remove`,
       action: () => {
-        App.edit_tab_color({item: item})
+        App.edit_tab_color({item})
       }
     })
   }
@@ -300,7 +300,7 @@ App.color_menu_items = (item) => {
 App.show_color_menu = (item, e, show_title = true) => {
   let items = App.color_menu_items(item)
   let title = show_title ? `Color` : undefined
-  App.show_context({items: items, e: e, title: title})
+  App.show_context({items, e, title})
 }
 
 App.get_color_items = (mode) => {
@@ -313,10 +313,10 @@ App.get_color_items = (mode) => {
         icon: App.settings_icons.colors,
         text: `All`,
         action: () => {
-          App.filter_color({mode: mode, id: `all`})
+          App.filter_color({mode, id: `all`})
         },
         middle_action: () => {
-          App.filter_color({mode: mode, id: `all`, from: App.refine_string})
+          App.filter_color({mode, id: `all`, from: App.refine_string})
         },
       })
     }
@@ -330,13 +330,13 @@ App.get_color_items = (mode) => {
       let name = color.name
 
       items.push({
-        icon: icon,
+        icon,
         text: name,
         action: () => {
-          App.filter_color({mode: mode, id: color.id})
+          App.filter_color({mode, id: color.id})
         },
         middle_action: () => {
-          App.filter_color({mode: mode, id: color.id, from: App.refine_string})
+          App.filter_color({mode, id: color.id, from: App.refine_string})
         },
       })
     }
@@ -385,7 +385,7 @@ App.remove_color = (color) => {
 
   App.remove_edits({
     what: [`color`],
-    items: items,
+    items,
     text: `colors`,
   })
 }
@@ -419,8 +419,8 @@ App.close_color_all = (e) => {
     let text = color.name
 
     items.push({
-      icon: icon,
-      text: text,
+      icon,
+      text,
       action: () => {
         App.close_color(color.id)
       },
@@ -434,7 +434,7 @@ App.close_color_all = (e) => {
     })
   }
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.get_colored_items = (mode) => {
@@ -558,7 +558,7 @@ App.do_replace_color = (color_1, color_2) => {
 
   for (let item of App.get_items(`tabs`)) {
     if (item.custom_color === c_obj_1.id) {
-      App.apply_edit({what: `color`, item: item, value: c_obj_2.id, on_change: (value) => {
+      App.apply_edit({what: `color`, item, value: c_obj_2.id, on_change: (value) => {
         App.custom_save(item.id, `custom_color`, value)
       }})
     }
@@ -619,9 +619,9 @@ App.cycle_color = (item, direction = `next`) => {
   }
 
   if (!next_color) {
-    App.edit_tab_color({item: item, force: true})
+    App.edit_tab_color({item, force: true})
   }
   else {
-    App.edit_tab_color({item: item, color: next_color.id, force: true})
+    App.edit_tab_color({item, color: next_color.id, force: true})
   }
 }

@@ -125,7 +125,7 @@ App.settings_setup_texts = (category) => {
 
       el.value = value
       el.scrollTop = 0
-      App.set_setting({setting: key, value: value, action: true})
+      App.set_setting({setting: key, value, action: true})
     })
 
     let menu = [
@@ -144,7 +144,7 @@ App.settings_setup_texts = (category) => {
               el.value = App.get_setting(key)
               App.scroll_to_top(el)
             },
-            force: force,
+            force,
           })
         },
       },
@@ -185,7 +185,7 @@ App.settings_setup_texts = (category) => {
               App.set_setting({setting: key, value: ``, action: true})
               el.focus()
             },
-            force: force,
+            force,
           })
         },
       })
@@ -231,7 +231,7 @@ App.settings_setup_numbers = (category) => {
       }
 
       el.value = value
-      App.set_setting({setting: key, value: value, action: true})
+      App.set_setting({setting: key, value, action: true})
     })
 
     let menu = [
@@ -281,7 +281,7 @@ App.setting_setup_lists = (category) => {
                 App.set_default_setting(key, true)
                 Addlist.update_count(`settings_${key}`)
               },
-              force: force,
+              force,
             })
           },
         },
@@ -298,12 +298,12 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
   let no_wrap = [`font_size`, `width`, `height`, `background_opacity`, `font_size`]
 
   App[`settings_menubutton_${setting}`] = Menubutton.create({
-    opts: opts,
+    opts,
     button: DOM.el(`#settings_${setting}`),
     selected: App.get_setting(setting),
     wrap: !no_wrap.includes(setting),
     on_change: (args, opt) => {
-      App.set_setting({setting: setting, value: opt.value, action: true})
+      App.set_setting({setting, value: opt.value, action: true})
       action()
     },
     get_value: () => {
@@ -360,7 +360,7 @@ App.clear_settings_filter = () => {
     let mode = `settings_${App.settings_category}`
 
     if (App.filter_has_value(mode)) {
-      App.set_filter({mode: mode})
+      App.set_filter({mode})
     }
     else {
       App.hide_window()
@@ -595,7 +595,7 @@ App.start_color_picker = (setting, alpha = false) => {
       rgb = AColorPicker.parseColor(color, `rgbcss`)
     }
 
-    App.set_setting({setting: setting, value: rgb, action: true})
+    App.set_setting({setting, value: rgb, action: true})
   })
 
   DOM.ev(App.get_settings_label(setting), `click`, (e) => {
@@ -623,9 +623,9 @@ App.settings_default_category = (category) => {
 
 App.set_default_setting = (setting, action = false) => {
   App.set_setting({
-    setting: setting,
+    setting,
     value: App.default_setting_string,
-    action: action
+    action
   })
 }
 
@@ -723,7 +723,7 @@ App.settings_index = () => {
 
 App.show_settings_menu = (e) => {
   let items = App.settings_menu_items()
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.def_setting = (key) => {
@@ -800,7 +800,7 @@ App.settings_label_menu = (e, args) => {
     })
   }
 
-  App.show_context({e: e, items: items})
+  App.show_context({e, items})
 }
 
 App.get_setting = (setting) => {
@@ -1011,7 +1011,7 @@ App.settings_menu_items = () => {
     let props = App.setting_catprops[c]
 
     items.push({
-      icon: icon,
+      icon,
       text: name,
       info: App.tooltip(props.info),
       action: () => {
@@ -1106,7 +1106,7 @@ App.settings_actions = (category) => {
   })
 
   let btn = DOM.el(`#settings_actions_${category}`)
-  App.show_context({element: btn, items: items, expand: true, margin: btn.clientHeight})
+  App.show_context({element: btn, items, expand: true, margin: btn.clientHeight})
 }
 
 App.show_all_settings = () => {
@@ -1308,7 +1308,7 @@ App.setup_settings_addlist = () => {
   App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
-      id: id,
+      id,
       keys: [`a`, `b`],
       pk: `a`,
       widgets: {
@@ -1335,7 +1335,7 @@ App.setup_settings_addlist = () => {
   App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
-      id: id,
+      id,
       keys: [`filter`],
       pk: `filter`,
       widgets: {
@@ -1357,7 +1357,7 @@ App.setup_settings_addlist = () => {
   App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
-      id: id,
+      id,
       keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
       pk: `cmd`,
       widgets: {
@@ -1424,7 +1424,7 @@ App.setup_settings_addlist = () => {
       App.create_popup(Object.assign({}, popobj, {
         id: `addlist_${id}`,
         element: Addlist.register(Object.assign({}, regobj, {
-          id: id,
+          id,
           keys: [`cmd`, `middle`, `shift`, `ctrl`, `alt`],
           pk: `cmd`,
           widgets: {
@@ -1491,7 +1491,7 @@ App.setup_settings_addlist = () => {
       App.create_popup(Object.assign({}, popobj, {
         id: `addlist_${id}`,
         element: Addlist.register(Object.assign({}, regobj, {
-          id: id,
+          id,
           keys: [`cmd`],
           widgets: {
             cmd: `menu`,
@@ -1533,7 +1533,7 @@ App.setup_settings_addlist = () => {
       App.create_popup(Object.assign({}, popobj, {
         id: `addlist_${id}`,
         element: Addlist.register(Object.assign({}, regobj, {
-          id: id,
+          id,
           keys: [`cmd`],
           pk: `cmd`,
           widgets: {
@@ -1569,7 +1569,7 @@ App.setup_settings_addlist = () => {
   App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
-      id: id,
+      id,
       keys: [`name`, `value`, `text`],
       pk: `name`,
       widgets: {
@@ -1601,7 +1601,7 @@ App.setup_settings_addlist = () => {
   App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
-      id: id,
+      id,
       keys: [`name`, `url`, `icon`],
       pk: `url`,
       widgets: {
@@ -1654,7 +1654,7 @@ App.edit_text_setting = (key) => {
     button: `Save`,
     action: (text) => {
       let value = text.trim()
-      App.set_setting({setting: key, value: value, action: true})
+      App.set_setting({setting: key, value, action: true})
       el.value = App.get_setting(key)
       App.scroll_to_top(el)
       return true
@@ -1691,7 +1691,7 @@ App.get_setting_addlist_objects = () => {
   }
 
   let popobj = {
-    on_hide: on_hide,
+    on_hide,
   }
 
   let get_data = (id) => {
@@ -1701,12 +1701,12 @@ App.get_setting_addlist_objects = () => {
 
   let set_data = (id, value) => {
     let key = id.replace(`settings_`, ``)
-    App.set_setting({setting: key, value: value, action: true})
+    App.set_setting({setting: key, value, action: true})
   }
 
   let regobj = {
-    get_data: get_data,
-    set_data: set_data,
+    get_data,
+    set_data,
   }
 
   return [popobj, regobj]
@@ -1737,7 +1737,7 @@ App.settings_bottom = () => {
 
 App.toggle_setting = (setting, action = true) => {
   let value = App.get_setting(setting)
-  App.set_setting({setting: setting, value: !value, action: action})
+  App.set_setting({setting, value: !value, action})
 }
 
 App.prepend_list_setting = (setting, value, action = true) => {
@@ -1763,7 +1763,7 @@ App.add_list_setting = (what, setting, value, action) => {
     items.unshift(value)
   }
 
-  App.set_setting({setting: setting, value: items, action: action})
+  App.set_setting({setting, value: items, action})
 }
 
 App.settings_changed = () => {

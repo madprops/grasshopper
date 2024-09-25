@@ -15,12 +15,12 @@ App.start_lock_screen = () => {
     after_show: () => {
       App.screen_locked = true
       let cmd = App.get_setting(`lock_screen_command`)
-      App.run_command({cmd: cmd, from: `lock_screen`})
+      App.run_command({cmd, from: `lock_screen`})
     },
     after_hide: () => {
       App.screen_locked = false
       let cmd = App.get_setting(`unlock_screen_command`)
-      App.run_command({cmd: cmd, from: `lock_screen`})
+      App.run_command({cmd, from: `lock_screen`})
     },
     colored_top: true,
   })

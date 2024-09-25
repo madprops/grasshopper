@@ -59,7 +59,7 @@ App.close_tabs_method = (items, force = false) => {
       App.close_tab_or_tabs(ids)
       App.hide_all_popups()
     },
-    force: force,
+    force,
   })
 }
 
@@ -465,13 +465,13 @@ App.show_close_tabs_menu = (e, item, all = true) => {
         items.push(App.cmd_item({
           cmd: `close_color_all`,
           from: `close_tabs`,
-          item: item,
+          item,
         }))
 
         items.push(App.cmd_item({
           cmd: `close_tag_all`,
           from: `close_tabs`,
-          item: item,
+          item,
         }))
 
         App.sep(items)
@@ -481,11 +481,11 @@ App.show_close_tabs_menu = (e, item, all = true) => {
     items.push(App.cmd_item({
       cmd: `close_${type}_tabs`,
       from: `close_tabs`,
-      item: item,
+      item,
     }))
   }
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.close_tabs_next = (reverse = false) => {

@@ -12,10 +12,10 @@ App.check_items_keyboard = (e) => {
     }
 
     if (!App.item_is_visible(item)) {
-      App.select_item({item: item, scroll: `nearest`})
+      App.select_item({item, scroll: `nearest`})
     }
     else {
-      if (App.deselect({mode: mode, select: direction}) > 1) {
+      if (App.deselect({mode, select: direction}) > 1) {
         e.preventDefault()
         return
       }
@@ -134,7 +134,7 @@ App.check_items_keyboard = (e) => {
         return
       }
 
-      App.show_item_menu({item: item})
+      App.show_item_menu({item})
       e.preventDefault()
       return
     }
@@ -205,7 +205,7 @@ App.check_items_keyboard = (e) => {
           let last = App[`last_${mode}_filter`]
 
           if (current !== last) {
-            App.do_filter({mode: mode})
+            App.do_filter({mode})
             return
           }
         }
@@ -216,7 +216,7 @@ App.check_items_keyboard = (e) => {
         return
       }
 
-      App[`${mode}_action`]({item: item, from: `enter`})
+      App[`${mode}_action`]({item, from: `enter`})
       e.preventDefault()
       return
     }
@@ -658,11 +658,11 @@ App.stop_press_timeout = () => {
 App.press_action = () => {
   if (App.pressed_key === `Control`) {
     let cmd = App.get_setting(`ctrl_press_command`)
-    App.run_command({cmd: cmd, from: `ctrl_press`})
+    App.run_command({cmd, from: `ctrl_press`})
   }
   else if (App.pressed_key === `Shift`) {
     let cmd = App.get_setting(`shift_press_command`)
-    App.run_command({cmd: cmd, from: `shift_press`})
+    App.run_command({cmd, from: `shift_press`})
   }
 
   App.reset_triggers()
@@ -671,11 +671,11 @@ App.press_action = () => {
 App.double_key_action = (key) => {
   if (key === `Control`) {
     let cmd = App.get_setting(`double_ctrl_command`)
-    App.run_command({cmd: cmd, from: `double_ctrl`})
+    App.run_command({cmd, from: `double_ctrl`})
   }
   else if (key === `Shift`) {
     let cmd = App.get_setting(`double_shift_command`)
-    App.run_command({cmd: cmd, from: `double_shift`})
+    App.run_command({cmd, from: `double_shift`})
   }
 
   App.reset_triggers()

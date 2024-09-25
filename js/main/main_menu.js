@@ -20,7 +20,7 @@ App.create_main_menu = (mode) => {
   DOM.ev(btn, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_main_menu`)
-      App.run_command({cmd: cmd, from: `main_menu`, e: e})
+      App.run_command({cmd, from: `main_menu`, e})
     }
   })
 
@@ -52,7 +52,7 @@ App.show_main_menu = (mode) => {
     // It also allows more nuanced opts like 'selected'
 
     items.push({
-      icon: icon,
+      icon,
       text: name,
       action: () => {
         App.do_show_mode({mode: m, reuse_filter: true})
@@ -71,7 +71,7 @@ App.show_main_menu = (mode) => {
 
   App.show_context({
     element: btn,
-    items: items,
+    items,
     expand: true,
     margin: btn.clientHeight,
   })

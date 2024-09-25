@@ -10,7 +10,7 @@ App.setup_tabs = () => {
     App.debug(`Tab Created: ID: ${info.id}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      let item = await App.refresh_tab({id: info.id, info: info})
+      let item = await App.refresh_tab({id: info.id, info})
 
       if (item) {
         App.check_tab_session([item])
@@ -26,7 +26,7 @@ App.setup_tabs = () => {
     App.debug(`Tab Updated: ID: ${id}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      await App.refresh_tab({id: id, info: info, url: changed.url})
+      await App.refresh_tab({id, info, url: changed.url})
 
       if (changed.audible !== undefined) {
         App.check_playing()
@@ -249,7 +249,7 @@ App.refresh_tab = async (args = {}) => {
   }
 
   if (args.select && !item.selected && item.visible) {
-    App.select_item({item: item, scroll: `nearest_smooth`})
+    App.select_item({item, scroll: `nearest_smooth`})
   }
 
   return item
@@ -412,7 +412,7 @@ App.tabs_action = async (args = {}) => {
     item: args.item,
     select: true,
     scroll: args.scroll,
-    method: method,
+    method,
   })
 
   if (args.on_action) {
@@ -432,7 +432,7 @@ App.duplicate_tab = async (item) => {
 }
 
 App.duplicate_tabs = (item) => {
-  let items = App.get_active_items({mode: `tabs`, item: item})
+  let items = App.get_active_items({mode: `tabs`, item})
   let force = App.check_force(`warn_on_duplicate_tabs`, items)
 
   App.show_confirm({
@@ -442,7 +442,7 @@ App.duplicate_tabs = (item) => {
         App.duplicate_tab(it)
       }
     },
-    force: force,
+    force,
   })
 }
 
@@ -467,7 +467,7 @@ App.unpin_tab = async (id) => {
 App.pin_tabs = (item) => {
   let items = []
 
-  for (let it of App.get_active_items({mode: `tabs`, item: item})) {
+  for (let it of App.get_active_items({mode: `tabs`, item})) {
     if (it.pinned) {
       continue
     }
@@ -489,14 +489,14 @@ App.pin_tabs = (item) => {
         App.pin_tab(id)
       }
     },
-    force: force,
+    force,
   })
 }
 
 App.unpin_tabs = (item) => {
   let items = []
 
-  for (let it of App.get_active_items({mode: `tabs`, item: item})) {
+  for (let it of App.get_active_items({mode: `tabs`, item})) {
     if (!it.pinned) {
       continue
     }
@@ -518,7 +518,7 @@ App.unpin_tabs = (item) => {
         App.unpin_tab(id)
       }
     },
-    force: force,
+    force,
   })
 }
 
@@ -527,7 +527,7 @@ App.unload_tabs = (item, multiple = true) => {
   let active = false
   let selected = false
 
-  for (let it of App.get_active_items({mode: `tabs`, item: item, multiple: multiple})) {
+  for (let it of App.get_active_items({mode: `tabs`, item, multiple})) {
     if (it.unloaded) {
       continue
     }
@@ -563,7 +563,7 @@ App.unload_tabs = (item, multiple = true) => {
 
       App.do_unload_tabs(ids)
     },
-    force: force,
+    force,
   })
 }
 
@@ -572,7 +572,7 @@ App.close_tabs = (item, multiple = true) => {
   let active = false
   let selected = false
 
-  for (let it of App.get_active_items({mode: `tabs`, item: item, multiple: multiple})) {
+  for (let it of App.get_active_items({mode: `tabs`, item, multiple})) {
     if (it.active) {
       active = true
     }
@@ -600,7 +600,7 @@ App.close_tabs = (item, multiple = true) => {
 
       App.close_tabs_method(items, true)
     },
-    force: force,
+    force,
   })
 }
 
@@ -615,7 +615,7 @@ App.swith_to_prev_tab = async (items, method) => {
   let next = recent.at(0)
 
   if (next) {
-    await App.focus_tab({item: next, scroll: `nearest`, method: method})
+    await App.focus_tab({item: next, scroll: `nearest`, method})
   }
   else {
     await App.open_new_tab({url: `about:blank`})
@@ -649,7 +649,7 @@ App.unload_other_tabs = (item) => {
     })
   }
 
-  let active = App.get_active_items({mode: `tabs`, item: item})
+  let active = App.get_active_items({mode: `tabs`, item})
 
   if (!active.length) {
     return
@@ -685,7 +685,7 @@ App.unload_other_tabs = (item) => {
 App.mute_tabs = (item) => {
   let items = []
 
-  for (let it of App.get_active_items({mode: `tabs`, item: item})) {
+  for (let it of App.get_active_items({mode: `tabs`, item})) {
     if (!it.muted) {
       items.push(it)
     }
@@ -705,14 +705,14 @@ App.mute_tabs = (item) => {
         App.mute_tab(id)
       }
     },
-    force: force,
+    force,
   })
 }
 
 App.unmute_tabs = (item) => {
   let items = []
 
-  for (let it of App.get_active_items({mode: `tabs`, item: item})) {
+  for (let it of App.get_active_items({mode: `tabs`, item})) {
     if (it.muted) {
       items.push(it)
     }
@@ -732,7 +732,7 @@ App.unmute_tabs = (item) => {
         App.unmute_tab(id)
       }
     },
-    force: force,
+    force,
   })
 }
 
@@ -799,7 +799,7 @@ App.toggle_pin_tabs = (item) => {
   let items = []
   let action
 
-  for (let it of App.get_active_items({mode: `tabs`, item: item})) {
+  for (let it of App.get_active_items({mode: `tabs`, item})) {
     if (!action) {
       if (it.pinned) {
         action = `unpin`
@@ -852,7 +852,7 @@ App.toggle_pin_tabs = (item) => {
         }
       }
     },
-    force: force,
+    force,
   })
 }
 
@@ -860,7 +860,7 @@ App.toggle_mute_tabs = (item) => {
   let ids = []
   let action
 
-  for (let it of App.get_active_items({mode: `tabs`, item: item})) {
+  for (let it of App.get_active_items({mode: `tabs`, item})) {
     if (!action) {
       if (it.muted) {
         action = `unmute`
@@ -960,7 +960,7 @@ App.do_move_tab_index = async (id, index) => {
   let ans
 
   try {
-    ans = await browser.tabs.move(id, {index: index})
+    ans = await browser.tabs.move(id, {index})
   }
   catch (err) {
     App.error(err)
@@ -998,11 +998,11 @@ App.on_tab_activated = async (info) => {
 }
 
 App.move_tabs_to_window = async (item, window_id) => {
-  for (let it of App.get_active_items({mode: `tabs`, item: item})) {
+  for (let it of App.get_active_items({mode: `tabs`, item})) {
     let index = it.pinned ? 0 : -1
 
     try {
-      await browser.tabs.move(it.id, {index: index, windowId: window_id})
+      await browser.tabs.move(it.id, {index, windowId: window_id})
     }
     catch (err) {
       App.error(err)
@@ -1020,7 +1020,7 @@ App.detach_tab = async (item) => {
 }
 
 App.move_tabs_to_new_window = async (item) => {
-  if (App.get_active_items({mode: `tabs`, item: item}).length === 1) {
+  if (App.get_active_items({mode: `tabs`, item}).length === 1) {
     await App.detach_tab(item)
   }
   else {
@@ -1054,7 +1054,7 @@ App.focus_current_tab = async (scroll = `nearest`) => {
   let item = await App.get_active_tab_item()
 
   if (item) {
-    App.select_item({item: item, scroll: scroll})
+    App.select_item({item, scroll})
   }
 }
 
@@ -1071,7 +1071,7 @@ App.move_tabs_vertically = (direction, item) => {
     return
   }
 
-  let active = App.get_active_items({mode: item.mode, item: item})
+  let active = App.get_active_items({mode: item.mode, item})
 
   if (active[0].pinned) {
     for (let it of active) {
@@ -1184,10 +1184,10 @@ App.divide_tabs = (filter) => {
   }
 
   return {
-    pinned: pinned,
-    normal: normal,
-    pinned_f: pinned_f,
-    normal_f: normal_f,
+    pinned,
+    normal,
+    pinned_f,
+    normal_f,
   }
 }
 
@@ -1215,13 +1215,13 @@ App.select_tabs = (type = `pins`) => {
       }
 
       if (!item.selected) {
-        App.toggle_selected({item: item, what: true, select: false})
+        App.toggle_selected({item, what: true, select: false})
       }
 
       selected = true
     }
     else if (item.selected) {
-      App.toggle_selected({item: item, what: false, select: false})
+      App.toggle_selected({item, what: false, select: false})
     }
   }
 
@@ -1344,7 +1344,7 @@ App.open_tab_urls = () => {
           message: `Open URLs? (${to_open.length})`,
           confirm_action: () => {
             for (let url of to_open) {
-              App.open_tab({url: url})
+              App.open_tab({url})
             }
           },
         })
@@ -1358,7 +1358,7 @@ App.open_tab_urls = () => {
 App.load_tabs = (item) => {
   let items = []
 
-  for (let it of App.get_active_items({mode: `tabs`, item: item})) {
+  for (let it of App.get_active_items({mode: `tabs`, item})) {
     if (!it.unloaded) {
       continue
     }
@@ -1379,7 +1379,7 @@ App.load_tabs = (item) => {
         App.focus_tab({item: it, scroll: `none`, method: `load`})
       }
     },
-    force: force,
+    force,
   })
 }
 
@@ -1419,7 +1419,7 @@ App.mute_playing_tabs = () => {
         App.mute_tab(id)
       }
     },
-    force: force,
+    force,
   })
 }
 
@@ -1440,7 +1440,7 @@ App.unmute_all_tabs = () => {
         App.unmute_tab(id)
       }
     },
-    force: force,
+    force,
   })
 }
 
@@ -1517,7 +1517,7 @@ App.check_tab_active = (item) => {
 }
 
 App.copy_tabs = (item) => {
-  let active = App.get_active_items({mode: `tabs`, item: item})
+  let active = App.get_active_items({mode: `tabs`, item})
   App.copied_tabs = active
 }
 
@@ -1602,7 +1602,7 @@ App.sort_selected_tabs = async (direction) => {
         await App.do_move_tab_index(item.id, index)
       }
     },
-    force: force,
+    force,
   })
 }
 
@@ -1777,6 +1777,6 @@ App.focus_tab_number = (num) => {
   let item = items.at(num - 1)
 
   if (item) {
-    App.tabs_action({item: item})
+    App.tabs_action({item})
   }
 }

@@ -18,7 +18,7 @@ App.edit_tab_title = (args = {}) => {
         }})
       }
     },
-    force: force,
+    force,
   })
 }
 
@@ -33,8 +33,8 @@ App.edit_title = (item, add_value = true) => {
     value = ``
   }
 
-  App.edit_prompt({what: `title`, item: item,
-    fill: item.title, value: value})
+  App.edit_prompt({what: `title`, item,
+    fill: item.title, value})
 }
 
 App.push_to_title_history = (titles) => {
@@ -84,7 +84,7 @@ App.get_all_titles = (include_rules = true) => {
 }
 
 App.remove_item_title = (item) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
+  let active = App.get_active_items({mode: item.mode, item})
 
   if (active.length === 1) {
     let it = active[0]

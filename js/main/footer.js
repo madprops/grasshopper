@@ -121,13 +121,13 @@ App.create_footer = (mode) => {
       name: `footer_menu`,
     })
 
-    App.show_context({items: items, e: e})
+    App.show_context({items, e})
   })
 
   DOM.ev(footer, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_footer`)
-      App.run_command({cmd: cmd, from: `footer`, e: e})
+      App.run_command({cmd, from: `footer`, e})
     }
   })
 

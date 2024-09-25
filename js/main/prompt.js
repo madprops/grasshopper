@@ -186,7 +186,7 @@ App.show_prompt_list = (from = `click`) => {
   let btn = DOM.el(`#prompt_list`)
 
   App.show_context({
-    items: items,
+    items,
     element: btn,
     after_hide: () => {
       input.focus()

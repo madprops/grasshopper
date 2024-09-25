@@ -21,7 +21,7 @@ App.start_filter_debouncers = () => {
 }
 
 App.check_filter = (mode) => {
-  App.check_filter_debouncer.call({mode: mode})
+  App.check_filter_debouncer.call({mode})
 }
 
 App.check_filter_special = (mode) => {
@@ -231,16 +231,16 @@ App.do_filter = async (args = {}) => {
 
   function check_match (item) {
     let args = {
-      item: item,
-      regexes: regexes,
-      by_what: by_what,
-      filter_mode: filter_mode,
-      duplicates: duplicates,
-      value: value,
+      item,
+      regexes,
+      by_what,
+      filter_mode,
+      duplicates,
+      value,
       value_lower: value.toLowerCase(),
-      f_value: f_value,
-      f_value_lower: f_value_lower,
-      search: search,
+      f_value,
+      f_value_lower,
+      search,
     }
 
     return App.filter_check(args)
@@ -581,7 +581,7 @@ App.is_filtered = (mode = App.active_mode) => {
 
 App.clear_filter = (mode = App.active_mode) => {
   if (App.filter_has_value(mode)) {
-    App.set_filter({mode: mode})
+    App.set_filter({mode})
   }
 }
 
@@ -646,7 +646,7 @@ App.filter_by = (mode, cmd) => {
     new_text += cleaned
   }
 
-  App.set_filter({mode: mode, text: new_text})
+  App.set_filter({mode, text: new_text})
 }
 
 App.filter_has_value = (mode = App.active_mode) => {
@@ -687,7 +687,7 @@ App.get_filter_mode = (mode, cmd) => {
   }
 
   if (App.get_command(cmd)) {
-    return {cmd: cmd}
+    return {cmd}
   }
 }
 
@@ -703,7 +703,7 @@ App.set_filter_mode = (args = {}) => {
   App[`${args.mode}_filter_mode`] = args.cmd
   let mode_text = DOM.el(`#${args.mode}_filter_modes_text`)
   mode_text.innerHTML = ``
-  mode_text.append(App.filter_mode_text({mode: args.mode, filter_mode: filter_mode}))
+  mode_text.append(App.filter_mode_text({mode: args.mode, filter_mode}))
 
   if (args.filter) {
     if (args.instant) {
@@ -719,7 +719,7 @@ App.set_custom_filter_mode = (mode, name, title) => {
   App[`${mode}_filter_mode`] = name
   let mode_text = DOM.el(`#${mode}_filter_modes_text`)
   mode_text.innerHTML = ``
-  mode_text.append(App.filter_mode_text({mode: mode, name: name, title: title}))
+  mode_text.append(App.filter_mode_text({mode, name, title}))
 }
 
 App.filter_mode_text = (args = {}) => {
@@ -799,7 +799,7 @@ App.create_filter = (mode) => {
       return
     }
 
-    App.filter({mode: mode})
+    App.filter({mode})
   })
 
   DOM.ev(filter, `auxclick`, (e) => {
@@ -841,11 +841,11 @@ App.get_custom_filters = (mode) => {
 
 App.show_custom_filters = (mode, e) => {
   let items = App.get_custom_filters(mode)
-  App.show_context({items: items, e: e, title: `Custom`})
+  App.show_context({items, e, title: `Custom`})
 }
 
 App.set_custom_filter = (mode, filter) => {
-  App.set_filter({mode: mode, text: filter})
+  App.set_filter({mode, text: filter})
   App.focus_filter(mode)
 }
 
@@ -963,7 +963,7 @@ App.search_items = async (mode, query, deep, date) => {
 }
 
 App.deep_search = (mode) => {
-  App.do_filter({mode: mode, force: true, deep: true})
+  App.do_filter({mode, force: true, deep: true})
 }
 
 App.was_filtered = (mode) => {
@@ -1016,7 +1016,7 @@ App.filter_domain = (item) => {
     name: `domain`,
     full: `Domain`,
     prop: item.hostname,
-    item: item,
+    item,
   })
 }
 
@@ -1024,7 +1024,7 @@ App.filter_title = (item) => {
   App.filter_common({name: `title`,
     full: `Title`,
     prop: App.title(item),
-    item: item,
+    item,
   })
 }
 
@@ -1033,14 +1033,14 @@ App.filter_root = (item) => {
     name: `root`,
     full: `Root`,
     prop: item.id,
-    item: item,
+    item,
   })
 }
 
 App.filter_all = (mode = App.active_mode, from) => {
   if (App.is_filtered(mode)) {
-    App.set_filter_mode({mode: mode, cmd: `all`, filter: false})
-    App.set_filter({mode: mode, from: from})
+    App.set_filter_mode({mode, cmd: `all`, filter: false})
+    App.set_filter({mode, from})
   }
 }
 
@@ -1069,24 +1069,24 @@ App.previous_filter = (mode) => {
         if (pmode.includes(`-`)) {
           if (pmode.startsWith(`color`)) {
             let color = pmode.replace(`color-`, ``)
-            App.filter_color({mode: mode, id: color})
+            App.filter_color({mode, id: color})
           }
           else if (pmode.startsWith(`tag`)) {
             let tag = pmode.replace(`tag-`, ``)
-            App.filter_tag({mode: mode, tag: tag})
+            App.filter_tag({mode, tag})
           }
           else if (pmode.startsWith(`icon`)) {
             let icon = pmode.replace(`icon-`, ``)
-            App.filter_icon({mode: mode, icon: icon})
+            App.filter_icon({mode, icon})
           }
         }
         else {
-          App.set_filter_mode({mode: mode, cmd: pmode, filter: false})
+          App.set_filter_mode({mode, cmd: pmode, filter: false})
         }
       }
 
       let filter = ptext || ``
-      App.set_filter({mode: mode, text: filter})
+      App.set_filter({mode, text: filter})
     }
   }
   else {
@@ -1103,7 +1103,7 @@ App.show_filter_context_menu = (mode, e) => {
     items.push({
       text: value.substring(0, 25).trim(),
       action: () => {
-        App.set_filter({mode: mode, text: value})
+        App.set_filter({mode, text: value})
       },
       middle_action: () => {
         App.forget_filter_history_item(value)
@@ -1181,7 +1181,7 @@ App.show_filter_context_menu = (mode, e) => {
     })
   }
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.update_filter_history = (mode = App.active_mode) => {
@@ -1236,7 +1236,7 @@ App.clean_filter = (s, lower_case = false) => {
 
 App.show_filter_color_menu = (mode, e) => {
   let items = App.get_color_items(mode, `filter`)
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.toggle_filter = (mode, cmd, refine = false) => {
@@ -1245,7 +1245,7 @@ App.toggle_filter = (mode, cmd, refine = false) => {
     return
   }
   else {
-    App.set_filter_mode({mode: mode, cmd: cmd, refine: refine})
+    App.set_filter_mode({mode, cmd, refine})
   }
 }
 
@@ -1284,7 +1284,7 @@ App.complex_filter = (args = {}) => {
 
   let refine = args.from === App.refine_string
   App.set_custom_filter_mode(args.mode, name, s)
-  App.do_filter({mode: args.mode, refine: refine})
+  App.do_filter({mode: args.mode, refine})
 }
 
 App.filter_color = (args = {}) => {
@@ -1306,8 +1306,8 @@ App.filter_color = (args = {}) => {
 
   App.complex_filter({
     mode: args.mode,
-    value: value,
-    text: text,
+    value,
+    text,
     short: `color`,
     full: `Colors`,
     toggle: args.toggle,
@@ -1462,7 +1462,7 @@ App.create_filter_menu = (mode) => {
   DOM.ev(btn, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_filter_menu`)
-      App.run_command({cmd: cmd, from: `filter_menu`, e: e})
+      App.run_command({cmd, from: `filter_menu`, e})
     }
   })
 
@@ -1500,7 +1500,7 @@ App.show_filter_menu = (mode) => {
               App.filter_all(mode)
             }
             else {
-              App.set_filter_mode({mode: mode, cmd: `all`})
+              App.set_filter_mode({mode, cmd: `all`})
             }
           },
           info: filter_mode.info,
@@ -1578,12 +1578,12 @@ App.show_filter_menu = (mode) => {
             icon: cmd.icon,
             text: cmd.short_name || cmd.name,
             action: (e) => {
-              App.run_command({cmd: cmd.cmd, from: `filter_menu`, e: e})
+              App.run_command({cmd: cmd.cmd, from: `filter_menu`, e})
             },
             middle_action: (e) => {
-              App.run_command({cmd: cmd.cmd, from: App.refine_string, e: e})
+              App.run_command({cmd: cmd.cmd, from: App.refine_string, e})
             },
-            selected: selected,
+            selected,
             info: cmd.info,
           })
         }
@@ -1611,7 +1611,7 @@ App.cycle_filter_modes = (mode, reverse, e) => {
       let c = App.get_command(cmd)
 
       if (c) {
-        App.run_command({cmd: c.cmd, from: `favorite_filters`, e: e})
+        App.run_command({cmd: c.cmd, from: `favorite_filters`, e})
       }
     }
   }
@@ -1686,7 +1686,7 @@ App.paste_filter = async (mode) => {
   let filter = await navigator.clipboard.readText()
 
   if (filter) {
-    App.set_filter({mode: mode, text: filter})
+    App.set_filter({mode, text: filter})
   }
 }
 
@@ -1727,7 +1727,7 @@ App.filter_cmd_name = (cmd) => {
 
 App.show_exact_filters = (mode, e) => {
   let items = App.get_filter_exact(mode)
-  App.show_context({items: items, e: e, title: `Exact`})
+  App.show_context({items, e, title: `Exact`})
 }
 
 App.filter_menu_context = (mode, e) => {
@@ -1766,19 +1766,19 @@ App.show_favorite_filters = (mode, e) => {
 
     if (command) {
       items.push({
-        e: e,
+        e,
         icon: command.icon,
         text: App.command_name(command, true),
         info: command.info,
         action: (e) => {
           App.run_command({
-            e: e,
+            e,
             cmd: command.cmd,
           })
         },
         middle_action: (e) => {
           App.run_command({
-            e: e,
+            e,
             cmd: command.cmd,
             from: App.refine_string,
           })
@@ -1787,7 +1787,7 @@ App.show_favorite_filters = (mode, e) => {
     }
   }
 
-  App.show_context({items: items, e: e, title: `Favorites`})
+  App.show_context({items, e, title: `Favorites`})
 }
 
 App.cycle_filters = (mode, direction) => {
@@ -1825,7 +1825,7 @@ App.cycle_filters = (mode, direction) => {
     }
   }
 
-  App.set_filter({mode: mode, text: next, to_history: false})
+  App.set_filter({mode, text: next, to_history: false})
 }
 
 App.get_filter_item = (mode, filter_mode) => {
@@ -1847,8 +1847,8 @@ App.show_refine_filters = (e) => {
   let items = App.get_refine_items()
 
   App.show_context({
-    e: e,
-    items: items,
+    e,
+    items,
     no_items: `Add Refine Filters in the Filter settings`,
     title: `Refine`,
   })
@@ -1865,5 +1865,5 @@ App.filter_double_click = (mode, e) => {
     return
   }
 
-  App.run_command({cmd: cmd, from: `filter`, e: e})
+  App.run_command({cmd, from: `filter`, e})
 }

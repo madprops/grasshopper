@@ -82,7 +82,7 @@ App.show_item_menu = async (args = {}) => {
     }
   }
 
-  App.show_context({items: items, e: args.e})
+  App.show_context({items, e: args.e})
 }
 
 App.common_menu_items = (args = {}) => {
@@ -164,7 +164,7 @@ App.more_menu_items = (args = {}) => {
     args.o_items.push({
       icon: App.command_icon,
       text: `More`,
-      items: items,
+      items,
     })
   }
 }
@@ -197,7 +197,7 @@ App.extra_menu_items = (o_items) => {
       o_items.push({
         icon: App.extra_icon,
         text: `Extra`,
-        items: items,
+        items,
       })
     }
   }
@@ -236,8 +236,8 @@ App.item_menu_item = (items, cmd, obj) => {
 App.item_menu_tags = (items, item) => {
   if (App.item_menu_active.length > 1) {
     let tag_items = []
-    App.item_menu_item(tag_items, `edit_tags`, {item: item, short: false})
-    App.item_menu_item(tag_items, `add_tags`, {item: item, short: false})
+    App.item_menu_item(tag_items, `edit_tags`, {item, short: false})
+    App.item_menu_item(tag_items, `add_tags`, {item, short: false})
 
     items.push({
       icon: App.tag_icon,
@@ -247,10 +247,10 @@ App.item_menu_tags = (items, item) => {
   }
   else {
     if (item.custom_tags.length) {
-      App.item_menu_item(items, `edit_tags`, {item: item})
+      App.item_menu_item(items, `edit_tags`, {item})
     }
     else {
-      App.item_menu_item(items, `add_tags`, {item: item})
+      App.item_menu_item(items, `add_tags`, {item})
     }
   }
 }

@@ -16,6 +16,7 @@ export default [
       "no-console": "error",
       "no-multi-spaces": "error",
       "no-multiple-empty-lines": ["error", {"max": 1}],
+      "object-shorthand": ["error", "always"],
     },
     languageOptions: {
       globals: {

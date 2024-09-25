@@ -30,7 +30,7 @@ App.setup_bookmarks = () => {
       let item = App.get_item_by_id(`bookmarks`, id)
 
       if (item) {
-        App.update_item({mode: `bookmarks`, id: item.id, info: info})
+        App.update_item({mode: `bookmarks`, id: item.id, info})
       }
     }
   })
@@ -62,9 +62,9 @@ App.get_bookmarks = async (query = ``, deep = false) => {
 
   try {
     results = await App.get_bookmark_items({
-      folder: folder,
+      folder,
       title: query,
-      deep: deep,
+      deep,
     })
   }
   catch (err) {
@@ -179,7 +179,7 @@ App.bookmark_items = async (args = {}) => {
     confirm_action: async () => {
       for (let item of items) {
         let title = App.title(item)
-        await browser.bookmarks.create({parentId: args.folder.id, title: title, url: item.url})
+        await browser.bookmarks.create({parentId: args.folder.id, title, url: item.url})
       }
 
       let feedback = App.get_setting(`show_feedback`)
@@ -188,7 +188,7 @@ App.bookmark_items = async (args = {}) => {
         App.alert_autohide(`Bookmarked`)
       }
     },
-    force: force,
+    force,
   })
 }
 
@@ -319,7 +319,7 @@ App.select_bookmarks_folder = async (e) => {
     return
   }
 
-  App.do_select_bookmarks_folder({folders, e: e})
+  App.do_select_bookmarks_folder({folders, e})
 }
 
 App.do_select_bookmarks_folder = (args = {}) => {
@@ -363,7 +363,7 @@ App.do_select_bookmarks_folder = (args = {}) => {
     return
   }
 
-  App.show_context({items: items, title: `Select Folder`, e: args.e})
+  App.show_context({items, title: `Select Folder`, e: args.e})
 }
 
 App.search_bookmarks_folder = async (callback) => {
@@ -392,10 +392,10 @@ App.request_bookmarks = () => {
 
 App.make_bookmarks_folder = async (title, parent = ``) => {
   if (parent) {
-    return await browser.bookmarks.create({title: title, parentId: parent.id})
+    return await browser.bookmarks.create({title, parentId: parent.id})
   }
   else {
-    return await browser.bookmarks.create({title: title})
+    return await browser.bookmarks.create({title})
   }
 }
 

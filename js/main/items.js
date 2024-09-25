@@ -40,14 +40,14 @@ App.select_up_down = (mode, direction = `down`, alt = false) => {
   let wrap = App.get_setting(`wrap_items`)
 
   let item = App.get_other_item({
-    mode: mode,
-    no_header: no_header,
+    mode,
+    no_header,
     no_unloaded: alt,
-    wrap: wrap,
+    wrap,
   }, up)
 
   if (item) {
-    App.select_item({item: item, scroll: `nearest`})
+    App.select_item({item, scroll: `nearest`})
   }
 }
 
@@ -196,7 +196,7 @@ App.clear_selected = (mode) => {
 
   for (let item of App.get_items(mode)) {
     if (item.selected) {
-      App.toggle_selected({item: item, what: false, select: false})
+      App.toggle_selected({item, what: false, select: false})
     }
   }
 }
@@ -211,7 +211,7 @@ App.select_first_item = (mode, by_active = false, scroll = `center`) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
-        App.select_item({item: item, scroll: scroll})
+        App.select_item({item, scroll})
         return
       }
     }
@@ -219,7 +219,7 @@ App.select_first_item = (mode, by_active = false, scroll = `center`) => {
 
   for (let item of App.get_items(mode)) {
     if (item.visible) {
-      App.select_item({item: item})
+      App.select_item({item})
       return
     }
   }
@@ -553,7 +553,7 @@ App.select_range = (item) => {
   let selected = App.get_selected(item.mode)
 
   if (item === selected) {
-    App.select_item({item: item, scroll: `nearest`})
+    App.select_item({item, scroll: `nearest`})
     return
   }
 
@@ -620,7 +620,7 @@ App.select_range = (item) => {
     }
   }
 
-  App.scroll_to_item({item: item, scroll: `nearest`})
+  App.scroll_to_item({item, scroll: `nearest`})
 }
 
 App.deselect = (args = {}) => {
@@ -635,7 +635,7 @@ App.deselect = (args = {}) => {
   let first, last
 
   for (let item of App.selected_items(args.mode)) {
-    App.toggle_selected({item: item, what: false, select: false})
+    App.toggle_selected({item, what: false, select: false})
 
     if (!first) {
       first = item
@@ -800,7 +800,7 @@ App.open_items = (item, shift, multiple = true) => {
   let items
 
   if (multiple) {
-    items = App.get_active_items({mode: mode, item: item})
+    items = App.get_active_items({mode, item})
   }
   else {
     items = [item]
@@ -820,13 +820,13 @@ App.open_items = (item, shift, multiple = true) => {
           App.open_tab(item)
         }
 
-        App.deselect({mode: mode, select: `selected`})
+        App.deselect({mode, select: `selected`})
         App.after_open(shift)
       },
       cancel_action: () => {
-        App.deselect({mode: mode, select: `selected`})
+        App.deselect({mode, select: `selected`})
       },
-      force: force,
+      force,
     })
   }
 }
@@ -893,7 +893,7 @@ App.select_all = (mode = App.active_mode, toggle = false) => {
       first = item
     }
 
-    App.toggle_selected({item: item, what: true, select: false})
+    App.toggle_selected({item, what: true, select: false})
   }
 
   if (first) {
@@ -909,7 +909,7 @@ App.deselect_all = (mode) => {
     select = `active`
   }
 
-  App.deselect({mode: mode, select: select})
+  App.deselect({mode, select})
 }
 
 App.get_active_items = (args = {}) => {
@@ -957,7 +957,7 @@ App.get_active_items = (args = {}) => {
 }
 
 App.insert_item = (mode, info) => {
-  let item = App.process_info({mode: mode, info: info})
+  let item = App.process_info({mode, info})
   let container = DOM.el(`#${mode}_container`)
 
   if (mode === `tabs`) {
@@ -1010,7 +1010,7 @@ App.on_items = (mode = App.window_mode, check_popups = false) => {
 
 App.get_next_item = (mode, args = {}) => {
   let def_args = {
-    mode: mode,
+    mode,
     wrap: false,
   }
 
@@ -1064,10 +1064,10 @@ App.remove_duplicates = (items) => {
 
 App.pick = (item) => {
   if (item.selected) {
-    App.toggle_selected({item: item, what: false})
+    App.toggle_selected({item, what: false})
   }
   else {
-    App.select_item({item: item, scroll: `nearest`, deselect: false})
+    App.select_item({item, scroll: `nearest`, deselect: false})
   }
 }
 
@@ -1091,7 +1091,7 @@ App.select_item_by_id = (mode, id) => {
   let item = App.get_item_by_id(mode, id)
 
   if (item) {
-    App.select_item({item: item, scroll: `center`})
+    App.select_item({item, scroll: `center`})
   }
 }
 

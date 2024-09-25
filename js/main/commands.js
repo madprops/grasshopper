@@ -398,7 +398,7 @@ App.cmd_item = (args = {}) => {
         cmd: args.command.cmd,
         item: args.item,
         from: args.from,
-        e: e,
+        e,
       })
     },
   }
@@ -412,7 +412,7 @@ App.cmd_list = (cmds, short = false) => {
       App.sep(items)
     }
     else {
-      items.push(App.cmd_item({cmd: cmd, short: short}))
+      items.push(App.cmd_item({cmd, short}))
     }
   }
 
@@ -535,7 +535,7 @@ App.show_cmds_menu = (args = {}) => {
                 cmd: cmd.cmd,
                 from: args.from,
                 item: args.item,
-                e: e,
+                e,
               })
             }
           }
@@ -578,7 +578,7 @@ App.custom_menu_items = (args = {}) => {
   let cmds = App.get_setting(args.name)
 
   return App.show_cmds_menu({
-    cmds: cmds,
+    cmds,
     from: args.name,
     item: args.item,
     check: args.check,

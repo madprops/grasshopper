@@ -11,7 +11,7 @@ App.edit_notes = (item) => {
         }
       }
 
-      App.apply_edit({what: `notes`, item: item, value: notes, on_change: (value) => {
+      App.apply_edit({what: `notes`, item, value: notes, on_change: (value) => {
         App.custom_save(item.id, `custom_notes`, value)
       }})
 
@@ -32,7 +32,7 @@ App.remove_item_notes = (item, single = false) => {
     active = [item]
   }
   else {
-    active = App.get_active_items({mode: item.mode, item: item})
+    active = App.get_active_items({mode: item.mode, item})
   }
 
   if (active.length === 1) {

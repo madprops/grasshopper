@@ -102,7 +102,7 @@ App.show_empty_menu = (e) => {
     name: `empty_menu`,
   })
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.button_text = (icon, text, bigger = false) => {

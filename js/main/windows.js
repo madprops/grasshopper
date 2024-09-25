@@ -140,7 +140,7 @@ App.show_window = (mode) => {
   App.debug(`Show Window: ${mode}`)
 
   if (App.on_items(mode)) {
-    App.do_show_mode({mode: mode})
+    App.do_show_mode({mode})
   }
   else {
     App.windows[mode].show()
@@ -248,7 +248,7 @@ App.get_window_menu_items = async (item) => {
     let text = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
 
     items.push({
-      text: text,
+      text,
       action: () => {
         App.move_tabs_to_window(item, win.id)
       }
@@ -262,7 +262,7 @@ App.show_windows_menu = async (item, e) => {
   let items = await App.get_window_menu_items(item)
 
   if (items) {
-    App.show_context({items: items, e: e, title: `Move To Window`})
+    App.show_context({items, e, title: `Move To Window`})
   }
 }
 

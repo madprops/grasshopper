@@ -303,7 +303,7 @@ App.tab_box_menu = (e) => {
     }
   })
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.refresh_tab_box = () => {

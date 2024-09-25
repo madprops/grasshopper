@@ -4,7 +4,7 @@ App.show_tab_list = (what, e) => {
   if (what === `recent`) {
     let max = App.get_setting(`max_recent_tabs`)
     let active = App.get_setting(`recent_active`)
-    tabs = App.get_recent_tabs({max: max, active: active})
+    tabs = App.get_recent_tabs({max, active})
     title = `Recent`
   }
   else if (what === `pins`) {
@@ -61,7 +61,7 @@ App.show_tab_list = (what, e) => {
 
     let obj = {
       image: favicon,
-      icon: icon,
+      icon,
       text: title,
       info: tab.url,
       action: async () => {
@@ -72,7 +72,7 @@ App.show_tab_list = (what, e) => {
         App.close_tab_or_tabs(tab.id)
       },
       context_action: (e) => {
-        App.show_item_menu({item: tab, e: e})
+        App.show_item_menu({item: tab, e})
       },
       icon_action: async (e, icon) => {
         if (tab.muted) {
@@ -100,9 +100,9 @@ App.show_tab_list = (what, e) => {
   }
 
   App.show_context({
-    items: items, e: e,
-    title: title,
-    title_icon: title_icon,
+    items, e,
+    title,
+    title_icon,
     middle_action_remove: true,
     title_number: true,
   })

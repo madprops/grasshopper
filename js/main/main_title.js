@@ -175,7 +175,7 @@ App.show_main_title_menu = (e) => {
     name: `main_title_menu`,
   })
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.main_title_double_click = (e) => {
@@ -185,7 +185,7 @@ App.main_title_double_click = (e) => {
   if (command) {
     let args = {
       cmd: command.cmd,
-      e: e,
+      e,
     }
 
     App.run_command(args)
@@ -194,12 +194,12 @@ App.main_title_double_click = (e) => {
 
 App.main_title_click = (e) => {
   let cmd = App.get_setting(`click_main_title`)
-  App.run_command({cmd: cmd, from: `main_title`, e: e})
+  App.run_command({cmd, from: `main_title`, e})
 }
 
 App.main_title_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_main_title`)
-  App.run_command({cmd: cmd, from: `main_title`, e: e})
+  App.run_command({cmd, from: `main_title`, e})
 }
 
 App.color_main_title = (what) => {

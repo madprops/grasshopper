@@ -77,11 +77,11 @@ App.setup_commands = () => {
     name = `Filter ${color.name}`
 
     color_filters.push({
-      name: name,
+      name,
       short_name: color.name,
       cmd: `filter_color_${color.id}`,
       modes: [`items`],
-      icon: icon,
+      icon,
       filter_mode: true,
       action: (args) => {
         App.filter_color({
@@ -98,11 +98,11 @@ App.setup_commands = () => {
     name = `Show ${color.name}`
 
     color_filters.push({
-      name: name,
+      name,
       short_name: color.name,
       cmd: `show_color_${color.id}`,
       modes: [`items`],
-      icon: icon,
+      icon,
       action: (args) => {
         App.show_tab_list(`color_${color.id}`, args.e)
       },
@@ -114,13 +114,13 @@ App.setup_commands = () => {
     short = color.name
 
     color_changers.push({
-      name: name,
+      name,
       short_name: short,
       cmd: `color_${color.id}`,
       some_no_color_id: color.id,
       modes: [`tabs`],
       item: true,
-      icon: icon,
+      icon,
       action: (args) => {
         App.edit_tab_color({item: args.item, color: color.id})
       },
@@ -132,12 +132,12 @@ App.setup_commands = () => {
     short = color.name
 
     color_changers.push({
-      name: name,
+      name,
       short_name: short,
       cmd: `toggle_color_${color.id}`,
       modes: [`tabs`],
       item: true,
-      icon: icon,
+      icon,
       action: (args) => {
         App.edit_tab_color({item: args.item, color: color.id, toggle: true})
       },
@@ -149,13 +149,13 @@ App.setup_commands = () => {
     short = `Rm ${color.name}`
 
     color_removers.push({
-      name: name,
+      name,
       short_name: short,
       cmd: `remove_color_${color.id}`,
       modes: [`tabs`],
       some_custom_color_id: color.id,
       some_custom_color: true,
-      icon: icon,
+      icon,
       action: (args) => {
         App.remove_color(color.id)
       },
@@ -167,11 +167,11 @@ App.setup_commands = () => {
     short = `Rm All ${color.name}`
 
     color_removers.push({
-      name: name,
+      name,
       short_name: short,
       cmd: `remove_all_color_${color.id}`,
       modes: [`tabs`],
-      icon: icon,
+      icon,
       action: (args) => {
         App.remove_color(color.id)
       },
@@ -182,7 +182,7 @@ App.setup_commands = () => {
     name = `Close ${color.name}`
 
     color_closers.push({
-      name: name,
+      name,
       cmd: `close_color_${color.id}`,
       modes: [`tabs`],
       icon: close_icon,
@@ -196,10 +196,10 @@ App.setup_commands = () => {
     name = `${color.name} Up`
 
     color_closers.push({
-      name: name,
+      name,
       cmd: `jump_tabs_color_${color.id}_up`,
       modes: [`items`],
-      icon: icon,
+      icon,
       action: (args) => {
         App.jump_tabs_color(color.id, true)
       },
@@ -210,10 +210,10 @@ App.setup_commands = () => {
     name = `${color.name} Down`
 
     color_closers.push({
-      name: name,
+      name,
       cmd: `jump_tabs_color_${color.id}_down`,
       modes: [`items`],
-      icon: icon,
+      icon,
       action: (args) => {
         App.jump_tabs_color(color.id)
       },
@@ -326,11 +326,11 @@ App.setup_commands = () => {
     let name = `Filter ${cap}`.trim()
 
     media_filters.push({
-      name: name,
+      name,
       short_name: cap,
       cmd: `filter_media_${media}`,
       modes: [`items`],
-      icon: icon,
+      icon,
       filter_mode: true,
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
@@ -347,12 +347,12 @@ App.setup_commands = () => {
     let name = `Show ${m_name}`
 
     show_modes.push({
-      name: name,
+      name,
       short_name: m_name,
       cmd: `show_mode_${mode}`,
-      icon: icon,
+      icon,
       action: (args) => {
-        App.show_mode({mode: mode, reuse_filter: true})
+        App.show_mode({mode, reuse_filter: true})
       },
       info: `Show mode: ${mode}`,
     })
@@ -377,9 +377,9 @@ App.setup_commands = () => {
     let name = `Settings: ${c_name}`
 
     settings_categories.push({
-      name: name,
+      name,
       cmd: `settings_category_${category}`,
-      icon: icon,
+      icon,
       action: (args) => {
         App.show_settings_category(category)
       },

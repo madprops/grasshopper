@@ -1,8 +1,8 @@
 App.insert_header = async (item, full = true) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
+  let active = App.get_active_items({mode: item.mode, item})
   let first = active.at(0)
   let index = App.get_item_element_index({mode: first.mode, element: first.element})
-  let tab = await App.open_new_tab({url: App.header_url, index: index, pinned: item.pinned, active: false})
+  let tab = await App.open_new_tab({url: App.header_url, index, pinned: item.pinned, active: false})
   let header = App.get_item_by_id(item.mode, tab.id)
 
   if (active.length > 1) {
@@ -100,7 +100,7 @@ App.select_header_group = (item) => {
           }
         }
 
-        App.toggle_selected({item: item, what: true})
+        App.toggle_selected({item, what: true})
       }
 
       if (first) {
@@ -215,10 +215,10 @@ App.check_header_first = (item) => {
 }
 
 App.focus_header_first = (item, from, scroll = `nearest_smooth`) => {
-  let next = App.get_other_item({mode: item.mode, item: item, wrap: false})
+  let next = App.get_other_item({mode: item.mode, item, wrap: false})
 
   if (App.check_header_first(next)) {
-    App.tabs_action({item: next, from: from, scroll: scroll})
+    App.tabs_action({item: next, from, scroll})
   }
 }
 
@@ -265,7 +265,7 @@ App.edit_tab_split = (args = {}) => {
           }})
         }
       },
-      force: force,
+      force,
     })
   }
   else if (args.which === `both`) {
@@ -298,7 +298,7 @@ App.edit_tab_split = (args = {}) => {
 }
 
 App.remove_item_split = (item) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
+  let active = App.get_active_items({mode: item.mode, item})
 
   if (active.length === 1) {
     if (item.rule_split_top || item.rule_split_bottom) {
@@ -310,7 +310,7 @@ App.remove_item_split = (item) => {
 }
 
 App.remove_all_splits = (force = false) => {
-  App.remove_edits({what: [`split_top`, `split_bottom`], force: force, text: `splits`})
+  App.remove_edits({what: [`split_top`, `split_bottom`], force, text: `splits`})
 }
 
 App.apply_splits = (item) => {

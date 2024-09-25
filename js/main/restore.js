@@ -64,7 +64,7 @@ App.restore = () => {
     }
 
     if (!App.item_is_visible(item)) {
-      App.select_item({item: item, scroll: `nearest_smooth`})
+      App.select_item({item, scroll: `nearest_smooth`})
     }
   }
 }

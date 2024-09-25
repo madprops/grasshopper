@@ -22,7 +22,7 @@ App.gesture_action = (e, gesture) => {
 
   App.reset_triggers()
   let cmd = App.get_setting(`gesture_${gesture}`)
-  App.run_command({cmd: cmd, from: `gesture`, e: e})
+  App.run_command({cmd, from: `gesture`, e})
 }
 
 App.refresh_gestures = () => {

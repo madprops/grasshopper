@@ -16,7 +16,7 @@ App.show_browser_menu = (e) => {
   }
 
   let items = App.cmd_list(cmds)
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.open_custom_url = (item, num, from = `normal`) => {
@@ -33,7 +33,7 @@ App.open_custom_url = (item, num, from = `normal`) => {
   }
 
   let args = {
-    url: url,
+    url,
   }
 
   App.get_new_tab_args(item, from, args)
@@ -43,12 +43,12 @@ App.open_custom_url = (item, num, from = `normal`) => {
 
 App.run_browser_command = (num) => {
   let cmd = App.get_setting(`browser_command_${num}`)
-  App.run_command({cmd: cmd, from: `browser_command`})
+  App.run_command({cmd, from: `browser_command`})
 }
 
 App.run_popup_command = (num) => {
   let cmd = App.get_setting(`popup_command_${num}`)
-  App.run_command({cmd: cmd, from: `popup_command`})
+  App.run_command({cmd, from: `popup_command`})
 }
 
 App.check_init_commands = () => {

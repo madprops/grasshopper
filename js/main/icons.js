@@ -424,7 +424,7 @@ App.make_item_icon = (item, normal = true) => {
 
   return {
     add: true,
-    icon: icon,
+    icon,
   }
 }
 
@@ -505,12 +505,12 @@ App.edit_tab_icon = (args = {}) => {
         }})
       }
     },
-    force: force,
+    force,
   })
 }
 
 App.edit_icon = (item) => {
-  App.edit_prompt({what: `icon`, item: item})
+  App.edit_prompt({what: `icon`, item})
 }
 
 App.get_all_icons = (include_rules = true) => {
@@ -560,7 +560,7 @@ App.push_to_icon_history = (icons) => {
 }
 
 App.remove_item_icon = (item) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
+  let active = App.get_active_items({mode: item.mode, item})
 
   if (active.length === 1) {
     let it = active[0]
@@ -623,10 +623,10 @@ App.get_icon_items = (mode, show = false) => {
       items.push({
         text: `All`,
         action: () => {
-          App.filter_icon({mode: mode, icon: `all`})
+          App.filter_icon({mode, icon: `all`})
         },
         middle_action: () => {
-          App.filter_icon({mode: mode, icon: `all`, from: App.refine_string})
+          App.filter_icon({mode, icon: `all`, from: App.refine_string})
         },
       })
     }
@@ -639,7 +639,7 @@ App.get_icon_items = (mode, show = false) => {
             App.show_tab_list(`icon_${icon}`, e)
           }
           else {
-            App.filter_icon({mode: mode, icon: icon})
+            App.filter_icon({mode, icon})
           }
         },
         middle_action: (e) => {
@@ -647,7 +647,7 @@ App.get_icon_items = (mode, show = false) => {
             //
           }
           else {
-            App.filter_icon({mode: mode, icon: icon, from: App.refine_string})
+            App.filter_icon({mode, icon, from: App.refine_string})
           }
         },
       })
@@ -669,7 +669,7 @@ App.filter_by_icon = (item) => {
   let icon = App.get_icon(item)
 
   if (icon) {
-    App.filter_icon({mode: item.mode, icon: icon})
+    App.filter_icon({mode: item.mode, icon})
   }
 }
 
@@ -708,16 +708,16 @@ App.custom_icon_menu_items = (item) => {
 
 App.custom_icon_menu = (item, e) => {
   let items = App.custom_icon_menu_items(item)
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.change_icon = (item) => {
-  App.edit_prompt({what: `icon`, item: item})
+  App.edit_prompt({what: `icon`, item})
 }
 
 App.show_filter_icon_menu = (mode, e, show = false) => {
   let items = App.get_icon_items(mode, show)
-  App.show_context({items: items, e: e, title: `Icons`})
+  App.show_context({items, e, title: `Icons`})
 }
 
 App.get_iconed_items = (mode) => {

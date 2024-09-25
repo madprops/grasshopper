@@ -7,8 +7,8 @@ App.create_hover_button = () => {
 App.show_hover_menu = (e, item) => {
   let items = App.custom_menu_items({
     name: `hover_menu`,
-    item: item,
+    item,
   })
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }

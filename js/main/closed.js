@@ -65,7 +65,7 @@ App.forget_closed = () => {
 }
 
 App.forget_closed_item = (item) => {
-  let active = App.get_active_items({mode: `closed`, item: item})
+  let active = App.get_active_items({mode: `closed`, item})
 
   App.show_confirm({
     message: `Forget closed tabs? (${active.length})`,

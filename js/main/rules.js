@@ -122,7 +122,7 @@ App.start_domain_rules = () => {
       App.rules_item = undefined
     },
     element: Addlist.register(Object.assign({}, regobj, {
-      id: id,
+      id,
       keys: [
         `domain`,
         `by_title`,

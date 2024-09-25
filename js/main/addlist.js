@@ -78,13 +78,13 @@ Addlist.save = (id, hide = true) => {
   }
 
   if (v1) {
-    Addlist.remove({id: id, value: v1, force: true})
+    Addlist.remove({id, value: v1, force: true})
   }
 
   let v2 = values[oargs.pk]
 
   if (v2 && (v1 !== v2)) {
-    Addlist.remove({id: id, value: v2, force: true})
+    Addlist.remove({id, value: v2, force: true})
   }
 
   let lines = Addlist.get_data(id)
@@ -198,7 +198,7 @@ Addlist.register = (args = {}) => {
       el = DOM.create(`div`, `addlist_menu addlist_widget`)
 
       App[`addlist_menubutton_${args.id}_${key}`] = Menubutton.create({
-        id: id,
+        id,
         source: args.sources[key],
         get_value: () => {
           return Addlist.get_value(key)
@@ -602,7 +602,7 @@ Addlist.menu = () => {
     action: () => {
       if (data.edit && Object.keys(data.items).length) {
         Addlist.remove({
-          id: id,
+          id,
           value: data.items[oargs.pk],
           after: () => {
             if (data.after_done) {
@@ -669,7 +669,7 @@ Addlist.menu = () => {
 
   App.show_context({
     element: btn,
-    items: items,
+    items,
     expand: true,
     margin: btn.clientHeight,
   })
@@ -859,7 +859,7 @@ Addlist.list = (args) => {
     let info = line._date_ ? App.nice_date(line._date_) : ``
 
     items.push({
-      icon: icon,
+      icon,
       text: title,
       action: () => {
         args.index = i
@@ -873,7 +873,7 @@ Addlist.list = (args) => {
           force: true,
         })
       },
-      info: info,
+      info,
     })
   }
 
@@ -888,7 +888,7 @@ Addlist.list = (args) => {
 
   App.show_context({
     element: btn,
-    items: items,
+    items,
     expand: true,
     margin: btn.clientHeight,
     draggable: true,
@@ -915,7 +915,7 @@ Addlist.clear = (id, force = false) => {
     confirm_action: () => {
       Addlist.after(id, [])
     },
-    force: force,
+    force,
   })
 }
 
@@ -964,15 +964,15 @@ Addlist.add_buttons = (id) => {
   el.append(data)
 
   DOM.ev(`#addlist_button_${id}_count`, `click`, () => {
-    Addlist.list({id: id})
+    Addlist.list({id})
   })
 
   DOM.ev(`#addlist_button_${id}_add`, `click`, () => {
-    Addlist.edit({id: id, items: {}})
+    Addlist.edit({id, items: {}})
   })
 
   DOM.ev(`#addlist_button_${id}_list`, `click`, () => {
-    Addlist.list({id: id})
+    Addlist.list({id})
   })
 
   DOM.ev(`#addlist_button_${id}_edit`, `click`, () => {
@@ -1028,7 +1028,7 @@ Addlist.edit_all = (id) => {
         return false
       }
     },
-    value: value,
+    value,
   })
 }
 
@@ -1048,7 +1048,7 @@ Addlist.update_count = (id) => {
 
 Addlist.edit_first = (id) => {
   let args = {
-    id: id,
+    id,
     index: 0,
   }
 
@@ -1076,7 +1076,7 @@ Addlist.data_menu = (id) => {
 
   App.show_context({
     element: btn,
-    items: items,
+    items,
     expand: true,
     margin: btn.clientHeight,
   })
@@ -1094,7 +1094,7 @@ Addlist.move_item = (id, start, end) => {
     button = Addlist.data.button
   }
 
-  Addlist.list({id: id, index: end, button: button})
+  Addlist.list({id, index: end, button})
 }
 
 Addlist.check_remove = () => {
@@ -1124,5 +1124,5 @@ Addlist.check_remove = () => {
 }
 
 Addlist.edit_object = (id, obj, edit, after_done) => {
-  Addlist.edit({id: id, items: obj, edit: edit, after_done: after_done})
+  Addlist.edit({id, items: obj, edit, after_done})
 }

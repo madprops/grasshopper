@@ -134,9 +134,9 @@ Menubutton.create = (args = {}) => {
 
     App.show_context({
       element: args.button,
-      items: items,
+      items,
       expand: true,
-      index: index,
+      index,
       margin: args.button.clientHeight,
       after_dismiss: args.after_dismiss,
       after_hide: args.after_hide,

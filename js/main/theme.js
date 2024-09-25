@@ -799,7 +799,7 @@ App.show_theme_menu = (e) => {
     })
   }
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.show_background_menu = (e) => {
@@ -815,7 +815,7 @@ App.show_background_menu = (e) => {
     })
   }
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.set_previous_theme = () => {
@@ -929,7 +929,7 @@ App.pick_background = (e) => {
     })
   }
 
-  App.show_context({e: e, items: items})
+  App.show_context({e, items})
 }
 
 App.pick_font = (e) => {
@@ -944,7 +944,7 @@ App.pick_font = (e) => {
     })
   }
 
-  App.show_context({e: e, items: items})
+  App.show_context({e, items})
 }
 
 App.do_pick_font = (font) => {

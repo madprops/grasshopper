@@ -249,7 +249,7 @@ App.cycle_modes = async (reverse, reuse_filter = true) => {
     }
   }
 
-  App.show_mode({mode: new_mode, reuse_filter: reuse_filter})
+  App.show_mode({mode: new_mode, reuse_filter})
 }
 
 App.show_main_mode = (allow_same = true, force = false) => {
@@ -269,7 +269,7 @@ App.show_main_mode = (allow_same = true, force = false) => {
     }
   }
 
-  App.do_show_mode({mode: mode, force: force})
+  App.do_show_mode({mode, force})
 }
 
 App.getting = (mode, force = false) => {

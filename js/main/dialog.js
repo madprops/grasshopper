@@ -111,8 +111,8 @@ App.show_confirm = (args = {}) => {
 
   App.show_dialog({
     message: args.message,
-    buttons: buttons,
-    on_dismiss: on_dismiss,
-    on_any_action: on_any_action,
+    buttons,
+    on_dismiss,
+    on_any_action,
   })
 }

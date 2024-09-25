@@ -237,10 +237,10 @@ App.edit_signal = (index) => {
 
   let args = {
     id: sett,
-    items: items,
-    index: index,
+    items,
+    index,
     edit: true,
-    after_done: after_done,
+    after_done,
   }
 
   Addlist.edit(args)
@@ -258,7 +258,7 @@ App.start_signals_addlist = () => {
   App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
-      id: id,
+      id,
       keys: [`name`, `url`, `arguments`, `icon`, `method`, `interval`, `feedback`, `update_title`, `send_tabs`, `startup`],
       pk: `name`,
       widgets: {

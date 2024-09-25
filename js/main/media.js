@@ -294,7 +294,7 @@ App.show_media_menu = (what) => {
     icon: App.mode_icons.bookmarks,
     text: `Bookmark`,
     action: () => {
-      App.bookmark_items({item: item})
+      App.bookmark_items({item})
     }
   })
 
@@ -309,7 +309,7 @@ App.show_media_menu = (what) => {
   }
 
   let btn = DOM.el(`#media_${what}_menu`)
-  App.show_context({element: btn, items: items})
+  App.show_context({element: btn, items})
 }
 
 App.search_media = (mode, e) => {
@@ -320,19 +320,19 @@ App.search_media = (mode, e) => {
     let icon = App.get_setting(`${type}_icon`)
 
     for (let ext of App[`${type}_extensions`]) {
-      subitems.push({text: ext, icon: icon, action: () => {
-        App.set_filter_mode({mode: mode, cmd: `filter_media_${type}`, filter: false})
-        App.set_filter({mode: mode, text: `.${ext}`})
+      subitems.push({text: ext, icon, action: () => {
+        App.set_filter_mode({mode, cmd: `filter_media_${type}`, filter: false})
+        App.set_filter({mode, text: `.${ext}`})
       }})
     }
 
     items.push({
-      text: App.capitalize(type), icon: icon, action: () => {
-        App.show_context({items: subitems, e: e })
+      text: App.capitalize(type), icon, action: () => {
+        App.show_context({items: subitems, e })
       }})
   }
 
-  App.show_context({items: items, e: e})
+  App.show_context({items, e})
 }
 
 App.scroll_media_up = (what = App.active_mode) => {
