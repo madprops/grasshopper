@@ -77,7 +77,7 @@ function send_bookmarks(show_mode = false) {
     action: `refresh_bookmarks`,
     items: bookmark_items,
     folders: bookmark_folders,
-    show_mode: show_mode,
+    show_mode,
   })
 }
 
