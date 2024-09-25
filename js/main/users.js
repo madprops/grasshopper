@@ -61,6 +61,9 @@ App.user_madprops_settings = () => {
   sett = `favorites_menu`
   App.set_setting({setting: sett, value: []})
 
+  cmd = {cmd: `pick_bookmarks_folder`}
+  App.append_list_setting(sett, cmd)
+
   cmd = {cmd: `send_signal_sig_play`}
   App.append_list_setting(sett, cmd)
 
@@ -167,4 +170,14 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `browser_command_1`, value: `set_random_dark_colors`})
   App.set_setting({setting: `browser_command_2`, value: `restart_extension`})
   App.set_setting({setting: `popup_command_1`, value: `edit_notes`})
+
+  // Bookmark Rules
+
+  sett = `bookmark_rules`
+
+  cmd = {url: `https://news.ycombinator.com`, folder: `tech`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {url: `https://github.com`, folder: `code`}
+  App.append_list_setting(sett, cmd)
 }

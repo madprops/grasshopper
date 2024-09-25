@@ -382,7 +382,7 @@ App.do_select_bookmarks_folder = (args = {}) => {
     return
   }
 
-  App.show_context({items, title: `Select Folder`, e: args.e})
+  App.show_context({items, title: `Pick Folder`, e: args.e})
 }
 
 App.search_bookmarks_folder = async (callback) => {

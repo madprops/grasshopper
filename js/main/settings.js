@@ -1651,7 +1651,7 @@ App.setup_settings_addlist = () => {
         folder: `Folder`,
       },
       list_text: (item) => {
-        return item.url
+        return App.remove_protocol(item.url)
       },
       required: {
         url: true,
