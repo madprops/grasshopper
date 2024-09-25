@@ -270,8 +270,6 @@ App.clear_items = (mode) => {
   if (c) {
     DOM.el(`#${mode}_container`).innerHTML = ``
   }
-
-  App[`last_selected_${mode}`] = undefined
 }
 
 App.clear_all_items = () => {

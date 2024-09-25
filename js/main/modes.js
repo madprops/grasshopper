@@ -122,6 +122,7 @@ App.do_show_mode = async (args = {}) => {
     }
 
     App.clear_items(m)
+    App.clear_selected(m)
   }
 
   if (search && value) {
