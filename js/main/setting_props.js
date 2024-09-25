@@ -235,6 +235,13 @@ App.build_settings = () => {
       info: `Save bookmarks on certain folders based on rules`,
       version: 1,
     },
+    domain_rules: {
+      name: `Domain Rules`,
+      type: `list`,
+      value: [],
+      info: `Apply rules to domains automatically, like color, title, and tags`,
+      version: 1,
+    },
     custom_urls: {
       name: `Custom URLs`,
       type: `list`,
@@ -244,13 +251,6 @@ App.build_settings = () => {
       ],
       actions: [`commands`],
       info: `List of URLs that can be used in commands`,
-      version: 1,
-    },
-    domain_rules: {
-      name: `Domain Rules`,
-      type: `list`,
-      value: [],
-      info: `Apply rules to domains automatically, like color, title, and tags`,
       version: 1,
     },
     open_in_new_tab: {
