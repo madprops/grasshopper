@@ -253,15 +253,24 @@ App.get_bookmark_items = async (args = {}) => {
   let items = App.bookmark_items_cache
   let max
 
+  if (args.folder) {
+    let children = items.filter(x => x.parentId === args.folder.id)
+
+    if (args.deep) {
+      items = App.get_bookmark_subitems(args.folder.id, items)
+    }
+    else {
+      items = children
+    }
+  }
+
+  items = items.filter(x => x.type === `bookmark`)
+
   if (args.deep) {
     max = App.get_setting(`deep_max_search_items_bookmarks`)
   }
   else {
     max = App.get_setting(`max_search_items_bookmarks`)
-  }
-
-  if (args.folder) {
-    items = items.filter(x => x.parentId === args.folder.id)
   }
 
   if (args.title) {
@@ -438,4 +447,19 @@ App.set_bookmarks_title = () => {
   }
 
   App.set_main_menu_text(btn, `bookmarks`, name)
+}
+
+App.get_bookmark_subitems = (parent, children, bookmarks = []) => {
+  for (let child of children) {
+    if (child.parentId === parent) {
+      if (child.type === `folder`) {
+        App.get_bookmark_subitems(child.id, children, bookmarks)
+      }
+      else if (child.type === `bookmark`) {
+        bookmarks.push(child)
+      }
+    }
+  }
+
+  return bookmarks
 }

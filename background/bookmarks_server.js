@@ -42,6 +42,10 @@ async function refresh_bookmarks(send = true) {
       let type = bookmark.type
       let title = bookmark.title
 
+      if (title) {
+        items.push(bookmark)
+      }
+
       if (type === `folder`) {
         if (title) {
           folders.push(bookmark)
@@ -49,11 +53,6 @@ async function refresh_bookmarks(send = true) {
 
         if (bookmark.children) {
           traverse(bookmark.children)
-        }
-      }
-      else if (type === `bookmark`) {
-        if (title) {
-          items.push(bookmark)
         }
       }
     }
