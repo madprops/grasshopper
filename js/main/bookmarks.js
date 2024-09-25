@@ -63,7 +63,11 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   }
 
   try {
-    results = await App.get_bookmark_items(folder, query, deep)
+    results = await App.get_bookmark_items({
+      folder: folder,
+      title: query,
+      deep: deep,
+    })
   }
   catch (err) {
     App.error(err)
@@ -239,24 +243,31 @@ App.filter_bookmark_nodes = (title, nodes, max) => {
   return items
 }
 
-App.get_bookmark_items = async (folder = ``, title = ``, deep = false) => {
+App.get_bookmark_items = async (args = {}) => {
+  let def_args = {
+    folder: ``,
+    title: ``,
+    deep: false,
+  }
+
+  App.def_args(def_args, args)
   await App.init_bookmarks()
   let items = App.bookmark_items_cache
   let max
 
-  if (deep) {
+  if (args.deep) {
     max = App.get_setting(`deep_max_search_items_bookmarks`)
   }
   else {
     max = App.get_setting(`max_search_items_bookmarks`)
   }
 
-  if (folder) {
-    items = items.filter(x => x.parentId === folder.id)
+  if (args.folder) {
+    items = items.filter(x => x.parentId === args.folder.id)
   }
 
-  if (title) {
-    items = App.filter_bookmark_nodes(title, items, max)
+  if (args.title) {
+    items = App.filter_bookmark_nodes(args.title, items, max)
   }
   else {
     items = items.slice(0, max)
