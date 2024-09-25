@@ -53,13 +53,11 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   if (App.bookmarks_folder) {
     folder = App.bookmarks_folder
   }
+  else if (App.get_setting(`all_bookmarks`)) {
+    folder = ``
+  }
   else {
-    if (App.get_setting(`all_bookmarks`)) {
-      folder = ``
-    }
-    else {
-      folder = await App.get_bookmarks_folder()
-    }
+    folder = await App.get_bookmarks_folder()
   }
 
   try {
