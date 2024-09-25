@@ -1087,8 +1087,7 @@ App.setup_commands = () => {
       info: `Bookmark the current page`,
     },
     {
-      name: `Bookmark To Folder`,
-      short_name: `To Folder`,
+      name: `To Folder`,
       cmd: `bookmark_items_folder`,
       modes: [`items`],
       item: true,
@@ -1100,7 +1099,7 @@ App.setup_commands = () => {
       info: `Bookmark the selected items by picking a folder`,
     },
     {
-      name: `Bookmark To Folder 2`,
+      name: `To Folder 2`,
       short_name: `To Folder`,
       cmd: `bookmark_items_folder_2`,
       modes: [`items`],
@@ -1113,8 +1112,8 @@ App.setup_commands = () => {
       info: `Bookmark the selected items by searching a folder`,
     },
     {
-      name: `Select Bookmarks`,
-      short_name: `Folders`,
+      name: `Pick Folder`,
+      short_name: `Folder`,
       cmd: `select_bookmarks_folder`,
       modes: [`items`],
       icon: bookmarks_icon,
@@ -1124,8 +1123,8 @@ App.setup_commands = () => {
       info: `Select a specific bookmarks folder to show`,
     },
     {
-      name: `Search Bookmarks`,
-      short_name: `Folders`,
+      name: `Search Folder`,
+      short_name: `Folder`,
       cmd: `search_bookmarks_folder`,
       modes: [`items`],
       icon: bookmarks_icon,
@@ -1135,7 +1134,7 @@ App.setup_commands = () => {
       info: `Search a specific bookmarks folder to show`,
     },
     {
-      name: `Create Bookmarks Folder`,
+      name: `Create Folder`,
       short_name: `Folder`,
       cmd: `create_bookmarks_folder`,
       modes: [`items`],
