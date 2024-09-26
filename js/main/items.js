@@ -1190,7 +1190,6 @@ App.build_item_window = (mode) => {
     main_top.append(tab_box)
   }
 
-
   if (tab_box && tab_box_pos === `bottom`) {
     content.append(tab_box)
   }
