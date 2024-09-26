@@ -184,6 +184,7 @@ App.settings_icons = {
   lock: `🔒`,
   browser: `🌐`,
   combos: `🍔`,
+  hover: `🔆`,
 }
 
 App.mode_icons = {

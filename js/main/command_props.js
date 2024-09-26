@@ -1154,7 +1154,7 @@ App.setup_commands = () => {
       item: true,
       icon: bookmarks_icon,
       action: (args) => {
-        App.create_bookmark_rule(args.item)
+        App.create_bookmark_rule(args.item, args.e)
       },
       info: `Create a bookmark rule`,
     },

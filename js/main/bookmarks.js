@@ -614,7 +614,7 @@ App.start_bookmark_rules = () => {
   App.bookmark_rules_ready = true
 }
 
-App.create_bookmark_rule = async (item) => {
+App.create_bookmark_rule = async (item, e) => {
   let perm = await App.ask_permission(`bookmarks`)
 
   if (!perm) {
@@ -631,7 +631,7 @@ App.create_bookmark_rule = async (item) => {
     App.edit_bookmark_rule(item, folder)
   }
 
-  App.do_select_bookmarks_folder({folders, callback, include_all: false})
+  App.do_select_bookmarks_folder({folders, callback, include_all: false, e})
 }
 
 App.edit_bookmark_rule = (item, folder) => {

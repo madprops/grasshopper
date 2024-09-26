@@ -824,79 +824,6 @@ App.build_settings = () => {
       version: 1,
       separator: true,
     },
-    hover_button: {
-      name: `Hover Button`,
-      type: `menu`,
-      value: `none`,
-      info: `This is a button that appears on the side of items, to run commands`,
-      version: 2,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: App.separator_string},
-          {text: `Left`, value: `left`},
-          {text: `Right`, value: `right`},
-        ])
-      },
-    },
-    hover_menu: {
-      name: `Hover Menu`,
-      type: `list`,
-      value: [
-        {cmd: `filter_domain`},
-        {cmd: `filter_color`},
-        {cmd: `duplicate_tabs`},
-        {cmd: `unload_tabs`},
-      ],
-      info: `Menu to show when clicking the Hover Button`,
-      version: 1,
-    },
-    hover_button_padding: {
-      name: `Hover Button Padding`,
-      type: `number`,
-      value: 7,
-      placeholder: `Px`,
-      min: 0,
-      max: App.max_padding_setting,
-      info: `Horizontal padding for the Hover Buttons`,
-      version: 1,
-    },
-    hover_button_pick: {
-      name: `Hover Button Pick`,
-      type: `checkbox`,
-      value: true,
-      info: `Pick items when right clicking the Hover Button`,
-      separator: true,
-      version: 1,
-    },
-    extra_menu_mode: {
-      name: `Extra Menu Mode`,
-      type: `menu`,
-      value: `none`,
-      info: `How to show the Extra Menu on right click
-      Either on its own submenu, flat at the root level, or totally replace the Item Menu`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: App.separator_string},
-          {text: `Normal`, value: `normal`},
-          {text: `Flat`, value: `flat`},
-          {text: `Total`, value: `total`},
-        ])
-      },
-    },
-    extra_menu: {
-      name: `Extra Menu`,
-      type: `list`,
-      value: [
-        {cmd: `open_new_tab`, middle: `insert_header`},
-        {cmd: `add_jump_tag_1`, middle: `remove_jump_tag_1`},
-      ],
-      info: `Extra menu to show when right clicking items`,
-      separator: true,
-      version: 4,
-    },
     show_pinline: {
       name: `Show Pinline`,
       type: `menu`,
@@ -973,6 +900,56 @@ App.build_settings = () => {
   }
 
   add_props()
+  category = `hover`
+
+  props = {
+    hover_button: {
+      name: `Hover Button`,
+      type: `menu`,
+      value: `none`,
+      info: `This is a button that appears on the side of items, to run commands`,
+      version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: App.separator_string},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+        ])
+      },
+    },
+    hover_menu: {
+      name: `Hover Menu`,
+      type: `list`,
+      value: [
+        {cmd: `filter_domain`},
+        {cmd: `filter_color`},
+        {cmd: `duplicate_tabs`},
+        {cmd: `unload_tabs`},
+      ],
+      info: `Menu to show when clicking the Hover Button`,
+      version: 1,
+    },
+    hover_button_padding: {
+      name: `Hover Button Padding`,
+      type: `number`,
+      value: 7,
+      placeholder: `Px`,
+      min: 0,
+      max: App.max_padding_setting,
+      info: `Horizontal padding for the Hover Buttons`,
+      version: 1,
+    },
+    hover_button_pick: {
+      name: `Hover Button Pick`,
+      type: `checkbox`,
+      value: true,
+      info: `Pick items when right clicking the Hover Button`,
+      version: 1,
+    },
+  }
+
+  add_props()
   category = `menus`
 
   props = {
@@ -1040,8 +1017,36 @@ App.build_settings = () => {
         {cmd: `reopen_tab`},
         {cmd: `select_all_items`},
       ],
+      separator: true,
       info: `Menu to show when right clicking empty space`,
       version: 1,
+    },
+    extra_menu_mode: {
+      name: `Extra Menu Mode`,
+      type: `menu`,
+      value: `none`,
+      info: `How to show the Extra Menu on right click
+      Either on its own submenu, flat at the root level, or totally replace the Item Menu`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: App.separator_string},
+          {text: `Normal`, value: `normal`},
+          {text: `Flat`, value: `flat`},
+          {text: `Total`, value: `total`},
+        ])
+      },
+    },
+    extra_menu: {
+      name: `Extra Menu`,
+      type: `list`,
+      value: [
+        {cmd: `open_new_tab`, middle: `insert_header`},
+        {cmd: `add_jump_tag_1`, middle: `remove_jump_tag_1`},
+      ],
+      info: `Extra menu to show when right clicking items`,
+      version: 4,
     },
   }
 
@@ -3749,6 +3754,11 @@ App.build_settings = () => {
       info: `Configure the Tab Box
       This is a component that appears below or above the tabs
       It shows different kinds of tabs so you can jump around`,
+    },
+    hover: {
+      info: `Configure the Hover Button
+      This is a button that appears when you hover over the edges of items
+      Clicking the button presents a menu with commands`
     },
     footer: {
       info: `Configure the Footer
