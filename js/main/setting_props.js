@@ -954,7 +954,7 @@ App.build_settings = () => {
         {cmd: `deep_search`},
         {cmd: `show_search_media_menu`},
         {cmd: `bookmark_page`},
-        {cmd: `select_bookmarks_folder`},
+        {cmd: `pick_bookmarks_folder`},
       ],
       info: `Menu to show when clicking the bookmarks menu`,
       version: 1,
