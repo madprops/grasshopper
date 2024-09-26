@@ -466,7 +466,7 @@ App.do_apply_theme = (args = {}) => {
     let footer_poss = [`top`, `bottom`]
 
     for (let item of footer_poss) {
-      main.classList.remove(`active_background_${item}`)
+      main.classList.remove(`footer_position_${item}`)
     }
 
     let footer_pos = App.get_setting(`footer_position`)

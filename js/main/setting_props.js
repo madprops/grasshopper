@@ -1244,6 +1244,7 @@ App.build_settings = () => {
       value: [
         {cmd: `copy_item_url`},
         {cmd: `copy_item_title`},
+        {cmd: `settings_category_footer`},
       ],
       info: `Menu to show when right clicking the footer`,
       version: 1,
