@@ -219,6 +219,13 @@ App.start_domain_rules = () => {
         exact: `Match exact URL instead of startsWith
         If in regex mode it makes the case sensitive`,
         by_title: `Match by title instead of URL`,
+        color: `Add this color to matches`,
+        title: `Add this title to matches`,
+        icon: `Add this icon to matches`,
+        tags: `Add these tags to matches`,
+        notes: `Add these notes to matches`,
+        split_top: `Add a split top to matches`,
+        split_bottom: `Add a split bottom to matches`,
       },
       list_text: (items) => {
         return items.domain

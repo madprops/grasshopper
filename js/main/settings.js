@@ -1325,6 +1325,10 @@ App.setup_settings_addlist = () => {
       required: {
         b: true,
       },
+      tooltips: {
+        a: `Term A`,
+        b: `Term B`,
+      },
       title: props.name,
     }))
   }))
@@ -1346,6 +1350,9 @@ App.setup_settings_addlist = () => {
       },
       list_text: (item) => {
         return item.filter
+      },
+      tooltips: {
+        filter: `Add a custom filter`,
       },
       title: props.name,
     }))
@@ -1397,6 +1404,13 @@ App.setup_settings_addlist = () => {
       },
       required: {
         cmd: true,
+      },
+      tooltips: {
+        key: `When this key is pressed`,
+        cmd: `Run this command`,
+        ctrl: `If Ctrl is pressed`,
+        shift: `If Shift is pressed`,
+        alt: `If Alt is pressed`,
       },
       title: props.name,
     }))
@@ -1554,6 +1568,9 @@ App.setup_settings_addlist = () => {
             return cmd_name(item.cmd)
           },
           automenu: true,
+          tooltips: {
+            cmd: `Add a command`,
+          },
           title: props.name,
         }))
       }))
@@ -1590,6 +1607,11 @@ App.setup_settings_addlist = () => {
       },
       required: {
         value: true,
+      },
+      tooltips: {
+        name: `Name of the color`,
+        value: `Value of the color`,
+        text: `Color of the text`,
       },
       title: props.name,
     }))
@@ -1628,6 +1650,11 @@ App.setup_settings_addlist = () => {
         url: (url) => {
           return App.fix_url(url)
         },
+      },
+      tooltips: {
+        name: `Name of the URL item`,
+        url: `The URL of this item`,
+        icon: `Icon for this item`,
       },
       title: props.name,
     }))

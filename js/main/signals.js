@@ -297,12 +297,16 @@ App.start_signals_addlist = () => {
         method: true,
       },
       tooltips: {
+        url: `URL to send the request to`,
         arguments: `JSON string to use as arguments for POST`,
         feedback: `Show the response in a popup`,
         update_title: `Update the Title with the response`,
         send_tabs: `Send all open tab URLs as the 'tabs' argument`,
         interval: `Run this signal every x seconds`,
         startup: `Run this signal at startup`,
+        icon: `Icon to show for the signal`,
+        method: `HTTP method to use`,
+        name: `Name of the signal`,
       },
       process: {
         url: (url) => {
