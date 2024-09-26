@@ -568,7 +568,7 @@ App.command_name = (command, force_short = false) => {
     return command.name
   }
 }
-// name, item, check
+
 App.custom_menu_items = (args = {}) => {
   let def_args = {
     short: false,
