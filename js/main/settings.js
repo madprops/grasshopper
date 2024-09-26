@@ -1139,7 +1139,7 @@ App.show_all_settings = () => {
 }
 
 App.get_background_effect = (value) => {
-  for (let key in App.background_effects) {
+  for (let key in App.remove_separators(App.background_effects)) {
     let eff = App.background_effects[key]
 
     if (eff.value === value) {

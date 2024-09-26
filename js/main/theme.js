@@ -159,28 +159,30 @@ App.do_apply_theme = (args = {}) => {
       document.body.classList.add(`no_rounded`)
     }
 
-    for (let eff of App.effects) {
+    let effects = App.remove_separators(App.effects)
+
+    for (let eff of effects) {
       main.classList.remove(`hover_effect_${eff.value}`)
     }
 
     let hover_effect = App.get_setting(`hover_effect`)
     main.classList.add(`hover_effect_${hover_effect}`)
 
-    for (let eff of App.effects) {
+    for (let eff of effects) {
       main.classList.remove(`selected_effect_${eff.value}`)
     }
 
     let selected_effect = App.get_setting(`selected_effect`)
     main.classList.add(`selected_effect_${selected_effect}`)
 
-    for (let eff of App.effects) {
+    for (let eff of effects) {
       main.classList.remove(`tab_box_hover_effect_${eff.value}`)
     }
 
     let tbh_eff = App.get_setting(`tab_box_hover_effect`)
     main.classList.add(`tab_box_hover_effect_${tbh_eff}`)
 
-    for (let eff of App.effects) {
+    for (let eff of effects) {
       main.classList.remove(`tab_box_active_effect_${eff.value}`)
     }
 
@@ -615,7 +617,7 @@ App.apply_background_effects = (effect, tiles) => {
     bg.classList.remove(cls)
   }
 
-  let effects = App.background_effects.map(x => x.value)
+  let effects = App.remove_separators(App.background_effects).map(x => x.value)
 
   for (let eff of effects) {
     bg_rem(eff)
