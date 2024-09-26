@@ -125,6 +125,10 @@ NeedContext.show = (args = {}) => {
 
   NeedContext.def_args(def_args, args)
 
+  if (!args.items.length) {
+    return
+  }
+
   if (!NeedContext.created) {
     NeedContext.create()
   }
