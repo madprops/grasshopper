@@ -920,6 +920,57 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
+    show_tooltips: {
+      name: `Show Tooltips`,
+      type: `checkbox`,
+      value: true,
+      info: `Show tooltips when hovering items`,
+      version: 1,
+    },
+    show_scroller: {
+      name: `Show Scroller`,
+      type: `checkbox`,
+      value: true,
+      info: `Show a button at the top of a scrolled list to return to the top`,
+      version: 1,
+    },
+    show_feedback: {
+      name: `Show Feedback`,
+      type: `checkbox`,
+      value: true,
+      info: `Show feedback messages on certain actions`,
+      version: 1,
+    },
+    hide_pins: {
+      name: `Hide Pins`,
+      type: `checkbox`,
+      value: false,
+      info: `Don't show the pins in All filter mode.
+      Might be used in combination with the Tab Box or Show Pins`,
+      version: 1,
+    },
+    active_trace: {
+      name: `Active Trace`,
+      type: `checkbox`,
+      value: false,
+      info: `Show numbers as a trace on recently used tabs
+      It goes from 1 to 9`,
+      version: 1,
+    },
+    show_scrollbars: {
+      name: `Show Scrollbars`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the regular scrollbars
+      Else scrollbars are disabled`,
+      version: 1,
+    },
+  }
+
+  add_props()
+  category = `menus`
+
+  props = {
     global_menu: {
       name: `Global Menu`,
       type: `list`,
@@ -964,7 +1015,6 @@ App.build_settings = () => {
         {cmd: `bookmark_page`},
         {cmd: `pick_bookmarks_folder`},
       ],
-      separator: true,
       info: `Menu to show when clicking the bookmarks menu`,
       version: 1,
     },
@@ -985,53 +1035,7 @@ App.build_settings = () => {
         {cmd: `reopen_tab`},
         {cmd: `select_all_items`},
       ],
-      separator: true,
       info: `Menu to show when right clicking empty space`,
-      version: 1,
-    },
-    show_tooltips: {
-      name: `Show Tooltips`,
-      type: `checkbox`,
-      value: true,
-      info: `Show tooltips when hovering items`,
-      version: 1,
-    },
-    show_scroller: {
-      name: `Show Scroller`,
-      type: `checkbox`,
-      value: true,
-      info: `Show a button at the top of a scrolled list to return to the top`,
-      version: 1,
-    },
-    show_feedback: {
-      name: `Show Feedback`,
-      type: `checkbox`,
-      value: true,
-      info: `Show feedback messages on certain actions`,
-      version: 1,
-    },
-    hide_pins: {
-      name: `Hide Pins`,
-      type: `checkbox`,
-      value: false,
-      info: `Don't show the pins in All filter mode.
-      Might be used in combination with the Tab Box or Show Pins`,
-      version: 1,
-    },
-    active_trace: {
-      name: `Active Trace`,
-      type: `checkbox`,
-      value: false,
-      info: `Show numbers as a trace on recently used tabs
-      It goes from 1 to 9`,
-      version: 1,
-    },
-    show_scrollbars: {
-      name: `Show Scrollbars`,
-      type: `checkbox`,
-      value: false,
-      info: `Show the regular scrollbars
-      Else scrollbars are disabled`,
       version: 1,
     },
   }
@@ -3673,6 +3677,9 @@ App.build_settings = () => {
     show: {
       info: `Hide or show interface components
       Set component behavior and their menus`,
+    },
+    menus: {
+      info: `Configure some of the menus`,
     },
     icons: {
       info: `Customize the icons used by items

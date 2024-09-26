@@ -167,6 +167,7 @@ App.settings_icons = {
   media: `📷`,
   icons: `😀`,
   show: `👁️`,
+  menus: `📑`,
   tab_box: `📦`,
   favorites: `❤️`,
   taglist: `✝️`,

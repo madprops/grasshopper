@@ -22,6 +22,7 @@ App.setup_commands = () => {
   let combo_icon = App.settings_icons.combos
   let signal_icon = App.settings_icons.signals
   let browser_icon = App.settings_icons.browser
+  let menu_icon = App.settings_icons.menus
 
   let time_icon = App.time_icon
   let command_icon = App.command_icon
@@ -1225,7 +1226,7 @@ App.setup_commands = () => {
       short_name: `Actions`,
       cmd: `show_actions_menu`,
       modes: [`items`],
-      icon: command_icon,
+      icon: menu_icon,
       action: (args) => {
         App.show_actions_menu(args.mode)
       },
