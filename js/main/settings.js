@@ -296,18 +296,24 @@ App.setting_setup_lists = (category) => {
 
 App.settings_make_menu = (setting, opts, action = () => {}) => {
   let no_wrap = [`font_size`, `width`, `height`, `background_opacity`, `font_size`]
+  let btn_id = `settings_menubutton_${setting}`
 
-  App[`settings_menubutton_${setting}`] = Menubutton.create({
+  App[btn_id] = Menubutton.create({
     opts,
     button: DOM.el(`#settings_${setting}`),
     selected: App.get_setting(setting),
     wrap: !no_wrap.includes(setting),
     on_change: (args, opt) => {
+      console.log(44)
       App.set_setting({setting, value: opt.value, action: true})
       action()
     },
     get_value: () => {
       return App.get_setting(setting)
+    },
+    on_middle_click: () => {
+      let value = App.get_default_setting(setting)
+      App[btn_id].set(value)
     },
   })
 

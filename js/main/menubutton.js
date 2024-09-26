@@ -48,7 +48,12 @@ Menubutton.create = (args = {}) => {
 
   DOM.ev(args.button, `auxclick`, (e) => {
     if (e.button === 1) {
-      args.select_first()
+      if (args.on_middle_click) {
+        args.on_middle_click()
+      }
+      else {
+        args.select_first()
+      }
     }
   })
 

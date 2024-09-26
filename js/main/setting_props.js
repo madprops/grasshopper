@@ -1266,7 +1266,7 @@ App.build_settings = () => {
       name: `Footer Align`,
       type: `menu`,
       value: `left`,
-      info: `Where to place the Footer`,
+      info: `How to align the footer text`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
