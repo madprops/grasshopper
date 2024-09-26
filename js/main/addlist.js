@@ -350,6 +350,7 @@ Addlist.remove = (args = {}) => {
   let def_args = {
     force: false,
     show_list: false,
+    index: 0,
   }
 
   App.def_args(def_args, args)
@@ -386,7 +387,7 @@ Addlist.remove = (args = {}) => {
       Addlist.after(args.id, new_lines)
 
       if (args.show_list) {
-        Addlist.list({id: args.id, feedback: false})
+        Addlist.list({id: args.id, feedback: false, index: args.index})
       }
 
       Addlist.hide()
@@ -800,6 +801,7 @@ Addlist.list = (args) => {
           value: line[oargs.pk],
           show_list: true,
           force: true,
+          index: i,
         })
       },
       info,
@@ -821,6 +823,7 @@ Addlist.list = (args) => {
     expand: true,
     margin: btn.clientHeight,
     draggable: true,
+    index: args.index || 0,
     on_drag: (start, end) => {
       Addlist.move_item(args.id, start, end)
     },
