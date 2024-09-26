@@ -35,7 +35,17 @@ App.create_actions_menu = (mode) => {
 }
 
 App.show_actions_menu = (mode, e) => {
+  let menu
+  let global = App.get_setting(`global_menu`)
+
+  if (global.length) {
+    menu = `global_menu`
+  }
+  else {
+    menu = `${mode}_menu`
+  }
+
   let btn = DOM.el(`#${mode}_actions`)
-  let items = App.custom_menu_items({name: `${mode}_menu`})
+  let items = App.custom_menu_items({name: menu})
   App.show_context({items, e, element: btn})
 }

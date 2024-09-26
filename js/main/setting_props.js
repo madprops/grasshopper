@@ -920,6 +920,13 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
+    global_menu: {
+      name: `Global Menu`,
+      type: `list`,
+      value: [],
+      info: `Make this the menu for all modes`,
+      version: 1,
+    },
     tabs_menu: {
       name: `Tabs Menu`,
       type: `list`,
@@ -956,6 +963,7 @@ App.build_settings = () => {
         {cmd: `bookmark_page`},
         {cmd: `pick_bookmarks_folder`},
       ],
+      separator: true,
       info: `Menu to show when clicking the bookmarks menu`,
       version: 1,
     },

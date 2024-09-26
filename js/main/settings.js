@@ -1423,6 +1423,7 @@ App.setup_settings_addlist = () => {
     `empty_menu`,
     `footer_menu`,
     `pinline_menu`,
+    `global_menu`,
     `tabs_menu`,
     `history_menu`,
     `bookmarks_menu`,
