@@ -577,10 +577,6 @@ App.custom_menu_items = (args = {}) => {
   App.def_args(def_args, args)
   let cmds = App.get_setting(args.name)
 
-  if (App.get_setting(`short_commands`)) {
-    args.short = true
-  }
-
   return App.show_cmds_menu({
     cmds,
     from: args.name,
