@@ -1,4 +1,4 @@
-// NeedContext v7.1
+// NeedContext v7.2
 
 // Main object
 const NeedContext = {}
@@ -159,6 +159,10 @@ NeedContext.show = (args = {}) => {
 
   if (args.index === undefined) {
     args.index = 0
+  }
+
+  if (args.index >= args.items.length) {
+    args.index = args.items.length - 1
   }
 
   let selected_index
