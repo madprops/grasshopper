@@ -245,6 +245,7 @@ App.light_colors = {
 
 App.effects = [
   {text: `None`, value: `none`},
+  {text: App.separator_string},
   {text: `Glow`, value: `glow`},
   {text: `Opacity`, value: `opacity`},
   {text: `Background`, value: `background`},
@@ -256,6 +257,7 @@ App.effects = [
 
 App.background_effects = [
   {text: `None`, value: `none`},
+  {text: App.separator_string},
   {text: `Gray`, value: `grayscale`},
   {text: `Invert`, value: `invert`},
   {text: `Rotate 1`, value: `rotate_1`},
@@ -266,6 +268,7 @@ App.background_effects = [
 
 App.color_modes = [
   {text: `None`, value: `none`},
+  {text: App.separator_string},
   {text: `Normal`, value: `normal`},
   {text: `Tab Box`, value: `tab_box`},
   {text: `Everywhere`, value: `everywhere`},
@@ -273,6 +276,7 @@ App.color_modes = [
 
 App.color_displays = [
   {text: `None`, value: `none`},
+  {text: App.separator_string},
   {text: `Icon`, value: `icon`},
   {text: `Border`, value: `border`},
   {text: `Border & Icon`, value: `border_icon`},
@@ -284,6 +288,7 @@ App.color_displays = [
 
 App.warn_modes = [
   {text: `Never`, value: `never`},
+  {text: App.separator_string},
   {text: `Multiple`, value: `multiple`},
   {text: `Special`, value: `special`},
   {text: `Always`, value: `always`},
@@ -291,12 +296,14 @@ App.warn_modes = [
 
 App.media_modes = [
   {text: `Never`, value: `never`},
+  {text: App.separator_string},
   {text: `On Icon Click`, value: `icon`},
   {text: `On Item Click`, value: `item`},
 ]
 
 App.loading_effects = [
   {text: `None`, value: `none`},
+  {text: App.separator_string},
   {text: `Icon`, value: `icon`},
   {text: `Icon Spin`, value: `icon_spin`},
   {text: `Icon Fade`, value: `icon_fade`},

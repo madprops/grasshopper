@@ -64,6 +64,7 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `Normal`, value: `normal`},
           {text: `Big`, value: `big`},
           {text: `Huge`, value: `huge`},
@@ -89,6 +90,7 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `Spin`, value: `spin`},
           {text: `Invert`, value: `invert`},
           {text: `Border`, value: `border`},
@@ -787,6 +789,7 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `12 hours`, value: `show_12`},
           {text: `24 hours`, value: `show_24`},
         ])
@@ -830,6 +833,7 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
         ])
@@ -875,6 +879,7 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `Normal`, value: `normal`},
           {text: `Flat`, value: `flat`},
           {text: `Total`, value: `total`},
@@ -1125,6 +1130,7 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `Normal`, value: `normal`},
           {text: `Big`, value: `big`},
           {text: `Huge`, value: `huge`},
@@ -1319,7 +1325,7 @@ App.build_settings = () => {
     wheel_up_shift_footer: {
       name: `Shift Wheel Up Footer`,
       type: `menu`,
-      value: `none`,
+      value: `page_up`,
       info: `Command to run when using the mousewheel up on the Footer while holding Shift`,
       version: 1,
       setup: (key) => {
@@ -1329,7 +1335,7 @@ App.build_settings = () => {
     wheel_down_shift_footer: {
       name: `Shift Wheel Down Footer`,
       type: `menu`,
-      value: `none`,
+      value: `page_down`,
       info: `Command to run when using the mousewheel down on the Footer while holding Shift`,
       version: 1,
       setup: (key) => {
@@ -1867,6 +1873,7 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `Menu`, value: `menu`},
           {text: `Edit`, value: `edit`},
           {text: `Filter`, value: `filter`},
@@ -2363,6 +2370,7 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `Select`, value: `select`},
           {text: `Activate`, value: `activate`},
           {text: `First`, value: `first`},
@@ -2379,6 +2387,7 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
           {text: `Both`, value: `both`},
@@ -2903,6 +2912,7 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
+          {text: App.separator_string},
           {text: `Select`, value: `select`},
           {text: `Activate`, value: `activate`},
         ])
