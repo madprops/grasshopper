@@ -1579,6 +1579,7 @@ App.setup_settings_addlist = () => {
   }
 
   App.start_domain_rules()
+  App.start_bookmark_rules()
   App.start_signals_addlist()
 
   id = `settings_colors`
@@ -1656,55 +1657,6 @@ App.setup_settings_addlist = () => {
         name: `Name of the URL item`,
         url: `The URL of this item`,
         icon: `Icon for this item`,
-      },
-      title: props.name,
-    }))
-  }))
-
-  id = `settings_bookmark_rules`
-  props = App.setting_props.bookmark_rules
-
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
-    element: Addlist.register(Object.assign({}, regobj, {
-      id,
-      keys: [`value`, `folder`, `mode`],
-      widgets: {
-        value: `text`,
-        folder: `text`,
-        mode: `menu`,
-      },
-      labels: {
-        value: `Value`,
-        folder: `Folder`,
-        mode: `Mode`,
-      },
-      list_text: (item) => {
-        return App.remove_protocol(item.value)
-      },
-      required: {
-        value: true,
-        folder: true,
-      },
-      sources: {
-        mode: () => {
-          return [
-            {text: `URL Starts With`, value: `starts_with_url`},
-            {text: `URL Ends With`, value: `ends_with_url`},
-            {text: `URL Includes`, value: `includes_url`},
-            {text: `URL Regex`, value: `regex_url`},
-            {text: App.separator_string},
-            {text: `Title Starts With`, value: `starts_with_title`},
-            {text: `Title Ends With`, value: `ends_with_title`},
-            {text: `Title Includes`, value: `includes_title`},
-            {text: `Title Regex`, value: `regex_title`},
-          ]
-        },
-      },
-      tooltips: {
-        value: `Check the item URLs or titles with this`,
-        folder: `Bookmark matches to this folder`,
-        mode: `Match mode for URL comparison`,
       },
       title: props.name,
     }))

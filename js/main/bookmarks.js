@@ -554,3 +554,95 @@ App.check_bookmark_rules = (item) => {
     }
   }
 }
+
+App.start_bookmark_rules = () => {
+  if (App.bookmark_rules_ready) {
+    return
+  }
+
+  App.debug(`Start domain rules`)
+  let [popobj, regobj] = App.get_setting_addlist_objects()
+  let id = `settings_bookmark_rules`
+  let props = App.setting_props.bookmark_rules
+
+  App.create_popup(Object.assign({}, popobj, {
+    id: `addlist_${id}`,
+    element: Addlist.register(Object.assign({}, regobj, {
+      id,
+      keys: [`value`, `folder`, `mode`],
+      widgets: {
+        value: `text`,
+        folder: `text`,
+        mode: `menu`,
+      },
+      labels: {
+        value: `Value`,
+        folder: `Folder`,
+        mode: `Mode`,
+      },
+      list_text: (item) => {
+        return App.remove_protocol(item.value)
+      },
+      required: {
+        value: true,
+        folder: true,
+      },
+      sources: {
+        mode: () => {
+          return [
+            {text: `URL Starts With`, value: `starts_with_url`},
+            {text: `URL Ends With`, value: `ends_with_url`},
+            {text: `URL Includes`, value: `includes_url`},
+            {text: `URL Regex`, value: `regex_url`},
+            {text: App.separator_string},
+            {text: `Title Starts With`, value: `starts_with_title`},
+            {text: `Title Ends With`, value: `ends_with_title`},
+            {text: `Title Includes`, value: `includes_title`},
+            {text: `Title Regex`, value: `regex_title`},
+          ]
+        },
+      },
+      tooltips: {
+        value: `Check the item URLs or titles with this`,
+        folder: `Bookmark matches to this folder`,
+        mode: `Match mode for URL comparison`,
+      },
+      title: props.name,
+    }))
+  }))
+
+  App.bookmark_rules_ready = true
+}
+
+App.create_bookmark_rule = async (item) => {
+  let perm = await App.ask_permission(`bookmarks`)
+
+  if (!perm) {
+    return
+  }
+
+  let folders = await App.get_bookmark_folders()
+
+  if (!folders.length) {
+    return
+  }
+
+  function callback(folder) {
+    App.edit_bookmark_rule(item, folder)
+  }
+
+  App.do_select_bookmarks_folder({folders, callback, include_all: false})
+}
+
+App.edit_bookmark_rule = (item, folder) => {
+  App.start_bookmark_rules()
+  let id = `settings_bookmark_rules`
+
+  let items = {
+    value: item.hostname,
+    folder: folder.title,
+    mode: `starts_with_url`,
+  }
+
+  Addlist.edit({id, items, edit: false})
+}

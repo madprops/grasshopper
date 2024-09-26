@@ -226,9 +226,9 @@ App.set_signals_info = (amount) => {
 }
 
 App.edit_signal = (index) => {
-  let sett = `settings_signals`
+  let id = `settings_signals`
   App.start_signals_addlist()
-  let items = Addlist.get_data(sett)[index]
+  let items = Addlist.get_data(id)[index]
 
   let after_done = () => {
     App.start_signal_intervals()
@@ -236,7 +236,7 @@ App.edit_signal = (index) => {
   }
 
   let args = {
-    id: sett,
+    id,
     items,
     index,
     edit: true,

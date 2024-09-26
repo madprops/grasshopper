@@ -1147,6 +1147,18 @@ App.setup_commands = () => {
       info: `Create a new bookmarks folder`,
     },
     {
+      name: `Bookmark Rule`,
+      short_name: `Rule`,
+      cmd: `create_bookmark_rule`,
+      modes: [`items`],
+      item: true,
+      icon: bookmarks_icon,
+      action: (args) => {
+        App.create_bookmark_rule(args.item)
+      },
+      info: `Create a bookmark rule`,
+    },
+    {
       name: `Copy URL`,
       cmd: `copy_item_url`,
       modes: [`items`],
