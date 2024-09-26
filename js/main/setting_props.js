@@ -1262,6 +1262,20 @@ App.build_settings = () => {
         ])
       },
     },
+    footer_align: {
+      name: `Footer Align`,
+      type: `menu`,
+      value: `left`,
+      info: `Where to place the Footer`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Left`, value: `left`},
+          {text: `Center`, value: `center`},
+          {text: `Right`, value: `right`},
+        ])
+      },
+    },
     middle_click_footer: {
       name: `Middle Click Footer`,
       type: `menu`,

@@ -1145,6 +1145,7 @@ a:hover
   display: flex;
   align-items: center;
   height: 100%;
+  justify-content: var(--footer_align);
 }
 
 .favorites_empty {

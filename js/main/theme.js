@@ -471,7 +471,16 @@ App.do_apply_theme = (args = {}) => {
 
     let footer_pos = App.get_setting(`footer_position`)
     main.classList.add(`footer_position_${footer_pos}`)
+    let footer_align = App.get_setting(`footer_align`)
 
+    let justify_map = {
+      left: `flex-start`,
+      center: `center`,
+      right: `flex-end`,
+    }
+
+    let footer_justify = justify_map[footer_align]
+    App.set_css_var(`footer_align`, footer_justify)
     let cb_padding = App.get_setting(`close_button_padding`)
     App.set_css_var(`close_button_padding`, `${cb_padding}px`)
 
