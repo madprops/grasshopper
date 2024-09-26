@@ -463,6 +463,15 @@ App.do_apply_theme = (args = {}) => {
       main.classList.add(`main_title_no_wrap`)
     }
 
+    let footer_poss = [`top`, `bottom`]
+
+    for (let item of footer_poss) {
+      main.classList.remove(`active_background_${item}`)
+    }
+
+    let footer_pos = App.get_setting(`footer_position`)
+    main.classList.add(`footer_position_${footer_pos}`)
+
     let cb_padding = App.get_setting(`close_button_padding`)
     App.set_css_var(`close_button_padding`, `${cb_padding}px`)
 

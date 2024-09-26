@@ -192,8 +192,18 @@ select {
   padding-bottom: 0.71rem;
 }
 
-.with_main_title .window_top_mode {
+.with_main_title .window_top_mode,
+.footer_position_top .window_top_mode
+{
   padding-top: 0;
+}
+
+.with_main_title.footer_position_top .footer {
+  margin-bottom: 0;
+}
+
+.footer_position_top .footer {
+  margin-bottom: 0.45rem;
 }
 
 .colored_top {

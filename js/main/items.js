@@ -1127,6 +1127,8 @@ App.build_item_window = (mode) => {
   let container = DOM.create(`div`, `item_container`, `${mode}_container`)
   let fav_pos = App.get_setting(`favorites_position`)
   let favorites_bar, scroller
+  let footer = App.create_footer(mode)
+  let footer_position = App.get_setting(`footer_position`)
 
   if (App.favorites_bar_enabled()) {
     favorites_bar = App.create_favorites_bar(mode)
@@ -1172,6 +1174,10 @@ App.build_item_window = (mode) => {
   let btns = DOM.create(`div`, `item_top_buttons`)
   let bar = DOM.create(`div`, `item_top_bar`, `item_top_bar_${mode}`)
 
+  if (footer && (footer_position === `top`)) {
+    main_top.append(footer)
+  }
+
   main_top.append(title)
   main_top.append(btns)
   main_top.append(bar)
@@ -1184,13 +1190,12 @@ App.build_item_window = (mode) => {
     main_top.append(tab_box)
   }
 
-  let footer = App.create_footer(mode)
 
   if (tab_box && tab_box_pos === `bottom`) {
     content.append(tab_box)
   }
 
-  if (footer) {
+  if (footer && (footer_position === `bottom`)) {
     content.append(footer)
   }
 

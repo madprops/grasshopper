@@ -1248,12 +1248,24 @@ App.build_settings = () => {
       info: `Menu to show when right clicking the footer`,
       version: 1,
     },
+    footer_position: {
+      name: `Footer Position`,
+      type: `menu`,
+      value: `bottom`,
+      info: `Where to place the Footer`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Top`, value: `top`},
+          {text: `Bottom`, value: `bottom`},
+        ])
+      },
+    },
     middle_click_footer: {
       name: `Middle Click Footer`,
       type: `menu`,
       value: `copy_item_url`,
       info: `Command to run when middle clicking the Footer`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -1294,7 +1306,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Command to run when using the mousewheel down on the Footer while holding Shift`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
