@@ -304,7 +304,6 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     selected: App.get_setting(setting),
     wrap: !no_wrap.includes(setting),
     on_change: (args, opt) => {
-      console.log(44)
       App.set_setting({setting, value: opt.value, action: true})
       action()
     },
