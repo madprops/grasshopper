@@ -541,7 +541,10 @@ App.trigger_title = (el, name) => {
     let cmd = App.get_command(dcmd)
 
     if (cmd) {
-      if (name.startsWith(`middle_click`)) {
+      if (name.startsWith(`click`)) {
+        el.title += `\nClick: ${cmd.name}`
+      }
+      else if (name.startsWith(`middle_click`)) {
         el.title += `\nMiddle Click: ${cmd.name}`
       }
       else if (name.startsWith(`double_click`)) {

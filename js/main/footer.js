@@ -91,8 +91,7 @@ App.create_footer = (mode) => {
   let footer_info = DOM.create(`div`, `footer_info`, `${mode}_footer_info`)
 
   if (tips) {
-    let click = App.get_cmd_name(`go_to_bottom`)
-    footer_info.title = `Click: ${click}`
+    App.trigger_title(footer_info, `click_footer`)
     App.trigger_title(footer_info, `middle_click_footer`)
   }
 
@@ -111,7 +110,8 @@ App.create_footer = (mode) => {
       return
     }
 
-    App.goto_bottom(mode)
+    let cmd = App.get_setting(`click_footer`)
+    App.run_command({cmd, from: `footer`, e})
   })
 
   DOM.ev(footer, `contextmenu`, (e) => {

@@ -1276,6 +1276,16 @@ App.build_settings = () => {
         ])
       },
     },
+    click_footer: {
+      name: `Click Footer`,
+      type: `menu`,
+      value: `go_to_bottom`,
+      info: `Command to run when clicking the Footer`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     middle_click_footer: {
       name: `Middle Click Footer`,
       type: `menu`,
