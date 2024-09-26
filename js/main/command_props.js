@@ -379,6 +379,7 @@ App.setup_commands = () => {
 
     settings_categories.push({
       name,
+      short_name: c_name,
       cmd: `settings_category_${category}`,
       icon,
       action: (args) => {
