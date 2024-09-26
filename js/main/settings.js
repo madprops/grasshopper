@@ -1322,10 +1322,10 @@ App.setup_settings_addlist = () => {
       list_text: (item) => {
         return `${item.a} = ${item.b}`
       },
-      title: props.name,
       required: {
         b: true,
       },
+      title: props.name,
     }))
   }))
 
@@ -1395,10 +1395,10 @@ App.setup_settings_addlist = () => {
         let cmd = cmd_name(item.cmd)
         return `${item.key} = ${cmd}`
       },
-      title: props.name,
       required: {
         cmd: true,
       },
+      title: props.name,
     }))
   }))
 
@@ -1464,7 +1464,6 @@ App.setup_settings_addlist = () => {
           list_text: (item) => {
             return cmd_name(item.cmd)
           },
-          title: props.name,
           tooltips: {
             cmd: `Command on Click`,
             middle: `Command on Middle Click`,
@@ -1472,6 +1471,7 @@ App.setup_settings_addlist = () => {
             ctrl: `Command on Ctrl + Click`,
             alt: `Command on Alt + Click`,
           },
+          title: props.name,
         }))
       }))
     }
@@ -1510,11 +1510,11 @@ App.setup_settings_addlist = () => {
           list_text: (item) => {
             return cmd_name(item.cmd)
           },
-          title: props.name,
           tooltips: {
             cmd: `Command on Click`,
           },
           automenu: true,
+          title: props.name,
         }))
       }))
     }
@@ -1553,8 +1553,8 @@ App.setup_settings_addlist = () => {
           list_text: (item) => {
             return cmd_name(item.cmd)
           },
-          title: props.name,
           automenu: true,
+          title: props.name,
         }))
       }))
     }
@@ -1672,11 +1672,11 @@ App.setup_settings_addlist = () => {
             {text: `Title Regex`, value: `regex_title`},
           ]
         },
-        tooltips: {
-          value: `Check the item URLs or titles with this`,
-          folder: `Bookmark matches to this folder`,
-          mode: `Match mode for URL comparison`,
-        },
+      },
+      tooltips: {
+        value: `Check the item URLs or titles with this`,
+        folder: `Bookmark matches to this folder`,
+        mode: `Match mode for URL comparison`,
       },
       title: props.name,
     }))
