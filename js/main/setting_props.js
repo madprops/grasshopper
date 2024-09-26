@@ -3679,7 +3679,7 @@ App.build_settings = () => {
       Set component behavior and their menus`,
     },
     menus: {
-      info: `Configure some of the menus`,
+      info: `Configure the Actions Menu for each mode like Tabs, and more`,
     },
     icons: {
       info: `Customize the icons used by items
