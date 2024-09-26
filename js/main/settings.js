@@ -1640,26 +1640,41 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id,
-      keys: [`url`, `folder`],
-      pk: `url`,
+      keys: [`value`, `folder`, `mode`],
       widgets: {
-        url: `text`,
+        value: `text`,
         folder: `text`,
+        mode: `menu`,
       },
       labels: {
-        url: `URL`,
+        value: `Value`,
         folder: `Folder`,
+        mode: `Mode`,
       },
       list_text: (item) => {
-        return App.remove_protocol(item.url)
+        return App.remove_protocol(item.value)
       },
       required: {
-        url: true,
+        value: true,
         folder: true,
       },
-      process: {
-        url: (url) => {
-          return App.fix_url(url)
+      sources: {
+        mode: () => {
+          return [
+            {text: `URL Starts With`, value: `starts_with_url`},
+            {text: `URL Ends With`, value: `ends_with_url`},
+            {text: `URL Includes`, value: `includes_url`},
+            {text: `URL Regex`, value: `regex_url`},
+            {text: `Title Starts With`, value: `starts_with_title`},
+            {text: `Title Ends With`, value: `ends_with_title`},
+            {text: `Title Includes`, value: `includes_title`},
+            {text: `Title Regex`, value: `regex_title`},
+          ]
+        },
+        tooltips: {
+          value: `Check the item URLs or titles with this`,
+          folder: `Bookmark matches to this folder`,
+          mode: `Match mode for URL comparison`,
         },
       },
       title: props.name,

@@ -91,17 +91,14 @@ App.bookmarks_action = (args = {}) => {
   App.focus_or_open_item(args.item)
 }
 
-App.get_bookmarks_folder = async (url) => {
+App.get_bookmarks_folder = async (item) => {
   let title
 
-  if (url) {
-    let rules = App.get_setting(`bookmark_rules`)
+  if (item) {
+    let match = App.check_bookmark_rules(item)
 
-    for (let rule of rules) {
-      if (url.startsWith(rule.url)) {
-        title = rule.folder
-        break
-      }
+    if (match) {
+      title = match
     }
   }
 
@@ -111,6 +108,10 @@ App.get_bookmarks_folder = async (url) => {
 
   if (!title) {
     title = App.get_default_setting(`bookmarks_folder`)
+  }
+
+  if (!title) {
+    title = `Bookmarks`
   }
 
   let folders = App.bookmark_folders_cache
@@ -191,7 +192,7 @@ App.bookmark_items = async (args = {}) => {
         let folder
 
         if (!args.folder) {
-          folder = await App.get_bookmarks_folder(item.url)
+          folder = await App.get_bookmarks_folder(item)
         }
 
         if (!folder) {
@@ -490,4 +491,63 @@ App.get_bookmark_subitems = (parent, children, bookmarks = []) => {
   }
 
   return bookmarks
+}
+
+App.check_bookmark_rules = (item) => {
+  let rules = App.get_setting(`bookmark_rules`)
+
+  if (!rules.length) {
+    return
+  }
+
+  let title = App.title(item)
+  let url = item.url
+
+  function check(rule) {
+    let mode = rule.mode
+    let what = mode.split(`_`).at(-1)
+    let match = false
+    let value
+
+    if (what === `url`) {
+      value = url
+    }
+    else if (what === `title`) {
+      value = title
+    }
+
+    value = value.toLowerCase()
+    let rvalue = rule.value.toLowerCase()
+
+    if (mode === `starts_with_${what}`) {
+      if (value.startsWith(rvalue)) {
+        match = true
+      }
+    }
+    else if (mode === `ends_with_${what}`) {
+      if (value.endsWith(rvalue)) {
+        match = true
+      }
+    }
+    else if (mode === `includes_${what}`) {
+      if (value.includes(rvalue)) {
+        match = true
+      }
+    }
+    else if (mode === `regex_${what}`) {
+      let regex = new RegExp(rvalue)
+
+      if (regex.test(value)) {
+        match = true
+      }
+    }
+
+    return match
+  }
+
+  for (let rule of rules) {
+    if (check(rule)) {
+      return rule.folder
+    }
+  }
 }

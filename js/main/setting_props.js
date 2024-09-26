@@ -233,7 +233,7 @@ App.build_settings = () => {
       type: `list`,
       value: [],
       info: `Save bookmarks on certain folders based on rules`,
-      version: 1,
+      version: 2,
     },
     domain_rules: {
       name: `Domain Rules`,
