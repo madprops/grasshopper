@@ -175,9 +175,9 @@ App.user_madprops_settings = () => {
 
   sett = `bookmark_rules`
 
-  cmd = {url: `https://news.ycombinator.com`, folder: `tech`}
+  cmd = {value: `https://news.ycombinator.com`, folder: `tech`, mode: `starts_with_url`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {url: `https://github.com`, folder: `code`}
+  cmd = {value: `https://github.com`, folder: `code`, mode: `starts_with_url`}
   App.append_list_setting(sett, cmd)
 }

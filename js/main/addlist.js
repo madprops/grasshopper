@@ -51,7 +51,7 @@ Addlist.save = (id, hide = true) => {
 
     if (!modified) {
       if (hide) {
-        Addlist.hide(false)
+        Addlist.hide()
       }
 
       return false
@@ -207,7 +207,7 @@ Addlist.register = (args = {}) => {
           let data = Addlist.data
 
           if (!data.edit && args.automenu) {
-            Addlist.hide(false)
+            Addlist.hide()
           }
         },
         after_action: () => {
@@ -418,7 +418,7 @@ Addlist.remove = (args = {}) => {
         Addlist.list({id: args.id, feedback: false})
       }
 
-      Addlist.hide(false)
+      Addlist.hide()
 
       if (args.after) {
         args.after()
@@ -455,7 +455,7 @@ Addlist.enter = () => {
       Addlist.save(data.id)
     }
     else {
-      Addlist.hide(false)
+      Addlist.hide()
     }
   }
   else {
@@ -489,7 +489,7 @@ Addlist.after = (id, lines, hide = true) => {
   Addlist.set_data(id, lines)
 
   if (hide) {
-    Addlist.hide(false)
+    Addlist.hide()
   }
 
   Addlist.update_count(id)
@@ -750,7 +750,7 @@ Addlist.oargs = (id) => {
   return App[`addlist_args_${id}`]
 }
 
-Addlist.hide = (check = true, from = `normal`) => {
+Addlist.hide = (from = `normal`) => {
   if (!Addlist.on_addlist()) {
     return
   }
@@ -762,27 +762,8 @@ Addlist.hide = (check = true, from = `normal`) => {
   }
 
   let data = Addlist.data
-  let modified = Addlist.modified(data.id)
   let p_id = Addlist.popup(data.id)
-
-  function hide () {
-    App.hide_popup(p_id, true)
-  }
-
-  if (check && modified) {
-    App.show_confirm({
-      message: `Save changes?`,
-      confirm_action: () => {
-        Addlist.save(data.id)
-      },
-      cancel_action: () => {
-        hide()
-      },
-    })
-  }
-  else {
-    hide()
-  }
+  App.hide_popup(p_id, true)
 }
 
 Addlist.on_addlist = () => {
