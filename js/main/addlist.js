@@ -827,7 +827,6 @@ Addlist.list = (args) => {
     on_drag: (start, end) => {
       Addlist.move_item(args.id, start, end)
     },
-    index: args.index || 0,
   })
 }
 
