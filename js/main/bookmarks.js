@@ -174,7 +174,7 @@ App.bookmark_items = async (args = {}) => {
     let exists = items.some(it => it.url === item.url)
 
     if (!exists) {
-      items.push(item);
+      items.push(item)
     }
   }
 
@@ -507,19 +507,20 @@ App.check_bookmark_rules = (item) => {
     let mode = rule.mode
     let split = mode.split(`_`)
     let mstr = split.slice(0, -1).join(`_`)
+    let rvalue = rule.value.toLowerCase()
     let what = split.at(-1)
     let match = false
     let value
 
     if (what === `url`) {
       value = url
+      rvalue = App.fix_url(rvalue)
     }
     else if (what === `title`) {
       value = title
     }
 
     value = value.toLowerCase()
-    let rvalue = rule.value.toLowerCase()
 
     if (mstr === `starts_with`) {
       if (value.startsWith(rvalue)) {

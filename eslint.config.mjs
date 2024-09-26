@@ -8,7 +8,6 @@ export default [
 
   {
     rules: {
-      "semi": "off",
       "no-unused-vars": "off",
       "indent": ["error", 2],
       "linebreak-style": ["error", "unix"],
@@ -17,6 +16,7 @@ export default [
       "no-multi-spaces": "error",
       "no-multiple-empty-lines": ["error", {"max": 1}],
       "object-shorthand": ["error", "always"],
+      "semi": ["error", "never"],
     },
     languageOptions: {
       globals: {

@@ -566,8 +566,9 @@ App.item_or_items = (value, what) => {
 
 App.fix_url = (url) => {
   url = url.toLowerCase().trim()
+  let protocols = [`http://`, `https://`]
 
-  if (!url.startsWith(`http://`) && !url.startsWith(`https://`)) {
+  if (!protocols.some(p => url.startsWith(p))) {
     url = `https://${url}`
   }
 
