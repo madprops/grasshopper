@@ -924,7 +924,8 @@ App.build_settings = () => {
       name: `Global Menu`,
       type: `list`,
       value: [],
-      info: `Make this the menu for all modes`,
+      info: `Make this the menu for all modes
+      If this has items it overrides all other mode menus`,
       version: 1,
     },
     tabs_menu: {
