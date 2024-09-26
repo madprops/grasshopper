@@ -227,6 +227,8 @@ App.keyboard_icon = `⌨️`
 App.tree_icon = `🌳`
 
 App.sizes = [
+  {text: `None`, value: `none`},
+  {text: App.separator_string},
   {text: `Tiny`, value: `tiny`},
   {text: `Small`, value: `small`},
   {text: `Normal`, value: `normal`},

@@ -78,7 +78,7 @@ App.build_settings = () => {
       info: `The size of the item icons`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, [{text: `None`, value: `none`}, ...App.sizes])
+        App.settings_make_menu(key, App.sizes)
       },
     },
     icon_effect: {
