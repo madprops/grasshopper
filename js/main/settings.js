@@ -1665,6 +1665,7 @@ App.setup_settings_addlist = () => {
             {text: `URL Ends With`, value: `ends_with_url`},
             {text: `URL Includes`, value: `includes_url`},
             {text: `URL Regex`, value: `regex_url`},
+            {text: App.separator_string},
             {text: `Title Starts With`, value: `starts_with_title`},
             {text: `Title Ends With`, value: `ends_with_title`},
             {text: `Title Includes`, value: `includes_title`},

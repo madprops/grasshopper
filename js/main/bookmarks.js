@@ -505,7 +505,9 @@ App.check_bookmark_rules = (item) => {
 
   function check(rule) {
     let mode = rule.mode
-    let what = mode.split(`_`).at(-1)
+    let split = mode.split(`_`)
+    let mstr = split.slice(0, -1).join(`_`)
+    let what = split.at(-1)
     let match = false
     let value
 
@@ -519,22 +521,22 @@ App.check_bookmark_rules = (item) => {
     value = value.toLowerCase()
     let rvalue = rule.value.toLowerCase()
 
-    if (mode === `starts_with_${what}`) {
+    if (mstr === `starts_with`) {
       if (value.startsWith(rvalue)) {
         match = true
       }
     }
-    else if (mode === `ends_with_${what}`) {
+    else if (mstr === `ends_with`) {
       if (value.endsWith(rvalue)) {
         match = true
       }
     }
-    else if (mode === `includes_${what}`) {
+    else if (mstr === `includes`) {
       if (value.includes(rvalue)) {
         match = true
       }
     }
-    else if (mode === `regex_${what}`) {
+    else if (mstr === `regex`) {
       let regex = new RegExp(rvalue)
 
       if (regex.test(value)) {
