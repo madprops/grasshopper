@@ -1,22 +1,6 @@
 const Addlist = {}
 Addlist.fill_id = 1
 
-Addlist.check_widget = (target) => {
-  if (target.closest(`.addlist_widget`)) {
-    Addlist.data.has_change = true
-  }
-}
-
-Addlist.start_listeners = () => {
-  document.body.addEventListener(`keydown`, (e) => {
-    Addlist.check_widget(e.target)
-  })
-
-  document.body.addEventListener(`click`, (e) => {
-    Addlist.check_widget(e.target)
-  })
-}
-
 Addlist.check_append = () => {
   return App.get_setting(`addlist_append`)
 }
@@ -45,18 +29,6 @@ Addlist.save = (id, hide = true) => {
   let data = Addlist.data
   let oargs = Addlist.oargs(id)
   let values = Addlist.values(id)
-
-  if (data.edit) {
-    let modified = Addlist.modified(id)
-
-    if (!modified) {
-      if (hide) {
-        Addlist.hide()
-      }
-
-      return false
-    }
-  }
 
   if (oargs.validate) {
     if (!oargs.validate(values)) {
@@ -366,7 +338,6 @@ Addlist.edit = (args = {}) => {
     }
   }
 
-  args.has_change = false
   Addlist.data = args
   Addlist.check_focus(args.id)
 
@@ -447,20 +418,7 @@ Addlist.enter = () => {
   }
 
   let data = Addlist.data
-
-  if (data.edit) {
-    let modified = Addlist.modified(data.id)
-
-    if (modified) {
-      Addlist.save(data.id)
-    }
-    else {
-      Addlist.hide()
-    }
-  }
-  else {
-    Addlist.save(data.id)
-  }
+  Addlist.save(data.id)
 }
 
 Addlist.left = () => {
@@ -579,16 +537,6 @@ Addlist.check_focus = (id) => {
 
     return
   }
-}
-
-Addlist.modified = (id) => {
-  let data = Addlist.data
-
-  if (!data.edit) {
-    return false
-  }
-
-  return data.has_change
 }
 
 Addlist.menu = () => {

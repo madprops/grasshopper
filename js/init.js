@@ -45,7 +45,6 @@ App.init = async () => {
   App.start_main_title()
   App.check_init_commands()
   App.start_signal_intervals()
-  Addlist.start_listeners()
   App.start_date = App.now()
 }
 
