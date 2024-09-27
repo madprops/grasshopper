@@ -156,10 +156,10 @@ App.do_filter = async (args = {}) => {
   let items
 
   if (search) {
-    items = []
+    items = search_results
 
-    for (let info of search_results) {
-      items.push(App.process_simple_item(args.mode, info))
+    for (let info of items) {
+      App.process_search_item(info)
     }
   }
   else if (args.refine) {
