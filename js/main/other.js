@@ -105,6 +105,15 @@ App.show_empty_menu = (e) => {
   App.show_context({items, e})
 }
 
+App.show_extra_menu = (item, e) => {
+  let items = App.custom_menu_items({
+    name: `extra_menu`,
+    item, e,
+  })
+
+  App.show_context({items, e})
+}
+
 App.button_text = (icon, text, bigger = false) => {
   let cls = `button_text`
 

@@ -48,6 +48,7 @@ App.setup_commands = () => {
   let duplicate_icon = App.duplicate_icon
   let keyboard_icon = App.keyboard_icon
   let tree_icon = App.tree_icon
+  let extra_icon = App.extra_icon
 
   let color_filters = []
   let color_changers = []
@@ -1249,11 +1250,22 @@ App.setup_commands = () => {
       name: `Empty Menu`,
       short_name: `Empty`,
       cmd: `show_empty_menu`,
-      icon: browser_icon,
+      icon: menu_icon,
       action: (args) => {
         App.show_empty_menu(args.e)
       },
       info: `Show the empty menu`,
+    },
+    {
+      name: `Extra Menu`,
+      short_name: `Empty`,
+      cmd: `show_extra_menu`,
+      item: true,
+      icon: extra_icon,
+      action: (args) => {
+        App.show_extra_menu(args.item, args.e)
+      },
+      info: `Show the extra menu`,
     },
     {
       name: `New`,
