@@ -270,7 +270,7 @@ App.do_filter = async (args = {}) => {
   let max_items = 0
   let matched_items = []
 
-  if (App.search_modes.includes(args.mode)) {
+  if (search) {
     let deep = args.deep
 
     if (App.get_setting(`auto_deep_search_${args.mode}`)) {
