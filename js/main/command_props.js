@@ -372,7 +372,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_mode_menu(mode, args.e)
       },
-      info: `Show mode: ${mode}`,
+      info: `Show mode menu: ${mode}`,
     })
   }
 
