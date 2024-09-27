@@ -20,7 +20,6 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `autohide_context`, value: true})
   App.set_setting({setting: `max_recent_tabs`, value: 20})
   App.set_setting({setting: `show_tooltips`, value: false})
-  App.set_setting({setting: `middle_click_main_menu`, value: `repeat_command`})
 
   // Main Title
 
