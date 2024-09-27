@@ -63,7 +63,7 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   try {
     results = await App.get_bookmark_items({
       folder,
-      query: query,
+      query,
       deep,
     })
   }
@@ -193,6 +193,9 @@ App.bookmark_items = async (args = {}) => {
 
         if (!args.folder) {
           folder = await App.get_bookmarks_folder(item)
+        }
+        else {
+          folder = args.folder
         }
 
         if (!folder) {
