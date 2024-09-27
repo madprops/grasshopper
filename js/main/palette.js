@@ -112,10 +112,9 @@ App.palette_next = (reverse = false) => {
         App.palette_select(el)
         return
       }
-      else {
-        if (!first) {
-          first = el
-        }
+      
+      if (!first) {
+        first = el
       }
     }
 

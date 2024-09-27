@@ -76,9 +76,8 @@ App.header_group = (item) => {
   if (select) {
     return selected
   }
-  else {
-    return []
-  }
+  
+  return []
 }
 
 App.select_header_group = (item) => {

@@ -423,9 +423,8 @@ App.make_bookmarks_folder = async (title, parent = ``) => {
   if (parent) {
     return await browser.bookmarks.create({title, parentId: parent.id})
   }
-  else {
-    return await browser.bookmarks.create({title})
-  }
+  
+  return await browser.bookmarks.create({title})
 }
 
 App.create_bookmarks_folder = () => {

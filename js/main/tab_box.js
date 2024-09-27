@@ -204,9 +204,8 @@ App.tab_box_icon = (mode) => {
   else if (mode === `headers`) {
     return App.zone_icon
   }
-  else {
-    return App.mode_icons.tabs
-  }
+  
+  return App.mode_icons.tabs
 }
 
 App.fill_tab_box = (items) => {

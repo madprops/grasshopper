@@ -1134,7 +1134,6 @@ App.get_last_pin_index = () => {
   let i = -1
 
   for (let item of App.get_items(`tabs`)) {
-
     if (item.pinned) {
       i += 1
     }
@@ -1254,9 +1253,8 @@ App.do_sort_tabs = () => {
         if (reverse) {
           return a.hostname < b.hostname ? 1 : -1
         }
-        else {
-          return a.hostname > b.hostname ? 1 : -1
-        }
+        
+        return a.hostname > b.hostname ? 1 : -1
       }
 
       return a.title < b.title ? -1 : 1

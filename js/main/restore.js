@@ -36,9 +36,8 @@ App.restore = () => {
       App.hide_window()
       return
     }
-    else {
-      App.hide_window()
-    }
+    
+    App.hide_window()
   }
 
   let mode = App.active_mode

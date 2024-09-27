@@ -10,9 +10,8 @@ App.check_color = (color) => {
   if (color.startsWith(`#`)) {
     return App.colorlib.hex_to_rgb(color)
   }
-  else {
-    return color
-  }
+  
+  return color
 }
 
 App.opacity = (color, amount) => {

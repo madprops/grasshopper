@@ -195,9 +195,8 @@ App.get_jump_target = (num) => {
   if (num === 1) {
     return `jump`
   }
-  else {
-    return `jump${num}`
-  }
+  
+  return `jump${num}`
 }
 
 App.filter_jump_tag = (mode, num) => {

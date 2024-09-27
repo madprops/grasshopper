@@ -17,6 +17,8 @@ export default [
       "no-multiple-empty-lines": ["error", {"max": 1}],
       "object-shorthand": ["error", "always"],
       "semi": ["error", "never"],
+      "no-else-return": "error",
+      "padded-blocks": ["error", "never"],
     },
     languageOptions: {
       globals: {

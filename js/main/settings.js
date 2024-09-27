@@ -400,7 +400,6 @@ App.prepare_settings_category = (category) => {
     el.classList.add(`filter_text`)
     el.classList.add(`linkbutton`)
   }
-
 }
 
 App.run_setting_setups = (category) => {
@@ -1287,9 +1286,8 @@ App.setup_settings_addlist = () => {
     if (c) {
       return c.icon
     }
-    else {
-      return ``
-    }
+    
+    return ``
   }
 
   function cmd_name (cmd) {
@@ -1302,9 +1300,8 @@ App.setup_settings_addlist = () => {
     if (c) {
       return c.name
     }
-    else {
-      return `None`
-    }
+    
+    return `None`
   }
 
   let [popobj, regobj] = App.get_setting_addlist_objects()

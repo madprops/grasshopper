@@ -515,9 +515,8 @@ App.get_item_element_index = (args = {}) => {
   if (args.include_all) {
     return DOM.els(`.${args.mode}_element`).indexOf(args.element)
   }
-  else {
-    return DOM.els(`.${args.mode}_item`).indexOf(args.element)
-  }
+  
+  return DOM.els(`.${args.mode}_item`).indexOf(args.element)
 }
 
 App.move_item = (mode, from_index, to_index) => {
@@ -924,9 +923,8 @@ App.get_active_items = (args = {}) => {
     if (args.item) {
       return [args.item]
     }
-    else {
-      return []
-    }
+    
+    return []
   }
 
   let selected = App.selected_items(args.mode)
@@ -935,25 +933,22 @@ App.get_active_items = (args = {}) => {
     if (args.item) {
       return [args.item]
     }
-    else {
-      return []
-    }
+    
+    return []
   }
   else if (selected.length === 1) {
     if (args.item) {
       return [args.item]
     }
-    else {
-      return [App.get_selected(args.mode)]
-    }
+    
+    return [App.get_selected(args.mode)]
   }
-  else {
-    if (args.item && !selected.includes(args.item)) {
-      selected.push(args.item)
-    }
+  
+  if (args.item && !selected.includes(args.item)) {
+    selected.push(args.item)
+  }
 
-    return selected
-  }
+  return selected
 }
 
 App.insert_item = (mode, info) => {

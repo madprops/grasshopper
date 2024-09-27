@@ -65,9 +65,8 @@ App.plural = (n, singular, plural) => {
   if (n === 1) {
     return singular
   }
-  else {
-    return plural
-  }
+  
+  return plural
 }
 
 App.get_hostname = (url) => {
@@ -274,9 +273,8 @@ App.wheel_direction = (e) => {
   if (e.deltaY > 0) {
     return `down`
   }
-  else {
-    return `up`
-  }
+  
+  return `up`
 }
 
 App.one_linebreak = (s) => {
@@ -456,9 +454,8 @@ App.str = (obj, format = false) => {
   if (format) {
     return JSON.stringify(obj, null, 2)
   }
-  else {
-    return JSON.stringify(obj)
-  }
+  
+  return JSON.stringify(obj)
 }
 
 App.remove_extension = (s) => {

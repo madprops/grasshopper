@@ -564,9 +564,8 @@ App.command_name = (command, force_short = false) => {
   else if (command.short_name && force_short) {
     return command.short_name
   }
-  else {
-    return command.name
-  }
+  
+  return command.name
 }
 
 App.custom_menu_items = (args = {}) => {

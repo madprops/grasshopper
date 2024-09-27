@@ -1303,9 +1303,8 @@ App.toggle_filter = (mode, cmd, refine = false) => {
     App.filter_all(mode)
     return
   }
-  else {
-    App.set_filter_mode({mode, cmd, refine})
-  }
+  
+  App.set_filter_mode({mode, cmd, refine})
 }
 
 App.filter_cmd = (mode, cmd, from) => {
