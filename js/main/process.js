@@ -148,10 +148,20 @@ App.process_info = (args = {}) => {
   }
 }
 
-App.process_simple_item = (info) => {
-  return {
+App.process_simple_item = (mode, info) => {
+  let item = {
     title: info.title,
     url: info.url,
     path: App.get_path(info.url),
   }
+
+  if (mode === `history`) {
+    item.lastVisitTime = info.lastVisitTime
+  }
+  else if (mode === `bookmarks`) {
+    item.parentId = info.parentId
+    item.dateAdded = info.dateAdded
+  }
+
+  return item
 }
