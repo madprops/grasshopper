@@ -38,7 +38,7 @@ App.setup_bookmarks = () => {
   App.setup_bookmarks_ready = true
 }
 
-App.get_bookmarks = async (query = ``, deep = false, criteria = `both`) => {
+App.get_bookmarks = async (query = ``, deep = false, by_what = `both`) => {
   App.getting(`bookmarks`)
   let results = []
 
@@ -65,7 +65,7 @@ App.get_bookmarks = async (query = ``, deep = false, criteria = `both`) => {
       folder,
       query,
       deep,
-      criteria
+      by_what
     })
   }
   catch (err) {
@@ -248,16 +248,18 @@ App.bookmark_items_to_folder = async (args) => {
   App.do_select_bookmarks_folder({folders, callback, include_all: false, e: args.e})
 }
 
-App.filter_bookmark_nodes = (query, nodes, max, criteria = `both`) => {
+App.filter_bookmark_nodes = (query, nodes, max, by_what = `title`) => {
   let items = []
   query = query.toLowerCase()
-  let by_title = [`both`, `title`].includes(criteria)
-  let by_url = [`both`, `url`].includes(criteria)
+  let by_title = [`all`, `title`].includes(by_what)
+  let by_url = [`all`, `url`].includes(by_what)
+  let by_title_re = [`re`, `re_title`].includes(by_what)
+  let by_url_re = [`re`, `re_url`].includes(by_what)
 
   for (let node of nodes) {
     let match = false
 
-    if (node.title && by_title) {
+    if (!match && node.title && by_title) {
       if (node.title.toLowerCase().includes(query)) {
         items.push(node)
         match = true
@@ -266,6 +268,24 @@ App.filter_bookmark_nodes = (query, nodes, max, criteria = `both`) => {
 
     if (!match && node.url && by_url) {
       if (node.url.toLowerCase().includes(query)) {
+        items.push(node)
+        match = true
+      }
+    }
+
+    if (!match && node.title && by_title_re) {
+      let re = new RegExp(query)
+
+      if (re.test(node.title.toLowerCase())) {
+        items.push(node)
+        match = true
+      }
+    }
+
+    if (!match && node.url && by_url_re) {
+      let re = new RegExp(query)
+
+      if (re.test(node.url.toLowerCase())) {
         items.push(node)
         match = true
       }
@@ -288,7 +308,7 @@ App.get_bookmark_items = async (args = {}) => {
     folder: ``,
     query: ``,
     deep: false,
-    criteria: `both`,
+    by_what: `both`,
   }
 
   App.def_args(def_args, args)
@@ -321,7 +341,7 @@ App.get_bookmark_items = async (args = {}) => {
   }
 
   if (args.query.trim()) {
-    items = App.filter_bookmark_nodes(args.query, items, max, args.criteria)
+    items = App.filter_bookmark_nodes(args.query, items, max, args.by_what)
   }
   else {
     items = items.slice(0, max)

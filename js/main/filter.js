@@ -132,24 +132,13 @@ App.do_filter = async (args = {}) => {
 
       let search_date = App.now()
       App.filter_search_date = search_date
-      let criteria
-
-      if (by_what.includes(`title`)) {
-        criteria = `title`
-      }
-      else if (by_what.includes(`url`)) {
-        criteria = `url`
-      }
-      else {
-        criteria = `both`
-      }
 
       await App.search_items({
         mode: args.mode,
         query: svalue,
         deep: args.deep,
         date: search_date,
-        criteria,
+        by_what,
       })
 
       if (App.filter_search_date !== search_date) {
@@ -965,14 +954,9 @@ App.get_filter_exact = (mode) => {
 }
 
 App.search_items = async (args = {}) => {
-  let def_args = {
-    criteria: `both`,
-  }
-
-  App.def_args(def_args, args)
   let q = args.query || `Empty`
   App.debug(`Searching ${args.mode}: ${q}`)
-  let items = await App[`get_${args.mode}`](args.query, args.deep, args.criteria)
+  let items = await App[`get_${args.mode}`](args.query, args.deep, args.by_what)
 
   if (App.filter_search_date !== args.date) {
     return
