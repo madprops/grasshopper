@@ -147,3 +147,11 @@ App.process_info = (args = {}) => {
     return item
   }
 }
+
+App.process_simple_item = (info) => {
+  return {
+    title: info.title,
+    url: info.url,
+    path: App.get_path(info.url),
+  }
+}

@@ -117,6 +117,7 @@ App.do_filter = async (args = {}) => {
   }
 
   let search = false
+  let search_results = []
 
   // This check is to avoid re-fetching items
   // For instance when moving from All to Image
@@ -133,12 +134,11 @@ App.do_filter = async (args = {}) => {
       let search_date = App.now()
       App.filter_search_date = search_date
 
-      await App.search_items({
+      search_results = await App.search_items({
         mode: args.mode,
         query: svalue,
         deep: args.deep,
         date: search_date,
-        by_what,
       })
 
       if (App.filter_search_date !== search_date) {
@@ -155,7 +155,14 @@ App.do_filter = async (args = {}) => {
 
   let items
 
-  if (args.refine) {
+  if (search) {
+    items = []
+
+    for (let info of search_results) {
+      items.push(App.process_simple_item(info))
+    }
+  }
+  else if (args.refine) {
     items = App.get_visible(args.mode)
   }
   else {
@@ -253,15 +260,35 @@ App.do_filter = async (args = {}) => {
     return App.filter_check(args)
   }
 
-  let some_matched = false
   let headers = filter_mode === `filter_header_tabs`
   let header_match = 0
   let max_header = App.get_setting(`header_filter_context`)
   let force_pins = App.is_filtered(args.mode)
   let check_pins = App.get_setting(`hide_pins`)
+  let num_matched = 0
+  let check_max = false
+  let max_items = 0
+  let matched_items = []
+
+  if (App.search_modes.includes(args.mode)) {
+    let deep = args.deep
+
+    if (App.get_setting(`auto_deep_search_${args.mode}`)) {
+      deep = true
+    }
+
+    if (deep) {
+      max_items = App.get_setting(`deep_max_search_items_${args.mode}`)
+    }
+    else {
+      max_items = App.get_setting(`max_search_items_${args.mode}`)
+    }
+
+    check_max = true
+  }
 
   for (let item of items) {
-    if (!item.element) {
+    if (!search && !item.element) {
       continue
     }
 
@@ -294,6 +321,20 @@ App.do_filter = async (args = {}) => {
     }
 
     if (match) {
+      num_matched += 1
+
+      if (search) {
+        matched_items.push(item)
+
+        if (check_max) {
+          if (num_matched >= max_items) {
+            break
+          }
+        }
+
+        continue
+      }
+
       if (check_pins) {
         if (item.pinned) {
           App.check_pins(item, force_pins)
@@ -301,7 +342,6 @@ App.do_filter = async (args = {}) => {
       }
 
       App.show_item(item)
-      some_matched = true
 
       if (headers) {
         if (item.header) {
@@ -310,8 +350,14 @@ App.do_filter = async (args = {}) => {
       }
     }
     else {
-      App.hide_item(item)
+      if (!search) {
+        App.hide_item(item)
+      }
     }
+  }
+
+  if (search) {
+    App.process_info_list(args.mode, matched_items)
   }
 
   if (args.select) {
@@ -341,7 +387,7 @@ App.do_filter = async (args = {}) => {
         App.select_item({item: last_item, deselect: false})
       }
     }
-    else if (some_matched) {
+    else if (num_matched > 0) {
       App.select_first_item(args.mode, !App.is_filtered(args.mode))
     }
   }
@@ -431,6 +477,10 @@ App.filter_check = (args) => {
         break
       }
     }
+  }
+
+  if (args.search) {
+    return Boolean(match)
   }
 
   if (!match) {
@@ -956,17 +1006,17 @@ App.get_filter_exact = (mode) => {
 App.search_items = async (args = {}) => {
   let q = args.query || `Empty`
   App.debug(`Searching ${args.mode}: ${q}`)
-  let items = await App[`get_${args.mode}`](args.query, args.deep, args.by_what)
+  let items = await App[`get_${args.mode}`](args.query, args.deep)
 
   if (App.filter_search_date !== args.date) {
-    return
+    return []
   }
 
   if (App.window_mode !== args.mode) {
-    return
+    return []
   }
 
-  App.process_info_list(args.mode, items)
+  return items
 }
 
 App.deep_search = (mode) => {
