@@ -284,6 +284,10 @@ App.do_filter = async (args = {}) => {
       match = true
     }
 
+    if (max_reached) {
+      match = true
+    }
+
     if (!match) {
       if (headers) {
         if (header_match >= 1) {
