@@ -250,11 +250,11 @@ App.bookmark_items_to_folder = async (args) => {
 
 App.filter_bookmark_nodes = (query, nodes, max, by_what = `title`) => {
   let items = []
-  query = query.toLowerCase()
   let by_title = [`all`, `title`].includes(by_what)
   let by_url = [`all`, `url`].includes(by_what)
   let by_title_re = [`re`, `re_title`].includes(by_what)
   let by_url_re = [`re`, `re_url`].includes(by_what)
+  query = query.toLowerCase()
 
   for (let node of nodes) {
     let match = false
