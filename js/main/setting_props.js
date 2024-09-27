@@ -231,22 +231,6 @@ App.build_settings = () => {
         ])
       },
     },
-    bookmarks_folder: {
-      name: `Bookmarks Folder`,
-      type: `text`,
-      value: `Grasshopper`,
-      placeholder: `Folder Name`,
-      no_empty: true,
-      info: `Where to save bookmarks`,
-      version: 1,
-    },
-    bookmark_rules: {
-      name: `Bookmark Rules`,
-      type: `list`,
-      value: [],
-      info: `Save bookmarks on certain folders based on rules`,
-      version: 2,
-    },
     domain_rules: {
       name: `Domain Rules`,
       type: `list`,
@@ -477,6 +461,64 @@ App.build_settings = () => {
       actions: [`theme`],
       value: false,
       info: `Add a glow effect to all text`,
+      version: 1,
+    },
+  }
+
+  add_props()
+  category = `bookmarks`
+
+  props = {
+    bookmarks_folder: {
+      name: `Bookmarks Folder`,
+      type: `text`,
+      value: `Grasshopper`,
+      placeholder: `Folder Name`,
+      no_empty: true,
+      info: `Where to save bookmarks`,
+      version: 1,
+    },
+    bookmark_rules: {
+      name: `Bookmark Rules`,
+      type: `list`,
+      value: [],
+      info: `Save bookmarks on certain folders based on rules`,
+      version: 2,
+    },
+    max_bookmark_folders: {
+      name: `Max Bookmark Folders`,
+      type: `number`,
+      value: 100,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Max bookmark folders to fetch`,
+      version: 1,
+    },
+    bookmarks_footer_folder: {
+      name: `Bookmarks Footer`,
+      type: `number`,
+      value: 10,
+      placeholder: `Number`,
+      min: 0,
+      max: 100,
+      info: `How long the bookmarks folder info in the footer of Bookmarks can be
+      Set it to 0 to not display it at all`,
+      version: 1,
+    },
+    all_bookmarks: {
+      name: `All Bookmarks`,
+      type: `checkbox`,
+      value: true,
+      info: `Show other bookmarks apart from the configured bookmarks folder
+      When entering Bookmarks mode`,
+      version: 1,
+    },
+    direct_bookmarks_folder: {
+      name: `Direct BM Folder`,
+      type: `checkbox`,
+      value: false,
+      info: `Create new bookmark folders at the default root instead of asking for location`,
       version: 1,
     },
   }
@@ -3404,16 +3446,6 @@ App.build_settings = () => {
       info: `Empty the recent tabs list these milliseconds after its last use`,
       version: 1,
     },
-    max_bookmark_folders: {
-      name: `Max Bookmark Folders`,
-      type: `number`,
-      value: 100,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Max bookmark folders to fetch`,
-      version: 1,
-    },
     close_on_focus: {
       name: `Close On Focus`,
       type: `checkbox`,
@@ -3455,13 +3487,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Make commands context aware to avoid clutter`,
-      version: 1,
-    },
-    all_bookmarks: {
-      name: `All Bookmarks`,
-      type: `checkbox`,
-      value: true,
-      info: `Show other bookmarks apart from the configured bookmarks folder`,
       version: 1,
     },
     generate_icons: {
@@ -3658,13 +3683,6 @@ App.build_settings = () => {
       info: `Auto-pick 'Unloaded' when on the Close Tab Dialog`,
       version: 1,
     },
-    direct_bookmarks_folder: {
-      name: `Direct Bookmarks Folder`,
-      type: `checkbox`,
-      value: false,
-      info: `Create new bookmark folders at the default root instead of asking for location`,
-      version: 1,
-    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,
@@ -3730,6 +3748,9 @@ App.build_settings = () => {
         ],
         theme_pickers,
       ]
+    },
+    bookmarks: {
+      info: `Configure the Bookmarks`
     },
     colors: {
       info: `Set the colors for different kinds of items
