@@ -28,10 +28,8 @@ App.get_history = async (query = ``, deep = false) => {
   App.getting(`history`)
   let results, max_items
 
-  if (query) {
-    if (App.get_setting(`auto_deep_search_history`)) {
-      deep = true
-    }
+  if (query && App.get_setting(`auto_deep_search_history`)) {
+    deep = true
   }
 
   if (deep) {
@@ -41,9 +39,11 @@ App.get_history = async (query = ``, deep = false) => {
     max_items = App.get_setting(`max_search_items_history`)
   }
 
+  console.log(111)
+
   try {
     results = await browser.history.search({
-      text: query,
+      text: ``,
       maxResults: max_items,
       startTime: App.history_time(deep)
     })

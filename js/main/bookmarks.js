@@ -42,10 +42,8 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   App.getting(`bookmarks`)
   let results = []
 
-  if (query) {
-    if (App.get_setting(`auto_deep_search_bookmarks`)) {
-      deep = true
-    }
+  if (query && App.get_setting(`auto_deep_search_bookmarks`)) {
+    deep = true
   }
 
   let folder
@@ -423,7 +421,7 @@ App.make_bookmarks_folder = async (title, parent = ``) => {
   if (parent) {
     return await browser.bookmarks.create({title, parentId: parent.id})
   }
-  
+
   return await browser.bookmarks.create({title})
 }
 
