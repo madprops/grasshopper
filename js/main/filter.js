@@ -132,7 +132,25 @@ App.do_filter = async (args = {}) => {
 
       let search_date = App.now()
       App.filter_search_date = search_date
-      await App.search_items(args.mode, svalue, args.deep, search_date)
+      let criteria
+
+      if (by_what.includes(`title`)) {
+        criteria = `title`
+      }
+      else if (by_what.includes(`url`)) {
+        criteria = `url`
+      }
+      else {
+        criteria = `both`
+      }
+
+      await App.search_items({
+        mode: args.mode,
+        query: svalue,
+        deep: args.deep,
+        date: search_date,
+        criteria,
+      })
 
       if (App.filter_search_date !== search_date) {
         return
@@ -946,20 +964,25 @@ App.get_filter_exact = (mode) => {
   return items
 }
 
-App.search_items = async (mode, query, deep, date) => {
-  let q = query || `Empty`
-  App.debug(`Searching ${mode}: ${q}`)
-  let items = await App[`get_${mode}`](query, deep)
+App.search_items = async (args = {}) => {
+  let def_args = {
+    criteria: `both`,
+  }
 
-  if (App.filter_search_date !== date) {
+  App.def_args(def_args, args)
+  let q = args.query || `Empty`
+  App.debug(`Searching ${args.mode}: ${q}`)
+  let items = await App[`get_${args.mode}`](args.query, args.deep, args.criteria)
+
+  if (App.filter_search_date !== args.date) {
     return
   }
 
-  if (App.window_mode !== mode) {
+  if (App.window_mode !== args.mode) {
     return
   }
 
-  App.process_info_list(mode, items)
+  App.process_info_list(args.mode, items)
 }
 
 App.deep_search = (mode) => {
