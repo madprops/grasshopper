@@ -357,6 +357,8 @@ App.do_filter = async (args = {}) => {
   }
 
   if (search) {
+    // Search mode only creates the matched items
+    // This makes searches a lot faster
     App.process_info_list(args.mode, matched_items)
   }
 
