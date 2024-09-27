@@ -1271,6 +1271,17 @@ App.setup_commands = () => {
     ...mode_menus,
 
     {
+      name: `Actions Menu`,
+      short_name: `Actions`,
+      cmd: `show_actions_menu`,
+      modes: [`items`],
+      icon: command_icon,
+      action: (args) => {
+        App.show_actions_menu(args.mode)
+      },
+      info: `Show the actions menu`,
+    },
+    {
       name: `Browser Menu`,
       short_name: `Browser`,
       cmd: `show_browser_menu`,
