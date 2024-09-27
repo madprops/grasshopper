@@ -138,7 +138,6 @@ App.do_filter = async (args = {}) => {
         query: svalue,
         deep: args.deep,
         date: search_date,
-        by_what,
       })
 
       if (App.filter_search_date !== search_date) {
@@ -253,12 +252,26 @@ App.do_filter = async (args = {}) => {
     return App.filter_check(args)
   }
 
-  let some_matched = false
   let headers = filter_mode === `filter_header_tabs`
   let header_match = 0
   let max_header = App.get_setting(`header_filter_context`)
   let force_pins = App.is_filtered(args.mode)
   let check_pins = App.get_setting(`hide_pins`)
+  let num_matched = 0
+  let max_reached = false
+  let check_max = false
+  let max_items = 0
+
+  if (App.search_modes.includes(args.mode)) {
+    if (args.deep) {
+      max_items = App.get_setting(`deep_max_search_items_${args.mode}`)
+    }
+    else {
+      max_items = App.get_setting(`max_search_items_${args.mode}`)
+    }
+
+    check_max = true
+  }
 
   for (let item of items) {
     if (!item.element) {
@@ -293,7 +306,7 @@ App.do_filter = async (args = {}) => {
       match = check_match(item)
     }
 
-    if (match) {
+    if (match && !max_reached) {
       if (check_pins) {
         if (item.pinned) {
           App.check_pins(item, force_pins)
@@ -301,11 +314,18 @@ App.do_filter = async (args = {}) => {
       }
 
       App.show_item(item)
-      some_matched = true
 
       if (headers) {
         if (item.header) {
           header_match = 1
+        }
+      }
+
+      num_matched += 1
+
+      if (check_match) {
+        if (num_matched >= max_items) {
+          max_reached = true
         }
       }
     }
@@ -341,7 +361,7 @@ App.do_filter = async (args = {}) => {
         App.select_item({item: last_item, deselect: false})
       }
     }
-    else if (some_matched) {
+    else if (num_matched > 0) {
       App.select_first_item(args.mode, !App.is_filtered(args.mode))
     }
   }
@@ -956,7 +976,7 @@ App.get_filter_exact = (mode) => {
 App.search_items = async (args = {}) => {
   let q = args.query || `Empty`
   App.debug(`Searching ${args.mode}: ${q}`)
-  let items = await App[`get_${args.mode}`](args.query, args.deep, args.by_what)
+  let items = await App[`get_${args.mode}`](args.query, args.deep)
 
   if (App.filter_search_date !== args.date) {
     return
