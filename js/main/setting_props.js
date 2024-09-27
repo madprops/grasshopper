@@ -816,14 +816,6 @@ App.build_settings = () => {
       info: `Icon for the close buttons`,
       version: 1,
     },
-    hover_icon: {
-      name: `Hover Icon`,
-      type: `text_smaller`,
-      value: `🔆`,
-      placeholder: App.icon_placeholder,
-      info: `Icon for the hover buttons`,
-      version: 1,
-    },
   }
 
   add_props()
@@ -990,6 +982,14 @@ App.build_settings = () => {
       min: 0,
       max: App.max_padding_setting,
       info: `Horizontal padding for the Hover Buttons`,
+      version: 1,
+    },
+    hover_icon: {
+      name: `Hover Icon`,
+      type: `text_smaller`,
+      value: `🔆`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for the hover buttons`,
       version: 1,
     },
     hover_button_pick: {

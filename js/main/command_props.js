@@ -10,6 +10,7 @@ App.setup_commands = () => {
   let header_icon = App.get_setting(`header_icon`) || App.zone_icon
   let subheader_icon = App.get_setting(`subheader_icon`) || App.zone_icon
   let image_icon = App.get_setting(`image_icon`) || App.settings_icons.media
+  let hover_icon = App.get_setting(`hover_icon`) || App.settings_icons.hover
 
   let title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
@@ -1234,38 +1235,53 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_actions_menu(args.mode, args.e)
       },
-      info: `Show the actions menu`,
+      info: `Show the Actions Menu`,
     },
     {
       name: `Browser Menu`,
       short_name: `Browser`,
       cmd: `show_browser_menu`,
+      modes: [`items`],
       icon: browser_icon,
       action: (args) => {
         App.show_browser_menu(args.e)
       },
-      info: `Show the browser menu`,
+      info: `Show the Browser Menu`,
     },
     {
       name: `Empty Menu`,
       short_name: `Empty`,
       cmd: `show_empty_menu`,
+      modes: [`items`],
       icon: menu_icon,
       action: (args) => {
         App.show_empty_menu(args.e)
       },
-      info: `Show the empty menu`,
+      info: `Show the Empty Menu`,
     },
     {
       name: `Extra Menu`,
       short_name: `Empty`,
       cmd: `show_extra_menu`,
+      modes: [`items`],
       item: true,
       icon: extra_icon,
       action: (args) => {
         App.show_extra_menu(args.item, args.e)
       },
-      info: `Show the extra menu`,
+      info: `Show the Extra Menu`,
+    },
+    {
+      name: `Hover Menu`,
+      short_name: `Empty`,
+      cmd: `show_hover_menu`,
+      modes: [`items`],
+      item: true,
+      icon: hover_icon,
+      action: (args) => {
+        App.show_hover_menu(args.item, args.e)
+      },
+      info: `Show the Hover Menu`,
     },
     {
       name: `New`,

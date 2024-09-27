@@ -163,7 +163,7 @@ App.mouse_click_action = (mode, e) => {
 
   if (App.get_setting(`hover_button`)) {
     if (DOM.parent(e.target, [`.hover_button`])) {
-      App.show_hover_menu(e, item)
+      App.show_hover_menu(item, e)
       return
     }
   }
