@@ -323,7 +323,7 @@ App.do_filter = async (args = {}) => {
 
       num_matched += 1
 
-      if (check_match) {
+      if (check_max) {
         if (num_matched >= max_items) {
           max_reached = true
         }
