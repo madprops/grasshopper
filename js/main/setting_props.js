@@ -3141,7 +3141,7 @@ App.build_settings = () => {
     auto_deep_search_bookmarks: {
       name: `Auto Deep Bookmarks`,
       type: `checkbox`,
-      value: false,
+      value: true,
       info: `Do a deep search automatically when using a text query (Bookmarks)`,
       version: 1,
     },

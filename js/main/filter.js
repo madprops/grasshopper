@@ -263,7 +263,13 @@ App.do_filter = async (args = {}) => {
   let max_items = 0
 
   if (App.search_modes.includes(args.mode)) {
-    if (args.deep) {
+    let deep = args.deep
+
+    if (App.get_setting(`auto_deep_search_${args.mode}`)) {
+      deep = true
+    }
+
+    if (deep) {
       max_items = App.get_setting(`deep_max_search_items_${args.mode}`)
     }
     else {
