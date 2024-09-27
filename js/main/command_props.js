@@ -1246,6 +1246,16 @@ App.setup_commands = () => {
       info: `Show the browser menu`,
     },
     {
+      name: `Empty Menu`,
+      short_name: `Empty`,
+      cmd: `show_empty_menu`,
+      icon: browser_icon,
+      action: (args) => {
+        App.show_empty_menu(args.e)
+      },
+      info: `Show the empty menu`,
+    },
+    {
       name: `New`,
       cmd: `open_new_tab`,
       icon: new_icon,
