@@ -438,23 +438,15 @@ App.setup_commands = () => {
     })
   }
 
-  let tabnums = []
-
-  for (let i = 1; i <= App.max_tab_num; i++) {
-    tabnums.push({
-      name: `Focus Tab ${i}`,
-      cmd: `focus_tab_${i}`,
-      icon: tabs_icon,
-      action: (args) => {
-        App.focus_tab_number(i)
-      },
-      info: `Focus a tab at the top (${i})`,
-    })
-  }
-
   let cmd_combos = []
 
   for (let i = 1; i <= App.num_command_combos; i++) {
+    let combo = App.get_setting(`command_combo_${i}`)
+
+    if (!combo || !combo.length) {
+      continue
+    }
+
     cmd_combos.push({
       name: `Cmd Combo ${i}`,
       cmd: `run_command_combo_${i}`,
@@ -729,8 +721,6 @@ App.setup_commands = () => {
       },
       info: `Go to the last normal tab`,
     },
-
-    ...tabnums,
 
     ...cmd_combos,
 

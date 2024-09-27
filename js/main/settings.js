@@ -1883,6 +1883,7 @@ App.settings_command_combos = () => {
     props[name] = {
       name: `Command Combo ${i}`,
       type: `list`,
+      actions: [`commands`],
       value: [],
       info: `These commands run together with a small delay between them (${i})`,
       version: 1,
