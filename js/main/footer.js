@@ -58,7 +58,8 @@ App.set_footer_info = (mode, text, item) => {
           let title = App.get_bookmark_folder_title(item.parent_id)
 
           if (title) {
-            text = `${title.substring(0, length)} | ${text}`
+            title = title.substring(0, length).trim()
+            text = `${title} | ${text}`
           }
         }
       }
