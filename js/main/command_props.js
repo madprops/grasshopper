@@ -368,7 +368,7 @@ App.setup_commands = () => {
       name,
       short_name: m_name,
       cmd: `show_mode_menu_${mode}`,
-      icon: icon,
+      icon,
       action: (args) => {
         App.show_mode_menu(mode, args.e)
       },
