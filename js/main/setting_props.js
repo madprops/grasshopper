@@ -3108,7 +3108,7 @@ App.build_settings = () => {
       version: 1,
     },
     reuse_filter: {
-      name: `Re-Use Filter`,
+      name: `Reuse Filter`,
       type: `checkbox`,
       value: true,
       info: `Re-use the filter when moving across modes`,
