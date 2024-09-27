@@ -55,7 +55,11 @@ App.show_main_menu = (mode) => {
       icon,
       text: name,
       action: () => {
-        App.do_show_mode({mode: m, reuse_filter: false})
+        if (m === `bookmarks`) {
+          App.reset_bookmarks()
+        }
+
+        App.do_show_mode({mode: m, reuse_filter: false, force: true})
       },
       selected: m === mode
     })
