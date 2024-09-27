@@ -131,12 +131,7 @@ App.create_footer = (mode) => {
 
   DOM.ev(footer, `contextmenu`, (e) => {
     e.preventDefault()
-
-    let items = App.custom_menu_items({
-      name: `footer_menu`,
-    })
-
-    App.show_context({items, e})
+    App.show_footer_menu(e)
   })
 
   DOM.ev(footer, `auxclick`, (e) => {
@@ -246,4 +241,12 @@ App.footer_message = (msg) => {
 
 App.restore_footer_info = () => {
   App.update_footer_info(App.get_selected())
+}
+
+App.show_footer_menu = (e) => {
+  let items = App.custom_menu_items({
+    name: `footer_menu`,
+  })
+
+  App.show_context({items, e})
 }

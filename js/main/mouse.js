@@ -102,11 +102,7 @@ App.mouse_click_action = (mode, e) => {
 
   if (!App.cursor_on_item(mode, e)) {
     if (DOM.parent(e.target, [`#pinline`])) {
-      let items = App.custom_menu_items({
-        name: `pinline_menu`,
-      })
-
-      App.show_context({items, e})
+      App.show_pinline_menu(e)
     }
 
     return

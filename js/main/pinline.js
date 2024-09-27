@@ -80,3 +80,11 @@ App.pinline_index = () => {
 
   return DOM.els(`.tabs_element`).indexOf(DOM.el(`#pinline`))
 }
+
+App.show_pinline_menu = (e) => {
+  let items = App.custom_menu_items({
+    name: `pinline_menu`,
+  })
+
+  App.show_context({items, e})
+}

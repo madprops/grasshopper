@@ -24,6 +24,7 @@ App.setup_commands = () => {
   let signal_icon = App.settings_icons.signals
   let browser_icon = App.settings_icons.browser
   let menu_icon = App.settings_icons.menus
+  let footer_icon = App.settings_icons.footer
 
   let time_icon = App.time_icon
   let command_icon = App.command_icon
@@ -1261,7 +1262,7 @@ App.setup_commands = () => {
     },
     {
       name: `Extra Menu`,
-      short_name: `Empty`,
+      short_name: `Extra`,
       cmd: `show_extra_menu`,
       modes: [`items`],
       item: true,
@@ -1273,7 +1274,7 @@ App.setup_commands = () => {
     },
     {
       name: `Hover Menu`,
-      short_name: `Empty`,
+      short_name: `Hover`,
       cmd: `show_hover_menu`,
       modes: [`items`],
       item: true,
@@ -1282,6 +1283,26 @@ App.setup_commands = () => {
         App.show_hover_menu(args.item, args.e)
       },
       info: `Show the Hover Menu`,
+    },
+    {
+      name: `Pinline Menu`,
+      short_name: `Pinline`,
+      cmd: `show_pinline_menu`,
+      icon: menu_icon,
+      action: (args) => {
+        App.show_pinline_menu(args.e)
+      },
+      info: `Show the Pinline Menu`,
+    },
+    {
+      name: `Footer Menu`,
+      short_name: `Footer`,
+      cmd: `show_footer_menu`,
+      icon: footer_icon,
+      action: (args) => {
+        App.show_footer_menu(args.e)
+      },
+      info: `Show the Footer Menu`,
     },
     {
       name: `New`,
@@ -3062,7 +3083,7 @@ App.setup_commands = () => {
       info: `Edit the main title`,
     },
     {
-      name: `Show Title Menu`,
+      name: `Title Menu`,
       short_name: `Title Menu`,
       cmd: `show_main_title_menu`,
       icon: title_icon,

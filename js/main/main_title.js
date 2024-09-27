@@ -85,6 +85,7 @@ App.create_main_title = (mode) => {
   })
 
   DOM.ev(el, `contextmenu`, (e) => {
+    e.preventDefault()
     App.show_main_title_menu(e)
   })
 
@@ -169,8 +170,6 @@ App.copy_main_title = () => {
 }
 
 App.show_main_title_menu = (e) => {
-  e.preventDefault()
-
   let items = App.custom_menu_items({
     name: `main_title_menu`,
   })
