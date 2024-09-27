@@ -252,14 +252,19 @@ App.filter_bookmark_nodes = (query, nodes, max) => {
   query = query.toLowerCase()
 
   for (let node of nodes) {
+    let match = false
+
     if (node.title) {
       if (node.title.toLowerCase().includes(query)) {
         items.push(node)
+        match = true
       }
     }
-    else if (node.url) {
+
+    if (!match && node.url) {
       if (node.url.toLowerCase().includes(query)) {
         items.push(node)
+        match = true
       }
     }
 
