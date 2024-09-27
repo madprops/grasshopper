@@ -656,3 +656,11 @@ App.edit_bookmark_rule = (item, folder) => {
 
   Addlist.edit({id, items, edit: false})
 }
+
+App.get_bookmark_folder_title = (id) => {
+  for (let folder of App.bookmark_folders_cache) {
+    if (folder.id === id) {
+      return folder.title
+    }
+  }
+}

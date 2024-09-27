@@ -33,7 +33,7 @@ App.do_update_footer_info = (item) => {
       info = item.footer
     }
 
-    App.set_footer_info(item.mode, info)
+    App.set_footer_info(item.mode, info, item)
   }
   else {
     App.empty_footer_info()
@@ -44,11 +44,22 @@ App.empty_footer_info = () => {
   App.set_footer_info(App.window_mode, `No Results`)
 }
 
-App.set_footer_info = (mode, text) => {
+App.set_footer_info = (mode, text, item) => {
   let footer = App.get_footer(mode)
 
   if (footer) {
     let info = DOM.el(`.footer_info`, footer)
+
+    if (item) {
+      if (mode === `bookmarks`) {
+        let title = App.get_bookmark_folder_title(item.parent_id)
+
+        if (title) {
+          text = `${title.substring(0, 8)} | ${text}`
+        }
+      }
+    }
+
     info.textContent = text
   }
 }
