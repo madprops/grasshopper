@@ -186,10 +186,8 @@ App.popup_is_open = (id, exact = true) => {
         return true
       }
     }
-    else {
-      if (pid.startsWith(id)) {
-        return true
-      }
+    else if (pid.startsWith(id)) {
+      return true
     }
   }
 

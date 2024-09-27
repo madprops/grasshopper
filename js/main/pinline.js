@@ -34,10 +34,8 @@ App.do_check_pinline = () => {
       App.pinline_visible = false
     }
   }
-  else {
-    if ((!tabs.pinned_f.length) && (!tabs.normal_f.length)) {
-      App.pinline_visible = false
-    }
+  else if ((!tabs.pinned_f.length) && (!tabs.normal_f.length)) {
+    App.pinline_visible = false
   }
 
   if (!App.pinline_visible) {

@@ -74,10 +74,8 @@ App.select_next = (mode, dir) => {
       App.select_range(item)
       break
     }
-    else {
-      if (item === current) {
-        waypoint = true
-      }
+    else if (item === current) {
+      waypoint = true
     }
   }
 }
@@ -538,13 +536,11 @@ App.move_item_element = (mode, el, to_index) => {
   if (to_index === 0) {
     container.prepend(el)
   }
+  else if (from_index < to_index) {
+    container.insertBefore(el, items[to_index + 1])
+  }
   else {
-    if (from_index < to_index) {
-      container.insertBefore(el, items[to_index + 1])
-    }
-    else {
-      container.insertBefore(el, items[to_index])
-    }
+    container.insertBefore(el, items[to_index])
   }
 }
 

@@ -238,13 +238,11 @@ App.cycle_modes = async (reverse, reuse_filter = true) => {
       new_mode = modes[index - 1]
     }
   }
+  else if (index === modes.length - 1) {
+    new_mode = modes[0]
+  }
   else {
-    if (index === modes.length - 1) {
-      new_mode = modes[0]
-    }
-    else {
-      new_mode = modes[index + 1]
-    }
+    new_mode = modes[index + 1]
   }
 
   App.show_mode({mode: new_mode, reuse_filter})

@@ -407,13 +407,11 @@ App.do_apply_theme = (args = {}) => {
     if (App.get_setting(`favorites_bar_color_enabled`)) {
       App.set_css_var(`favorites_bar_color`, App.get_setting(`favorites_bar_color`))
     }
+    else if (App.favorites_bar_side()) {
+      App.set_css_var(`favorites_bar_color`, slight_shade)
+    }
     else {
-      if (App.favorites_bar_side()) {
-        App.set_css_var(`favorites_bar_color`, slight_shade)
-      }
-      else {
-        App.set_css_var(`favorites_bar_color`, `unset`)
-      }
+      App.set_css_var(`favorites_bar_color`, `unset`)
     }
 
     if (App.get_setting(`tab_box_color_enabled`)) {

@@ -14,72 +14,70 @@ App.show_item_menu = async (args = {}) => {
       item: args.item
     })
   }
+  else if (args.item.mode === `tabs`) {
+    App.item_menu_item(items, `load_tabs`, {item: args.item})
+    App.item_menu_item(items, `pin_tabs`, {item: args.item})
+    App.item_menu_item(items, `unpin_tabs`, {item: args.item})
+    App.item_menu_item(items, `show_color_menu`, {item: args.item})
+    App.item_menu_tags(items, args.item)
+    App.item_menu_item(items, `edit_icon`, {item: args.item})
+    App.item_menu_item(items, `edit_title`, {item: args.item})
+    App.item_menu_item(items, `edit_notes`, {item: args.item})
+
+    let zone_items = []
+
+    App.item_menu_item(zone_items, `insert_header`, {item: args.item})
+    App.item_menu_item(zone_items, `insert_subheader`, {item: args.item})
+
+    App.sep(zone_items)
+
+    App.item_menu_item(zone_items, `add_split_both`, {item: args.item})
+    App.item_menu_item(zone_items, `add_split_top`, {item: args.item})
+    App.item_menu_item(zone_items, `add_split_bottom`, {item: args.item})
+    App.item_menu_item(zone_items, `remove_split`, {item: args.item})
+
+    items.push({
+      icon: App.zone_icon,
+      text: `Zones`,
+      items: zone_items,
+    })
+
+    let common_obj = {
+      o_items: items,
+      item: args.item,
+    }
+
+    App.common_menu_items(common_obj)
+
+    let more_obj = {
+      o_items: items,
+      item: args.item,
+    }
+
+    App.more_menu_items(more_obj)
+    App.extra_menu_items(items)
+
+    App.sep(items)
+
+    App.item_menu_item(items, `close_tabs`, {item: args.item})
+  }
   else {
-    if (args.item.mode === `tabs`) {
-      App.item_menu_item(items, `load_tabs`, {item: args.item})
-      App.item_menu_item(items, `pin_tabs`, {item: args.item})
-      App.item_menu_item(items, `unpin_tabs`, {item: args.item})
-      App.item_menu_item(items, `show_color_menu`, {item: args.item})
-      App.item_menu_tags(items, args.item)
-      App.item_menu_item(items, `edit_icon`, {item: args.item})
-      App.item_menu_item(items, `edit_title`, {item: args.item})
-      App.item_menu_item(items, `edit_notes`, {item: args.item})
+    App.item_menu_item(items, `open_items`, {item: args.item})
 
-      let zone_items = []
-
-      App.item_menu_item(zone_items, `insert_header`, {item: args.item})
-      App.item_menu_item(zone_items, `insert_subheader`, {item: args.item})
-
-      App.sep(zone_items)
-
-      App.item_menu_item(zone_items, `add_split_both`, {item: args.item})
-      App.item_menu_item(zone_items, `add_split_top`, {item: args.item})
-      App.item_menu_item(zone_items, `add_split_bottom`, {item: args.item})
-      App.item_menu_item(zone_items, `remove_split`, {item: args.item})
-
-      items.push({
-        icon: App.zone_icon,
-        text: `Zones`,
-        items: zone_items,
-      })
-
-      let common_obj = {
-        o_items: items,
-        item: args.item,
-      }
-
-      App.common_menu_items(common_obj)
-
-      let more_obj = {
-        o_items: items,
-        item: args.item,
-      }
-
-      App.more_menu_items(more_obj)
-      App.extra_menu_items(items)
-
-      App.sep(items)
-
-      App.item_menu_item(items, `close_tabs`, {item: args.item})
+    let common_obj = {
+      o_items: items,
+      item: args.item,
     }
-    else {
-      App.item_menu_item(items, `open_items`, {item: args.item})
 
-      let common_obj = {
-        o_items: items,
-        item: args.item,
-      }
+    App.common_menu_items(common_obj)
 
-      App.common_menu_items(common_obj)
-
-      let more_obj = {
-        o_items: items,
-        item: args.item,
-      }
-
-      App.more_menu_items(more_obj)
-      App.extra_menu_items(items)
+    let more_obj = {
+      o_items: items,
+      item: args.item,
     }
+
+    App.more_menu_items(more_obj)
+    App.extra_menu_items(items)
   }
 
   App.show_context({items, e: args.e})
@@ -245,12 +243,10 @@ App.item_menu_tags = (items, item) => {
       items: tag_items,
     })
   }
+  else if (item.custom_tags.length) {
+    App.item_menu_item(items, `edit_tags`, {item})
+  }
   else {
-    if (item.custom_tags.length) {
-      App.item_menu_item(items, `edit_tags`, {item})
-    }
-    else {
-      App.item_menu_item(items, `add_tags`, {item})
-    }
+    App.item_menu_item(items, `add_tags`, {item})
   }
 }

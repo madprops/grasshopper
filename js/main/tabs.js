@@ -946,10 +946,8 @@ App.update_tabs_index = async (items, direction) => {
         await App.unpin_tab(item.id)
       }
     }
-    else {
-      if (index < pinline) {
-        await App.pin_tab(item.id)
-      }
+    else if (index < pinline) {
+      await App.pin_tab(item.id)
     }
 
     await App.do_move_tab_index(item.id, index_2)
@@ -1687,18 +1685,16 @@ App.edge_tab_up_down = (direction) => {
         App.first_pinned_tab()
       }
     }
-    else {
-      if (normal[0] === item) {
-        if (pins.length) {
-          App.last_pinned_tab()
-        }
-        else {
-          App.last_normal_tab()
-        }
+    else if (normal[0] === item) {
+      if (pins.length) {
+        App.last_pinned_tab()
       }
       else {
-        App.first_normal_tab()
+        App.last_normal_tab()
       }
+    }
+    else {
+      App.first_normal_tab()
     }
   }
   else if (direction === `down`) {
@@ -1706,27 +1702,21 @@ App.edge_tab_up_down = (direction) => {
       if (pins.at(-1) !== item) {
         App.last_pinned_tab()
       }
+      else if (normal.length) {
+        App.first_normal_tab()
+      }
       else {
-        if (normal.length) {
-          App.first_normal_tab()
-        }
-        else {
-          App.first_pinned_tab()
-        }
+        App.first_pinned_tab()
       }
     }
+    else if (normal.at(-1) !== item) {
+      App.last_normal_tab()
+    }
+    else if (pins.length) {
+      App.first_pinned_tab()
+    }
     else {
-      if (normal.at(-1) !== item) {
-        App.last_normal_tab()
-      }
-      else {
-        if (pins.length) {
-          App.first_pinned_tab()
-        }
-        else {
-          App.first_normal_tab()
-        }
-      }
+      App.first_normal_tab()
     }
   }
 }

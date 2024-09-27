@@ -218,13 +218,11 @@ App.do_filter = async (args = {}) => {
           match = alias.a
         }
       }
-      else {
-        if (alias.a.startsWith(value)) {
-          match = alias.b
-        }
-        else if (alias.b.startsWith(value)) {
-          match = alias.a
-        }
+      else if (alias.a.startsWith(value)) {
+        match = alias.b
+      }
+      else if (alias.b.startsWith(value)) {
+        match = alias.a
       }
 
       if (match) {
@@ -349,10 +347,8 @@ App.do_filter = async (args = {}) => {
         }
       }
     }
-    else {
-      if (!search) {
-        App.hide_item(item)
-      }
+    else if (!search) {
+      App.hide_item(item)
     }
   }
 
@@ -676,13 +672,11 @@ App.set_filter = (args = {}) => {
         App.filter_settings()
       }
     }
+    else if (args.instant) {
+      App[`do_filter_${args.mode}`]()
+    }
     else {
-      if (args.instant) {
-        App[`do_filter_${args.mode}`]()
-      }
-      else {
-        App[`filter_${args.mode}`]()
-      }
+      App[`filter_${args.mode}`]()
     }
   }
 }

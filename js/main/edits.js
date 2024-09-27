@@ -270,11 +270,9 @@ App.remove_edits = (args = {}) => {
             break
           }
         }
-        else {
-          if (item[`custom_${what}`]) {
-            args.items.push(item)
-            break
-          }
+        else if (item[`custom_${what}`]) {
+          args.items.push(item)
+          break
         }
       }
     }

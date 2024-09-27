@@ -53,12 +53,10 @@ App.copy_rule = (item, rule) => {
         item.rule = rule
       }
     }
-    else {
-      if (rule[key]) {
-        item[`rule_${key}`] = rule[key]
-        item.ruled = true
-        item.rule = rule
-      }
+    else if (rule[key]) {
+      item[`rule_${key}`] = rule[key]
+      item.ruled = true
+      item.rule = rule
     }
   }
 }

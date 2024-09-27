@@ -19,6 +19,7 @@ export default [
       "semi": ["error", "never"],
       "no-else-return": "error",
       "padded-blocks": ["error", "never"],
+      "no-lonely-if": "error",
     },
     languageOptions: {
       globals: {

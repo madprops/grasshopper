@@ -66,10 +66,8 @@ App.do_check_playing = (mode = App.active_mode, force = false) => {
       }
     }
   }
-  else {
-    if (App.playing) {
-      App.hide_playing(mode)
-    }
+  else if (App.playing) {
+    App.hide_playing(mode)
   }
 }
 

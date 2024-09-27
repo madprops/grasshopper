@@ -499,10 +499,8 @@ App.show_cmds_menu = (args = {}) => {
             ok = false
           }
         }
-        else {
-          if (!cmd_ok) {
-            ok = false
-          }
+        else if (!cmd_ok) {
+          ok = false
         }
       }
 

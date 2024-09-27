@@ -36,11 +36,9 @@ Addlist.save = (id, hide = true) => {
       return false
     }
   }
-  else {
-    if (!Addlist.filled(id)) {
-      Addlist.check_remove()
-      return false
-    }
+  else if (!Addlist.filled(id)) {
+    Addlist.check_remove()
+    return false
   }
 
   let v1 = ``
@@ -287,13 +285,11 @@ Addlist.edit = (args = {}) => {
       if (value) {
         el.value = value
       }
+      else if (oargs.sources[key]) {
+        el.value = oargs.sources[key]()
+      }
       else {
-        if (oargs.sources[key]) {
-          el.value = oargs.sources[key]()
-        }
-        else {
-          el.value = ``
-        }
+        el.value = ``
       }
     }
     else if (w === `menu`) {
@@ -303,10 +299,8 @@ Addlist.edit = (args = {}) => {
       if (value) {
         mb.set(value)
       }
-      else {
-        if (oargs.sources[key]) {
-          mb.set(oargs.sources[key]()[0].value)
-        }
+      else if (oargs.sources[key]) {
+        mb.set(oargs.sources[key]()[0].value)
       }
 
       first_menu = key
@@ -315,13 +309,11 @@ Addlist.edit = (args = {}) => {
       if (value !== undefined) {
         el.checked = value
       }
+      else if (oargs.sources[key]) {
+        el.checked = oargs.sources[key]()
+      }
       else {
-        if (oargs.sources[key]) {
-          el.checked = oargs.sources[key]()
-        }
-        else {
-          el.checked = false
-        }
+        el.checked = false
       }
     }
     else if (w === `color`) {
@@ -330,10 +322,8 @@ Addlist.edit = (args = {}) => {
       if (value) {
         picker.setColor(value)
       }
-      else {
-        if (oargs.sources[key]) {
-          picker.setColor(oargs.sources[key]())
-        }
+      else if (oargs.sources[key]) {
+        picker.setColor(oargs.sources[key]())
       }
     }
   }
@@ -506,16 +496,14 @@ Addlist.next = (id, reverse = false) => {
       index = data.index - 1
     }
   }
+  else if (data.index === undefined) {
+    index = 0
+  }
+  else if (data.index >= (lines.length - 1)) {
+    index = 0
+  }
   else {
-    if (data.index === undefined) {
-      index = 0
-    }
-    else if (data.index >= (lines.length - 1)) {
-      index = 0
-    }
-    else {
-      index = data.index + 1
-    }
+    index = data.index + 1
   }
 
   data.index = index
