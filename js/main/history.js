@@ -39,8 +39,6 @@ App.get_history = async (query = ``, deep = false) => {
     max_items = App.get_setting(`max_search_items_history`)
   }
 
-  console.log(111)
-
   try {
     results = await browser.history.search({
       text: ``,
