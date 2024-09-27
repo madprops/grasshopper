@@ -311,8 +311,9 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
       return App.get_setting(setting)
     },
     on_middle_click: () => {
+      App.set_default_setting(setting, true)
       let value = App.get_default_setting(setting)
-      App[btn_id].set(value)
+      App[btn_id].set(value, false)
     },
   })
 
