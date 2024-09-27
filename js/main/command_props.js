@@ -344,6 +344,7 @@ App.setup_commands = () => {
   }
 
   let show_modes = []
+  let mode_menus = []
 
   for (let mode of App.modes) {
     let icon = App.mode_icons[mode]
@@ -357,6 +358,19 @@ App.setup_commands = () => {
       icon,
       action: (args) => {
         App.show_mode({mode, reuse_filter: true})
+      },
+      info: `Show mode: ${mode}`,
+    })
+
+    name = `${m_name} Menu`
+
+    mode_menus.push({
+      name,
+      short_name: m_name,
+      cmd: `show_mode_menu_${mode}`,
+      icon: menu_icon,
+      action: (args) => {
+        App.show_mode_menu(mode, args.e)
       },
       info: `Show mode: ${mode}`,
     })
@@ -1243,16 +1257,19 @@ App.setup_commands = () => {
       info: `Show the filter menu`,
     },
     {
-      name: `Actions Menu`,
-      short_name: `Actions`,
-      cmd: `show_actions_menu`,
+      name: `Global Menu`,
+      short_name: `Global`,
+      cmd: `show_global_menu`,
       modes: [`items`],
       icon: menu_icon,
       action: (args) => {
-        App.show_actions_menu(args.mode, args.e)
+        App.show_global_menu(args.e)
       },
-      info: `Show the Actions Menu`,
+      info: `Show the Global Menu`,
     },
+
+    ...mode_menus,
+
     {
       name: `Browser Menu`,
       short_name: `Browser`,
