@@ -1232,7 +1232,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: menu_icon,
       action: (args) => {
-        App.show_actions_menu(args.mode)
+        App.show_actions_menu(args.mode, args.e)
       },
       info: `Show the actions menu`,
     },
