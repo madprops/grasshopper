@@ -63,7 +63,7 @@ App.get_bookmarks = async (query = ``, deep = false) => {
   try {
     results = await App.get_bookmark_items({
       folder,
-      title: query,
+      query: query,
       deep,
     })
   }
@@ -244,13 +244,20 @@ App.bookmark_items_to_folder = async (args) => {
   App.do_select_bookmarks_folder({folders, callback, include_all: false, e: args.e})
 }
 
-App.filter_bookmark_nodes = (title, nodes, max) => {
+App.filter_bookmark_nodes = (query, nodes, max) => {
   let items = []
-  title = title.toLowerCase()
+  query = query.toLowerCase()
 
   for (let node of nodes) {
-    if (node.title.toLowerCase().includes(title)) {
-      items.push(node)
+    if (node.title) {
+      if (node.title.toLowerCase().includes(query)) {
+        items.push(node)
+      }
+    }
+    else if (node.url) {
+      if (node.url.toLowerCase().includes(query)) {
+        items.push(node)
+      }
     }
 
     if (items.length >= max) {
@@ -268,7 +275,7 @@ App.clean_bookmark_nodes = (nodes) => {
 App.get_bookmark_items = async (args = {}) => {
   let def_args = {
     folder: ``,
-    title: ``,
+    query: ``,
     deep: false,
   }
 
@@ -301,8 +308,8 @@ App.get_bookmark_items = async (args = {}) => {
     max = App.get_setting(`max_search_items_bookmarks`)
   }
 
-  if (args.title.trim()) {
-    items = App.filter_bookmark_nodes(args.title, items, max)
+  if (args.query.trim()) {
+    items = App.filter_bookmark_nodes(args.query, items, max)
   }
   else {
     items = items.slice(0, max)
