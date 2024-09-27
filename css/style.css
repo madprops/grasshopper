@@ -517,7 +517,7 @@ svg {
 .item_text {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: var(--item_align);
   justify-content: center;
   overflow: hidden;
 }

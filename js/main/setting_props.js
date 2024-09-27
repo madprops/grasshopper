@@ -71,6 +71,16 @@ App.build_settings = () => {
         ])
       },
     },
+    item_align: {
+      name: `Item Align`,
+      type: `menu`,
+      value: `left`,
+      info: `How to align the text in each item`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.aligns)
+      },
+    },
     item_icon: {
       name: `Item Icon`,
       type: `menu`,

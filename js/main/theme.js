@@ -37,6 +37,12 @@ App.do_apply_theme = (args = {}) => {
   App.def_args(def_args, args)
 
   try {
+    let justify_map = {
+      left: `flex-start`,
+      center: `center`,
+      right: `flex-end`,
+    }
+
     if (!args.background_color) {
       args.background_color = App.get_setting(`background_color`)
     }
@@ -146,6 +152,10 @@ App.do_apply_theme = (args = {}) => {
     if (borders_opts.includes(borders)) {
       main.classList.add(`borders_${borders}`)
     }
+
+    let item_align = App.get_setting(`item_align`)
+    let item_justify = justify_map[item_align]
+    App.set_css_var(`item_align`, item_justify)
 
     App.set_background(args.background_image)
     App.apply_background_effects(args.background_effect, args.background_tiles)
@@ -474,13 +484,6 @@ App.do_apply_theme = (args = {}) => {
     let footer_pos = App.get_setting(`footer_position`)
     main.classList.add(`footer_position_${footer_pos}`)
     let footer_align = App.get_setting(`footer_align`)
-
-    let justify_map = {
-      left: `flex-start`,
-      center: `center`,
-      right: `flex-end`,
-    }
-
     let footer_justify = justify_map[footer_align]
     App.set_css_var(`footer_align`, footer_justify)
     let cb_padding = App.get_setting(`close_button_padding`)
