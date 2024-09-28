@@ -1778,3 +1778,52 @@ App.focus_tab_number = (num) => {
     App.tabs_action({item})
   }
 }
+
+App.export_tabs = () => {
+  let items = App.get_items(`tabs`)
+  let infos = []
+
+  for (let item of items) {
+    let info = {
+      url: item.url,
+      pinned: item.pinned,
+    }
+
+    App.fill_custom_props(info, item)
+    infos.push(info)
+  }
+
+  App.export_data(`Tabs`, infos)
+}
+
+App.import_tabs = async () => {
+  App.import_data(`Tabs`, async (json) => {
+    if (!json) {
+      return
+    }
+
+    let win = await browser.windows.create({})
+
+    for (let info of json) {
+      try {
+        let tab = await browser.tabs.create({
+          windowId: win.id,
+          url: info.url,
+          pinned: info.pinned,
+        })
+
+        let props = App.get_edit_prop_list()
+
+        for (let key of props) {
+          if (info[key] !== undefined) {
+            let name = `custom_${key}`
+            await browser.sessions.setTabValue(tab.id, name, info[key])
+          }
+        }
+      }
+      catch (err) {
+        App.error(err)
+      }
+    }
+  })
+}

@@ -413,3 +413,30 @@ App.edit_to_string = (what, item, kind = `custom`) => {
 
   return ``
 }
+
+App.fill_custom_props = (obj, item) => {
+  for (let key in App.edit_props) {
+    let value = item[`custom_${key}`]
+    let ok = true
+
+    if (App.get_text_edit_props().includes(key)) {
+      if (!value) {
+        ok = false
+      }
+    }
+    else if (App.get_list_edit_props().includes(key)) {
+      if (!value.length) {
+        ok = false
+      }
+    }
+    else if (App.get_bool_edit_props().includes(key)) {
+      if (!value) {
+        ok = false
+      }
+    }
+
+    if (ok) {
+      obj[key] = value
+    }
+  }
+}
