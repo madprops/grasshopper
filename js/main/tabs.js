@@ -1841,11 +1841,16 @@ App.import_tabs = async () => {
 
     for (let info of json) {
       if (info.opener) {
+        let new_id = id_map[info.id]
+
+        if (!new_id) {
+          continue
+        }
+
         let opener = id_map[info.opener]
 
         if (opener) {
           try {
-            let new_id = id_map[info.id]
             await browser.tabs.update(new_id, {openerTabId: opener})
           }
           catch (err) {
