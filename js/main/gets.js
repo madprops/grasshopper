@@ -54,13 +54,13 @@ App.get_bool_edit = (item, prop, rule) => {
 //
 
 App.get_edit = (item, prop, rule = true) => {
-  if ([`color`, `title`, `icon`, `notes`, `root`].includes(prop)) {
+  if (App.get_text_edit_props().includes(prop)) {
     return App.get_text_edit(item, prop, rule)
   }
-  else if ([`tags`].includes(prop)) {
+  else if (App.get_list_edit_props().includes(prop)) {
     return App.get_list_edit(item, prop, rule)
   }
-  else if ([`split_top`, `split_bottom`].includes(prop)) {
+  else if (App.get_bool_edit_props().includes(prop)) {
     return App.get_bool_edit(item, prop, rule)
   }
 }

@@ -29,6 +29,24 @@ App.get_edit_prop_list = () => {
   return Object.keys(App.edit_props)
 }
 
+App.get_text_edit_props = () => {
+  return Object.keys(App.edit_props).filter((key) => {
+    return App.edit_props[key].type === `string`
+  })
+}
+
+App.get_list_edit_props = () => {
+  return Object.keys(App.edit_props).filter((key) => {
+    return App.edit_props[key].type === `list`
+  })
+}
+
+App.get_bool_edit_props = () => {
+  return Object.keys(App.edit_props).filter((key) => {
+    return App.edit_props[key].type === `bool`
+  })
+}
+
 App.check_tab_session = async (items = [], force = false) => {
   if (!items.length) {
     items = App.get_items(`tabs`)
