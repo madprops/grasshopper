@@ -23,6 +23,7 @@ App.show_item_menu = async (args = {}) => {
     App.item_menu_item(items, `edit_icon`, {item: args.item})
     App.item_menu_item(items, `edit_title`, {item: args.item})
     App.item_menu_item(items, `edit_notes`, {item: args.item})
+    App.item_menu_item(items, `filter_nodes`, {item: args.item})
 
     let zone_items = []
 
@@ -41,8 +42,6 @@ App.show_item_menu = async (args = {}) => {
       text: `Zones`,
       items: zone_items,
     })
-
-    App.item_menu_item(items, `filter_nodes`, {item: args.item})
 
     let common_obj = {
       o_items: items,
@@ -98,7 +97,6 @@ App.common_menu_items = (args = {}) => {
   App.item_menu_item(filter_items, `filter_color`, {item: args.item})
   App.item_menu_item(filter_items, `filter_tag`, {item: args.item})
   App.item_menu_item(filter_items, `filter_icon`, {item: args.item})
-  App.item_menu_item(filter_items, `filter_root`, {item: args.item})
 
   if (filter_items.length) {
     items.push({
