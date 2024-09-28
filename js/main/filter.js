@@ -531,7 +531,7 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `title`) {
       match = lower_title.includes(args.f_value_lower)
     }
-    else if (args.filter_mode === `root`) {
+    else if (args.filter_mode === `node`) {
       if (args.item.root) {
         match = args.item.root.toString() === args.f_value
       }
@@ -1085,10 +1085,10 @@ App.filter_title = (item) => {
   })
 }
 
-App.filter_root = (item) => {
+App.filter_nodes = (item) => {
   App.filter_common({
-    name: `root`,
-    full: `Root`,
+    name: `node`,
+    full: `Node`,
     prop: item.id,
     item,
   })

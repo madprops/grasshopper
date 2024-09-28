@@ -2694,14 +2694,14 @@ App.setup_commands = () => {
       info: `Filter same title`,
     },
     {
-      name: `Filter Root`,
-      cmd: `filter_root`,
+      name: `Filter Nodes`,
+      cmd: `filter_nodes`,
       modes: [`tabs`],
       item: true,
       single: true,
       icon: filter_icon,
       action: (args) => {
-        App.filter_root(args.item)
+        App.filter_nodes(args.item)
       },
       info: `Filter the tabs that were opened through this tab`,
     },
