@@ -65,7 +65,7 @@ App.plural = (n, singular, plural) => {
   if (n === 1) {
     return singular
   }
-  
+
   return plural
 }
 
@@ -273,7 +273,7 @@ App.wheel_direction = (e) => {
   if (e.deltaY > 0) {
     return `down`
   }
-  
+
   return `up`
 }
 
@@ -454,7 +454,7 @@ App.str = (obj, format = false) => {
   if (format) {
     return JSON.stringify(obj, null, 2)
   }
-  
+
   return JSON.stringify(obj)
 }
 
