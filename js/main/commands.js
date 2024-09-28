@@ -282,13 +282,12 @@ App.check_command = (command, args = {}) => {
   check_1(`some_unloaded`)
   check_1(`some_header`)
   check_1(`some_no_header`)
-  check_1(`some_split`)
-  check_1(`some_no_split`)
-  check_1(`some_custom_split`)
-  check_1(`some_no_custom_split`)
   check_1(`some_edits`)
 
-  for (let prop of App.get_edit_prop_list()) {
+  let edit_props = App.get_edit_prop_list()
+  edit_props.push(`split`)
+
+  for (let prop of edit_props) {
     check_1(`some_${prop}`)
     check_1(`some_no_${prop}`)
     check_1(`some_custom_${prop}`)
