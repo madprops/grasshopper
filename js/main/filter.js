@@ -604,6 +604,9 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `filter_notes_tabs`) {
       match = App.get_notes(args.item)
     }
+    else if (args.filter_mode === `filter_root_tabs`) {
+      match = App.get_root(args.item)
+    }
     else if (args.filter_mode === `filter_edited_tabs`) {
       match = App.edited(args.item)
     }
@@ -1482,6 +1485,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push(separator())
   fmodes.push({cmd: `filter_titled_tabs`})
   fmodes.push({cmd: `filter_notes_tabs`})
+  fmodes.push({cmd: `filter_root_tabs`})
   fmodes.push({cmd: `filter_edited_tabs`})
 
   if (mode !== `tabs`) {

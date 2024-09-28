@@ -2694,7 +2694,7 @@ App.setup_commands = () => {
       info: `Filter same title`,
     },
     {
-      name: `Filter Root`,
+      name: `Tab Root`,
       cmd: `filter_root`,
       modes: [`tabs`],
       item: true,
@@ -2980,6 +2980,18 @@ App.setup_commands = () => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Filter tabs that have notes`,
+    },
+    {
+      name: `Filter Roots`,
+      short_name: `Roots`,
+      cmd: `filter_root_tabs`,
+      modes: [`items`],
+      icon: notes_icon,
+      filter_mode: true,
+      action: (args) => {
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter tabs that have roots`,
     },
     {
       name: `Filter Edited`,
