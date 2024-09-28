@@ -2694,7 +2694,7 @@ App.setup_commands = () => {
       info: `Filter same title`,
     },
     {
-      name: `Tab Root`,
+      name: `Filter Root`,
       cmd: `filter_root`,
       modes: [`tabs`],
       item: true,
