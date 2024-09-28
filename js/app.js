@@ -186,6 +186,7 @@ App.settings_icons = {
   combos: `🍔`,
   hover: `🔆`,
   bookmarks: `⭐`,
+  close: `❌`,
 }
 
 App.mode_icons = {

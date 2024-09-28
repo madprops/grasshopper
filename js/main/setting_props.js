@@ -808,14 +808,6 @@ App.build_settings = () => {
       Leave empty to use an arrow`,
       version: 1,
     },
-    close_icon: {
-      name: `Close Icon`,
-      type: `text_smaller`,
-      value: `x`,
-      placeholder: App.icon_placeholder,
-      info: `Icon for the close buttons`,
-      version: 1,
-    },
   }
 
   add_props()
@@ -838,48 +830,6 @@ App.build_settings = () => {
           {text: `24 hours`, value: `show_24`},
         ])
       },
-    },
-    close_button: {
-      name: `Close Button`,
-      type: `menu`,
-      value: `right`,
-      info: `How to show the Close Button on tabs`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: App.separator_string},
-          {text: `Left`, value: `left`},
-          {text: `Right`, value: `right`},
-          {text: App.separator_string},
-          {text: `Left Hover`, value: `left_hover`},
-          {text: `Right Hover`, value: `right_hover`},
-        ])
-      },
-    },
-    close_button_menu: {
-      name: `Close Btn Menu`,
-      type: `list`,
-      value: [
-        {cmd: `filter_nodes`},
-        {cmd: `filter_domain`},
-        {cmd: `filter_color`},
-        {cmd: `duplicate_tabs`},
-        {cmd: `unload_tabs`},
-      ],
-      info: `Menu to show when clicking the Close Button`,
-      version: 1,
-    },
-    close_button_padding: {
-      name: `Close Button Padding`,
-      type: `number`,
-      value: 14,
-      placeholder: `Px`,
-      min: 0,
-      max: App.max_padding_setting,
-      info: `Horizontal padding for the Close Buttons`,
-      version: 1,
-      separator: true,
     },
     show_pinline: {
       name: `Show Pinline`,
@@ -952,6 +902,61 @@ App.build_settings = () => {
       value: false,
       info: `Show the regular scrollbars
       Else scrollbars are disabled`,
+      version: 1,
+    },
+  }
+
+  add_props()
+  category = `close`
+
+  props = {
+    close_button: {
+      name: `Close Button`,
+      type: `menu`,
+      value: `right`,
+      info: `How to show the Close Button on tabs`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: App.separator_string},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+          {text: App.separator_string},
+          {text: `Left Hover`, value: `left_hover`},
+          {text: `Right Hover`, value: `right_hover`},
+        ])
+      },
+    },
+    close_button_menu: {
+      name: `Close Button Menu`,
+      type: `list`,
+      value: [
+        {cmd: `filter_nodes`},
+        {cmd: `filter_domain`},
+        {cmd: `filter_color`},
+        {cmd: `duplicate_tabs`},
+        {cmd: `unload_tabs`},
+      ],
+      info: `Menu to show when clicking the Close Button`,
+      version: 1,
+    },
+    close_button_padding: {
+      name: `Close Button Padding`,
+      type: `number`,
+      value: 13,
+      placeholder: `Px`,
+      min: 0,
+      max: App.max_padding_setting,
+      info: `Horizontal padding for the Close Buttons`,
+      version: 1,
+    },
+    close_icon: {
+      name: `Close Icon`,
+      type: `text_smaller`,
+      value: `x`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for the close buttons`,
       version: 1,
     },
   }
@@ -3801,6 +3806,11 @@ App.build_settings = () => {
       info: `Configure the Tab Box
       This is a component that appears below or above the tabs
       It shows different kinds of tabs so you can jump around`,
+    },
+    close: {
+      info: `Configure the Close Button
+      This is used to close the tabs
+      It also has a menu on right click`
     },
     hover: {
       info: `Configure the Hover Button
