@@ -52,6 +52,7 @@ App.setup_commands = () => {
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
   let node_icon = App.node_icon
+  let root_icon = App.root_icon
 
   let color_filters = []
   let color_changers = []
@@ -2095,7 +2096,7 @@ App.setup_commands = () => {
       cmd: `edit_root_url`,
       modes: [`tabs`],
       item: true,
-      icon: tag_icon,
+      icon: root_icon,
       action: (args) => {
         App.edit_root_url(args.item)
       },
@@ -2107,7 +2108,7 @@ App.setup_commands = () => {
       cmd: `remove_root_url`,
       modes: [`tabs`],
       item: true,
-      icon: tag_icon,
+      icon: root_icon,
       some_custom_root: true,
       action: (args) => {
         App.remove_root_url(args.item)
@@ -2121,7 +2122,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       some_root: true,
       item: true,
-      icon: tag_icon,
+      icon: root_icon,
       action: (args) => {
         App.go_to_root_url(args.item)
       },
@@ -3027,7 +3028,7 @@ App.setup_commands = () => {
       short_name: `Roots`,
       cmd: `filter_root_tabs`,
       modes: [`items`],
-      icon: notes_icon,
+      icon: root_icon,
       filter_mode: true,
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
