@@ -51,6 +51,7 @@ App.setup_commands = () => {
   let keyboard_icon = App.keyboard_icon
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
+  let node_icon = App.node_icon
 
   let color_filters = []
   let color_changers = []
@@ -2712,11 +2713,12 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Nodes`,
+      short_name: `Nodes`,
       cmd: `filter_nodes`,
       modes: [`tabs`],
       item: true,
       single: true,
-      icon: filter_icon,
+      icon: node_icon,
       action: (args) => {
         App.filter_nodes(args.item)
       },

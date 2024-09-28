@@ -42,6 +42,8 @@ App.show_item_menu = async (args = {}) => {
       items: zone_items,
     })
 
+    App.item_menu_item(items, `filter_nodes`, {item: args.item})
+
     let common_obj = {
       o_items: items,
       item: args.item,
