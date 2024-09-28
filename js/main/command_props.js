@@ -1661,6 +1661,17 @@ App.setup_commands = () => {
       info: `Open the menu with some tab closing options`,
     },
     {
+      name: `Close Btn Menu`,
+      short_name: `Close`,
+      cmd: `show_close_button_menu`,
+      modes: [`tabs`],
+      icon: menu_icon,
+      action: (args) => {
+        App.show_close_button_menu(args.item, args.e)
+      },
+      info: `Open the Close Button Menu`,
+    },
+    {
       name: `Close Normal`,
       cmd: `close_normal_tabs`,
       modes: [`tabs`],

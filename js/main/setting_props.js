@@ -857,6 +857,20 @@ App.build_settings = () => {
         ])
       },
     },
+    close_button_menu: {
+      name: `Close Btn Menu`,
+      type: `list`,
+      value: [
+        {cmd: `filter_nodes`},
+        {cmd: `filter_domain`},
+        {cmd: `filter_color`},
+        {cmd: `duplicate_tabs`},
+        {cmd: `unload_tabs`},
+      ],
+      info: `Menu to show when clicking the Close Button`,
+      separator: true,
+      version: 1,
+    },
     close_button_padding: {
       name: `Close Button Padding`,
       type: `number`,

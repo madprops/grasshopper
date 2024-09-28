@@ -344,6 +344,11 @@ App.mouse_context_action = (mode, e) => {
         return
       }
     }
+
+    if (DOM.parent(e.target, [`.close_button`])) {
+      App.show_close_button_menu(item, e)
+      return
+    }
   }
 
   if (App.taglist_enabled()) {
