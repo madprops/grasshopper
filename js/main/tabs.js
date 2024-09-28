@@ -1785,8 +1785,13 @@ App.get_tab_snapshot = () => {
 
   for (let item of items) {
     let info = {
+      id: item.id,
       url: item.url,
       pinned: item.pinned,
+    }
+
+    if (item.opener) {
+      info.opener = item.opener
     }
 
     App.fill_custom_props(info, item)
@@ -1807,6 +1812,7 @@ App.import_tabs = async () => {
     }
 
     let win = await browser.windows.create({})
+    let id_map = {}
 
     for (let info of json) {
       try {
@@ -1816,6 +1822,7 @@ App.import_tabs = async () => {
           pinned: info.pinned,
         })
 
+        id_map[info.id] = tab.id
         let props = App.get_edit_prop_list()
 
         for (let prop of props) {
@@ -1829,6 +1836,22 @@ App.import_tabs = async () => {
       }
       catch (err) {
         App.error(err)
+      }
+    }
+
+    for (let info of json) {
+      if (info.opener) {
+        let opener = id_map[info.opener]
+
+        if (opener) {
+          try {
+            let new_id = id_map[info.id]
+            await browser.tabs.update(new_id, {openerTabId: opener})
+          }
+          catch (err) {
+            App.error(err)
+          }
+        }
       }
     }
   })
