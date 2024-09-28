@@ -868,7 +868,6 @@ App.build_settings = () => {
         {cmd: `unload_tabs`},
       ],
       info: `Menu to show when clicking the Close Button`,
-      separator: true,
       version: 1,
     },
     close_button_padding: {

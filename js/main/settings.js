@@ -1286,7 +1286,7 @@ App.setup_settings_addlist = () => {
     if (c) {
       return c.icon
     }
-    
+
     return ``
   }
 
@@ -1300,7 +1300,7 @@ App.setup_settings_addlist = () => {
     if (c) {
       return c.name
     }
-    
+
     return `None`
   }
 
@@ -1432,6 +1432,7 @@ App.setup_settings_addlist = () => {
     `bookmarks_menu`,
     `closed_menu`,
     `main_title_menu`,
+    `close_button_menu`,
   ]
 
   for (let key in App.setting_props) {
