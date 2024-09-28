@@ -247,13 +247,6 @@ App.color_menu_items = (item) => {
       }
     })
 
-    items.push({
-      text: `Jump`,
-      action: () => {
-        App.jump_tabs_color(item_color)
-      }
-    })
-
     if (item.mode !== `tabs`) {
       return items
     }
