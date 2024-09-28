@@ -129,6 +129,7 @@ App.start_domain_rules = () => {
         `title`,
         `icon`,
         `tags`,
+        `root`,
         `notes`,
         `split_top`,
         `split_bottom`,
@@ -138,6 +139,7 @@ App.start_domain_rules = () => {
         domain: `text`,
         color: `menu`,
         title: `text`,
+        root: `text`,
         icon: `text`,
         tags: `text`,
         notes: `textarea`,
@@ -176,6 +178,7 @@ App.start_domain_rules = () => {
         split_bottom: `Split Bottom`,
         exact: `Exact Match`,
         by_title: `By Title`,
+        root: `Root`,
       },
       sources: {
         color: () => {
@@ -189,7 +192,10 @@ App.start_domain_rules = () => {
           }
 
           return App.get_path(value)
-        }
+        },
+        root: (value) => {
+          return App.fix_url(value)
+        },
       },
       validate: (values) => {
         if (!values.domain) {
@@ -199,6 +205,7 @@ App.start_domain_rules = () => {
         if (
           !values.color &&
           !values.title &&
+          !values.root &&
           !values.icon &&
           !values.tags &&
           !values.split_top &&
@@ -224,6 +231,7 @@ App.start_domain_rules = () => {
         notes: `Add these notes to matches`,
         split_top: `Add a split top to matches`,
         split_bottom: `Add a split bottom to matches`,
+        root: `Make this the root URL for matches`,
       },
       list_text: (items) => {
         return items.domain

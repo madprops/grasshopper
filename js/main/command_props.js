@@ -2051,6 +2051,44 @@ App.setup_commands = () => {
       info: `Add tags to tabs`,
     },
     {
+      name: `Edit Root`,
+      short_name: `Root`,
+      cmd: `edit_root_url`,
+      modes: [`tabs`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.edit_root_url(args.item)
+      },
+      info: `Edit the Root URL of a tab`,
+    },
+    {
+      name: `Remove Root`,
+      short_name: `Rm Root`,
+      cmd: `remove_root_url`,
+      modes: [`tabs`],
+      item: true,
+      icon: tag_icon,
+      some_custom_root: true,
+      action: (args) => {
+        App.remove_root_url(args.item)
+      },
+      info: `Remove the Root URL of a tab`,
+    },
+    {
+      name: `Go To Root`,
+      short_name: `Root`,
+      cmd: `go_to_root_url`,
+      modes: [`tabs`],
+      item: true,
+      icon: tag_icon,
+      some_custom_root: true,
+      action: (args) => {
+        App.go_to_root_url(args.item)
+      },
+      info: `Go to the Root URL of a tab`,
+    },
+    {
       name: `Edit Notes`,
       short_name: `Notes`,
       cmd: `edit_notes`,

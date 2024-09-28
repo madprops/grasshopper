@@ -54,7 +54,7 @@ App.get_bool_edit = (item, prop, rule) => {
 //
 
 App.get_edit = (item, prop, rule = true) => {
-  if ([`color`, `title`, `icon`, `notes`].includes(prop)) {
+  if ([`color`, `title`, `icon`, `notes`, `root`].includes(prop)) {
     return App.get_text_edit(item, prop, rule)
   }
   else if ([`tags`].includes(prop)) {
@@ -73,6 +73,10 @@ App.get_color = (item, rule = true) => {
 
 App.get_title = (item, rule = true) => {
   return App.get_edit(item, `title`, rule)
+}
+
+App.get_root = (item, rule = true) => {
+  return App.get_edit(item, `root`, rule)
 }
 
 App.get_icon = (item, rule = true) => {

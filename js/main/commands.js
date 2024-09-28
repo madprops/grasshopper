@@ -164,7 +164,7 @@ App.check_command = (command, args = {}) => {
       }
 
       for (let prop of [
-        `color`, `tags`, `icon`, `title`,
+        `color`, `tags`, `icon`, `title`, `root`,
         `notes`, `split_top`, `split_bottom`,
       ]) {
         if (App.some(App.get_edit(item, prop))) {
@@ -312,6 +312,8 @@ App.check_command = (command, args = {}) => {
   check_1(`some_no_notes`)
   check_1(`some_custom_notes`)
   check_1(`some_no_custom_notes`)
+  check_1(`some_custom_root`)
+  check_1(`some_no_custom_root`)
 
   check_2(`media`, args.media)
 
@@ -562,7 +564,7 @@ App.command_name = (command, force_short = false) => {
   else if (command.short_name && force_short) {
     return command.short_name
   }
-  
+
   return command.name
 }
 

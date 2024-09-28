@@ -20,6 +20,9 @@ App.edit_props = {
   icon: {
     type: `string`,
   },
+  root: {
+    type: `string`,
+  },
 }
 
 App.check_tab_session = async (items = [], force = false) => {
@@ -166,6 +169,10 @@ App.edit_prompt = (args = {}) => {
     icons = App.get_all_icons()
     suggestions = icons
   }
+  else if (args.what === `root`) {
+    roots = App.get_all_roots()
+    suggestions = roots
+  }
 
   let placeholder
 
@@ -186,6 +193,9 @@ App.edit_prompt = (args = {}) => {
   }
   else if (args.what === `icon`) {
     list = icons
+  }
+  else if (args.what === `root`) {
+    list = roots
   }
 
   let list_submit

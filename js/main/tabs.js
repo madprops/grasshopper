@@ -1251,7 +1251,7 @@ App.do_sort_tabs = () => {
         if (reverse) {
           return a.hostname < b.hostname ? 1 : -1
         }
-        
+
         return a.hostname > b.hostname ? 1 : -1
       }
 
