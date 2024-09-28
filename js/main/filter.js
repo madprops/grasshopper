@@ -139,6 +139,7 @@ App.do_filter = async (args = {}) => {
         query: svalue,
         deep: args.deep,
         date: search_date,
+        by_what,
       })
 
       if (App.filter_search_date !== search_date) {
@@ -1002,7 +1003,7 @@ App.get_filter_exact = (mode) => {
 App.search_items = async (args = {}) => {
   let q = args.query || `Empty`
   App.debug(`Searching ${args.mode}: ${q}`)
-  let items = await App[`get_${args.mode}`](args.query, args.deep)
+  let items = await App[`get_${args.mode}`](args.query, args.deep, args.by_what)
 
   if (App.filter_search_date !== args.date) {
     return []
@@ -1297,7 +1298,7 @@ App.toggle_filter = (mode, cmd, refine = false) => {
     App.filter_all(mode)
     return
   }
-  
+
   App.set_filter_mode({mode, cmd, refine})
 }
 

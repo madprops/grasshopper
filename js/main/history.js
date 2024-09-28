@@ -24,7 +24,7 @@ App.history_time = (deep = false) => {
   return App.now() - (App.DAY * 30 * months)
 }
 
-App.get_history = async (query = ``, deep = false) => {
+App.get_history = async (query = ``, deep = false, by_what = `all`) => {
   App.getting(`history`)
   let results, max_items
 
@@ -32,16 +32,27 @@ App.get_history = async (query = ``, deep = false) => {
     deep = true
   }
 
-  if (deep) {
-    max_items = App.get_setting(`deep_max_search_items_history`)
+  let normal_max = App.get_setting(`max_search_items_history`)
+  let deep_max = App.get_setting(`deep_max_search_items_history`)
+  let text = ``
+
+  if (by_what.startsWith(`re`)) {
+    max_items = Math.max(deep_max, 10 * 1000)
   }
   else {
-    max_items = App.get_setting(`max_search_items_history`)
+    text = query
+
+    if (deep) {
+      max_items = deep_max
+    }
+    else {
+      max_items = normal_max
+    }
   }
 
   try {
     results = await browser.history.search({
-      text: ``,
+      text,
       maxResults: max_items,
       startTime: App.history_time(deep)
     })
