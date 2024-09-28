@@ -672,6 +672,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Up`,
+      short_name: `Sel Up`,
       cmd: `select_item_up`,
       modes: [`items`],
       icon: up_icon,
@@ -682,6 +683,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Down`,
+      short_name: `Sel Down`,
       cmd: `select_item_down`,
       modes: [`items`],
       icon: down_icon,
@@ -692,7 +694,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Up Alt`,
-      short_name: `Select Up`,
+      short_name: `Sel Up`,
       cmd: `select_item_up_alt`,
       modes: [`items`],
       icon: up_icon,
@@ -703,7 +705,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Down Alt`,
-      short_name: `Select Down`,
+      short_name: `Sel Down`,
       cmd: `select_item_down_alt`,
       modes: [`items`],
       icon: down_icon,
@@ -1930,6 +1932,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Pins`,
+      short_name: `Pins`,
       cmd: `select_pinned_tabs`,
       modes: [`tabs`],
       icon: pin_icon,
@@ -1940,6 +1943,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Normal`,
+      short_name: `Normal`,
       cmd: `select_normal_tabs`,
       modes: [`tabs`],
       icon: normal_icon,
@@ -1950,6 +1954,7 @@ App.setup_commands = () => {
     },
     {
       name: `Select Unloaded`,
+      short_name: `Unloaded`,
       cmd: `select_unloaded_tabs`,
       modes: [`tabs`],
       icon: unloaded_icon,
