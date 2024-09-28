@@ -177,7 +177,7 @@ App.edit_prompt = (args = {}) => {
 
   let name = App.capitalize(args.what)
   let suggestions = []
-  let tags, titles, icons
+  let tags, titles, icons, roots
 
   if (args.what === `tags`) {
     tags = App.get_all_tags()

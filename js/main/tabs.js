@@ -925,7 +925,7 @@ App.change_tab = async (item) => {
 App.change_url = async (item, url) => {
   try {
     item.url = url
-    return await browser.tabs.update(item.id, {url: url})
+    return await browser.tabs.update(item.id, {url})
   }
   catch (err) {
     App.error(err)
