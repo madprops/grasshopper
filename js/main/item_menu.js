@@ -15,6 +15,11 @@ App.show_item_menu = async (args = {}) => {
     })
   }
   else if (args.item.mode === `tabs`) {
+    App.item_menu_item(items, `filter_nodes`, {item: args.item})
+    App.item_menu_item(items, `go_to_root_url`, {item: args.item})
+
+    App.sep(items)
+
     App.item_menu_item(items, `load_tabs`, {item: args.item})
     App.item_menu_item(items, `pin_tabs`, {item: args.item})
     App.item_menu_item(items, `unpin_tabs`, {item: args.item})
@@ -23,7 +28,6 @@ App.show_item_menu = async (args = {}) => {
     App.item_menu_item(items, `edit_icon`, {item: args.item})
     App.item_menu_item(items, `edit_title`, {item: args.item})
     App.item_menu_item(items, `edit_notes`, {item: args.item})
-    App.item_menu_item(items, `filter_nodes`, {item: args.item})
 
     let zone_items = []
 
