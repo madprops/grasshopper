@@ -25,6 +25,10 @@ App.edit_props = {
   },
 }
 
+App.get_edit_prop_list = () => {
+  return Object.keys(App.edit_props)
+}
+
 App.check_tab_session = async (items = [], force = false) => {
   if (!items.length) {
     items = App.get_items(`tabs`)

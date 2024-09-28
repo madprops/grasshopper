@@ -163,10 +163,7 @@ App.check_command = (command, args = {}) => {
         args.some_no_header = true
       }
 
-      for (let prop of [
-        `color`, `tags`, `icon`, `title`, `root`,
-        `notes`, `split_top`, `split_bottom`,
-      ]) {
+      for (let prop of App.get_edit_prop_list()) {
         if (App.some(App.get_edit(item, prop))) {
           args[`some_${prop}`] = true
           args.some_edits = true
