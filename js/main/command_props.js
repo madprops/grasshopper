@@ -2082,7 +2082,6 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       icon: tag_icon,
-      some_custom_root: true,
       action: (args) => {
         App.go_to_root_url(args.item)
       },

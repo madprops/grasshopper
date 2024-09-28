@@ -57,8 +57,7 @@ App.go_to_root_url = (item) => {
       continue
     }
 
-    it.url = it.root
-    App.change_tab(it)
+    App.change_url(it, it.root)
   }
 }
 

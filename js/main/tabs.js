@@ -922,6 +922,16 @@ App.change_tab = async (item) => {
   }
 }
 
+App.change_url = async (item, url) => {
+  try {
+    item.url = url
+    return await browser.tabs.update(item.id, {url: url})
+  }
+  catch (err) {
+    App.error(err)
+  }
+}
+
 App.update_tabs_index = async (items, direction) => {
   if (direction === `down`) {
     items = items.slice(0).reverse()
