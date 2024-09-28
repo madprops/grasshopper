@@ -104,7 +104,7 @@ App.process_info = (args = {}) => {
     item.unloaded = args.info.discarded
     item.last_access = args.info.lastAccessed
     item.status = args.info.status
-    item.root = args.info.openerTabId
+    item.opener = args.info.openerTabId
   }
   else if (args.mode === `history`) {
     item.last_visit = args.info.lastVisitTime
@@ -126,7 +126,7 @@ App.process_info = (args = {}) => {
   }
   else {
     if (!args.list) {
-      if ((args.mode === `tabs`) && !item.active && item.root) {
+      if ((args.mode === `tabs`) && !item.active && item.opener) {
         item.unread = true
       }
     }

@@ -532,8 +532,8 @@ App.filter_check = (args) => {
       match = lower_title.includes(args.f_value_lower)
     }
     else if (args.filter_mode === `node`) {
-      if (args.item.root) {
-        match = args.item.root.toString() === args.f_value
+      if (args.item.opener) {
+        match = args.item.opener.toString() === args.f_value
       }
       else {
         match = false
