@@ -1818,10 +1818,12 @@ App.import_tabs = async () => {
 
         let props = App.get_edit_prop_list()
 
-        for (let key of props) {
-          if (info[key] !== undefined) {
-            let name = `custom_${key}`
-            await browser.sessions.setTabValue(tab.id, name, info[key])
+        for (let prop of props) {
+          let name = `custom_${prop}`
+          let value = info[name]
+
+          if (value !== undefined) {
+            await browser.sessions.setTabValue(tab.id, name, value)
           }
         }
       }

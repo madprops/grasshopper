@@ -416,7 +416,8 @@ App.edit_to_string = (what, item, kind = `custom`) => {
 
 App.fill_custom_props = (obj, item) => {
   for (let key in App.edit_props) {
-    let value = item[`custom_${key}`]
+    let name = `custom_${key}`
+    let value = item[name]
     let ok = true
 
     if (App.get_text_edit_props().includes(key)) {
@@ -436,7 +437,7 @@ App.fill_custom_props = (obj, item) => {
     }
 
     if (ok) {
-      obj[key] = value
+      obj[name] = value
     }
   }
 }
