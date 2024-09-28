@@ -33,7 +33,7 @@ App.edit_tab_tags = (args = {}) => {
         }
 
         App.apply_edit({what: `tags`, item: it, value: tags, on_change: (value) => {
-          App.custom_save(it.id, `custom_tags`, value)
+          App.custom_save(it.id, `tags`, value)
 
           if (new_tags.length) {
             App.push_to_tag_history(new_tags)
@@ -78,7 +78,7 @@ App.add_tag = (item, tag) => {
   tags.push(tag)
 
   App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
-    App.custom_save(item.id, `custom_tags`, value)
+    App.custom_save(item.id, `tags`, value)
   }})
 
   App.push_to_tag_history([tag])
@@ -100,7 +100,7 @@ App.remove_tag = (item, tag) => {
   let tags = item.custom_tags.filter(x => x !== tag)
 
   App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
-    App.custom_save(item.id, `custom_tags`, value)
+    App.custom_save(item.id, `tags`, value)
   }})
 }
 
@@ -250,7 +250,7 @@ App.do_replace_tag = (tag_1, tag_2) => {
       let tags = item.custom_tags.map(x => x === tag_1 ? tag_2 : x)
 
       App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
-        App.custom_save(item.id, `custom_tags`, value)
+        App.custom_save(item.id, `tags`, value)
         App.push_to_tag_history([tag_2])
       }})
     }
@@ -307,7 +307,7 @@ App.do_edit_tag = (item, tag_1, tag_2) => {
   tags.push(tag_2)
 
   App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
-    App.custom_save(item.id, `custom_tags`, value)
+    App.custom_save(item.id, `tags`, value)
     App.push_to_tag_history([tag_2])
   }})
 }

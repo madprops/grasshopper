@@ -8,18 +8,18 @@ App.insert_header = async (item, full = true) => {
   if (active.length > 1) {
     for (let it of active.slice(1, -1)) {
       App.apply_edit({what: `split_top`, item: it, value: false, on_change: (value) => {
-        App.custom_save(it.id, `custom_split_top`, value)
+        App.custom_save(it.id, `split_top`, value)
       }})
 
       App.apply_edit({what: `split_bottom`, item: it, value: false, on_change: (value) => {
-        App.custom_save(it.id, `custom_split_bottom`, value)
+        App.custom_save(it.id, `split_bottom`, value)
       }})
     }
 
     let bottom = active.at(-1)
 
     App.apply_edit({what: `split_bottom`, item: bottom, value: true, on_change: (value) => {
-      App.custom_save(bottom.id, `custom_split_bottom`, value)
+      App.custom_save(bottom.id, `split_bottom`, value)
     }})
   }
 
@@ -76,7 +76,7 @@ App.header_group = (item) => {
   if (select) {
     return selected
   }
-  
+
   return []
 }
 
@@ -256,11 +256,11 @@ App.edit_tab_split = (args = {}) => {
       confirm_action: () => {
         for (let it of active) {
           App.apply_edit({what: `split_${args.which}`, item: it, value: true, on_change: (value) => {
-            App.custom_save(it.id, `custom_split_${args.which}`, value)
+            App.custom_save(it.id, `split_${args.which}`, value)
           }})
 
           App.apply_edit({what: `split_${other}`, item: it, value: false, on_change: (value) => {
-            App.custom_save(it.id, `custom_split_${other}`, value)
+            App.custom_save(it.id, `split_${other}`, value)
           }})
         }
       },
@@ -275,11 +275,11 @@ App.edit_tab_split = (args = {}) => {
 
     for (let it of active.slice(1, -1)) {
       App.apply_edit({what: `split_top`, item: it, value: false, on_change: (value) => {
-        App.custom_save(it.id, `custom_split_top`, value)
+        App.custom_save(it.id, `split_top`, value)
       }})
 
       App.apply_edit({what: `split_bottom`, item: it, value: false, on_change: (value) => {
-        App.custom_save(it.id, `custom_split_bottom`, value)
+        App.custom_save(it.id, `split_bottom`, value)
       }})
     }
 
@@ -287,11 +287,11 @@ App.edit_tab_split = (args = {}) => {
     let bottom = active.at(-1)
 
     App.apply_edit({what: `split_top`, item: top, value: true, on_change: (value) => {
-      App.custom_save(top.id, `custom_split_top`, value)
+      App.custom_save(top.id, `split_top`, value)
     }})
 
     App.apply_edit({what: `split_bottom`, item: bottom, value: true, on_change: (value) => {
-      App.custom_save(bottom.id, `custom_split_bottom`, value)
+      App.custom_save(bottom.id, `split_bottom`, value)
     }})
   }
 }

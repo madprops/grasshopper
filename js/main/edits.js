@@ -78,25 +78,31 @@ App.check_tab_session = async (items = [], force = false) => {
   }
 }
 
-App.custom_save = async (id, name, value) => {
+App.custom_save = async (id, what, value) => {
   if (Array.isArray(value)) {
     if (!value.length) {
       value = undefined
     }
   }
 
-  if (value) {
-    browser.sessions.setTabValue(id, name, value)
-  }
-  else {
-    browser.sessions.removeTabValue(id, name)
-  }
+  let cap_name = App.capitalize(what)
+  let names = [`custom_${what}`, `custom${cap_name}`]
+  console.log(names)
 
-  try {
-    await browser.runtime.sendMessage({action: `mirror_edits`, id})
-  }
-  catch (err) {
-    // Do nothing
+  for (let name of names) {
+    if (value) {
+      browser.sessions.setTabValue(id, name, value)
+    }
+    else {
+      browser.sessions.removeTabValue(id, name)
+    }
+
+    try {
+      await browser.runtime.sendMessage({action: `mirror_edits`, id})
+    }
+    catch (err) {
+      // Do nothing
+    }
   }
 }
 
@@ -328,7 +334,7 @@ App.remove_edits = (args = {}) => {
       for (let item of args.items) {
         for (let what of args.what) {
           App.apply_edit({what, item, value: App.edit_default(what), on_change: (value) => {
-            App.custom_save(item.id, `custom_${what}`)
+            App.custom_save(item.id, `what`)
           }})
         }
       }

@@ -500,7 +500,7 @@ App.edit_tab_icon = (args = {}) => {
     confirm_action: () => {
       for (let it of active) {
         App.apply_edit({what: `icon`, item: it, value: args.icon, on_change: (value) => {
-          App.custom_save(it.id, `custom_icon`, value)
+          App.custom_save(it.id, `icon`, value)
           App.push_to_icon_history([value])
         }})
       }

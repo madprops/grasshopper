@@ -12,7 +12,7 @@ App.edit_notes = (item) => {
       }
 
       App.apply_edit({what: `notes`, item, value: notes, on_change: (value) => {
-        App.custom_save(item.id, `custom_notes`, value)
+        App.custom_save(item.id, `notes`, value)
       }})
 
       return true

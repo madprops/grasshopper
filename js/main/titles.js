@@ -13,7 +13,7 @@ App.edit_tab_title = (args = {}) => {
     confirm_action: () => {
       for (let it of active) {
         App.apply_edit({what: `title`, item: it, value: args.title, on_change: (value) => {
-          App.custom_save(it.id, `custom_title`, value)
+          App.custom_save(it.id, `title`, value)
           App.push_to_title_history([value])
         }})
       }
