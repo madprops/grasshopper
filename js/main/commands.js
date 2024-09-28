@@ -309,6 +309,8 @@ App.check_command = (command, args = {}) => {
   check_1(`some_no_notes`)
   check_1(`some_custom_notes`)
   check_1(`some_no_custom_notes`)
+  check_1(`some_root`)
+  check_1(`some_no_root`)
   check_1(`some_custom_root`)
   check_1(`some_no_custom_root`)
 
