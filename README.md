@@ -29,11 +29,3 @@ Grasshoppers have had a long relationship with humans. Swarms of locusts can hav
 >I had to dissect one in biology. Hated every minute of it.
 
 >I concur! Years ago we were riding quads and unknowingly drove right into an area with thousands of them. They were all over us! I was freaking out and the friend I was riding with knew how afraid of them I was and couldn’t stop laughing to get us out of there. I almost killed him.
-
-## Donation
-
-I'm experimenting with `Monero/XMR`.
-
-Here's an address where you can send funds if you so choose:
-
-87tZaKNZH936TphDEqBZNYbfTS6B8h3pUfrY51Twy6xWgNNKXziPgwk8kE6SQPXMsj3bGC8vTj7WAZMnd7mFXKFC7MzKB8B
