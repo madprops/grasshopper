@@ -330,7 +330,7 @@ App.remove_edits = (args = {}) => {
       for (let item of args.items) {
         for (let what of args.what) {
           App.apply_edit({what, item, value: App.edit_default(what), on_change: (value) => {
-            App.custom_save(item.id, `custom_${what}`)
+            App.custom_save(item.id, what)
           }})
         }
       }
