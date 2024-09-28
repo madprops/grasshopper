@@ -129,7 +129,7 @@ App.send_signal = async (signal, from = `cmd`) => {
       }
 
       if (signal.send_tabs) {
-        args.tabs = App.get_url_list()
+        args.tabs = App.get_tab_snapshot()
       }
 
       obj.body = JSON.stringify(args)

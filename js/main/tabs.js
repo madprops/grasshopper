@@ -1779,7 +1779,7 @@ App.focus_tab_number = (num) => {
   }
 }
 
-App.export_tabs = () => {
+App.get_tab_snapshot = () => {
   let items = App.get_items(`tabs`)
   let infos = []
 
@@ -1793,7 +1793,11 @@ App.export_tabs = () => {
     infos.push(info)
   }
 
-  App.export_data(`Tabs`, infos)
+  return infos
+}
+
+App.export_tabs = () => {
+  App.export_data(`Tabs`, App.get_tab_snapshot())
 }
 
 App.import_tabs = async () => {
