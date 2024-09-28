@@ -3126,6 +3126,17 @@ App.setup_commands = () => {
       info: `Shortcut to edit a domain rule`,
     },
     {
+      name: `Remove Domain Rules`,
+      short_name: `Rm Rules`,
+      cmd: `remove_all_domain_rules`,
+      modes: [`items`],
+      icon: notepad_icon,
+      action: (args) => {
+        App.remove_all_domain_rules()
+      },
+      info: `Remove all Domain Rules`,
+    },
+    {
       name: `Light Colors`,
       short_name: `Light`,
       cmd: `set_light_colors`,

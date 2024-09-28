@@ -242,3 +242,13 @@ App.start_domain_rules = () => {
 
   App.domain_rules_ready = true
 }
+
+App.remove_all_domain_rules = () => {
+  App.show_confirm({
+    message: `Remove Domain Rules?`,
+    confirm_action: () => {
+      App.set_setting({setting: `domain_rules`, value: []})
+      App.refresh_rules()
+    },
+  })
+}
