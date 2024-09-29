@@ -10,7 +10,7 @@ App.process_info_list = (mode, info_list) => {
   let exclude = []
 
   for (let info of info_list) {
-    let item = App.process_info({mode, info, exclude, list: true})
+    let item = App.process_info({mode, info, exclude, list: true, add_opener: false})
 
     if (!item) {
       continue
@@ -22,6 +22,12 @@ App.process_info_list = (mode, info_list) => {
 
     items.push(item)
     container.append(item.element)
+  }
+
+  if (mode === `tabs`) {
+    for (let item of items) {
+      App.add_tab_opener(item)
+    }
   }
 
   App.update_footer_count(mode)
@@ -37,6 +43,7 @@ App.process_info = (args = {}) => {
   let def_args = {
     exclude: [],
     list: false,
+    add_opener: true,
   }
 
   App.def_args(def_args, args)
@@ -147,7 +154,9 @@ App.process_info = (args = {}) => {
   }
 
   if (args.mode === `tabs`) {
-    App.add_tab_opener(item)
+    if (args.add_opener) {
+      App.add_tab_opener(item)
+    }
   }
 
   return item
