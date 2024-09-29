@@ -1094,7 +1094,7 @@ App.filter_nodes = (item) => {
   })
 }
 
-App.filter_all = (mode = App.active_mode, from) => {
+App.filter_all = (mode = App.active_mode, from = `normal`) => {
   if (App.is_filtered(mode)) {
     App.set_filter_mode({mode, cmd: `all`, filter: false})
     App.set_filter({mode, from})

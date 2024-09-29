@@ -28,6 +28,9 @@ export default [
       "space-in-parens": ["error", "never"],
       "object-curly-spacing": ["error", "never"],
       "prefer-object-spread": "error",
+      "no-eval": "error",
+      "no-useless-escape": "error",
+      "default-param-last": "error",
     },
     languageOptions: {
       globals: {

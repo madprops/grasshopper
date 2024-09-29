@@ -326,7 +326,7 @@ App.is_array = (a) => {
   return Array.isArray(a)
 }
 
-App.random_int = (min, max, exclude = undefined, random_function) => {
+App.random_int = (min, max, exclude = undefined, random_function = undefined) => {
   let num
 
   if (random_function) {
