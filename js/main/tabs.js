@@ -571,6 +571,7 @@ App.close_tabs = (args = {}) => {
   let def_args = {
     active_items: [],
     multiple: true,
+    title: `tabs`,
   }
 
   App.def_args(def_args, args)
@@ -606,7 +607,7 @@ App.close_tabs = (args = {}) => {
   let smart_switch = App.get_setting(`smart_tab_switch`)
 
   App.show_confirm({
-    message: `Close tabs? (${items.length})`,
+    message: `Close ${args.title}? (${items.length})`,
     confirm_action: async () => {
       if ((active || selected) && smart_switch) {
         await App.swith_to_prev_tab(items, `close`)
@@ -1956,5 +1957,5 @@ App.focus_opener_tab = (item) => {
 
 App.close_nodes = (item) => {
   let nodes = App.get_tab_nodes(item)
-  App.close_tabs({active_items: nodes})
+  App.close_tabs({active_items: nodes, title: `nodes`})
 }

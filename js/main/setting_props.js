@@ -1047,6 +1047,13 @@ App.build_settings = () => {
       info: `Show icons next to the text on the buttons, like on the Main Menu or Settings`,
       version: 1,
     },
+    generate_icons: {
+      name: `Generate Icons`,
+      type: `checkbox`,
+      value: true,
+      info: `Generate icons if favicons are not found`,
+      version: 1,
+    },
   }
 
   add_props()
@@ -3747,13 +3754,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Make commands context aware to avoid clutter`,
-      version: 1,
-    },
-    generate_icons: {
-      name: `Generate Icons`,
-      type: `checkbox`,
-      value: true,
-      info: `Generate icons if favicons are not found`,
       version: 1,
     },
     recent_active: {
