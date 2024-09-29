@@ -353,7 +353,8 @@ App.themes = [
     background_color: `rgb(49, 45, 49)`,
   },
   {
-    num: 5, opacity: 75,
+    num: 5, opacity: 80,
+    effect: `invert`,
   },
 ]
 
