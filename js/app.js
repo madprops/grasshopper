@@ -228,7 +228,7 @@ App.new_icon = `🆕`
 App.duplicate_icon = `👭🏻`
 App.keyboard_icon = `⌨️`
 App.tree_icon = `🌳`
-App.node_icon = `💠`
+App.nodes_icon = `💠`
 App.root_icon = `🌀`
 
 App.sizes = [
