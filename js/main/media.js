@@ -328,7 +328,7 @@ App.search_media = (mode, e) => {
 
     items.push({
       text: App.capitalize(type), icon, action: () => {
-        App.show_context({items: subitems, e })
+        App.show_context({items: subitems, e})
       }})
   }
 

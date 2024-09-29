@@ -24,8 +24,9 @@ export default [
       "curly": ["error", "all"],
       "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
       "no-var": "error",
-      "arrow-spacing": ["error", { "before": true, "after": true }]
-
+      "arrow-spacing": ["error", { "before": true, "after": true }],
+      "space-in-parens": ["error", "never"],
+      "object-curly-spacing": ["error", "never"],
     },
     languageOptions: {
       globals: {

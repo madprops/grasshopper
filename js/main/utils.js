@@ -525,7 +525,7 @@ App.some = (value) => {
 
 App.remove_undefined = (arr) => {
   arr.map((v, i, o) => {
-    if (v === undefined ) {
+    if (v === undefined) {
       o.splice(i, 1)
     }
   })
