@@ -370,3 +370,8 @@ App.sides = [
   {text: `Left`, value: `left`},
   {text: `Right`, value: `right`},
 ]
+
+App.sides_2 = [
+  {text: `Left`, value: `left`},
+  {text: `Right`, value: `right`},
+]

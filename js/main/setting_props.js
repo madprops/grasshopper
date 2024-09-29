@@ -2861,7 +2861,7 @@ App.build_settings = () => {
       info: `Show the Color Icon on the left or right of text`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.sides)
+        App.settings_make_menu(key, App.sides_2)
       },
     },
     color_icon_click: {
