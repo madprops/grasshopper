@@ -200,7 +200,7 @@ App.check_command = (command, args = {}) => {
         args.some_nodes = true
       }
 
-      if (item.opener) {
+      if (App.tab_has_opener(item)) {
         args.some_opener = true
       }
     }

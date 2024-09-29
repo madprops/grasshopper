@@ -1895,6 +1895,16 @@ App.tab_has_nodes = (item) => {
   return false
 }
 
+App.tab_has_opener = (item) => {
+  for (let id in App.tab_openers) {
+    if (App.tab_openers[id].includes(item.id)) {
+      return true
+    }
+  }
+
+  return false
+}
+
 App.focus_opener_tab = (item) => {
   if (!item.opener) {
     return
