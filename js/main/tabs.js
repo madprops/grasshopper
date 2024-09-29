@@ -1859,6 +1859,17 @@ App.update_tab_opener = (id) => {
 
   if (opener) {
     App.check_icons(opener)
+    let nodes = App.tab_openers[id]
+
+    if (nodes) {
+      for (let node_id of nodes) {
+        let node = App.get_item_by_id(`tabs`, node_id)
+
+        if (node) {
+          App.check_icons(node)
+        }
+      }
+    }
   }
 }
 
@@ -1912,4 +1923,20 @@ App.focus_opener_tab = (item) => {
 App.close_nodes = (item) => {
   let nodes = App.get_tab_nodes(item)
   App.close_tabs({selection: nodes, title: `nodes`})
+}
+
+App.get_opener_item = (item) => {
+  for (let tab of App.get_items(`tabs`)) {
+    if (tab.id === item.opener) {
+      return tab
+    }
+  }
+}
+
+App.go_to_opener = (opener) => {
+  let item = App.get_opener_item(opener)
+
+  if (item) {
+    App.tabs_action({item})
+  }
 }

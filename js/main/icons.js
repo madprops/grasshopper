@@ -197,6 +197,25 @@ App.add_icons = (item, side) => {
 
   cls = ``
 
+  if (App.get_setting(`opener_icon_click`)) {
+    cls += ` grower`
+  }
+
+  what = `opener_icon`
+
+  if (App.icon_enabled(what) && check_side(what)) {
+    let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
+    icon.textContent = App.get_setting(what)
+
+    if (tips) {
+      icon.title = `Opener`
+    }
+
+    item.element.append(icon)
+  }
+
+  cls = ``
+
   if (App.get_setting(`nodes_icon_click`)) {
     cls += ` grower`
   }
@@ -313,6 +332,17 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.root_icon`, item.element)
 
     if (App.item_has_root(item)) {
+      DOM.show(icon)
+    }
+    else {
+      DOM.hide(icon)
+    }
+  }
+
+  if (App.icon_enabled(`opener`)) {
+    let icon = DOM.el(`.opener_icon`, item.element)
+
+    if (App.tab_has_opener(item)) {
       DOM.show(icon)
     }
     else {

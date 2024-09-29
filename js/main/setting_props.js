@@ -933,6 +933,25 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
+    opener_icon: {
+      name: `Opener Icon`,
+      type: `text_smaller`,
+      value: ``,
+      placeholder: App.icon_placeholder,
+      info: `Icon for tabs with an opener`,
+      version: 1,
+    },
+    opener_icon_side: {
+      name: `Opener Icon Side`,
+      type: `menu`,
+      value: `right`,
+      info: `Show the Opener Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
     nodes_icon: {
       name: `Nodes Icon`,
       type: `text_smaller`,
@@ -976,6 +995,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the notes when clicking the notes icon`,
+      version: 1,
+    },
+    opener_icon_click: {
+      name: `Opener Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Go to the tab's opener`,
       version: 1,
     },
     nodes_icon_click: {
