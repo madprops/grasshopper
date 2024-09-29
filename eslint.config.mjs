@@ -31,6 +31,7 @@ export default [
       "no-eval": "error",
       "no-useless-escape": "error",
       "default-param-last": "error",
+      "dot-notation": "error",
     },
     languageOptions: {
       globals: {

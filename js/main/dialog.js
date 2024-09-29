@@ -1,7 +1,7 @@
 App.show_dialog = (args = {}) => {
   App.start_popups()
 
-  if (App.popups[`dialog`].open) {
+  if (App.popups.dialog.open) {
     return
   }
 
@@ -14,7 +14,7 @@ App.show_dialog = (args = {}) => {
     btn.textContent = button[0]
 
     DOM.ev(btn, `click`, () => {
-      App.popups[`dialog`].hide()
+      App.popups.dialog.hide()
       button[1]()
 
       if (args.on_any_action) {
