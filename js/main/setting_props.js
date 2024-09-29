@@ -2854,6 +2854,17 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.color_displays)
       },
     },
+    color_icon_side: {
+      name: `Color Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Color Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
     color_icon_click: {
       name: `Color Icon Click`,
       type: `checkbox`,

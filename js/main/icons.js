@@ -214,6 +214,42 @@ App.add_icons = (item, side) => {
     item.element.append(icon)
   }
 
+  cls = ``
+
+  if (App.get_setting(`notes_icon_click`)) {
+    cls += ` grower`
+  }
+
+  what = `notes_icon`
+
+  if (App.icon_enabled(what) && check_side(what)) {
+    let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
+    icon.textContent = App.get_setting(what)
+
+    if (tips) {
+      icon.title = `Notes`
+    }
+
+    item.element.append(icon)
+  }
+
+  cls = ``
+
+  if (App.get_setting(`color_icon_click`)) {
+    cls += ` effect`
+  }
+
+  if (App.get_setting(`color_mode`).includes(`background`)) {
+    cls += ` grower`
+  }
+
+  what = `color_icon`
+
+  if (check_side(`color_icon`)) {
+    let icon = DOM.create(`div`, `color_icon_container item_node hidden${cls}`)
+    item.element.append(icon)
+  }
+
   if (App.get_setting(`hover_button`) !== `none`) {
     let btn = App.create_hover_button()
     item.element.append(btn)
@@ -559,25 +595,6 @@ App.generate_icon = (hostname) => {
   icon.height = App.icon_size
   jdenticon.update(icon, hostname || `hostname`)
   return icon
-}
-
-App.get_notes_icon = (item) => {
-  let cls = ``
-
-  if (App.get_setting(`notes_icon_click`)) {
-    cls += ` grower`
-  }
-
-  if (App.icon_enabled(`notes`)) {
-    let icon = DOM.create(`div`, `notes_icon item_node hidden${cls}`)
-    icon.textContent = App.get_setting(`notes_icon`)
-
-    if (App.get_setting(`show_tooltips`)) {
-      icon.title = `Notes`
-    }
-
-    item.element.append(icon)
-  }
 }
 
 App.edit_tab_icon = (args = {}) => {

@@ -314,11 +314,8 @@ App.create_item_element = (item) => {
   }
 
   App.add_custom_icon(item)
-  App.get_color_icon(item)
-  App.get_notes_icon(item)
   App.add_icons(item, `left`)
   item.element.draggable = true
-  App.apply_color_mode(item)
   App.apply_splits(item)
   let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)
@@ -348,6 +345,7 @@ App.create_item_element = (item) => {
   App.check_icons(item)
   App.set_item_text(item)
   App.check_taglist(item)
+  App.apply_color_mode(item)
 
   if (item.mode === `tabs`) {
     App.add_close_button(item, `right`)

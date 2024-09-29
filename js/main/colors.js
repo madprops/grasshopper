@@ -442,21 +442,6 @@ App.get_colored_items = (mode) => {
   return items
 }
 
-App.get_color_icon = (item) => {
-  let cls = ``
-
-  if (App.get_setting(`color_icon_click`)) {
-    cls += ` effect`
-  }
-
-  if (App.get_setting(`color_mode`).includes(`background`)) {
-    cls += ` grower`
-  }
-
-  let icon = DOM.create(`div`, `color_icon_container item_node hidden${cls}`)
-  item.element.append(icon)
-}
-
 App.colors = () => {
   let colors = []
 
