@@ -11,6 +11,7 @@ App.setup_commands = () => {
   let subheader_icon = App.get_setting(`subheader_icon`) || App.zone_icon
   let image_icon = App.get_setting(`image_icon`) || App.settings_icons.media
   let hover_icon = App.get_setting(`hover_icon`) || App.settings_icons.hover
+  let root_icon = App.get_setting(`root_icon`) || App.root_icon
 
   let title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
@@ -52,7 +53,6 @@ App.setup_commands = () => {
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
   let node_icon = App.node_icon
-  let root_icon = App.root_icon
 
   let color_filters = []
   let color_changers = []
