@@ -316,9 +316,8 @@ App.create_item_element = (item) => {
   App.add_custom_icon(item)
   App.get_color_icon(item)
   App.get_notes_icon(item)
-  App.add_icons(item)
+  App.add_icons(item, `left`)
   item.element.draggable = true
-  App.check_icons(item)
   App.apply_color_mode(item)
   App.apply_splits(item)
   let view_media = DOM.create(`div`, `view_media_button hidden`)
@@ -344,6 +343,9 @@ App.create_item_element = (item) => {
   }
 
   item.element.append(content)
+
+  App.add_icons(item, `right`)
+  App.check_icons(item)
   App.set_item_text(item)
   App.check_taglist(item)
 

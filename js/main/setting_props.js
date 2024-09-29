@@ -693,6 +693,17 @@ App.build_settings = () => {
       Active means the current visible tab in the browser`,
       version: 1,
     },
+    active_icon_side: {
+      name: `Active Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Active Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
     pin_icon: {
       name: `Pin Icon`,
       type: `text_smaller`,
@@ -700,6 +711,17 @@ App.build_settings = () => {
       placeholder: App.icon_placeholder,
       info: `Icon for pinned tabs`,
       version: 1,
+    },
+    pin_icon_side: {
+      name: `Pin Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Pin Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
     },
     normal_icon: {
       name: `Normal Icon`,
@@ -709,6 +731,17 @@ App.build_settings = () => {
       info: `Icon for normal tabs`,
       version: 1,
     },
+    normal_icon_side: {
+      name: `Normal Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Normal Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
     playing_icon: {
       name: `Playing Icon`,
       type: `text_smaller`,
@@ -716,6 +749,17 @@ App.build_settings = () => {
       placeholder: App.icon_placeholder,
       info: `Icons for tabs emitting sound`,
       version: 1,
+    },
+    playing_icon_side: {
+      name: `Playing Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Playing Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
     },
     muted_icon: {
       name: `Muted Icon`,
@@ -725,6 +769,17 @@ App.build_settings = () => {
       info: `Icons for muted tabs`,
       version: 1,
     },
+    muted_icon_side: {
+      name: `Muted Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Muted Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
     unloaded_icon: {
       name: `Unloaded Icon`,
       type: `text_smaller`,
@@ -732,6 +787,17 @@ App.build_settings = () => {
       info: `Icons for unloaded tabs`,
       placeholder: App.icon_placeholder,
       version: 1,
+    },
+    unloaded_icon_side: {
+      name: `Unloaded Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Unloaded Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
     },
     loading_icon: {
       name: `Loading Icon`,
@@ -741,6 +807,17 @@ App.build_settings = () => {
       info: `Icon for tabs that are still loading`,
       version: 1,
     },
+    loading_icon_side: {
+      name: `Loading Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Loading Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
     loaded_icon: {
       name: `Loaded Icon`,
       type: `text_smaller`,
@@ -748,6 +825,17 @@ App.build_settings = () => {
       info: `Icons for loaded tabs`,
       placeholder: App.icon_placeholder,
       version: 1,
+    },
+    loaded_icon_side: {
+      name: `Loaded Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Loaded Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
     },
     unread_icon: {
       name: `Unread Icon`,
@@ -757,6 +845,17 @@ App.build_settings = () => {
       placeholder: App.icon_placeholder,
       version: 1,
     },
+    unread_icon_side: {
+      name: `Unread Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Unread Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
     titled_icon: {
       name: `Titled Icon`,
       type: `text_smaller`,
@@ -764,6 +863,17 @@ App.build_settings = () => {
       placeholder: App.icon_placeholder,
       info: `Icon for tabs with a custom title`,
       version: 1,
+    },
+    titled_icon_side: {
+      name: `Titled Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Titled Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
     },
     tagged_icon: {
       name: `Tagged Icon`,
@@ -773,6 +883,17 @@ App.build_settings = () => {
       info: `Icon for tagged tabs`,
       version: 1,
     },
+    tagged_icon_side: {
+      name: `Tagged Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Tagged Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
     notes_icon: {
       name: `Notes Icon`,
       type: `text_smaller`,
@@ -780,6 +901,17 @@ App.build_settings = () => {
       placeholder: App.icon_placeholder,
       info: `Icon for tabs with notes`,
       version: 1,
+    },
+    notes_icon_side: {
+      name: `Notes Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Notes Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
     },
     edited_icon: {
       name: `Edited Icon`,
@@ -790,6 +922,17 @@ App.build_settings = () => {
       Edits include color, tags, notes, etc`,
       version: 1,
     },
+    edited_icon_side: {
+      name: `Edited Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Edited Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
     root_icon: {
       name: `Root Icon`,
       type: `text_smaller`,
@@ -797,6 +940,17 @@ App.build_settings = () => {
       placeholder: App.icon_placeholder,
       info: `Icon for tabs with a root`,
       version: 1,
+    },
+    root_icon_side: {
+      name: `Root Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Root Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
     },
     header_icon: {
       name: `Header Icon`,
@@ -807,6 +961,17 @@ App.build_settings = () => {
       Leave empty to use an arrow`,
       version: 1,
     },
+    header_icon_side: {
+      name: `Header Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Header Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
     subheader_icon: {
       name: `Subheader Icon`,
       type: `text_smaller`,
@@ -815,6 +980,17 @@ App.build_settings = () => {
       info: `Icon for subheheader tabs
       Leave empty to use an arrow`,
       version: 1,
+    },
+    subheader_icon_side: {
+      name: `Subheader Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Subheader Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
     },
     notes_icon_click: {
       name: `Notes Icon Click`,
