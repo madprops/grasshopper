@@ -1,4 +1,5 @@
 App.setup_commands = () => {
+  let image_icon = App.get_media_icon(`image`)
   let pin_icon = App.get_setting(`pin_icon`) || App.pin_icon
   let normal_icon = App.get_setting(`normal_icon`) || App.mode_icons.tabs
   let playing_icon = App.get_setting(`playing_icon`) || App.audio_icon
@@ -9,7 +10,6 @@ App.setup_commands = () => {
   let notes_icon = App.get_setting(`notes_icon`) || App.notepad_icon
   let header_icon = App.get_setting(`header_icon`) || App.zone_icon
   let subheader_icon = App.get_setting(`subheader_icon`) || App.zone_icon
-  let image_icon = App.get_setting(`image_icon`) || App.settings_icons.media
   let hover_icon = App.get_setting(`hover_icon`) || App.settings_icons.hover
   let root_icon = App.get_setting(`root_icon`) || App.root_icon
   let nodes_icon = App.get_setting(`nodes_icon`) || App.nodes_icon
