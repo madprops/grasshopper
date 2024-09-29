@@ -1877,5 +1877,6 @@ App.remove_tab_opener = (item) => {
     return
   }
 
-  App.tab_openers[item.opener] = App.tab_openers[item.opener].filter(x => x !== item.id)
+  let openers = App.tab_openers[item.opener].filter(x => x !== item.id)
+  App.tab_openers[item.opener] = openers
 }
