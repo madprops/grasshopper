@@ -73,12 +73,17 @@ async function refresh_bookmarks(send = true) {
 }
 
 function send_bookmarks(show_mode = false) {
-  browser.runtime.sendMessage({
-    action: `refresh_bookmarks`,
-    items: bookmark_items,
-    folders: bookmark_folders,
-    show_mode,
-  })
+  try {
+    browser.runtime.sendMessage({
+      action: `refresh_bookmarks`,
+      items: bookmark_items,
+      folders: bookmark_folders,
+      show_mode,
+    })
+  }
+  catch (err) {
+    // Ignore
+  }
 }
 
 async function start_bookmarks(refresh = true) {

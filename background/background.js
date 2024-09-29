@@ -59,7 +59,12 @@ function open_popup_mode(mode) {
 }
 
 function browser_command(num) {
-  browser.runtime.sendMessage({action: `browser_command`, number: num})
+  try {
+    browser.runtime.sendMessage({action: `browser_command`, number: num})
+  }
+  catch (err) {
+    // Ignore
+  }
 }
 
 function popup_command(num) {
