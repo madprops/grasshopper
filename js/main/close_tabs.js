@@ -4,6 +4,7 @@ App.close_tabs = (args = {}) => {
     multiple: true,
     title: `tabs`,
     force: false,
+    no_smart: false,
   }
 
   App.def_args(def_args, args)
@@ -44,7 +45,7 @@ App.close_tabs = (args = {}) => {
   App.show_confirm({
     message: `Close ${args.title}? (${items.length})`,
     confirm_action: async () => {
-      if ((active || selected) && smart_switch) {
+      if (!args.no_smart && (active || selected) && smart_switch) {
         await App.swith_to_prev_tab(items, `close`)
       }
 
@@ -117,6 +118,7 @@ App.close_tabs_method = (items, force = false) => {
   App.close_tabs({
     selection: items,
     force: force,
+    no_smart: true,
     after: () => {
       App.hide_all_popups()
     },
