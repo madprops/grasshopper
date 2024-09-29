@@ -69,6 +69,12 @@ App.check_force = (warn_setting, items) => {
       if (item.pinned || item.playing || item.header) {
         return false
       }
+
+      if (App.get_setting(`edited_special`)) {
+        if (App.edited(item, false)) {
+          return false
+        }
+      }
     }
   }
 
