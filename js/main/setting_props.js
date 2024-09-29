@@ -2859,7 +2859,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `left`,
       info: `Show the Color Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
