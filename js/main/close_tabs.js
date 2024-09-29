@@ -116,8 +116,8 @@ App.close_tabs_method = (items, force = false) => {
   }
 
   App.close_tabs({
+    force,
     selection: items,
-    force: force,
     no_smart: true,
     after: () => {
       App.hide_all_popups()
