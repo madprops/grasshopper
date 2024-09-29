@@ -364,6 +364,8 @@ App.aligns = [
 ]
 
 App.sides = [
+  {text: `None`, value: `none`},
+  {text: App.separator_string},
   {text: `Left`, value: `left`},
   {text: `Right`, value: `right`},
 ]

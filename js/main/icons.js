@@ -10,7 +10,7 @@ App.add_icons = (item, side) => {
   if (item.mode === `tabs`) {
     what = `active_icon`
 
-    if (App.get_setting(what) && check_side(what)) {
+    if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, `${what} item_node hidden`)
       icon.textContent = App.get_setting(what)
 
@@ -23,7 +23,7 @@ App.add_icons = (item, side) => {
 
     what = `pin_icon`
 
-    if (App.get_setting(what) && check_side(what)) {
+    if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, `${what} item_node hidden`)
       icon.textContent = App.get_setting(what)
 
@@ -36,7 +36,7 @@ App.add_icons = (item, side) => {
 
     what = `normal_icon`
 
-    if (App.get_setting(what) && check_side(what)) {
+    if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, `${what} item_node hidden`)
       icon.textContent = App.get_setting(what)
 
@@ -49,7 +49,7 @@ App.add_icons = (item, side) => {
 
     what = `loaded_icon`
 
-    if (App.get_setting(what) && check_side(what)) {
+    if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, `${what} item_node hidden`)
       icon.textContent = App.get_setting(what)
 
@@ -62,7 +62,7 @@ App.add_icons = (item, side) => {
 
     what = `unloaded_icon`
 
-    if (App.get_setting(what) && check_side(what)) {
+    if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, `${what} item_node hidden`)
       icon.textContent = App.get_setting(what)
 
@@ -81,7 +81,7 @@ App.add_icons = (item, side) => {
 
     what = `playing_icon`
 
-    if (App.get_setting(what) && check_side(what)) {
+    if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
       icon.textContent = App.get_setting(what)
 
@@ -94,7 +94,7 @@ App.add_icons = (item, side) => {
 
     what = `muted_icon`
 
-    if (App.get_setting(what) && check_side(what)) {
+    if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
       icon.textContent = App.get_setting(what)
 
@@ -107,7 +107,7 @@ App.add_icons = (item, side) => {
 
     what = `unread_icon`
 
-    if (App.get_setting(what) && check_side(what)) {
+    if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, `${what} item_node hidden`)
       icon.textContent = App.get_setting(what)
 
@@ -120,7 +120,7 @@ App.add_icons = (item, side) => {
 
     what = `loading_icon`
 
-    if (App.get_setting(what) && check_side(what)) {
+    if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, `${what} item_node hidden`)
       icon.textContent = App.get_setting(what)
 
@@ -134,7 +134,7 @@ App.add_icons = (item, side) => {
 
   what = `titled_icon`
 
-  if (App.get_setting(what) && check_side(what)) {
+  if (App.icon_enabled(what) && check_side(what)) {
     let icon = DOM.create(`div`, `${what} item_node hidden`)
     icon.textContent = App.get_setting(what)
 
@@ -147,7 +147,7 @@ App.add_icons = (item, side) => {
 
   what = `tagged_icon`
 
-  if (App.get_setting(what) && check_side(what)) {
+  if (App.icon_enabled(what) && check_side(what)) {
     let icon = DOM.create(`div`, `${what} item_node hidden`)
     icon.textContent = App.get_setting(what)
 
@@ -160,7 +160,7 @@ App.add_icons = (item, side) => {
 
   what = `edited_icon`
 
-  if (App.get_setting(what) && check_side(what)) {
+  if (App.icon_enabled(what) && check_side(what)) {
     let icon = DOM.create(`div`, `${what} item_node hidden`)
     icon.textContent = App.get_setting(what)
 
@@ -179,7 +179,7 @@ App.add_icons = (item, side) => {
 
   what = `root_icon`
 
-  if (App.get_setting(what) && check_side(what)) {
+  if (App.icon_enabled(what) && check_side(what)) {
     let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
     icon.textContent = App.get_setting(what)
 
@@ -203,7 +203,7 @@ App.add_icons = (item, side) => {
 
   what = `nodes_icon`
 
-  if (App.get_setting(what) && check_side(what)) {
+  if (App.icon_enabled(what) && check_side(what)) {
     let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
     icon.textContent = App.get_setting(what)
 
@@ -227,7 +227,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`notes_icon`)) {
+  if (App.icon_enabled(`notes`)) {
     let icon = DOM.el(`.notes_icon`, item.element)
 
     if (App.get_notes(item)) {
@@ -238,7 +238,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`titled_icon`)) {
+  if (App.icon_enabled(`titled`)) {
     if (!item.header) {
       let icon = DOM.el(`.titled_icon`, item.element)
 
@@ -251,7 +251,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`tagged_icon`)) {
+  if (App.icon_enabled(`tagged`)) {
     let icon = DOM.el(`.tagged_icon`, item.element)
 
     if (App.tagged(item)) {
@@ -262,7 +262,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`edited_icon`)) {
+  if (App.icon_enabled(`edited`)) {
     let icon = DOM.el(`.edited_icon`, item.element)
 
     if (App.edited(item)) {
@@ -273,7 +273,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`root_icon`)) {
+  if (App.icon_enabled(`root`)) {
     let icon = DOM.el(`.root_icon`, item.element)
 
     if (App.item_has_root(item)) {
@@ -284,7 +284,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`nodes_icon`)) {
+  if (App.icon_enabled(`nodes`)) {
     let icon = DOM.el(`.nodes_icon`, item.element)
 
     if (App.tab_has_nodes(item)) {
@@ -310,7 +310,7 @@ App.check_icons = (item) => {
     return
   }
 
-  if (App.get_setting(`active_icon`)) {
+  if (App.icon_enabled(`active`)) {
     let icon = DOM.el(`.active_icon`, item.element)
 
     if (item.active) {
@@ -321,7 +321,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`pin_icon`)) {
+  if (App.icon_enabled(`pin`)) {
     let icon = DOM.el(`.pin_icon`, item.element)
 
     if (item.pinned) {
@@ -332,7 +332,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`normal_icon`)) {
+  if (App.icon_enabled(`normal`)) {
     let icon = DOM.el(`.normal_icon`, item.element)
 
     if (!item.pinned) {
@@ -343,7 +343,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`loaded_icon`)) {
+  if (App.icon_enabled(`loaded`)) {
     let icon = DOM.el(`.loaded_icon`, item.element)
 
     if (!item.unloaded) {
@@ -354,7 +354,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`unloaded_icon`)) {
+  if (App.icon_enabled(`unloaded`)) {
     let icon = DOM.el(`.unloaded_icon`, item.element)
 
     if (item.unloaded) {
@@ -365,7 +365,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`playing_icon`)) {
+  if (App.icon_enabled(`playing`)) {
     let icon = DOM.el(`.playing_icon`, item.element)
 
     if (item.playing && !item.muted) {
@@ -376,7 +376,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`muted_icon`)) {
+  if (App.icon_enabled(`muted`)) {
     let icon = DOM.el(`.muted_icon`, item.element)
 
     if (item.muted) {
@@ -387,7 +387,7 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.get_setting(`unread_icon`)) {
+  if (App.icon_enabled(`unread`)) {
     let icon = DOM.el(`.unread_icon`, item.element)
 
     if (item.unread) {
@@ -568,7 +568,7 @@ App.get_notes_icon = (item) => {
     cls += ` grower`
   }
 
-  if (App.get_setting(`notes_icon`)) {
+  if (App.icon_enabled(`notes`)) {
     let icon = DOM.create(`div`, `notes_icon item_node hidden${cls}`)
     icon.textContent = App.get_setting(`notes_icon`)
 
@@ -848,4 +848,14 @@ App.get_icon_tabs = (icon) => {
   }
 
   return tabs
+}
+
+App.icon_enabled = (what) => {
+  if (what.endsWith(`_icon`)) {
+    what = what.split(`_icon`)[0]
+  }
+
+  let icon = App.get_setting(`${what}_icon`)
+  let side = App.get_setting(`${what}_icon_side`)
+  return icon && [`left`, `right`].includes(side)
 }

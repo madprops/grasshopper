@@ -173,7 +173,7 @@ App.mouse_click_action = (mode, e) => {
     }
 
     if (App.get_setting(`mute_click`)) {
-      if (App.get_setting(`muted_icon`) || App.get_setting(`playing_icon`)) {
+      if (App.icon_enabled(`muted`) || App.icon_enabled(`playing`)) {
         if (DOM.class(e.target, [`playing_icon`, `muted_icon`])) {
           App.toggle_mute_tabs(item)
           return
@@ -218,7 +218,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (App.get_setting(`notes_icon_click`)) {
-    if (App.get_setting(`notes_icon`)) {
+    if (App.icon_enabled(`notes`)) {
       if (DOM.class(e.target, [`notes_icon`])) {
         App.edit_notes(item)
         return
@@ -227,7 +227,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (App.get_setting(`root_icon_click`)) {
-    if (App.get_setting(`root_icon`)) {
+    if (App.icon_enabled(`root`)) {
       if (DOM.class(e.target, [`root_icon`])) {
         App.go_to_root_url(item)
         return
@@ -236,7 +236,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (App.get_setting(`nodes_icon_click`)) {
-    if (App.get_setting(`nodes_icon`)) {
+    if (App.icon_enabled(`nodes`)) {
       if (DOM.class(e.target, [`nodes_icon`])) {
         App.filter_nodes(item)
         return
