@@ -1302,7 +1302,7 @@ App.setup_settings_addlist = () => {
     return `None`
   }
 
-  let [popobj, regobj] = App.get_setting_addlist_objects()
+  let {popobj, regobj} = App.get_setting_addlist_objects()
   let id = `settings_aliases`
   let props = App.setting_props.aliases
 
@@ -1716,7 +1716,7 @@ App.get_setting_addlist_objects = () => {
     set_data,
   }
 
-  return [popobj, regobj]
+  return {popobj, regobj}
 }
 
 App.mirror_settings = async () => {

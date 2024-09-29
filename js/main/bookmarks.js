@@ -571,7 +571,7 @@ App.start_bookmark_rules = () => {
   }
 
   App.debug(`Start domain rules`)
-  let [popobj, regobj] = App.get_setting_addlist_objects()
+  let {popobj, regobj} = App.get_setting_addlist_objects()
   let id = `settings_bookmark_rules`
   let props = App.setting_props.bookmark_rules
 

@@ -253,7 +253,7 @@ App.start_signals_addlist = () => {
 
   App.debug(`Start signals addlist`)
   let id = `settings_signals`
-  let [popobj, regobj] = App.get_setting_addlist_objects()
+  let {popobj, regobj} = App.get_setting_addlist_objects()
 
   App.create_popup({...popobj, id: `addlist_${id}`,
     element: Addlist.register({...regobj, id,
