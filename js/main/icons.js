@@ -208,7 +208,7 @@ App.add_icons = (item, side) => {
     icon.textContent = App.get_setting(what)
 
     if (tips) {
-      icon.title = `Opener`
+      icon.title = `Has Opener`
     }
 
     item.element.append(icon)
@@ -227,7 +227,7 @@ App.add_icons = (item, side) => {
     icon.textContent = App.get_setting(what)
 
     if (tips) {
-      icon.title = `Nodes`
+      icon.title = `Has Nodes`
     }
 
     item.element.append(icon)
