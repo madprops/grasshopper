@@ -575,10 +575,8 @@ App.start_bookmark_rules = () => {
   let id = `settings_bookmark_rules`
   let props = App.setting_props.bookmark_rules
 
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
-    element: Addlist.register(Object.assign({}, regobj, {
-      id,
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
       keys: [`value`, `folder`, `mode`],
       widgets: {
         value: `text`,
@@ -618,8 +616,7 @@ App.start_bookmark_rules = () => {
         mode: `Match mode for URL comparison`,
       },
       title: props.name,
-    }))
-  }))
+    })})
 
   App.bookmark_rules_ready = true
 }

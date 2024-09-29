@@ -255,10 +255,8 @@ App.start_signals_addlist = () => {
   let id = `settings_signals`
   let [popobj, regobj] = App.get_setting_addlist_objects()
 
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
-    element: Addlist.register(Object.assign({}, regobj, {
-      id,
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
       keys: [`name`, `url`, `arguments`, `icon`, `method`, `interval`, `feedback`, `update_title`, `send_tabs`, `startup`],
       pk: `name`,
       widgets: {
@@ -329,8 +327,7 @@ App.start_signals_addlist = () => {
         },
       },
       title: `Signals`,
-    }))
-  }))
+    })})
 
   App.signals_addlist_ready = true
 }

@@ -114,13 +114,11 @@ App.start_domain_rules = () => {
   let id = `settings_domain_rules`
   let props = App.setting_props.domain_rules
 
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
+  App.create_popup({...popobj, id: `addlist_${id}`,
     after_hide: () => {
       App.rules_item = undefined
     },
-    element: Addlist.register(Object.assign({}, regobj, {
-      id,
+    element: Addlist.register({...regobj, id,
       keys: [
         `domain`,
         `by_title`,
@@ -237,8 +235,7 @@ App.start_domain_rules = () => {
         return items.domain
       },
       title: props.name,
-    }))
-  }))
+    })})
 
   App.domain_rules_ready = true
 }

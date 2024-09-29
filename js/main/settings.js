@@ -485,8 +485,7 @@ App.start_settings = () => {
   for (let key in App.setting_catprops) {
     let catprops = App.setting_catprops[key]
 
-    App.create_window(Object.assign({}, common, {
-      id: `settings_${key}`,
+    App.create_window({...common, id: `settings_${key}`,
       element: App.settings_build_category(key),
       setup: () => {
         App.prepare_settings_category(key)
@@ -498,7 +497,7 @@ App.start_settings = () => {
         let container = DOM.el(`#settings_${key}_container`)
         App.settings_gestures(container)
       },
-    }))
+    })
   }
 
   App.setup_settings_addlist()
@@ -1307,10 +1306,8 @@ App.setup_settings_addlist = () => {
   let id = `settings_aliases`
   let props = App.setting_props.aliases
 
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
-    element: Addlist.register(Object.assign({}, regobj, {
-      id,
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
       keys: [`a`, `b`],
       pk: `a`,
       widgets: {
@@ -1332,16 +1329,13 @@ App.setup_settings_addlist = () => {
         b: `Term B`,
       },
       title: props.name,
-    }))
-  }))
+    })})
 
   id = `settings_custom_filters`
   props = App.setting_props.custom_filters
 
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
-    element: Addlist.register(Object.assign({}, regobj, {
-      id,
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
       keys: [`filter`],
       pk: `filter`,
       widgets: {
@@ -1357,16 +1351,13 @@ App.setup_settings_addlist = () => {
         filter: `Add a custom filter`,
       },
       title: props.name,
-    }))
-  }))
+    })})
 
   id = `settings_keyboard_shortcuts`
   props = App.setting_props.keyboard_shortcuts
 
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
-    element: Addlist.register(Object.assign({}, regobj, {
-      id,
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
       keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
       pk: `cmd`,
       widgets: {
@@ -1415,8 +1406,7 @@ App.setup_settings_addlist = () => {
         alt: `If Alt is pressed`,
       },
       title: props.name,
-    }))
-  }))
+    })})
 
   let menukeys = [
     `favorites_menu`,
@@ -1439,10 +1429,8 @@ App.setup_settings_addlist = () => {
       let id = `settings_${key}`
       let props = App.setting_props[key]
 
-      App.create_popup(Object.assign({}, popobj, {
-        id: `addlist_${id}`,
-        element: Addlist.register(Object.assign({}, regobj, {
-          id,
+      App.create_popup({...popobj, id: `addlist_${id}`,
+        element: Addlist.register({...regobj, id,
           keys: [`cmd`, `middle`, `shift`, `ctrl`, `alt`],
           pk: `cmd`,
           widgets: {
@@ -1490,8 +1478,7 @@ App.setup_settings_addlist = () => {
             alt: `Command on Alt + Click`,
           },
           title: props.name,
-        }))
-      }))
+        })})
     }
   }
 
@@ -1506,10 +1493,8 @@ App.setup_settings_addlist = () => {
       let id = `settings_${key}`
       let props = App.setting_props[key]
 
-      App.create_popup(Object.assign({}, popobj, {
-        id: `addlist_${id}`,
-        element: Addlist.register(Object.assign({}, regobj, {
-          id,
+      App.create_popup({...popobj, id: `addlist_${id}`,
+        element: Addlist.register({...regobj, id,
           keys: [`cmd`],
           widgets: {
             cmd: `menu`,
@@ -1533,8 +1518,7 @@ App.setup_settings_addlist = () => {
           },
           automenu: true,
           title: props.name,
-        }))
-      }))
+        })})
     }
   }
 
@@ -1548,10 +1532,8 @@ App.setup_settings_addlist = () => {
       let id = `settings_${key}`
       let props = App.setting_props[key]
 
-      App.create_popup(Object.assign({}, popobj, {
-        id: `addlist_${id}`,
-        element: Addlist.register(Object.assign({}, regobj, {
-          id,
+      App.create_popup({...popobj, id: `addlist_${id}`,
+        element: Addlist.register({...regobj, id,
           keys: [`cmd`],
           pk: `cmd`,
           widgets: {
@@ -1576,8 +1558,7 @@ App.setup_settings_addlist = () => {
             cmd: `Add a command`,
           },
           title: props.name,
-        }))
-      }))
+        })})
     }
   }
 
@@ -1588,10 +1569,8 @@ App.setup_settings_addlist = () => {
   id = `settings_colors`
   props = App.setting_props.colors
 
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
-    element: Addlist.register(Object.assign({}, regobj, {
-      id,
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
       keys: [`name`, `value`, `text`],
       pk: `name`,
       widgets: {
@@ -1619,16 +1598,13 @@ App.setup_settings_addlist = () => {
         text: `Color of the text`,
       },
       title: props.name,
-    }))
-  }))
+    })})
 
   id = `settings_custom_urls`
   props = App.setting_props.custom_urls
 
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
-    element: Addlist.register(Object.assign({}, regobj, {
-      id,
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
       keys: [`name`, `url`, `icon`],
       pk: `url`,
       widgets: {
@@ -1662,8 +1638,7 @@ App.setup_settings_addlist = () => {
         icon: `Icon for this item`,
       },
       title: props.name,
-    }))
-  }))
+    })})
 }
 
 App.settings_build_category = (key) => {
