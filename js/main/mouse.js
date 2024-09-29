@@ -235,6 +235,15 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
+  if (App.get_setting(`nodes_icon_click`)) {
+    if (App.get_setting(`nodes_icon`)) {
+      if (DOM.class(e.target, [`nodes_icon`])) {
+        App.filter_nodes(item)
+        return
+      }
+    }
+  }
+
   if (App.get_setting(`custom_icon_click`)) {
     if (DOM.class(e.target, [`custom_icon`])) {
       App.custom_icon_menu(item, e)

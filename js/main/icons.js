@@ -194,6 +194,24 @@ App.add_icons = (item, side) => {
     let btn = App.create_hover_button()
     item.element.append(btn)
   }
+
+  what = `nodes_icon`
+
+  if (App.get_setting(what) && check_side(what)) {
+    let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
+    icon.textContent = App.get_setting(what)
+
+    if (tips) {
+      icon.title = `Nodes`
+    }
+
+    item.element.append(icon)
+  }
+
+  if (App.get_setting(`hover_button`) !== `none`) {
+    let btn = App.create_hover_button()
+    item.element.append(btn)
+  }
 }
 
 App.check_icons = (item) => {
@@ -253,6 +271,17 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.root_icon`, item.element)
 
     if (App.item_has_root(item)) {
+      DOM.show(icon)
+    }
+    else {
+      DOM.hide(icon)
+    }
+  }
+
+  if (App.get_setting(`nodes_icon`)) {
+    let icon = DOM.el(`.nodes_icon`, item.element)
+
+    if (App.tab_has_nodes(item)) {
       DOM.show(icon)
     }
     else {

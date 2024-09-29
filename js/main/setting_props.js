@@ -933,6 +933,25 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
+    nodes_icon: {
+      name: `Nodes Icon`,
+      type: `text_smaller`,
+      value: ``,
+      placeholder: App.icon_placeholder,
+      info: `Icon for tabs with nodes`,
+      version: 1,
+    },
+    nodes_icon_side: {
+      name: `Nodes Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Nodes Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
     root_icon: {
       name: `Root Icon`,
       type: `text_smaller`,
@@ -997,6 +1016,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the notes when clicking the notes icon`,
+      version: 1,
+    },
+    nodes_icon_click: {
+      name: `Nodes Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the item's nodes`,
       version: 1,
     },
     root_icon_click: {
