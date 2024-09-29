@@ -123,6 +123,12 @@ App.process_info = (args = {}) => {
     if (App.get_selected(args.mode) === args.o_item) {
       App.update_footer_info(args.o_item)
     }
+
+    if (args.mode === `tabs`) {
+      if (item.opener) {
+        App.add_tab_opener(item)
+      }
+    }
   }
   else {
     if (!args.list) {
