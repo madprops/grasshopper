@@ -443,7 +443,7 @@ App.timeago = (date) => {
 }
 
 App.round = (n, decimals) => {
-  return Math.round(n * Math.pow(10, decimals)) / Math.pow(10, decimals)
+  return Math.round(n * (10 ** decimals)) / (10 ** decimals)
 }
 
 App.obj = (str) => {
