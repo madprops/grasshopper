@@ -196,10 +196,8 @@ App.check_command = (command, args = {}) => {
         }
       }
 
-      if (App.tab_openers[item.id]) {
-        if (App.tab_openers[item.id].length) {
-          args.some_has_nodes = true
-        }
+      if (App.tab_has_nodes(item)) {
+        args.some_has_nodes = true
       }
     }
   }

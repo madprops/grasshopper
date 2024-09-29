@@ -272,6 +272,10 @@ App.clear_items = (mode) => {
   if (c) {
     DOM.el(`#${mode}_container`).innerHTML = ``
   }
+
+  if (mode === `tabs`) {
+    App.tab_openers = []
+  }
 }
 
 App.clear_all_items = () => {

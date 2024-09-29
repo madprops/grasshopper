@@ -1880,3 +1880,13 @@ App.remove_tab_opener = (item) => {
   let openers = App.tab_openers[item.opener].filter(x => x !== item.id)
   App.tab_openers[item.opener] = openers
 }
+
+App.tab_has_nodes = (item) => {
+  if (App.tab_openers[item.id]) {
+    if (App.tab_openers[item.id].length) {
+      return true
+    }
+  }
+
+  return false
+}
