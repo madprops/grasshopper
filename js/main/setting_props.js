@@ -696,7 +696,7 @@ App.build_settings = () => {
     active_icon_side: {
       name: `Active Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Active Icon on the left or right of text`,
       separator: true,
       version: 1,
@@ -715,7 +715,7 @@ App.build_settings = () => {
     pin_icon_side: {
       name: `Pin Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Pin Icon on the left or right of text`,
       separator: true,
       version: 1,
@@ -734,7 +734,7 @@ App.build_settings = () => {
     normal_icon_side: {
       name: `Normal Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Normal Icon on the left or right of text`,
       separator: true,
       version: 1,
@@ -829,7 +829,7 @@ App.build_settings = () => {
     loaded_icon_side: {
       name: `Loaded Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Loaded Icon on the left or right of text`,
       separator: true,
       version: 1,
@@ -867,7 +867,7 @@ App.build_settings = () => {
     titled_icon_side: {
       name: `Titled Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Titled Icon on the left or right of text`,
       separator: true,
       version: 1,
@@ -886,7 +886,7 @@ App.build_settings = () => {
     tagged_icon_side: {
       name: `Tagged Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Tagged Icon on the left or right of text`,
       separator: true,
       version: 1,
@@ -925,7 +925,7 @@ App.build_settings = () => {
     edited_icon_side: {
       name: `Edited Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Edited Icon on the left or right of text`,
       separator: true,
       version: 1,
@@ -965,46 +965,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Root Icon on the left or right of text`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    header_icon: {
-      name: `Header Icon`,
-      type: `text_smaller`,
-      value: `🚥`,
-      placeholder: App.icon_placeholder,
-      info: `Icon for header tabs
-      Leave empty to use an arrow`,
-      version: 1,
-    },
-    header_icon_side: {
-      name: `Header Icon Side`,
-      type: `menu`,
-      value: `left`,
-      info: `Show the Header Icon on the left or right of text`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    subheader_icon: {
-      name: `Subheader Icon`,
-      type: `text_smaller`,
-      value: ``,
-      placeholder: App.icon_placeholder,
-      info: `Icon for subheheader tabs
-      Leave empty to use an arrow`,
-      version: 1,
-    },
-    subheader_icon_side: {
-      name: `Subheader Icon Side`,
-      type: `menu`,
-      value: `left`,
-      info: `Show the Subheader Icon on the left or right of text`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -2705,7 +2665,6 @@ App.build_settings = () => {
       name: `Split Side`,
       type: `menu`,
       value: `right`,
-      separator: true,
       info: `Which side to show the split side border`,
       version: 1,
       setup: (key) => {
@@ -2717,6 +2676,25 @@ App.build_settings = () => {
           {text: `Both`, value: `both`},
         ])
       },
+    },
+    header_icon: {
+      name: `Header Icon`,
+      type: `text_smaller`,
+      value: `🚥`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for header tabs
+      Leave empty to use an arrow`,
+      version: 1,
+    },
+    subheader_icon: {
+      name: `Subheader Icon`,
+      type: `text_smaller`,
+      value: ``,
+      placeholder: App.icon_placeholder,
+      separator: true,
+      info: `Icon for subheheader tabs
+      Leave empty to use an arrow`,
+      version: 1,
     },
     split_color_enabled: {
       name: `Split Color`,
