@@ -714,7 +714,7 @@ Addlist.popup = (id) => {
 Addlist.filled = (id) => {
   let oargs = Addlist.oargs(id)
 
-  for(let key of oargs.keys) {
+  for (let key of oargs.keys) {
     let w = oargs.widgets[key]
 
     if (w === `checkbox`) {

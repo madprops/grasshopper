@@ -32,6 +32,7 @@ export default [
       "no-useless-escape": "error",
       "default-param-last": "error",
       "dot-notation": "error",
+      "keyword-spacing": "error",
     },
     languageOptions: {
       globals: {
