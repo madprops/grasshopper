@@ -507,7 +507,7 @@ App.same_arrays = (a, b) => {
 App.wildcard = (pattern, str, exact = false) => {
   let w = pattern.replace(/[.+^${}()|[\]\\]/g, `\\$&`)
   let end = exact ? `$` : ``
-  let re = new RegExp(`^${w.replace(/\*/g, `.*`).replace(/\?/g,`.`)}${end}`, `i`)
+  let re = new RegExp(`^${w.replace(/\*/g, `.*`).replace(/\?/g, `.`)}${end}`, `i`)
   return re.test(str)
 }
 

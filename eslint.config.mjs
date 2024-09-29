@@ -34,6 +34,7 @@ export default [
       "dot-notation": "error",
       "keyword-spacing": "error",
       "space-infix-ops": "error",
+      "comma-spacing": "error",
     },
     languageOptions: {
       globals: {
