@@ -693,8 +693,15 @@ App.get_icon_items = (mode, show = false) => {
   function icon_sort(a, b) {
     let ai = App.icon_history.indexOf(a)
     let bi = App.icon_history.indexOf(b)
-    if (ai === -1) ai = App.icon_history.length
-    if (bi === -1) bi = App.icon_history.length
+
+    if (ai === -1) {
+      ai = App.icon_history.length
+    }
+
+    if (bi === -1) {
+      bi = App.icon_history.length
+    }
+
     return ai - bi
   }
 

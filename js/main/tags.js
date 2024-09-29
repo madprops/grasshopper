@@ -370,8 +370,15 @@ App.get_tag_items = (mode, show = false) => {
   function fav_sort(a, b) {
     let ai = App.tag_history.indexOf(a)
     let bi = App.tag_history.indexOf(b)
-    if (ai === -1) ai = App.tag_history.length
-    if (bi === -1) bi = App.tag_history.length
+
+    if (ai === -1) {
+      ai = App.tag_history.length
+    }
+
+    if (bi === -1) {
+      bi = App.tag_history.length
+    }
+
     return ai - bi
   }
 

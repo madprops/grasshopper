@@ -876,8 +876,7 @@ App.check_settings = () => {
     // Fill defaults
     if (App.settings[key] === undefined ||
       App.settings[key].value === undefined ||
-      App.settings[key].version === undefined)
-    {
+      App.settings[key].version === undefined) {
       App.debug(`Stor: Adding setting: ${key}`)
       App.settings[key] = {}
       App.def_setting(key)

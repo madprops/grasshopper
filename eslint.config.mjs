@@ -20,6 +20,12 @@ export default [
       "no-else-return": "error",
       "padded-blocks": ["error", "never"],
       "no-lonely-if": "error",
+      "eqeqeq": ["error", "always"],
+      "curly": ["error", "all"],
+      "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
+      "no-var": "error",
+      "arrow-spacing": ["error", { "before": true, "after": true }]
+
     },
     languageOptions: {
       globals: {
