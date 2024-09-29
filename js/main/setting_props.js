@@ -92,7 +92,7 @@ App.build_settings = () => {
       },
     },
     icon_effect: {
-      name: `Icon Efect`,
+      name: `Icon Effect`,
       type: `menu`,
       value: `spin`,
       info: `Effect for icons when multiple items are selected`,

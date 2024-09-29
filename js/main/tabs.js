@@ -1839,6 +1839,9 @@ App.import_tabs = async () => {
       }
     }
 
+    let ids = Object.values(id_map)
+    await browser.tabs.discard(ids)
+
     for (let info of json) {
       if (info.opener) {
         let new_id = id_map[info.id]
