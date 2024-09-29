@@ -33,6 +33,7 @@ export default [
       "default-param-last": "error",
       "dot-notation": "error",
       "keyword-spacing": "error",
+      "space-infix-ops": "error",
     },
     languageOptions: {
       globals: {

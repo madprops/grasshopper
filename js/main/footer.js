@@ -172,7 +172,7 @@ App.do_update_footer_count = (mode) => {
   let count
 
   if (n1 > 1) {
-    count= `(${n1}/${n2})`
+    count = `(${n1}/${n2})`
   }
   else {
     count = `(${n2})`
