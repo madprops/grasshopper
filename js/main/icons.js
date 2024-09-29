@@ -141,6 +141,23 @@ App.add_icons = (item) => {
     item.element.append(icon)
   }
 
+  cls = ``
+
+  if (App.get_setting(`root_icon_click`)) {
+    cls += ` grower`
+  }
+
+  if (App.get_setting(`root_icon`)) {
+    let icon = DOM.create(`div`, `root_icon item_node hidden${cls}`)
+    icon.textContent = App.get_setting(`root_icon`)
+
+    if (tips) {
+      icon.title = `Root`
+    }
+
+    item.element.append(icon)
+  }
+
   if (App.get_setting(`hover_button`) !== `none`) {
     let btn = App.create_hover_button()
     item.element.append(btn)
@@ -193,6 +210,17 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.edited_icon`, item.element)
 
     if (App.edited(item)) {
+      DOM.show(icon)
+    }
+    else {
+      DOM.hide(icon)
+    }
+  }
+
+  if (App.get_setting(`root_icon`)) {
+    let icon = DOM.el(`.root_icon`, item.element)
+
+    if (App.item_has_root(item)) {
       DOM.show(icon)
     }
     else {

@@ -226,6 +226,15 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
+  if (App.get_setting(`root_icon_click`)) {
+    if (App.get_setting(`root_icon`)) {
+      if (DOM.class(e.target, [`root_icon`])) {
+        App.go_to_root_url(item)
+        return
+      }
+    }
+  }
+
   if (App.get_setting(`custom_icon_click`)) {
     if (DOM.class(e.target, [`custom_icon`])) {
       App.custom_icon_menu(item, e)

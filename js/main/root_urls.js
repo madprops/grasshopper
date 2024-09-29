@@ -75,3 +75,7 @@ App.remove_root_url = (item) => {
 
   App.remove_edits({what: [`root`], items: active, text: `roots`})
 }
+
+App.item_has_root = (item) => {
+  return Boolean(App.get_root(item))
+}
