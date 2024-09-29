@@ -328,7 +328,7 @@ App.setup_commands = () => {
 
   for (let media of App.media_types) {
     let cap = App.capitalize(media)
-    let icon = App.get_setting(`${media}_icon`) || command_icon
+    let icon = App.get_media_icon(media)
     let name = `Filter ${cap}`.trim()
 
     media_filters.push({
