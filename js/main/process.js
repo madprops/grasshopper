@@ -150,13 +150,14 @@ App.process_info = (args = {}) => {
     item.tab_box = false
     item.last_scroll = 0
     App.create_item_element(item)
-    App[`${args.mode}_idx`] += 1
-  }
 
-  if (args.mode === `tabs`) {
-    if (args.add_opener) {
-      App.add_tab_opener(item)
+    if (args.mode === `tabs`) {
+      if (args.add_opener) {
+        App.add_tab_opener(item)
+      }
     }
+
+    App[`${args.mode}_idx`] += 1
   }
 
   return item

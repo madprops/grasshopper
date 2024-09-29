@@ -1840,35 +1840,45 @@ App.add_tab_opener = (item) => {
   if (!App.tab_openers[item.opener].includes(item.id)) {
     App.tab_openers[item.opener].push(item.id)
     App.update_tab_opener(item.opener)
+    App.update_tab_nodes(App.tab_openers[item.opener])
   }
 }
 
 App.remove_tab_opener = (item) => {
-  if (!App.tab_openers[item.opener]) {
-    return
-  }
+  if (App.tab_openers[item.opener]) {
+    let openers = App.tab_openers[item.opener].filter(x => x !== item.id)
+    openers = openers.filter(x => x)
+    App.tab_openers[item.opener] = openers
+    let nodes = App.tab_openers[item.opener]
 
-  let openers = App.tab_openers[item.opener].filter(x => x !== item.id)
-  openers = openers.filter(x => x)
-  App.tab_openers[item.opener] = openers
-  App.update_tab_opener(item.opener)
+    if (item.id in App.tab_openers) {
+      delete App.tab_openers[item.id]
+    }
+
+    App.update_tab_opener(item.opener)
+    App.update_tab_nodes(nodes)
+  }
+  else if (item.id in App.tab_openers) {
+    let nodes = App.tab_openers[item.id]
+    delete App.tab_openers[item.id]
+    App.update_tab_nodes(nodes)
+  }
 }
 
-App.update_tab_opener = (id) => {
+App.update_tab_opener = (id, nodes = []) => {
   let opener = App.get_item_by_id(`tabs`, id)
 
   if (opener) {
     App.check_icons(opener)
-    let nodes = App.tab_openers[id]
+  }
+}
 
-    if (nodes) {
-      for (let node_id of nodes) {
-        let node = App.get_item_by_id(`tabs`, node_id)
+App.update_tab_nodes = (nodes) => {
+  for (let node_id of nodes) {
+    let node = App.get_item_by_id(`tabs`, node_id)
 
-        if (node) {
-          App.check_icons(node)
-        }
-      }
+    if (node) {
+      App.check_icons(node)
     }
   }
 }
