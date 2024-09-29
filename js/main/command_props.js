@@ -2741,6 +2741,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       single: true,
+      some_has_nodes: true,
       icon: node_icon,
       action: (args) => {
         App.filter_nodes(args.item)

@@ -1861,3 +1861,21 @@ App.import_tabs = async () => {
     }
   })
 }
+
+App.add_tab_opener = (item) => {
+  if (App.tab_openers[item.opener] === undefined) {
+    App.tab_openers[item.opener] = []
+  }
+
+  if (!App.tab_openers[item.opener].includes(item.id)) {
+    App.tab_openers[item.opener].push(item.id)
+  }
+}
+
+App.remove_tab_opener = (item) => {
+  if (!App.tab_openers[item.opener]) {
+    return
+  }
+
+  App.tab_openers[item.opener] = App.tab_openers[item.opener].filter(x => x !== item.id)
+}

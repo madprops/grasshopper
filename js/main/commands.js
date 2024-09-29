@@ -195,6 +195,12 @@ App.check_command = (command, args = {}) => {
           args[`some_no_custom_color_id_${color.id}`] = true
         }
       }
+
+      if (App.tab_openers[item.id]) {
+        if (App.tab_openers[item.id].length) {
+          args.some_has_nodes = true
+        }
+      }
     }
   }
 
@@ -283,6 +289,7 @@ App.check_command = (command, args = {}) => {
   check_1(`some_header`)
   check_1(`some_no_header`)
   check_1(`some_edits`)
+  check_1(`some_has_nodes`)
 
   let edit_props = App.get_edit_prop_list()
   edit_props.push(`split`)

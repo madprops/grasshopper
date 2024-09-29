@@ -240,6 +240,10 @@ App.remove_item = (item) => {
     }
   }
 
+  if (item.mode === `tabs`) {
+    App.remove_tab_opener(item)
+  }
+
   item.element.remove()
   item.removed = true
   App.filter_item_by_id(mode, item.id)
@@ -513,7 +517,7 @@ App.get_item_element_index = (args = {}) => {
   if (args.include_all) {
     return DOM.els(`.${args.mode}_element`).indexOf(args.element)
   }
-  
+
   return DOM.els(`.${args.mode}_item`).indexOf(args.element)
 }
 
@@ -919,7 +923,7 @@ App.get_active_items = (args = {}) => {
     if (args.item) {
       return [args.item]
     }
-    
+
     return []
   }
 
@@ -929,17 +933,17 @@ App.get_active_items = (args = {}) => {
     if (args.item) {
       return [args.item]
     }
-    
+
     return []
   }
   else if (selected.length === 1) {
     if (args.item) {
       return [args.item]
     }
-    
+
     return [App.get_selected(args.mode)]
   }
-  
+
   if (args.item && !selected.includes(args.item)) {
     selected.push(args.item)
   }
