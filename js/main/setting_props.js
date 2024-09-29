@@ -208,7 +208,7 @@ App.build_settings = () => {
     height: {
       name: `Popup Height`,
       type: `menu`,
-      value: 85,
+      value: 90,
       actions: [`theme`],
       info: `Height of the popup
       It doesn't affect the sidebar`,
