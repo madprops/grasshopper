@@ -567,58 +567,6 @@ App.unload_tabs = (item, multiple = true) => {
   })
 }
 
-App.close_tabs = (args = {}) => {
-  let def_args = {
-    active_items: [],
-    multiple: true,
-    title: `tabs`,
-  }
-
-  App.def_args(def_args, args)
-  let items = []
-  let active = false
-  let selected = false
-
-  if (!args.active_items.length) {
-    args.active_items = App.get_active_items({
-      mode: `tabs`,
-      item: args.item,
-      multiple: args.multiple,
-    })
-  }
-
-  for (let it of args.active_items) {
-    if (it.active) {
-      active = true
-    }
-
-    if (it.selected) {
-      selected = true
-    }
-
-    items.push(it)
-  }
-
-  if (!items.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_close_tabs`, items)
-  let smart_switch = App.get_setting(`smart_tab_switch`)
-
-  App.show_confirm({
-    message: `Close ${args.title}? (${items.length})`,
-    confirm_action: async () => {
-      if ((active || selected) && smart_switch) {
-        await App.swith_to_prev_tab(items, `close`)
-      }
-
-      App.close_tabs_method(items, true)
-    },
-    force,
-  })
-}
-
 App.swith_to_prev_tab = async (items, method) => {
   let recent = App.get_recent_tabs()
   recent = recent.filter(x => !x.unloaded)
@@ -1957,5 +1905,5 @@ App.focus_opener_tab = (item) => {
 
 App.close_nodes = (item) => {
   let nodes = App.get_tab_nodes(item)
-  App.close_tabs({active_items: nodes, title: `nodes`})
+  App.close_tabs({selection: nodes, title: `nodes`})
 }

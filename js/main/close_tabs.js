@@ -1,3 +1,64 @@
+App.close_tabs = (args = {}) => {
+  let def_args = {
+    selection: [],
+    multiple: true,
+    title: `tabs`,
+    force: false,
+  }
+
+  App.def_args(def_args, args)
+  let items = []
+  let active = false
+  let selected = false
+
+  if (!args.selection.length) {
+    args.selection = App.get_active_items({
+      mode: `tabs`,
+      item: args.item,
+      multiple: args.multiple,
+    })
+  }
+
+  for (let it of args.selection) {
+    if (it.active) {
+      active = true
+    }
+
+    if (it.selected) {
+      selected = true
+    }
+
+    items.push(it)
+  }
+
+  if (!items.length) {
+    return
+  }
+
+  if (!args.force) {
+    args.force = App.check_force(`warn_on_close_tabs`, items)
+  }
+
+  let smart_switch = App.get_setting(`smart_tab_switch`)
+
+  App.show_confirm({
+    message: `Close ${args.title}? (${items.length})`,
+    confirm_action: async () => {
+      if ((active || selected) && smart_switch) {
+        await App.swith_to_prev_tab(items, `close`)
+      }
+
+      let ids = items.map(x => x.id)
+      App.close_tab_or_tabs(ids)
+
+      if (args.after) {
+        args.after()
+      }
+    },
+    force: args.force,
+  })
+}
+
 App.start_close_tabs = () => {
   if (App.check_ready(`close_tabs`)) {
     return
@@ -53,13 +114,12 @@ App.close_tabs_method = (items, force = false) => {
     return
   }
 
-  App.show_confirm({
-    message: `Close tabs? (${ids.length})`,
-    confirm_action: () => {
-      App.close_tab_or_tabs(ids)
+  App.close_tabs({
+    selection: items,
+    force: force,
+    after: () => {
       App.hide_all_popups()
     },
-    force,
   })
 }
 
