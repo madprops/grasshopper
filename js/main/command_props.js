@@ -1669,7 +1669,7 @@ App.setup_commands = () => {
       short_name: `Close`,
       cmd: `show_close_button_menu`,
       modes: [`tabs`],
-      icon: menu_icon,
+      icon: close_icon,
       action: (args) => {
         App.show_close_button_menu(args.item, args.e)
       },
