@@ -195,6 +195,12 @@ App.add_icons = (item, side) => {
     item.element.append(btn)
   }
 
+  cls = ``
+
+  if (App.get_setting(`nodes_icon_click`)) {
+    cls += ` grower`
+  }
+
   what = `nodes_icon`
 
   if (App.get_setting(what) && check_side(what)) {
