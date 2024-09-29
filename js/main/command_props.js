@@ -1082,7 +1082,8 @@ App.setup_commands = () => {
       info: `Open items`,
     },
     {
-      name: `View`,
+      name: `View Media`,
+      short_name: `View`,
       cmd: `view_media`,
       modes: [`items`],
       item: true,

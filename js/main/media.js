@@ -317,7 +317,7 @@ App.search_media = (mode, e) => {
 
   for (let type of App.media_types) {
     let subitems = []
-    let icon = App.get_setting(`${type}_icon`)
+    let icon = App.get_media_icon(type)
 
     for (let ext of App[`${type}_extensions`]) {
       subitems.push({text: ext, icon, action: () => {
@@ -397,7 +397,7 @@ App.check_view_media = (item) => {
   let icon
 
   if (type) {
-    icon = App.get_setting(`${type}_icon`)
+    icon = App.get_media_icon(type)
   }
 
   if (icon) {
@@ -412,4 +412,8 @@ App.check_view_media = (item) => {
   else {
     DOM.hide(view_media)
   }
+}
+
+App.get_media_icon = (type) => {
+  return App.get_setting(`${type}_icon`) || App.settings_icons.media
 }
