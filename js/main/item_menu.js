@@ -18,7 +18,9 @@ App.show_item_menu = async (args = {}) => {
     App.item_menu_item(items, `filter_nodes`, {item: args.item})
     App.item_menu_item(items, `go_to_root_url`, {item: args.item})
 
-    App.sep(items)
+    if (items.length) {
+      App.sep(items)
+    }
 
     App.item_menu_item(items, `load_tabs`, {item: args.item})
     App.item_menu_item(items, `pin_tabs`, {item: args.item})
