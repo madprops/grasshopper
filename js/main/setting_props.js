@@ -944,7 +944,7 @@ App.build_settings = () => {
     nodes_icon_side: {
       name: `Nodes Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Nodes Icon on the left or right of text`,
       separator: true,
       version: 1,
@@ -963,7 +963,7 @@ App.build_settings = () => {
     root_icon_side: {
       name: `Root Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Root Icon on the left or right of text`,
       separator: true,
       version: 1,
