@@ -197,7 +197,11 @@ App.check_command = (command, args = {}) => {
       }
 
       if (App.tab_has_nodes(item)) {
-        args.some_has_nodes = true
+        args.some_nodes = true
+      }
+
+      if (item.opener) {
+        args.some_opener = true
       }
     }
   }
@@ -287,7 +291,8 @@ App.check_command = (command, args = {}) => {
   check_1(`some_header`)
   check_1(`some_no_header`)
   check_1(`some_edits`)
-  check_1(`some_has_nodes`)
+  check_1(`some_nodes`)
+  check_1(`some_opener`)
 
   let edit_props = App.get_edit_prop_list()
   edit_props.push(`split`)

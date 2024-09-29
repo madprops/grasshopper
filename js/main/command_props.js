@@ -2741,12 +2741,26 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       single: true,
-      some_has_nodes: true,
+      some_nodes: true,
       icon: node_icon,
       action: (args) => {
         App.filter_nodes(args.item)
       },
       info: `Filter the tabs that were opened through this tab`,
+    },
+    {
+      name: `Focus Opener`,
+      short_name: `Opener`,
+      cmd: `focus_node_opener`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      some_opener: true,
+      icon: node_icon,
+      action: (args) => {
+        App.focus_opener_tab(args.item)
+      },
+      info: `Focus the opener tab of this item`,
     },
     {
       name: `Filter Color`,

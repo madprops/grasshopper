@@ -1894,3 +1894,18 @@ App.tab_has_nodes = (item) => {
 
   return false
 }
+
+App.focus_opener_tab = (item) => {
+  if (!item.opener) {
+    return
+  }
+
+  let items = App.get_items(`tabs`)
+
+  for (let it of items) {
+    if (it.id === item.opener) {
+      App.tabs_action({item: it})
+      break
+    }
+  }
+}
