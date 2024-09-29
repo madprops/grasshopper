@@ -686,14 +686,14 @@ App.keyboard_event = (what) => {
     key: what,
     code: what,
     bubbles: true,
-    cancelable: true
+    cancelable: true,
   })
 
   let keyup = new KeyboardEvent(`keyup`, {
     key: what,
     code: what,
     bubbles: true,
-    cancelable: true
+    cancelable: true,
   })
 
   document.dispatchEvent(keydown)

@@ -889,7 +889,7 @@ App.get_custom_filters = (mode) => {
       text: obj.filter,
       action: () => {
         App.set_custom_filter(mode, obj.filter)
-      }
+      },
     })
   }
 
@@ -1165,7 +1165,7 @@ App.show_filter_context_menu = (mode, e) => {
       middle_action: () => {
         App.forget_filter_history_item(value)
         App.show_filter_context_menu(mode, e)
-      }
+      },
     })
   }
 
@@ -1176,7 +1176,7 @@ App.show_filter_context_menu = (mode, e) => {
       text: `Forget`,
       action: () => {
         App.forget_filter_history()
-      }
+      },
     })
 
     App.sep(items)
@@ -1187,7 +1187,7 @@ App.show_filter_context_menu = (mode, e) => {
     icon: filter_icon,
     get_items: () => {
       return App.get_filter_exact(mode)
-    }
+    },
   })
 
   items.push({
@@ -1195,7 +1195,7 @@ App.show_filter_context_menu = (mode, e) => {
     icon: filter_icon,
     get_items: () => {
       return App.get_refine_items()
-    }
+    },
   })
 
   items.push({
@@ -1203,7 +1203,7 @@ App.show_filter_context_menu = (mode, e) => {
     icon: filter_icon,
     get_items: () => {
       return App.get_custom_filters(mode)
-    }
+    },
   })
 
   App.sep(items)
@@ -1214,7 +1214,7 @@ App.show_filter_context_menu = (mode, e) => {
       text: `Copy`,
       action: () => {
         App.copy_filter(mode)
-      }
+      },
     })
   }
 
@@ -1223,7 +1223,7 @@ App.show_filter_context_menu = (mode, e) => {
     text: `Paste`,
     action: () => {
       App.paste_filter(mode)
-    }
+    },
   })
 
   if (value) {
@@ -1234,7 +1234,7 @@ App.show_filter_context_menu = (mode, e) => {
       text: `Clear`,
       action: () => {
         App.clear_filter(mode)
-      }
+      },
     })
   }
 
@@ -1684,7 +1684,7 @@ App.cycle_filter_modes = (mode, reverse, e) => {
         if (App.check_command(cmd)) {
           modes.push({
             cmd: cmd_name,
-            name: App.filter_cmd_name(cmd_name)
+            name: App.filter_cmd_name(cmd_name),
           })
         }
       }

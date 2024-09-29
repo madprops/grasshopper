@@ -237,7 +237,7 @@ App.get_window_menu_items = async (item) => {
     text: `New Window`,
     action: () => {
       App.move_tabs_to_new_window(item)
-    }
+    },
   })
 
   for (let win of wins) {
@@ -251,7 +251,7 @@ App.get_window_menu_items = async (item) => {
       text,
       action: () => {
         App.move_tabs_to_window(item, win.id)
-      }
+      },
     })
   }
 

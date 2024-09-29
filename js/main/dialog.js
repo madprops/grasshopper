@@ -94,7 +94,7 @@ App.show_confirm = (args = {}) => {
 
   let buttons = [
     [`Cancel`, args.cancel_action, true],
-    [`Confirm`, args.confirm_action]
+    [`Confirm`, args.confirm_action],
   ]
 
   let on_dismiss = () => {

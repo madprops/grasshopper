@@ -3193,7 +3193,7 @@ App.build_settings = () => {
       name: `Aliases`,
       type: `list`,
       value: [
-        {a: `planet`, b: `earth`}
+        {a: `planet`, b: `earth`},
       ],
       info: `Aliases to use when filtering items
       Searching for one will return results if the other matches`,
@@ -3999,10 +3999,10 @@ App.build_settings = () => {
           },
         ],
         theme_pickers,
-      ]
+      ],
     },
     bookmarks: {
-      info: `Configure the Bookmarks`
+      info: `Configure the Bookmarks`,
     },
     colors: {
       info: `Set the colors for different kinds of items
@@ -4041,12 +4041,12 @@ App.build_settings = () => {
     close: {
       info: `Configure the Close Button
       This is used to close the tabs
-      It also has a menu on right click`
+      It also has a menu on right click`,
     },
     hover: {
       info: `Configure the Hover Button
       This is a button that appears when you hover over the edges of items
-      Clicking the button presents a menu with commands`
+      Clicking the button presents a menu with commands`,
     },
     footer: {
       info: `Configure the Footer

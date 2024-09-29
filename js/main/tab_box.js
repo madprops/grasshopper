@@ -238,7 +238,7 @@ App.tab_box_menu = (e) => {
       icon: App.tab_box_icon(tbmode),
       action: () => {
         App.change_tab_box_mode(tbmode)
-      }
+      },
     })
   }
 
@@ -299,7 +299,7 @@ App.tab_box_menu = (e) => {
     text: `Settings`,
     action: () => {
       App.show_settings_category(`tab_box`)
-    }
+    },
   })
 
   App.show_context({items, e})

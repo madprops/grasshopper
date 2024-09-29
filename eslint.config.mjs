@@ -35,6 +35,7 @@ export default [
       "keyword-spacing": "error",
       "space-infix-ops": "error",
       "comma-spacing": "error",
+      "comma-dangle": ["error", "always-multiline"],
     },
     languageOptions: {
       globals: {

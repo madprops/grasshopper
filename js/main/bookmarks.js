@@ -409,7 +409,7 @@ App.search_bookmarks_folder = async (callback) => {
     on_submit: async (title) => {
       let folders = await App.get_bookmark_folders(title)
       App.do_select_bookmarks_folder({folders, callback, include_all: true})
-    }
+    },
   })
 }
 
@@ -458,7 +458,7 @@ App.create_bookmarks_folder = () => {
       App.do_select_bookmarks_folder({folders, callback: (folder) => {
         action(title, folder)
       }, include_all: false})
-    }
+    },
   })
 }
 

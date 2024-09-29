@@ -244,7 +244,7 @@ App.color_menu_items = (item) => {
       text: `Filter`,
       action: () => {
         App.filter_color({mode: item.mode, id: item_color})
-      }
+      },
     })
 
     if (item.mode !== `tabs`) {
@@ -283,7 +283,7 @@ App.color_menu_items = (item) => {
       text: `Remove`,
       action: () => {
         App.edit_tab_color({item})
-      }
+      },
     })
   }
 

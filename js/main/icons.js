@@ -829,7 +829,7 @@ App.custom_icon_menu_items = (item) => {
     text: `Filter`,
     action: () => {
       App.filter_by_icon(item)
-    }
+    },
   })
 
   if (item.mode !== `tabs`) {
@@ -840,7 +840,7 @@ App.custom_icon_menu_items = (item) => {
     text: `Change`,
     action: () => {
       App.change_icon(item)
-    }
+    },
   })
 
   if (item.custom_icon) {
@@ -848,7 +848,7 @@ App.custom_icon_menu_items = (item) => {
       text: `Remove`,
       action: () => {
         App.remove_item_icon(item)
-      }
+      },
     })
   }
 

@@ -3475,7 +3475,7 @@ App.setup_commands = () => {
         App.restart_extension()
       },
       info: `Restart the extension (For debugging)`,
-    }
+    },
   ]
 
   let infos = App.commands.map(command => command.info)

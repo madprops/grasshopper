@@ -545,10 +545,10 @@ Addlist.menu = () => {
             if (data.after_done) {
               data.after_done()
             }
-          }
+          },
         })
       }
-    }
+    },
   })
 
   items.push({
@@ -557,7 +557,7 @@ Addlist.menu = () => {
       data.items = {}
       data.edit = false
       Addlist.edit(data)
-    }
+    },
   })
 
   let lines = Addlist.get_data(data.id)
@@ -568,7 +568,7 @@ Addlist.menu = () => {
       action: () => {
         data.button = `menu`
         Addlist.list(data)
-      }
+      },
     })
 
     items.push({
@@ -578,25 +578,25 @@ Addlist.menu = () => {
           text: `To Top`,
           action: () => {
             Addlist.move(`top`)
-          }
+          },
         },
         {
           text: `Move Up`,
           action: () => {
             Addlist.move(`up`)
-          }
+          },
         },
         {
           text: `Move Down`,
           action: () => {
             Addlist.move(`down`)
-          }
+          },
         },
         {
           text: `To Bottom`,
           action: () => {
             Addlist.move(`bottom`)
-          }
+          },
         },
       ],
     })
@@ -981,14 +981,14 @@ Addlist.data_menu = (id) => {
     text: `Edit`,
     action: () => {
       Addlist.edit_all(id)
-    }
+    },
   })
 
   items.push({
     text: `Clear`,
     action: () => {
       Addlist.clear(id)
-    }
+    },
   })
 
   let btn = DOM.el(`#addlist_button_${id}_data`)

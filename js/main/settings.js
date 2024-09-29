@@ -83,7 +83,7 @@ App.settings_setup_checkboxes = (category) => {
               name: `Reset`, action: () => {
                 App.set_default_setting(key, true)
                 el.checked = App.get_setting(key)
-              }
+              },
             },
           ])
       })
@@ -325,7 +325,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
             App.set_default_setting(setting, true)
             App.set_settings_menu(setting, undefined, false)
             action()
-          }
+          },
         },
       ])
   })
@@ -586,7 +586,7 @@ App.start_color_picker = (setting, alpha = false) => {
     showHSL: false,
     showRGB: true,
     showHEX: true,
-    color: App.get_setting(setting)
+    color: App.get_setting(setting),
   })
 
   picker.on(`change`, (picker, color) => {
@@ -609,7 +609,7 @@ App.start_color_picker = (setting, alpha = false) => {
           name: `Reset`, action: () => {
             picker.setColor(App.get_default_setting(setting))
             App.set_default_setting(setting, true)
-          }
+          },
         },
       ])
   })
@@ -629,7 +629,7 @@ App.set_default_setting = (setting, action = false) => {
   App.set_setting({
     setting,
     value: App.default_setting_string,
-    action
+    action,
   })
 }
 
@@ -1043,7 +1043,7 @@ App.settings_actions = (category) => {
     text: `Go To Top`,
     action: () => {
       App.settings_top()
-    }
+    },
   })
 
   items.push({
@@ -1051,7 +1051,7 @@ App.settings_actions = (category) => {
     text: `Go To Bottom`,
     action: () => {
       App.settings_bottom()
-    }
+    },
   })
 
   App.sep(items)
@@ -1069,7 +1069,7 @@ App.settings_actions = (category) => {
     text: `Reset ${cat}`,
     action: () => {
       App.reset_settings(App.settings_category)
-    }
+    },
   })
 
   App.sep(items)
@@ -1105,7 +1105,7 @@ App.settings_actions = (category) => {
     text: `All Settings`,
     action: () => {
       App.show_all_settings()
-    }
+    },
   })
 
   let btn = DOM.el(`#settings_actions_${category}`)
@@ -1581,7 +1581,7 @@ App.setup_settings_addlist = () => {
       labels: {
         name: `Name`,
         value: `Value`,
-        text: `Text`
+        text: `Text`,
       },
       list_icon: (item) => {
         return App.color_icon(item._id_)

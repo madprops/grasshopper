@@ -314,7 +314,7 @@ App.start_signals_addlist = () => {
           num = parseInt(num)
           num = Math.max(App.signal_min_delay, num)
           return num
-        }
+        },
       },
       sources: {
         method: () => {

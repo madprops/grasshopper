@@ -279,7 +279,7 @@ App.show_media_menu = (what) => {
     action: () => {
       App.hide_window()
       App.select_item_by_id(item.mode, item.id)
-    }
+    },
   })
 
   items.push({
@@ -287,7 +287,7 @@ App.show_media_menu = (what) => {
     text: `Copy URL`,
     action: () => {
       App.media_copy(what)
-    }
+    },
   })
 
   items.push({
@@ -295,7 +295,7 @@ App.show_media_menu = (what) => {
     text: `Bookmark`,
     action: () => {
       App.bookmark_items({item})
-    }
+    },
   })
 
   if (what === `image`) {
@@ -304,7 +304,7 @@ App.show_media_menu = (what) => {
       text: `Background`,
       action: () => {
         App.media_background(what)
-      }
+      },
     })
   }
 

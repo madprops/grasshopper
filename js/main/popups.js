@@ -127,7 +127,7 @@ App.start_popups = () => {
     },
     after_hide: () => {
       App.check_popup_command_close()
-    }
+    },
   })
 
   App.create_popup({
@@ -149,7 +149,7 @@ App.start_popups = () => {
     },
     after_hide: () => {
       App.check_popup_command_close()
-    }
+    },
   })
 }
 

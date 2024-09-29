@@ -46,7 +46,7 @@ App.settings_gestures = (el) => {
     },
     default: () => {
       //
-    }
+    },
   }
 
   NiceGesture.start(el, obj)

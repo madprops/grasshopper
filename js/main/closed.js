@@ -12,7 +12,7 @@ App.get_closed = async () => {
 
   try {
     results = await browser.sessions.getRecentlyClosed({
-      maxResults: App.max_closed
+      maxResults: App.max_closed,
     })
   }
   catch (err) {

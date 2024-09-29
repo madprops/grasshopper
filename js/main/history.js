@@ -54,7 +54,7 @@ App.get_history = async (query = ``, deep = false, by_what = `all`) => {
     results = await browser.history.search({
       text,
       maxResults: max_items,
-      startTime: App.history_time(deep)
+      startTime: App.history_time(deep),
     })
   }
   catch (err) {
