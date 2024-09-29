@@ -1876,6 +1876,7 @@ App.add_tab_opener = (item) => {
 
   if (!App.tab_openers[item.opener].includes(item.id)) {
     App.tab_openers[item.opener].push(item.id)
+    App.update_tab_opener(item.opener)
   }
 }
 
@@ -1885,7 +1886,17 @@ App.remove_tab_opener = (item) => {
   }
 
   let openers = App.tab_openers[item.opener].filter(x => x !== item.id)
+  openers = openers.filter(x => x)
   App.tab_openers[item.opener] = openers
+  App.update_tab_opener(item.opener)
+}
+
+App.update_tab_opener = (id) => {
+  let opener = App.get_item_by_id(`tabs`, id)
+
+  if (opener) {
+    App.check_icons(opener)
+  }
 }
 
 App.tab_has_nodes = (item) => {
