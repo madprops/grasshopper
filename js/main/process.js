@@ -123,12 +123,6 @@ App.process_info = (args = {}) => {
     if (App.get_selected(args.mode) === args.o_item) {
       App.update_footer_info(args.o_item)
     }
-
-    if (args.mode === `tabs`) {
-      if (item.opener) {
-        App.add_tab_opener(item)
-      }
-    }
   }
   else {
     if (!args.list) {
@@ -148,17 +142,15 @@ App.process_info = (args = {}) => {
     item.header = false
     item.tab_box = false
     item.last_scroll = 0
-
-    if (args.mode === `tabs`) {
-      if (item.opener) {
-        App.add_tab_opener(item)
-      }
-    }
-
     App.create_item_element(item)
     App[`${args.mode}_idx`] += 1
-    return item
   }
+
+  if (args.mode === `tabs`) {
+    App.add_tab_opener(item)
+  }
+
+  return item
 }
 
 App.process_search_item = (info) => {

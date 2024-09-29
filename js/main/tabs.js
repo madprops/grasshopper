@@ -1863,6 +1863,10 @@ App.import_tabs = async () => {
 }
 
 App.add_tab_opener = (item) => {
+  if (!item.opener) {
+    return
+  }
+
   if (App.tab_openers[item.opener] === undefined) {
     App.tab_openers[item.opener] = []
   }
