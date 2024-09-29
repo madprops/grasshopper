@@ -30,19 +30,19 @@ App.get_edit_prop_list = () => {
 }
 
 App.get_text_edit_props = () => {
-  return Object.keys(App.edit_props).filter((key) => {
+  return App.get_edit_prop_list().filter((key) => {
     return App.edit_props[key].type === `string`
   })
 }
 
 App.get_list_edit_props = () => {
-  return Object.keys(App.edit_props).filter((key) => {
+  return App.get_edit_prop_list().filter((key) => {
     return App.edit_props[key].type === `list`
   })
 }
 
 App.get_bool_edit_props = () => {
-  return Object.keys(App.edit_props).filter((key) => {
+  return App.get_edit_prop_list().filter((key) => {
     return App.edit_props[key].type === `bool`
   })
 }
