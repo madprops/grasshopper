@@ -1863,15 +1863,21 @@ App.update_tab_opener = (id) => {
 }
 
 App.get_tab_nodes = (item) => {
-  let nodes = []
+  let node_ids = App.tab_openers[item.id]
+
+  if (!node_ids) {
+    return []
+  }
+
+  let items = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (it.opener === item.id) {
-      nodes.push(it)
+    if (node_ids.includes(it.id)) {
+      items.push(it)
     }
   }
 
-  return nodes
+  return items
 }
 
 App.tab_has_nodes = (item) => {
