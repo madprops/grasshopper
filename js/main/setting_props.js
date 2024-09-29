@@ -905,7 +905,7 @@ App.build_settings = () => {
     notes_icon_side: {
       name: `Notes Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Notes Icon on the left or right of text`,
       separator: true,
       version: 1,
@@ -2857,7 +2857,7 @@ App.build_settings = () => {
     color_icon_side: {
       name: `Color Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Color Icon on the left or right of text`,
       version: 1,
       setup: (key) => {
