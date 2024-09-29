@@ -167,7 +167,7 @@ App.mouse_click_action = (mode, e) => {
   if (mode === `tabs`) {
     if (App.get_setting(`close_button`) !== `none`) {
       if (DOM.class(e.target, [`close_button`])) {
-        App.close_tabs(item)
+        App.close_tabs({item})
         return
       }
     }
@@ -460,6 +460,13 @@ App.mouse_middle_action = (mode, e) => {
           App.taglist_remove(e, item)
           return
         }
+      }
+    }
+
+    if (App.get_setting(`nodes_icon_click`)) {
+      if (DOM.parent(e.target, [`.nodes_icon`])) {
+        App.close_nodes(item)
+        return
       }
     }
 

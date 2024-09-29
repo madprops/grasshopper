@@ -279,7 +279,7 @@ App.check_items_keyboard = (e) => {
             return
           }
 
-          App.close_tabs(item)
+          App.close_tabs({item})
           App.focus_filter(mode)
           e.preventDefault()
         }

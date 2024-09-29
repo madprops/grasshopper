@@ -567,12 +567,26 @@ App.unload_tabs = (item, multiple = true) => {
   })
 }
 
-App.close_tabs = (item, multiple = true) => {
+App.close_tabs = (args = {}) => {
+  let def_args = {
+    active_items: [],
+    multiple: true,
+  }
+
+  App.def_args(def_args, args)
   let items = []
   let active = false
   let selected = false
 
-  for (let it of App.get_active_items({mode: `tabs`, item, multiple})) {
+  if (!args.active_items.length) {
+    args.active_items = App.get_active_items({
+      mode: `tabs`,
+      item: args.item,
+      multiple: args.multiple,
+    })
+  }
+
+  for (let it of args.active_items) {
     if (it.active) {
       active = true
     }
@@ -1899,14 +1913,20 @@ App.update_tab_opener = (id) => {
   }
 }
 
-App.tab_has_nodes = (item) => {
-  if (App.tab_openers[item.id]) {
-    if (App.tab_openers[item.id].length) {
-      return true
+App.get_tab_nodes = (item) => {
+  let nodes = []
+
+  for (let it of App.get_items(`tabs`)) {
+    if (it.opener === item.id) {
+      nodes.push(it)
     }
   }
 
-  return false
+  return nodes
+}
+
+App.tab_has_nodes = (item) => {
+  return App.get_tab_nodes(item).length > 0
 }
 
 App.tab_has_opener = (item) => {
@@ -1932,4 +1952,9 @@ App.focus_opener_tab = (item) => {
       break
     }
   }
+}
+
+App.close_nodes = (item) => {
+  let nodes = App.get_tab_nodes(item)
+  App.close_tabs({active_items: nodes})
 }

@@ -1649,7 +1649,7 @@ App.setup_commands = () => {
       item: true,
       icon: close_icon,
       action: (args) => {
-        App.close_tabs(args.item)
+        App.close_tabs({item: args.item})
       },
       info: `Close tabs`,
     },
