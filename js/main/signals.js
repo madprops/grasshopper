@@ -24,6 +24,16 @@ App.start_signals = () => {
     after_hide: () => { },
     colored_top: true,
   })
+
+  let filter = DOM.el(`#signals_filter`)
+
+  DOM.ev(filter, `input`, () => {
+    App.filter_signals()
+  })
+
+  App.filter_signals_debouncer = App.create_debouncer(() => {
+    App.do_filter_signals()
+  }, App.filter_delay_2)
 }
 
 App.show_signals = () => {
@@ -32,20 +42,21 @@ App.show_signals = () => {
 }
 
 App.fill_signals = () => {
-  let container = DOM.el(`#signals_container`)
-  container.innerHTML = ``
+  App.clear_signals_filter()
+  let items = DOM.el(`#signals_items`)
+  items.innerHTML = ``
   let signals = App.get_setting(`signals`)
   App.set_signals_info(signals.length)
 
   if (!signals.length) {
-    container.innerHTML = `No signals registered yet`
+    items.innerHTML = `No signals registered yet`
   }
 
   for (let [i, signal] of signals.entries()) {
-    let el = DOM.create(`div`, `signal_item`)
+    let el = DOM.create(`div`, `signal_item filter_item`)
     let icon = DOM.create(`div`, `signal_icon`)
     icon.textContent = signal.icon || App.settings_icons.signals
-    let name = DOM.create(`div`, `signal_name`)
+    let name = DOM.create(`div`, `signal_name filter_text`)
     name.textContent = signal.name
 
     if (signal.interval) {
@@ -94,7 +105,7 @@ App.fill_signals = () => {
     el.append(icon)
     el.append(name)
     el.append(btn)
-    container.append(el)
+    items.append(el)
 
     let edbtn = DOM.create(`div`, `button signal_button`)
     edbtn.title = `Edit signal`
@@ -398,4 +409,17 @@ App.start_signals_addlist = () => {
 App.show_signal_text = (signal, text) => {
   let simple = text.length <= 250
   App.show_textarea(signal.name, text, simple)
+}
+
+App.filter_signals = () => {
+  App.filter_signals_debouncer.call()
+}
+
+App.do_filter_signals = () => {
+  App.filter_signals_debouncer.cancel()
+  App.do_filter_2(`signals`)
+}
+
+App.clear_signals_filter = () => {
+  DOM.el(`#signals_filter`).value = ``
 }

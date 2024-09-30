@@ -84,7 +84,10 @@
     </template>
 
     <template id="template_signals">
-      <div id="signals_container" class="flex_column_center gap_2"></div>
+      <div id="signals_container" class="flex_column_center gap_2">
+        <input type="text" autocomplete="off" spellcheck="false" class="text small_filter" id="signals_filter" placeholder="Filter">
+        <div id="signals_items" class="filter_container flex_column_center gap_2"></div>
+      </div>
     </template>
 
     <template id="template_signals_top">

@@ -1825,5 +1825,14 @@ a:hover
 }
 
 #signals_container {
+  width: 100%;
+}
+
+#signals_filter {
+  margin-bottom: 0.5rem;
+}
+
+#signals_items {
   padding-bottom: 3rem;
+  width: 100%;
 }
