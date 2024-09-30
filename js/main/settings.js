@@ -357,6 +357,7 @@ App.add_settings_filter = (category) => {
   DOM.ev(filter_clear, `click`, () => {
     filter.value = ``
     App.do_filter_settings()
+    filter.focus()
   })
 
   filter_container.append(filter)
