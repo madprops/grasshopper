@@ -195,7 +195,7 @@ def get_backup():
         files = sorted(backup_path.glob("tabs_*.json"))
 
         if files:
-            with files[0].open() as f:
+            with files[-1].open() as f:
                 line = json.load(f)
                 msg = json.dumps(line, indent=2)
 
