@@ -162,8 +162,7 @@ App.send_signal = async (signal, from = `cmd`) => {
     if (text) {
       if (from === `cmd`) {
         if (signal.feedback) {
-          let simple = text.length <= 250
-          App.show_textarea(signal.name, text, simple)
+          App.show_signal_text(signal, text)
         }
 
         if (signal.update_title) {
@@ -172,11 +171,21 @@ App.send_signal = async (signal, from = `cmd`) => {
         }
 
         if (signal.import_tabs) {
-          App.import_tabs(text)
+          if (App.is_json(text)) {
+            App.import_tabs(text)
+          }
+          else {
+            App.show_signal_text(signal, text)
+          }
         }
 
         if (signal.import_settings) {
-          App.import_settings(text)
+          if (App.is_json(text)) {
+            App.import_settings(text)
+          }
+          else {
+            App.show_signal_text(signal, text)
+          }
         }
       }
     }
@@ -370,4 +379,9 @@ App.start_signals_addlist = () => {
     })})
 
   App.signals_addlist_ready = true
+}
+
+App.show_signal_text = (signal, text) => {
+  let simple = text.length <= 250
+  App.show_textarea(signal.name, text, simple)
 }

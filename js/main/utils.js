@@ -315,7 +315,7 @@ App.make_html_safe = (s) => {
 }
 
 App.is_object = (o) => {
-  if (typeof o === `object` && !Array.isArray(o) && o !== null) {
+  if ((typeof o === `object`) && !Array.isArray(o) && o !== null) {
     return true
   }
 
@@ -603,4 +603,14 @@ App.urls_match = (url_1, url_2) => {
   url_1 = App.remove_slashes_end(url_1)
   url_2 = App.remove_slashes_end(url_2)
   return url_1 === url_2
+}
+
+App.is_json = (text) => {
+  try {
+    let parsed = JSON.parse(text)
+    return (typeof parsed === `object`) && parsed !== null
+  }
+  catch (e) {
+    return false
+  }
 }
