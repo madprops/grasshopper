@@ -30,11 +30,11 @@ App.do_check_pinline = () => {
     App.pinline_visible = false
   }
   else if (show === `auto`) {
-    if ((!tabs.pinned_f.length) || (!tabs.normal_f.length)) {
+    if (!tabs.pinned_f.length || !tabs.normal_f.length) {
       App.pinline_visible = false
     }
   }
-  else if ((!tabs.pinned_f.length) && (!tabs.normal_f.length)) {
+  else if (!tabs.pinned_f.length && !tabs.normal_f.length) {
     App.pinline_visible = false
   }
 

@@ -110,7 +110,7 @@ App.do_apply_theme = (args = {}) => {
     let item_height = App.get_setting(`item_height`)
 
     if (item_height === `tiny`) {
-      item_padding -= (height_diff * 2)
+      item_padding -= height_diff * 2
     }
     else if (item_height === `small`) {
       item_padding -= height_diff
@@ -119,7 +119,7 @@ App.do_apply_theme = (args = {}) => {
       item_padding += height_diff
     }
     else if (item_height === `huge`) {
-      item_padding += (height_diff * 2)
+      item_padding += height_diff * 2
     }
 
     App.set_css_var(`item_padding`, `${item_padding}rem`)
@@ -217,7 +217,7 @@ App.do_apply_theme = (args = {}) => {
     let icon_size_diff = 0.181
 
     if (item_icon === `tiny`) {
-      icon_size -= (icon_size_diff * 2)
+      icon_size -= icon_size_diff * 2
     }
     else if (item_icon === `small`) {
       icon_size -= icon_size_diff
@@ -226,7 +226,7 @@ App.do_apply_theme = (args = {}) => {
       icon_size += icon_size_diff
     }
     else if (item_icon === `huge`) {
-      icon_size += (icon_size_diff * 2)
+      icon_size += icon_size_diff * 2
     }
 
     App.set_css_var(`icon_size`, `${icon_size}rem`)

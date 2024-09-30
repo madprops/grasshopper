@@ -57,7 +57,7 @@ App.do_show_mode = async (args = {}) => {
 
   if (!args.force) {
     if ((App.active_mode === args.mode) &&
-    (App[`${args.mode}_items`].length) &&
+    App[`${args.mode}_items`].length &&
     !was_filtered && !App[`${args.mode}_changed`]) {
       App.select_first_item(args.mode, true)
 

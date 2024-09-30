@@ -84,7 +84,7 @@ App.select_header_group = (item) => {
   let group = App.header_group(item)
 
   if (group.length) {
-    if ((group.at(0).selected) && (group.at(-1).selected)) {
+    if (group.at(0).selected && group.at(-1).selected) {
       App.deselect({mode: item.mode, select: `selected`})
     }
     else {

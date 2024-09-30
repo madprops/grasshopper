@@ -36,6 +36,11 @@ export default [
       "space-infix-ops": "error",
       "comma-spacing": "error",
       "comma-dangle": ["error", "always-multiline"],
+      "no-extra-parens": ["error", "all", {
+        "nestedBinaryExpressions": false,
+        "enforceForArrowConditionals": false,
+        "returnAssign": false
+      }]
     },
     languageOptions: {
       globals: {
