@@ -2739,7 +2739,7 @@ App.setup_commands = () => {
     {
       name: `Filter Nodes`,
       short_name: `Nodes`,
-      cmd: `filter_nodes`,
+      cmd: `filter_node_tabs`,
       modes: [`tabs`],
       item: true,
       single: true,
@@ -2753,7 +2753,7 @@ App.setup_commands = () => {
     {
       name: `Close Nodes`,
       short_name: `Nodes`,
-      cmd: `close_nodes`,
+      cmd: `close_node_tabs`,
       modes: [`tabs`],
       item: true,
       single: true,
@@ -2767,7 +2767,7 @@ App.setup_commands = () => {
     {
       name: `Close Parent`,
       short_name: `Parent`,
-      cmd: `close_parent`,
+      cmd: `close_parent_tab`,
       modes: [`tabs`],
       item: true,
       single: true,

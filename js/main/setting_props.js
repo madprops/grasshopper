@@ -1164,7 +1164,7 @@ App.build_settings = () => {
       name: `Close Button Menu`,
       type: `list`,
       value: [
-        {cmd: `filter_nodes`},
+        {cmd: `filter_node_tabs`},
         {cmd: `filter_domain`},
         {cmd: `filter_color`},
         {cmd: `duplicate_tabs`},
@@ -1216,7 +1216,7 @@ App.build_settings = () => {
       name: `Hover Menu`,
       type: `list`,
       value: [
-        {cmd: `filter_nodes`},
+        {cmd: `filter_node_tabs`},
         {cmd: `filter_domain`},
         {cmd: `filter_color`},
         {cmd: `duplicate_tabs`},
