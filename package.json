@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "madprops",
   "license": "GPL-3.0-only",
   "devDependencies": {
     "@eslint/js": "~9.11.1",
