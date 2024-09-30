@@ -10,7 +10,7 @@ App.process_info_list = (mode, info_list) => {
   let exclude = []
 
   for (let info of info_list) {
-    let item = App.process_info({mode, info, exclude, list: true, add_opener: false})
+    let item = App.process_info({mode, info, exclude, list: true, add_parent: false})
 
     if (!item) {
       continue
@@ -26,7 +26,7 @@ App.process_info_list = (mode, info_list) => {
 
   if (mode === `tabs`) {
     for (let item of items) {
-      App.add_tab_opener(item)
+      App.add_tab_parent(item)
     }
   }
 
@@ -43,7 +43,7 @@ App.process_info = (args = {}) => {
   let def_args = {
     exclude: [],
     list: false,
-    add_opener: true,
+    add_parent: true,
   }
 
   App.def_args(def_args, args)
@@ -111,7 +111,7 @@ App.process_info = (args = {}) => {
     item.unloaded = args.info.discarded
     item.last_access = args.info.lastAccessed
     item.status = args.info.status
-    item.opener = args.info.openerTabId
+    item.parent = args.info.openerTabId
   }
   else if (args.mode === `history`) {
     item.last_visit = args.info.lastVisitTime
@@ -133,7 +133,7 @@ App.process_info = (args = {}) => {
   }
   else {
     if (!args.list) {
-      if ((args.mode === `tabs`) && !item.active && item.opener) {
+      if ((args.mode === `tabs`) && !item.active && item.parent) {
         item.unread = true
       }
     }
@@ -152,8 +152,8 @@ App.process_info = (args = {}) => {
     App.create_item_element(item)
 
     if (args.mode === `tabs`) {
-      if (args.add_opener) {
-        App.add_tab_opener(item)
+      if (args.add_parent) {
+        App.add_tab_parent(item)
       }
     }
 

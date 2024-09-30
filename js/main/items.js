@@ -241,7 +241,7 @@ App.remove_item = (item) => {
   }
 
   if (item.mode === `tabs`) {
-    App.remove_tab_opener(item)
+    App.remove_tab_parent(item)
   }
 
   item.element.remove()
@@ -274,7 +274,7 @@ App.clear_items = (mode) => {
   }
 
   if (mode === `tabs`) {
-    App.tab_openers = []
+    App.tab_tree = []
   }
 }
 

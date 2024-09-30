@@ -1753,8 +1753,8 @@ App.get_tab_snapshot = () => {
       pinned: item.pinned,
     }
 
-    if (item.opener) {
-      info.opener = item.opener
+    if (item.parent) {
+      info.parent = item.parent
     }
 
     App.fill_custom_props(info, item)
@@ -1806,18 +1806,18 @@ App.import_tabs = async () => {
     await browser.tabs.discard(ids)
 
     for (let info of json) {
-      if (info.opener) {
+      if (info.parent) {
         let new_id = id_map[info.id]
 
         if (!new_id) {
           continue
         }
 
-        let opener = id_map[info.opener]
+        let parent = id_map[info.parent]
 
-        if (opener) {
+        if (parent) {
           try {
-            await browser.tabs.update(new_id, {openerTabId: opener})
+            await browser.tabs.update(new_id, {openerTabId: parent})
           }
           catch (err) {
             App.error(err)

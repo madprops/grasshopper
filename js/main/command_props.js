@@ -13,6 +13,7 @@ App.setup_commands = () => {
   let hover_icon = App.get_setting(`hover_icon`) || App.settings_icons.hover
   let root_icon = App.get_setting(`root_icon`) || App.root_icon
   let nodes_icon = App.get_setting(`nodes_icon`) || App.nodes_icon
+  let parent_icon = App.get_setting(`parent_icon`) || App.nodes_icon
 
   let title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
@@ -2750,18 +2751,18 @@ App.setup_commands = () => {
       info: `Filter the tabs that were opened through this tab`,
     },
     {
-      name: `Focus Opener`,
-      short_name: `Opener`,
-      cmd: `focus_node_opener`,
+      name: `Focus Parent`,
+      short_name: `Parent`,
+      cmd: `focus_node_parent`,
       modes: [`tabs`],
       item: true,
       single: true,
-      some_opener: true,
-      icon: nodes_icon,
+      some_parent: true,
+      icon: parent_icon,
       action: (args) => {
-        App.focus_opener_tab(args.item)
+        App.focus_parent_tab(args.item)
       },
-      info: `Focus the opener tab of this item`,
+      info: `Focus the parent tab of this item`,
     },
     {
       name: `Filter Color`,

@@ -229,9 +229,9 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  if (App.get_setting(`opener_icon_click`)) {
-    if (DOM.class(e.target, [`opener_icon`])) {
-      App.go_to_opener(item)
+  if (App.get_setting(`parent_icon_click`)) {
+    if (DOM.class(e.target, [`parent_icon`])) {
+      App.go_to_parent(item)
       return
     }
   }
