@@ -923,6 +923,10 @@ a:hover
   white-space: pre;
 }
 
+#textarea_message {
+  word-break: break-word;
+}
+
 #textarea_simple {
   width: 66vw;
   background-color: var(--alt_color_0);
@@ -930,6 +934,7 @@ a:hover
   padding: 0.1rem;
   user-select: text;
   cursor: text;
+  word-break: break-word;
 }
 
 .pre_wrap {
