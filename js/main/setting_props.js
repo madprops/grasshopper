@@ -1273,6 +1273,7 @@ App.build_settings = () => {
         {cmd: App.separator_string},
         {cmd: `sort_tabs`},
         {cmd: `show_tabs_info`},
+        {cmd: `open_tab_urls`},
         {cmd: `show_tab_urls`},
         {cmd: App.separator_string},
         {cmd: `export_tabs`},
