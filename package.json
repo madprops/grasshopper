@@ -9,8 +9,8 @@
   "author": "",
   "license": "GPL-3.0-only",
   "devDependencies": {
-    "@eslint/js": "^9.4.0",
-    "eslint": "^9.4.0",
-    "globals": "^15.4.0"
+    "@eslint/js": "~9.11.1",
+    "eslint": "~9.11.1",
+    "globals": "~15.4.0"
   }
 }
