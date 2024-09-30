@@ -47,7 +47,7 @@ App.get_all_roots = (include_rules = true) => {
   return roots
 }
 
-App.go_to_root_url = (item) => {
+App.go_to_root_url = (item, focus = false) => {
   let active = App.get_active_items({mode: item.mode, item})
 
   for (let it of active) {
@@ -58,6 +58,10 @@ App.go_to_root_url = (item) => {
     }
 
     App.change_url(it, it.root)
+  }
+
+  if (focus && (active.length === 1)) {
+    App.tabs_action({item})
   }
 }
 
