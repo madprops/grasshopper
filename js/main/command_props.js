@@ -2781,7 +2781,7 @@ App.setup_commands = () => {
     {
       name: `Focus Parent`,
       short_name: `Parent`,
-      cmd: `focus_node_parent`,
+      cmd: `focus_parent_tab`,
       modes: [`tabs`],
       item: true,
       single: true,
