@@ -333,7 +333,7 @@ App.check_icons = (item) => {
   if (App.icon_enabled(`root`)) {
     let icon = DOM.el(`.root_icon`, item.element)
 
-    if (App.item_has_root(item)) {
+    if (App.root_possible(item)) {
       DOM.show(icon)
     }
     else {
