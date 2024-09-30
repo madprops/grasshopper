@@ -333,6 +333,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 
 App.add_settings_filter = (category) => {
   let container = DOM.el(`#settings_${category}_container`)
+  let filter_container = DOM.create(`div`, `flex_row_center gap_1`)
   let filter = DOM.create(`input`, `settings_filter text small_filter`, `settings_${category}_filter`)
   filter.type = `text`
   filter.autocomplete = `off`
@@ -349,7 +350,18 @@ App.add_settings_filter = (category) => {
   })
 
   filter.placeholder = `Filter${s}`
-  container.prepend(filter)
+
+  let filter_clear = DOM.create(`div`, `button filter_button`, `settings_${category}_filter_clear`)
+  filter_clear.textContent = `x`
+
+  DOM.ev(filter_clear, `click`, () => {
+    filter.value = ``
+    App.do_filter_settings()
+  })
+
+  filter_container.append(filter)
+  filter_container.append(filter_clear)
+  container.prepend(filter_container)
 }
 
 App.filter_settings = () => {

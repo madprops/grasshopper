@@ -34,6 +34,13 @@ App.start_signals = () => {
   App.filter_signals_debouncer = App.create_debouncer(() => {
     App.do_filter_signals()
   }, App.filter_delay_2)
+
+  let filter_clear = DOM.el(`#signals_filter_clear`)
+
+  DOM.ev(filter_clear, `click`, () => {
+    App.clear_signals_filter()
+    App.do_filter_signals()
+  })
 }
 
 App.show_signals = () => {

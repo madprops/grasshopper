@@ -102,6 +102,13 @@ App.start_about = () => {
       DOM.ev(filter, `input`, () => {
         App.filter_about()
       })
+
+      let filter_clear = DOM.el(`#about_filter_clear`)
+
+      DOM.ev(filter_clear, `click`, () => {
+        App.clear_about_filter()
+        App.do_filter_about()
+      })
     },
     after_show: () => {
       let filter = DOM.el(`#about_filter`)

@@ -59,7 +59,10 @@
 
         <img id="about_image" src="img/grasshopper.png">
 
-        <input type="text" autocomplete="off" spellcheck="false" class="text small_filter" id="about_filter" placeholder="Filter">
+        <div id="about_filter_container" class="flex_row_center gap_1">
+          <input type="text" autocomplete="off" spellcheck="false" class="text small_filter" id="about_filter" placeholder="Filter">
+          <div id="about_filter_clear" class="button filter_button">x</div>
+        </div>
         <div id="about_info" class="filter_container"></div>
       </div>
     </template>
@@ -85,7 +88,10 @@
 
     <template id="template_signals">
       <div id="signals_container" class="flex_column_center gap_2">
-        <input type="text" autocomplete="off" spellcheck="false" class="text small_filter" id="signals_filter" placeholder="Filter">
+        <div id="signals_filter_container" class="flex_row_center gap_1">
+          <input type="text" autocomplete="off" spellcheck="false" class="text small_filter" id="signals_filter" placeholder="Filter">
+          <div id="signals_filter_clear" class="button filter_button">x</div>
+        </div>
         <div id="signals_items" class="filter_container flex_column_center gap_2"></div>
       </div>
     </template>
@@ -115,7 +121,10 @@
     </template>
 
     <template id="template_palette">
-      <input type="text" autocomplete="off" spellcheck="false" id="palette_filter" class="text" placeholder="Command">
+      <div class="flex_row_center gap_1">
+        <input type="text" autocomplete="off" spellcheck="false" id="palette_filter" class="text" placeholder="Command">
+        <div id="palette_filter_clear" class="button filter_button">x</div>
+      </div>
       <div id="palette_items" class="filter_container"></div>
     </template>
 

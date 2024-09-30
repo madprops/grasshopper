@@ -22,6 +22,11 @@ App.start_palette = () => {
   App.filter_palette_debouncer = App.create_debouncer(() => {
     App.do_filter_palette()
   }, App.filter_delay_2)
+
+  DOM.ev(DOM.el(`#palette_filter_clear`), `click`, () => {
+    DOM.el(`#palette_filter`).value = ``
+    App.do_filter_palette()
+  })
 }
 
 App.show_palette = (prefilter = ``) => {
