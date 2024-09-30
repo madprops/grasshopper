@@ -1768,7 +1768,7 @@ App.export_tabs = () => {
   App.export_data(`Tabs`, App.get_tab_snapshot())
 }
 
-App.import_tabs = async () => {
+App.import_tabs = async (value = ``) => {
   App.import_data(`Tabs`, async (json) => {
     if (!json) {
       return
@@ -1825,5 +1825,5 @@ App.import_tabs = async () => {
         }
       }
     }
-  })
+  }, value)
 }

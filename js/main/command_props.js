@@ -1905,7 +1905,6 @@ App.setup_commands = () => {
       name: `Export Tabs`,
       short_name: `Export`,
       cmd: `export_tabs`,
-      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.export_tabs()
@@ -1916,7 +1915,6 @@ App.setup_commands = () => {
       name: `Import Tabs`,
       short_name: `Export`,
       cmd: `import_tabs`,
-      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.import_tabs()

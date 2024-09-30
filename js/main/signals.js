@@ -162,6 +162,10 @@ App.send_signal = async (signal, from = `cmd`) => {
           text = App.add_signal_icon(signal, text)
           App.set_main_title(text)
         }
+
+        if (signal.import_tabs) {
+          App.import_tabs(text)
+        }
       }
     }
   }
@@ -258,7 +262,19 @@ App.start_signals_addlist = () => {
 
   App.create_popup({...popobj, id: `addlist_${id}`,
     element: Addlist.register({...regobj, id,
-      keys: [`name`, `url`, `arguments`, `icon`, `method`, `interval`, `feedback`, `update_title`, `send_tabs`, `startup`],
+      keys: [
+        `name`,
+        `url`,
+        `arguments`,
+        `icon`,
+        `method`,
+        `interval`,
+        `feedback`,
+        `update_title`,
+        `send_tabs`,
+        `import_tabs,`
+        `startup`,
+      ],
       pk: `name`,
       widgets: {
         name: `text`,
@@ -269,6 +285,7 @@ App.start_signals_addlist = () => {
         arguments: `text`,
         update_title: `checkbox`,
         send_tabs: `checkbox`,
+        import_tabs: `checkbox`,
         interval: `number`,
         startup: `checkbox`,
       },
@@ -281,6 +298,7 @@ App.start_signals_addlist = () => {
         arguments: `Arguments`,
         update_title: `Update Title`,
         send_tabs: `Send Tabs`,
+        import_tabs: `Import Tabs`,
         interval: `Interval`,
         startup: `Startup`,
       },
@@ -301,6 +319,7 @@ App.start_signals_addlist = () => {
         feedback: `Show the response in a popup`,
         update_title: `Update the Title with the response`,
         send_tabs: `Send all open tab URLs as the 'tabs' argument`,
+        import_tabs: `Automatically import tabs from the response`,
         interval: `Run this signal every x seconds`,
         startup: `Run this signal at startup`,
         icon: `Icon to show for the signal`,
