@@ -164,7 +164,7 @@ def music_np():
 
 
 @app.route("/post-backup", methods=["POST"])
-def post_test():
+def post_backup():
     msg = ""
 
     if request.content_type == "application/json":
@@ -183,6 +183,25 @@ def post_test():
 
     if not msg:
         msg = "You sent nothing"
+
+    return msg
+
+
+@app.route("/get-backup", methods=["GET"])
+def get_backup():
+    print(44)
+    msg = ""
+
+    if backup_path.parent.exists():
+        files = sorted(backup_path.glob("tabs_*.json"))
+
+        if files:
+            with files[0].open() as f:
+                line = json.load(f)
+                msg = json.dumps(line, indent=2)
+
+    if not msg:
+        msg = "No Backups"
 
     return msg
 

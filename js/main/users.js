@@ -134,7 +134,10 @@ App.user_madprops_settings = () => {
   cmd = {name: `Min Volume`, url: `http://127.0.0.1:5000/volume-min`, method: `POST`, icon: `🔉`, _id_: `sig_volmin`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Backup`, url: `http://127.0.0.1:5000/post-backup`, method: `POST`, icon: `🤣`, feedback: true, arguments: `{"num": 3}`, send_tabs: true, _id_: `sig_backup`}
+  cmd = {name: `Save Backup`, url: `http://127.0.0.1:5000/post-backup`, method: `POST`, icon: `🤣`, feedback: true, send_tabs: true, _id_: `sig_post_backup`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Load Backup`, url: `http://127.0.0.1:5000/get-backup`, method: `GET`, icon: `🤣`, feedback: true, _id_: `sig_get_backup`}
   App.append_list_setting(sett, cmd)
 
   // Custom URLs

@@ -154,7 +154,8 @@ App.send_signal = async (signal, from = `cmd`) => {
     if (text) {
       if (from === `cmd`) {
         if (signal.feedback) {
-          App.show_textarea(signal.name, text, true)
+          let simple = text.length <= 250
+          App.show_textarea(signal.name, text, simple)
         }
 
         if (signal.update_title) {
