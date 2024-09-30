@@ -974,7 +974,7 @@ App.build_settings = () => {
     root_icon: {
       name: `Root Icon`,
       type: `text_smaller`,
-      value: ``,
+      value: `🌀`,
       placeholder: App.icon_placeholder,
       info: `Icon for tabs with a root`,
       version: 1,
