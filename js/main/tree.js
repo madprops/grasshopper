@@ -120,3 +120,11 @@ App.go_to_parent = (parent) => {
     App.tabs_action({item})
   }
 }
+
+App.close_parent_tab = (item) => {
+  let parent = App.get_parent_item(item)
+
+  if (parent) {
+    App.close_tabs({selection: [parent], title: `parent`})
+  }
+}

@@ -2751,6 +2751,34 @@ App.setup_commands = () => {
       info: `Filter the tabs that were opened through this tab`,
     },
     {
+      name: `Close Nodes`,
+      short_name: `Nodes`,
+      cmd: `close_nodes`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      some_nodes: true,
+      icon: close_icon,
+      action: (args) => {
+        App.close_nodes(args.item)
+      },
+      info: `Close the nodes of a tab`,
+    },
+    {
+      name: `Close Parent`,
+      short_name: `Parent`,
+      cmd: `close_parent`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      some_parent: true,
+      icon: close_icon,
+      action: (args) => {
+        App.close_parent_tab(args.item)
+      },
+      info: `Close the parent of a tab`,
+    },
+    {
       name: `Focus Parent`,
       short_name: `Parent`,
       cmd: `focus_node_parent`,
