@@ -7,9 +7,12 @@
 # Flask-Cors == 4.0.1
 
 
+import json
 import subprocess
+from datetime import datetime
 from flask import Flask, request
 from flask_cors import CORS
+from pathlib import Path
 
 
 # ----------
@@ -33,6 +36,9 @@ player = ["playerctl", "-p", "audacious"]
 # Delay to wait for metadata to update
 metadata_delay = "0.18"
 
+# Where to save tab backups
+backup_path = Path("~/.config/signals/backups").expanduser()
+
 
 # ----------
 
@@ -47,6 +53,10 @@ def output(args):
 
 def get_arg(name):
     return request.json.get(name)
+
+
+def get_seconds():
+    return int(datetime.now().timestamp())
 
 
 def sleep(secs):
@@ -153,19 +163,23 @@ def music_np():
     return metadata()
 
 
-@app.route("/post-test", methods=["POST"])
+@app.route("/post-backup", methods=["POST"])
 def post_test():
     msg = ""
 
     if request.content_type == "application/json":
-        num = get_arg("num")
         tabs = get_arg("tabs")
+        secs = get_seconds()
+        name = f"tabs_{secs}.json"
+        path = backup_path / name
 
-        if num is not None:
-            msg += f"You sent {num}"
+        if not path.parent.exists():
+            path.parent.mkdir(parents=True)
 
-        if tabs is not None:
-            msg += f" and {len(tabs)} tabs"
+        with path.open("w") as f:
+            json.dump(tabs, f)
+
+        msg = "Backup Saved"
 
     if not msg:
         msg = "You sent nothing"
