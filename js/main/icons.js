@@ -184,7 +184,7 @@ App.add_icons = (item, side) => {
     icon.textContent = App.get_setting(what)
 
     if (tips) {
-      icon.title = `Root`
+      icon.title = `Go to the Root URL`
     }
 
     item.element.append(icon)
