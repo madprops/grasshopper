@@ -272,7 +272,7 @@ App.start_signals_addlist = () => {
         `feedback`,
         `update_title`,
         `send_tabs`,
-        `import_tabs,`
+        `import_tabs`,
         `startup`,
       ],
       pk: `name`,
