@@ -46,6 +46,7 @@ App.start_signals = () => {
 App.show_signals = () => {
   App.start_signals()
   App.show_window(`signals`)
+  App.focus_signals_filter()
 }
 
 App.fill_signals = () => {
@@ -429,4 +430,8 @@ App.do_filter_signals = () => {
 
 App.clear_signals_filter = () => {
   DOM.el(`#signals_filter`).value = ``
+}
+
+App.focus_signals_filter = () => {
+  DOM.el(`#signals_filter`).focus()
 }
