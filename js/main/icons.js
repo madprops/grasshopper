@@ -332,8 +332,10 @@ App.check_icons = (item) => {
 
   if (App.icon_enabled(`root`)) {
     let icon = DOM.el(`.root_icon`, item.element)
+    let auto = App.get_setting(`auto_root_icon`)
+    let show = auto ? App.root_possible(item) : App.item_has_root(item)
 
-    if (App.root_possible(item)) {
+    if (show) {
       DOM.show(icon)
     }
     else {

@@ -1036,6 +1036,13 @@ App.build_settings = () => {
       info: `Show a menu when clicking the custom icons`,
       version: 1,
     },
+    auto_root_icon: {
+      name: `Auto Root Icon`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the root icon only when not at the root already`,
+      version: 1,
+    },
     button_icons: {
       name: `Button Icons`,
       type: `checkbox`,

@@ -85,3 +85,7 @@ App.root_possible = (item) => {
 
   return !App.urls_match(item.url, root)
 }
+
+App.item_has_root = (item) => {
+  return Boolean(App.get_root(item))
+}
