@@ -2122,7 +2122,7 @@ App.setup_commands = () => {
       short_name: `Root`,
       cmd: `go_to_root_url`,
       modes: [`tabs`],
-      some_root: true,
+      some_root_possible: true,
       item: true,
       icon: root_icon,
       action: (args) => {

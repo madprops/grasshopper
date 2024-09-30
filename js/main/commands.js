@@ -203,6 +203,10 @@ App.check_command = (command, args = {}) => {
       if (App.tab_has_parent(item)) {
         args.some_parent = true
       }
+
+      if (App.root_possible(item)) {
+        args.some_root_possible = true
+      }
     }
   }
 
@@ -293,6 +297,7 @@ App.check_command = (command, args = {}) => {
   check_1(`some_edits`)
   check_1(`some_nodes`)
   check_1(`some_parent`)
+  check_1(`some_root_possible`)
 
   let edit_props = App.get_edit_prop_list()
   edit_props.push(`split`)
