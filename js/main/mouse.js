@@ -464,7 +464,7 @@ App.mouse_middle_action = (mode, e) => {
 
     if (App.get_setting(`nodes_icon_click`)) {
       if (DOM.parent(e.target, [`.nodes_icon`])) {
-        App.close_nodes(item)
+        App.close_node_tabs(item)
         return
       }
     }

@@ -2760,7 +2760,7 @@ App.setup_commands = () => {
       some_nodes: true,
       icon: close_icon,
       action: (args) => {
-        App.close_nodes(args.item)
+        App.close_node_tabs(args.item)
       },
       info: `Close the nodes of a tab`,
     },

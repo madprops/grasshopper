@@ -100,7 +100,7 @@ App.focus_parent_tab = (item) => {
   }
 }
 
-App.close_nodes = (item) => {
+App.close_node_tabs = (item) => {
   let nodes = App.get_tab_nodes(item)
   App.close_tabs({selection: nodes, title: `nodes`})
 }
