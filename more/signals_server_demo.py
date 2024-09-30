@@ -189,7 +189,6 @@ def post_backup():
 
 @app.route("/get-backup", methods=["GET"])
 def get_backup():
-    print(44)
     msg = ""
 
     if backup_path.parent.exists():
