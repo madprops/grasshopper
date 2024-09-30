@@ -109,6 +109,16 @@ App.fill_signals = () => {
 }
 
 App.send_signal = async (signal, from = `cmd`) => {
+  App.show_confirm({
+    message: `Send Signal? (${signal.name})`,
+    confirm_action: () => {
+      App.do_send_signal(signal, from)
+    },
+    force: !signal.confirm,
+  })
+}
+
+App.do_send_signal = async (signal, from) => {
   if (App.screen_locked) {
     return
   }
@@ -297,6 +307,7 @@ App.start_signals_addlist = () => {
         `send_settings`,
         `import_settings`,
         `startup`,
+        `confirm`,
       ],
       pk: `name`,
       widgets: {
@@ -313,6 +324,7 @@ App.start_signals_addlist = () => {
         import_settings: `checkbox`,
         interval: `number`,
         startup: `checkbox`,
+        confirm: `checkbox`,
       },
       labels: {
         name: `Name`,
@@ -328,6 +340,7 @@ App.start_signals_addlist = () => {
         startup: `Startup`,
         send_settings: `Send Settings`,
         import_settings: `Import Settings`,
+        confirm: `Confirm`,
       },
       list_icon: (item) => {
         return item.icon || App.settings_icons.signal
@@ -354,6 +367,7 @@ App.start_signals_addlist = () => {
         icon: `Icon to show for the signal`,
         method: `HTTP method to use`,
         name: `Name of the signal`,
+        confirm: `Needs confirmation before running`,
       },
       process: {
         url: (url) => {
