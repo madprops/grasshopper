@@ -274,7 +274,7 @@ App.clear_items = (mode) => {
   }
 
   if (mode === `tabs`) {
-    App.tab_tree = []
+    App.tab_tree = {}
   }
 }
 
