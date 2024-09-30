@@ -18,7 +18,7 @@ App.add_tab_parent = (item) => {
   if (!App.node_tab_already_in(item.parent, item)) {
     App.tab_tree[item.parent].nodes.push(item)
     App.update_tab_parent(item.parent)
-    App.update_tab_nodes(item.parent)
+    App.update_tab_nodes(App.tab_tree[item.parent].nodes)
   }
 }
 
@@ -47,10 +47,8 @@ App.update_tab_parent = (id) => {
   App.check_icons(tree.parent)
 }
 
-App.update_tab_nodes = (id) => {
-  let tree = App.tab_tree[id]
-
-  for (let node of tree.nodes) {
+App.update_tab_nodes = (nodes) => {
+  for (let node of nodes) {
     App.check_icons(node)
   }
 }
