@@ -155,7 +155,7 @@ App.close_tabs_popup = (type, item) => {
   let no_unloaded = [`unloaded`, `playing`, `loaded`, `empty`, `all`]
   let uncheck_normal = [`pinned`]
   let check_pins = [`pinned`, `all`]
-  let check_unloaded = [`unloaded`]
+  let check_unloaded = [`unloaded`, `all`]
 
   if (no_pins.includes(type)) {
     pins_c.classList.add(`disabled`)
