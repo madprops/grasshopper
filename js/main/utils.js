@@ -598,3 +598,9 @@ App.input_at_start = (input) => {
 App.input_at_end = (input) => {
   input.setSelectionRange(input.value.length, input.value.length)
 }
+
+App.urls_match = (url_1, url_2) => {
+  url_1 = App.remove_slashes_end(url_1)
+  url_2 = App.remove_slashes_end(url_2)
+  return url_1 === url_2
+}

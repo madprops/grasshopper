@@ -83,9 +83,5 @@ App.root_possible = (item) => {
     return false
   }
 
-  if (root === item.url) {
-    return false
-  }
-
-  return true
+  return !App.urls_match(item.url, root)
 }
