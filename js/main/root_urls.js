@@ -22,7 +22,7 @@ App.edit_tab_root = (args = {}) => {
 }
 
 App.edit_root_url = (item) => {
-  App.edit_prompt({what: `root`, item, value: ``})
+  App.edit_prompt({what: `root`, item, value: ``, url: true})
 }
 
 App.get_all_roots = (include_rules = true) => {
