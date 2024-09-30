@@ -735,7 +735,7 @@ App.def_setting = (key) => {
   App.settings[key].version = App.setting_props[key].version
 }
 
-App.export_settings = (category = ``) => {
+App.get_settings_snapshot = (category = ``) => {
   let changed = {}
 
   for (let key in App.settings) {
@@ -755,6 +755,11 @@ App.export_settings = (category = ``) => {
     }
   }
 
+  return changed
+}
+
+App.export_settings = (category = ``) => {
+  let snapshot = App.get_settings_snapshot(category)
   let name
 
   if (category) {
@@ -764,10 +769,10 @@ App.export_settings = (category = ``) => {
     name = `Settings`
   }
 
-  App.export_data(name, changed)
+  App.export_data(name, snapshot)
 }
 
-App.import_settings = () => {
+App.import_settings = (value = ``) => {
   App.import_data(`Settings`, (json) => {
     if (App.is_object(json)) {
       for (let key in App.settings) {
@@ -780,7 +785,7 @@ App.import_settings = () => {
       App.stor_save_settings()
       App.restart_settings()
     }
-  })
+  }, value)
 }
 
 App.restart_settings = () => {

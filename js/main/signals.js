@@ -70,6 +70,10 @@ App.fill_signals = () => {
       title += ` (Tabs)`
     }
 
+    if (signal.send_settings) {
+      title += ` (Settings)`
+    }
+
     if (signal.interval) {
       title += ` (${signal.interval})`
     }
@@ -116,7 +120,7 @@ App.send_signal = async (signal, from = `cmd`) => {
       method: signal.method,
     }
 
-    if (signal.arguments || signal.send_tabs) {
+    if (signal.arguments || signal.send_tabs || signal.send_settings) {
       obj.headers = {
         "Content-Type": `application/json`,
       }
@@ -130,6 +134,10 @@ App.send_signal = async (signal, from = `cmd`) => {
 
       if (signal.send_tabs) {
         args.tabs = App.get_tab_snapshot()
+      }
+
+      if (signal.send_settings) {
+        args.settings = App.get_settings_snapshot()
       }
 
       obj.body = JSON.stringify(args)
@@ -165,6 +173,10 @@ App.send_signal = async (signal, from = `cmd`) => {
 
         if (signal.import_tabs) {
           App.import_tabs(text)
+        }
+
+        if (signal.import_settings) {
+          App.import_settings(text)
         }
       }
     }
@@ -273,6 +285,8 @@ App.start_signals_addlist = () => {
         `update_title`,
         `send_tabs`,
         `import_tabs`,
+        `send_settings`,
+        `import_settings`,
         `startup`,
       ],
       pk: `name`,
@@ -286,6 +300,8 @@ App.start_signals_addlist = () => {
         update_title: `checkbox`,
         send_tabs: `checkbox`,
         import_tabs: `checkbox`,
+        send_settings: `checkbox`,
+        import_settings: `checkbox`,
         interval: `number`,
         startup: `checkbox`,
       },
@@ -301,6 +317,8 @@ App.start_signals_addlist = () => {
         import_tabs: `Import Tabs`,
         interval: `Interval`,
         startup: `Startup`,
+        send_settings: `Send Settings`,
+        import_settings: `Import Settings`,
       },
       list_icon: (item) => {
         return item.icon || App.settings_icons.signal
@@ -318,8 +336,10 @@ App.start_signals_addlist = () => {
         arguments: `JSON string to use as arguments for POST`,
         feedback: `Show the response in a popup`,
         update_title: `Update the Title with the response`,
-        send_tabs: `Send all open tab URLs as the 'tabs' argument`,
+        send_tabs: `Send a snapshot of the tabs as the 'tabs' argument`,
         import_tabs: `Automatically import tabs from the response`,
+        send_settings: `Send a snapshot of the settings as the 'settings' argument`,
+        import_settings: `Automatically import settings from the response`,
         interval: `Run this signal every x seconds`,
         startup: `Run this signal at startup`,
         icon: `Icon to show for the signal`,

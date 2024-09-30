@@ -134,10 +134,16 @@ App.user_madprops_settings = () => {
   cmd = {name: `Min Volume`, url: `http://127.0.0.1:5000/volume-min`, method: `POST`, icon: `🔉`, _id_: `sig_volmin`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Save Backup`, url: `http://127.0.0.1:5000/post-backup`, method: `POST`, icon: `🤣`, feedback: true, send_tabs: true, _id_: `sig_post_backup`}
+  cmd = {name: `Save Tabs`, url: `http://127.0.0.1:5000/post-backup-tabs`, method: `POST`, icon: `📚`, feedback: true, send_tabs: true, _id_: `sig_post_backup_tabs`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Load Backup`, url: `http://127.0.0.1:5000/get-backup`, method: `GET`, icon: `🤣`, import_tabs: true, _id_: `sig_get_backup`}
+  cmd = {name: `Load Tabs`, url: `http://127.0.0.1:5000/get-backup-tabs`, method: `GET`, icon: `📚`, import_tabs: true, _id_: `sig_get_backup_tabs`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Save Settings`, url: `http://127.0.0.1:5000/post-backup-settings`, method: `POST`, icon: `⚡`, feedback: true, send_settings: true, _id_: `sig_post_backup_settings`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Load Settings`, url: `http://127.0.0.1:5000/get-backup-settings`, method: `GET`, icon: `⚡`, import_settings: true, _id_: `sig_get_backup_settings`}
   App.append_list_setting(sett, cmd)
 
   // Custom URLs

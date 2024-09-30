@@ -1,6 +1,3 @@
-# This is a simple webserver to listen to signals from the browser
-# It mostly does music and volume operations, but can be extended
-
 # requirements.txt:
 # -----------------
 # Flask == 3.0.3
@@ -163,8 +160,8 @@ def music_np():
     return metadata()
 
 
-@app.route("/post-backup", methods=["POST"])
-def post_backup():
+@app.route("/post-backup-tabs", methods=["POST"])
+def post_backup_tabs():
     msg = ""
 
     if request.content_type == "application/json":
@@ -179,7 +176,7 @@ def post_backup():
         with path.open("w") as f:
             json.dump(tabs, f)
 
-        msg = "Backup Saved"
+        msg = "Tabs Saved"
 
     if not msg:
         msg = "You sent nothing"
@@ -187,12 +184,54 @@ def post_backup():
     return msg
 
 
-@app.route("/get-backup", methods=["GET"])
-def get_backup():
+@app.route("/get-backup-tabs", methods=["GET"])
+def get_backup_backup():
     msg = ""
 
     if backup_path.parent.exists():
         files = sorted(backup_path.glob("tabs_*.json"))
+
+        if files:
+            with files[-1].open() as f:
+                line = json.load(f)
+                msg = json.dumps(line, indent=2)
+
+    if not msg:
+        msg = "No Backups"
+
+    return msg
+
+
+@app.route("/post-backup-settings", methods=["POST"])
+def post_backup_settings():
+    msg = ""
+
+    if request.content_type == "application/json":
+        settings = get_arg("settings")
+        secs = get_seconds()
+        name = f"settings_{secs}.json"
+        path = backup_path / name
+
+        if not path.parent.exists():
+            path.parent.mkdir(parents=True)
+
+        with path.open("w") as f:
+            json.dump(settings, f)
+
+        msg = "Settings Saved"
+
+    if not msg:
+        msg = "You sent nothing"
+
+    return msg
+
+
+@app.route("/get-backup-settings", methods=["GET"])
+def get_backups_settings():
+    msg = ""
+
+    if backup_path.parent.exists():
+        files = sorted(backup_path.glob("settings_*.json"))
 
         if files:
             with files[-1].open() as f:
