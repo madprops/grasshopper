@@ -589,6 +589,12 @@ App.run_command_list = async (setting) => {
   let delay = App.get_setting(`command_combo_delay`)
 
   for (let cmd of cmds) {
+    if (cmd.cmd.startsWith(`sleep_ms`)) {
+      let ms = parseInt(cmd.cmd.split(`_`).pop())
+      await App.sleep(ms)
+      continue
+    }
+
     App.run_command({cmd: cmd.cmd})
 
     if (delay > 0) {

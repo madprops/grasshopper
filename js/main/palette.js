@@ -112,7 +112,7 @@ App.palette_next = (reverse = false) => {
         App.palette_select(el)
         return
       }
-      
+
       if (!first) {
         first = el
       }
@@ -162,6 +162,10 @@ App.fill_palette = () => {
   container.innerHTML = ``
 
   for (let cmd of App.sorted_commands) {
+    if (cmd.skip_palette) {
+      continue
+    }
+
     let el = DOM.create(`div`, `palette_item action filter_item filter_text`)
     el.dataset.command = cmd.cmd
 

@@ -3405,6 +3405,28 @@ App.setup_commands = () => {
       },
       info: `Scroll the main title to the right`,
     },
+    {
+      name: `Sleep 500ms`,
+      short_name: `Sleep`,
+      cmd: `sleep_ms_500`,
+      icon: time_icon,
+      skip_palette: true,
+      action: (args) => {
+        // Do nothing
+      },
+      info: `Sleep for 500ms before doing something else`,
+    },
+    {
+      name: `Sleep 1000ms`,
+      short_name: `Sleep`,
+      cmd: `sleep_ms_1000`,
+      icon: time_icon,
+      skip_palette: true,
+      action: (args) => {
+        // Do nothing
+      },
+      info: `Sleep for 1000ms before doing something else`,
+    },
 
     ...custom_urls,
     ...signals,
