@@ -273,6 +273,8 @@ App.add_icons = (item, side) => {
     let btn = App.create_hover_button()
     item.element.append(btn)
   }
+
+  App.add_custom_icon(item, side)
 }
 
 App.check_icons = (item) => {
@@ -720,7 +722,13 @@ App.fetch_favicon_url = (item) => {
   return `https://www.google.com/s2/favicons?sz=64&domain=${item.hostname}`
 }
 
-App.add_custom_icon = (item) => {
+App.add_custom_icon = (item, side) => {
+  let icon_side = App.get_setting(`custom_icon_side`)
+
+  if (side !== icon_side) {
+    return
+  }
+
   let cls = `custom_icon item_node hidden`
 
   if (App.get_setting(`custom_icon_click`)) {

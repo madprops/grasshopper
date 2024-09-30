@@ -313,7 +313,6 @@ App.create_item_element = (item) => {
     App.check_item_icon(item)
   }
 
-  App.add_custom_icon(item)
   App.add_icons(item, `left`)
   item.element.draggable = true
   App.apply_splits(item)

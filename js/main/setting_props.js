@@ -990,6 +990,17 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
+    custom_icon_side: {
+      name: `Custom Icon Side`,
+      type: `menu`,
+      value: `right`,
+      info: `Show the Custom Icon on the left or right of text`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides_2)
+      },
+    },
     notes_icon_click: {
       name: `Notes Icon Click`,
       type: `checkbox`,
