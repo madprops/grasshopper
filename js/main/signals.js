@@ -38,8 +38,9 @@ App.start_signals = () => {
   let filter_clear = DOM.el(`#signals_filter_clear`)
 
   DOM.ev(filter_clear, `click`, () => {
-    App.clear_signals_filter()
+    App.empty_signals_filter()
     App.do_filter_signals()
+    App.focus_signals_filter()
   })
 }
 
@@ -50,7 +51,7 @@ App.show_signals = () => {
 }
 
 App.fill_signals = () => {
-  App.clear_signals_filter()
+  App.empty_signals_filter()
   let items = DOM.el(`#signals_items`)
   items.innerHTML = ``
   let signals = App.get_setting(`signals`)
@@ -428,10 +429,23 @@ App.do_filter_signals = () => {
   App.do_filter_2(`signals`)
 }
 
-App.clear_signals_filter = () => {
+App.empty_signals_filter = () => {
   DOM.el(`#signals_filter`).value = ``
 }
 
 App.focus_signals_filter = () => {
   DOM.el(`#signals_filter`).focus()
+}
+
+App.signals_filter_focused = () => {
+  return document.activeElement.id === `signals_filter`
+}
+
+App.clear_signals_filter = () => {
+  if (App.filter_has_value(`signals`)) {
+    App.set_filter({mode: `signals`})
+  }
+  else {
+    App.hide_window()
+  }
 }

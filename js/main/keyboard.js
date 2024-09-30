@@ -555,8 +555,15 @@ App.setup_keyboard = () => {
     }
     else if (mode === `signals`) {
       if (e.key === `Escape`) {
-        App.hide_window()
-        e.preventDefault()
+        if (App.signals_filter_focused()) {
+          App.clear_signals_filter()
+          e.preventDefault()
+        }
+        else {
+          App.hide_window()
+          e.preventDefault()
+        }
+
         return
       }
     }

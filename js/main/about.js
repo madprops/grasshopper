@@ -108,6 +108,7 @@ App.start_about = () => {
       DOM.ev(filter_clear, `click`, () => {
         App.clear_about_filter()
         App.do_filter_about()
+        App.focus_about_filter()
       })
     },
     after_show: () => {
@@ -129,7 +130,7 @@ App.start_about = () => {
       image.classList.remove(`flipped`)
       image.title = info
 
-      filter.focus()
+      App.focus_about_filter()
     },
     colored_top: true,
   })
@@ -164,4 +165,9 @@ App.do_filter_about = () => {
 App.show_about = () => {
   App.start_about()
   App.show_window(`about`)
+}
+
+App.focus_about_filter = () => {
+  let filter = DOM.el(`#about_filter`)
+  filter.focus()
 }
