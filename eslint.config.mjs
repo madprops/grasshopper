@@ -40,7 +40,7 @@ export default [
         "nestedBinaryExpressions": false,
         "enforceForArrowConditionals": false,
         "returnAssign": false
-      }]
+      }],
     },
     languageOptions: {
       globals: {
