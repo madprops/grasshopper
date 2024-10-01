@@ -2125,7 +2125,7 @@ App.build_settings = () => {
     main_title_scroll_pause: {
       name: `Title Scroll Pause`,
       type: `number`,
-      value: 1250,
+      value: 1200,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
