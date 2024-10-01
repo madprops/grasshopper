@@ -154,7 +154,6 @@ App.footer_message_delay = App.SECOND
 App.check_clock_delay = App.SECOND * 10
 App.check_main_title_date_delay = App.SECOND * 10
 App.check_refresh_settings_delay = 100
-App.main_title_scroll_pause_delay = App.SECOND
 App.popup_commands_delay = 250
 App.prompt_close_delay = 250
 App.signal_min_delay = 3

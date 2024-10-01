@@ -34,7 +34,7 @@ App.main_title_scroll_do_timeout = () => {
   clearTimeout(App.main_title_scroll_timeout)
 
   if (App.main_title_scroll_pause) {
-    let delay = App.main_title_scroll_pause_delay
+    let delay = App.get_setting(`main_title_scroll_pause`)
     App.main_title_scroll_pause = false
 
     App.main_title_scroll_timeout = setTimeout(() => {
