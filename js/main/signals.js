@@ -43,6 +43,28 @@ App.start_signals = () => {
     App.do_filter_signals()
     App.focus_signals_filter()
   })
+
+  let container = DOM.el(`#signals_container`)
+
+  DOM.ev(container, `click`, (e) => {
+    let item = DOM.parent(e.target, [`.signal_item`])
+    let index = item.dataset.index
+
+    if (!item) {
+      return
+    }
+
+    App.select_signal(item)
+    App.focus_signals_filter()
+
+    if (DOM.class(e.target, [`signal_run`])) {
+      let signal = App.signal_by_index(index)
+      App.send_signal(signal)
+    }
+    else if (DOM.class(e.target, [`signal_edit`])) {
+      App.edit_signal(index)
+    }
+  })
 }
 
 App.show_signals = () => {
@@ -64,6 +86,7 @@ App.fill_signals = () => {
 
   for (let [i, signal] of signals.entries()) {
     let el = DOM.create(`div`, `signal_item filter_item`)
+    el.dataset.index = i
     let icon = DOM.create(`div`, `signal_icon`)
     icon.textContent = signal.icon || App.settings_icons.signals
     let name = DOM.create(`div`, `signal_name filter_text`)
@@ -104,32 +127,17 @@ App.fill_signals = () => {
       title += ` (Startup)`
     }
 
-    DOM.ev(el, `click`, (e) => {
-      App.select_signal(el)
-      App.focus_signals_filter()
-    })
-
     name.title = title
-    let btn = DOM.create(`div`, `button signal_button`)
+    let btn = DOM.create(`div`, `button signal_button signal_run`)
     btn.title = `Send request`
-
-    DOM.ev(btn, `click`, () => {
-      App.send_signal(signal)
-    })
-
     btn.textContent = `Run`
     el.append(icon)
     el.append(name)
     el.append(btn)
     items.append(el)
 
-    let edbtn = DOM.create(`div`, `button signal_button`)
+    let edbtn = DOM.create(`div`, `button signal_button signal_edit`)
     edbtn.title = `Edit signal`
-
-    DOM.ev(edbtn, `click`, () => {
-      App.edit_signal(i)
-    })
-
     edbtn.textContent = `Edit`
     el.append(edbtn)
   }
@@ -466,7 +474,7 @@ App.on_signals_enter = () => {
   }
 
   let index = selected.dataset.index
-  let signal = App.get_setting(`signals`).at(index)
+  let signal = App.signal_by_index(index)
 
   if (signal) {
     App.send_signal(signal)
@@ -546,4 +554,8 @@ App.select_signal = (el) => {
 
   let name = DOM.el(`.signal_name`, el)
   name.classList.add(`selected_signal`)
+}
+
+App.signal_by_index = (index) => {
+  return App.get_setting(`signals`).at(index)
 }
