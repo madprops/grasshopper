@@ -523,6 +523,8 @@ App.on_signals_arrow = (reverse = false) => {
   if (!selected) {
     visible[0].classList.add(`selected_signal`)
   }
+
+  App.focus_signals_filter()
 }
 
 App.select_first_signal = () => {
