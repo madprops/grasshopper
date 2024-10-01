@@ -3465,7 +3465,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_signals()
       },
-      info: `Show the window to send signals`,
+      info: `Show the window to run and edit signals`,
     },
     {
       name: `Open Sidebar`,
