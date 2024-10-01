@@ -1840,3 +1840,7 @@ a:hover
   padding-bottom: 3rem;
   width: 100%;
 }
+
+.selected_signal {
+  outline: 1px solid var(--text_color);
+}

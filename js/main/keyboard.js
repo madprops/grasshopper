@@ -569,6 +569,16 @@ App.setup_keyboard = () => {
         e.preventDefault()
         return
       }
+      else if (e.key === `ArrowUp`) {
+        App.on_signals_arrow(true)
+        e.preventDefault()
+        return
+      }
+      else if (e.key === `ArrowDown`) {
+        App.on_signals_arrow()
+        e.preventDefault()
+        return
+      }
     }
   })
 

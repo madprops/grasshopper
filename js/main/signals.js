@@ -20,6 +20,7 @@ App.start_signals = () => {
     },
     after_show: () => {
       App.fill_signals()
+      App.select_first_signal()
     },
     after_hide: () => { },
     colored_top: true,
@@ -63,10 +64,10 @@ App.fill_signals = () => {
 
   for (let [i, signal] of signals.entries()) {
     let el = DOM.create(`div`, `signal_item filter_item`)
-    el.dataset.index = i
     let icon = DOM.create(`div`, `signal_icon`)
     icon.textContent = signal.icon || App.settings_icons.signals
     let name = DOM.create(`div`, `signal_name filter_text`)
+    name.dataset.index = i
     name.textContent = signal.name
 
     if (signal.interval) {
@@ -428,6 +429,7 @@ App.filter_signals = () => {
 App.do_filter_signals = () => {
   App.filter_signals_debouncer.cancel()
   App.do_filter_2(`signals`)
+  App.select_first_signal()
 }
 
 App.empty_signals_filter = () => {
@@ -452,17 +454,71 @@ App.clear_signals_filter = () => {
 }
 
 App.on_signals_enter = () => {
+  let selected = DOM.el(`.selected_signal`, `#signals_items`)
+
+  if (!selected) {
+    return
+  }
+
+  let index = selected.dataset.index
+  let signal = App.get_setting(`signals`).at(index)
+
+  if (signal) {
+    App.send_signal(signal)
+  }
+}
+
+App.on_signals_arrow = (reverse = false) => {
   let items = DOM.els(`.filter_item`, `#signals_items`)
+
+  if (items.length <= 1) {
+    return
+  }
+
+  if (reverse) {
+    items = items.reverse()
+  }
+
+  let waypoint = false
+  let selected = false
+  let visible = []
 
   for (let item of items) {
     if (!DOM.is_hidden(item)) {
-      let index = item.dataset.index
-      let signal = App.get_setting(`signals`).at(index)
+      visible.push(DOM.el(`.signal_name`, item))
+    }
+  }
 
-      if (signal) {
-        App.send_signal(signal)
-      }
+  for (let item of visible) {
+    if (item.classList.contains(`selected_signal`)) {
+      item.classList.remove(`selected_signal`)
+      waypoint = true
+      continue
+    }
 
+    if (waypoint) {
+      selected = true
+      item.classList.add(`selected_signal`)
+      break
+    }
+  }
+
+  if (!selected) {
+    visible[0].classList.add(`selected_signal`)
+  }
+}
+
+App.select_first_signal = () => {
+  let items = DOM.els(`.filter_item`, `#signals_items`)
+
+  for (let item of items) {
+    item.classList.remove(`selected_signal`)
+  }
+
+  for (let item of items) {
+    if (!DOM.is_hidden(item)) {
+      let name = DOM.el(`.signal_name`, item)
+      name.classList.add(`selected_signal`)
       break
     }
   }
