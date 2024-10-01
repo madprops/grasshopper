@@ -564,11 +564,6 @@ App.setup_keyboard = () => {
         e.preventDefault()
         return
       }
-      else if (e.key === `Enter`) {
-        App.on_signals_enter()
-        e.preventDefault()
-        return
-      }
       else if (e.key === `ArrowUp`) {
         App.on_signals_arrow(true)
         e.preventDefault()
@@ -604,6 +599,7 @@ App.setup_keyboard = () => {
     }
 
     App.stop_press_timeout()
+    let mode = App.window_mode
 
     if (App.popup_open()) {
       let pmode = App.popup_mode()
@@ -652,6 +648,13 @@ App.setup_keyboard = () => {
           e.preventDefault()
           return
         }
+      }
+    }
+    else if (mode === `signals`) {
+      if (e.key === `Enter`) {
+        App.on_signals_enter()
+        e.preventDefault()
+        return
       }
     }
   })
