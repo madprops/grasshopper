@@ -511,6 +511,10 @@ App.on_signals_arrow = (reverse = false) => {
 App.select_first_signal = () => {
   let items = DOM.els(`.filter_item`, `#signals_items`)
 
+  if (!items.length) {
+    return
+  }
+
   for (let item of items) {
     item.classList.remove(`selected_signal`)
   }
