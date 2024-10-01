@@ -489,6 +489,10 @@ App.on_signals_arrow = (reverse = false) => {
     }
   }
 
+  if (!visible.length) {
+    return
+  }
+
   for (let item of visible) {
     if (item.classList.contains(`selected_signal`)) {
       item.classList.remove(`selected_signal`)
