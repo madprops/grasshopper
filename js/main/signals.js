@@ -51,6 +51,7 @@ App.start_signals = () => {
 
     if (item) {
       App.select_signal(item)
+      App.focus_signals_filter()
     }
   })
 }
