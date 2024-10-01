@@ -43,6 +43,16 @@ App.start_signals = () => {
     App.do_filter_signals()
     App.focus_signals_filter()
   })
+
+  let container = DOM.el(`#signals_container`)
+
+  DOM.ev(container, `click`, (e) => {
+    let item = DOM.parent(e.target, [`.signal_item`])
+
+    if (item) {
+      App.select_signal(item)
+    }
+  })
 }
 
 App.show_signals = () => {
@@ -532,4 +542,13 @@ App.select_first_signal = () => {
       name.classList.remove(`selected_signal`)
     }
   }
+}
+
+App.select_signal = (el) => {
+  for (let item of DOM.els(`.signal_name`, `#signals_items`)) {
+    item.classList.remove(`selected_signal`)
+  }
+
+  let name = DOM.el(`.signal_name`, el)
+  name.classList.add(`selected_signal`)
 }
