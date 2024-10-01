@@ -543,13 +543,12 @@ App.setup_keyboard = () => {
       if (e.key === `Escape`) {
         if (App.about_filter_focused()) {
           App.clear_about_filter()
-          e.preventDefault()
         }
         else {
           App.hide_window()
-          e.preventDefault()
         }
 
+        e.preventDefault()
         return
       }
     }
@@ -557,13 +556,17 @@ App.setup_keyboard = () => {
       if (e.key === `Escape`) {
         if (App.signals_filter_focused()) {
           App.clear_signals_filter()
-          e.preventDefault()
         }
         else {
           App.hide_window()
-          e.preventDefault()
         }
 
+        e.preventDefault()
+        return
+      }
+      else if (e.key === `Enter`) {
+        App.on_signals_enter()
+        e.preventDefault()
         return
       }
     }

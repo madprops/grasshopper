@@ -5,11 +5,19 @@ DOM.dataset_id = 0
 
 // Select a single element
 DOM.el = (query, root = document) => {
+  if (typeof root === `string`) {
+    root = DOM.el(root)
+  }
+
   return root.querySelector(query)
 }
 
 // Select an array of elements
 DOM.els = (query, root = document) => {
+  if (typeof root === `string`) {
+    root = DOM.el(root)
+  }
+
   return Array.from(root.querySelectorAll(query))
 }
 
@@ -197,4 +205,9 @@ DOM.element = (el) => {
   }
 
   return el
+}
+
+// Check if an element is hidden
+DOM.is_hidden = (el, num = 1) => {
+  return el.classList.contains(DOM.hidden(num))
 }

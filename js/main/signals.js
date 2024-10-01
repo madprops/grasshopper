@@ -63,6 +63,7 @@ App.fill_signals = () => {
 
   for (let [i, signal] of signals.entries()) {
     let el = DOM.create(`div`, `signal_item filter_item`)
+    el.dataset.index = i
     let icon = DOM.create(`div`, `signal_icon`)
     icon.textContent = signal.icon || App.settings_icons.signals
     let name = DOM.create(`div`, `signal_name filter_text`)
@@ -447,5 +448,22 @@ App.clear_signals_filter = () => {
   }
   else {
     App.hide_window()
+  }
+}
+
+App.on_signals_enter = () => {
+  let items = DOM.els(`.filter_item`, `#signals_items`)
+
+  for (let item of items) {
+    if (!DOM.is_hidden(item)) {
+      let index = item.dataset.index
+      let signal = App.get_setting(`signals`).at(index)
+
+      if (signal) {
+        App.send_signal(signal)
+      }
+
+      break
+    }
   }
 }
