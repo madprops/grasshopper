@@ -1844,3 +1844,7 @@ a:hover
 .selected_signal {
   outline: 1px solid var(--text_color);
 }
+
+.signal_item:only-child .signal_name {
+  outline-color: transparent;
+}
