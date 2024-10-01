@@ -22,7 +22,7 @@ App.start_signals = () => {
       App.fill_signals()
       App.select_first_signal()
     },
-    after_hide: () => { },
+    after_hide: () => {},
     colored_top: true,
   })
 
