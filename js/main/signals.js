@@ -515,15 +515,17 @@ App.select_first_signal = () => {
     return
   }
 
-  for (let item of items) {
-    item.classList.remove(`selected_signal`)
-  }
+  let first = false
 
   for (let item of items) {
-    if (!DOM.is_hidden(item)) {
-      let name = DOM.el(`.signal_name`, item)
+    let name = DOM.el(`.signal_name`, item)
+
+    if (!DOM.is_hidden(item) && !first) {
       name.classList.add(`selected_signal`)
-      break
+      first = true
+    }
+    else {
+      name.classList.remove(`selected_signal`)
     }
   }
 }
