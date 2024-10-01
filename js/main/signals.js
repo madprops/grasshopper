@@ -48,12 +48,12 @@ App.start_signals = () => {
 
   DOM.ev(container, `click`, (e) => {
     let item = DOM.parent(e.target, [`.signal_item`])
-    let index = item.dataset.index
 
     if (!item) {
       return
     }
 
+    let index = item.dataset.index
     App.select_signal(item)
     App.focus_signals_filter()
 
