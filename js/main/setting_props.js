@@ -2131,7 +2131,7 @@ App.build_settings = () => {
       max: App.number_max,
       separator: true,
       info: `Pause these milliseconds after reaching the edges when scrolling
-      Or when manually scrolled with the mousewheel`,
+      Or after manually scrolling`,
       version: 1,
     },
     wheel_up_main_title: {
