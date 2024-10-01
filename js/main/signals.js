@@ -43,17 +43,6 @@ App.start_signals = () => {
     App.do_filter_signals()
     App.focus_signals_filter()
   })
-
-  let container = DOM.el(`#signals_container`)
-
-  DOM.ev(container, `click`, (e) => {
-    let item = DOM.parent(e.target, [`.signal_item`])
-
-    if (item) {
-      App.select_signal(item)
-      App.focus_signals_filter()
-    }
-  })
 }
 
 App.show_signals = () => {
@@ -114,6 +103,11 @@ App.fill_signals = () => {
     if (signal.startup) {
       title += ` (Startup)`
     }
+
+    DOM.ev(el, `click`, (e) => {
+      App.select_signal(el)
+      App.focus_signals_filter()
+    })
 
     name.title = title
     let btn = DOM.create(`div`, `button signal_button`)
