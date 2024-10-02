@@ -351,17 +351,25 @@ App.add_settings_filter = (category) => {
 
   filter.placeholder = `Filter${s}`
 
-  let filter_clear = DOM.create(`div`, `button filter_button`, `settings_${category}_filter_clear`)
-  filter_clear.textContent = `x`
+  let bottom = DOM.create(`div`, `button filter_bottom`)
+  bottom.textContent = App.filter_bottom_icon
 
-  DOM.ev(filter_clear, `click`, () => {
+  DOM.ev(bottom, `click`, () => {
+    App.settings_bottom()
+  })
+
+  let clear = DOM.create(`div`, `button filter_button`)
+  clear.textContent = App.filter_clear_icon
+
+  DOM.ev(clear, `click`, () => {
     filter.value = ``
     App.do_filter_settings()
     filter.focus()
   })
 
+  filter_container.append(bottom)
   filter_container.append(filter)
-  filter_container.append(filter_clear)
+  filter_container.append(clear)
   container.prepend(filter_container)
 }
 

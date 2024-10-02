@@ -36,9 +36,17 @@ App.start_signals = () => {
     App.do_filter_signals()
   }, App.filter_delay_2)
 
-  let filter_clear = DOM.el(`#signals_filter_clear`)
+  let bottom = DOM.el(`#signals_filter_bottom`)
+  bottom.textContent = App.filter_bottom_icon
 
-  DOM.ev(filter_clear, `click`, () => {
+  DOM.ev(bottom, `click`, () => {
+    App.signals_bottom()
+  })
+
+  let clear = DOM.el(`#signals_filter_clear`)
+  clear.textContent = App.filter_clear_icon
+
+  DOM.ev(clear, `click`, () => {
     App.empty_signals_filter()
     App.do_filter_signals()
     App.focus_signals_filter()
@@ -560,4 +568,9 @@ App.select_signal = (el) => {
 
 App.signal_by_index = (index) => {
   return App.get_setting(`signals`).at(index)
+}
+
+App.signals_bottom = () => {
+  let container = DOM.el(`#window_content_signals`)
+  container.scrollTop = container.scrollHeight
 }

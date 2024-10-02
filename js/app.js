@@ -229,6 +229,8 @@ App.keyboard_icon = `⌨️`
 App.tree_icon = `🌳`
 App.nodes_icon = `💠`
 App.root_icon = `🌀`
+App.filter_bottom_icon = `B`
+App.filter_clear_icon = `x`
 
 App.sizes = [
   {text: `None`, value: `none`},

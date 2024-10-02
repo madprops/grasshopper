@@ -103,9 +103,17 @@ App.start_about = () => {
         App.filter_about()
       })
 
-      let filter_clear = DOM.el(`#about_filter_clear`)
+      let bottom = DOM.el(`#about_filter_bottom`)
+      bottom.textContent = App.filter_bottom_icon
 
-      DOM.ev(filter_clear, `click`, () => {
+      DOM.ev(bottom, `click`, () => {
+        App.about_bottom()
+      })
+
+      let clear = DOM.el(`#about_filter_clear`)
+      clear.textContent = App.filter_clear_icon
+
+      DOM.ev(clear, `click`, () => {
         App.clear_about_filter()
         App.do_filter_about()
         App.focus_about_filter()
@@ -170,4 +178,9 @@ App.show_about = () => {
 App.focus_about_filter = () => {
   let filter = DOM.el(`#about_filter`)
   filter.focus()
+}
+
+App.about_bottom = () => {
+  let container = DOM.el(`#window_content_about`)
+  container.scrollTop = container.scrollHeight
 }
