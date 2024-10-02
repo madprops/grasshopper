@@ -105,6 +105,7 @@ App.start_about = () => {
 
       let bottom = DOM.el(`#about_filter_bottom`)
       bottom.textContent = App.filter_bottom_icon
+      bottom.title = App.filter_bottom_title
 
       DOM.ev(bottom, `click`, () => {
         App.about_bottom()
@@ -112,6 +113,7 @@ App.start_about = () => {
 
       let clear = DOM.el(`#about_filter_clear`)
       clear.textContent = App.filter_clear_icon
+      clear.title = App.filter_clear_title
 
       DOM.ev(clear, `click`, () => {
         App.clear_about_filter()

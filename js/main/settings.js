@@ -353,6 +353,7 @@ App.add_settings_filter = (category) => {
 
   let bottom = DOM.create(`div`, `button filter_bottom`)
   bottom.textContent = App.filter_bottom_icon
+  bottom.title = App.filter_bottom_title
 
   DOM.ev(bottom, `click`, () => {
     App.settings_bottom()
@@ -360,6 +361,7 @@ App.add_settings_filter = (category) => {
 
   let clear = DOM.create(`div`, `button filter_button`)
   clear.textContent = App.filter_clear_icon
+  clear.title = App.filter_clear_title
 
   DOM.ev(clear, `click`, () => {
     filter.value = ``
@@ -552,12 +554,14 @@ App.add_settings_switchers = (category) => {
   top.append(container)
   let title = DOM.create(`div`, `settings_title button`)
   title.id = `settings_title_${category}`
+  title.title = `Pick a Category`
   let icon = App.settings_icons[category]
   let text = App.category_string(category)
   title.append(App.button_text(icon, text))
   container.append(title)
   let actions = DOM.create(`div`, `button icon_button`)
   actions.id = `settings_actions_${category}`
+  actions.title = `Actions`
   actions.append(App.get_svg_icon(`sun`))
   container.append(actions)
   let close = DOM.create(`div`, `button`)

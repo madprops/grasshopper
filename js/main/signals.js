@@ -38,6 +38,7 @@ App.start_signals = () => {
 
   let bottom = DOM.el(`#signals_filter_bottom`)
   bottom.textContent = App.filter_bottom_icon
+  bottom.title = App.filter_bottom_title
 
   DOM.ev(bottom, `click`, () => {
     App.signals_bottom()
@@ -45,6 +46,7 @@ App.start_signals = () => {
 
   let clear = DOM.el(`#signals_filter_clear`)
   clear.textContent = App.filter_clear_icon
+  clear.title = App.filter_clear_title
 
   DOM.ev(clear, `click`, () => {
     App.empty_signals_filter()
