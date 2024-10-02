@@ -3872,6 +3872,13 @@ App.build_settings = () => {
       info: `Auto-close after hiding the prompt or input on a Popup Command`,
       version: 1,
     },
+    clear_on_close: {
+      name: `Clear On Close`,
+      type: `checkbox`,
+      value: true,
+      info: `Auto-clear after no items remain when closing tabs`,
+      version: 1,
+    },
     autohide_context: {
       name: `Autohide Context`,
       type: `checkbox`,

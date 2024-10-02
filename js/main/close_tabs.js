@@ -582,3 +582,17 @@ App.close_last_tab = () => {
   let last = App.get_items(`tabs`).slice(-1)[0]
   App.close_tabs({item: last})
 }
+
+App.check_clear_on_close = (mode) => {
+  let visible = App.get_visible(mode)
+
+  if (visible.length) {
+    return
+  }
+
+  if (App.get_setting(`clear_on_close`)) {
+    if (App.is_filtered(mode)) {
+      App.filter_all(mode)
+    }
+  }
+}
