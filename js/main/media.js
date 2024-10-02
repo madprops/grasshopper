@@ -12,8 +12,6 @@ App.start_media = (what) => {
     setup: () => {
       let media = DOM.el(`#media_${what}_player`)
       let buttons = DOM.el(`#media_${what}_buttons`)
-      let content = DOM.el(`#window_content_media_${what}`)
-      let loading = DOM.el(`#media_${what}_loading`)
 
       let prev = DOM.create(`div`, `button arrow_btn arrow_prev`, `media_${what}_prev`)
       prev.textContent = `<`

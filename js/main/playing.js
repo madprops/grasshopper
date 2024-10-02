@@ -32,10 +32,6 @@ App.create_playing_icon = (mode) => {
     }
   })
 
-  DOM.ev(btn, `wheel`, (e) => {
-    let direction = App.wheel_direction(e)
-  })
-
   btn.append(icon)
   return btn
 }
