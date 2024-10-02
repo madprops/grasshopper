@@ -1,5 +1,5 @@
 App.add_tab_parent = (item) => {
-  if (!item.parent) {
+  if (!item || !item.parent) {
     return
   }
 
