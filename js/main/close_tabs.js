@@ -45,16 +45,25 @@ App.close_tabs = (args = {}) => {
   App.show_confirm({
     message: `Close ${args.title}? (${items.length})`,
     confirm_action: async () => {
-      if (active && smart_switch) {
-        let succ = await App.get_tab_succ(items, `close`)
+      if (smart_switch) {
+        if (active) {
+          let succ = App.get_tab_succ(items, `close`)
 
-        if (succ) {
-          for (let it of items) {
-            await browser.tabs.update(it.id, {successorTabId: succ.id})
+          if (succ) {
+            for (let it of items) {
+              await browser.tabs.update(it.id, {successorTabId: succ.id})
+            }
+          }
+          else {
+            await App.blank_tab()
           }
         }
         else {
-          await App.blank_tab()
+          let item = App.get_active_tab_item()
+
+          if (item) {
+            App.tabs_action({item, from: `close`})
+          }
         }
       }
 

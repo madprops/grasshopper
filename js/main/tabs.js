@@ -446,7 +446,7 @@ App.duplicate_tabs = (item) => {
   })
 }
 
-App.get_tab_succ = async (items, method) => {
+App.get_tab_succ = (items, method) => {
   let mode = `tabs`
   let next
 
