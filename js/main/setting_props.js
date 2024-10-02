@@ -1254,6 +1254,16 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Hover Button`,
       version: 1,
     },
+    middle_click_hover_button: {
+      name: `Middle Click Hover`,
+      type: `menu`,
+      value: `close_tabs`,
+      info: `Command to run when middle clicking the Hover Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     hover_button_padding: {
       name: `Hover Button Padding`,
       type: `number`,
@@ -2506,16 +2516,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_normal_tabs`,
       info: `Command to run when middle clicking the Pinline`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_hover_button: {
-      name: `Middle Click Hover`,
-      type: `menu`,
-      value: `close_tabs`,
-      info: `Command to run when middle clicking the Hover Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
