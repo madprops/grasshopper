@@ -116,11 +116,8 @@ App.settings_setup_texts = (category) => {
       App.scroll_to_top(el)
       let value = el.value.trim()
 
-      if (props.no_empty) {
-        if (value === ``) {
-          el.value = App.get_setting(key)
-          return
-        }
+      if (props.no_empty && (value === ``)) {
+        value = App.get_default_setting(key) || App.get_setting(key)
       }
 
       el.value = value

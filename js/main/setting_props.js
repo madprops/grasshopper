@@ -423,6 +423,7 @@ App.build_settings = () => {
       value: `Nova Square`,
       placeholder: `Font Name`,
       btns: [`pick`],
+      no_empty: true,
       info: `Font to use for the text
       Pick from the list, or enter a Google Font name, or enter a font URL`,
       version: 1,
