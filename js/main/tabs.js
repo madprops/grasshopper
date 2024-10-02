@@ -446,82 +446,6 @@ App.duplicate_tabs = (item) => {
   })
 }
 
-App.pin_tab = async (id) => {
-  try {
-    await browser.tabs.update(id, {pinned: true})
-  }
-  catch (err) {
-    App.error(err)
-  }
-}
-
-App.unpin_tab = async (id) => {
-  try {
-    await browser.tabs.update(id, {pinned: false})
-  }
-  catch (err) {
-    App.error(err)
-  }
-}
-
-App.pin_tabs = (item) => {
-  let items = []
-
-  for (let it of App.get_active_items({mode: `tabs`, item})) {
-    if (it.pinned) {
-      continue
-    }
-
-    items.push(it)
-  }
-
-  if (!items.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_pin_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm({
-    message: `Pin items? (${ids.length})`,
-    confirm_action: async () => {
-      for (let id of ids) {
-        App.pin_tab(id)
-      }
-    },
-    force,
-  })
-}
-
-App.unpin_tabs = (item) => {
-  let items = []
-
-  for (let it of App.get_active_items({mode: `tabs`, item})) {
-    if (!it.pinned) {
-      continue
-    }
-
-    items.push(it)
-  }
-
-  if (!items.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_unpin_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm({
-    message: `Unpin items? (${ids.length})`,
-    confirm_action: async () => {
-      for (let id of ids) {
-        App.unpin_tab(id)
-      }
-    },
-    force,
-  })
-}
-
 App.swith_to_prev_tab = async (items, method) => {
   let mode = `tabs`
   let next
@@ -653,76 +577,6 @@ App.show_tab_urls = () => {
   let urls = App.get_url_list()
   let s = urls.join(`\n`)
   App.show_textarea(`All Open URLs (${urls.length})`, s)
-}
-
-App.toggle_pin = (item) => {
-  if (item.pinned) {
-    App.unpin_tab(item.id)
-  }
-  else {
-    App.pin_tab(item.id)
-  }
-}
-
-App.toggle_pin_tabs = (item) => {
-  let items = []
-  let action
-
-  for (let it of App.get_active_items({mode: `tabs`, item})) {
-    if (!action) {
-      if (it.pinned) {
-        action = `unpin`
-      }
-      else {
-        action = `pin`
-      }
-    }
-
-    if (action === `pin`) {
-      if (it.pinned) {
-        continue
-      }
-    }
-    else if (action === `unpin`) {
-      if (!it.pinned) {
-        continue
-      }
-    }
-
-    items.push(it)
-  }
-
-  if (!items.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_pin_tabs`, items)
-  let ids = items.map(x => x.id)
-  let msg = ``
-
-  if (action === `pin`) {
-    msg = `Pin items?`
-  }
-  else {
-    msg = `Unpin items?`
-  }
-
-  msg += ` (${ids.length})`
-
-  App.show_confirm({
-    message: msg,
-    confirm_action: async () => {
-      for (let id of ids) {
-        if (action === `pin`) {
-          App.pin_tab(id)
-        }
-        else {
-          App.unpin_tab(id)
-        }
-      }
-    },
-    force,
-  })
 }
 
 App.toggle_mute_tabs = (item) => {
@@ -1000,21 +854,6 @@ App.get_first_normal_index = () => {
     i += 1
 
     if (!item.pinned) {
-      return i
-    }
-  }
-
-  return i
-}
-
-App.get_last_pin_index = () => {
-  let i = -1
-
-  for (let item of App.get_items(`tabs`)) {
-    if (item.pinned) {
-      i += 1
-    }
-    else {
       return i
     }
   }
@@ -1355,33 +1194,6 @@ App.tab_ready = (item) => {
   return item.status === `complete`
 }
 
-App.check_pins = (item, force = false) => {
-  if (App.get_setting(`hide_pins`) && !item.tab_box) {
-    if (!force && item.pinned) {
-      App.hide_pin(item)
-    }
-    else {
-      App.show_pin(item)
-    }
-  }
-}
-
-App.hide_pin = (item) => {
-  DOM.hide(item.element, 2)
-  item.visible = false
-}
-
-App.show_pin = (item) => {
-  DOM.show(item.element, 2)
-  item.visible = true
-}
-
-App.show_all_pins = () => {
-  for (let item of App.get_items(`tabs`)) {
-    App.show_pin(item)
-  }
-}
-
 App.check_tab_active = (item) => {
   if (item.active) {
     item.element.classList.add(`active_tab`)
@@ -1435,10 +1247,6 @@ App.paste_tabs = async (item) => {
   }
 }
 
-App.new_pin_tab = () => {
-  App.open_new_tab({pinned: true})
-}
-
 App.sort_selected_tabs = async (direction) => {
   let items = App.get_active_items({mode: `tabs`})
 
@@ -1485,36 +1293,6 @@ App.tabs_in_same_place = (items) => {
   let all_pinned = items.every(x => x.pinned)
   let all_normal = items.every(x => !x.pinned)
   return all_pinned || all_normal
-}
-
-App.toggle_show_pins = () => {
-  let hide = App.get_setting(`hide_pins`)
-  App.set_setting({setting: `hide_pins`, value: !hide})
-  App.check_refresh_settings()
-
-  if (hide) {
-    App.show_all_pins()
-  }
-
-  App.do_filter({mode: App.active_mode})
-}
-
-App.first_pinned_tab = () => {
-  let items = App.get_items(`tabs`)
-  let first = items.find(x => x.pinned)
-
-  if (first) {
-    App.tabs_action({item: first})
-  }
-}
-
-App.last_pinned_tab = () => {
-  let items = App.get_items(`tabs`)
-  let last = items.slice(0).reverse().find(x => x.pinned)
-
-  if (last) {
-    App.tabs_action({item: last})
-  }
 }
 
 App.first_normal_tab = () => {
