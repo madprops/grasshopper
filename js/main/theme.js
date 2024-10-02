@@ -969,4 +969,5 @@ App.pick_font = (e) => {
 
 App.do_pick_font = (font) => {
   App.set_setting({setting: `font`, value: font, action: true})
+  App.refresh_setting_widgets([`font`])
 }

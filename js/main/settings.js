@@ -635,6 +635,8 @@ App.start_color_picker = (setting, alpha = false) => {
         },
       ])
   })
+
+  App[`settings_color_picker_${setting}`] = picker
 }
 
 App.settings_default_category = (category) => {
@@ -1932,4 +1934,39 @@ App.setting_browser_commands = () => {
   }
 
   return props
+}
+
+App.refresh_setting_widgets = (keys) => {
+  function update(key) {
+    let props = App.setting_props[key]
+    let el = DOM.el(`#settings_${key}`)
+    let value = App.get_setting(key)
+
+    if (props.type === `menu`) {
+      App.set_settings_menu(key, undefined, false)
+    }
+    else if (props.type === `list`) {
+      Addlist.update_count(`settings_${key}`)
+    }
+    else if ([
+      `text`,
+      `password`,
+      `textarea`,
+      `number`,
+      `text_smaller`,
+    ].includes(props.type)) {
+      el.value = value
+    }
+    else if (props.type === `checkbox`) {
+      el.checked = value
+    }
+    else if (props.type === `color`) {
+      let picker = App[`settings_color_picker_${key}`]
+      picker.setColor(value)
+    }
+  }
+
+  for (let key of keys) {
+    update(key)
+  }
 }
