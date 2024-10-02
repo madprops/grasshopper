@@ -195,7 +195,7 @@ App.get_jump_target = (num) => {
   if (num === 1) {
     return `jump`
   }
-  
+
   return `jump${num}`
 }
 
