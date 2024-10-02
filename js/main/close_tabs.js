@@ -11,7 +11,6 @@ App.close_tabs = (args = {}) => {
   App.def_args(def_args, args)
   let items = []
   let active = false
-  let selected = false
 
   if (!args.selection.length) {
     args.selection = App.get_active_items({
@@ -24,10 +23,6 @@ App.close_tabs = (args = {}) => {
   for (let it of args.selection) {
     if (it.active) {
       active = true
-    }
-
-    if (it.selected) {
-      selected = true
     }
 
     items.push(it)
@@ -43,10 +38,14 @@ App.close_tabs = (args = {}) => {
 
   let smart_switch = App.get_setting(`smart_tab_switch`)
 
+  if (args.no_smart) {
+    smart_switch = false
+  }
+
   App.show_confirm({
     message: `Close ${args.title}? (${items.length})`,
     confirm_action: async () => {
-      if (!args.no_smart && (active || selected) && smart_switch) {
+      if (active && smart_switch) {
         await App.swith_to_prev_tab(items, `close`)
       }
 
