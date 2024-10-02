@@ -591,9 +591,7 @@ App.close_last_tab = () => {
 App.check_clear_on_close = (mode) => {
   if (App.get_setting(`clear_on_close`)) {
     if (App.is_filtered(mode)) {
-      let visible = App.get_visible(mode)
-
-      if (!visible.length) {
+      if (!App.get_visible(mode).length) {
         App.filter_all(mode)
       }
     }
