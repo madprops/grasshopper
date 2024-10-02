@@ -523,11 +523,12 @@ App.unpin_tabs = (item) => {
 }
 
 App.swith_to_prev_tab = async (items, method) => {
+  let mode = `tabs`
   let next
 
   if (method === `close`) {
-    if (App.is_filtered(`tabs`)) {
-      let visible = App.get_visible(`tabs`)
+    if (App.is_filtered(mode)) {
+      let visible = App.get_visible(mode)
 
       if (visible.length) {
         next = visible[0]
