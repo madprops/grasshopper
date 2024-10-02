@@ -16,6 +16,7 @@
   --taglist_gap: 0.55rem;
   --header_margin: 0.25rem;
   --transition_delay: 170ms;
+  --sans: sans-serif;
 }
 
 @font-face {
@@ -270,7 +271,7 @@ select {
   text-align: left;
   align-items: flex-start;
   justify-content: flex-start;
-  font-family: sans-serif;
+  font-family: var(--sans);
 }
 
 .button {
@@ -986,7 +987,7 @@ a:hover
 }
 
 .arrow_btn {
-  font-family: sans-serif;
+  font-family: var(--sans);
 }
 
 .arrow_prev {
