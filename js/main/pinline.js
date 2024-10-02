@@ -24,6 +24,10 @@ App.do_check_pinline = () => {
     }
   }
 
+  if (!App.tabs_normal()) {
+    show = `never`
+  }
+
   App.pinline_visible = true
 
   if (show === `never`) {
