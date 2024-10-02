@@ -2528,28 +2528,28 @@ App.build_settings = () => {
 
   props = {
     warn_special_pinned: {
-      name: `Pinned is Special`,
+      name: `Pinned Special`,
       type: `checkbox`,
       value: true,
       info: `Treat pinned tabs as special`,
       version: 1,
     },
     warn_special_playing: {
-      name: `Playing is Special`,
+      name: `Playing Special`,
       type: `checkbox`,
       value: true,
       info: `Treat playing tabs as special`,
       version: 1,
     },
     warn_special_header: {
-      name: `Header is Special`,
+      name: `Header Special`,
       type: `checkbox`,
       value: true,
       info: `Treat header tabs as special`,
       version: 1,
     },
     warn_special_edited: {
-      name: `Edited is Special`,
+      name: `Edited Special`,
       type: `checkbox`,
       value: true,
       separator: true,
