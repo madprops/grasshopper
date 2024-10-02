@@ -37,9 +37,9 @@ Menubutton.create = (args = {}) => {
     App.swap_settings(setting_1, setting_2)
   }
 
-  let prev = DOM.create(`div`, `button arrow_btn`)
+  let prev = DOM.create(`div`, `button arrow_button`)
   prev.textContent = `<`
-  let next = DOM.create(`div`, `button arrow_btn`)
+  let next = DOM.create(`div`, `button arrow_button`)
   next.textContent = `>`
 
   DOM.ev(args.button, `click`, () => {
