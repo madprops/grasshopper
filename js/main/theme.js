@@ -10,7 +10,7 @@ App.check_color = (color) => {
   if (color.startsWith(`#`)) {
     return App.colorlib.hex_to_rgb(color)
   }
-  
+
   return color
 }
 
@@ -969,5 +969,4 @@ App.pick_font = (e) => {
 
 App.do_pick_font = (font) => {
   App.set_setting({setting: `font`, value: font, action: true})
-  App.check_refresh_settings()
 }
