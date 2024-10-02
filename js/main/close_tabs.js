@@ -5,6 +5,7 @@ App.close_tabs = (args = {}) => {
     title: `tabs`,
     force: false,
     no_smart: false,
+    clear: true,
   }
 
   App.def_args(def_args, args)
@@ -56,7 +57,9 @@ App.close_tabs = (args = {}) => {
         args.after()
       }
 
-      App.check_clear_on_close()
+      if (args.clear) {
+        App.check_clear_on_close()
+      }
     },
     force: args.force,
   })
