@@ -230,7 +230,7 @@ App.tree_icon = `🌳`
 App.nodes_icon = `💠`
 App.root_icon = `🌀`
 
-App.filter_bottom_icon = `B`
+App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`
 App.filter_clear_icon = `x`
 App.filter_clear_title = `Clear the filter`
