@@ -255,24 +255,6 @@ App.refresh_tab = async (args = {}) => {
   return item
 }
 
-App.mute_tab = async (id) => {
-  try {
-    await browser.tabs.update(id, {muted: true})
-  }
-  catch (err) {
-    App.error(err)
-  }
-}
-
-App.unmute_tab = async (id) => {
-  try {
-    await browser.tabs.update(id, {muted: false})
-  }
-  catch (err) {
-    App.error(err)
-  }
-}
-
 App.get_pinned_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.pinned)
 }
@@ -470,60 +452,6 @@ App.get_tab_succ = (items, method) => {
   return next
 }
 
-App.mute_tabs = (item) => {
-  let items = []
-
-  for (let it of App.get_active_items({mode: `tabs`, item})) {
-    if (!it.muted) {
-      items.push(it)
-    }
-  }
-
-  if (!items.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_mute_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm({
-    message: `Mute items? (${ids.length})`,
-    confirm_action: async () => {
-      for (let id of ids) {
-        App.mute_tab(id)
-      }
-    },
-    force,
-  })
-}
-
-App.unmute_tabs = (item) => {
-  let items = []
-
-  for (let it of App.get_active_items({mode: `tabs`, item})) {
-    if (it.muted) {
-      items.push(it)
-    }
-  }
-
-  if (!items.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_unmute_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm({
-    message: `Unmute items? (${ids.length})`,
-    confirm_action: async () => {
-      for (let id of ids) {
-        App.unmute_tab(id)
-      }
-    },
-    force,
-  })
-}
-
 App.show_tabs_info = () => {
   let all = App.get_items(`tabs`).length
   let pins = App.get_pinned_tabs().length
@@ -572,48 +500,6 @@ App.show_tab_urls = () => {
   let urls = App.get_url_list()
   let s = urls.join(`\n`)
   App.show_textarea(`All Open URLs (${urls.length})`, s)
-}
-
-App.toggle_mute_tabs = (item) => {
-  let ids = []
-  let action
-
-  for (let it of App.get_active_items({mode: `tabs`, item})) {
-    if (!action) {
-      if (it.muted) {
-        action = `unmute`
-      }
-      else {
-        action = `mute`
-      }
-    }
-
-    if (action === `mute`) {
-      if (it.muted) {
-        continue
-      }
-    }
-    else if (action === `unmute`) {
-      if (!it.muted) {
-        continue
-      }
-    }
-
-    ids.push(it.id)
-  }
-
-  if (!ids.length) {
-    return
-  }
-
-  for (let id of ids) {
-    if (action === `mute`) {
-      App.mute_tab(id)
-    }
-    else {
-      App.unmute_tab(id)
-    }
-  }
 }
 
 App.open_tab = async (item) => {
@@ -1109,48 +995,6 @@ App.check_tab_first = (item) => {
   if (App.tabs_recent()) {
     App.make_item_first(item)
   }
-}
-
-App.mute_playing_tabs = () => {
-  let items = App.get_playing_tabs()
-
-  if (!items.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_mute_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm({
-    message: `Mute items? (${ids.length})`,
-    confirm_action: async () => {
-      for (let id of ids) {
-        App.mute_tab(id)
-      }
-    },
-    force,
-  })
-}
-
-App.unmute_all_tabs = () => {
-  let items = App.get_muted_tabs()
-
-  if (!items.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_unmute_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm({
-    message: `Unmute items? (${ids.length})`,
-    confirm_action: async () => {
-      for (let id of ids) {
-        App.unmute_tab(id)
-      }
-    },
-    force,
-  })
 }
 
 App.check_on_tabs = async (show_all = true) => {
