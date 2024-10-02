@@ -258,7 +258,7 @@ select {
 }
 
 .small_filter {
-  width: 8rem;
+  width: 9rem;
   text-align: center;
   background-color: var(--alt_color_0);
 }
