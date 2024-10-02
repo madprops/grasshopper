@@ -46,7 +46,16 @@ App.close_tabs = (args = {}) => {
     message: `Close ${args.title}? (${items.length})`,
     confirm_action: async () => {
       if (active && smart_switch) {
-        await App.swith_to_prev_tab(items, `close`)
+        let succ = await App.get_tab_succ(items, `close`)
+
+        if (succ) {
+          for (let it of items) {
+            await browser.tabs.update(it.id, {successorTabId: succ.id})
+          }
+        }
+        else {
+          await App.blank_tab()
+        }
       }
 
       let ids = items.map(x => x.id)

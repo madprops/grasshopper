@@ -29,7 +29,15 @@ App.unload_tabs = (item, multiple = true) => {
     message: `Unload tabs? (${ids.length})`,
     confirm_action: async () => {
       if (active) {
-        await App.swith_to_prev_tab(items, `unload`)
+        let succ = await App.get_tab_succ(items, `unload`)
+
+        if (succ) {
+          let method = `unload`
+          await App.focus_tab({item: succ, scroll: `nearest`, method})
+        }
+        else {
+          await App.blank_tab()
+        }
       }
 
       App.do_unload_tabs(ids)

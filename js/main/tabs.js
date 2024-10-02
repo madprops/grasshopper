@@ -446,7 +446,7 @@ App.duplicate_tabs = (item) => {
   })
 }
 
-App.swith_to_prev_tab = async (items, method) => {
+App.get_tab_succ = async (items, method) => {
   let mode = `tabs`
   let next
 
@@ -467,12 +467,7 @@ App.swith_to_prev_tab = async (items, method) => {
     next = recent.at(0)
   }
 
-  if (next) {
-    await App.focus_tab({item: next, scroll: `nearest`, method})
-  }
-  else {
-    await App.open_new_tab({url: `about:blank`})
-  }
+  return next
 }
 
 App.mute_tabs = (item) => {
@@ -1510,4 +1505,8 @@ App.import_tabs = async (value = ``) => {
       }
     }
   }, value)
+}
+
+App.blank_tab = async () => {
+  await App.open_new_tab({url: `about:blank`})
 }
