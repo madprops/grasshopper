@@ -50,11 +50,13 @@ App.close_tabs = (args = {}) => {
       }
 
       let ids = items.map(x => x.id)
-      App.close_tab_or_tabs(ids)
+      await App.close_tab_or_tabs(ids)
 
       if (args.after) {
         args.after()
       }
+
+      App.check_clear_on_close()
     },
     force: args.force,
   })

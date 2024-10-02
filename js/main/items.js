@@ -249,7 +249,6 @@ App.remove_item = (item) => {
   App.filter_item_by_id(mode, item.id)
   App.update_footer_count(mode)
   App.check_filter_special(mode)
-  App.check_clear_on_close(mode)
 
   if (mode === `tabs`) {
     App.refresh_tab_box()
