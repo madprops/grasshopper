@@ -1192,6 +1192,16 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Close Button`,
       version: 1,
     },
+    middle_click_close_button: {
+      name: `Middle Click Close`,
+      type: `menu`,
+      value: `unload_tabs`,
+      info: `Command to run when middle clicking the Close Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     close_button_padding: {
       name: `Close Button Padding`,
       type: `number`,
@@ -2506,16 +2516,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the Hover Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_close_button: {
-      name: `Middle Click Close`,
-      type: `menu`,
-      value: `unload_tabs`,
-      info: `Command to run when middle clicking the Close Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
