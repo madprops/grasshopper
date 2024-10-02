@@ -568,22 +568,26 @@ App.unload_tabs = (item, multiple = true) => {
 }
 
 App.swith_to_prev_tab = async (items, method) => {
-  let recent = App.get_recent_tabs()
-  recent = recent.filter(x => !x.unloaded)
+  let next
 
   if (method === `close`) {
     if (App.is_filtered(`tabs`)) {
-      if (App.get_visible(`tabs`).length > 1) {
-        recent = recent.filter(x => x.visible)
+      let visible = App.get_visible(`tabs`)
+
+      if (visible.length) {
+        next = visible[0]
       }
     }
   }
 
-  recent = recent.filter(x => !items.includes(x))
-  let next = recent.at(0)
+  if (!next) {
+    let recent = App.get_recent_tabs()
+    recent = recent.filter(x => !x.unloaded)
+    recent = recent.filter(x => !items.includes(x))
+    next = recent.at(0)
+  }
 
   if (next) {
-    console.log(next.title)
     await App.focus_tab({item: next, scroll: `nearest`, method})
   }
   else {
