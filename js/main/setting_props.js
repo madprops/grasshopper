@@ -2552,7 +2552,6 @@ App.build_settings = () => {
       name: `Edited Special`,
       type: `checkbox`,
       value: true,
-      separator: true,
       info: `Treat edited tabs as special`,
       version: 1,
     },
