@@ -570,11 +570,7 @@ App.unload_tabs = (item, multiple = true) => {
 App.swith_to_prev_tab = async (items, method) => {
   let recent = App.get_recent_tabs()
   recent = recent.filter(x => !x.unloaded)
-
-  for (let it of items) {
-    recent = recent.filter(x => x !== it)
-  }
-
+  recent = recent.filter(x => !items.includes(x))
   let next = recent.at(0)
 
   if (next) {
