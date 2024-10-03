@@ -1026,6 +1026,7 @@ App.clean_setting_headers = (items) => {
     items.pop()
   }
 }
+
 App.settings_commands = (include_none, include_sep) => {
   let items = []
 

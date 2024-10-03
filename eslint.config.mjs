@@ -41,6 +41,10 @@ export default [
         "enforceForArrowConditionals": false,
         "returnAssign": false
       }],
+      "padding-line-between-statements": [
+        "error",
+        { "blankLine": "always", "prev": "block-like", "next": "*" }
+      ]
     },
     languageOptions: {
       globals: {

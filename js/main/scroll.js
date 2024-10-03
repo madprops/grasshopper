@@ -175,6 +175,7 @@ App.create_scroller = (mode) => {
     let mclick = App.get_cmd_name(`page_up`)
     scroller.title = `This is the Scroller\nClick: ${click}\nRight Click: ${rclick}\nMiddle Click: ${mclick}`
   }
+
   let text = DOM.create(`div`)
   text.textContent = `Go To Top`
   let percentage = DOM.create(`div`, ``, `${mode}_scroller_percentage`)
