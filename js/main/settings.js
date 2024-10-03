@@ -335,18 +335,13 @@ App.add_settings_filter = (category) => {
   filter.type = `text`
   filter.autocomplete = `off`
   filter.spellcheck = false
-  let s = ``
-
-  if (App.get_setting(`debug_mode`)) {
-    let items = DOM.els(`.settings_item`, container)
-    s = ` (${items.length})`
-  }
+  let count = DOM.els(`.settings_item`, container).length
 
   DOM.ev(filter, `input`, () => {
     App.filter_settings()
   })
 
-  filter.placeholder = `Filter${s}`
+  filter.placeholder = `Filter (${count})`
 
   let bottom = DOM.create(`div`, `button filter_button`)
   bottom.textContent = App.filter_bottom_icon
@@ -405,16 +400,12 @@ App.show_all_settings = () => {
 }
 
 App.prepare_all_settings = () => {
-  let c = DOM.el(`#setting_all`)
+  let c = DOM.el(`#settings_all_container`)
   c.innerHTML = ``
-
-  App.add_settings_switchers(`all`)
-  App.add_settings_filter(`all`)
-  App.run_setting_setups(`all`)
 
   for (let key in App.setting_props) {
     let props = App.setting_props[key]
-    let item = DOM.create(`div`, `settings_text_item filter_item action`)
+    let item = DOM.create(`div`, `settings_text_item settings_item filter_item action`)
 
     let cat = DOM.create(`div`)
     let name = App.category_string(props.category)
@@ -440,6 +431,10 @@ App.prepare_all_settings = () => {
 
     c.append(item)
   }
+
+  App.add_settings_switchers(`all`)
+  App.add_settings_filter(`all`)
+  App.run_setting_setups(`all`)
 }
 
 App.prepare_settings_category = (category) => {
