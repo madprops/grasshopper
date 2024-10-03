@@ -264,7 +264,7 @@ select {
   background-color: var(--alt_color_0);
 }
 
-.filter_button {
+.filter_menu_button {
   max-width: 6rem;
   white-space: nowrap;
   overflow: hidden;
@@ -610,7 +610,7 @@ svg {
   margin-right: var(--item_margin);
   display: flex;
   flex-direction: row;
-  gap: 0.66rem;
+  gap: 0.6rem;
 }
 
 .item_top_left {
@@ -618,7 +618,7 @@ svg {
   flex-direction: row;
   margin-right: auto;
   justify-content: flex-start;
-  gap: 0.66rem;
+  gap: 0.6rem;
   flex-grow: 1;
   flex-shrink: 1;
 }
@@ -627,7 +627,7 @@ svg {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  gap: 0.66rem;
+  gap: 0.6rem;
   flex-grow: 0;
   flex-shrink: 0;
 }

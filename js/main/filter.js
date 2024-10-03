@@ -1442,7 +1442,7 @@ App.create_filter_menu = (mode) => {
     return {cmd: App.separator_string, skip: true}
   }
 
-  let btn = DOM.create(`div`, `button icon_button filter_button`, `${mode}_filter_modes`)
+  let btn = DOM.create(`div`, `button icon_button filter_menu_button`, `${mode}_filter_modes`)
   let click = App.get_cmd_name(`show_filter_menu`)
   let rclick = ``
 
