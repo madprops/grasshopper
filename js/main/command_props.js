@@ -878,7 +878,7 @@ App.setup_commands = () => {
     },
     {
       name: `Settings Summary`,
-      cmd: `show_all_settings`,
+      cmd: `show_settings_summary`,
       icon: settings_icon,
       action: (args) => {
         App.settings_summary()
