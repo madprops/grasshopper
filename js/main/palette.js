@@ -197,13 +197,11 @@ App.palette_filter_focused = () => {
 }
 
 App.clear_palette_filter = () => {
-  if (App.palette_filter_focused()) {
-    if (App.filter_has_value(`palette`)) {
-      App.reset_generic_filter(`palette`)
-    }
-    else {
-      App.hide_all_popups()
-    }
+  if (App.filter_has_value(`palette`)) {
+    App.reset_generic_filter(`palette`)
+  }
+  else {
+    App.hide_all_popups()
   }
 }
 
