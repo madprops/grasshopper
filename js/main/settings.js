@@ -772,7 +772,10 @@ App.show_settings = (e) => {
 }
 
 App.show_settings_category = (category, filter = ``) => {
-  if (!App.on_settings()) {
+  if (App.on_settings()) {
+    App.save_last_settings()
+  }
+  else {
     App.initial_settings = App.str(App.settings)
   }
 
