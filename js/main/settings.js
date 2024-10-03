@@ -601,7 +601,7 @@ App.add_settings_switchers = (category) => {
     return
   }
 
-  let container = DOM.create(`div`, `flex_row_center gap_2 grow`)
+  let container = DOM.create(`div`, `flex_row_center gap_15 grow`)
   top.append(container)
   let title = DOM.create(`div`, `settings_title button`)
   title.id = `settings_title_${category}`

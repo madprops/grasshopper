@@ -813,6 +813,10 @@ svg {
   gap: 0.5rem;
 }
 
+.gap_15 {
+  gap: 0.8rem;
+}
+
 .gap_2 {
   gap: 1rem;
 }
