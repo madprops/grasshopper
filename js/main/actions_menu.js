@@ -50,7 +50,9 @@ App.show_global_menu = (e) => {
     name: `global_menu`,
   })
 
-  App.show_context({items, e})
+  let mode = App.active_mode
+  let element = DOM.el(`#${mode}_actions`)
+  App.show_context({items, e, element})
 }
 
 App.show_mode_menu = (mode, e) => {
@@ -58,5 +60,6 @@ App.show_mode_menu = (mode, e) => {
     name: `${mode}_menu`,
   })
 
-  App.show_context({items, e})
+  let element = DOM.el(`#${mode}_actions`)
+  App.show_context({items, e, element})
 }
