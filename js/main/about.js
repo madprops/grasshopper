@@ -116,7 +116,7 @@ App.start_about = () => {
       clear.title = App.filter_clear_title
 
       DOM.ev(clear, `click`, () => {
-        App.clear_about_filter()
+        App.empty_about_filter()
         App.do_filter_about()
         App.focus_about_filter()
       })
@@ -154,9 +154,14 @@ App.about_filter_focused = () => {
   return document.activeElement.id === `about_filter`
 }
 
+App.empty_about_filter = () => {
+  DOM.el(`#about_filter`).value = ``
+}
+
 App.clear_about_filter = () => {
   if (App.filter_has_value(`about`)) {
-    App.set_filter({mode: `about`})
+    App.empty_about_filter()
+    App.do_filter_about()
   }
   else {
     App.hide_window()

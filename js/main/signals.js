@@ -471,7 +471,8 @@ App.signals_filter_focused = () => {
 
 App.clear_signals_filter = () => {
   if (App.filter_has_value(`signals`)) {
-    App.set_filter({mode: `signals`})
+    App.empty_signals_filter()
+    App.do_filter_signals()
   }
   else {
     App.hide_window()
