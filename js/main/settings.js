@@ -2058,7 +2058,10 @@ App.save_last_settings = () => {
 }
 
 App.show_last_settings = () => {
-  if (App.last_settings) {
+  if (!Object.keys(App.last_settings).length) {
+    App.show_settings_category(`general`)
+  }
+  else {
     let {category, scroll, filter} = App.last_settings
     App.show_settings_category(category, filter)
 
