@@ -948,6 +948,7 @@ App.setup_commands = () => {
       name: `Show Palette`,
       short_name: `Cmd...`,
       cmd: `show_palette`,
+      skip_palette: true,
       icon: command_icon,
       action: (args) => {
         App.show_palette()
