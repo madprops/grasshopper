@@ -421,7 +421,7 @@ App.prepare_all_settings = () => {
     cat.textContent = `${name} | ${props.type}`
 
     let text = DOM.create(`div`, `filter_text`)
-    text.textContent = `${name}\n${props.name}`
+    text.textContent = props.name
 
     item.append(text)
     item.append(cat)
