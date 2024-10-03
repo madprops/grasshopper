@@ -418,10 +418,18 @@ App.prepare_all_settings = () => {
 
     let cat = DOM.create(`div`)
     let name = App.category_string(props.category)
-    cat.textContent = `${name} | ${props.type}`
+    let type = props.type
+
+    if (type === `text_smaller`) {
+      type = `text`
+    }
+
+    type = App.capitalize_words(type)
+    cat.textContent = `${name} | ${type}`
 
     let text = DOM.create(`div`, `filter_text`)
-    text.textContent = props.name
+    let icon = App.settings_icons[props.category]
+    text.textContent = `${icon} ${props.name}`
 
     item.append(text)
     item.append(cat)
