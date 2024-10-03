@@ -533,10 +533,8 @@ App.start_settings = () => {
   }
 
   let key = `all`
-  let common_all = {...common}
-  common_all.persistent = true
 
-  App.create_window({...common_all, id: `settings_${key}`,
+  App.create_window({...common, id: `settings_${key}`,
     element: App.settings_build_category(key),
     setup: () => {
       App.prepare_all_settings()
