@@ -159,6 +159,7 @@ App.prompt_close_delay = 250
 App.signal_min_delay = 3
 
 App.settings_icons = {
+  all: `🔍`,
   general: `⚡`,
   theme: `🎨`,
   colors: `🇧🇮`,
