@@ -58,13 +58,6 @@ App.close_tabs = (args = {}) => {
             await App.blank_tab()
           }
         }
-        else {
-          let item = App.get_active_tab_item()
-
-          if (item) {
-            App.tabs_action({item, from: `close`})
-          }
-        }
       }
 
       let ids = items.map(x => x.id)
