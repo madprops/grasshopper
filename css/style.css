@@ -1850,3 +1850,11 @@ a:hover
 .signal_item:only-child .signal_name {
   outline-color: transparent;
 }
+
+.settings_text_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}

@@ -414,14 +414,23 @@ App.prepare_all_settings = () => {
 
   for (let key in App.setting_props) {
     let props = App.setting_props[key]
-    let el = DOM.create(`div`, `settings_text_item filter_item filter_text action`)
-    let name = App.category_string(props.category)
-    el.textContent = `${props.name} (${props.type}) (${name})`
-    c.append(el)
+    let item = DOM.create(`div`, `settings_text_item filter_item action`)
 
-    DOM.ev(el, `click`, () => {
+    let cat = DOM.create(`div`)
+    let name = App.category_string(props.category)
+    cat.textContent = `${name} | ${props.type}`
+
+    let text = DOM.create(`div`, `filter_text`)
+    text.textContent = `${name}\n${props.name}`
+
+    item.append(text)
+    item.append(cat)
+
+    DOM.ev(item, `click`, () => {
       App.show_settings_category(props.category, props.name)
     })
+
+    c.append(item)
   }
 }
 
