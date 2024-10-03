@@ -1096,6 +1096,14 @@ App.settings_menu_items = () => {
   })
 
   items.push({
+    text: `Last Settings`,
+    info: `Show the last settings`,
+    action: () => {
+      App.show_last_settings()
+    },
+  })
+
+  items.push({
     separator: true,
   })
 
