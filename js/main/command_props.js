@@ -857,6 +857,16 @@ App.setup_commands = () => {
       info: `Import settings`,
     },
     {
+      name: `Last Settings`,
+      short_name: `Settings`,
+      cmd: `show_last_settings`,
+      icon: settings_icon,
+      action: (args) => {
+        App.show_last_settings(args.e)
+      },
+      info: `Go back to the last settings position you were at`,
+    },
+    {
       name: `Settings Summary`,
       cmd: `show_all_settings`,
       icon: settings_icon,

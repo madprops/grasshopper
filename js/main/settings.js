@@ -516,9 +516,12 @@ App.start_settings = () => {
     persistent: false,
     colored_top: true,
     after_show: () => {
-      DOM.el(`#settings_${App.settings_category}_filter`).focus()
+      let filter = App.get_settings_filter(App.settings_category)
+      filter.focus()
     },
     on_hide: async () => {
+      App.save_last_settings()
+
       if (App.settings_changed()) {
         App.refresh_settings()
         App.clear_show()
@@ -764,7 +767,7 @@ App.show_settings_category = (category, filter = ``) => {
   App.show_window(`settings_${category}`)
 
   if (filter) {
-    let el = DOM.el(`#settings_${category}_filter`)
+    let el = App.get_settings_filter(category)
     el.value = filter
     App.do_filter_settings()
   }
@@ -2034,5 +2037,36 @@ App.refresh_setting_widgets = (keys) => {
 
   for (let key of keys) {
     update(key)
+  }
+}
+
+App.get_settings_filter = (category) => {
+  return DOM.el(`#settings_${category}_filter`)
+}
+
+App.save_last_settings = () => {
+  let category = App.settings_category
+  let el = App.settings_content()
+  let scroll = el.scrollTop
+  let filter = App.get_settings_filter(category).value
+
+  App.last_settings = {
+    category,
+    scroll,
+    filter,
+  }
+}
+
+App.show_last_settings = () => {
+  if (App.last_settings) {
+    let {category, scroll, filter} = App.last_settings
+    App.show_settings_category(category, filter)
+
+    if (scroll > 0) {
+      setTimeout(() => {
+        let el = App.settings_content()
+        el.scrollTop = scroll
+      }, App.last_settings_scroll_delay)
+    }
   }
 }

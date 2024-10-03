@@ -112,6 +112,7 @@ App.bookmark_items_cache = []
 App.bookmark_folders_cache = []
 App.bookmarks_received = false
 App.tab_tree = {}
+App.last_settings = {}
 
 App.settings_ready = false
 App.media_image_ready = false
@@ -157,6 +158,7 @@ App.check_refresh_settings_delay = 100
 App.popup_commands_delay = 250
 App.prompt_close_delay = 250
 App.signal_min_delay = 3
+App.last_settings_scroll_delay = 500
 
 App.settings_icons = {
   all: `🔍`,
