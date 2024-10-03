@@ -398,6 +398,33 @@ App.settings_filter_focused = () => {
   return DOM.class(document.activeElement, [`settings_filter`])
 }
 
+App.show_all_settings = () => {
+  App.start_settings()
+  App.settings_category = `all`
+  App.show_window(`settings_all`)
+}
+
+App.prepare_all_settings = () => {
+  let c = DOM.el(`#setting_all`)
+  c.innerHTML = ``
+
+  App.add_settings_switchers(`all`)
+  App.add_settings_filter(`all`)
+  App.run_setting_setups(`all`)
+
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
+    let el = DOM.create(`div`, `settings_text_item filter_item filter_text action`)
+    let name = App.category_string(props.category)
+    el.textContent = `${props.name} (${props.type}) (${name})`
+    c.append(el)
+
+    DOM.ev(el, `click`, () => {
+      App.show_settings_category(props.category, props.name)
+    })
+  }
+}
+
 App.prepare_settings_category = (category) => {
   App.fill_settings(category)
   App.settings_buttons(category)
@@ -501,6 +528,20 @@ App.start_settings = () => {
       }
     },
   }
+
+  let key = `all`
+  let common_all = {...common}
+  common_all.persistent = true
+
+  App.create_window({...common_all, id: `settings_${key}`,
+    element: App.settings_build_category(key),
+    setup: () => {
+      App.prepare_all_settings()
+      let container = DOM.el(`#settings_${key}_container`)
+      container.classList.add(`filter_container`)
+      App.settings_gestures(container)
+    },
+  })
 
   for (let key in App.setting_catprops) {
     let catprops = App.setting_catprops[key]
@@ -712,7 +753,7 @@ App.show_settings = (e) => {
   }
 }
 
-App.show_settings_category = (category) => {
+App.show_settings_category = (category, filter = ``) => {
   if (!App.on_settings()) {
     App.initial_settings = App.str(App.settings)
   }
@@ -721,6 +762,12 @@ App.show_settings_category = (category) => {
   App.get_settings_with_list()
   App.settings_category = category
   App.show_window(`settings_${category}`)
+
+  if (filter) {
+    let el = DOM.el(`#settings_${category}_filter`)
+    el.value = filter
+    App.do_filter_settings()
+  }
 }
 
 App.show_prev_settings = () => {
@@ -1037,6 +1084,18 @@ App.get_signal_cmds = (include_none, include_sep) => {
 App.settings_menu_items = () => {
   let items = []
 
+  items.push({
+    text: `All Settings`,
+    info: `Show all the settings`,
+    action: () => {
+      App.show_all_settings()
+    },
+  })
+
+  items.push({
+    separator: true,
+  })
+
   for (let c of App.settings_categories) {
     let icon = App.settings_icons[c]
     let name = App.category_string(c)
@@ -1131,9 +1190,9 @@ App.settings_actions = (category) => {
 
   items.push({
     icon: App.settings_icons.general,
-    text: `All Settings`,
+    text: `Summary`,
     action: () => {
-      App.show_all_settings()
+      App.settings_summary()
     },
   })
 
@@ -1141,7 +1200,7 @@ App.settings_actions = (category) => {
   App.show_context({element: btn, items, expand: true, margin: btn.clientHeight})
 }
 
-App.show_all_settings = () => {
+App.settings_summary = () => {
   let lines = []
   let category = ``
 
@@ -1674,7 +1733,14 @@ App.settings_build_category = (key) => {
   let cat = App.setting_catprops[key]
   let c = DOM.create(`div`, `settings_container`, `settings_${key}_container`)
   let info = DOM.create(`div`, `settings_info`)
-  info.textContent = App.periods(cat.info)
+
+  if (key === `all`) {
+    info.textContent = App.periods(`These are all the settings. Click one to go to its category`)
+  }
+  else if (cat) {
+    info.textContent = App.periods(cat.info)
+  }
+
   c.append(info)
   let sub = DOM.create(`div`, `settings_subcontainer`, `setting_${key}`)
   c.append(sub)

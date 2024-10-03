@@ -857,13 +857,13 @@ App.setup_commands = () => {
       info: `Import settings`,
     },
     {
-      name: `All Settings`,
+      name: `Settings Summary`,
       cmd: `show_all_settings`,
       icon: settings_icon,
       action: (args) => {
-        App.show_all_settings()
+        App.settings_summary()
       },
-      info: `Show all settings`,
+      info: `Show the settings summary`,
     },
     {
       name: `Reset Settings`,
