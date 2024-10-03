@@ -123,10 +123,12 @@ App.fill_signals = () => {
 
     if (signal.send_tabs) {
       title += ` (Tabs)`
+      name.textContent += ` (P)`
     }
 
     if (signal.send_settings) {
       title += ` (Settings)`
+      name.textContent += ` (P)`
     }
 
     if (signal.interval) {
