@@ -516,7 +516,7 @@ App.build_settings = () => {
       version: 1,
     },
     direct_bookmarks_folder: {
-      name: `Direct BM Folder`,
+      name: `Direct Bookmarks`,
       type: `checkbox`,
       value: false,
       info: `Create new bookmark folders at the default root instead of asking for location`,
