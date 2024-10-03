@@ -24,24 +24,8 @@ App.start_palette = () => {
   }, App.filter_delay_2)
 
   DOM.ev(DOM.el(`#palette_filter_clear`), `click`, () => {
-    App.reset_palette_filter()
+    App.reset_generic_filter(`palette`)
   })
-}
-
-App.reset_palette_filter = () => {
-  App.empty_palette_filter()
-  App.focus_palette_filter()
-  App.do_filter_palette()
-}
-
-App.empty_palette_filter = () => {
-  let filter = DOM.el(`#palette_filter`)
-  filter.value = ``
-}
-
-App.focus_palette_filter = () => {
-  let filter = DOM.el(`#palette_filter`)
-  filter.focus()
 }
 
 App.show_palette = (prefilter = ``) => {
@@ -215,7 +199,7 @@ App.palette_filter_focused = () => {
 App.clear_palette_filter = () => {
   if (App.palette_filter_focused()) {
     if (App.filter_has_value(`palette`)) {
-      App.reset_palette_filter()
+      App.reset_generic_filter(`palette`)
     }
     else {
       App.hide_all_popups()

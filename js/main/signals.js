@@ -49,9 +49,7 @@ App.start_signals = () => {
   clear.title = App.filter_clear_title
 
   DOM.ev(clear, `click`, () => {
-    App.empty_signals_filter()
-    App.do_filter_signals()
-    App.focus_signals_filter()
+    App.reset_generic_filter(`signals`)
   })
 
   let container = DOM.el(`#signals_container`)
@@ -457,10 +455,6 @@ App.do_filter_signals = () => {
   App.select_first_signal()
 }
 
-App.empty_signals_filter = () => {
-  DOM.el(`#signals_filter`).value = ``
-}
-
 App.focus_signals_filter = () => {
   DOM.el(`#signals_filter`).focus()
 }
@@ -469,10 +463,13 @@ App.signals_filter_focused = () => {
   return document.activeElement.id === `signals_filter`
 }
 
+App.empty_signals_filter = () => {
+  DOM.el(`#signals_filter`).value = ``
+}
+
 App.clear_signals_filter = () => {
   if (App.filter_has_value(`signals`)) {
-    App.empty_signals_filter()
-    App.do_filter_signals()
+    App.reset_generic_filter(`signals`)
   }
   else {
     App.hide_window()

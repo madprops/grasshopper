@@ -1924,3 +1924,10 @@ App.filter_double_click = (mode, e) => {
 
   App.run_command({cmd, from: `filter`, e})
 }
+
+App.reset_generic_filter = (what) => {
+  let filter = DOM.el(`#${what}_filter`)
+  filter.value = ``
+  filter.focus()
+  App[`do_filter_${what}`]()
+}
