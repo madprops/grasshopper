@@ -72,6 +72,7 @@ App.create_tab_box = () => {
 
   App.setup_container_mouse(`tabs`, tab_box)
   App.tab_box_ready = false
+  App.tab_box_size = undefined
   return tab_box
 }
 
