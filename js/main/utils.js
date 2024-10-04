@@ -580,7 +580,8 @@ App.remove_quotes = (str) => {
 }
 
 App.remove_separators = (cmds) => {
-  return cmds.filter(x => x.cmd !== App.separator_string)
+  cmds = cmds.filter(x => x.cmd !== App.separator_string)
+  return cmds.filter(x => x.text !== App.separator_string)
 }
 
 App.at_left = (el) => {

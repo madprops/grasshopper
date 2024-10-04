@@ -255,6 +255,10 @@ App.tab_box_menu = (e) => {
   let c_size = App.get_setting(`tab_box_size`)
 
   for (let [i, size] of App.remove_separators(App.sizes).entries()) {
+    if (size.value === `none`) {
+      continue
+    }
+
     if (c_size === size.value) {
       continue
     }
@@ -310,6 +314,7 @@ App.tab_box_menu = (e) => {
     },
   })
 
+  console.log(items)
   App.show_context({items, e})
 }
 

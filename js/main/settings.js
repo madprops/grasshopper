@@ -2096,3 +2096,17 @@ App.get_setting_info = (info, key) => {
   info = App.periods(info)
   return `${info}\nKey: ${key}`
 }
+
+App.get_setting_tab_box_modes = () => {
+  let items = []
+
+  for (let mode of App.tab_box_modes) {
+    items.push({
+      text: App.capitalize_words(mode),
+      value: mode,
+      icon: App.tab_box_icon(mode),
+    })
+  }
+
+  return items
+}
