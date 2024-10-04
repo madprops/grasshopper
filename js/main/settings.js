@@ -422,6 +422,9 @@ App.prepare_all_settings = () => {
     let icon = App.settings_icons[props.category]
     text.textContent = `${icon} ${props.name}`
 
+    let info = `${props.info}\nKey: ${key}`
+    item.title = info
+
     item.append(text)
     item.append(cat)
 
@@ -1359,12 +1362,8 @@ App.fill_settings = (category) => {
 
       widget.id = `settings_${key}`
       el.append(widget)
-      el.title = App.tooltip(props.info)
-
-      if (App.get_setting(`debug_mode`)) {
-        el.title += ` (${key})`
-      }
-
+      let info = `${props.info}\nKey: ${key}`
+      el.title = App.tooltip(info)
       c.append(el)
 
       if (props.separator) {
