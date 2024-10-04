@@ -29,6 +29,7 @@ App.insert_header = async (item, full = true) => {
     }
 
     App.edit_title(header, false)
+    App.refresh_tab_box()
   }
 }
 
