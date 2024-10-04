@@ -3538,15 +3538,6 @@ App.setup_commands = () => {
       info: `Close the browser sidebar`,
     },
     {
-      name: `!madprops`,
-      cmd: `user_madprops_settings`,
-      action: (args) => {
-        App.user_settings(`madprops`)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for madprops`,
-    },
-    {
       name: `Locust Swarm`,
       short_name: `Swarm`,
       cmd: `locust_swarm`,
@@ -3573,6 +3564,15 @@ App.setup_commands = () => {
         App.restart_extension()
       },
       info: `Restart the extension (For debugging)`,
+    },
+    {
+      name: `!madprops`,
+      cmd: `user_madprops_settings`,
+      action: (args) => {
+        App.user_settings(`madprops`)
+      },
+      skip_settings: true,
+      info: `Use the preferred settings for madprops`,
     },
   ]
 
