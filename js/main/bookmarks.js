@@ -667,6 +667,6 @@ App.search_domain_bookmarks = (item) => {
     mode: `bookmarks`,
     reuse_filter: false,
     force: true,
-    filter: item.hostname
+    filter: item.hostname,
   })
 }

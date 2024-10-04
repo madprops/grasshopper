@@ -90,6 +90,6 @@ App.search_domain_history = (item) => {
     mode: `history`,
     reuse_filter: false,
     force: true,
-    filter: item.hostname
+    filter: item.hostname,
   })
 }
