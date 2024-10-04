@@ -589,5 +589,7 @@ App.do_tab_box_shrink = () => {
 }
 
 App.close_tab_box_tabs = () => {
-  App.close_tabs({selection: App.tab_box_items})
+  if (App.tab_box_items.length) {
+    App.close_tabs({selection: App.tab_box_items})
+  }
 }
