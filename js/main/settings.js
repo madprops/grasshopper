@@ -422,7 +422,7 @@ App.prepare_all_settings = () => {
     let icon = App.settings_icons[props.category]
     text.textContent = `${icon} ${props.name}`
 
-    let info = `${props.info}\nKey: ${key}`
+    let info = App.get_setting_info(key)
     item.title = info
 
     item.append(text)
@@ -1362,7 +1362,7 @@ App.fill_settings = (category) => {
 
       widget.id = `settings_${key}`
       el.append(widget)
-      let info = `${props.info}\nKey: ${key}`
+      let info = App.get_setting_info(key)
       el.title = App.tooltip(info)
       c.append(el)
 
@@ -2093,4 +2093,9 @@ App.show_last_settings = () => {
       }, App.last_settings_scroll_delay)
     }
   }
+}
+
+App.get_setting_info = (key) => {
+  let props = App.setting_props[key]
+  return `${props.info}\nKey: ${key}`
 }
