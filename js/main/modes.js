@@ -179,6 +179,14 @@ App.do_show_mode = async (args = {}) => {
     App.check_pinline()
     App.init_tab_box()
   }
+
+  if (args.filter) {
+    App.set_filter({
+      mode: args.mode,
+      text: args.filter,
+      filter: true,
+    })
+  }
 }
 
 App.get_mode_index = (mode) => {
@@ -193,7 +201,7 @@ App.get_mode_name = (mode, shorten = false) => {
   if ((mode === `bookmarks`) && shorten) {
     return App.bookmarks_name()
   }
-  
+
   return App.capitalize(mode)
 }
 
@@ -201,7 +209,7 @@ App.bookmarks_name = () => {
   if (App.get_setting(`short_bookmarks`)) {
     return `Bmarks`
   }
-  
+
   return `Bookmarks`
 }
 

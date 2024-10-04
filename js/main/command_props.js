@@ -3184,6 +3184,28 @@ App.setup_commands = () => {
       info: `Show the Custom Filters`,
     },
     {
+      name: `Domain History`,
+      cmd: `search_domain_history`,
+      modes: [`items`],
+      item: true,
+      icon: filter_icon,
+      action: (args) => {
+        App.search_domain_history(args.item)
+      },
+      info: `Search this domain in history mode`,
+    },
+    {
+      name: `Domain Bookmarks`,
+      cmd: `search_domain_bookmarks`,
+      modes: [`items`],
+      item: true,
+      icon: filter_icon,
+      action: (args) => {
+        App.search_domain_bookmarks(args.item)
+      },
+      info: `Search this domain in bookmarks mode`,
+    },
+    {
       name: `Domain Rule`,
       short_name: `Rule`,
       cmd: `edit_domain_rule`,

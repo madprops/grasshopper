@@ -84,3 +84,12 @@ App.history_action = (args = {}) => {
 
   App.focus_or_open_item(args.item)
 }
+
+App.search_domain_history = (item) => {
+  App.do_show_mode({
+    mode: `history`,
+    reuse_filter: false,
+    force: true,
+    filter: item.hostname
+  })
+}

@@ -661,3 +661,12 @@ App.get_bookmark_folder_title = (id) => {
     }
   }
 }
+
+App.search_domain_bookmarks = (item) => {
+  App.do_show_mode({
+    mode: `bookmarks`,
+    reuse_filter: false,
+    force: true,
+    filter: item.hostname
+  })
+}
