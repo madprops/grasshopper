@@ -103,6 +103,7 @@ App.check_tab_box = () => {
 }
 
 App.update_tab_box = (what) => {
+  console.log(99)
   App.update_tab_box_debouncer.call(what)
 }
 
@@ -633,12 +634,22 @@ App.select_tab_box_tabs = () => {
 }
 
 App.refresh_tab_box_element = (o_item) => {
-  for (let item of App.tab_box_items) {
-    if (item.id === o_item.id) {
-      App.refresh_item_element(item)
-      item.active = o_item.active
-      App.tab_box_update_active()
-      break
+  let mode = App.get_setting(`tab_box_mode`)
+
+  if ([`recent`].includes(mode)) {
+    return
+  }
+  else if ([`nodes`].includes(mode)) {
+    App.refresh_tab_box()
+  }
+  else {
+    for (let item of App.tab_box_items) {
+      if (item.id === o_item.id) {
+        App.refresh_item_element(item)
+        item.active = o_item.active
+        App.tab_box_update_active()
+        break
+      }
     }
   }
 }
