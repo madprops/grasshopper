@@ -297,7 +297,7 @@ App.tab_box_menu = (e) => {
       text: `Select`,
       action: () => {
         App.select_tab_box_tabs()
-      }
+      },
     })
 
     items.push({
@@ -305,7 +305,7 @@ App.tab_box_menu = (e) => {
       text: `Close`,
       action: () => {
         App.close_tab_box_tabs()
-      }
+      },
     })
 
     App.sep(items)
