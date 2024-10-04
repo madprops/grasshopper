@@ -254,7 +254,7 @@ App.tab_box_menu = (e) => {
   let sizes = []
   let c_size = App.get_setting(`tab_box_size`)
 
-  for (let [i, size] of App.remove_separators(App.sizes).entries()) {
+  for (let size of App.sizes_2) {
     if (size.value === `none`) {
       continue
     }
@@ -401,7 +401,7 @@ App.check_tab_box_grow = () => {
     return false
   }
 
-  let sizes = App.remove_separators(App.sizes)
+  let sizes = App.sizes_2
   let current = App.get_setting(`tab_box_size`)
   let index_1 = sizes.findIndex(x => x.value === auto)
   let index_2 = sizes.findIndex(x => x.value === current)
@@ -491,7 +491,7 @@ App.set_tab_box_position = (what) => {
 App.tab_box_check_size = () => {
   let tab_box = DOM.el(`#tab_box`)
 
-  for (let size of App.remove_separators(App.sizes)) {
+  for (let size of App.sizes_2) {
     tab_box.classList.remove(`size_${size.value}`)
   }
 

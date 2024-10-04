@@ -1429,7 +1429,7 @@ App.build_settings = () => {
       info: `The size of the Tab Box`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.sizes)
+        App.settings_make_menu(key, App.sizes_2)
       },
     },
     tab_box_mode: {
