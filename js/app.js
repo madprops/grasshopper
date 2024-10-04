@@ -113,6 +113,7 @@ App.bookmark_folders_cache = []
 App.bookmarks_received = false
 App.tab_tree = {}
 App.last_settings = {}
+App.tab_box_items = []
 
 App.settings_ready = false
 App.media_image_ready = false
@@ -130,9 +131,10 @@ App.bookmark_rules_ready = false
 App.signals_addlist_ready = false
 
 App.alert_autohide_delay = 1500
-App.tab_box_shrink_delay = 500
 App.favorites_bar_show_delay = 100
 App.tab_box_grow_delay = 100
+App.tab_box_ungrow_delay = 500
+App.tab_box_shrink_delay = 100
 App.favorites_bar_hide_delay = 500
 App.settings_save_delay = 100
 App.filter_delay_2 = 100

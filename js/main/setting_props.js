@@ -1479,6 +1479,22 @@ App.build_settings = () => {
         ])
       },
     },
+    tab_box_auto_shrink: {
+      name: `Tab Box Auto Shrink`,
+      type: `menu`,
+      value: `none`,
+      info: `Shrink the Tab Box automatically when it has no items`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: App.separator_string},
+          {text: `Tiny`, value: `tiny`},
+          {text: `Small`, value: `small`},
+          {text: `Normal`, value: `normal`},
+        ])
+      },
+    },
     tab_box_color_mode: {
       name: `Tab Box Color Mode`,
       type: `menu`,

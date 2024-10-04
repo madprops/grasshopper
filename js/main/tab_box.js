@@ -11,6 +11,10 @@ App.setup_tab_box = () => {
     App.do_tab_box_grow()
   }, App.tab_box_grow_delay)
 
+  App.tab_box_ungrow_debouncer = App.create_debouncer(() => {
+    App.do_tab_box_ungrow()
+  }, App.tab_box_ungrow_delay)
+
   App.tab_box_shrink_debouncer = App.create_debouncer(() => {
     App.do_tab_box_shrink()
   }, App.tab_box_shrink_delay)
@@ -63,7 +67,7 @@ App.create_tab_box = () => {
 
   DOM.ev(tab_box, `mouseleave`, () => {
     App.tab_box_clear_grow()
-    App.tab_box_shrink()
+    App.tab_box_ungrow()
   })
 
   App.setup_container_mouse(`tabs`, tab_box)
@@ -91,6 +95,7 @@ App.do_update_tab_box = (what) => {
 
   App.check_tab_box()
   App[`update_tab_box_${what}`]()
+  App.tab_box_shrink_debouncer.call()
 }
 
 App.tab_box_show = (mode, o_items) => {
@@ -223,6 +228,8 @@ App.fill_tab_box = (items) => {
   for (let item of items) {
     c.append(item.element)
   }
+
+  App.tab_box_items = items
 }
 
 App.change_tab_box_mode = (what) => {
@@ -393,48 +400,33 @@ App.do_check_tab_box_playing = () => {
   }
 }
 
-App.check_tab_box_grow = () => {
-  let auto = App.get_setting(`tab_box_auto_grow`)
-
-  if (auto === `none`) {
-    return false
-  }
-
-  let sizes = App.sizes_2
-  let current = App.get_setting(`tab_box_size`)
-  let index_1 = sizes.findIndex(x => x.value === auto)
-  let index_2 = sizes.findIndex(x => x.value === current)
-
-  if (index_1 <= index_2) {
-    return false
-  }
-
-  return true
-}
-
 App.tab_box_grow = () => {
   App.tab_box_grow_debouncer.call()
 }
 
 App.do_tab_box_grow = () => {
   App.tab_box_grow_debouncer.cancel()
+  let auto = App.get_setting(`tab_box_auto_grow`)
 
-  if (!App.check_tab_box_grow()) {
+  if (auto === `none`) {
     return
   }
 
-  App.tab_box_size = App.get_setting(`tab_box_auto_grow`)
+  App.tab_box_size = auto
   App.tab_box_check_size()
 }
 
-App.tab_box_shrink = () => {
-  App.tab_box_shrink_debouncer.call()
+App.tab_box_ungrow = () => {
+  App.tab_box_ungrow_debouncer.call()
 }
 
-App.do_tab_box_shrink = () => {
-  App.tab_box_shrink_debouncer.cancel()
+App.do_tab_box_ungrow = () => {
+  App.tab_box_ungrow_debouncer.cancel()
 
-  if (App.tab_box_size) {
+  if (App.get_setting(`tab_box_auto_shrink`) !== `none`) {
+    App.do_tab_box_shrink()
+  }
+  else if (App.tab_box_size) {
     App.tab_box_size = undefined
     App.tab_box_check_size()
   }
@@ -442,7 +434,7 @@ App.do_tab_box_shrink = () => {
 
 App.tab_box_clear_grow = () => {
   App.tab_box_grow_debouncer.cancel()
-  App.tab_box_shrink_debouncer.cancel()
+  App.tab_box_ungrow_debouncer.cancel()
 }
 
 App.check_tab_box_footer = () => {
@@ -565,4 +557,22 @@ App.update_tab_box_count = (count) => {
     let el = DOM.el(`#tab_box_title_count`)
     el.textContent = `(${count})`
   }
+}
+
+App.do_tab_box_shrink = () => {
+  App.tab_box_shrink_debouncer.cancel()
+  let auto = App.get_setting(`tab_box_auto_shrink`)
+
+  if (auto === `none`) {
+    return
+  }
+
+  if (App.tab_box_items.length) {
+    App.tab_box_size = App.get_setting(`tab_box_size`)
+  }
+  else {
+    App.tab_box_size = App.get_setting(`tab_box_auto_shrink`)
+  }
+
+  App.tab_box_check_size()
 }
