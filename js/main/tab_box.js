@@ -25,7 +25,14 @@ App.create_tab_box = () => {
   let title = DOM.create(`div`, `box_title glowbox`, `tab_box_title`)
 
   if (App.get_setting(`show_tooltips`)) {
-    title.title = `This is the Tab Box\nClick to select a mode\nShift Click to select\nMiddle Click to close tabs`
+    let parts = [
+      `This is the Tab Box`,
+      `Click to select a mode`,
+      `Shift Click to select tabs`,
+      `Middle Click to close tabs`,
+    ]
+
+    title.title = parts.join(`\n`)
   }
 
   let title_main = DOM.create(`div`, `box_title_main`, `tab_box_title_main`)
