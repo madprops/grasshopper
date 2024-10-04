@@ -323,6 +323,13 @@ App.build_settings = () => {
       info: `Blur the sidebar automatically then the mouse moves out, for privacy`,
       version: 1,
     },
+    sound_effects: {
+      name: `Sound Effects`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable some sound effects on certain actions`,
+      version: 1,
+    },
   }
 
   add_props()

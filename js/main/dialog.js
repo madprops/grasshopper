@@ -115,4 +115,8 @@ App.show_confirm = (args = {}) => {
     on_dismiss,
     on_any_action,
   })
+
+  if (App.get_setting(`sound_effects`)) {
+    App.play_sound(`confirm`)
+  }
 }

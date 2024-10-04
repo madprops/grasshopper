@@ -195,3 +195,13 @@ App.generate_password = () => {
   let password = App.random_string(App.password_length)
   App.show_textarea(`Random Password`, password, true)
 }
+
+App.play_sound = (name) => {
+  if (!App[`audio_player_${name}`]) {
+    console.log(111)
+    App[`audio_player_${name}`] = new Audio(`audio/${name}.mp3`)
+  }
+
+  App[`audio_player_${name}`].currentTime = 0
+  App[`audio_player_${name}`].play()
+}
