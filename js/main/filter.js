@@ -401,6 +401,7 @@ App.do_filter = async (args = {}) => {
   App.update_footer_count(args.mode)
   App.do_check_pinline()
   App.do_check_scroller(args.mode)
+  App.refresh_tab_box()
 
   if (args.select) {
     App.scroll_to_selected(args.mode)
