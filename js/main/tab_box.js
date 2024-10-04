@@ -635,10 +635,7 @@ App.select_tab_box_tabs = () => {
 App.refresh_tab_box_element = (o_item) => {
   let mode = App.get_setting(`tab_box_mode`)
 
-  if ([`recent`].includes(mode)) {
-    return
-  }
-  else if ([`nodes`].includes(mode)) {
+  if ([`nodes`].includes(mode)) {
     App.refresh_tab_box()
   }
   else {
