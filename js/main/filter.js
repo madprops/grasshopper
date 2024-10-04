@@ -1425,10 +1425,23 @@ App.check_filtered = (mode) => {
     container.classList.remove(`filtered`)
   }
 
-  if (App.get_setting(`filter_effect`)) {
-    let filter = App.get_filter_el(mode)
+  let filter_effect = App.get_setting(`filter_effect`)
 
-    if (App.filter_has_value(mode)) {
+  if (filter_effect !== `none`) {
+    let filter = App.get_filter_el(mode)
+    let apply = false
+
+    if (filter_effect === `text`) {
+      apply = App.filter_has_value(mode)
+    }
+    else if (filter_effect === `mode`) {
+      apply = App.filter_mode(mode) !== `all`
+    }
+    else if (filter_effect === `both`) {
+      apply = filtered
+    }
+
+    if (apply) {
       filter.classList.add(`invert`)
     }
     else {

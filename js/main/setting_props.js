@@ -3291,6 +3291,22 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    filter_effect: {
+      name: `Filter Effect`,
+      type: `menu`,
+      value: `text`,
+      info: `Make it clear there is a filter through contrast`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: App.separator_string},
+          {text: `Text`, value: `text`},
+          {text: `Mode`, value: `mode`},
+          {text: `Both`, value: `both`},
+        ])
+      },
+    },
     sticky_filter: {
       name: `Sticky Filter`,
       type: `menu`,
@@ -3445,13 +3461,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Re-use the filter when moving across modes`,
-      version: 1,
-    },
-    filter_effect: {
-      name: `Filter Effect`,
-      type: `checkbox`,
-      value: true,
-      info: `Make it clear that the filter has text through contrast`,
       version: 1,
     },
     special_quotes: {
