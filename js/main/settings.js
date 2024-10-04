@@ -421,7 +421,7 @@ App.prepare_all_settings = () => {
     let text = DOM.create(`div`, `filter_text`)
     let icon = App.settings_icons[props.category]
     text.textContent = `${icon} ${props.name}`
-    item.title = App.get_setting_info(key)
+    item.title = App.get_setting_info(props.info, key)
 
     item.append(text)
     item.append(cat)
@@ -1360,7 +1360,7 @@ App.fill_settings = (category) => {
 
       widget.id = `settings_${key}`
       el.append(widget)
-      el.title = App.get_setting_info(key)
+      el.title = App.get_setting_info(props.info, key)
       c.append(el)
 
       if (props.separator) {
@@ -2092,8 +2092,7 @@ App.show_last_settings = () => {
   }
 }
 
-App.get_setting_info = (key) => {
-  let props = App.setting_props[key]
-  let info = App.periods(props.info)
+App.get_setting_info = (info, key) => {
+  info = App.periods(info)
   return `${info}\nKey: ${key}`
 }
