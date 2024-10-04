@@ -932,7 +932,16 @@ App.do_filter_2 = (mode) => {
       text = text.replace(/:/g, ``)
     }
 
-    if (text.includes(value)) {
+    let show
+
+    if (text.startsWith(`!`)) {
+      show = text.substring(1) === value
+    }
+    else {
+      show = text.includes(value)
+    }
+
+    if (show) {
       DOM.show(item)
     }
     else {

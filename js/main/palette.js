@@ -38,7 +38,13 @@ App.show_palette = (prefilter = ``) => {
   let too_many = active.length > App.palette_threshold
 
   for (let el of els) {
-    DOM.show(el)
+    if (el.dataset.name.startsWith(`!`)) {
+      DOM.hide(el)
+    }
+    else {
+      DOM.show(el)
+    }
+
     let command = App.get_command(el.dataset.command)
 
     if (too_many || App.check_command(command, {from: `palette`})) {
@@ -173,6 +179,7 @@ App.fill_palette = () => {
 
     let el = DOM.create(`div`, `palette_item action filter_item filter_text`)
     el.dataset.command = cmd.cmd
+    el.dataset.name = cmd.name
 
     if (cmd.icon) {
       let icon = DOM.create(`div`, `palette_icon`)
