@@ -103,7 +103,6 @@ App.check_tab_box = () => {
 }
 
 App.update_tab_box = (what) => {
-  console.log(99)
   App.update_tab_box_debouncer.call(what)
 }
 
