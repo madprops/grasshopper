@@ -96,7 +96,7 @@ App.do_update_tab_box = (what) => {
 
   App.check_tab_box()
   App[`update_tab_box_${what}`]()
-  App.tab_box_shrink_debouncer.call()
+  App.tab_box_shrink()
 }
 
 App.tab_box_show = (mode, o_items) => {
@@ -558,6 +558,10 @@ App.update_tab_box_count = (count) => {
     let el = DOM.el(`#tab_box_title_count`)
     el.textContent = `(${count})`
   }
+}
+
+App.tab_box_shrink = () => {
+  App.tab_box_shrink_debouncer.call()
 }
 
 App.do_tab_box_shrink = () => {
