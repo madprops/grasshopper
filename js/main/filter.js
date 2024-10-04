@@ -1428,7 +1428,7 @@ App.check_filtered = (mode) => {
   if (App.get_setting(`filter_effect`)) {
     let filter = App.get_filter_el(mode)
 
-    if (filtered) {
+    if (App.filter_has_value(mode)) {
       filter.classList.add(`invert`)
     }
     else {

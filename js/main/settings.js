@@ -2097,5 +2097,6 @@ App.show_last_settings = () => {
 
 App.get_setting_info = (key) => {
   let props = App.setting_props[key]
-  return `${props.info}\nKey: ${key}`
+  let info = App.periods(props.info)
+  return `${info}\nKey: ${key}`
 }
