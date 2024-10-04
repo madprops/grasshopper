@@ -60,7 +60,7 @@ App.user_madprops_settings = () => {
   sett = `favorites_menu`
   App.set_setting({setting: sett, value: []})
 
-  cmd = {cmd: `pick_bookmarks_folder`}
+  cmd = {cmd: `show_settings`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `send_signal_sig_play`}
@@ -81,7 +81,7 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `set_random_dark_colors`, middle: `set_random_light_colors`, shift: `set_next_theme`, ctrl: `set_previous_theme`, alt: `settings_category_theme`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `show_settings`}
+  cmd = {cmd: `pick_bookmarks_folder`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `reopen_tab`}

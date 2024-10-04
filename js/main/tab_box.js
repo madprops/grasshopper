@@ -25,7 +25,7 @@ App.create_tab_box = () => {
   let title = DOM.create(`div`, `box_title glowbox`, `tab_box_title`)
 
   if (App.get_setting(`show_tooltips`)) {
-    title.title = `This is the Tab Box`
+    title.title = `This is the Tab Box\nClick to select a mode\nMiddle Click to close tabs`
   }
 
   let title_main = DOM.create(`div`, `box_title_main`, `tab_box_title_main`)
@@ -37,6 +37,12 @@ App.create_tab_box = () => {
     e.preventDefault()
     e.stopPropagation()
     App.tab_box_menu(e)
+  })
+
+  DOM.ev(title, `auxclick`, (e) => {
+    if (e.button === 1) {
+      App.close_tab_box_tabs()
+    }
   })
 
   DOM.ev(title, `wheel`, (e) => {
@@ -580,4 +586,8 @@ App.do_tab_box_shrink = () => {
   }
 
   App.tab_box_check_size()
+}
+
+App.close_tab_box_tabs = () => {
+  App.close_tabs({selection: App.tab_box_items})
 }
