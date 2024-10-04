@@ -71,7 +71,15 @@ App.do_show_mode = async (args = {}) => {
   }
 
   App[`filter_items_${args.mode}`] = {}
-  let value = App.get_last_filter_value(args.reuse_filter)
+  let value
+
+  if (args.filter) {
+    value = args.filter
+  }
+  else {
+    value = App.get_last_filter_value(args.reuse_filter)
+  }
+
   App.active_mode = args.mode
   App.empty_footer_info()
   App.cancel_filter()
@@ -178,14 +186,6 @@ App.do_show_mode = async (args = {}) => {
   if (args.mode === `tabs`) {
     App.check_pinline()
     App.init_tab_box()
-  }
-
-  if (args.filter) {
-    App.set_filter({
-      mode: args.mode,
-      text: args.filter,
-      filter: true,
-    })
   }
 }
 
