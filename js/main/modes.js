@@ -72,15 +72,7 @@ App.do_show_mode = async (args = {}) => {
   }
 
   App[`filter_items_${args.mode}`] = {}
-  let value
-
-  if (args.filter) {
-    value = args.filter
-  }
-  else {
-    value = App.get_last_filter_value(args.reuse_filter)
-  }
-
+  let value = args.filter || App.get_last_filter_value(args.reuse_filter)
   App.active_mode = args.mode
   App.empty_footer_info()
   App.cancel_filter()
