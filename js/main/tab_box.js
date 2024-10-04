@@ -25,7 +25,7 @@ App.create_tab_box = () => {
   let title = DOM.create(`div`, `box_title glowbox`, `tab_box_title`)
 
   if (App.get_setting(`show_tooltips`)) {
-    title.title = `This is the Tab Box\nClick to select a mode\nMiddle Click to close tabs`
+    title.title = `This is the Tab Box\nClick to select a mode\nShift Click to select\nMiddle Click to close tabs`
   }
 
   let title_main = DOM.create(`div`, `box_title_main`, `tab_box_title_main`)
@@ -36,7 +36,13 @@ App.create_tab_box = () => {
   DOM.evs(title, [`click`, `contextmenu`], (e) => {
     e.preventDefault()
     e.stopPropagation()
-    App.tab_box_menu(e)
+
+    if (e.shiftKey || e.ctrlKey) {
+      App.select_tab_box_tabs()
+    }
+    else {
+      App.tab_box_menu(e)
+    }
   })
 
   DOM.ev(title, `auxclick`, (e) => {
@@ -113,6 +119,8 @@ App.tab_box_show = (mode, o_items) => {
   let items = App.get_tab_box_items(o_items, mode)
   App.fill_tab_box(items)
   App.update_tab_box_count(items.length)
+  App.tab_box_items = items
+  App.tab_box_o_items = o_items
 }
 
 App.update_tab_box_recent = () => {
@@ -235,8 +243,6 @@ App.fill_tab_box = (items) => {
   for (let item of items) {
     c.append(item.element)
   }
-
-  App.tab_box_items = items
 }
 
 App.change_tab_box_mode = (what) => {
@@ -283,6 +289,26 @@ App.tab_box_menu = (e) => {
         App.set_tab_box_size(size.value)
       },
     })
+  }
+
+  if (App.tab_box_items.length) {
+    items.push({
+      icon: App.mode_icons.tabs,
+      text: `Select`,
+      action: () => {
+        App.select_tab_box_tabs()
+      }
+    })
+
+    items.push({
+      icon: App.close_icon,
+      text: `Close`,
+      action: () => {
+        App.close_tab_box_tabs()
+      }
+    })
+
+    App.sep(items)
   }
 
   items.push({
@@ -591,5 +617,11 @@ App.do_tab_box_shrink = () => {
 App.close_tab_box_tabs = () => {
   if (App.tab_box_items.length) {
     App.close_tabs({selection: App.tab_box_items})
+  }
+}
+
+App.select_tab_box_tabs = () => {
+  for (let item of App.tab_box_o_items) {
+    App.toggle_selected({item, what: true})
   }
 }

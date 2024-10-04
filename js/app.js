@@ -114,6 +114,7 @@ App.bookmarks_received = false
 App.tab_tree = {}
 App.last_settings = {}
 App.tab_box_items = []
+App.tab_box_o_items = []
 
 App.settings_ready = false
 App.media_image_ready = false
