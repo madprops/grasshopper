@@ -3295,7 +3295,9 @@ App.build_settings = () => {
       name: `Filter Effect`,
       type: `menu`,
       value: `text`,
-      info: `Make it clear there is a filter through contrast`,
+      info: `Make it clear there is a filter through contrast
+      Either when there is a text filter, a mode filter, or both
+      When active, the filter input gets a different color`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
