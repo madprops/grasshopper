@@ -421,9 +421,7 @@ App.prepare_all_settings = () => {
     let text = DOM.create(`div`, `filter_text`)
     let icon = App.settings_icons[props.category]
     text.textContent = `${icon} ${props.name}`
-
-    let info = App.get_setting_info(key)
-    item.title = info
+    item.title = App.get_setting_info(key)
 
     item.append(text)
     item.append(cat)
@@ -1362,8 +1360,7 @@ App.fill_settings = (category) => {
 
       widget.id = `settings_${key}`
       el.append(widget)
-      let info = App.get_setting_info(key)
-      el.title = App.tooltip(info)
+      el.title = App.get_setting_info(key)
       c.append(el)
 
       if (props.separator) {
