@@ -500,7 +500,6 @@ App.update_item = (args = {}) => {
       App.process_info({mode: args.mode, info: args.info, o_item: item, url: args.url})
       App.check_filter(args.mode)
       App.update_active_trace()
-      App.refresh_tab_box()
       break
     }
   }

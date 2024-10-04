@@ -192,7 +192,6 @@ App.get_tab_box_items = (o_items, mode) => {
 
     let {element, ...item} = o_item
     item.tab_box = true
-    item.test = 123
     App.create_item_element(item)
     items.push(item)
   }
@@ -630,5 +629,45 @@ App.close_tab_box_tabs = () => {
 App.select_tab_box_tabs = () => {
   for (let item of App.tab_box_o_items) {
     App.toggle_selected({item, what: true})
+  }
+}
+
+App.refresh_tab_box_element = (o_item) => {
+  for (let item of App.tab_box_items) {
+    if (item.id === o_item.id) {
+      App.refresh_item_element(item)
+      item.active = o_item.active
+      App.tab_box_update_active()
+      break
+    }
+  }
+}
+
+App.tab_box_update_active = () => {
+  for (let item of App.tab_box_items) {
+    if (item.active) {
+      item.element.classList.add(`active_tab`)
+    }
+    else {
+      item.element.classList.remove(`active_tab`)
+    }
+  }
+}
+
+App.tab_box_make_item_first = (item) => {
+  if (!App.tab_box_enabled()) {
+    return
+  }
+
+  if (App.get_setting(`tab_box_mode`) !== `recent`) {
+    return
+  }
+
+  for (let it of App.tab_box_items) {
+    if (it.id === item.id) {
+      let c = DOM.el(`#tab_box_container`)
+      c.prepend(it.element)
+      break
+    }
   }
 }

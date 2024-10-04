@@ -126,6 +126,7 @@ App.process_info = (args = {}) => {
   if (args.o_item) {
     args.o_item = Object.assign(args.o_item, item)
     App.refresh_item_element(args.o_item)
+    App.refresh_tab_box_element(args.o_item)
 
     if (App.get_selected(args.mode) === args.o_item) {
       App.update_footer_info(args.o_item)

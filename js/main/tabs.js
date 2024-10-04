@@ -888,6 +888,8 @@ App.check_tab_first = (item) => {
   if (App.tabs_recent()) {
     App.make_item_first(item)
   }
+
+  App.tab_box_make_item_first(item)
 }
 
 App.check_on_tabs = async (show_all = true) => {
