@@ -19,6 +19,7 @@ App.do_show_mode = async (args = {}) => {
   let def_args = {
     reuse_filter: false,
     force: false,
+    filter: ``,
   }
 
   App.def_args(def_args, args)
@@ -55,7 +56,7 @@ App.do_show_mode = async (args = {}) => {
   App.prev_filter_mode = undefined
   App.prev_filter_text = undefined
 
-  if (!args.force) {
+  if (!args.force && !args.filter) {
     if ((App.active_mode === args.mode) &&
     App[`${args.mode}_items`].length &&
     !was_filtered && !App[`${args.mode}_changed`]) {
