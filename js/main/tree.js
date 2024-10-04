@@ -129,3 +129,11 @@ App.node_tab_already_in = (id, item) => {
 
   return false
 }
+
+App.get_current_tab_nodes = () => {
+  let item = App.get_selected(`tabs`)
+
+  if (item) {
+    return App.get_tab_nodes(item)
+  }
+}

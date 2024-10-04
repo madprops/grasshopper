@@ -142,6 +142,11 @@ App.update_tab_box_headers = () => {
   App.tab_box_show(`headers`, o_items)
 }
 
+App.update_tab_box_nodes = () => {
+  let o_items = App.get_current_tab_nodes()
+  App.tab_box_show(`nodes`, o_items)
+}
+
 App.get_tab_box_items = (o_items, mode) => {
   let items = []
 
@@ -202,9 +207,12 @@ App.tab_box_icon = (mode) => {
     return App.bot_icon
   }
   else if (mode === `headers`) {
-    return App.zone_icon
+    return App.get_setting(`header_icon`) || App.zone_icon
   }
-  
+  else if (mode === `nodes`) {
+    return App.get_setting(`nodes_icon`) || App.nodes_icon
+  }
+
   return App.mode_icons.tabs
 }
 
