@@ -569,6 +569,7 @@ App.setup_commands = () => {
       name: `Esc Key`,
       cmd: `trigger_esc_key`,
       icon: keyboard_icon,
+      skip_palette: true,
       action: (args) => {
         App.trigger_esc_key()
       },
@@ -578,6 +579,7 @@ App.setup_commands = () => {
       name: `Enter Key`,
       cmd: `trigger_enter_key`,
       icon: keyboard_icon,
+      skip_palette: true,
       action: (args) => {
         App.trigger_enter_key()
       },
@@ -588,6 +590,7 @@ App.setup_commands = () => {
       short_name: `Backspace`,
       cmd: `trigger_backspace_key`,
       icon: keyboard_icon,
+      skip_palette: true,
       action: (args) => {
         App.trigger_backspace_key()
       },
@@ -597,6 +600,7 @@ App.setup_commands = () => {
       name: `Up Key`,
       cmd: `trigger_up_key`,
       icon: keyboard_icon,
+      skip_palette: true,
       action: (args) => {
         App.trigger_up_key()
       },
@@ -606,6 +610,7 @@ App.setup_commands = () => {
       name: `Down Key`,
       cmd: `trigger_down_key`,
       icon: keyboard_icon,
+      skip_palette: true,
       action: (args) => {
         App.trigger_down_key()
       },
@@ -615,6 +620,7 @@ App.setup_commands = () => {
       name: `Left Key`,
       cmd: `trigger_left_key`,
       icon: keyboard_icon,
+      skip_palette: true,
       action: (args) => {
         App.trigger_left_key()
       },
@@ -624,6 +630,7 @@ App.setup_commands = () => {
       name: `Right Key`,
       cmd: `trigger_right_key`,
       icon: keyboard_icon,
+      skip_palette: true,
       action: (args) => {
         App.trigger_right_key()
       },

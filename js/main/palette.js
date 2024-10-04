@@ -164,6 +164,7 @@ App.fill_palette = () => {
 
   let container = DOM.el(`#palette_items`)
   container.innerHTML = ``
+  let num = 0
 
   for (let cmd of App.sorted_commands) {
     if (cmd.skip_palette) {
@@ -189,7 +190,11 @@ App.fill_palette = () => {
     }
 
     container.append(el)
+    num += 1
   }
+
+  let filter = DOM.el(`#palette_filter`)
+  filter.placeholder = `Command (${num})`
 }
 
 App.palette_filter_focused = () => {
