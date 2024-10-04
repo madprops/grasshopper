@@ -198,7 +198,6 @@ App.generate_password = () => {
 
 App.play_sound = (name) => {
   if (!App[`audio_player_${name}`]) {
-    console.log(111)
     App[`audio_player_${name}`] = new Audio(`audio/${name}.mp3`)
   }
 
