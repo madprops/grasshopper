@@ -314,7 +314,6 @@ App.tab_box_menu = (e) => {
     },
   })
 
-  console.log(items)
   App.show_context({items, e})
 }
 
