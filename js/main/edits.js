@@ -402,6 +402,8 @@ App.apply_edit = (args = {}) => {
     if (args.on_change) {
       args.on_change(new_value)
     }
+
+    App.refresh_tab_box()
   }
 }
 
