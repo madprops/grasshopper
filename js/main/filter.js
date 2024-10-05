@@ -939,7 +939,7 @@ App.do_filter_2 = (mode) => {
     let show
 
     if (text.startsWith(`!`)) {
-      show = value.startsWith(`!`) && text.startsWith(value)
+      show = value && text.startsWith(value)
     }
     else {
       show = text.includes(value)
