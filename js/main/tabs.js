@@ -344,8 +344,10 @@ App.tabs_action = async (args = {}) => {
     }
   }
 
-  if (!App.get_setting(`scroll_on_focus`)) {
-    args.scroll = `none`
+  if (args.from === `tab_box`) {
+    if (!App.get_setting(`tab_box_focus`)) {
+      args.scroll = `none`
+    }
   }
 
   if (args.item.header) {

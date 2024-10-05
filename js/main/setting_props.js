@@ -1559,12 +1559,18 @@ App.build_settings = () => {
       info: `Enable the Taglist in the items of the Tab Box`,
       version: 1,
     },
+    tab_box_focus: {
+      name: `Tab Box Focus`,
+      type: `checkbox`,
+      value: true,
+      info: `Focus the tab that was activated through the Tab Box`,
+      version: 1,
+    },
     tab_box_scroll: {
       name: `Tab Box Scroll`,
       type: `checkbox`,
       value: true,
-      info: `Scroll to the top of the Tab Box in some cases
-      Like when clicking an item in Recent mode`,
+      info: `Scroll to the top of the Tab Box in certain modes`,
       version: 1,
     },
     tab_box_blur: {
@@ -3933,13 +3939,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Auto-clear after no items remain when closing tabs`,
-      version: 1,
-    },
-    scroll_on_focus: {
-      name: `Scroll On Focus`,
-      type: `checkbox`,
-      value: true,
-      info: `Auto-scroll to the tab that was activated`,
       version: 1,
     },
     autohide_context: {
