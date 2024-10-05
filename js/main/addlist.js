@@ -93,7 +93,6 @@ Addlist.build = (args) => {
   }
 
   let container = DOM.el(`#addlist_container_${args.id}`)
-
   let top = DOM.create(`div`, `addlist_top`)
   let title = DOM.create(`div`, `addlist_title`)
   title.textContent = args.title || `List`
@@ -230,7 +229,6 @@ Addlist.build = (args) => {
   }
 
   container.append(...els)
-
   let btns = DOM.create(`div`, `addlist_buttons`)
   let save = DOM.create(`div`, `button`, `addlist_save_${args.id}`)
   save.textContent = `Save`
@@ -248,7 +246,6 @@ Addlist.build = (args) => {
   btns.append(menu)
   btns.append(save)
   container.append(btns)
-
   args.built = true
 }
 
