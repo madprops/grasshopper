@@ -579,6 +579,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `icon`,
       info: `What to do when clicking on an image in Closed mode`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.media_modes)
@@ -627,6 +628,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `icon`,
       info: `What to do when clicking on a video in Closed mode`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.media_modes)
@@ -675,6 +677,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `icon`,
       info: `What to do when clicking on an audio in Closed mode`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.media_modes)
