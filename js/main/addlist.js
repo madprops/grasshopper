@@ -87,50 +87,8 @@ Addlist.save = (id, hide = true) => {
   return true
 }
 
-Addlist.register = (args = {}) => {
-  let def_args = {
-    pk: `_id_`,
-    sources: {},
-    process: {},
-    labels: {},
-    widgets: {},
-    required: {},
-    tooltips: {},
-    on_check: {},
-    lowercase: false,
-    automenu: false,
-    list_text: () => {
-      return `Item`
-    },
-    get_data: () => {
-      return []
-    },
-    set_data: () => {},
-  }
-
-  App.def_args(def_args, args)
-  let container = DOM.create(`div`, `addlist_container`, `addlist_container_${args.id}`)
-  container.tabIndex = 0
-  let top = DOM.create(`div`, `addlist_top`)
-  let title = DOM.create(`div`, `addlist_title`)
-  title.textContent = args.title || `List`
-  let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
-  btn_prev.textContent = `<`
-  let btn_next = DOM.create(`div`, `button`, `addlist_next_${args.id}`)
-  btn_next.textContent = `>`
-
-  DOM.ev(btn_prev, `click`, () => {
-    Addlist.left()
-  })
-
-  DOM.ev(btn_next, `click`, () => {
-    Addlist.right()
-  })
-
-  top.append(btn_prev)
-  top.append(title)
-  top.append(btn_next)
-  container.append(top)
+Addlist.build = (args) => {
+  let container = DOM.el(`#addlist_container_${args.id}`)
   let els = []
 
   function add_label (el, key) {
@@ -246,6 +204,7 @@ Addlist.register = (args = {}) => {
   }
 
   container.append(...els)
+
   let btns = DOM.create(`div`, `addlist_buttons`)
   let save = DOM.create(`div`, `button`, `addlist_save_${args.id}`)
   save.textContent = `Save`
@@ -263,6 +222,56 @@ Addlist.register = (args = {}) => {
   btns.append(menu)
   btns.append(save)
   container.append(btns)
+
+  args.built = true
+}
+
+Addlist.register = (args = {}) => {
+  let def_args = {
+    pk: `_id_`,
+    sources: {},
+    process: {},
+    labels: {},
+    widgets: {},
+    required: {},
+    tooltips: {},
+    on_check: {},
+    lowercase: false,
+    automenu: false,
+    list_text: () => {
+      return `Item`
+    },
+    get_data: () => {
+      return []
+    },
+    set_data: () => {},
+  }
+
+  App.def_args(def_args, args)
+  let container = DOM.create(`div`, `addlist_container`, `addlist_container_${args.id}`)
+  container.tabIndex = 0
+  let top = DOM.create(`div`, `addlist_top`)
+  let title = DOM.create(`div`, `addlist_title`)
+  title.textContent = args.title || `List`
+  let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
+  btn_prev.textContent = `<`
+  let btn_next = DOM.create(`div`, `button`, `addlist_next_${args.id}`)
+  btn_next.textContent = `>`
+
+  DOM.ev(btn_prev, `click`, () => {
+    Addlist.left()
+  })
+
+  DOM.ev(btn_next, `click`, () => {
+    Addlist.right()
+  })
+
+  top.append(btn_prev)
+  top.append(title)
+  top.append(btn_next)
+  container.append(top)
+
+  args.built = false
   App[`addlist_args_${args.id}`] = args
   return container
 }
@@ -271,6 +280,11 @@ Addlist.edit = (args = {}) => {
   let def_args = Addlist.def_args()
   App.def_args(def_args, args)
   let oargs = Addlist.oargs(args.id)
+
+  if (!oargs.built) {
+    Addlist.build(oargs)
+  }
+
   App.show_popup(Addlist.popup(args.id))
   Addlist.check_buttons(args)
   let widgets = oargs.widgets
