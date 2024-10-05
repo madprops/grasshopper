@@ -262,14 +262,14 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  let from
-  let tab_box = DOM.parent(e.target, [`#tab_box`])
+  let from = `click`
 
-  if (tab_box) {
-    from = `tab_box`
-  }
-  else {
-    from = `click`
+  if (mode === `tabs`) {
+    let tab_box = DOM.parent(e.target, [`#tab_box`])
+
+    if (tab_box) {
+      from = `tab_box`
+    }
   }
 
   App[`${mode}_action`]({item, from})
