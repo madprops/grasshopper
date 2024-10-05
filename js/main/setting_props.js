@@ -1403,7 +1403,7 @@ App.build_settings = () => {
       version: 4,
     },
 
-    ...App.settings_generic_menus()
+    ...App.settings_generic_menus(),
   }
 
   add_props()
