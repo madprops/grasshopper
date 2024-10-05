@@ -533,6 +533,14 @@ App.click_press_action = (mode, e) => {
     return
   }
 
+  if (App.get_setting(`hover_button`)) {
+    if (DOM.parent(e.target, [`.hover_button`])) {
+      App.show_hover_menu_2(item, e)
+      App.click_press_triggered = true
+      return
+    }
+  }
+
   let cmd
 
   if (App.click_press_button === 0) {

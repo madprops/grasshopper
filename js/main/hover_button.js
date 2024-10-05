@@ -12,3 +12,12 @@ App.show_hover_menu = (item, e) => {
 
   App.show_context({items, e})
 }
+
+App.show_hover_menu_2 = (item, e) => {
+  let items = App.custom_menu_items({
+    name: `hover_menu_2`,
+    item,
+  })
+
+  App.show_context({items, e})
+}

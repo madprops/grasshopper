@@ -1262,6 +1262,17 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Hover Button`,
       version: 1,
     },
+    hover_menu_2: {
+      name: `Hover Menu 2`,
+      type: `list`,
+      value: [
+        {cmd: `filter_domain`},
+        {cmd: `search_domain_history`},
+        {cmd: `search_domain_bookmarks`},
+      ],
+      info: `Menu to show when long pressing the Hover Button`,
+      version: 1,
+    },
     middle_click_hover_button: {
       name: `Middle Click Hover`,
       type: `menu`,

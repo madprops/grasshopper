@@ -1521,6 +1521,7 @@ App.setup_settings_addlist = () => {
     `favorites_menu`,
     `extra_menu`,
     `hover_menu`,
+    `hover_menu_2`,
     `empty_menu`,
     `footer_menu`,
     `pinline_menu`,
