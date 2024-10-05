@@ -207,6 +207,10 @@ App.check_command = (command, args = {}) => {
       if (App.root_possible(item)) {
         args.some_root_possible = true
       }
+
+      if (item.hostname) {
+        args.some_hostname = true
+      }
     }
   }
 
@@ -298,6 +302,7 @@ App.check_command = (command, args = {}) => {
   check_1(`some_nodes`)
   check_1(`some_parent`)
   check_1(`some_root_possible`)
+  check_1(`some_hostname`)
 
   let edit_props = App.get_edit_prop_list()
   edit_props.push(`split`)

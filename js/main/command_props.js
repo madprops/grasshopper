@@ -2766,6 +2766,7 @@ App.setup_commands = () => {
       item: true,
       single: true,
       some_no_header: true,
+      some_hostname: true,
       icon: filter_icon,
       action: (args) => {
         App.filter_domain(args.item)
