@@ -1543,6 +1543,13 @@ App.build_settings = () => {
       info: `Max items to show in the Tab Box`,
       version: 1,
     },
+    tab_box_wheel: {
+      name: `Tab Box Wheel`,
+      type: `checkbox`,
+      value: true,
+      info: `Change the Tab Box mode when using the mousewheel`,
+      version: 1,
+    },
     tab_box_icons: {
       name: `Tab Box Icons`,
       type: `checkbox`,

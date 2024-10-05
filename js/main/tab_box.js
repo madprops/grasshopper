@@ -59,6 +59,10 @@ App.create_tab_box = () => {
   })
 
   DOM.ev(title, `wheel`, (e) => {
+    if (!App.get_setting(`tab_box_wheel`)) {
+      return
+    }
+
     let dir = App.wheel_direction(e)
 
     if (dir === `up`) {
