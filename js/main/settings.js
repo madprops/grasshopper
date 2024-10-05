@@ -2127,7 +2127,8 @@ App.settings_generic_menus = () => {
       name: `Generic Menu ${i}`,
       type: `list`,
       value: [],
-      info: `Generic menu to use in other menus (${i})`,
+      actions: [`commands`],
+      info: `Generic menu you can add to other menus or call on command (${i})`,
       version: 1,
     }
   }
