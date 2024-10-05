@@ -46,3 +46,19 @@ App.show_close_button_menu = (item, e) => {
   App.show_context({items, e})
   return true
 }
+
+App.show_close_button_menu_2 = (item, e) => {
+  let menu = App.get_setting(`close_button_menu_2`)
+
+  if (!menu.length) {
+    return false
+  }
+
+  let items = App.custom_menu_items({
+    name: `close_button_menu_2`,
+    item,
+  })
+
+  App.show_context({items, e})
+  return true
+}

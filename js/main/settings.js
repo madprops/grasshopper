@@ -1532,6 +1532,7 @@ App.setup_settings_addlist = () => {
     `closed_menu`,
     `main_title_menu`,
     `close_button_menu`,
+    `close_button_menu_2`,
   ]
 
   for (let i = 1; i <= App.num_generic_menus; i++) {

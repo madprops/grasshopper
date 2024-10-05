@@ -1200,6 +1200,17 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Close Button`,
       version: 1,
     },
+    close_button_menu_2: {
+      name: `Close Button Menu 2`,
+      type: `list`,
+      value: [
+        {cmd: `filter_domain`},
+        {cmd: `search_domain_history`},
+        {cmd: `search_domain_bookmarks`},
+      ],
+      info: `Menu to show when long pressing the Close Button`,
+      version: 1,
+    },
     middle_click_close_button: {
       name: `Middle Click Close`,
       type: `menu`,
