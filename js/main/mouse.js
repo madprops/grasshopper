@@ -545,9 +545,9 @@ App.click_press_action = (mode, e) => {
 
   if (App.get_setting(`close_button`) !== `none`) {
     if (DOM.parent(e.target, [`.close_button`])) {
-      if (App.show_close_button_menu_2(item, e)) {
-        return
-      }
+      App.show_close_button_menu_2(item, e)
+      App.click_press_triggered = true
+      return
     }
   }
 
