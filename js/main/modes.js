@@ -72,11 +72,15 @@ App.do_show_mode = async (args = {}) => {
   }
 
   App[`filter_items_${args.mode}`] = {}
-  let value = args.filter || App.get_last_filter_value(args.reuse_filter)
+
+  if (!args.filter) {
+    args.filter = App.get_last_filter_value(args.reuse_filter)
+  }
+
   App.active_mode = args.mode
   App.empty_footer_info()
   App.cancel_filter()
-  App.set_filter({mode: args.mode, text: value, filter: false})
+  App.set_filter({mode: args.mode, text: args.filter, filter: false})
   App.set_filter_mode({mode: args.mode, cmd: `all`, filter: false})
   App[`last_${args.mode}_query`] = undefined
   let persistent = App.persistent_modes.includes(args.mode)
@@ -133,7 +137,7 @@ App.do_show_mode = async (args = {}) => {
     App.reset_bookmarks()
   }
 
-  if (search && value) {
+  if (search && args.filter) {
     items = []
   }
   else if (!items_ready) {
@@ -147,7 +151,7 @@ App.do_show_mode = async (args = {}) => {
     }
   }
 
-  if (search && value) {
+  if (search && args.filter) {
     // Filter will search
   }
   else if (!items_ready) {
@@ -162,7 +166,7 @@ App.do_show_mode = async (args = {}) => {
     App.update_footer_info(App.get_selected(args.mode))
   }
 
-  if (value || was_filtered) {
+  if (args.filter || was_filtered) {
     App.do_filter({mode: args.mode, force: true})
   }
   else {
