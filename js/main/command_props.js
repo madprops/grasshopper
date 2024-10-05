@@ -3211,6 +3211,7 @@ App.setup_commands = () => {
       cmd: `search_domain_history`,
       modes: [`items`],
       item: true,
+      some_hostname: true,
       icon: filter_icon,
       action: (args) => {
         App.search_domain_history(args.item)
@@ -3222,6 +3223,7 @@ App.setup_commands = () => {
       cmd: `search_domain_bookmarks`,
       modes: [`items`],
       item: true,
+      some_hostname: true,
       icon: filter_icon,
       action: (args) => {
         App.search_domain_bookmarks(args.item)
