@@ -4191,6 +4191,11 @@ App.build_settings = () => {
       Then click 'Manage Extension Shortcuts' and add the shortcuts you need
       Popup Commands open the popup first before running the command`,
     },
+    combos: {
+      info: `Command Combos are lists of commands
+      Each command in a list is ran with a small delay in between
+      You can use these like other normal commands and assign them`,
+    },
     warns: {
       info: `When to show the confirmation dialog on certain actions
       'Special' forces a confirm depending if tabs have a certain state like pinned, playing, or colored
@@ -4198,11 +4203,6 @@ App.build_settings = () => {
     },
     lock: {
       info: `Configure the Lock Screen`,
-    },
-    combos: {
-      info: `Command Combos are lists of commands
-      Each command in a list is ran with a small delay in between
-      You can use these like other normal commands and assign them`,
     },
     more: {
       info: `Even more settings`,
