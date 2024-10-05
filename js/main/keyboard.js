@@ -110,12 +110,12 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Home`) {
-      App.goto_top(mode, true)
+      App.goto_top_or_bottom({what: `top`, mode, select: true})
       e.preventDefault()
       return
     }
     else if (e.key === `End`) {
-      App.goto_bottom(mode, true)
+      App.goto_top_or_bottom({what: `bottom`, mode, select: true})
       e.preventDefault()
       return
     }
@@ -289,14 +289,14 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `Home`) {
       if (!filter_focus || !filter_filled) {
-        App.goto_top(mode, true)
+        App.goto_top_or_bottom({what: `top`, mode, select: true})
         e.preventDefault()
         return
       }
     }
     else if (e.key === `End`) {
       if (!filter_focus || !filter_filled) {
-        App.goto_bottom(mode, true)
+        App.goto_top_or_bottom({what: `bottom`, mode, select: true})
         e.preventDefault()
         return
       }

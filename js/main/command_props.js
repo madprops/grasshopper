@@ -515,7 +515,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: up_icon,
       action: (args) => {
-        App.goto_top()
+        App.goto_top_or_bottom({what: `top`, e: args.e})
       },
       info: `Go to the top of the list`,
     },
@@ -526,7 +526,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: down_icon,
       action: (args) => {
-        App.goto_bottom()
+        App.goto_top_or_bottom({what: `bottom`, e: args.e})
       },
       info: `Go to the bottom of the list`,
     },

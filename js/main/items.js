@@ -832,38 +832,6 @@ App.open_items = (item, shift, multiple = true) => {
   }
 }
 
-App.goto_top = (mode = App.active_mode, select = false) => {
-  if (select) {
-    App.select_item({item: App.get_visible(mode).at(0), scroll: `nearest`})
-  }
-  else {
-    let el = DOM.el(`#${mode}_container`)
-
-    el.scrollTo({
-      top: 0,
-      behavior: `instant`,
-    })
-  }
-
-  App.do_check_scroller(mode)
-}
-
-App.goto_bottom = (mode = App.active_mode, select = false) => {
-  if (select) {
-    App.select_item({item: App.get_visible(mode).at(-1), scroll: `nearest`})
-  }
-  else {
-    let el = DOM.el(`#${mode}_container`)
-
-    el.scrollTo({
-      top: el.scrollHeight,
-      behavior: `instant`,
-    })
-  }
-
-  App.do_check_scroller(mode)
-}
-
 App.select_all = (mode = App.active_mode, toggle = false) => {
   let items = App.get_items(mode)
 

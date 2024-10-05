@@ -188,7 +188,7 @@ App.create_scroller = (mode) => {
       return
     }
 
-    App.goto_top(mode)
+    App.goto_top_or_bottom({what: `top`, mode})
   })
 
   DOM.ev(scroller, `auxclick`, (e) => {
@@ -224,4 +224,53 @@ App.scroll_to_selected = (mode) => {
       App.scroll_to_item({item: selected, scroll: `nearest_instant`, force: true})
     }
   }
+}
+
+App.goto_top_or_bottom = (args = {}) => {
+  let def_args = {
+    what: `top`,
+    mode: App.active_mode,
+    select: false,
+  }
+
+  App.def_args(def_args, args)
+
+  if (args.select) {
+    let visible = App.get_visible(args.mode).slice()
+
+    if (args.what === `bottom`) {
+      visible = visible.reverse()
+    }
+
+    App.select_item({item: visible.at(0), scroll: `nearest`})
+  }
+  else {
+    let el, box
+
+    if (args.e) {
+      box = DOM.parent(args.e.target, [`.box_container`])
+    }
+
+    if (box) {
+      el = box
+    }
+    else {
+      el = DOM.el(`#${args.mode}_container`)
+    }
+
+    if (args.what === `top`) {
+      el.scrollTo({
+        top: 0,
+        behavior: `instant`,
+      })
+    }
+    else if (args.what === `bottom`) {
+      el.scrollTo({
+        top: el.scrollHeight,
+        behavior: `instant`,
+      })
+    }
+  }
+
+  App.do_check_scroller(args.mode)
 }
