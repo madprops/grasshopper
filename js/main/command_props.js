@@ -3454,6 +3454,16 @@ App.setup_commands = () => {
       info: `Scroll the main title to the right`,
     },
     {
+      name: `Toggle Wrap`,
+      short_name: `Wrap`,
+      cmd: `toggle_wrap_text`,
+      icon: command_icon,
+      action: (args) => {
+        App.toggle_wrap_text()
+      },
+      info: `Enable or disable the text wrapping of items`,
+    },
+    {
       name: `Sleep 500ms`,
       short_name: `Sleep`,
       cmd: `sleep_ms_500`,

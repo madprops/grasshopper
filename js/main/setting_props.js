@@ -281,6 +281,7 @@ App.build_settings = () => {
       name: `Wrap Text`,
       type: `checkbox`,
       value: false,
+      no_mirror: true,
       info: `Allow long lines to wrap into multiple lines, increasing the height of some items`,
       version: 1,
     },

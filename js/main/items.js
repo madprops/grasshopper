@@ -1399,3 +1399,9 @@ App.set_item_tooltips = (item) => {
 
   item.has_tooltips = true
 }
+
+App.toggle_wrap_text = () => {
+  let wrap = App.get_setting(`wrap_text`)
+  App.set_setting({setting: `wrap_text`, value: !wrap})
+  App.apply_theme()
+}
