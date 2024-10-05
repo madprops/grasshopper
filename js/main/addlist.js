@@ -87,18 +87,18 @@ Addlist.save = (id, hide = true) => {
   return true
 }
 
-Addlist.build = (args) => {
-  if (args.built) {
+Addlist.build = (oargs) => {
+  if (oargs.built) {
     return
   }
 
-  let container = DOM.el(`#addlist_container_${args.id}`)
+  let container = DOM.el(`#addlist_container_${oargs.id}`)
   let top = DOM.create(`div`, `addlist_top`)
   let title = DOM.create(`div`, `addlist_title`)
-  title.textContent = args.title || `List`
-  let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
+  title.textContent = oargs.title || `List`
+  let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${oargs.id}`)
   btn_prev.textContent = `<`
-  let btn_next = DOM.create(`div`, `button`, `addlist_next_${args.id}`)
+  let btn_next = DOM.create(`div`, `button`, `addlist_next_${oargs.id}`)
   btn_next.textContent = `>`
 
   DOM.ev(btn_prev, `click`, () => {
@@ -117,62 +117,62 @@ Addlist.build = (args) => {
   let els = []
 
   function add_label (el, key) {
-    if (args.labels[key]) {
+    if (oargs.labels[key]) {
       let label = DOM.create(`div`)
-      label.textContent = args.labels[key]
+      label.textContent = oargs.labels[key]
       el.append(label)
     }
   }
 
-  for (let key of args.keys) {
+  for (let key of oargs.keys) {
     let el
-    let w = args.widgets[key]
-    let id = `addlist_widget_${args.id}_${key}`
+    let w = oargs.widgets[key]
+    let id = `addlist_widget_${oargs.id}_${key}`
 
     if (w === `text`) {
       el = DOM.create(`input`, `text addlist_text addlist_widget`, id)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
-      el.placeholder = args.labels[key]
+      el.placeholder = oargs.labels[key]
     }
     else if (w === `number`) {
       el = DOM.create(`input`, `text addlist_text addlist_widget`, id)
       el.type = `number`
-      el.placeholder = args.labels[key]
+      el.placeholder = oargs.labels[key]
     }
     else if (w === `textarea`) {
       el = DOM.create(`textarea`, `text addlist_textarea addlist_widget`, id)
       el.spellcheck = false
       el.autocomplete = false
-      el.placeholder = args.labels[key]
+      el.placeholder = oargs.labels[key]
     }
     else if (w === `menu`) {
       el = DOM.create(`div`, `addlist_menu addlist_widget`)
 
-      App[`addlist_menubutton_${args.id}_${key}`] = Menubutton.create({
+      App[`addlist_menubutton_${oargs.id}_${key}`] = Menubutton.create({
         id,
-        source: args.sources[key],
+        source: oargs.sources[key],
         get_value: () => {
           return Addlist.get_value(key)
         },
         after_dismiss: () => {
           let data = Addlist.data
 
-          if (!data.edit && args.automenu) {
+          if (!data.edit && oargs.automenu) {
             Addlist.hide()
           }
         },
         after_action: () => {
           let data = Addlist.data
 
-          if (!data.edit && args.automenu) {
-            Addlist.save(args.id)
+          if (!data.edit && oargs.automenu) {
+            Addlist.save(oargs.id)
           }
         },
       })
 
-      let mb = App[`addlist_menubutton_${args.id}_${key}`]
+      let mb = App[`addlist_menubutton_${oargs.id}_${key}`]
       add_label(el, key)
       el.append(mb.container)
     }
@@ -181,7 +181,7 @@ Addlist.build = (args) => {
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
-      el.placeholder = args.labels[key]
+      el.placeholder = oargs.labels[key]
 
       DOM.ev(el, `keydown`, (e) => {
         el.value = e.code
@@ -193,9 +193,9 @@ Addlist.build = (args) => {
       let checkbox = DOM.create(`input`, `checkbox addlist_checkbox`, id)
       checkbox.type = `checkbox`
 
-      if (args.on_check[key]) {
+      if (oargs.on_check[key]) {
         DOM.ev(checkbox, `change`, () => {
-          return args.on_check[key](checkbox.checked)
+          return oargs.on_check[key](checkbox.checked)
         })
       }
 
@@ -206,7 +206,7 @@ Addlist.build = (args) => {
       el = DOM.create(`div`, `addlist_color_container addlist_widget`)
       let color = DOM.create(`div`, `addlist_color`)
 
-      App[`addlist_color_${args.id}_${key}`] = AColorPicker.createPicker(color, {
+      App[`addlist_color_${oargs.id}_${key}`] = AColorPicker.createPicker(color, {
         showAlpha: true,
         showHSL: false,
         showRGB: true,
@@ -218,7 +218,7 @@ Addlist.build = (args) => {
     }
 
     if (el) {
-      let tooltip = args.tooltips[key]
+      let tooltip = oargs.tooltips[key]
 
       if (tooltip) {
         el.title = App.tooltip(tooltip)
@@ -230,13 +230,13 @@ Addlist.build = (args) => {
 
   container.append(...els)
   let btns = DOM.create(`div`, `addlist_buttons`)
-  let save = DOM.create(`div`, `button`, `addlist_save_${args.id}`)
+  let save = DOM.create(`div`, `button`, `addlist_save_${oargs.id}`)
   save.textContent = `Save`
-  let menu = DOM.create(`div`, `button icon_button`, `addlist_menu_${args.id}`)
+  let menu = DOM.create(`div`, `button icon_button`, `addlist_menu_${oargs.id}`)
   menu.textContent = `Menu`
 
   DOM.ev(save, `click`, () => {
-    Addlist.save(args.id)
+    Addlist.save(oargs.id)
   })
 
   DOM.ev(menu, `click`, () => {
@@ -246,7 +246,7 @@ Addlist.build = (args) => {
   btns.append(menu)
   btns.append(save)
   container.append(btns)
-  args.built = true
+  oargs.built = true
 }
 
 Addlist.register = (args = {}) => {
