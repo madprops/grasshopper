@@ -22,6 +22,8 @@ App.locust_swarm = () => {
   let y_position = Array(columns).fill(0)
   let chars = [`🦗`, `🌿`]
   let delay = 50
+  let num = 0
+  let limit = 1000
 
   function random_char() {
     return chars[Math.floor(Math.random() * chars.length)]
@@ -44,6 +46,12 @@ App.locust_swarm = () => {
       else {
         y_position[index] = y + 20
       }
+    }
+
+    num += 1
+
+    if (num >= limit) {
+      App.stop_locust_swarm()
     }
   }
 
