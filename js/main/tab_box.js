@@ -633,6 +633,10 @@ App.select_tab_box_tabs = () => {
 }
 
 App.refresh_tab_box_element = (o_item) => {
+  if (!App.tab_box_enabled()) {
+    return
+  }
+
   let mode = App.get_setting(`tab_box_mode`)
 
   if ([`nodes`].includes(mode)) {
