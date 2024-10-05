@@ -201,6 +201,8 @@ App.play_sound = (name) => {
     App[`audio_player_${name}`] = new Audio(`audio/${name}.mp3`)
   }
 
-  App[`audio_player_${name}`].currentTime = 0
-  App[`audio_player_${name}`].play()
+  let player = App[`audio_player_${name}`]
+  player.pause()
+  player.currentTime = 0
+  player.play()
 }
