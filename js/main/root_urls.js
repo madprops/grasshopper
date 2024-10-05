@@ -93,3 +93,15 @@ App.root_possible = (item) => {
 App.item_has_root = (item) => {
   return Boolean(App.get_root(item))
 }
+
+App.get_root_items = (mode) => {
+  let items = []
+
+  for (let item of App.get_items(mode)) {
+    if (App.get_root(item)) {
+      items.push(item)
+    }
+  }
+
+  return items
+}

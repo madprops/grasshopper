@@ -168,6 +168,11 @@ App.update_tab_box_icons = () => {
   App.tab_box_show(`icons`, o_items)
 }
 
+App.update_tab_box_roots = () => {
+  let o_items = App.get_root_items(`tabs`)
+  App.tab_box_show(`roots`, o_items)
+}
+
 App.update_tab_box_headers = () => {
   let o_items = App.get_headers()
   App.tab_box_show(`headers`, o_items)
@@ -235,6 +240,9 @@ App.tab_box_icon = (mode) => {
   }
   else if (mode === `icons`) {
     return App.bot_icon
+  }
+  else if (mode === `roots`) {
+    return App.get_setting(`root_icon`) || App.root_icon
   }
   else if (mode === `headers`) {
     return App.get_setting(`header_icon`) || App.zone_icon
