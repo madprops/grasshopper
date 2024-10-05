@@ -648,8 +648,15 @@ App.refresh_tab_box_element = (o_item) => {
 
   for (let item of App.tab_box_items) {
     if (item.id === o_item.id) {
+      for (let key in o_item) {
+        if (key === `element`) {
+          continue
+        }
+
+        item[key] = o_item[key]
+      }
+
       App.refresh_item_element(item)
-      item.active = o_item.active
       App.tab_box_update_active()
       break
     }

@@ -39,6 +39,8 @@ App.edit_tab_tags = (args = {}) => {
             App.push_to_tag_history(new_tags)
           }
         }})
+
+        App.refresh_tab_box()
       }
     },
     force,
@@ -82,6 +84,7 @@ App.add_tag = (item, tag) => {
   }})
 
   App.push_to_tag_history([tag])
+  App.refresh_tab_box()
 }
 
 App.add_tag_all = (item, tag) => {
@@ -102,6 +105,8 @@ App.remove_tag = (item, tag) => {
   App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
     App.custom_save(item.id, `tags`, value)
   }})
+
+  App.refresh_tab_box()
 }
 
 App.remove_tag_all = (item, tag) => {
@@ -255,6 +260,8 @@ App.do_replace_tag = (tag_1, tag_2) => {
       }})
     }
   }
+
+  App.refresh_tab_box()
 }
 
 App.check_tag_rule = (item, tag) => {
@@ -310,6 +317,8 @@ App.do_edit_tag = (item, tag_1, tag_2) => {
     App.custom_save(item.id, `tags`, value)
     App.push_to_tag_history([tag_2])
   }})
+
+  App.refresh_tab_box()
 }
 
 App.check_tag_edit = (tag_1, tag_2) => {
