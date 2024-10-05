@@ -88,6 +88,10 @@ Addlist.save = (id, hide = true) => {
 }
 
 Addlist.build = (args) => {
+  if (args.built) {
+    return
+  }
+
   let container = DOM.el(`#addlist_container_${args.id}`)
   let els = []
 
