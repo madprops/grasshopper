@@ -1281,7 +1281,7 @@ App.build_settings = () => {
         {cmd: `search_domain_history`},
         {cmd: `search_domain_bookmarks`},
       ],
-      info: `Menu to show when long pressing the Hover Button`,
+      info: `Menu to show when long pressing or right clicking the Hover Button`,
       version: 1,
     },
     middle_click_hover_button: {
