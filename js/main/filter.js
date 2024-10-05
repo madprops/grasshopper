@@ -1067,6 +1067,10 @@ App.get_last_filter_value = (cycle) => {
 }
 
 App.filter_common = (args = {}) => {
+  if (!args.prop) {
+    return
+  }
+
   if (App.filter_mode(args.item.mode).startsWith(args.name)) {
     App.filter_all(args.item.mode)
     return
