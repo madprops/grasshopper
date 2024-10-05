@@ -636,16 +636,18 @@ App.refresh_tab_box_element = (o_item) => {
   let mode = App.get_setting(`tab_box_mode`)
 
   if ([`nodes`].includes(mode)) {
-    App.refresh_tab_box()
+    if (App.get_selected(`tabs`) === o_item) {
+      App.refresh_tab_box()
+      return
+    }
   }
-  else {
-    for (let item of App.tab_box_items) {
-      if (item.id === o_item.id) {
-        App.refresh_item_element(item)
-        item.active = o_item.active
-        App.tab_box_update_active()
-        break
-      }
+
+  for (let item of App.tab_box_items) {
+    if (item.id === o_item.id) {
+      App.refresh_item_element(item)
+      item.active = o_item.active
+      App.tab_box_update_active()
+      break
     }
   }
 }
