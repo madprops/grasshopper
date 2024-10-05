@@ -492,6 +492,23 @@ App.setup_commands = () => {
     })
   }
 
+  let gen_menus = []
+
+  for (let i = 1; i <= App.num_generic_menus; i++) {
+    let menu = App.get_setting(`generic_menu_${i}`)
+
+    gen_menus.push({
+      name: `Generic Menu ${i}`,
+      short_name: `Menu ${i}`,
+      cmd: `show_generic_menu_${i}`,
+      icon: menu_icon,
+      action: (args) => {
+        App.show_generic_menu(i, args.item, args.e)
+      },
+      info: `Show generic menu (${i})`,
+    })
+  }
+
   App.commands = [
     {
       name: `Go To Top`,
@@ -767,6 +784,7 @@ App.setup_commands = () => {
 
     ...tabnums,
     ...cmd_combos,
+    ...gen_menus,
 
     {
       name: `Edge Up`,

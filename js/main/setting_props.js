@@ -1394,6 +1394,7 @@ App.build_settings = () => {
     extra_menu: {
       name: `Extra Menu`,
       type: `list`,
+      separator: true,
       value: [
         {cmd: `open_new_tab`, middle: `insert_header`},
         {cmd: `add_jump_tag_1`, middle: `remove_jump_tag_1`},
@@ -1401,6 +1402,8 @@ App.build_settings = () => {
       info: `Extra menu to show when right clicking items`,
       version: 4,
     },
+
+    ...App.settings_generic_menus()
   }
 
   add_props()

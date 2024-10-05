@@ -39,3 +39,12 @@ App.hide_context = () => {
 App.context_open = () => {
   return NeedContext.open
 }
+
+App.show_generic_menu = (num, item, e) => {
+  let items = App.custom_menu_items({
+    name: `generic_menu_${num}`,
+    item,
+  })
+
+  App.show_context({items, e})
+}

@@ -1533,6 +1533,10 @@ App.setup_settings_addlist = () => {
     `close_button_menu`,
   ]
 
+  for (let i = 1; i <= App.num_generic_menus; i++) {
+    menukeys.push(`generic_menu_${i}`)
+  }
+
   for (let key in App.setting_props) {
     if (menukeys.includes(key)) {
       let id = `settings_${key}`
@@ -2109,4 +2113,22 @@ App.get_setting_tab_box_modes = () => {
   }
 
   return items
+}
+
+App.settings_generic_menus = () => {
+  let props = {}
+
+  for (let i = 1; i <= App.num_generic_menus; i++) {
+    let name = `generic_menu_${i}`
+
+    props[name] = {
+      name: `Generic Menu ${i}`,
+      type: `list`,
+      value: [],
+      info: `Generic menu to use in other menus (${i})`,
+      version: 1,
+    }
+  }
+
+  return props
 }
