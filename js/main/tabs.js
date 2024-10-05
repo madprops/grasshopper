@@ -738,23 +738,6 @@ App.get_first_normal_index = () => {
   return i
 }
 
-App.browser_reload = (id) => {
-  if (id !== undefined) {
-    browser.tabs.reload(id)
-  }
-  else {
-    browser.tabs.reload()
-  }
-}
-
-App.browser_back = () => {
-  browser.tabs.goBack()
-}
-
-App.browser_forward = () => {
-  browser.tabs.goForward()
-}
-
 App.divide_tabs = (filter) => {
   let pinned = []
   let normal = []
