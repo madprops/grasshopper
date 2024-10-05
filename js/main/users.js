@@ -20,6 +20,8 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `autohide_context`, value: true})
   App.set_setting({setting: `max_recent_tabs`, value: 20})
   App.set_setting({setting: `show_tooltips`, value: false})
+  App.set_setting({setting: `nodes_icon`, value: `🤿`})
+  App.set_setting({setting: `sound_effects`, value: true})
 
   // Main Title
 
@@ -197,8 +199,4 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `tab_box_auto_shrink`, value: `tiny`})
   App.set_setting({setting: `tab_box_color_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(47, 99, 151, 0.18)`})
-
-  // Icons
-
-  App.set_setting({setting: `nodes_icon`, value: `🤿`})
 }
