@@ -83,10 +83,20 @@ App.browser_reload = (id) => {
   }
 }
 
-App.browser_back = () => {
-  browser.tabs.goBack()
+App.browser_back = (item) => {
+  if (item) {
+    browser.tabs.goBack(item.id)
+  }
+  else {
+    browser.tabs.goBack()
+  }
 }
 
-App.browser_forward = () => {
-  browser.tabs.goForward()
+App.browser_forward = (item) => {
+  if (item) {
+    browser.tabs.goForward(item.id)
+  }
+  else {
+    browser.tabs.goForward()
+  }
 }

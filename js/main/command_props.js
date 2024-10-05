@@ -1260,7 +1260,7 @@ App.setup_commands = () => {
       cmd: `browser_back`,
       icon: browser_icon,
       action: (args) => {
-        App.browser_back()
+        App.browser_back(args.item)
       },
       info: `Go back in browser history`,
     },
@@ -1270,7 +1270,7 @@ App.setup_commands = () => {
       cmd: `browser_forward`,
       icon: browser_icon,
       action: (args) => {
-        App.browser_forward()
+        App.browser_forward(args.item)
       },
       info: `Go forward in browser history`,
     },
