@@ -93,6 +93,28 @@ Addlist.build = (args) => {
   }
 
   let container = DOM.el(`#addlist_container_${args.id}`)
+
+  let top = DOM.create(`div`, `addlist_top`)
+  let title = DOM.create(`div`, `addlist_title`)
+  title.textContent = args.title || `List`
+  let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
+  btn_prev.textContent = `<`
+  let btn_next = DOM.create(`div`, `button`, `addlist_next_${args.id}`)
+  btn_next.textContent = `>`
+
+  DOM.ev(btn_prev, `click`, () => {
+    Addlist.left()
+  })
+
+  DOM.ev(btn_next, `click`, () => {
+    Addlist.right()
+  })
+
+  top.append(btn_prev)
+  top.append(title)
+  top.append(btn_next)
+  container.append(top)
+
   let els = []
 
   function add_label (el, key) {
@@ -254,27 +276,6 @@ Addlist.register = (args = {}) => {
   App.def_args(def_args, args)
   let container = DOM.create(`div`, `addlist_container`, `addlist_container_${args.id}`)
   container.tabIndex = 0
-  let top = DOM.create(`div`, `addlist_top`)
-  let title = DOM.create(`div`, `addlist_title`)
-  title.textContent = args.title || `List`
-  let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
-  btn_prev.textContent = `<`
-  let btn_next = DOM.create(`div`, `button`, `addlist_next_${args.id}`)
-  btn_next.textContent = `>`
-
-  DOM.ev(btn_prev, `click`, () => {
-    Addlist.left()
-  })
-
-  DOM.ev(btn_next, `click`, () => {
-    Addlist.right()
-  })
-
-  top.append(btn_prev)
-  top.append(title)
-  top.append(btn_next)
-  container.append(top)
-
   args.built = false
   App[`addlist_args_${args.id}`] = args
   return container
