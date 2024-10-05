@@ -36,7 +36,7 @@ App.restore = () => {
       App.hide_window()
       return
     }
-    
+
     App.hide_window()
   }
 
@@ -47,24 +47,6 @@ App.restore = () => {
   }
   else if (App.is_filtered(mode)) {
     App.filter_all(mode)
-  }
-  else {
-    let item = App.get_selected(mode)
-
-    if (!item) {
-      return
-    }
-
-    if (mode === `tabs`) {
-      if (!item.active) {
-        App.focus_current_tab()
-        return
-      }
-    }
-
-    if (!App.item_is_visible(item)) {
-      App.select_item({item, scroll: `nearest_smooth`})
-    }
   }
 }
 

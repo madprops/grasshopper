@@ -3934,6 +3934,13 @@ App.build_settings = () => {
       info: `Auto-clear after no items remain when closing tabs`,
       version: 1,
     },
+    scroll_on_focus: {
+      name: `Scroll On Focus`,
+      type: `checkbox`,
+      value: true,
+      info: `Auto-scroll to the tab that was activated`,
+      version: 1,
+    },
     autohide_context: {
       name: `Autohide Context`,
       type: `checkbox`,

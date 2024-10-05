@@ -344,6 +344,10 @@ App.tabs_action = async (args = {}) => {
     }
   }
 
+  if (!App.get_setting(`scroll_on_focus`)) {
+    args.scroll = `none`
+  }
+
   if (args.item.header) {
     let header_action = App.get_setting(`header_action`)
 
