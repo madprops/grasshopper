@@ -197,11 +197,13 @@ App.generate_password = () => {
 }
 
 App.play_sound = (name) => {
-  if (!App[`audio_player_${name}`]) {
-    App[`audio_player_${name}`] = new Audio(`audio/${name}.mp3`)
+  let pname = `audio_player_${name}`
+
+  if (!App[pname]) {
+    App[pname] = new Audio(`audio/${name}.mp3`)
   }
 
-  let player = App[`audio_player_${name}`]
+  let player = App[pname]
   player.pause()
   player.currentTime = 0
   player.play()
