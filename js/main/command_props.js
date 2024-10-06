@@ -476,9 +476,10 @@ App.setup_commands = () => {
 
   for (let i = 1; i <= App.num_command_combos; i++) {
     let combo = App.get_setting(`command_combo_${i}`)
+    let skip_palette = false
 
     if (!combo || !combo.length) {
-      continue
+      skip_palette = true
     }
 
     let name = App.get_setting(`command_combo_name_${i}`) || `Cmd Combo ${i}`
@@ -488,6 +489,7 @@ App.setup_commands = () => {
       name,
       short: `Combo ${i}`,
       cmd: `run_command_combo_${i}`,
+      skip_palette,
       icon,
       action: (args) => {
         App.run_command_combo(i)
@@ -500,8 +502,10 @@ App.setup_commands = () => {
 
   for (let i = 1; i <= App.num_generic_menus; i++) {
     let menu = App.get_setting(`generic_menu_${i}`)
+    let skip_palette = false
 
     if (!menu || !menu.length) {
+      skip_palette = true
       continue
     }
 
@@ -512,6 +516,7 @@ App.setup_commands = () => {
       name,
       short_name: `Menu ${i}`,
       cmd: `show_generic_menu_${i}`,
+      skip_palette,
       icon,
       action: (args) => {
         App.show_generic_menu(i, args.item, args.e)
