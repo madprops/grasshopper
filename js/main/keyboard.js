@@ -657,6 +657,15 @@ App.setup_keyboard = () => {
         return
       }
     }
+    else if (App.on_settings()) {
+      if (e.key === `Enter`) {
+        if (App.settings_on_enter()) {
+          e.preventDefault()
+        }
+
+        return
+      }
+    }
   })
 }
 

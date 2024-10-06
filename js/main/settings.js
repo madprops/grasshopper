@@ -406,6 +406,7 @@ App.prepare_all_settings = () => {
   for (let key in App.setting_props) {
     let props = App.setting_props[key]
     let item = DOM.create(`div`, `settings_text_item settings_item filter_item action`)
+    item.dataset.setting = key
 
     let cat = DOM.create(`div`)
     let name = App.category_string(props.category)
@@ -2201,4 +2202,22 @@ App.settings_generic_menus = () => {
   }
 
   return props
+}
+
+App.settings_on_enter = () => {
+  if (App.settings_category === `all`) {
+    let container = DOM.el(`#settings_all_container`)
+    let items = DOM.els(`.settings_item`, container)
+
+    for (let item of items) {
+      if (!DOM.is_hidden(item)) {
+        let key = item.dataset.setting
+        let props = App.setting_props[key]
+        App.show_settings_category(props.category, props.name)
+        return true
+      }
+    }
+  }
+
+  return false
 }
