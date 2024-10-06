@@ -114,7 +114,7 @@ App.tab_tree = {}
 App.last_settings = {}
 App.tab_box_items = []
 App.tab_box_o_items = []
-App.num_generic_menus = 5
+App.num_generic_menus = 9
 
 App.settings_ready = false
 App.media_image_ready = false
