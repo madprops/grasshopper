@@ -25,10 +25,15 @@ Addlist.values = (id) => {
   return values
 }
 
-Addlist.save = (id, hide = true) => {
+Addlist.save = (args = {}) => {
+  let def_args = {
+    hide: true,
+  }
+
+  App.def_args(def_args, args)
   let data = Addlist.data
-  let oargs = Addlist.oargs(id)
-  let values = Addlist.values(id)
+  let oargs = Addlist.oargs(args.id)
+  let values = Addlist.values(args.id)
 
   if (oargs.validate) {
     if (!oargs.validate(values)) {
@@ -36,7 +41,7 @@ Addlist.save = (id, hide = true) => {
       return false
     }
   }
-  else if (!Addlist.filled(id)) {
+  else if (!Addlist.filled(args.id)) {
     Addlist.check_remove()
     return false
   }
@@ -48,16 +53,16 @@ Addlist.save = (id, hide = true) => {
   }
 
   if (v1) {
-    Addlist.remove({id, value: v1, force: true})
+    Addlist.remove({id: args.id, value: v1, force: true})
   }
 
   let v2 = values[oargs.pk]
 
   if (v2 && (v1 !== v2)) {
-    Addlist.remove({id, value: v2, force: true})
+    Addlist.remove({id: args.id, value: v2, force: true})
   }
 
-  let lines = Addlist.get_data(id)
+  let lines = Addlist.get_data(args.id)
   values._date_ = App.now()
 
   if (!data.edit) {
@@ -67,10 +72,23 @@ Addlist.save = (id, hide = true) => {
   }
 
   if (data.index === undefined) {
+    let method
+
     if (Addlist.check_append()) {
-      lines.push(values)
+      method = `append`
     }
     else {
+      method = `prepend`
+    }
+
+    if (args.e && (args.e.shiftKey || args.e.ctrlKey)) {
+      method = (method === `append`) ? `prepend` : `append`;
+    }
+
+    if (method === `append`) {
+      lines.push(values)
+    }
+    else if (method === `prepend`) {
       lines.unshift(values)
     }
   }
@@ -78,7 +96,7 @@ Addlist.save = (id, hide = true) => {
     lines.splice(data.index, 0, values)
   }
 
-  Addlist.after(id, lines, hide)
+  Addlist.after(args.id, lines, args.hide)
 
   if (data.after_done) {
     data.after_done()
@@ -167,7 +185,7 @@ Addlist.build = (oargs) => {
           let data = Addlist.data
 
           if (!data.edit && oargs.automenu) {
-            Addlist.save(oargs.id)
+            Addlist.save({id: oargs.id})
           }
         },
       })
@@ -232,11 +250,12 @@ Addlist.build = (oargs) => {
   let btns = DOM.create(`div`, `addlist_buttons`)
   let save = DOM.create(`div`, `button`, `addlist_save_${oargs.id}`)
   save.textContent = `Save`
+  save.title = `Use Shift or Ctrl to reverse insert method`
   let menu = DOM.create(`div`, `button icon_button`, `addlist_menu_${oargs.id}`)
   menu.textContent = `Menu`
 
-  DOM.ev(save, `click`, () => {
-    Addlist.save(oargs.id)
+  DOM.ev(save, `click`, (e) => {
+    Addlist.save({id: oargs.id, e})
   })
 
   DOM.ev(menu, `click`, () => {
@@ -425,7 +444,7 @@ Addlist.enter = () => {
   }
 
   let data = Addlist.data
-  Addlist.save(data.id)
+  Addlist.save({id: data.id})
 }
 
 Addlist.left = () => {
@@ -433,7 +452,7 @@ Addlist.left = () => {
   let save = Addlist.data.edit
 
   if (save) {
-    Addlist.save(id, false)
+    Addlist.save({id, hide: false})
   }
 
   Addlist.next(id, true)
@@ -444,7 +463,7 @@ Addlist.right = () => {
   let save = Addlist.data.edit
 
   if (save) {
-    Addlist.save(id, false)
+    Addlist.save({id, hide: false})
   }
 
   Addlist.next(id)
