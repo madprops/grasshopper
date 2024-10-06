@@ -456,11 +456,13 @@ App.mouse_middle_action = (mode, e) => {
     }
 
     if (App.taglist_enabled()) {
-      if (DOM.parent(e.target, [`.taglist`])) {
-        if (DOM.class(e.target, [`taglist_item`])) {
-          App.taglist_remove(e, item)
-          return
-        }
+      if (DOM.class(e.target, [`taglist_item`])) {
+        App.taglist_remove(e, item)
+        return
+      }
+
+      if (DOM.parent(e.target, [`.taglist_container`])) {
+        return
       }
     }
 
