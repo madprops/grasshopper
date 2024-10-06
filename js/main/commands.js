@@ -203,19 +203,19 @@ App.check_command = (command, args = {}) => {
         }
       }
 
-      if (command.some_nodes) {
+      if (command.some_nodes && !args.some_nodes) {
         if (App.tab_has_nodes(item)) {
           args.some_nodes = true
         }
       }
 
-      if (command.some_parent) {
+      if (command.some_parent && !args.some_parent) {
         if (App.tab_has_parent(item)) {
           args.some_parent = true
         }
       }
 
-      if (command.some_root_possible) {
+      if (command.some_root_possible && !args.some_root_possible) {
         if (App.root_possible(item)) {
           args.some_root_possible = true
         }
