@@ -205,6 +205,10 @@ App.get_items = (mode = App.active_mode) => {
   return items
 }
 
+App.get_item_count = (mode = App.active_mode) => {
+  return App.get_items(mode).length
+}
+
 App.select_first_item = (mode, by_active = false, scroll = `center`) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {

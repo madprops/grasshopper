@@ -91,6 +91,13 @@ App.check_command = (command, args = {}) => {
 
   App.def_args(def_args, args)
   args.mode = App.window_mode
+
+  if (command.min_items) {
+    if (App.get_item_count(args.mode) < command.min_items) {
+      return false
+    }
+  }
+
   args.on_items = App.on_items()
   args.on_media = App.on_media()
 
@@ -196,16 +203,22 @@ App.check_command = (command, args = {}) => {
         }
       }
 
-      if (App.tab_has_nodes(item)) {
-        args.some_nodes = true
+      if (command.some_nodes) {
+        if (App.tab_has_nodes(item)) {
+          args.some_nodes = true
+        }
       }
 
-      if (App.tab_has_parent(item)) {
-        args.some_parent = true
+      if (command.some_parent) {
+        if (App.tab_has_parent(item)) {
+          args.some_parent = true
+        }
       }
 
-      if (App.root_possible(item)) {
-        args.some_root_possible = true
+      if (command.some_root_possible) {
+        if (App.root_possible(item)) {
+          args.some_root_possible = true
+        }
       }
 
       if (item.hostname) {
