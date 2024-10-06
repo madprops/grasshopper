@@ -1080,3 +1080,43 @@ Addlist.check_remove = () => {
 Addlist.edit_object = (id, obj, edit, after_done) => {
   Addlist.edit({id, items: obj, edit, after_done})
 }
+
+Addlist.swap_menus = (id_1, id_2) => {
+  let btn_1 = App[`addlist_menubutton_settings_${id_1}`]
+  let btn_2 = App[`addlist_menubutton_settings_${id_2}`]
+
+  if (!btn_1 || !btn_2) {
+    return
+  }
+
+  let value_1 = btn_1.value
+  let value_2 = btn_2.value
+
+  if (value_1 === value_2) {
+    return
+  }
+
+  let ok_1 = false
+  let ok_2 = false
+
+  for (let opt of btn_1.opts) {
+    if (opt.value === value_2) {
+      ok_1 = true
+      break
+    }
+  }
+
+  for (let opt of btn_2.opts) {
+    if (opt.value === value_1) {
+      ok_2 = true
+      break
+    }
+  }
+
+  if (!ok_1 || !ok_2) {
+    return
+  }
+
+  btn_1.set(value_2)
+  btn_2.set(value_1)
+}

@@ -253,6 +253,7 @@ App.build_settings = () => {
       name: `Command Combos`,
       type: `list`,
       value: [],
+      actions: [`commands`],
       info: `Define Command Combos here`,
       version: 1,
     },

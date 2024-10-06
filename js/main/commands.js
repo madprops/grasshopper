@@ -48,7 +48,7 @@ App.get_command = (cmd) => {
   }
 }
 
-App.run_command = (args) => {
+App.run_command = async (args) => {
   if (!args.cmd || args.cmd === `none`) {
     return false
   }
@@ -74,7 +74,7 @@ App.run_command = (args) => {
       App.last_command = last_args
     }
 
-    command.action(args)
+    await command.action(args)
   }
 
   return true
@@ -622,7 +622,7 @@ App.run_command_combo = async (combo) => {
       continue
     }
 
-    App.run_command({cmd})
+    await App.run_command({cmd})
 
     if (delay > 0) {
       await App.sleep(delay)
