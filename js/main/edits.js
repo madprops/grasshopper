@@ -224,7 +224,7 @@ App.edit_prompt = (args = {}) => {
 
   let list_submit
 
-  if (args.what === `title` || args.what === `tags` || args.what === `icon`) {
+  if (args.what === `title` || args.what === `icon`) {
     list_submit = true
   }
   else {
@@ -248,7 +248,6 @@ App.edit_prompt = (args = {}) => {
   if (args.what === `tags`) {
     if (args.add) {
       ignore_words = App.tags(args.item)
-      show_list = true
     }
 
     append = true
