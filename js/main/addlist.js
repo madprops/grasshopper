@@ -82,7 +82,7 @@ Addlist.save = (args = {}) => {
     }
 
     if (args.e && (args.e.shiftKey || args.e.ctrlKey)) {
-      method = (method === `append`) ? `prepend` : `append`;
+      method = method === `append` ? `prepend` : `append`
     }
 
     if (method === `append`) {

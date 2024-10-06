@@ -512,7 +512,7 @@ App.setup_commands = () => {
       name,
       short_name: `Menu ${i}`,
       cmd: `show_generic_menu_${i}`,
-      icon: icon,
+      icon,
       action: (args) => {
         App.show_generic_menu(i, args.item, args.e)
       },
