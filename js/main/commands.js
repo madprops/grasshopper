@@ -622,7 +622,7 @@ App.run_command_combo = async (combo) => {
       continue
     }
 
-    App.run_command({cmd: cmd})
+    App.run_command({cmd})
 
     if (delay > 0) {
       await App.sleep(delay)
