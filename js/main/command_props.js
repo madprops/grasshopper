@@ -505,11 +505,14 @@ App.setup_commands = () => {
       continue
     }
 
+    let name = App.get_setting(`generic_menu_name_${i}`) || `Gen Menu ${i}`
+    let icon = App.get_setting(`generic_menu_icon_${i}`) || menu_icon
+
     gen_menus.push({
-      name: `Gen Menu ${i}`,
+      name,
       short_name: `Menu ${i}`,
       cmd: `show_generic_menu_${i}`,
-      icon: menu_icon,
+      icon: icon,
       action: (args) => {
         App.show_generic_menu(i, args.item, args.e)
       },

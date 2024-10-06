@@ -2147,13 +2147,39 @@ App.settings_generic_menus = () => {
   let props = {}
 
   for (let i = 1; i <= App.num_generic_menus; i++) {
-    let name = `generic_menu_${i}`
+    let name = `generic_menu_icon_${i}`
+
+    props[`${name}`] = {
+      name: `Gen Menu Icon ${i}`,
+      type: `text_smaller`,
+      value: ``,
+      actions: [`commands`],
+      placeholder: `Icon`,
+      info: `Icon of this Generic Menu (${i})`,
+      version: 1,
+    }
+
+    name = `generic_menu_name_${i}`
+
+    props[`${name}`] = {
+      name: `Gen Menu Name ${i}`,
+      type: `text`,
+      value: ``,
+      actions: [`commands`],
+      placeholder: `Name`,
+      info: `Name of this Generic Menu (${i})`,
+      version: 1,
+    }
+
+    name = `generic_menu_${i}`
+    let separator = i < App.num_generic_menus
 
     props[name] = {
       name: `Generic Menu ${i}`,
       type: `list`,
       value: [],
       actions: [`commands`],
+      separator,
       info: `Generic menu you can add to other menus or call on command (${i})`,
       version: 1,
     }
