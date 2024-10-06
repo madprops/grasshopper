@@ -115,7 +115,7 @@ App.tab_tree = {}
 App.last_settings = {}
 App.tab_box_items = []
 App.tab_box_o_items = []
-App.num_generic_menus = 10
+App.num_generic_menus = 5
 
 App.settings_ready = false
 App.media_image_ready = false
@@ -163,6 +163,7 @@ App.popup_commands_delay = 250
 App.prompt_close_delay = 250
 App.signal_min_delay = 3
 App.last_settings_scroll_delay = 500
+App.default_combo_delay = 100
 
 App.settings_icons = {
   all: `🔍`,
