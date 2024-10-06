@@ -516,7 +516,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_generic_menu(i, args.item, args.e)
       },
-      info: `Show generic menu (${i})`,
+      info: `Show Generic Menu (${i})`,
     })
   }
 
