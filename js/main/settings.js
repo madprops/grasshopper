@@ -1973,13 +1973,39 @@ App.settings_command_combos = () => {
   }
 
   for (let i = 1; i <= App.num_command_combos; i++) {
-    let name = `command_combo_${i}`
+    let name = `command_combo_icon_${i}`
+
+    props[`${name}`] = {
+      name: `Cmd Combo Icon ${i}`,
+      type: `text_smaller`,
+      value: ``,
+      actions: [`commands`],
+      placeholder: `Icon`,
+      info: `Icon of this Command Combo (${i})`,
+      version: 1,
+    }
+
+    name = `command_combo_name_${i}`
+
+    props[`${name}`] = {
+      name: `Cmd Combo Name ${i}`,
+      type: `text`,
+      value: ``,
+      actions: [`commands`],
+      placeholder: `Name`,
+      info: `Name of this Command Combo (${i})`,
+      version: 1,
+    }
+
+    name = `command_combo_${i}`
+    let separator = i < App.num_command_combos
 
     props[name] = {
       name: `Command Combo ${i}`,
       type: `list`,
-      actions: [`commands`],
       value: [],
+      actions: [`commands`],
+      separator,
       info: `These commands run together with a small delay between them (${i})`,
       version: 1,
     }

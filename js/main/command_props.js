@@ -481,14 +481,18 @@ App.setup_commands = () => {
       continue
     }
 
+    let name = App.get_setting(`command_combo_name_${i}`) || `Cmd Combo ${i}`
+    let icon = App.get_setting(`command_combo_icon_${i}`) || combo_icon
+
     cmd_combos.push({
-      name: `Cmd Combo ${i}`,
+      name,
+      short: `Combo ${i}`,
       cmd: `run_command_combo_${i}`,
-      icon: combo_icon,
+      icon,
       action: (args) => {
         App.run_command_combo(i)
       },
-      info: `Run command combo (${i})`,
+      info: `Run Command Combo (${i})`,
     })
   }
 
