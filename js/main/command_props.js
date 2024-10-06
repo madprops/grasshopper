@@ -506,7 +506,6 @@ App.setup_commands = () => {
 
     if (!menu || !menu.length) {
       skip_palette = true
-      continue
     }
 
     let name = App.get_setting(`generic_menu_name_${i}`) || `Gen Menu ${i}`
