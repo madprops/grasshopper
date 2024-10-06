@@ -1,4 +1,4 @@
-// NeedContext v7.2
+// NeedContext v8.0
 
 // Main object
 const NeedContext = {}
@@ -190,9 +190,15 @@ NeedContext.show = (args = {}) => {
     }
   }
 
+  let index = 0
+
   let c = NeedContext.container
   c.innerHTML = ``
-  let index = 0
+  c.style.left = `unset`
+  c.style.top = `unset`
+  c.style.transform = `unset`
+  c.style.minWidth = `unset`
+  c.style.minHeight = `unset`
 
   if (args.title) {
     let title = document.createElement(`div`)
@@ -357,16 +363,15 @@ NeedContext.show = (args = {}) => {
 
   NeedContext.filter.value = ``
   NeedContext.filter.focus()
-  let container = document.querySelector(`#needcontext-container`)
 
   if (args.expand && args.element) {
-    container.style.minWidth = `${args.element.clientWidth}px`
+    c.style.minWidth = `${args.element.clientWidth}px`
   }
   else {
-    container.style.minWidth = NeedContext.min_width
+    c.style.minWidth = NeedContext.min_width
   }
 
-  container.style.minHeight = NeedContext.min_height
+  c.style.minHeight = NeedContext.min_height
   NeedContext.filter.value = ``
   NeedContext.filtered = false
   NeedContext.select_item(selected_index)
