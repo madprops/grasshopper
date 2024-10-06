@@ -93,25 +93,18 @@ App.user_madprops_settings = () => {
 
   // Combos
 
-  App.set_setting({setting: `command_combo_icon_1`, value: `🔒`})
-  App.set_setting({setting: `command_combo_name_1`, value: `On Lock`})
-  //
-  cmd = {cmd: `open_new_tab`},
-  App.append_list_setting(`command_combo_1`, cmd)
+  sett = `command_combos`
 
-  App.set_setting({setting: `command_combo_icon_2`, value: `🔒`})
-  App.set_setting({setting: `command_combo_name_2`, value: `On Unlock`})
-  //
-  cmd = {cmd: `recent_tabs_backwards`},
-  App.append_list_setting(`command_combo_2`, cmd)
-  //
-  cmd = {cmd: `close_last_tab`},
-  App.append_list_setting(`command_combo_2`, cmd)
+  cmd = {name: `On Lock`, icon: `🔒`, cmd_1: `open_new_tab`, _id_: `on_lock`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `On Unlock`, icon: `🔒`, cmd_1: `recent_tabs_backwards`, cmd_2: `close_last_tab`, _id_: `on_unlock`}
+  App.append_list_setting(sett, cmd)
 
   // Lock Screen
 
-  App.set_setting({setting: `lock_screen_command`, value: `run_command_combo_1`})
-  App.set_setting({setting: `unlock_screen_command`, value: `run_command_combo_2`})
+  App.set_setting({setting: `lock_screen_command`, value: `run_command_combo_on_lock`})
+  App.set_setting({setting: `unlock_screen_command`, value: `run_command_combo_on_unlock`})
 
   // Signals
 
