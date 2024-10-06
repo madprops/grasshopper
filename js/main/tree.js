@@ -136,4 +136,6 @@ App.get_current_tab_nodes = () => {
   if (item) {
     return App.get_tab_nodes(item)
   }
+
+  return []
 }
