@@ -3971,6 +3971,13 @@ App.build_settings = () => {
       info: `Auto-clear after no items remain when closing tabs`,
       version: 1,
     },
+    auto_tag_picker: {
+      name: `Auto Tag Picker`,
+      type: `checkbox`,
+      value: false,
+      info: `Add tags quickly with the auto picker`,
+      version: 1,
+    },
     autohide_context: {
       name: `Autohide Context`,
       type: `checkbox`,
