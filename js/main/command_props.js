@@ -23,12 +23,12 @@ App.setup_commands = () => {
   let tab_box_icon = App.settings_icons.tab_box
   let colors_icon = App.settings_icons.colors
   let favorites_icon = App.settings_icons.favorites
-  let combo_icon = App.settings_icons.combos
   let signal_icon = App.settings_icons.signals
   let browser_icon = App.settings_icons.browser
   let menu_icon = App.settings_icons.menus
   let footer_icon = App.settings_icons.footer
 
+  let combo_icon = App.combo_icon
   let time_icon = App.time_icon
   let command_icon = App.command_icon
   let tabs_icon = App.mode_icons.tabs
@@ -474,27 +474,16 @@ App.setup_commands = () => {
 
   let cmd_combos = []
 
-  for (let i = 1; i <= App.num_command_combos; i++) {
-    let combo = App.get_setting(`command_combo_${i}`)
-    let skip_palette = false
-
-    if (!combo || !combo.length) {
-      skip_palette = true
-    }
-
-    let name = App.get_setting(`command_combo_name_${i}`) || `Cmd Combo ${i}`
-    let icon = App.get_setting(`command_combo_icon_${i}`) || combo_icon
-
+  for (let combo of App.get_setting(`command_combos`)) {
     cmd_combos.push({
-      name,
-      short: `Combo ${i}`,
-      cmd: `run_command_combo_${i}`,
-      skip_palette,
-      icon,
+      name: combo.name,
+      short: `Combo ${combo._id_}`,
+      cmd: `run_command_combo_${combo._id_}`,
+      icon: combo_icon || combo_icon,
       action: (args) => {
-        App.run_command_combo(i)
+        App.run_command_combo(combo)
       },
-      info: `Run Command Combo (${i})`,
+      info: `Run Command Combo (${combo._id_})`,
     })
   }
 

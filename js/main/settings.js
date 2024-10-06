@@ -1599,10 +1599,6 @@ App.setup_settings_addlist = () => {
 
   menukeys = []
 
-  for (let i = 1; i <= App.num_command_combos; i++) {
-    menukeys.push(`command_combo_${i}`)
-  }
-
   for (let key in App.setting_props) {
     if (menukeys.includes(key)) {
       let id = `settings_${key}`
@@ -1754,6 +1750,82 @@ App.setup_settings_addlist = () => {
       },
       title: props.name,
     })})
+
+    id = `settings_command_combos`
+    props = App.setting_props.command_combos
+
+    App.create_popup({...popobj, id: `addlist_${id}`,
+      element: Addlist.register({...regobj, id,
+        keys: [
+          `name`, `icon`,
+          `cmd_1`, `cmd_2`, `cmd_3`, `cmd_4`,
+          `cmd_5`, `cmd_6`, `cmd_7`, `cmd_8`,
+        ],
+        widgets: {
+          icon: `text`,
+          name: `text`,
+          cmd_1: `menu`,
+          cmd_2: `menu`,
+          cmd_3: `menu`,
+          cmd_4: `menu`,
+          cmd_5: `menu`,
+          cmd_6: `menu`,
+          cmd_7: `menu`,
+          cmd_8: `menu`,
+        },
+        labels: {
+          icon: `Icon`,
+          name: `Name`,
+          cmd_1: `Command 1`,
+          cmd_2: `Command 2`,
+          cmd_3: `Command 3`,
+          cmd_4: `Command 4`,
+          cmd_5: `Command 5`,
+          cmd_6: `Command 6`,
+          cmd_7: `Command 7`,
+          cmd_8: `Command 8`,
+        },
+        sources: {
+          cmd_1: () => {
+            return App.cmdlist_single.slice(0)
+          },
+          cmd_2: () => {
+            return App.cmdlist_single.slice(0)
+          },
+          cmd_3: () => {
+            return App.cmdlist_single.slice(0)
+          },
+          cmd_4: () => {
+            return App.cmdlist_single.slice(0)
+          },
+          cmd_5: () => {
+            return App.cmdlist_single.slice(0)
+          },
+          cmd_6: () => {
+            return App.cmdlist_single.slice(0)
+          },
+          cmd_7: () => {
+            return App.cmdlist_single.slice(0)
+          },
+          cmd_8: () => {
+            return App.cmdlist_single.slice(0)
+          },
+        },
+        list_icon: (item) => {
+          return item.icon || App.combo_icon
+        },
+        list_text: (item) => {
+          return item.name
+        },
+        required: {
+          name: true,
+        },
+        tooltips: {
+          icon: `Icon for this combo`,
+          name: `Name of the combo`,
+        },
+        title: props.name,
+      })})
 }
 
 App.settings_build_category = (key) => {
@@ -1955,63 +2027,6 @@ App.setting_steps = (min, max, step) => {
 
 App.settings_cmdlist_single = (key) => {
   return App.settings_make_menu(key, App.cmdlist_single)
-}
-
-App.settings_command_combos = () => {
-  let props = {
-    command_combo_delay: {
-      name: `Command Combo Delay`,
-      type: `number`,
-      value: 100,
-      placeholder: `Number`,
-      min: 0,
-      max: App.number_max,
-      separator: true,
-      info: `Wait this time in milliseconds between each command`,
-      version: 1,
-    },
-  }
-
-  for (let i = 1; i <= App.num_command_combos; i++) {
-    let name = `command_combo_icon_${i}`
-
-    props[`${name}`] = {
-      name: `Cmd Combo Icon ${i}`,
-      type: `text_smaller`,
-      value: ``,
-      actions: [`commands`],
-      placeholder: `Icon`,
-      info: `Icon of this Command Combo (${i})`,
-      version: 1,
-    }
-
-    name = `command_combo_name_${i}`
-
-    props[`${name}`] = {
-      name: `Cmd Combo Name ${i}`,
-      type: `text`,
-      value: ``,
-      actions: [`commands`],
-      placeholder: `Name`,
-      info: `Name of this Command Combo (${i})`,
-      version: 1,
-    }
-
-    name = `command_combo_${i}`
-    let separator = i < App.num_command_combos
-
-    props[name] = {
-      name: `Command Combo ${i}`,
-      type: `list`,
-      value: [],
-      actions: [`commands`],
-      separator,
-      info: `These commands run together with a small delay between them (${i})`,
-      version: 1,
-    }
-  }
-
-  return props
 }
 
 App.setting_browser_commands = () => {

@@ -103,7 +103,6 @@ App.main_title_scroll_pause = false
 App.max_tab_num = 10
 App.breathe_effect_on = false
 App.tab_blink_diff = 2
-App.num_command_combos = 10
 App.num_browser_commands = 10
 App.prompt_mode = false
 App.max_padding_setting = 100
@@ -191,7 +190,6 @@ App.settings_icons = {
   footer: `⚽`,
   lock: `🔒`,
   browser: `🌐`,
-  combos: `🍔`,
   hover: `🔆`,
   bookmarks: `⭐`,
   close: `❌`,
@@ -237,6 +235,7 @@ App.keyboard_icon = `⌨️`
 App.tree_icon = `🌳`
 App.nodes_icon = `💠`
 App.root_icon = `🌀`
+App.combo_icon = `🍔`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

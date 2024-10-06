@@ -594,27 +594,40 @@ App.get_cmd_name = (cmd) => {
   return `Unknown`
 }
 
-App.run_command_list = async (setting) => {
-  let cmds = App.get_setting(setting)
+App.run_command_combo = async (combo) => {
+  let cmds = []
+
+  for (let key in combo) {
+    if (key.startsWith(`cmd_`)) {
+      let value = combo[key]
+
+      if (!value || (value === `none`)) {
+        continue
+      }
+
+      cmds.push(value)
+    }
+  }
+
+  if (!cmds.length) {
+    return
+  }
+
   let delay = App.get_setting(`command_combo_delay`)
 
   for (let cmd of cmds) {
-    if (cmd.cmd.startsWith(`sleep_ms`)) {
-      let ms = parseInt(cmd.cmd.split(`_`).pop())
+    if (cmd.startsWith(`sleep_ms`)) {
+      let ms = parseInt(cmd.split(`_`).pop())
       await App.sleep(ms)
       continue
     }
 
-    App.run_command({cmd: cmd.cmd})
+    App.run_command({cmd: cmd})
 
     if (delay > 0) {
       await App.sleep(delay)
     }
   }
-}
-
-App.run_command_combo = (num) => {
-  App.run_command_list(`command_combo_${num}`)
 }
 
 App.repeat_command = () => {

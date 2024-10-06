@@ -249,6 +249,13 @@ App.build_settings = () => {
       info: `List of URLs that can be used in commands`,
       version: 1,
     },
+    command_combos: {
+      name: `Command Combos`,
+      type: `list`,
+      value: [],
+      info: `Define Command Combos here`,
+      version: 1,
+    },
     open_in_new_tab: {
       name: `Open In New Tab`,
       type: `checkbox`,
@@ -3818,10 +3825,6 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `combos`
-  props = App.settings_command_combos()
-
-  add_props()
   category = `browser`
   props = App.setting_browser_commands()
 
@@ -3847,6 +3850,16 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Empty the recent tabs list these milliseconds after its last use`,
+      version: 1,
+    },
+    command_combo_delay: {
+      name: `Command Combo Delay`,
+      type: `number`,
+      value: 100,
+      placeholder: `Number`,
+      min: 0,
+      max: App.number_max,
+      info: `Delay in milliseconds between Command Combo commands`,
       version: 1,
     },
     close_on_focus: {
@@ -4224,11 +4237,6 @@ App.build_settings = () => {
       Click 'Manage Extension', then click the cog on the top right
       Then click 'Manage Extension Shortcuts' and add the shortcuts you need
       Popup Commands open the popup first before running the command`,
-    },
-    combos: {
-      info: `Command Combos are lists of commands
-      Each command in a list is ran with a small delay in between
-      You can use these like other normal commands and assign them`,
     },
     warns: {
       info: `When to show the confirmation dialog on certain actions
