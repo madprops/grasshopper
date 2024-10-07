@@ -15,9 +15,9 @@ App.show_item_menu = async (args = {}) => {
     })
   }
   else if (args.item.mode === `tabs`) {
+    App.item_menu_item(items, `go_to_root_url`, {item: args.item})
     App.item_menu_item(items, `focus_parent_tab`, {item: args.item})
     App.item_menu_item(items, `filter_node_tabs`, {item: args.item})
-    App.item_menu_item(items, `go_to_root_url`, {item: args.item})
 
     if (items.length) {
       App.sep(items)
