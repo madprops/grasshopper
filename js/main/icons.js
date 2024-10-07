@@ -116,7 +116,7 @@ App.add_icons = (item, side) => {
 
     if (App.get_setting(`mute_click`)) {
       cls += ` grower`
-      title += `\nClick to mute`
+      title += `\nClick to toggle mute`
     }
 
     if (App.icon_enabled(what) && check_side(what)) {
@@ -237,6 +237,11 @@ App.add_icons = (item, side) => {
   cls = ``
   what = `titled_icon`
   title = `Titled`
+
+  if (App.get_setting(`titled_icon_click`)) {
+    cls += ` grower`
+    title += `\nClick to edit the title`
+  }
 
   if (App.icon_enabled(what) && check_side(what)) {
     let icon = DOM.create(`div`, classes(what))

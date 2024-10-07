@@ -1248,6 +1248,13 @@ App.build_settings = () => {
       info: `Load the tab when clicking the unloaded icon`,
       version: 1,
     },
+    titled_icon_click: {
+      name: `Titled Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Edit the tab's title when clicking the titled icon`,
+      version: 1,
+    },
     custom_icon_click: {
       name: `Custom Icon Click`,
       type: `checkbox`,

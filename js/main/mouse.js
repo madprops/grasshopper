@@ -250,6 +250,13 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
+  if (App.get_setting(`titled_icon_click`)) {
+    if (DOM.class(e.target, [`titled_icon`])) {
+      App.edit_title(item)
+      return
+    }
+  }
+
   if (App.get_setting(`root_icon_click`)) {
     if (DOM.class(e.target, [`root_icon`])) {
       App.go_to_root_url(item, true)
