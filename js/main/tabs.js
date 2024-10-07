@@ -399,7 +399,7 @@ App.tabs_action = async (args = {}) => {
 
   let tb_mode = App.get_setting(`tab_box_mode`)
 
-  if ([`nodes`].includes(tb_mode)) {
+  if ([`nodez`].includes(tb_mode)) {
     App.refresh_tab_box()
   }
 }

@@ -184,12 +184,12 @@ App.update_tab_box_parents = () => {
 }
 
 App.update_tab_box_nodes = () => {
-  let o_items = App.get_current_tab_nodes()
+  let o_items = App.get_node_tabs()
   App.tab_box_show(`nodes`, o_items)
 }
 
 App.update_tab_box_nodez = () => {
-  let o_items = App.get_node_tabs()
+  let o_items = App.get_current_tab_nodes()
   App.tab_box_show(`nodez`, o_items)
 }
 
