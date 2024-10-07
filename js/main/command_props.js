@@ -2843,7 +2843,7 @@ App.setup_commands = () => {
       info: `Focus the parent tab of this item`,
     },
     {
-      name: `Filter All Parents`,
+      name: `Filter Parents`,
       short_name: `Parents`,
       cmd: `filter_all_parent_tabs`,
       modes: [`tabs`],
