@@ -400,5 +400,5 @@ App.icon_show = [
   {text: `Always`, value: `always`, info: `Always show the icon`},
   {text: `On Selected`, value: `selected`, info: `Show when the item is selected`},
   {text: `On Hover`, value: `hover`, info: `Show when hovering over the item with the mouse`},
-  {text: `On Focus`, value: `focus`, info: `Show on Selected or Hover`},
+  {text: `On Focus`, value: `focus`, info: `Show on selected or hover`},
 ]
