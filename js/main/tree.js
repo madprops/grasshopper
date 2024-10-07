@@ -139,3 +139,23 @@ App.get_current_tab_nodes = () => {
 
   return []
 }
+
+App.get_parent_tabs = () => {
+  let items = []
+
+  for (let id in App.tab_tree) {
+    items.push(App.tab_tree[id].parent)
+  }
+
+  return items
+}
+
+App.get_node_tabs = () => {
+  let items = []
+
+  for (let id in App.tab_tree) {
+    items = items.concat(App.tab_tree[id].nodes)
+  }
+
+  return items
+}

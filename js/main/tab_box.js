@@ -178,9 +178,19 @@ App.update_tab_box_headers = () => {
   App.tab_box_show(`headers`, o_items)
 }
 
+App.update_tab_box_parents = () => {
+  let o_items = App.get_parent_tabs()
+  App.tab_box_show(`parents`, o_items)
+}
+
 App.update_tab_box_nodes = () => {
   let o_items = App.get_current_tab_nodes()
   App.tab_box_show(`nodes`, o_items)
+}
+
+App.update_tab_box_nodez = () => {
+  let o_items = App.get_node_tabs()
+  App.tab_box_show(`nodez`, o_items)
 }
 
 App.get_tab_box_items = (o_items, mode) => {
@@ -210,6 +220,12 @@ App.get_tab_box_items = (o_items, mode) => {
 
 App.set_tab_box_title = () => {
   let mode = App.get_setting(`tab_box_mode`)
+
+  if (App.tab_box_modes.indexOf(mode) === -1) {
+    mode = `recent`
+    App.set_setting({setting: `tab_box_mode`, value: mode})
+  }
+
   let title_main = DOM.el(`#tab_box_title_main`)
   title_main.innerHTML = ``
   let icon = App.tab_box_icon(mode)
@@ -247,7 +263,13 @@ App.tab_box_icon = (mode) => {
   else if (mode === `headers`) {
     return App.get_setting(`header_icon`) || App.zone_icon
   }
+  else if (mode === `parents`) {
+    return App.get_setting(`parent_icon`) || App.parent_icon
+  }
   else if (mode === `nodes`) {
+    return App.get_setting(`node_icon`) || App.node_icon
+  }
+  else if (mode === `nodez`) {
     return App.get_setting(`node_icon`) || App.node_icon
   }
 
