@@ -12,8 +12,8 @@ App.setup_commands = () => {
   let subheader_icon = App.get_setting(`subheader_icon`) || App.zone_icon
   let hover_icon = App.get_setting(`hover_icon`) || App.settings_icons.hover
   let root_icon = App.get_setting(`root_icon`) || App.root_icon
-  let nodes_icon = App.get_setting(`nodes_icon`) || App.nodes_icon
-  let parent_icon = App.get_setting(`parent_icon`) || App.nodes_icon
+  let node_icon = App.get_setting(`node_icon`) || App.node_icon
+  let parent_icon = App.get_setting(`parent_icon`) || App.parent_icon
 
   let title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
@@ -2794,7 +2794,7 @@ App.setup_commands = () => {
       item: true,
       single: true,
       some_nodes: true,
-      icon: nodes_icon,
+      icon: node_icon,
       action: (args) => {
         App.filter_nodes(args.item)
       },
@@ -2847,7 +2847,7 @@ App.setup_commands = () => {
       short_name: `Parents`,
       cmd: `filter_all_parent_tabs`,
       modes: [`tabs`],
-      icon: nodes_icon,
+      icon: parent_icon,
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
@@ -2858,7 +2858,7 @@ App.setup_commands = () => {
       short_name: `Nodes`,
       cmd: `filter_all_node_tabs`,
       modes: [`tabs`],
-      icon: nodes_icon,
+      icon: node_icon,
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },

@@ -248,7 +248,7 @@ App.tab_box_icon = (mode) => {
     return App.get_setting(`header_icon`) || App.zone_icon
   }
   else if (mode === `nodes`) {
-    return App.get_setting(`nodes_icon`) || App.nodes_icon
+    return App.get_setting(`node_icon`) || App.node_icon
   }
 
   return App.mode_icons.tabs

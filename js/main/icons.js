@@ -175,9 +175,9 @@ App.add_icons = (item, side) => {
     }
 
     cls = ``
-    what = `nodes_icon`
+    what = `node_icon`
 
-    if (App.get_setting(`nodes_icon_click`)) {
+    if (App.get_setting(`node_icon_click`)) {
       cls += ` grower`
     }
 
@@ -454,7 +454,7 @@ App.check_icons = (item) => {
   if (App.icon_enabled(`parent`)) {
     let icon = DOM.el(`.parent_icon`, item.element)
 
-    if (App.tab_has_parent(item)) {
+    if (App.tab_has_nodes(item)) {
       DOM.show(icon)
     }
     else {
@@ -462,10 +462,10 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.icon_enabled(`nodes`)) {
-    let icon = DOM.el(`.nodes_icon`, item.element)
+  if (App.icon_enabled(`node`)) {
+    let icon = DOM.el(`.node_icon`, item.element)
 
-    if (App.tab_has_nodes(item)) {
+    if (App.tab_has_parent(item)) {
       DOM.show(icon)
     }
     else {

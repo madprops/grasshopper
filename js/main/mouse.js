@@ -229,15 +229,15 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  if (App.get_setting(`parent_icon_click`)) {
-    if (DOM.class(e.target, [`parent_icon`])) {
+  if (App.get_setting(`node_icon_click`)) {
+    if (DOM.class(e.target, [`node_icon`])) {
       App.go_to_parent(item)
       return
     }
   }
 
-  if (App.get_setting(`nodes_icon_click`)) {
-    if (DOM.class(e.target, [`nodes_icon`])) {
+  if (App.get_setting(`parent_icon_click`)) {
+    if (DOM.class(e.target, [`parent_icon`])) {
       App.filter_nodes(item)
       return
     }
@@ -466,8 +466,8 @@ App.mouse_middle_action = (mode, e) => {
       }
     }
 
-    if (App.get_setting(`nodes_icon_click`)) {
-      if (DOM.parent(e.target, [`.nodes_icon`])) {
+    if (App.get_setting(`parent_icon_click`)) {
+      if (DOM.parent(e.target, [`.parent_icon`])) {
         App.close_node_tabs(item)
         return
       }

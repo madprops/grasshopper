@@ -1089,7 +1089,7 @@ App.build_settings = () => {
       type: `text_smaller`,
       value: ``,
       placeholder: App.icon_placeholder,
-      info: `Icon for tabs with a parent tab`,
+      info: `Icon for tabs that are parents`,
       version: 1,
     },
     parent_icon_side: {
@@ -1113,15 +1113,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.icon_show)
       },
     },
-    nodes_icon: {
-      name: `Nodes Icon`,
+    node_icon: {
+      name: `Node Icon`,
       type: `text_smaller`,
       value: ``,
       placeholder: App.icon_placeholder,
-      info: `Icon for tabs with nodes`,
+      info: `Icon for tabs that are nodes`,
       version: 1,
     },
-    nodes_icon_side: {
+    node_icon_side: {
       name: `Nodes Icon Side`,
       type: `menu`,
       value: `right`,
@@ -1131,7 +1131,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    nodes_icon_show: {
+    node_icon_show: {
       name: `Nodes Icon Show`,
       type: `menu`,
       value: `always`,
@@ -1203,14 +1203,14 @@ App.build_settings = () => {
       name: `Parent Icon Click`,
       type: `checkbox`,
       value: true,
-      info: `Go to the tab's parent`,
+      info: `Go to the item's nodes`,
       version: 1,
     },
-    nodes_icon_click: {
+    node_icon_click: {
       name: `Nodes Icon Click`,
       type: `checkbox`,
       value: true,
-      info: `Show the item's nodes`,
+      info: `Show the item's parent`,
       version: 1,
     },
     root_icon_click: {
