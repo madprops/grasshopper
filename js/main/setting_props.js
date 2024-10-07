@@ -1192,6 +1192,20 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.icon_show)
       },
     },
+    pin_icon_click: {
+      name: `Pin Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Unpin the tab when clicking the pin icon`,
+      version: 1,
+    },
+    normal_icon_click: {
+      name: `Normal Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Pin the tab when clicking the normal icon`,
+      version: 1,
+    },
     notes_icon_click: {
       name: `Notes Icon Click`,
       type: `checkbox`,

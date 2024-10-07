@@ -31,6 +31,10 @@ App.add_icons = (item, side) => {
     cls = ``
     what = `pin_icon`
 
+    if (App.get_setting(`pin_icon_click`)) {
+      cls += ` grower`
+    }
+
     if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, classes(what))
       icon.textContent = App.get_setting(what)
@@ -44,6 +48,10 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `normal_icon`
+
+    if (App.get_setting(`normal_icon_click`)) {
+      cls += ` grower`
+    }
 
     if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, classes(what))
