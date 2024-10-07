@@ -345,12 +345,13 @@ App.mouse_context_action = (mode, e) => {
     if (DOM.parent(e.target, [`.hover_button`])) {
       if (App.get_setting(`hover_button_pick`)) {
         App.pick(item)
+        return
       }
       else {
-        App.show_hover_menu_2(item, e)
+        if (App.show_hover_menu_2(item, e)) {
+          return
+        }
       }
-
-      return
     }
   }
 
@@ -539,17 +540,19 @@ App.click_press_action = (mode, e) => {
 
   if (App.get_setting(`hover_button`) !== `none`) {
     if (DOM.parent(e.target, [`.hover_button`])) {
-      App.show_hover_menu_2(item, e)
-      App.click_press_triggered = true
-      return
+      if (App.show_hover_menu_2(item, e)) {
+        App.click_press_triggered = true
+        return
+      }
     }
   }
 
   if (App.get_setting(`close_button`) !== `none`) {
     if (DOM.parent(e.target, [`.close_button`])) {
-      App.show_close_button_menu_2(item, e)
-      App.click_press_triggered = true
-      return
+      if (App.show_close_button_menu_2(item, e)) {
+        App.click_press_triggered = true
+        return
+      }
     }
   }
 
