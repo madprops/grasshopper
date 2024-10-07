@@ -146,3 +146,18 @@ App.tabs_normal = () => {
 App.tabs_recent = () => {
   return App.get_setting(`tab_sort`) === `recent`
 }
+
+App.toggle_tab_sort = () => {
+  let value
+
+  if (App.tabs_normal()) {
+    value = `recent`
+  }
+  else if (App.tabs_recent()) {
+    value = `normal`
+  }
+
+  App.set_setting({setting: `tab_sort`, value})
+  App.clear_items(`tabs`)
+  App.do_show_mode({mode: `tabs`})
+}

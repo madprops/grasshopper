@@ -141,6 +141,7 @@ App.build_settings = () => {
       name: `Tab Sort`,
       type: `menu`,
       value: `normal`,
+      no_mirror: true,
       info: `How to sort the tabs
       Either by index or by recent use`,
       version: 1,

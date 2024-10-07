@@ -3490,6 +3490,17 @@ App.setup_commands = () => {
       info: `Enable or disable the text wrapping of items`,
     },
     {
+      name: `Toggle Sort`,
+      short_name: `Sort`,
+      cmd: `toggle_tab_sort`,
+      modes: [`tabs`],
+      icon: tabs_icon,
+      action: (args) => {
+        App.toggle_tab_sort()
+      },
+      info: `Toggle the tab sort`,
+    },
+    {
       name: `Sleep 500ms`,
       short_name: `Sleep`,
       cmd: `sleep_ms_500`,
