@@ -399,4 +399,6 @@ App.sides_2 = [
 App.icon_show = [
   {text: `Always`, value: `always`},
   {text: `Selected`, value: `selected`},
+  {text: `Hover`, value: `hover`},
+  {text: `Focus`, value: `focus`},
 ]

@@ -677,6 +677,28 @@ App.insert_icon_css = () => {
         display: flex;
       }`
     }
+    else if (show === `hover`) {
+      css += `.${key}.item_icon_unit {
+        display: none;
+      }`
+
+      css += `.item:hover .${key}.item_icon_unit {
+        display: flex;
+      }`
+    }
+    else if (show === `focus`) {
+      css += `.${key}.item_icon_unit {
+        display: none;
+      }`
+
+      css += `.item.selected .${key}.item_icon_unit {
+        display: flex;
+      }`
+
+      css += `.item:hover .${key}.item_icon_unit {
+        display: flex;
+      }`
+    }
   }
 
   for (let key in App.setting_props) {
