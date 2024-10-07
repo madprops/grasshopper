@@ -1176,10 +1176,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Custom Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides_2)
+      },
+    },
+    custom_icon_show: {
+      name: `Custom Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Custom Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     notes_icon_click: {

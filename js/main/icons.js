@@ -736,7 +736,7 @@ App.add_custom_icon = (item, side) => {
     return
   }
 
-  let cls = `custom_icon item_node hidden`
+  let cls = `custom_icon item_node hidden item_icon_unit`
 
   if (App.get_setting(`custom_icon_click`)) {
     cls += ` grower`

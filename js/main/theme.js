@@ -655,24 +655,14 @@ App.insert_custom_css = () => {
 App.insert_icon_css = () => {
   let css = ``
 
-  for (let key in App.setting_props) {
-    let sett = App.setting_props[key]
-
-    if (sett.category !== `icons`) {
-      continue
-    }
-
-    if (!key.endsWith(`_icon`)) {
-      continue
-    }
-
+  function action(key) {
     let show
 
     try {
       show = App.get_setting(`${key}_show`)
     }
     catch (err) {
-      continue
+      return
     }
 
     if (show === `always`) {
@@ -689,6 +679,21 @@ App.insert_icon_css = () => {
     }
   }
 
+  for (let key in App.setting_props) {
+    let sett = App.setting_props[key]
+
+    if (sett.category !== `icons`) {
+      continue
+    }
+
+    if (!key.endsWith(`_icon`)) {
+      continue
+    }
+
+    action(key)
+  }
+
+  action(`custom_icon`)
   App.insert_css(`icon_css`, css)
 }
 
