@@ -398,7 +398,7 @@ App.sides_2 = [
 
 App.icon_show = [
   {text: `Always`, value: `always`, info: `Always show the icon`},
-  {text: `Selected`, value: `selected`, info: `When the item is selected`},
-  {text: `Hover`, value: `hover`, info: `Hovering over the item with the mouse`},
-  {text: `Focus`, value: `focus`, info: `On selected or hover`},
+  {text: `Selected`, value: `selected`, info: `Show when the item is selected`},
+  {text: `Hover`, value: `hover`, info: `Show when hovering over the item with the mouse`},
+  {text: `Focus`, value: `focus`, info: `Show on Selected or Hover`},
 ]
