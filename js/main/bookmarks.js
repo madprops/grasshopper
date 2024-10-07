@@ -242,7 +242,12 @@ App.bookmark_items_to_folder = async (args) => {
     App.bookmark_items(args)
   }
 
-  App.do_select_bookmarks_folder({folders, callback, include_all: false, e: args.e})
+  App.do_select_bookmarks_folder({
+    folders, callback,
+    include_all: false,
+    e: args.e,
+    create: true,
+  })
 }
 
 App.filter_bookmark_nodes = (query, nodes, max) => {
@@ -361,6 +366,17 @@ App.do_select_bookmarks_folder = (args = {}) => {
   App.def_args(def_args, args)
   let items = []
 
+  if (args.create) {
+    items.push({
+      text: `Create`,
+      action: async () => {
+        App.create_bookmarks_folder(args.callback)
+      },
+    })
+
+    App.sep(items)
+  }
+
   if (args.include_all) {
     items.push({
       text: `All`,
@@ -371,19 +387,25 @@ App.do_select_bookmarks_folder = (args = {}) => {
     })
   }
 
-  for (let folder of args.folders) {
-    items.push({
-      text: folder.title,
-      action: async () => {
-        if (args.callback) {
-          args.callback(folder)
-        }
-        else {
-          App.bookmarks_folder = folder
-          App.show_mode({mode: `bookmarks`, force: true})
-        }
-      },
-    })
+  let index = 0
+
+  if (args.folders.length) {
+    index = items.length - 1
+
+    for (let folder of args.folders) {
+      items.push({
+        text: folder.title,
+        action: async () => {
+          if (args.callback) {
+            args.callback(folder)
+          }
+          else {
+            App.bookmarks_folder = folder
+            App.show_mode({mode: `bookmarks`, force: true})
+          }
+        },
+      })
+    }
   }
 
   if (!items.length) {
@@ -394,7 +416,7 @@ App.do_select_bookmarks_folder = (args = {}) => {
     return
   }
 
-  App.show_context({items, title: `Pick Folder`, e: args.e})
+  App.show_context({items, title: `Pick Folder`, e: args.e, index})
 }
 
 App.search_bookmarks_folder = async (callback) => {
@@ -425,13 +447,20 @@ App.make_bookmarks_folder = async (title, parent = ``) => {
   return await browser.bookmarks.create({title})
 }
 
-App.create_bookmarks_folder = () => {
-  function action(title, parent = ``) {
-    if (App.make_bookmarks_folder(title, parent)) {
-      let feedback = App.get_setting(`show_feedback`)
+App.create_bookmarks_folder = (callback) => {
+  async function action(title, parent = ``) {
+    let folder = await App.make_bookmarks_folder(title, parent)
 
-      if (feedback) {
-        App.alert_autohide(`Folder Created`)
+    if (folder) {
+      if (callback) {
+        callback(folder)
+      }
+      else {
+        let feedback = App.get_setting(`show_feedback`)
+
+        if (feedback) {
+          App.alert_autohide(`Folder Created`)
+        }
       }
     }
   }
