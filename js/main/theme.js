@@ -491,6 +491,7 @@ App.do_apply_theme = (args = {}) => {
 
     App.insert_tab_color_css()
     App.insert_color_css()
+    App.insert_icon_css()
     App.insert_custom_css()
   }
   catch (err) {
@@ -649,6 +650,46 @@ App.insert_css = (name, css) => {
 
 App.insert_custom_css = () => {
   App.insert_css(`custom_css`, App.get_setting(`custom_css`))
+}
+
+App.insert_icon_css = () => {
+  let css = ``
+
+  for (let key in App.setting_props) {
+    let sett = App.setting_props[key]
+
+    if (sett.category !== `icons`) {
+      continue
+    }
+
+    if (!key.endsWith(`_icon`)) {
+      continue
+    }
+
+    let show
+
+    try {
+      show = App.get_setting(`${key}_show`)
+    }
+    catch (err) {
+      continue
+    }
+
+    if (show === `always`) {
+      css += `.${key}.item_icon_unit {}`
+    }
+    else if (show === `selected`) {
+      css += `.${key}.item_icon_unit {
+        display: none;
+      }`
+
+      css += `.item.selected .${key}.item_icon_unit {
+        display: flex;
+      }`
+    }
+  }
+
+  App.insert_css(`icon_css`, css)
 }
 
 App.insert_color_css = () => {

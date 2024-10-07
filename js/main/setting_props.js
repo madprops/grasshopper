@@ -719,10 +719,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Active Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    active_icon_show: {
+      name: `Active Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Active Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     pin_icon: {
@@ -738,10 +748,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Pin Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    pin_icon_show: {
+      name: `Pin Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Pin Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     normal_icon: {
@@ -757,10 +777,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Normal Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    normal_icon_show: {
+      name: `Normal Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Normal Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     playing_icon: {
@@ -776,10 +806,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `left`,
       info: `Show the Playing Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    playing_icon_show: {
+      name: `Playing Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Playing Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     muted_icon: {
@@ -795,10 +835,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `left`,
       info: `Show the Muted Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    muted_icon_show: {
+      name: `Muted Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Muted Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     unloaded_icon: {
@@ -814,10 +864,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `left`,
       info: `Show the Unloaded Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    unloaded_icon_show: {
+      name: `Unloaded Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Unloaded Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     loading_icon: {
@@ -833,10 +893,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `left`,
       info: `Show the Loading Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    loading_icon_show: {
+      name: `Loading Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Loading Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     loaded_icon: {
@@ -852,10 +922,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Loaded Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    loaded_icon_show: {
+      name: `Loaded Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Loaded Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     unread_icon: {
@@ -871,10 +951,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `left`,
       info: `Show the Unread Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    unread_icon_show: {
+      name: `Unread Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Unread Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     titled_icon: {
@@ -890,10 +980,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Titled Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    titled_icon_show: {
+      name: `Titled Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Titled Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     tagged_icon: {
@@ -909,10 +1009,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Tagged Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    tagged_icon_show: {
+      name: `Tagged Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Tagged Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     notes_icon: {
@@ -928,10 +1038,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Notes Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    notes_icon_show: {
+      name: `Notes Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Notes Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     edited_icon: {
@@ -948,10 +1068,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Edited Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    edited_icon_show: {
+      name: `Edited Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Edited Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     parent_icon: {
@@ -967,10 +1097,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Parent Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    parent_icon_show: {
+      name: `Parent Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Parent Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     nodes_icon: {
@@ -986,10 +1126,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Nodes Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    nodes_icon_show: {
+      name: `Nodes Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Nodes Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     root_icon: {
@@ -1005,10 +1155,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Show the Root Icon on the left or right of text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
+      },
+    },
+    root_icon_show: {
+      name: `Root Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Root Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
       },
     },
     custom_icon_side: {

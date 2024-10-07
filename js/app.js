@@ -394,3 +394,8 @@ App.sides_2 = [
   {text: `Left`, value: `left`},
   {text: `Right`, value: `right`},
 ]
+
+App.icon_show = [
+  {text: `Always`, value: `always`},
+  {text: `Selected`, value: `selected`},
+]

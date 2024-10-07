@@ -7,11 +7,13 @@ App.add_icons = (item, side) => {
     return side === App.get_setting(`${whats}_side`)
   }
 
+  let item_cls = ` item_node hidden item_icon_unit`
+
   if (item.mode === `tabs`) {
     what = `active_icon`
 
     if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, `${what} item_node hidden`)
+      let icon = DOM.create(`div`, what + item_cls + cls)
       icon.textContent = App.get_setting(what)
 
       if (tips) {
@@ -21,10 +23,11 @@ App.add_icons = (item, side) => {
       item.element.append(icon)
     }
 
+    cls = ``
     what = `pin_icon`
 
     if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, `${what} item_node hidden`)
+      let icon = DOM.create(`div`, what + item_cls + cls)
       icon.textContent = App.get_setting(what)
 
       if (tips) {
@@ -34,10 +37,11 @@ App.add_icons = (item, side) => {
       item.element.append(icon)
     }
 
+    cls = ``
     what = `normal_icon`
 
     if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, `${what} item_node hidden`)
+      let icon = DOM.create(`div`, what + item_cls + cls)
       icon.textContent = App.get_setting(what)
 
       if (tips) {
@@ -47,10 +51,11 @@ App.add_icons = (item, side) => {
       item.element.append(icon)
     }
 
+    cls = ``
     what = `loaded_icon`
 
     if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, `${what} item_node hidden`)
+      let icon = DOM.create(`div`, what + item_cls + cls)
       icon.textContent = App.get_setting(what)
 
       if (tips) {
@@ -60,10 +65,11 @@ App.add_icons = (item, side) => {
       item.element.append(icon)
     }
 
+    cls = ``
     what = `unloaded_icon`
 
     if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, `${what} item_node hidden`)
+      let icon = DOM.create(`div`, what + item_cls + cls)
       icon.textContent = App.get_setting(what)
 
       if (tips) {
@@ -74,15 +80,14 @@ App.add_icons = (item, side) => {
     }
 
     cls = ``
+    what = `playing_icon`
 
     if (App.get_setting(`mute_click`)) {
       cls += ` grower`
     }
 
-    what = `playing_icon`
-
     if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
+      let icon = DOM.create(`div`, what + item_cls + cls)
       icon.textContent = App.get_setting(what)
 
       if (tips) {
@@ -95,7 +100,7 @@ App.add_icons = (item, side) => {
     what = `muted_icon`
 
     if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
+      let icon = DOM.create(`div`, what + item_cls + cls)
       icon.textContent = App.get_setting(what)
 
       if (tips) {
@@ -105,10 +110,11 @@ App.add_icons = (item, side) => {
       item.element.append(icon)
     }
 
+    cls = ``
     what = `unread_icon`
 
     if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, `${what} item_node hidden`)
+      let icon = DOM.create(`div`, what + item_cls + cls)
       icon.textContent = App.get_setting(what)
 
       if (tips) {
@@ -118,10 +124,11 @@ App.add_icons = (item, side) => {
       item.element.append(icon)
     }
 
+    cls = ``
     what = `loading_icon`
 
     if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, `${what} item_node hidden`)
+      let icon = DOM.create(`div`, what + item_cls + cls)
       icon.textContent = App.get_setting(what)
 
       if (tips) {
@@ -130,12 +137,67 @@ App.add_icons = (item, side) => {
 
       item.element.append(icon)
     }
+
+    cls = ``
+    what = `root_icon`
+
+    if (App.get_setting(`root_icon_click`)) {
+      cls += ` grower`
+    }
+
+    if (App.icon_enabled(what) && check_side(what)) {
+      let icon = DOM.create(`div`, what + item_cls + cls)
+      icon.textContent = App.get_setting(what)
+
+      if (tips) {
+        icon.title = `Go to the root URL`
+      }
+
+      item.element.append(icon)
+    }
+
+    cls = ``
+    what = `parent_icon`
+
+    if (App.get_setting(`parent_icon_click`)) {
+      cls += ` grower`
+    }
+
+    if (App.icon_enabled(what) && check_side(what)) {
+      let icon = DOM.create(`div`, what + item_cls + cls)
+      icon.textContent = App.get_setting(what)
+
+      if (tips) {
+        icon.title = `Has Parent`
+      }
+
+      item.element.append(icon)
+    }
+
+    cls = ``
+    what = `nodes_icon`
+
+    if (App.get_setting(`nodes_icon_click`)) {
+      cls += ` grower`
+    }
+
+    if (App.icon_enabled(what) && check_side(what)) {
+      let icon = DOM.create(`div`, what + item_cls + cls)
+      icon.textContent = App.get_setting(what)
+
+      if (tips) {
+        icon.title = `Has Nodes`
+      }
+
+      item.element.append(icon)
+    }
   }
 
+  cls = ``
   what = `titled_icon`
 
   if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, `${what} item_node hidden`)
+    let icon = DOM.create(`div`, what + item_cls + cls)
     icon.textContent = App.get_setting(what)
 
     if (tips) {
@@ -145,10 +207,11 @@ App.add_icons = (item, side) => {
     item.element.append(icon)
   }
 
+  cls = ``
   what = `tagged_icon`
 
   if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, `${what} item_node hidden`)
+    let icon = DOM.create(`div`, what + item_cls + cls)
     icon.textContent = App.get_setting(what)
 
     if (tips) {
@@ -158,10 +221,11 @@ App.add_icons = (item, side) => {
     item.element.append(icon)
   }
 
+  cls = ``
   what = `edited_icon`
 
   if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, `${what} item_node hidden`)
+    let icon = DOM.create(`div`, what + item_cls + cls)
     icon.textContent = App.get_setting(what)
 
     if (tips) {
@@ -172,77 +236,14 @@ App.add_icons = (item, side) => {
   }
 
   cls = ``
-
-  if (App.get_setting(`root_icon_click`)) {
-    cls += ` grower`
-  }
-
-  what = `root_icon`
-
-  if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
-    icon.textContent = App.get_setting(what)
-
-    if (tips) {
-      icon.title = `Go to the root URL`
-    }
-
-    item.element.append(icon)
-  }
-
-  if (App.get_setting(`hover_button`) !== `none`) {
-    let btn = App.create_hover_button()
-    item.element.append(btn)
-  }
-
-  cls = ``
-
-  if (App.get_setting(`parent_icon_click`)) {
-    cls += ` grower`
-  }
-
-  what = `parent_icon`
-
-  if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
-    icon.textContent = App.get_setting(what)
-
-    if (tips) {
-      icon.title = `Has Parent`
-    }
-
-    item.element.append(icon)
-  }
-
-  cls = ``
-
-  if (App.get_setting(`nodes_icon_click`)) {
-    cls += ` grower`
-  }
-
-  what = `nodes_icon`
-
-  if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
-    icon.textContent = App.get_setting(what)
-
-    if (tips) {
-      icon.title = `Has Nodes`
-    }
-
-    item.element.append(icon)
-  }
-
-  cls = ``
+  what = `notes_icon`
 
   if (App.get_setting(`notes_icon_click`)) {
     cls += ` grower`
   }
 
-  what = `notes_icon`
-
   if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, `${what} item_node hidden${cls}`)
+    let icon = DOM.create(`div`, what + item_cls + cls)
     icon.textContent = App.get_setting(what)
 
     if (tips) {
@@ -252,7 +253,8 @@ App.add_icons = (item, side) => {
     item.element.append(icon)
   }
 
-  cls = ``
+  cls = ` color_icon_container`
+  what = `color_icon`
 
   if (App.get_setting(`color_icon_click`)) {
     cls += ` effect`
@@ -262,11 +264,14 @@ App.add_icons = (item, side) => {
     cls += ` grower`
   }
 
-  what = `color_icon`
-
-  if (check_side(`color_icon`)) {
-    let icon = DOM.create(`div`, `color_icon_container item_node hidden${cls}`)
+  if (check_side(what)) {
+    let icon = DOM.create(`div`, what + item_cls + cls)
     item.element.append(icon)
+  }
+
+  if (App.get_setting(`hover_button`) !== `none`) {
+    let btn = App.create_hover_button()
+    item.element.append(btn)
   }
 
   if (App.get_setting(`hover_button`) !== `none`) {
