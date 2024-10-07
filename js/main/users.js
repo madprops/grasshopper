@@ -22,7 +22,7 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `show_tooltips`, value: false})
   App.set_setting({setting: `parent_icon`, value: `🤿`})
   App.set_setting({setting: `node_icon`, value: `🦠`})
-  App.set_setting({setting: `node_icon_show`, value: `selected`})
+  App.set_setting({setting: `node_icon_show`, value: `focus`})
   App.set_setting({setting: `sound_effects`, value: true})
 
   // Main Title

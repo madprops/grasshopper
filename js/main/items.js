@@ -1032,12 +1032,16 @@ App.remove_duplicates = (items) => {
 }
 
 App.pick = (item) => {
+  let was_selected = item.selected
+
   if (item.selected) {
     App.toggle_selected({item, what: false})
   }
   else {
     App.select_item({item, scroll: `nearest`, deselect: false})
   }
+
+  return item.selected !== was_selected
 }
 
 App.get_persistent_items = () => {

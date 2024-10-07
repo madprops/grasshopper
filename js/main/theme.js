@@ -668,7 +668,7 @@ App.insert_icon_css = () => {
     if (show === `always`) {
       css += `.${key}.item_icon_unit {}`
     }
-    else if (show === `selected`) {
+    else if (show === `select`) {
       css += `.${key}.item_icon_unit {
         display: none;
       }`
