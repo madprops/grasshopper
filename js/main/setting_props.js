@@ -3158,6 +3158,17 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides_2)
       },
     },
+    color_icon_show: {
+      name: `Color Icon Show`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Color Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_show)
+      },
+    },
     color_icon_click: {
       name: `Color Icon Click`,
       type: `checkbox`,

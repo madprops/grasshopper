@@ -693,6 +693,7 @@ App.insert_icon_css = () => {
     action(key)
   }
 
+  action(`color_icon`)
   action(`custom_icon`)
   App.insert_css(`icon_css`, css)
 }
