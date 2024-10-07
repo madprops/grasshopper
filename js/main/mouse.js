@@ -347,10 +347,8 @@ App.mouse_context_action = (mode, e) => {
         App.pick(item)
         return
       }
-      else {
-        if (App.show_hover_menu_2(item, e)) {
-          return
-        }
+      else if (App.show_hover_menu_2(item, e)) {
+        return
       }
     }
   }
