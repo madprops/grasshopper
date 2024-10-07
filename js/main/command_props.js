@@ -2843,6 +2843,28 @@ App.setup_commands = () => {
       info: `Focus the parent tab of this item`,
     },
     {
+      name: `Filter All Parents`,
+      short_name: `Parents`,
+      cmd: `filter_all_parent_tabs`,
+      modes: [`tabs`],
+      icon: nodes_icon,
+      action: (args) => {
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter all tabs that are a parent`,
+    },
+    {
+      name: `Filter All Nodes`,
+      short_name: `Nodes`,
+      cmd: `filter_all_node_tabs`,
+      modes: [`tabs`],
+      icon: nodes_icon,
+      action: (args) => {
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter all tabs that are a node`,
+    },
+    {
       name: `Filter Color`,
       cmd: `filter_color`,
       modes: [`items`],

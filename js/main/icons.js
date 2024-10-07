@@ -335,41 +335,6 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.icon_enabled(`root`)) {
-    let icon = DOM.el(`.root_icon`, item.element)
-    let auto = App.get_setting(`auto_root_icon`)
-    let show = auto ? App.root_possible(item) : App.item_has_root(item)
-
-    if (show) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`parent`)) {
-    let icon = DOM.el(`.parent_icon`, item.element)
-
-    if (App.tab_has_parent(item)) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`nodes`)) {
-    let icon = DOM.el(`.nodes_icon`, item.element)
-
-    if (App.tab_has_nodes(item)) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
   let custom_icon = App.get_icon(item)
   let custom_icon_el = DOM.el(`.custom_icon`, item.element)
 
@@ -466,6 +431,41 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.unread_icon`, item.element)
 
     if (item.unread) {
+      DOM.show(icon)
+    }
+    else {
+      DOM.hide(icon)
+    }
+  }
+
+  if (App.icon_enabled(`root`)) {
+    let icon = DOM.el(`.root_icon`, item.element)
+    let auto = App.get_setting(`auto_root_icon`)
+    let show = auto ? App.root_possible(item) : App.item_has_root(item)
+
+    if (show) {
+      DOM.show(icon)
+    }
+    else {
+      DOM.hide(icon)
+    }
+  }
+
+  if (App.icon_enabled(`parent`)) {
+    let icon = DOM.el(`.parent_icon`, item.element)
+
+    if (App.tab_has_parent(item)) {
+      DOM.show(icon)
+    }
+    else {
+      DOM.hide(icon)
+    }
+  }
+
+  if (App.icon_enabled(`nodes`)) {
+    let icon = DOM.el(`.nodes_icon`, item.element)
+
+    if (App.tab_has_nodes(item)) {
       DOM.show(icon)
     }
     else {

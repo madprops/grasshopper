@@ -617,6 +617,12 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `filter_header_tabs`) {
       match = args.item.header
     }
+    else if (args.filter_mode === `filter_all_node_tabs`) {
+      match = App.tab_has_parent(args.item)
+    }
+    else if (args.filter_mode === `filter_all_parent_tabs`) {
+      match = App.tab_has_nodes(args.item)
+    }
     else if (args.filter_mode === `filter_no_tab`) {
       let no_tab = true
 
@@ -1513,6 +1519,9 @@ App.create_filter_menu = (mode) => {
   cmd = App.get_command(`show_filter_icon_menu`)
   fmodes.push({cmd: `icon_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
   fmodes.push({cmd: `filter_root_tabs`})
+  fmodes.push(separator())
+  fmodes.push({cmd: `filter_all_parent_tabs`})
+  fmodes.push({cmd: `filter_all_node_tabs`})
   fmodes.push(separator())
   fmodes.push({cmd: `filter_titled_tabs`})
   fmodes.push({cmd: `filter_notes_tabs`})
