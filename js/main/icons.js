@@ -67,6 +67,10 @@ App.add_icons = (item, side) => {
     cls = ``
     what = `loaded_icon`
 
+    if (App.get_setting(`loaded_icon_click`)) {
+      cls += ` grower`
+    }
+
     if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, classes(what))
       icon.textContent = App.get_setting(what)
@@ -80,6 +84,10 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `unloaded_icon`
+
+    if (App.get_setting(`unloaded_icon_click`)) {
+      cls += ` grower`
+    }
 
     if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, classes(what))

@@ -236,6 +236,20 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
+  if (App.get_setting(`loaded_icon_click`)) {
+    if (DOM.class(e.target, [`loaded_icon`])) {
+      App.unload_tabs(item, false)
+      return
+    }
+  }
+
+  if (App.get_setting(`unloaded_icon_click`)) {
+    if (DOM.class(e.target, [`unloaded_icon`])) {
+      App.load_tabs(item, false)
+      return
+    }
+  }
+
   if (App.get_setting(`root_icon_click`)) {
     if (DOM.class(e.target, [`root_icon`])) {
       App.go_to_root_url(item, true)

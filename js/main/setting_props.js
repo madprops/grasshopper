@@ -1234,6 +1234,20 @@ App.build_settings = () => {
       info: `Go to the root when clicking the root icon`,
       version: 1,
     },
+    loaded_icon_click: {
+      name: `Loaded Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Unload the tab when clicking the loaded icon`,
+      version: 1,
+    },
+    unloaded_icon_click: {
+      name: `Unloaded Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Load the tab when clicking the unloaded icon`,
+      version: 1,
+    },
     custom_icon_click: {
       name: `Custom Icon Click`,
       type: `checkbox`,

@@ -854,10 +854,10 @@ App.open_tab_urls = () => {
   })
 }
 
-App.load_tabs = (item) => {
+App.load_tabs = (item, multiple = true) => {
   let items = []
 
-  for (let it of App.get_active_items({mode: `tabs`, item})) {
+  for (let it of App.get_active_items({mode: `tabs`, item, multiple})) {
     if (!it.unloaded) {
       continue
     }
