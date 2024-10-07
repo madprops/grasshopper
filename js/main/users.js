@@ -21,6 +21,7 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `max_recent_tabs`, value: 20})
   App.set_setting({setting: `show_tooltips`, value: false})
   App.set_setting({setting: `nodes_icon`, value: `🤿`})
+  App.set_setting({setting: `parent_icon`, value: `🧞‍♀️`})
   App.set_setting({setting: `sound_effects`, value: true})
 
   // Main Title
