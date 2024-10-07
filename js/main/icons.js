@@ -2,6 +2,7 @@ App.add_icons = (item, side) => {
   let tips = App.get_setting(`show_tooltips`)
   let what = ``
   let cls = ``
+  let title = ``
 
   function check_side(whats) {
     return side === App.get_setting(`${whats}_side`)
@@ -16,13 +17,14 @@ App.add_icons = (item, side) => {
   if (item.mode === `tabs`) {
     cls = ``
     what = `active_icon`
+    title = `Active`
 
     if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, classes(what))
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Active`
+        icon.title = title
       }
 
       item.element.append(icon)
@@ -30,9 +32,11 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `pin_icon`
+    title = `Pinned`
 
     if (App.get_setting(`pin_icon_click`)) {
       cls += ` grower`
+      title += `\nClick to unpin`
     }
 
     if (App.icon_enabled(what) && check_side(what)) {
@@ -40,7 +44,7 @@ App.add_icons = (item, side) => {
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Pinned`
+        icon.title = title
       }
 
       item.element.append(icon)
@@ -48,9 +52,11 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `normal_icon`
+    title = `Normal`
 
     if (App.get_setting(`normal_icon_click`)) {
       cls += ` grower`
+      title += `\nClick to pin`
     }
 
     if (App.icon_enabled(what) && check_side(what)) {
@@ -58,7 +64,7 @@ App.add_icons = (item, side) => {
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Normal`
+        icon.title = title
       }
 
       item.element.append(icon)
@@ -66,9 +72,11 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `loaded_icon`
+    title = `Loaded`
 
     if (App.get_setting(`loaded_icon_click`)) {
       cls += ` grower`
+      title += `\nClick to unload`
     }
 
     if (App.icon_enabled(what) && check_side(what)) {
@@ -76,7 +84,7 @@ App.add_icons = (item, side) => {
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Loaded`
+        icon.title = title
       }
 
       item.element.append(icon)
@@ -84,9 +92,11 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `unloaded_icon`
+    title = `Unloaded`
 
     if (App.get_setting(`unloaded_icon_click`)) {
       cls += ` grower`
+      title += `\nClick to load`
     }
 
     if (App.icon_enabled(what) && check_side(what)) {
@@ -94,7 +104,7 @@ App.add_icons = (item, side) => {
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Unloaded`
+        icon.title = title
       }
 
       item.element.append(icon)
@@ -102,9 +112,11 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `playing_icon`
+    title = `Playing`
 
     if (App.get_setting(`mute_click`)) {
       cls += ` grower`
+      title += `\nClick to mute`
     }
 
     if (App.icon_enabled(what) && check_side(what)) {
@@ -112,20 +124,21 @@ App.add_icons = (item, side) => {
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Playing`
+        icon.title = title
       }
 
       item.element.append(icon)
     }
 
     what = `muted_icon`
+    title = `Muted`
 
     if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, classes(what))
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Muted`
+        icon.title = title
       }
 
       item.element.append(icon)
@@ -133,13 +146,14 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `unread_icon`
+    title = `Unread`
 
     if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, classes(what))
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Unread`
+        icon.title = title
       }
 
       item.element.append(icon)
@@ -147,13 +161,14 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `loading_icon`
+    title = `Loading`
 
     if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, classes(what))
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Loading`
+        icon.title = title
       }
 
       item.element.append(icon)
@@ -161,6 +176,7 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `root_icon`
+    title = `Go to the root URL`
 
     if (App.get_setting(`root_icon_click`)) {
       cls += ` grower`
@@ -171,7 +187,7 @@ App.add_icons = (item, side) => {
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Go to the root URL`
+        icon.title = title
       }
 
       item.element.append(icon)
@@ -179,9 +195,11 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `parent_icon`
+    title = `Parent`
 
     if (App.get_setting(`parent_icon_click`)) {
       cls += ` grower`
+      title += `\nClick to filter the nodes of this tab`
     }
 
     if (App.icon_enabled(what) && check_side(what)) {
@@ -189,7 +207,7 @@ App.add_icons = (item, side) => {
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Has Parent`
+        icon.title = title
       }
 
       item.element.append(icon)
@@ -197,9 +215,11 @@ App.add_icons = (item, side) => {
 
     cls = ``
     what = `node_icon`
+    title = `Node`
 
     if (App.get_setting(`node_icon_click`)) {
       cls += ` grower`
+      title += `\nClick to focus the parent of this tab`
     }
 
     if (App.icon_enabled(what) && check_side(what)) {
@@ -207,7 +227,7 @@ App.add_icons = (item, side) => {
       icon.textContent = App.get_setting(what)
 
       if (tips) {
-        icon.title = `Has Nodes`
+        icon.title = title
       }
 
       item.element.append(icon)
@@ -216,13 +236,14 @@ App.add_icons = (item, side) => {
 
   cls = ``
   what = `titled_icon`
+  title = `Titled`
 
   if (App.icon_enabled(what) && check_side(what)) {
     let icon = DOM.create(`div`, classes(what))
     icon.textContent = App.get_setting(what)
 
     if (tips) {
-      icon.title = `Titled`
+      icon.title = title
     }
 
     item.element.append(icon)
@@ -230,13 +251,14 @@ App.add_icons = (item, side) => {
 
   cls = ``
   what = `tagged_icon`
+  title = `Tagged`
 
   if (App.icon_enabled(what) && check_side(what)) {
     let icon = DOM.create(`div`, classes(what))
     icon.textContent = App.get_setting(what)
 
     if (tips) {
-      icon.title = `Tagged`
+      icon.title = title
     }
 
     item.element.append(icon)
@@ -244,13 +266,14 @@ App.add_icons = (item, side) => {
 
   cls = ``
   what = `edited_icon`
+  title = `Edited`
 
   if (App.icon_enabled(what) && check_side(what)) {
     let icon = DOM.create(`div`, classes(what))
     icon.textContent = App.get_setting(what)
 
     if (tips) {
-      icon.title = `Edited`
+      icon.title = title
     }
 
     item.element.append(icon)
@@ -258,9 +281,11 @@ App.add_icons = (item, side) => {
 
   cls = ``
   what = `notes_icon`
+  title = `Notes`
 
   if (App.get_setting(`notes_icon_click`)) {
     cls += ` grower`
+    title += `\nClick to open the notes`
   }
 
   if (App.icon_enabled(what) && check_side(what)) {
@@ -268,7 +293,7 @@ App.add_icons = (item, side) => {
     icon.textContent = App.get_setting(what)
 
     if (tips) {
-      icon.title = `Notes`
+      icon.title = title
     }
 
     item.element.append(icon)
@@ -279,6 +304,7 @@ App.add_icons = (item, side) => {
 
   if (App.get_setting(`color_icon_click`)) {
     cls += ` effect`
+    title += `\nClick to show the color menu`
   }
 
   if (App.get_setting(`color_mode`).includes(`background`)) {
@@ -753,15 +779,17 @@ App.add_custom_icon = (item, side) => {
   }
 
   let cls = `custom_icon item_node hidden item_icon_unit`
+  let title = `Custom Icon`
 
   if (App.get_setting(`custom_icon_click`)) {
     cls += ` grower`
+    title += `\nClick to show the menu`
   }
 
   let icon = DOM.create(`div`, cls)
 
   if (App.get_setting(`show_tooltips`)) {
-    icon.title = `Custom Icon`
+    icon.title = title
   }
 
   item.element.append(icon)
