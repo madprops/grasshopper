@@ -1396,9 +1396,9 @@ App.setup_commands = () => {
     },
     {
       name: `Tab Box Menu`,
-      short_name: `Pinline`,
+      short_name: `Tab Box`,
       cmd: `show_tab_box_menu`,
-      icon: menu_icon,
+      icon: tab_box_icon,
       action: (args) => {
         App.show_tab_box_menu(args.e)
       },
