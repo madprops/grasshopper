@@ -58,7 +58,7 @@ App.create_window = (args) => {
 
   el.append(content)
   w.element = el
-  DOM.el(`#main`).append(el)
+  DOM.el(`#center_center`).append(el)
   w.setup = false
   w.visible = false
 
@@ -276,5 +276,47 @@ App.toggle_auto_blur = () => {
   }
   else {
     App.alert_autohide(`Auto Blur Disabled`)
+  }
+}
+
+App.build_shell = () => {
+  let tab_box_pos = App.get_setting(`tab_box_position`)
+  let tab_box = App.create_tab_box()
+
+  if (tab_box && tab_box_pos === `top`) {
+    DOM.el(`#main_top`).append(tab_box)
+  }
+
+  if (tab_box && tab_box_pos === `bottom`) {
+    DOM.el(`#main_bottom`).append(tab_box)
+  }
+
+  let footer = App.create_footer()
+  let footer_position = App.get_setting(`footer_position`)
+
+  if (footer && (footer_position === `top`)) {
+    DOM.el(`#main_top`).append(footer)
+  }
+
+  if (footer && (footer_position === `bottom`)) {
+    DOM.el(`#main_bottom`).append(footer)
+  }
+
+  if (App.favorites_bar_enabled()) {
+    let favorites_bar = App.create_favorites_bar()
+    let fav_pos = App.get_setting(`favorites_position`)
+
+    if (fav_pos === `top`) {
+      DOM.el(`#main_top`).append(favorites_bar)
+    }
+    else if (fav_pos === `bottom`) {
+      DOM.el(`#main_bottom`).append(favorites_bar)
+    }
+    else if (fav_pos === `left`) {
+      DOM.el(`#center_left`).append(favorites_bar)
+    }
+    else if (fav_pos === `right`) {
+      DOM.el(`#center_right`).append(favorites_bar)
+    }
   }
 }

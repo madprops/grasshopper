@@ -427,21 +427,15 @@ App.mouse_middle_action = (mode, e) => {
 
   App.reset_triggers()
 
-  if (DOM.class(e.target, [`favorites_empty_top`])) {
+  if (e.target.id === `favorites_empty_top`) {
     let cmd = App.get_setting(`middle_click_favorites_top`)
-    App.run_command({cmd, from: `favorites_button`, e})
+    App.run_command({cmd, from: `favorites_empty`, e})
     return
   }
 
-  if (DOM.class(e.target, [`favorites_empty_bottom`])) {
+  if (e.target.id === `favorites_empty_bottom`) {
     let cmd = App.get_setting(`middle_click_favorites_bottom`)
-    App.run_command({cmd, from: `favorites_button`, e})
-    return
-  }
-
-  if (DOM.class(e.target, [`favorites_button`])) {
-    let cmd = App.get_setting(`middle_click_favorites_button`)
-    App.run_command({cmd, from: `favorites_button`, e})
+    App.run_command({cmd, from: `favorites_empty`, e})
     return
   }
 
@@ -657,13 +651,13 @@ App.on_mouse_wheel = (e) => {
 
     e.preventDefault()
   }
-  else if (e.target.closest(`.favorites_empty_top`)) {
+  else if (e.target.closest(`#favorites_empty_top`)) {
     App.wheel_action(direction, `favorites_top`, e)
   }
   else if (e.target.closest(`.favorites_bar`)) {
     App.wheel_action(direction, `favorites_center`, e)
   }
-  else if (e.target.closest(`.favorites_empty_bottom`)) {
+  else if (e.target.closest(`#favorites_empty_bottom`)) {
     App.wheel_action(direction, `favorites_bottom`, e)
   }
   else if (e.target.closest(`.footer`)) {

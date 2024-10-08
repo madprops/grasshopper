@@ -38,6 +38,7 @@ App.init = async () => {
   App.setup_footer()
   App.setup_recent_tabs()
   App.setup_context()
+  App.build_shell()
   await App.clear_show()
   App.make_window_visible()
   App.check_first_time()

@@ -2231,16 +2231,6 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_favorites_button: {
-      name: `Middle Click Fav Button`,
-      type: `menu`,
-      value: `settings_category_favorites`,
-      info: `Command to run when middle clicking the Favorites Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     favorites_gravity: {
       name: `Favorites Gravity`,
       type: `menu`,

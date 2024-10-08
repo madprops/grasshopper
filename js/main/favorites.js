@@ -1,10 +1,10 @@
 App.setup_favorites = () => {
-  App.favorites_bar_show_debouncer = App.create_debouncer((mode) => {
-    App.do_favorites_bar_show(mode)
+  App.favorites_bar_show_debouncer = App.create_debouncer(() => {
+    App.do_favorites_bar_show()
   }, App.favorites_bar_show_delay)
 
-  App.favorites_bar_hide_debouncer = App.create_debouncer((mode) => {
-    App.do_favorites_bar_hide(mode)
+  App.favorites_bar_hide_debouncer = App.create_debouncer(() => {
+    App.do_favorites_bar_hide()
   }, App.favorites_bar_hide_delay)
 }
 
@@ -28,23 +28,23 @@ App.favorites_bar_side = () => {
   return false
 }
 
-App.create_favorites_bar = (mode) => {
+App.create_favorites_bar = () => {
   if (!App.favorites_bar_enabled()) {
     return
   }
 
   let fav_pos = App.get_setting(`favorites_position`)
   let autohide = App.get_setting(`favorites_autohide`)
-  let container = DOM.create(`div`, `favorites_bar_container`, `favorites_bar_container_${mode}`)
-  let cls = `favorites_bar`
+  let container = DOM.create(`div`, ``, `favorites_bar_container`)
+  let cls = ``
 
   if (autohide) {
     cls += ` hidden`
   }
 
   let tips = App.get_setting(`show_tooltips`)
-  let bar = DOM.create(`div`, cls, `favorites_bar_${mode}`)
-  let empty_top = DOM.create(`div`, `favorites_empty favorites_empty_top`, `favorites_empty_top_${mode}`)
+  let bar = DOM.create(`div`, cls, `favorites_bar`)
+  let empty_top = DOM.create(`div`, `favorites_empty`, `favorites_empty_top`)
 
   if (tips) {
     App.trigger_title(empty_top, `double_click_favorites_top`)
@@ -53,7 +53,7 @@ App.create_favorites_bar = (mode) => {
     App.trigger_title(empty_top, `wheel_down_favorites_top`)
   }
 
-  let empty_bottom = DOM.create(`div`, `favorites_empty favorites_empty_bottom`, `favorites_empty_bottom_${mode}`)
+  let empty_bottom = DOM.create(`div`, `favorites_empty`, `favorites_empty_bottom`)
 
   if (tips) {
     App.trigger_title(empty_bottom, `double_click_favorites_bottom`)
@@ -104,13 +104,13 @@ App.create_favorites_bar = (mode) => {
 
   DOM.ev(container, `mouseenter`, () => {
     if (App.get_setting(`favorites_autohide`)) {
-      App.on_favorites_enter(mode)
+      App.on_favorites_enter()
     }
   })
 
   DOM.ev(container, `mouseleave`, () => {
     if (App.get_setting(`favorites_autohide`)) {
-      App.on_favorites_leave(mode)
+      App.on_favorites_leave()
     }
   })
 
@@ -120,41 +120,23 @@ App.create_favorites_bar = (mode) => {
   return container
 }
 
-App.on_favorites_enter = (mode) => {
+App.on_favorites_enter = () => {
   App.clear_favorite_bar_autohide()
-  App.favorites_bar_show_debouncer.call(mode)
+  App.favorites_bar_show_debouncer.call()
 }
 
-App.on_favorites_leave = (mode) => {
+App.on_favorites_leave = () => {
   App.clear_favorite_bar_autohide()
-  App.favorites_bar_hide_debouncer.call(mode)
+  App.favorites_bar_hide_debouncer.call()
 }
 
-App.create_favorites_button = (mode) => {
-  let btn = DOM.create(`div`, `favorites_button button`, `favorites_button_${mode}`)
-  btn.textContent = App.settings_icons.favorites
-  btn.title = `Favorites`
-  App.trigger_title(btn, `middle_click_favorites_button`)
-
-  DOM.ev(btn, `click`, (e) => {
-    App.show_favorites_menu(e)
-  })
-
-  DOM.ev(btn, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_favorites_menu(e)
-  })
-
-  return btn
-}
-
-App.fill_favorites_bar = (mode = App.active_mode) => {
+App.fill_favorites_bar = () => {
   if (!App.favorites_bar_enabled()) {
     return
   }
 
   let favs = App.get_favorites()
-  let c = DOM.el(`#favorites_bar_${mode}`)
+  let c = DOM.el(`#favorites_bar`)
   c.innerHTML = ``
 
   for (let fav of favs) {
@@ -309,10 +291,6 @@ App.favorites_middle_click = (e) => {
     return
   }
 
-  if (DOM.class(e.target, [`favorites_button`])) {
-    return
-  }
-
   let cmd = App.get_setting(`middle_click_favorites`)
   let command = App.get_command(cmd)
 
@@ -326,13 +304,13 @@ App.favorites_middle_click = (e) => {
   }
 }
 
-App.do_favorites_bar_show = (mode) => {
-  let bar = DOM.el(`#favorites_bar_${mode}`)
+App.do_favorites_bar_show = () => {
+  let bar = DOM.el(`#favorites_bar`)
   DOM.show(bar)
 }
 
-App.do_favorites_bar_hide = (mode) => {
-  let bar = DOM.el(`#favorites_bar_${mode}`)
+App.do_favorites_bar_hide = () => {
+  let bar = DOM.el(`#favorites_bar`)
   DOM.hide(bar)
 }
 
@@ -351,18 +329,18 @@ App.set_favorites_position = (pos) => {
   App.check_refresh_settings()
 }
 
-App.init_favorites = (mode) => {
+App.init_favorites = () => {
   if (App.get_setting(`show_favorites`)) {
-    App.show_favorites(mode)
+    App.show_favorites()
   }
   else {
     App.hide_favorites()
   }
 }
 
-App.show_favorites = (mode, set = false) => {
+App.show_favorites = (set = false) => {
   App.main_add(`show_favorites`)
-  App.fill_favorites_bar(mode)
+  App.fill_favorites_bar()
 
   if (set) {
     App.set_show_favorites(true)
@@ -377,12 +355,12 @@ App.hide_favorites = (set = false) => {
   }
 }
 
-App.toggle_favorites = (mode = App.active_mode) => {
+App.toggle_favorites = () => {
   if (App.get_setting(`show_favorites`)) {
     App.hide_favorites(true)
   }
   else {
-    App.show_favorites(mode, true)
+    App.show_favorites(true)
   }
 }
 
@@ -393,10 +371,10 @@ App.toggle_favorites_autohide = () => {
 
   if (autohide) {
     App.alert_autohide(`Favorites Autohide Enabled`)
-    App.on_favorites_leave(App.active_mode)
+    App.on_favorites_leave()
   }
   else {
     App.alert_autohide(`Favorites Autohide Disabled`)
-    App.on_favorites_enter(App.active_mode)
+    App.on_favorites_enter()
   }
 }

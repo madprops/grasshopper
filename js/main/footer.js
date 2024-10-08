@@ -70,32 +70,29 @@ App.set_footer_info = (mode, text, item) => {
 }
 
 App.get_footer = (mode) => {
-  return DOM.el(`#${mode}_footer`)
+  return DOM.el(`#footer`)
 }
 
-App.create_footer = (mode) => {
-  let footer = DOM.create(`div`, `footer`, `${mode}_footer`)
+App.create_footer = () => {
+  let footer = DOM.create(`div`, `footer`)
+  let tab_box_btn = DOM.create(`div`, `pointer`, `footer_tab_box`)
+  tab_box_btn.append(App.get_svg_icon(`arrow_up`))
 
-  if (mode === `tabs`) {
-    let tab_box_btn = DOM.create(`div`, `pointer`, `footer_tab_box`)
-    tab_box_btn.append(App.get_svg_icon(`arrow_up`))
-
-    if (App.get_setting(`show_tooltips`)) {
-      let click = App.get_cmd_name(`toggle_tab_box`)
-      tab_box_btn.title = `Click: ${click}`
-      App.trigger_title(tab_box_btn, `middle_click_footer`)
-    }
-
-    DOM.ev(tab_box_btn, `click`, () => {
-      App.toggle_tab_box()
-    })
-
-    footer.append(tab_box_btn)
+  if (App.get_setting(`show_tooltips`)) {
+    let click = App.get_cmd_name(`toggle_tab_box`)
+    tab_box_btn.title = `Click: ${click}`
+    App.trigger_title(tab_box_btn, `middle_click_footer`)
   }
+
+  DOM.ev(tab_box_btn, `click`, () => {
+    App.toggle_tab_box()
+  })
+
+  footer.append(tab_box_btn)
 
   let tips = App.get_setting(`show_tooltips`)
   let footer_content = DOM.create(`div`, `footer_content glow`)
-  let footer_count = DOM.create(`div`, `footer_count`, `${mode}_footer_count`)
+  let footer_count = DOM.create(`div`, ``, `footer_count`)
 
   if (tips) {
     let click = App.get_cmd_name(`select_all_items`)
@@ -104,7 +101,7 @@ App.create_footer = (mode) => {
   }
 
   footer_content.append(footer_count)
-  let footer_info = DOM.create(`div`, `footer_info`, `${mode}_footer_info`)
+  let footer_info = DOM.create(`div`, ``, `footer_info`)
 
   if (tips) {
     App.trigger_title(footer_info, `click_footer`)
@@ -118,7 +115,7 @@ App.create_footer = (mode) => {
       return
     }
 
-    App.select_all(mode, true)
+    App.select_all(App.active_mode, true)
   })
 
   DOM.ev(footer_info, `click`, (e) => {
@@ -157,7 +154,7 @@ App.do_update_footer_count = (mode) => {
     return
   }
 
-  let el = DOM.el(`#${mode}_footer_count`)
+  let el = DOM.el(`#footer_count`)
 
   if (App.get_setting(`show_footer_count`)) {
     DOM.show(el)
