@@ -400,6 +400,12 @@ App.tabs_action = async (args = {}) => {
     method,
   })
 
+  if (args.from === `tab_box`) {
+    if (!App.get_setting(`tab_box_focus`)) {
+      args.on_action = false
+    }
+  }
+
   if (args.on_action) {
     App.on_action(`tabs`)
   }
