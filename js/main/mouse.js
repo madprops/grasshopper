@@ -669,7 +669,7 @@ App.on_mouse_wheel = (e) => {
   else if (e.target.closest(`.footer`)) {
     App.wheel_action(direction, `footer`, e)
   }
-  else if (e.target.closest(`.main_title`)) {
+  else if (e.target.closest(`#main_title`)) {
     App.wheel_action(direction, `main_title`, e)
   }
   else if (DOM.parent(e.target, [`.item_container`])) {

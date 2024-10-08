@@ -367,7 +367,7 @@ App.do_apply_theme = (args = {}) => {
     }
     else {
       App.set_css_var(`main_title_text_color`, `unset`)
-      App.set_css_var(`main_title_background_color`, main_background)
+      App.set_css_var(`main_title_background_color`, `unset`)
     }
 
     let title_align = App.get_setting(`main_title_align`)
@@ -416,7 +416,7 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`footer_color`, App.get_setting(`footer_color`))
     }
     else if (App.favorites_bar_side()) {
-      App.set_css_var(`footer_color`, slight_shade)
+      App.set_css_var(`footer_color`, alt_color_2)
     }
     else {
       App.set_css_var(`footer_color`, `unset`)
