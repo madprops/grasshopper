@@ -329,9 +329,9 @@ App.setup_keyboard = () => {
     }
 
     if (e.repeat) {
-      let ok = (e.key === `ArrowUp`) || (e.key === `ArrowDown`)
+      let repeats = [`ArrowUp`, `ArrowDown`, `PageUp`, `PageDown`]
 
-      if (!ok) {
+      if (!repeats.includes(e.key)) {
         return
       }
     }
@@ -499,6 +499,26 @@ App.setup_keyboard = () => {
           e.preventDefault()
           return
         }
+      }
+      else if (e.key === `ArrowUp`) {
+        App.scroll_settings_up()
+        e.preventDefault()
+        return
+      }
+      else if (e.key === `ArrowDown`) {
+        App.scroll_settings_down()
+        e.preventDefault()
+        return
+      }
+      else if (e.key === `PageUp`) {
+        App.scroll_settings_up()
+        e.preventDefault()
+        return
+      }
+      else if (e.key === `PageDown`) {
+        App.scroll_settings_down()
+        e.preventDefault()
+        return
       }
     }
     else if (App.on_media()) {

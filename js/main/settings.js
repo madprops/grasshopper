@@ -2235,3 +2235,21 @@ App.settings_ensure_save = () => {
     el.blur()
   }
 }
+
+App.scroll_settings_up = () => {
+  let filter = App.get_settings_filter(App.settings_category)
+
+  if (document.activeElement === filter) {
+    let el = App.settings_content()
+    el.scrollTop -= App.scroll_amount
+  }
+}
+
+App.scroll_settings_down = () => {
+  let filter = App.get_settings_filter(App.settings_category)
+
+  if (document.activeElement === filter) {
+    let el = App.settings_content()
+    el.scrollTop += App.scroll_amount
+  }
+}
