@@ -373,6 +373,10 @@ App.tabs_action = async (args = {}) => {
         await App.do_show_mode({mode: `tabs`})
       }
 
+      if (args.item.selected) {
+        return
+      }
+
       App.select_item({item: args.item, scroll: args.scroll})
       blink_item()
       return
