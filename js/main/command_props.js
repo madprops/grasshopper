@@ -2716,6 +2716,20 @@ App.setup_commands = () => {
       info: `Close all header tabs`,
     },
     {
+      name: `Close Group`,
+      short_name: `Close`,
+      cmd: `close_header_group`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      some_header: true,
+      icon: header_icon,
+      action: (args) => {
+        App.close_header_group(args.item)
+      },
+      info: `Close all header tabs`,
+    },
+    {
       name: `Close Subheaders`,
       cmd: `close_subheaders`,
       modes: [`tabs`],
