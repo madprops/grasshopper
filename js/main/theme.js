@@ -416,7 +416,7 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`footer_color`, App.get_setting(`footer_color`))
     }
     else if (App.favorites_bar_side()) {
-      App.set_css_var(`footer_color`, main_background)
+      App.set_css_var(`footer_color`, slight_shade)
     }
     else {
       App.set_css_var(`footer_color`, `unset`)
