@@ -1798,6 +1798,13 @@ App.build_settings = () => {
       info: `Max items to show in the Tab Box`,
       version: 1,
     },
+    tab_box_scrollbar: {
+      name: `Tab Box Scrollbar`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the scrollbar in the Tab Box`,
+      version: 1,
+    },
     tab_box_icons: {
       name: `Tab Box Icons`,
       type: `checkbox`,
@@ -1860,13 +1867,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Reverse the order of items in the Tab Box`,
-      version: 1,
-    },
-    tab_box_scrollbar: {
-      name: `Tab Box Scrollbar`,
-      type: `checkbox`,
-      value: false,
-      info: `Show the scrollbar in the Tab Box`,
       version: 1,
     },
   }
