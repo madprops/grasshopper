@@ -702,7 +702,9 @@ App.insert_icon_css = () => {
       }`
     }
     else {
-      css += `.${key}.item_icon_unit {}`
+      css += `.${key}.item_icon_unit {
+        display: flex;
+      }`
     }
   }
 
