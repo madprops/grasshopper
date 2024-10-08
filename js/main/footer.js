@@ -48,7 +48,7 @@ App.set_footer_info = (mode, text, item) => {
   let footer = App.get_footer(mode)
 
   if (footer) {
-    let info = DOM.el(`.footer_info`, footer)
+    let info = DOM.el(`#footer_info`, footer)
 
     if (item) {
       if (mode === `bookmarks`) {
@@ -74,7 +74,7 @@ App.get_footer = (mode) => {
 }
 
 App.create_footer = () => {
-  let footer = DOM.create(`div`, `footer`)
+  let footer = DOM.create(`div`, ``, `footer`)
   let tab_box_btn = DOM.create(`div`, `pointer`, `footer_tab_box`)
   tab_box_btn.append(App.get_svg_icon(`arrow_up`))
 
