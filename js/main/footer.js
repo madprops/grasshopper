@@ -48,7 +48,7 @@ App.set_footer_info = (mode, text, item) => {
   let footer = App.get_footer(mode)
 
   if (footer) {
-    let info = DOM.el(`#footer_info`, footer)
+    let info = DOM.el(`#footer_info`)
 
     if (item) {
       if (mode === `bookmarks`) {
@@ -91,7 +91,7 @@ App.create_footer = () => {
   footer.append(tab_box_btn)
 
   let tips = App.get_setting(`show_tooltips`)
-  let footer_content = DOM.create(`div`, `footer_content glow`)
+  let footer_content = DOM.create(`div`, `glow`, `footer_content`)
   let footer_count = DOM.create(`div`, ``, `footer_count`)
 
   if (tips) {
