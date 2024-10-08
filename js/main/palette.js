@@ -35,7 +35,7 @@ App.show_palette = (prefilter = ``) => {
   let filter = DOM.el(`#palette_filter`)
   let els = DOM.els(`.palette_item`, container)
   let active = App.get_active_items()
-  let too_many = active.length > App.palette_threshold
+  let too_many = active.length > App.max_command_check_items
 
   for (let el of els) {
     if (el.dataset.name.startsWith(`!`)) {

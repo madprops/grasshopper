@@ -79,8 +79,6 @@ App.default_color = `rgba(100, 100, 100, 1)`
 App.last_restore_date = 0
 App.pinline_visible = false
 App.similarity_threshold = 0.7
-App.palette_threshold = 100
-App.item_menu_threshold = 100
 App.filter_placeholder = `Filter`
 App.last_filter_placeholder = ``
 App.red_title = `rgb(166, 84, 107, 1)`
@@ -115,7 +113,7 @@ App.last_settings = {}
 App.tab_box_items = []
 App.tab_box_o_items = []
 App.num_generic_menus = 9
-App.max_command_check_items = 20
+App.max_command_check_items = 25
 
 App.settings_ready = false
 App.media_image_ready = false
