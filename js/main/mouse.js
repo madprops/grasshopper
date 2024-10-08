@@ -576,8 +576,12 @@ App.click_press_action = (mode, e) => {
     if (DOM.parent(e.target, [`.hover_button`])) {
       if (App.show_hover_menu_2(item, e)) {
         App.click_press_triggered = true
-        return
       }
+      else {
+        App.click_press_triggered = false
+      }
+
+      return
     }
   }
 
@@ -585,8 +589,12 @@ App.click_press_action = (mode, e) => {
     if (DOM.parent(e.target, [`.close_button`])) {
       if (App.show_close_button_menu_2(item, e)) {
         App.click_press_triggered = true
-        return
       }
+      else {
+        App.click_press_triggered = false
+      }
+
+      return
     }
   }
 
