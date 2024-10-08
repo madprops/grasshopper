@@ -115,6 +115,22 @@ App.check_command = (command, args = {}) => {
   }
 
   if (args.item) {
+    if (!args.active.length) {
+      args.active = App.get_active_items({mode: args.mode, item: args.item})
+    }
+
+    if (args.active.length === 1) {
+      args.single = true
+      args.multiple = false
+    }
+    else if (args.active.length > App.max_command_check_items) {
+      return true
+    }
+    else {
+      args.single = false
+      args.multiple = true
+    }
+
     for (let media of App.media_types) {
       if (args.item[media]) {
         args.media = media
@@ -124,19 +140,6 @@ App.check_command = (command, args = {}) => {
 
     if (App.get_color(args.item)) {
       args.color = App.get_color(args.item)
-    }
-
-    if (!args.active.length) {
-      args.active = App.get_active_items({mode: args.mode, item: args.item})
-    }
-
-    if (args.active.length === 1) {
-      args.single = true
-      args.multiple = false
-    }
-    else {
-      args.single = false
-      args.multiple = true
     }
 
     args.some_edits = false

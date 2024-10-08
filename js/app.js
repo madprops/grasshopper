@@ -115,6 +115,7 @@ App.last_settings = {}
 App.tab_box_items = []
 App.tab_box_o_items = []
 App.num_generic_menus = 9
+App.max_command_check_items = 20
 
 App.settings_ready = false
 App.media_image_ready = false
