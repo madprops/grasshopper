@@ -26,11 +26,11 @@ App.user_madprops_settings = () => {
 
   // Main Title
 
+  App.color_main_title(`green`)
   App.set_setting({setting: `show_main_title`, value: true})
   App.set_setting({setting: `main_title`, value: `Loading...`})
   App.set_setting({setting: `main_title_colors`, value: true})
   App.set_setting({setting: `main_title_text_color`, value: `rgba(255, 255, 255, 1)`})
-  App.set_setting({setting: `main_title_background_color`, value: `rgba(54, 54, 54, 1)`})
 
   // Wheel
 
@@ -204,4 +204,9 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `tab_box_auto_shrink`, value: `tiny`})
   App.set_setting({setting: `tab_box_color_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(47, 99, 151, 0.18)`})
+
+  // Footer
+
+  App.set_setting({setting: `footer_color_enabled`, value: true})
+  App.set_setting({setting: `footer_color`, value: `rgba(92, 152, 182, 0.65)`})
 }

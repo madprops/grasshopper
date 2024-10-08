@@ -1310,7 +1310,6 @@ a:hover
 #tab_box {
   display: none;
   transition: height 0.35s ease;
-  background-color: var(--main_background);
 }
 
 .show_tab_box #tab_box {
