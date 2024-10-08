@@ -1335,6 +1335,14 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
+    show_scrollbars: {
+      name: `Show Scrollbars`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the regular scrollbars
+      Else scrollbars are disabled`,
+      version: 1,
+    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
@@ -1370,14 +1378,6 @@ App.build_settings = () => {
       value: false,
       info: `Show numbers as a trace on recently used tabs
       It goes from 1 to 9`,
-      version: 1,
-    },
-    show_scrollbars: {
-      name: `Show Scrollbars`,
-      type: `checkbox`,
-      value: false,
-      info: `Show the regular scrollbars
-      Else scrollbars are disabled`,
       version: 1,
     },
   }
