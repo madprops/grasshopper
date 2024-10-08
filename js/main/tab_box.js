@@ -52,7 +52,6 @@ App.create_tab_box = () => {
     }
   })
 
-
   DOM.ev(title, `contextmenu`, (e) => {
     e.preventDefault()
     App.show_tab_box_menu(e)
