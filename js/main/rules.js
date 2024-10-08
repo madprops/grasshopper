@@ -195,9 +195,8 @@ App.start_domain_rules = () => {
           if (value) {
             return App.fix_url(value)
           }
-          else {
-            return value
-          }
+
+          return value
         },
       },
       validate: (values) => {
