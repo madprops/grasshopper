@@ -363,6 +363,11 @@ App.tabs_action = async (args = {}) => {
 
       return
     }
+    else if (header_action === `activate`) {
+      if (args.item.active) {
+        return
+      }
+    }
     else if (header_action === `select`) {
       if (App.active_mode !== `tabs`) {
         await App.do_show_mode({mode: `tabs`})
