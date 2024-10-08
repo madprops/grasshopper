@@ -361,22 +361,13 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`autohide_taglist`)
     }
 
-    if (App.get_setting(`show_main_title`)) {
-      main.classList.add(`with_main_title`)
-    }
-    else {
-      main.classList.remove(`with_main_title`)
-    }
-
     if (App.get_setting(`main_title_colors`)) {
       App.set_css_var(`main_title_text_color`, App.get_setting(`main_title_text_color`))
       App.set_css_var(`main_title_background_color`, App.get_setting(`main_title_background_color`))
-      main.classList.add(`main_title_margin`)
     }
     else {
       App.set_css_var(`main_title_text_color`, `unset`)
-      App.set_css_var(`main_title_background_color`, `unset`)
-      main.classList.remove(`main_title_margin`)
+      App.set_css_var(`main_title_background_color`, main_background)
     }
 
     let title_align = App.get_setting(`main_title_align`)

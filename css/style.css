@@ -231,10 +231,6 @@ select {
   padding-bottom: 0.55rem;
 }
 
-.with_main_title .window_top_mode {
-  padding-top: 0;
-}
-
 .colored_top {
   background-color: var(--alt_color_0);
   margin-bottom: 1.8rem;
@@ -1760,13 +1756,10 @@ a:hover
   align-items: center;
   color: var(--main_title_text_color);
   background-color: var(--main_title_background_color);
-  margin-bottom: 0.2rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   padding-left: 0.66rem;
   padding-right: 0.66rem;
-}
-
-.main_title_margin .main_title {
-  margin-bottom: 0.55rem;
 }
 
 .main_title_inner {

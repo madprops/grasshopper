@@ -299,8 +299,13 @@ App.build_shell = () => {
   let bottom_c = DOM.el(`#main_bottom`)
   top_c.innerHTML = ``
   bottom_c.innerHTML = ``
+
+  let title = App.create_main_title()
+  top_c.append(title)
+
   let tab_box = App.create_tab_box()
-  let footer = App.create_footer()
   bottom_c.append(tab_box)
+
+  let footer = App.create_footer()
   bottom_c.append(footer)
 }

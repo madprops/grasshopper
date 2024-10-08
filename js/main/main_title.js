@@ -56,9 +56,9 @@ App.main_title_scroll_do_timeout = () => {
   }
 }
 
-App.create_main_title = (mode) => {
+App.create_main_title = () => {
   let el = DOM.create(`div`, `main_title`)
-  let inner = DOM.create(`div`, `main_title_inner`, `main_title_inner_${mode}`)
+  let inner = DOM.create(`div`, ``, `main_title_inner`)
   el.append(inner)
 
   let title = App.get_setting(`main_title`)
@@ -326,8 +326,7 @@ App.refresh_main_title = () => {
 }
 
 App.scroll_main_title = (dir, manual = true) => {
-  let mode = App.active_mode
-  let el = DOM.el(`#main_title_inner_${mode}`)
+  let el = DOM.el(`#main_title_inner`)
   let amount
 
   if (manual) {
@@ -362,8 +361,7 @@ App.main_title_auto_scroll = () => {
     return
   }
 
-  let mode = App.active_mode
-  let el = DOM.el(`#main_title_inner_${mode}`)
+  let el = DOM.el(`#main_title_inner`)
   let dir = App.main_title_scroll_direction
   let overflow = el.scrollWidth - el.clientWidth
 
