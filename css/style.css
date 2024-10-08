@@ -1752,7 +1752,7 @@ a:hover
 
 /*  */
 
-.main_title {
+#main_title {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -1762,46 +1762,45 @@ a:hover
   padding-bottom: 0.25rem;
   padding-left: 0.66rem;
   padding-right: 0.66rem;
+  margin-bottom: 0.25rem;
 }
 
-.main_title_inner {
-  padding-top: 0.45rem;
-  padding-bottom: 0.45rem;
+#main_title_inner {
   font-size: var(--main_title_font_size);
 }
 
-.main_title_no_wrap .main_title_inner {
+.main_title_no_wrap #main_title_inner {
   white-space: nowrap;
   overflow: hidden;
 }
 
 /*  */
 
-.main_title_align_left .main_title {
+.main_title_align_left #main_title {
   justify-content: flex-start;
 }
 
-.main_title_align_left .main_title_inner {
+.main_title_align_left #main_title_inner {
   text-align: left;
 }
 
 /*  */
 
-.main_title_align_center .main_title {
+.main_title_align_center #main_title {
   justify-content: center;
 }
 
-.main_title_align_center .main_title_inner {
+.main_title_align_center #main_title_inner {
   text-align: center;
 }
 
 /*  */
 
-.main_title_align_right .main_title {
+.main_title_align_right #main_title {
   justify-content: flex-end;
 }
 
-.main_title_align_right .main_title_inner {
+.main_title_align_right #main_title_inner {
   text-align: right;
 }
 

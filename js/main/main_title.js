@@ -57,7 +57,7 @@ App.main_title_scroll_do_timeout = () => {
 }
 
 App.create_main_title = () => {
-  let el = DOM.create(`div`, `main_title`)
+  let el = DOM.create(`div`, ``, `main_title`)
   let inner = DOM.create(`div`, ``, `main_title_inner`)
   el.append(inner)
 
@@ -124,14 +124,10 @@ App.check_main_title = () => {
 }
 
 App.set_main_title_text = (text) => {
-  let els = DOM.els(`.main_title_inner`)
-
-  for (let el of els) {
-    el.textContent = text
-    App.update_main_title_tooltips(el)
-    el.scrollLeft = 0
-  }
-
+  let el = DOM.el(`#main_title_inner`)
+  el.textContent = text
+  App.update_main_title_tooltips(el)
+  el.scrollLeft = 0
   App.main_title_pause()
 }
 
@@ -315,13 +311,13 @@ App.toggle_main_title = () => {
 }
 
 App.refresh_main_title = () => {
-  for (let el of DOM.els(`.main_title`)) {
-    if (App.get_setting(`show_main_title`)) {
-      DOM.show(el)
-    }
-    else {
-      DOM.hide(el)
-    }
+  let el = DOM.el(`#main_title`)
+
+  if (App.get_setting(`show_main_title`)) {
+    DOM.show(el)
+  }
+  else {
+    DOM.hide(el)
   }
 }
 
