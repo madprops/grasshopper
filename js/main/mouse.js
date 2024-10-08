@@ -206,6 +206,62 @@ App.mouse_click_action = (mode, e) => {
         return
       }
     }
+
+    if (App.get_setting(`pin_icon_click`)) {
+      if (DOM.class(e.target, [`pin_icon`])) {
+        App.unpin_tab(item.id)
+        return
+      }
+    }
+
+    if (App.get_setting(`normal_icon_click`)) {
+      if (DOM.class(e.target, [`normal_icon`])) {
+        App.pin_tab(item.id)
+        return
+      }
+    }
+
+    if (App.get_setting(`loaded_icon_click`)) {
+      if (DOM.class(e.target, [`loaded_icon`])) {
+        App.unload_tabs(item, false)
+        return
+      }
+    }
+
+    if (App.get_setting(`unloaded_icon_click`)) {
+      if (DOM.class(e.target, [`unloaded_icon`])) {
+        App.load_tabs(item, false)
+        return
+      }
+    }
+
+    if (App.get_setting(`titled_icon_click`)) {
+      if (DOM.class(e.target, [`titled_icon`])) {
+        App.edit_title(item)
+        return
+      }
+    }
+
+    if (App.get_setting(`root_icon_click`)) {
+      if (DOM.class(e.target, [`root_icon`])) {
+        App.go_to_root_url(item, true)
+        return
+      }
+    }
+
+    if (App.get_setting(`node_icon_click`)) {
+      if (DOM.class(e.target, [`node_icon`])) {
+        App.go_to_parent(item)
+        return
+      }
+    }
+
+    if (App.get_setting(`parent_icon_click`)) {
+      if (DOM.class(e.target, [`parent_icon`])) {
+        App.filter_nodes(item)
+        return
+      }
+    }
   }
 
   if (App.get_setting(`color_icon_click`)) {
@@ -218,62 +274,6 @@ App.mouse_click_action = (mode, e) => {
   if (App.get_setting(`notes_icon_click`)) {
     if (DOM.class(e.target, [`notes_icon`])) {
       App.edit_notes(item)
-      return
-    }
-  }
-
-  if (App.get_setting(`pin_icon_click`)) {
-    if (DOM.class(e.target, [`pin_icon`])) {
-      App.unpin_tab(item.id)
-      return
-    }
-  }
-
-  if (App.get_setting(`normal_icon_click`)) {
-    if (DOM.class(e.target, [`normal_icon`])) {
-      App.pin_tab(item.id)
-      return
-    }
-  }
-
-  if (App.get_setting(`loaded_icon_click`)) {
-    if (DOM.class(e.target, [`loaded_icon`])) {
-      App.unload_tabs(item, false)
-      return
-    }
-  }
-
-  if (App.get_setting(`unloaded_icon_click`)) {
-    if (DOM.class(e.target, [`unloaded_icon`])) {
-      App.load_tabs(item, false)
-      return
-    }
-  }
-
-  if (App.get_setting(`titled_icon_click`)) {
-    if (DOM.class(e.target, [`titled_icon`])) {
-      App.edit_title(item)
-      return
-    }
-  }
-
-  if (App.get_setting(`root_icon_click`)) {
-    if (DOM.class(e.target, [`root_icon`])) {
-      App.go_to_root_url(item, true)
-      return
-    }
-  }
-
-  if (App.get_setting(`node_icon_click`)) {
-    if (DOM.class(e.target, [`node_icon`])) {
-      App.go_to_parent(item)
-      return
-    }
-  }
-
-  if (App.get_setting(`parent_icon_click`)) {
-    if (DOM.class(e.target, [`parent_icon`])) {
-      App.filter_nodes(item)
       return
     }
   }
@@ -460,12 +460,6 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  if (DOM.class(e.target, [`close_button`])) {
-    let cmd = App.get_setting(`middle_click_close_button`)
-    App.run_command({cmd, item, from: `close_button`, e})
-    return
-  }
-
   if (DOM.class(e.target, [`hover_button`])) {
     let cmd = App.get_setting(`middle_click_hover_button`)
     App.run_command({cmd, item, from: `hover_button`, e})
@@ -473,6 +467,12 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   if (mode === `tabs`) {
+    if (DOM.class(e.target, [`close_button`])) {
+      let cmd = App.get_setting(`middle_click_close_button`)
+      App.run_command({cmd, item, from: `close_button`, e})
+      return
+    }
+
     if (item.header) {
       if (App.do_header_action(item, `middle_click_header`)) {
         return
