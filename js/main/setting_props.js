@@ -1798,6 +1798,16 @@ App.build_settings = () => {
       info: `Max items to show in the Tab Box`,
       version: 1,
     },
+    tab_box_min_height: {
+      name: `Tab Box Min Height`,
+      type: `number`,
+      value: 0,
+      placeholder: `Number`,
+      min: 0,
+      max: App.number_max,
+      info: `If the window is smaller in height than these pixels, don't show the Tab Box`,
+      version: 1,
+    },
     tab_box_scrollbar: {
       name: `Tab Box Scrollbar`,
       type: `checkbox`,
