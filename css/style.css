@@ -1422,7 +1422,6 @@ a:hover
   overflow: hidden;
   flex-direction: column;
   background-color: var(--favorites_bar_color);
-  height: 100%;
 }
 
 .show_favorites .favorites_bar_container {
