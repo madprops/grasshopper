@@ -192,7 +192,12 @@ App.start_domain_rules = () => {
           return App.get_path(value)
         },
         root: (value) => {
-          return App.fix_url(value)
+          if (value) {
+            return App.fix_url(value)
+          }
+          else {
+            return value
+          }
         },
       },
       validate: (values) => {
