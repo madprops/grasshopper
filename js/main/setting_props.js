@@ -724,15 +724,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    active_icon_show: {
-      name: `Active Icon Show`,
+    show_active_icon: {
+      name: `Show Active Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Active Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     pin_icon: {
@@ -753,15 +753,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    pin_icon_show: {
-      name: `Pin Icon Show`,
+    show_pin_icon: {
+      name: `Show Pin Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Pin Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     normal_icon: {
@@ -782,15 +782,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    normal_icon_show: {
-      name: `Normal Icon Show`,
+    show_normal_icon: {
+      name: `Show Normal Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Normal Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     playing_icon: {
@@ -811,15 +811,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    playing_icon_show: {
-      name: `Playing Icon Show`,
+    show_playing_icon: {
+      name: `Show Playing Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Playing Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     muted_icon: {
@@ -840,15 +840,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    muted_icon_show: {
-      name: `Muted Icon Show`,
+    show_muted_icon: {
+      name: `Show Muted Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Muted Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     unloaded_icon: {
@@ -869,15 +869,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    unloaded_icon_show: {
-      name: `Unloaded Icon Show`,
+    show_unloaded_icon: {
+      name: `Show Unloaded Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Unloaded Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     loading_icon: {
@@ -898,15 +898,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    loading_icon_show: {
-      name: `Loading Icon Show`,
+    show_loading_icon: {
+      name: `Show Loading Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Loading Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     loaded_icon: {
@@ -927,15 +927,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    loaded_icon_show: {
-      name: `Loaded Icon Show`,
+    show_loaded_icon: {
+      name: `Show Loaded Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Loaded Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     unread_icon: {
@@ -956,15 +956,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    unread_icon_show: {
-      name: `Unread Icon Show`,
+    show_unread_icon: {
+      name: `Show Unread Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Unread Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     titled_icon: {
@@ -985,15 +985,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    titled_icon_show: {
-      name: `Titled Icon Show`,
+    show_titled_icon: {
+      name: `Show Titled Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Titled Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     tagged_icon: {
@@ -1014,15 +1014,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    tagged_icon_show: {
-      name: `Tagged Icon Show`,
+    show_tagged_icon: {
+      name: `Show Tagged Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Tagged Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     notes_icon: {
@@ -1043,15 +1043,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    notes_icon_show: {
-      name: `Notes Icon Show`,
+    show_notes_icon: {
+      name: `Show Notes Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Notes Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     edited_icon: {
@@ -1073,15 +1073,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    edited_icon_show: {
-      name: `Edited Icon Show`,
+    show_edited_icon: {
+      name: `Show Edited Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Edited Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     parent_icon: {
@@ -1102,15 +1102,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    parent_icon_show: {
-      name: `Parent Icon Show`,
+    show_parent_icon: {
+      name: `Show Parent Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Parent Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     node_icon: {
@@ -1131,15 +1131,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    node_icon_show: {
-      name: `Nodes Icon Show`,
+    show_node_icon: {
+      name: `Show Nodes Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Nodes Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     root_icon: {
@@ -1160,15 +1160,15 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    root_icon_show: {
-      name: `Root Icon Show`,
+    show_root_icon: {
+      name: `Show Root Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Root Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     custom_icon_side: {
@@ -1178,18 +1178,18 @@ App.build_settings = () => {
       info: `Show the Custom Icon on the left or right of text`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.sides_2)
+        App.settings_make_menu(key, App.sides)
       },
     },
-    custom_icon_show: {
-      name: `Custom Icon Show`,
+    show_custom_icon: {
+      name: `Show Custom Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Custom Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     pin_icon_click: {
@@ -3190,18 +3190,18 @@ App.build_settings = () => {
       info: `Show the Color Icon on the left or right of text`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.sides_2)
+        App.settings_make_menu(key, App.sides)
       },
     },
-    color_icon_show: {
-      name: `Color Icon Show`,
+    show_color_icon: {
+      name: `Show Color Icon`,
       type: `menu`,
       value: `always`,
       info: `When to show the Color Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.icon_show)
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     color_icon_click: {

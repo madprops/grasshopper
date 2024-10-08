@@ -385,18 +385,13 @@ App.aligns = [
 ]
 
 App.sides = [
-  {text: `None`, value: `none`},
+  {text: `Left`, value: `left`},
+  {text: `Right`, value: `right`},
+]
+
+App.show_icon = [
+  {text: `Never`, value: `never`, info: `Never show the icon`},
   {text: App.separator_string},
-  {text: `Left`, value: `left`},
-  {text: `Right`, value: `right`},
-]
-
-App.sides_2 = [
-  {text: `Left`, value: `left`},
-  {text: `Right`, value: `right`},
-]
-
-App.icon_show = [
   {text: `Always`, value: `always`, info: `Always show the icon`},
   {text: `On Select`, value: `select`, info: `Show when the item is selected`},
   {text: `On Hover`, value: `hover`, info: `Show when hovering over the item with the mouse`},

@@ -967,6 +967,6 @@ App.icon_enabled = (what) => {
   }
 
   let icon = App.get_setting(`${what}_icon`)
-  let side = App.get_setting(`${what}_icon_side`)
-  return icon && [`left`, `right`].includes(side)
+  let show = App.get_setting(`show_${what}_icon`)
+  return icon && (show !== `never`)
 }

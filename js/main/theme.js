@@ -659,14 +659,16 @@ App.insert_icon_css = () => {
     let show
 
     try {
-      show = App.get_setting(`${key}_show`)
+      show = App.get_setting(`show_${key}`)
     }
     catch (err) {
       return
     }
 
-    if (show === `always`) {
-      css += `.${key}.item_icon_unit {}`
+    if (show === `never`) {
+      css += `.${key}.item_icon_unit {
+        display: none;
+      }`
     }
     else if (show === `select`) {
       css += `.${key}.item_icon_unit {
@@ -698,6 +700,9 @@ App.insert_icon_css = () => {
       css += `.item:hover .${key}.item_icon_unit {
         display: flex;
       }`
+    }
+    else {
+      css += `.${key}.item_icon_unit {}`
     }
   }
 
