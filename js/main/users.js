@@ -24,6 +24,7 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `node_icon`, value: `🦠`})
   App.set_setting({setting: `show_node_icon`, value: `focus`})
   App.set_setting({setting: `sound_effects`, value: true})
+  App.set_setting({setting: `tab_box_scrollbar`, value: true})
 
   // Main Title
 

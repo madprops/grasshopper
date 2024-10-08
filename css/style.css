@@ -104,10 +104,13 @@ select {
 }
 
 .no_scrollbars .item_container,
-.no_scrollbars .box_container,
 .taglist_container
 {
 	scrollbar-width: none !important;
+}
+
+.no_tab_box_scrollbar #tab_box_container {
+  scrollbar-width: none !important;
 }
 
 .text_glow {

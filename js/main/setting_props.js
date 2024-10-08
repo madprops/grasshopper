@@ -1862,6 +1862,13 @@ App.build_settings = () => {
       info: `Reverse the order of items in the Tab Box`,
       version: 1,
     },
+    tab_box_scrollbar: {
+      name: `Tab Box Scrollbar`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the scrollbar in the Tab Box`,
+      version: 1,
+    },
   }
 
   add_props()
