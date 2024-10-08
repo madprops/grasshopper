@@ -36,6 +36,9 @@ metadata_delay = "0.18"
 # Where to save tab backups
 backup_path = Path("~/.config/signals/backups").expanduser()
 
+# Seconds to seek forwards or backwards
+seek_time = 5
+
 
 # ----------
 
@@ -189,13 +192,13 @@ def music_np():
 
 @app.route("/music-seek-forwards", methods=["POST"])
 def music_seek_f():
-    music(["position", "5+"])
+    music(["position", f"{seek_time}+"])
     return "ok"
 
 
 @app.route("/music-seek-backwards", methods=["POST"])
 def music_seek_b():
-    music(["position", "5-"])
+    music(["position", f"{seek_time}-"])
     return "ok"
 
 
