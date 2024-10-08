@@ -2713,7 +2713,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.select_header_group(args.item)
       },
-      info: `Close all header tabs`,
+      info: `Select the group of a header tab`,
     },
     {
       name: `Close Group`,
@@ -2727,7 +2727,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_header_group(args.item)
       },
-      info: `Close all header tabs`,
+      info: `Close the group of a header tab`,
     },
     {
       name: `Close Subheaders`,

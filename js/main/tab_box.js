@@ -119,6 +119,7 @@ App.do_update_tab_box = (what) => {
 
   App.check_tab_box()
   App[`update_tab_box_${what}`]()
+  App.tab_box_scroll()
   App.tab_box_shrink()
 }
 
@@ -242,6 +243,11 @@ App.scroll_tab_box_top = () => {
   App.scroll_to_top(c)
 }
 
+App.scroll_tab_box_bottom = () => {
+  let c = DOM.el(`#tab_box_container`)
+  App.scroll_to_bottom(c)
+}
+
 App.tab_box_icon = (mode) => {
   if (mode === `recent`) {
     return App.mode_icons.tabs
@@ -293,7 +299,7 @@ App.change_tab_box_mode = (what) => {
   App.set_tab_box_mode(what)
   App.set_tab_box_title()
   App.update_tab_box(what)
-  App.scroll_tab_box_top()
+  App.tab_box_scroll()
 }
 
 App.tab_box_menu = (e) => {
@@ -624,14 +630,21 @@ App.check_tab_box_scroll = () => {
     return
   }
 
-  if (!App.get_setting(`tab_box_scroll`)) {
-    return
-  }
-
   let mode = App.get_setting(`tab_box_mode`)
 
   if (mode === `recent`) {
+    App.tab_box_scroll()
+  }
+}
+
+App.tab_box_scroll = () => {
+  let scroll = App.get_setting(`tab_box_scroll`)
+
+  if (scroll === `top`) {
     App.scroll_tab_box_top()
+  }
+  else if (scroll === `bottom`) {
+    App.scroll_tab_box_bottom()
   }
 }
 

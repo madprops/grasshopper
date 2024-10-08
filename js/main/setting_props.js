@@ -1751,12 +1751,22 @@ App.build_settings = () => {
       name: `Tab Box Color Mode`,
       type: `menu`,
       value: `icon`,
-      separator: true,
       info: `The color mode inside the Tab Box
       For colors like green, red, etc`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.color_displays)
+      },
+    },
+    tab_box_scroll: {
+      name: `Tab Box Scroll`,
+      type: `menu`,
+      value: `top`,
+      separator: true,
+      info: `How to scroll the Tab Box`,
+      version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.scroll_modes)
       },
     },
     tab_box_color_enabled: {
@@ -1808,13 +1818,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Focus the tab that was activated through the Tab Box`,
-      version: 1,
-    },
-    tab_box_scroll: {
-      name: `Tab Box Scroll`,
-      type: `checkbox`,
-      value: true,
-      info: `Scroll to the top of the Tab Box in certain modes`,
       version: 1,
     },
     tab_box_blur: {
@@ -3036,7 +3039,7 @@ App.build_settings = () => {
       name: `Left Click Press Header`,
       type: `menu`,
       value: `select_group`,
-      info: `What to do when pressing a header`,
+      info: `What to do when pressing a header with the left click`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.header_actions)
@@ -3046,7 +3049,7 @@ App.build_settings = () => {
       name: `Middle Click Press Header`,
       type: `menu`,
       value: `close_group`,
-      info: `What to do when pressing a header`,
+      info: `What to do when pressing a header with the middle click`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [

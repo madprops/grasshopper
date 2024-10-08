@@ -402,3 +402,8 @@ App.header_actions = [
   {text: `Select Group`, value: `select_group`},
   {text: `Close Group`, value: `close_group`},
 ]
+
+App.scroll_modes = [
+  {text: `Top`, value: `top`},
+  {text: `Bottom`, value: `bottom`},
+]
