@@ -2702,8 +2702,8 @@ App.setup_commands = () => {
       info: `Close all header tabs`,
     },
     {
-      name: `Header Group`,
-      short_name: `Group`,
+      name: `Select Group`,
+      short_name: `Select`,
       cmd: `select_header_group`,
       modes: [`tabs`],
       item: true,
