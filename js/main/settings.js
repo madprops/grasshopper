@@ -534,6 +534,7 @@ App.start_settings = () => {
       filter.focus()
     },
     on_hide: async () => {
+      App.settings_ensure_save()
       App.save_last_settings()
 
       if (App.settings_changed()) {
@@ -2220,4 +2221,16 @@ App.settings_on_enter = () => {
   }
 
   return false
+}
+
+App.settings_ensure_save = () => {
+  let el = document.activeElement
+
+  if (el.tagName === `INPUT`) {
+    el.blur()
+  }
+
+  if (el.tagName === `TEXTAREA`) {
+    el.blur()
+  }
 }
