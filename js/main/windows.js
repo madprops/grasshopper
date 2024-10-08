@@ -58,7 +58,7 @@ App.create_window = (args) => {
 
   el.append(content)
   w.element = el
-  DOM.el(`#center_center`).append(el)
+  DOM.el(`#main_center`).append(el)
   w.setup = false
   w.visible = false
 
