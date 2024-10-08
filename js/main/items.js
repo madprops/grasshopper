@@ -450,6 +450,8 @@ App.setup_item_window = (mode) => {
   args.close_button = false
   args.align_top = `left`
   args.cls = `mode`
+  args.main_top = true
+  args.main_bottom = true
 
   args.setup = () => {
     if (App.optional_modes.includes(mode)) {

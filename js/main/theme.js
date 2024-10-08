@@ -421,6 +421,16 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`favorites_bar_color`, `unset`)
     }
 
+    if (App.get_setting(`footer_color_enabled`)) {
+      App.set_css_var(`footer_color`, App.get_setting(`footer_color`))
+    }
+    else if (App.favorites_bar_side()) {
+      App.set_css_var(`footer_color`, main_background)
+    }
+    else {
+      App.set_css_var(`footer_color`, `unset`)
+    }
+
     if (App.get_setting(`tab_box_color_enabled`)) {
       App.set_css_var(`tab_box_color`, App.get_setting(`tab_box_color`))
     }
@@ -479,14 +489,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.add(`main_title_no_wrap`)
     }
 
-    let footer_poss = [`top`, `bottom`]
-
-    for (let item of footer_poss) {
-      main.classList.remove(`footer_position_${item}`)
-    }
-
-    let footer_pos = App.get_setting(`footer_position`)
-    main.classList.add(`footer_position_${footer_pos}`)
     let footer_align = App.get_setting(`footer_align`)
     let footer_justify = justify_map[footer_align]
     App.set_css_var(`footer_align`, footer_justify)

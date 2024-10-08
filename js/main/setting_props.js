@@ -1659,20 +1659,6 @@ App.build_settings = () => {
       info: `Enable or disable the Tab Box`,
       version: 3,
     },
-    tab_box_position: {
-      name: `Tab Box Position`,
-      type: `menu`,
-      value: `bottom`,
-      no_mirror: true,
-      info: `The position of the Tab Box`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Top`, value: `top`},
-          {text: `Bottom`, value: `bottom`},
-        ])
-      },
-    },
     tab_box_size: {
       name: `Tab Box Size`,
       type: `menu`,
@@ -1905,19 +1891,6 @@ App.build_settings = () => {
       info: `Menu to show when right clicking the footer`,
       version: 1,
     },
-    footer_position: {
-      name: `Footer Position`,
-      type: `menu`,
-      value: `bottom`,
-      info: `Where to place the Footer`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Top`, value: `top`},
-          {text: `Bottom`, value: `bottom`},
-        ])
-      },
-    },
     footer_align: {
       name: `Footer Align`,
       type: `menu`,
@@ -1987,9 +1960,29 @@ App.build_settings = () => {
       type: `menu`,
       value: `page_down`,
       info: `Command to run when using the mousewheel down on the Footer while holding Shift`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
+      },
+    },
+    footer_color_enabled: {
+      name: `Footer Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable the background color of the Footer`,
+      version: 1,
+    },
+    footer_color: {
+      name: `Footer Color`,
+      hide_name: true,
+      type: `color`,
+      value: App.default_color,
+      info: `Background color of the Footer`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
       },
     },
     show_footer_count: {

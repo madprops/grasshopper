@@ -73,12 +73,6 @@ App.create_tab_box = () => {
     }
   })
 
-  let pos = App.get_setting(`tab_box_position`)
-
-  if (pos === `top`) {
-    tab_box.classList.add(`box_top`)
-  }
-
   tab_box.append(title)
   let container = DOM.create(`div`, `box_container`, `tab_box_container`)
   tab_box.append(container)
@@ -367,35 +361,6 @@ App.tab_box_menu = (e) => {
     items: sizes,
   })
 
-  let positions = []
-  let c_position = App.get_setting(`tab_box_position`)
-
-  if (c_position !== `top`) {
-    positions.push({
-      text: `Top`,
-      action: (e) => {
-        App.set_tab_box_position(`top`)
-        App.clear_show()
-      },
-    })
-  }
-
-  if (c_position !== `bottom`) {
-    positions.push({
-      text: `Bottom`,
-      action: (e) => {
-        App.set_tab_box_position(`bottom`)
-        App.clear_show()
-      },
-    })
-  }
-
-  items.push({
-    icon: App.settings_icons.tab_box,
-    text: `Position`,
-    items: positions,
-  })
-
   items.push({
     icon: App.settings_icons.tab_box,
     text: `Settings`,
@@ -560,11 +525,6 @@ App.set_tab_box_size = (what) => {
 
 App.set_tab_box_mode = (what) => {
   App.set_setting({setting: `tab_box_mode`, value: what})
-  App.check_refresh_settings()
-}
-
-App.set_tab_box_position = (what) => {
-  App.set_setting({setting: `tab_box_position`, value: what})
   App.check_refresh_settings()
 }
 

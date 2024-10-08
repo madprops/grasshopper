@@ -492,6 +492,7 @@ App.setup_settings = () => {
 }
 
 App.refresh_settings = () => {
+  App.build_shell()
   App.apply_theme()
   App.refresh_gestures()
   App.setup_commands()

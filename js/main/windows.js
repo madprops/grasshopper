@@ -98,6 +98,21 @@ App.create_window = (args) => {
 
     w.check_setup()
     App.hide_all_windows()
+
+    if (args.main_top) {
+      DOM.show(`#main_top`)
+    }
+    else {
+      DOM.hide(`#main_top`)
+    }
+
+    if (args.main_bottom) {
+      DOM.show(`#main_bottom`)
+    }
+    else {
+      DOM.hide(`#main_bottom`)
+    }
+
     w.element.style.display = `flex`
 
     if (App.window_mode !== args.id) {
@@ -280,25 +295,12 @@ App.toggle_auto_blur = () => {
 }
 
 App.build_shell = () => {
-  let tab_box_pos = App.get_setting(`tab_box_position`)
+  let top_c = DOM.el(`#main_top`)
+  let bottom_c = DOM.el(`#main_bottom`)
+  top_c.innerHTML = ``
+  bottom_c.innerHTML = ``
   let tab_box = App.create_tab_box()
-
-  if (tab_box && tab_box_pos === `top`) {
-    DOM.el(`#main_top`).append(tab_box)
-  }
-
-  if (tab_box && tab_box_pos === `bottom`) {
-    DOM.el(`#main_bottom`).append(tab_box)
-  }
-
   let footer = App.create_footer()
-  let footer_position = App.get_setting(`footer_position`)
-
-  if (footer && (footer_position === `top`)) {
-    DOM.el(`#main_top`).append(footer)
-  }
-
-  if (footer && (footer_position === `bottom`)) {
-    DOM.el(`#main_bottom`).append(footer)
-  }
+  bottom_c.append(tab_box)
+  bottom_c.append(footer)
 }
