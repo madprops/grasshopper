@@ -72,6 +72,9 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `send_signal_sig_next`, middle: `send_signal_sig_prev`}
   App.append_list_setting(sett, cmd)
 
+  cmd = {cmd: `send_signal_sig_seek`, middle: `send_signal_sig_rewind`}
+  App.append_list_setting(sett, cmd)
+
   cmd = {cmd: `send_signal_sig_volup`, middle: `send_signal_sig_voldown`, shift: `send_signal_sig_volmax`, ctrl: `send_signal_sig_volmin`}
   App.append_list_setting(sett, cmd)
 
@@ -134,6 +137,12 @@ App.user_madprops_settings = () => {
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Min Volume`, url: `http://127.0.0.1:5000/volume-min`, method: `POST`, icon: `🔉`, _id_: `sig_volmin`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Seek`, url: `http://127.0.0.1:5000/music-seek-forwards`, method: `POST`, icon: `⏩`, _id_: `sig_seek`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Rewind`, url: `http://127.0.0.1:5000/music-seek-backwards`, method: `POST`, icon: `⏪`, _id_: `sig_rewind`}
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Save Tabs`, url: `http://127.0.0.1:5000/post-backup-tabs`, method: `POST`, icon: `📚`, feedback: true, send_tabs: true, confirm: true, _id_: `sig_post_backup_tabs`}

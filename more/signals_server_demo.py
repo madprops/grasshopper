@@ -61,7 +61,7 @@ def sleep(secs):
 
 
 def music(what):
-    run([*player, what])
+    run([*player, *what])
 
 
 def inc_volume():
@@ -108,25 +108,52 @@ def player_status():
     return result.stdout.decode("utf-8").strip()
 
 
+def save_backup(what, data):
+    tabs = get_arg(what)
+    secs = get_seconds()
+    name = f"{what}_{secs}.json"
+    path = backup_path / name
+
+    if not path.parent.exists():
+        path.parent.mkdir(parents=True)
+
+    with path.open("w") as f:
+        json.dump(tabs, f)
+
+
+def get_backup(what):
+    text = ""
+
+    if backup_path.parent.exists():
+        files = sorted(backup_path.glob(f"{what}_*.json"))
+
+        if files:
+            with files[-1].open() as f:
+                line = json.load(f)
+                text = json.dumps(line, indent=2)
+
+    return text
+
+
 # ----------
 
 
 @app.route("/music-play", methods=["POST"])
 def music_play():
-    music("play-pause")
+    music(["play-pause"])
     return "ok"
 
 
 @app.route("/music-next", methods=["POST"])
 def music_next():
-    music("next")
+    music(["next"])
     sleep(metadata_delay)
     return metadata()
 
 
 @app.route("/music-prev", methods=["POST"])
 def music_prev():
-    music("previous")
+    music(["previous"])
     sleep(metadata_delay)
     return metadata()
 
@@ -160,23 +187,31 @@ def music_np():
     return metadata()
 
 
+@app.route("/music-seek-forwards", methods=["POST"])
+def music_seek_f():
+    music(["position", "5+"])
+    return "ok"
+
+
+@app.route("/music-seek-backwards", methods=["POST"])
+def music_seek_b():
+    music(["position", "5-"])
+    return "ok"
+
+
+# ------------
+
+
 @app.route("/post-backup-tabs", methods=["POST"])
 def post_backup_tabs():
     msg = ""
 
     if request.content_type == "application/json":
-        tabs = get_arg("tabs")
-        secs = get_seconds()
-        name = f"tabs_{secs}.json"
-        path = backup_path / name
+        data = get_arg("tabs")
 
-        if not path.parent.exists():
-            path.parent.mkdir(parents=True)
-
-        with path.open("w") as f:
-            json.dump(tabs, f)
-
-        msg = "Tabs Saved"
+        if data:
+            save_backup("tabs", data)
+            msg = "Tabs Saved"
 
     if not msg:
         msg = "You sent nothing"
@@ -186,18 +221,10 @@ def post_backup_tabs():
 
 @app.route("/get-backup-tabs", methods=["GET"])
 def get_backup_backup():
-    msg = ""
-
-    if backup_path.parent.exists():
-        files = sorted(backup_path.glob("tabs_*.json"))
-
-        if files:
-            with files[-1].open() as f:
-                line = json.load(f)
-                msg = json.dumps(line, indent=2)
+    msg = get_backup("tabs")
 
     if not msg:
-        msg = "No Backups"
+        msg = "No Tabs"
 
     return msg
 
@@ -207,18 +234,11 @@ def post_backup_settings():
     msg = ""
 
     if request.content_type == "application/json":
-        settings = get_arg("settings")
-        secs = get_seconds()
-        name = f"settings_{secs}.json"
-        path = backup_path / name
+        data = get_arg("settings")
 
-        if not path.parent.exists():
-            path.parent.mkdir(parents=True)
-
-        with path.open("w") as f:
-            json.dump(settings, f)
-
-        msg = "Settings Saved"
+        if data:
+            save_backup("settings", data)
+            msg = "Settings Saved"
 
     if not msg:
         msg = "You sent nothing"
@@ -228,18 +248,10 @@ def post_backup_settings():
 
 @app.route("/get-backup-settings", methods=["GET"])
 def get_backups_settings():
-    msg = ""
-
-    if backup_path.parent.exists():
-        files = sorted(backup_path.glob("settings_*.json"))
-
-        if files:
-            with files[-1].open() as f:
-                line = json.load(f)
-                msg = json.dumps(line, indent=2)
+    msg = get_backup("settings")
 
     if not msg:
-        msg = "No Backups"
+        msg = "No Settings"
 
     return msg
 
