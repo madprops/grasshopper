@@ -3008,7 +3008,7 @@ App.build_settings = () => {
     double_click_header: {
       name: `Double Click Header`,
       type: `menu`,
-      value: `normal`,
+      value: `select_group`,
       info: `What to do when double clicking a header`,
       version: 1,
       setup: (key) => {
@@ -3028,7 +3028,7 @@ App.build_settings = () => {
     left_click_press_header: {
       name: `Left Click Press Header`,
       type: `menu`,
-      value: `normal`,
+      value: `select_group`,
       info: `What to do when pressing a header`,
       version: 1,
       setup: (key) => {
@@ -3038,7 +3038,7 @@ App.build_settings = () => {
     middle_click_press_header: {
       name: `Middle Click Press Header`,
       type: `menu`,
-      value: `normal`,
+      value: `close_group`,
       info: `What to do when pressing a header`,
       version: 1,
       setup: (key) => {
