@@ -1863,3 +1863,7 @@ a:hover
   justify-content: center;
   gap: 0.5rem;
 }
+
+.search_empty_message {
+  padding: 1rem;
+}

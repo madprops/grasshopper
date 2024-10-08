@@ -270,13 +270,11 @@ App.do_filter = async (args = {}) => {
   let matched_items = []
 
   if (search) {
-    let deep = args.deep
-
     if (App.get_setting(`auto_deep_search_${args.mode}`)) {
-      deep = true
+      args.deep = true
     }
 
-    if (deep) {
+    if (args.deep) {
       max_items = App.get_setting(`deep_max_search_items_${args.mode}`)
     }
     else {
@@ -408,6 +406,12 @@ App.do_filter = async (args = {}) => {
 
   if (args.select) {
     App.scroll_to_selected(args.mode)
+  }
+
+  if (num_matched === 0) {
+    if (search) {
+      App.show_search_empty(args.mode, args.deep)
+    }
   }
 }
 
@@ -1966,4 +1970,18 @@ App.reset_generic_filter = (what) => {
   filter.value = ``
   filter.focus()
   App[`do_filter_${what}`]()
+}
+
+App.show_search_empty = (mode, deep) => {
+  let el = DOM.create(`div`, `search_empty_message`)
+
+  if (deep) {
+    el.textContent = `No results with Deep Search enabled. You can try increasing the limits in the settings.`
+  }
+  else {
+    el.textContent = `No results. Try doing a Deep Search. Deep Search can also be set to run automatically in the settings.`
+  }
+
+  let container = DOM.el(`#${mode}_container`)
+  container.append(el)
 }
