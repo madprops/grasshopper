@@ -301,22 +301,4 @@ App.build_shell = () => {
   if (footer && (footer_position === `bottom`)) {
     DOM.el(`#main_bottom`).append(footer)
   }
-
-  if (App.favorites_bar_enabled()) {
-    let favorites_bar = App.create_favorites_bar()
-    let fav_pos = App.get_setting(`favorites_position`)
-
-    if (fav_pos === `top`) {
-      DOM.el(`#main_top`).append(favorites_bar)
-    }
-    else if (fav_pos === `bottom`) {
-      DOM.el(`#main_bottom`).append(favorites_bar)
-    }
-    else if (fav_pos === `left`) {
-      DOM.el(`#center_left`).append(favorites_bar)
-    }
-    else if (fav_pos === `right`) {
-      DOM.el(`#center_right`).append(favorites_bar)
-    }
-  }
 }

@@ -1098,7 +1098,12 @@ App.build_item_window = (mode) => {
   top.append(main_top)
   let container_main = DOM.create(`div`, `item_container_main`)
   let container = DOM.create(`div`, `item_container`, `${mode}_container`)
-  let scroller
+  let fav_pos = App.get_setting(`favorites_position`)
+  let favorites_bar, scroller
+
+  if (App.favorites_bar_enabled()) {
+    favorites_bar = App.create_favorites_bar(mode)
+  }
 
   if (App.get_setting(`show_scroller`)) {
     scroller = App.create_scroller(mode)
@@ -1112,8 +1117,22 @@ App.build_item_window = (mode) => {
   }
 
   container_col.append(container)
+
+  if (fav_pos === `left`) {
+    container_main.append(favorites_bar)
+  }
+
   container_main.append(container_col)
+
+  if (fav_pos === `right`) {
+    container_main.append(favorites_bar)
+  }
+
   content.append(container_main)
+
+  if (fav_pos === `bottom`) {
+    content.append(favorites_bar)
+  }
 
   let title = App.create_main_title(mode)
   let btns = DOM.create(`div`, `item_top_buttons`)
@@ -1122,6 +1141,10 @@ App.build_item_window = (mode) => {
   main_top.append(title)
   main_top.append(btns)
   main_top.append(bar)
+
+  if (fav_pos === `top`) {
+    middle.append(favorites_bar)
+  }
 
   App.setup_mode_mouse(mode)
   let main_menu = App.create_main_menu(mode)
@@ -1143,6 +1166,11 @@ App.build_item_window = (mode) => {
 
   if (actions_menu) {
     right_btns.append(actions_menu)
+  }
+
+  if (fav_pos === `button`) {
+    let fav_button = App.create_favorites_button(mode)
+    right_btns.append(fav_button)
   }
 
   btns.append(left_btns)

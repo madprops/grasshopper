@@ -439,6 +439,12 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
+  if (DOM.class(e.target, [`favorites_button`])) {
+    let cmd = App.get_setting(`middle_click_favorites_button`)
+    App.run_command({cmd, from: `favorites_button`, e})
+    return
+  }
+
   if (!App.cursor_on_item(mode, e)) {
     if (DOM.parent(e.target, [`#pinline`])) {
       let cmd = App.get_setting(`middle_click_pinline`)
