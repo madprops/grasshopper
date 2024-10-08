@@ -175,10 +175,10 @@ App.color_icon = (id) => {
   let s
 
   if (App.color_exists(id)) {
-    s = `color_icon background_color_${id}`
+    s = `color_icon color_icon_inner background_color_${id}`
   }
   else {
-    s = `color_icon background_fallback_color`
+    s = `color_icon color_icon_inner background_fallback_color`
   }
 
   return DOM.create(`div`, s)
