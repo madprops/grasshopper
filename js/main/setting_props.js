@@ -2971,13 +2971,6 @@ App.build_settings = () => {
       info: `Add padding above or below splits`,
       version: 1,
     },
-    double_click_header: {
-      name: `Double Click Header`,
-      type: `checkbox`,
-      value: true,
-      info: `Select the tab group of a header by double clicking on headers`,
-      version: 1,
-    },
     header_icon_pick: {
       name: `Header Icon Pick`,
       type: `checkbox`,
@@ -3012,6 +3005,16 @@ App.build_settings = () => {
         ])
       },
     },
+    double_click_header: {
+      name: `Double Click Header`,
+      type: `menu`,
+      value: `normal`,
+      info: `What to do when double clicking a header`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.header_actions)
+      },
+    },
     middle_click_header: {
       name: `Middle Click Header`,
       type: `menu`,
@@ -3019,15 +3022,21 @@ App.build_settings = () => {
       info: `What to do when middle clicking a header`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Normal`, value: `normal`},
-          {text: `Select Group`, value: `select_group`},
-          {text: `Close Group`, value: `close_group`},
-        ])
+        App.settings_make_menu(key, App.header_actions)
       },
     },
-    click_press_header: {
-      name: `Click Press Header`,
+    left_click_press_header: {
+      name: `Left Click Press Header`,
+      type: `menu`,
+      value: `normal`,
+      info: `What to do when pressing a header`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.header_actions)
+      },
+    },
+    middle_click_press_header: {
+      name: `Middle Click Press Header`,
       type: `menu`,
       value: `normal`,
       info: `What to do when pressing a header`,
@@ -3839,7 +3848,7 @@ App.build_settings = () => {
       version: 4,
     },
     double_click_item: {
-      name: `Double Click`,
+      name: `Double Click Item`,
       type: `menu`,
       value: `item_action`,
       info: `What command to run when double clicking an item`,
@@ -3849,7 +3858,7 @@ App.build_settings = () => {
       },
     },
     left_click_press_item: {
-      name: `Left Click Press`,
+      name: `Left Click Press Item`,
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the left mouse button on an item for a short time`,
@@ -3859,7 +3868,7 @@ App.build_settings = () => {
       },
     },
     middle_click_press_item: {
-      name: `Middle Click Press`,
+      name: `Middle Click Press Item`,
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the middle mouse button on an item for a short time`,

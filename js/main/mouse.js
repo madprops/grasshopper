@@ -325,6 +325,12 @@ App.mouse_double_click_action = (mode, e) => {
     return
   }
 
+  if (item.header) {
+    if (App.do_header_action(item, `double_click_header`)) {
+      return
+    }
+  }
+
   if (App.taglist_enabled()) {
     if (DOM.parent(e.target, [`.taglist_container`])) {
       return
@@ -333,15 +339,6 @@ App.mouse_double_click_action = (mode, e) => {
 
   if (DOM.parent(e.target, [`.item_icon_container`])) {
     return
-  }
-
-  if (App.get_setting(`double_click_header`)) {
-    if (DOM.parent(e.target, [`.item_text`])) {
-      if (item.header) {
-        App.select_header_group(item)
-        return
-      }
-    }
   }
 
   if (App.get_setting(`load_lock`)) {
@@ -477,14 +474,7 @@ App.mouse_middle_action = (mode, e) => {
 
   if (mode === `tabs`) {
     if (item.header) {
-      let action = App.get_setting(`middle_click_header`)
-
-      if (action === `select_group`) {
-        App.select_header_group(item)
-        return
-      }
-      else if (action === `close_group`) {
-        App.close_header_group(item)
+      if (App.do_header_action(item, `middle_click_header`)) {
         return
       }
     }
@@ -586,15 +576,16 @@ App.click_press_action = (mode, e) => {
   }
 
   if (item.header) {
-    let action = App.get_setting(`click_press_header`)
+    let sett
 
-    if (action === `select_group`) {
-      App.select_header_group(item)
-      App.click_press_triggered = true
-      return
+    if (App.click_press_button === 0) {
+      sett = `left_click_press_header`
     }
-    else if (action === `close_group`) {
-      App.close_header_group(item)
+    else if (App.click_press_button === 1) {
+      sett = `middle_click_press_header`
+    }
+
+    if (App.do_header_action(item, sett)) {
       App.click_press_triggered = true
       return
     }

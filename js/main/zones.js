@@ -354,3 +354,18 @@ App.close_header_group = (item) => {
   App.toggle_selected({item, what: false})
   App.close_tabs()
 }
+
+App.do_header_action = (item, action) => {
+  let setting = App.get_setting(action)
+
+  if (setting === `select_group`) {
+    App.select_header_group(item)
+    return true
+  }
+  else if (setting === `close_group`) {
+    App.close_header_group(item)
+    return true
+  }
+
+  return false
+}

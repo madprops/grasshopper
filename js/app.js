@@ -396,3 +396,9 @@ App.show_icon = [
   {text: `On Hover`, value: `hover`, info: `Show when hovering over the item with the mouse`},
   {text: `On Focus`, value: `focus`, info: `Show on select or hover`},
 ]
+
+App.header_actions = [
+  {text: `Normal`, value: `normal`},
+  {text: `Select Group`, value: `select_group`},
+  {text: `Close Group`, value: `close_group`},
+]
