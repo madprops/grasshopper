@@ -476,6 +476,19 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   if (mode === `tabs`) {
+    if (item.header) {
+      let action = App.get_setting(`middle_click_header`)
+
+      if (action === `select_group`) {
+        App.select_header_group(item)
+        return
+      }
+      else if (action === `close_group`) {
+        App.close_header_group(item)
+        return
+      }
+    }
+
     if (App.get_setting(`color_icon_click`)) {
       if (DOM.parent(e.target, [`.color_icon_container`])) {
         App.edit_tab_color({item})

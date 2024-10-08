@@ -665,46 +665,29 @@ App.insert_icon_css = () => {
       return
     }
 
-    if (show === `never`) {
+    if (show === `always`) {
       css += `.${key}.item_icon_unit {
-        display: none;
-      }`
-    }
-    else if (show === `select`) {
-      css += `.${key}.item_icon_unit {
-        display: none;
-      }`
-
-      css += `.item.selected .${key}.item_icon_unit {
-        display: flex;
-      }`
-    }
-    else if (show === `hover`) {
-      css += `.${key}.item_icon_unit {
-        display: none;
-      }`
-
-      css += `.item:hover .${key}.item_icon_unit {
-        display: flex;
-      }`
-    }
-    else if (show === `focus`) {
-      css += `.${key}.item_icon_unit {
-        display: none;
-      }`
-
-      css += `.item.selected .${key}.item_icon_unit {
-        display: flex;
-      }`
-
-      css += `.item:hover .${key}.item_icon_unit {
         display: flex;
       }`
     }
     else {
-      css += `.${key}.item_icon_unit {
-        display: flex;
-      }`
+      if ([`never`, `select`, `hover`, `focus`].includes(show)) {
+        css += `.${key}.item_icon_unit {
+          display: none;
+        }`
+      }
+
+      if ([`select`, `focus`].includes(show)) {
+        css += `.item.selected .${key}.item_icon_unit {
+          display: flex;
+        }`
+      }
+
+      if ([`hover`, `focus`].includes(show)) {
+        css += `.item:hover .${key}.item_icon_unit {
+          display: flex;
+        }`
+      }
     }
   }
 

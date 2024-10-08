@@ -348,3 +348,8 @@ App.remove_all_zones = () => {
     },
   })
 }
+
+App.close_header_group = (item) => {
+  App.select_header_group(item)
+  App.close_tabs()
+}
