@@ -3015,14 +3015,26 @@ App.build_settings = () => {
     middle_click_header: {
       name: `Middle Click Header`,
       type: `menu`,
-      value: `close_header`,
+      value: `normal`,
       info: `What to do when middle clicking a header`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: App.separator_string},
-          {text: `Close Header`, value: `close_header`},
+          {text: `Normal`, value: `normal`},
+          {text: `Select Group`, value: `select_group`},
+          {text: `Close Group`, value: `close_group`},
+        ])
+      },
+    },
+    click_press_header: {
+      name: `Click Press Header`,
+      type: `menu`,
+      value: `normal`,
+      info: `What to do when pressing a header`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Normal`, value: `normal`},
           {text: `Select Group`, value: `select_group`},
           {text: `Close Group`, value: `close_group`},
         ])

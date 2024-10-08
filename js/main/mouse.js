@@ -585,6 +585,21 @@ App.click_press_action = (mode, e) => {
     return
   }
 
+  if (item.header) {
+    let action = App.get_setting(`click_press_header`)
+
+    if (action === `select_group`) {
+      App.select_header_group(item)
+      App.click_press_triggered = true
+      return
+    }
+    else if (action === `close_group`) {
+      App.close_header_group(item)
+      App.click_press_triggered = true
+      return
+    }
+  }
+
   if (App.get_setting(`hover_button`) !== `none`) {
     if (DOM.parent(e.target, [`.hover_button`])) {
       if (App.show_hover_menu_2(item, e)) {
