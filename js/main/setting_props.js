@@ -1841,6 +1841,13 @@ App.build_settings = () => {
       info: `Show the number of items in the Tab Box`,
       version: 1,
     },
+    tab_box_reverse: {
+      name: `Tab Box Reverse`,
+      type: `checkbox`,
+      value: false,
+      info: `Reverse the order of items in the Tab Box`,
+      version: 1,
+    },
     tab_box_wheel: {
       name: `Tab Box Wheel`,
       type: `checkbox`,
@@ -1860,13 +1867,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Auto show the Tab Box when a tab is playing`,
-      version: 1,
-    },
-    tab_box_reverse: {
-      name: `Tab Box Reverse`,
-      type: `checkbox`,
-      value: false,
-      info: `Reverse the order of items in the Tab Box`,
       version: 1,
     },
   }
