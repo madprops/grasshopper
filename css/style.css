@@ -1243,6 +1243,10 @@ a:hover
   outline: 1px solid var(--text_color);
 }
 
+.color_icon_container {
+  width: 1.6rem;
+}
+
 .pointer {
   cursor: pointer;
 }
