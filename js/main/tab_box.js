@@ -215,6 +215,10 @@ App.get_tab_box_items = (o_items, mode) => {
     items.push(item)
   }
 
+  if (App.get_setting(`tab_box_reverse`)) {
+    items = items.reverse()
+  }
+
   return items
 }
 
