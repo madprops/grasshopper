@@ -363,7 +363,10 @@ App.mouse_context_action = (mode, e) => {
   e.preventDefault()
 
   if (!App.cursor_on_item(mode, e)) {
-    App.show_empty_menu(e)
+    if (DOM.parent(e.target, [`.window_content_mode`])) {
+      App.show_empty_menu(e)
+    }
+
     return
   }
 

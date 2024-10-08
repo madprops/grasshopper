@@ -40,7 +40,7 @@ App.create_tab_box = () => {
   let title_count = DOM.create(`div`, `box_title_count`, `tab_box_title_count`)
   title.append(title_count)
 
-  DOM.evs(title, [`click`, `contextmenu`], (e) => {
+  DOM.evs(title, [`click`], (e) => {
     e.preventDefault()
     e.stopPropagation()
 
@@ -50,6 +50,12 @@ App.create_tab_box = () => {
     else {
       App.tab_box_menu(e)
     }
+  })
+
+
+  DOM.ev(title, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.show_tab_box_menu(e)
   })
 
   DOM.ev(title, `auxclick`, (e) => {
@@ -698,4 +704,13 @@ App.tab_box_make_item_first = (item) => {
       break
     }
   }
+}
+
+App.show_tab_box_menu = (e) => {
+  let items = App.custom_menu_items({
+    name: `tab_box_menu`,
+  })
+
+  let element = DOM.el(`#tab_box_title`)
+  App.show_context({items, element, e})
 }

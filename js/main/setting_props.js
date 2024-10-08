@@ -1748,12 +1748,23 @@ App.build_settings = () => {
       name: `Tab Box Scroll`,
       type: `menu`,
       value: `top`,
-      separator: true,
       info: `How to scroll the Tab Box`,
       version: 2,
       setup: (key) => {
         App.settings_make_menu(key, App.scroll_modes)
       },
+    },
+    tab_box_menu: {
+      name: `Tab Box Menu`,
+      type: `list`,
+      value: [
+        {cmd: `open_new_tab`},
+        {cmd: `reopen_tab`},
+        {cmd: `select_all_items`},
+      ],
+      separator: true,
+      info: `Menu to show when right clicking the Tab Box`,
+      version: 1,
     },
     tab_box_color_enabled: {
       name: `Tab Box Color`,
@@ -1888,14 +1899,14 @@ App.build_settings = () => {
         {cmd: `copy_item_title`},
         {cmd: `settings_category_footer`},
       ],
-      info: `Menu to show when right clicking the footer`,
+      info: `Menu to show when right clicking the Footer`,
       version: 1,
     },
     footer_align: {
       name: `Footer Align`,
       type: `menu`,
       value: `left`,
-      info: `How to align the footer text`,
+      info: `How to align the Footer text`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [

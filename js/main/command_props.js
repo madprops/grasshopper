@@ -1395,6 +1395,16 @@ App.setup_commands = () => {
       info: `Show the Pinline Menu`,
     },
     {
+      name: `Tab Box Menu`,
+      short_name: `Pinline`,
+      cmd: `show_tab_box_menu`,
+      icon: menu_icon,
+      action: (args) => {
+        App.show_tab_box_menu(args.e)
+      },
+      info: `Show the Tab Box Menu`,
+    },
+    {
       name: `Footer Menu`,
       short_name: `Footer`,
       cmd: `show_footer_menu`,
