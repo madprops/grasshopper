@@ -351,5 +351,6 @@ App.remove_all_zones = () => {
 
 App.close_header_group = (item) => {
   App.select_header_group(item)
+  App.toggle_selected({item, what: false})
   App.close_tabs()
 }
