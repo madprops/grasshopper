@@ -69,10 +69,7 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `send_signal_sig_play`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `send_signal_sig_next`, middle: `send_signal_sig_prev`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `send_signal_sig_seek`, middle: `send_signal_sig_rewind`}
+  cmd = {cmd: `send_signal_sig_next`, middle: `send_signal_sig_prev`, shift: `send_signal_sig_seek`, ctrl: `send_signal_sig_rewind`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `send_signal_sig_volup`, middle: `send_signal_sig_voldown`, shift: `send_signal_sig_volmax`, ctrl: `send_signal_sig_volmin`}
