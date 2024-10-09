@@ -343,17 +343,13 @@ App.mouse_context_action = (e) => {
   let mode = App.active_mode
   e.preventDefault()
 
-  if (!App.cursor_on_item(mode, e)) {
-    if (DOM.parent(e.target, [`.window_content_mode`])) {
-      App.show_empty_menu(e)
-    }
-
-    return
-  }
-
   let item = App.get_mouse_item(mode, e)
 
   if (!item) {
+    if (DOM.parent(e.target, [`.item_container`])) {
+      App.show_empty_menu(e)
+    }
+
     return
   }
 

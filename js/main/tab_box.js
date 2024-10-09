@@ -48,13 +48,13 @@ App.create_tab_box = () => {
       App.select_tab_box_tabs()
     }
     else {
-      App.tab_box_menu(e)
+      App.show_tab_box_menu(e)
     }
   })
 
   DOM.ev(title, `contextmenu`, (e) => {
     e.preventDefault()
-    App.show_tab_box_menu(e)
+    App.show_tab_box_menu_2(e)
   })
 
   DOM.ev(title, `auxclick`, (e) => {
@@ -300,7 +300,7 @@ App.change_tab_box_mode = (what) => {
   App.tab_box_scroll()
 }
 
-App.tab_box_menu = (e) => {
+App.show_tab_box_menu = (e) => {
   let items = []
   let c_mode = App.get_setting(`tab_box_mode`)
 
@@ -371,6 +371,14 @@ App.tab_box_menu = (e) => {
     action: () => {
       App.show_settings_category(`tab_box`)
     },
+  })
+
+  App.show_context({items, e})
+}
+
+App.show_tab_box_menu_2 = (e) => {
+  let items = App.custom_menu_items({
+    name: `tab_box_menu`,
   })
 
   App.show_context({items, e})
@@ -703,15 +711,6 @@ App.tab_box_make_item_first = (item) => {
       break
     }
   }
-}
-
-App.show_tab_box_menu = (e) => {
-  let items = App.custom_menu_items({
-    name: `tab_box_menu`,
-  })
-
-  let element = DOM.el(`#tab_box_title`)
-  App.show_context({items, element, e})
 }
 
 App.tab_box_limited = () => {
