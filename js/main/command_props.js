@@ -1412,7 +1412,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_tab_box_menu_2(args.e)
       },
-      info: `Show the Tab Box Menu`,
+      info: `Show the Tab Box Menu 2`,
     },
     {
       name: `Footer Menu`,

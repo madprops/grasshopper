@@ -1,9 +1,5 @@
 App.get_mouse_item = (mode, e) => {
-  if (!e.target) {
-    return
-  }
-
-  if (e.target.nodeType !== 1) {
+  if (!App.mouse_valid_type(e)) {
     return
   }
 
@@ -24,6 +20,10 @@ App.get_mouse_item = (mode, e) => {
 }
 
 App.cursor_on_item = (mode, e) => {
+  if (!App.mouse_valid_type(e)) {
+    return false
+  }
+
   return DOM.parent(e.target, [`.${mode}_item`])
 }
 
@@ -83,6 +83,10 @@ App.mouse_click_action = (e) => {
   })
 
   App.reset_triggers()
+
+  if (!App.mouse_valid_type(e)) {
+    return
+  }
 
   if (!App.cursor_on_item(mode, e)) {
     if (DOM.parent(e.target, [`#pinline`])) {
@@ -299,6 +303,10 @@ App.mouse_double_click_action = (mode, e) => {
     return
   }
 
+  if (!App.mouse_valid_type(e)) {
+    return
+  }
+
   let item = App.get_mouse_item(mode, e)
 
   if (!item) {
@@ -342,6 +350,10 @@ App.mouse_double_click_action = (mode, e) => {
 App.mouse_context_action = (e) => {
   let mode = App.active_mode
   e.preventDefault()
+
+  if (!App.mouse_valid_type(e)) {
+    return
+  }
 
   let item = App.get_mouse_item(mode, e)
 
@@ -406,6 +418,10 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   App.reset_triggers()
+
+  if (!App.mouse_valid_type(e)) {
+    return
+  }
 
   if (e.target.id === `favorites_empty_top`) {
     let cmd = App.get_setting(`middle_click_favorites_top`)
@@ -543,6 +559,10 @@ App.start_click_press_timeout = (mode, e) => {
 }
 
 App.click_press_action = (mode, e) => {
+  if (!App.mouse_valid_type(e)) {
+    return
+  }
+
   if (DOM.parent(e.target, [`#footer`])) {
     if (App.click_press_button === 0) {
       let cmd = App.get_setting(`left_click_press_footer`)
@@ -622,8 +642,13 @@ App.click_press_action = (mode, e) => {
 }
 
 App.on_mouse_wheel = (e) => {
+  if (!App.mouse_valid_type(e)) {
+    return
+  }
+
   let direction = App.wheel_direction(e)
   let mode = App.window_mode
+  console.log(2)
 
   if (DOM.parent(e.target, [`.scroller`])) {
     if (direction === `up`) {
@@ -654,7 +679,8 @@ App.on_mouse_wheel = (e) => {
   else if (e.target.closest(`#favorites_empty_bottom`)) {
     App.wheel_action(direction, `favorites_bottom`, e)
   }
-  else if (e.target.closest(`.footer`)) {
+  else if (e.target.closest(`#footer`)) {
+    console.log(2)
     App.wheel_action(direction, `footer`, e)
   }
   else if (e.target.closest(`#main_title`)) {
@@ -764,4 +790,16 @@ App.on_mouse_down = (e) => {
     App.click_press_triggered = false
     App.start_click_press_timeout(mode, e)
   }
+}
+
+App.mouse_valid_type = (e) => {
+  if (!e || !e.target) {
+    return false
+  }
+
+  if (e.target.nodeType !== 1) {
+    return false
+  }
+
+  return true
 }
