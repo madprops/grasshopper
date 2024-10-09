@@ -2065,9 +2065,28 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       no_mirror: true,
-      separator: true,
       info: `Enable or disable the Favorites bar or button`,
       version: 2,
+    },
+    favorites_position: {
+      name: `Favorites Position`,
+      type: `menu`,
+      value: `left`,
+      no_mirror: true,
+      separator: true,
+      info: `How to show the Favorites Menu
+      Either a bar, or a button at the top right`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Top`, value: `top`},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+          {text: `Bottom`, value: `bottom`},
+          {text: App.separator_string},
+          {text: `Button`, value: `button`},
+        ])
+      },
     },
     favorites_menu: {
       name: `Favorites Menu`,
@@ -2118,26 +2137,6 @@ App.build_settings = () => {
       info: `The favorites menu for Closed mode`,
       separator: true,
       version: 1,
-    },
-    favorites_position: {
-      name: `Favorites Position`,
-      type: `menu`,
-      value: `left`,
-      no_mirror: true,
-      separator: true,
-      info: `How to show the Favorites Menu
-      Either a bar, or a button at the top right`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Top`, value: `top`},
-          {text: `Left`, value: `left`},
-          {text: `Right`, value: `right`},
-          {text: `Bottom`, value: `bottom`},
-          {text: App.separator_string},
-          {text: `Button`, value: `button`},
-        ])
-      },
     },
     favorites_bar_color_enabled: {
       name: `Favorites Bar Color`,
@@ -2198,26 +2197,6 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_up_shift_favorites_top: {
-      name: `Shift Wheel Up Fav Top`,
-      type: `menu`,
-      value: `page_up`,
-      info: `Command to run when using the mousewheel up on the top area of the Favorites Bar while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_favorites_top: {
-      name: `Shift Wheel Down Fav Top`,
-      type: `menu`,
-      value: `page_down`,
-      info: `Command to run when using the mousewheel down on the top area of the Favorites Bar while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     left_click_press_favorites_top: {
       name: `Left Click Press Fav Top`,
       type: `menu`,
@@ -2255,27 +2234,7 @@ App.build_settings = () => {
       value: `scroll_down`,
       info: `Command to run when using the mousewheel down on the center area of the Favorites Bar`,
       version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_shift_favorites_center: {
-      name: `Shift Wheel Up Fav Center`,
-      type: `menu`,
-      value: `page_up`,
-      info: `Command to run when using the mousewheel up on the center area of the Favorites Bar while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_favorites_center: {
-      name: `Shift Wheel Down Fav Center`,
-      type: `menu`,
-      value: `page_down`,
-      info: `Command to run when using the mousewheel down on the center area of the Favorites Bar while holding Shift`,
       separator: true,
-      version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
@@ -2320,26 +2279,6 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_up_shift_favorites_bottom: {
-      name: `Shift Wheel Up Fav Bottom`,
-      type: `menu`,
-      value: `page_up`,
-      info: `Command to run when using the mousewheel up on the bottom area of the Favorites Bar while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_favorites_bottom: {
-      name: `Shift Wheel Down Fav Bottom`,
-      type: `menu`,
-      value: `page_down`,
-      info: `Command to run when using the mousewheel down on the bottom area of the Favorites Bar while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     left_click_press_favorites_bottom: {
       name: `Left Click Press Fav Bottom`,
       type: `menu`,
@@ -2366,6 +2305,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `settings_category_favorites`,
       info: `Command to run when middle clicking the Favorites Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_favorites_button: {
+      name: `Wheel Up Fav Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel up on the Favorites Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_favorites_button: {
+      name: `Wheel Down Fav Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when using the mousewheel down on the Favorites Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)

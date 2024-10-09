@@ -873,6 +873,9 @@ App.on_mouse_wheel = (e) => {
   else if (e.target.closest(`.favorites_empty_bottom`)) {
     App.wheel_action(direction, `favorites_bottom`, e)
   }
+  else if (e.target.closest(`.favorites_button`)) {
+    App.wheel_action(direction, `favorites_button`, e)
+  }
   else if (e.target.closest(`#footer`)) {
     App.wheel_action(direction, `footer`, e)
   }
