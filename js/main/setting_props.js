@@ -1924,14 +1924,14 @@ App.build_settings = () => {
     tab_box_auto_history: {
       name: `Tab Box Auto History`,
       type: `checkbox`,
-      value: false,
+      value: true,
       info: `Set History mode when entering History mode`,
       version: 1,
     },
     tab_box_auto_folders: {
       name: `Tab Box Auto Folders`,
       type: `checkbox`,
-      value: false,
+      value: true,
       info: `Set Folders mode when entering Bookmarks mode`,
       version: 1,
     },

@@ -755,6 +755,10 @@ App.fill_tab_box_folders = () => {
 }
 
 App.tab_box_auto_folders = (mode) => {
+  if (!App.bookmark_folder_picks.length) {
+    return
+  }
+
   App.tab_box_auto_mode(mode, `bookmarks`, `folders`)
 }
 
@@ -788,6 +792,10 @@ App.fill_tab_box_history = () => {
 }
 
 App.tab_box_auto_history = (mode) => {
+  if (!App.history_picks.length) {
+    return
+  }
+
   App.tab_box_auto_mode(mode, `history`, `history`)
 }
 
@@ -809,7 +817,10 @@ App.tab_box_auto_mode = (mode, target_mode, what) => {
       return
     }
 
-    App.prev_tab_box_mode = tb_mode
+    if (![`folders`, `history`].includes(tb_mode)) {
+      App.prev_tab_box_mode = tb_mode
+    }
+
     App.change_tab_box_mode(what)
   }
   else if (tb_mode === what) {
