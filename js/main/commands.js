@@ -114,6 +114,12 @@ App.check_command = (command, args = {}) => {
     return true
   }
 
+  if (command.bookmarks_folder) {
+    if (!App.bookmarks_folder) {
+      return false
+    }
+  }
+
   if (args.item) {
     if (!args.active.length) {
       args.active = App.get_active_items({mode: args.mode, item: args.item})

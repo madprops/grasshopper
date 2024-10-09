@@ -1195,6 +1195,7 @@ App.setup_commands = () => {
       short_name: `Save`,
       cmd: `save_bookmarks_folder_pick`,
       icon: bookmarks_icon,
+      bookmarks_folder: true,
       action: (args) => {
         App.save_bookmarks_folder_pick()
       },
