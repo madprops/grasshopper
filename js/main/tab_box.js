@@ -719,6 +719,10 @@ App.fill_tab_box_folders = () => {
     el.textContent = pick.title
     el.dataset.pick_id = pick.id
 
+    if (App.bookmarks_folder && (App.bookmarks_folder.id === pick.id)) {
+      el.classList.add(`underline`)
+    }
+
     DOM.ev(el, `click`, (e) => {
       let id = e.currentTarget.dataset.pick_id
       let folder = App.get_bookmarks_folder_by_id(id)
