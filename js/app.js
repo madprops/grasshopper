@@ -8,7 +8,8 @@ App.stor_title_history_name = `title_history_v200`
 App.stor_icon_history_name = `icon_history_v200`
 App.stor_first_time_name = `first_time_v200`
 App.stor_notes_name = `notes_v200`
-App.stor_bookmark_folder_picks = `bookmark_folder_picks_v200`
+App.stor_bookmark_folder_picks = `bookmark_folder_picks_v201`
+App.stor_history_picks = `history_picks_v201`
 
 // Backwards compatibility check
 // This should only be used if the structure of the objects have not changed
@@ -31,7 +32,7 @@ App.BLUE = `rgba(0, 0, 255, 1)`
 App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 App.close_tabs_types = [`normal`, `pinned`, `playing`, `unloaded`, `loaded`, `duplicate`, `visible`, `empty`, `other`, `all`]
-App.tab_box_modes = [`recent`, `pins`, `playing`, `colors`, `tags`, `icons`, `roots`, `parents`, `nodes`, `nodez`, `headers`, `folders`]
+App.tab_box_modes = [`recent`, `pins`, `playing`, `colors`, `tags`, `icons`, `roots`, `parents`, `nodes`, `nodez`, `headers`, `history`, `folders`]
 App.no_favicons = [`history`, `bookmarks`]
 App.fonts = [`serif`, `sans-serif`, `monospace`, `Nova Square`]
 App.optional_modes = [`history`, `bookmarks`]
@@ -116,6 +117,7 @@ App.tab_box_o_items = []
 App.num_generic_menus = 9
 App.max_command_check_items = 25
 App.max_bookmark_folder_picks = 20
+App.max_history_picks = 20
 
 App.settings_ready = false
 App.media_image_ready = false

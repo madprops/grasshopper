@@ -148,3 +148,13 @@ App.stor_save_bookmark_folder_picks = () => {
   App.debug(`Stor: Saving bookmark folder picks`)
   App.save_local_storage(App.stor_bookmark_folder_picks, App.bookmark_folder_picks)
 }
+
+App.stor_get_history_picks = async () => {
+  App.history_picks = await App.get_local_storage(App.stor_history_picks, [])
+  App.debug(`Stor: Got history picks`)
+}
+
+App.stor_save_history_picks = () => {
+  App.debug(`Stor: Saving history picks`)
+  App.save_local_storage(App.stor_history_picks, App.history_picks)
+}

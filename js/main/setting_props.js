@@ -1624,6 +1624,7 @@ App.build_settings = () => {
       value: [
         {cmd: `deep_search`},
         {cmd: `show_search_media_menu`},
+        {cmd: `save_history_pick`},
       ],
       data_group: `normal_menus`,
       info: `Menu to show when clicking the history actions menu`,
@@ -1637,6 +1638,7 @@ App.build_settings = () => {
         {cmd: `show_search_media_menu`},
         {cmd: `bookmark_page`},
         {cmd: `pick_bookmarks_folder`},
+        {cmd: `save_bookmarks_folder_pick`},
       ],
       data_group: `normal_menus`,
       info: `Menu to show when clicking the bookmarks actions menu`,
@@ -1919,11 +1921,18 @@ App.build_settings = () => {
       info: `Show the number of items in the Tab Box`,
       version: 1,
     },
+    tab_box_auto_history: {
+      name: `Tab Box Auto History`,
+      type: `checkbox`,
+      value: false,
+      info: `Set History mode when entering History mode`,
+      version: 1,
+    },
     tab_box_auto_folders: {
       name: `Tab Box Auto Folders`,
       type: `checkbox`,
-      value: true,
-      info: `Go to Folders mode when entering Bookmarks mode`,
+      value: false,
+      info: `Set Folders mode when entering Bookmarks mode`,
       version: 1,
     },
     tab_box_auto_playing: {

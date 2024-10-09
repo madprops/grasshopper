@@ -54,6 +54,7 @@ App.setup_commands = () => {
   let keyboard_icon = App.keyboard_icon
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
+  let history_icon = App.mode_icons.history
 
   let tbmodes = []
 
@@ -1188,6 +1189,16 @@ App.setup_commands = () => {
         App.bookmark_active()
       },
       info: `Bookmark the current page`,
+    },
+    {
+      name: `Save Folder`,
+      short_name: `Save`,
+      cmd: `save_bookmarks_folder_pick`,
+      icon: bookmarks_icon,
+      action: (args) => {
+        App.save_bookmarks_folder_pick()
+      },
+      info: `Save current bookmarks folder to use in the Tab Box`,
     },
     {
       name: `To Folder`,
@@ -3346,6 +3357,16 @@ App.setup_commands = () => {
         App.remove_all_domain_rules()
       },
       info: `Remove all Domain Rules`,
+    },
+    {
+      name: `Save History`,
+      short_name: `Save`,
+      cmd: `save_history_pick`,
+      icon: history_icon,
+      action: (args) => {
+        App.save_history_pick()
+      },
+      info: `Save current history query to use in the Tab Box`,
     },
     {
       name: `Light Colors`,

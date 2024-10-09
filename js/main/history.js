@@ -92,3 +92,17 @@ App.search_domain_history = (item) => {
     filter: item.hostname,
   })
 }
+
+App.save_history_pick = (value) => {
+  let picks = App.history_picks
+  picks = picks.filter(x => x !== value)
+  picks.unshift(value)
+  picks = picks.slice(0, App.max_history_picks)
+  App.history_picks = picks
+  App.stor_save_history_picks()
+  let tb_mode = App.get_setting(`tab_box_mode`)
+
+  if ([`history`].includes(tb_mode)) {
+    App.refresh_tab_box()
+  }
+}

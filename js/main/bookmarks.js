@@ -690,7 +690,13 @@ App.search_domain_bookmarks = (item) => {
   })
 }
 
-App.add_to_bookmark_folder_picks = (folder) => {
+App.save_bookmarks_folder_pick = () => {
+  let folder = App.bookmarks_folder
+
+  if (!folder) {
+    return
+  }
+
   let pick = {
     id: folder.id,
     title: folder.title,
@@ -711,7 +717,6 @@ App.add_to_bookmark_folder_picks = (folder) => {
 
 App.open_bookmarks_folder = (folder) => {
   App.bookmarks_folder = folder
-  App.add_to_bookmark_folder_picks(folder)
   App.show_mode({mode: `bookmarks`, force: true})
 }
 

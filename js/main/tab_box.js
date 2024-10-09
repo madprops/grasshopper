@@ -92,6 +92,9 @@ App.tab_box_show = (mode, o_items) => {
   if (mode === `folders`) {
     items = App.fill_tab_box_folders()
   }
+  else if (mode === `history`) {
+    items = App.fill_tab_box_history()
+  }
   else {
     items = App.get_tab_box_items(o_items, mode)
     App.fill_tab_box(items)
@@ -163,6 +166,10 @@ App.update_tab_box_nodez = () => {
 
 App.update_tab_box_folders = () => {
   App.tab_box_show(`folders`, [])
+}
+
+App.update_tab_box_history = () => {
+  App.tab_box_show(`history`, [])
 }
 
 App.get_tab_box_items = (o_items, mode) => {
@@ -255,6 +262,9 @@ App.tab_box_icon = (mode) => {
   }
   else if (mode === `folders`) {
     return App.mode_icons.bookmarks
+  }
+  else if (mode === `history`) {
+    return App.mode_icons.history
   }
 
   return App.mode_icons.tabs
@@ -713,6 +723,7 @@ App.fill_tab_box_folders = () => {
   let picks = App.bookmark_folder_picks
   let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
+  console.log(4)
 
   for (let pick of picks) {
     let el = DOM.create(`div`, `tab_box_special_item action`)
@@ -724,7 +735,7 @@ App.fill_tab_box_folders = () => {
     }
 
     DOM.ev(el, `click`, (e) => {
-      let id = e.currentTarget.dataset.pick_id
+      let id = e.target.dataset.pick_id
       let folder = App.get_bookmarks_folder_by_id(id)
       App.open_bookmarks_folder(folder)
     })
@@ -735,12 +746,40 @@ App.fill_tab_box_folders = () => {
   return picks
 }
 
-App.check_tab_box_auto_folders = (mode) => {
+App.tab_box_auto_folders = (mode) => {
+  App.tab_box_auto_mode(mode, `bookmarks`, `folders`)
+}
+
+App.fill_tab_box_history = () => {
+  let picks = App.history_picks
+  let c = DOM.el(`#tab_box_container`)
+  c.innerHTML = ``
+
+  for (let pick of picks) {
+    let el = DOM.create(`div`, `tab_box_special_item action`)
+    el.textContent = pick
+    el.dataset.value = pick
+
+    DOM.ev(el, `click`, (e) => {
+      App.do_show_mode({mode: `history`, filter: e.target.dataset.value})
+    })
+
+    c.append(el)
+  }
+
+  return picks
+}
+
+App.tab_box_auto_history = (mode) => {
+  App.tab_box_auto_mode(mode, `history`, `history`)
+}
+
+App.tab_box_auto_mode = (mode, target_mode, what) => {
   if (!App.tab_box_enabled()) {
     return
   }
 
-  let auto = App.get_setting(`tab_box_auto_folders`)
+  let auto = App.get_setting(`tab_box_auto_history`)
 
   if (!auto) {
     return
@@ -748,20 +787,20 @@ App.check_tab_box_auto_folders = (mode) => {
 
   let tb_mode = App.get_setting(`tab_box_mode`)
 
-  if (mode === `bookmarks`) {
-    if (tb_mode === `folders`) {
+  if (mode === target_mode) {
+    if (tb_mode === what) {
       return
     }
 
     App.prev_tab_box_mode = tb_mode
-    App.change_tab_box_mode(`folders`)
+    App.change_tab_box_mode(what)
   }
-  else if (tb_mode === `folders`) {
+  else if (tb_mode === what) {
     if (!App.prev_tab_box_mode) {
       return
     }
 
-    if (App.prev_tab_box_mode === `folders`) {
+    if (App.prev_tab_box_mode === what) {
       return
     }
 
