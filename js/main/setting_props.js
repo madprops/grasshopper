@@ -1780,7 +1780,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Command to run on middle click press on Tab Box`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
