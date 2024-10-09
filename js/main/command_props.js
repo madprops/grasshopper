@@ -1194,6 +1194,7 @@ App.setup_commands = () => {
       name: `Save Folder`,
       short_name: `Save`,
       cmd: `save_bookmarks_folder_pick`,
+      modes: [`bookmarks`],
       icon: bookmarks_icon,
       bookmarks_folder: true,
       action: (args) => {
@@ -3363,6 +3364,8 @@ App.setup_commands = () => {
       name: `Save History`,
       short_name: `Save`,
       cmd: `save_history_pick`,
+      modes: [`history`],
+      filter_filled: true,
       icon: history_icon,
       action: (args) => {
         App.save_history_pick()

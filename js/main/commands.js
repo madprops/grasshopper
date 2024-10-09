@@ -120,6 +120,14 @@ App.check_command = (command, args = {}) => {
     }
   }
 
+  let filter_value = App.get_filter(args.mode)
+
+  if (command.filter_filled) {
+    if (!filter_value) {
+      return false
+    }
+  }
+
   if (args.item) {
     if (!args.active.length) {
       args.active = App.get_active_items({mode: args.mode, item: args.item})
