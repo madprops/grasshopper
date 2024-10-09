@@ -9,23 +9,6 @@ App.create_step_back_button = (mode) => {
   }
 
   btn.append(App.get_svg_icon(`back`))
-
-  DOM.ev(btn, `click`, (e) => {
-    App.step_back(mode, e)
-  })
-
-  DOM.ev(btn, `auxclick`, (e) => {
-    if (e.button === 1) {
-      let cmd = App.get_setting(`middle_click_step_back`)
-      App.run_command({cmd, from: `step_back_aux`, e})
-    }
-  })
-
-  DOM.ev(btn, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_tab_list(`recent`, e)
-  })
-
   return btn
 }
 

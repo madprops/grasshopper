@@ -85,6 +85,11 @@ App.mouse_click_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.step_back_button`])) {
+    App.step_back(mode, e)
+    return
+  }
+
   if (DOM.parent(e.target, [`#pinline`])) {
     App.show_pinline_menu(e)
     return
@@ -369,6 +374,11 @@ App.mouse_context_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.step_back_button`])) {
+    App.show_tab_list(`recent`, e)
+    return
+  }
+
   if (DOM.parent(e.target, [`.favorites_bar_container`, `.favorites_button`])) {
     App.show_favorites_menu(e)
     return
@@ -445,6 +455,12 @@ App.mouse_middle_action = (mode, e) => {
   if (DOM.parent(e.target, [`.main_menu_button`])) {
     let cmd = App.get_setting(`middle_click_main_menu`)
     App.run_command({cmd, from: `main_menu`, e})
+    return
+  }
+
+  if (DOM.parent(e.target, [`.step_back_button`])) {
+    let cmd = App.get_setting(`middle_click_step_back`)
+    App.run_command({cmd, from: `step_back_aux`, e})
     return
   }
 
@@ -592,6 +608,20 @@ App.click_press_action = (mode, e) => {
     }
     else if (App.click_press_button === 1) {
       let cmd = App.get_setting(`middle_click_press_main_menu`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+
+    App.click_press_triggered = true
+    return
+  }
+
+  if (DOM.parent(e.target, [`.step_back_button`])) {
+    if (App.click_press_button === 0) {
+      let cmd = App.get_setting(`left_click_press_step_back`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+    else if (App.click_press_button === 1) {
+      let cmd = App.get_setting(`middle_click_press_step_back`)
       App.run_command({cmd, from: `click_press`, e})
     }
 
