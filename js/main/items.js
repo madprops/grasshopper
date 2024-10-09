@@ -1149,7 +1149,7 @@ App.build_item_window = (mode) => {
   let main_menu = App.create_main_menu(mode)
   let filter = App.create_filter(mode)
   let filter_menu = App.create_filter_menu(mode)
-  let playing = App.create_playing_icon(mode)
+  let playing = App.create_playing_button(mode)
   let back = App.create_step_back_button(mode)
   let actions_menu = App.create_actions_menu(mode)
   App.setup_drag(mode, container)

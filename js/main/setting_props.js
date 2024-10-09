@@ -2926,6 +2926,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `jump_tabs_playing_up`,
       info: `Command to run when using the mousewheel down on the Playing Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    left_click_press_playing: {
+      name: `Left Click Press Playing`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Playing`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_playing: {
+      name: `Middle Click Press Playing`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Playing`,
       separator: true,
       version: 1,
       setup: (key) => {

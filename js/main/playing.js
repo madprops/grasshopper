@@ -4,8 +4,8 @@ App.setup_playing = () => {
   }, App.check_playing_delay)
 }
 
-App.create_playing_icon = (mode) => {
-  let btn = DOM.create(`div`, `button icon_button playing_icon hidden`, `playing_icon_${mode}`)
+App.create_playing_button = (mode) => {
+  let btn = DOM.create(`div`, `button icon_button playing_button hidden`, `playing_button_${mode}`)
   let click = App.get_cmd_name(`jump_tabs_playing_down`)
   let rclick = App.get_cmd_name(`show_playing_tabs`)
 
@@ -16,33 +16,17 @@ App.create_playing_icon = (mode) => {
 
   let icon = App.get_svg_icon(`speaker`)
 
-  DOM.ev(btn, `click`, () => {
-    App.jump_tabs_playing()
-  })
-
-  DOM.ev(btn, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_tab_list(`playing`, e)
-  })
-
-  DOM.ev(btn, `auxclick`, (e) => {
-    if (e.button === 1) {
-      let cmd = App.get_setting(`middle_click_playing`)
-      App.run_command({cmd, from: `playing_aux`, e})
-    }
-  })
-
   btn.append(icon)
   return btn
 }
 
 App.show_playing = (mode) => {
-  DOM.show(`#playing_icon_${mode}`)
+  DOM.show(`#playing_button_${mode}`)
   App.playing = true
 }
 
 App.hide_playing = (mode) => {
-  DOM.hide(`#playing_icon_${mode}`)
+  DOM.hide(`#playing_button_${mode}`)
   App.playing = false
 }
 
