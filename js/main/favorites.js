@@ -235,7 +235,7 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
 
 App.show_favorites_menu = (e) => {
   let items = App.custom_menu_items({
-    name: `favorites_menu`,
+    name: App.get_mode_favorites(),
   })
 
   App.sep(items)
@@ -272,8 +272,21 @@ App.show_favorites_menu = (e) => {
   App.show_context({items, e})
 }
 
+App.get_mode_favorites = () => {
+  let sett = `favorites_menu_${App.active_mode}`
+  let mode_menu = App.get_setting(sett)
+
+  if (mode_menu.length) {
+    return sett
+  }
+  else {
+    return `favorites_menu`
+  }
+}
+
 App.get_favorites = () => {
-  let favorites = App.get_setting(`favorites_menu`)
+  let sett = App.get_mode_favorites()
+  let favorites = App.get_setting(sett)
   let favs = []
 
   for (let fav of favorites) {

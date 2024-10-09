@@ -1537,6 +1537,10 @@ App.setup_settings_addlist = () => {
     `close_button_menu`,
     `close_button_menu_2`,
     `tab_box_menu`,
+    `favorites_menu_tabs`,
+    `favorites_menu_history`,
+    `favorites_menu_bookmarks`,
+    `favorites_menu_closed`,
   ]
 
   for (let i = 1; i <= App.num_generic_menus; i++) {
