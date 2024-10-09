@@ -55,6 +55,25 @@ App.setup_commands = () => {
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
 
+  let tbmodes = []
+
+  for (let mode of App.tab_box_modes) {
+    let m_name = App.capitalize(mode)
+    let name = `Tab Box: ${m_name}`
+    let icon = App.tab_box_icon(mode)
+
+    tbmodes.push({
+      name,
+      short_name: m_name,
+      cmd: `change_tab_box_${mode}`,
+      icon,
+      action: (args) => {
+        App.change_tab_box_mode(mode)
+      },
+      info: `Change the Tab Box mode: ${mode}`,
+    })
+  }
+
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -1018,6 +1037,9 @@ App.setup_commands = () => {
       },
       info: `Show or hide the Tab Box`,
     },
+
+    ...tbmodes,
+
     {
       name: `Toggle Taglist`,
       short_name: `Taglist`,
