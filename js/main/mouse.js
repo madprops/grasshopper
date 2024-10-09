@@ -655,143 +655,61 @@ App.click_press_action = (mode, e) => {
     return
   }
 
-  if (DOM.parent(e.target, [`.main_menu_button`])) {
-    if (App.click_press_button === 0) {
-      let cmd = App.get_setting(`left_click_press_main_menu`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-    else if (App.click_press_button === 1) {
-      let cmd = App.get_setting(`middle_click_press_main_menu`)
-      App.run_command({cmd, from: `click_press`, e})
+  function action(s1, s2) {
+    if (DOM.parent(e.target, [s1])) {
+      if (App.click_press_button === 0) {
+        let cmd = App.get_setting(`left_click_press_${s2}`)
+        App.run_command({cmd, from: `click_press`, e})
+      }
+      else if (App.click_press_button === 1) {
+        let cmd = App.get_setting(`middle_click_press_${s2}`)
+        App.run_command({cmd, from: `click_press`, e})
+      }
+
+      App.click_press_triggered = true
+      return true
     }
 
-    App.click_press_triggered = true
+    return false
+  }
+
+  if (action(`.main_menu_button`, `main_menu`)) {
     return
   }
 
-  if (DOM.parent(e.target, [`.step_back_button`])) {
-    if (App.click_press_button === 0) {
-      let cmd = App.get_setting(`left_click_press_step_back`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-    else if (App.click_press_button === 1) {
-      let cmd = App.get_setting(`middle_click_press_step_back`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-
-    App.click_press_triggered = true
+  if (action(`.step_back_button`, `step_back`)) {
     return
   }
 
-  if (DOM.parent(e.target, [`.playing_button`])) {
-    if (App.click_press_button === 0) {
-      let cmd = App.get_setting(`left_click_press_playing`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-    else if (App.click_press_button === 1) {
-      let cmd = App.get_setting(`middle_click_press_playing`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-
-    App.click_press_triggered = true
+  if (action(`.playing_button`, `playing`)) {
     return
   }
 
-  if (DOM.parent(e.target, [`#pinline`])) {
-    if (App.click_press_button === 0) {
-      let cmd = App.get_setting(`left_click_press_pinline`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-    else if (App.click_press_button === 1) {
-      let cmd = App.get_setting(`middle_click_press_pinline`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-
-    App.click_press_triggered = true
+  if (action(`#pinline`, `pinline`)) {
     return
   }
 
-  if (DOM.parent(e.target, [`.filter_menu_button`])) {
-    if (App.click_press_button === 0) {
-      let cmd = App.get_setting(`left_click_press_filter_menu`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-    else if (App.click_press_button === 1) {
-      let cmd = App.get_setting(`middle_click_press_filter_menu`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-
-    App.click_press_triggered = true
+  if (action(`.filter_menu_button`, `filter_menu`)) {
     return
   }
 
-  if (DOM.parent(e.target, [`.actions_button`])) {
-    if (App.click_press_button === 0) {
-      let cmd = App.get_setting(`left_click_press_actions`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-    else if (App.click_press_button === 1) {
-      let cmd = App.get_setting(`middle_click_press_actions`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-
-    App.click_press_triggered = true
+  if (action(`.actions_button`, `actions`)) {
     return
   }
 
-  if (DOM.parent(e.target, [`#footer`])) {
-    if (App.click_press_button === 0) {
-      let cmd = App.get_setting(`left_click_press_footer`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-    else if (App.click_press_button === 1) {
-      let cmd = App.get_setting(`middle_click_press_footer`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-
-    App.click_press_triggered = true
+  if (action(`#footer`, `footer`)) {
     return
   }
 
-  if (DOM.parent(e.target, [`.favorites_empty_top`])) {
-    if (App.click_press_button === 0) {
-      let cmd = App.get_setting(`left_click_press_favorites_top`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-    else if (App.click_press_button === 1) {
-      let cmd = App.get_setting(`middle_click_press_favorites_top`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-
-    App.click_press_triggered = true
+  if (action(`.favorites_empty_top`, `favorites_top`)) {
     return
   }
 
-  if (DOM.parent(e.target, [`.favorites_empty_bottom`])) {
-    if (App.click_press_button === 0) {
-      let cmd = App.get_setting(`left_click_press_favorites_bottom`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-    else if (App.click_press_button === 1) {
-      let cmd = App.get_setting(`middle_click_press_favorites_bottom`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-
-    App.click_press_triggered = true
+  if (action(`.favorites_empty_bottom`, `favorites_bottom`)) {
     return
   }
 
-  if (DOM.parent(e.target, [`.favorites_button`])) {
-    if (App.click_press_button === 0) {
-      let cmd = App.get_setting(`left_click_press_favorites_button`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-    else if (App.click_press_button === 1) {
-      let cmd = App.get_setting(`middle_click_press_favorites_button`)
-      App.run_command({cmd, from: `click_press`, e})
-    }
-
-    App.click_press_triggered = true
+  if (action(`.favorites_button`, `favorites_button`)) {
     return
   }
 
