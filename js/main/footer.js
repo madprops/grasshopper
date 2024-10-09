@@ -41,7 +41,7 @@ App.do_update_footer_info = (item) => {
 }
 
 App.empty_footer_info = () => {
-  App.set_footer_info(App.window_mode, `No Results`)
+  App.set_footer_info(App.window_mode, ``)
 }
 
 App.set_footer_info = (mode, text, item) => {
