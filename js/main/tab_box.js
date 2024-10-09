@@ -638,6 +638,12 @@ App.do_tab_box_shrink = () => {
     App.tab_box_size = App.get_setting(`tab_box_size`)
   }
   else {
+    let size = App.get_setting(`tab_box_auto_shrink`)
+
+    if (size === `none`) {
+      return
+    }
+
     App.tab_box_size = App.get_setting(`tab_box_auto_shrink`)
   }
 

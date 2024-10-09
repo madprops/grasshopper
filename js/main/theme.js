@@ -241,7 +241,7 @@ App.do_apply_theme = (args = {}) => {
     let tbh_rem = 12.2
     let tbh_diff = 3.5
 
-    for (let size of App.remove_separators(App.sizes)) {
+    for (let size of App.sizes_2) {
       if (size.value === `tiny`) {
         let size = tbh_rem - (tbh_diff * 2)
         App.set_css_var(`tab_box_size_tiny`, `${size}rem`)
