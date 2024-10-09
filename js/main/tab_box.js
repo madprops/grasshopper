@@ -261,10 +261,18 @@ App.tab_box_icon = (mode) => {
 }
 
 App.fill_tab_box = (items) => {
+  let text_mode = App.get_setting(`text_mode`)
   let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
 
   for (let item of items) {
+    if (text_mode === `url`) {
+      item.element.title = item.tooltips_title
+    }
+    else {
+      item.element.title = item.tooltips_url
+    }
+
     c.append(item.element)
   }
 }
