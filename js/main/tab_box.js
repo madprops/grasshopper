@@ -732,6 +732,10 @@ App.fill_tab_box_folders = () => {
 }
 
 App.check_tab_box_auto_folders = (mode) => {
+  if (!App.tab_box_enabled()) {
+    return
+  }
+
   let auto = App.get_setting(`tab_box_auto_folders`)
 
   if (!auto) {

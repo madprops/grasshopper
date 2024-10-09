@@ -1919,18 +1919,18 @@ App.build_settings = () => {
       info: `Show the number of items in the Tab Box`,
       version: 1,
     },
+    tab_box_auto_folders: {
+      name: `Tab Box Auto Folders`,
+      type: `checkbox`,
+      value: true,
+      info: `Go to Folders mode when entering Bookmarks mode`,
+      version: 1,
+    },
     tab_box_reverse: {
       name: `Tab Box Reverse`,
       type: `checkbox`,
       value: false,
       info: `Reverse the order of items in the Tab Box`,
-      version: 1,
-    },
-    tab_box_auto_folders: {
-      name: `Tab Box Auto Folders`,
-      type: `checkbox`,
-      value: false,
-      info: `Go to Folders mode when entering Bookmarks mode`,
       version: 1,
     },
     tab_box_wheel: {
