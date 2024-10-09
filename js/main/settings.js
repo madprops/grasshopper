@@ -2204,6 +2204,7 @@ App.settings_generic_menus = () => {
       value: [],
       actions: [`commands`],
       separator,
+      data_group: `normal_menus`,
       info: `Generic menu you can add to other menus or call on command (${i})`,
       version: 1,
     }
@@ -2282,6 +2283,10 @@ App.addlist_control_draggable = (el) => {
 
     let props_1 = App.setting_props[sett_1]
     let props_2 = App.setting_props[sett_2]
+
+    if (!props_1.data_group || !props_2.data_group) {
+      return
+    }
 
     if (props_1.data_group !== props_2.data_group) {
       return
