@@ -270,6 +270,14 @@ App.show_main_mode = (allow_same = true, force = false) => {
     }
   }
 
+  for (let m of App.persistent_modes) {
+    if (mode !== m) {
+      if (!App[`${m}_items`].length) {
+        App.do_show_mode({mode: m})
+      }
+    }
+  }
+
   App.do_show_mode({mode, force})
 }
 
