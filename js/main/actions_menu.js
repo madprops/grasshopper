@@ -15,22 +15,6 @@ App.create_actions_menu = (mode) => {
     App.trigger_title(btn, `middle_click_actions_menu`)
   }
 
-  DOM.ev(btn, `click`, (e) => {
-    App.show_actions_menu(mode, e)
-  })
-
-  DOM.ev(btn, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_browser_menu(e)
-  })
-
-  DOM.ev(btn, `auxclick`, (e) => {
-    if (e.button === 1) {
-      let cmd = App.get_setting(`middle_click_actions_menu`)
-      App.run_command({cmd, from: `actions_menu`, e})
-    }
-  })
-
   return btn
 }
 

@@ -2915,6 +2915,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `jump_tabs_all_down`,
       info: `Command to run when using the mousewheel down on the Actions Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    left_click_press_actions: {
+      name: `Left Click Press Actions`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Actions`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_actions: {
+      name: `Middle Click Press Actions`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Actions`,
       separator: true,
       version: 1,
       setup: (key) => {

@@ -95,6 +95,11 @@ App.mouse_click_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.actions_button`])) {
+    App.show_actions_menu(mode, e)
+    return
+  }
+
   if (DOM.parent(e.target, [`.filter_menu_button`])) {
     if (App.get_setting(`favorite_filters_click`)) {
       App.show_favorite_filters(mode, e)
@@ -405,6 +410,11 @@ App.mouse_context_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.actions_button`])) {
+    App.show_browser_menu(e)
+    return
+  }
+
   if (DOM.parent(e.target, [`.favorites_bar_container`, `.favorites_button`])) {
     App.show_favorites_menu(e)
     return
@@ -493,6 +503,12 @@ App.mouse_middle_action = (mode, e) => {
   if (DOM.parent(e.target, [`.playing_button`])) {
     let cmd = App.get_setting(`middle_click_playing`)
     App.run_command({cmd, from: `playing_aux`, e})
+    return
+  }
+
+  if (DOM.parent(e.target, [`.actions_button`])) {
+    let cmd = App.get_setting(`middle_click_actions_menu`)
+    App.run_command({cmd, from: `actions_menu`, e})
     return
   }
 
@@ -688,6 +704,20 @@ App.click_press_action = (mode, e) => {
     }
     else if (App.click_press_button === 1) {
       let cmd = App.get_setting(`middle_click_press_filter_menu`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+
+    App.click_press_triggered = true
+    return
+  }
+
+  if (DOM.parent(e.target, [`.actions_button`])) {
+    if (App.click_press_button === 0) {
+      let cmd = App.get_setting(`left_click_press_actions`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+    else if (App.click_press_button === 1) {
+      let cmd = App.get_setting(`middle_click_press_actions`)
       App.run_command({cmd, from: `click_press`, e})
     }
 
