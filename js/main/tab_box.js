@@ -747,6 +747,10 @@ App.check_tab_box_auto_folders = (mode) => {
     }
   }
   else if (tb_mode === `folders`) {
+    if (!App.prev_tab_box_mode) {
+      return
+    }
+
     if (App.prev_tab_box_mode === `folders`) {
       return
     }

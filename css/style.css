@@ -1885,7 +1885,8 @@ a:hover
 }
 
 .tab_box_special_item {
-  align-self: center;
   padding: 0.35rem;
   font-size: 1.11rem;
+  width: 100%;
+  text-align: center;
 }
