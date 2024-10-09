@@ -39,45 +39,6 @@ App.create_tab_box = () => {
   title.append(title_main)
   let title_count = DOM.create(`div`, `box_title_count`, `tab_box_title_count`)
   title.append(title_count)
-
-  DOM.evs(title, [`click`], (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-
-    if (e.shiftKey || e.ctrlKey) {
-      App.select_tab_box_tabs()
-    }
-    else {
-      App.show_tab_box_menu(e)
-    }
-  })
-
-  DOM.ev(title, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_tab_box_menu_2(e)
-  })
-
-  DOM.ev(title, `auxclick`, (e) => {
-    if (e.button === 1) {
-      App.close_tab_box_tabs()
-    }
-  })
-
-  DOM.ev(title, `wheel`, (e) => {
-    if (!App.get_setting(`tab_box_wheel`)) {
-      return
-    }
-
-    let dir = App.wheel_direction(e)
-
-    if (dir === `up`) {
-      App.cycle_tab_box_mode(`prev`)
-    }
-    else if (dir === `down`) {
-      App.cycle_tab_box_mode(`next`)
-    }
-  })
-
   tab_box.append(title)
   let container = DOM.create(`div`, `box_container`, `tab_box_container`)
   tab_box.append(container)

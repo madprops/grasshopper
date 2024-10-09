@@ -100,6 +100,17 @@ App.mouse_click_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`#tab_box_title`])) {
+    if (e.shiftKey || e.ctrlKey) {
+      App.select_tab_box_tabs()
+    }
+    else {
+      App.show_tab_box_menu(e)
+    }
+
+    return
+  }
+
   if (DOM.parent(e.target, [`.filter_menu_button`])) {
     if (App.get_setting(`favorite_filters_click`)) {
       App.show_favorite_filters(mode, e)
@@ -415,6 +426,11 @@ App.mouse_context_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`#tab_box_title`])) {
+    App.show_tab_box_menu_2(e)
+    return
+  }
+
   if (DOM.parent(e.target, [`.favorites_bar_container`, `.favorites_button`])) {
     App.show_favorites_menu(e)
     return
@@ -509,6 +525,11 @@ App.mouse_middle_action = (mode, e) => {
   if (DOM.parent(e.target, [`.actions_button`])) {
     let cmd = App.get_setting(`middle_click_actions_menu`)
     App.run_command({cmd, from: `actions_menu`, e})
+    return
+  }
+
+  if (DOM.parent(e.target, [`#tab_box_title`])) {
+    App.close_tab_box_tabs()
     return
   }
 
@@ -713,6 +734,10 @@ App.click_press_action = (mode, e) => {
     return
   }
 
+  if (action(`#tab_box_title`, `tab_box`)) {
+    return
+  }
+
   let item = App.get_mouse_item(mode, e)
 
   if (!item) {
@@ -823,6 +848,20 @@ App.on_mouse_wheel = (e) => {
     }
     else if (direction === `down`) {
       App.cycle_filter_modes(mode, false, e)
+    }
+  }
+  else if (DOM.parent(e.target, [`#tab_box_title`])) {
+    if (!App.get_setting(`tab_box_wheel`)) {
+      return
+    }
+
+    let dir = App.wheel_direction(e)
+
+    if (dir === `up`) {
+      App.cycle_tab_box_mode(`prev`)
+    }
+    else if (dir === `down`) {
+      App.cycle_tab_box_mode(`next`)
     }
   }
   else if (e.target.closest(`.favorites_empty_top`)) {

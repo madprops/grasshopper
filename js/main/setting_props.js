@@ -1765,6 +1765,27 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.scroll_modes)
       },
     },
+    left_click_press_tab_box: {
+      name: `Left Click Press Tab Box`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_tab_box: {
+      name: `Middle Click Press Tab Box`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Tab Box`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     tab_box_menu: {
       name: `Tab Box Menu`,
       type: `list`,
