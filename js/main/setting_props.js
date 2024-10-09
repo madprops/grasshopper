@@ -1653,19 +1653,6 @@ App.build_settings = () => {
       info: `Menu to show when clicking the closed actions menu`,
       version: 1,
     },
-    empty_menu: {
-      name: `Empty Menu`,
-      type: `list`,
-      value: [
-        {cmd: `open_new_tab`},
-        {cmd: `reopen_tab`},
-        {cmd: `select_all_items`},
-      ],
-      data_group: `normal_menus`,
-      separator: true,
-      info: `Menu to show when right clicking empty space`,
-      version: 1,
-    },
     extra_menu_mode: {
       name: `Extra Menu Mode`,
       type: `menu`,
@@ -1693,6 +1680,19 @@ App.build_settings = () => {
       ],
       info: `Extra menu to show when right clicking items`,
       version: 4,
+    },
+    empty_menu: {
+      name: `Empty Menu`,
+      type: `list`,
+      value: [
+        {cmd: `open_new_tab`},
+        {cmd: `reopen_tab`},
+        {cmd: `select_all_items`},
+      ],
+      data_group: `normal_menus`,
+      separator: true,
+      info: `Menu to show when right clicking empty space`,
+      version: 1,
     },
 
     ...App.settings_generic_menus(),
