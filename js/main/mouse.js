@@ -95,6 +95,17 @@ App.mouse_click_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.filter_menu_button`])) {
+    if (App.get_setting(`favorite_filters_click`)) {
+      App.show_favorite_filters(mode, e)
+    }
+    else {
+      App.show_filter_menu(mode)
+    }
+
+    return
+  }
+
   if (DOM.parent(e.target, [`#pinline`])) {
     App.show_pinline_menu(e)
     return
@@ -389,6 +400,11 @@ App.mouse_context_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.filter_menu_button`])) {
+    App.filter_menu_context(mode, e)
+    return
+  }
+
   if (DOM.parent(e.target, [`.favorites_bar_container`, `.favorites_button`])) {
     App.show_favorites_menu(e)
     return
@@ -477,6 +493,12 @@ App.mouse_middle_action = (mode, e) => {
   if (DOM.parent(e.target, [`.playing_button`])) {
     let cmd = App.get_setting(`middle_click_playing`)
     App.run_command({cmd, from: `playing_aux`, e})
+    return
+  }
+
+  if (DOM.parent(e.target, [`.filter_menu_button`])) {
+    let cmd = App.get_setting(`middle_click_filter_menu`)
+    App.run_command({cmd, from: `filter_menu`, e})
     return
   }
 
@@ -659,6 +681,20 @@ App.click_press_action = (mode, e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.filter_menu_button`])) {
+    if (App.click_press_button === 0) {
+      let cmd = App.get_setting(`left_click_press_filter_menu`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+    else if (App.click_press_button === 1) {
+      let cmd = App.get_setting(`middle_click_press_filter_menu`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+
+    App.click_press_triggered = true
+    return
+  }
+
   if (DOM.parent(e.target, [`#footer`])) {
     if (App.click_press_button === 0) {
       let cmd = App.get_setting(`left_click_press_footer`)
@@ -817,6 +853,16 @@ App.on_mouse_wheel = (e) => {
       }
     }
   }
+  else if (DOM.parent(e.target, [`.filter_menu_button`])) {
+    let direction = App.wheel_direction(e)
+
+    if (direction === `up`) {
+      App.cycle_filter_modes(mode, true, e)
+    }
+    else if (direction === `down`) {
+      App.cycle_filter_modes(mode, false, e)
+    }
+  }
   else if (e.target.closest(`.favorites_empty_top`)) {
     App.wheel_action(direction, `favorites_top`, e)
   }
@@ -835,7 +881,7 @@ App.on_mouse_wheel = (e) => {
   else if (DOM.parent(e.target, [`.item_container`])) {
     App.wheel_action(direction, `items`, e)
   }
-  else if (DOM.parent(e.target, [`.playing_icon`])) {
+  else if (DOM.parent(e.target, [`.playing_button`])) {
     App.wheel_action(direction, `playing`, e)
   }
   else if (DOM.parent(e.target, [`.step_back_button`])) {

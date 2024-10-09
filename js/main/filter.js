@@ -1541,39 +1541,6 @@ App.create_filter_menu = (mode) => {
   fmodes.push({cmd: `custom`, text: `Custom`, icon: filter_icon, skip: true, info: `Show the Custom Filters`})
 
   App[`${mode}_filter_modes_all`] = fmodes
-
-  DOM.ev(btn, `click`, (e) => {
-    if (App.get_setting(`favorite_filters_click`)) {
-      App.show_favorite_filters(mode, e)
-    }
-    else {
-      App.show_filter_menu(mode)
-    }
-  })
-
-  DOM.ev(btn, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.filter_menu_context(mode, e)
-  })
-
-  DOM.ev(btn, `auxclick`, (e) => {
-    if (e.button === 1) {
-      let cmd = App.get_setting(`middle_click_filter_menu`)
-      App.run_command({cmd, from: `filter_menu`, e})
-    }
-  })
-
-  DOM.ev(btn, `wheel`, (e) => {
-    let direction = App.wheel_direction(e)
-
-    if (direction === `up`) {
-      App.cycle_filter_modes(mode, true, e)
-    }
-    else if (direction === `down`) {
-      App.cycle_filter_modes(mode, false, e)
-    }
-  })
-
   return btn
 }
 

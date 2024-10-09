@@ -2864,6 +2864,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `previous_filter`,
       info: `Command to run when middle clicking the Filter Menu`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    left_click_press_filter_menu: {
+      name: `Left Click Press Filter Menu`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Filter Menu`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_filter_menu: {
+      name: `Middle Click Press Filter Menu`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Filter Menu`,
       separator: true,
       version: 1,
       setup: (key) => {
