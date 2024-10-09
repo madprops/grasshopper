@@ -735,3 +735,13 @@ App.get_bookmark_folder_title = (id) => {
     return folder.title
   }
 }
+
+App.forget_bookmarks_folder_pick = (id) => {
+  App.bookmark_folder_picks = App.bookmark_folder_picks.filter(x => x.id !== id)
+  App.stor_save_bookmark_folder_picks()
+  let tb_mode = App.get_setting(`tab_box_mode`)
+
+  if ([`folders`].includes(tb_mode)) {
+    App.refresh_tab_box()
+  }
+}

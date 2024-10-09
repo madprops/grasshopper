@@ -740,6 +740,14 @@ App.fill_tab_box_folders = () => {
       App.refresh_tab_box()
     })
 
+    DOM.ev(el, `auxclick`, (e) => {
+      let id = e.target.dataset.pick_id
+
+      if (e.button === 1) {
+        App.forget_bookmarks_folder_pick(id)
+      }
+    })
+
     c.append(el)
   }
 
@@ -763,6 +771,14 @@ App.fill_tab_box_history = () => {
     DOM.ev(el, `click`, (e) => {
       App.do_show_mode({mode: `history`, filter: e.target.dataset.value})
       App.refresh_tab_box()
+    })
+
+    DOM.ev(el, `auxclick`, (e) => {
+      let value = e.target.dataset.value
+
+      if (e.button === 1) {
+        App.forget_history_pick(value)
+      }
     })
 
     c.append(el)
