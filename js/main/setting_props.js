@@ -1947,6 +1947,26 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    left_click_press_footer: {
+      name: `Left Click Press Footer`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Footer`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_footer: {
+      name: `Middle Click Press Footer`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Footer`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     wheel_up_footer: {
       name: `Wheel Up Footer`,
       type: `menu`,

@@ -1146,7 +1146,6 @@ App.build_item_window = (mode) => {
     middle.append(favorites_bar)
   }
 
-  App.setup_mode_mouse(mode)
   let main_menu = App.create_main_menu(mode)
   let filter = App.create_filter(mode)
   let filter_menu = App.create_filter_menu(mode)

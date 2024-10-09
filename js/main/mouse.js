@@ -1,5 +1,18 @@
 App.get_mouse_item = (mode, e) => {
+  if (!e.target) {
+    return
+  }
+
+  if (e.target.nodeType !== 1) {
+    return
+  }
+
   let el = DOM.parent(e.target, [`.${mode}_item`])
+
+  if (!el) {
+    return
+  }
+
   let item = App.get_item_by_id(mode, el.dataset.id)
 
   if (!item) {
@@ -30,65 +43,36 @@ App.setup_mouse = () => {
   DOM.ev(window, `wheel`, (e) => {
     App.on_mouse_wheel(e)
   })
-}
 
-App.setup_mode_mouse = (mode) => {
-  let container = DOM.el(`#${mode}_container`)
-  App.setup_container_mouse(mode, container)
-}
+  let container = DOM.el(`#main`)
 
-App.setup_container_mouse = (mode, container) => {
   DOM.ev(container, `mousedown`, (e) => {
-    App.reset_triggers()
-
-    if (App.get_setting(`icon_pick`)) {
-      if (e.button === 0) {
-        if (DOM.parent(e.target, [`.item_icon_container`])) {
-          let item = App.get_mouse_item(mode, e)
-
-          if (item) {
-            App.pick(item)
-
-            if (item.selected) {
-              App.icon_pick_down = true
-            }
-
-            return
-          }
-        }
-      }
-    }
-
-    if (e.button === 0 || e.button === 1) {
-      if (App.cursor_on_item(mode, e)) {
-        App.click_press_button = e.button
-        App.click_press_triggered = false
-        App.start_click_press_timeout(mode, e)
-      }
-    }
+    App.on_mouse_down(e)
   })
 
   DOM.ev(container, `click`, (e) => {
-    App.mouse_click_action(mode, e)
+    App.mouse_click_action(e)
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
-    App.mouse_context_action(mode, e)
+    App.mouse_context_action(e)
   })
 
   DOM.ev(container, `mouseover`, (e) => {
-    App.mouse_over_action(mode, e)
+    App.mouse_over_action(e)
   })
 
   DOM.ev(container, `mouseout`, (e) => {
-    App.mouse_out_action(mode, e)
+    App.mouse_out_action(e)
   })
 }
 
 // Using this on mousedown instead causes some problems
 // For instance can't move a tab without selecting it
 // And in a popup it would close the popup on selection
-App.mouse_click_action = (mode, e) => {
+App.mouse_click_action = (e) => {
+  let mode = App.active_mode
+
   if (App.click_press_triggered) {
     App.reset_triggers()
     return
@@ -315,10 +299,6 @@ App.mouse_double_click_action = (mode, e) => {
     return
   }
 
-  if (!App.cursor_on_item(mode, e)) {
-    return
-  }
-
   let item = App.get_mouse_item(mode, e)
 
   if (!item) {
@@ -359,7 +339,8 @@ App.mouse_double_click_action = (mode, e) => {
   App.run_command({cmd, item, from: `double_click`, e})
 }
 
-App.mouse_context_action = (mode, e) => {
+App.mouse_context_action = (e) => {
+  let mode = App.active_mode
   e.preventDefault()
 
   if (!App.cursor_on_item(mode, e)) {
@@ -524,11 +505,8 @@ App.mouse_middle_action = (mode, e) => {
   App.run_command({cmd, item, from: `middle_click`, e})
 }
 
-App.mouse_over_action = (mode, e) => {
-  if (!App.cursor_on_item(mode, e)) {
-    return
-  }
-
+App.mouse_over_action = (e) => {
+  let mode = App.active_mode
   let item = App.get_mouse_item(mode, e)
 
   if (!item) {
@@ -545,7 +523,8 @@ App.mouse_over_action = (mode, e) => {
   App.update_footer_info(item)
 }
 
-App.mouse_out_action = (mode, e) => {
+App.mouse_out_action = (e) => {
+  let mode = App.active_mode
   let selected = App.get_selected(mode)
 
   if (selected) {
@@ -568,7 +547,17 @@ App.start_click_press_timeout = (mode, e) => {
 }
 
 App.click_press_action = (mode, e) => {
-  if (!App.cursor_on_item(mode, e)) {
+  if (DOM.parent(e.target, [`#footer`])) {
+    if (App.click_press_button === 0) {
+      let cmd = App.get_setting(`left_click_press_footer`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+    else if (App.click_press_button === 1) {
+      let cmd = App.get_setting(`middle_click_press_footer`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+
+    App.click_press_triggered = true
     return
   }
 
@@ -749,5 +738,34 @@ App.check_double_click = (what, e, action) => {
   }
   else {
     App[`click_date_${what}`] = date_now
+  }
+}
+
+App.on_mouse_down = (e) => {
+  let mode = App.active_mode
+  App.reset_triggers()
+
+  if (App.get_setting(`icon_pick`)) {
+    if (e.button === 0) {
+      if (DOM.parent(e.target, [`.item_icon_container`])) {
+        let item = App.get_mouse_item(mode, e)
+
+        if (item) {
+          App.pick(item)
+
+          if (item.selected) {
+            App.icon_pick_down = true
+          }
+
+          return
+        }
+      }
+    }
+  }
+
+  if (e.button === 0 || e.button === 1) {
+    App.click_press_button = e.button
+    App.click_press_triggered = false
+    App.start_click_press_timeout(mode, e)
   }
 }

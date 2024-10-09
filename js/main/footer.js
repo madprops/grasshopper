@@ -45,7 +45,7 @@ App.empty_footer_info = () => {
 }
 
 App.set_footer_info = (mode, text, item) => {
-  let footer = App.get_footer(mode)
+  let footer = DOM.el(`#footer`)
 
   if (footer) {
     let info = DOM.el(`#footer_info`)
@@ -67,10 +67,6 @@ App.set_footer_info = (mode, text, item) => {
 
     info.textContent = text
   }
-}
-
-App.get_footer = (mode) => {
-  return DOM.el(`#footer`)
 }
 
 App.create_footer = () => {
