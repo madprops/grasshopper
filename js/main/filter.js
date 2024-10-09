@@ -730,7 +730,7 @@ App.get_filter_el = (mode) => {
   return DOM.el(`#${mode}_filter`)
 }
 
-App.get_filter = (mode) => {
+App.get_filter = (mode = App.active_mode) => {
   let el = App.get_filter_el(mode)
 
   if (!el) {

@@ -93,7 +93,13 @@ App.search_domain_history = (item) => {
   })
 }
 
-App.save_history_pick = (value) => {
+App.save_history_pick = () => {
+  let value = App.get_filter().trim()
+
+  if (!value) {
+    return
+  }
+
   let picks = App.history_picks
   picks = picks.filter(x => x !== value)
   picks.unshift(value)

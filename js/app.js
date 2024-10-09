@@ -8,8 +8,8 @@ App.stor_title_history_name = `title_history_v200`
 App.stor_icon_history_name = `icon_history_v200`
 App.stor_first_time_name = `first_time_v200`
 App.stor_notes_name = `notes_v200`
-App.stor_bookmark_folder_picks = `bookmark_folder_picks_v201`
-App.stor_history_picks = `history_picks_v201`
+App.stor_bookmark_folder_picks = `bookmark_folder_picks_v202`
+App.stor_history_picks = `history_picks_v202`
 
 // Backwards compatibility check
 // This should only be used if the structure of the objects have not changed
