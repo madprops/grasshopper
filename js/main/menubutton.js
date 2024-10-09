@@ -33,15 +33,15 @@ Menubutton.create = (args = {}) => {
 
     if (args.button.id.startsWith(`settings_`)) {
       let pre = `settings_`
-      let setting_1 = args.button.id.replace(pre, ``)
-      let setting_2 = id.replace(pre, ``)
-      App.swap_settings(setting_1, setting_2)
+      let sett_1 = args.button.id.replace(pre, ``)
+      let sett_2 = id.replace(pre, ``)
+      App.swap_settings(sett_1, sett_2)
     }
     else if (args.button.id.startsWith(`addlist_`)) {
       let pre = `addlist_widget_settings_`
-      let setting_1 = args.button.id.replace(pre, ``)
-      let setting_2 = id.replace(pre, ``)
-      Addlist.swap_menus(setting_1, setting_2)
+      let sett_1 = args.button.id.replace(pre, ``)
+      let sett_2 = id.replace(pre, ``)
+      Addlist.swap_menus(sett_1, sett_2)
     }
   }
 
