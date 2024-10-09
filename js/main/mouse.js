@@ -63,8 +63,6 @@ App.setup_mouse = () => {
 // For instance can't move a tab without selecting it
 // And in a popup it would close the popup on selection
 App.mouse_click_action = (e) => {
-  let mode = App.active_mode
-
   if (App.click_press_triggered) {
     App.reset_triggers()
     return
@@ -72,6 +70,14 @@ App.mouse_click_action = (e) => {
 
   if (!App.mouse_valid_type(e)) {
     return
+  }
+
+  let mode = App.active_mode
+  let from = `click`
+
+  if (DOM.parent(e.target, [`#tab_box`])) {
+    mode = `tabs`
+    from = `tab_box`
   }
 
   App.check_double_click(`mouse`, e, () => {
@@ -318,14 +324,6 @@ App.mouse_click_action = (e) => {
     if (item.unloaded) {
       App.select_item({item, scroll: `nearest_smooth`})
       return
-    }
-  }
-
-  let from = `click`
-
-  if (mode === `tabs`) {
-    if (DOM.parent(e.target, [`#tab_box`])) {
-      from = `tab_box`
     }
   }
 
