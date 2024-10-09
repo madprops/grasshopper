@@ -697,6 +697,20 @@ App.click_press_action = (mode, e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`#pinline`])) {
+    if (App.click_press_button === 0) {
+      let cmd = App.get_setting(`left_click_press_pinline`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+    else if (App.click_press_button === 1) {
+      let cmd = App.get_setting(`middle_click_press_pinline`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+
+    App.click_press_triggered = true
+    return
+  }
+
   if (DOM.parent(e.target, [`.filter_menu_button`])) {
     if (App.click_press_button === 0) {
       let cmd = App.get_setting(`left_click_press_filter_menu`)

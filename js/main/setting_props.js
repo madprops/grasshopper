@@ -3053,6 +3053,27 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    left_click_press_pinline: {
+      name: `Left Click Press Pinline`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Pinline`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_pinline: {
+      name: `Middle Click Press Pinline`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Pinline`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
   }
 
   add_props()
