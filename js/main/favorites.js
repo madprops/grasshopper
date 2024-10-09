@@ -279,9 +279,8 @@ App.get_mode_favorites = () => {
   if (mode_menu.length) {
     return sett
   }
-  else {
-    return `favorites_menu`
-  }
+
+  return `favorites_menu`
 }
 
 App.get_favorites = () => {
