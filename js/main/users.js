@@ -219,6 +219,9 @@ App.user_madprops_settings = () => {
   sett = `hover_menu`
   App.set_setting({setting: sett, value: []})
 
+  cmd = {cmd: `edit_root_url`}
+  App.append_list_setting(sett, cmd)
+
   cmd = {cmd: `unload_tabs`}
   App.append_list_setting(sett, cmd)
 }
