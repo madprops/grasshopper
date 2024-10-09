@@ -185,8 +185,7 @@ App.do_show_mode = async (args = {}) => {
     App.check_pinline()
   }
 
-  App.tab_box_auto_folders(args.mode)
-  App.tab_box_auto_history(args.mode)
+  App.check_refresh_tab_box_special(args.mode)
 }
 
 App.get_mode_index = (mode) => {

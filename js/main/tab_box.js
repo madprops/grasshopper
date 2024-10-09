@@ -766,11 +766,16 @@ App.fill_tab_box_history = () => {
   let picks = App.history_picks
   let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
+  let current = App.get_filter().trim()
 
   for (let pick of picks) {
     let el = DOM.create(`div`, `tab_box_special_item action`)
     el.textContent = pick
     el.dataset.value = pick
+
+    if (current === pick) {
+      el.classList.add(`underline`)
+    }
 
     DOM.ev(el, `click`, (e) => {
       App.do_show_mode({mode: `history`, filter: e.target.dataset.value})
@@ -833,5 +838,26 @@ App.tab_box_auto_mode = (mode, target_mode, what) => {
     }
 
     App.change_tab_box_mode(App.prev_tab_box_mode)
+  }
+}
+
+App.check_refresh_tab_box_special = (mode) => {
+  if (!App.tab_box_enabled()) {
+    return
+  }
+
+  App.tab_box_auto_folders(args.mode)
+  App.tab_box_auto_history(args.mode)
+  let tb_mode = App.get_setting(`tab_box_mode`)
+
+  if (args.mode === `history`) {
+    if (tb_mode === `history`) {
+      App.refresh_tab_box()
+    }
+  }
+  else if (args.mode === `bookmarks`) {
+    if (tb_mode === `folders`) {
+      App.refresh_tab_box()
+    }
   }
 }
