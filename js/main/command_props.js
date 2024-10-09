@@ -501,7 +501,7 @@ App.setup_commands = () => {
       cmd: `run_command_combo_${combo._id_}`,
       icon: combo.icon || combo_icon,
       action: async (args) => {
-        await App.run_command_combo(combo, args.item)
+        await App.run_command_combo(combo, args.item, args.e)
       },
       info: `Run Command Combo (${combo._id_})`,
     })

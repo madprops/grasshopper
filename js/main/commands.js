@@ -610,7 +610,7 @@ App.get_cmd_name = (cmd) => {
   return `Unknown`
 }
 
-App.run_command_combo = async (combo, item) => {
+App.run_command_combo = async (combo, item, e) => {
   let cmds = []
 
   for (let key in combo) {
@@ -638,7 +638,7 @@ App.run_command_combo = async (combo, item) => {
       continue
     }
 
-    await App.run_command({cmd, item})
+    await App.run_command({cmd, item, e})
 
     if (delay > 0) {
       await App.sleep(delay)
