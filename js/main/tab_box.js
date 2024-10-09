@@ -87,8 +87,16 @@ App.tab_box_show = (mode, o_items) => {
     return
   }
 
-  let items = App.get_tab_box_items(o_items, mode)
-  App.fill_tab_box(items)
+  let items
+
+  if (mode === `folders`) {
+    items = App.fill_tab_box_folders()
+  }
+  else {
+    items = App.get_tab_box_items(o_items, mode)
+    App.fill_tab_box(items)
+  }
+
   App.update_tab_box_count(items.length)
   App.tab_box_items = items
   App.tab_box_o_items = o_items
@@ -151,6 +159,10 @@ App.update_tab_box_nodes = () => {
 App.update_tab_box_nodez = () => {
   let o_items = App.get_current_tab_nodes()
   App.tab_box_show(`nodez`, o_items)
+}
+
+App.update_tab_box_folders = () => {
+  App.tab_box_show(`folders`, [])
 }
 
 App.get_tab_box_items = (o_items, mode) => {
@@ -240,6 +252,9 @@ App.tab_box_icon = (mode) => {
   }
   else if (mode === `nodez`) {
     return App.get_setting(`node_icon`) || App.node_icon
+  }
+  else if (mode === `folders`) {
+    return App.mode_icons.bookmarks
   }
 
   return App.mode_icons.tabs
@@ -684,4 +699,26 @@ App.tab_box_limited = () => {
   }
 
   return limited
+}
+
+App.fill_tab_box_folders = () => {
+  let picks = App.bookmark_folder_picks
+  let c = DOM.el(`#tab_box_container`)
+  c.innerHTML = ``
+
+  for (let pick of picks) {
+    let el = DOM.create(`div`, `tab_box_special_item action`)
+    el.textContent = pick.title
+    el.dataset.pick_id = pick.id
+
+    DOM.ev(el, `click`, (e) => {
+      let id = e.currentTarget.dataset.pick_id
+      let folder = App.get_bookmarks_folder_by_id(id)
+      App.open_bookmarks_folder(folder)
+    })
+
+    c.append(el)
+  }
+
+  return picks
 }

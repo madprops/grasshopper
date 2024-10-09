@@ -14,6 +14,7 @@ App.init = async () => {
   await App.stor_get_icon_history()
   await App.stor_get_first_time()
   await App.stor_get_notes()
+  await App.stor_get_bookmark_folder_picks()
   await App.check_init_mode()
   App.setup_commands()
   App.setup_tabs()

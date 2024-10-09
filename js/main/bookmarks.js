@@ -400,8 +400,7 @@ App.do_select_bookmarks_folder = (args = {}) => {
             args.callback(folder)
           }
           else {
-            App.bookmarks_folder = folder
-            App.show_mode({mode: `bookmarks`, force: true})
+            App.open_bookmarks_folder(folder)
           }
         },
       })
@@ -683,18 +682,51 @@ App.edit_bookmark_rule = (item, folder) => {
   Addlist.edit({id, items, edit: false})
 }
 
-App.get_bookmark_folder_title = (id) => {
-  for (let folder of App.bookmark_folders_cache) {
-    if (folder.id === id) {
-      return folder.title
-    }
-  }
-}
-
 App.search_domain_bookmarks = (item) => {
   App.do_show_mode({
     mode: `bookmarks`,
     reuse_filter: false,
     filter: item.hostname,
   })
+}
+
+App.add_to_bookmark_folder_picks = (folder) => {
+  let pick = {
+    id: folder.id,
+    title: folder.title,
+  }
+
+  let picks = App.bookmark_folder_picks
+  picks = picks.filter(x => x.id !== folder.id)
+  picks.unshift(pick)
+  picks = picks.slice(0, App.max_bookmark_folder_picks)
+  App.bookmark_folder_picks = picks
+  App.stor_save_bookmark_folder_picks()
+  let tb_mode = App.get_setting(`tab_box_mode`)
+
+  if ([`folders`].includes(tb_mode)) {
+    App.refresh_tab_box()
+  }
+}
+
+App.open_bookmarks_folder = (folder) => {
+  App.bookmarks_folder = folder
+  App.add_to_bookmark_folder_picks(folder)
+  App.show_mode({mode: `bookmarks`, force: true})
+}
+
+App.get_bookmarks_folder_by_id = (id) => {
+  for (let folder of App.bookmark_folders_cache) {
+    if (folder.id === id) {
+      return folder
+    }
+  }
+}
+
+App.get_bookmark_folder_title = (id) => {
+  let folder = App.get_bookmarks_folder_by_id(id)
+
+  if (folder) {
+    return folder.title
+  }
 }

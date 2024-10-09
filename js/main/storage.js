@@ -138,3 +138,13 @@ App.stor_save_notes = () => {
   App.debug(`Stor: Saving notes`)
   App.save_local_storage(App.stor_notes_name, App.notes)
 }
+
+App.stor_get_bookmark_folder_picks = async () => {
+  App.bookmark_folder_picks = await App.get_local_storage(App.stor_bookmark_folder_picks, [])
+  App.debug(`Stor: Got bookmark folder picks`)
+}
+
+App.stor_save_bookmark_folder_picks = () => {
+  App.debug(`Stor: Saving bookmark folder picks`)
+  App.save_local_storage(App.stor_bookmark_folder_picks, App.bookmark_folder_picks)
+}
