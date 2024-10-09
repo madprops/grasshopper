@@ -30,7 +30,7 @@ App.process_info_list = (mode, info_list) => {
     }
   }
 
-  App.update_footer_count(mode)
+  App.update_footer_count()
   App.do_check_pinline()
 
   if (mode === `tabs`) {

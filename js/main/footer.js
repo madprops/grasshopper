@@ -1,6 +1,6 @@
 App.setup_footer = () => {
-  App.footer_count_debouncer = App.create_debouncer((mode) => {
-    App.do_update_footer_count(mode)
+  App.footer_count_debouncer = App.create_debouncer(() => {
+    App.do_update_footer_count()
   }, App.footer_delay)
 
   App.update_footer_info_debouncer = App.create_debouncer((item) => {
@@ -143,11 +143,11 @@ App.create_footer = () => {
   return footer
 }
 
-App.update_footer_count = (mode) => {
-  App.footer_count_debouncer.call(mode)
+App.update_footer_count = () => {
+  App.footer_count_debouncer.call()
 }
 
-App.do_update_footer_count = (mode) => {
+App.do_update_footer_count = () => {
   App.footer_count_debouncer.cancel()
 
   if (!App.get_setting(`show_footer`)) {
@@ -164,6 +164,7 @@ App.do_update_footer_count = (mode) => {
     return
   }
 
+  let mode = App.active_mode
   let n1 = App.selected_items(mode).length
   let n2 = App.get_visible(mode).length
   let count

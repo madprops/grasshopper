@@ -251,7 +251,7 @@ App.remove_item = (item) => {
   item.element.remove()
   item.removed = true
   App.filter_item_by_id(mode, item.id)
-  App.update_footer_count(mode)
+  App.update_footer_count()
   App.check_filter_special(mode)
 
   if (mode === `tabs`) {
@@ -740,7 +740,7 @@ App.toggle_selected = (args = {}) => {
     }
   }
 
-  App.update_footer_count(args.item.mode)
+  App.update_footer_count()
   App.check_selected(args.item.mode)
 }
 
@@ -949,7 +949,7 @@ App.insert_item = (mode, info) => {
     container.prepend(item.element)
   }
 
-  App.update_footer_count(mode)
+  App.update_footer_count()
   App.check_filter(mode)
   return item
 }

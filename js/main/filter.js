@@ -396,7 +396,7 @@ App.do_filter = async (args = {}) => {
   }
 
   App.update_footer_info(App.get_selected(args.mode))
-  App.update_footer_count(args.mode)
+  App.update_footer_count()
   App.do_check_pinline()
   App.do_check_scroller(args.mode)
 
