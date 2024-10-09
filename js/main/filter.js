@@ -402,10 +402,6 @@ App.do_filter = async (args = {}) => {
   App.do_check_pinline()
   App.do_check_scroller(args.mode)
 
-  if (args.mode === `tabs`) {
-    App.refresh_tab_box()
-  }
-
   if (args.select) {
     App.scroll_to_selected(args.mode)
   }

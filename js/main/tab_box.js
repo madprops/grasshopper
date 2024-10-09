@@ -379,6 +379,7 @@ App.show_tab_box_menu_2 = (e) => {
 }
 
 App.refresh_tab_box = () => {
+  console.log(33)
   App.update_tab_box(App.get_setting(`tab_box_mode`))
 }
 
