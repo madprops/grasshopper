@@ -1529,11 +1529,6 @@ App.setup_settings_addlist = () => {
     `empty_menu`,
     `footer_menu`,
     `pinline_menu`,
-    `global_menu`,
-    `tabs_menu`,
-    `history_menu`,
-    `bookmarks_menu`,
-    `closed_menu`,
     `main_title_menu`,
     `close_button_menu`,
     `close_button_menu_2`,
@@ -1542,7 +1537,14 @@ App.setup_settings_addlist = () => {
     `favorites_menu_history`,
     `favorites_menu_bookmarks`,
     `favorites_menu_closed`,
+    `global_actions_menu`,
+    `global_item_menu`,
   ]
+
+  for (let m of App.modes) {
+    menukeys.push(`${m}_actions_menu`)
+    menukeys.push(`${m}_item_menu`)
+  }
 
   for (let i = 1; i <= App.num_generic_menus; i++) {
     menukeys.push(`generic_menu_${i}`)

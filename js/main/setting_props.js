@@ -1548,17 +1548,57 @@ App.build_settings = () => {
   category = `menus`
 
   props = {
-    global_menu: {
-      name: `Global Menu`,
+    global_item_menu: {
+      name: `Global Item Menu`,
       type: `list`,
       value: [],
       data_group: `normal_menus`,
-      info: `Make this the menu for all modes
-      If this has items it overrides all other mode menus`,
+      info: `Make this the item menu for all modes that don't have an item menu set`,
       version: 1,
     },
-    tabs_menu: {
-      name: `Tabs Menu`,
+    tabs_item_menu: {
+      name: `Tabs Item Menu`,
+      type: `list`,
+      value: [],
+      data_group: `normal_menus`,
+      info: `Menu to show when using the tabs item menu`,
+      version: 1,
+    },
+    history_item_menu: {
+      name: `History Item Menu`,
+      type: `list`,
+      value: [],
+      data_group: `normal_menus`,
+      info: `Menu to show when using the history item menu`,
+      version: 1,
+    },
+    bookmarks_item_menu: {
+      name: `Bookmarks Item Menu`,
+      type: `list`,
+      value: [],
+      data_group: `normal_menus`,
+      info: `Menu to show when using the bookmarks item menu`,
+      version: 1,
+    },
+    closed_item_menu: {
+      name: `Closed Item Menu`,
+      type: `list`,
+      value: [],
+      separator: true,
+      data_group: `normal_menus`,
+      info: `Menu to show when using the closed item menu`,
+      version: 1,
+    },
+    global_actions_menu: {
+      name: `Global Actions Menu`,
+      type: `list`,
+      value: [],
+      data_group: `normal_menus`,
+      info: `Make this the actions menu for all modes that don't have an actions menu set`,
+      version: 1,
+    },
+    tabs_actions_menu: {
+      name: `Tabs Actions Menu`,
       type: `list`,
       value: [
         {cmd: `open_new_tab`},
@@ -1575,22 +1615,22 @@ App.build_settings = () => {
         {cmd: `show_close_tabs_menu`},
       ],
       data_group: `normal_menus`,
-      info: `Menu to show when clicking the tabs menu`,
+      info: `Menu to show when clicking the tabs actions menu`,
       version: 1,
     },
-    history_menu: {
-      name: `History Menu`,
+    history_actions_menu: {
+      name: `History Actions Menu`,
       type: `list`,
       value: [
         {cmd: `deep_search`},
         {cmd: `show_search_media_menu`},
       ],
       data_group: `normal_menus`,
-      info: `Menu to show when clicking the history menu`,
+      info: `Menu to show when clicking the history actions menu`,
       version: 1,
     },
-    bookmarks_menu: {
-      name: `Bookmarks Menu`,
+    bookmarks_actions_menu: {
+      name: `Bookmarks Actions Menu`,
       type: `list`,
       value: [
         {cmd: `deep_search`},
@@ -1599,17 +1639,18 @@ App.build_settings = () => {
         {cmd: `pick_bookmarks_folder`},
       ],
       data_group: `normal_menus`,
-      info: `Menu to show when clicking the bookmarks menu`,
+      info: `Menu to show when clicking the bookmarks actions menu`,
       version: 1,
     },
-    closed_menu: {
-      name: `Closed Menu`,
+    closed_actions_menu: {
+      name: `Closed Actions Menu`,
       type: `list`,
       value: [
         {cmd: `forget_closed`},
       ],
+      separator: true,
       data_group: `normal_menus`,
-      info: `Menu to show when clicking the closed menu`,
+      info: `Menu to show when clicking the closed actions menu`,
       version: 1,
     },
     empty_menu: {
@@ -1630,15 +1671,14 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `How to show the Extra Menu on right click
-      Either on its own submenu, flat at the root level, or totally replace the Item Menu`,
-      version: 1,
+      Either on its own submenu, flat at the root level`,
+      version: 2,
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: App.separator_string},
           {text: `Normal`, value: `normal`},
           {text: `Flat`, value: `flat`},
-          {text: `Total`, value: `total`},
         ])
       },
     },
