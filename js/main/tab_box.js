@@ -723,7 +723,6 @@ App.fill_tab_box_folders = () => {
   let picks = App.bookmark_folder_picks
   let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
-  console.log(4)
 
   for (let pick of picks) {
     let el = DOM.create(`div`, `tab_box_special_item action`)
@@ -738,6 +737,7 @@ App.fill_tab_box_folders = () => {
       let id = e.target.dataset.pick_id
       let folder = App.get_bookmarks_folder_by_id(id)
       App.open_bookmarks_folder(folder)
+      App.refresh_tab_box()
     })
 
     c.append(el)
@@ -762,6 +762,7 @@ App.fill_tab_box_history = () => {
 
     DOM.ev(el, `click`, (e) => {
       App.do_show_mode({mode: `history`, filter: e.target.dataset.value})
+      App.refresh_tab_box()
     })
 
     c.append(el)
