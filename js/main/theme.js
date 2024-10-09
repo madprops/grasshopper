@@ -492,7 +492,6 @@ App.do_apply_theme = (args = {}) => {
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_icon_css()
-    App.insert_tab_box_css()
     App.insert_custom_css()
   }
   catch (err) {
@@ -709,21 +708,6 @@ App.insert_icon_css = () => {
   action(`color_icon`)
   action(`custom_icon`)
   App.insert_css(`icon_css`, css)
-}
-
-App.insert_tab_box_css = () => {
-  let css = ``
-  let min_height = App.get_setting(`tab_box_min_height`)
-
-  if (min_height > 0) {
-    css += `@media (max-height: ${min_height}px) {
-      #tab_box {
-        display: none !important;
-      }
-    }`
-  }
-
-  App.insert_css(`tab_box_css`, css)
 }
 
 App.insert_color_css = () => {

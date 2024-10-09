@@ -547,8 +547,9 @@ App.tab_box_check_size = () => {
 App.init_tab_box = () => {
   App.tab_box_check_size()
   App.check_tab_box_footer()
+  let limited = App.tab_box_limited()
 
-  if (App.get_setting(`show_tab_box`)) {
+  if (!limited && App.get_setting(`show_tab_box`)) {
     App.show_tab_box()
   }
   else {
@@ -712,4 +713,16 @@ App.show_tab_box_menu = (e) => {
 
   let element = DOM.el(`#tab_box_title`)
   App.show_context({items, element, e})
+}
+
+App.tab_box_limited = () => {
+  let limited = false
+  let win_height = window.innerHeight
+  let tb_min_height = App.get_setting(`tab_box_min_height`)
+
+  if (tb_min_height > 0) {
+    limited = win_height < tb_min_height
+  }
+
+  return limited
 }
