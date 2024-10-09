@@ -182,7 +182,6 @@ App.do_show_mode = async (args = {}) => {
 
   if (args.mode === `tabs`) {
     App.check_pinline()
-    App.init_tab_box()
   }
 }
 

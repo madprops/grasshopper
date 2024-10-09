@@ -40,6 +40,7 @@ App.init = async () => {
   App.setup_context()
   App.build_shell()
   await App.clear_show()
+  App.init_tab_box()
   App.make_window_visible()
   App.check_first_time()
   App.start_clock()
