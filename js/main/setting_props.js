@@ -1926,6 +1926,13 @@ App.build_settings = () => {
       info: `Go to Folders mode when entering Bookmarks mode`,
       version: 1,
     },
+    tab_box_auto_playing: {
+      name: `Tab Box Auto Playing`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto show the Tab Box when a tab is playing`,
+      version: 1,
+    },
     tab_box_reverse: {
       name: `Tab Box Reverse`,
       type: `checkbox`,
@@ -1945,13 +1952,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Show headers in the Tab Box on all modes`,
-      version: 1,
-    },
-    tab_box_auto_playing: {
-      name: `Tab Box Auto Playing`,
-      type: `checkbox`,
-      value: false,
-      info: `Auto show the Tab Box when a tab is playing`,
       version: 1,
     },
   }
