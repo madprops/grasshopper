@@ -577,6 +577,34 @@ App.click_press_action = (mode, e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.favorites_empty_top`])) {
+    if (App.click_press_button === 0) {
+      let cmd = App.get_setting(`left_click_press_favorites_top`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+    else if (App.click_press_button === 1) {
+      let cmd = App.get_setting(`middle_click_press_favorites_top`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+
+    App.click_press_triggered = true
+    return
+  }
+
+  if (DOM.parent(e.target, [`.favorites_empty_bottom`])) {
+    if (App.click_press_button === 0) {
+      let cmd = App.get_setting(`left_click_press_favorites_bottom`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+    else if (App.click_press_button === 1) {
+      let cmd = App.get_setting(`middle_click_press_favorites_bottom`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+
+    App.click_press_triggered = true
+    return
+  }
+
   let item = App.get_mouse_item(mode, e)
 
   if (!item) {

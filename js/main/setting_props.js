@@ -2193,6 +2193,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `page_down`,
       info: `Command to run when using the mousewheel down on the top area of the Favorites Bar while holding Shift`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    left_click_press_favorites_top: {
+      name: `Left Click Press Fav Top`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Favorites Top`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_favorites_top: {
+      name: `Middle Click Press Fav Top`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Favorites Top`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -2295,8 +2315,28 @@ App.build_settings = () => {
       type: `menu`,
       value: `page_down`,
       info: `Command to run when using the mousewheel down on the bottom area of the Favorites Bar while holding Shift`,
-      separator: true,
       version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    left_click_press_favorites_bottom: {
+      name: `Left Click Press Fav Bottom`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Favorites Bottom`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_favorites_bottom: {
+      name: `Middle Click Press Fav Bottom`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Favorites Bottom`,
+      version: 1,
+      separator: true,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
