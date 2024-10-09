@@ -185,6 +185,7 @@ App.do_show_mode = async (args = {}) => {
     App.check_pinline()
   }
 
+  App.tab_box_auto_mode(args.mode)
   App.check_refresh_tab_box_special(args.mode)
 }
 

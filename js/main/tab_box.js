@@ -76,6 +76,7 @@ App.do_update_tab_box = (what) => {
     return
   }
 
+  App.current_tab_box_mode = what
   App.check_tab_box()
   App[`update_tab_box_${what}`]()
   App.tab_box_scroll()
@@ -201,8 +202,10 @@ App.get_tab_box_items = (o_items, mode) => {
   return items
 }
 
-App.set_tab_box_title = () => {
-  let mode = App.get_setting(`tab_box_mode`)
+App.set_tab_box_title = (mode) => {
+  if (!mode) {
+    mode = App.get_setting(`tab_box_mode`)
+  }
 
   if (App.tab_box_modes.indexOf(mode) === -1) {
     mode = `recent`
@@ -287,16 +290,19 @@ App.fill_tab_box = (items) => {
   }
 }
 
-App.change_tab_box_mode = (what) => {
-  App.set_tab_box_mode(what)
-  App.set_tab_box_title()
+App.change_tab_box_mode = (what, set = true) => {
+  if (set) {
+    App.set_tab_box_mode(what)
+  }
+
+  App.set_tab_box_title(what)
   App.update_tab_box(what)
   App.tab_box_scroll()
 }
 
 App.show_tab_box_menu = (e) => {
   let items = []
-  let c_mode = App.get_setting(`tab_box_mode`)
+  let c_mode = App.get_tab_box_mode()
 
   for (let tbmode of App.tab_box_modes) {
     if (c_mode === tbmode) {
@@ -378,23 +384,18 @@ App.show_tab_box_menu_2 = (e) => {
   App.show_context({items, e})
 }
 
-App.refresh_tab_box = () => {
-  App.update_tab_box(App.get_setting(`tab_box_mode`))
+App.get_tab_box_mode = () => {
+  return App.current_tab_box_mode || App.get_setting(`tab_box_mode`)
 }
 
-App.check_tab_box_item = (item, what) => {
-  if (item.mode !== `tabs`) {
-    return
-  }
-
-  if (App.tab_box_mode(what)) {
-    App.update_tab_box(what)
-  }
+App.refresh_tab_box = () => {
+  let mode = App.get_tab_box_mode()
+  App.update_tab_box(mode)
 }
 
 App.tab_box_mode = (what) => {
   if (App.get_setting(`show_tab_box`)) {
-    if (App.get_setting(`tab_box_mode`) === what) {
+    if (App.get_tab_box_mode() === what) {
       return true
     }
   }
@@ -408,7 +409,7 @@ App.tab_box_enabled = () => {
 
 App.cycle_tab_box_mode = (dir) => {
   let waypoint = false
-  let current = App.get_setting(`tab_box_mode`)
+  let current = App.get_tab_box_mode()
   let modes = App.tab_box_modes.slice(0)
 
   if (dir === `prev`) {
@@ -448,7 +449,7 @@ App.do_check_tab_box_playing = () => {
       App.show_tab_box(false)
     }
 
-    if (App.get_setting(`tab_box_mode`) !== `playing`) {
+    if (App.get_tab_box_mode() !== `playing`) {
       App.change_tab_box_mode(`playing`)
     }
   }
@@ -597,7 +598,7 @@ App.check_tab_box_scroll = () => {
     return
   }
 
-  let mode = App.get_setting(`tab_box_mode`)
+  let mode = App.get_tab_box_mode()
 
   if (mode === `recent`) {
     App.tab_box_scroll()
@@ -700,7 +701,7 @@ App.tab_box_make_item_first = (item) => {
     return
   }
 
-  if (App.get_setting(`tab_box_mode`) !== `recent`) {
+  if (App.get_tab_box_mode() !== `recent`) {
     return
   }
 
@@ -759,14 +760,6 @@ App.fill_tab_box_folders = () => {
   return picks
 }
 
-App.tab_box_auto_folders = (mode) => {
-  if (!App.bookmark_folder_picks.length) {
-    return
-  }
-
-  App.tab_box_auto_mode(mode, `bookmarks`, `folders`)
-}
-
 App.fill_tab_box_history = () => {
   let picks = App.history_picks
   let c = DOM.el(`#tab_box_container`)
@@ -800,48 +793,38 @@ App.fill_tab_box_history = () => {
   return picks
 }
 
-App.tab_box_auto_history = (mode) => {
-  if (!App.history_picks.length) {
-    return
-  }
-
-  App.tab_box_auto_mode(mode, `history`, `history`)
-}
-
-App.tab_box_auto_mode = (mode, target_mode, what) => {
+App.tab_box_auto_mode = (mode) => {
   if (!App.tab_box_enabled()) {
     return
   }
 
-  let auto = App.get_setting(`tab_box_auto_history`)
+  let autos = []
 
-  if (!auto) {
-    return
+  if (App.get_setting(`tab_box_auto_history`)) {
+    autos.push(`history`)
   }
 
-  let tb_mode = App.get_setting(`tab_box_mode`)
-
-  if (mode === target_mode) {
-    if (tb_mode === what) {
-      return
-    }
-
-    if (![`folders`, `history`].includes(tb_mode)) {
-      App.prev_tab_box_mode = tb_mode
-    }
-
-    App.change_tab_box_mode(what)
+  if (App.get_setting(`tab_box_auto_folders`)) {
+    autos.push(`folders`)
   }
-  else if (tb_mode === what) {
-    if (!App.prev_tab_box_mode) {
-      return
-    }
 
-    if (App.prev_tab_box_mode === what) {
-      return
+  if (mode === `history`) {
+    if (autos.includes(`history`)) {
+      App.change_tab_box_mode(`history`, false)
     }
+  }
+  else if (mode === `bookmarks`) {
+    if (autos.includes(`folders`)) {
+      App.change_tab_box_mode(`folders`, false)
+    }
+  }
+  else {
+    let current = App.get_tab_box_mode()
 
-    App.change_tab_box_mode(App.prev_tab_box_mode)
+    if (autos.includes(current)) {
+      let m = App.get_setting(`tab_box_mode`)
+      App.change_tab_box_mode(m, false)
+    }
   }
 }
 
@@ -850,9 +833,7 @@ App.check_refresh_tab_box_special = (mode) => {
     return
   }
 
-  App.tab_box_auto_folders(mode)
-  App.tab_box_auto_history(mode)
-  let tb_mode = App.get_setting(`tab_box_mode`)
+  let tb_mode = App.get_tab_box_mode()
 
   if (mode === `history`) {
     if (tb_mode === `history`) {
