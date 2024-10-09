@@ -648,7 +648,6 @@ App.on_mouse_wheel = (e) => {
 
   let direction = App.wheel_direction(e)
   let mode = App.window_mode
-  console.log(2)
 
   if (DOM.parent(e.target, [`.scroller`])) {
     if (direction === `up`) {
@@ -680,7 +679,6 @@ App.on_mouse_wheel = (e) => {
     App.wheel_action(direction, `favorites_bottom`, e)
   }
   else if (e.target.closest(`#footer`)) {
-    console.log(2)
     App.wheel_action(direction, `footer`, e)
   }
   else if (e.target.closest(`#main_title`)) {
