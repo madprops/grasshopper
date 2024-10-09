@@ -19,14 +19,6 @@ App.get_mouse_item = (mode, e) => {
   return item
 }
 
-App.cursor_on_item = (mode, e) => {
-  if (!App.mouse_valid_type(e)) {
-    return false
-  }
-
-  return DOM.parent(e.target, [`.${mode}_item`])
-}
-
 App.setup_mouse = () => {
   DOM.ev(window, `mousedown`, (e) => {
     if (e.button === 1) {
@@ -78,21 +70,23 @@ App.mouse_click_action = (e) => {
     return
   }
 
+  if (!App.mouse_valid_type(e)) {
+    return
+  }
+
   App.check_double_click(`mouse`, e, () => {
     App.mouse_double_click_action(mode, e)
   })
 
   App.reset_triggers()
 
-  if (!App.mouse_valid_type(e)) {
+  if (DOM.parent(e.target, [`#pinline`])) {
+    App.show_pinline_menu(e)
     return
   }
 
-  if (!App.cursor_on_item(mode, e)) {
-    if (DOM.parent(e.target, [`#pinline`])) {
-      App.show_pinline_menu(e)
-    }
-
+  if (DOM.parent(e.target, [`.favorites_button`])) {
+    App.show_favorites_menu(e)
     return
   }
 
@@ -297,13 +291,23 @@ App.mouse_click_action = (e) => {
 }
 
 App.mouse_double_click_action = (mode, e) => {
+  if (!App.mouse_valid_type(e)) {
+    return
+  }
+
   if (DOM.class(e.target, [`item_container`])) {
     let cmd = App.get_setting(`double_click_empty`)
     App.run_command({cmd, from: `mouse`, e})
     return
   }
 
-  if (!App.mouse_valid_type(e)) {
+  if (DOM.parent(e.target, [`.favorites_empty_top`])) {
+    App.favorites_double_click(e, `top`)
+    return
+  }
+
+  if (DOM.parent(e.target, [`.favorites_empty_bottom`])) {
+    App.favorites_double_click(e, `bottom`)
     return
   }
 
@@ -352,6 +356,11 @@ App.mouse_context_action = (e) => {
   e.preventDefault()
 
   if (!App.mouse_valid_type(e)) {
+    return
+  }
+
+  if (DOM.parent(e.target, [`.favorites_bar_container`, `.favorites_button`])) {
+    App.show_favorites_menu(e)
     return
   }
 
@@ -441,12 +450,9 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  if (!App.cursor_on_item(mode, e)) {
-    if (DOM.parent(e.target, [`#pinline`])) {
-      let cmd = App.get_setting(`middle_click_pinline`)
-      App.run_command({cmd, from: `pinline`, e})
-    }
-
+  if (DOM.parent(e.target, [`#pinline`])) {
+    let cmd = App.get_setting(`middle_click_pinline`)
+    App.run_command({cmd, from: `pinline`, e})
     return
   }
 
@@ -605,6 +611,20 @@ App.click_press_action = (mode, e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.favorites_button`])) {
+    if (App.click_press_button === 0) {
+      let cmd = App.get_setting(`left_click_press_favorites_button`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+    else if (App.click_press_button === 1) {
+      let cmd = App.get_setting(`middle_click_press_favorites_button`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+
+    App.click_press_triggered = true
+    return
+  }
+
   let item = App.get_mouse_item(mode, e)
 
   if (!item) {
@@ -747,9 +767,7 @@ App.wheel_action = (direction, name, e) => {
   let item
 
   if (App.get_setting(`wheel_hover_item`)) {
-    if (App.cursor_on_item(mode, e)) {
-      item = App.get_mouse_item(mode, e)
-    }
+    item = App.get_mouse_item(mode, e)
   }
 
   let cmd = App.get_setting(name)

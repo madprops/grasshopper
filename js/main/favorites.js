@@ -75,33 +75,6 @@ App.create_favorites_bar = (mode) => {
     container.classList.add(`fav_bottom`)
   }
 
-  DOM.ev(bar, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_favorites_menu(e)
-  })
-
-  DOM.ev(empty_top, `click`, (e) => {
-    App.check_double_click(`fav_top`, e, () => {
-      App.favorites_double_click(e, `top`)
-    })
-  })
-
-  DOM.ev(empty_top, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_favorites_menu(e)
-  })
-
-  DOM.ev(empty_bottom, `click`, (e) => {
-    App.check_double_click(`fav_bottom`, e, () => {
-      App.favorites_double_click(e, `bottom`)
-    })
-  })
-
-  DOM.ev(empty_bottom, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_favorites_menu(e)
-  })
-
   DOM.ev(container, `mouseenter`, () => {
     if (App.get_setting(`favorites_autohide`)) {
       App.on_favorites_enter(mode)
@@ -135,16 +108,6 @@ App.create_favorites_button = (mode) => {
   btn.textContent = App.settings_icons.favorites
   btn.title = `Favorites`
   App.trigger_title(btn, `middle_click_favorites_button`)
-
-  DOM.ev(btn, `click`, (e) => {
-    App.show_favorites_menu(e)
-  })
-
-  DOM.ev(btn, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_favorites_menu(e)
-  })
-
   return btn
 }
 
