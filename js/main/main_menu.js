@@ -1,5 +1,5 @@
 App.create_main_menu = (mode) => {
-  let btn = DOM.create(`div`, `button icon_button`, `${mode}_main_menu`)
+  let btn = DOM.create(`div`, `button main_menu_button icon_button`, `${mode}_main_menu`)
   let click = App.get_cmd_name(`show_main_menu`)
   let rclick = App.get_cmd_name(`show_palette`)
 
@@ -7,33 +7,6 @@ App.create_main_menu = (mode) => {
     btn.title = `Click: ${click} (Ctrl + Left)\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_main_menu`)
   }
-
-  DOM.ev(btn, `click`, () => {
-    App.show_main_menu(mode)
-  })
-
-  DOM.ev(btn, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_palette()
-  })
-
-  DOM.ev(btn, `auxclick`, (e) => {
-    if (e.button === 1) {
-      let cmd = App.get_setting(`middle_click_main_menu`)
-      App.run_command({cmd, from: `main_menu`, e})
-    }
-  })
-
-  DOM.ev(btn, `wheel`, (e) => {
-    let direction = App.wheel_direction(e)
-
-    if (direction === `up`) {
-      App.cycle_modes(true)
-    }
-    else if (direction === `down`) {
-      App.cycle_modes(false)
-    }
-  })
 
   App.set_main_menu_text(btn, mode)
   return btn

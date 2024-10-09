@@ -2838,6 +2838,27 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    left_click_press_main_menu: {
+      name: `Left Click Press Main Menu`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Main Menu`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_main_menu: {
+      name: `Middle Click Press Main Menu`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Main Menu`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     middle_click_filter_menu: {
       name: `Middle Click Filter Menu`,
       type: `menu`,

@@ -80,6 +80,11 @@ App.mouse_click_action = (e) => {
 
   App.reset_triggers()
 
+  if (DOM.parent(e.target, [`.main_menu_button`])) {
+    App.show_main_menu(mode)
+    return
+  }
+
   if (DOM.parent(e.target, [`#pinline`])) {
     App.show_pinline_menu(e)
     return
@@ -359,6 +364,11 @@ App.mouse_context_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.main_menu_button`])) {
+    App.show_palette()
+    return
+  }
+
   if (DOM.parent(e.target, [`.favorites_bar_container`, `.favorites_button`])) {
     App.show_favorites_menu(e)
     return
@@ -429,6 +439,12 @@ App.mouse_middle_action = (mode, e) => {
   App.reset_triggers()
 
   if (!App.mouse_valid_type(e)) {
+    return
+  }
+
+  if (DOM.parent(e.target, [`.main_menu_button`])) {
+    let cmd = App.get_setting(`middle_click_main_menu`)
+    App.run_command({cmd, from: `main_menu`, e})
     return
   }
 
@@ -569,6 +585,20 @@ App.click_press_action = (mode, e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.main_menu_button`])) {
+    if (App.click_press_button === 0) {
+      let cmd = App.get_setting(`left_click_press_main_menu`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+    else if (App.click_press_button === 1) {
+      let cmd = App.get_setting(`middle_click_press_main_menu`)
+      App.run_command({cmd, from: `click_press`, e})
+    }
+
+    App.click_press_triggered = true
+    return
+  }
+
   if (DOM.parent(e.target, [`#footer`])) {
     if (App.click_press_button === 0) {
       let cmd = App.get_setting(`left_click_press_footer`)
@@ -696,6 +726,18 @@ App.on_mouse_wheel = (e) => {
 
   let direction = App.wheel_direction(e)
   let mode = App.window_mode
+  e.preventDefault()
+
+  if (DOM.parent(e.target, [`.main_menu_button`])) {
+    if (direction === `up`) {
+      App.cycle_modes(true)
+    }
+    else if (direction === `down`) {
+      App.cycle_modes(false)
+    }
+
+    return
+  }
 
   if (DOM.parent(e.target, [`.scroller`])) {
     if (direction === `up`) {
@@ -714,8 +756,6 @@ App.on_mouse_wheel = (e) => {
         App.scroll(mode, `down`)
       }
     }
-
-    e.preventDefault()
   }
   else if (e.target.closest(`.favorites_empty_top`)) {
     App.wheel_action(direction, `favorites_top`, e)
