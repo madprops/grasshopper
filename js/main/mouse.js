@@ -629,6 +629,10 @@ App.mouse_middle_action = (mode, e) => {
 }
 
 App.mouse_over_action = (e) => {
+  if (!App.mouse_valid_type(e)) {
+    return
+  }
+
   let mode = App.active_mode
   let item = App.get_mouse_item(mode, e)
 

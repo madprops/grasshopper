@@ -23,17 +23,35 @@ App.do_update_footer_info = (item) => {
     return
   }
 
-  if (item) {
-    let info
+  let pre = ``
+  let info = ``
+  let mode = App.active_mode
 
+  if (mode === `bookmarks` && App.bookmarks_folder) {
+    let length = App.get_setting(`bookmarks_footer_folder`)
+
+    if (length > 0) {
+      let title = App.bookmarks_folder.title
+      pre = title || ``
+      pre = pre.slice(0, length)
+    }
+  }
+
+  if (item) {
     if (item.header) {
       info = item.header_title
     }
     else {
       info = item.footer
     }
+  }
 
-    App.set_footer_info(item.mode, info, item)
+  if (pre) {
+    info = `${pre} ${info}`.trim()
+  }
+
+  if (info) {
+    App.set_footer_info(info)
   }
   else {
     App.empty_footer_info()
@@ -41,30 +59,14 @@ App.do_update_footer_info = (item) => {
 }
 
 App.empty_footer_info = () => {
-  App.set_footer_info(App.window_mode, ``)
+  App.set_footer_info(``)
 }
 
-App.set_footer_info = (mode, text, item) => {
+App.set_footer_info = (text) => {
   let footer = DOM.el(`#footer`)
 
   if (footer) {
     let info = DOM.el(`#footer_info`)
-
-    if (item) {
-      if (mode === `bookmarks`) {
-        let length = App.get_setting(`bookmarks_footer_folder`)
-
-        if (length > 0) {
-          let title = App.get_bookmark_folder_title(item.parent_id)
-
-          if (title) {
-            title = title.substring(0, length).trim()
-            text = `${title} | ${text}`
-          }
-        }
-      }
-    }
-
     info.textContent = text
   }
 }
@@ -190,7 +192,7 @@ App.init_footer = () => {
 }
 
 App.refresh_footer = () => {
-  App.update_footer_count(App.window_mode)
+  App.update_footer_count()
   App.update_footer_info(App.get_selected(App.window_mode))
 }
 
@@ -225,7 +227,7 @@ App.toggle_footer = () => {
 
 App.footer_message = (msg) => {
   clearTimeout(App.footer_message_timeout)
-  App.set_footer_info(App.active_mode, msg)
+  App.set_footer_info(msg)
   App.footer_showing_message = true
 
   App.footer_message_timeout = setTimeout(() => {
