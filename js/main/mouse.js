@@ -717,13 +717,13 @@ App.on_mouse_wheel = (e) => {
 
     e.preventDefault()
   }
-  else if (e.target.closest(`#favorites_empty_top`)) {
+  else if (e.target.closest(`.favorites_empty_top`)) {
     App.wheel_action(direction, `favorites_top`, e)
   }
   else if (e.target.closest(`.favorites_bar`)) {
     App.wheel_action(direction, `favorites_center`, e)
   }
-  else if (e.target.closest(`#favorites_empty_bottom`)) {
+  else if (e.target.closest(`.favorites_empty_bottom`)) {
     App.wheel_action(direction, `favorites_bottom`, e)
   }
   else if (e.target.closest(`#footer`)) {
