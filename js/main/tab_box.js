@@ -20,6 +20,11 @@ App.setup_tab_box = () => {
   }, App.tab_box_shrink_delay)
 }
 
+App.reset_tab_box = () => {
+  App.tab_box_check_size()
+  App.hide_tab_box(true)
+}
+
 App.create_tab_box = () => {
   let tab_box = DOM.create(`div`, `box`, `tab_box`)
   let title = DOM.create(`div`, `box_title glowbox`, `tab_box_title`)

@@ -495,6 +495,7 @@ App.refresh_settings = () => {
   App.build_shell()
   App.apply_theme()
   App.refresh_gestures()
+  App.reset_tab_box()
   App.setup_commands()
   App.fill_palette()
   App.build_tab_filters()
