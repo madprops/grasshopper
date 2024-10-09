@@ -3,34 +3,34 @@ App.show_item_menu = async (args = {}) => {
     return
   }
 
+  App.item_menu_args = args
+  App.item_menu_active = App.get_active_items({mode: args.item.mode, item: args.item})
+  App.item_menu_too_many = App.item_menu_active.length > App.max_command_check_items
+  let items = []
+
   let mode_menu = App.get_setting(`${args.item.mode}_item_menu`)
 
   if (mode_menu.length) {
-    let items = App.custom_menu_items({
-      name: `${args.item.mode}_item_menu`,
-      item: args.item,
-    })
+    for (let item of mode_menu) {
+      App.item_menu_item(items, item.cmd, {item: args.item})
+    }
 
-    App.show_context({items, e: args.e, short: true})
+    App.extra_menu_items(items)
+    App.show_context({items, e: args.e})
     return
   }
 
   let global = App.get_setting(`global_item_menu`)
 
   if (global.length) {
-    let items = App.custom_menu_items({
-      name: `global_item_menu`,
-      item: args.item,
-    })
+    for (let item of mode_menu) {
+      App.item_menu_item(items, item.cmd, {item: args.item})
+    }
 
+    App.extra_menu_items(items)
     App.show_context({items, e: args.e, short: true})
     return
   }
-
-  App.item_menu_args = args
-  App.item_menu_active = App.get_active_items({mode: args.item.mode, item: args.item})
-  App.item_menu_too_many = App.item_menu_active.length > App.max_command_check_items
-  let items = []
 
   if (args.item.mode === `tabs`) {
     App.item_menu_item(items, `select_header_group`, {item: args.item})
