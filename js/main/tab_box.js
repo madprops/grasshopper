@@ -734,7 +734,7 @@ App.fill_tab_box_folders = () => {
 App.check_tab_box_auto_folders = (mode) => {
   let tb_mode = App.get_setting(`tab_box_mode`)
 
-  if (App.active_mode === `bookmarks`) {
+  if (mode === `bookmarks`) {
     if (tb_mode === `folders`) {
       return
     }
@@ -746,13 +746,11 @@ App.check_tab_box_auto_folders = (mode) => {
       App.change_tab_box_mode(`folders`)
     }
   }
-  else {
-    if (tb_mode === `folders`) {
-      if (App.prev_tab_box_mode === `folders`) {
-        return
-      }
-
-      App.change_tab_box_mode(App.prev_tab_box_mode)
+  else if (tb_mode === `folders`) {
+    if (App.prev_tab_box_mode === `folders`) {
+      return
     }
+
+    App.change_tab_box_mode(App.prev_tab_box_mode)
   }
 }
