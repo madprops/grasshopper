@@ -737,7 +737,6 @@ App.fill_tab_box_folders = () => {
       let id = e.target.dataset.pick_id
       let folder = App.get_bookmarks_folder_by_id(id)
       App.open_bookmarks_folder(folder)
-      App.refresh_tab_box()
     })
 
     DOM.ev(el, `auxclick`, (e) => {
@@ -779,7 +778,6 @@ App.fill_tab_box_history = () => {
 
     DOM.ev(el, `click`, (e) => {
       App.do_show_mode({mode: `history`, filter: e.target.dataset.value})
-      App.refresh_tab_box()
     })
 
     DOM.ev(el, `auxclick`, (e) => {
@@ -846,16 +844,16 @@ App.check_refresh_tab_box_special = (mode) => {
     return
   }
 
-  App.tab_box_auto_folders(args.mode)
-  App.tab_box_auto_history(args.mode)
+  App.tab_box_auto_folders(mode)
+  App.tab_box_auto_history(mode)
   let tb_mode = App.get_setting(`tab_box_mode`)
 
-  if (args.mode === `history`) {
+  if (mode === `history`) {
     if (tb_mode === `history`) {
       App.refresh_tab_box()
     }
   }
-  else if (args.mode === `bookmarks`) {
+  else if (mode === `bookmarks`) {
     if (tb_mode === `folders`) {
       App.refresh_tab_box()
     }

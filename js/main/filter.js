@@ -415,6 +415,8 @@ App.do_filter = async (args = {}) => {
       App.show_search_empty(args.mode, args.deep)
     }
   }
+
+  App.check_refresh_tab_box_special(args.mode)
 }
 
 App.replace_filter_vars = (value) => {
