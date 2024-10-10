@@ -16,6 +16,7 @@ App.step_back = (mode = App.active_mode, e = undefined) => {
   let item = App.get_selected(mode)
   let scroll = `center_smooth`
   let tabs = mode === `tabs`
+  let bookmarks = mode === `bookmarks`
 
   if (App.multiple_selected(mode)) {
     App.deselect({mode, select: `selected`, scroll})
@@ -28,6 +29,9 @@ App.step_back = (mode = App.active_mode, e = undefined) => {
   }
   else if (item && item.element && !App.item_is_visible(item)) {
     App.select_item({item, scroll})
+  }
+  else if (bookmarks && App.bookmarks_folder) {
+    App.go_to_bookmarks_parent_folder()
   }
   else if (tabs && item && !item.active) {
     App.focus_current_tab(scroll)
