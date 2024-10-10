@@ -106,7 +106,7 @@ App.save_history_pick = () => {
   picks = picks.slice(0, App.max_history_picks)
   App.history_picks = picks
   App.stor_save_history_picks()
-  let tb_mode = App.get_setting(`tab_box_mode`)
+  let tb_mode = App.get_tab_box_mode()
 
   if ([`history`].includes(tb_mode)) {
     App.refresh_tab_box()
@@ -116,7 +116,7 @@ App.save_history_pick = () => {
 App.forget_history_pick = (value) => {
   App.history_picks = App.history_picks.filter(x => x !== value)
   App.stor_save_history_picks()
-  let tb_mode = App.get_setting(`tab_box_mode`)
+  let tb_mode = App.get_tab_box_mode()
 
   if ([`history`].includes(tb_mode)) {
     App.refresh_tab_box()
