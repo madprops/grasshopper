@@ -754,3 +754,15 @@ App.forget_bookmarks_folder_pick = (id) => {
     App.update_tab_box()
   }
 }
+
+App.go_to_bookmarks_parent_folder = () => {
+  if (!App.bookmarks_folder) {
+    return
+  }
+
+  let parent = App.get_bookmarks_folder_by_id(App.bookmarks_folder.parentId)
+
+  if (parent) {
+    App.open_bookmarks_folder(parent)
+  }
+}

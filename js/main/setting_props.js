@@ -532,6 +532,13 @@ App.build_settings = () => {
       When entering Bookmarks mode`,
       version: 1,
     },
+    include_bookmark_folders: {
+      name: `Bookmark Folders`,
+      type: `checkbox`,
+      value: true,
+      info: `Whether to show bookmark folders in the Bookmarks mode results`,
+      version: 1,
+    },
     direct_bookmarks_folder: {
       name: `Direct Bookmarks`,
       type: `checkbox`,
@@ -1640,6 +1647,7 @@ App.build_settings = () => {
         {cmd: `bookmark_page`},
         {cmd: `pick_bookmarks_folder`},
         {cmd: `save_bookmarks_folder_pick`},
+        {cmd: `go_to_bookmarks_parent_folder`},
       ],
       data_group: `normal_menus`,
       info: `Menu to show when clicking the bookmarks actions menu`,

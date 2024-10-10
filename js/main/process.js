@@ -59,17 +59,22 @@ App.process_info = (args = {}) => {
 
     args.o_item.original_data = args.info
   }
+  else {
+    if (args.mode === `bookmarks`) {
+      if (args.info.type === `folder`) {
+        if (!App.get_setting(`include_bookmark_folders`)) {
+          return false
+        }
 
-  let decoded_url
-
-  if (args.mode === `bookmarks`) {
-    if (args.info.type === `folder`) {
-      args.info = {...args.info}
-      args.info.url = App.bookmarks_folder_url
-      args.info.favIconUrl = `img/folder.jpg`
-      args.info.title = `Folder: ${args.info.title}`
+        args.info = {...args.info}
+        args.info.url = App.bookmarks_folder_url
+        args.info.favIconUrl = `img/folder.jpg`
+        args.info.title = `Folder: ${args.info.title}`
+      }
     }
   }
+
+  let decoded_url
 
   if (args.info.url) {
     try {

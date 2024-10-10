@@ -1216,6 +1216,18 @@ App.setup_commands = () => {
       info: `Save current bookmarks folder to use in the Tab Box`,
     },
     {
+      name: `Parent Folder`,
+      short_name: `Paret`,
+      cmd: `go_to_bookmarks_parent_folder`,
+      modes: [`bookmarks`],
+      icon: bookmarks_icon,
+      bookmarks_folder: true,
+      action: (args) => {
+        App.go_to_bookmarks_parent_folder()
+      },
+      info: `Go to the parent folder of the current bookmarks folder`,
+    },
+    {
       name: `To Folder`,
       cmd: `bookmark_items_folder`,
       modes: [`items`],
