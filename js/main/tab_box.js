@@ -69,12 +69,23 @@ App.create_tab_box = () => {
   tab_box.append(container)
 
   DOM.ev(container, `mouseenter`, () => {
+    App.tab_box_mouse_inside =  true
     App.tab_box_clear_grow()
     App.tab_box_grow()
   })
 
   DOM.ev(tab_box, `mouseleave`, () => {
+    App.tab_box_mouse_inside = false
     App.tab_box_clear_grow()
+    let s_size = App.tab_box_size_on_mouse_leave
+
+    if (s_size) {
+      App.tab_box_size = s_size
+      App.tab_box_check_size()
+      App.tab_box_size_on_mouse_leave = undefined
+      return
+    }
+
     App.tab_box_ungrow()
   })
 
@@ -621,13 +632,14 @@ App.tab_box_shrink = () => {
 App.do_tab_box_shrink = () => {
   App.tab_box_shrink_debouncer.cancel()
   let auto = App.get_setting(`tab_box_auto_shrink`)
+  let new_size
 
   if (auto === `none`) {
     return
   }
 
   if (App.tab_box_items.length) {
-    App.tab_box_size = App.get_setting(`tab_box_size`)
+    new_size = App.get_setting(`tab_box_size`)
   }
   else {
     let size = App.get_setting(`tab_box_auto_shrink`)
@@ -636,10 +648,16 @@ App.do_tab_box_shrink = () => {
       return
     }
 
-    App.tab_box_size = App.get_setting(`tab_box_auto_shrink`)
+    new_size = App.get_setting(`tab_box_auto_shrink`)
   }
 
-  App.tab_box_check_size()
+  if (App.tab_box_mouse_inside) {
+    App.tab_box_size_on_mouse_leave = new_size
+  }
+  else {
+    App.tab_box_size = new_size
+    App.tab_box_check_size()
+  }
 }
 
 App.tab_box_special = () => {
