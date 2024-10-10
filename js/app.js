@@ -239,6 +239,7 @@ App.parent_icon = `💠`
 App.node_icon = `💠`
 App.root_icon = `🌀`
 App.combo_icon = `🍔`
+App.title_icon = `✏️`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

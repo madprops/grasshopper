@@ -97,3 +97,15 @@ App.remove_item_title = (item) => {
 
   App.remove_edits({what: [`title`], items: active, text: `titles`})
 }
+
+App.get_titled_items = (mode) => {
+  let items = []
+
+  for (let item of App.get_items(mode)) {
+    if (App.get_title(item)) {
+      items.push(item)
+    }
+  }
+
+  return items
+}

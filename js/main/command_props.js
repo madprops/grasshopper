@@ -15,7 +15,7 @@ App.setup_commands = () => {
   let node_icon = App.get_setting(`node_icon`) || App.node_icon
   let parent_icon = App.get_setting(`parent_icon`) || App.parent_icon
 
-  let title_icon = App.settings_icons.title
+  let main_title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
   let filter_icon = App.settings_icons.filter
@@ -55,6 +55,7 @@ App.setup_commands = () => {
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
   let history_icon = App.mode_icons.history
+  let title_icon = App.title_icon
 
   let tbmodes = []
 
@@ -2165,7 +2166,7 @@ App.setup_commands = () => {
       cmd: `edit_title`,
       modes: [`tabs`],
       item: true,
-      icon: notepad_icon,
+      icon: title_icon,
       action: (args) => {
         App.edit_title(args.item)
       },
@@ -3468,7 +3469,7 @@ App.setup_commands = () => {
     {
       name: `Set Title`,
       cmd: `edit_main_title`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.edit_main_title()
       },
@@ -3478,7 +3479,7 @@ App.setup_commands = () => {
       name: `Title Menu`,
       short_name: `Title Menu`,
       cmd: `show_main_title_menu`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.show_main_title_menu(args.e)
       },
@@ -3487,7 +3488,7 @@ App.setup_commands = () => {
     {
       name: `Red Title`,
       cmd: `color_main_title_red`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.color_main_title(`red`)
       },
@@ -3496,7 +3497,7 @@ App.setup_commands = () => {
     {
       name: `Green Title`,
       cmd: `color_main_title_green`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.color_main_title(`green`)
       },
@@ -3505,7 +3506,7 @@ App.setup_commands = () => {
     {
       name: `Blue Title`,
       cmd: `color_main_title_blue`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.color_main_title(`blue`)
       },
@@ -3515,7 +3516,7 @@ App.setup_commands = () => {
       name: `Dark Title Theme`,
       short_name: `Dark Title`,
       cmd: `set_random_dark_main_title_theme`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.dark_main_title()
       },
@@ -3525,7 +3526,7 @@ App.setup_commands = () => {
       name: `Light Title Theme`,
       short_name: `Light Title`,
       cmd: `set_random_light_main_title_theme`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.light_main_title()
       },
@@ -3534,7 +3535,7 @@ App.setup_commands = () => {
     {
       name: `Prev Title Color`,
       cmd: `previous_main_title_color`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.previous_main_title_color()
       },
@@ -3543,7 +3544,7 @@ App.setup_commands = () => {
     {
       name: `Next Title Color`,
       cmd: `next_main_title_color`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.next_main_title_color()
       },
@@ -3552,7 +3553,7 @@ App.setup_commands = () => {
     {
       name: `Uncolor Title`,
       cmd: `uncolor_main_title`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.uncolor_main_title()
       },
@@ -3562,7 +3563,7 @@ App.setup_commands = () => {
       name: `Toggle Date`,
       short_name: `Date`,
       cmd: `toggle_main_title_date`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.toggle_main_title_date()
       },
@@ -3572,7 +3573,7 @@ App.setup_commands = () => {
       name: `Toggle Title`,
       short_name: `Title`,
       cmd: `toggle_main_title`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.toggle_main_title()
       },
@@ -3581,7 +3582,7 @@ App.setup_commands = () => {
     {
       name: `Copy Title`,
       cmd: `copy_main_title`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.copy_main_title()
       },
@@ -3591,7 +3592,7 @@ App.setup_commands = () => {
       name: `Scroll Title Left`,
       short_name: `Title Left`,
       cmd: `scroll_main_title_left`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.scroll_main_title(`left`)
       },
@@ -3601,7 +3602,7 @@ App.setup_commands = () => {
       name: `Scroll Title Right`,
       short_name: `Title Right`,
       cmd: `scroll_main_title_right`,
-      icon: title_icon,
+      icon: main_title_icon,
       action: (args) => {
         App.scroll_main_title(`right`)
       },

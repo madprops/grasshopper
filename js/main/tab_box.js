@@ -174,6 +174,11 @@ App.update_tab_box_notes = () => {
   App.tab_box_show(`notes`, o_items)
 }
 
+App.update_tab_box_titles = () => {
+  let o_items = App.get_titled_items()
+  App.tab_box_show(`titles`, o_items)
+}
+
 App.update_tab_box_folders = () => {
   App.tab_box_show(`folders`, [])
 }
@@ -523,6 +528,7 @@ App.init_tab_box = () => {
     colors: {info: `Tabs with colors`, icon: App.settings_icons.colors},
     tags: {info: `Tabs with tags`, icon: App.tag_icon},
     icons: {info: `Tabs with icons`, icon: App.bot_icon},
+    titles: {info: `Tabs with titles`, icon: App.title_icon},
     notes: {info: `Tabs with notes`, icon: App.get_setting(`notes_icon`) || App.notepad_icon},
     roots: {info: `Tabs with a root`, icon: App.get_setting(`root_icon`) || App.root_icon},
     parents: {info: `Tabs that are parents to other tabs`, icon: App.get_setting(`parent_icon`) || App.parent_icon},
