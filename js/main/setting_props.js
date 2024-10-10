@@ -1911,6 +1911,13 @@ App.build_settings = () => {
       info: `Show the scrollbar in the Tab Box`,
       version: 1,
     },
+    tab_box_wheel: {
+      name: `Tab Box Wheel`,
+      type: `checkbox`,
+      value: true,
+      info: `Change the Tab Box mode when using the mousewheel`,
+      version: 1,
+    },
     tab_box_icons: {
       name: `Tab Box Icons`,
       type: `checkbox`,
@@ -1973,13 +1980,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Reverse the order of items in the Tab Box`,
-      version: 1,
-    },
-    tab_box_wheel: {
-      name: `Tab Box Wheel`,
-      type: `checkbox`,
-      value: false,
-      info: `Change the Tab Box mode when using the mousewheel`,
       version: 1,
     },
     tab_box_headers: {
