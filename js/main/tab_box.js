@@ -20,8 +20,29 @@ App.setup_tab_box = () => {
   }, App.tab_box_shrink_delay)
 }
 
+App.make_tab_box_modes = () => {
+  App.tab_box_modes = {
+    recent: {info: `Recently visited tabs`, icon: App.mode_icons.tabs},
+    pins: {info: `Pinned tabs`, icon: App.get_setting(`pin_icon`) || App.pin_icon},
+    playing: {info: `Tabs emitting sound`, icon: App.get_setting(`playing_icon`) || App.audio_icon},
+    colors: {info: `Tabs with colors`, icon: App.settings_icons.colors},
+    tags: {info: `Tabs with tags`, icon: App.tag_icon},
+    icons: {info: `Tabs with icons`, icon: App.bot_icon},
+    titles: {info: `Tabs with titles`, icon: App.title_icon},
+    notes: {info: `Tabs with notes`, icon: App.get_setting(`notes_icon`) || App.notepad_icon},
+    roots: {info: `Tabs with a root`, icon: App.get_setting(`root_icon`) || App.root_icon},
+    parents: {info: `Tabs that are parents to other tabs`, icon: App.get_setting(`parent_icon`) || App.parent_icon},
+    nodes: {info: `Tabs that were opened by another tab`, icon: App.get_setting(`node_icon`) || App.node_icon},
+    nodez: {info: `The tabs opened by the selected tab`, icon: App.get_setting(`node_icon`) || App.node_icon},
+    headers: {info: `Headers and subheaders`, icon: App.get_setting(`header_icon`) || App.zone_icon},
+    history: {info: `Pick a query to search history`, icon: App.mode_icons.history},
+    folders: {info: `Pick a bookmarks folder`, icon: App.mode_icons.bookmarks},
+  }
+}
+
 App.reset_tab_box = () => {
   App.tab_box_check_size()
+  App.make_tab_box_modes()
 }
 
 App.create_tab_box = () => {
@@ -522,24 +543,6 @@ App.tab_box_check_size = () => {
 }
 
 App.init_tab_box = () => {
-  App.tab_box_modes = {
-    recent: {info: `Recently visited tabs`, icon: App.mode_icons.tabs},
-    pins: {info: `Pinned tabs`, icon: App.get_setting(`pin_icon`) || App.pin_icon},
-    playing: {info: `Tabs emitting sound`, icon: App.get_setting(`playing_icon`) || App.audio_icon},
-    colors: {info: `Tabs with colors`, icon: App.settings_icons.colors},
-    tags: {info: `Tabs with tags`, icon: App.tag_icon},
-    icons: {info: `Tabs with icons`, icon: App.bot_icon},
-    titles: {info: `Tabs with titles`, icon: App.title_icon},
-    notes: {info: `Tabs with notes`, icon: App.get_setting(`notes_icon`) || App.notepad_icon},
-    roots: {info: `Tabs with a root`, icon: App.get_setting(`root_icon`) || App.root_icon},
-    parents: {info: `Tabs that are parents to other tabs`, icon: App.get_setting(`parent_icon`) || App.parent_icon},
-    nodes: {info: `Tabs that were opened by another tab`, icon: App.get_setting(`node_icon`) || App.node_icon},
-    nodez: {info: `The tabs opened by the selected tab`, icon: App.get_setting(`node_icon`) || App.node_icon},
-    headers: {info: `Headers and subheaders`, icon: App.get_setting(`header_icon`) || App.zone_icon},
-    history: {info: `Pick a query to search history`, icon: App.mode_icons.history},
-    folders: {info: `Pick a bookmarks folder`, icon: App.mode_icons.bookmarks},
-  }
-
   App.tab_box_check_size()
   App.check_tab_box_footer()
   let limited = App.tab_box_limited()
@@ -577,10 +580,7 @@ App.toggle_tab_box = () => {
     App.hide_tab_box(true)
   }
   else {
-    if (App.check_tab_box_auto()) {
-      return
-    }
-
+    App.check_tab_box_auto()
     App.show_tab_box(true, true)
   }
 }
@@ -828,17 +828,15 @@ App.tab_box_auto_mode = (mode) => {
   }
 }
 
-App.check_tab_box_auto = () => {
-  let mode = App.active_mode
-
+App.check_tab_box_auto = (mode = App.active_mode) => {
   if (mode === `history`) {
     if (App.get_setting(`tab_box_auto_history`)) {
-      App.change_tab_box_mode(`history`)
+      App.change_tab_box_mode(`history`, false)
     }
   }
   else if (mode === `bookmarks`) {
     if (App.get_setting(`tab_box_auto_folders`)) {
-      App.change_tab_box_mode(`folders`)
+      App.change_tab_box_mode(`folders`, false)
     }
   }
 }
@@ -854,16 +852,10 @@ App.refresh_tab_box_special = (mode) => {
     if (tb_mode === `history`) {
       App.change_tab_box_mode(`history`)
     }
-
-    return true
   }
   else if (mode === `bookmarks`) {
     if (tb_mode === `folders`) {
       App.change_tab_box_mode(`folders`)
     }
-
-    return true
   }
-
-  return false
 }

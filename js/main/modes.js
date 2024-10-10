@@ -281,6 +281,7 @@ App.show_main_mode = (allow_same = true, force = false) => {
     }
   }
 
+  App.check_tab_box_auto(mode)
   App.do_show_mode({mode, force})
 }
 
