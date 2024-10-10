@@ -536,6 +536,7 @@ App.build_settings = () => {
       name: `Bookmark Folders`,
       type: `checkbox`,
       value: true,
+      no_mirror: true,
       info: `Whether to show bookmark folders in the Bookmarks mode results`,
       version: 1,
     },

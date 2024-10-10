@@ -800,3 +800,9 @@ App.move_folders_pick = (from, to) => {
   App.stor_save_bookmark_folder_picks()
   App.update_tab_box()
 }
+
+App.toggle_bookmark_folders = () => {
+  let setting = App.get_setting(`include_bookmark_folders`)
+  App.set_setting({setting: `include_bookmark_folders`, value: !setting})
+  App.show_mode({mode: `bookmarks`, force: true})
+}

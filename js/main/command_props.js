@@ -1216,6 +1216,17 @@ App.setup_commands = () => {
       info: `Save current bookmarks folder to use in the Tab Box`,
     },
     {
+      name: `Toggle Folders`,
+      short_name: `Folders`,
+      cmd: `toggle_bookmark_folders`,
+      modes: [`bookmarks`],
+      icon: bookmarks_icon,
+      action: (args) => {
+        App.toggle_bookmark_folders()
+      },
+      info: `Toggle between showing bookmark folders or not in results`,
+    },
+    {
       name: `Parent Folder`,
       short_name: `Paret`,
       cmd: `go_to_bookmarks_parent_folder`,
