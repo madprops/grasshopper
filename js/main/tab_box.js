@@ -206,6 +206,7 @@ App.get_tab_box_items = (o_items, mode) => {
     let {element, ...item} = o_item
     item.tab_box = true
     App.create_item_element(item)
+    item.element.classList.add(`tab_box_item`)
     items.push(item)
   }
 

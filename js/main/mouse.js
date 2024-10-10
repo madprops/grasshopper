@@ -75,11 +75,6 @@ App.mouse_click_action = (e) => {
   let mode = App.active_mode
   let from = `click`
 
-  if (DOM.parent(e.target, [`#tab_box`])) {
-    mode = `tabs`
-    from = `tab_box`
-  }
-
   App.check_double_click(`mouse`, e, () => {
     App.mouse_double_click_action(mode, e)
   })
@@ -142,6 +137,11 @@ App.mouse_click_action = (e) => {
 
   if (!item) {
     return
+  }
+
+  if (DOM.parent(e.target, [`.tab_box_item`])) {
+    mode = `tabs`
+    from = `tab_box`
   }
 
   if (e.shiftKey) {

@@ -14,6 +14,7 @@ App.select_item = (args = {}) => {
   let def_args = {
     deselect: true,
     scroll: `center`,
+    from: `normal`,
   }
 
   App.def_args(def_args, args)
@@ -29,6 +30,14 @@ App.select_item = (args = {}) => {
   if (args.deselect) {
     App.deselect({mode: args.item.mode})
   }
+
+  if (args.from === `tab_box`) {
+    if (!App.get_setting(`tab_box_focus`)) {
+      args.scroll = `none`
+    }
+  }
+
+  console.log(args.scroll, args.from)
 
   App.toggle_selected({item: args.item, what: true})
   App.scroll_to_item({item: args.item, scroll: args.scroll})

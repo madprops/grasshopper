@@ -346,18 +346,12 @@ App.tabs_action = async (args = {}) => {
     }
   }
 
-  if (args.from === `tab_box`) {
-    if (!App.get_setting(`tab_box_focus`)) {
-      args.scroll = `none`
-    }
-  }
-
   if (args.item.header) {
     let header_action = App.get_setting(`header_action`)
 
     if (header_action === `none`) {
       if (args.from === `tab_box`) {
-        App.select_item({item: args.item, scroll: args.scroll})
+        App.select_item({item: args.item, scroll: args.scroll, from: args.from})
         blink_item()
       }
 
@@ -377,7 +371,7 @@ App.tabs_action = async (args = {}) => {
         return
       }
 
-      App.select_item({item: args.item, scroll: args.scroll})
+      App.select_item({item: args.item, scroll: args.scroll, from: args.from})
       blink_item()
       return
     }
