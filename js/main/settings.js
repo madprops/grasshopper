@@ -1560,7 +1560,6 @@ App.setup_settings_addlist = () => {
       App.create_popup({...popobj, id: `addlist_${id}`,
         element: Addlist.register({...regobj, id,
           keys: [`cmd`, `middle`, `shift`, `ctrl`, `alt`],
-          pk: `cmd`,
           widgets: {
             cmd: `menu`,
             middle: `menu`,
