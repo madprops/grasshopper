@@ -407,6 +407,7 @@ App.cycle_tab_box_mode = (dir) => {
   for (let mode of modes) {
     if (waypoint) {
       App.change_tab_box_mode(mode)
+      App.update_tab_box()
       return
     }
 
@@ -417,6 +418,7 @@ App.cycle_tab_box_mode = (dir) => {
   }
 
   App.change_tab_box_mode(modes[0])
+  App.update_tab_box()
 }
 
 App.check_tab_box_playing = () => {
