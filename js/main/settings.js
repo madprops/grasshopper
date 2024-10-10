@@ -498,6 +498,7 @@ App.refresh_settings = () => {
   App.reset_tab_box()
   App.setup_commands()
   App.fill_palette()
+  App.init_tab_box()
   App.build_tab_filters()
   App.reset_main_title()
   App.start_signal_intervals()
@@ -882,7 +883,6 @@ App.import_settings = (value = ``) => {
 
 App.restart_settings = () => {
   App.refresh_settings()
-  App.hide_tab_box(true)
 
   if (App.on_settings()) {
     App.show_settings_category(`general`)
