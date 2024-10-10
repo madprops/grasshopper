@@ -556,10 +556,12 @@ App.move_item_element = (mode, el, to_index) => {
     container.prepend(el)
   }
   else if (from_index < to_index) {
-    container.insertBefore(el, items[to_index + 1])
+    let target = items[to_index]
+    target.insertAdjacentElement(`afterend`, el)
   }
   else {
-    container.insertBefore(el, items[to_index])
+    let target = items[to_index]
+    container.insertBefore(el, target)
   }
 }
 
