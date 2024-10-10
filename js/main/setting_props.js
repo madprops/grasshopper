@@ -1707,6 +1707,7 @@ App.build_settings = () => {
       name: `Bookmarks Empty Menu`,
       type: `list`,
       value: [
+        {cmd: `pick_bookmarks_folder`},
         {cmd: `create_bookmarks_folder`},
         {cmd: `select_all_items`},
       ],
