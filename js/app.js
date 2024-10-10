@@ -115,8 +115,8 @@ App.tab_box_items = []
 App.tab_box_o_items = []
 App.num_generic_menus = 9
 App.max_command_check_items = 25
-App.max_bookmark_folder_picks = 20
-App.max_history_picks = 20
+App.max_bookmark_folder_picks = 50
+App.max_history_picks = 50
 App.bookmarks_folder_url = `https://bookmarks.folder`
 App.shrink_on_tab_box_leave
 
