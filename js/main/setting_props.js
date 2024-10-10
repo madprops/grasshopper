@@ -1808,6 +1808,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.scroll_modes)
       },
     },
+    middle_click_tab_box: {
+      name: `Middle Click Tab Box`,
+      type: `menu`,
+      value: `tab_box_close`,
+      info: `Command to run on middle click on Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     left_click_press_tab_box: {
       name: `Left Click Press Tab Box`,
       type: `menu`,

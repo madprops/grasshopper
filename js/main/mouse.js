@@ -527,7 +527,8 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   if (DOM.parent(e.target, [`#tab_box_title`])) {
-    App.close_tab_box_tabs()
+    let cmd = App.get_setting(`middle_click_tab_box`)
+    App.run_command({cmd, from: `tab_box`, e})
     return
   }
 

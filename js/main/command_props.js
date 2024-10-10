@@ -1038,6 +1038,17 @@ App.setup_commands = () => {
       },
       info: `Show or hide the Tab Box`,
     },
+    {
+      name: `Tab Box Close`,
+      short_name: `Box Close`,
+      cmd: `tab_box_close`,
+      modes: [`tabs`],
+      icon: tab_box_icon,
+      action: (args) => {
+        App.close_tab_box_tabs()
+      },
+      info: `Close the current Tab Box tabs`,
+    },
 
     ...tbmodes,
 
