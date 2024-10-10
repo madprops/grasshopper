@@ -82,8 +82,7 @@ App.bookmarks_action = (args = {}) => {
   App.def_args(def_args, args)
 
   if (args.item.url === App.bookmarks_folder_url) {
-    let folder = App.get_bookmarks_folder_by_id(args.item.id)
-    App.open_bookmarks_folder(folder)
+    App.travel_to_bookmarks_folder(args.item)
     return
   }
 
@@ -765,4 +764,9 @@ App.go_to_bookmarks_parent_folder = () => {
   if (parent) {
     App.open_bookmarks_folder(parent)
   }
+}
+
+App.travel_to_bookmarks_folder = (item) => {
+  let folder = App.get_bookmarks_folder_by_id(item.id)
+  App.open_bookmarks_folder(folder)
 }

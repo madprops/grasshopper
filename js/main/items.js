@@ -823,10 +823,16 @@ App.open_items = (item, shift, multiple = true) => {
   }
 
   if (items.length === 1) {
+    if (items[0].url === App.bookmarks_folder_url) {
+      App.travel_to_bookmarks_folder(items[0])
+      return
+    }
+
     App.open_tab(items[0])
     App.after_open(shift)
   }
   else {
+    items = items.filter(x => x.type !== `folder`)
     let force = App.check_force(`warn_on_open`, items)
 
     App.show_confirm({
