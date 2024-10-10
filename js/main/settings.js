@@ -1528,7 +1528,6 @@ App.setup_settings_addlist = () => {
     `extra_menu`,
     `hover_menu`,
     `hover_menu_2`,
-    `empty_menu`,
     `footer_menu`,
     `pinline_menu`,
     `main_title_menu`,
@@ -1541,11 +1540,13 @@ App.setup_settings_addlist = () => {
     `favorites_menu_closed`,
     `global_actions_menu`,
     `global_item_menu`,
+    `global_empty_menu`,
   ]
 
   for (let m of App.modes) {
     menukeys.push(`${m}_actions_menu`)
     menukeys.push(`${m}_item_menu`)
+    menukeys.push(`${m}_empty_menu`)
   }
 
   for (let i = 1; i <= App.num_generic_menus; i++) {

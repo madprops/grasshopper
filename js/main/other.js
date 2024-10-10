@@ -105,14 +105,6 @@ App.reset_triggers = () => {
   App.reset_mouse()
 }
 
-App.show_empty_menu = (e) => {
-  let items = App.custom_menu_items({
-    name: `empty_menu`,
-  })
-
-  App.show_context({items, e})
-}
-
 App.show_extra_menu = (item, e) => {
   let items = App.custom_menu_items({
     name: `extra_menu`,

@@ -1671,6 +1671,58 @@ App.build_settings = () => {
       info: `Menu to show when clicking the closed actions menu`,
       version: 1,
     },
+    global_empty_menu: {
+      name: `Global Empty Menu`,
+      type: `list`,
+      value: [],
+      data_group: `normal_menus`,
+      info: `Use this empty menu when the specific mode is not specified`,
+      version: 1,
+    },
+    tabs_empty_menu: {
+      name: `Tabs Empty Menu`,
+      type: `list`,
+      value: [
+        {cmd: `open_new_tab`},
+        {cmd: `reopen_tab`},
+        {cmd: `select_all_items`},
+      ],
+      data_group: `normal_menus`,
+      info: `Menu to show when right clicking empty space in Tabs mode`,
+      version: 1,
+    },
+    history_empty_menu: {
+      name: `History Empty Menu`,
+      type: `list`,
+      value: [
+        {cmd: `save_history_pick`},
+      ],
+      data_group: `normal_menus`,
+      info: `Menu to show when right clicking empty space in History mode`,
+      version: 1,
+    },
+    bookmarks_empty_menu: {
+      name: `Bookmarks Empty Menu`,
+      type: `list`,
+      value: [
+        {cmd: `create_bookmarks_folder`},
+      ],
+      data_group: `normal_menus`,
+      info: `Menu to show when right clicking empty space in Bookmarks mode`,
+      version: 1,
+    },
+    closed_empty_menu: {
+      name: `Closed Empty Menu`,
+      type: `list`,
+      value: [
+        {cmd: `reopen_tab`},
+        {cmd: `forget_closed`},
+      ],
+      separator: true,
+      data_group: `normal_menus`,
+      info: `Menu to show when right clicking empty space in Closed mode`,
+      version: 1,
+    },
     extra_menu_mode: {
       name: `Extra Menu Mode`,
       type: `menu`,
@@ -1698,19 +1750,6 @@ App.build_settings = () => {
       ],
       info: `Extra menu to show when right clicking items`,
       version: 4,
-    },
-    empty_menu: {
-      name: `Empty Menu`,
-      type: `list`,
-      value: [
-        {cmd: `open_new_tab`},
-        {cmd: `reopen_tab`},
-        {cmd: `select_all_items`},
-      ],
-      data_group: `normal_menus`,
-      separator: true,
-      info: `Menu to show when right clicking empty space`,
-      version: 1,
     },
 
     ...App.settings_generic_menus(),
@@ -2551,8 +2590,8 @@ App.build_settings = () => {
       name: `Title Menu`,
       type: `list`,
       value: [
-        {cmd: `copy_main_title`},
         {cmd: `edit_main_title`},
+        {cmd: `copy_main_title`},
         {cmd: `toggle_main_title_date`},
         {cmd: App.separator_string},
         {cmd: `color_main_title_red`},

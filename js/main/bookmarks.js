@@ -481,6 +481,13 @@ App.create_bookmarks_folder = (callback) => {
         return
       }
 
+      if (App.active_mode === `bookmarks`) {
+        if (App.bookmarks_folder) {
+          action(title, App.bookmarks_folder)
+          return
+        }
+      }
+
       if (App.get_setting(`direct_bookmarks_folder`)) {
         action(title)
         return
