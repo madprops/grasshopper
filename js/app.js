@@ -257,6 +257,7 @@ App.sizes = [
 ]
 
 App.sizes_2 = [
+  {text: `Compact`, value: `compact`},
   {text: `Tiny`, value: `tiny`},
   {text: `Small`, value: `small`},
   {text: `Normal`, value: `normal`},
