@@ -122,3 +122,19 @@ App.forget_history_pick = (value) => {
     App.update_tab_box()
   }
 }
+
+App.move_history_pick = (from, to) => {
+  let picks = App.history_picks
+  let from_index = picks.indexOf(from)
+  let to_index = picks.indexOf(to)
+
+  if (from_index === -1 || to_index === -1) {
+    return
+  }
+
+  picks.splice(from_index, 1)
+  picks.splice(to_index, 0, from)
+  App.history_picks = picks
+  App.stor_save_history_picks()
+  App.update_tab_box()
+}

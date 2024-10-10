@@ -89,6 +89,28 @@ App.create_tab_box = () => {
     App.tab_box_ungrow()
   })
 
+  container.ondragover = (e) => {
+    e.preventDefault()
+  }
+
+  container.ondrop = (e) => {
+    e.preventDefault()
+    let value = e.dataTransfer.getData(`text/plain`)
+    let mode = App.get_tab_box_mode()
+    let target = DOM.parent(e.target, [`.tab_box_item`])
+
+    if (!target) {
+      return
+    }
+
+    if (mode === `history`) {
+      App.move_history_pick(value, target.dataset.value)
+    }
+    else if (mode === `folders`) {
+      App.move_folders_pick(value, target.dataset.id)
+    }
+  }
+
   App.tab_box_ready = false
   App.tab_box_size = undefined
   return tab_box
@@ -753,6 +775,8 @@ App.fill_tab_box_folders = () => {
     let el = DOM.create(`div`, `tab_box_item tab_box_special_item`)
     let icon = DOM.create(`div`, `tab_box_special_item_icon`)
     let text = DOM.create(`div`, `item_text`)
+    el.draggable = true
+    el.dataset.id = pick.id
     icon.textContent = App.mode_icons.bookmarks
     text.textContent = pick.title
 
@@ -774,6 +798,10 @@ App.fill_tab_box_folders = () => {
       }
     })
 
+    el.ondragstart = (e) => {
+      e.dataTransfer.setData(`text/plain`, pick.id)
+    }
+
     c.append(el)
   }
 
@@ -790,6 +818,8 @@ App.fill_tab_box_history = () => {
     let el = DOM.create(`div`, `tab_box_item tab_box_special_item`)
     let icon = DOM.create(`div`, `tab_box_special_item_icon`)
     let text = DOM.create(`div`, `item_text`)
+    el.draggable = true
+    el.dataset.value = pick
     icon.textContent = App.mode_icons.history
     text.textContent = pick
 
@@ -809,6 +839,10 @@ App.fill_tab_box_history = () => {
         App.forget_history_pick(pick)
       }
     })
+
+    el.ondragstart = (e) => {
+      e.dataTransfer.setData(`text/plain`, pick)
+    }
 
     c.append(el)
   }

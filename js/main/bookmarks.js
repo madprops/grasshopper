@@ -783,3 +783,20 @@ App.bookmark_folders_enabled = () => {
   let a = App.get_setting(`include_bookmark_folders`)
   return a && Boolean(App.bookmarks_folder)
 }
+
+App.move_folders_pick = (from, to) => {
+  let picks = App.bookmark_folder_picks
+  let from_index = picks.findIndex(pick => pick.id === from)
+  let to_index = picks.findIndex(pick => pick.id === to)
+
+  if (from_index === -1 || to_index === -1) {
+    return
+  }
+
+  let [moved_item] = picks.splice(from_index, 1)
+  picks.splice(to_index, 0, moved_item)
+
+  App.bookmark_folder_picks = picks
+  App.stor_save_bookmark_folder_picks()
+  App.update_tab_box()
+}
