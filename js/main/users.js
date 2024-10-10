@@ -201,8 +201,6 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `show_tab_box`, value: true})
   App.set_setting({setting: `tab_box_mode`, value: `nodez`})
-  App.set_setting({setting: `tab_box_size`, value: `normal`})
-  App.set_setting({setting: `tab_box_auto_shrink`, value: `compact`})
   App.set_setting({setting: `tab_box_color_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(47, 99, 151, 0.18)`})
 
