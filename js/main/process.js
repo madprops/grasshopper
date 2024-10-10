@@ -59,18 +59,16 @@ App.process_info = (args = {}) => {
 
     args.o_item.original_data = args.info
   }
-  else {
-    if (args.mode === `bookmarks`) {
-      if (args.info.type === `folder`) {
-        if (!App.get_setting(`include_bookmark_folders`)) {
-          return false
-        }
-
-        args.info = {...args.info}
-        args.info.url = App.bookmarks_folder_url
-        args.info.favIconUrl = `img/folder.jpg`
-        args.info.title = `Folder: ${args.info.title}`
+  else if (args.mode === `bookmarks`) {
+    if (args.info.type === `folder`) {
+      if (!App.get_setting(`include_bookmark_folders`)) {
+        return false
       }
+
+      args.info = {...args.info}
+      args.info.url = App.bookmarks_folder_url
+      args.info.favIconUrl = `img/folder.jpg`
+      args.info.title = `Folder: ${args.info.title}`
     }
   }
 
