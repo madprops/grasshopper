@@ -71,6 +71,7 @@ App.setup_commands = () => {
       icon,
       action: (args) => {
         App.change_tab_box_mode(mode)
+        App.show_tab_box(true, true)
       },
       info: `Change the Tab Box mode: ${mode}`,
     })
