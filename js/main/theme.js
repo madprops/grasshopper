@@ -419,7 +419,7 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`footer_color`, App.get_setting(`footer_color`))
     }
     else {
-      App.set_css_var(`footer_color`, `unset`)
+      App.set_css_var(`footer_color`, slight_shade)
     }
 
     if (App.get_setting(`tab_box_color_enabled`)) {
