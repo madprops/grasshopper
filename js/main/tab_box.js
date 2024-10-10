@@ -588,12 +588,11 @@ App.toggle_tab_box = () => {
     App.hide_tab_box(true)
   }
   else {
-    let visible = App.selected_visible(`tabs`)
-    App.show_tab_box(true, true)
-
-    if (visible) {
-      App.scroll_to_selected(`tabs`)
+    if (App.check_tab_box_auto()) {
+      return
     }
+
+    App.show_tab_box(true, true)
   }
 }
 
@@ -832,6 +831,21 @@ App.tab_box_auto_mode = (mode) => {
   }
 }
 
+App.check_tab_box_auto = () => {
+  let mode = App.active_mode
+
+  if (mode === `history`) {
+    if (App.get_setting(`tab_box_auto_history`)) {
+      App.change_tab_box_mode(`history`)
+    }
+  }
+  else if (mode === `bookmarks`) {
+    if (App.get_setting(`tab_box_auto_folders`)) {
+      App.change_tab_box_mode(`folders`)
+    }
+  }
+}
+
 App.refresh_tab_box_special = (mode) => {
   if (!App.tab_box_enabled()) {
     return
@@ -841,12 +855,18 @@ App.refresh_tab_box_special = (mode) => {
 
   if (mode === `history`) {
     if (tb_mode === `history`) {
-      App.refresh_tab_box()
+      App.change_tab_box_mode(`history`)
     }
+
+    return true
   }
   else if (mode === `bookmarks`) {
     if (tb_mode === `folders`) {
-      App.refresh_tab_box()
+      App.change_tab_box_mode(`folders`)
     }
+
+    return true
   }
+
+  return false
 }
