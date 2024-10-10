@@ -183,6 +183,11 @@ App.main_remove = (cls) => {
   main.classList.remove(cls)
 }
 
+App.main_has = (cls) => {
+  let main = DOM.el(`#main`)
+  return main.classList.contains(cls)
+}
+
 App.open_sidebar = () => {
   browser.sidebarAction.open()
 }

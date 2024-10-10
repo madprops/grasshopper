@@ -78,7 +78,18 @@ App.do_update_tab_box = (what) => {
   App.update_tab_box_debouncer.cancel()
 
   if (!App.tab_box_enabled()) {
-    return
+    let ok = false
+    let auto = App.get_setting(`tab_box_auto_shrink`)
+
+    if (auto === `hide`) {
+      if ([`nodez`].includes(what)) {
+        ok = true
+      }
+    }
+
+    if (!ok) {
+      return
+    }
   }
 
   App.current_tab_box_mode = what
@@ -399,10 +410,8 @@ App.refresh_tab_box = () => {
 }
 
 App.tab_box_mode = (what) => {
-  if (App.get_setting(`show_tab_box`)) {
-    if (App.get_tab_box_mode() === what) {
-      return true
-    }
+  if (App.get_tab_box_mode() === what) {
+    return true
   }
 
   return false
@@ -529,6 +538,10 @@ App.set_show_tab_box = (what) => {
 }
 
 App.set_tab_box_size = (what) => {
+  if (!App.sizes_2.includes(what)) {
+    return
+  }
+
   App.tab_box_size = undefined
   App.set_setting({setting: `tab_box_size`, value: what})
   App.check_refresh_settings()
@@ -540,14 +553,18 @@ App.set_tab_box_mode = (what) => {
   App.check_refresh_settings()
 }
 
-App.tab_box_check_size = () => {
+App.tab_box_check_size = (size) => {
   let tab_box = DOM.el(`#tab_box`)
+  let sizes = [...App.sizes_2, `zero`]
 
-  for (let size of App.sizes_2) {
+  for (let size of sizes) {
     tab_box.classList.remove(`size_${size.value}`)
   }
 
-  let size = App.tab_box_size || App.get_setting(`tab_box_size`)
+  if (!size) {
+    size = App.tab_box_size || App.get_setting(`tab_box_size`)
+  }
+
   tab_box.classList.add(`size_${size}`)
 }
 
@@ -565,6 +582,7 @@ App.init_tab_box = () => {
 }
 
 App.show_tab_box = (refresh = true, set = false) => {
+  clearTimeout(App.hide_tab_box_timeout)
   App.main_add(`show_tab_box`)
 
   if (refresh) {
@@ -640,10 +658,45 @@ App.do_tab_box_shrink = () => {
     return
   }
 
+  let current = App.get_tab_box_mode()
+
+  if (auto === `hide`) {
+    if (![`nodez`].includes(current)) {
+      return
+    }
+  }
+
+  let size = App.get_setting(`tab_box_size`)
+
   if (App.tab_box_items.length) {
-    App.tab_box_size = App.get_setting(`tab_box_size`)
+    if (auto === `hide`) {
+      if (!App.main_has(`show_tab_box`)) {
+        App.tab_box_check_size(`zero`)
+        App.show_tab_box(false, true)
+
+        setTimeout(() => {
+          App.tab_box_check_size(size)
+        }, 10)
+      }
+
+      return
+    }
+
+    App.tab_box_size = size
   }
   else {
+    if (auto === `hide`) {
+      if (App.main_has(`show_tab_box`)) {
+        App.tab_box_check_size(`zero`)
+
+        App.hide_tab_box_timeout = setTimeout(() => {
+          App.hide_tab_box(true)
+        }, 800)
+      }
+
+      return
+    }
+
     let size = App.get_setting(`tab_box_auto_shrink`)
 
     if (size === `none`) {

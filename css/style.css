@@ -1320,6 +1320,10 @@ a:hover
   background-color: var(--tab_box_color);
 }
 
+#tab_box.size_zero {
+  height: 0;
+}
+
 #tab_box.size_tiny {
   height: var(--tab_box_size_tiny);
 }
