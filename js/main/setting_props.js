@@ -1499,7 +1499,8 @@ App.build_settings = () => {
       name: `Hover Menu 2`,
       type: `list`,
       value: [
-        {cmd: `filter_domain`},
+        {cmd: `copy_tabs`},
+        {cmd: `paste_tabs`},
         {cmd: `search_domain_history`},
         {cmd: `search_domain_bookmarks`},
       ],
