@@ -409,9 +409,7 @@ App.apply_edit = (args = {}) => {
       args.on_change(new_value)
     }
 
-    if (args.what === `tags`) {
-      App.refresh_tab_box()
-    }
+    App.refresh_tab_box()
   }
 }
 

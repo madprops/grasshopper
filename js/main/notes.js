@@ -70,3 +70,15 @@ App.edit_global_notes = () => {
     wrap: true,
   })
 }
+
+App.get_noted_items = (mode) => {
+  let items = []
+
+  for (let item of App.get_items(mode)) {
+    if (App.get_notes(item)) {
+      items.push(item)
+    }
+  }
+
+  return items
+}
