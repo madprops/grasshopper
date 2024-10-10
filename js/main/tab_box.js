@@ -833,7 +833,7 @@ App.tab_box_auto_mode = (mode) => {
   }
 }
 
-App.check_refresh_tab_box_special = (mode) => {
+App.refresh_tab_box_special = (mode) => {
   if (!App.tab_box_enabled()) {
     return
   }

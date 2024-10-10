@@ -412,7 +412,7 @@ App.do_filter = async (args = {}) => {
     }
   }
 
-  App.check_refresh_tab_box_special(args.mode)
+  App.refresh_tab_box_special(args.mode)
 }
 
 App.replace_filter_vars = (value) => {
