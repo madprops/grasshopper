@@ -9,9 +9,11 @@ App.process_info_list = (mode, info_list) => {
   let items = App.get_items(mode)
   let exclude = []
 
-  if (App.get_setting(`bookmark_folders_above`)) {
-    if (mode === `bookmarks`) {
-      info_list.sort((a, b) => a.type === `folder` ? -1 : b.type === `folder`)
+  if (mode === `bookmarks`) {
+    if (App.get_setting(`include_bookmark_folders`)) {
+      if (App.get_setting(`bookmark_folders_above`)) {
+        info_list.sort((a, b) => a.type === `folder` ? -1 : b.type === `folder`)
+      }
     }
   }
 
