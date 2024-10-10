@@ -133,15 +133,15 @@ App.mouse_click_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.tab_box_tabs_item`])) {
+    mode = `tabs`
+    from = `tab_box`
+  }
+
   let item = App.get_mouse_item(mode, e)
 
   if (!item) {
     return
-  }
-
-  if (DOM.parent(e.target, [`.tab_box_tabs_item`])) {
-    mode = `tabs`
-    from = `tab_box`
   }
 
   if (e.shiftKey) {
