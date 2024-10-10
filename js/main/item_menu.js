@@ -3,6 +3,10 @@ App.show_item_menu = async (args = {}) => {
     return
   }
 
+  if (args.item.type === `folder`) {
+    return
+  }
+
   App.item_menu_args = args
   App.item_menu_active = App.get_active_items({mode: args.item.mode, item: args.item})
   App.item_menu_too_many = App.item_menu_active.length > App.max_command_check_items
