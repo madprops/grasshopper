@@ -441,6 +441,7 @@ App.do_check_tab_box_playing = () => {
 
     if (App.get_tab_box_mode() !== `playing`) {
       App.change_tab_box_mode(`playing`, false)
+      App.update_tab_box()
     }
   }
 }
