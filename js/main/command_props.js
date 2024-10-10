@@ -1042,7 +1042,7 @@ App.setup_commands = () => {
       name: `Tab Box Close`,
       short_name: `Box Close`,
       cmd: `tab_box_close`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: tab_box_icon,
       action: (args) => {
         App.close_tab_box_tabs()

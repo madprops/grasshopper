@@ -654,7 +654,15 @@ App.do_tab_box_shrink = () => {
   App.tab_box_check_size()
 }
 
+App.tab_box_special = () => {
+  return [`history`, `folders`].includes(App.get_tab_box_mode())
+}
+
 App.close_tab_box_tabs = () => {
+  if (App.tab_box_special()) {
+    return
+  }
+
   if (App.tab_box_items.length) {
     App.close_tabs({selection: App.tab_box_items})
   }
