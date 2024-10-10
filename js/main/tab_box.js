@@ -69,7 +69,7 @@ App.create_tab_box = () => {
   tab_box.append(container)
 
   DOM.ev(container, `mouseenter`, () => {
-    App.tab_box_mouse_inside =  true
+    App.tab_box_mouse_inside = true
     App.tab_box_clear_grow()
     App.tab_box_grow()
   })
