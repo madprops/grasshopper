@@ -313,7 +313,9 @@ App.get_bookmark_items = async (args = {}) => {
     }
   }
 
-  clean = false
+  if (App.get_setting(`include_bookmark_folders`)) {
+    clean = false
+  }
 
   if (clean) {
     items = App.clean_bookmark_nodes(items)
@@ -530,9 +532,8 @@ App.get_bookmark_subitems = (parent, children, bookmarks = []) => {
       if (child.type === `folder`) {
         App.get_bookmark_subitems(child.id, children, bookmarks)
       }
-      else if (child.type === `bookmark`) {
-        bookmarks.push(child)
-      }
+
+      bookmarks.push(child)
     }
   }
 

@@ -9,6 +9,10 @@ App.process_info_list = (mode, info_list) => {
   let items = App.get_items(mode)
   let exclude = []
 
+  if (mode === `bookmarks`) {
+    info_list.sort((a, b) => a.type === `folder` ? -1 : b.type === `folder`)
+  }
+
   for (let info of info_list) {
     let item = App.process_info({mode, info, exclude, list: true, add_parent: false})
 
@@ -61,10 +65,6 @@ App.process_info = (args = {}) => {
   }
   else if (args.mode === `bookmarks`) {
     if (args.info.type === `folder`) {
-      if (!App.get_setting(`include_bookmark_folders`)) {
-        return false
-      }
-
       args.info = {...args.info}
       args.info.url = App.bookmarks_folder_url
       args.info.favIconUrl = `img/folder.jpg`
@@ -178,5 +178,5 @@ App.process_info = (args = {}) => {
 }
 
 App.process_search_item = (info) => {
-  info.path = App.get_path(info.url)
+  info.path = App.get_path(info.url || `https://no.url`)
 }
