@@ -823,7 +823,7 @@ App.open_items = (item, shift, multiple = true) => {
   }
 
   if (items.length === 1) {
-    if (items[0].url === App.bookmarks_folder_url) {
+    if (items[0].type === `folder`) {
       App.travel_to_bookmarks_folder(items[0])
       return
     }

@@ -81,7 +81,7 @@ App.bookmarks_action = (args = {}) => {
 
   App.def_args(def_args, args)
 
-  if (args.item.url === App.bookmarks_folder_url) {
+  if (args.item.type === `folder`) {
     App.travel_to_bookmarks_folder(args.item)
     return
   }

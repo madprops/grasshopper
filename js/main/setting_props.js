@@ -539,6 +539,13 @@ App.build_settings = () => {
       info: `Whether to show bookmark folders in the Bookmarks mode results`,
       version: 1,
     },
+    bookmark_folders_above: {
+      name: `Bookmark Folders Above`,
+      type: `checkbox`,
+      value: true,
+      info: `Show bookmark folders at the top of the Bookmarks mode results`,
+      version: 1,
+    },
     direct_bookmarks_folder: {
       name: `Direct Bookmarks`,
       type: `checkbox`,
