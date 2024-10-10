@@ -248,6 +248,7 @@ App.get_tab_box_items = (o_items, mode) => {
     let {element, ...item} = o_item
     item.tab_box = true
     App.create_item_element(item)
+    item.element.classList.add(`tab_box_item`)
     item.element.classList.add(`tab_box_tabs_item`)
     items.push(item)
   }
@@ -749,9 +750,9 @@ App.fill_tab_box_folders = () => {
   c.innerHTML = ``
 
   for (let pick of picks) {
-    let el = DOM.create(`div`, `tab_box_item action`)
+    let el = DOM.create(`div`, `tab_box_item tab_box_special_item`)
     let icon = DOM.create(`div`, `tab_box_special_item_icon`)
-    let text = DOM.create(`div`, `tab_box_special_item_text`)
+    let text = DOM.create(`div`, `item_text`)
     icon.textContent = App.mode_icons.bookmarks
     text.textContent = pick.title
 
@@ -786,9 +787,9 @@ App.fill_tab_box_history = () => {
   let current = App.get_filter().trim()
 
   for (let pick of picks) {
-    let el = DOM.create(`div`, `tab_box_item action`)
+    let el = DOM.create(`div`, `tab_box_item tab_box_special_item`)
     let icon = DOM.create(`div`, `tab_box_special_item_icon`)
-    let text = DOM.create(`div`, `tab_box_special_item_text`)
+    let text = DOM.create(`div`, `item_text`)
     icon.textContent = App.mode_icons.history
     text.textContent = pick
 

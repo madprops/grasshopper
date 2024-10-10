@@ -569,7 +569,7 @@ svg {
 .selected_effect_background.active_background_tab_box .item_container .selected,
 .selected_effect_background.active_background_normal .item_container .selected:not(.active_tab),
 .selected_effect_background.active_background_everywhere .item_container .selected:not(.active_tab),
-.tab_box_hover_effect_background #tab_box_container .item:hover,
+.tab_box_hover_effect_background #tab_box_container .tab_box_item:hover,
 .tab_box_active_effect_background #tab_box_container .active_tab
 {
   color: var(--text_color);
@@ -578,7 +578,7 @@ svg {
 
 .hover_effect_glow .item_container .item:hover .item_text,
 .selected_effect_glow .item_container .selected .item_text,
-.tab_box_hover_effect_glow #tab_box_container .item:hover .item_text,
+.tab_box_hover_effect_glow #tab_box_container .tab_box_item:hover .item_text,
 .tab_box_active_effect_glow #tab_box_container .active_tab .item_text
 {
   text-shadow: var(--glow_effect);
@@ -586,7 +586,7 @@ svg {
 
 .hover_effect_opacity .item_container .item:hover,
 .selected_effect_opacity .item_container .selected,
-.tab_box_hover_effect_opacity #tab_box_container .item:hover,
+.tab_box_hover_effect_opacity #tab_box_container .tab_box_item:hover,
 .tab_box_active_effect_opacity #tab_box_container .active_tab
 {
   opacity: 0.8;
@@ -594,7 +594,7 @@ svg {
 
 .hover_effect_underline .item_container .item:hover .item_text,
 .selected_effect_underline .item_container .selected .item_text,
-.tab_box_hover_effect_underline #tab_box_container .item:hover .item_text,
+.tab_box_hover_effect_underline #tab_box_container .tab_box_item:hover .item_text,
 .tab_box_active_effect_underline #tab_box_container .active_tab .item_text
 {
   text-decoration: underline;
@@ -602,7 +602,7 @@ svg {
 
 .hover_effect_bold .item_container .item:hover .item_text,
 .selected_effect_bold .item_container .selected .item_text,
-.tab_box_hover_effect_bold #tab_box_container .item:hover .item_text,
+.tab_box_hover_effect_bold #tab_box_container .tab_box_item:hover .item_text,
 .tab_box_active_effect_bold #tab_box_container .active_tab .item_text
 {
   font-weight: bold;
@@ -610,7 +610,7 @@ svg {
 
 .hover_effect_bigger .item_container .item:hover .item_text,
 .selected_effect_bigger .item_container .selected .item_text,
-.tab_box_hover_effect_bigger #tab_box_container .item:hover .item_text,
+.tab_box_hover_effect_bigger #tab_box_container .tab_box_item:hover .item_text,
 .tab_box_active_effect_bigger #tab_box_container .active_tab .item_text
 {
   font-size: var(--bigger_font);
@@ -619,7 +619,7 @@ svg {
 
 .hover_effect_border .item_container .item:hover .item_text,
 .selected_effect_border .item_container .selected .item_text,
-.tab_box_hover_effect_border #tab_box_container .item:hover .item_text,
+.tab_box_hover_effect_border #tab_box_container .tab_box_item:hover .item_text,
 .tab_box_active_effect_border #tab_box_container .active_tab .item_text
 {
   outline: 1px solid var(--text_color);
@@ -1374,14 +1374,14 @@ a:hover
   padding-bottom: 0.15rem;
 }
 
-.tab_box_item {
+.tab_box_special_item {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 0.5rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   padding-top: 0.35rem;
   padding-bottom: 0.35rem;
   cursor: pointer;
