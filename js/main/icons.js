@@ -322,8 +322,10 @@ App.add_icons = (item, side) => {
   }
 
   if (App.get_setting(`hover_button`) !== `none`) {
-    let btn = App.create_hover_button()
-    item.element.append(btn)
+    if (item.type !== `folder`) {
+      let btn = App.create_hover_button()
+      item.element.append(btn)
+    }
   }
 
   App.add_custom_icon(item, side)

@@ -3,14 +3,16 @@ App.show_item_menu = async (args = {}) => {
     return
   }
 
-  if (args.item.type === `folder`) {
-    return
-  }
-
   App.item_menu_args = args
   App.item_menu_active = App.get_active_items({mode: args.item.mode, item: args.item})
   App.item_menu_too_many = App.item_menu_active.length > App.max_command_check_items
   let items = []
+
+  if (args.item.type === `folder`) {
+    App.item_menu_item(items, `save_bookmarks_folder_pick`, {item: args.item})
+    App.show_context({items, e: args.e})
+    return
+  }
 
   let mode_menu = App.get_setting(`${args.item.mode}_item_menu`)
 

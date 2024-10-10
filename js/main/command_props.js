@@ -1211,7 +1211,7 @@ App.setup_commands = () => {
       icon: bookmarks_icon,
       bookmarks_folder: true,
       action: (args) => {
-        App.save_bookmarks_folder_pick()
+        App.save_bookmarks_folder_pick(args.item)
       },
       info: `Save current bookmarks folder to use in the Tab Box`,
     },

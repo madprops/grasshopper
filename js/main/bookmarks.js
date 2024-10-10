@@ -699,8 +699,15 @@ App.search_domain_bookmarks = (item) => {
   })
 }
 
-App.save_bookmarks_folder_pick = () => {
-  let folder = App.bookmarks_folder
+App.save_bookmarks_folder_pick = (item) => {
+  let folder
+
+  if (item) {
+    folder = App.get_bookmarks_folder_by_id(item.id)
+  }
+  else {
+    folder = App.bookmarks_folder
+  }
 
   if (!folder) {
     return
