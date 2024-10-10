@@ -1654,6 +1654,7 @@ App.build_settings = () => {
         {cmd: `show_search_media_menu`},
         {cmd: `bookmark_page`},
         {cmd: `pick_bookmarks_folder`},
+        {cmd: `create_bookmarks_folder`},
         {cmd: `save_bookmarks_folder_pick`},
       ],
       data_group: `normal_menus`,
