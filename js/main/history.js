@@ -109,7 +109,7 @@ App.save_history_pick = () => {
   let tb_mode = App.get_tab_box_mode()
 
   if ([`history`].includes(tb_mode)) {
-    App.refresh_tab_box()
+    App.update_tab_box()
   }
 }
 
@@ -119,6 +119,6 @@ App.forget_history_pick = (value) => {
   let tb_mode = App.get_tab_box_mode()
 
   if ([`history`].includes(tb_mode)) {
-    App.refresh_tab_box()
+    App.update_tab_box()
   }
 }

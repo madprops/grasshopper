@@ -262,7 +262,7 @@ App.remove_item = (item) => {
   App.check_filter_special(mode)
 
   if (mode === `tabs`) {
-    App.refresh_tab_box()
+    App.update_tab_box()
   }
 }
 
@@ -540,7 +540,7 @@ App.move_item = (mode, from_index, to_index) => {
   let item = App.get_items(mode).splice(from_index, 1)[0]
   App.get_items(mode).splice(to_index, 0, item)
   App.move_item_element(mode, item.element, to_index)
-  App.refresh_tab_box()
+  App.update_tab_box()
 }
 
 App.move_item_element = (mode, el, to_index) => {
@@ -943,7 +943,7 @@ App.insert_item = (mode, info) => {
     container.append(item.element)
     App.move_item_element(`tabs`, item.element, info.index)
     App.update_active_trace()
-    App.refresh_tab_box()
+    App.update_tab_box()
   }
   else {
     let old = App.get_item_by_url(mode, item.url)

@@ -71,7 +71,7 @@ App.refresh_rules = (mode) => {
     App.refresh_item_element(item)
   }
 
-  App.refresh_tab_box()
+  App.update_tab_box()
 }
 
 App.edit_domain_rule = (item, e) => {

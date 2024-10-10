@@ -35,7 +35,7 @@ App.process_info_list = (mode, info_list) => {
 
   if (mode === `tabs`) {
     App.check_tab_session()
-    App.refresh_tab_box()
+    App.update_tab_box()
   }
 }
 

@@ -1,6 +1,6 @@
 App.setup_tab_box = () => {
-  App.update_tab_box_debouncer = App.create_debouncer((what) => {
-    App.do_update_tab_box(what)
+  App.update_tab_box_debouncer = App.create_debouncer(() => {
+    App.do_update_tab_box()
   }, App.update_tab_box_delay)
 
   App.check_tab_box_playing_debouncer = App.create_debouncer(() => {
@@ -90,22 +90,32 @@ App.check_tab_box = () => {
   }
 }
 
-App.update_tab_box = (what) => {
-  App.update_tab_box_debouncer.call(what)
+App.update_tab_box = () => {
+  App.update_tab_box_debouncer.call()
 }
 
-App.do_update_tab_box = (what) => {
+App.do_update_tab_box = () => {
   App.update_tab_box_debouncer.cancel()
 
   if (!App.tab_box_enabled()) {
     return
   }
 
-  App.current_tab_box_mode = what
+  let what = App.get_tab_box_mode()
   App.check_tab_box()
+  App.set_tab_box_title(what)
   App[`update_tab_box_${what}`]()
   App.tab_box_scroll()
   App.tab_box_shrink()
+  App.tab_box_scroll()
+}
+
+App.change_tab_box_mode = (what, set = true) => {
+  App.current_tab_box_mode = what
+
+  if (set) {
+    App.set_tab_box_mode(what)
+  }
 }
 
 App.tab_box_show = (mode, o_items) => {
@@ -282,16 +292,6 @@ App.fill_tab_box = (items) => {
   }
 }
 
-App.change_tab_box_mode = (what, set = true) => {
-  if (set) {
-    App.set_tab_box_mode(what)
-  }
-
-  App.set_tab_box_title(what)
-  App.update_tab_box(what)
-  App.tab_box_scroll()
-}
-
 App.show_tab_box_menu = (e) => {
   let items = []
   let c_mode = App.get_tab_box_mode()
@@ -306,6 +306,7 @@ App.show_tab_box_menu = (e) => {
       icon: App.tab_box_modes[tbmode].icon,
       action: () => {
         App.change_tab_box_mode(tbmode)
+        App.update_tab_box()
       },
     })
   }
@@ -380,11 +381,6 @@ App.get_tab_box_mode = () => {
   return App.current_tab_box_mode || App.get_setting(`tab_box_mode`)
 }
 
-App.refresh_tab_box = () => {
-  let mode = App.get_tab_box_mode()
-  App.update_tab_box(mode)
-}
-
 App.tab_box_mode = (what) => {
   if (App.get_setting(`show_tab_box`)) {
     if (App.get_tab_box_mode() === what) {
@@ -442,7 +438,7 @@ App.do_check_tab_box_playing = () => {
     }
 
     if (App.get_tab_box_mode() !== `playing`) {
-      App.change_tab_box_mode(`playing`)
+      App.change_tab_box_mode(`playing`, false)
     }
   }
 }
@@ -559,7 +555,7 @@ App.show_tab_box = (refresh = true, set = false) => {
   App.main_add(`show_tab_box`)
 
   if (refresh) {
-    App.refresh_tab_box()
+    App.update_tab_box()
   }
 
   if (set) {
@@ -811,11 +807,13 @@ App.tab_box_auto_mode = (mode) => {
   if (mode === `history`) {
     if (autos.includes(`history`)) {
       App.change_tab_box_mode(`history`, false)
+      App.update_tab_box()
     }
   }
   else if (mode === `bookmarks`) {
     if (autos.includes(`folders`)) {
       App.change_tab_box_mode(`folders`, false)
+      App.update_tab_box()
     }
   }
   else {
@@ -824,6 +822,7 @@ App.tab_box_auto_mode = (mode) => {
     if (autos.includes(current)) {
       let m = App.get_setting(`tab_box_mode`)
       App.change_tab_box_mode(m, false)
+      App.update_tab_box()
     }
   }
 }
@@ -831,7 +830,7 @@ App.tab_box_auto_mode = (mode) => {
 App.check_tab_box_auto = (mode = App.active_mode) => {
   if (mode === `history`) {
     if (App.get_setting(`tab_box_auto_history`)) {
-      App.change_tab_box_mode(`history`, false)
+      App.change_tab_box_mode(`folders`, false)
     }
   }
   else if (mode === `bookmarks`) {
@@ -850,12 +849,12 @@ App.refresh_tab_box_special = (mode) => {
 
   if (mode === `history`) {
     if (tb_mode === `history`) {
-      App.change_tab_box_mode(`history`)
+      App.update_tab_box()
     }
   }
   else if (mode === `bookmarks`) {
     if (tb_mode === `folders`) {
-      App.change_tab_box_mode(`folders`)
+      App.update_tab_box()
     }
   }
 }

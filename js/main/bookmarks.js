@@ -711,7 +711,7 @@ App.save_bookmarks_folder_pick = () => {
   let tb_mode = App.get_tab_box_mode()
 
   if ([`folders`].includes(tb_mode)) {
-    App.refresh_tab_box()
+    App.update_tab_box()
   }
 }
 
@@ -742,6 +742,6 @@ App.forget_bookmarks_folder_pick = (id) => {
   let tb_mode = App.get_tab_box_mode()
 
   if ([`folders`].includes(tb_mode)) {
-    App.refresh_tab_box()
+    App.update_tab_box()
   }
 }

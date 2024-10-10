@@ -73,7 +73,7 @@ App.check_tab_session = async (items = [], force = false) => {
 
     if (App.active_mode === `tabs`) {
       App.scroll_to_item({item: App.get_selected(`tabs`), force: true})
-      App.refresh_tab_box()
+      App.update_tab_box()
     }
   }
 }
@@ -409,7 +409,7 @@ App.apply_edit = (args = {}) => {
       args.on_change(new_value)
     }
 
-    App.refresh_tab_box()
+    App.update_tab_box()
   }
 }
 
