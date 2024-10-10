@@ -1654,7 +1654,6 @@ App.build_settings = () => {
         {cmd: `bookmark_page`},
         {cmd: `pick_bookmarks_folder`},
         {cmd: `save_bookmarks_folder_pick`},
-        {cmd: `go_to_bookmarks_parent_folder`},
       ],
       data_group: `normal_menus`,
       info: `Menu to show when clicking the bookmarks actions menu`,

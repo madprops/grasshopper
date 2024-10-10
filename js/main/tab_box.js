@@ -732,24 +732,26 @@ App.fill_tab_box_folders = () => {
 
   for (let pick of picks) {
     let el = DOM.create(`div`, `tab_box_special_item action`)
-    el.textContent = pick.title
-    el.dataset.pick_id = pick.id
+    let icon = DOM.create(`div`, `tab_box_special_item_icon`)
+    let text = DOM.create(`div`, `tab_box_special_item_text`)
+    icon.textContent = App.mode_icons.bookmarks
+    text.textContent = pick.title
 
     if (App.bookmarks_folder && (App.bookmarks_folder.id === pick.id)) {
-      el.classList.add(`underline`)
+      text.classList.add(`underline`)
     }
 
+    el.append(icon)
+    el.append(text)
+
     DOM.ev(el, `click`, (e) => {
-      let id = e.target.dataset.pick_id
-      let folder = App.get_bookmarks_folder_by_id(id)
+      let folder = App.get_bookmarks_folder_by_id(pick.id)
       App.open_bookmarks_folder(folder)
     })
 
     DOM.ev(el, `auxclick`, (e) => {
-      let id = e.target.dataset.pick_id
-
       if (e.button === 1) {
-        App.forget_bookmarks_folder_pick(id)
+        App.forget_bookmarks_folder_pick(pick.id)
       }
     })
 
@@ -767,22 +769,25 @@ App.fill_tab_box_history = () => {
 
   for (let pick of picks) {
     let el = DOM.create(`div`, `tab_box_special_item action`)
-    el.textContent = pick
-    el.dataset.value = pick
+    let icon = DOM.create(`div`, `tab_box_special_item_icon`)
+    let text = DOM.create(`div`, `tab_box_special_item_text`)
+    icon.textContent = App.mode_icons.history
+    text.textContent = pick
 
     if (current === pick) {
-      el.classList.add(`underline`)
+      text.classList.add(`underline`)
     }
 
+    el.append(icon)
+    el.append(text)
+
     DOM.ev(el, `click`, (e) => {
-      App.do_show_mode({mode: `history`, filter: e.target.dataset.value})
+      App.do_show_mode({mode: `history`, filter: pick})
     })
 
     DOM.ev(el, `auxclick`, (e) => {
-      let value = e.target.dataset.value
-
       if (e.button === 1) {
-        App.forget_history_pick(value)
+        App.forget_history_pick(pick)
       }
     })
 
