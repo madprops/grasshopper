@@ -12,7 +12,6 @@ Menubutton.create = (args = {}) => {
   }
 
   args.container = DOM.create(`div`, `menubutton_container`)
-
   args.button.draggable = true
 
   args.button.ondragstart = (e) => {
