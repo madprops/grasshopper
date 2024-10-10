@@ -10,7 +10,7 @@ App.process_info_list = (mode, info_list) => {
   let exclude = []
 
   if (mode === `bookmarks`) {
-    if (App.get_setting(`include_bookmark_folders`)) {
+    if (App.bookmark_folders_enabled()) {
       if (App.get_setting(`bookmark_folders_above`)) {
         info_list.sort((a, b) => a.type === `folder` ? -1 : b.type === `folder`)
       }

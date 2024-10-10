@@ -313,7 +313,7 @@ App.get_bookmark_items = async (args = {}) => {
     }
   }
 
-  if (App.get_setting(`include_bookmark_folders`)) {
+  if (App.bookmark_folders_enabled()) {
     clean = false
   }
 
@@ -770,4 +770,9 @@ App.go_to_bookmarks_parent_folder = () => {
 App.travel_to_bookmarks_folder = (item) => {
   let folder = App.get_bookmarks_folder_by_id(item.id)
   App.open_bookmarks_folder(folder)
+}
+
+App.bookmark_folders_enabled = () => {
+  let a = App.get_setting(`include_bookmark_folders`)
+  return a && Boolean(App.bookmarks_folder)
 }
