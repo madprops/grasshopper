@@ -32,7 +32,6 @@ App.BLUE = `rgba(0, 0, 255, 1)`
 App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 App.close_tabs_types = [`normal`, `pinned`, `playing`, `unloaded`, `loaded`, `duplicate`, `visible`, `empty`, `other`, `all`]
-App.tab_box_modes = [`recent`, `pins`, `playing`, `colors`, `tags`, `icons`, `roots`, `parents`, `nodes`, `nodez`, `headers`, `history`, `folders`]
 App.no_favicons = [`history`, `bookmarks`]
 App.fonts = [`serif`, `sans-serif`, `monospace`, `Nova Square`]
 App.optional_modes = [`history`, `bookmarks`]
@@ -171,7 +170,7 @@ App.settings_icons = {
   all: `🔍`,
   general: `⚡`,
   theme: `🎨`,
-  colors: `🇧🇮`,
+  colors: `🇲🇲`,
   zones: `🚥`,
   edits: `📝`,
   icons: `🖼️`,

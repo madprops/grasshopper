@@ -211,14 +211,14 @@ App.set_tab_box_title = (mode) => {
     mode = App.get_setting(`tab_box_mode`)
   }
 
-  if (App.tab_box_modes.indexOf(mode) === -1) {
+  if (Object.keys(App.tab_box_modes).indexOf(mode) === -1) {
     mode = `recent`
     App.set_setting({setting: `tab_box_mode`, value: mode})
   }
 
   let title_main = DOM.el(`#tab_box_title_main`)
   title_main.innerHTML = ``
-  let icon = App.tab_box_icon(mode)
+  let icon = App.tab_box_modes[mode].icon
   let text = App.capitalize(mode)
   title_main.append(App.button_text(icon, text, true))
 }
@@ -231,50 +231,6 @@ App.scroll_tab_box_top = () => {
 App.scroll_tab_box_bottom = () => {
   let c = DOM.el(`#tab_box_container`)
   App.scroll_to_bottom(c)
-}
-
-App.tab_box_icon = (mode) => {
-  if (mode === `recent`) {
-    return App.mode_icons.tabs
-  }
-  else if (mode === `pins`) {
-    return App.get_setting(`pin_icon`) || App.pin_icon
-  }
-  else if (mode === `playing`) {
-    return App.get_setting(`playing_icon`) || App.audio_icon
-  }
-  else if (mode === `colors`) {
-    return App.settings_icons.theme
-  }
-  else if (mode === `tags`) {
-    return App.tag_icon
-  }
-  else if (mode === `icons`) {
-    return App.bot_icon
-  }
-  else if (mode === `roots`) {
-    return App.get_setting(`root_icon`) || App.root_icon
-  }
-  else if (mode === `headers`) {
-    return App.get_setting(`header_icon`) || App.zone_icon
-  }
-  else if (mode === `parents`) {
-    return App.get_setting(`parent_icon`) || App.parent_icon
-  }
-  else if (mode === `nodes`) {
-    return App.get_setting(`node_icon`) || App.node_icon
-  }
-  else if (mode === `nodez`) {
-    return App.get_setting(`node_icon`) || App.node_icon
-  }
-  else if (mode === `folders`) {
-    return App.mode_icons.bookmarks
-  }
-  else if (mode === `history`) {
-    return App.mode_icons.history
-  }
-
-  return App.mode_icons.tabs
 }
 
 App.fill_tab_box = (items) => {
@@ -308,14 +264,14 @@ App.show_tab_box_menu = (e) => {
   let items = []
   let c_mode = App.get_tab_box_mode()
 
-  for (let tbmode of App.tab_box_modes) {
+  for (let tbmode in App.tab_box_modes) {
     if (c_mode === tbmode) {
       continue
     }
 
     items.push({
       text: App.capitalize(tbmode),
-      icon: App.tab_box_icon(tbmode),
+      icon: App.tab_box_modes[tbmode].icon,
       action: () => {
         App.change_tab_box_mode(tbmode)
       },
@@ -414,7 +370,7 @@ App.tab_box_enabled = () => {
 App.cycle_tab_box_mode = (dir) => {
   let waypoint = false
   let current = App.get_tab_box_mode()
-  let modes = App.tab_box_modes.slice(0)
+  let modes = Object.keys(App.tab_box_modes).slice(0)
 
   if (dir === `prev`) {
     modes.reverse()
@@ -468,6 +424,10 @@ App.do_tab_box_grow = () => {
   let auto = App.get_setting(`tab_box_auto_grow`)
 
   if (auto === `none`) {
+    return
+  }
+
+  if (!App.tab_box_items.length) {
     return
   }
 
@@ -551,6 +511,22 @@ App.tab_box_check_size = () => {
 }
 
 App.init_tab_box = () => {
+  App.tab_box_modes = {
+    recent: {info: `Recently visited tabs`, icon: App.mode_icons.tabs},
+    pins: {info: `Pinned tabs`, icon: App.get_setting(`pin_icon`) || App.pin_icon},
+    playing: {info: `Tabs emitting sound`, icon: App.get_setting(`playing_icon`) || App.audio_icon},
+    colors: {info: `Tabs with colors`, icon: App.settings_icons.colors},
+    tags: {info: `Tabs with tags`, icon: App.tag_icon},
+    icons: {info: `Tabs with icons`, icon: App.bot_icon},
+    roots: {info: `Tabs with a root`, icon: App.get_setting(`root_icon`) || App.root_icon},
+    parents: {info: `Tabs that are parents to other tabs`, icon: App.get_setting(`parent_icon`) || App.parent_icon},
+    nodes: {info: `Tabs that were opened by another tab`, icon: App.get_setting(`node_icon`) || App.node_icon},
+    nodez: {info: `The tabs opened by the selected tab`, icon: App.get_setting(`node_icon`) || App.node_icon},
+    headers: {info: `Headers and subheaders`, icon: App.get_setting(`header_icon`) || App.zone_icon},
+    history: {info: `Pick a query to search history`, icon: App.mode_icons.history},
+    folders: {info: `Pick a bookmarks folder`, icon: App.mode_icons.bookmarks},
+  }
+
   App.tab_box_check_size()
   App.check_tab_box_footer()
   let limited = App.tab_box_limited()

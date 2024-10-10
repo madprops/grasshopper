@@ -2160,11 +2160,11 @@ App.get_setting_info = (info, key) => {
 App.get_setting_tab_box_modes = () => {
   let items = []
 
-  for (let mode of App.tab_box_modes) {
+  for (let mode in App.tab_box_modes) {
     items.push({
       text: App.capitalize_words(mode),
       value: mode,
-      icon: App.tab_box_icon(mode),
+      icon: App.tab_box_modes[mode].icon,
     })
   }
 

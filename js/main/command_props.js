@@ -58,10 +58,10 @@ App.setup_commands = () => {
 
   let tbmodes = []
 
-  for (let mode of App.tab_box_modes) {
+  for (let mode in App.tab_box_modes) {
     let m_name = App.capitalize(mode)
     let name = `Tab Box: ${m_name}`
-    let icon = App.tab_box_icon(mode)
+    let icon = App.tab_box_modes[mode].icon
 
     tbmodes.push({
       name,
@@ -85,7 +85,7 @@ App.setup_commands = () => {
     short_name: `All Colors`,
     cmd: `filter_color_all`,
     modes: [`items`],
-    icon: theme_icon,
+    icon: colors_icon,
     filter_mode: true,
     action: (args) => {
       App.filter_color({
@@ -254,7 +254,7 @@ App.setup_commands = () => {
     cmd: `show_filter_color_menu`,
     modes: [`items`],
     item: true,
-    icon: theme_icon,
+    icon: colors_icon,
     action: (args) => {
       App.show_filter_color_menu(args.mode, args.e)
     },
@@ -267,7 +267,7 @@ App.setup_commands = () => {
     cmd: `show_color_menu`,
     modes: [`tabs`],
     item: true,
-    icon: theme_icon,
+    icon: colors_icon,
     action: (args) => {
       App.show_color_menu(args.item, args.e)
     },
@@ -281,7 +281,7 @@ App.setup_commands = () => {
     modes: [`tabs`],
     item: true,
     some_custom_color: true,
-    icon: theme_icon,
+    icon: colors_icon,
     action: (args) => {
       App.edit_tab_color({item: args.item})
     },
@@ -294,7 +294,7 @@ App.setup_commands = () => {
     cmd: `remove_all_colors`,
     modes: [`tabs`],
     item: true,
-    icon: theme_icon,
+    icon: colors_icon,
     action: (args) => {
       App.remove_edits({what: [`color`], text: `colors`})
     },
@@ -305,7 +305,7 @@ App.setup_commands = () => {
     name: `Replace Color`,
     cmd: `replace_color`,
     modes: [`tabs`],
-    icon: theme_icon,
+    icon: colors_icon,
     action: (args) => {
       App.replace_color(args.e)
     },
@@ -2965,7 +2965,7 @@ App.setup_commands = () => {
       item: true,
       single: true,
       color: true,
-      icon: theme_icon,
+      icon: colors_icon,
       action: (args) => {
         App.filter_color({
           mode: args.mode,
