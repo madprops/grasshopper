@@ -23,7 +23,7 @@ App.show_item_menu = async (args = {}) => {
   let global = App.get_setting(`global_item_menu`)
 
   if (global.length) {
-    for (let item of mode_menu) {
+    for (let item of global) {
       App.item_menu_item(items, item.cmd, {item: args.item})
     }
 
