@@ -1697,6 +1697,7 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `save_history_pick`},
+        {cmd: `select_all_items`},
       ],
       data_group: `normal_menus`,
       info: `Menu to show when right clicking empty space in History mode`,
@@ -1707,6 +1708,7 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `create_bookmarks_folder`},
+        {cmd: `select_all_items`},
       ],
       data_group: `normal_menus`,
       info: `Menu to show when right clicking empty space in Bookmarks mode`,
@@ -1718,6 +1720,7 @@ App.build_settings = () => {
       value: [
         {cmd: `reopen_tab`},
         {cmd: `forget_closed`},
+        {cmd: `select_all_items`},
       ],
       separator: true,
       data_group: `normal_menus`,
