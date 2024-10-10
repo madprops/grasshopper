@@ -62,6 +62,15 @@ App.process_info = (args = {}) => {
 
   let decoded_url
 
+  if (args.mode === `bookmarks`) {
+    if (args.info.type === `folder`) {
+      args.info = {...args.info}
+      args.info.url = App.bookmarks_folder_url
+      args.info.favIconUrl = `img/folder.jpg`
+      args.info.title = `Folder: ${args.info.title}`
+    }
+  }
+
   if (args.info.url) {
     try {
       // Check if valid URL
@@ -119,6 +128,7 @@ App.process_info = (args = {}) => {
   else if (args.mode === `bookmarks`) {
     item.parent_id = args.info.parentId
     item.date_added = args.info.dateAdded
+    item.type = args.info.type
   }
 
   App.check_rules(item)

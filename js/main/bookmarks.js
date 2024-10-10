@@ -80,6 +80,13 @@ App.bookmarks_action = (args = {}) => {
   }
 
   App.def_args(def_args, args)
+
+  if (args.item.url === App.bookmarks_folder_url) {
+    let folder = App.get_bookmarks_folder_by_id(args.item.id)
+    App.open_bookmarks_folder(folder)
+    return
+  }
+
   App.select_item({item: args.item, scroll: `nearest_smooth`})
 
   if (args.on_action) {
@@ -306,6 +313,8 @@ App.get_bookmark_items = async (args = {}) => {
       items = children
     }
   }
+
+  clean = false
 
   if (clean) {
     items = App.clean_bookmark_nodes(items)

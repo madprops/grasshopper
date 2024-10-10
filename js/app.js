@@ -117,6 +117,7 @@ App.num_generic_menus = 9
 App.max_command_check_items = 25
 App.max_bookmark_folder_picks = 20
 App.max_history_picks = 20
+App.bookmarks_folder_url = `https://bookmarks.folder`
 
 App.settings_ready = false
 App.media_image_ready = false
