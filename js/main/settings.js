@@ -882,6 +882,7 @@ App.import_settings = (value = ``) => {
 
 App.restart_settings = () => {
   App.refresh_settings()
+  App.hide_tab_box(true)
 
   if (App.on_settings()) {
     App.show_settings_category(`general`)

@@ -22,7 +22,6 @@ App.setup_tab_box = () => {
 
 App.reset_tab_box = () => {
   App.tab_box_check_size()
-  App.hide_tab_box(true)
 }
 
 App.create_tab_box = () => {

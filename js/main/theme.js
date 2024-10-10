@@ -243,7 +243,7 @@ App.do_apply_theme = (args = {}) => {
 
     for (let size of App.sizes_2) {
       if (size.value === `compact`) {
-        App.set_css_var(`tab_box_size_compact`, `1.88rem`)
+        App.set_css_var(`tab_box_size_compact`, `1.9rem`)
       }
       else if (size.value === `tiny`) {
         let size = tbh_rem - (tbh_diff * 2)
