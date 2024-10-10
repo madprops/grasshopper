@@ -155,9 +155,13 @@ App.edit_main_title = () => {
   })
 }
 
-App.set_main_title = (title) => {
+App.set_main_title = (title, force = true) => {
   App.set_setting({setting: `main_title`, value: title})
-  App.set_setting({setting: `main_title_date`, value: false})
+
+  if (force) {
+    App.set_setting({setting: `main_title_date`, value: false})
+  }
+
   App.check_main_title()
 }
 

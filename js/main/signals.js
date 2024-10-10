@@ -222,7 +222,7 @@ App.do_send_signal = async (signal, from) => {
 
         if (signal.update_title) {
           text = App.add_signal_icon(signal, text)
-          App.set_main_title(text)
+          App.set_main_title(text, false)
         }
 
         if (signal.import_tabs) {
