@@ -1780,7 +1780,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
           {text: App.separator_string},
-          {text: `Hide`, value: `hide`},
           {text: `Tiny`, value: `tiny`},
           {text: `Small`, value: `small`},
           {text: `Normal`, value: `normal`},
