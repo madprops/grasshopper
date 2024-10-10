@@ -749,7 +749,7 @@ App.fill_tab_box_folders = () => {
   c.innerHTML = ``
 
   for (let pick of picks) {
-    let el = DOM.create(`div`, `tab_box_special_item action`)
+    let el = DOM.create(`div`, `tab_box_item action`)
     let icon = DOM.create(`div`, `tab_box_special_item_icon`)
     let text = DOM.create(`div`, `tab_box_special_item_text`)
     icon.textContent = App.mode_icons.bookmarks
@@ -786,7 +786,7 @@ App.fill_tab_box_history = () => {
   let current = App.get_filter().trim()
 
   for (let pick of picks) {
-    let el = DOM.create(`div`, `tab_box_special_item action`)
+    let el = DOM.create(`div`, `tab_box_item action`)
     let icon = DOM.create(`div`, `tab_box_special_item_icon`)
     let text = DOM.create(`div`, `tab_box_special_item_text`)
     icon.textContent = App.mode_icons.history

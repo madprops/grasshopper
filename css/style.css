@@ -1887,15 +1887,3 @@ a:hover
 .search_empty_message {
   padding: 1rem;
 }
-
-.tab_box_special_item {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
-  width: 100%;
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-}
