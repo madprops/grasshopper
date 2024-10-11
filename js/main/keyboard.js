@@ -620,15 +620,6 @@ App.setup_keyboard = () => {
 
     App.stop_press_timeout()
     let mode = App.window_mode
-    // let item = App.get_selected(mode)
-
-    // if (e.ctrlKey && !e.shiftKey) {
-    //   if (e.key === `Enter`) {
-    //     App.node_tabs_action(item)
-    //     e.preventDefault()
-    //     return
-    //   }
-    // }
 
     if (App.popup_open()) {
       let pmode = App.popup_mode()
