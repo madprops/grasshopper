@@ -380,8 +380,10 @@ App.mouse_double_click_action = (mode, e) => {
   mode = item.mode
 
   if (item.header) {
-    if (App.do_header_action(item, `double_click_header`)) {
-      return
+    if (!item.unloaded) {
+      if (App.do_header_action(item, `double_click_header`)) {
+        return
+      }
     }
   }
 
