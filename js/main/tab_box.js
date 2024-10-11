@@ -28,7 +28,7 @@ App.make_tab_box_modes = () => {
     colors: {info: `Tabs with colors`, icon: App.settings_icons.colors},
     tags: {info: `Tabs with tags`, icon: App.get_setting(`tags_icon`)},
     icons: {info: `Tabs with icons`, icon: App.bot_icon},
-    titles: {info: `Tabs with titles`, icon: App.get_setting(`titled_icon`)},
+    titles: {info: `Tabs with titles`, icon: App.get_setting(`title_icon`)},
     notes: {info: `Tabs with notes`, icon: App.get_setting(`notes_icon`)},
     roots: {info: `Tabs with a root`, icon: App.get_setting(`root_icon`)},
     parents: {info: `Tabs that are parents to other tabs`, icon: App.get_setting(`parent_icon`)},

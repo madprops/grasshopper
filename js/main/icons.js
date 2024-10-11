@@ -235,10 +235,10 @@ App.add_icons = (item, side) => {
   }
 
   cls = ``
-  what = `titled_icon`
+  what = `title_icon`
   title = `Titled`
 
-  if (App.get_setting(`titled_icon_click`)) {
+  if (App.get_setting(`title_icon_click`)) {
     cls += ` grower`
     title += `\nClick to edit the title`
   }
@@ -257,6 +257,11 @@ App.add_icons = (item, side) => {
   cls = ``
   what = `tags_icon`
   title = `Tagged`
+
+  if (App.get_setting(`tags_icon_click`)) {
+    cls += ` grower`
+    title += `\nClick to edit the tags`
+  }
 
   if (App.icon_enabled(what) && check_side(what)) {
     let icon = DOM.create(`div`, classes(what))
@@ -349,9 +354,9 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.icon_enabled(`titled`)) {
+  if (App.icon_enabled(`title`)) {
     if (!item.header) {
-      let icon = DOM.el(`.titled_icon`, item.element)
+      let icon = DOM.el(`.title_icon`, item.element)
 
       if (App.get_title(item)) {
         DOM.show(icon)

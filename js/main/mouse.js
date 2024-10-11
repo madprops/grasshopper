@@ -285,9 +285,16 @@ App.mouse_click_action = (e) => {
       }
     }
 
-    if (App.get_setting(`titled_icon_click`)) {
-      if (DOM.class(e.target, [`titled_icon`])) {
+    if (App.get_setting(`title_icon_click`)) {
+      if (DOM.class(e.target, [`title_icon`])) {
         App.edit_title(item)
+        return
+      }
+    }
+
+    if (App.get_setting(`tags_icon_click`)) {
+      if (DOM.class(e.target, [`tags_icon`])) {
+        App.edit_tags(item)
         return
       }
     }

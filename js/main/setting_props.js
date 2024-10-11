@@ -1015,29 +1015,29 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
-    titled_icon: {
-      name: `Titled Icon`,
+    title_icon: {
+      name: `Title Icon`,
       type: `text_smaller`,
       value: `✏️`,
       placeholder: App.icon_placeholder,
       info: `Icon for tabs with a custom title`,
       version: 1,
     },
-    titled_icon_side: {
-      name: `Titled Icon Side`,
+    title_icon_side: {
+      name: `Title Icon Side`,
       type: `menu`,
       value: `right`,
-      info: `Show the Titled Icon on the left or right of text`,
+      info: `Show the Title Icon on the left or right of text`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    show_titled_icon: {
-      name: `Show Titled Icon`,
+    show_title_icon: {
+      name: `Show Title Icon`,
       type: `menu`,
       value: `never`,
-      info: `When to show the Titled Icon`,
+      info: `When to show the Title Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -1296,11 +1296,18 @@ App.build_settings = () => {
       info: `Load the tab when clicking the unloaded icon`,
       version: 1,
     },
-    titled_icon_click: {
+    title_icon_click: {
       name: `Titled Icon Click`,
       type: `checkbox`,
       value: true,
-      info: `Edit the tab's title when clicking the titled icon`,
+      info: `Edit the tab's title when clicking the title icon`,
+      version: 1,
+    },
+    tags_icon_click: {
+      name: `Tags Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Edit the tab's tags when clicking the tags icon`,
       version: 1,
     },
     custom_icon_click: {

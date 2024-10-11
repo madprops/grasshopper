@@ -20,7 +20,7 @@ App.setup_commands = () => {
   let root_icon = App.get_setting(`root_icon`)
   let node_icon = App.get_setting(`node_icon`)
   let parent_icon = App.get_setting(`parent_icon`)
-  let titled_icon = App.get_setting(`titled_icon`)
+  let title_icon = App.get_setting(`title_icon`)
   let tags_icon = App.get_setting(`tags_icon`)
 
   let main_title_icon = App.settings_icons.title
@@ -2192,7 +2192,7 @@ App.setup_commands = () => {
       cmd: `edit_title`,
       modes: [`tabs`],
       item: true,
-      icon: titled_icon,
+      icon: title_icon,
       action: (args) => {
         App.edit_title(args.item)
       },
