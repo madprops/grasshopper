@@ -154,6 +154,8 @@ App.mouse_click_action = (e) => {
     return
   }
 
+  mode = item.mode
+
   if (item_alt) {
     if (App.get_setting(`tab_box_reveal`)) {
       if (!App.tab_box_auto_scrollable()) {
@@ -161,8 +163,6 @@ App.mouse_click_action = (e) => {
       }
     }
   }
-
-  mode = item.mode
 
   if (e.shiftKey) {
     App.select_range(item)
