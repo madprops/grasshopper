@@ -24,11 +24,7 @@ App.user_madprops_settings = () => {
 
   // Main Title
 
-  App.color_main_title(`green`)
-  App.set_setting({setting: `show_main_title`, value: true})
   App.set_setting({setting: `main_title`, value: `Loading...`})
-  App.set_setting({setting: `main_title_colors`, value: true})
-  App.set_setting({setting: `main_title_text_color`, value: `rgba(255, 255, 255, 1)`})
 
   // Wheel
 

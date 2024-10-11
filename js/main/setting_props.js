@@ -2624,7 +2624,7 @@ App.build_settings = () => {
     show_main_title: {
       name: `Show The Title`,
       type: `checkbox`,
-      value: false,
+      value: true,
       no_mirror: true,
       info: `Show the Title at the top`,
       version: 1,
@@ -2634,7 +2634,7 @@ App.build_settings = () => {
       type: `text`,
       value: ``,
       no_mirror: true,
-      placeholder: `Title At The Top`,
+      placeholder: `Text to show`,
       info: `The text to show in the Title`,
       version: 1,
     },
@@ -2718,14 +2718,14 @@ App.build_settings = () => {
     main_title_colors: {
       name: `Title Colors`,
       type: `checkbox`,
-      value: false,
+      value: true,
       info: `Use custom colors on the Title`,
       version: 2,
     },
     main_title_text_color: {
       name: `Title Text Color`,
       type: `color`,
-      value: App.default_color,
+      value: `white`,
       info: `Text color of the Title`,
       version: 1,
       setup: (key) => {
@@ -2735,7 +2735,7 @@ App.build_settings = () => {
     main_title_background_color: {
       name: `Title Background Color`,
       type: `color`,
-      value: App.default_color,
+      value: `rgba(88, 132, 118, 1)`,
       info: `Background color of the Title`,
       separator: true,
       version: 1,
@@ -2746,7 +2746,7 @@ App.build_settings = () => {
     main_title_date: {
       name: `Title Date`,
       type: `checkbox`,
-      value: false,
+      value: true,
       no_mirror: true,
       info: `Show the current date as the Title`,
       version: 2,
