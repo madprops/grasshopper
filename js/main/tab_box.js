@@ -735,6 +735,7 @@ App.tab_box_update_active = () => {
   for (let item of App.tab_box_items) {
     if (item.active) {
       item.element.classList.add(`active_tab`)
+      item.element.scrollIntoView({block: `center`})
     }
     else {
       item.element.classList.remove(`active_tab`)
