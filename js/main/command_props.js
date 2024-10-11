@@ -2922,19 +2922,6 @@ App.setup_commands = () => {
       info: `Filter the tabs that were opened through this tab`,
     },
     {
-      name: `Node Action`,
-      short_name: `Action`,
-      cmd: `node_tabs_action`,
-      modes: [`tabs`],
-      item: true,
-      single: true,
-      icon: node_icon,
-      action: (args) => {
-        App.node_tabs_action(args.item)
-      },
-      info: `Filter a tab's nodes or go to its parent`,
-    },
-    {
       name: `Close Nodes`,
       short_name: `Nodes`,
       cmd: `close_node_tabs`,

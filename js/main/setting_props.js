@@ -4342,9 +4342,9 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {
-          cmd: `node_tabs_action`,
+          cmd: `filter_node_tabs`,
           key: `Enter`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_node_action`,
+          _id_: `kb_filter_nodes`,
         },
       ],
       separator: true,
