@@ -27,21 +27,21 @@ App.do_update_footer_info = (item) => {
   let info = ``
   let mode = App.active_mode
 
-  if ((mode === `bookmarks`) && item.parent_id) {
-    let folder = App.get_bookmarks_folder_by_id(item.parent_id)
+  if (item) {
+    if ((mode === `bookmarks`) && item.parent_id) {
+      let folder = App.get_bookmarks_folder_by_id(item.parent_id)
 
-    if (folder) {
-      let length = App.get_setting(`bookmarks_footer_folder`)
+      if (folder) {
+        let length = App.get_setting(`bookmarks_footer_folder`)
 
-      if (length > 0) {
-        let title = folder.title
-        pre = title || ``
-        pre = pre.slice(0, length)
+        if (length > 0) {
+          let title = folder.title
+          pre = title || ``
+          pre = pre.slice(0, length)
+        }
       }
     }
-  }
 
-  if (item) {
     if (item.header) {
       info = item.header_title
     }
