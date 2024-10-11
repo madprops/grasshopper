@@ -168,6 +168,7 @@ App.signal_min_delay = 3
 App.last_settings_scroll_delay = 500
 App.default_combo_delay = 100
 App.mouse_over_delay = 150
+App.mouse_out_delay = 150
 
 App.settings_icons = {
   all: `🔍`,

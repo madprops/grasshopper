@@ -68,6 +68,10 @@ App.setup_mouse = () => {
   App.mouse_over_debouncer = App.create_debouncer((e) => {
     App.do_mouse_over_action(e)
   }, App.mouse_over_delay)
+
+  App.mouse_out_debouncer = App.create_debouncer((e) => {
+    App.do_mouse_out_action(e)
+  }, App.mouse_out_delay)
 }
 
 // Using this on mousedown instead causes some problems
@@ -672,6 +676,10 @@ App.do_mouse_over_action = (e) => {
 }
 
 App.mouse_out_action = (e) => {
+  App.mouse_out_debouncer.call(e)
+}
+
+App.do_mouse_out_action = (e) => {
   let mode = App.active_mode
   let selected = App.get_selected(mode)
 
