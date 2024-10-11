@@ -2060,6 +2060,13 @@ App.build_settings = () => {
       info: `Auto show the Tab Box when a tab is playing`,
       version: 1,
     },
+    tab_box_follow: {
+      name: `Tab Box Follow`,
+      type: `checkbox`,
+      value: false,
+      info: `When a tab gets activated scroll to it in the Tab Box`,
+      version: 1,
+    },
     tab_box_reverse: {
       name: `Tab Box Reverse`,
       type: `checkbox`,

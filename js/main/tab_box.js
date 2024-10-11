@@ -735,6 +735,10 @@ App.tab_box_update_active = () => {
   for (let item of App.tab_box_items) {
     if (item.active) {
       item.element.classList.add(`active_tab`)
+
+      if (App.get_setting(`tab_box_follow`)) {
+        item.element.scrollIntoView({block: `nearest`})
+      }
     }
     else {
       item.element.classList.remove(`active_tab`)
