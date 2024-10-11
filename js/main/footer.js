@@ -27,13 +27,17 @@ App.do_update_footer_info = (item) => {
   let info = ``
   let mode = App.active_mode
 
-  if (mode === `bookmarks` && App.bookmarks_folder) {
-    let length = App.get_setting(`bookmarks_footer_folder`)
+  if ((mode === `bookmarks`) && item.parent_id) {
+    let folder = App.get_bookmarks_folder_by_id(item.parent_id)
 
-    if (length > 0) {
-      let title = App.bookmarks_folder.title
-      pre = title || ``
-      pre = pre.slice(0, length)
+    if (folder) {
+      let length = App.get_setting(`bookmarks_footer_folder`)
+
+      if (length > 0) {
+        let title = folder.title
+        pre = title || ``
+        pre = pre.slice(0, length)
+      }
     }
   }
 
@@ -47,7 +51,7 @@ App.do_update_footer_info = (item) => {
   }
 
   if (pre) {
-    info = `${pre} ${info}`.trim()
+    info = `${pre} | ${info}`.trim()
   }
 
   if (info) {
