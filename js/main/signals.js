@@ -17,6 +17,9 @@ App.start_signals = () => {
       DOM.ev(close, `click`, () => {
         App.hide_window()
       })
+
+      let container = DOM.el(`#window_content_signals`)
+      App.generic_gestures(container)
     },
     after_show: () => {
       App.fill_signals()

@@ -51,3 +51,25 @@ App.settings_gestures = (el) => {
 
   NiceGesture.start(el, obj)
 }
+
+App.generic_gestures = (el) => {
+  let obj = {
+    up: () => {
+      App.scroll_to_top(el)
+    },
+    down: () => {
+      App.scroll_to_bottom(el)
+    },
+    left: () => {
+      //
+    },
+    right: () => {
+      //
+    },
+    default: () => {
+      //
+    },
+  }
+
+  NiceGesture.start(el, obj)
+}

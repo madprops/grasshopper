@@ -118,6 +118,9 @@ App.start_about = () => {
       DOM.ev(clear, `click`, () => {
         App.reset_generic_filter(`about`)
       })
+
+      let container = DOM.el(`#window_content_about`)
+      App.generic_gestures(container)
     },
     after_show: () => {
       let filter = DOM.el(`#about_filter`)
