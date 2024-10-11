@@ -1044,7 +1044,7 @@ App.build_settings = () => {
     show_titled_icon: {
       name: `Show Titled Icon`,
       type: `menu`,
-      value: `always`,
+      value: `never`,
       info: `When to show the Titled Icon`,
       separator: true,
       version: 1,
