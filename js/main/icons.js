@@ -255,7 +255,7 @@ App.add_icons = (item, side) => {
   }
 
   cls = ``
-  what = `tagged_icon`
+  what = `tags_icon`
   title = `Tagged`
 
   if (App.icon_enabled(what) && check_side(what)) {
@@ -362,8 +362,8 @@ App.check_icons = (item) => {
     }
   }
 
-  if (App.icon_enabled(`tagged`)) {
-    let icon = DOM.el(`.tagged_icon`, item.element)
+  if (App.icon_enabled(`tags`)) {
+    let icon = DOM.el(`.tags_icon`, item.element)
 
     if (App.tagged(item)) {
       DOM.show(icon)

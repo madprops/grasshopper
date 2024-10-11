@@ -748,17 +748,9 @@ App.build_settings = () => {
       name: `Closed Icon`,
       type: `text_smaller`,
       value: `🔃`,
-      placeholder: App.icon_placeholder,
-      info: `Icon for the Closed mode`,
-      version: 1,
-    },
-    tags_icon: {
-      name: `Tags Icon`,
-      type: `text_smaller`,
-      value: `✝️`,
       separator: true,
       placeholder: App.icon_placeholder,
-      info: `Icon for tags`,
+      info: `Icon for the Closed mode`,
       version: 1,
     },
     active_icon: {
@@ -1052,29 +1044,29 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
-    tagged_icon: {
-      name: `Tagged Icon`,
+    tags_icon: {
+      name: `Tags Icon`,
       type: `text_smaller`,
       value: `✝️`,
       placeholder: App.icon_placeholder,
       info: `Icon for tagged tabs`,
       version: 1,
     },
-    tagged_icon_side: {
-      name: `Tagged Icon Side`,
+    tags_icon_side: {
+      name: `Tags Icon Side`,
       type: `menu`,
       value: `right`,
-      info: `Show the Tagged Icon on the left or right of text`,
+      info: `Show the Tags Icon on the left or right of text`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sides)
       },
     },
-    show_tagged_icon: {
-      name: `Show Tagged Icon`,
+    show_tags_icon: {
+      name: `Show Tags Icon`,
       type: `menu`,
       value: `never`,
-      info: `When to show the Tagged Icon`,
+      info: `When to show the Tags Icon`,
       separator: true,
       version: 1,
       setup: (key) => {
