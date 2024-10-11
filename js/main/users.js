@@ -25,6 +25,7 @@ App.user_madprops_settings = () => {
   // Main Title
 
   App.set_setting({setting: `main_title`, value: `Loading...`})
+  App.set_setting({setting: `main_title_date`, value: false})
 
   // Wheel
 
