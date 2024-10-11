@@ -17,6 +17,7 @@ App.init = async () => {
   await App.stor_get_bookmark_folder_picks()
   await App.stor_get_history_picks()
   await App.check_init_mode()
+  Menubutton.setup()
   App.make_tab_box_modes()
   App.setup_commands()
   App.setup_tabs()
