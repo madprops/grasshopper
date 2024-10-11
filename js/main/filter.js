@@ -1082,8 +1082,10 @@ App.filter_common = (args = {}) => {
   }
 
   if (App.filter_mode(args.item.mode).startsWith(args.name)) {
-    App.filter_all(args.item.mode)
-    return
+    if (![`node`].includes(args.name)) {
+      App.filter_all(args.item.mode)
+      return
+    }
   }
 
   App.set_custom_filter_mode(
@@ -1113,12 +1115,10 @@ App.filter_title = (item) => {
 }
 
 App.filter_nodes = (item) => {
-  let clone = {...item, id: item.id}
-
   App.filter_common({
     name: `node`,
     full: `Node`,
-    prop: clone.id,
+    prop: item.id,
     item,
   })
 }
