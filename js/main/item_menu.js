@@ -271,7 +271,7 @@ App.item_menu_tags = (items, item) => {
     App.item_menu_item(tag_items, `add_tags`, {item, short: false})
 
     items.push({
-      icon: App.tag_icon,
+      icon: App.get_setting(`tags_icon`),
       text: `Tags`,
       items: tag_items,
     })

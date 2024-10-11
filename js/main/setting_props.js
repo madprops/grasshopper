@@ -748,9 +748,17 @@ App.build_settings = () => {
       name: `Closed Icon`,
       type: `text_smaller`,
       value: `🔃`,
-      separator: true,
       placeholder: App.icon_placeholder,
       info: `Icon for the Closed mode`,
+      version: 1,
+    },
+    tags_icon: {
+      name: `Tags Icon`,
+      type: `text_smaller`,
+      value: `✝️`,
+      separator: true,
+      placeholder: App.icon_placeholder,
+      info: `Icon for tags`,
       version: 1,
     },
     active_icon: {

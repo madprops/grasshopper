@@ -21,6 +21,7 @@ App.setup_commands = () => {
   let node_icon = App.get_setting(`node_icon`)
   let parent_icon = App.get_setting(`parent_icon`)
   let titled_icon = App.get_setting(`titled_icon`)
+  let tags_icon = App.get_setting(`tags_icon`)
 
   let main_title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
@@ -46,7 +47,6 @@ App.setup_commands = () => {
   let left_icon = App.left_arrow_icon
   let right_icon = App.right_arrow_icon
   let close_icon = App.close_icon
-  let tag_icon = App.tag_icon
   let zone_icon = App.zone_icon
   let globe_icon = App.globe_icon
   let grasshopper_icon = App.grasshopper_icon
@@ -1061,7 +1061,7 @@ App.setup_commands = () => {
       short_name: `Taglist`,
       cmd: `toggle_taglist`,
       modes: [`items`],
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.toggle_taglist(args.mode)
       },
@@ -2216,7 +2216,7 @@ App.setup_commands = () => {
       cmd: `edit_tags`,
       modes: [`tabs`],
       item: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.edit_tags(args.item)
       },
@@ -2228,7 +2228,7 @@ App.setup_commands = () => {
       cmd: `add_tags`,
       modes: [`tabs`],
       item: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.add_tags(args.item)
       },
@@ -2350,7 +2350,7 @@ App.setup_commands = () => {
       cmd: `add_jump_tag_1`,
       modes: [`tabs`],
       item: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.add_tag_all(args.item, `jump`)
       },
@@ -2362,7 +2362,7 @@ App.setup_commands = () => {
       cmd: `remove_jump_tag_1`,
       modes: [`tabs`],
       item: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.remove_tag_all(args.item, `jump`)
       },
@@ -2372,7 +2372,7 @@ App.setup_commands = () => {
       name: `Wipe Jump`,
       cmd: `wipe_jump_1`,
       modes: [`tabs`],
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.wipe_jump(1)
       },
@@ -2384,7 +2384,7 @@ App.setup_commands = () => {
       cmd: `add_jump_tag_2`,
       modes: [`tabs`],
       item: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.add_tag_all(args.item, `jump2`)
       },
@@ -2396,7 +2396,7 @@ App.setup_commands = () => {
       cmd: `remove_jump_tag_2`,
       modes: [`tabs`],
       item: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.remove_tag_all(args.item, `jump2`)
       },
@@ -2406,7 +2406,7 @@ App.setup_commands = () => {
       name: `Wipe Jump 2`,
       cmd: `wipe_jump_2`,
       modes: [`tabs`],
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.wipe_jump(2)
       },
@@ -2418,7 +2418,7 @@ App.setup_commands = () => {
       cmd: `add_jump_tag_3`,
       modes: [`tabs`],
       item: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.add_tag_all(args.item, `jump3`)
       },
@@ -2430,7 +2430,7 @@ App.setup_commands = () => {
       cmd: `remove_jump_tag_3`,
       modes: [`tabs`],
       item: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.remove_tag_all(args.item, `jump3`)
       },
@@ -2440,7 +2440,7 @@ App.setup_commands = () => {
       name: `Wipe Jump 3`,
       cmd: `wipe_jump_3`,
       modes: [`tabs`],
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.wipe_jump(3)
       },
@@ -2451,7 +2451,7 @@ App.setup_commands = () => {
       cmd: `filter_jump_tag_1`,
       modes: [`items`],
       filter_mode: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.filter_jump_tag(args.mode, 1)
       },
@@ -2462,7 +2462,7 @@ App.setup_commands = () => {
       cmd: `filter_jump_tag_2`,
       modes: [`items`],
       filter_mode: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.filter_jump_tag(args.mode, 2)
       },
@@ -2473,7 +2473,7 @@ App.setup_commands = () => {
       cmd: `filter_jump_tag_3`,
       modes: [`items`],
       filter_mode: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.filter_jump_tag(args.mode, 3)
       },
@@ -2708,7 +2708,7 @@ App.setup_commands = () => {
       name: `Wipe Tag`,
       cmd: `wipe_tag`,
       modes: [`tabs`],
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.wipe_tag()
       },
@@ -2721,7 +2721,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_custom_tags: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.remove_item_tags(args.item)
       },
@@ -2732,7 +2732,7 @@ App.setup_commands = () => {
       short_name: `Rm Tags`,
       cmd: `remove_all_tags`,
       modes: [`tabs`],
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.remove_edits({what: [`tags`], text: `tags`})
       },
@@ -2836,7 +2836,7 @@ App.setup_commands = () => {
       name: `Replace Tag`,
       cmd: `replace_tag`,
       modes: [`tabs`],
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.replace_tag()
       },
@@ -3023,7 +3023,7 @@ App.setup_commands = () => {
       some_tags: true,
       item: true,
       single: true,
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.filter_tag_pick(args.item, args.e)
       },
@@ -3034,7 +3034,7 @@ App.setup_commands = () => {
       short_name: `Tags`,
       cmd: `show_filter_tag_menu`,
       modes: [`items`],
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.show_filter_tag_menu(args.mode, args.e)
       },
@@ -3045,7 +3045,7 @@ App.setup_commands = () => {
       short_name: `Tag`,
       cmd: `show_tag`,
       modes: [`items`],
-      icon: tag_icon,
+      icon: tags_icon,
       action: (args) => {
         App.show_filter_tag_menu(args.mode, args.e, true)
       },
@@ -3056,7 +3056,7 @@ App.setup_commands = () => {
       short_name: `All Tags`,
       cmd: `filter_tag_all`,
       modes: [`items`],
-      icon: tag_icon,
+      icon: tags_icon,
       filter_mode: true,
       action: (args) => {
         App.filter_tag({mode: args.mode, tag: `all`, from: args.from})

@@ -355,7 +355,7 @@ App.filter_tag_pick = (item, e) => {
 
   for (let tag of App.tags(item)) {
     items.push({
-      icon: App.tag_icon,
+      icon: App.get_setting(`tags_icon`),
       text: tag,
       action: () => {
         App.filter_tag({mode: item.mode, tag})
@@ -395,7 +395,7 @@ App.get_tag_items = (mode, show = false) => {
 
   if (tags.length) {
     tags.sort(fav_sort)
-    let icon = App.tag_icon
+    let icon = App.get_setting(`tags_icon`)
 
     if (!show) {
       items.push({

@@ -26,7 +26,7 @@ App.make_tab_box_modes = () => {
     pins: {info: `Pinned tabs`, icon: App.get_setting(`pin_icon`)},
     playing: {info: `Tabs emitting sound`, icon: App.get_setting(`playing_icon`)},
     colors: {info: `Tabs with colors`, icon: App.settings_icons.colors},
-    tags: {info: `Tabs with tags`, icon: App.tag_icon},
+    tags: {info: `Tabs with tags`, icon: App.get_setting(`tags_icon`)},
     icons: {info: `Tabs with icons`, icon: App.bot_icon},
     titles: {info: `Tabs with titles`, icon: App.get_setting(`titled_icon`)},
     notes: {info: `Tabs with notes`, icon: App.get_setting(`notes_icon`)},
