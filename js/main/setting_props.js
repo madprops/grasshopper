@@ -986,7 +986,7 @@ App.build_settings = () => {
     show_loaded_icon: {
       name: `Show Loaded Icon`,
       type: `menu`,
-      value: `always`,
+      value: `never`,
       info: `When to show the Loaded Icon`,
       separator: true,
       version: 1,
