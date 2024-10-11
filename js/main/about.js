@@ -22,8 +22,6 @@ App.start_about = () => {
         `Shift + Enter on items shows the Item Menu`,
         `(Ctrl) Home goes to the top`,
         `(Ctrl) End goes to the bottom`,
-        `Ctrl + Left shows the Main Menu`,
-        `Ctrl + Right shows the Actions Menu`,
         `Ctrl + Up moves tabs to the top`,
         `Ctrl + Down moves tabs to the bottom`,
         `Ctrl + F shows the Filter Menu`,

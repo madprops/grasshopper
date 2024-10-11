@@ -387,12 +387,14 @@ App.tabs_action = async (args = {}) => {
     method = args.from
   }
 
-  await App.focus_tab({
-    item: args.item,
-    select: true,
-    scroll: args.scroll,
-    method,
-  })
+  if (!args.item.active) {
+    await App.focus_tab({
+      item: args.item,
+      select: true,
+      scroll: args.scroll,
+      method,
+    })
+  }
 
   if (args.from === `tab_box`) {
     if (!App.get_setting(`tab_box_focus`)) {
@@ -400,8 +402,14 @@ App.tabs_action = async (args = {}) => {
     }
   }
 
+  let filter_change = false
+
   if (args.on_action) {
-    App.on_action(`tabs`)
+    filter_change = App.on_action(`tabs`)
+  }
+
+  if (filter_change) {
+    do_blink = false
   }
 
   blink_item()

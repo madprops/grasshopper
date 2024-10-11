@@ -4342,8 +4342,13 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {
+          cmd: `focus_parent_tab`,
+          key: `ArrowLeft`, ctrl: true, shift: false, alt: false,
+          _id_: `kb_focus_parent`,
+        },
+        {
           cmd: `filter_node_tabs`,
-          key: `Enter`, ctrl: true, shift: false, alt: false,
+          key: `ArrowRight`, ctrl: true, shift: false, alt: false,
           _id_: `kb_filter_nodes`,
         },
       ],

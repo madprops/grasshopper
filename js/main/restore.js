@@ -8,7 +8,7 @@ App.check_restore = () => {
 
     App.last_restore_date = App.now()
     App.update_filter_history()
-    App.restore()
+    return App.restore()
   }
 }
 
@@ -34,7 +34,7 @@ App.restore = () => {
   if (!App.on_items()) {
     if (App.on_settings()) {
       App.hide_window()
-      return
+      return false
     }
 
     App.hide_window()
@@ -44,9 +44,11 @@ App.restore = () => {
 
   if (mode !== App.main_mode()) {
     App.show_main_mode(mode)
+    return true
   }
   else if (App.is_filtered(mode)) {
     App.filter_all(mode)
+    return true
   }
 }
 
