@@ -203,7 +203,7 @@ App.settings_icons = {
 
 App.mode_icons = {
   tabs: `📚`,
-  history: `⏳`,
+  history: `🧭`,
   bookmarks: `⭐`,
   closed: `🔃`,
 }
