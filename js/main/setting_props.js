@@ -4333,7 +4333,13 @@ App.build_settings = () => {
     keyboard_shortcuts: {
       name: `Keyboard Shortcuts`,
       type: `list`,
-      value: [],
+      value: [
+        {
+          cmd: `node_tabs_action`,
+          key: `Enter`, ctrl: true, shift: false, alt: false,
+          _id_: `kb_node_action`,
+        },
+      ],
       separator: true,
       info: `Extra keyboard shortcuts
       If these are triggered the default shortcuts get ignored`,
