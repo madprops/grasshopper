@@ -2018,6 +2018,13 @@ App.build_settings = () => {
       info: `Focus the tab that was activated through the Tab Box`,
       version: 1,
     },
+    tab_box_reveal: {
+      name: `Tab Box Reveal`,
+      type: `checkbox`,
+      value: true,
+      info: `Scroll to the clicked item within the Tab Box`,
+      version: 1,
+    },
     tab_box_blur: {
       name: `Tab Box Blur`,
       type: `checkbox`,

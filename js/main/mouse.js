@@ -155,7 +155,11 @@ App.mouse_click_action = (e) => {
   }
 
   if (item_alt) {
-    item_alt.scrollIntoView({block: `center`})
+    if (App.get_setting(`tab_box_reveal`)) {
+      if (!App.tab_box_auto_scrollable()) {
+        item_alt.scrollIntoView({block: `center`})
+      }
+    }
   }
 
   if (item.tab_box) {

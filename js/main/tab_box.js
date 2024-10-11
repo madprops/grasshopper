@@ -624,17 +624,17 @@ App.check_tab_box_scroll = () => {
     return
   }
 
-  let mode = App.get_tab_box_mode()
-
-  if (mode === `recent`) {
+  if (App.tab_box_auto_scrollable()) {
     App.tab_box_scroll()
   }
 }
 
 App.tab_box_scroll = () => {
   if (App.tab_box_focused) {
-    App.tab_box_focused.scrollIntoView({block: `center`})
-    return
+    if (App.get_setting(`tab_box_reveal`)) {
+      App.tab_box_focused.scrollIntoView({block: `center`})
+      return
+    }
   }
 
   let scroll = App.get_setting(`tab_box_scroll`)
@@ -926,4 +926,8 @@ App.refresh_tab_box_special = (mode) => {
       App.update_tab_box()
     }
   }
+}
+
+App.tab_box_auto_scrollable = () => {
+  return [`recent`].includes(App.get_tab_box_mode())
 }
