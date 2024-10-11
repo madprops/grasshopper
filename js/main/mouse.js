@@ -64,6 +64,10 @@ App.setup_mouse = () => {
   DOM.ev(container, `mouseout`, (e) => {
     App.mouse_out_action(e)
   })
+
+  App.mouse_over_debouncer = App.create_debouncer((e) => {
+    App.do_mouse_over_action(e)
+  }, App.mouse_over_delay)
 }
 
 // Using this on mousedown instead causes some problems
@@ -639,6 +643,11 @@ App.mouse_middle_action = (mode, e) => {
 }
 
 App.mouse_over_action = (e) => {
+  App.mouse_over_debouncer.call(e)
+}
+
+App.do_mouse_over_action = (e) => {
+  App.mouse_over_debouncer.cancel()
   if (!App.mouse_valid_type(e)) {
     return
   }
