@@ -449,7 +449,6 @@ App.mouse_context_action = (e) => {
   }
 
   let item = App.get_mouse_item(mode, e)
-  mode = item.mode
 
   if (!item) {
     if (DOM.parent(e.target, [`.item_container`])) {
@@ -458,6 +457,8 @@ App.mouse_context_action = (e) => {
 
     return
   }
+
+  mode = item.mode
 
   if (App.get_setting(`hover_button`) !== `none`) {
     if (DOM.parent(e.target, [`.hover_button`])) {
