@@ -787,7 +787,7 @@ App.fill_tab_box_folders = () => {
     text.textContent = pick.title
 
     if (App.bookmarks_folder && (App.bookmarks_folder.id === pick.id)) {
-      text.classList.add(`underline`)
+      el.classList.add(`active_tab`)
       App.tab_box_focused = el
     }
 
@@ -831,7 +831,7 @@ App.fill_tab_box_history = () => {
     text.textContent = pick
 
     if (current === pick) {
-      text.classList.add(`underline`)
+      el.classList.add(`active_tab`)
       App.tab_box_focused = el
     }
 
