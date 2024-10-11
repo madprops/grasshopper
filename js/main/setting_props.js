@@ -756,7 +756,7 @@ App.build_settings = () => {
     active_icon: {
       name: `Active Icon`,
       type: `text_smaller`,
-      value: ``,
+      value: `😀`,
       placeholder: App.icon_placeholder,
       info: `Icon for active tabs
       Active means the current visible tab in the browser`,
@@ -775,7 +775,7 @@ App.build_settings = () => {
     show_active_icon: {
       name: `Show Active Icon`,
       type: `menu`,
-      value: `always`,
+      value: `never`,
       info: `When to show the Active Icon`,
       separator: true,
       version: 1,
@@ -815,7 +815,7 @@ App.build_settings = () => {
     normal_icon: {
       name: `Normal Icon`,
       type: `text_smaller`,
-      value: ``,
+      value: `📚`,
       placeholder: App.icon_placeholder,
       info: `Icon for normal tabs`,
       version: 1,
@@ -833,7 +833,7 @@ App.build_settings = () => {
     show_normal_icon: {
       name: `Show Normal Icon`,
       type: `menu`,
-      value: `always`,
+      value: `never`,
       info: `When to show the Normal Icon`,
       separator: true,
       version: 1,
