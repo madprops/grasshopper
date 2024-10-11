@@ -832,7 +832,7 @@ App.open_items = (item, shift, multiple = true) => {
     App.after_open(shift)
   }
   else {
-    items = items.filter(x => x.type !== `folder`)
+    items = items.filter(x => !x.special)
     let force = App.check_force(`warn_on_open`, items)
 
     App.show_confirm({

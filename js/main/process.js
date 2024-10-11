@@ -60,6 +60,8 @@ App.process_info = (args = {}) => {
     return false
   }
 
+  let special = false
+
   if (args.o_item) {
     if (!args.url) {
       args.info = {...args.o_item.original_data, ...args.info}
@@ -73,6 +75,7 @@ App.process_info = (args = {}) => {
       args.info.url = `${App.bookmarks_folder_url}/${args.info.id}`
       args.info.favIconUrl = `img/folder.jpg`
       args.info.title = `Folder: ${args.info.title}`
+      special = true
     }
   }
 
@@ -117,6 +120,7 @@ App.process_info = (args = {}) => {
     video,
     audio,
     is_item: true,
+    special,
   }
 
   if (args.mode === `tabs`) {
