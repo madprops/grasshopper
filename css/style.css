@@ -1887,3 +1887,8 @@ a:hover
 .search_empty_message {
   padding: 1rem;
 }
+
+.tab_box_item {
+  scroll-margin-top: 1rem;
+  scroll-margin-bottom: 1rem;
+}

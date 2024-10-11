@@ -632,7 +632,7 @@ App.check_tab_box_scroll = () => {
 App.tab_box_scroll = () => {
   if (App.tab_box_focused) {
     if (App.get_setting(`tab_box_reveal`)) {
-      App.tab_box_focused.scrollIntoView({block: `center`})
+      App.tab_box_focused.scrollIntoView({block: `nearest`})
       return
     }
   }

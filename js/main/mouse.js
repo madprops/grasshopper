@@ -157,13 +157,9 @@ App.mouse_click_action = (e) => {
   if (item_alt) {
     if (App.get_setting(`tab_box_reveal`)) {
       if (!App.tab_box_auto_scrollable()) {
-        item_alt.scrollIntoView({block: `center`})
+        item_alt.scrollIntoView({block: `nearest`})
       }
     }
-  }
-
-  if (item.tab_box) {
-    item.element.scrollIntoView({block: `center`})
   }
 
   mode = item.mode
