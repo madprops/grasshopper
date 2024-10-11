@@ -228,7 +228,6 @@ App.duplicate_icon = `👭🏻`
 App.keyboard_icon = `⌨️`
 App.tree_icon = `🌳`
 App.combo_icon = `🍔`
-App.title_icon = `✏️`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

@@ -20,6 +20,7 @@ App.setup_commands = () => {
   let root_icon = App.get_setting(`root_icon`)
   let node_icon = App.get_setting(`node_icon`)
   let parent_icon = App.get_setting(`parent_icon`)
+  let titled_icon = App.get_setting(`titled_icon`)
 
   let main_title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
@@ -57,7 +58,6 @@ App.setup_commands = () => {
   let keyboard_icon = App.keyboard_icon
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
-  let title_icon = App.title_icon
 
   let tbmodes = []
 
@@ -2192,7 +2192,7 @@ App.setup_commands = () => {
       cmd: `edit_title`,
       modes: [`tabs`],
       item: true,
-      icon: title_icon,
+      icon: titled_icon,
       action: (args) => {
         App.edit_title(args.item)
       },
