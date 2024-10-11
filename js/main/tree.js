@@ -102,11 +102,11 @@ App.get_parent_item = (item) => {
   }
 }
 
-App.go_to_parent = (parent) => {
-  let item = App.get_parent_item(parent)
+App.go_to_parent = (item) => {
+  let parent = App.get_parent_item(item)
 
   if (item) {
-    App.tabs_action({item})
+    App.tabs_action({item: parent})
   }
 }
 

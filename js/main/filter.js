@@ -1113,10 +1113,12 @@ App.filter_title = (item) => {
 }
 
 App.filter_nodes = (item) => {
+  let clone = {...item, id: item.id}
+
   App.filter_common({
     name: `node`,
     full: `Node`,
-    prop: item.id,
+    prop: clone.id,
     item,
   })
 }
