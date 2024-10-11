@@ -135,6 +135,7 @@ App.do_update_tab_box = () => {
   }
 
   let what = App.get_tab_box_mode()
+  App.tab_box_focused = undefined
   App.check_tab_box()
   App.set_tab_box_title(what)
   App[`update_tab_box_${what}`]()
@@ -631,6 +632,11 @@ App.check_tab_box_scroll = () => {
 }
 
 App.tab_box_scroll = () => {
+  if (App.tab_box_focused) {
+    App.tab_box_focused.scrollIntoView({block: `center`})
+    return
+  }
+
   let scroll = App.get_setting(`tab_box_scroll`)
 
   if (scroll === `top`) {
@@ -782,6 +788,7 @@ App.fill_tab_box_folders = () => {
 
     if (App.bookmarks_folder && (App.bookmarks_folder.id === pick.id)) {
       text.classList.add(`underline`)
+      App.tab_box_focused = el
     }
 
     el.append(icon)
@@ -825,6 +832,7 @@ App.fill_tab_box_history = () => {
 
     if (current === pick) {
       text.classList.add(`underline`)
+      App.tab_box_focused = el
     }
 
     el.append(icon)
