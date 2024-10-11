@@ -648,6 +648,7 @@ App.mouse_over_action = (e) => {
 
 App.do_mouse_over_action = (e) => {
   App.mouse_over_debouncer.cancel()
+
   if (!App.mouse_valid_type(e)) {
     return
   }
