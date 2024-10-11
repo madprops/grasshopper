@@ -2271,38 +2271,6 @@ App.addlist_control_draggable = (el) => {
   el.ondragstart = (e) => {
     e.dataTransfer.setData(`text/plain`, el.id)
   }
-
-  el.ondragover = (e) => {
-    e.preventDefault()
-  }
-
-  el.ondrop = (e) => {
-    e.preventDefault()
-    let id_1 = e.dataTransfer.getData(`text/plain`)
-    let id_2 = el.id
-
-    let pre = `settings_`
-    let sett_1 = id_1.replace(pre, ``)
-    let sett_2 = id_2.replace(pre, ``)
-
-    let props_1 = App.setting_props[sett_1]
-    let props_2 = App.setting_props[sett_2]
-
-    if (!props_1.data_group || !props_2.data_group) {
-      return
-    }
-
-    if (props_1.data_group !== props_2.data_group) {
-      return
-    }
-
-    App.show_confirm({
-      message: `Copy data?`,
-      confirm_action: () => {
-        App.copy_settings_data(sett_1, sett_2)
-      },
-    })
-  }
 }
 
 App.copy_settings_data = (sett_1, sett_2) => {

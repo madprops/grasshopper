@@ -1,51 +1,5 @@
 const Menubutton = {}
 
-Menubutton.setup = () => {
-  let container = DOM.el(`#main`)
-
-  container.ondragover = (e) => {
-    e.preventDefault()
-  }
-
-  container.ondrop = (e) => {
-    e.preventDefault()
-    let target = DOM.parent(e.target, [`.menubutton`])
-
-    if (!target) {
-      return
-    }
-
-    let id_1 = e.dataTransfer.getData(`text/plain`)
-
-    if (!id_1) {
-      return
-    }
-
-    let id_2 = target.dataset.id
-
-    if (!id_2) {
-      return
-    }
-
-    if (id_1 === id_2) {
-      return
-    }
-
-    if (id_1.startsWith(`settings_`) && id_2.startsWith(`settings_`)) {
-      let pre = `settings_`
-      let sett_1 = id_1.replace(pre, ``)
-      let sett_2 = id_2.replace(pre, ``)
-      App.swap_settings(sett_1, sett_2)
-    }
-    else if (id_1.startsWith(`addlist_`) && id_2.startsWith(`addlist_`)) {
-      let pre = `addlist_widget_settings_`
-      let sett_1 = id_1.replace(pre, ``)
-      let sett_2 = id_2.replace(pre, ``)
-      Addlist.swap_menus(sett_1, sett_2)
-    }
-  }
-}
-
 Menubutton.create = (args = {}) => {
   let def_args = {
     wrap: true,
@@ -59,7 +13,6 @@ Menubutton.create = (args = {}) => {
 
   args.container = DOM.create(`div`, `menubutton_container`)
   args.button.draggable = true
-  args.button.dataset.id = args.button.id
 
   args.button.ondragstart = (e) => {
     e.dataTransfer.setData(`text/plain`, args.button.id)

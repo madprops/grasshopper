@@ -1,4 +1,30 @@
-App.setup_drag = (mode) => {
+App.setup_drag = () => {
+  let container = DOM.el(`#main`)
+
+  container.ondragover = (e) => {
+    e.preventDefault()
+  }
+
+  container.ondrop = (e) => {
+    e.preventDefault()
+    let id_1 = e.dataTransfer.getData(`text/plain`)
+    let menubutton = DOM.parent(e.target, [`.menubutton`])
+
+    if (menubutton) {
+      App.on_menubutton_drag(id_1, menubutton.id)
+      return
+    }
+
+    let addlist = DOM.parent(e.target, [`.addlist_control`])
+
+    if (addlist) {
+      App.on_addlist_drag(id_1, addlist.id)
+      return
+    }
+  }
+}
+
+App.setup_item_drag = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `dragstart`, (e) => {
@@ -189,4 +215,47 @@ App.dragend_action = (mode, e) => {
 
   let direction = drag_end_index < App.drag_start_index ? `up` : `down`
   App.update_tabs_index(App.drag_items, direction)
+}
+
+App.on_menubutton_drag = (id_1, id_2) => {
+  if (id_1.startsWith(`settings_`) && id_2.startsWith(`settings_`)) {
+    let pre = `settings_`
+    let sett_1 = id_1.replace(pre, ``)
+    let sett_2 = id_2.replace(pre, ``)
+    App.swap_settings(sett_1, sett_2)
+  }
+  else if (id_1.startsWith(`addlist_`) && id_2.startsWith(`addlist_`)) {
+    let pre = `addlist_widget_settings_`
+    let sett_1 = id_1.replace(pre, ``)
+    let sett_2 = id_2.replace(pre, ``)
+    Addlist.swap_menus(sett_1, sett_2)
+  }
+}
+
+App.on_addlist_drag = (id_1, id_2) => {
+  if (!id_1.startsWith(`settings_`) || !id_2.startsWith(`settings_`)) {
+    return
+  }
+
+  let pre = `settings_`
+  let sett_1 = id_1.replace(pre, ``)
+  let sett_2 = id_2.replace(pre, ``)
+
+  let props_1 = App.setting_props[sett_1]
+  let props_2 = App.setting_props[sett_2]
+
+  if (!props_1.data_group || !props_2.data_group) {
+    return
+  }
+
+  if (props_1.data_group !== props_2.data_group) {
+    return
+  }
+
+  App.show_confirm({
+    message: `Copy data?`,
+    confirm_action: () => {
+      App.copy_settings_data(sett_1, sett_2)
+    },
+  })
 }

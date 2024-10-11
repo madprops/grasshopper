@@ -1167,7 +1167,7 @@ App.build_item_window = (mode) => {
   let playing = App.create_playing_button(mode)
   let back = App.create_step_back_button(mode)
   let actions_menu = App.create_actions_menu(mode)
-  App.setup_drag(mode, container)
+  App.setup_item_drag(mode, container)
   let left_btns = DOM.create(`div`, `item_top_left`)
   let right_btns = DOM.create(`div`, `item_top_right`)
   left_btns.append(main_menu)
