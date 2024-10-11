@@ -1297,7 +1297,7 @@ App.build_settings = () => {
       version: 1,
     },
     title_icon_click: {
-      name: `Titled Icon Click`,
+      name: `Title Icon Click`,
       type: `checkbox`,
       value: true,
       info: `Edit the tab's title when clicking the title icon`,
