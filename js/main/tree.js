@@ -159,3 +159,16 @@ App.get_node_tabs = () => {
 
   return items
 }
+
+App.node_tabs_action = (item) => {
+  let nodes = App.get_tab_nodes(item)
+
+  if (nodes.length) {
+    App.filter_nodes(item)
+    return
+  }
+
+  if (App.tab_has_parent(item)) {
+    App.go_to_parent(item)
+  }
+}
