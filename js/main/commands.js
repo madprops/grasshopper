@@ -92,6 +92,10 @@ App.check_command = (command, args = {}) => {
   App.def_args(def_args, args)
   args.mode = App.window_mode
 
+  if (args.item) {
+    args.mode = args.item.mode
+  }
+
   if (command.min_items) {
     if (App.get_item_count(args.mode) < command.min_items) {
       return false

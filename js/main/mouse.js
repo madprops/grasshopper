@@ -3,6 +3,13 @@ App.get_mouse_item = (mode, e) => {
     return
   }
 
+  let tb_item = DOM.parent(e.target, [`.tab_box_tabs_item`])
+
+  if (tb_item) {
+    let id = tb_item.dataset.id
+    return App.get_item_by_id(`tabs`, id)
+  }
+
   let el = DOM.parent(e.target, [`.${mode}_item`])
 
   if (!el) {
@@ -133,16 +140,13 @@ App.mouse_click_action = (e) => {
     return
   }
 
-  if (DOM.parent(e.target, [`.tab_box_tabs_item`])) {
-    mode = `tabs`
-    from = `tab_box`
-  }
-
   let item = App.get_mouse_item(mode, e)
 
   if (!item) {
     return
   }
+
+  mode = item.mode
 
   if (e.shiftKey) {
     App.select_range(item)
@@ -357,6 +361,8 @@ App.mouse_double_click_action = (mode, e) => {
     return
   }
 
+  mode = item.mode
+
   if (item.header) {
     if (App.do_header_action(item, `double_click_header`)) {
       return
@@ -435,6 +441,7 @@ App.mouse_context_action = (e) => {
   }
 
   let item = App.get_mouse_item(mode, e)
+  mode = item.mode
 
   if (!item) {
     if (DOM.parent(e.target, [`.item_container`])) {
@@ -568,6 +575,8 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
+  mode = item.mode
+
   if (DOM.class(e.target, [`hover_button`])) {
     let cmd = App.get_setting(`middle_click_hover_button`)
     App.run_command({cmd, item, from: `hover_button`, e})
@@ -641,6 +650,7 @@ App.mouse_over_action = (e) => {
     return
   }
 
+  mode = item.mode
   App.set_item_tooltips(item)
 
   if (App.icon_pick_down) {
@@ -746,6 +756,8 @@ App.click_press_action = (mode, e) => {
   if (!item) {
     return
   }
+
+  mode = item.mode
 
   if (item.header) {
     let sett
