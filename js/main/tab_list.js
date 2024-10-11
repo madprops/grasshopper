@@ -39,8 +39,8 @@ App.show_tab_list = (what, e) => {
   }
 
   let items = []
-  let playing_icon = App.get_setting(`playing_icon`) || App.audio_icon
-  let muted_icon = App.get_setting(`muted_icon`) || App.muted_icon
+  let playing_icon = App.get_setting(`playing_icon`)
+  let muted_icon = App.get_setting(`muted_icon`)
 
   for (let tab of tabs) {
     let title = App.title(tab)

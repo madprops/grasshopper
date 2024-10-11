@@ -786,7 +786,7 @@ App.build_settings = () => {
     pin_icon: {
       name: `Pin Icon`,
       type: `text_smaller`,
-      value: ``,
+      value: `📌`,
       placeholder: App.icon_placeholder,
       info: `Icon for pinned tabs`,
       version: 1,
@@ -804,7 +804,7 @@ App.build_settings = () => {
     show_pin_icon: {
       name: `Show Pin Icon`,
       type: `menu`,
-      value: `always`,
+      value: `never`,
       info: `When to show the Pin Icon`,
       separator: true,
       version: 1,
@@ -1135,7 +1135,7 @@ App.build_settings = () => {
     parent_icon: {
       name: `Parent Icon`,
       type: `text_smaller`,
-      value: ``,
+      value: `🤿`,
       placeholder: App.icon_placeholder,
       info: `Icon for tabs that are parents`,
       version: 1,
@@ -1164,7 +1164,7 @@ App.build_settings = () => {
     node_icon: {
       name: `Node Icon`,
       type: `text_smaller`,
-      value: ``,
+      value: `🦠`,
       placeholder: App.icon_placeholder,
       info: `Icon for tabs that are nodes`,
       version: 1,
@@ -1182,7 +1182,7 @@ App.build_settings = () => {
     show_node_icon: {
       name: `Show Nodes Icon`,
       type: `menu`,
-      value: `always`,
+      value: `focus`,
       info: `When to show the Nodes Icon`,
       separator: true,
       version: 1,

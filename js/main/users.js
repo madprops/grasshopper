@@ -19,9 +19,6 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `load_lock`, value: true})
   App.set_setting({setting: `autohide_context`, value: true})
   App.set_setting({setting: `max_recent_tabs`, value: 20})
-  App.set_setting({setting: `parent_icon`, value: `🤿`})
-  App.set_setting({setting: `node_icon`, value: `🦠`})
-  App.set_setting({setting: `show_node_icon`, value: `focus`})
   App.set_setting({setting: `sound_effects`, value: true})
   App.set_setting({setting: `unloaded_icon_click`, value: false})
 
