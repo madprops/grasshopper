@@ -7,23 +7,23 @@ App.get_mouse_item = (mode, e) => {
 
   if (tb_item) {
     let id = tb_item.dataset.id
-    return App.get_item_by_id(`tabs`, id)
+    return [App.get_item_by_id(`tabs`, id), tb_item]
   }
 
   let el = DOM.parent(e.target, [`.${mode}_item`])
 
   if (!el) {
-    return
+    return [undefined, undefined]
   }
 
   let item = App.get_item_by_id(mode, el.dataset.id)
 
   if (!item) {
     el.remove()
-    return
+    return [undefined, undefined]
   }
 
-  return item
+  return [item, undefined]
 }
 
 App.setup_mouse = () => {
@@ -148,10 +148,18 @@ App.mouse_click_action = (e) => {
     return
   }
 
-  let item = App.get_mouse_item(mode, e)
+  let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
     return
+  }
+
+  if (item_alt) {
+    item_alt.scrollIntoView({block: `center`})
+  }
+
+  if (item.tab_box) {
+    item.element.scrollIntoView({block: `center`})
   }
 
   mode = item.mode
@@ -363,7 +371,7 @@ App.mouse_double_click_action = (mode, e) => {
     return
   }
 
-  let item = App.get_mouse_item(mode, e)
+  let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
     return
@@ -448,7 +456,7 @@ App.mouse_context_action = (e) => {
     return
   }
 
-  let item = App.get_mouse_item(mode, e)
+  let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
     if (DOM.parent(e.target, [`.item_container`])) {
@@ -578,7 +586,7 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  let item = App.get_mouse_item(mode, e)
+  let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
     return
@@ -659,7 +667,7 @@ App.do_mouse_over_action = (e) => {
   }
 
   let mode = App.active_mode
-  let item = App.get_mouse_item(mode, e)
+  let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
     return
@@ -770,7 +778,7 @@ App.click_press_action = (mode, e) => {
     return
   }
 
-  let item = App.get_mouse_item(mode, e)
+  let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
     return
@@ -948,10 +956,10 @@ App.wheel_action = (direction, name, e) => {
     return
   }
 
-  let item
+  let item, item_alt
 
   if (App.get_setting(`wheel_hover_item`)) {
-    item = App.get_mouse_item(mode, e)
+    [item, item_alt] = App.get_mouse_item(mode, e)
   }
 
   let cmd = App.get_setting(name)
@@ -998,7 +1006,7 @@ App.on_mouse_down = (e) => {
   if (App.get_setting(`icon_pick`)) {
     if (e.button === 0) {
       if (DOM.parent(e.target, [`.item_icon_container`])) {
-        let item = App.get_mouse_item(mode, e)
+        let [item, item_alt] = App.get_mouse_item(mode, e)
 
         if (item) {
           App.pick(item)
