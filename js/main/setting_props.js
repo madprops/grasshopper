@@ -1055,7 +1055,7 @@ App.build_settings = () => {
     tagged_icon: {
       name: `Tagged Icon`,
       type: `text_smaller`,
-      value: ``,
+      value: `✝️`,
       placeholder: App.icon_placeholder,
       info: `Icon for tagged tabs`,
       version: 1,
@@ -1073,7 +1073,7 @@ App.build_settings = () => {
     show_tagged_icon: {
       name: `Show Tagged Icon`,
       type: `menu`,
-      value: `always`,
+      value: `never`,
       info: `When to show the Tagged Icon`,
       separator: true,
       version: 1,
@@ -1113,7 +1113,7 @@ App.build_settings = () => {
     edited_icon: {
       name: `Edited Icon`,
       type: `text_smaller`,
-      value: ``,
+      value: `🪬`,
       placeholder: App.icon_placeholder,
       info: `Icon for edited tabs
       Edits include color, tags, notes, etc`,
@@ -1132,7 +1132,7 @@ App.build_settings = () => {
     show_edited_icon: {
       name: `Show Edited Icon`,
       type: `menu`,
-      value: `always`,
+      value: `never`,
       info: `When to show the Edited Icon`,
       separator: true,
       version: 1,
