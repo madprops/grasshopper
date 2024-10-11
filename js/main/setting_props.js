@@ -1153,7 +1153,7 @@ App.build_settings = () => {
     show_parent_icon: {
       name: `Show Parent Icon`,
       type: `menu`,
-      value: `always`,
+      value: `focus`,
       info: `When to show the Parent Icon`,
       separator: true,
       version: 1,
