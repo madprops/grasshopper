@@ -286,7 +286,7 @@ App.show_main_mode = (allow_same = true, force = false) => {
 }
 
 App.getting = (mode, force = false) => {
-  let icon = App.mode_icons[mode]
+  let icon = App.mode_icon(mode)
   let name = App.capitalize(mode)
   App.debug(`${icon} Getting ${name}`, force)
 }
@@ -322,4 +322,8 @@ App.check_init_mode = async () => {
 
     App.init_mode = init_mode
   }
+}
+
+App.mode_icon = (mode) => {
+  return App.get_setting(`${mode}_mode_icon`)
 }

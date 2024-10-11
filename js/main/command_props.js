@@ -1,9 +1,9 @@
 App.setup_commands = () => {
   let image_icon = App.get_media_icon(`image`)
   let pin_icon = App.get_setting(`pin_icon`) || App.pin_icon
-  let normal_icon = App.get_setting(`normal_icon`) || App.mode_icons.tabs
+  let normal_icon = App.get_setting(`normal_icon`) || App.mode_icon(`tabs`)
   let playing_icon = App.get_setting(`playing_icon`) || App.audio_icon
-  let loaded_icon = App.get_setting(`loaded_icon`) || App.mode_icons.tabs
+  let loaded_icon = App.get_setting(`loaded_icon`) || App.mode_icon(`tabs`)
   let unloaded_icon = App.get_setting(`unloaded_icon`) || App.sleeping_icon
   let muted_icon = App.get_setting(`muted_icon`) || App.muted_icon
   let unread_icon = App.get_setting(`unread_icon`) || App.circle_icon
@@ -31,9 +31,9 @@ App.setup_commands = () => {
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
   let command_icon = App.command_icon
-  let tabs_icon = App.mode_icons.tabs
-  let bookmarks_icon = App.mode_icons.bookmarks
-  let closed_icon = App.mode_icons.closed
+  let tabs_icon = App.mode_icon(`tabs`)
+  let bookmarks_icon = App.mode_icon(`bookmarks`)
+  let closed_icon = App.mode_icon(`closed`)
   let clipboard_icon = App.clipboard_icon
   let notepad_icon = App.notepad_icon
   let bot_icon = App.bot_icon
@@ -54,7 +54,7 @@ App.setup_commands = () => {
   let keyboard_icon = App.keyboard_icon
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
-  let history_icon = App.mode_icons.history
+  let history_icon = App.mode_icon(`history`)
   let title_icon = App.title_icon
 
   let tbmodes = []
@@ -372,7 +372,7 @@ App.setup_commands = () => {
   let mode_menus = []
 
   for (let mode of App.modes) {
-    let icon = App.mode_icons[mode]
+    let icon = App.mode_icon(mode)
     let m_name = App.get_mode_name(mode, false)
     let name = `Show ${m_name}`
 

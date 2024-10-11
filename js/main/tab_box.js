@@ -22,7 +22,7 @@ App.setup_tab_box = () => {
 
 App.make_tab_box_modes = () => {
   App.tab_box_modes = {
-    recent: {info: `Recently visited tabs`, icon: App.mode_icons.tabs},
+    recent: {info: `Recently visited tabs`, icon: App.mode_icon(`tabs`)},
     pins: {info: `Pinned tabs`, icon: App.get_setting(`pin_icon`) || App.pin_icon},
     playing: {info: `Tabs emitting sound`, icon: App.get_setting(`playing_icon`) || App.audio_icon},
     colors: {info: `Tabs with colors`, icon: App.settings_icons.colors},
@@ -35,8 +35,8 @@ App.make_tab_box_modes = () => {
     nodes: {info: `Tabs that were opened by another tab`, icon: App.get_setting(`node_icon`) || App.node_icon},
     nodez: {info: `The tabs opened by the selected tab`, icon: App.get_setting(`node_icon`) || App.node_icon},
     headers: {info: `Headers and subheaders`, icon: App.get_setting(`header_icon`) || App.zone_icon},
-    history: {info: `Pick a query to search history`, icon: App.mode_icons.history},
-    folders: {info: `Pick a bookmarks folder`, icon: App.mode_icons.bookmarks},
+    history: {info: `Pick a query to search history`, icon: App.mode_icon(`history`)},
+    folders: {info: `Pick a bookmarks folder`, icon: App.mode_icon(`bookmarks`)},
   }
 }
 
@@ -368,7 +368,7 @@ App.show_tab_box_menu = (e) => {
 
   if (App.tab_box_items.length) {
     items.push({
-      icon: App.mode_icons.tabs,
+      icon: App.mode_icon(`tabs`),
       text: `Select`,
       action: () => {
         App.select_tab_box_tabs()
@@ -777,7 +777,7 @@ App.fill_tab_box_folders = () => {
     let text = DOM.create(`div`, `item_text`)
     el.draggable = true
     el.dataset.id = pick.id
-    icon.textContent = App.mode_icons.bookmarks
+    icon.textContent = App.mode_icon(`bookmarks`)
     text.textContent = pick.title
 
     if (App.bookmarks_folder && (App.bookmarks_folder.id === pick.id)) {
@@ -820,7 +820,7 @@ App.fill_tab_box_history = () => {
     let text = DOM.create(`div`, `item_text`)
     el.draggable = true
     el.dataset.value = pick
-    icon.textContent = App.mode_icons.history
+    icon.textContent = App.mode_icon(`history`)
     text.textContent = pick
 
     if (current === pick) {

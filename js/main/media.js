@@ -272,7 +272,7 @@ App.show_media_menu = (what) => {
   let item = App.current_media_item()
 
   items.push({
-    icon: App.mode_icons[item.mode],
+    icon: App.mode_icon(item.mode),
     text: `Select`,
     action: () => {
       App.hide_window()
@@ -289,7 +289,7 @@ App.show_media_menu = (what) => {
   })
 
   items.push({
-    icon: App.mode_icons.bookmarks,
+    icon: App.mode_icon(`bookmarks`),
     text: `Bookmark`,
     action: () => {
       App.bookmark_items({item})

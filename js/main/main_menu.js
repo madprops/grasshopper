@@ -16,7 +16,7 @@ App.show_main_menu = (mode) => {
   let items = []
 
   for (let m of App.modes) {
-    let icon = App.mode_icons[m]
+    let icon = App.mode_icon(m)
     let name = App.get_mode_name(m, true)
 
     // This could be done with cmds but the mouse action
@@ -55,7 +55,7 @@ App.show_main_menu = (mode) => {
 }
 
 App.set_main_menu_text = (btn, mode, name = ``) => {
-  let icon = App.mode_icons[mode]
+  let icon = App.mode_icon(mode)
 
   if (name) {
     name = name.substring(0, 12).trim()

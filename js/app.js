@@ -201,13 +201,6 @@ App.settings_icons = {
   close: `❌`,
 }
 
-App.mode_icons = {
-  tabs: `📚`,
-  history: `🧭`,
-  bookmarks: `⭐`,
-  closed: `🔃`,
-}
-
 App.clipboard_icon = `📋`
 App.bot_icon = `🤖`
 App.icon_placeholder = `Icon`

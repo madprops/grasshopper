@@ -720,6 +720,39 @@ App.build_settings = () => {
   category = `icons`
 
   props = {
+    tabs_mode_icon: {
+      name: `Tabs Icon`,
+      type: `text_smaller`,
+      value: `📚`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for the Tabs mode`,
+      version: 1,
+    },
+    history_mode_icon: {
+      name: `History Icon`,
+      type: `text_smaller`,
+      value: `🧭`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for the History mode`,
+      version: 1,
+    },
+    bookmarks_mode_icon: {
+      name: `Bookmarks Icon`,
+      type: `text_smaller`,
+      value: `⭐`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for the Bookmarks mode`,
+      version: 1,
+    },
+    closed_mode_icon: {
+      name: `Closed Icon`,
+      type: `text_smaller`,
+      value: `🔃`,
+      separator: true,
+      placeholder: App.icon_placeholder,
+      info: `Icon for the Closed mode`,
+      version: 1,
+    },
     active_icon: {
       name: `Active Icon`,
       type: `text_smaller`,
