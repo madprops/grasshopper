@@ -157,7 +157,9 @@ App.focus_tab = async (args = {}) => {
   }
 
   try {
-    await browser.tabs.update(args.item.id, {active: true})
+    if (!args.item.active) {
+      await browser.tabs.update(args.item.id, {active: true})
+    }
   }
   catch (err) {
     App.error(err)
@@ -387,14 +389,12 @@ App.tabs_action = async (args = {}) => {
     method = args.from
   }
 
-  if (!args.item.active) {
-    await App.focus_tab({
-      item: args.item,
-      select: true,
-      scroll: args.scroll,
-      method,
-    })
-  }
+  await App.focus_tab({
+    item: args.item,
+    select: true,
+    scroll: args.scroll,
+    method,
+  })
 
   if (args.from === `tab_box`) {
     if (!App.get_setting(`tab_box_focus`)) {
