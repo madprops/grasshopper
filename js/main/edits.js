@@ -281,7 +281,9 @@ App.edit_prompt = (args = {}) => {
     fill: args.fill,
     on_submit: (ans) => {
       if (args.url) {
-        ans = App.fix_url(ans)
+        if (ans) {
+          ans = App.fix_url(ans)
+        }
       }
 
       let obj = {}
