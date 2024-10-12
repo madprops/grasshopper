@@ -12,7 +12,7 @@ App.edit_tab_root = (args = {}) => {
     message: `${s} (${active.length})`,
     confirm_action: () => {
       for (let it of active) {
-        App.apply_edit({what: `root`, item: it, value: args.root, on_change: (value) => {
+        App.apply_edit({what: `root`, item: it, value: args.root || undefined, on_change: (value) => {
           App.custom_save(it.id, `root`, value)
         }})
       }
