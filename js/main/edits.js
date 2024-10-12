@@ -123,6 +123,10 @@ App.same_edit = (what, item, value, type = `custom`) => {
   let props = App.edit_props[what]
   let ovalue = item[`${type}_${what}`]
 
+  if (ovalue === undefined) {
+    return false
+  }
+
   if (props.type === `string` || props.type === `bool`) {
     if (ovalue === value) {
       return true
