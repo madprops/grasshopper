@@ -9,8 +9,8 @@ App.check_first_time = () => {
 App.show_intro_message = () => {
   let s = `Hi there
   The main menu is the top-left button
-  Check out the settings. I constantly experiment
-  and change stuff, so expect things to break.`
+  Check out the settings
+  I constantly experiment and change stuff, so expect things to break.`
 
   let text = App.periods(s)
 
