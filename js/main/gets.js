@@ -24,11 +24,11 @@ App.tags = (item, rule = true) => {
 App.get_edit = (item, prop, rule = true) => {
   let value = item[`custom_${prop}`]
 
-  if ((value === undefined) && rule) {
+  if (!value && rule) {
     value = item[`rule_${prop}`]
   }
 
-  return value ?? App.edit_default(prop)
+  return value || App.edit_default(prop)
 }
 
 App.get_color = (item, rule = true) => {
