@@ -28,7 +28,11 @@ App.get_edit = (item, prop, rule = true) => {
     value = item[`rule_${prop}`]
   }
 
-  return value ?? App.edit_default(prop)
+  if (value === undefined) {
+    value = App.edit_default(prop)
+  }
+
+  return value
 }
 
 App.get_color = (item, rule = true) => {
@@ -44,7 +48,7 @@ App.get_root = (item, rule = true) => {
 }
 
 App.get_icon = (item, rule = true) => {
-  App.get_edit(item, `icon`, rule)
+  return App.get_edit(item, `icon`, rule)
 }
 
 App.get_notes = (item, rule = true) => {
