@@ -1231,7 +1231,7 @@ App.build_settings = () => {
     show_root_icon: {
       name: `Show Root Icon`,
       type: `menu`,
-      value: `always`,
+      value: `focus`,
       info: `When to show the Root Icon`,
       separator: true,
       version: 1,

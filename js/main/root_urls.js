@@ -52,7 +52,7 @@ App.go_to_root_url = (item, focus = false) => {
   let active = App.get_active_items({mode: item.mode, item})
 
   for (let it of active) {
-    it.root = it.custom_root || it.rule_root || ``
+    it.root = App.get_root(it)
 
     if (!it.root) {
       continue
