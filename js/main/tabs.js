@@ -513,8 +513,8 @@ App.get_url_list = () => {
 
 App.show_tab_urls = () => {
   let urls = App.get_url_list()
-  let s = urls.join(`\n`)
-  App.show_textarea(`All Open URLs (${urls.length})`, s)
+  let text = urls.join(`\n`)
+  App.show_textarea({message: `All Open URLs (${urls.length})`, text})
 }
 
 App.open_tab = async (item) => {

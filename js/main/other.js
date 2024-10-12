@@ -9,9 +9,33 @@ App.check_first_time = () => {
 App.show_intro_message = () => {
   let s = `Hi there
   The main menu is the top-left button
-  Check the settings for some customizations
-  I constantly experiment and change stuff, so expect things to break`
-  App.alert(App.periods(s))
+  Check out the settings. I constantly experiment
+  and change stuff, so expect things to break.`
+
+  let text = App.periods(s)
+
+  let buttons = [
+    {
+      text: `About`,
+      action: () => {
+        App.show_about()
+      },
+    },
+    {
+      text: `Settings`,
+      action: () => {
+        App.show_settings_category(`general`)
+      },
+    },
+    {
+      text: `Close`,
+      action: () => {
+        App.close_textarea()
+      },
+    },
+  ]
+
+  App.show_textarea({message: `Welcome`, text, simple: true, buttons, align: `left`})
 }
 
 App.restart_extension = () => {
@@ -191,7 +215,7 @@ App.close_sidebar = () => {
 
 App.generate_password = () => {
   let password = App.random_string(App.password_length)
-  App.show_textarea(`Random Password`, password, true)
+  App.show_textarea({message: `Random Password`, text: password, simple: true})
 }
 
 App.play_sound = (name) => {

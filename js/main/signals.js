@@ -445,7 +445,7 @@ App.start_signals_addlist = () => {
 
 App.show_signal_text = (signal, text) => {
   let simple = text.length <= 250
-  App.show_textarea(signal.name, text, simple)
+  App.show_textarea({message: signal.name, text, simple})
 }
 
 App.filter_signals = () => {

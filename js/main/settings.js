@@ -1252,7 +1252,7 @@ App.settings_summary = () => {
   }
 
   let n = Object.keys(App.settings).length
-  App.show_textarea(`Settings (${n})`, lines.join(`\n`))
+  App.show_textarea({message: `Settings (${n})`, text: lines.join(`\n`)})
 }
 
 App.get_background_effect = (value) => {
