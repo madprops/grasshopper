@@ -23,7 +23,7 @@ App.start_palette = () => {
     App.do_filter_palette()
   }, App.filter_delay_2)
 
-  DOM.ev(DOM.el(`#palette_filter_clear`), `click`, () => {
+  DOM.ev(`#palette_filter_clear`, `click`, () => {
     App.reset_generic_filter(`palette`)
   })
 }
