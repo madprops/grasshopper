@@ -339,6 +339,7 @@ App.show_tab_box_menu = (e) => {
     items.push({
       text: App.capitalize(tbmode),
       icon: App.tab_box_modes[tbmode].icon,
+      info: App.tab_box_modes[tbmode].info,
       action: () => {
         App.change_tab_box_mode(tbmode)
         App.update_tab_box()
