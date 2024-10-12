@@ -18,7 +18,6 @@ App.start_about = () => {
         `Ctrl + Click selects multiple items`,
         `Shift + Click selects an item range`,
         `Right Click on items shows the Item Menu`,
-        `Shift + Enter on items shows the Item Menu`,
         `Delete closes selected tabs`,
         `Double click on empty space opens a new tab (Configurable)`,
         `Command palette commands take into account selected items and mode (Context Aware)`,

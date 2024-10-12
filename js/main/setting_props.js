@@ -4401,6 +4401,11 @@ App.build_settings = () => {
           key: `KeyA`, ctrl: true, shift: false, alt: false,
           _id_: `kb_select_all`,
         },
+        {
+          cmd: `show_item_menu`,
+          key: `Enter`, ctrl: false, shift: true, alt: false,
+          _id_: `kb_item_menu`,
+        },
       ],
       separator: true,
       info: `Extra keyboard shortcuts

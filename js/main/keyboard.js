@@ -70,17 +70,7 @@ App.check_items_keyboard = (e) => {
   }
 
   if (e.shiftKey && !e.ctrlKey) {
-    if (e.key === `Enter`) {
-      if (!item) {
-        e.preventDefault()
-        return
-      }
-
-      App.show_item_menu({item})
-      e.preventDefault()
-      return
-    }
-    else if (e.key === `Home`) {
+    if (e.key === `Home`) {
       if (!filter_focus || !filter_filled) {
         App.select_to_edge(mode, `up`)
         e.preventDefault()
