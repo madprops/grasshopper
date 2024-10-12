@@ -249,6 +249,46 @@ App.start_domain_rules = () => {
   App.domain_rules_ready = true
 }
 
+App.remove_domain_rule = (item) => {
+  let mode = App.active_mode
+  let active = App.get_active_items({mode, item})
+
+  if (!active.length) {
+    return
+  }
+
+  let rules = []
+
+  for (let it of active) {
+    if (it.ruled) {
+      rules.push(it.rule)
+    }
+  }
+
+  if (!rules.length) {
+    return
+  }
+
+  App.show_confirm({
+    message: `Remove Domain Rules? (${rules.length})`,
+    confirm_action: () => {
+      let all_rules = App.get_setting(`domain_rules`)
+      let keep = []
+
+      for (let rul of all_rules) {
+        if (rules.includes(rul)) {
+          continue
+        }
+
+        keep.push(rul)
+      }
+
+      App.set_setting({setting: `domain_rules`, value: keep})
+      App.refresh_rules()
+    },
+  })
+}
+
 App.remove_all_domain_rules = () => {
   App.show_confirm({
     message: `Remove Domain Rules?`,

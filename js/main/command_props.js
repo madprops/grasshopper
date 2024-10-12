@@ -3410,7 +3410,18 @@ App.setup_commands = () => {
       info: `Shortcut to edit a domain rule`,
     },
     {
-      name: `Remove Domain Rules`,
+      name: `Remove Domain Rule`,
+      short_name: `Rm Rule`,
+      cmd: `remove_domain_rule`,
+      modes: [`items`],
+      icon: notepad_icon,
+      action: (args) => {
+        App.remove_domain_rule(args.item)
+      },
+      info: `Remove a Domain Rule`,
+    },
+    {
+      name: `Remove All Domain Rules`,
       short_name: `Rm Rules`,
       cmd: `remove_all_domain_rules`,
       modes: [`items`],
