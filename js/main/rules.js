@@ -270,7 +270,7 @@ App.remove_domain_rule = (item) => {
   }
 
   App.show_confirm({
-    message: `Remove Domain Rules? (${rules.length})`,
+    message: `Remove Domain Rule? (${rules.length})`,
     confirm_action: () => {
       let all_rules = App.get_setting(`domain_rules`)
       let keep = []
