@@ -84,16 +84,6 @@ App.check_items_keyboard = (e) => {
         return
       }
     }
-    else if (e.key === `ArrowUp`) {
-      App.select_next(mode, `above`)
-      e.preventDefault()
-      return
-    }
-    else if (e.key === `ArrowDown`) {
-      App.select_next(mode, `below`)
-      e.preventDefault()
-      return
-    }
     else if (e.key === `PageUp`) {
       App.scroll(mode, `up`)
       e.preventDefault()

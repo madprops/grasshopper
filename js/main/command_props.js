@@ -738,6 +738,18 @@ App.setup_commands = () => {
       info: `Select the item above`,
     },
     {
+      name: `Select Next Up`,
+      short_name: `Sel Up`,
+      cmd: `select_next_item_up`,
+      modes: [`items`],
+      icon: up_icon,
+      action: (args) => {
+        console.log(1)
+        App.select_next(args.mode, `above`)
+      },
+      info: `Select the next item above`,
+    },
+    {
       name: `Select Down`,
       short_name: `Sel Down`,
       cmd: `select_item_down`,
@@ -747,6 +759,17 @@ App.setup_commands = () => {
         App.select_up_down(args.mode, `down`)
       },
       info: `Select the item below`,
+    },
+    {
+      name: `Select Next Down`,
+      short_name: `Sel Down`,
+      cmd: `select_next_item_down`,
+      modes: [`items`],
+      icon: up_icon,
+      action: (args) => {
+        App.select_next(args.mode, `below`)
+      },
+      info: `Select the next item below`,
     },
     {
       name: `Select Up Alt`,

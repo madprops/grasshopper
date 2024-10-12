@@ -4406,6 +4406,16 @@ App.build_settings = () => {
           key: `Enter`, ctrl: false, shift: true, alt: false,
           _id_: `kb_item_menu`,
         },
+        {
+          cmd: `select_next_item_up`,
+          key: `ArrowUp`, ctrl: false, shift: true, alt: false,
+          _id_: `kb_next_up`,
+        },
+        {
+          cmd: `select_next_item_down`,
+          key: `ArrowDown`, ctrl: false, shift: true, alt: false,
+          _id_: `kb_next_down`,
+        },
       ],
       separator: true,
       info: `Extra keyboard shortcuts
