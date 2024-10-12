@@ -2629,7 +2629,7 @@ App.build_settings = () => {
 
   props = {
     show_main_title: {
-      name: `Show The Title`,
+      name: `Show Title`,
       type: `checkbox`,
       value: true,
       no_mirror: true,
@@ -2652,6 +2652,7 @@ App.build_settings = () => {
         {cmd: `edit_main_title`},
         {cmd: `copy_main_title`},
         {cmd: `toggle_main_title_date`},
+        {cmd: `toggle_main_title`},
         {cmd: App.separator_string},
         {cmd: `color_main_title_red`},
         {cmd: `color_main_title_green`},
