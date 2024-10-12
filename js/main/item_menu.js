@@ -61,15 +61,15 @@ App.show_item_menu = async (args = {}) => {
 
     let zone_items = []
 
-    App.item_menu_item(zone_items, `insert_header`, {item: args.item})
-    App.item_menu_item(zone_items, `insert_subheader`, {item: args.item})
+    App.item_menu_item(zone_items, `insert_header`, {item: args.item, short: false})
+    App.item_menu_item(zone_items, `insert_subheader`, {item: args.item, short: false})
 
     App.sep(zone_items)
 
-    App.item_menu_item(zone_items, `add_split_both`, {item: args.item})
-    App.item_menu_item(zone_items, `add_split_top`, {item: args.item})
-    App.item_menu_item(zone_items, `add_split_bottom`, {item: args.item})
-    App.item_menu_item(zone_items, `remove_split`, {item: args.item})
+    App.item_menu_item(zone_items, `add_split_both`, {item: args.item, short: false})
+    App.item_menu_item(zone_items, `add_split_top`, {item: args.item, short: false})
+    App.item_menu_item(zone_items, `add_split_bottom`, {item: args.item, short: false})
+    App.item_menu_item(zone_items, `remove_split`, {item: args.item, short: false})
 
     items.push({
       icon: App.zone_icon,
@@ -126,11 +126,11 @@ App.common_menu_items = (args = {}) => {
   }
 
   let filter_items = []
-  App.item_menu_item(filter_items, `filter_domain`, {item: args.item})
-  App.item_menu_item(filter_items, `filter_title`, {item: args.item})
-  App.item_menu_item(filter_items, `filter_color`, {item: args.item})
-  App.item_menu_item(filter_items, `filter_tag`, {item: args.item})
-  App.item_menu_item(filter_items, `filter_icon`, {item: args.item})
+  App.item_menu_item(filter_items, `filter_domain`, {item: args.item, short: false})
+  App.item_menu_item(filter_items, `filter_title`, {item: args.item, short: false})
+  App.item_menu_item(filter_items, `filter_color`, {item: args.item, short: false})
+  App.item_menu_item(filter_items, `filter_tag`, {item: args.item, short: false})
+  App.item_menu_item(filter_items, `filter_icon`, {item: args.item, short: false})
 
   if (filter_items.length) {
     items.push({

@@ -2613,6 +2613,7 @@ App.setup_commands = () => {
     },
     {
       name: `Split Both`,
+      short_name: `Split`,
       cmd: `add_split_both`,
       modes: [`tabs`],
       item: true,
@@ -2625,6 +2626,7 @@ App.setup_commands = () => {
     },
     {
       name: `Split Top`,
+      short_name: `Top`,
       cmd: `add_split_top`,
       modes: [`tabs`],
       item: true,
@@ -2637,6 +2639,7 @@ App.setup_commands = () => {
     },
     {
       name: `Split Bottom`,
+      short_name: `Bottom`,
       cmd: `add_split_bottom`,
       modes: [`tabs`],
       item: true,
