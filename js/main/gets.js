@@ -1,26 +1,3 @@
-App.title = (item) => {
-  let title = App.get_title(item) || item.title || ``
-
-  if (App.get_setting(`all_caps`)) {
-    title = title.toUpperCase()
-  }
-
-  return title
-}
-
-App.tags = (item, rule = true) => {
-  let tags = []
-
-  if (rule) {
-    tags.push(...App.get_rule(item, `tags`))
-  }
-
-  tags.push(...App.get_tags(item, false))
-  return Array.from(new Set(tags))
-}
-
-//
-
 App.get_edit = (item, prop, rule = true) => {
   let value = item[`custom_${prop}`]
 

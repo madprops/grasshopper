@@ -1,3 +1,14 @@
+App.tags = (item, rule = true) => {
+  let tags = []
+
+  if (rule) {
+    tags.push(...App.get_rule(item, `tags`))
+  }
+
+  tags.push(...App.get_tags(item, false))
+  return Array.from(new Set(tags))
+}
+
 App.edit_tab_tags = (args = {}) => {
   let def_args = {
     tags: ``,
