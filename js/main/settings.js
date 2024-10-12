@@ -1507,7 +1507,28 @@ App.setup_settings_addlist = () => {
       },
       list_text: (item) => {
         let cmd = cmd_name(item.cmd)
-        return `${item.key} = ${cmd}`
+        let mods = []
+
+        if (item.ctrl) {
+          mods.push(`C`)
+        }
+
+        if (item.shift) {
+          mods.push(`S`)
+        }
+
+        if (item.alt) {
+          mods.push(`A`)
+        }
+
+        let pre = ``
+
+        if (mods.length) {
+          pre = `(${mods.join(``)})`
+        }
+
+        let text = `${pre} ${item.key}`.trim()
+        return `${text} = ${cmd}`
       },
       required: {
         cmd: true,
