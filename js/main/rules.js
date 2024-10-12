@@ -1,11 +1,6 @@
 App.check_rules = (item, rule) => {
-  item.ruled = false
-
-  for (let key in App.edit_props) {
-    item[`rule_${key}`] = App.edit_default(key)
-  }
-
   let rules
+  item.ruled = false
 
   if (rule) {
     rules = [rule]

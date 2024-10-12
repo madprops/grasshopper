@@ -60,8 +60,6 @@ App.check_tab_session = async (items = [], force = false) => {
         if (!force) {
           continue
         }
-
-        value = App.edit_default(key)
       }
 
       App.apply_edit({what: key, item, value})
@@ -343,7 +341,7 @@ App.remove_edits = (args = {}) => {
     confirm_action: () => {
       for (let item of args.items) {
         for (let what of args.what) {
-          App.apply_edit({what, item, value: App.edit_default(what), on_change: (value) => {
+          App.apply_edit({what, item, value: undefined, on_change: (value) => {
             App.custom_save(item.id, what)
           }})
         }
@@ -378,28 +376,30 @@ App.remove_item_edits = (item) => {
 }
 
 App.apply_edit = (args = {}) => {
-  let props = App.edit_props[args.what]
+  if (args.value !== undefined) {
+    let props = App.edit_props[args.what]
 
-  if (props.type === `string`) {
-    if (typeof args.value !== `string`) {
-      return
+    if (props.type === `string`) {
+      if (typeof args.value !== `string`) {
+        return
+      }
     }
-  }
-  else if (props.type === `list`) {
-    if (!Array.isArray(args.value)) {
-      return
+    else if (props.type === `list`) {
+      if (!Array.isArray(args.value)) {
+        return
+      }
     }
-  }
-  else if (props.type === `bool`) {
-    if (args.value !== true && args.value !== false) {
-      return
+    else if (props.type === `bool`) {
+      if (args.value !== true && args.value !== false) {
+        return
+      }
     }
   }
 
   let new_value
 
   if (App.same_edit(args.what, args.item, args.value, `rule`)) {
-    new_value = App.edit_default(args.what)
+    new_value = undefined
   }
   else {
     new_value = args.value
