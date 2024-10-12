@@ -23,8 +23,6 @@ App.start_about = () => {
         `Ctrl + Up moves tabs to the top`,
         `Ctrl + Down moves tabs to the bottom`,
         `Ctrl + F shows the Filter Menu`,
-        `Ctrl + Dot goes to a tab emitting sound (Playing Tab)`,
-        `Ctrl + Comma goes to the previously visited tab (Recent Tab)`,
         `Delete closes selected tabs`,
         `Double click on empty space opens a new tab (Configurable)`,
         `Command palette commands take into account selected items and mode (Context Aware)`,

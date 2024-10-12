@@ -4364,7 +4364,12 @@ App.build_settings = () => {
         {
           cmd: `jump_tabs_playing_down`,
           key: `Period`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_filter_nodes`,
+          _id_: `kb_playing_down`,
+        },
+        {
+          cmd: `recent_tabs_backwards`,
+          key: `Comma`, ctrl: true, shift: false, alt: false,
+          _id_: `kb_prev_tab`,
         },
       ],
       separator: true,
