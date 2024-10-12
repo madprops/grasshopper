@@ -4416,6 +4416,16 @@ App.build_settings = () => {
           key: `ArrowDown`, ctrl: false, shift: true, alt: false,
           _id_: `kb_next_down`,
         },
+        {
+          cmd: `show_next_mode`,
+          key: `Tab`, ctrl: false, shift: false, alt: false,
+          _id_: `kb_next_mode`,
+        },
+        {
+          cmd: `show_previous_mode`,
+          key: `Tab`, ctrl: false, shift: true, alt: false,
+          _id_: `kb_prev_mode`,
+        },
       ],
       separator: true,
       info: `Extra keyboard shortcuts

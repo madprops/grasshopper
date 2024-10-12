@@ -94,11 +94,6 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (e.key === `Tab`) {
-      App.cycle_modes(true)
-      e.preventDefault()
-      return
-    }
   }
 
   if (!e.ctrlKey && !e.shiftKey) {
@@ -174,11 +169,6 @@ App.check_items_keyboard = (e) => {
         e.preventDefault()
         return
       }
-    }
-    else if (e.key === `Tab`) {
-      App.cycle_modes(false)
-      e.preventDefault()
-      return
     }
     else if (e.key === `Delete`) {
       if (mode === `tabs`) {

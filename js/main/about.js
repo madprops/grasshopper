@@ -9,7 +9,6 @@ App.start_about = () => {
       App.about_info_items = [
         `Up, Down, and Enter keys navigate and pick items`,
         `Type to filter or search depending on mode`,
-        `Cycle modes with the top-left menu or (Shift) Tab`,
         `Cycle with Left and Right`,
         `Middle Click closes tabs (Configurable)`,
         `Esc does Step Back and closes windows`,
