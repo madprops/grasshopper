@@ -3415,6 +3415,7 @@ App.setup_commands = () => {
       cmd: `remove_domain_rule`,
       modes: [`items`],
       icon: notepad_icon,
+      some_ruled: true,
       action: (args) => {
         App.remove_domain_rule(args.item)
       },
