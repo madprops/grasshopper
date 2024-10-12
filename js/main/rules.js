@@ -1,6 +1,5 @@
 App.check_rules = (item, rule) => {
   let rules
-  item.ruled = false
 
   if (rule) {
     rules = [rule]
@@ -8,6 +7,8 @@ App.check_rules = (item, rule) => {
   else {
     rules = App.get_setting(`domain_rules`)
   }
+
+  App.undefine_rules(item)
 
   for (let rule of rules) {
     let match = false
@@ -54,6 +55,15 @@ App.copy_rule = (item, rule) => {
       item.rule = rule
     }
   }
+}
+
+App.undefine_rules = (item) => {
+  for (let key in App.edit_props) {
+    item[`rule_${key}`] = undefined
+  }
+
+  item.ruled = false
+  item.rule = undefined
 }
 
 App.domain_rule_message = () => {
