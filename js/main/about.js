@@ -15,7 +15,6 @@ App.start_about = () => {
         `Esc does Step Back and closes windows`,
         `Shift + Up/Down selects multiple items`,
         `Shift + Home/End selects towards edges`,
-        `Ctrl + Shift + Up/Down selects towards edges`,
         `Ctrl + Click selects multiple items`,
         `Shift + Click selects an item range`,
         `Right Click on items shows the Item Menu`,

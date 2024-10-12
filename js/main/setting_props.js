@@ -4371,6 +4371,16 @@ App.build_settings = () => {
           key: `Comma`, ctrl: true, shift: false, alt: false,
           _id_: `kb_prev_tab`,
         },
+        {
+          cmd: `select_items_above`,
+          key: `ArrowUp`, ctrl: true, shift: true, alt: false,
+          _id_: `kb_select_above`,
+        },
+        {
+          cmd: `select_items_below`,
+          key: `ArrowDown`, ctrl: true, shift: true, alt: false,
+          _id_: `kb_select_below`,
+        },
       ],
       separator: true,
       info: `Extra keyboard shortcuts
