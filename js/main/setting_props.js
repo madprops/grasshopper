@@ -4391,6 +4391,16 @@ App.build_settings = () => {
           key: `ArrowDown`, ctrl: true, shift: false, alt: false,
           _id_: `kb_move_bottom`,
         },
+        {
+          cmd: `show_filter_menu`,
+          key: `KeyF`, ctrl: true, shift: false, alt: false,
+          _id_: `kb_filter_menu`,
+        },
+        {
+          cmd: `select_all_items`,
+          key: `KeyA`, ctrl: true, shift: false, alt: false,
+          _id_: `kb_select_all`,
+        },
       ],
       separator: true,
       info: `Extra keyboard shortcuts

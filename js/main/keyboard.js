@@ -62,20 +62,6 @@ App.check_items_keyboard = (e) => {
   }
 
   if (e.ctrlKey && !e.shiftKey) {
-    if (e.key === `a`) {
-      if (!filter_focus) {
-        App.select_all(mode, true)
-        e.preventDefault()
-      }
-
-      return
-    }
-    else if (e.key === `f`) {
-      App.show_filter_menu(mode)
-      e.preventDefault()
-      return
-    }
-
     if (!isNaN(e.key)) {
       App.on_number_key(e.key)
       e.preventDefault()
