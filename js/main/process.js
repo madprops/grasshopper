@@ -160,10 +160,6 @@ App.process_info = (args = {}) => {
       }
     }
 
-    for (let key in App.edit_props) {
-      item[`custom_${key}`] = App.edit_default(key)
-    }
-
     item.original_data = args.info
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true

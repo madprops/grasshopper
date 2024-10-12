@@ -411,12 +411,6 @@ App.tabs_action = async (args = {}) => {
   }
 
   blink_item()
-
-  let tb_mode = App.get_tab_box_mode()
-
-  if ([`nodez`].includes(tb_mode)) {
-    App.update_tab_box()
-  }
 }
 
 App.duplicate_tab = async (item) => {

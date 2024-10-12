@@ -39,6 +39,11 @@ App.select_item = (args = {}) => {
 
   App.toggle_selected({item: args.item, what: true})
   App.scroll_to_item({item: args.item, scroll: args.scroll})
+  let tb_mode = App.get_tab_box_mode()
+
+  if ([`nodez`].includes(tb_mode)) {
+    App.update_tab_box()
+  }
 }
 
 App.select_up_down = (mode, direction = `down`, alt = false) => {

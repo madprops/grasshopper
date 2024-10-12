@@ -21,51 +21,15 @@ App.tags = (item, rule = true) => {
 
 //
 
-App.get_text_edit = (item, prop, rule) => {
-  let value = item[`custom_${prop}`]
-
-  if (!value && rule) {
-    value = item[`rule_${prop}`]
-  }
-
-  return value || ``
-}
-
-App.get_list_edit = (item, prop, rule) => {
-  let value = item[`custom_${prop}`]
-
-  if (!value.length && rule) {
-    value = item[`rule_${prop}`]
-  }
-
-  return value || []
-}
-
-App.get_bool_edit = (item, prop, rule) => {
+App.get_edit = (item, prop, rule = true) => {
   let value = item[`custom_${prop}`]
 
   if ((value === undefined) && rule) {
     value = item[`rule_${prop}`]
   }
 
-  return value || false
+  return value ?? App.edit_default(prop)
 }
-
-//
-
-App.get_edit = (item, prop, rule = true) => {
-  if (App.get_text_edit_props().includes(prop)) {
-    return App.get_text_edit(item, prop, rule)
-  }
-  else if (App.get_list_edit_props().includes(prop)) {
-    return App.get_list_edit(item, prop, rule)
-  }
-  else if (App.get_bool_edit_props().includes(prop)) {
-    return App.get_bool_edit(item, prop, rule)
-  }
-}
-
-//
 
 App.get_color = (item, rule = true) => {
   return App.get_edit(item, `color`, rule)
@@ -80,7 +44,7 @@ App.get_root = (item, rule = true) => {
 }
 
 App.get_icon = (item, rule = true) => {
-  return App.get_edit(item, `icon`, rule)
+  App.get_edit(item, `icon`, rule)
 }
 
 App.get_notes = (item, rule = true) => {

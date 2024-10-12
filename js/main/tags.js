@@ -446,7 +446,8 @@ App.get_tag_items = (mode, show = false) => {
 }
 
 App.tagged = (item) => {
-  return Boolean(item.custom_tags.length || item.rule_tags.length)
+  let tags = App.get_tags(item)
+  return Boolean(tags.length)
 }
 
 App.show_filter_tag_menu = (mode, e, show = false) => {
