@@ -10,12 +10,14 @@ App.title = (item) => {
 
 App.tags = (item, rule = true) => {
   let tags = []
+  let rtags = App.get_rule(item, `tags`)
+  let ctags = App.get_tags(item, false)
 
   if (rule) {
-    tags.push(...item.rule_tags)
+    tags.push(...rtags)
   }
 
-  tags.push(...item.custom_tags)
+  tags.push(...ctags)
   return Array.from(new Set(tags))
 }
 

@@ -313,12 +313,12 @@ App.remove_edits = (args = {}) => {
 
       for (let what of args.what) {
         if (what === `tags`) {
-          if (item.custom_tags.length) {
+          if (App.get_tags(item, false).length) {
             args.items.push(item)
             break
           }
         }
-        else if (item[`custom_${what}`]) {
+        else if (App.get_edit(item, what, false)) {
           args.items.push(item)
           break
         }

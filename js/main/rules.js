@@ -253,3 +253,13 @@ App.remove_all_domain_rules = () => {
     },
   })
 }
+
+App.get_rule = (item, prop, def = true) => {
+  let value = item[`rule_${prop}`]
+
+  if ((value === undefined) && def) {
+    value = App.edit_default(prop)
+  }
+
+  return value
+}

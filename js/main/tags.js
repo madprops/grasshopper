@@ -16,20 +16,23 @@ App.edit_tab_tags = (args = {}) => {
       for (let it of active) {
         let tags = tag_list
         let new_tags
+        let ctags = App.get_tags(it, false)
 
-        if (it.custom_tags.length) {
-          new_tags = tags.filter(x => !it.custom_tags.includes(x))
+        if (ctags.length) {
+          new_tags = tags.filter(x => !ctags.includes(x))
 
           if (args.add) {
-            tags = [...it.custom_tags, ...new_tags]
+            tags = [...ctags, ...new_tags]
           }
         }
         else {
           new_tags = tags
         }
 
-        if (it.rule_tags.length) {
-          tags = tags.filter(x => !it.rule_tags.includes(x))
+        let rtags = App.get_rule(it, `tags`)
+
+        if (rtags.length) {
+          tags = tags.filter(x => !rtags.includes(x))
         }
 
         App.apply_edit({what: `tags`, item: it, value: tags, on_change: (value) => {
@@ -69,7 +72,7 @@ App.get_tag_list = (value) => {
 }
 
 App.add_tag = (item, tag) => {
-  let tags = item.custom_tags.slice(0)
+  let tags = App.get_tags(item, false).slice(0)
 
   if (tags.includes(tag)) {
     return
@@ -97,7 +100,7 @@ App.remove_tag = (item, tag) => {
     return
   }
 
-  let tags = item.custom_tags.filter(x => x !== tag)
+  let tags = App.get_tags(item, false).filter(x => x !== tag)
 
   App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
     App.custom_save(item.id, `tags`, value)
@@ -155,18 +158,20 @@ App.close_tag_all = () => {
       let items = []
 
       for (let tab of App.get_items(`tabs`)) {
-        if (tab.custom_tags) {
-          if (tab.custom_tags.includes(tag)) {
+        let ctags = App.get_tags(tab, false)
+
+        if (ctags) {
+          if (ctags.includes(tag)) {
             items.push(tab)
             continue
           }
         }
 
-        if (tab.rule_tags) {
-          if (tab.rule_tags.includes(tag)) {
-            items.push(tab)
-            continue
-          }
+        let rtags = App.get_rule(tab, `tags`)
+
+        if (rtags.includes(tag)) {
+          items.push(tab)
+          continue
         }
       }
 
@@ -189,14 +194,14 @@ App.get_all_tags = (include_rules = true) => {
   }
 
   for (let item of App.get_items(`tabs`)) {
-    for (let tag of item.custom_tags) {
+    for (let tag of App.get_tags(item, false)) {
       if (!tags.includes(tag)) {
         tags.push(tag)
       }
     }
 
     if (include_rules) {
-      for (let tag of item.rule_tags) {
+      for (let tag of App.get_rule(item, `tags`)) {
         if (!tags.includes(tag)) {
           tags.push(tag)
         }
@@ -246,8 +251,10 @@ App.do_replace_tag = (tag_1, tag_2) => {
   }
 
   for (let item of App.get_items(`tabs`)) {
-    if (item.custom_tags.includes(tag_1)) {
-      let tags = item.custom_tags.map(x => x === tag_1 ? tag_2 : x)
+    let ctags = App.get_tags(item, false)
+
+    if (ctags.includes(tag_1)) {
+      let tags = ctags.map(x => x === tag_1 ? tag_2 : x)
 
       App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
         App.custom_save(item.id, `tags`, value)
@@ -258,7 +265,7 @@ App.do_replace_tag = (tag_1, tag_2) => {
 }
 
 App.check_tag_rule = (item, tag) => {
-  if (item.rule_tags.includes(tag)) {
+  if (App.get_rule(item, `tags`).includes(tag)) {
     App.domain_rule_message()
     return true
   }
@@ -272,8 +279,8 @@ App.edit_tag = (item, tag) => {
   }
 
   let tags = App.get_all_tags()
-  let rule_tags = item.rule_tags || []
-  tags = tags.filter(x => !rule_tags.includes(x))
+  let rtags = App.get_rule(item, `tags`)
+  tags = tags.filter(x => !rtags.includes(x))
 
   App.show_prompt({
     suggestions: tags,
@@ -293,17 +300,19 @@ App.do_edit_tag = (item, tag_1, tag_2) => {
     return
   }
 
-  if (item.rule_tags && item.rule_tags.length) {
-    if (item.rule_tags.includes(tag_1)) {
+  let rtags = App.get_rule(item, `tags`)
+
+  if (rtags.length) {
+    if (rtags.includes(tag_1)) {
       return
     }
 
-    if (item.rule_tags.includes(tag_2)) {
+    if (rtags.includes(tag_2)) {
       return
     }
   }
 
-  let tags = item.custom_tags.filter(x => x !== tag_1)
+  let tags = App.get_tags(item, false).filter(x => x !== tag_1)
   tags.push(tag_2)
 
   App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
