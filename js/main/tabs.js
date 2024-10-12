@@ -157,9 +157,7 @@ App.focus_tab = async (args = {}) => {
   }
 
   try {
-    if (!args.item.active) {
-      await browser.tabs.update(args.item.id, {active: true})
-    }
+    await browser.tabs.update(args.item.id, {active: true})
   }
   catch (err) {
     App.error(err)
