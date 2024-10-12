@@ -277,7 +277,7 @@ App.item_menu_tags = (items, item) => {
       items: tag_items,
     })
   }
-  else if (item.custom_tags.length) {
+  else if (App.get_tags(item, false).length) {
     App.item_menu_item(items, `edit_tags`, {item})
   }
   else {
