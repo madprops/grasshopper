@@ -744,7 +744,6 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: up_icon,
       action: (args) => {
-        console.log(1)
         App.select_next(args.mode, `above`)
       },
       info: `Select the next item above`,
