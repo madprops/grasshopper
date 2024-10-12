@@ -85,11 +85,6 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (e.key === `.`) {
-      App.jump_tabs_playing()
-      e.preventDefault()
-      return
-    }
     else if (e.key === `,`) {
       App.go_to_previous_tab()
       e.preventDefault()

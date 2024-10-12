@@ -4361,6 +4361,11 @@ App.build_settings = () => {
           key: `ArrowRight`, ctrl: true, shift: false, alt: false,
           _id_: `kb_filter_nodes`,
         },
+        {
+          cmd: `jump_tabs_playing_down`,
+          key: `Period`, ctrl: true, shift: false, alt: false,
+          _id_: `kb_filter_nodes`,
+        },
       ],
       separator: true,
       info: `Extra keyboard shortcuts
