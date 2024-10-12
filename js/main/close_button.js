@@ -43,7 +43,13 @@ App.show_close_button_menu = (item, e) => {
     item,
   })
 
-  App.show_context({items, e})
+  let element
+
+  if (item) {
+    element = item.element
+  }
+
+  App.show_context({items, e, element})
   return true
 }
 
@@ -59,6 +65,12 @@ App.show_close_button_menu_2 = (item, e) => {
     item,
   })
 
-  App.show_context({items, e})
+  let element
+
+  if (item) {
+    element = item.element
+  }
+
+  App.show_context({items, e, element})
   return true
 }

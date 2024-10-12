@@ -1833,7 +1833,7 @@ App.setup_commands = () => {
       info: `Open the menu with some tab closing options`,
     },
     {
-      name: `Close Btn Menu`,
+      name: `Close Button Menu`,
       short_name: `Close`,
       cmd: `show_close_button_menu`,
       modes: [`tabs`],

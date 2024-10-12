@@ -111,7 +111,13 @@ App.show_extra_menu = (item, e) => {
     item, e,
   })
 
-  App.show_context({items, e})
+  let element
+
+  if (item) {
+    element = item.element
+  }
+
+  App.show_context({items, e, element})
 }
 
 App.button_text = (icon, text, bigger = false) => {

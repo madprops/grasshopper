@@ -6,11 +6,12 @@ App.show_item_menu = async (args = {}) => {
   App.item_menu_args = args
   App.item_menu_active = App.get_active_items({mode: args.item.mode, item: args.item})
   App.item_menu_too_many = App.item_menu_active.length > App.max_command_check_items
+  let element = args.item.element
   let items = []
 
   if (args.item.type === `folder`) {
     App.item_menu_item(items, `save_bookmarks_folder_pick`, {item: args.item})
-    App.show_context({items, e: args.e})
+    App.show_context({items, e: args.e, element})
     return
   }
 
@@ -22,7 +23,7 @@ App.show_item_menu = async (args = {}) => {
     }
 
     App.extra_menu_items(items)
-    App.show_context({items, e: args.e})
+    App.show_context({items, e: args.e, element})
     return
   }
 
@@ -114,7 +115,7 @@ App.show_item_menu = async (args = {}) => {
     App.extra_menu_items(items)
   }
 
-  App.show_context({items, e: args.e})
+  App.show_context({items, e: args.e, element})
 }
 
 App.common_menu_items = (args = {}) => {
