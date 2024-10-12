@@ -293,7 +293,8 @@ App.color_menu_items = (item) => {
 App.show_color_menu = (item, e, show_title = true) => {
   let items = App.color_menu_items(item)
   let title = show_title ? `Color` : undefined
-  App.show_context({items, e, title})
+  let element = item?.element
+  App.show_context({items, e, title, element})
 }
 
 App.get_color_items = (mode) => {

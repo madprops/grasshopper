@@ -111,12 +111,7 @@ App.show_extra_menu = (item, e) => {
     item, e,
   })
 
-  let element
-
-  if (item) {
-    element = item.element
-  }
-
+  let element = item?.element
   App.show_context({items, e, element})
 }
 

@@ -10,12 +10,7 @@ App.show_hover_menu = (item, e) => {
     item,
   })
 
-  let element
-
-  if (item) {
-    element = item.element
-  }
-
+  let element = item?.element
   App.show_context({items, e, element})
 }
 
@@ -31,12 +26,7 @@ App.show_hover_menu_2 = (item, e) => {
     item,
   })
 
-  let element
-
-  if (item) {
-    element = item.element
-  }
-
+  let element = item?.element
   App.show_context({items, e, element})
   return true
 }

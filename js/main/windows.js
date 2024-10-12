@@ -277,7 +277,8 @@ App.show_windows_menu = async (item, e) => {
   let items = await App.get_window_menu_items(item)
 
   if (items) {
-    App.show_context({items, e, title: `Move To Window`})
+    let element = item?.element
+    App.show_context({items, e, title: `Move To Window`, element})
   }
 }
 
