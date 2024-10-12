@@ -27,7 +27,7 @@ App.edit_title = (item, add_value = true) => {
 
   if (add_value) {
     let auto = App.get_setting(`edit_title_auto`)
-    value = auto ? App.get_title(item, false) : ``
+    value = auto ? App.title(item) : ``
   }
   else {
     value = ``
