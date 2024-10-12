@@ -4381,6 +4381,16 @@ App.build_settings = () => {
           key: `ArrowDown`, ctrl: true, shift: true, alt: false,
           _id_: `kb_select_below`,
         },
+        {
+          cmd: `move_tabs_to_top`,
+          key: `ArrowUp`, ctrl: true, shift: false, alt: false,
+          _id_: `kb_move_top`,
+        },
+        {
+          cmd: `move_tabs_to_bottom`,
+          key: `ArrowDown`, ctrl: true, shift: false, alt: false,
+          _id_: `kb_move_bottom`,
+        },
       ],
       separator: true,
       info: `Extra keyboard shortcuts
