@@ -20,8 +20,6 @@ App.start_about = () => {
         `Shift + Click selects an item range`,
         `Right Click on items shows the Item Menu`,
         `Shift + Enter on items shows the Item Menu`,
-        `(Ctrl) Home goes to the top`,
-        `(Ctrl) End goes to the bottom`,
         `Ctrl + Up moves tabs to the top`,
         `Ctrl + Down moves tabs to the bottom`,
         `Ctrl + F shows the Filter Menu`,

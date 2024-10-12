@@ -449,23 +449,11 @@ Addlist.enter = () => {
 
 Addlist.left = () => {
   let id = Addlist.data.id
-  let save = Addlist.data.edit
-
-  if (save) {
-    Addlist.save({id, hide: false})
-  }
-
   Addlist.next(id, true)
 }
 
 Addlist.right = () => {
   let id = Addlist.data.id
-  let save = Addlist.data.edit
-
-  if (save) {
-    Addlist.save({id, hide: false})
-  }
-
   Addlist.next(id)
 }
 

@@ -95,16 +95,6 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (e.key === `Home`) {
-      App.goto_top_or_bottom({what: `top`, mode, select: true})
-      e.preventDefault()
-      return
-    }
-    else if (e.key === `End`) {
-      App.goto_top_or_bottom({what: `bottom`, mode, select: true})
-      e.preventDefault()
-      return
-    }
 
     if (!isNaN(e.key)) {
       App.on_number_key(e.key)

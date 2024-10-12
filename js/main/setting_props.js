@@ -4342,6 +4342,16 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {
+          cmd: `go_to_top`,
+          key: `Home`, ctrl: true, shift: false, alt: false,
+          _id_: `kb_go_to_top`,
+        },
+        {
+          cmd: `go_to_bottom`,
+          key: `End`, ctrl: true, shift: false, alt: false,
+          _id_: `kb_go_to_bottom`,
+        },
+        {
           cmd: `focus_parent_tab`,
           key: `ArrowLeft`, ctrl: true, shift: false, alt: false,
           _id_: `kb_focus_parent`,
