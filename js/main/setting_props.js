@@ -2009,13 +2009,6 @@ App.build_settings = () => {
       info: `If the window is smaller in height than these pixels, don't show the Tab Box`,
       version: 1,
     },
-    tab_box_scrollbars: {
-      name: `Tab Box Scrollbars`,
-      type: `checkbox`,
-      value: false,
-      info: `Show the scrollbars in the Tab Box`,
-      version: 1,
-    },
     tab_box_wheel: {
       name: `Tab Box Wheel`,
       type: `checkbox`,
@@ -2106,6 +2099,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Show headers in the Tab Box on all modes`,
+      version: 1,
+    },
+    tab_box_scrollbars: {
+      name: `Tab Box Scrollbars`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the scrollbars in the Tab Box`,
       version: 1,
     },
   }
