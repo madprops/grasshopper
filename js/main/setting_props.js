@@ -437,7 +437,7 @@ App.build_settings = () => {
       name: `Font`,
       type: `text`,
       actions: [`theme`],
-      value: `Nova Square`,
+      value: App.default_font,
       placeholder: `Font Name`,
       btns: [`pick`],
       no_empty: true,
@@ -446,7 +446,7 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
-          App.pick_font(e)
+          App.pick_font(e, `font`)
         })
       },
     },
@@ -1914,6 +1914,22 @@ App.build_settings = () => {
         ])
       },
     },
+    tab_box_font: {
+      name: `Tab Box Font`,
+      type: `text`,
+      value: App.default_font,
+      placeholder: `Font Name`,
+      btns: [`pick`],
+      no_empty: true,
+      info: `Font to use for the Tab Box
+      Pick from the list, or enter a Google Font name, or enter a font URL`,
+      version: 1,
+      setup: (key) => {
+        DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
+          App.pick_font(e, `tab_box_font`)
+        })
+      },
+    },
     tab_box_font_size: {
       name: `Tab Box Font Size`,
       type: `menu`,
@@ -2749,6 +2765,22 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.aligns)
+      },
+    },
+    main_title_font: {
+      name: `Title Font`,
+      type: `text`,
+      value: App.default_font,
+      placeholder: `Font Name`,
+      btns: [`pick`],
+      no_empty: true,
+      info: `Font to use for the Title
+      Pick from the list, or enter a Google Font name, or enter a font URL`,
+      version: 1,
+      setup: (key) => {
+        DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
+          App.pick_font(e, `main_title_font`)
+        })
       },
     },
     main_title_font_size: {

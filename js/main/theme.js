@@ -292,24 +292,16 @@ App.do_apply_theme = (args = {}) => {
     main.classList.add(`icon_effect_${ie}`)
 
     let font = App.get_setting(`font`)
-    let font_str = `sans-serif`
-
-    if (font) {
-      if (App.fonts.includes(font)) {
-        font_str = `${font}, sans-serif`
-      }
-      else if (App.is_url(font)) {
-        App.insert_font_css()
-        font_str = `custom_font, sans-serif`
-      }
-      else {
-        let font_link = document.getElementById(`custom_font`)
-        font_link.href = `https://fonts.googleapis.com/css?family=${font}`
-        font_str = `${font}, sans-serif`
-      }
-    }
-
+    let font_str = App.get_font_string(font)
     App.set_css_var(`font`, font_str)
+
+    font = App.get_setting(`main_title_font`)
+    font_str = App.get_font_string(font)
+    App.set_css_var(`main_title_font`, font_str)
+
+    font = App.get_setting(`tab_box_font`)
+    font_str = App.get_font_string(font)
+    App.set_css_var(`tab_box_font`, font_str)
 
     let scv
 
@@ -1012,14 +1004,14 @@ App.pick_background = (e) => {
   App.show_context({e, items})
 }
 
-App.pick_font = (e) => {
+App.pick_font = (e, what) => {
   let items = []
 
   for (let font of App.fonts) {
     items.push({
       text: font,
       action: () => {
-        App.do_pick_font(font)
+        App.do_pick_font(font, what)
       },
     })
   }
@@ -1027,7 +1019,28 @@ App.pick_font = (e) => {
   App.show_context({e, items})
 }
 
-App.do_pick_font = (font) => {
-  App.set_setting({setting: `font`, value: font, action: true})
-  App.refresh_setting_widgets([`font`])
+App.do_pick_font = (font, what) => {
+  App.set_setting({setting: what, value: font, action: true})
+  App.refresh_setting_widgets([what])
+}
+
+App.get_font_string = (font) => {
+  let font_str = `sans-serif`
+
+  if (font) {
+    if (App.fonts.includes(font)) {
+      font_str = `${font}, sans-serif`
+    }
+    else if (App.is_url(font)) {
+      App.insert_font_css()
+      font_str = `custom_font, sans-serif`
+    }
+    else {
+      let font_link = document.getElementById(`custom_font`)
+      font_link.href = `https://fonts.googleapis.com/css?family=${font}`
+      font_str = `${font}, sans-serif`
+    }
+  }
+
+  return font_str
 }

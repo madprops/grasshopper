@@ -119,6 +119,8 @@ App.max_bookmark_folder_picks = 50
 App.max_history_picks = 50
 App.bookmarks_folder_url = `https://bookmarks.folder`
 App.shrink_on_tab_box_leave
+App.font_sizes = [6, 28, 1]
+App.default_font = `Nova Square`
 
 App.settings_ready = false
 App.media_image_ready = false
@@ -399,5 +401,3 @@ App.scroll_modes = [
   {text: `Top`, value: `top`},
   {text: `Bottom`, value: `bottom`},
 ]
-
-App.font_sizes = [6, 28, 1]

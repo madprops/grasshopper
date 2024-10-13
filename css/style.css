@@ -1326,6 +1326,7 @@ a:hover
 #tab_box_container {
   background-color: var(--tab_box_color);
   font-size: var(--tab_box_font_size);
+  font-family: var(--tab_box_font);
 }
 
 #tab_box.size_compact {
@@ -1778,6 +1779,7 @@ a:hover
 
 #main_title_inner {
   font-size: var(--main_title_font_size);
+  font-family: var(--main_title_font);
 }
 
 .main_title_no_wrap #main_title_inner {
