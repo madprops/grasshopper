@@ -35,7 +35,8 @@ App.show_intro_message = () => {
     },
   ]
 
-  App.show_textarea({message: `Welcome`, text, simple: true, buttons, align: `left`})
+  let image = `img/grasshopper.png`
+  App.show_textarea({message: `Welcome`, text, simple: true, buttons, align: `left`, image})
 }
 
 App.restart_extension = () => {

@@ -24,6 +24,16 @@ App.show_textarea = (args = {}) => {
     textarea.value = args.text
   }
 
+  let img = DOM.el(`#textarea_image`)
+
+  if (args.image) {
+    DOM.show(img)
+    img.src = args.image
+  }
+  else {
+    DOM.hide(img)
+  }
+
   if (args.buttons.length) {
     DOM.hide(`#textarea_buttons`)
     DOM.show(`#textarea_custom_buttons`)

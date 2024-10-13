@@ -444,6 +444,11 @@ App.fill_custom_props = (obj, item) => {
   for (let key in App.edit_props) {
     let name = `custom_${key}`
     let value = item[name]
+
+    if (value === undefined) {
+      continue
+    }
+
     let ok = true
 
     if (App.get_text_edit_props().includes(key)) {

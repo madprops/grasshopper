@@ -961,11 +961,19 @@ a:hover
 
 #textarea_message {
   word-break: break-word;
+  width: 100%;
+  background-color: var(--alt_color_0);
+  text-align: center;
+  padding: 0.25rem;
+}
+
+#textarea_image {
+  width: 8rem;
+  height: auto;
 }
 
 #textarea_simple {
   width: 66vw;
-  background-color: var(--alt_color_0);
   padding: 0.1rem;
   user-select: text;
   cursor: text;
