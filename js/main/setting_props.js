@@ -4712,7 +4712,7 @@ App.build_settings = () => {
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,
-      value: 12,
+      value: 20,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
