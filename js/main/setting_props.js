@@ -1410,14 +1410,6 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-    show_scrollbars: {
-      name: `Show Scrollbars`,
-      type: `checkbox`,
-      value: false,
-      info: `Show the item scrollbars
-      Else scrollbars are disabled`,
-      version: 1,
-    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
@@ -1437,6 +1429,14 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show feedback messages on certain actions`,
+      version: 1,
+    },
+    show_scrollbars: {
+      name: `Show Scrollbars`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the item scrollbars
+      Else scrollbars are disabled`,
       version: 1,
     },
     hide_pins: {
