@@ -527,7 +527,7 @@ App.setup_commands = () => {
 
     gen_menus.push({
       name,
-      short_name: `Menu ${i}`,
+      short_name: name.substring(0, 10).trim(),
       cmd: `show_generic_menu_${i}`,
       skip_palette,
       icon,
