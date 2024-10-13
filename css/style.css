@@ -950,7 +950,7 @@ a:hover
 }
 
 .textarea {
-  background-color: var(--alt_color_0);
+  background-color: var(--background_color);
   color: var(--text_color);
   outline: none;
   border: none;
@@ -967,6 +967,10 @@ a:hover
   padding: 0.25rem;
 }
 
+#textarea_text {
+  border: 1px solid var(--alt_color_0);
+}
+
 #textarea_image {
   width: 8rem;
   height: auto;
@@ -978,6 +982,7 @@ a:hover
   user-select: text;
   cursor: text;
   word-break: break-word;
+  border: unset;
 }
 
 #textarea_simple.left {
@@ -1909,4 +1914,8 @@ a:hover
 .tab_box_item {
   scroll-margin-top: 1rem;
   scroll-margin-bottom: 1rem;
+}
+
+#input_text {
+  background-color: var(--alt_color_0);
 }
