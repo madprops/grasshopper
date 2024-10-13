@@ -399,3 +399,5 @@ App.scroll_modes = [
   {text: `Top`, value: `top`},
   {text: `Bottom`, value: `bottom`},
 ]
+
+App.font_sizes = [6, 28, 1]

@@ -98,6 +98,7 @@ App.do_apply_theme = (args = {}) => {
 
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
     App.set_css_var(`main_title_font_size`, App.get_setting(`main_title_font_size`) + `px`)
+    App.set_css_var(`tab_box_font_size`, App.get_setting(`tab_box_font_size`) + `px`)
 
     let w = `${(App.get_setting(`width`) / 100) * App.popup_width}px`
     App.set_css_var(`width`, w)

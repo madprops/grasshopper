@@ -461,7 +461,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(6, 28, 1))
+        App.settings_make_menu(key, App.setting_steps(...App.font_sizes))
       },
     },
     custom_css: {
@@ -1914,6 +1914,17 @@ App.build_settings = () => {
         ])
       },
     },
+    tab_box_font_size: {
+      name: `Tab Box Font Size`,
+      type: `menu`,
+      value: App.default_font_size,
+      placeholder: `Px`,
+      info: `Font size for the Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(...App.font_sizes))
+      },
+    },
     tab_box_color_mode: {
       name: `Tab Box Color Mode`,
       type: `menu`,
@@ -2748,7 +2759,7 @@ App.build_settings = () => {
       info: `Font size for the Title`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(6, 28, 1))
+        App.settings_make_menu(key, App.setting_steps(...App.font_sizes))
       },
     },
     wrap_main_title: {

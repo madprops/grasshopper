@@ -1325,6 +1325,7 @@ a:hover
 
 #tab_box_container {
   background-color: var(--tab_box_color);
+  font-size: var(--tab_box_font_size);
 }
 
 #tab_box.size_compact {
