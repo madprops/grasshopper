@@ -202,18 +202,4 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `footer_color_enabled`, value: true})
   App.set_setting({setting: `footer_color`, value: `rgba(92, 152, 182, 0.65)`})
-
-  // Hover Button
-
-  App.set_setting({setting: `hover_button`, value: `left`})
-  App.set_setting({setting: `middle_click_hover_button`, value: `unload_tabs`})
-
-  sett = `hover_menu`
-  App.set_setting({setting: sett, value: []})
-
-  cmd = {cmd: `edit_root_url`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `unload_tabs`}
-  App.append_list_setting(sett, cmd)
 }
