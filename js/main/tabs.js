@@ -164,7 +164,10 @@ App.focus_tab = async (args = {}) => {
     App.remove_closed_tab(args.item.id)
   }
 
-  App.tab_box_make_item_first(args.item)
+  if (!App.tab_box_make_item_first(args.item)) {
+    App.update_tab_box()
+  }
+
   App.after_focus(args)
 }
 

@@ -790,20 +790,22 @@ App.tab_box_update_active = () => {
 
 App.tab_box_make_item_first = (item) => {
   if (!App.tab_box_enabled()) {
-    return
+    return false
   }
 
   if (App.get_tab_box_mode() !== `recent`) {
-    return
+    return false
   }
 
   for (let it of App.tab_box_items) {
     if (it.id === item.id) {
       let c = DOM.el(`#tab_box_container`)
       c.prepend(it.element)
-      break
+      return true
     }
   }
+
+  return false
 }
 
 App.tab_box_limited = () => {
