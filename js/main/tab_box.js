@@ -19,8 +19,8 @@ App.setup_tab_box = () => {
     App.do_tab_box_shrink()
   }, App.tab_box_shrink_delay)
 
-  App.tab_box_scroll_debouncer = App.create_debouncer((mode) => {
-    App.do_check_tab_box_scroll(mode)
+  App.tab_box_scroll_info_debouncer = App.create_debouncer((mode) => {
+    App.do_check_tab_box_scroll_info(mode)
   }, App.scroller_delay)
 }
 
@@ -45,6 +45,12 @@ App.make_tab_box_modes = () => {
 }
 
 App.reset_tab_box = () => {
+  App.tab_box_items = []
+  App.tab_box_o_items = []
+  App.current_tab_box_mode = undefined
+  App.tab_box_mouse_inside = false
+  App.tab_box_size_on_mouse_leave = undefined
+  App.tab_box_size = undefined
   App.tab_box_check_size()
   App.make_tab_box_modes()
 }
@@ -118,7 +124,7 @@ App.create_tab_box = () => {
   }
 
   DOM.ev(container, `scroll`, () => {
-    App.check_tab_box_scroll()
+    App.check_tab_box_scroll_info()
   })
 
   App.tab_box_ready = false
@@ -145,14 +151,17 @@ App.do_update_tab_box = () => {
   }
 
   let what = App.get_tab_box_mode()
-  App.tab_box_focused = undefined
   App.check_tab_box()
+
+  if (!App[`update_tab_box_${what}`]()) {
+    return
+  }
+
+  App.tab_box_focused = undefined
   App.set_tab_box_title(what)
-  App[`update_tab_box_${what}`]()
   App.tab_box_scroll()
   App.tab_box_shrink()
-  App.tab_box_scroll()
-  App.do_check_tab_box_scroll()
+  App.do_check_tab_box_scroll_info()
 }
 
 App.change_tab_box_mode = (what, set = true) => {
@@ -165,7 +174,23 @@ App.change_tab_box_mode = (what, set = true) => {
 
 App.tab_box_show = (mode, o_items) => {
   if (!App.tab_box_mode(mode)) {
-    return
+    return false
+  }
+
+  let different = true
+
+  if (mode === App.get_tab_box_mode()) {
+    if (!App.tab_box_special()) {
+      if (o_items.length === App.tab_box_o_items.length) {
+        different = !o_items.every(item =>
+          App.tab_box_o_items.some(item_2 => item.id === item_2.id),
+        )
+      }
+    }
+  }
+
+  if (!different) {
+    return false
   }
 
   let items
@@ -184,7 +209,10 @@ App.tab_box_show = (mode, o_items) => {
   App.update_tab_box_count(items.length)
   App.tab_box_items = items
   App.tab_box_o_items = o_items
+  return true
 }
+
+//
 
 App.update_tab_box_recent = () => {
   let o_items = App.get_recent_tabs({
@@ -192,76 +220,78 @@ App.update_tab_box_recent = () => {
     headers: App.get_setting(`tab_box_headers`),
   })
 
-  App.tab_box_show(`recent`, o_items)
+  return App.tab_box_show(`recent`, o_items)
 }
 
 App.update_tab_box_pins = () => {
   let o_items = App.get_pinned_tabs()
-  App.tab_box_show(`pins`, o_items)
+  return App.tab_box_show(`pins`, o_items)
 }
 
 App.update_tab_box_playing = () => {
   let o_items = App.get_playing_tabs()
-  App.tab_box_show(`playing`, o_items)
+  return App.tab_box_show(`playing`, o_items)
 }
 
 App.update_tab_box_colors = () => {
   let o_items = App.get_colored_items(`tabs`)
-  App.tab_box_show(`colors`, o_items)
+  return App.tab_box_show(`colors`, o_items)
 }
 
 App.update_tab_box_tags = () => {
   let o_items = App.get_tagged_items(`tabs`)
-  App.tab_box_show(`tags`, o_items)
+  return App.tab_box_show(`tags`, o_items)
 }
 
 App.update_tab_box_icons = () => {
   let o_items = App.get_iconed_items(`tabs`)
-  App.tab_box_show(`icons`, o_items)
+  return App.tab_box_show(`icons`, o_items)
 }
 
 App.update_tab_box_roots = () => {
   let o_items = App.get_root_items(`tabs`)
-  App.tab_box_show(`roots`, o_items)
+  return App.tab_box_show(`roots`, o_items)
 }
 
 App.update_tab_box_headers = () => {
   let o_items = App.get_headers()
-  App.tab_box_show(`headers`, o_items)
+  return App.tab_box_show(`headers`, o_items)
 }
 
 App.update_tab_box_parents = () => {
   let o_items = App.get_parent_tabs()
-  App.tab_box_show(`parents`, o_items)
+  return App.tab_box_show(`parents`, o_items)
 }
 
 App.update_tab_box_nodes = () => {
   let o_items = App.get_node_tabs()
-  App.tab_box_show(`nodes`, o_items)
+  return App.tab_box_show(`nodes`, o_items)
 }
 
 App.update_tab_box_nodez = () => {
   let o_items = App.get_current_tab_nodes()
-  App.tab_box_show(`nodez`, o_items)
+  return App.tab_box_show(`nodez`, o_items)
 }
 
 App.update_tab_box_notes = () => {
   let o_items = App.get_noted_items()
-  App.tab_box_show(`notes`, o_items)
+  return App.tab_box_show(`notes`, o_items)
 }
 
 App.update_tab_box_titles = () => {
   let o_items = App.get_titled_items()
-  App.tab_box_show(`titles`, o_items)
+  return App.tab_box_show(`titles`, o_items)
 }
 
 App.update_tab_box_folders = () => {
-  App.tab_box_show(`folders`, [])
+  return App.tab_box_show(`folders`, [])
 }
 
 App.update_tab_box_history = () => {
-  App.tab_box_show(`history`, [])
+  return App.tab_box_show(`history`, [])
 }
+
+//
 
 App.get_tab_box_items = (o_items, mode) => {
   let items = []
@@ -948,15 +978,20 @@ App.tab_box_auto_scrollable = () => {
   return [`recent`].includes(App.get_tab_box_mode())
 }
 
-App.check_tab_box_scroll = () => {
-  App.tab_box_scroll_debouncer.call()
+App.check_tab_box_scroll_info = () => {
+  App.tab_box_scroll_info_debouncer.call()
 }
 
-App.do_check_tab_box_scroll = () => {
-  App.tab_box_scroll_debouncer.cancel()
+App.do_check_tab_box_scroll_info = () => {
+  App.tab_box_scroll_info_debouncer.cancel()
   let container = DOM.el(`#tab_box_container`)
   let percentage = 100 - ((container.scrollTop /
-  (container.scrollHeight - container.clientHeight)) * 100)
+    (container.scrollHeight - container.clientHeight)) * 100)
+
+  if (isNaN(percentage)) {
+    percentage = 100
+  }
+
   let per = parseInt(percentage)
   DOM.el(`#tab_box_title_scroll`).textContent = `(${per}%)`
 }

@@ -154,6 +154,11 @@ App.do_check_scroller = (mode = App.active_mode) => {
   let container = DOM.el(`#${mode}_container`)
   let percentage = 100 - ((container.scrollTop /
   (container.scrollHeight - container.clientHeight)) * 100)
+
+  if (isNaN(percentage)) {
+    percentage = 100
+  }
+
   let per = parseInt(percentage)
   DOM.el(`#${mode}_scroller_percentage`).textContent = `(${per}%)`
 
