@@ -104,7 +104,7 @@ App.edited = (item, include_ruled = true) => {
   let edited = false
 
   for (let key in App.edit_props) {
-    if (!App.edit_is_default(key, item)) {
+    if (item[`custom_${key}`] !== undefined) {
       edited = true
       break
     }
@@ -154,7 +154,11 @@ App.edit_default = (what) => {
 }
 
 App.edit_is_default = (what, item, kind = `custom`) => {
-  return App.str(App.edit_default(what)) === App.str(item[`${kind}_${what}`])
+  return App.edit_is_default_check(what, item[`${kind}_${what}`])
+}
+
+App.edit_is_default_check = (what, value) => {
+  return App.str(App.edit_default(what)) === App.str(value)
 }
 
 App.edit_prompt = (args = {}) => {
@@ -378,6 +382,10 @@ App.remove_item_edits = (item) => {
 }
 
 App.apply_edit = (args = {}) => {
+  if (App.edit_is_default_check(args.what, args.value)) {
+    args.value = undefined
+  }
+
   if (args.value !== undefined) {
     let props = App.edit_props[args.what]
 
