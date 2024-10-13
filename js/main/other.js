@@ -129,16 +129,6 @@ App.reset_triggers = () => {
   App.reset_mouse()
 }
 
-App.show_extra_menu = (item, e) => {
-  let items = App.custom_menu_items({
-    name: `extra_menu`,
-    item, e,
-  })
-
-  let element = item?.element
-  App.show_context({items, e, element})
-}
-
 App.button_text = (icon, text, bigger = false) => {
   let cls = `button_text`
 

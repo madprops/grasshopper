@@ -46,5 +46,16 @@ App.show_generic_menu = (num, item, e) => {
     item,
   })
 
-  App.show_context({items, e})
+  let element = item?.element
+  App.show_context({items, e, element})
+}
+
+App.show_extra_menu = (item, e) => {
+  let items = App.custom_menu_items({
+    name: `extra_menu`,
+    item, e,
+  })
+
+  let element = item?.element
+  App.show_context({items, e, element})
 }
