@@ -112,7 +112,7 @@ App.mouse_click_action = (e) => {
   }
 
   if (DOM.parent(e.target, [`.actions_button`])) {
-    App.show_actions_menu(mode, e)
+    App.show_actions_menu(mode, undefined, e)
     return
   }
 

@@ -388,19 +388,6 @@ App.setup_commands = () => {
       },
       info: `Show mode: ${mode}`,
     })
-
-    name = `${m_name} Menu`
-
-    mode_menus.push({
-      name,
-      short_name: m_name,
-      cmd: `show_mode_menu_${mode}`,
-      icon,
-      action: (args) => {
-        App.show_mode_menu(mode, args.e)
-      },
-      info: `Show mode menu: ${mode}`,
-    })
   }
 
   show_modes.push({
@@ -1451,7 +1438,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: command_icon,
       action: (args) => {
-        App.show_actions_menu(args.mode)
+        App.show_actions_menu(args.mode, args.item, args.e)
       },
       info: `Show the actions menu`,
     },

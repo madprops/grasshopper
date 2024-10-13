@@ -18,11 +18,11 @@ App.create_actions_menu = (mode) => {
   return btn
 }
 
-App.show_actions_menu = (mode, e) => {
+App.show_actions_menu = (mode, item, e) => {
   let mode_menu = App.get_setting(`${mode}_actions_menu`)
 
   if (mode_menu.length) {
-    App.show_mode_menu(mode, e)
+    App.show_mode_menu(mode, item, e)
     return
   }
 
@@ -43,9 +43,10 @@ App.show_global_menu = (e) => {
   App.show_context({items, e, element})
 }
 
-App.show_mode_menu = (mode, e) => {
+App.show_mode_menu = (mode, item, e) => {
   let items = App.custom_menu_items({
     name: `${mode}_actions_menu`,
+    item,
   })
 
   let element = DOM.el(`#${mode}_actions`)
