@@ -958,7 +958,7 @@ Addlist.edit_all = (id) => {
   let value = App.str(sett, true)
 
   App.show_input({
-    message: id,
+    title: id,
     button: `Save`,
     action: (text) => {
       try {

@@ -511,7 +511,7 @@ App.get_url_list = () => {
 App.show_tab_urls = () => {
   let urls = App.get_url_list()
   let text = urls.join(`\n`)
-  App.show_textarea({message: `All Open URLs (${urls.length})`, text})
+  App.show_textarea({title: `All Open URLs (${urls.length})`, text})
 }
 
 App.open_tab = async (item) => {
@@ -832,7 +832,7 @@ App.is_new_tab = (url) => {
 
 App.open_tab_urls = () => {
   App.show_input({
-    message: `Open URLs`,
+    title: `Open URLs`,
     button: `Open`,
     action: (text) => {
       let urls = text.split(`\n`).map(x => x.trim()).filter(x => x !== ``)

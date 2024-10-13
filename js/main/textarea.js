@@ -11,7 +11,15 @@ App.show_textarea = (args = {}) => {
   App.start_popups()
   let textarea = DOM.el(`#textarea_text`)
   let simplearea = DOM.el(`#textarea_simple`)
-  DOM.el(`#textarea_message`).textContent = args.message
+  let title = DOM.el(`#textarea_title`)
+
+  if (args.title) {
+    DOM.show(title)
+    title.textContent = args.title
+  }
+  else {
+    DOM.hide(title)
+  }
 
   if (args.simple) {
     DOM.hide(textarea)

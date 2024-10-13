@@ -1252,7 +1252,7 @@ App.settings_summary = () => {
   }
 
   let n = Object.keys(App.settings).length
-  App.show_textarea({message: `Settings (${n})`, text: lines.join(`\n`)})
+  App.show_textarea({title: `Settings (${n})`, text: lines.join(`\n`)})
 }
 
 App.get_background_effect = (value) => {
@@ -1884,7 +1884,7 @@ App.edit_text_setting = (key) => {
   let el = DOM.el(`#settings_${key}`)
 
   App.show_input({
-    message: props.name,
+    title: props.name,
     button: `Save`,
     action: (text) => {
       let value = text.trim()

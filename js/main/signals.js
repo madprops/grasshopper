@@ -446,8 +446,8 @@ App.start_signals_addlist = () => {
 App.show_signal_text = (signal, text) => {
   let simple = text.length <= 250
   let icon = App.settings_icons.signals
-  let message = `${icon} ${signal.name}`
-  App.show_textarea({message, text, simple})
+  let title = `${icon} ${signal.name}`
+  App.show_textarea({title, text, simple})
 }
 
 App.filter_signals = () => {
