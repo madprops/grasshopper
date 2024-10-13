@@ -1066,7 +1066,7 @@ App.setup_commands = () => {
     },
     {
       name: `Tab Box Close`,
-      short_name: `Box Close`,
+      short_name: `TB Close`,
       cmd: `tab_box_close`,
       modes: [`items`],
       icon: tab_box_icon,
@@ -1074,6 +1074,28 @@ App.setup_commands = () => {
         App.close_tab_box_tabs()
       },
       info: `Close the current Tab Box tabs`,
+    },
+    {
+      name: `Tab Box Top`,
+      short_name: `TB Top`,
+      cmd: `tab_box_go_to_top`,
+      modes: [`items`],
+      icon: up_icon,
+      action: (args) => {
+        App.scroll_tab_box_top()
+      },
+      info: `Go to the top of the Tab Box`,
+    },
+    {
+      name: `Tab Box Bottom`,
+      short_name: `TB Bottom`,
+      cmd: `tab_box_go_to_bottom`,
+      modes: [`items`],
+      icon: down_icon,
+      action: (args) => {
+        App.scroll_tab_box_bottom()
+      },
+      info: `Go to the bottom of the Tab Box`,
     },
 
     ...tbmodes,

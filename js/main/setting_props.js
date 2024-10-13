@@ -1424,6 +1424,13 @@ App.build_settings = () => {
       info: `Show a button at the top of a scrolled list to return to the top`,
       version: 1,
     },
+    show_scroller_info: {
+      name: `Show Scroller Info`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the scroll percentage on the Scroller`,
+      version: 1,
+    },
     show_feedback: {
       name: `Show Feedback`,
       type: `checkbox`,
@@ -2057,6 +2064,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the number of items in the Tab Box`,
+      version: 1,
+    },
+    tab_box_scroll_info: {
+      name: `Tab Box Scroll Info`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the scroll percentange on the Tab Box title`,
       version: 1,
     },
     tab_box_auto_history: {

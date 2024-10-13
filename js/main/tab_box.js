@@ -984,6 +984,11 @@ App.check_tab_box_scroll_info = () => {
 
 App.do_check_tab_box_scroll_info = () => {
   App.tab_box_scroll_info_debouncer.cancel()
+
+  if (!App.get_setting(`tab_box_scroll_info`)) {
+    return
+  }
+
   let container = DOM.el(`#tab_box_container`)
   let percentage = 100 - ((container.scrollTop /
     (container.scrollHeight - container.clientHeight)) * 100)
