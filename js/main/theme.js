@@ -238,7 +238,7 @@ App.do_apply_theme = (args = {}) => {
 
     App.set_css_var(`icon_size`, `${icon_size}rem`)
 
-    let tbh_rem = 12.2
+    let tbh_rem = 13.0
     let tbh_diff = 3.5
 
     for (let size of App.sizes_2) {
