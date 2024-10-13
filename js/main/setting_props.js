@@ -1972,6 +1972,8 @@ App.build_settings = () => {
         {cmd: `open_new_tab`},
         {cmd: `reopen_tab`},
         {cmd: `select_all_items`},
+        {cmd: `tab_box_go_to_top`},
+        {cmd: `tab_box_go_to_bottom`},
       ],
       separator: true,
       info: `Menu to show when right clicking the Tab Box`,
@@ -1999,7 +2001,7 @@ App.build_settings = () => {
     tab_box_max: {
       name: `Tab Box Max`,
       type: `number`,
-      value: 20,
+      value: 25,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
