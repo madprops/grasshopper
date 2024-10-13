@@ -961,10 +961,6 @@ a:hover
 
 #textarea_message {
   word-break: break-word;
-  width: 100%;
-  background-color: var(--alt_color_0);
-  text-align: center;
-  padding: 0.25rem;
 }
 
 #textarea_text {
