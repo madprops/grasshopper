@@ -1413,7 +1413,7 @@ App.build_settings = () => {
     show_scrollbars: {
       name: `Show Scrollbars`,
       type: `checkbox`,
-      value: true,
+      value: false,
       info: `Show the regular scrollbars
       Else scrollbars are disabled`,
       version: 1,
@@ -2012,7 +2012,7 @@ App.build_settings = () => {
     tab_box_scrollbar: {
       name: `Tab Box Scrollbar`,
       type: `checkbox`,
-      value: true,
+      value: false,
       info: `Show the scrollbar in the Tab Box`,
       version: 1,
     },
