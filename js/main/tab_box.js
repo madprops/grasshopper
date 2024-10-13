@@ -1007,5 +1007,11 @@ App.do_check_tab_box_scroll_info = () => {
   }
 
   let per = parseInt(percentage)
-  el.textContent = `(${per}%)`
+
+  if (per >= 100) {
+    el.textContent = ``
+  }
+  else {
+    el.textContent = `(${per}%)`
+  }
 }
