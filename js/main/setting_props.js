@@ -1414,7 +1414,7 @@ App.build_settings = () => {
       name: `Show Scrollbars`,
       type: `checkbox`,
       value: false,
-      info: `Show the regular scrollbars
+      info: `Show the item scrollbars
       Else scrollbars are disabled`,
       version: 1,
     },
@@ -2009,11 +2009,11 @@ App.build_settings = () => {
       info: `If the window is smaller in height than these pixels, don't show the Tab Box`,
       version: 1,
     },
-    tab_box_scrollbar: {
-      name: `Tab Box Scrollbar`,
+    tab_box_scrollbars: {
+      name: `Tab Box Scrollbars`,
       type: `checkbox`,
       value: false,
-      info: `Show the scrollbar in the Tab Box`,
+      info: `Show the scrollbars in the Tab Box`,
       version: 1,
     },
     tab_box_wheel: {

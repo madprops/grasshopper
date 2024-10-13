@@ -131,11 +131,11 @@ App.do_apply_theme = (args = {}) => {
       document.body.classList.add(`no_scrollbars`)
     }
 
-    if (App.get_setting(`tab_box_scrollbar`)) {
-      document.body.classList.remove(`no_tab_box_scrollbar`)
+    if (App.get_setting(`tab_box_scrollbars`)) {
+      document.body.classList.remove(`no_tab_box_scrollbars`)
     }
     else {
-      document.body.classList.add(`no_tab_box_scrollbar`)
+      document.body.classList.add(`no_tab_box_scrollbars`)
     }
 
     let main = DOM.el(`#main`)
