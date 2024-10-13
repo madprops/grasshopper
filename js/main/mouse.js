@@ -469,7 +469,7 @@ App.mouse_context_action = (e) => {
 
   if (!item) {
     if (DOM.parent(e.target, [`.item_container`])) {
-      App.show_empty_menu(e)
+      App.show_empty_menu(undefined, e)
     }
 
     return

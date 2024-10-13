@@ -1473,7 +1473,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: menu_icon,
       action: (args) => {
-        App.show_empty_menu(args.e)
+        App.show_empty_menu(args.item, args.e)
       },
       info: `Show the Empty Menu`,
     },

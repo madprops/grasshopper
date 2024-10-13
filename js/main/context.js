@@ -59,3 +59,27 @@ App.show_extra_menu = (item, e) => {
   let element = item?.element
   App.show_context({items, e, element})
 }
+
+App.show_empty_menu = (item, e) => {
+  let name
+  let mode = item.mode
+  let mode_menu = App.get_setting(`${mode}_empty_menu`)
+
+  if (mode_menu.length) {
+    name = `${mode}_empty_menu`
+  }
+  else {
+    let global = App.get_setting(`global_empty_menu`)
+
+    if (global.length) {
+      name = `global_empty_menu`
+    }
+  }
+
+  if (!name) {
+    return
+  }
+
+  let items = App.custom_menu_items({name, item})
+  App.show_context({items, e})
+}

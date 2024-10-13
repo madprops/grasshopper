@@ -197,7 +197,7 @@ App.init_footer = () => {
 
 App.refresh_footer = () => {
   App.update_footer_count()
-  App.update_footer_info(App.get_selected(App.window_mode))
+  App.update_footer_info(App.get_selected(App.active_mode))
 }
 
 App.show_footer = (refresh = false, set = false) => {
@@ -241,7 +241,7 @@ App.footer_message = (msg) => {
 }
 
 App.restore_footer_info = () => {
-  App.update_footer_info(App.get_selected())
+  App.update_footer_info(App.get_selected(App.active_mode))
 }
 
 App.show_footer_menu = (e) => {
