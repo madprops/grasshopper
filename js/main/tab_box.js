@@ -18,6 +18,10 @@ App.setup_tab_box = () => {
   App.tab_box_shrink_debouncer = App.create_debouncer(() => {
     App.do_tab_box_shrink()
   }, App.tab_box_shrink_delay)
+
+  App.tab_box_scroll_debouncer = App.create_debouncer((mode) => {
+    App.do_check_tab_box_scroll(mode)
+  }, App.scroller_delay)
 }
 
 App.make_tab_box_modes = () => {
@@ -64,6 +68,8 @@ App.create_tab_box = () => {
   title.append(title_main)
   let title_count = DOM.create(`div`, `box_title_count`, `tab_box_title_count`)
   title.append(title_count)
+  let title_scroll = DOM.create(`div`, `box_title_scroll`, `tab_box_title_scroll`)
+  title.append(title_scroll)
   tab_box.append(title)
   let container = DOM.create(`div`, `box_container`, `tab_box_container`)
   tab_box.append(container)
@@ -111,6 +117,10 @@ App.create_tab_box = () => {
     }
   }
 
+  DOM.ev(container, `scroll`, () => {
+    App.check_tab_box_scroll()
+  })
+
   App.tab_box_ready = false
   App.tab_box_size = undefined
   return tab_box
@@ -142,6 +152,7 @@ App.do_update_tab_box = () => {
   App.tab_box_scroll()
   App.tab_box_shrink()
   App.tab_box_scroll()
+  App.do_check_tab_box_scroll()
 }
 
 App.change_tab_box_mode = (what, set = true) => {
@@ -935,4 +946,17 @@ App.refresh_tab_box_special = (mode) => {
 
 App.tab_box_auto_scrollable = () => {
   return [`recent`].includes(App.get_tab_box_mode())
+}
+
+App.check_tab_box_scroll = () => {
+  App.tab_box_scroll_debouncer.call()
+}
+
+App.do_check_tab_box_scroll = () => {
+  App.tab_box_scroll_debouncer.cancel()
+  let container = DOM.el(`#tab_box_container`)
+  let percentage = 100 - ((container.scrollTop /
+  (container.scrollHeight - container.clientHeight)) * 100)
+  let per = parseInt(percentage)
+  DOM.el(`#tab_box_title_scroll`).textContent = `(${per}%)`
 }
