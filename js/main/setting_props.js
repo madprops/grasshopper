@@ -2001,7 +2001,7 @@ App.build_settings = () => {
     tab_box_max: {
       name: `Tab Box Max`,
       type: `number`,
-      value: 25,
+      value: 20,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
