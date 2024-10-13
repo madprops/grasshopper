@@ -1854,6 +1854,11 @@ a:hover
   flex-grow: 1;
   user-select: text;
   max-width: 300px;
+  user-select: none;
+}
+
+.signal_name:active {
+  border: 1px solid var(--text_color_darker);
 }
 
 .signal_button {

@@ -76,6 +76,21 @@ App.start_signals = () => {
       App.edit_signal(index)
     }
   })
+
+  DOM.ev(container, `dblclick`, (e) => {
+    let item = DOM.parent(e.target, [`.signal_item`])
+
+    if (!item) {
+      return
+    }
+
+    let index = item.dataset.index
+
+    if (DOM.class(e.target, [`signal_name`])) {
+      let signal = App.signal_by_index(index)
+      App.send_signal(signal)
+    }
+  })
 }
 
 App.show_signals = () => {
