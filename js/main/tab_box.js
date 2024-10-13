@@ -989,6 +989,13 @@ App.do_check_tab_box_scroll_info = () => {
     return
   }
 
+  let el = DOM.el(`#tab_box_title_scroll`)
+
+  if (!App.tab_box_o_items.length) {
+    el.textContent = ``
+    return
+  }
+
   let container = DOM.el(`#tab_box_container`)
   let percentage = 100 - ((container.scrollTop /
     (container.scrollHeight - container.clientHeight)) * 100)
@@ -998,5 +1005,5 @@ App.do_check_tab_box_scroll_info = () => {
   }
 
   let per = parseInt(percentage)
-  DOM.el(`#tab_box_title_scroll`).textContent = `(${per}%)`
+  el.textContent = `(${per}%)`
 }
