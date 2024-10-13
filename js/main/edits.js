@@ -118,6 +118,10 @@ App.edited = (item, include_ruled = true) => {
 }
 
 App.same_edit = (what, item, value, type = `custom`) => {
+  if (value === undefined) {
+    return false
+  }
+
   let props = App.edit_props[what]
   let ovalue = item[`${type}_${what}`]
 
