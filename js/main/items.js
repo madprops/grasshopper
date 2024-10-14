@@ -1342,6 +1342,8 @@ App.set_item_tooltips = (item) => {
 
   tips.push(App.mode_vars[item.mode].right_click_info)
   tips.push(App.mode_vars[item.mode].middle_click_info)
+  tips.push(App.mode_vars[item.mode].click_press_info)
+  tips.push(App.mode_vars[item.mode].middle_click_press_info)
   item.element.title = tips.join(`\n`)
 
   if (App.get_setting(`icon_pick`)) {

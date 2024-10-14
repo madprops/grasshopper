@@ -91,23 +91,37 @@ App.do_show_mode = async (args = {}) => {
   // Mode vars
   App.mode_vars[args.mode] = {}
 
-  // Tooltip right click info
+  // Tooltips info
   let rclick = App.get_cmd_name(`show_item_menu`)
   App.mode_vars[args.mode].right_click_info = `Right Click: ${rclick}`
 
-  // Tooltip middle click info
   let mclick = App.get_cmd_name(App.get_setting(`middle_click_${args.mode}`))
   App.mode_vars[args.mode].middle_click_info = `Middle Click: ${mclick}`
 
-  // Close button click info
+  let clickp = App.get_command(App.get_setting(`click_press_item`))
+  let clickps = ``
+
+  if (clickp) {
+    clickps = `Click Press: ${clickp.name}`
+  }
+
+  App.mode_vars[args.mode].click_press_info = clickps
+
+  let mclickp = App.get_command(App.get_setting(`middle_click_press_item`))
+  let mclickps = ``
+
+  if (mclickp) {
+    mclickps = `Middle Click Press: ${mclickp.name}`
+  }
+
+  App.mode_vars[args.mode].middle_click_press_info = mclickps
+
   let click = App.get_cmd_name(`close_tabs`)
   App.mode_vars[args.mode].close_button_click_info = `Click: ${click}`
 
-  // Close button middle click info
   mclick = App.get_cmd_name(App.get_setting(`middle_click_close_button`))
   App.mode_vars[args.mode].close_button_middle_click_info = `Middle Click: ${mclick}`
 
-  // Hover button middle click info
   mclick = App.get_cmd_name(App.get_setting(`middle_click_hover_button`))
   App.mode_vars[args.mode].hover_button_middle_click_info = `Middle Click: ${mclick}`
 
