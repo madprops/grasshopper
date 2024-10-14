@@ -394,10 +394,8 @@ App.check_dead_commands = () => {
                 check(item[key2], key)
               }
             }
-            else {
-              if (keys.includes(key2)) {
-                check(item[key2], key)
-              }
+            else if (keys.includes(key2)) {
+              check(item[key2], key)
             }
           }
         }
