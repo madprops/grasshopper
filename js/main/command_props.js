@@ -1786,7 +1786,8 @@ App.setup_commands = () => {
       info: `Go to the next unread tab`,
     },
     {
-      name: `Mute`,
+      name: `Mute Tab`,
+      short_name: `Mute`,
       cmd: `mute_tabs`,
       modes: [`tabs`],
       some_unmuted: true,
@@ -1799,7 +1800,8 @@ App.setup_commands = () => {
       info: `Mute tabs`,
     },
     {
-      name: `Unmute`,
+      name: `Unmute Tab`,
+      short_name: `Unmute`,
       cmd: `unmute_tabs`,
       modes: [`tabs`],
       some_muted: true,
