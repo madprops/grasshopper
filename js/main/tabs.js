@@ -295,6 +295,10 @@ App.tabs_action = async (args = {}) => {
       return false
     }
 
+    if (App.tabs_recent()) {
+      return false
+    }
+
     let no_blink = [`click`, `enter`, `tab_cmd`, `close`]
 
     if (no_blink.includes(args.from)) {
