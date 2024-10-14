@@ -491,7 +491,7 @@ App.setup_commands = () => {
 
   let cmd_combos = []
 
-  for (let combo of App.get_setting(`command_combos`)) {
+  for (let [i, combo] of App.get_setting(`command_combos`).entries()) {
     cmd_combos.push({
       name: combo.name,
       short: short_name(combo.name),
@@ -500,13 +500,13 @@ App.setup_commands = () => {
       action: async (args) => {
         await App.run_command_combo(combo, args.item, args.e)
       },
-      info: `Run Command Combo (${combo._id_})`,
+      info: `Run Command Combo (${i})`,
     })
   }
 
   let templates = []
 
-  for (let template of App.get_setting(`templates`)) {
+  for (let [i, template] of App.get_setting(`templates`).entries()) {
     templates.push({
       name: template.name,
       short: short_name(template.name),
@@ -516,7 +516,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.apply_template(template, args.item)
       },
-      info: `Apply Template (${template._id_})`,
+      info: `Apply Template (${i})`,
     })
   }
 
