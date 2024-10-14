@@ -3441,11 +3441,41 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    double_click_empty: {
-      name: `Double Click Empty`,
+    double_click_empty_tabs: {
+      name: `Double Click Empty Tabs`,
       type: `menu`,
       value: `open_new_tab`,
-      info: `What command to run when double clicking empty space`,
+      info: `What command to run when double clicking empty space (Tabs)`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_empty_history: {
+      name: `Double Click Empty History`,
+      type: `menu`,
+      value: `show_empty_menu`,
+      info: `What command to run when double clicking empty space (History)`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_empty_bookmarks: {
+      name: `Double Click Empty Bookmarks`,
+      type: `menu`,
+      value: `show_empty_menu`,
+      info: `What command to run when double clicking empty space (Bookmarks)`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_empty_closed: {
+      name: `Double Click Empty Closed`,
+      type: `menu`,
+      value: `show_empty_menu`,
+      info: `What command to run when double clicking empty space (Closed)`,
       separator: true,
       version: 1,
       setup: (key) => {

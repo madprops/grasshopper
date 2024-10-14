@@ -363,7 +363,7 @@ App.mouse_double_click_action = (mode, e) => {
   }
 
   if (DOM.class(e.target, [`item_container`])) {
-    let cmd = App.get_setting(`double_click_empty`)
+    let cmd = App.get_setting(`double_click_empty_${mode}`)
     App.run_command({cmd, from: `mouse`, e})
     return
   }
