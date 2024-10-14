@@ -1709,6 +1709,7 @@ App.setup_settings_addlist = () => {
   App.start_domain_rules()
   App.start_bookmark_rules()
   App.start_signals_addlist()
+  App.start_templates_addlist()
 
   id = `settings_colors`
   props = App.setting_props.colors

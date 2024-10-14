@@ -1,4 +1,8 @@
 App.setup_commands = () => {
+  function short_name(name) {
+    return name.substring(0, 10).trim()
+  }
+
   let tabs_icon = App.mode_icon(`tabs`)
   let history_icon = App.mode_icon(`history`)
   let bookmarks_icon = App.mode_icon(`bookmarks`)
@@ -58,6 +62,7 @@ App.setup_commands = () => {
   let keyboard_icon = App.keyboard_icon
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
+  let template_icon = App.template_icon
 
   let tbmodes = []
 
@@ -489,13 +494,29 @@ App.setup_commands = () => {
   for (let combo of App.get_setting(`command_combos`)) {
     cmd_combos.push({
       name: combo.name,
-      short: `Combo ${combo._id_}`,
+      short: short_name(combo.name),
       cmd: `run_command_combo_${combo._id_}`,
       icon: combo.icon || combo_icon,
       action: async (args) => {
         await App.run_command_combo(combo, args.item, args.e)
       },
       info: `Run Command Combo (${combo._id_})`,
+    })
+  }
+
+  let templates = []
+
+  for (let template of App.get_setting(`templates`)) {
+    templates.push({
+      name: template.name,
+      short: short_name(template.name),
+      cmd: `apply_template_${template._id_}`,
+      modes: [`tabs`],
+      icon: template_icon,
+      action: (args) => {
+        App.apply_template(template, args.item)
+      },
+      info: `Apply Template (${template._id_})`,
     })
   }
 
@@ -514,7 +535,7 @@ App.setup_commands = () => {
 
     gen_menus.push({
       name,
-      short_name: name.substring(0, 10).trim(),
+      short_name: short_name(name),
       cmd: `show_generic_menu_${i}`,
       skip_palette,
       icon,
@@ -823,6 +844,7 @@ App.setup_commands = () => {
     ...tabnums,
     ...cmd_combos,
     ...gen_menus,
+    ...templates,
 
     {
       name: `Edge Up`,

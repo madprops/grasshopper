@@ -232,6 +232,14 @@ App.build_settings = () => {
         ])
       },
     },
+    templates: {
+      name: `Templates`,
+      type: `list`,
+      value: [],
+      actions: [`commands`],
+      info: `Apply edits to a group of selected tabs`,
+      version: 1,
+    },
     domain_rules: {
       name: `Domain Rules`,
       type: `list`,
