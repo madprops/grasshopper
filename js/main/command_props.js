@@ -1646,7 +1646,8 @@ App.setup_commands = () => {
       info: `Move tabs to the bottom`,
     },
     {
-      name: `Pin`,
+      name: `Pin Tab`,
+      short_name: `Pin`,
       cmd: `pin_tabs`,
       modes: [`tabs`],
       item: true,
@@ -1658,7 +1659,8 @@ App.setup_commands = () => {
       info: `Pin tabs`,
     },
     {
-      name: `Unpin`,
+      name: `Unpin Tab`,
+      short_name: `Unpin`,
       cmd: `unpin_tabs`,
       modes: [`tabs`],
       item: true,
