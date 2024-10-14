@@ -23,6 +23,12 @@ App.add_tab_parent = (item) => {
 }
 
 App.remove_tab_parent = (item) => {
+  if (item.id in App.tab_tree) {
+    let nodes = App.tab_tree[item.id].nodes
+    delete App.tab_tree[item.id]
+    App.update_tab_nodes(nodes)
+  }
+
   if (App.tab_tree[item.parent]) {
     let nodes = App.tab_tree[item.parent].nodes.filter(it => it !== item)
     nodes = nodes.filter(it => it)
@@ -33,11 +39,6 @@ App.remove_tab_parent = (item) => {
     }
 
     App.update_tab_parent(item.parent)
-    App.update_tab_nodes(nodes)
-  }
-  else if (item.id in App.tab_tree) {
-    let nodes = App.tab_tree[item.id].nodes
-    delete App.tab_tree[item.id]
     App.update_tab_nodes(nodes)
   }
 }
