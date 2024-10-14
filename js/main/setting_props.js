@@ -3100,7 +3100,7 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `auxclick`
+  category = `triggers`
 
   props = {
     double_click_item: {
@@ -3451,6 +3451,90 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
+    },
+    double_ctrl_command: {
+      name: `Double Ctrl`,
+      type: `menu`,
+      value: `show_palette`,
+      info: `What command to run when pressing Ctrl twice quickly`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_shift_command: {
+      name: `Double Shift`,
+      type: `menu`,
+      value: `previous_filter`,
+      info: `What command to run when pressing Shift twice quickly`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    ctrl_press_command: {
+      name: `Ctrl Press`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing and holding Ctrl for a short time`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    shift_press_command: {
+      name: `Shift Press`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing and holding Shift for a short time`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_key_delay: {
+      name: `Double Key Delay`,
+      type: `number`,
+      value: 350,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay to trigger a command when double pressing a key like Ctrl (milliseconds)
+      The bigger the delay the easier it is to trigger the command`,
+      version: 1,
+    },
+    key_press_delay: {
+      name: `Key Press Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay to trigger a command when long pressing a key like Ctrl (milliseconds)
+      This is the amount of time to hold the key down to trigger the command`,
+      version: 1,
+    },
+    click_press_delay: {
+      name: `Click Press Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay to trigger action when long pressing a mouse button (milliseconds)
+      This is the amount of time to hold the mouse button down to trigger the command`,
+      version: 1,
+    },
+    double_click_delay: {
+      name: `Double Click Delay`,
+      type: `number`,
+      value: 250,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Use this to consider how sensitive double clicks are (milliseconds)`,
+      version: 1,
     },
     wheel_hover_item: {
       name: `Wheel Hover Item`,
@@ -4500,96 +4584,6 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `triggers`
-
-  props = {
-    double_ctrl_command: {
-      name: `Double Ctrl`,
-      type: `menu`,
-      value: `show_palette`,
-      info: `What command to run when pressing Ctrl twice quickly`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_shift_command: {
-      name: `Double Shift`,
-      type: `menu`,
-      value: `previous_filter`,
-      info: `What command to run when pressing Shift twice quickly`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    ctrl_press_command: {
-      name: `Ctrl Press`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing and holding Ctrl for a short time`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    shift_press_command: {
-      name: `Shift Press`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing and holding Shift for a short time`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_key_delay: {
-      name: `Double Key Delay`,
-      type: `number`,
-      value: 350,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Delay to trigger a command when double pressing a key like Ctrl (milliseconds)
-      The bigger the delay the easier it is to trigger the command`,
-      version: 1,
-    },
-    key_press_delay: {
-      name: `Key Press Delay`,
-      type: `number`,
-      value: 500,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Delay to trigger a command when long pressing a key like Ctrl (milliseconds)
-      This is the amount of time to hold the key down to trigger the command`,
-      version: 1,
-    },
-    click_press_delay: {
-      name: `Click Press Delay`,
-      type: `number`,
-      value: 500,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Delay to trigger action when long pressing a mouse button (milliseconds)
-      This is the amount of time to hold the mouse button down to trigger the command`,
-      version: 1,
-    },
-    double_click_delay: {
-      name: `Double Click Delay`,
-      type: `number`,
-      value: 250,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Use this to consider how sensitive double clicks are (milliseconds)`,
-      version: 1,
-    },
-  }
-
-  add_props()
   category = `signals`
 
   props = {
@@ -5055,11 +5049,8 @@ App.build_settings = () => {
       You can make it view media when clicking the icons, the whole item, or never
       Some files, like local files and others, won't be able to load`,
     },
-    auxclick: {
-      info: `Run commands when middle clicking various components`,
-    },
     triggers: {
-      info: `Run commands on certain keyboard and mouse actions`,
+      info: `Run commands on certain mouse and keyboard actions`,
     },
     gestures: {
       info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button

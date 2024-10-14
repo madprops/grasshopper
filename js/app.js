@@ -190,7 +190,6 @@ App.settings_icons = {
   favorites: `❤️`,
   taglist: `✝️`,
   gestures: `⏫`,
-  auxclick: `🖱️`,
   warns: `🚨`,
   filter: `🔍`,
   triggers: `🔮`,
