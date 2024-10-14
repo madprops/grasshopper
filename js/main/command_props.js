@@ -1551,7 +1551,8 @@ App.setup_commands = () => {
       info: `Show the Footer Menu`,
     },
     {
-      name: `New`,
+      name: `New Tab`,
+      short_name: `New`,
       cmd: `open_new_tab`,
       icon: new_icon,
       action: (args) => {
@@ -1560,7 +1561,8 @@ App.setup_commands = () => {
       info: `Open a new tab`,
     },
     {
-      name: `Unload`,
+      name: `Unload Tab`,
+      short_name: `Unload`,
       cmd: `unload_tabs`,
       modes: [`tabs`],
       some_loaded: true,
@@ -1583,7 +1585,8 @@ App.setup_commands = () => {
       info: `Unload all tabs except the selected one`,
     },
     {
-      name: `Load`,
+      name: `Load Tab`,
+      short_name: `Load`,
       cmd: `load_tabs`,
       modes: [`tabs`],
       some_unloaded: true,
@@ -1595,7 +1598,8 @@ App.setup_commands = () => {
       info: `Load tabs that are unloaded`,
     },
     {
-      name: `Duplicate`,
+      name: `Duplicate Tab`,
+      short_name: `Duplicate`,
       cmd: `duplicate_tabs`,
       modes: [`tabs`],
       item: true,
@@ -1842,7 +1846,8 @@ App.setup_commands = () => {
       info: `Unmute all muted tabs`,
     },
     {
-      name: `Close`,
+      name: `Close Tab`,
+      short_name: `Close`,
       cmd: `close_tabs`,
       modes: [`tabs`],
       item: true,

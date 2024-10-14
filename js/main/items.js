@@ -1341,7 +1341,12 @@ App.set_item_tooltips = (item) => {
   }
 
   tips.push(App.mode_vars[item.mode].right_click_info)
-  tips.push(App.mode_vars[item.mode].middle_click_info)
+  let mci = App.mode_vars[item.mode].middle_click_info
+
+  if (mci) {
+    tips.push(mci)
+  }
+
   let cpi = App.mode_vars[item.mode].click_press_info
 
   if (cpi) {

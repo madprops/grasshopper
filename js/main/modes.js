@@ -95,9 +95,14 @@ App.do_show_mode = async (args = {}) => {
   let rclick = App.get_cmd_name(`show_item_menu`)
   App.mode_vars[args.mode].right_click_info = `Right Click: ${rclick}`
 
-  let mclick = App.get_cmd_name(App.get_setting(`middle_click_${args.mode}`))
-  App.mode_vars[args.mode].middle_click_info = `Middle Click: ${mclick}`
+  let mclick = App.get_command(App.get_setting(`middle_click_${args.mode}`))
+  let mclicks = ``
 
+  if (mclick) {
+    mclicks = `Middle Click: ${mclick.name}`
+  }
+
+  App.mode_vars[args.mode].middle_click_info = mclicks
   let clickp = App.get_command(App.get_setting(`click_press_item`))
   let clickps = ``
 
@@ -106,7 +111,6 @@ App.do_show_mode = async (args = {}) => {
   }
 
   App.mode_vars[args.mode].click_press_info = clickps
-
   let mclickp = App.get_command(App.get_setting(`middle_click_press_item`))
   let mclickps = ``
 
