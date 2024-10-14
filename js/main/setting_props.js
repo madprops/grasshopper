@@ -266,6 +266,14 @@ App.build_settings = () => {
       info: `Define Command Combos here`,
       version: 1,
     },
+    keyboard_shortcuts: {
+      name: `Keyboard Shortcuts`,
+      type: `list`,
+      value: App.keyboard_shortcuts_value(),
+      info: `Extra keyboard shortcuts
+      If these are triggered the default shortcuts get ignored`,
+      version: 4,
+    },
     open_in_new_tab: {
       name: `Open In New Tab`,
       type: `checkbox`,
@@ -3095,6 +3103,57 @@ App.build_settings = () => {
   category = `auxclick`
 
   props = {
+    double_click_item: {
+      name: `Double Click Item`,
+      type: `menu`,
+      value: `item_action`,
+      info: `What command to run when double clicking an item`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_item: {
+      name: `Click Press Item`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the left mouse button on an item for a short time`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_item: {
+      name: `Middle Click Press Item`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the middle mouse button on an item for a short time`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_shift_items: {
+      name: `Shift Wheel Up Items`,
+      type: `menu`,
+      value: `page_up`,
+      info: `What to do when scrolling the mousewheel up on items while holding Shift`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_shift_items: {
+      name: `Shift Wheel Down Items`,
+      type: `menu`,
+      value: `page_down`,
+      info: `What to do when scrolling the mousewheel down on items while holding Shift`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     middle_click_tabs: {
       name: `Middle Click Tabs`,
       type: `menu`,
@@ -3376,10 +3435,29 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Command to run on middle click press on Pinline`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
+    },
+    double_click_empty: {
+      name: `Double Click Empty`,
+      type: `menu`,
+      value: `open_new_tab`,
+      info: `What command to run when double clicking empty space`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_hover_item: {
+      name: `Wheel Hover Item`,
+      type: `checkbox`,
+      value: true,
+      info: `Perform actions on the hovered item when using the mousewheel`,
+      version: 1,
     },
   }
 
@@ -4425,142 +4503,6 @@ App.build_settings = () => {
   category = `triggers`
 
   props = {
-    keyboard_shortcuts: {
-      name: `Keyboard Shortcuts`,
-      type: `list`,
-      value: [
-        {
-          cmd: `show_next_mode`,
-          key: `Tab`, ctrl: false, shift: false, alt: false,
-          _id_: `kb_next_mode`,
-        },
-        {
-          cmd: `show_previous_mode`,
-          key: `Tab`, ctrl: false, shift: true, alt: false,
-          _id_: `kb_prev_mode`,
-        },
-        {
-          cmd: `go_to_top`,
-          key: `Home`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_go_to_top`,
-        },
-        {
-          cmd: `go_to_bottom`,
-          key: `End`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_go_to_bottom`,
-        },
-        {
-          cmd: `move_tabs_to_top`,
-          key: `ArrowUp`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_move_top`,
-        },
-        {
-          cmd: `move_tabs_to_bottom`,
-          key: `ArrowDown`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_move_bottom`,
-        },
-        {
-          cmd: `select_next_item_up`,
-          key: `ArrowUp`, ctrl: false, shift: true, alt: false,
-          _id_: `kb_next_up`,
-        },
-        {
-          cmd: `select_next_item_down`,
-          key: `ArrowDown`, ctrl: false, shift: true, alt: false,
-          _id_: `kb_next_down`,
-        },
-        {
-          cmd: `select_items_above`,
-          key: `ArrowUp`, ctrl: true, shift: true, alt: false,
-          _id_: `kb_select_above`,
-        },
-        {
-          cmd: `select_items_below`,
-          key: `ArrowDown`, ctrl: true, shift: true, alt: false,
-          _id_: `kb_select_below`,
-        },
-        {
-          cmd: `jump_tabs_playing_down`,
-          key: `Period`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_playing_down`,
-        },
-        {
-          cmd: `recent_tabs_backwards`,
-          key: `Comma`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_prev_tab`,
-        },
-        {
-          cmd: `show_filter_menu`,
-          key: `KeyF`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_filter_menu`,
-        },
-        {
-          cmd: `select_all_items`,
-          key: `KeyA`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_select_all`,
-        },
-        {
-          cmd: `show_item_menu`,
-          key: `Enter`, ctrl: false, shift: true, alt: false,
-          _id_: `kb_item_menu`,
-        },
-        {
-          cmd: `focus_parent_tab`,
-          key: `ArrowLeft`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_focus_parent`,
-        },
-        {
-          cmd: `filter_node_tabs`,
-          key: `ArrowRight`, ctrl: true, shift: false, alt: false,
-          _id_: `kb_filter_nodes`,
-        },
-      ],
-      separator: true,
-      info: `Extra keyboard shortcuts
-      If these are triggered the default shortcuts get ignored`,
-      version: 4,
-    },
-    double_click_item: {
-      name: `Double Click Item`,
-      type: `menu`,
-      value: `item_action`,
-      info: `What command to run when double clicking an item`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_item: {
-      name: `Click Press Item`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the left mouse button on an item for a short time`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_item: {
-      name: `Middle Click Press Item`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the middle mouse button on an item for a short time`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_empty: {
-      name: `Double Click Empty`,
-      type: `menu`,
-      value: `open_new_tab`,
-      info: `What command to run when double clicking empty space`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     double_ctrl_command: {
       name: `Double Ctrl`,
       type: `menu`,
@@ -4601,34 +4543,6 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
-    },
-    wheel_up_shift_items: {
-      name: `Shift Wheel Up`,
-      type: `menu`,
-      value: `page_up`,
-      info: `What to do when scrolling the mousewheel up on items while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_items: {
-      name: `Shift Wheel Down`,
-      type: `menu`,
-      value: `page_down`,
-      info: `What to do when scrolling the mousewheel down on items while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_hover_item: {
-      name: `Wheel Hover Item`,
-      type: `checkbox`,
-      value: true,
-      separator: true,
-      info: `Perform actions on the hovered item when using the mousewheel`,
-      version: 1,
     },
     double_key_delay: {
       name: `Double Key Delay`,
@@ -5141,8 +5055,16 @@ App.build_settings = () => {
       You can make it view media when clicking the icons, the whole item, or never
       Some files, like local files and others, won't be able to load`,
     },
+    auxclick: {
+      info: `Run commands when middle clicking various components`,
+    },
     triggers: {
       info: `Run commands on certain keyboard and mouse actions`,
+    },
+    gestures: {
+      info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button
+      Each gesture runs a specified command
+      You can also set the sensitivity of the gestures`,
     },
     signals: {
       info: `Signals are network requests the extension does
@@ -5151,14 +5073,6 @@ App.build_settings = () => {
       Signals are able to show feedback in a popup message
       or update the Title on response. They can also run automatically
       at a specified time interval, measured in seconds`,
-    },
-    gestures: {
-      info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button
-      Each gesture runs a specified command
-      You can also set the sensitivity of the gestures`,
-    },
-    auxclick: {
-      info: `Run commands when middle clicking various components`,
     },
     browser: {
       info: `Browser Commands are shortcuts that you configure on the browser

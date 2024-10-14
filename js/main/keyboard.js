@@ -707,3 +707,93 @@ App.on_number_key = (key) => {
     App.focus_tab_number(num)
   }
 }
+
+App.keyboard_shortcuts_value = () => {
+  return [
+    {
+      cmd: `show_next_mode`,
+      key: `Tab`, ctrl: false, shift: false, alt: false,
+      _id_: `kb_next_mode`,
+    },
+    {
+      cmd: `show_previous_mode`,
+      key: `Tab`, ctrl: false, shift: true, alt: false,
+      _id_: `kb_prev_mode`,
+    },
+    {
+      cmd: `go_to_top`,
+      key: `Home`, ctrl: true, shift: false, alt: false,
+      _id_: `kb_go_to_top`,
+    },
+    {
+      cmd: `go_to_bottom`,
+      key: `End`, ctrl: true, shift: false, alt: false,
+      _id_: `kb_go_to_bottom`,
+    },
+    {
+      cmd: `move_tabs_to_top`,
+      key: `ArrowUp`, ctrl: true, shift: false, alt: false,
+      _id_: `kb_move_top`,
+    },
+    {
+      cmd: `move_tabs_to_bottom`,
+      key: `ArrowDown`, ctrl: true, shift: false, alt: false,
+      _id_: `kb_move_bottom`,
+    },
+    {
+      cmd: `select_next_item_up`,
+      key: `ArrowUp`, ctrl: false, shift: true, alt: false,
+      _id_: `kb_next_up`,
+    },
+    {
+      cmd: `select_next_item_down`,
+      key: `ArrowDown`, ctrl: false, shift: true, alt: false,
+      _id_: `kb_next_down`,
+    },
+    {
+      cmd: `select_items_above`,
+      key: `ArrowUp`, ctrl: true, shift: true, alt: false,
+      _id_: `kb_select_above`,
+    },
+    {
+      cmd: `select_items_below`,
+      key: `ArrowDown`, ctrl: true, shift: true, alt: false,
+      _id_: `kb_select_below`,
+    },
+    {
+      cmd: `jump_tabs_playing_down`,
+      key: `Period`, ctrl: true, shift: false, alt: false,
+      _id_: `kb_playing_down`,
+    },
+    {
+      cmd: `recent_tabs_backwards`,
+      key: `Comma`, ctrl: true, shift: false, alt: false,
+      _id_: `kb_prev_tab`,
+    },
+    {
+      cmd: `show_filter_menu`,
+      key: `KeyF`, ctrl: true, shift: false, alt: false,
+      _id_: `kb_filter_menu`,
+    },
+    {
+      cmd: `select_all_items`,
+      key: `KeyA`, ctrl: true, shift: false, alt: false,
+      _id_: `kb_select_all`,
+    },
+    {
+      cmd: `show_item_menu`,
+      key: `Enter`, ctrl: false, shift: true, alt: false,
+      _id_: `kb_item_menu`,
+    },
+    {
+      cmd: `focus_parent_tab`,
+      key: `ArrowLeft`, ctrl: true, shift: false, alt: false,
+      _id_: `kb_focus_parent`,
+    },
+    {
+      cmd: `filter_node_tabs`,
+      key: `ArrowRight`, ctrl: true, shift: false, alt: false,
+      _id_: `kb_filter_nodes`,
+    },
+  ]
+}
