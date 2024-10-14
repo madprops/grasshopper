@@ -312,8 +312,10 @@ App.tabs_action = async (args = {}) => {
     let index_new = items.indexOf(args.item)
     let index_diff = Math.abs(index_old - index_new)
 
-    // Don't blink if the items are close to each other
-    if (index_diff <= App.tab_blink_diff) {
+    if (index_diff === 0) {
+      return args.from === `node`
+    }
+    else if (index_diff <= App.tab_blink_diff) {
       return false
     }
 

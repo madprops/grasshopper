@@ -106,7 +106,7 @@ App.go_to_parent = (item) => {
   let parent = App.get_parent_item(item)
 
   if (item) {
-    App.tabs_action({item: parent})
+    App.tabs_action({item: parent, from: `node`})
   }
 }
 
