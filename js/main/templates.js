@@ -14,6 +14,7 @@ App.start_templates_addlist = () => {
     element: Addlist.register({...regobj, id,
       keys: [
         `name`,
+        `cmd_icon`,
         `color`,
         `title`,
         `icon`,
@@ -26,6 +27,7 @@ App.start_templates_addlist = () => {
       pk: `name`,
       widgets: {
         name: `text`,
+        cmd_icon: `text`,
         color: `menu`,
         title: `text`,
         root: `text`,
@@ -37,6 +39,7 @@ App.start_templates_addlist = () => {
       },
       labels: {
         name: `Name`,
+        cmd_icon: `Cmd Icon`,
         color: `Color`,
         title: `Title`,
         icon: `Icon`,
@@ -82,6 +85,7 @@ App.start_templates_addlist = () => {
       },
       tooltips: {
         name: `Name of the template`,
+        cmd_icon: `The icon for the command`,
         color: `Add this color to matches`,
         title: `Add this title to matches`,
         icon: `Add this icon to matches`,

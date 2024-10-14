@@ -512,7 +512,7 @@ App.setup_commands = () => {
       short: short_name(template.name),
       cmd: `apply_template_${template._id_}`,
       modes: [`tabs`],
-      icon: template_icon,
+      icon: template.cmd_icon || template_icon,
       action: (args) => {
         App.apply_template(template, args.item)
       },
