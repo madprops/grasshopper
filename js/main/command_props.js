@@ -2031,7 +2031,7 @@ App.setup_commands = () => {
       info: `Jump to the next playing tab below`,
     },
     {
-      name: `Sort All`,
+      name: `Sort Tabs`,
       short_name: `Sort`,
       cmd: `sort_tabs`,
       modes: [`items`],
@@ -2075,7 +2075,7 @@ App.setup_commands = () => {
       info: `Sort alphabetically the selected tabs in descending order`,
     },
     {
-      name: `Show Info`,
+      name: `Tabs Info`,
       short_name: `Info`,
       cmd: `show_tabs_info`,
       modes: [`items`],
@@ -2083,7 +2083,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_tabs_info()
       },
-      info: `Show some tab info`,
+      info: `Show some tabs information`,
     },
     {
       name: `Show URLs`,
@@ -2128,7 +2128,8 @@ App.setup_commands = () => {
       info: `Import a state of tabs`,
     },
     {
-      name: `Reopen`,
+      name: `Reopen Tab`,
+      short_name: `Reopen`,
       cmd: `reopen_tab`,
       icon: rewind_icon,
       action: (args) => {
