@@ -257,7 +257,7 @@ App.remove_item = (item) => {
   }
 
   if (item.mode === `tabs`) {
-    App.remove_tab_parent(item)
+    App.remove_tree_item(item)
   }
 
   item.element.remove()

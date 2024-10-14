@@ -22,7 +22,7 @@ App.add_tab_parent = (item) => {
   }
 }
 
-App.remove_tab_parent = (item) => {
+App.remove_tree_item = (item) => {
   if (item.id in App.tab_tree) {
     let nodes = App.tab_tree[item.id].nodes
     delete App.tab_tree[item.id]
