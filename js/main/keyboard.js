@@ -37,11 +37,23 @@ App.check_items_keyboard = (e) => {
       continue
     }
 
+    if (!sc.ctrl && e.ctrlKey) {
+      continue
+    }
+
     if (sc.shift && !e.shiftKey) {
       continue
     }
 
+    if (!sc.shift && e.shiftKey) {
+      continue
+    }
+
     if (sc.alt && !e.altKey) {
+      continue
+    }
+
+    if (!sc.alt && e.altKey) {
       continue
     }
 
