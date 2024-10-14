@@ -57,6 +57,8 @@ App.do_check_pinline = () => {
   if (App.get_setting(`show_tooltips`)) {
     pinline.title = `This is the Pinline.\nPinned tabs above. Normal tabs below`
     App.trigger_title(pinline, `middle_click_pinline`)
+    App.trigger_title(pinline, `left_click_press_pinline`)
+    App.trigger_title(pinline, `middle_click_press_pinline`)
   }
 
   if (tabs.pinned_f.length) {

@@ -71,6 +71,8 @@ App.create_main_title = () => {
     App.trigger_title(el, `double_click_main_title`)
     App.trigger_title(el, `wheel_up_main_title`)
     App.trigger_title(el, `wheel_down_main_title`)
+    App.trigger_title(el, `wheel_up_shift_main_title`)
+    App.trigger_title(el, `wheel_down_shift_main_title`)
   }
 
   App.main_title_tooltip = el.title

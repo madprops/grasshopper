@@ -12,6 +12,10 @@ App.create_playing_button = (mode) => {
   if (App.get_setting(`show_tooltips`)) {
     btn.title = `Click: ${click} (Ctrl + Dot)\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_playing`)
+    App.trigger_title(btn, `wheel_up_playing`)
+    App.trigger_title(btn, `wheel_down_playing`)
+    App.trigger_title(btn, `left_click_press_playing`)
+    App.trigger_title(btn, `middle_click_press_playing`)
   }
 
   let icon = App.get_svg_icon(`speaker`)
