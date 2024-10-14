@@ -13,6 +13,10 @@ App.create_actions_menu = (mode) => {
   if (App.get_setting(`show_tooltips`)) {
     btn.title = `Click: ${click} (Ctrl + Right)\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_actions_menu`)
+    App.trigger_title(btn, `wheel_up_actions_menu`)
+    App.trigger_title(btn, `wheel_down_actions_menu`)
+    App.trigger_title(btn, `left_click_press_actions_menu`)
+    App.trigger_title(btn, `middle_click_press_actions_menu`)
   }
 
   return btn

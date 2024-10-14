@@ -1500,6 +1500,8 @@ App.create_filter_menu = (mode) => {
   if (App.get_setting(`show_tooltips`)) {
     btn.title = `Click: ${click} (Ctrl + F)\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_filter_menu`)
+    App.trigger_title(btn, `left_click_press_filter_menu`)
+    App.trigger_title(btn, `middle_click_press_filter_menu`)
   }
 
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))

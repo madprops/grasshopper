@@ -3208,7 +3208,7 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_up_actions: {
+    wheel_up_actions_menu: {
       name: `Wheel Up Actions`,
       type: `menu`,
       value: `jump_tabs_all_up`,
@@ -3218,7 +3218,7 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_down_actions: {
+    wheel_down_actions_menu: {
       name: `Wheel Down Actions`,
       type: `menu`,
       value: `jump_tabs_all_down`,
@@ -3228,7 +3228,7 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_actions: {
+    left_click_press_actions_menu: {
       name: `Left Click Press Actions`,
       type: `menu`,
       value: `none`,
@@ -3238,7 +3238,7 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_press_actions: {
+    middle_click_press_actions_menu: {
       name: `Middle Click Press Actions`,
       type: `menu`,
       value: `none`,

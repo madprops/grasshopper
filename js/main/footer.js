@@ -83,11 +83,7 @@ App.create_footer = () => {
   if (App.get_setting(`show_tooltips`)) {
     let click = App.get_cmd_name(`toggle_tab_box`)
     tab_box_btn.title = `Click: ${click}`
-    App.trigger_title(tab_box_btn, `middle_click_footer`)
-    App.trigger_title(tab_box_btn, `wheel_up_footer`)
-    App.trigger_title(tab_box_btn, `wheel_down_footer`)
-    App.trigger_title(tab_box_btn, `wheel_up_shift_footer`)
-    App.trigger_title(tab_box_btn, `wheel_down_shift_footer`)
+    App.footer_tips(tab_box_btn)
   }
 
   DOM.ev(tab_box_btn, `click`, () => {
@@ -103,23 +99,14 @@ App.create_footer = () => {
   if (tips) {
     let click = App.get_cmd_name(`select_all_items`)
     footer_count.title = `Number of items\nClick: ${click}`
-    App.trigger_title(footer_count, `middle_click_footer`)
-    App.trigger_title(footer_count, `wheel_up_footer`)
-    App.trigger_title(footer_count, `wheel_down_footer`)
-    App.trigger_title(footer_count, `wheel_up_shift_footer`)
-    App.trigger_title(footer_count, `wheel_down_shift_footer`)
+    App.footer_tips(footer_count)
   }
 
   footer_content.append(footer_count)
   let footer_info = DOM.create(`div`, ``, `footer_info`)
 
   if (tips) {
-    App.trigger_title(footer_info, `click_footer`)
-    App.trigger_title(footer_info, `middle_click_footer`)
-    App.trigger_title(footer_info, `wheel_up_footer`)
-    App.trigger_title(footer_info, `wheel_down_footer`)
-    App.trigger_title(footer_info, `wheel_up_shift_footer`)
-    App.trigger_title(footer_info, `wheel_down_shift_footer`)
+    App.footer_tips(footer_info)
   }
 
   footer_content.append(footer_info)
@@ -262,4 +249,14 @@ App.show_footer_menu = (e) => {
   })
 
   App.show_context({items, e})
+}
+
+App.footer_tips = (el) => {
+  App.trigger_title(el, `middle_click_footer`)
+  App.trigger_title(el, `wheel_up_footer`)
+  App.trigger_title(el, `wheel_down_footer`)
+  App.trigger_title(el, `wheel_up_shift_footer`)
+  App.trigger_title(el, `wheel_down_shift_footer`)
+  App.trigger_title(el, `left_click_press_footer`)
+  App.trigger_title(el, `middle_click_press_footer`)
 }

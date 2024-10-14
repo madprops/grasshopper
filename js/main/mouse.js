@@ -763,7 +763,7 @@ App.click_press_action = (mode, e) => {
     return
   }
 
-  if (action(`.actions_button`, `actions`)) {
+  if (action(`.actions_button`, `actions_menu`)) {
     return
   }
 
@@ -943,7 +943,7 @@ App.on_mouse_wheel = (e) => {
     App.wheel_action(direction, `step_back`, e)
   }
   else if (DOM.parent(e.target, [`.actions_button`])) {
-    App.wheel_action(direction, `actions`, e)
+    App.wheel_action(direction, `actions_menu`, e)
   }
 }
 
