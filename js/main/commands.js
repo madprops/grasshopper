@@ -380,6 +380,7 @@ App.check_dead_commands = () => {
   }
 
   let keys = [`cmd`, `middle`, `shift`, `ctrl`, `alt`]
+  let keys_kb = [`cmd`]
 
   for (let key in App.setting_props) {
     let value = App.setting_props[key].value
@@ -388,14 +389,25 @@ App.check_dead_commands = () => {
       for (let item of value) {
         if (typeof item === `object`) {
           for (let key2 in item) {
-            if (keys.includes(key2)) {
-              check(item[key2], key)
+            if (key === `keyboard_shortcuts`) {
+              if (keys_kb.includes(key2)) {
+                check(item[key2], key)
+              }
+            }
+            else {
+              if (keys.includes(key2)) {
+                check(item[key2], key)
+              }
             }
           }
         }
       }
     }
     else {
+      if (key.endsWith(`_header`)) {
+        continue
+      }
+
       let value = App.setting_props[key].value
 
       if (key === `double_click_item`) {
