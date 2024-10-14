@@ -1,5 +1,5 @@
 App.start_templates_addlist = () => {
-  if (App.template_addlist_ready) {
+  if (App.templates_addlist_ready) {
     return
   }
 
@@ -95,13 +95,16 @@ App.start_templates_addlist = () => {
         split_bottom: `Add a split bottom to matches`,
         root: `Make this the root URL for matches`,
       },
-      list_text: (items) => {
-        return items.name
+      list_icon: (item) => {
+        return item.cmd_icon || App.template_icon
+      },
+      list_text: (item) => {
+        return item.name
       },
       title: props.name,
     })})
 
-  App.template_addlist_ready = true
+  App.templates_addlist_ready = true
 }
 
 App.apply_template = (template, item) => {

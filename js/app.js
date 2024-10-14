@@ -136,6 +136,8 @@ App.setup_bookmarks_ready = false
 App.domain_rules_ready = false
 App.bookmark_rules_ready = false
 App.signals_addlist_ready = false
+App.templates_addlist_ready = false
+App.command_combos_addlist_ready = false
 
 App.alert_autohide_delay = 1500
 App.favorites_bar_show_delay = 100

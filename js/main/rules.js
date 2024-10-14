@@ -240,8 +240,8 @@ App.start_domain_rules = () => {
         split_bottom: `Add a split bottom to matches`,
         root: `Make this the root URL for matches`,
       },
-      list_text: (items) => {
-        return items.domain
+      list_text: (item) => {
+        return item.domain
       },
       title: props.name,
     })})
