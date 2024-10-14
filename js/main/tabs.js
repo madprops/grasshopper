@@ -480,6 +480,10 @@ App.show_tab_info = () => {
   let unloaded = App.get_unloaded_tabs().length
   let unread = App.get_unread_tabs().length
   let edited = App.get_edited_tabs().length
+  let headers = App.get_header_tabs().length
+  let subheaders = App.get_subheader_tabs().length
+  let parents = App.get_parent_tabs().length
+  let nodes = App.get_node_tabs().length
 
   let items = [
     `All: ${all}`,
@@ -491,6 +495,10 @@ App.show_tab_info = () => {
     `Unloaded: ${unloaded}`,
     `Unread: ${unread}`,
     `Edited: ${edited}`,
+    `Headers: ${headers}`,
+    `Subheaders: ${subheaders}`,
+    `Parents: ${parents}`,
+    `Nodes: ${nodes}`,
   ]
 
   App.alert(items.join(`\n`))
