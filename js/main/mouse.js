@@ -728,7 +728,7 @@ App.click_press_action = (mode, e) => {
   function action(s1, s2) {
     if (DOM.parent(e.target, [s1])) {
       if (App.click_press_button === 0) {
-        let cmd = App.get_setting(`left_click_press_${s2}`)
+        let cmd = App.get_setting(`click_press_${s2}`)
         App.run_command({cmd, from: `click_press`, e})
       }
       else if (App.click_press_button === 1) {
@@ -799,7 +799,7 @@ App.click_press_action = (mode, e) => {
     let sett
 
     if (App.click_press_button === 0) {
-      sett = `left_click_press_header`
+      sett = `click_press_header`
     }
     else if (App.click_press_button === 1) {
       sett = `middle_click_press_header`
@@ -840,7 +840,7 @@ App.click_press_action = (mode, e) => {
   let cmd
 
   if (App.click_press_button === 0) {
-    cmd = App.get_setting(`left_click_press_item`)
+    cmd = App.get_setting(`click_press_item`)
   }
   else if (App.click_press_button === 1) {
     cmd = App.get_setting(`middle_click_press_item`)

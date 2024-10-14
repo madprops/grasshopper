@@ -14,7 +14,7 @@ App.create_playing_button = (mode) => {
     App.trigger_title(btn, `middle_click_playing`)
     App.trigger_title(btn, `wheel_up_playing`)
     App.trigger_title(btn, `wheel_down_playing`)
-    App.trigger_title(btn, `left_click_press_playing`)
+    App.trigger_title(btn, `click_press_playing`)
     App.trigger_title(btn, `middle_click_press_playing`)
   }
 

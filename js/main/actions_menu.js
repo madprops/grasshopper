@@ -15,7 +15,7 @@ App.create_actions_menu = (mode) => {
     App.trigger_title(btn, `middle_click_actions_menu`)
     App.trigger_title(btn, `wheel_up_actions_menu`)
     App.trigger_title(btn, `wheel_down_actions_menu`)
-    App.trigger_title(btn, `left_click_press_actions_menu`)
+    App.trigger_title(btn, `click_press_actions_menu`)
     App.trigger_title(btn, `middle_click_press_actions_menu`)
   }
 

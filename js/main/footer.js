@@ -257,6 +257,6 @@ App.footer_tips = (el) => {
   App.trigger_title(el, `wheel_down_footer`)
   App.trigger_title(el, `wheel_up_shift_footer`)
   App.trigger_title(el, `wheel_down_shift_footer`)
-  App.trigger_title(el, `left_click_press_footer`)
+  App.trigger_title(el, `click_press_footer`)
   App.trigger_title(el, `middle_click_press_footer`)
 }

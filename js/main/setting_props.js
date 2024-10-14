@@ -1980,8 +1980,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_tab_box: {
-      name: `Left Click Press Tab Box`,
+    click_press_tab_box: {
+      name: `Click Press Tab Box`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Tab Box`,
@@ -2219,8 +2219,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_footer: {
-      name: `Left Click Press Footer`,
+    click_press_footer: {
+      name: `Click Press Footer`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Footer`,
@@ -2469,8 +2469,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_favorites_top: {
-      name: `Left Click Press Fav Top`,
+    click_press_favorites_top: {
+      name: `Click Press Fav Top`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Favorites Top`,
@@ -2591,8 +2591,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_favorites_bottom: {
-      name: `Left Click Press Fav Bottom`,
+    click_press_favorites_bottom: {
+      name: `Click Press Fav Bottom`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Favorites Bottom`,
@@ -2642,8 +2642,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_favorites_button: {
-      name: `Left Click Press Fav Button`,
+    click_press_favorites_button: {
+      name: `Click Press Fav Button`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Favorites Button`,
@@ -3146,8 +3146,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_main_menu: {
-      name: `Left Click Press Main Menu`,
+    click_press_main_menu: {
+      name: `Click Press Main Menu`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Main Menu`,
@@ -3177,8 +3177,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_filter_menu: {
-      name: `Left Click Press Filter Menu`,
+    click_press_filter_menu: {
+      name: `Click Press Filter Menu`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Filter Menu`,
@@ -3228,8 +3228,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_actions_menu: {
-      name: `Left Click Press Actions`,
+    click_press_actions_menu: {
+      name: `Click Press Actions`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Actions`,
@@ -3279,8 +3279,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_playing: {
-      name: `Left Click Press Playing`,
+    click_press_playing: {
+      name: `Click Press Playing`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Playing`,
@@ -3330,8 +3330,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_step_back: {
-      name: `Left Click Press Step Back`,
+    click_press_step_back: {
+      name: `Click Press Step Back`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Step Back`,
@@ -3361,8 +3361,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_pinline: {
-      name: `Left Click Press Pinline`,
+    click_press_pinline: {
+      name: `Click Press Pinline`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Pinline`,
@@ -3612,8 +3612,8 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.header_actions)
       },
     },
-    left_click_press_header: {
-      name: `Left Click Press Header`,
+    click_press_header: {
+      name: `Click Press Header`,
       type: `menu`,
       value: `select_group`,
       info: `What to do when pressing a header with the left click`,
@@ -4530,8 +4530,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    left_click_press_item: {
-      name: `Left Click Press Item`,
+    click_press_item: {
+      name: `Click Press Item`,
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the left mouse button on an item for a short time`,

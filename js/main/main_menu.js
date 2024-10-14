@@ -6,7 +6,7 @@ App.create_main_menu = (mode) => {
   if (App.get_setting(`show_tooltips`)) {
     btn.title = `Click: ${click} (Ctrl + Left)\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_main_menu`)
-    App.trigger_title(btn, `left_click_press_main_menu`)
+    App.trigger_title(btn, `click_press_main_menu`)
     App.trigger_title(btn, `middle_click_press_main_menu`)
   }
 

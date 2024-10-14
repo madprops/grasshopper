@@ -8,7 +8,7 @@ App.create_step_back_button = (mode) => {
     App.trigger_title(btn, `middle_click_step_back`)
     App.trigger_title(btn, `wheel_up_step_back`)
     App.trigger_title(btn, `wheel_down_step_back`)
-    App.trigger_title(btn, `left_click_press_step_back`)
+    App.trigger_title(btn, `click_press_step_back`)
     App.trigger_title(btn, `middle_click_press_step_back`)
   }
 
