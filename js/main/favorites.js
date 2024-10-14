@@ -51,6 +51,8 @@ App.create_favorites_bar = (mode) => {
     App.trigger_title(empty_top, `middle_click_favorites_top`)
     App.trigger_title(empty_top, `wheel_up_favorites_top`)
     App.trigger_title(empty_top, `wheel_down_favorites_top`)
+    App.trigger_title(empty_top, `wheel_up_shift_favorites_top`)
+    App.trigger_title(empty_top, `wheel_down_shift_favorites_top`)
   }
 
   let empty_bottom = DOM.create(`div`, `favorites_empty favorites_empty_bottom`, `favorites_empty_bottom_${mode}`)
@@ -60,6 +62,8 @@ App.create_favorites_bar = (mode) => {
     App.trigger_title(empty_bottom, `middle_click_favorites_bottom`)
     App.trigger_title(empty_bottom, `wheel_up_favorites_bottom`)
     App.trigger_title(empty_bottom, `wheel_down_favorites_bottom`)
+    App.trigger_title(empty_bottom, `wheel_up_shift_favorites_bottom`)
+    App.trigger_title(empty_bottom, `wheel_down_shift_favorites_bottom`)
   }
 
   if (fav_pos === `top`) {
@@ -191,6 +195,11 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
     if (alt) {
       btn.title += `\nAlt: ${alt.name}`
     }
+
+    App.trigger_title(btn, `wheel_up_favorites_center`)
+    App.trigger_title(btn, `wheel_down_favorites_center`)
+    App.trigger_title(btn, `wheel_up_shift_favorites_center`)
+    App.trigger_title(btn, `wheel_down_shift_favorites_center`)
 
     c.append(btn)
   }

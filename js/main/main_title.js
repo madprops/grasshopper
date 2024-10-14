@@ -10,7 +10,6 @@ App.reset_main_title = () => {
 App.start_main_title_intervals = () => {
   clearInterval(App.main_title_date_interval)
   clearTimeout(App.main_title_scroll_timeout)
-
   let delay = App.check_main_title_date_delay
 
   if (!delay || (delay < App.SECOND)) {
@@ -70,6 +69,8 @@ App.create_main_title = () => {
     el.title = `Right Click: ${rclick}`
     App.trigger_title(el, `middle_click_main_title`)
     App.trigger_title(el, `double_click_main_title`)
+    App.trigger_title(el, `wheel_up_main_title`)
+    App.trigger_title(el, `wheel_down_main_title`)
   }
 
   App.main_title_tooltip = el.title

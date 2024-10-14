@@ -84,6 +84,10 @@ App.create_footer = () => {
     let click = App.get_cmd_name(`toggle_tab_box`)
     tab_box_btn.title = `Click: ${click}`
     App.trigger_title(tab_box_btn, `middle_click_footer`)
+    App.trigger_title(tab_box_btn, `wheel_up_footer`)
+    App.trigger_title(tab_box_btn, `wheel_down_footer`)
+    App.trigger_title(tab_box_btn, `wheel_up_shift_footer`)
+    App.trigger_title(tab_box_btn, `wheel_down_shift_footer`)
   }
 
   DOM.ev(tab_box_btn, `click`, () => {
@@ -100,6 +104,10 @@ App.create_footer = () => {
     let click = App.get_cmd_name(`select_all_items`)
     footer_count.title = `Number of items\nClick: ${click}`
     App.trigger_title(footer_count, `middle_click_footer`)
+    App.trigger_title(footer_count, `wheel_up_footer`)
+    App.trigger_title(footer_count, `wheel_down_footer`)
+    App.trigger_title(footer_count, `wheel_up_shift_footer`)
+    App.trigger_title(footer_count, `wheel_down_shift_footer`)
   }
 
   footer_content.append(footer_count)
@@ -108,6 +116,10 @@ App.create_footer = () => {
   if (tips) {
     App.trigger_title(footer_info, `click_footer`)
     App.trigger_title(footer_info, `middle_click_footer`)
+    App.trigger_title(footer_info, `wheel_up_footer`)
+    App.trigger_title(footer_info, `wheel_down_footer`)
+    App.trigger_title(footer_info, `wheel_up_shift_footer`)
+    App.trigger_title(footer_info, `wheel_down_shift_footer`)
   }
 
   footer_content.append(footer_info)
