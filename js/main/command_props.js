@@ -2075,15 +2075,15 @@ App.setup_commands = () => {
       info: `Sort alphabetically the selected tabs in descending order`,
     },
     {
-      name: `Tabs Info`,
+      name: `Tab Info`,
       short_name: `Info`,
-      cmd: `show_tabs_info`,
+      cmd: `show_tab_info`,
       modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
-        App.show_tabs_info()
+        App.show_tab_info()
       },
-      info: `Show some tabs information`,
+      info: `Show some tab information`,
     },
     {
       name: `Show URLs`,

@@ -470,7 +470,7 @@ App.get_tab_succ = (items, method) => {
   return next
 }
 
-App.show_tabs_info = () => {
+App.show_tab_info = () => {
   let all = App.get_items(`tabs`).length
   let pins = App.get_pinned_tabs().length
   let normal = App.get_normal_tabs().length
