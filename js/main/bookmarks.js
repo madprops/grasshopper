@@ -688,7 +688,7 @@ App.create_bookmark_rule = async (item, e) => {
 }
 
 App.edit_bookmark_rule = (item, folder) => {
-  App.start_bookmark_rules()
+  App.start_bookmark_rules_addlist()
   let id = `settings_bookmark_rules`
 
   let items = {
