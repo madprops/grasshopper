@@ -262,9 +262,6 @@ Addlist.build = (oargs) => {
     Addlist.menu()
   })
 
-  btns.append(menu)
-  btns.append(save)
-
   for (let b of oargs.buttons) {
     let btn = DOM.create(`div`, `button`)
     btn.textContent = b.text
@@ -276,6 +273,9 @@ Addlist.build = (oargs) => {
 
     btns.append(btn)
   }
+
+  btns.append(menu)
+  btns.append(save)
 
   container.append(btns)
   oargs.built = true
