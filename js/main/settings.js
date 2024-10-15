@@ -1393,30 +1393,6 @@ App.get_settings_with_list = () => {
 }
 
 App.setup_settings_addlist = () => {
-  function cmd_icon (cmd) {
-    let c = App.get_command(cmd)
-
-    if (c) {
-      return c.icon
-    }
-
-    return ``
-  }
-
-  function cmd_name (cmd) {
-    if (cmd === App.separator_string) {
-      return `-- Separator --`
-    }
-
-    let c = App.get_command(cmd)
-
-    if (c) {
-      return c.name
-    }
-
-    return `None`
-  }
-
   let {popobj, regobj} = App.get_setting_addlist_objects()
   let id = `settings_aliases`
   let props = App.setting_props.aliases
@@ -1464,81 +1440,6 @@ App.setup_settings_addlist = () => {
       },
       tooltips: {
         filter: `Add a custom filter`,
-      },
-      title: props.name,
-    })})
-
-  id = `settings_keyboard_shortcuts`
-  props = App.setting_props.keyboard_shortcuts
-
-  App.create_popup({...popobj, id: `addlist_${id}`,
-    element: Addlist.register({...regobj, id,
-      keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
-      widgets: {
-        key: `key`,
-        cmd: `menu`,
-        ctrl: `checkbox`,
-        shift: `checkbox`,
-        alt: `checkbox`,
-      },
-      labels: {
-        key: `Key`,
-        cmd: `Command`,
-        ctrl: `Require Ctrl`,
-        shift: `Require Shift`,
-        alt: `Require Alt`,
-      },
-      sources: {
-        cmd: () => {
-          return App.cmdlist_single.slice(0)
-        },
-        ctrl: () => {
-          return true
-        },
-        shift: () => {
-          return false
-        },
-        alt: () => {
-          return false
-        },
-      },
-      list_icon: (item) => {
-        return cmd_icon(item.cmd)
-      },
-      list_text: (item) => {
-        let cmd = cmd_name(item.cmd)
-        let mods = []
-
-        if (item.ctrl) {
-          mods.push(`C`)
-        }
-
-        if (item.shift) {
-          mods.push(`S`)
-        }
-
-        if (item.alt) {
-          mods.push(`A`)
-        }
-
-        let pre = ``
-
-        if (mods.length) {
-          pre = `(${mods.join(``)})`
-        }
-
-        let text = `${pre} ${item.key}`.trim()
-        return `${text} = ${cmd}`
-      },
-      required: {
-        cmd: true,
-      },
-      tooltips: {
-        key: `When this key is pressed`,
-        cmd: `Run this command`,
-        ctrl: `If Ctrl is pressed`,
-        shift: `If Shift is pressed`,
-        alt: `If Alt is pressed`,
       },
       title: props.name,
     })})
@@ -1613,10 +1514,10 @@ App.setup_settings_addlist = () => {
             },
           },
           list_icon: (item) => {
-            return cmd_icon(item.cmd)
+            return App.settings_cmd_icon(item.cmd)
           },
           list_text: (item) => {
-            return cmd_name(item.cmd)
+            return App.settings_cmd_name(item.cmd)
           },
           tooltips: {
             cmd: `Command on Click`,
@@ -1652,10 +1553,10 @@ App.setup_settings_addlist = () => {
             },
           },
           list_icon: (item) => {
-            return cmd_icon(item.cmd)
+            return App.settings_cmd_icon(item.cmd)
           },
           list_text: (item) => {
-            return cmd_name(item.cmd)
+            return App.settings_cmd_name(item.cmd)
           },
           tooltips: {
             cmd: `Command on Click`,
@@ -1692,10 +1593,10 @@ App.setup_settings_addlist = () => {
             },
           },
           list_icon: (item) => {
-            return cmd_icon(item.cmd)
+            return App.settings_cmd_icon(item.cmd)
           },
           list_text: (item) => {
-            return cmd_name(item.cmd)
+            return App.settings_cmd_name(item.cmd)
           },
           automenu: true,
           tooltips: {
@@ -1711,40 +1612,8 @@ App.setup_settings_addlist = () => {
   App.start_signals_addlist()
   App.start_templates_addlist()
   App.start_command_combos_addlist()
-
-  id = `settings_colors`
-  props = App.setting_props.colors
-
-  App.create_popup({...popobj, id: `addlist_${id}`,
-    element: Addlist.register({...regobj, id,
-      keys: [`name`, `value`, `text`],
-      pk: `name`,
-      widgets: {
-        name: `text`,
-        value: `color`,
-        text: `color`,
-      },
-      labels: {
-        name: `Name`,
-        value: `Value`,
-        text: `Text`,
-      },
-      list_icon: (item) => {
-        return App.color_icon(item._id_)
-      },
-      list_text: (item) => {
-        return item.name
-      },
-      required: {
-        value: true,
-      },
-      tooltips: {
-        name: `Name of the color`,
-        value: `Value of the color`,
-        text: `Color of the text`,
-      },
-      title: props.name,
-    })})
+  App.start_colors_addlist()
+  App.start_keyboard_addlist()
 
   id = `settings_custom_urls`
   props = App.setting_props.custom_urls
@@ -2222,4 +2091,28 @@ App.addlist_control_draggable = (el) => {
 App.copy_settings_data = (sett_1, sett_2) => {
   let data = App.get_setting(sett_1)
   Addlist.after(`settings_${sett_2}`, data)
+}
+
+App.settings_cmd_icon = (cmd) => {
+  let c = App.get_command(cmd)
+
+  if (c) {
+    return c.icon
+  }
+
+  return ``
+}
+
+App.settings_cmd_name = (cmd) => {
+  if (cmd === App.separator_string) {
+    return `-- Separator --`
+  }
+
+  let c = App.get_command(cmd)
+
+  if (c) {
+    return c.name
+  }
+
+  return `None`
 }

@@ -797,3 +797,87 @@ App.keyboard_shortcuts_value = () => {
     },
   ]
 }
+
+App.start_keyboard_addlist = () => {
+  if (App.keyboard_addlist_ready) {
+    return
+  }
+
+  let {popobj, regobj} = App.get_setting_addlist_objects()
+  let id = `settings_keyboard_shortcuts`
+  let props = App.setting_props.keyboard_shortcuts
+
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
+      keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
+      widgets: {
+        key: `key`,
+        cmd: `menu`,
+        ctrl: `checkbox`,
+        shift: `checkbox`,
+        alt: `checkbox`,
+      },
+      labels: {
+        key: `Key`,
+        cmd: `Command`,
+        ctrl: `Require Ctrl`,
+        shift: `Require Shift`,
+        alt: `Require Alt`,
+      },
+      sources: {
+        cmd: () => {
+          return App.cmdlist_single.slice(0)
+        },
+        ctrl: () => {
+          return true
+        },
+        shift: () => {
+          return false
+        },
+        alt: () => {
+          return false
+        },
+      },
+      list_icon: (item) => {
+        return App.settings_cmd_icon(item.cmd)
+      },
+      list_text: (item) => {
+        let cmd = App.settings_cmd_name(item.cmd)
+        let mods = []
+
+        if (item.ctrl) {
+          mods.push(`C`)
+        }
+
+        if (item.shift) {
+          mods.push(`S`)
+        }
+
+        if (item.alt) {
+          mods.push(`A`)
+        }
+
+        let pre = ``
+
+        if (mods.length) {
+          pre = `(${mods.join(``)})`
+        }
+
+        let text = `${pre} ${item.key}`.trim()
+        return `${text} = ${cmd}`
+      },
+      required: {
+        cmd: true,
+      },
+      tooltips: {
+        key: `When this key is pressed`,
+        cmd: `Run this command`,
+        ctrl: `If Ctrl is pressed`,
+        shift: `If Shift is pressed`,
+        alt: `If Alt is pressed`,
+      },
+      title: props.name,
+    })})
+
+  App.keyboard_addlist_ready = true
+}

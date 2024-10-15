@@ -604,3 +604,46 @@ App.cycle_color = (item, direction = `next`) => {
     App.edit_tab_color({item, color: next_color.id, force: true})
   }
 }
+
+App.start_colors_addlist = () => {
+  if (App.colors_addlist_ready) {
+    return
+  }
+
+  let {popobj, regobj} = App.get_setting_addlist_objects()
+  let id = `settings_colors`
+  let props = App.setting_props.colors
+
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
+      keys: [`name`, `value`, `text`],
+      pk: `name`,
+      widgets: {
+        name: `text`,
+        value: `color`,
+        text: `color`,
+      },
+      labels: {
+        name: `Name`,
+        value: `Value`,
+        text: `Text`,
+      },
+      list_icon: (item) => {
+        return App.color_icon(item._id_)
+      },
+      list_text: (item) => {
+        return item.name
+      },
+      required: {
+        value: true,
+      },
+      tooltips: {
+        name: `Name of the color`,
+        value: `Value of the color`,
+        text: `Color of the text`,
+      },
+      title: props.name,
+    })})
+
+  App.colors_addlist_ready = true
+}
