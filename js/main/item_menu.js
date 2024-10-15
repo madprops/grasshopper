@@ -215,6 +215,12 @@ App.extra_menu_items = (o_items) => {
     return
   }
 
+  let m_items = App.get_setting(`extra_menu`)
+
+  if (!m_items.length) {
+    return
+  }
+
   let items = App.custom_menu_items({
     name: `extra_menu`,
     item: App.item_menu_args.item,
