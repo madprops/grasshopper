@@ -40,14 +40,12 @@ App.show_item_menu = async (args = {}) => {
   }
 
   if (args.item.mode === `tabs`) {
-    if (App.get_setting(`item_menu_top`)) {
-      App.item_menu_item(items, `select_header_group`, {item: args.item})
-      App.item_menu_item(items, `close_header_group`, {item: args.item})
-      App.item_menu_item(items, `go_to_root_url`, {item: args.item})
-      App.item_menu_item(items, `focus_parent_tab`, {item: args.item})
-      App.item_menu_item(items, `filter_node_tabs`, {item: args.item})
-      App.item_menu_item(items, `load_tabs`, {item: args.item})
-    }
+    App.item_menu_item(items, `select_header_group`, {item: args.item})
+    App.item_menu_item(items, `close_header_group`, {item: args.item})
+    App.item_menu_item(items, `go_to_root_url`, {item: args.item})
+    App.item_menu_item(items, `focus_parent_tab`, {item: args.item})
+    App.item_menu_item(items, `filter_node_tabs`, {item: args.item})
+    App.item_menu_item(items, `load_tabs`, {item: args.item})
 
     if (items.length) {
       App.sep(items)

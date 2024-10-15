@@ -4847,13 +4847,6 @@ App.build_settings = () => {
       info: `Auto-clear after no items remain when closing tabs`,
       version: 1,
     },
-    item_menu_top: {
-      name: `Item Menu Top`,
-      type: `checkbox`,
-      value: true,
-      info: `Special items at the top of the Item Menu`,
-      version: 1,
-    },
     auto_tag_picker: {
       name: `Auto Tag Picker`,
       type: `checkbox`,
