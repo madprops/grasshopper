@@ -54,18 +54,18 @@ App.jump_tabs = async (args = {}) => {
   }
 
   function jump(it) {
-    let action
+    let from
 
     // If it's a header, subheader etc, jump centered
     if (zones.includes(args.what)) {
-      action = `jump_zone`
+      from = `jump_zone`
     }
     else {
       // Jump with a smooth animation
-      action = `jump`
+      from = `jump`
     }
 
-    App.tabs_action({item: it, from: action, on_action: false})
+    App.tabs_action({item: it, from, on_action: false})
   }
 
   function check_first(it) {
