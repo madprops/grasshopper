@@ -74,26 +74,33 @@ App.check_popup_command_close = () => {
   }
 }
 
-App.browser_reload = (item) => {
-  let active = App.get_active_items({mode: `tabs`, item})
+App.browser_action = (item, action) => {
+  if (item && item.mode === `tabs`) {
+    let active = App.get_active_items({mode: `tabs`, item})
 
-  for (let it of active) {
-    browser.tabs.reload(it.id)
+    for (let it of active) {
+      action(it.id)
+    }
   }
+  else {
+    action()
+  }
+}
+
+App.browser_reload = (item) => {
+  App.browser_action(item, (id) => {
+    browser.tabs.reload(id)
+  })
 }
 
 App.browser_back = (item) => {
-  let active = App.get_active_items({mode: `tabs`, item})
-
-  for (let it of active) {
-    browser.tabs.goBack(it.id)
-  }
+  App.browser_action(item, (id) => {
+    browser.tabs.goBack(id)
+  })
 }
 
 App.browser_forward = (item) => {
-  let active = App.get_active_items({mode: `tabs`, item})
-
-  for (let it of active) {
-    browser.tabs.goForward(it.id)
-  }
+  App.browser_action(item, (id) => {
+    browser.tabs.goForward(id)
+  })
 }

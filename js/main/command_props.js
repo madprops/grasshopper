@@ -1394,7 +1394,7 @@ App.setup_commands = () => {
       short_name: `Back`,
       cmd: `browser_back`,
       icon: browser_icon,
-      modes: [`tabs`],
+      modes: [`items`],
       action: (args) => {
         App.browser_back(args.item)
       },
@@ -1405,7 +1405,7 @@ App.setup_commands = () => {
       short_name: `Forward`,
       cmd: `browser_forward`,
       icon: browser_icon,
-      modes: [`tabs`],
+      modes: [`items`],
       action: (args) => {
         App.browser_forward(args.item)
       },
@@ -1416,7 +1416,7 @@ App.setup_commands = () => {
       short_name: `Reload`,
       cmd: `browser_reload`,
       icon: browser_icon,
-      modes: [`tabs`],
+      modes: [`items`],
       action: (args) => {
         App.browser_reload(args.item)
       },
