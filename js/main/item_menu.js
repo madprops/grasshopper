@@ -163,13 +163,13 @@ App.more_menu_items = (args = {}) => {
   let items = []
 
   if (args.item.mode === `tabs`) {
-    App.item_menu_item(items, `mute_tabs`, {item: args.item, short: false})
-    App.item_menu_item(items, `unmute_tabs`, {item: args.item, short: false})
-    App.item_menu_item(items, `unload_tabs`, {item: args.item, short: false})
+    App.item_menu_item(items, `mute_tabs`, {item: args.item, short: true})
+    App.item_menu_item(items, `unmute_tabs`, {item: args.item, short: true})
+    App.item_menu_item(items, `unload_tabs`, {item: args.item, short: true})
     App.item_menu_item(items, `reverse_tabs`, {item: args.item, short: false})
     App.item_menu_item(items, `sort_tabs_asc`, {item: args.item, short: false})
     App.item_menu_item(items, `sort_tabs_desc`, {item: args.item, short: false})
-    App.item_menu_item(items, `duplicate_tabs`, {item: args.item, short: false})
+    App.item_menu_item(items, `duplicate_tabs`, {item: args.item, short: true})
     App.item_menu_item(items, `edit_root_url`, {item: args.item, short: false})
     App.item_menu_item(items, `remove_item_edits`, {item: args.item, short: false})
   }
