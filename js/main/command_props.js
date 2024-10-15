@@ -2148,6 +2148,7 @@ App.setup_commands = () => {
       cmd: `insert_header`,
       modes: [`tabs`],
       item: true,
+      single: true,
       icon: header_icon,
       action: (args) => {
         App.insert_header(args.item)
@@ -2160,6 +2161,7 @@ App.setup_commands = () => {
       cmd: `insert_subheader`,
       modes: [`tabs`],
       item: true,
+      single: true,
       icon: subheader_icon,
       action: (args) => {
         App.insert_header(args.item, false)
