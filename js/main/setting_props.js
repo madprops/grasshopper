@@ -987,7 +987,7 @@ App.build_settings = () => {
     loaded_icon: {
       name: `Loaded Icon`,
       type: `text_smaller`,
-      value: `🤖`,
+      value: `🚛`,
       no_empty: true,
       info: `Icons for loaded tabs`,
       placeholder: App.icon_placeholder,

@@ -63,7 +63,6 @@ App.setup_commands = () => {
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
   let template_icon = App.template_icon
-  let load_icon = App.load_icon
 
   let tbmodes = []
 
@@ -1599,7 +1598,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       some_unloaded: true,
       item: true,
-      icon: load_icon,
+      icon: loaded_icon,
       action: (args) => {
         App.load_tabs(args.item)
       },
