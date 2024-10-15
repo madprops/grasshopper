@@ -74,29 +74,26 @@ App.check_popup_command_close = () => {
   }
 }
 
-App.browser_reload = (id) => {
-  if (id !== undefined) {
-    browser.tabs.reload(id)
-  }
-  else {
-    browser.tabs.reload()
+App.browser_reload = (item) => {
+  let active = App.get_active_items({mode: `tabs`, item})
+
+  for (let it of active) {
+    browser.tabs.reload(it.id)
   }
 }
 
 App.browser_back = (item) => {
-  if (item) {
-    browser.tabs.goBack(item.id)
-  }
-  else {
-    browser.tabs.goBack()
+  let active = App.get_active_items({mode: `tabs`, item})
+
+  for (let it of active) {
+    browser.tabs.goBack(it.id)
   }
 }
 
 App.browser_forward = (item) => {
-  if (item) {
-    browser.tabs.goForward(item.id)
-  }
-  else {
-    browser.tabs.goForward()
+  let active = App.get_active_items({mode: `tabs`, item})
+
+  for (let it of active) {
+    browser.tabs.goForward(it.id)
   }
 }
