@@ -221,7 +221,7 @@ App.add_icons = (item, side) => {
     if (App.get_setting(`node_icon_click`)) {
       cls += ` grower`
       title += `\nClick to focus the parent of this tab`
-      title += `\nMiddle Click to show siblings`
+      title += `\nMiddle Click to filter siblings`
     }
 
     if (App.icon_enabled(what) && check_side(what)) {
