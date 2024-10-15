@@ -969,6 +969,8 @@ App.paste_tabs = async (item) => {
     return
   }
 
+  let use_selected = false
+
   for (let tab of App.copied_tabs) {
     if (item.pinned) {
       await App.pin_tab(tab.id)
@@ -976,9 +978,23 @@ App.paste_tabs = async (item) => {
     else {
       await App.unpin_tab(tab.id)
     }
+
+    if (App.copied_tabs.includes(item)) {
+      use_selected = true
+    }
   }
 
-  let index = App.get_item_element_index({mode: `tabs`, element: item.element})
+  let item_1 = item
+
+  if (use_selected) {
+    item_1 = App.get_selected(`tabs`)
+  }
+
+  if (!item_1) {
+    return
+  }
+
+  let index = App.get_item_element_index({mode: `tabs`, element: item_1.element})
   let tabs = App.copied_tabs.slice(0)
   let index_og = App.get_item_element_index({mode: `tabs`, element: tabs[0].element})
   let i

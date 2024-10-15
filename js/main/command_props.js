@@ -868,10 +868,11 @@ App.setup_commands = () => {
     },
     {
       name: `Copy Tabs`,
+      short_name: `Copy`,
       cmd: `copy_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: clipboard_icon,
+      icon: tabs_icon,
       action: (args) => {
         App.copy_tabs(args.item)
       },
@@ -879,10 +880,11 @@ App.setup_commands = () => {
     },
     {
       name: `Paste Tabs`,
+      short_name: `Paste`,
       cmd: `paste_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: clipboard_icon,
+      icon: tabs_icon,
       action: (args) => {
         App.paste_tabs(args.item)
       },
