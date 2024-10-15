@@ -250,6 +250,15 @@ App.start_domain_rules_addlist = () => {
         return item.domain
       },
       title: props.name,
+      buttons: [
+        {
+          text: `Template`,
+          tooltip: `Create a domain rule from a template`,
+          action: (e) => {
+            App.domain_rule_from_template(e)
+          },
+        }
+      ]
     })})
 
   App.domain_rules_addlist_ready = true
@@ -313,4 +322,38 @@ App.get_rule = (item, prop, def = true) => {
   }
 
   return value
+}
+
+App.domain_rule_from_template = (e) => {
+  let items = []
+
+  for (let template of App.get_setting(`templates`)) {
+    items.push({
+      text: template.name,
+      action: () => {
+        App.fill_domain_rules_from_template(template)
+      }
+    })
+  }
+
+  App.show_context({items, e})
+}
+
+App.fill_domain_rules_from_template = (template) => {
+  for (let key in App.edit_props) {
+    let props = App.edit_props[key]
+    let value = template[key]
+    let el = DOM.el(`#addlist_widget_settings_domain_rules_${key}`)
+
+    if (key === `color`) {
+      let color = App[`addlist_menubutton_settings_domain_rules_${key}`]
+      color.set(value || `none`)
+    }
+    else if (props.type === `bool`) {
+      el.checked = Boolean(value)
+    }
+    else {
+      el.value = value || ``
+    }
+  }
 }

@@ -264,6 +264,19 @@ Addlist.build = (oargs) => {
 
   btns.append(menu)
   btns.append(save)
+
+  for (let b of oargs.buttons) {
+    let btn = DOM.create(`div`, `button`)
+    btn.textContent = b.text
+    btn.title = b.tooltip
+
+    DOM.ev(btn, `click`, (e) => {
+      b.action(e)
+    })
+
+    btns.append(btn)
+  }
+
   container.append(btns)
   oargs.built = true
 }
@@ -280,6 +293,7 @@ Addlist.register = (args = {}) => {
     on_check: {},
     lowercase: false,
     automenu: false,
+    buttons: [],
     list_text: () => {
       return `Item`
     },
