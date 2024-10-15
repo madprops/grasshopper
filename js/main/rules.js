@@ -328,10 +328,9 @@ App.domain_rule_from_template = (e) => {
   let items = []
 
   for (let template of App.get_setting(`templates`)) {
-    let text = `${template.cmd_icon || App.template_icon} ${template.name}`.trim()
-
     items.push({
-      text,
+      text: template.name,
+      icon: template.cmd_icon || App.template_icon,
       action: () => {
         App.fill_domain_rules_from_template(template)
       },
