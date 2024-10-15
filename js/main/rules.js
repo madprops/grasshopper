@@ -17,8 +17,14 @@ App.check_rules = (item, rule) => {
     if (App.is_regex(rule.domain)) {
       let regstr = rule.domain.slice(1, -1)
       let flag = rule.exact ? `` : `i`
-      let regex = new RegExp(regstr, flag)
-      match = regex.test(value)
+
+      try {
+        let regex = new RegExp(regstr, flag)
+        match = regex.test(value)
+      }
+      catch (error) {
+        match = false
+      }
     }
     else if (App.wildcard(rule.domain, value, rule.exact)) {
       match = true

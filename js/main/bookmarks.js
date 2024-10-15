@@ -592,10 +592,12 @@ App.check_bookmark_rules = (item) => {
       }
     }
     else if (mstr === `regex`) {
-      let regex = new RegExp(rvalue)
-
-      if (regex.test(value)) {
-        match = true
+      try {
+        let regex = new RegExp(rvalue)
+        match = regex.test(value)
+      }
+      catch (error) {
+        match = false
       }
     }
 
