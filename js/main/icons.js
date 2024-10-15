@@ -200,6 +200,7 @@ App.add_icons = (item, side) => {
     if (App.get_setting(`parent_icon_click`)) {
       cls += ` grower`
       title += `\nClick to filter the nodes of this tab`
+      title += `\nMiddle Click to close nodes`
     }
 
     if (App.icon_enabled(what) && check_side(what)) {
@@ -220,6 +221,7 @@ App.add_icons = (item, side) => {
     if (App.get_setting(`node_icon_click`)) {
       cls += ` grower`
       title += `\nClick to focus the parent of this tab`
+      title += `\nMiddle Click to show siblings`
     }
 
     if (App.icon_enabled(what) && check_side(what)) {
@@ -241,6 +243,7 @@ App.add_icons = (item, side) => {
   if (App.get_setting(`title_icon_click`)) {
     cls += ` grower`
     title += `\nClick to edit the title`
+    title += `\nMiddle Click to remove title`
   }
 
   if (App.icon_enabled(what) && check_side(what)) {
@@ -261,6 +264,7 @@ App.add_icons = (item, side) => {
   if (App.get_setting(`tags_icon_click`)) {
     cls += ` grower`
     title += `\nClick to edit the tags`
+    title += `\nMiddle Click to remove tags`
   }
 
   if (App.icon_enabled(what) && check_side(what)) {
@@ -296,6 +300,7 @@ App.add_icons = (item, side) => {
   if (App.get_setting(`notes_icon_click`)) {
     cls += ` grower`
     title += `\nClick to open the notes`
+    title += `\nMiddle Click to remove notes`
   }
 
   if (App.icon_enabled(what) && check_side(what)) {
@@ -315,6 +320,7 @@ App.add_icons = (item, side) => {
   if (App.get_setting(`color_icon_click`)) {
     cls += ` effect`
     title += `\nClick to show the color menu`
+    title += `\nMiddle Click to close nodes`
   }
 
   if (App.get_setting(`color_mode`).includes(`background`)) {

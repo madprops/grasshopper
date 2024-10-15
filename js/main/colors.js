@@ -123,6 +123,10 @@ App.apply_color_mode = (item) => {
 
       if (c_obj) {
         el.title = c_obj.name
+
+        if (App.get_setting(`color_icon_click`)) {
+          el.title += `\nClick to show menu\nMiddle Click to uncolor`
+        }
       }
       else {
         el.title = `Color doesn't exist`
