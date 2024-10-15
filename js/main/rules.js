@@ -115,8 +115,8 @@ App.edit_domain_rule = (item, e) => {
   add(item.hostname || item.path)
 }
 
-App.start_domain_rules = () => {
-  if (App.domain_rules_ready) {
+App.start_domain_rules_addlist = () => {
+  if (App.domain_rules_addlist_ready) {
     return
   }
 
@@ -252,7 +252,7 @@ App.start_domain_rules = () => {
       title: props.name,
     })})
 
-  App.domain_rules_ready = true
+  App.domain_rules_addlist_ready = true
 }
 
 App.remove_domain_rule = (item) => {

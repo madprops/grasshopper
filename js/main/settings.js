@@ -1607,8 +1607,8 @@ App.setup_settings_addlist = () => {
     }
   }
 
-  App.start_domain_rules()
-  App.start_bookmark_rules()
+  App.start_domain_rules_addlist()
+  App.start_bookmark_rules_addlist()
   App.start_signals_addlist()
   App.start_templates_addlist()
   App.start_command_combos_addlist()

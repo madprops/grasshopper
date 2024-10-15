@@ -611,8 +611,8 @@ App.check_bookmark_rules = (item) => {
   }
 }
 
-App.start_bookmark_rules = () => {
-  if (App.bookmark_rules_ready) {
+App.start_bookmark_rules_addlist = () => {
+  if (App.bookmark_rules_addlist_ready) {
     return
   }
 
@@ -664,7 +664,7 @@ App.start_bookmark_rules = () => {
       title: props.name,
     })})
 
-  App.bookmark_rules_ready = true
+  App.bookmark_rules_addlist_ready = true
 }
 
 App.create_bookmark_rule = async (item, e) => {

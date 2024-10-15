@@ -133,8 +133,9 @@ App.sort_tabs_ready = false
 App.close_tabs_ready = false
 App.setup_history_ready = false
 App.setup_bookmarks_ready = false
-App.domain_rules_ready = false
-App.bookmark_rules_ready = false
+
+App.domain_rules_addlist_ready = false
+App.bookmark_rules_addlist_ready = false
 App.signals_addlist_ready = false
 App.templates_addlist_ready = false
 App.command_combos_addlist_ready = false
