@@ -657,6 +657,13 @@ App.mouse_middle_action = (mode, e) => {
       }
     }
 
+    if (App.get_setting(`parent_icon_click`)) {
+      if (DOM.parent(e.target, [`.parent_icon`])) {
+        App.close_node_tabs(item)
+        return
+      }
+    }
+
     if (App.get_setting(`notes_icon_click`)) {
       if (DOM.parent(e.target, [`.notes_icon`])) {
         App.remove_notes(item)
