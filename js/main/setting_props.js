@@ -1814,7 +1814,7 @@ App.build_settings = () => {
     extra_menu_mode: {
       name: `Extra Menu Mode`,
       type: `menu`,
-      value: `none`,
+      value: `flat`,
       info: `How to show the Extra Menu on right click
       Either on its own submenu, flat at the root level`,
       version: 2,
@@ -1832,10 +1832,7 @@ App.build_settings = () => {
       type: `list`,
       separator: true,
       data_group: `normal_menus`,
-      value: [
-        {cmd: `open_new_tab`, middle: `insert_header`},
-        {cmd: `add_jump_tag_1`, middle: `remove_jump_tag_1`},
-      ],
+      value: [],
       info: `Extra menu to show when right clicking items`,
       version: 4,
     },

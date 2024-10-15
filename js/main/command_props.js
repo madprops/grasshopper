@@ -1367,6 +1367,7 @@ App.setup_commands = () => {
     },
     {
       name: `Copy URL`,
+      short_name: `URL`,
       cmd: `copy_item_url`,
       modes: [`items`],
       item: true,
@@ -1379,6 +1380,7 @@ App.setup_commands = () => {
     },
     {
       name: `Copy Title`,
+      short_name: `Title`,
       cmd: `copy_item_title`,
       modes: [`items`],
       item: true,
