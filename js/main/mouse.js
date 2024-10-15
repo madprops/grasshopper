@@ -629,6 +629,13 @@ App.mouse_middle_action = (mode, e) => {
       }
     }
 
+    if (App.get_setting(`title_icon_click`)) {
+      if (DOM.parent(e.target, [`.title_icon`])) {
+        App.edit_tab_title({item})
+        return
+      }
+    }
+
     if (App.get_setting(`notes_icon_click`)) {
       if (DOM.parent(e.target, [`.notes_icon`])) {
         App.remove_notes(item)
