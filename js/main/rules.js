@@ -257,8 +257,8 @@ App.start_domain_rules_addlist = () => {
           action: (e) => {
             App.domain_rule_from_template(e)
           },
-        }
-      ]
+        },
+      ],
     })})
 
   App.domain_rules_addlist_ready = true
@@ -334,7 +334,7 @@ App.domain_rule_from_template = (e) => {
       text,
       action: () => {
         App.fill_domain_rules_from_template(template)
-      }
+      },
     })
   }
 
