@@ -39,6 +39,7 @@ App.select_item = (args = {}) => {
 
   App.toggle_selected({item: args.item, what: true})
   App.scroll_to_item({item: args.item, scroll: args.scroll})
+  App.last_selected_date[args.item.mode] = App.now()
   let tb_mode = App.get_tab_box_mode()
 
   if ([`nodez`].includes(tb_mode)) {

@@ -367,7 +367,7 @@ App.tabs_action = async (args = {}) => {
       return
     }
     else if (header_action === `activate`) {
-      if (args.item.active) {
+      if (args.item.active && (args.from === `click`)) {
         return
       }
     }
