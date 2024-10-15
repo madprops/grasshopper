@@ -102,13 +102,22 @@ App.run_command_combo = async (combo, item, e) => {
     return
   }
 
+  let mode = item?.mode || App.active_mode
   let delay = App.get_setting(`command_combo_delay`)
+  let og_selected = App.get_selected(mode)
 
   for (let cmd of cmds) {
     if (cmd.startsWith(`sleep_ms`)) {
       let ms = parseInt(cmd.split(`_`).pop())
       await App.sleep(ms)
       continue
+    }
+
+    let new_selected = App.get_selected(mode)
+
+    if (new_selected !== og_selected) {
+      item = new_selected
+      og_selected = new_selected
     }
 
     await App.run_command({cmd, item, e})
