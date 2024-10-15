@@ -160,3 +160,16 @@ App.get_node_tabs = () => {
 
   return items
 }
+
+App.filter_node_tab_siblings = (item) => {
+  if (!item.parent) {
+    return
+  }
+
+  App.filter_common({
+    name: `node`,
+    full: `Node`,
+    prop: item.parent,
+    item,
+  })
+}
