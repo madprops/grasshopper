@@ -112,6 +112,13 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`tab_box_font_size`, `unset`)
     }
 
+    if (App.get_setting(`footer_font_enabled`)) {
+      App.set_css_var(`footer_font_size`, App.get_setting(`footer_font_size`) + `px`)
+    }
+    else {
+      App.set_css_var(`footer_font_size`, `unset`)
+    }
+
     let w = `${(App.get_setting(`width`) / 100) * App.popup_width}px`
     App.set_css_var(`width`, w)
 
@@ -331,6 +338,15 @@ App.do_apply_theme = (args = {}) => {
     }
     else {
       App.set_css_var(`tab_box_font`, `unset`)
+    }
+
+    if (App.get_setting(`footer_font_enabled`)) {
+      font = App.get_setting(`footer_font`)
+      font_str = App.get_font_string(font)
+      App.set_css_var(`footer_font`, font_str)
+    }
+    else {
+      App.set_css_var(`footer_font`, `unset`)
     }
 
     let scv

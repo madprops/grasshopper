@@ -2362,6 +2362,41 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    footer_font_enabled: {
+      name: `Footer Font Enabled`,
+      type: `checkbox`,
+      value: false,
+      info: `Override the main font for the Footer`,
+      version: 1,
+    },
+    footer_font: {
+      name: `Footer Font`,
+      type: `text`,
+      value: App.default_font,
+      placeholder: `Font Name`,
+      btns: [`pick`],
+      no_empty: true,
+      info: `Font to use for the Footer
+      Pick from the list, or enter a Google Font name, or enter a font URL`,
+      version: 1,
+      setup: (key) => {
+        DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
+          App.pick_font(e, `footer_font`)
+        })
+      },
+    },
+    footer_font_size: {
+      name: `Footer Font Size`,
+      type: `menu`,
+      value: App.default_font_size,
+      placeholder: `Px`,
+      info: `Font size for the Footer`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(...App.font_sizes))
+      },
+    },
     footer_color_enabled: {
       name: `Footer Color`,
       type: `checkbox`,
