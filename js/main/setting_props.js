@@ -120,7 +120,7 @@ App.build_settings = () => {
     hover_effect_2: {
       name: `Hover Effect 2`,
       type: `menu`,
-      value: `glow`,
+      value: `none`,
       info: `An optional second effect to use when hovering items`,
       version: 1,
       setup: (key) => {
@@ -1918,11 +1918,31 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.effects)
       },
     },
+    tab_box_hover_effect_2: {
+      name: `Tab Box Hover Effect 2`,
+      type: `menu`,
+      value: `none`,
+      info: `An optional second effect to show on hovered items in the Tab Box`,
+      version: 4,
+      setup: (key) => {
+        App.settings_make_menu(key, App.effects)
+      },
+    },
     tab_box_active_effect: {
       name: `Tab Box Active Effect`,
       type: `menu`,
       value: `underline`,
       info: `What effect to show on active items in the Tab Box`,
+      version: 4,
+      setup: (key) => {
+        App.settings_make_menu(key, App.effects)
+      },
+    },
+    tab_box_active_effect_2: {
+      name: `Tab Box Active Effect 2`,
+      type: `menu`,
+      value: `none`,
+      info: `An optional second effect to show on active items in the Tab Box`,
       version: 4,
       setup: (key) => {
         App.settings_make_menu(key, App.effects)

@@ -202,6 +202,8 @@ App.do_apply_theme = (args = {}) => {
 
     let tbh_eff = App.get_setting(`tab_box_hover_effect`)
     main.classList.add(`tab_box_hover_effect_${tbh_eff}`)
+    let tbh_eff_2 = App.get_setting(`tab_box_hover_effect_2`)
+    main.classList.add(`tab_box_hover_effect_${tbh_eff_2}`)
 
     for (let eff of effects) {
       main.classList.remove(`tab_box_active_effect_${eff.value}`)
@@ -209,6 +211,8 @@ App.do_apply_theme = (args = {}) => {
 
     let tba_eff = App.get_setting(`tab_box_active_effect`)
     main.classList.add(`tab_box_active_effect_${tba_eff}`)
+    let tba_eff_2 = App.get_setting(`tab_box_active_effect_2`)
+    main.classList.add(`tab_box_active_effect_${tba_eff_2}`)
 
     if (App.get_setting(`wrap_text`)) {
       main.classList.remove(`no_wrap`)
