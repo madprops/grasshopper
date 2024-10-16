@@ -197,6 +197,7 @@ App.build_settings = () => {
       info: `The opacity of unloaded tabs`,
       version: 1,
       setup: (key) => {
+        // 0.15 steps
         App.settings_make_menu(key, [
           {text: `Full`, value: 1.0},
           {text: `High`, value: 0.85},
