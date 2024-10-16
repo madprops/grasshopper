@@ -411,16 +411,16 @@ App.show_tab_box_menu = (e) => {
 
   items.push({
     icon: App.settings_icons.tab_box,
-    text: `Hide`,
-    action: () => {
-      App.toggle_tab_box()
-    },
+    text: `Size`,
+    items: sizes,
   })
 
   items.push({
     icon: App.settings_icons.tab_box,
-    text: `Size`,
-    items: sizes,
+    text: `Toggle`,
+    action: () => {
+      App.toggle_tab_box()
+    },
   })
 
   items.push({
