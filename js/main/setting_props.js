@@ -1978,6 +1978,7 @@ App.build_settings = () => {
       info: `Shrink the Tab Box automatically when it has no items`,
       separator: true,
       version: 1,
+      separator: true,
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
@@ -1988,6 +1989,13 @@ App.build_settings = () => {
           {text: `Normal`, value: `normal`},
         ])
       },
+    },
+    tab_box_font_enabled: {
+      name: `Tab Box Font Enabled`,
+      type: `checkbox`,
+      value: false,
+      info: `Override the main font for the Tab Box`,
+      version: 1,
     },
     tab_box_font: {
       name: `Tab Box Font`,
@@ -2011,6 +2019,7 @@ App.build_settings = () => {
       value: App.default_font_size,
       placeholder: `Px`,
       info: `Font size for the Tab Box`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.setting_steps(...App.font_sizes))
@@ -2844,9 +2853,17 @@ App.build_settings = () => {
       value: `center`,
       info: `How to align the Title`,
       version: 1,
+      separator: true,
       setup: (key) => {
         App.settings_make_menu(key, App.aligns)
       },
+    },
+    main_title_font_enabled: {
+      name: `Title Font Enabled`,
+      type: `checkbox`,
+      value: false,
+      info: `Override the main font for the Title`,
+      version: 1,
     },
     main_title_font: {
       name: `Title Font`,
@@ -2870,18 +2887,11 @@ App.build_settings = () => {
       value: App.default_font_size,
       placeholder: `Px`,
       info: `Font size for the Title`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.setting_steps(...App.font_sizes))
       },
-    },
-    wrap_main_title: {
-      name: `Wrap Title`,
-      type: `checkbox`,
-      value: false,
-      separator: true,
-      info: `Make the title text wrap on long titles`,
-      version: 1,
     },
     main_title_colors: {
       name: `Title Colors`,
@@ -3002,10 +3012,18 @@ App.build_settings = () => {
       type: `menu`,
       value: `next_main_title_color`,
       info: `Command to run when using the mousewheel down on the Title while holding Shift`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
+    },
+    wrap_main_title: {
+      name: `Wrap Title`,
+      type: `checkbox`,
+      value: false,
+      info: `Make the title text wrap on long titles`,
+      version: 1,
     },
   }
 
