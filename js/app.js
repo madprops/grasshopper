@@ -204,7 +204,7 @@ App.settings_icons = {
   lock: `🔒`,
   browser: `🌐`,
   hover: `🔆`,
-  bookmarks: `⭐`,
+  bkmarks: `⭐`,
   close: `❌`,
 }
 

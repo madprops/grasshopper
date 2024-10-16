@@ -217,18 +217,10 @@ App.get_mode_index = (mode) => {
 
 App.get_mode_name = (mode, shorten = false) => {
   if ((mode === `bookmarks`) && shorten) {
-    return App.bookmarks_name()
+    return `Bkmarks`
   }
 
   return App.capitalize(mode)
-}
-
-App.bookmarks_name = () => {
-  if (App.get_setting(`short_bookmarks`)) {
-    return `Bmarks`
-  }
-
-  return `Bookmarks`
 }
 
 App.cycle_modes = async (reverse, reuse_filter = true) => {

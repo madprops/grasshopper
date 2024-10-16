@@ -3472,7 +3472,7 @@ App.setup_commands = () => {
       info: `Remove a Domain Rule`,
     },
     {
-      name: `Remove All Domain Rules`,
+      name: `Rm All Domain Rules`,
       short_name: `Rm Rules`,
       cmd: `remove_all_domain_rules`,
       modes: [`items`],

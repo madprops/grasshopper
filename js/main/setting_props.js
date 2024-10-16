@@ -531,7 +531,7 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `bookmarks`
+  category = `bkmarks`
 
   props = {
     bookmarks_folder: {
@@ -4956,13 +4956,6 @@ App.build_settings = () => {
       Like 'Red' instead of 'Color Red'`,
       version: 1,
     },
-    short_bookmarks: {
-      name: `Short Bookmarks`,
-      type: `checkbox`,
-      value: false,
-      info: `Reduce 'Bookmarks' to 'Bmarks' in some places`,
-      version: 1,
-    },
     step_back_recent: {
       name: `Step Back Recent`,
       type: `checkbox`,
@@ -5064,7 +5057,7 @@ App.build_settings = () => {
         theme_pickers,
       ],
     },
-    bookmarks: {
+    bkmarks: {
       info: `Configure the Bookmarks`,
     },
     colors: {
