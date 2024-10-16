@@ -223,6 +223,13 @@ App.show_favorites_menu = (e) => {
     },
   })
 
+  positions.push({
+    text: `Auto`,
+    action: () => {
+      App.toggle_favorites_autohide()
+    },
+  })
+
   App.sep(positions)
   let pos_opts = [`top`, `left`, `right`, `bottom`, `button`].filter(x => x !== c_pos)
 
