@@ -1187,7 +1187,7 @@ App.build_settings = () => {
     show_parent_icon: {
       name: `Show Parent Icon`,
       type: `menu`,
-      value: `focus`,
+      value: `never`,
       info: `When to show the Parent Icon`,
       separator: true,
       version: 1,
@@ -1217,7 +1217,7 @@ App.build_settings = () => {
     show_node_icon: {
       name: `Show Nodes Icon`,
       type: `menu`,
-      value: `focus`,
+      value: `never`,
       info: `When to show the Nodes Icon`,
       separator: true,
       version: 1,
