@@ -408,3 +408,10 @@ App.scroll_modes = [
   {text: `Top`, value: `top`},
   {text: `Bottom`, value: `bottom`},
 ]
+
+App.opacity_values = {
+  full: 1.0,
+  high: 0.85,
+  medium: 0.7,
+  low: 0.55,
+}
