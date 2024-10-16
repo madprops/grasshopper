@@ -1100,35 +1100,11 @@ App.get_new_tab_args = (item, from, args) => {
     let indx = App.get_item_index(`tabs`, item)
     pinned = item.pinned
 
-    if ([`above_all`, `below_all`].includes(new_mode)) {
-      if (new_mode === `above_all`) {
-        index = indx
-      }
-      else if (new_mode === `below_all`) {
-        index = indx + 1
-      }
+    if (new_mode === `above`) {
+      index = indx
     }
-    else if ([`above_special`, `below_special`].includes(new_mode)) {
-      let special = [
-        `hover_menu`,
-        `extra_menu`,
-        `item_menu`,
-        `middle_click`,
-        `click_press`,
-        `middle_click_press`,
-        `double_click`,
-      ]
-
-      let is_special = special.includes(from)
-
-      if (is_special) {
-        if (new_mode === `above_special`) {
-          index = indx
-        }
-        else if (new_mode === `below_special`) {
-          index = indx + 1
-        }
-      }
+    else if (new_mode === `below`) {
+      index = indx + 1
     }
   }
 
