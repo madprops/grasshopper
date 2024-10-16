@@ -257,6 +257,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `at_end`,
       info: `Controls the position of the caret and higlight mode on text prompts`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -306,6 +307,7 @@ App.build_settings = () => {
       value: App.keyboard_shortcuts_value(),
       info: `Extra keyboard shortcuts
       If these are triggered the default shortcuts get ignored`,
+      separator: true,
       version: 4,
     },
     open_in_new_tab: {
