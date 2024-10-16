@@ -232,6 +232,7 @@ App.rewind_icon = `⏪`
 App.new_icon = `🆕`
 App.duplicate_icon = `👭🏻`
 App.keyboard_icon = `⌨️`
+App.mouse_icon = `🖱️`
 App.tree_icon = `🌳`
 App.combo_icon = `🍔`
 App.template_icon = `🛕`

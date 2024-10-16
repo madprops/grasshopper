@@ -60,6 +60,7 @@ App.setup_commands = () => {
   let new_icon = App.new_icon
   let duplicate_icon = App.duplicate_icon
   let keyboard_icon = App.keyboard_icon
+  let mouse_icon = App.mouse_icon
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
   let template_icon = App.template_icon
@@ -627,7 +628,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.trigger_esc_key()
       },
-      info: `Trigger the Esc key`,
+      info: `Trigger the Esc Key`,
     },
     {
       name: `Enter Key`,
@@ -637,7 +638,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.trigger_enter_key()
       },
-      info: `Trigger the Enter key`,
+      info: `Trigger the Enter Key`,
     },
     {
       name: `Backspace Key`,
@@ -648,7 +649,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.trigger_backspace_key()
       },
-      info: `Trigger the Backspace key`,
+      info: `Trigger the Backspace Key`,
     },
     {
       name: `Up Key`,
@@ -658,7 +659,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.trigger_up_key()
       },
-      info: `Trigger the Up key`,
+      info: `Trigger the Up Key`,
     },
     {
       name: `Down Key`,
@@ -668,7 +669,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.trigger_down_key()
       },
-      info: `Trigger the Down key`,
+      info: `Trigger the Down Key`,
     },
     {
       name: `Left Key`,
@@ -678,7 +679,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.trigger_left_key()
       },
-      info: `Trigger the Left key`,
+      info: `Trigger the Left Key`,
     },
     {
       name: `Right Key`,
@@ -688,7 +689,16 @@ App.setup_commands = () => {
       action: (args) => {
         App.trigger_right_key()
       },
-      info: `Trigger the Right key`,
+      info: `Trigger the Right Key`,
+    },
+    {
+      name: `Left Click`,
+      cmd: `trigger_left_click`,
+      icon: mouse_icon,
+      action: (args) => {
+        App.trigger_left_click()
+      },
+      info: `Trigger the Left Click`,
     },
     {
       name: `Select All`,

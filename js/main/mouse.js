@@ -65,6 +65,10 @@ App.setup_mouse = () => {
     App.mouse_out_action(e)
   })
 
+  DOM.ev(container, `mousemove`, (e) => {
+    App.mouse_move_action(e)
+  })
+
   App.mouse_over_debouncer = App.create_debouncer((e) => {
     App.do_mouse_over_action(e)
   }, App.mouse_over_delay)
@@ -741,6 +745,11 @@ App.do_mouse_out_action = (e) => {
   }
 }
 
+App.mouse_move_action = (e) => {
+  App.mouse_x = e.clientX
+  App.mouse_y = e.clientY
+}
+
 App.reset_mouse = () => {
   clearTimeout(App.click_press_timeout)
   App.click_press_button = undefined
@@ -1082,4 +1091,20 @@ App.mouse_valid_type = (e) => {
   }
 
   return true
+}
+
+App.trigger_left_click = () => {
+  let target = document.elementFromPoint(App.mouse_x, App.mouse_y)
+
+  if (!target) {
+    return
+  }
+
+  let ev = new MouseEvent(`click`, {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+  })
+
+  target.dispatchEvent(ev)
 }
