@@ -613,7 +613,7 @@ App.add_settings_switchers = (category) => {
   title.id = `settings_title_${category}`
   title.title = `Pick a Category`
   let icon = App.settings_icons[category]
-  let text = App.category_string(category)
+  let text = App.category_string(category, true)
   title.append(App.button_text(icon, text))
   container.append(title)
   let actions = DOM.create(`div`, `button icon_button`)
@@ -717,7 +717,13 @@ App.set_default_setting = (setting, action = false) => {
   })
 }
 
-App.category_string = (category) => {
+App.category_string = (category, compact = false) => {
+  if (compact) {
+    if (category === `bookmarks`) {
+      category = `bkmarks`
+    }
+  }
+
   return App.capitalize_words(category)
 }
 
@@ -1129,7 +1135,7 @@ App.settings_menu_items = () => {
 
   for (let c of App.settings_categories) {
     let icon = App.settings_icons[c]
-    let name = App.category_string(c)
+    let name = App.category_string(c, true)
     let props = App.setting_catprops[c]
 
     items.push({

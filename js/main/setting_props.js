@@ -538,7 +538,7 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `bkmarks`
+  category = `bookmarks`
 
   props = {
     bookmarks_folder: {
@@ -5081,7 +5081,7 @@ App.build_settings = () => {
         theme_pickers,
       ],
     },
-    bkmarks: {
+    bookmarks: {
       info: `Configure the Bookmarks`,
     },
     colors: {
