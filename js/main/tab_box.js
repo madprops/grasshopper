@@ -409,26 +409,6 @@ App.show_tab_box_menu = (e) => {
     })
   }
 
-  if (App.tab_box_items.length) {
-    items.push({
-      icon: App.mode_icon(`tabs`),
-      text: `Select`,
-      action: () => {
-        App.select_tab_box_tabs()
-      },
-    })
-
-    items.push({
-      icon: App.close_icon,
-      text: `Close`,
-      action: () => {
-        App.close_tab_box_tabs()
-      },
-    })
-
-    App.sep(items)
-  }
-
   items.push({
     icon: App.settings_icons.tab_box,
     text: `Hide`,

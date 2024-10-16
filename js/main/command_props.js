@@ -1076,8 +1076,19 @@ App.setup_commands = () => {
       info: `Show or hide the Tab Box`,
     },
     {
+      name: `Tab Box Select`,
+      short_name: `Select`,
+      cmd: `tab_box_select`,
+      modes: [`items`],
+      icon: tab_box_icon,
+      action: (args) => {
+        App.select_tab_box_tabs()
+      },
+      info: `Select the current Tab Box tabs`,
+    },
+    {
       name: `Tab Box Close`,
-      short_name: `TB Close`,
+      short_name: `Close`,
       cmd: `tab_box_close`,
       modes: [`items`],
       icon: tab_box_icon,
