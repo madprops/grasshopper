@@ -1109,7 +1109,15 @@ App.get_new_tab_args = (item, from, args) => {
       }
     }
     else if ([`above_special`, `below_special`].includes(new_mode)) {
-      let special = [`hover_menu`, `extra_menu`, `item_menu`]
+      let special = [
+        `hover_menu`,
+        `extra_menu`,
+        `item_menu`,
+        `middle_click`,
+        `click_press`,
+        `middle_click_press`,
+      ]
+
       let is_special = special.includes(from)
 
       if (is_special) {
