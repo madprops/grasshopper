@@ -4638,6 +4638,13 @@ App.build_settings = () => {
       Else use quotes as is`,
       version: 1,
     },
+    filter_keep_selected: {
+      name: `Filter Keep Selected`,
+      type: `checkbox`,
+      value: true,
+      info: `Keep the selected item on filters instead of selecting the first item`,
+      version: 1,
+    },
     auto_deep_search_history: {
       name: `Auto Deep History`,
       type: `checkbox`,

@@ -359,6 +359,8 @@ App.do_filter = async (args = {}) => {
     App.process_info_list(args.mode, matched_items)
   }
 
+  let selected = App.get_selected(args.mode)
+
   if (args.select) {
     App.clear_selected(args.mode)
     let sticky_filter = App.get_setting(`sticky_filter`)
@@ -387,14 +389,13 @@ App.do_filter = async (args = {}) => {
       }
     }
     else if (num_matched > 0) {
-      App.select_first_item(args.mode, !App.is_filtered(args.mode))
+      if (selected && selected.visible && App.get_setting(`filter_keep_selected`)) {
+        App.select_item({item: selected, deselect: false})
+      }
+      else {
+        App.select_first_item(args.mode, !App.is_filtered(args.mode))
+      }
     }
-  }
-
-  let selected = App.get_selected(args.mode)
-
-  if (!selected || !selected.visible) {
-    App.select_first_item(args.mode)
   }
 
   App.update_footer_info(App.get_selected(args.mode))
