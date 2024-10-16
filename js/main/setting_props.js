@@ -198,9 +198,10 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
-          {text: `High`, value: 1.0},
-          {text: `Medium`, value: 0.8},
-          {text: `Low`, value: 0.5},
+          {text: `Full`, value: 1.0},
+          {text: `High`, value: 0.85},
+          {text: `Medium`, value: 0.7},
+          {text: `Low`, value: 0.55},
         ])
       },
     },
