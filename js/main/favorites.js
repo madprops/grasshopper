@@ -214,6 +214,16 @@ App.show_favorites_menu = (e) => {
 
   let positions = []
   let c_pos = App.get_setting(`favorites_position`)
+
+  positions.push({
+    text: `Hide`,
+    action: () => {
+      App.set_setting({setting: `show_favorites`, value: false})
+      App.hide_favorites()
+    },
+  })
+
+  App.sep(positions)
   let pos_opts = [`top`, `left`, `right`, `bottom`, `button`].filter(x => x !== c_pos)
 
   for (let mode of pos_opts) {
