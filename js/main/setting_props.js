@@ -121,7 +121,7 @@ App.build_settings = () => {
       name: `Hover Effect 2`,
       type: `menu`,
       value: `none`,
-      info: `An optional second effect to use when hovering items`,
+      info: `Second effect to use when hovering items`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.effects)
@@ -141,7 +141,7 @@ App.build_settings = () => {
       name: `Selected Effect 2`,
       type: `menu`,
       value: `none`,
-      info: `An optional second effect to use on selected items`,
+      info: `Second effect to use on selected items`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.effects)
@@ -1922,7 +1922,7 @@ App.build_settings = () => {
       name: `Tab Box Hover Effect 2`,
       type: `menu`,
       value: `none`,
-      info: `An optional second effect to show on hovered items in the Tab Box`,
+      info: `Second effect to show on hovered items in the Tab Box`,
       version: 4,
       setup: (key) => {
         App.settings_make_menu(key, App.effects)
@@ -1942,7 +1942,7 @@ App.build_settings = () => {
       name: `Tab Box Active Effect 2`,
       type: `menu`,
       value: `none`,
-      info: `An optional second effect to show on active items in the Tab Box`,
+      info: `Second effect to show on active items in the Tab Box`,
       version: 4,
       setup: (key) => {
         App.settings_make_menu(key, App.effects)
