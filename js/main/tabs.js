@@ -1116,6 +1116,7 @@ App.get_new_tab_args = (item, from, args) => {
         `middle_click`,
         `click_press`,
         `middle_click_press`,
+        `double_click`,
       ]
 
       let is_special = special.includes(from)
