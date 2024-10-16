@@ -96,6 +96,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `spin`,
       info: `Effect for icons when multiple items are selected`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -122,6 +123,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Second effect to use when hovering items`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.effects)
@@ -142,6 +144,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Second effect to use on selected items`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.effects)
@@ -1900,6 +1903,7 @@ App.build_settings = () => {
       value: `recent`,
       no_mirror: true,
       info: `What to show in the Tab Box`,
+      separator: true,
       version: 4,
       setup: (key) => {
         App.settings_make_menu(key, App.get_setting_tab_box_modes())
@@ -1920,6 +1924,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Second effect to show on hovered items in the Tab Box`,
+      separator: true,
       version: 4,
       setup: (key) => {
         App.settings_make_menu(key, App.effects)
@@ -1940,6 +1945,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Second effect to show on active items in the Tab Box`,
+      separator: true,
       version: 4,
       setup: (key) => {
         App.settings_make_menu(key, App.effects)
@@ -1966,6 +1972,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `compact`,
       info: `Shrink the Tab Box automatically when it has no items`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -2021,6 +2028,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `top`,
       info: `How to scroll the Tab Box`,
+      separator: true,
       version: 2,
       setup: (key) => {
         App.settings_make_menu(key, App.scroll_modes)
@@ -2051,6 +2059,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Command to run on middle click press on Tab Box`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
