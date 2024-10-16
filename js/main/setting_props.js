@@ -3179,7 +3179,7 @@ App.build_settings = () => {
     click_press_item: {
       name: `Click Press Item`,
       type: `menu`,
-      value: `none`,
+      value: `filter_domain`,
       info: `What command to run when pressing the left mouse button on an item for a short time`,
       version: 1,
       setup: (key) => {
