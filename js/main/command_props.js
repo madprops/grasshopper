@@ -695,6 +695,7 @@ App.setup_commands = () => {
       name: `Left Click`,
       cmd: `trigger_left_click`,
       icon: mouse_icon,
+      skip_palette: true,
       action: (args) => {
         App.trigger_left_click()
       },
