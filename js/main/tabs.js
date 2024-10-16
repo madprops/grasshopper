@@ -1229,3 +1229,12 @@ App.import_tabs = async (value = ``) => {
 App.blank_tab = async () => {
   await App.open_new_tab({url: `about:blank`})
 }
+
+App.check_unloaded = (item) => {
+  if (item.unloaded) {
+    item.element.classList.add(`unloaded_tab`)
+  }
+  else {
+    item.element.classList.remove(`unloaded_tab`)
+  }
+}

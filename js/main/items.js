@@ -314,6 +314,7 @@ App.refresh_item_element = (item) => {
   App.apply_color_mode(item)
   App.check_taglist(item)
   App.apply_splits(item)
+  App.check_unloaded(item)
 }
 
 App.create_item_element = (item) => {
@@ -369,6 +370,7 @@ App.create_item_element = (item) => {
     App.check_tab_colors(item)
     App.check_tab_active(item)
     App.check_pins(item)
+    App.check_unloaded(item)
   }
 
   if (item.selected) {

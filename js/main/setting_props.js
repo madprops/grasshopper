@@ -170,6 +170,20 @@ App.build_settings = () => {
         ])
       },
     },
+    unloaded_opacity: {
+      name: `Unloaded Opacity`,
+      type: `menu`,
+      value: 1.0,
+      info: `The opacity of unloaded tabs`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `High`, value: 1.0},
+          {text: `Medium`, value: 0.8},
+          {text: `Low`, value: 0.5},
+        ])
+      },
+    },
     auto_restore: {
       name: `Auto-Restore`,
       type: `menu`,
