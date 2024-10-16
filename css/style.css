@@ -1157,8 +1157,8 @@ a:hover
   flex-shrink: 0;
   flex-grow: 0;
   gap: 0.5rem;
-  font-size: var(--tab_box_font_size);
-  font-family: var(--tab_box_font);
+  font-size: var(--footer_font_size);
+  font-family: var(--footer_font);
 }
 
 .show_footer #footer {
