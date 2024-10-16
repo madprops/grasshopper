@@ -117,6 +117,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.effects)
       },
     },
+    hover_effect_2: {
+      name: `Hover Effect 2`,
+      type: `menu`,
+      value: `glow`,
+      info: `An optional second effect to use when hovering items`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.effects)
+      },
+    },
     selected_effect: {
       name: `Selected Effect`,
       type: `menu`,

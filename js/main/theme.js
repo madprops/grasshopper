@@ -184,6 +184,8 @@ App.do_apply_theme = (args = {}) => {
 
     let hover_effect = App.get_setting(`hover_effect`)
     main.classList.add(`hover_effect_${hover_effect}`)
+    let hover_effect_2 = App.get_setting(`hover_effect_2`)
+    main.classList.add(`hover_effect_${hover_effect_2}`)
 
     for (let eff of effects) {
       main.classList.remove(`selected_effect_${eff.value}`)
