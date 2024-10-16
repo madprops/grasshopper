@@ -46,8 +46,6 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `wheel_up_shift_items`, value: `recent_tabs_forwards`})
   App.set_setting({setting: `wheel_down_shift_items`, value: `recent_tabs_backwards`})
 
-  App.set_setting({setting: `short_bookmarks`, value: true})
-
   // Favorites
 
   App.set_setting({setting: `double_click_favorites_top`, value: `focus_parent_tab`})
