@@ -1978,7 +1978,6 @@ App.build_settings = () => {
       info: `Shrink the Tab Box automatically when it has no items`,
       separator: true,
       version: 1,
-      separator: true,
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `None`, value: `none`},
