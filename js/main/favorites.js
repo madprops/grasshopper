@@ -212,25 +212,24 @@ App.show_favorites_menu = (e) => {
 
   App.sep(items)
 
-  let positions = []
-  let c_pos = App.get_setting(`favorites_position`)
-
-  positions.push({
-    text: `Hide`,
+  items.push({
+    text: `Toggle`,
+    icon: App.settings_icons.favorites,
     action: () => {
-      App.set_setting({setting: `show_favorites`, value: false})
-      App.hide_favorites()
+      App.toggle_favorites()
     },
   })
 
-  positions.push({
-    text: `Auto`,
+  items.push({
+    text: `Autohide`,
+    icon: App.settings_icons.favorites,
     action: () => {
       App.toggle_favorites_autohide()
     },
   })
 
-  App.sep(positions)
+  let positions = []
+  let c_pos = App.get_setting(`favorites_position`)
   let pos_opts = [`top`, `left`, `right`, `bottom`, `button`].filter(x => x !== c_pos)
 
   for (let mode of pos_opts) {
