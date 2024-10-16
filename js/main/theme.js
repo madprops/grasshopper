@@ -191,6 +191,8 @@ App.do_apply_theme = (args = {}) => {
 
     let selected_effect = App.get_setting(`selected_effect`)
     main.classList.add(`selected_effect_${selected_effect}`)
+    let selected_effect_2 = App.get_setting(`selected_effect_2`)
+    main.classList.add(`selected_effect_${selected_effect_2}`)
 
     for (let eff of effects) {
       main.classList.remove(`tab_box_hover_effect_${eff.value}`)

@@ -127,6 +127,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.effects)
       },
     },
+    selected_effect_2: {
+      name: `Selected Effect 2`,
+      type: `menu`,
+      value: `none`,
+      info: `An optional second effect to use on selected items`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.effects)
+      },
+    },
     loading_effect: {
       name: `Loading Effect`,
       type: `menu`,
