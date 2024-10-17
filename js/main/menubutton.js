@@ -134,11 +134,14 @@ Menubutton.create = (args = {}) => {
     })
   }
 
+  args.first_set = false
+
   args.refresh_button = () => {
     if (args.selected !== undefined) {
       for (let opt of args.opts) {
         if (args.selected === opt.value) {
           Menubutton.set_text(args, opt)
+          args.first_set = true
           break
         }
       }

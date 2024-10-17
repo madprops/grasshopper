@@ -314,6 +314,10 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     },
   })
 
+  if (!App[btn_id].first_set) {
+    App.error(`Menubutton not set: ${setting}`)
+  }
+
   DOM.ev(App.get_settings_label(setting), `click`, (e) => {
     App.settings_label_menu(e,
       [
@@ -980,7 +984,6 @@ App.check_settings = () => {
     if (App.settings[key] === undefined ||
       App.settings[key].value === undefined ||
       App.settings[key].version === undefined) {
-      App.debug(`Stor: Adding setting: ${key}`)
       App.settings[key] = {}
       App.def_setting(key)
       changed = true
