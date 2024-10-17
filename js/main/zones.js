@@ -378,10 +378,18 @@ App.do_header_action = (item, action) => {
   return false
 }
 
+App.add_split_action = (item, which) => {
+  if (App.tabs_recent()) {
+    return
+  }
+
+  App.edit_tab_split({item, which})
+}
+
 App.add_split_top = (item) => {
-  App.edit_tab_split({item, which: `top`})
+  App.add_split_action(item, `top`)
 }
 
 App.add_split_bottom = (item) => {
-  App.edit_tab_split({item, which: `bottom`})
+  App.add_split_action(item, `bottom`)
 }
