@@ -1849,11 +1849,12 @@ App.swap_settings = (setting_1, setting_2) => {
   btn_2.set(value_1)
 }
 
-App.setting_steps = (min, max, step) => {
+App.setting_steps = (min, max, step, units = ``) => {
   let items = []
 
   for (let i = min; i <= max; i += step) {
-    items.push({value: i, text: `${i}`})
+    let text = `${i}${units}`.trim()
+    items.push({value: i, text})
   }
 
   return items
@@ -2136,6 +2137,7 @@ App.increase_font_size = () => {
     return
   }
 
+  App.footer_message(`Font Size: ${new_size}`)
   App.set_setting({setting: `font_size`, value: new_size})
   App.apply_theme()
 }
@@ -2148,6 +2150,7 @@ App.decrease_font_size = () => {
     return
   }
 
+  App.footer_message(`Font Size: ${new_size}`)
   App.set_setting({setting: `font_size`, value: new_size})
   App.apply_theme()
 }

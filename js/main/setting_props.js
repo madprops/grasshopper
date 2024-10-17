@@ -515,7 +515,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(...App.font_sizes))
+        App.settings_make_menu(key, App.setting_steps(...App.font_sizes, `px`))
       },
     },
     custom_css: {
@@ -2021,7 +2021,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(...App.font_sizes))
+        App.settings_make_menu(key, App.setting_steps(...App.font_sizes, `px`))
       },
     },
     tab_box_color_mode: {
@@ -2393,7 +2393,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(...App.font_sizes))
+        App.settings_make_menu(key, App.setting_steps(...App.font_sizes, `px`))
       },
     },
     footer_color_enabled: {
@@ -2924,7 +2924,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(...App.font_sizes))
+        App.settings_make_menu(key, App.setting_steps(...App.font_sizes, `px`))
       },
     },
     main_title_colors: {
