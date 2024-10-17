@@ -142,8 +142,6 @@ App.do_filter = async (args = {}) => {
         by_what,
       })
 
-      App.clear_selected(args.mode)
-
       if (App.filter_search_date !== search_date) {
         return
       }
@@ -152,6 +150,7 @@ App.do_filter = async (args = {}) => {
         return
       }
 
+      App.clear_selected(args.mode)
       search = true
     }
   }
