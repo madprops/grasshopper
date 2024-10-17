@@ -150,7 +150,6 @@ App.do_filter = async (args = {}) => {
         return
       }
 
-      App.clear_selected(args.mode)
       search = true
     }
   }
@@ -356,6 +355,7 @@ App.do_filter = async (args = {}) => {
     // Search mode only creates the matched items
     // This makes searches a lot faster
     App.process_info_list(args.mode, matched_items)
+    App.clear_selected(args.mode)
   }
 
   let selected = App.get_selected(args.mode)
