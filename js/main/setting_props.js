@@ -4924,7 +4924,7 @@ App.build_settings = () => {
     scroll_amount: {
       name: `Scroll Amount`,
       type: `number`,
-      value: 120,
+      value: 100,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
