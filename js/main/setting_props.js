@@ -2285,6 +2285,16 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    double_click_footer: {
+      name: `Double Click Footer`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when double clicking the Footer`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     middle_click_footer: {
       name: `Middle Click Footer`,
       type: `menu`,

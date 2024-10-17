@@ -252,6 +252,7 @@ App.show_footer_menu = (e) => {
 }
 
 App.footer_tips = (el) => {
+  App.trigger_title(el, `double_click_footer`)
   App.trigger_title(el, `middle_click_footer`)
   App.trigger_title(el, `wheel_up_footer`)
   App.trigger_title(el, `wheel_down_footer`)
@@ -259,4 +260,9 @@ App.footer_tips = (el) => {
   App.trigger_title(el, `wheel_down_shift_footer`)
   App.trigger_title(el, `click_press_footer`)
   App.trigger_title(el, `middle_click_press_footer`)
+}
+
+App.footer_double_click = (e) => {
+  let cmd = App.get_setting(`double_click_footer`)
+  App.run_command({cmd, from: `double_click`, e})
 }

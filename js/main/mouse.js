@@ -152,6 +152,11 @@ App.mouse_click_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`#main_title`])) {
+    App.main_title_click(e)
+    return
+  }
+
   let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
@@ -382,6 +387,16 @@ App.mouse_double_click_action = (mode, e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`#main_title`])) {
+    App.main_title_double_click(e)
+    return
+  }
+
+  if (DOM.parent(e.target, [`#footer`])) {
+    App.footer_double_click(e)
+    return
+  }
+
   let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
@@ -466,6 +481,11 @@ App.mouse_context_action = (e) => {
 
   if (DOM.parent(e.target, [`.favorites_bar_container`, `.favorites_button`])) {
     App.show_favorites_menu(e)
+    return
+  }
+
+  if (DOM.parent(e.target, [`#main_title`])) {
+    App.show_main_title_menu(e)
     return
   }
 
@@ -596,6 +616,11 @@ App.mouse_middle_action = (mode, e) => {
   if (DOM.parent(e.target, [`#pinline`])) {
     let cmd = App.get_setting(`middle_click_pinline`)
     App.run_command({cmd, from: `pinline`, e})
+    return
+  }
+
+  if (DOM.parent(e.target, [`#main_title`])) {
+    App.main_title_middle_click(e)
     return
   }
 

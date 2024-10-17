@@ -78,26 +78,6 @@ App.create_main_title = () => {
   App.main_title_tooltip = el.title
   App.update_main_title_tooltips(el)
   App.last_main_title = ``
-
-  DOM.ev(el, `click`, (e) => {
-    App.main_title_click(e)
-
-    App.check_double_click(`main_title`, e, () => {
-      App.main_title_double_click(e)
-    })
-  })
-
-  DOM.ev(el, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_main_title_menu(e)
-  })
-
-  DOM.ev(el, `auxclick`, (e) => {
-    if (e.button === 1) {
-      App.main_title_middle_click(e)
-    }
-  })
-
   return el
 }
 
