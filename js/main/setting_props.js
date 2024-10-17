@@ -3334,7 +3334,7 @@ App.build_settings = () => {
     click_press_main_menu: {
       name: `Click Press Main Menu`,
       type: `menu`,
-      value: `none`,
+      value: `toggle_tab_sort`,
       info: `Command to run on left click press on Main Menu`,
       version: 1,
       setup: (key) => {
