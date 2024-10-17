@@ -697,11 +697,31 @@ App.setup_commands = () => {
       name: `Left Click`,
       cmd: `trigger_left_click`,
       icon: mouse_icon,
-      skip_palette: true,
+      // skip_palette: true,
       action: (args) => {
         App.trigger_left_click()
       },
       info: `Trigger the Left Click`,
+    },
+    {
+      name: `Right Click`,
+      cmd: `trigger_right_click`,
+      icon: mouse_icon,
+      // skip_palette: true,
+      action: (args) => {
+        App.trigger_right_click()
+      },
+      info: `Trigger the Right Click`,
+    },
+    {
+      name: `Middle Click`,
+      cmd: `trigger_middle_click`,
+      icon: mouse_icon,
+      // skip_palette: true,
+      action: (args) => {
+        App.trigger_middle_click()
+      },
+      info: `Trigger the Middle Click`,
     },
     {
       name: `Select All`,
