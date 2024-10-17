@@ -2077,7 +2077,7 @@ App.scroll_settings_up = () => {
 
   if (document.activeElement === filter) {
     let el = App.settings_content()
-    el.scrollTop -= App.scroll_amount
+    el.scrollTop -= App.get_setting(`scroll_amount`)
   }
 }
 
@@ -2086,7 +2086,7 @@ App.scroll_settings_down = () => {
 
   if (document.activeElement === filter) {
     let el = App.settings_content()
-    el.scrollTop += App.scroll_amount
+    el.scrollTop += App.get_setting(`scroll_amount`)
   }
 }
 

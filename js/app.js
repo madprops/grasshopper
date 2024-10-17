@@ -45,7 +45,6 @@ App.previous_tabs = []
 App.max_closed = 25
 App.icon_size = 50
 App.max_text_length = 200
-App.scroll_amount = 150
 App.double_key_date = 0
 App.scroller_max_top = 8
 App.dragging = false

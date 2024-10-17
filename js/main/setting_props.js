@@ -4921,6 +4921,16 @@ App.build_settings = () => {
   category = `more`
 
   props = {
+    scroll_amount: {
+      name: `Scroll Amount`,
+      type: `number`,
+      value: 120,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `How many pixels to scroll up or down on lists`,
+      version: 1,
+    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,
