@@ -1370,8 +1370,8 @@ a:hover
   background-color: var(--slight_shade);
   border-top: 1px solid var(--alt_color_1);
   border-bottom: 1px solid var(--alt_color_1);
-  padding-top: 0.188rem;
-  padding-bottom: 0.188rem;
+  padding-top: calc(var(--panel_padding) - 1px);
+  padding-bottom: calc(var(--panel_padding) - 1px);
   gap: 0.5rem;
 }
 
