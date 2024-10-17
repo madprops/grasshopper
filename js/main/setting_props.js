@@ -2901,6 +2901,47 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    wheel_up_main_title: {
+      name: `Wheel Up Title`,
+      type: `menu`,
+      value: `scroll_main_title_left`,
+      info: `Command to run when using the mousewheel up on the Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_main_title: {
+      name: `Wheel Down Title`,
+      type: `menu`,
+      value: `scroll_main_title_right`,
+      info: `Command to run when using the mousewheel down on the Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_shift_main_title: {
+      name: `Shift Wheel Up Title`,
+      type: `menu`,
+      value: `previous_main_title_color`,
+      info: `Command to run when using the mousewheel up on the Title while holding Shift`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_shift_main_title: {
+      name: `Shift Wheel Down Title`,
+      type: `menu`,
+      value: `next_main_title_color`,
+      info: `Command to run when using the mousewheel down on the Title while holding Shift`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     main_title_font_enabled: {
       name: `Title Font Enabled`,
       type: `checkbox`,
@@ -3019,47 +3060,6 @@ App.build_settings = () => {
       info: `Pause these milliseconds after reaching the edges when scrolling
       Or after manually scrolling`,
       version: 1,
-    },
-    wheel_up_main_title: {
-      name: `Wheel Up Title`,
-      type: `menu`,
-      value: `scroll_main_title_left`,
-      info: `Command to run when using the mousewheel up on the Title`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_main_title: {
-      name: `Wheel Down Title`,
-      type: `menu`,
-      value: `scroll_main_title_right`,
-      info: `Command to run when using the mousewheel down on the Title`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_shift_main_title: {
-      name: `Shift Wheel Up Title`,
-      type: `menu`,
-      value: `previous_main_title_color`,
-      info: `Command to run when using the mousewheel up on the Title while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_main_title: {
-      name: `Shift Wheel Down Title`,
-      type: `menu`,
-      value: `next_main_title_color`,
-      info: `Command to run when using the mousewheel down on the Title while holding Shift`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
     },
     wrap_main_title: {
       name: `Wrap Title`,
