@@ -195,7 +195,7 @@ App.build_settings = () => {
       type: `menu`,
       value: 100,
       placeholder: `Opacity`,
-      info: `The opacity of unloaded tabs`,
+      info: `The opacity of unloaded tabs. 100 means fully visible`,
       version: 3,
       setup: (key) => {
         App.settings_make_menu(key, App.setting_steps(0, 100, 5, `%`))
