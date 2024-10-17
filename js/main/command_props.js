@@ -697,7 +697,7 @@ App.setup_commands = () => {
       name: `Left Click`,
       cmd: `trigger_left_click`,
       icon: mouse_icon,
-      // skip_palette: true,
+      skip_palette: true,
       action: (args) => {
         App.trigger_left_click()
       },
@@ -707,7 +707,7 @@ App.setup_commands = () => {
       name: `Right Click`,
       cmd: `trigger_right_click`,
       icon: mouse_icon,
-      // skip_palette: true,
+      skip_palette: true,
       action: (args) => {
         App.trigger_right_click()
       },
@@ -717,7 +717,7 @@ App.setup_commands = () => {
       name: `Middle Click`,
       cmd: `trigger_middle_click`,
       icon: mouse_icon,
-      // skip_palette: true,
+      skip_palette: true,
       action: (args) => {
         App.trigger_middle_click()
       },
