@@ -206,6 +206,7 @@ App.settings_icons = {
   hover: `🔆`,
   bookmarks: `⭐`,
   close: `❌`,
+  pinline: `📍`,
 }
 
 App.clipboard_icon = `📋`

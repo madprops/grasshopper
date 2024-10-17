@@ -145,7 +145,7 @@ App.mouse_click_action = (e) => {
   }
 
   if (DOM.parent(target, [`#pinline`])) {
-    App.show_pinline_menu(e)
+    App.pinline_click(e)
     return
   }
 
@@ -414,6 +414,11 @@ App.mouse_double_click_action = (e) => {
 
   if (DOM.parent(target, [`.mode_filter`])) {
     App.filter_double_click(mode, e)
+    return
+  }
+
+  if (DOM.parent(target, [`#pinline`])) {
+    App.pinline_double_click(e)
     return
   }
 
@@ -989,7 +994,6 @@ App.on_mouse_wheel = (e) => {
   }
 
   let direction = App.wheel_direction(e)
-  e.preventDefault()
 
   if (DOM.parent(target, [`.main_menu_button`])) {
     if (direction === `up`) {
@@ -1062,8 +1066,8 @@ App.on_mouse_wheel = (e) => {
   else if (target.closest(`#main_title`)) {
     App.wheel_action(direction, `main_title`, e)
   }
-  else if (DOM.parent(target, [`.item_container`])) {
-    App.wheel_action(direction, `items`, e)
+  else if (DOM.parent(target, [`#pinline`])) {
+    App.wheel_action(direction, `pinline`, e)
   }
   else if (DOM.parent(target, [`.playing_button`])) {
     App.wheel_action(direction, `playing`, e)
@@ -1073,6 +1077,9 @@ App.on_mouse_wheel = (e) => {
   }
   else if (DOM.parent(target, [`.actions_button`])) {
     App.wheel_action(direction, `actions_menu`, e)
+  }
+  else if (DOM.parent(target, [`.item_container`])) {
+    App.wheel_action(direction, `items`, e)
   }
 }
 

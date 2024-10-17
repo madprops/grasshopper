@@ -56,9 +56,12 @@ App.do_check_pinline = () => {
 
   if (App.get_setting(`show_tooltips`)) {
     pinline.title = `This is the Pinline.\nPinned tabs above. Normal tabs below`
+    App.trigger_title(pinline, `click_pinline`)
     App.trigger_title(pinline, `middle_click_pinline`)
     App.trigger_title(pinline, `click_press_pinline`)
     App.trigger_title(pinline, `middle_click_press_pinline`)
+    App.trigger_title(pinline, `wheel_up_pinline`)
+    App.trigger_title(pinline, `wheel_down_pinline`)
   }
 
   if (tabs.pinned_f.length) {
@@ -91,4 +94,14 @@ App.show_pinline_menu = (e) => {
   })
 
   App.show_context({items, e})
+}
+
+App.pinline_click = (e) => {
+  let cmd = App.get_setting(`click_pinline`)
+  App.run_command({cmd, from: `pinline`, e})
+}
+
+App.pinline_double_click = (e) => {
+  let cmd = App.get_setting(`double_click_pinline`)
+  App.run_command({cmd, from: `pinline`, e})
 }

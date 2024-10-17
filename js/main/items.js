@@ -1209,6 +1209,10 @@ App.build_item_window = (mode) => {
   DOM.ev(container, `scroll`, () => {
     App.check_scroller(mode)
   })
+
+  DOM.ev(container, `wheel`, (e) => {
+    e.preventDefault()
+  })
 }
 
 App.rebuild_items = () => {

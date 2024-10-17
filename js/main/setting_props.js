@@ -1420,7 +1420,6 @@ App.build_settings = () => {
       value: `show_12`,
       info: `Show the time in the Filter input`,
       no_mirror: true,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -1430,34 +1429,6 @@ App.build_settings = () => {
           {text: `24 hours`, value: `show_24`},
         ])
       },
-    },
-    show_pinline: {
-      name: `Show Pinline`,
-      type: `menu`,
-      value: `auto`,
-      info: `Show a separator between pinned and normal tabs`,
-      version: 3,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Never`, value: `never`},
-          {text: `Auto`, value: `auto`},
-          {text: `Always`, value: `always`},
-        ])
-      },
-    },
-    pinline_menu: {
-      name: `Pinline Menu`,
-      type: `list`,
-      value: [
-        {cmd: `new_pinned_tab`},
-        {cmd: `select_pinned_tabs`},
-        {cmd: `select_normal_tabs`},
-        {cmd: `select_unloaded_tabs`},
-        {cmd: `select_all_items`},
-      ],
-      info: `Menu to show when clicking the Pinline`,
-      separator: true,
-      version: 1,
     },
     show_tooltips: {
       name: `Show Tooltips`,
@@ -2234,6 +2205,115 @@ App.build_settings = () => {
       value: false,
       info: `Show the scrollbars in the Tab Box`,
       version: 1,
+    },
+  }
+
+
+  add_props()
+  category = `pinline`
+
+  props = {
+    show_pinline: {
+      name: `Show Pinline`,
+      type: `menu`,
+      value: `auto`,
+      info: `Show a separator between pinned and normal tabs`,
+      version: 3,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Never`, value: `never`},
+          {text: `Auto`, value: `auto`},
+          {text: `Always`, value: `always`},
+        ])
+      },
+    },
+    pinline_menu: {
+      name: `Pinline Menu`,
+      type: `list`,
+      value: [
+        {cmd: `new_pinned_tab`},
+        {cmd: `select_pinned_tabs`},
+        {cmd: `select_normal_tabs`},
+        {cmd: `select_unloaded_tabs`},
+        {cmd: `select_all_items`},
+        {cmd: App.separator_string},
+        {cmd: `settings_category_pinline`},
+      ],
+      info: `Menu to show when clicking the Pinline`,
+      separator: true,
+      version: 1,
+    },
+    click_pinline: {
+      name: `Click Pinline`,
+      type: `menu`,
+      value: `show_pinline_menu`,
+      info: `Command to run when clicking the Pinline`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_pinline: {
+      name: `Double Click Pinline`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when double clicking the Pinline`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_pinline: {
+      name: `Middle Click Pinline`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when middle clicking the Pinline`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_pinline: {
+      name: `Click Press Pinline`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Pinline`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_pinline: {
+      name: `Middle Click Press Pinline`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Pinline`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_pinline: {
+      name: `Wheel Up Pinline`,
+      type: `menu`,
+      value: `scroll_up`,
+      info: `Command to run when using the mousewheel up on the Pinline`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_pinline: {
+      name: `Wheel Down Pinline`,
+      type: `menu`,
+      value: `scroll_down`,
+      info: `Command to run when using the mousewheel down on the Pinline`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
     },
   }
 
@@ -3275,6 +3355,27 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the middle mouse button on an item for a short time`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_items: {
+      name: `Wheel Up Items`,
+      type: `menu`,
+      value: `scroll_up`,
+      info: `What to do when scrolling the mousewheel up on items`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_items: {
+      name: `Wheel Down Items`,
+      type: `menu`,
+      value: `scroll_down`,
+      info: `What to do when scrolling the mousewheel down on items`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -3551,37 +3652,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Command to run on middle click press on Step Back`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_pinline: {
-      name: `Middle Click Pinline`,
-      type: `menu`,
-      value: `close_normal_tabs`,
-      info: `Command to run when middle clicking the Pinline`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_pinline: {
-      name: `Click Press Pinline`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on left click press on Pinline`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_pinline: {
-      name: `Middle Click Press Pinline`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on middle click press on Pinline`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -5213,6 +5283,10 @@ App.build_settings = () => {
     footer: {
       info: `Configure the Footer
       This is a component that appears at the bottom and shows some information`,
+    },
+    pinline: {
+      info: `Configure the Pinline
+      This is a component that separates pinned tabs from normal tabs`,
     },
     zones: {
       info: `Customize headers and splits`,
