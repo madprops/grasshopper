@@ -315,7 +315,7 @@ App.refresh_item_element = (item) => {
   App.check_taglist(item)
   App.check_unloaded(item)
 
-  if (App.tabs_normal()) {
+  if (App.zones_unlocked(item.mode)) {
     App.apply_splits(item)
   }
 }
@@ -337,7 +337,7 @@ App.create_item_element = (item) => {
   App.add_icons(item, `left`)
   item.element.draggable = true
 
-  if (App.tabs_normal()) {
+  if (App.zones_unlocked(item.mode)) {
     App.apply_splits(item)
   }
 

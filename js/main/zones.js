@@ -1,5 +1,5 @@
 App.insert_header = async (item, full = true) => {
-  if (App.tabs_recent()) {
+  if (App.zones_locked(item.mode)) {
     return
   }
 
@@ -379,7 +379,7 @@ App.do_header_action = (item, action) => {
 }
 
 App.add_split_action = (item, which) => {
-  if (App.tabs_recent()) {
+  if (App.zones_locked(item.mode)) {
     return
   }
 
@@ -392,4 +392,12 @@ App.add_split_top = (item) => {
 
 App.add_split_bottom = (item) => {
   App.add_split_action(item, `bottom`)
+}
+
+App.zones_locked = (mode) => {
+  return (mode === `tabs`) && App.tabs_recent()
+}
+
+App.zones_unlocked = (mode) => {
+  return !App.zones_locked(mode)
 }
