@@ -1,4 +1,8 @@
 App.insert_header = async (item, full = true) => {
+  if (App.tabs_recent()) {
+    return
+  }
+
   let active = App.get_active_items({mode: item.mode, item})
   let first = active.at(0)
   let index = App.get_item_element_index({mode: first.mode, element: first.element})
@@ -372,4 +376,12 @@ App.do_header_action = (item, action) => {
   }
 
   return false
+}
+
+App.add_split_top = (item) => {
+  App.edit_tab_split({item: item, which: `top`})
+}
+
+App.add_split_bottom = (item) => {
+  App.edit_tab_split({item: item, which: `bottom`})
 }

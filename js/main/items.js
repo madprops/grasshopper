@@ -313,8 +313,11 @@ App.refresh_item_element = (item) => {
   App.set_item_text(item)
   App.apply_color_mode(item)
   App.check_taglist(item)
-  App.apply_splits(item)
   App.check_unloaded(item)
+
+  if (App.tabs_normal()) {
+    App.apply_splits(item)
+  }
 }
 
 App.create_item_element = (item) => {
@@ -333,7 +336,11 @@ App.create_item_element = (item) => {
 
   App.add_icons(item, `left`)
   item.element.draggable = true
-  App.apply_splits(item)
+
+  if (App.tabs_normal()) {
+    App.apply_splits(item)
+  }
+
   let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)
   App.check_view_media(item)

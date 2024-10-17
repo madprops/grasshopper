@@ -2727,7 +2727,7 @@ App.setup_commands = () => {
       some_no_split_top: true,
       icon: zone_icon,
       action: (args) => {
-        App.edit_tab_split({item: args.item, which: `top`})
+        App.add_split_top(args.item)
       },
       info: `Add a split above the tab`,
     },
@@ -2741,7 +2741,7 @@ App.setup_commands = () => {
       some_no_header: true,
       icon: zone_icon,
       action: (args) => {
-        App.edit_tab_split({item: args.item, which: `bottom`})
+        App.add_split_bottom(args.item)
       },
       info: `Add a split below the tab`,
     },
