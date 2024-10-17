@@ -69,6 +69,8 @@ App.create_main_title = () => {
     el.title = `Right Click: ${rclick}`
     App.trigger_title(el, `middle_click_main_title`)
     App.trigger_title(el, `double_click_main_title`)
+    App.trigger_title(el, `click_press_main_title`)
+    App.trigger_title(el, `middle_click_press_main_title`)
     App.trigger_title(el, `wheel_up_main_title`)
     App.trigger_title(el, `wheel_down_main_title`)
     App.trigger_title(el, `wheel_up_shift_main_title`)

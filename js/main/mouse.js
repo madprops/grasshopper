@@ -910,6 +910,10 @@ App.click_press_action = (e) => {
     return
   }
 
+  if (action(`#main_title`, `main_title`)) {
+    return
+  }
+
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
   if (!item) {

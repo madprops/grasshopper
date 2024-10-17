@@ -2901,6 +2901,27 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    click_press_main_title: {
+      name: `Click Press Title`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when press clicking the Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_main_title: {
+      name: `Middle Click Press Title`,
+      type: `menu`,
+      value: `lock_screen`,
+      info: `Command to run when middle press clicking the Title`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     wheel_up_main_title: {
       name: `Wheel Up Title`,
       type: `menu`,
