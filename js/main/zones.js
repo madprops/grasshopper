@@ -379,9 +379,9 @@ App.do_header_action = (item, action) => {
 }
 
 App.add_split_top = (item) => {
-  App.edit_tab_split({item: item, which: `top`})
+  App.edit_tab_split({item, which: `top`})
 }
 
 App.add_split_bottom = (item) => {
-  App.edit_tab_split({item: item, which: `bottom`})
+  App.edit_tab_split({item, which: `bottom`})
 }
