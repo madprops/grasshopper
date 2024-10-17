@@ -157,6 +157,11 @@ App.mouse_click_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`#footer_info`])) {
+    App.footer_click(e)
+    return
+  }
+
   let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
@@ -499,6 +504,11 @@ App.mouse_context_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`#footer`])) {
+    App.show_footer_menu(e)
+    return
+  }
+
   let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
@@ -636,6 +646,12 @@ App.mouse_middle_action = (mode, e) => {
 
   if (DOM.parent(e.target, [`.mode_filter`])) {
     App.show_refine_filters(e)
+    return
+  }
+
+  if (DOM.parent(e.target, [`#footer`])) {
+    let cmd = App.get_setting(`middle_click_footer`)
+    App.run_command({cmd, from: `footer`, e})
     return
   }
 

@@ -119,27 +119,6 @@ App.create_footer = () => {
     App.select_all(App.active_mode, true)
   })
 
-  DOM.ev(footer_info, `click`, (e) => {
-    if (e.shiftKey || e.ctrlKey) {
-      return
-    }
-
-    let cmd = App.get_setting(`click_footer`)
-    App.run_command({cmd, from: `footer`, e})
-  })
-
-  DOM.ev(footer, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_footer_menu(e)
-  })
-
-  DOM.ev(footer, `auxclick`, (e) => {
-    if (e.button === 1) {
-      let cmd = App.get_setting(`middle_click_footer`)
-      App.run_command({cmd, from: `footer`, e})
-    }
-  })
-
   footer.append(footer_content)
   return footer
 }
@@ -252,6 +231,7 @@ App.show_footer_menu = (e) => {
 }
 
 App.footer_tips = (el) => {
+  App.trigger_title(el, `click_footer`)
   App.trigger_title(el, `double_click_footer`)
   App.trigger_title(el, `middle_click_footer`)
   App.trigger_title(el, `wheel_up_footer`)
@@ -265,4 +245,9 @@ App.footer_tips = (el) => {
 App.footer_double_click = (e) => {
   let cmd = App.get_setting(`double_click_footer`)
   App.run_command({cmd, from: `double_click`, e})
+}
+
+App.footer_click = (e) => {
+  let cmd = App.get_setting(`click_footer`)
+  App.run_command({cmd, from: `footer`, e})
 }
