@@ -1152,8 +1152,6 @@ a:hover
   background-color: var(--footer_color);
   backdrop-filter: var(--backdrop);
   padding-right: var(--item_margin);
-  border: 0px solid var(--alt_color_1);
-  border-top-width: 1px;
   flex-shrink: 0;
   flex-grow: 0;
   gap: 0.5rem;
