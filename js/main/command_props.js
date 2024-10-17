@@ -3475,7 +3475,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: notepad_icon,
       action: (args) => {
-        App.set_default_setting(`font_size`, true)
+        App.set_default_font()
       },
       info: `Default font size`,
     },
