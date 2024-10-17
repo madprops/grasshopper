@@ -17,7 +17,7 @@ App.process_info_list = (mode, info_list) => {
     }
   }
 
-  let exclude_headers = App.zones_locked(mode)
+  let zones_locked = App.zones_locked(mode)
 
   for (let info of info_list) {
     let item = App.process_info({
@@ -32,7 +32,7 @@ App.process_info_list = (mode, info_list) => {
       continue
     }
 
-    if (item.header && exclude_headers) {
+    if (item.header && zones_locked) {
       continue
     }
 
