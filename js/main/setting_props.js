@@ -2266,6 +2266,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `left`,
       info: `How to align the Footer text`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -2300,6 +2301,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `copy_item_url`,
       info: `Command to run when middle clicking the Footer`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -2320,6 +2322,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Command to run on middle click press on Footer`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
