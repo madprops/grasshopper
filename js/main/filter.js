@@ -123,7 +123,6 @@ App.do_filter = async (args = {}) => {
   // For instance when moving from All to Image
   if (App.search_modes.includes(args.mode)) {
     let svalue = value
-    App.clear_selected(args.mode)
 
     if (args.force || (svalue !== App[`last_${args.mode}_query`])) {
       svalue = App.replace_filter_vars(svalue)
@@ -142,6 +141,8 @@ App.do_filter = async (args = {}) => {
         date: search_date,
         by_what,
       })
+
+      App.clear_selected(args.mode)
 
       if (App.filter_search_date !== search_date) {
         return
