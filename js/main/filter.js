@@ -118,12 +118,12 @@ App.do_filter = async (args = {}) => {
 
   let search = false
   let search_results = []
-  let search_query = ``
 
   // This check is to avoid re-fetching items
   // For instance when moving from All to Image
   if (App.search_modes.includes(args.mode)) {
     let svalue = value
+    App.clear_selected(args.mode)
 
     if (args.force || (svalue !== App[`last_${args.mode}_query`])) {
       svalue = App.replace_filter_vars(svalue)
@@ -152,7 +152,6 @@ App.do_filter = async (args = {}) => {
       }
 
       search = true
-      search_query = svalue
     }
   }
 
