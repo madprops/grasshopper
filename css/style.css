@@ -867,8 +867,8 @@ svg {
   border-bottom: 1px solid var(--alt_color_1);
   transition: box-shadow var(--transition_delay),
   text-shadow var(--transition_delay);
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
+  padding-top: 0.11rem;
+  padding-bottom: 0.11rem;
   width: 100%;
 }
 
