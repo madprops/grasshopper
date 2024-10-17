@@ -713,7 +713,7 @@ App.save_bookmarks_folder_pick = (item, e) => {
     App.do_save_bookmarks_folder_pick(App.bookmarks_folder)
   }
 
-  function selected_action() {
+  function item_action() {
     let folder = App.get_bookmarks_folder_by_id(item.id)
     App.do_save_bookmarks_folder_pick(folder)
   }
@@ -723,7 +723,7 @@ App.save_bookmarks_folder_pick = (item, e) => {
       return
     }
 
-    selected_action()
+    item_action()
     return
   }
 
@@ -734,15 +734,15 @@ App.save_bookmarks_folder_pick = (item, e) => {
 
   let items = [
     {
-      text: `Save Parent`,
+      text: `Save Item`,
       action: () => {
-        parent_action()
+        item_action()
       },
     },
     {
-      text: `Save Selected`,
+      text: `Save Parent`,
       action: () => {
-        selected_action()
+        parent_action()
       },
     },
   ]
