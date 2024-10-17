@@ -3469,6 +3469,39 @@ App.setup_commands = () => {
       info: `Search this domain in bookmarks mode`,
     },
     {
+      name: `Default Font`,
+      short_name: `Def Font`,
+      cmd: `default_font_size`,
+      modes: [`items`],
+      icon: notepad_icon,
+      action: (args) => {
+        App.default_font_size()
+      },
+      info: `Default font size`,
+    },
+    {
+      name: `Increase Font`,
+      short_name: `Font +`,
+      cmd: `increase_font_size`,
+      modes: [`items`],
+      icon: notepad_icon,
+      action: (args) => {
+        App.increase_font_size()
+      },
+      info: `Increase the font size`,
+    },
+    {
+      name: `Decrease Font`,
+      short_name: `Font -`,
+      cmd: `decrease_font_size`,
+      modes: [`items`],
+      icon: notepad_icon,
+      action: (args) => {
+        App.decrease_font_size()
+      },
+      info: `Decrease the font size`,
+    },
+    {
       name: `Domain Rule`,
       short_name: `Rule`,
       cmd: `edit_domain_rule`,

@@ -2122,3 +2122,30 @@ App.settings_cmd_name = (cmd) => {
 
   return `None`
 }
+
+App.default_font_size = () => {
+  App.set_default_setting(`font_size`, true)
+}
+
+App.increase_font_size = () => {
+  let current = App.get_setting(`font_size`)
+  let new_size = current + 1
+
+  if (new_size >= App.font_sizes[1]) {
+    return
+  }
+  App.set_setting({setting: `font_size`, value: new_size})
+  App.apply_theme()
+}
+
+App.decrease_font_size = () => {
+  let current = App.get_setting(`font_size`)
+  let new_size = current - 1
+
+  if (new_size <= App.font_sizes[0]) {
+    return
+  }
+
+  App.set_setting({setting: `font_size`, value: new_size})
+  App.apply_theme()
+}
