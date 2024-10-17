@@ -81,7 +81,7 @@ App.bookmarks_action = (args = {}) => {
 
   App.def_args(def_args, args)
 
-  if (args.item.type === `folder`) {
+  if (App.is_folder(args.item)) {
     App.travel_to_bookmarks_folder(args.item)
     return
   }
@@ -708,16 +708,49 @@ App.search_domain_bookmarks = (item) => {
   })
 }
 
-App.save_bookmarks_folder_pick = (item) => {
-  let folder
-
-  if (item) {
-    folder = App.get_bookmarks_folder_by_id(item.id)
-  }
-  else {
-    folder = App.bookmarks_folder
+App.save_bookmarks_folder_pick = (item, e) => {
+  function parent_action() {
+    App.do_save_bookmarks_folder_pick(App.bookmarks_folder)
   }
 
+  function selected_action() {
+    let folder = App.get_bookmarks_folder_by_id(item.id)
+    App.do_save_bookmarks_folder_pick(folder)
+  }
+
+  if (!App.bookmarks_folder) {
+    if (!item || !App.is_folder(item)) {
+      return
+    }
+
+    selected_action()
+    return
+  }
+
+  if (!item || !App.is_folder(item)) {
+    parent_action()
+    return
+  }
+
+  let items = [
+    {
+      text: `Save Parent`,
+      action: () => {
+        parent_action()
+      },
+    },
+    {
+      text: `Save Selected`,
+      action: () => {
+        selected_action()
+      },
+    },
+  ]
+
+  App.show_context({items, e})
+}
+
+App.do_save_bookmarks_folder_pick = (folder) => {
   if (!folder) {
     return
   }
@@ -814,4 +847,8 @@ App.toggle_bookmark_folders = () => {
   let setting = App.get_setting(`include_bookmark_folders`)
   App.set_setting({setting: `include_bookmark_folders`, value: !setting})
   App.show_mode({mode: `bookmarks`, force: true})
+}
+
+App.is_folder = (item) => {
+  return item.type === `folder`
 }
