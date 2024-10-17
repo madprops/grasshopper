@@ -64,6 +64,8 @@ App.setup_commands = () => {
   let tree_icon = App.tree_icon
   let extra_icon = App.extra_icon
   let template_icon = App.template_icon
+  let plus_icon = App.plus_icon
+  let minus_icon = App.minus_icon
 
   let tbmodes = []
 
@@ -3484,7 +3486,7 @@ App.setup_commands = () => {
       short_name: `Font +`,
       cmd: `increase_font_size`,
       modes: [`items`],
-      icon: notepad_icon,
+      icon: plus_icon,
       action: (args) => {
         App.increase_font_size()
       },
@@ -3495,7 +3497,7 @@ App.setup_commands = () => {
       short_name: `Font -`,
       cmd: `decrease_font_size`,
       modes: [`items`],
-      icon: notepad_icon,
+      icon: minus_icon,
       action: (args) => {
         App.decrease_font_size()
       },
