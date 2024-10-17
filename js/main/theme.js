@@ -528,9 +528,8 @@ App.do_apply_theme = (args = {}) => {
     let hb_padding = App.get_setting(`hover_button_padding`)
     App.set_css_var(`hover_button_padding`, `${hb_padding}px`)
 
-    let uto = App.get_setting(`unloaded_opacity`)
-    let uton = App.opacity_values[uto]
-    App.set_css_var(`unloaded_opacity`, `${uton}`)
+    let uto = App.get_setting(`unloaded_opacity`) / 100
+    App.set_css_var(`unloaded_opacity`, uto)
 
     App.insert_tab_color_css()
     App.insert_color_css()

@@ -193,17 +193,12 @@ App.build_settings = () => {
     unloaded_opacity: {
       name: `Unloaded Opacity`,
       type: `menu`,
-      value: `full`,
+      value: 100,
+      placeholder: `Opacity`,
       info: `The opacity of unloaded tabs`,
-      version: 2,
+      version: 3,
       setup: (key) => {
-        // 0.15 steps
-        App.settings_make_menu(key, [
-          {text: `Full`, value: `full`},
-          {text: `High`, value: `high`},
-          {text: `Medium`, value: `medium`},
-          {text: `Low`, value: `low`},
-        ])
+        App.settings_make_menu(key, App.setting_steps(0, 100, 5, `%`))
       },
     },
     auto_restore: {
@@ -484,7 +479,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(0, 100, 5))
+        App.settings_make_menu(key, App.setting_steps(0, 100, 5, `%`))
       },
     },
     font: {
@@ -3882,7 +3877,7 @@ App.build_settings = () => {
       info: `The width of the split borders`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(1, 20, 1))
+        App.settings_make_menu(key, App.setting_steps(1, 20, 1, `px`))
       },
     },
     header_action: {
