@@ -2859,6 +2859,17 @@ App.build_settings = () => {
       info: `Menu to show when right clicking the Title`,
       version: 1,
     },
+    main_title_align: {
+      name: `Title Align`,
+      type: `menu`,
+      value: `center`,
+      info: `How to align the Title`,
+      version: 1,
+      separator: true,
+      setup: (key) => {
+        App.settings_make_menu(key, App.aligns)
+      },
+    },
     click_main_title: {
       name: `Click Title`,
       type: `menu`,
@@ -2884,20 +2895,10 @@ App.build_settings = () => {
       type: `menu`,
       value: `toggle_main_title_date`,
       info: `Command to run when middle clicking the Title`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
-      },
-    },
-    main_title_align: {
-      name: `Title Align`,
-      type: `menu`,
-      value: `center`,
-      info: `How to align the Title`,
-      version: 1,
-      separator: true,
-      setup: (key) => {
-        App.settings_make_menu(key, App.aligns)
       },
     },
     main_title_font_enabled: {
