@@ -39,6 +39,7 @@ App.setup_commands = () => {
   let browser_icon = App.settings_icons.browser
   let menu_icon = App.settings_icons.menus
   let footer_icon = App.settings_icons.footer
+  let pinline_icon = App.settings_icons.pinline
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -1565,7 +1566,7 @@ App.setup_commands = () => {
       name: `Pinline Menu`,
       short_name: `Pinline`,
       cmd: `show_pinline_menu`,
-      icon: menu_icon,
+      icon: pinline_icon,
       action: (args) => {
         App.show_pinline_menu(args.e)
       },
