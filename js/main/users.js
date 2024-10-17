@@ -26,26 +26,6 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `main_title`, value: `Loading...`})
   App.set_setting({setting: `main_title_date`, value: false})
 
-  // Wheel
-
-  App.set_setting({setting: `wheel_up_favorites_top`, value: `recent_tabs_forwards`})
-  App.set_setting({setting: `wheel_down_favorites_top`, value: `recent_tabs_backwards`})
-
-  App.set_setting({setting: `wheel_up_shift_favorites_top`, value: `jump_tabs_pin_up`})
-  App.set_setting({setting: `wheel_down_shift_favorites_top`, value: `jump_tabs_pin_down`})
-
-  App.set_setting({setting: `wheel_up_favorites_center`, value: `jump_tabs_all_up`})
-  App.set_setting({setting: `wheel_down_favorites_center`, value: `jump_tabs_all_down`})
-
-  App.set_setting({setting: `wheel_up_favorites_bottom`, value: `jump_tabs_normal_up`})
-  App.set_setting({setting: `wheel_down_favorites_bottom`, value: `jump_tabs_normal_down`})
-
-  App.set_setting({setting: `wheel_up_footer`, value: `jump_tabs_header_up`})
-  App.set_setting({setting: `wheel_down_footer`, value: `jump_tabs_header_down`})
-
-  App.set_setting({setting: `wheel_up_shift_items`, value: `recent_tabs_forwards`})
-  App.set_setting({setting: `wheel_down_shift_items`, value: `recent_tabs_backwards`})
-
   // Favorites
 
   App.set_setting({setting: `double_click_favorites_top`, value: `focus_parent_tab`})
