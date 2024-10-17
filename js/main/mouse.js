@@ -162,6 +162,11 @@ App.mouse_click_action = (e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.scroller`])) {
+    App.scroller_click(mode, e)
+    return
+  }
+
   let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
@@ -652,6 +657,11 @@ App.mouse_middle_action = (mode, e) => {
   if (DOM.parent(e.target, [`#footer`])) {
     let cmd = App.get_setting(`middle_click_footer`)
     App.run_command({cmd, from: `footer`, e})
+    return
+  }
+
+  if (DOM.parent(e.target, [`.scroller`])) {
+    App.scroll_page(mode, `up`)
     return
   }
 

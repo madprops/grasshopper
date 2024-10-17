@@ -190,32 +190,6 @@ App.create_scroller = (mode) => {
   content.append(text)
   content.append(percentage)
   scroller.append(content)
-
-  DOM.ev(scroller, `click`, (e) => {
-    if (e.shiftKey || e.ctrlKey) {
-      return
-    }
-
-    App.goto_top_or_bottom({what: `top`, mode})
-  })
-
-  DOM.ev(scroller, `auxclick`, (e) => {
-    if (e.shiftKey || e.ctrlKey) {
-      return
-    }
-
-    if (e.button === 1) {
-      App.scroll_page(mode, `up`)
-    }
-    else if (e.button === 2) {
-      App.scroll(mode, `up`)
-    }
-  })
-
-  DOM.ev(scroller, `contextmenu`, (e) => {
-    e.preventDefault()
-  })
-
   return scroller
 }
 
@@ -281,4 +255,8 @@ App.goto_top_or_bottom = (args = {}) => {
   }
 
   App.do_check_scroller(args.mode)
+}
+
+App.scroller_click = (mode, e) => {
+  App.goto_top_or_bottom({what: `top`, mode})
 }
