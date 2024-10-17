@@ -17,10 +17,22 @@ App.process_info_list = (mode, info_list) => {
     }
   }
 
+  let exclude_headers = (mode === `tabs`) && App.tabs_recent()
+
   for (let info of info_list) {
-    let item = App.process_info({mode, info, exclude, list: true, add_parent: false})
+    let item = App.process_info({
+      mode,
+      info,
+      exclude,
+      list: true,
+      add_parent: false,
+    })
 
     if (!item) {
+      continue
+    }
+
+    if (item.header && exclude_headers) {
       continue
     }
 
