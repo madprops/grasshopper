@@ -832,11 +832,11 @@ App.reset_mouse = () => {
   App.click_press_triggered = false
 }
 
-App.start_click_press_timeout = (mode, e) => {
+App.start_click_press_timeout = (e) => {
   clearTimeout(App.click_press_timeout)
 
   App.click_press_timeout = setTimeout(() => {
-    App.click_press_action(mode, e)
+    App.click_press_action(e)
   }, App.get_setting(`click_press_delay`))
 }
 
@@ -1161,7 +1161,7 @@ App.on_mouse_down = (e) => {
   if (e.button === 0 || e.button === 1) {
     App.click_press_button = e.button
     App.click_press_triggered = false
-    App.start_click_press_timeout(mode, e)
+    App.start_click_press_timeout(e)
   }
 }
 
