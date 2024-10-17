@@ -120,11 +120,15 @@ App.get_tabs = async () => {
     tabs.sort((a, b) => {
       return a.index < b.index ? -1 : 1
     })
+
+    App.set_tabs_title(`Tabs`)
   }
   else if (App.tabs_recent()) {
     tabs.sort((a, b) => {
       return a.lastAccessed > b.lastAccessed ? -1 : 1
     })
+
+    App.set_tabs_title(`Recent`)
   }
 
   return tabs
@@ -1222,4 +1226,9 @@ App.check_unloaded = (item) => {
   else {
     item.element.classList.remove(`unloaded_tab`)
   }
+}
+
+App.set_tabs_title = (title) => {
+  let btn = DOM.el(`#tabs_main_menu`)
+  App.set_main_menu_text(btn, `tabs`, title)
 }
