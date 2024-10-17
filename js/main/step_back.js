@@ -17,13 +17,22 @@ App.create_step_back_button = (mode) => {
 }
 
 App.step_back = (mode = App.active_mode, e = undefined) => {
+  let active
+  let tabs = mode === `tabs`
+
+  if (tabs) {
+    active = App.get_active_tab_item()
+  }
+
   let item = App.get_selected(mode)
   let scroll = `center_smooth`
-  let tabs = mode === `tabs`
   let bookmarks = mode === `bookmarks`
 
   if (App.multiple_selected(mode)) {
     App.deselect({mode, select: `selected`, scroll})
+  }
+  else if (tabs && active && active.visible && !active.selected) {
+    App.select_item({item: active, scroll})
   }
   else if (App.filter_has_value(mode)) {
     App.clear_filter(mode)
