@@ -397,6 +397,11 @@ App.mouse_double_click_action = (mode, e) => {
     return
   }
 
+  if (DOM.parent(e.target, [`.mode_filter`])) {
+    App.filter_double_click(mode, e)
+    return
+  }
+
   let [item, item_alt] = App.get_mouse_item(mode, e)
 
   if (!item) {
@@ -486,6 +491,11 @@ App.mouse_context_action = (e) => {
 
   if (DOM.parent(e.target, [`#main_title`])) {
     App.show_main_title_menu(e)
+    return
+  }
+
+  if (DOM.parent(e.target, [`.mode_filter`])) {
+    App.show_filter_context_menu(mode, e)
     return
   }
 
@@ -621,6 +631,11 @@ App.mouse_middle_action = (mode, e) => {
 
   if (DOM.parent(e.target, [`#main_title`])) {
     App.main_title_middle_click(e)
+    return
+  }
+
+  if (DOM.parent(e.target, [`.mode_filter`])) {
+    App.show_refine_filters(e)
     return
   }
 

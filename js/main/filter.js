@@ -859,33 +859,12 @@ App.create_filter = (mode) => {
     filter.placeholder = App.filter_placeholder
   }
 
-  DOM.ev(filter, `contextmenu`, (e) => {
-    if (App.get_setting(`filter_context_menu`)) {
-      App.show_filter_context_menu(mode, e)
-      e.preventDefault()
-    }
-  })
-
   DOM.ev(filter, `input`, () => {
     if (App.get_setting(`filter_enter`)) {
       return
     }
 
     App.filter({mode})
-  })
-
-  DOM.ev(filter, `auxclick`, (e) => {
-    e.preventDefault()
-
-    if (e.button === 1) {
-      App.show_refine_filters(e)
-    }
-  })
-
-  DOM.ev(filter, `click`, (e) => {
-    App.check_double_click(`filter`, e, () => {
-      App.filter_double_click(mode, e)
-    })
   })
 
   DOM.ev(filter, `wheel`, (e) => {
