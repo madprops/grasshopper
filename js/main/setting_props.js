@@ -2208,7 +2208,6 @@ App.build_settings = () => {
     },
   }
 
-
   add_props()
   category = `pinline`
 
