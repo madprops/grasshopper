@@ -401,6 +401,13 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`footer_color`, slight_shade)
     }
 
+    if (App.get_setting(`pinline_color_enabled`)) {
+      App.set_css_var(`pinline_color`, App.get_setting(`pinline_color`))
+    }
+    else {
+      App.set_css_var(`pinline_color`, `unset`)
+    }
+
     if (App.get_setting(`tab_box_color_enabled`)) {
       App.set_css_var(`tab_box_color`, App.get_setting(`tab_box_color`))
     }

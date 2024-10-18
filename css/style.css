@@ -858,6 +858,7 @@ svg {
 }
 
 #pinline {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -865,11 +866,11 @@ svg {
   margin-bottom: 0.7rem;
   border-top: 1px solid var(--alt_color_1);
   border-bottom: 1px solid var(--alt_color_1);
-  transition: box-shadow var(--transition_delay),
-  text-shadow var(--transition_delay);
   padding-top: calc(var(--panel_padding) - 1px);
   padding-bottom: calc(var(--panel_padding) - 1px);;
-  width: 100%;
+  background-color: var(--pinline_color);
+  transition: box-shadow var(--transition_delay),
+  text-shadow var(--transition_delay);
 }
 
 #about_container {

@@ -500,6 +500,11 @@ App.mouse_context_action = (e) => {
     return
   }
 
+  if (DOM.parent(target, [`#pinline`])) {
+    App.show_pinline_menu(e)
+    return
+  }
+
   if (DOM.parent(target, [`#tab_box_title`])) {
     App.show_tab_box_menu_2(e)
     return

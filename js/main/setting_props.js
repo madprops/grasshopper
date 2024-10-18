@@ -2381,9 +2381,28 @@ App.build_settings = () => {
       type: `menu`,
       value: `scroll_down`,
       info: `Command to run when using the mousewheel down on the Pinline`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
+      },
+    },
+    pinline_color_enabled: {
+      name: `Pinline Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable the background color of the Pinline`,
+      version: 1,
+    },
+    pinline_color: {
+      name: `Pinline Color`,
+      hide_name: true,
+      type: `color`,
+      value: App.default_color,
+      info: `Background color of the Pinline`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
       },
     },
   }
