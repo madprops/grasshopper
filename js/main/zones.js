@@ -395,7 +395,8 @@ App.add_split_bottom = (item) => {
 }
 
 App.zones_locked = (mode) => {
-  return (mode === `tabs`) && App.tabs_recent()
+  let hide = App.get_setting(`hide_zones_on_recent`)
+  return (mode === `tabs`) && hide && App.tabs_recent()
 }
 
 App.zones_unlocked = (mode) => {

@@ -4044,6 +4044,13 @@ App.build_settings = () => {
       info: `Enable the header icon pick to select the items below`,
       version: 1,
     },
+    hide_zones_on_recent: {
+      name: `Hide Zones On Recent`,
+      type: `checkbox`,
+      value: true,
+      info: `Don't show zones like headers or splits when on recent tabs mode`,
+      version: 1,
+    },
     split_width: {
       name: `Split Width`,
       type: `menu`,
