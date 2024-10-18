@@ -861,17 +861,30 @@ svg {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
   margin-top: 0.7rem;
   margin-bottom: 0.7rem;
   border-top: 1px solid var(--alt_color_1);
   border-bottom: 1px solid var(--alt_color_1);
   padding-top: calc(var(--panel_padding) - 1px);
   padding-bottom: calc(var(--panel_padding) - 1px);
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
   background-color: var(--pinline_background_color);
   color: var(--pinline_text_color);
   transition: box-shadow var(--transition_delay),
   text-shadow var(--transition_delay);
+}
+
+.pinline_align_left #pinline {
+  justify-content: flex-start;
+}
+
+.pinline_align_center #pinline {
+  justify-content: center;
+}
+
+.pinline_align_right #pinline {
+  justify-content: flex-end;
 }
 
 #about_container {

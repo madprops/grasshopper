@@ -2298,6 +2298,16 @@ App.build_settings = () => {
         ])
       },
     },
+    pinline_align: {
+      name: `Pinline Align`,
+      type: `menu`,
+      value: `center`,
+      info: `How to align the text in the Pinline`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.aligns)
+      },
+      version: 1,
+    },
     pinline_menu: {
       name: `Pinline Menu`,
       type: `list`,

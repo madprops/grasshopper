@@ -412,6 +412,13 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`pinline_background_color`, `unset`)
     }
 
+    for (let align of App.aligns) {
+      main.classList.remove(`pinline_align_${align.value}`)
+    }
+
+    let align = App.get_setting(`pinline_align`)
+    main.classList.add(`pinline_align_${align}`)
+
     if (App.get_setting(`tab_box_color_enabled`)) {
       App.set_css_var(`tab_box_color`, App.get_setting(`tab_box_color`))
     }
