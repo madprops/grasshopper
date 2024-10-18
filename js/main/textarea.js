@@ -70,7 +70,6 @@ App.show_textarea = (args = {}) => {
       b.textContent = btn.text
 
       DOM.ev(b, `click`, () => {
-        App.close_textarea()
         btn.action()
       })
 
@@ -121,7 +120,9 @@ App.close_textarea = () => {
 }
 
 App.clear_textarea = () => {
-  DOM.el(`#textarea_text`).value = ``
+  let textarea = DOM.el(`#textarea_text`)
+  textarea.value = ``
+  App.focus_textarea(textarea)
 }
 
 App.on_textarea_dismiss = () => {
