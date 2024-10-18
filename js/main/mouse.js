@@ -1034,20 +1034,6 @@ App.on_mouse_wheel = (e) => {
       App.cycle_filter_modes(mode, false, e)
     }
   }
-  else if (DOM.parent(target, [`#tab_box_title`])) {
-    if (!App.get_setting(`tab_box_wheel`)) {
-      return
-    }
-
-    let dir = App.wheel_direction(e)
-
-    if (dir === `up`) {
-      App.cycle_tab_box_mode(`prev`)
-    }
-    else if (dir === `down`) {
-      App.cycle_tab_box_mode(`next`)
-    }
-  }
   else if (target.closest(`.favorites_empty_top`)) {
     App.wheel_action(direction, `favorites_top`, e)
   }
@@ -1077,6 +1063,9 @@ App.on_mouse_wheel = (e) => {
   }
   else if (DOM.parent(target, [`.actions_button`])) {
     App.wheel_action(direction, `actions_menu`, e)
+  }
+  else if (DOM.parent(target, [`#tab_box_title`])) {
+    App.wheel_action(direction, `tab_box_title`, e)
   }
   else if (DOM.parent(target, [`#tab_box_container`])) {
     App.wheel_action(direction, `tab_box`, e)

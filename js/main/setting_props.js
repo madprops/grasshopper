@@ -1890,11 +1890,28 @@ App.build_settings = () => {
       value: `recent`,
       no_mirror: true,
       info: `What to show in the Tab Box`,
-      separator: true,
       version: 4,
       setup: (key) => {
         App.settings_make_menu(key, App.get_setting_tab_box_modes())
       },
+    },
+    tab_box_menu: {
+      name: `Tab Box Menu`,
+      type: `list`,
+      value: [
+        {cmd: `open_new_tab`},
+        {cmd: `reopen_tab`},
+        {cmd: `select_all_items`},
+        {cmd: App.separator_string},
+        {cmd: `tab_box_go_to_top`},
+        {cmd: `tab_box_go_to_bottom`},
+        {cmd: App.separator_string},
+        {cmd: `tab_box_select`},
+        {cmd: `tab_box_close`},
+      ],
+      separator: true,
+      info: `Menu to show when right clicking the Tab Box`,
+      version: 1,
     },
     tab_box_hover_effect: {
       name: `Tab Box Hover Effect`,
@@ -2101,23 +2118,26 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    tab_box_menu: {
-      name: `Tab Box Menu`,
-      type: `list`,
-      value: [
-        {cmd: `open_new_tab`},
-        {cmd: `reopen_tab`},
-        {cmd: `select_all_items`},
-        {cmd: App.separator_string},
-        {cmd: `tab_box_go_to_top`},
-        {cmd: `tab_box_go_to_bottom`},
-        {cmd: App.separator_string},
-        {cmd: `tab_box_select`},
-        {cmd: `tab_box_close`},
-      ],
-      separator: true,
-      info: `Menu to show when right clicking the Tab Box`,
+    wheel_up_tab_box_title: {
+      name: `Wheel Up Tab Box Title`,
+      type: `menu`,
+      value: `tab_box_previous_mode`,
+      info: `Command to run when using the mousewheel up on the Tab Box Title`,
       version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_tab_box_title: {
+      name: `Wheel Down Tab Box Title`,
+      type: `menu`,
+      value: `tab_box_next_mode`,
+      info: `Command to run when using the mousewheel down on the Tab Box Title`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
     },
     tab_box_color_enabled: {
       name: `Tab Box Color`,
@@ -2156,13 +2176,6 @@ App.build_settings = () => {
       min: 0,
       max: App.number_max,
       info: `If the window is smaller in height than these pixels, don't show the Tab Box`,
-      version: 1,
-    },
-    tab_box_wheel: {
-      name: `Tab Box Wheel`,
-      type: `checkbox`,
-      value: true,
-      info: `Change the Tab Box mode when using the mousewheel`,
       version: 1,
     },
     tab_box_icons: {
