@@ -180,9 +180,8 @@ App.create_scroller = (mode) => {
 
   if (App.get_setting(`show_tooltips`)) {
     let click = App.get_cmd_name(`go_to_top`)
-    let rclick = App.get_cmd_name(`scroll_up`)
     let mclick = App.get_cmd_name(`page_up`)
-    scroller.title = `This is the Scroller\nClick: ${click}\nRight Click: ${rclick}\nMiddle Click: ${mclick}`
+    scroller.title = `This is the Scroller\nClick: ${click}\nMiddle Click: ${mclick}`
   }
 
   let text = DOM.create(`div`)
