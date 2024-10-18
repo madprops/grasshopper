@@ -408,7 +408,12 @@ App.do_filter = async (args = {}) => {
 
   if (num_matched === 0) {
     if (search) {
-      App.show_search_empty(args.mode, args.deep)
+      if (value) {
+        App.show_search_empty(args.mode, args.deep)
+      }
+      else {
+        App.show_search_no_value(args.mode)
+      }
     }
   }
 
@@ -1942,6 +1947,13 @@ App.show_search_empty = (mode, deep) => {
     el.textContent = `No results. Try doing a Deep Search. Deep Search can also be set to run automatically in the settings.`
   }
 
+  let container = DOM.el(`#${mode}_container`)
+  container.append(el)
+}
+
+App.show_search_no_value = (mode) => {
+  let el = DOM.create(`div`, `search_empty_message`)
+  el.textContent = `Type something to search...`
   let container = DOM.el(`#${mode}_container`)
   container.append(el)
 }

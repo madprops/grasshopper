@@ -269,7 +269,6 @@ App.build_settings = () => {
       value: `show_12`,
       info: `Show the time in the Filter input`,
       no_mirror: true,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -279,6 +278,17 @@ App.build_settings = () => {
           {text: `24 hours`, value: `show_24`},
         ])
       },
+    },
+    scroll_amount: {
+      name: `Scroll Amount`,
+      type: `number`,
+      value: 100,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      separator: true,
+      info: `How many pixels to scroll up or down on lists when using the mousewheel or commands`,
+      version: 1,
     },
     templates: {
       name: `Templates`,
@@ -4928,16 +4938,6 @@ App.build_settings = () => {
   category = `more`
 
   props = {
-    scroll_amount: {
-      name: `Scroll Amount`,
-      type: `number`,
-      value: 100,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `How many pixels to scroll up or down on lists`,
-      version: 1,
-    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,

@@ -1911,6 +1911,7 @@ a:hover
 
 .search_empty_message {
   padding: 1rem;
+  text-align: center;
 }
 
 .tab_box_item {

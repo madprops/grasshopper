@@ -163,6 +163,10 @@ App.do_show_mode = async (args = {}) => {
     was_filtered = false
   }
 
+  if (search && !args.filter) {
+    App.show_search_no_value(args.mode)
+  }
+
   if (!persistent) {
     if (args.mode !== App.active_mode) {
       return
