@@ -1246,6 +1246,16 @@ App.show_filter_context_menu = (mode, e) => {
     })
   }
 
+  App.sep(items)
+
+  items.push({
+    icon: App.settings_icons.filter,
+    text: `Settings`,
+    action: () => {
+      App.show_settings_category(`filter`)
+    },
+  })
+
   App.show_context({items, e})
 }
 
