@@ -29,7 +29,12 @@ App.show_input = (args = {}) => {
     {
       text: `Clear`,
       action: () => {
-        App.clear_textarea()
+        App.show_confirm({
+          message: `Clear text?`,
+          confirm_action: () => {
+            App.clear_textarea()
+          },
+        })
       },
     },
     {
