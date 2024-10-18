@@ -2630,6 +2630,13 @@ App.build_settings = () => {
         App.start_color_picker(key, true)
       },
     },
+    show_footer_tab_box: {
+      name: `Tab Box In Footer`,
+      type: `checkbox`,
+      value: true,
+      info: `Show Tab Box toggle on the Footer`,
+      version: 1,
+    },
     show_footer_count: {
       name: `Count In Footer`,
       type: `checkbox`,

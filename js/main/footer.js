@@ -77,20 +77,23 @@ App.set_footer_info = (text) => {
 
 App.create_footer = () => {
   let footer = DOM.create(`div`, ``, `footer`)
-  let tab_box_btn = DOM.create(`div`, `pointer`, `footer_tab_box`)
-  tab_box_btn.append(App.get_svg_icon(`arrow_up`))
 
-  if (App.get_setting(`show_tooltips`)) {
-    let click = App.get_cmd_name(`toggle_tab_box`)
-    tab_box_btn.title = `Click: ${click}`
-    App.footer_tips(tab_box_btn)
+  if (App.get_setting(`show_footer_tab_box`)) {
+    let tab_box_btn = DOM.create(`div`, `pointer`, `footer_tab_box`)
+    tab_box_btn.append(App.get_svg_icon(`arrow_up`))
+
+    if (App.get_setting(`show_tooltips`)) {
+      let click = App.get_cmd_name(`toggle_tab_box`)
+      tab_box_btn.title = `Click: ${click}`
+      App.footer_tips(tab_box_btn)
+    }
+
+    DOM.ev(tab_box_btn, `click`, () => {
+      App.toggle_tab_box()
+    })
+
+    footer.append(tab_box_btn)
   }
-
-  DOM.ev(tab_box_btn, `click`, () => {
-    App.toggle_tab_box()
-  })
-
-  footer.append(tab_box_btn)
 
   let tips = App.get_setting(`show_tooltips`)
   let footer_content = DOM.create(`div`, `glow`, `footer_content`)
