@@ -254,13 +254,29 @@ App.build_settings = () => {
       type: `menu`,
       value: `at_end`,
       info: `Controls the position of the caret and higlight mode on text prompts`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `At Start`, value: `at_start`},
           {text: `At End`, value: `at_end`},
           {text: `Highlight`, value: `highlight`},
+        ])
+      },
+    },
+    clock: {
+      name: `Clock`,
+      type: `menu`,
+      value: `show_12`,
+      info: `Show the time in the Filter input`,
+      no_mirror: true,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: App.separator_string},
+          {text: `12 hours`, value: `show_12`},
+          {text: `24 hours`, value: `show_24`},
         ])
       },
     },
@@ -1414,22 +1430,6 @@ App.build_settings = () => {
   category = `show`
 
   props = {
-    clock: {
-      name: `Clock`,
-      type: `menu`,
-      value: `show_12`,
-      info: `Show the time in the Filter input`,
-      no_mirror: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: App.separator_string},
-          {text: `12 hours`, value: `show_12`},
-          {text: `24 hours`, value: `show_24`},
-        ])
-      },
-    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
@@ -5250,8 +5250,7 @@ App.build_settings = () => {
       This includes the edit colors and tab colors`,
     },
     show: {
-      info: `Hide or show interface components
-      Set component behavior and their menus`,
+      info: `Show or hide some components`,
     },
     menus: {
       info: `Configure the Actions Menu for each mode like Tabs, and more`,
