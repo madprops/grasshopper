@@ -1232,3 +1232,8 @@ App.set_tabs_title = (title) => {
   let btn = DOM.el(`#tabs_main_menu`)
   App.set_main_menu_text(btn, `tabs`, title)
 }
+
+App.new_normal_tab = () => {
+  let index = App.get_first_normal_index()
+  App.open_new_tab({index})
+}

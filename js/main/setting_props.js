@@ -2303,6 +2303,7 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `new_pinned_tab`},
+        {cmd: `new_normal_tab`},
         {cmd: `select_pinned_tabs`},
         {cmd: `select_normal_tabs`},
         {cmd: `select_unloaded_tabs`},

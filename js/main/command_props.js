@@ -1803,6 +1803,16 @@ App.setup_commands = () => {
       info: `Make a new tab and pin it automatically`,
     },
     {
+      name: `New Normal`,
+      cmd: `new_normal_tab`,
+      modes: [`tabs`],
+      icon: normal_icon,
+      action: (args) => {
+        App.new_normal_tab()
+      },
+      info: `Make a new normal tab at the top of the normal tabs`,
+    },
+    {
       name: `Tab Up`,
       cmd: `jump_tabs_all_up`,
       modes: [`items`],
