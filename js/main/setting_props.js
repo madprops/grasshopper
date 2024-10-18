@@ -1909,6 +1909,7 @@ App.build_settings = () => {
         {cmd: `tab_box_select`},
         {cmd: `tab_box_close`},
         {cmd: App.separator_string},
+        {cmd: `toggle_tab_box`},
         {cmd: `settings_category_tab_box`},
       ],
       separator: true,
