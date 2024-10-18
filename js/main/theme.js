@@ -353,10 +353,9 @@ App.do_apply_theme = (args = {}) => {
     }
 
     let title_align = App.get_setting(`main_title_align`)
-    let aligns = [`left`, `center`, `right`]
 
-    for (let align of aligns) {
-      main.classList.remove(`main_title_align_${align}`)
+    for (let align of App.aligns) {
+      main.classList.remove(`main_title_align_${align.value}`)
     }
 
     main.classList.add(`main_title_align_${title_align}`)

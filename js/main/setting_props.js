@@ -3047,6 +3047,16 @@ App.build_settings = () => {
       info: `The text to show in the Title`,
       version: 1,
     },
+    main_title_align: {
+      name: `Title Align`,
+      type: `menu`,
+      value: `center`,
+      info: `How to align the Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.aligns)
+      },
+    },
     main_title_menu: {
       name: `Title Menu`,
       type: `list`,
@@ -3063,19 +3073,9 @@ App.build_settings = () => {
         {cmd: App.separator_string},
         {cmd: `settings_category_title`},
       ],
+      separator: true,
       info: `Menu to show when right clicking the Title`,
       version: 1,
-    },
-    main_title_align: {
-      name: `Title Align`,
-      type: `menu`,
-      value: `center`,
-      info: `How to align the Title`,
-      version: 1,
-      separator: true,
-      setup: (key) => {
-        App.settings_make_menu(key, App.aligns)
-      },
     },
     click_main_title: {
       name: `Click Title`,
