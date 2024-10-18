@@ -1899,10 +1899,6 @@ App.build_settings = () => {
       name: `Tab Box Menu`,
       type: `list`,
       value: [
-        {cmd: `open_new_tab`},
-        {cmd: `reopen_tab`},
-        {cmd: `select_all_items`},
-        {cmd: App.separator_string},
         {cmd: `tab_box_go_to_top`},
         {cmd: `tab_box_go_to_bottom`},
         {cmd: App.separator_string},
