@@ -994,6 +994,8 @@ a:hover
 #textarea_image {
   width: 8rem;
   height: auto;
+  padding-left: var(--popup_padding);
+  padding-right: var(--popup_padding);
 }
 
 #textarea_text {
@@ -1019,7 +1021,7 @@ a:hover
   text-align: center;
 }
 
-#textarea_buttons {
+#textarea_buttons, #textarea_custom_buttons {
   padding-bottom: var(--popup_padding);
   padding-left: var(--popup_padding);
   padding-right: var(--popup_padding);
