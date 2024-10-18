@@ -36,7 +36,7 @@ App.show_input = (args = {}) => {
       text: args.button,
       action: () => {
         on_enter()
-      }
+      },
     },
   ]
 
@@ -44,7 +44,7 @@ App.show_input = (args = {}) => {
 
   if (args.autosave) {
     on_dismiss = () => {
-      do_action()
+      on_enter()
     }
   }
 
