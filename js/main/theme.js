@@ -1077,7 +1077,7 @@ App.get_icon_size = () => {
 }
 
 App.set_tab_box_vars = () => {
-  let tbh_rem = 13.08
+  let tbh_rem = 13.0
   let tbh_diff = 3.5
 
   for (let size of App.sizes_2) {
