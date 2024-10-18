@@ -125,7 +125,7 @@ App.do_apply_theme = (args = {}) => {
     let h = `${(App.get_setting(`height`) / 100) * App.popup_height}px`
     App.set_css_var(`height`, h)
 
-    let item_padding = 0.4
+    let item_padding = 0.404
     let height_diff = 0.15
     let item_height = App.get_setting(`item_height`)
 
@@ -142,6 +142,7 @@ App.do_apply_theme = (args = {}) => {
       item_padding += height_diff * 2
     }
 
+    item_padding = Math.max(item_padding, 0.1)
     App.set_css_var(`item_padding`, `${item_padding}rem`)
 
     if (App.get_setting(`show_scrollbars`)) {
