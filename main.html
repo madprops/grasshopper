@@ -113,17 +113,20 @@
 
     <template id="template_textarea">
       <div id="textarea_title"></div>
-      <img id="textarea_image">
 
-      <textarea autocomplete="off" spellcheck="false" id="textarea_text" class="textarea" readonly></textarea>
-      <div id="textarea_simple"></div>
+      <div id="textarea_content">
+        <img id="textarea_image">
 
-      <div id="textarea_buttons" class="flex_row_center gap_1">
-        <div id="textarea_close" class="button">Close</div>
-        <div id="textarea_copy" class="button">Copy</div>
+        <textarea autocomplete="off" spellcheck="false" id="textarea_text" class="textarea" readonly></textarea>
+        <div id="textarea_simple"></div>
+
+        <div id="textarea_buttons" class="flex_row_center gap_1">
+          <div id="textarea_close" class="button">Close</div>
+          <div id="textarea_copy" class="button">Copy</div>
+        </div>
+
+        <div id="textarea_custom_buttons" class="flex_row_center gap_1"></div>
       </div>
-
-      <div id="textarea_custom_buttons" class="flex_row_center gap_1"></div>
     </template>
 
     <template id="template_palette">

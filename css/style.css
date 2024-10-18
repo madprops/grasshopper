@@ -961,6 +961,7 @@ a:hover
 
 .popup_container.no_padding {
   padding: 0;
+  gap: 0;
 }
 
 #popup_alert {
@@ -991,16 +992,19 @@ a:hover
   word-break: break-word;
 }
 
+#textarea_content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  padding-left: var(--popup_padding);
+  padding-right: var(--popup_padding);
+  padding-bottom: var(--popup_padding);
+  gap: 1rem;
+}
+
 #textarea_image {
   width: 8rem;
   height: auto;
-  padding-left: var(--popup_padding);
-  padding-right: var(--popup_padding);
-}
-
-#textarea_text {
-  margin-left: var(--popup_padding);
-  margin-right: var(--popup_padding);
 }
 
 #textarea_simple {
@@ -1009,8 +1013,6 @@ a:hover
   user-select: text;
   cursor: text;
   word-break: break-word;
-  padding-left: var(--popup_padding);
-  padding-right: var(--popup_padding);
 }
 
 #textarea_simple.left {
@@ -1019,12 +1021,6 @@ a:hover
 
 #textarea_simple.center {
   text-align: center;
-}
-
-#textarea_buttons, #textarea_custom_buttons {
-  padding-bottom: var(--popup_padding);
-  padding-left: var(--popup_padding);
-  padding-right: var(--popup_padding);
 }
 
 .pre_wrap {
