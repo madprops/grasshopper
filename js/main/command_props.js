@@ -1154,6 +1154,50 @@ App.setup_commands = () => {
       },
       info: `Go to the bottom of the Tab Box`,
     },
+    {
+      name: `Tab Box Scroll Up`,
+      short_name: `TB Up`,
+      cmd: `tab_box_scroll_up`,
+      modes: [`items`],
+      icon: up_icon,
+      action: (args) => {
+        App.tab_box_scroll_up()
+      },
+      info: `Scroll up on the Tab Box`,
+    },
+    {
+      name: `Tab Box Scroll Down`,
+      short_name: `TB Down`,
+      cmd: `tab_box_scroll_down`,
+      modes: [`items`],
+      icon: down_icon,
+      action: (args) => {
+        App.tab_box_scroll_down()
+      },
+      info: `Scroll down on the Tab Box`,
+    },
+    {
+      name: `Tab Box Prev Mode`,
+      short_name: `TB Prev`,
+      cmd: `tab_box_previous_mode`,
+      modes: [`items`],
+      icon: left_icon,
+      action: (args) => {
+        App.cycle_tab_box_mode(`prev`)
+      },
+      info: `Go to the previous mode in the Tab Box`,
+    },
+    {
+      name: `Tab Box Next Mode`,
+      short_name: `TB Next`,
+      cmd: `tab_box_next_mode`,
+      modes: [`items`],
+      icon: right_icon,
+      action: (args) => {
+        App.cycle_tab_box_mode(`next`)
+      },
+      info: `Go to the next mode in the Tab Box`,
+    },
 
     ...tbmodes,
 

@@ -64,14 +64,14 @@ App.scroll_to_item = (args = {}) => {
 }
 
 App.scroll = (mode, direction) => {
-  let el = DOM.el(`#${mode}_container`)
+  let container = DOM.el(`#${mode}_container`)
   let amount = App.get_setting(`scroll_amount`)
 
   if (direction === `up`) {
-    el.scrollTop -= amount
+    container.scrollBy(0, -amount)
   }
   else if (direction === `down`) {
-    el.scrollTop += amount
+    container.scrollBy(0, amount)
   }
 }
 

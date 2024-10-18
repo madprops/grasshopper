@@ -127,6 +127,10 @@ App.create_tab_box = () => {
     App.check_tab_box_scroll_info()
   })
 
+  DOM.ev(container, `wheel`, (e) => {
+    e.preventDefault()
+  })
+
   App.tab_box_ready = false
   App.tab_box_size = undefined
   return tab_box
@@ -1002,4 +1006,16 @@ App.do_check_tab_box_scroll_info = () => {
   else {
     el.textContent = `(${per}%)`
   }
+}
+
+App.tab_box_scroll_up = () => {
+  let amount = App.get_setting(`scroll_amount`)
+  let container = DOM.el(`#tab_box_container`)
+  container.scrollBy(0, -amount)
+}
+
+App.tab_box_scroll_down = () => {
+  let amount = App.get_setting(`scroll_amount`)
+  let container = DOM.el(`#tab_box_container`)
+  container.scrollBy(0, amount)
 }
