@@ -1,4 +1,3 @@
-// This is meant only to show information not edit it
 App.show_textarea = (args = {}) => {
   let def_args = {
     simple: false,
