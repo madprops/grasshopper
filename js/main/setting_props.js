@@ -4048,7 +4048,7 @@ App.build_settings = () => {
       name: `Hide Zones On Recent`,
       type: `checkbox`,
       value: true,
-      info: `Don't show zones like headers or splits when on recent tabs mode`,
+      info: `Don't show zones like headers or splits when on recent tabs sort`,
       version: 1,
     },
     split_width: {
