@@ -412,22 +412,22 @@ App.setup_keyboard = () => {
         }
       }
       else if (e.key === `ArrowUp`) {
-        App.scroll_settings_up()
+        App.scroll_settings_up_down(`up`)
         e.preventDefault()
         return
       }
       else if (e.key === `ArrowDown`) {
-        App.scroll_settings_down()
+        App.scroll_settings_up_down(`down`)
         e.preventDefault()
         return
       }
       else if (e.key === `PageUp`) {
-        App.scroll_settings_up()
+        App.scroll_settings_up_down(`up`)
         e.preventDefault()
         return
       }
       else if (e.key === `PageDown`) {
-        App.scroll_settings_down()
+        App.scroll_settings_up_down(`down`)
         e.preventDefault()
         return
       }

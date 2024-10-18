@@ -2072,23 +2072,19 @@ App.settings_ensure_save = () => {
   }
 }
 
-App.scroll_settings_up = () => {
+App.scroll_settings_up_down = (dir) => {
   let filter = App.get_settings_filter(App.settings_category)
   let amount = App.get_setting(`scroll_amount`)
 
   if (document.activeElement === filter) {
     let container = App.settings_content()
-    container.scrollBy(0, -amount)
-  }
-}
 
-App.scroll_settings_down = () => {
-  let filter = App.get_settings_filter(App.settings_category)
-  let amount = App.get_setting(`scroll_amount`)
-
-  if (document.activeElement === filter) {
-    let container = App.settings_content()
-    container.scrollBy(0, amount)
+    if (dir === `up`) {
+      container.scrollBy(0, -amount)
+    }
+    else {
+      container.scrollBy(0, amount)
+    }
   }
 }
 
