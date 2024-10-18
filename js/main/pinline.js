@@ -47,12 +47,26 @@ App.do_check_pinline = () => {
   }
 
   let pinline = DOM.create(`div`, cls, `pinline`)
+  let icons = App.get_setting(`pinline_icons`)
   let n1 = tabs.pinned_f.length
   let n2 = tabs.normal_f.length
   let s1 = App.plural(n1, `Pin`, `Pins`)
   let s2 = `Normal`
+  let left, right
+
+  if (icons) {
+    let pin_icon = App.get_setting(`pin_icon`)
+    let normal_icon = App.get_setting(`normal_icon`)
+    left = `${pin_icon} ${n1} ${s1}`
+    right = `${normal_icon} ${n2} ${s2}`
+  }
+  else {
+    left = `${n1} ${s1}`
+    right = `${n2} ${s2}`
+  }
+
   let sep = `&nbsp;&nbsp;+&nbsp;&nbsp;`
-  pinline.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
+  pinline.innerHTML = `${left}${sep}${right}`
 
   if (App.get_setting(`show_tooltips`)) {
     pinline.title = `This is the Pinline.\nPinned tabs above. Normal tabs below`

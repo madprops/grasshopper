@@ -2410,10 +2410,18 @@ App.build_settings = () => {
       type: `color`,
       value: App.default_color,
       info: `Background color of the Pinline`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key, true)
       },
+    },
+    pinline_icons: {
+      name: `Pinline Icons`,
+      type: `checkbox`,
+      value: false,
+      info: `Show icons in the Pinline`,
+      version: 1,
     },
   }
 
