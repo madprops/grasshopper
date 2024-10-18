@@ -121,6 +121,7 @@ App.shrink_on_tab_box_leave
 App.font_sizes = [6, 28, 1]
 App.default_font = `Nova Square`
 App.last_selected_date = {}
+App.semi_white_color = `rgba(250, 250, 250, 1)`
 
 App.settings_ready = false
 App.media_image_ready = false

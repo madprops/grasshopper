@@ -202,8 +202,8 @@ App.color_main_title = (what) => {
     bg_color = App.blue_title
   }
 
-  let text = `white`
   let bg = bg_color
+  let text = App.semi_white_color
   App.set_main_title_color(text, bg)
 }
 

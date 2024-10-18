@@ -2398,7 +2398,7 @@ App.build_settings = () => {
     pinline_text_color: {
       name: `Pinline Text Color`,
       type: `color`,
-      value: App.default_color,
+      value: App.semi_white_color,
       info: `Text color of the Pinline`,
       version: 1,
       setup: (key) => {
@@ -2594,7 +2594,7 @@ App.build_settings = () => {
     footer_text_color: {
       name: `Footer Text Color`,
       type: `color`,
-      value: App.default_color,
+      value: App.semi_white_color,
       info: `Text color of the Footer`,
       version: 1,
       setup: (key) => {
@@ -3197,7 +3197,7 @@ App.build_settings = () => {
     main_title_text_color: {
       name: `Title Text Color`,
       type: `color`,
-      value: `white`,
+      value: App.semi_white_color,
       info: `Text color of the Title`,
       version: 1,
       setup: (key) => {

@@ -178,6 +178,6 @@ App.user_madprops_settings = () => {
   // Footer
 
   App.set_setting({setting: `footer_colors`, value: true})
-  App.set_setting({setting: `footer_text_color`, value: `rgba(255, 255, 255, 1)`})
+  App.set_setting({setting: `footer_text_color`, value: `rgba(250, 250, 250, 1)`})
   App.set_setting({setting: `footer_background_color`, value: `rgba(92, 152, 182, 0.65)`})
 }
