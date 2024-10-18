@@ -1908,6 +1908,8 @@ App.build_settings = () => {
         {cmd: App.separator_string},
         {cmd: `tab_box_select`},
         {cmd: `tab_box_close`},
+        {cmd: App.separator_string},
+        {cmd: `settings_category_tab_box`},
       ],
       separator: true,
       info: `Menu to show when right clicking the Tab Box`,
