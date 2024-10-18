@@ -233,35 +233,7 @@ App.do_apply_theme = (args = {}) => {
 
     let icon_size = App.get_icon_size()
     App.set_css_var(`icon_size`, `${icon_size}rem`)
-
-    let tbh_rem = 13.08
-    let tbh_diff = 3.5
-
-    for (let size of App.sizes_2) {
-      if (size.value === `compact`) {
-        App.set_css_var(`tab_box_size_compact`, `1.9rem`)
-      }
-      else if (size.value === `tiny`) {
-        let size = tbh_rem - (tbh_diff * 2)
-        App.set_css_var(`tab_box_size_tiny`, `${size}rem`)
-      }
-      else if (size.value === `small`) {
-        let size = tbh_rem - tbh_diff
-        App.set_css_var(`tab_box_size_small`, `${size}rem`)
-      }
-      else if (size.value === `normal`) {
-        let size = tbh_rem
-        App.set_css_var(`tab_box_size_normal`, `${size}rem`)
-      }
-      else if (size.value === `big`) {
-        let size = tbh_rem + (tbh_diff * 2)
-        App.set_css_var(`tab_box_size_big`, `${size}rem`)
-      }
-      else if (size.value === `huge`) {
-        let size = tbh_rem + (tbh_diff * 4)
-        App.set_css_var(`tab_box_size_huge`, `${size}rem`)
-      }
-    }
+    App.set_tab_box_vars()
 
     if (App.get_setting(`text_glow`)) {
       document.body.classList.add(`text_glow`)
@@ -1102,4 +1074,35 @@ App.get_icon_size = () => {
   }
 
   return icon_size
+}
+
+App.set_tab_box_vars = () => {
+  let tbh_rem = 13.08
+  let tbh_diff = 3.5
+
+  for (let size of App.sizes_2) {
+    if (size.value === `compact`) {
+      App.set_css_var(`tab_box_size_compact`, `1.9rem`)
+    }
+    else if (size.value === `tiny`) {
+      let size = tbh_rem - (tbh_diff * 2)
+      App.set_css_var(`tab_box_size_tiny`, `${size}rem`)
+    }
+    else if (size.value === `small`) {
+      let size = tbh_rem - tbh_diff
+      App.set_css_var(`tab_box_size_small`, `${size}rem`)
+    }
+    else if (size.value === `normal`) {
+      let size = tbh_rem
+      App.set_css_var(`tab_box_size_normal`, `${size}rem`)
+    }
+    else if (size.value === `big`) {
+      let size = tbh_rem + (tbh_diff * 2)
+      App.set_css_var(`tab_box_size_big`, `${size}rem`)
+    }
+    else if (size.value === `huge`) {
+      let size = tbh_rem + (tbh_diff * 4)
+      App.set_css_var(`tab_box_size_huge`, `${size}rem`)
+    }
+  }
 }
