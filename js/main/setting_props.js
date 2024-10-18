@@ -2048,47 +2048,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.scroll_modes)
       },
     },
-    wheel_up_tab_box: {
-      name: `Wheel Up Tab Box`,
-      type: `menu`,
-      value: `tab_box_scroll_up`,
-      info: `Command to run when using the mousewheel up on the Tab Box`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_tab_box: {
-      name: `Wheel Down Tab Box`,
-      type: `menu`,
-      value: `tab_box_scroll_down`,
-      info: `Command to run when using the mousewheel down on the Tab Box`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_shift_tab_box: {
-      name: `Shift Wheel Up Tab Box`,
-      type: `menu`,
-      value: `tab_box_previous_mode`,
-      info: `Command to run when using the mousewheel up on the Tab Box while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_tab_box: {
-      name: `Shift Wheel Down Tab Box`,
-      type: `menu`,
-      value: `tab_box_next_mode`,
-      info: `Command to run when using the mousewheel down on the Tab Box while holding Shift`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     middle_click_tab_box_title: {
       name: `Middle Click Tab Box Title`,
       type: `menu`,
@@ -2134,6 +2093,47 @@ App.build_settings = () => {
       type: `menu`,
       value: `tab_box_next_mode`,
       info: `Command to run when using the mousewheel down on the Tab Box Title`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_tab_box: {
+      name: `Wheel Up Tab Box`,
+      type: `menu`,
+      value: `tab_box_scroll_up`,
+      info: `Command to run when using the mousewheel up on the Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_tab_box: {
+      name: `Wheel Down Tab Box`,
+      type: `menu`,
+      value: `tab_box_scroll_down`,
+      info: `Command to run when using the mousewheel down on the Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_shift_tab_box: {
+      name: `Shift Wheel Up Tab Box`,
+      type: `menu`,
+      value: `tab_box_previous_mode`,
+      info: `Command to run when using the mousewheel up on the Tab Box while holding Shift`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_shift_tab_box: {
+      name: `Shift Wheel Down Tab Box`,
+      type: `menu`,
+      value: `tab_box_next_mode`,
+      info: `Command to run when using the mousewheel down on the Tab Box while holding Shift`,
       separator: true,
       version: 1,
       setup: (key) => {
