@@ -2051,7 +2051,7 @@ App.build_settings = () => {
     middle_click_tab_box_title: {
       name: `Middle Click Tab Box Title`,
       type: `menu`,
-      value: `tab_box_close`,
+      value: `toggle_tab_box`,
       info: `Command to run on middle click on Tab Box Title`,
       version: 1,
       setup: (key) => {
@@ -2061,7 +2061,7 @@ App.build_settings = () => {
     click_press_tab_box_title: {
       name: `Click Press Tab Box Title`,
       type: `menu`,
-      value: `none`,
+      value: `tab_box_select`,
       info: `Command to run on left click press on Tab Box Title`,
       version: 1,
       setup: (key) => {
@@ -2071,7 +2071,7 @@ App.build_settings = () => {
     middle_click_press_tab_box_title: {
       name: `Middle Click Press Tab Box Title`,
       type: `menu`,
-      value: `none`,
+      value: `tab_box_close`,
       info: `Command to run on middle click press on Tab Box Title`,
       version: 1,
       setup: (key) => {
