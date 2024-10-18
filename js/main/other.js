@@ -18,12 +18,14 @@ App.show_intro_message = () => {
     {
       text: `About`,
       action: () => {
+        App.close_textarea()
         App.show_about()
       },
     },
     {
       text: `Settings`,
       action: () => {
+        App.close_textarea()
         App.show_settings_category(`general`)
       },
     },

@@ -995,6 +995,8 @@ a:hover
 #textarea_content {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding-top: 1rem;
   padding-left: var(--popup_padding);
   padding-right: var(--popup_padding);
