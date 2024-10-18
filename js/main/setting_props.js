@@ -2048,37 +2048,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.scroll_modes)
       },
     },
-    middle_click_tab_box: {
-      name: `Middle Click Tab Box`,
-      type: `menu`,
-      value: `tab_box_close`,
-      info: `Command to run on middle click on Tab Box`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_tab_box: {
-      name: `Click Press Tab Box`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on left click press on Tab Box`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_tab_box: {
-      name: `Middle Click Press Tab Box`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on middle click press on Tab Box`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     wheel_up_tab_box: {
       name: `Wheel Up Tab Box`,
       type: `menu`,
@@ -2115,6 +2084,36 @@ App.build_settings = () => {
       value: `tab_box_next_mode`,
       info: `Command to run when using the mousewheel down on the Tab Box while holding Shift`,
       separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_tab_box_title: {
+      name: `Middle Click Tab Box Title`,
+      type: `menu`,
+      value: `tab_box_close`,
+      info: `Command to run on middle click on Tab Box Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_tab_box_title: {
+      name: `Click Press Tab Box Title`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Tab Box Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_tab_box_title: {
+      name: `Middle Click Press Tab Box Title`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Tab Box Title`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)

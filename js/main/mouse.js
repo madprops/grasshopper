@@ -623,7 +623,7 @@ App.mouse_middle_action = (e, target_el) => {
   }
 
   if (DOM.parent(target, [`#tab_box_title`])) {
-    let cmd = App.get_setting(`middle_click_tab_box`)
+    let cmd = App.get_setting(`middle_click_tab_box_title`)
     App.run_command({cmd, from: `tab_box`, e})
     return
   }
@@ -911,7 +911,7 @@ App.click_press_action = (e) => {
     return
   }
 
-  if (action(`#tab_box_title`, `tab_box`)) {
+  if (action(`#tab_box_title`, `tab_box_title`)) {
     return
   }
 
