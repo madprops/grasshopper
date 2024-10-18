@@ -119,20 +119,10 @@ App.start_popups = () => {
         App.hide_popup(`textarea`)
       })
     },
-    no_padding: true,
-  })
-
-  App.create_popup({
-    id: `input`,
-    setup: () => {
-      App.setup_input()
-    },
     on_dismiss: () => {
-      App.on_input_dismiss()
+      App.on_textarea_dismiss()
     },
-    after_hide: () => {
-      App.check_popup_command_close()
-    },
+    no_padding: true,
   })
 
   App.create_popup({

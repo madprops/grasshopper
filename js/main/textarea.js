@@ -4,6 +4,9 @@ App.show_textarea = (args = {}) => {
     simple: false,
     buttons: [],
     align: `center`,
+    readonly: true,
+    bottom: false,
+    wrap: false,
   }
 
   App.def_args(def_args, args)
@@ -30,6 +33,20 @@ App.show_textarea = (args = {}) => {
     DOM.hide(simplearea)
     DOM.show(textarea)
     textarea.value = args.text
+
+    if (args.readonly) {
+      textarea.readOnly = true
+    }
+    else {
+      textarea.readOnly = false
+    }
+
+    if (args.wrap) {
+      textarea.classList.add(`pre_wrap`)
+    }
+    else {
+      textarea.classList.remove(`pre_wrap`)
+    }
   }
 
   let img = DOM.el(`#textarea_image`)
@@ -74,11 +91,16 @@ App.show_textarea = (args = {}) => {
     DOM.el(`#textarea_simple`).classList.remove(`center`)
   }
 
+  App.textarea_args = args
   App.textarea_text = args.text
   App.show_popup(`textarea`)
 
   requestAnimationFrame(() => {
     App.focus_textarea(textarea)
+
+    if (args.bottom) {
+      App.cursor_at_end(textarea)
+    }
   })
 }
 
@@ -96,4 +118,14 @@ App.focus_textarea = (el) => {
 
 App.close_textarea = () => {
   App.hide_popup(`textarea`)
+}
+
+App.clear_textarea = () => {
+  DOM.el(`#textarea_text`).value = ``
+}
+
+App.on_textarea_dismiss = () => {
+  if (App.textarea_args.on_dismiss) {
+    App.textarea_args.on_dismiss()
+  }
 }

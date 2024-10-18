@@ -1,103 +1,60 @@
-App.setup_input = () => {
-  DOM.ev(`#input_submit`, `click`, () => {
-    App.input_enter()
-  })
-
-  DOM.ev(`#input_clear`, `click`, () => {
-    App.clear_input()
-  })
-
-  DOM.ev(`#input_close`, `click`, () => {
-    App.hide_input()
-  })
-}
-
 App.show_input = (args = {}) => {
   let def_args = {
     value: ``,
-    autosave: false,
     bottom: false,
     wrap: false,
-    readonly: false,
   }
 
   App.def_args(def_args, args)
-  App.start_popups()
-  App.input_action = args.action
-  DOM.el(`#input_title`).textContent = args.title
-  let textarea = DOM.el(`#input_text`)
-  textarea.value = args.value
-  DOM.el(`#input_submit`).textContent = args.button
-  App.input_args = args
-  App.show_popup(`input`)
-  let clear_btn = DOM.el(`#input_clear`)
-  let submit_btn = DOM.el(`#input_submit`)
 
-  requestAnimationFrame(() => {
-    if (args.wrap) {
-      textarea.classList.add(`pre_wrap`)
-    }
-    else {
-      textarea.classList.remove(`pre_wrap`)
+  function do_action() {
+    if (!args.action) {
+      return
     }
 
-    if (args.readonly) {
-      textarea.setAttribute(`readonly`, `readonly`)
-      DOM.hide(clear_btn)
-      DOM.hide(submit_btn)
+    let ans = args.action(DOM.el(`#textarea_text`).value.trim())
+
+    if (ans) {
+      App.close_textarea()
     }
-    else {
-      textarea.removeAttribute(`readonly`)
-      DOM.show(clear_btn)
-      DOM.show(submit_btn)
-    }
-
-    App.focus_textarea(textarea)
-
-    if (args.bottom) {
-      App.cursor_at_end(textarea)
-    }
-  })
-}
-
-App.input_enter = () => {
-  if (App.input_args.readonly) {
-    return
   }
 
-  let ans = App.input_action(DOM.el(`#input_text`).value.trim())
-
-  if (ans) {
-    App.hide_input()
-  }
-}
-
-App.on_input_dismiss = () => {
-  if (App.input_args.autosave) {
-    App.input_enter()
-  }
-}
-
-App.clear_input = () => {
-  if (App.input_args.readonly) {
-    return
-  }
-
-  let textarea = DOM.el(`#input_text`)
-
-  if (!textarea.value) {
-    return
-  }
-
-  App.show_confirm({
-    message: `Clear text?`,
-    confirm_action: () => {
-      textarea.value = ``
-      App.focus_textarea(textarea)
+  let buttons = [
+    {
+      text: `Close`,
+      action: () => {
+        App.close_textarea()
+      },
     },
-  })
-}
+    {
+      text: `Clear`,
+      action: () => {
+        App.clear_textarea()
+      },
+    },
+    {
+      text: args.button,
+      action: () => {
+        do_action()
+      }
+    },
+  ]
 
-App.hide_input = () => {
-  App.hide_popup(`input`)
+  let on_dismiss
+
+  if (args.autosave) {
+    on_dismiss = () => {
+      do_action()
+    }
+  }
+
+  App.show_textarea({
+    title: args.title,
+    bottom: args.bottom,
+    wrap: args.wrap,
+    text: args.value,
+    readonly: false,
+    on_dismiss,
+    buttons,
+  })
 }
