@@ -2448,23 +2448,11 @@ App.build_settings = () => {
       Clicking this scrolls the item list to the bottom`,
       version: 1,
     },
-    footer_menu: {
-      name: `Footer Menu`,
-      type: `list`,
-      value: [
-        {cmd: `copy_item_url`},
-        {cmd: `copy_item_title`},
-        {cmd: `settings_category_footer`},
-      ],
-      info: `Menu to show when right clicking the Footer`,
-      version: 1,
-    },
     footer_align: {
       name: `Footer Align`,
       type: `menu`,
       value: `left`,
       info: `How to align the Footer text`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -2473,6 +2461,18 @@ App.build_settings = () => {
           {text: `Right`, value: `right`},
         ])
       },
+    },
+    footer_menu: {
+      name: `Footer Menu`,
+      type: `list`,
+      value: [
+        {cmd: `copy_item_url`},
+        {cmd: `copy_item_title`},
+        {cmd: `settings_category_footer`},
+      ],
+      separator: true,
+      info: `Menu to show when right clicking the Footer`,
+      version: 1,
     },
     click_footer: {
       name: `Click Footer`,
