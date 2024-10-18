@@ -213,7 +213,12 @@ App.close_sidebar = () => {
 
 App.generate_password = () => {
   let password = App.random_string(App.password_length)
-  App.show_textarea({title: `Random Password`, text: password, simple: true})
+
+  App.show_textarea({
+    title: `Random Password`,
+    text: password,
+    simple: true,
+  })
 }
 
 App.play_sound = (name) => {

@@ -5,6 +5,10 @@ App.create_popup = (args) => {
   let container = DOM.create(`div`, `popup_container`, `popup_${args.id}_container`)
   container.tabIndex = 0
 
+  if (args.no_padding) {
+    container.classList.add(`no_padding`)
+  }
+
   if (args.element) {
     container.innerHTML = ``
     container.append(args.element)
@@ -115,6 +119,7 @@ App.start_popups = () => {
         App.hide_popup(`textarea`)
       })
     },
+    no_padding: true,
   })
 
   App.create_popup({
