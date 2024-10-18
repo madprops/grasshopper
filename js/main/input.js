@@ -7,7 +7,7 @@ App.show_input = (args = {}) => {
 
   App.def_args(def_args, args)
 
-  function do_action() {
+  let on_enter = () => {
     if (!args.action) {
       return
     }
@@ -35,7 +35,7 @@ App.show_input = (args = {}) => {
     {
       text: args.button,
       action: () => {
-        do_action()
+        on_enter()
       }
     },
   ]
@@ -49,6 +49,7 @@ App.show_input = (args = {}) => {
   }
 
   App.show_textarea({
+    on_enter,
     title: args.title,
     bottom: args.bottom,
     wrap: args.wrap,

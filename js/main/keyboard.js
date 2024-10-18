@@ -305,13 +305,6 @@ App.setup_keyboard = () => {
           return
         }
       }
-      else if (pmode === `input`) {
-        if (e.key === `Escape`) {
-          App.dismiss_popup(`input`)
-          e.preventDefault()
-          return
-        }
-      }
       else if (pmode === `palette`) {
         if (e.key === `Escape`) {
           if (App.palette_filter_focused()) {
@@ -542,10 +535,10 @@ App.setup_keyboard = () => {
           return
         }
       }
-      else if (pmode === `input`) {
+      else if (pmode === `textarea`) {
         if (e.key === `Enter`) {
           if (e.ctrlKey) {
-            App.input_enter()
+            App.textarea_enter()
             e.preventDefault()
           }
 

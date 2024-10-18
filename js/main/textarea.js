@@ -129,3 +129,9 @@ App.on_textarea_dismiss = () => {
     App.textarea_args.on_dismiss()
   }
 }
+
+App.textarea_enter = () => {
+  if (App.textarea_args.on_enter) {
+    App.textarea_args.on_enter()
+  }
+}
