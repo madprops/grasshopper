@@ -1127,7 +1127,8 @@ a:hover
   left: 0;
   z-index: 9;
   border: 1px solid var(--alt_color_1);
-  padding: var(--scroller_padding);
+  padding-top: calc(var(--panel_padding) - 1px);
+  padding-bottom: calc(var(--panel_padding) - 1px);
   backdrop-filter: var(--backdrop);
   justify-content: center;
 }
