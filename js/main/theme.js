@@ -125,7 +125,7 @@ App.do_apply_theme = (args = {}) => {
     let h = `${(App.get_setting(`height`) / 100) * App.popup_height}px`
     App.set_css_var(`height`, h)
 
-    let item_padding = 0.42
+    let item_padding = 0.4
     let height_diff = 0.15
     let item_height = App.get_setting(`item_height`)
 
