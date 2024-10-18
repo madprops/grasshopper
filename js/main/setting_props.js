@@ -2388,16 +2388,25 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    pinline_color_enabled: {
-      name: `Pinline Color`,
+    pinline_colors: {
+      name: `Pinline Colors`,
       type: `checkbox`,
       value: false,
-      info: `Enable the background color of the Pinline`,
+      info: `Enable custom colors for the Pinline`,
       version: 1,
     },
-    pinline_color: {
-      name: `Pinline Color`,
-      hide_name: true,
+    pinline_text_color: {
+      name: `Pinline Text Color`,
+      type: `color`,
+      value: App.default_color,
+      info: `Text color of the Pinline`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    pinline_background_color: {
+      name: `Pinline Background Color`,
       type: `color`,
       value: App.default_color,
       info: `Background color of the Pinline`,
@@ -2575,16 +2584,25 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.setting_steps(...App.font_sizes, `px`))
       },
     },
-    footer_color_enabled: {
-      name: `Footer Color`,
+    footer_colors: {
+      name: `Footer Colors`,
       type: `checkbox`,
       value: false,
-      info: `Enable the background color of the Footer`,
+      info: `Enable custom colors for the Footer`,
       version: 1,
     },
-    footer_color: {
-      name: `Footer Color`,
-      hide_name: true,
+    footer_text_color: {
+      name: `Footer Text Color`,
+      type: `color`,
+      value: App.default_color,
+      info: `Text color of the Footer`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    footer_background_color: {
+      name: `Footer Background Color`,
       type: `color`,
       value: App.default_color,
       info: `Background color of the Footer`,

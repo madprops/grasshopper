@@ -867,8 +867,9 @@ svg {
   border-top: 1px solid var(--alt_color_1);
   border-bottom: 1px solid var(--alt_color_1);
   padding-top: calc(var(--panel_padding) - 1px);
-  padding-bottom: calc(var(--panel_padding) - 1px);;
-  background-color: var(--pinline_color);
+  padding-bottom: calc(var(--panel_padding) - 1px);
+  background-color: var(--pinline_background_color);
+  color: var(--pinline_text_color);
   transition: box-shadow var(--transition_delay),
   text-shadow var(--transition_delay);
 }
@@ -1151,7 +1152,8 @@ a:hover
   display: none;
   flex-direction: row;
   align-items: center;
-  background-color: var(--footer_color);
+  background-color: var(--footer_background_color);
+  color: var(--footer_text_color);
   backdrop-filter: var(--backdrop);
   padding-right: var(--item_margin);
   border: 0px solid var(--alt_color_1);

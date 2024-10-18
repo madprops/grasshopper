@@ -394,18 +394,22 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`favorites_bar_color`, `unset`)
     }
 
-    if (App.get_setting(`footer_color_enabled`)) {
-      App.set_css_var(`footer_color`, App.get_setting(`footer_color`))
+    if (App.get_setting(`footer_colors`)) {
+      App.set_css_var(`footer_text_color`, App.get_setting(`footer_text_color`))
+      App.set_css_var(`footer_background_color`, App.get_setting(`footer_background_color`))
     }
     else {
-      App.set_css_var(`footer_color`, slight_shade)
+      App.set_css_var(`footer_text_color`, `unset`)
+      App.set_css_var(`footer_background_color`, slight_shade)
     }
 
-    if (App.get_setting(`pinline_color_enabled`)) {
-      App.set_css_var(`pinline_color`, App.get_setting(`pinline_color`))
+    if (App.get_setting(`pinline_colors`)) {
+      App.set_css_var(`pinline_text_color`, App.get_setting(`pinline_text_color`))
+      App.set_css_var(`pinline_background_color`, App.get_setting(`pinline_background_color`))
     }
     else {
-      App.set_css_var(`pinline_color`, `unset`)
+      App.set_css_var(`pinline_text_color`, `unset`)
+      App.set_css_var(`pinline_background_color`, `unset`)
     }
 
     if (App.get_setting(`tab_box_color_enabled`)) {
