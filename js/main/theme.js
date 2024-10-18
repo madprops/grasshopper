@@ -125,24 +125,7 @@ App.do_apply_theme = (args = {}) => {
     let h = `${(App.get_setting(`height`) / 100) * App.popup_height}px`
     App.set_css_var(`height`, h)
 
-    let item_padding = 0.405
-    let height_diff = 0.15
-    let item_height = App.get_setting(`item_height`)
-
-    if (item_height === `tiny`) {
-      item_padding -= height_diff * 2
-    }
-    else if (item_height === `small`) {
-      item_padding -= height_diff
-    }
-    else if (item_height === `big`) {
-      item_padding += height_diff
-    }
-    else if (item_height === `huge`) {
-      item_padding += height_diff * 2
-    }
-
-    item_padding = Math.max(item_padding, 0.1)
+    let item_padding = App.get_item_padding()
     App.set_css_var(`item_padding`, `${item_padding}rem`)
 
     if (App.get_setting(`show_scrollbars`)) {
@@ -248,23 +231,7 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`icon_pick`)
     }
 
-    let item_icon = App.get_setting(`item_icon`)
-    let icon_size = 1.11
-    let icon_size_diff = 0.181
-
-    if (item_icon === `tiny`) {
-      icon_size -= icon_size_diff * 2
-    }
-    else if (item_icon === `small`) {
-      icon_size -= icon_size_diff
-    }
-    else if (item_icon === `big`) {
-      icon_size += icon_size_diff
-    }
-    else if (item_icon === `huge`) {
-      icon_size += icon_size_diff * 2
-    }
-
+    let icon_size = App.get_icon_size()
     App.set_css_var(`icon_size`, `${icon_size}rem`)
 
     let tbh_rem = 13.08
@@ -1093,4 +1060,46 @@ App.get_font_string = (font) => {
   }
 
   return font_str
+}
+
+App.get_item_padding = () => {
+  let item_padding = 0.405
+  let height_diff = 0.15
+  let item_height = App.get_setting(`item_height`)
+
+  if (item_height === `tiny`) {
+    item_padding -= height_diff * 2
+  }
+  else if (item_height === `small`) {
+    item_padding -= height_diff
+  }
+  else if (item_height === `big`) {
+    item_padding += height_diff
+  }
+  else if (item_height === `huge`) {
+    item_padding += height_diff * 2
+  }
+
+  return Math.max(item_padding, 0.1)
+}
+
+App.get_icon_size = () => {
+  let item_icon = App.get_setting(`item_icon`)
+  let icon_size = 1.11
+  let icon_size_diff = 0.181
+
+  if (item_icon === `tiny`) {
+    icon_size -= icon_size_diff * 2
+  }
+  else if (item_icon === `small`) {
+    icon_size -= icon_size_diff
+  }
+  else if (item_icon === `big`) {
+    icon_size += icon_size_diff
+  }
+  else if (item_icon === `huge`) {
+    icon_size += icon_size_diff * 2
+  }
+
+  return icon_size
 }
