@@ -973,7 +973,7 @@ a:hover
 }
 
 .textarea {
-  background-color: var(--alt_color_0);
+  background-color: var(--slight_shade);
   color: var(--text_color);
   outline: none;
   border: none;
