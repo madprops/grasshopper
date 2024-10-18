@@ -305,6 +305,13 @@ App.setup_keyboard = () => {
           return
         }
       }
+      else if (pmode === `textarea`) {
+        if (e.key === `Escape`) {
+          App.dismiss_popup(`textarea`)
+          e.preventDefault()
+          return
+        }
+      }
       else if (pmode === `palette`) {
         if (e.key === `Escape`) {
           if (App.palette_filter_focused()) {
