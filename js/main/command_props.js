@@ -454,6 +454,7 @@ App.setup_commands = () => {
 
     signals.push({
       name: item.name,
+      short_name: short_name(item.name),
       cmd: `send_signal_${id}`,
       icon: item.icon || signal_icon,
       signal_mode: true,
@@ -3594,6 +3595,7 @@ App.setup_commands = () => {
     },
     {
       name: `Random Light`,
+      short_name: `Light`,
       cmd: `set_random_light_colors`,
       icon: theme_icon,
       action: (args) => {
@@ -3603,6 +3605,7 @@ App.setup_commands = () => {
     },
     {
       name: `Random Dark`,
+      short_name: `Dark`,
       cmd: `set_random_dark_colors`,
       icon: theme_icon,
       action: (args) => {
