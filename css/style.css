@@ -469,8 +469,9 @@ svg {
   transition: background-color var(--transition_delay);
   background-color: var(--close_button_color);
   border: 1px solid var(--slight_shade);
-  width: 2rem;
+  width: 1.88rem;
   flex-shrink: 0;
+  flex-grow: 0;
   box-sizing: border-box;
   text-align: center;
   justify-content: center;
