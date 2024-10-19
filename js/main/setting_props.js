@@ -3076,6 +3076,8 @@ App.build_settings = () => {
         {cmd: `color_main_title_red`},
         {cmd: `color_main_title_green`},
         {cmd: `color_main_title_blue`},
+        {cmd: `color_main_title_black`},
+        {cmd: `color_main_title_white`},
         {cmd: `uncolor_main_title`},
         {cmd: App.separator_string},
         {cmd: `settings_category_title`},

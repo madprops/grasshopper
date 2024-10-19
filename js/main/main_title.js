@@ -189,6 +189,7 @@ App.main_title_middle_click = (e) => {
 
 App.color_main_title = (what) => {
   let bg_color = ``
+  let text = App.semi_white_color
 
   if (what === `red`) {
     bg_color = App.red_title
@@ -199,9 +200,15 @@ App.color_main_title = (what) => {
   else if (what === `blue`) {
     bg_color = App.blue_title
   }
+  else if (what === `black`) {
+    bg_color = App.black_title
+  }
+  else if (what === `white`) {
+    bg_color = App.white_title
+    text = App.semi_black_color
+  }
 
   let bg = bg_color
-  let text = App.semi_white_color
   App.set_main_title_color(text, bg)
 }
 
@@ -241,39 +248,32 @@ App.toggle_main_title_date = () => {
   App.check_main_title()
 }
 
-App.previous_main_title_color = () => {
+App.next_main_title_color = (dir = `next`) => {
   let enabled = App.get_setting(`main_title_colors`)
+
+  if (!enabled) {
+    return
+  }
+
   let current = App.get_setting(`main_title_background_color`)
+  let colors = [`red`, `green`, `blue`, `black`, `white`]
 
-  if (enabled && (current === App.blue_title)) {
-    App.color_main_title(`green`)
+  if (dir === `prev`) {
+    colors = colors.reverse()
   }
-  else if (enabled && (current === App.green_title)) {
-    App.color_main_title(`red`)
-  }
-  else if (enabled && (current === App.red_title)) {
-    App.uncolor_main_title()
-  }
-  else {
-    App.color_main_title(`blue`)
-  }
-}
 
-App.next_main_title_color = () => {
-  let enabled = App.get_setting(`main_title_colors`)
-  let current = App.get_setting(`main_title_background_color`)
+  for (let i = 0; i < colors.length; i++) {
+    if (current === App[`${colors[i]}_title`]) {
+      let next = colors[i + 1]
 
-  if (enabled && (current === App.red_title)) {
-    App.color_main_title(`green`)
-  }
-  else if (enabled && (current === App.green_title)) {
-    App.color_main_title(`blue`)
-  }
-  else if (enabled && (current === App.blue_title)) {
-    App.uncolor_main_title()
-  }
-  else {
-    App.color_main_title(`red`)
+      if (!next) {
+        next = colors[0]
+      }
+
+      console.log(next)
+      App.color_main_title(next)
+      return
+    }
   }
 }
 

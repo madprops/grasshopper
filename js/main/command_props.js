@@ -3758,6 +3758,24 @@ App.setup_commands = () => {
       info: `Apply blue color to the main title`,
     },
     {
+      name: `Black Title`,
+      cmd: `color_main_title_black`,
+      icon: main_title_icon,
+      action: (args) => {
+        App.color_main_title(`black`)
+      },
+      info: `Apply black color to the main title`,
+    },
+    {
+      name: `White Title`,
+      cmd: `color_main_title_white`,
+      icon: main_title_icon,
+      action: (args) => {
+        App.color_main_title(`white`)
+      },
+      info: `Apply white color to the main title`,
+    },
+    {
       name: `Dark Title Theme`,
       short_name: `Dark Title`,
       cmd: `set_random_dark_main_title_theme`,
@@ -3782,7 +3800,7 @@ App.setup_commands = () => {
       cmd: `previous_main_title_color`,
       icon: main_title_icon,
       action: (args) => {
-        App.previous_main_title_color()
+        App.next_main_title_color(`prev`)
       },
       info: `Apply the previous color to the main title`,
     },
@@ -3791,7 +3809,7 @@ App.setup_commands = () => {
       cmd: `next_main_title_color`,
       icon: main_title_icon,
       action: (args) => {
-        App.next_main_title_color()
+        App.next_main_title_color(`next`)
       },
       info: `Apply the next color to the main title`,
     },

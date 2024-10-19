@@ -84,6 +84,8 @@ App.last_filter_placeholder = ``
 App.red_title = `rgba(166, 84, 107, 1)`
 App.green_title = `rgba(88, 132, 118, 1)`
 App.blue_title = `rgba(93, 93, 188, 1)`
+App.black_title = `rgba(20, 20, 20, 1)`
+App.white_title = `rgba(250, 250, 250, 1)`
 App.default_font_size = 17
 App.max_browser_urls = 5
 App.password_length = 20
@@ -122,6 +124,7 @@ App.font_sizes = [6, 28, 1]
 App.default_font = `Nova Square`
 App.last_selected_date = {}
 App.semi_white_color = `rgba(250, 250, 250, 1)`
+App.semi_black_color = `rgba(5, 5, 5, 1)`
 
 App.settings_ready = false
 App.media_image_ready = false
