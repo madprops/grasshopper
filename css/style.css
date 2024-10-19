@@ -392,7 +392,6 @@ svg {
   border-right-width: 0;
   border-style: solid;
   border-color: transparent;
-  gap: var(--item_gap);
   margin-top: -1px;
   opacity: 1;
 }
@@ -409,7 +408,11 @@ svg {
   padding-left: var(--item_margin);
 }
 
-.item > div:nth-last-child(1 of :not(.hidden)) {
+.item > div:not(.hidden):not(.hover) {
+  padding-right: var(--item_gap);
+}
+
+.item > div.hover:last-child {
   padding-right: var(--item_margin);
 }
 

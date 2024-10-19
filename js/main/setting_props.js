@@ -1534,7 +1534,7 @@ App.build_settings = () => {
     close_button: {
       name: `Close Button`,
       type: `menu`,
-      value: `right`,
+      value: `right_hover`,
       info: `How to show the Close Button on tabs`,
       version: 1,
       setup: (key) => {
