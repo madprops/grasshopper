@@ -488,6 +488,9 @@ App.do_apply_theme = (args = {}) => {
     let uto = App.get_setting(`unloaded_opacity`) / 100
     App.set_css_var(`unloaded_opacity`, uto)
 
+    App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
+    App.set_css_var(`window_border_color`, App.get_setting(`window_border_color`))
+
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_icon_css()

@@ -541,6 +541,30 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.setting_steps(...App.font_sizes, `px`))
       },
     },
+    window_border_width: {
+      name: `Border Width`,
+      type: `menu`,
+      value: 0,
+      placeholder: `Px`,
+      info: `Width in pixels for the window border`,
+      actions: [`theme`],
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(0, 8, 1, `px`))
+      },
+    },
+    window_border_color: {
+      name: `Border Color`,
+      type: `color`,
+      value: `rgba(40, 40, 232, 1)`,
+      actions: [`theme`],
+      info: `Color to use for the window border`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key)
+      },
+    },
     custom_css: {
       name: `Custom CSS`,
       type: `textarea`,

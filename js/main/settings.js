@@ -292,7 +292,14 @@ App.setting_setup_lists = (category) => {
 }
 
 App.settings_make_menu = (setting, opts, action = () => {}) => {
-  let no_wrap = [`font_size`, `width`, `height`, `background_opacity`, `font_size`]
+  let no_wrap = [
+    `width`,
+    `height`,
+    `background_opacity`,
+    `font_size`,
+    `window_border_width`,
+  ]
+
   let btn_id = `settings_menubutton_${setting}`
 
   App[btn_id] = Menubutton.create({

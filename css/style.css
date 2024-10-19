@@ -160,6 +160,9 @@ select {
   height: 100vh;
   width: 100vw;
   z-index: 999;
+  border-color: var(--window_border_color);
+  border-width: var(--window_border_width);
+  border-style: solid;
 }
 
 #main_top {
