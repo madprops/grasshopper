@@ -254,3 +254,8 @@ App.footer_click = (e) => {
   let cmd = App.get_setting(`click_footer`)
   App.run_command({cmd, from: `footer`, e})
 }
+
+App.footer_middle_click = (e) => {
+  let cmd = App.get_setting(`middle_click_footer`)
+  App.run_command({cmd, from: `footer`, e})
+}

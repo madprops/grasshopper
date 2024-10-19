@@ -664,8 +664,7 @@ App.mouse_middle_action = (e, target_el) => {
   }
 
   if (DOM.parent(target, [`#footer`])) {
-    let cmd = App.get_setting(`middle_click_footer`)
-    App.run_command({cmd, from: `footer`, e})
+    App.footer_middle_click(e)
     return
   }
 
