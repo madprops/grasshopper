@@ -2345,7 +2345,7 @@ App.build_settings = () => {
     middle_click_pinline: {
       name: `Middle Click Pinline`,
       type: `menu`,
-      value: `none`,
+      value: `show_close_tabs_menu`,
       info: `Command to run when middle clicking the Pinline`,
       separator: true,
       version: 1,

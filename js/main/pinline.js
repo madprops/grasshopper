@@ -119,3 +119,8 @@ App.pinline_double_click = (e) => {
   let cmd = App.get_setting(`double_click_pinline`)
   App.run_command({cmd, from: `pinline`, e})
 }
+
+App.pinline_middle_click = (e) => {
+  let cmd = App.get_setting(`middle_click_pinline`)
+  App.run_command({cmd, from: `pinline`, e})
+}

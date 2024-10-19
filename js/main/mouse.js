@@ -639,27 +639,23 @@ App.mouse_middle_action = (e, target_el) => {
     return
   }
 
-  if (target.id === `favorites_empty_top`) {
-    let cmd = App.get_setting(`middle_click_favorites_top`)
-    App.run_command({cmd, from: `favorites_empty`, e})
+  if (DOM.parent(target, [`.favorites_empty_top`])) {
+    App.favorites_empty_top_middle_click(e)
     return
   }
 
-  if (target.id === `favorites_empty_bottom`) {
-    let cmd = App.get_setting(`middle_click_favorites_bottom`)
-    App.run_command({cmd, from: `favorites_empty`, e})
+  if (DOM.parent(target, [`.favorites_empty_bottom`])) {
+    App.favorites_empty_bottom_middle_click(e)
     return
   }
 
   if (DOM.class(target, [`favorites_button`])) {
-    let cmd = App.get_setting(`middle_click_favorites_button`)
-    App.run_command({cmd, from: `favorites_button`, e})
+    App.favorites_button_middle_click(e)
     return
   }
 
   if (DOM.parent(target, [`#pinline`])) {
-    let cmd = App.get_setting(`middle_click_pinline`)
-    App.run_command({cmd, from: `pinline`, e})
+    App.pinline_middle_click(e)
     return
   }
 
