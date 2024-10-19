@@ -1100,9 +1100,8 @@ App.get_new_tab_args = (item, from, args) => {
   let new_mode = App.get_setting(`new_tab_mode`)
   let index, pinned
 
-  if (from === `empty`) {
-    // Do nothing if empty double click
-    // So it appears at the bottom
+  if ([`empty`, `global_empty_menu`, `tabs_empty_menu`].includes(from)) {
+    // Do nothing so it appears at the bottom
   }
   else if (item && (new_mode !== `normal`)) {
     let indx = App.get_item_index(`tabs`, item)
