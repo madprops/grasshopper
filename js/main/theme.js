@@ -490,6 +490,7 @@ App.do_apply_theme = (args = {}) => {
 
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
     App.set_css_var(`window_border_color`, App.get_setting(`window_border_color`))
+    App.set_css_var(`close_button_color`, App.get_setting(`close_button_color`))
 
     App.insert_tab_color_css()
     App.insert_color_css()

@@ -480,6 +480,7 @@ svg {
 
 .close_button {
   transition: background-color var(--transition_delay);
+  background-color: var(--close_button_color);
 }
 
 .close_button:hover {

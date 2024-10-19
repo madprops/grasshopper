@@ -562,7 +562,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.start_color_picker(key)
+        App.start_color_picker(key, true)
       },
     },
     custom_css: {
@@ -1599,6 +1599,18 @@ App.build_settings = () => {
       placeholder: App.icon_placeholder,
       info: `Icon for the close buttons`,
       version: 1,
+    },
+    close_button_color: {
+      name: `Background Color`,
+      type: `color`,
+      value: `rgba(0, 0, 0, 0)`,
+      actions: [`theme`],
+      info: `Background color for the Close Buttons`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
     },
   }
 
