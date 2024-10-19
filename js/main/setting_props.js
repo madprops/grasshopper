@@ -2686,7 +2686,7 @@ App.build_settings = () => {
         {cmd: `show_color_blue`, middle: `filter_color_blue`},
         {cmd: `set_random_dark_colors`, middle: `set_random_light_colors`, shift: `set_next_theme`, ctrl: `set_previous_theme`},
         {cmd: `edit_notes`, middle: `edit_global_notes`},
-        {cmd: `toggle_auto_blur`, middle: `toggle_favorites_autohide`},
+        {cmd: `open_new_tab`},
       ],
       data_group: `favorite_menus`,
       info: `List of commands that can appear in various forms`,
