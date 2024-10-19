@@ -1601,10 +1601,9 @@ App.build_settings = () => {
       version: 1,
     },
     close_button_color: {
-      name: `Background Color`,
+      name: `Close Button Color`,
       type: `color`,
       value: `rgba(0, 0, 0, 0)`,
-      actions: [`theme`],
       info: `Background color for the Close Buttons`,
       version: 1,
       setup: (key) => {
