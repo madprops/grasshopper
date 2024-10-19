@@ -34,11 +34,10 @@ App.create_favorites_bar = (mode) => {
   }
 
   let fav_pos = App.get_setting(`favorites_position`)
-  let autohide = App.get_setting(`favorites_autohide`)
   let container = DOM.create(`div`, `favorites_bar_container`, `favorites_bar_container_${mode}`)
   let cls = `favorites_bar`
 
-  if (autohide) {
+  if (App.fav_autohide_enabled()) {
     cls += ` hidden`
   }
 
@@ -80,13 +79,13 @@ App.create_favorites_bar = (mode) => {
   }
 
   DOM.ev(container, `mouseenter`, () => {
-    if (App.get_setting(`favorites_autohide`)) {
+    if (App.fav_autohide_enabled()) {
       App.on_favorites_enter(mode)
     }
   })
 
   DOM.ev(container, `mouseleave`, () => {
-    if (App.get_setting(`favorites_autohide`)) {
+    if (App.fav_autohide_enabled()) {
       App.on_favorites_leave(mode)
     }
   })
@@ -386,12 +385,17 @@ App.toggle_favorites = (mode = App.active_mode) => {
   }
 }
 
+App.fav_autohide_enabled = () => {
+  let pos = App.get_setting(`favorites_position`)
+  return App.get_setting(`favorites_autohide`) && ([`left`, `right`].includes(pos))
+}
+
 App.toggle_favorites_autohide = () => {
   let autohide = !App.get_setting(`favorites_autohide`)
   App.set_setting({setting: `favorites_autohide`, value: autohide})
   App.check_refresh_settings()
 
-  if (autohide) {
+  if (App.fav_autohide_enabled()) {
     App.alert_autohide(`Favorites Autohide Enabled`)
     App.on_favorites_leave(App.active_mode)
   }
