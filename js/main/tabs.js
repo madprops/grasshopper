@@ -1101,7 +1101,8 @@ App.get_new_tab_args = (item, from, args) => {
   let index, pinned
 
   if ([`empty`, `global_empty_menu`, `tabs_empty_menu`].includes(from)) {
-    // Do nothing so it appears at the bottom
+    index = App.get_item_count(`tabs`) + 10
+    args.pinned = false
   }
   else if (item && (new_mode !== `normal`)) {
     let indx = App.get_item_index(`tabs`, item)
