@@ -5102,6 +5102,16 @@ App.build_settings = () => {
   category = `more`
 
   props = {
+    item_gap: {
+      name: `Item Gap`,
+      type: `number`,
+      value: 10,
+      placeholder: `Px`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Pixel gap between item components`,
+      version: 1,
+    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,

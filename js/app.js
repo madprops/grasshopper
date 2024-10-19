@@ -86,7 +86,6 @@ App.green_title = `rgba(88, 132, 118, 1)`
 App.blue_title = `rgba(93, 93, 188, 1)`
 App.black_title = `rgba(25, 25, 25, 1)`
 App.white_title = `rgba(250, 250, 250, 1)`
-App.default_font_size = 17
 App.max_browser_urls = 5
 App.password_length = 20
 App.mode_vars = {}
@@ -121,6 +120,7 @@ App.max_history_picks = 50
 App.bookmarks_folder_url = `https://bookmarks.folder`
 App.shrink_on_tab_box_leave
 App.font_sizes = [6, 28, 1]
+App.default_font_size = 17
 App.default_font = `Nova Square`
 App.last_selected_date = {}
 App.semi_white_color = `rgba(250, 250, 250, 1)`

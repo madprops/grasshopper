@@ -392,17 +392,13 @@ svg {
   border-right-width: 0;
   border-style: solid;
   border-color: transparent;
+  gap: var(--item_gap);
   margin-top: -1px;
   opacity: 1;
 }
 
 .item:nth-child(1 of :not(.hidden))  {
   border-top-width: 2px;
-}
-
-.item > div:not(.hover_button) {
-  padding-left: var(--item_gap);
-  padding-right: var(--item_gap);
 }
 
 .item > div:not(.item_content) {
