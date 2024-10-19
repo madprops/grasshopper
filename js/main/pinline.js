@@ -50,8 +50,8 @@ App.do_check_pinline = () => {
   let icons = App.get_setting(`pinline_icons`)
   let n1 = tabs.pinned_f.length
   let n2 = tabs.normal_f.length
-  let s1 = App.plural(n1, `Pin`, `Pins`)
-  let s2 = `Normal`
+  let s1 = App.check_caps(App.plural(n1, `Pin`, `Pins`))
+  let s2 = App.check_caps(`Normal`)
   let left, right
 
   if (icons) {
