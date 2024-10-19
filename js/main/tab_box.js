@@ -1019,3 +1019,8 @@ App.tab_box_scroll_down = () => {
   let container = DOM.el(`#tab_box_container`)
   container.scrollBy(0, amount)
 }
+
+App.tab_box_title_middle_click = (e) => {
+  let cmd = App.get_setting(`middle_click_tab_box_title`)
+  App.run_command({cmd, from: `tab_box`, e})
+}

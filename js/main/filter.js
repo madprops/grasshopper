@@ -1957,3 +1957,8 @@ App.show_search_no_value = (mode) => {
   let container = DOM.el(`#${mode}_container`)
   container.append(el)
 }
+
+App.filter_menu_middle_click = (e) => {
+  let cmd = App.get_setting(`middle_click_filter_menu`)
+  App.run_command({cmd, from: `filter_menu`, e})
+}

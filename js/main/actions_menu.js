@@ -56,3 +56,8 @@ App.show_mode_menu = (mode, item, e) => {
   let element = DOM.el(`#${mode}_actions`)
   App.show_context({items, e, element})
 }
+
+App.actions_middle_click = (e) => {
+  let cmd = App.get_setting(`middle_click_actions_menu`)
+  App.run_command({cmd, from: `actions_menu`, e})
+}

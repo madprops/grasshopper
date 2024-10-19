@@ -58,3 +58,8 @@ App.do_check_playing = (mode = App.active_mode, force = false) => {
 App.get_playing_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.playing)
 }
+
+App.playing_middle_click = (e) => {
+  let cmd = App.get_setting(`middle_click_playing`)
+  App.run_command({cmd, from: `playing_aux`, e})
+}

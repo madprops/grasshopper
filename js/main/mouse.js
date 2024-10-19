@@ -604,38 +604,32 @@ App.mouse_middle_action = (e, target_el) => {
   }
 
   if (DOM.parent(target, [`.main_menu_button`])) {
-    let cmd = App.get_setting(`middle_click_main_menu`)
-    App.run_command({cmd, from: `main_menu`, e})
+    App.main_menu_middle_click(e)
     return
   }
 
   if (DOM.parent(target, [`.step_back_button`])) {
-    let cmd = App.get_setting(`middle_click_step_back`)
-    App.run_command({cmd, from: `step_back_aux`, e})
+    App.step_back_middle_click(e)
     return
   }
 
   if (DOM.parent(target, [`.playing_button`])) {
-    let cmd = App.get_setting(`middle_click_playing`)
-    App.run_command({cmd, from: `playing_aux`, e})
+    App.playing_middle_click(e)
     return
   }
 
   if (DOM.parent(target, [`.actions_button`])) {
-    let cmd = App.get_setting(`middle_click_actions_menu`)
-    App.run_command({cmd, from: `actions_menu`, e})
+    App.actions_middle_click(e)
     return
   }
 
   if (DOM.parent(target, [`#tab_box_title`])) {
-    let cmd = App.get_setting(`middle_click_tab_box_title`)
-    App.run_command({cmd, from: `tab_box`, e})
+    App.tab_box_title_middle_click(e)
     return
   }
 
   if (DOM.parent(target, [`.filter_menu_button`])) {
-    let cmd = App.get_setting(`middle_click_filter_menu`)
-    App.run_command({cmd, from: `filter_menu`, e})
+    App.filter_menu_middle_click(e)
     return
   }
 

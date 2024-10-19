@@ -65,3 +65,8 @@ App.step_back = (mode = App.active_mode, e = undefined) => {
     App.focus_items(mode)
   }
 }
+
+App.step_back_middle_click = (e) => {
+  let cmd = App.get_setting(`middle_click_step_back`)
+  App.run_command({cmd, from: `step_back_aux`, e})
+}
