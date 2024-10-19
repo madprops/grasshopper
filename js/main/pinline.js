@@ -140,10 +140,8 @@ App.check_pinline_change = () => {
         to_pin.push(item)
       }
     }
-    else {
-      if (item.pinned) {
-        to_unpin.push(item)
-      }
+    else if (item.pinned) {
+      to_unpin.push(item)
     }
   }
 
