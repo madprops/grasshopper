@@ -1212,3 +1212,8 @@ App.trigger_right_click = () => {
 App.trigger_middle_click = () => {
   App.mouse_event(`auxclick`, `middle`)
 }
+
+App.empty_double_click = (mode, e) => {
+  let cmd = App.get_setting(`double_click_empty_${mode}`)
+  App.run_command({cmd, from: `empty`, e})
+}
