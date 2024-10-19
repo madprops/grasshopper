@@ -1567,11 +1567,7 @@ App.build_settings = () => {
     close_button_menu_2: {
       name: `Close Button Menu 2`,
       type: `list`,
-      value: [
-        {cmd: `filter_domain`},
-        {cmd: `search_domain_history`},
-        {cmd: `search_domain_bookmarks`},
-      ],
+      value: [],
       data_group: `close_button_menus`,
       info: `Menu to show when long pressing the Close Button`,
       version: 1,
