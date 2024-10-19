@@ -274,6 +274,8 @@ App.next_main_title_color = (dir = `next`) => {
       return
     }
   }
+
+  App.color_main_title(colors[0])
 }
 
 App.main_title_enabled = () => {
