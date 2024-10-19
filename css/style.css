@@ -404,28 +404,12 @@ svg {
   height: 100%;
 }
 
-.item > div:nth-child(1 of :not(.hidden):not(.hover))  {
+.item > div:nth-child(1 of :not(.hidden):not(.hover):not(.close_button))  {
   padding-left: var(--item_margin);
 }
 
-.item > div:not(.hidden):not(.hover) {
+.item > div:not(.hidden):not(.hover):not(.close_button) {
   padding-right: var(--item_gap);
-}
-
-.item > div.hover:last-child {
-  padding-right: var(--item_margin);
-}
-
-.item > div.hover:first-child {
-  padding-left: var(--item_margin);
-}
-
-.item .close_button.right {
-  padding-left: var(--close_button_padding);
-}
-
-.item .close_button.left {
-  padding-right: var(--close_button_padding);
 }
 
 .item .close_button.hover {
@@ -484,6 +468,12 @@ svg {
 .close_button {
   transition: background-color var(--transition_delay);
   background-color: var(--close_button_color);
+  border: 1px solid var(--slight_shade);
+  width: 2rem;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  text-align: center;
+  justify-content: center;
 }
 
 .close_button:hover {
