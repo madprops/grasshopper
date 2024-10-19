@@ -387,7 +387,7 @@ App.toggle_favorites = (mode = App.active_mode) => {
 
 App.fav_autohide_enabled = () => {
   let pos = App.get_setting(`favorites_position`)
-  return App.get_setting(`favorites_autohide`) && ([`left`, `right`].includes(pos))
+  return App.get_setting(`favorites_autohide`) && [`left`, `right`].includes(pos)
 }
 
 App.toggle_favorites_autohide = () => {
