@@ -71,7 +71,7 @@ App.set_footer_info = (text) => {
 
   if (footer) {
     let info = DOM.el(`#footer_info`)
-    info.textContent = text
+    info.textContent = App.check_caps(text)
   }
 }
 

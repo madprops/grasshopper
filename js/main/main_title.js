@@ -59,10 +59,8 @@ App.create_main_title = () => {
   let el = DOM.create(`div`, ``, `main_title`)
   let inner = DOM.create(`div`, ``, `main_title_inner`)
   el.append(inner)
-
   let title = App.get_setting(`main_title`)
-  inner.textContent = title
-
+  inner.textContent = App.check_caps(title)
   let rclick = App.get_cmd_name(`show_main_title_menu`)
 
   if (App.get_setting(`show_tooltips`)) {
@@ -110,7 +108,7 @@ App.check_main_title = () => {
 
 App.set_main_title_text = (text) => {
   let el = DOM.el(`#main_title_inner`)
-  el.textContent = text
+  el.textContent = App.check_caps(text)
   App.update_main_title_tooltips(el)
   el.scrollLeft = 0
   App.main_title_pause()

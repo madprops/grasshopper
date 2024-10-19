@@ -1,11 +1,6 @@
 App.title = (item) => {
   let title = App.get_title(item) || item.title || ``
-
-  if (App.get_setting(`all_caps`)) {
-    title = title.toUpperCase()
-  }
-
-  return title
+  return App.check_caps(title)
 }
 
 App.edit_tab_title = (args = {}) => {

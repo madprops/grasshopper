@@ -235,3 +235,11 @@ App.play_sound = (name) => {
   player.currentTime = 0
   player.play()
 }
+
+App.check_caps = (text) => {
+  if (App.get_setting(`all_caps`)) {
+    text = text.toUpperCase()
+  }
+
+  return text
+}
