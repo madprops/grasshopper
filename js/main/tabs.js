@@ -1100,7 +1100,7 @@ App.get_new_tab_args = (item, from, args) => {
   let new_mode = App.get_setting(`new_tab_mode`)
   let index, pinned
 
-  if ([`empty`, `global_empty_menu`, `tabs_empty_menu`].includes(from)) {
+  if ([`empty`, `global_empty_menu`, `tabs_empty_menu`, `footer`].includes(from)) {
     index = App.get_item_count(`tabs`) + 10
     args.pinned = false
   }

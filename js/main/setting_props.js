@@ -2484,7 +2484,7 @@ App.build_settings = () => {
     double_click_footer: {
       name: `Double Click Footer`,
       type: `menu`,
-      value: `none`,
+      value: `open_new_tab`,
       info: `Command to run when double clicking the Footer`,
       version: 1,
       setup: (key) => {

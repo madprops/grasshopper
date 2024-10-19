@@ -247,7 +247,7 @@ App.footer_tips = (el) => {
 
 App.footer_double_click = (e) => {
   let cmd = App.get_setting(`double_click_footer`)
-  App.run_command({cmd, from: `double_click`, e})
+  App.run_command({cmd, from: `footer`, e})
 }
 
 App.footer_click = (e) => {
