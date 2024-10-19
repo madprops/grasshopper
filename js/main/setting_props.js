@@ -2463,6 +2463,7 @@ App.build_settings = () => {
       name: `Footer Menu`,
       type: `list`,
       value: [
+        {cmd: `open_new_tab`},
         {cmd: `copy_item_url`},
         {cmd: `copy_item_title`},
         {cmd: `settings_category_footer`},
