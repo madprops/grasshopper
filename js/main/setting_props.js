@@ -5107,7 +5107,7 @@ App.build_settings = () => {
       type: `number`,
       value: 10,
       placeholder: `Px`,
-      min: App.number_min,
+      min: 0,
       max: App.number_max,
       info: `Pixel gap between item components`,
       version: 1,
