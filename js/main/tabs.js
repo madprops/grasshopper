@@ -1097,9 +1097,9 @@ App.edge_tab_up_down = (direction) => {
 }
 
 App.get_new_tab_args = (item, from, args) => {
+  let items = App.get_items(`tabs`)
   let new_mode = App.get_setting(`new_tab_mode`)
   let index, pinned
-  let items = App.get_items(`tabs`)
 
   if ([`empty`, `global_empty_menu`, `tabs_empty_menu`, `footer`].includes(from)) {
     index = items.length + 10
@@ -1116,7 +1116,7 @@ App.get_new_tab_args = (item, from, args) => {
     }
   }
   else if (item && [`above`, `below`].includes(new_mode)) {
-    let indx = App.get_item_index(`tabs`, item)
+    let indx = items.indexOf(item)
     pinned = item.pinned
 
     if (new_mode === `above`) {
