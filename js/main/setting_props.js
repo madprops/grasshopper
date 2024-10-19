@@ -187,6 +187,8 @@ App.build_settings = () => {
           {text: `Normal`, value: `normal`},
           {text: `Above`, value: `above`},
           {text: `Below`, value: `below`},
+          {text: `Top`, value: `top`},
+          {text: `Bottom`, value: `bottom`},
         ])
       },
     },
