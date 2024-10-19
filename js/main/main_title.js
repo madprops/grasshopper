@@ -270,7 +270,6 @@ App.next_main_title_color = (dir = `next`) => {
         next = colors[0]
       }
 
-      console.log(next)
       App.color_main_title(next)
       return
     }
