@@ -1104,17 +1104,15 @@ App.get_new_tab_args = (item, from, args) => {
     // Do nothing if empty double click
     // So it appears at the bottom
   }
-  else {
-    if (item && (new_mode !== `normal`)) {
-      let indx = App.get_item_index(`tabs`, item)
-      pinned = item.pinned
+  else if (item && (new_mode !== `normal`)) {
+    let indx = App.get_item_index(`tabs`, item)
+    pinned = item.pinned
 
-      if (new_mode === `above`) {
-        index = indx
-      }
-      else if (new_mode === `below`) {
-        index = indx + 1
-      }
+    if (new_mode === `above`) {
+      index = indx
+    }
+    else if (new_mode === `below`) {
+      index = indx + 1
     }
   }
 
