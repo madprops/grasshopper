@@ -64,3 +64,8 @@ App.show_close_button_menu_2 = (item, e) => {
   App.show_context({items, e, element})
   return true
 }
+
+App.close_button_middle_click = (item, e) => {
+  let cmd = App.get_setting(`middle_click_close_button`)
+  App.run_command({cmd, item, from: `close_button`, e})
+}

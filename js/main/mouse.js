@@ -387,8 +387,7 @@ App.mouse_double_click_action = (e) => {
   }
 
   if (DOM.class(target, [`item_container`])) {
-    let cmd = App.get_setting(`double_click_empty_${mode}`)
-    App.run_command({cmd, from: `mouse`, e})
+    App.empty_double_click(mode, e)
     return
   }
 
@@ -682,15 +681,13 @@ App.mouse_middle_action = (e, target_el) => {
   mode = item.mode
 
   if (DOM.class(target, [`hover_button`])) {
-    let cmd = App.get_setting(`middle_click_hover_button`)
-    App.run_command({cmd, item, from: `hover_button`, e})
+    App.hover_button_middle_click(item, e)
     return
   }
 
   if (mode === `tabs`) {
     if (DOM.class(target, [`close_button`])) {
-      let cmd = App.get_setting(`middle_click_close_button`)
-      App.run_command({cmd, item, from: `close_button`, e})
+      App.close_button_middle_click(item, e)
       return
     }
 

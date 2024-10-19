@@ -53,6 +53,7 @@ App.show_item_menu = async (args = {}) => {
 
     App.item_menu_item(items, `pin_tabs`, {item: args.item})
     App.item_menu_item(items, `unpin_tabs`, {item: args.item})
+    App.item_menu_item(items, `open_new_tab`, {item: args.item})
     App.item_menu_item(items, `show_color_menu`, {item: args.item})
     App.item_menu_tags(items, args.item)
     App.item_menu_item(items, `edit_icon`, {item: args.item})

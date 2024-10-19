@@ -235,3 +235,8 @@ App.play_sound = (name) => {
   player.currentTime = 0
   player.play()
 }
+
+App.empty_double_click = (mode, e) => {
+  let cmd = App.get_setting(`double_click_empty_${mode}`)
+  App.run_command({cmd, from: `empty`, e})
+}

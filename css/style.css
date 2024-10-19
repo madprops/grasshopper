@@ -260,7 +260,7 @@ select {
   max-height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
   outline: none;
 }
 
