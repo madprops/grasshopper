@@ -404,7 +404,7 @@ svg {
   height: 100%;
 }
 
-.item > div:nth-child(1 of :not(.hidden))  {
+.item > div:nth-child(1 of :not(.hidden):not(.hover))  {
   padding-left: var(--item_margin);
 }
 
@@ -414,6 +414,10 @@ svg {
 
 .item > div.hover:last-child {
   padding-right: var(--item_margin);
+}
+
+.item > div.hover:first-child {
+  padding-left: var(--item_margin);
 }
 
 .item .close_button.right {
