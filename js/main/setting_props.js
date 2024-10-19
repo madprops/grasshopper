@@ -2358,7 +2358,7 @@ App.build_settings = () => {
     click_press_pinline: {
       name: `Click Press Pinline`,
       type: `menu`,
-      value: `none`,
+      value: `select_normal_tabs`,
       info: `Command to run on left click press on Pinline`,
       version: 1,
       setup: (key) => {
@@ -2368,7 +2368,7 @@ App.build_settings = () => {
     middle_click_press_pinline: {
       name: `Middle Click Press Pinline`,
       type: `menu`,
-      value: `none`,
+      value: `select_pinned_tabs`,
       info: `Command to run on middle click press on Pinline`,
       separator: true,
       version: 1,
