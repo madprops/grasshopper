@@ -18,16 +18,6 @@ App.favorites_bar_enabled = () => {
   return true
 }
 
-App.favorites_bar_side = () => {
-  let fav_pos = App.get_setting(`favorites_position`)
-
-  if ((fav_pos === `left`) || (fav_pos === `right`)) {
-    return true
-  }
-
-  return false
-}
-
 App.create_favorites_bar = (mode) => {
   if (!App.favorites_bar_enabled()) {
     return
@@ -219,13 +209,15 @@ App.show_favorites_menu = (e) => {
     },
   })
 
-  items.push({
-    text: `Autohide`,
-    icon: App.settings_icons.favorites,
-    action: () => {
-      App.toggle_favorites_autohide()
-    },
-  })
+  if (App.favorites_bar_side()) {
+    items.push({
+      text: `Autohide`,
+      icon: App.settings_icons.favorites,
+      action: () => {
+        App.toggle_favorites_autohide()
+      },
+    })
+  }
 
   let positions = []
   let c_pos = App.get_setting(`favorites_position`)
@@ -385,9 +377,13 @@ App.toggle_favorites = (mode = App.active_mode) => {
   }
 }
 
-App.fav_autohide_enabled = () => {
+App.favorites_bar_side = () => {
   let pos = App.get_setting(`favorites_position`)
-  return App.get_setting(`favorites_autohide`) && [`left`, `right`].includes(pos)
+  return [`left`, `right`].includes(pos)
+}
+
+App.fav_autohide_enabled = () => {
+  return App.get_setting(`favorites_autohide`) && App.favorites_bar_side()
 }
 
 App.toggle_favorites_autohide = () => {
