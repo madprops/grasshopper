@@ -78,6 +78,10 @@ App.do_check_pinline = () => {
     App.trigger_title(pinline, `wheel_down_pinline`)
   }
 
+  if (App.get_setting(`pinline_drag`)) {
+    pinline.draggable = true
+  }
+
   if (tabs.pinned_f.length) {
     tabs.pinned_f.at(-1).element.after(pinline)
   }
@@ -123,4 +127,31 @@ App.pinline_double_click = (e) => {
 App.pinline_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_pinline`)
   App.run_command({cmd, from: `pinline`, e})
+}
+
+App.check_pinline_change = () => {
+  let pinline_index = App.pinline_index()
+  let to_pin = []
+  let to_unpin = []
+
+  for (let [i, item] of App.get_items(`tabs`).entries()) {
+    if (i < pinline_index) {
+      if (!item.pinned) {
+        to_pin.push(item)
+      }
+    }
+    else {
+      if (item.pinned) {
+        to_unpin.push(item)
+      }
+    }
+  }
+
+  for (let item of to_pin) {
+    App.pin_tab(item.id)
+  }
+
+  for (let item of to_unpin) {
+    App.unpin_tab(item.id)
+  }
 }

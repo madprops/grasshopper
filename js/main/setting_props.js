@@ -2425,6 +2425,13 @@ App.build_settings = () => {
         App.start_color_picker(key, true)
       },
     },
+    pinline_drag: {
+      name: `Pinline Drag`,
+      type: `checkbox`,
+      value: true,
+      info: `Allow dragging the Pinline to pin and unpin tabs`,
+      version: 1,
+    },
     pinline_icons: {
       name: `Pinline Icons`,
       type: `checkbox`,

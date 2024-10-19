@@ -33,16 +33,31 @@ App.setup_item_drag = (mode) => {
       return false
     }
 
+    if (DOM.parent(e.target, [`#pinline`])) {
+      App.dragstart_pinline(e)
+      return
+    }
+
     App.dragstart_action(mode, e)
   })
 
   DOM.ev(container, `dragenter`, (e) => {
+    if (App.drag_mode === `pinline`) {
+      App.dragenter_pinline(e)
+      return
+    }
+
     App.dragenter_action(mode, e)
   })
 
   DOM.ev(container, `dragend`, (e) => {
     if (App.icon_pick_down) {
       App.icon_pick_down = false
+      return
+    }
+
+    if (App.drag_mode === `pinline`) {
+      App.dragend_pinline(e)
       return
     }
 
@@ -78,6 +93,7 @@ App.dragstart_action = (mode, e) => {
   }
 
   App.dragging = true
+  App.drag_mode = `item`
   App.drag_y = e.clientY
   let id = App.drag_element.dataset.id
   App.drag_item = App.get_item_by_id(mode, id)
@@ -258,4 +274,32 @@ App.on_addlist_drag = (id_1, id_2) => {
       App.copy_settings_data(sett_1, sett_2)
     },
   })
+}
+
+App.dragstart_pinline = (e) => {
+  App.reset_triggers()
+  App.dragging = true
+  App.drag_mode = `pinline`
+  App.drag_y = e.clientY
+}
+
+App.dragenter_pinline = (e) => {
+  let item = DOM.parent(e.target, [`.tabs_item`])
+
+  if (!item) {
+    return
+  }
+
+  let direction = e.clientY > App.drag_y ? `down` : `up`
+
+  if (direction === `up`) {
+    item.before(DOM.el(`#pinline`))
+  }
+  else if (direction === `down`) {
+    item.after(DOM.el(`#pinline`))
+  }
+}
+
+App.dragend_pinline = (e) => {
+  App.check_pinline_change()
 }
