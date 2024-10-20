@@ -469,8 +469,8 @@ svg {
 
 .close_button {
   transition: background-color var(--transition_delay);
-  background-color: var(--close_button_color);
-  border: 1px solid var(--slight_shade);
+  background-color: var(--background_color);
+  border: 1px solid var(--alt_color_1);
   width: var(--item_button_width);
   flex-shrink: 0;
   flex-grow: 0;
@@ -479,9 +479,22 @@ svg {
   justify-content: center;
 }
 
+.close_button.hover {
+  position: absolute;
+  z-index: 9;
+}
+
 .close_button:hover {
   cursor: pointer;
-  background-color: var(--alt_color_0);
+  border-color: var(--alt_color_2);
+}
+
+.close_button.left {
+  left: 0;
+}
+
+.close_button.right {
+  right: 0;
 }
 
 .borders_normal .item {
