@@ -418,11 +418,15 @@ svg {
   padding-left: var(--item_margin);
 }
 
+.item > div:nth-last-child(1 of :not(.hidden):not(.close_button):not(.hover_button))  {
+  padding-right: var(--item_margin);
+}
+
 .item .close_button.hover {
   display: none;
 }
 
-.item:hover .close_button.hover {
+#main:hover .close_button.hover {
   display: flex;
 }
 
