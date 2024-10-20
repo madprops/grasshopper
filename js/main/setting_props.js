@@ -4151,6 +4151,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `activate`,
       info: `What to do when clicking a header`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -4177,6 +4178,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `normal`,
       info: `What to do when middle clicking a header`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.header_actions)
@@ -4197,6 +4199,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_group`,
       info: `What to do when pressing a header with the middle click`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
