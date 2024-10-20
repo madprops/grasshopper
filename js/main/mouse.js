@@ -549,10 +549,13 @@ App.mouse_context_action = (e) => {
   if (App.get_setting(`hover_button`) !== `none`) {
     if (DOM.parent(target, [`.hover_button`])) {
       if (App.get_setting(`hover_button_pick`)) {
-        if (App.pick(item)) {
-          return
-        }
+        App.pick(item)
       }
+      else {
+        App.show_hover_menu(item, e)
+      }
+
+      return
     }
   }
 
