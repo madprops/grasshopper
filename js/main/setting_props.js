@@ -3658,7 +3658,7 @@ App.build_settings = () => {
     click_press_actions_menu: {
       name: `Click Press Actions`,
       type: `menu`,
-      value: `none`,
+      value: `edit_global_notes`,
       info: `Command to run on left click press on Actions`,
       version: 1,
       setup: (key) => {
@@ -3668,7 +3668,7 @@ App.build_settings = () => {
     middle_click_press_actions_menu: {
       name: `Middle Click Press Actions`,
       type: `menu`,
-      value: `none`,
+      value: `lock_screen`,
       info: `Command to run on middle click press on Actions`,
       separator: true,
       version: 1,
