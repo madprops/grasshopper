@@ -2375,7 +2375,7 @@ App.build_settings = () => {
     middle_click_press_pinline: {
       name: `Middle Click Press Pinline`,
       type: `menu`,
-      value: `select_pinned_tabs`,
+      value: `lock_screen`,
       info: `Command to run on middle click press on Pinline`,
       separator: true,
       version: 1,
