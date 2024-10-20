@@ -2522,7 +2522,7 @@ App.build_settings = () => {
     click_press_footer: {
       name: `Click Press Footer`,
       type: `menu`,
-      value: `none`,
+      value: `toggle_tab_box`,
       info: `Command to run on left click press on Footer`,
       version: 1,
       setup: (key) => {
