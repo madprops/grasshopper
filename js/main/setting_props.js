@@ -4111,27 +4111,6 @@ App.build_settings = () => {
   category = `zones`
 
   props = {
-    split_padding: {
-      name: `Split Padding`,
-      type: `checkbox`,
-      value: true,
-      info: `Add padding above or below splits`,
-      version: 1,
-    },
-    header_icon_pick: {
-      name: `Header Icon Pick`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable the header icon pick to select the items below`,
-      version: 1,
-    },
-    hide_zones_on_recent: {
-      name: `Hide Zones On Recent`,
-      type: `checkbox`,
-      value: true,
-      info: `Don't show zones like headers or splits when on recent tabs sort`,
-      version: 1,
-    },
     split_width: {
       name: `Split Width`,
       type: `menu`,
@@ -4141,6 +4120,22 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.setting_steps(1, 20, 1, `px`))
+      },
+    },
+    split_side: {
+      name: `Split Side`,
+      type: `menu`,
+      value: `right`,
+      info: `Which side to show the split side border`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: App.separator_string},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+          {text: `Both`, value: `both`},
+        ])
       },
     },
     header_action: {
@@ -4206,22 +4201,6 @@ App.build_settings = () => {
         ])
       },
     },
-    split_side: {
-      name: `Split Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Which side to show the split side border`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: App.separator_string},
-          {text: `Left`, value: `left`},
-          {text: `Right`, value: `right`},
-          {text: `Both`, value: `both`},
-        ])
-      },
-    },
     header_icon: {
       name: `Header Icon`,
       type: `text_smaller`,
@@ -4239,6 +4218,28 @@ App.build_settings = () => {
       separator: true,
       info: `Icon for subheheader tabs
       Leave empty to use an arrow`,
+      version: 1,
+    },
+    split_padding: {
+      name: `Split Padding`,
+      type: `checkbox`,
+      value: true,
+      info: `Add padding above or below splits`,
+      version: 1,
+    },
+    header_icon_pick: {
+      name: `Header Icon Pick`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable the header icon pick to select the items below`,
+      version: 1,
+    },
+    hide_zones_on_recent: {
+      name: `Hide Zones On Recent`,
+      type: `checkbox`,
+      value: true,
+      separator: true,
+      info: `Don't show zones like headers or splits when on recent tabs sort`,
       version: 1,
     },
     split_color_enabled: {
