@@ -3617,7 +3617,7 @@ App.build_settings = () => {
     middle_click_press_main_menu: {
       name: `Middle Click Press Main Menu`,
       type: `menu`,
-      value: `none`,
+      value: `lock_screen`,
       info: `Command to run on middle click press on Main Menu`,
       separator: true,
       version: 1,
@@ -4749,7 +4749,7 @@ App.build_settings = () => {
     click_press_filter_menu: {
       name: `Click Press Filter Menu`,
       type: `menu`,
-      value: `none`,
+      value: `show_filter_menu`,
       info: `Command to run on left click press on Filter Menu`,
       version: 1,
       setup: (key) => {
@@ -4759,7 +4759,7 @@ App.build_settings = () => {
     middle_click_press_filter_menu: {
       name: `Middle Click Press Filter Menu`,
       type: `menu`,
-      value: `none`,
+      value: `show_filter_menu`,
       info: `Command to run on middle click press on Filter Menu`,
       separator: true,
       version: 1,
