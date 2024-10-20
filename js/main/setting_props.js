@@ -2532,7 +2532,7 @@ App.build_settings = () => {
     middle_click_press_footer: {
       name: `Middle Click Press Footer`,
       type: `menu`,
-      value: `none`,
+      value: `copy_item_title`,
       info: `Command to run on middle click press on Footer`,
       separator: true,
       version: 1,
