@@ -3760,7 +3760,7 @@ App.build_settings = () => {
     click_press_step_back: {
       name: `Click Press Step Back`,
       type: `menu`,
-      value: `none`,
+      value: `show_recent_tabs`,
       info: `Command to run on left click press on Step Back`,
       version: 1,
       setup: (key) => {
@@ -3770,7 +3770,7 @@ App.build_settings = () => {
     middle_click_press_step_back: {
       name: `Middle Click Press Step Back`,
       type: `menu`,
-      value: `none`,
+      value: `show_recent_tabs`,
       info: `Command to run on middle click press on Step Back`,
       separator: true,
       version: 1,
