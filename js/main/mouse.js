@@ -529,6 +529,11 @@ App.mouse_context_action = (e) => {
     return
   }
 
+  if (DOM.parent(target, [`#tab_box_title`])) {
+    App.show_tab_box_menu(e)
+    return
+  }
+
   if (DOM.parent(target, [`#footer`])) {
     App.show_footer_menu(e)
     return
