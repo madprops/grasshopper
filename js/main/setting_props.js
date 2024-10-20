@@ -1549,6 +1549,7 @@ App.build_settings = () => {
         {cmd: `unload_tabs`},
         {cmd: `settings_category_close`},
       ],
+      separator: true,
       data_group: `close_button_menus`,
       info: `Menu to show when clicking the Close Button`,
       version: 1,
@@ -1578,6 +1579,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `toggle_color_blue`,
       info: `Command to run when middle pressing the Close Button`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -1643,6 +1645,7 @@ App.build_settings = () => {
         {cmd: `unload_tabs`},
         {cmd: `settings_category_hover`},
       ],
+      separator: true,
       data_group: `hover_menus`,
       info: `Menu to show when clicking the Hover Button`,
       version: 1,
@@ -1672,6 +1675,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `toggle_color_blue`,
       info: `Command to run when middle pressing the Hover Button`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -2081,7 +2085,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `toggle_tab_box`,
       info: `Command to run on middle click on Tab Box Title`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
