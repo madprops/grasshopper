@@ -1520,7 +1520,7 @@ App.build_settings = () => {
     close_button: {
       name: `Close Button`,
       type: `menu`,
-      value: `right_hover`,
+      value: `right`,
       info: `How to show the Close Button on tabs`,
       version: 1,
       setup: (key) => {
@@ -3513,7 +3513,7 @@ App.build_settings = () => {
     click_press_item: {
       name: `Click Press Item`,
       type: `menu`,
-      value: `none`,
+      value: `show_item_menu`,
       info: `What command to run when pressing the left mouse button on an item for a short time`,
       version: 1,
       setup: (key) => {
@@ -3523,7 +3523,7 @@ App.build_settings = () => {
     middle_click_press_item: {
       name: `Middle Click Press Item`,
       type: `menu`,
-      value: `none`,
+      value: `close_tabs`,
       info: `What command to run when pressing the middle mouse button on an item for a short time`,
       separator: true,
       version: 1,
