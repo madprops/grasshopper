@@ -2798,6 +2798,28 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the top empty area of the Favorites Bar`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_favorites_top: {
+      name: `Click Press Fav Top`,
+      type: `menu`,
+      value: `select_pinned_tabs`,
+      info: `Command to run on left click press on Favorites Top`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_favorites_top: {
+      name: `Middle Click Press Fav Top`,
+      type: `menu`,
+      value: `close_pinned_tabs`,
+      info: `Command to run on middle click press on Favorites Top`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -2838,26 +2860,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `page_down`,
       info: `Command to run when using the mousewheel down on the top area of the Favorites Bar while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_favorites_top: {
-      name: `Click Press Fav Top`,
-      type: `menu`,
-      value: `select_pinned_tabs`,
-      info: `Command to run on left click press on Favorites Top`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_favorites_top: {
-      name: `Middle Click Press Fav Top`,
-      type: `menu`,
-      value: `close_pinned_tabs`,
-      info: `Command to run on middle click press on Favorites Top`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -2920,7 +2922,30 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the bottom empty area of the Favorites Bar`,
+      separator: true,
       version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_favorites_bottom: {
+      name: `Click Press Fav Bottom`,
+      type: `menu`,
+      value: `select_normal_tabs`,
+      info: `Command to run on left click press on Favorites Bottom`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_favorites_bottom: {
+      name: `Middle Click Press Fav Bottom`,
+      type: `menu`,
+      value: `close_normal_tabs`,
+      info: `Command to run on middle click press on Favorites Bottom`,
+      separator: true,
+      version: 1,
+      separator: true,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
@@ -2960,28 +2985,8 @@ App.build_settings = () => {
       type: `menu`,
       value: `page_down`,
       info: `Command to run when using the mousewheel down on the bottom area of the Favorites Bar while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_favorites_bottom: {
-      name: `Click Press Fav Bottom`,
-      type: `menu`,
-      value: `select_normal_tabs`,
-      info: `Command to run on left click press on Favorites Bottom`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_favorites_bottom: {
-      name: `Middle Click Press Fav Bottom`,
-      type: `menu`,
-      value: `close_normal_tabs`,
-      info: `Command to run on middle click press on Favorites Bottom`,
-      version: 1,
       separator: true,
+      version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
@@ -2991,26 +2996,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `settings_category_favorites`,
       info: `Command to run when middle clicking the Favorites Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_favorites_button: {
-      name: `Wheel Up Fav Button`,
-      type: `menu`,
-      value: `jump_tabs_all_up`,
-      info: `Command to run when using the mousewheel up on the Favorites Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_favorites_button: {
-      name: `Wheel Down Fav Button`,
-      type: `menu`,
-      value: `jump_tabs_all_down`,
-      info: `Command to run when using the mousewheel down on the Favorites Button`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -3031,6 +3017,27 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Command to run on middle click press on Favorites Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_favorites_button: {
+      name: `Wheel Up Fav Button`,
+      type: `menu`,
+      value: `jump_tabs_all_up`,
+      info: `Command to run when using the mousewheel up on the Favorites Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_favorites_button: {
+      name: `Wheel Down Fav Button`,
+      type: `menu`,
+      value: `jump_tabs_all_down`,
+      info: `Command to run when using the mousewheel down on the Favorites Button`,
       separator: true,
       version: 1,
       setup: (key) => {
