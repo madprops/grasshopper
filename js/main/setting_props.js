@@ -1669,16 +1669,6 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    hover_button_padding: {
-      name: `Hover Button Padding`,
-      type: `number`,
-      value: 7,
-      placeholder: `Px`,
-      min: 0,
-      max: App.max_padding_setting,
-      info: `Horizontal padding for the Hover Buttons`,
-      version: 1,
-    },
     hover_icon: {
       name: `Hover Icon`,
       type: `text_smaller`,
