@@ -3861,7 +3861,7 @@ App.build_settings = () => {
     ctrl_press_command: {
       name: `Ctrl Press`,
       type: `menu`,
-      value: `none`,
+      value: `show_last_settings`,
       info: `What command to run when pressing and holding Ctrl for a short time`,
       version: 1,
       setup: (key) => {
@@ -3871,7 +3871,7 @@ App.build_settings = () => {
     shift_press_command: {
       name: `Shift Press`,
       type: `menu`,
-      value: `none`,
+      value: `show_all_settings`,
       info: `What command to run when pressing and holding Shift for a short time`,
       separator: true,
       version: 1,

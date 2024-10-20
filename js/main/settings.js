@@ -1954,6 +1954,11 @@ App.get_settings_filter = (category) => {
 
 App.save_last_settings = () => {
   let category = App.settings_category
+
+  if ([`all`].includes(category)) {
+    return
+  }
+
   let el = App.settings_content()
   let scroll = el.scrollTop
   let filter = App.get_settings_filter(category).value
