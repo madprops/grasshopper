@@ -76,6 +76,10 @@ App.do_check_pinline = () => {
     App.trigger_title(pinline, `middle_click_press_pinline`)
     App.trigger_title(pinline, `wheel_up_pinline`)
     App.trigger_title(pinline, `wheel_down_pinline`)
+
+    if (App.get_setting(`pinline_drag`)) {
+      pinline.title += `\nDrag to define pin delimeter`
+    }
   }
 
   if (App.get_setting(`pinline_drag`)) {
