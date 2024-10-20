@@ -387,7 +387,7 @@ App.show_tab_box_menu = (e) => {
       info: App.tab_box_modes[tbmode].info,
       action: () => {
         App.change_tab_box_mode(tbmode)
-        App.update_tab_box()
+        App.show_tab_box(true, true)
       },
     })
   }
@@ -413,13 +413,31 @@ App.show_tab_box_menu = (e) => {
     })
   }
 
-  items.push({
+  let more = []
+
+  more.push({
     icon: App.settings_icons.tab_box,
     text: `Size`,
     items: sizes,
   })
 
-  items.push({
+  more.push({
+    icon: App.settings_icons.tab_box,
+    text: `Select`,
+    action: () => {
+      App.select_tab_box_tabs()
+    },
+  })
+
+  more.push({
+    icon: App.settings_icons.tab_box,
+    text: `Close`,
+    action: () => {
+      App.close_tab_box_tabs()
+    },
+  })
+
+  more.push({
     icon: App.settings_icons.tab_box,
     text: `Toggle`,
     action: () => {
@@ -427,12 +445,18 @@ App.show_tab_box_menu = (e) => {
     },
   })
 
-  items.push({
+  more.push({
     icon: App.settings_icons.tab_box,
     text: `Settings`,
     action: () => {
       App.show_settings_category(`tab_box`)
     },
+  })
+
+  items.push({
+    icon: App.settings_icons.tab_box,
+    text: `More`,
+    items: more,
   })
 
   App.show_context({items, e})

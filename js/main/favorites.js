@@ -190,8 +190,9 @@ App.show_favorites_menu = (e) => {
   })
 
   App.sep(items)
+  let more = []
 
-  items.push({
+  more.push({
     text: `Toggle`,
     icon: App.settings_icons.favorites,
     action: () => {
@@ -200,7 +201,7 @@ App.show_favorites_menu = (e) => {
   })
 
   if (App.favorites_bar_side()) {
-    items.push({
+    more.push({
       text: `Autohide`,
       icon: App.settings_icons.favorites,
       action: () => {
@@ -224,18 +225,24 @@ App.show_favorites_menu = (e) => {
     })
   }
 
-  items.push({
+  more.push({
     icon: App.settings_icons.favorites,
     text: `Position`,
     items: positions,
   })
 
-  items.push({
+  more.push({
     icon: App.settings_icons.favorites,
     text: `Settings`,
     action: () => {
       App.show_settings_category(`favorites`)
     },
+  })
+
+  items.push({
+    text: `More`,
+    icon: App.settings_icons.favorites,
+    items: more,
   })
 
   App.show_context({items, e})
