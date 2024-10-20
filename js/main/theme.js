@@ -669,7 +669,7 @@ App.insert_icon_css = () => {
       }`
     }
     else {
-      if ([`never`, `select`, `focus`, `item_hover`, `global_hover`].includes(show)) {
+      if ([`never`, `select`, `focus`, `hover`, `global_hover`].includes(show)) {
         css += `.${key}.item_icon_unit {
           display: none;
         }`
@@ -681,7 +681,7 @@ App.insert_icon_css = () => {
         }`
       }
 
-      if ([`item_hover`, `focus`].includes(show)) {
+      if ([`hover`, `focus`].includes(show)) {
         css += `.item:hover .${key}.item_icon_unit {
           display: flex;
         }`
