@@ -504,11 +504,6 @@ App.mouse_context_action = (e) => {
     return
   }
 
-  if (DOM.parent(target, [`#tab_box_title`])) {
-    App.show_tab_box_menu_2(e)
-    return
-  }
-
   if (DOM.parent(target, [`.favorites_bar_container`, `.favorites_button`])) {
     App.show_favorites_menu(e)
     return
@@ -547,9 +542,6 @@ App.mouse_context_action = (e) => {
         if (App.pick(item)) {
           return
         }
-      }
-      else if (App.show_hover_menu_2(item, e)) {
-        return
       }
     }
   }

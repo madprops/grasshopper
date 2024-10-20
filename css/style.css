@@ -479,11 +479,6 @@ svg {
   justify-content: center;
 }
 
-.close_button.hover {
-  position: absolute;
-  z-index: 9;
-}
-
 .close_button:hover {
   cursor: pointer;
   border-color: var(--alt_color_2);

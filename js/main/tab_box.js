@@ -438,14 +438,6 @@ App.show_tab_box_menu = (e) => {
   App.show_context({items, e})
 }
 
-App.show_tab_box_menu_2 = (e) => {
-  let items = App.custom_menu_items({
-    name: `tab_box_menu`,
-  })
-
-  App.show_context({items, e})
-}
-
 App.get_tab_box_mode = () => {
   return App.current_tab_box_mode || App.get_setting(`tab_box_mode`)
 }

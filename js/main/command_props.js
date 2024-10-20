@@ -1619,16 +1619,6 @@ App.setup_commands = () => {
       info: `Show the Tab Box Menu`,
     },
     {
-      name: `Tab Box Menu 2`,
-      short_name: `Tab Box 2`,
-      cmd: `show_tab_box_menu_2`,
-      icon: tab_box_icon,
-      action: (args) => {
-        App.show_tab_box_menu_2(args.e)
-      },
-      info: `Show the Tab Box Menu 2`,
-    },
-    {
       name: `Footer Menu`,
       short_name: `Footer`,
       cmd: `show_footer_menu`,
