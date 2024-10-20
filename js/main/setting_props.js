@@ -2365,7 +2365,7 @@ App.build_settings = () => {
     click_press_pinline: {
       name: `Click Press Pinline`,
       type: `menu`,
-      value: `select_normal_tabs`,
+      value: `settings_category_pinline`,
       info: `Command to run on left click press on Pinline`,
       version: 1,
       setup: (key) => {
