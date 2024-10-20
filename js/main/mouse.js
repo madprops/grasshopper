@@ -663,7 +663,7 @@ App.mouse_middle_action = (e, target_el) => {
   }
 
   if (DOM.parent(target, [`.mode_filter`])) {
-    App.show_refine_filters(e)
+    App.filter_middle_click(e)
     return
   }
 

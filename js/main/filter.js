@@ -1962,3 +1962,8 @@ App.filter_menu_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_filter_menu`)
   App.run_command({cmd, from: `filter_menu`, e})
 }
+
+App.filter_middle_click = (e) => {
+  let cmd = App.get_setting(`middle_click_filter`)
+  App.run_command({cmd, from: `filter`, e})
+}

@@ -4745,6 +4745,16 @@ App.build_settings = () => {
       Used to further refine filtered items`,
       version: 1,
     },
+    middle_click_filter: {
+      name: `Middle Click Filter`,
+      type: `menu`,
+      value: `show_refine_filters`,
+      info: `What command to run when middle clicking the Filter`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     double_click_filter: {
       name: `Double Click Filter`,
       type: `menu`,
