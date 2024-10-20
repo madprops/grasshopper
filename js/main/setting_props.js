@@ -2824,7 +2824,7 @@ App.build_settings = () => {
     click_press_favorites_top: {
       name: `Click Press Fav Top`,
       type: `menu`,
-      value: `none`,
+      value: `select_pinned_tabs`,
       info: `Command to run on left click press on Favorites Top`,
       version: 1,
       setup: (key) => {
@@ -2946,7 +2946,7 @@ App.build_settings = () => {
     click_press_favorites_bottom: {
       name: `Click Press Fav Bottom`,
       type: `menu`,
-      value: `none`,
+      value: `select_normal_tabs`,
       info: `Command to run on left click press on Favorites Bottom`,
       version: 1,
       setup: (key) => {
