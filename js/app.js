@@ -180,6 +180,7 @@ App.last_settings_scroll_delay = 350
 App.default_combo_delay = 100
 App.mouse_over_delay = 150
 App.mouse_out_delay = 150
+App.mouse_inside = false
 
 App.settings_icons = {
   all: `🔍`,

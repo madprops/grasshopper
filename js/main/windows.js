@@ -171,7 +171,20 @@ App.raise_window = (mode) => {
 }
 
 App.setup_window = () => {
+  DOM.ev(document.documentElement, `mouseenter`, () => {
+    App.mouse_inside = true
+
+    if (App.get_setting(`auto_restore`) !== `never`) {
+      App.clear_restore()
+    }
+
+    App.clear_context_auto_hide()
+    App.remove_auto_blur()
+    App.mouse_inside_check()
+  })
+
   DOM.ev(document.documentElement, `mouseleave`, () => {
+    App.mouse_inside = false
     App.reset_triggers()
 
     if (App.dragging) {
@@ -184,15 +197,7 @@ App.setup_window = () => {
 
     App.start_context_auto_hide()
     App.auto_blur()
-  })
-
-  DOM.ev(document.documentElement, `mouseenter`, () => {
-    if (App.get_setting(`auto_restore`) !== `never`) {
-      App.clear_restore()
-    }
-
-    App.clear_context_auto_hide()
-    App.remove_auto_blur()
+    App.mouse_inside_check()
   })
 }
 
@@ -309,4 +314,13 @@ App.build_shell = () => {
 
   let footer = App.create_footer()
   bottom_c.append(footer)
+}
+
+App.mouse_inside_check = () => {
+  if (App.mouse_inside) {
+    DOM.el(`#main`).classList.add(`mouse_inside`)
+  }
+  else {
+    DOM.el(`#main`).classList.remove(`mouse_inside`)
+  }
 }

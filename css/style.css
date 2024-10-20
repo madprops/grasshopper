@@ -422,7 +422,7 @@ svg {
   display: none;
 }
 
-#main:hover .close_button.hover {
+.mouse_inside .close_button.hover {
   display: flex;
 }
 
