@@ -3000,7 +3000,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `settings_category_favorites`,
       info: `Command to run when middle clicking the Favorites Button`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
