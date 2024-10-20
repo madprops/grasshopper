@@ -3523,7 +3523,7 @@ App.build_settings = () => {
     middle_click_press_item: {
       name: `Middle Click Press Item`,
       type: `menu`,
-      value: `close_tabs`,
+      value: `unload_tabs`,
       info: `What command to run when pressing the middle mouse button on an item for a short time`,
       separator: true,
       version: 1,
