@@ -37,3 +37,25 @@ App.check_clock = (force = false) => {
 
   App.last_filter_placeholder = placeholder
 }
+
+App.pick_clock_format = (e) => {
+  let items = []
+
+  items.push({
+    text: `24 Hour`,
+    action: () => {
+      App.set_setting({setting: `clock_format`, value: `HH:MM Z`})
+      App.refresh_setting_widgets([`clock_format`])
+    },
+  })
+
+  items.push({
+    text: `12 Hour`,
+    action: () => {
+      App.set_setting({setting: `clock_format`, value: `h:MM tt Z`})
+      App.refresh_setting_widgets([`clock_format`])
+    },
+  })
+
+  App.show_context({e, items})
+}

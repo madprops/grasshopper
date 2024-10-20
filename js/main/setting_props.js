@@ -4806,9 +4806,14 @@ App.build_settings = () => {
       value: `h:MM tt Z`,
       placeholder: `Format`,
       separator: true,
+      btns: [`pick`],
       info: `Clock format to use in the filter input. Leave empty to disable
-      To show 24H format use something like HH:MM
       The clock is updated every 30 seconds`,
+      setup: (key) => {
+        DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
+          App.pick_clock_format(e)
+        })
+      },
       version: 1,
     },
     max_search_items_history: {
