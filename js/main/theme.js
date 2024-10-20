@@ -681,8 +681,14 @@ App.insert_icon_css = () => {
         }`
       }
 
-      if ([`hover`, `focus`].includes(show)) {
+      if ([`focus`].includes(show)) {
         css += `.item:hover .${key}.item_icon_unit {
+          display: flex;
+        }`
+      }
+
+      if ([`hover`].includes(show)) {
+        css += `.mouse_inside .${key}.item_icon_unit {
           display: flex;
         }`
       }
