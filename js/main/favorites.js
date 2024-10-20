@@ -36,23 +36,13 @@ App.create_favorites_bar = (mode) => {
   let empty_top = DOM.create(`div`, `favorites_empty favorites_empty_top`, `favorites_empty_top_${mode}`)
 
   if (tips) {
-    App.trigger_title(empty_top, `double_click_favorites_top`)
-    App.trigger_title(empty_top, `middle_click_favorites_top`)
-    App.trigger_title(empty_top, `wheel_up_favorites_top`)
-    App.trigger_title(empty_top, `wheel_down_favorites_top`)
-    App.trigger_title(empty_top, `wheel_up_shift_favorites_top`)
-    App.trigger_title(empty_top, `wheel_down_shift_favorites_top`)
+    App.fav_tips_empty(empty_top, `top`)
   }
 
   let empty_bottom = DOM.create(`div`, `favorites_empty favorites_empty_bottom`, `favorites_empty_bottom_${mode}`)
 
   if (tips) {
-    App.trigger_title(empty_bottom, `double_click_favorites_bottom`)
-    App.trigger_title(empty_bottom, `middle_click_favorites_bottom`)
-    App.trigger_title(empty_bottom, `wheel_up_favorites_bottom`)
-    App.trigger_title(empty_bottom, `wheel_down_favorites_bottom`)
-    App.trigger_title(empty_bottom, `wheel_up_shift_favorites_bottom`)
-    App.trigger_title(empty_bottom, `wheel_down_shift_favorites_bottom`)
+    App.fav_tips_empty(empty_bottom, `bottom`)
   }
 
   if (fav_pos === `top`) {
@@ -414,4 +404,15 @@ App.favorites_empty_top_middle_click = (e) => {
 App.favorites_empty_bottom_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_favorites_bottom`)
   App.run_command({cmd, from: `favorites_empty`, e})
+}
+
+App.fav_tips_empty = (el, where) => {
+  App.trigger_title(el, `double_click_favorites_${where}`)
+  App.trigger_title(el, `middle_click_favorites_${where}`)
+  App.trigger_title(el, `click_press_favorites_${where}`)
+  App.trigger_title(el, `middle_click_press_favorites_${where}`)
+  App.trigger_title(el, `wheel_up_favorites_${where}`)
+  App.trigger_title(el, `wheel_down_favorites_${where}`)
+  App.trigger_title(el, `wheel_up_shift_favorites_${where}`)
+  App.trigger_title(el, `wheel_down_shift_favorites_${where}`)
 }
