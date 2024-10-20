@@ -4807,8 +4807,7 @@ App.build_settings = () => {
       placeholder: `Format`,
       separator: true,
       btns: [`pick`],
-      info: `Clock format to use in the filter input. Leave empty to disable
-      The clock is updated every 30 seconds`,
+      info: `Clock format to use in the filter input. Leave empty to disable`,
       setup: (key) => {
         DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
           App.pick_clock_format(e)
