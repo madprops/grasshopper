@@ -3950,34 +3950,6 @@ App.build_settings = () => {
   category = `warns`
 
   props = {
-    warn_special_pinned: {
-      name: `Pinned Special`,
-      type: `checkbox`,
-      value: true,
-      info: `Treat pinned tabs as special`,
-      version: 1,
-    },
-    warn_special_playing: {
-      name: `Playing Special`,
-      type: `checkbox`,
-      value: true,
-      info: `Treat playing tabs as special`,
-      version: 1,
-    },
-    warn_special_header: {
-      name: `Header Special`,
-      type: `checkbox`,
-      value: true,
-      info: `Treat header tabs as special`,
-      version: 1,
-    },
-    warn_special_edited: {
-      name: `Edited Special`,
-      type: `checkbox`,
-      value: true,
-      info: `Treat edited tabs as special`,
-      version: 1,
-    },
     warn_on_close_tabs: {
       name: `Warn On Close Tabs`,
       type: `menu`,
@@ -4106,6 +4078,34 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Force a confirm after these many items regardless of warn settings`,
+      version: 1,
+    },
+    warn_special_pinned: {
+      name: `Pinned Special`,
+      type: `checkbox`,
+      value: true,
+      info: `Treat pinned tabs as special`,
+      version: 1,
+    },
+    warn_special_playing: {
+      name: `Playing Special`,
+      type: `checkbox`,
+      value: true,
+      info: `Treat playing tabs as special`,
+      version: 1,
+    },
+    warn_special_header: {
+      name: `Header Special`,
+      type: `checkbox`,
+      value: true,
+      info: `Treat header tabs as special`,
+      version: 1,
+    },
+    warn_special_edited: {
+      name: `Edited Special`,
+      type: `checkbox`,
+      value: true,
+      info: `Treat edited tabs as special`,
       version: 1,
     },
   }
