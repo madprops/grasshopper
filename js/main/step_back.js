@@ -6,10 +6,10 @@ App.create_step_back_button = (mode) => {
   if (App.get_setting(`show_tooltips`)) {
     btn.title = `Click: ${click} (Esc)\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_step_back`)
-    App.trigger_title(btn, `wheel_up_step_back`)
-    App.trigger_title(btn, `wheel_down_step_back`)
     App.trigger_title(btn, `click_press_step_back`)
     App.trigger_title(btn, `middle_click_press_step_back`)
+    App.trigger_title(btn, `wheel_up_step_back`)
+    App.trigger_title(btn, `wheel_down_step_back`)
   }
 
   btn.append(App.get_svg_icon(`back`))
