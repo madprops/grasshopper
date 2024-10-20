@@ -267,22 +267,6 @@ App.build_settings = () => {
         ])
       },
     },
-    clock: {
-      name: `Clock`,
-      type: `menu`,
-      value: `show_12`,
-      info: `Show the time in the Filter input`,
-      no_mirror: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: App.separator_string},
-          {text: `12 hours`, value: `show_12`},
-          {text: `24 hours`, value: `show_24`},
-        ])
-      },
-    },
     scroll_amount: {
       name: `Scroll Amount`,
       type: `number`,
@@ -4806,7 +4790,6 @@ App.build_settings = () => {
       value: `none`,
       info: `Remember the items that were last selected when switching filter views
       In activate mode it auto activates the items instead of just selecting them`,
-      separator: true,
       version: 2,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -4816,6 +4799,17 @@ App.build_settings = () => {
           {text: `Activate`, value: `activate`},
         ])
       },
+    },
+    clock_format: {
+      name: `Clock Format`,
+      type: `text`,
+      value: `h:MM tt Z`,
+      placeholder: `Format`,
+      separator: true,
+      info: `Clock format to use in the filter input. Leave empty to disable
+      To show 24H format use something like HH:MM
+      The clock is updated every 30 seconds`,
+      version: 1,
     },
     max_search_items_history: {
       name: `Max Search (History)`,
