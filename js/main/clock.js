@@ -19,10 +19,10 @@ App.check_clock = (force = false) => {
     let date = App.now()
 
     if (clock === `show_24`) {
-      placeholder = dateFormat(date, `HH:MM`)
+      placeholder = dateFormat(date, `HH:MM Z`)
     }
     else {
-      placeholder = dateFormat(date, `h:MM tt`)
+      placeholder = dateFormat(date, `h:MM tt Z`)
     }
   }
   else {
