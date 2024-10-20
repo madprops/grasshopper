@@ -4741,7 +4741,7 @@ App.build_settings = () => {
         {cmd: `filter_media_audio`},
       ],
       separator: true,
-      info: `This list appears when middle clicking the Filter input
+      info: `This list appears when middle clicking the Filter
       Used to further refine filtered items`,
       version: 1,
     },
@@ -4749,7 +4749,28 @@ App.build_settings = () => {
       name: `Double Click Filter`,
       type: `menu`,
       value: `toggle_main_title`,
-      info: `What command to run when double clicking the text filter`,
+      info: `What command to run when double clicking the Filter`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_filter: {
+      name: `Click Press Filter`,
+      type: `menu`,
+      value: `edit_global_notes`,
+      info: `Command to run when pressing the Filter`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_filter: {
+      name: `Middle Click Press Filter`,
+      type: `menu`,
+      value: `lock_screen`,
+      info: `Command to run when middle pressing the Filter`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)

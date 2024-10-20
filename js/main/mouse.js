@@ -915,6 +915,12 @@ App.click_press_action = (e) => {
     return
   }
 
+  if (!App.filter_has_value(mode)) {
+    if (action(`.mode_filter`, `filter`)) {
+      return
+    }
+  }
+
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
   if (!item) {
