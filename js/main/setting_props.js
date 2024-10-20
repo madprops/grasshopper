@@ -3625,37 +3625,6 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_filter_menu: {
-      name: `Middle Click Filter Menu`,
-      type: `menu`,
-      value: `previous_filter`,
-      info: `Command to run when middle clicking the Filter Menu`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_filter_menu: {
-      name: `Click Press Filter Menu`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on left click press on Filter Menu`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_filter_menu: {
-      name: `Middle Click Press Filter Menu`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on middle click press on Filter Menu`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     middle_click_actions_menu: {
       name: `Middle Click Actions`,
       type: `menu`,
@@ -4752,6 +4721,7 @@ App.build_settings = () => {
         {cmd: `filter_media_video`},
         {cmd: `filter_media_audio`},
       ],
+      separator: true,
       info: `This list appears when middle clicking the Filter input
       Used to further refine filtered items`,
       version: 1,
@@ -4761,6 +4731,37 @@ App.build_settings = () => {
       type: `menu`,
       value: `toggle_main_title`,
       info: `What command to run when double clicking the text filter`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_filter_menu: {
+      name: `Middle Click Filter Menu`,
+      type: `menu`,
+      value: `previous_filter`,
+      info: `Command to run when middle clicking the Filter Menu`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_filter_menu: {
+      name: `Click Press Filter Menu`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on left click press on Filter Menu`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_filter_menu: {
+      name: `Middle Click Press Filter Menu`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run on middle click press on Filter Menu`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
