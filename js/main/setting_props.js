@@ -2853,7 +2853,7 @@ App.build_settings = () => {
     middle_click_press_favorites_top: {
       name: `Middle Click Press Fav Top`,
       type: `menu`,
-      value: `none`,
+      value: `close_pinned_tabs`,
       info: `Command to run on middle click press on Favorites Top`,
       separator: true,
       version: 1,
@@ -2975,7 +2975,7 @@ App.build_settings = () => {
     middle_click_press_favorites_bottom: {
       name: `Middle Click Press Fav Bottom`,
       type: `menu`,
-      value: `none`,
+      value: `close_normal_tabs`,
       info: `Command to run on middle click press on Favorites Bottom`,
       version: 1,
       separator: true,
