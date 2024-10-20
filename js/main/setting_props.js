@@ -45,6 +45,41 @@ App.build_settings = () => {
         ])
       },
     },
+    tab_sort: {
+      name: `Tab Sort`,
+      type: `menu`,
+      value: `normal`,
+      no_mirror: true,
+      info: `How to sort the tabs
+      Either by index or by recent use`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Normal`, value: `normal`},
+          {text: `Recent`, value: `recent`},
+        ])
+      },
+    },
+    new_tab_mode: {
+      name: `New Tab Mode`,
+      type: `menu`,
+      value: `below`,
+      info: `Where to open a new tab
+      Normal means whatever the browser decides`,
+      separator: true,
+      version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Normal`, value: `normal`},
+          {text: App.separator_string},
+          {text: `Above`, value: `above`},
+          {text: `Below`, value: `below`},
+          {text: App.separator_string},
+          {text: `Top`, value: `top`},
+          {text: `Bottom`, value: `bottom`},
+        ])
+      },
+    },
     item_height: {
       name: `Item Height`,
       type: `menu`,
@@ -86,26 +121,35 @@ App.build_settings = () => {
       type: `menu`,
       value: `normal`,
       info: `The size of the item icons`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sizes)
       },
     },
-    icon_effect: {
-      name: `Icon Effect`,
+    width: {
+      name: `Popup Width`,
       type: `menu`,
-      value: `spin`,
-      info: `Effect for icons when multiple items are selected`,
+      value: 75,
+      actions: [`theme`],
+      info: `Width of the popup
+      It doesn't affect the sidebar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.get_size_options())
+      },
+    },
+    height: {
+      name: `Popup Height`,
+      type: `menu`,
+      value: 90,
+      actions: [`theme`],
+      info: `Height of the popup
+      It doesn't affect the sidebar`,
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: App.separator_string},
-          {text: `Spin`, value: `spin`},
-          {text: `Invert`, value: `invert`},
-          {text: `Border`, value: `border`},
-        ])
+        App.settings_make_menu(key, App.get_size_options())
       },
     },
     hover_effect: {
@@ -150,48 +194,31 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.effects)
       },
     },
+    icon_effect: {
+      name: `Icon Effect`,
+      type: `menu`,
+      value: `spin`,
+      info: `Effect for icons when multiple items are selected`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: App.separator_string},
+          {text: `Spin`, value: `spin`},
+          {text: `Invert`, value: `invert`},
+          {text: `Border`, value: `border`},
+        ])
+      },
+    },
     loading_effect: {
       name: `Loading Effect`,
       type: `menu`,
       value: `icon`,
       info: `Which effect to show on loading tabs`,
+      separator: true,
       version: 2,
       setup: (key) => {
         App.settings_make_menu(key, App.loading_effects)
-      },
-    },
-    tab_sort: {
-      name: `Tab Sort`,
-      type: `menu`,
-      value: `normal`,
-      no_mirror: true,
-      info: `How to sort the tabs
-      Either by index or by recent use`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Normal`, value: `normal`},
-          {text: `Recent`, value: `recent`},
-        ])
-      },
-    },
-    new_tab_mode: {
-      name: `New Tab Mode`,
-      type: `menu`,
-      value: `below`,
-      info: `Where to open a new tab
-      Normal means whatever the browser decides`,
-      version: 2,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Normal`, value: `normal`},
-          {text: App.separator_string},
-          {text: `Above`, value: `above`},
-          {text: `Below`, value: `below`},
-          {text: App.separator_string},
-          {text: `Top`, value: `top`},
-          {text: `Bottom`, value: `bottom`},
-        ])
       },
     },
     unloaded_opacity: {
@@ -227,30 +254,6 @@ App.build_settings = () => {
         ], () => {
           clearTimeout(App.restore_timeout)
         })
-      },
-    },
-    width: {
-      name: `Popup Width`,
-      type: `menu`,
-      value: 75,
-      actions: [`theme`],
-      info: `Width of the popup
-      It doesn't affect the sidebar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.get_size_options())
-      },
-    },
-    height: {
-      name: `Popup Height`,
-      type: `menu`,
-      value: 90,
-      actions: [`theme`],
-      info: `Height of the popup
-      It doesn't affect the sidebar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.get_size_options())
       },
     },
     prompt_mode: {
