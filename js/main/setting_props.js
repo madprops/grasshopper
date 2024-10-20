@@ -3134,7 +3134,7 @@ App.build_settings = () => {
     click_press_main_title: {
       name: `Click Press Title`,
       type: `menu`,
-      value: `none`,
+      value: `edit_global_notes`,
       info: `Command to run when press clicking the Title`,
       version: 1,
       setup: (key) => {
