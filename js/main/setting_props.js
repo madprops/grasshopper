@@ -3709,7 +3709,7 @@ App.build_settings = () => {
     click_press_playing: {
       name: `Click Press Playing`,
       type: `menu`,
-      value: `none`,
+      value: `show_playing_tabs`,
       info: `Command to run on left click press on Playing`,
       version: 1,
       setup: (key) => {
@@ -3719,7 +3719,7 @@ App.build_settings = () => {
     middle_click_press_playing: {
       name: `Middle Click Press Playing`,
       type: `menu`,
-      value: `none`,
+      value: `show_playing_tabs`,
       info: `Command to run on middle click press on Playing`,
       separator: true,
       version: 1,
