@@ -2996,7 +2996,7 @@ App.build_settings = () => {
     wheel_up_favorites_button: {
       name: `Wheel Up Fav Button`,
       type: `menu`,
-      value: `none`,
+      value: `jump_tabs_all_up`,
       info: `Command to run when using the mousewheel up on the Favorites Button`,
       version: 1,
       setup: (key) => {
@@ -3006,7 +3006,7 @@ App.build_settings = () => {
     wheel_down_favorites_button: {
       name: `Wheel Down Fav Button`,
       type: `menu`,
-      value: `none`,
+      value: `jump_tabs_all_down`,
       info: `Command to run when using the mousewheel down on the Favorites Button`,
       version: 1,
       setup: (key) => {
