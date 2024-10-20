@@ -21,7 +21,6 @@
   --sans: sans-serif;
   --panel_padding: 0.25rem;
   --popup_padding: 0.8rem;
-  --item_button_width: 1.66rem;
 }
 
 @font-face {
@@ -476,7 +475,7 @@ svg {
   transition: background-color var(--transition_delay);
   background-color: var(--close_button_color);
   border: 1px solid var(--alt_color_1);
-  width: var(--item_button_width);
+  width: 1.69rem;
   flex-shrink: 0;
   flex-grow: 0;
   box-sizing: border-box;
@@ -1595,7 +1594,7 @@ a:hover
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--item_button_width);
+  width: 1.89rem;
   flex-shrink: 0;
   flex-grow: 0;
 }
