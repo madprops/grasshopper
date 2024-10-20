@@ -3513,7 +3513,7 @@ App.build_settings = () => {
     click_press_item: {
       name: `Click Press Item`,
       type: `menu`,
-      value: `show_item_menu`,
+      value: `none`,
       info: `What command to run when pressing the left mouse button on an item for a short time`,
       version: 1,
       setup: (key) => {
@@ -3523,7 +3523,7 @@ App.build_settings = () => {
     middle_click_press_item: {
       name: `Middle Click Press Item`,
       type: `menu`,
-      value: `unload_tabs`,
+      value: `none`,
       info: `What command to run when pressing the middle mouse button on an item for a short time`,
       separator: true,
       version: 1,
@@ -3861,7 +3861,7 @@ App.build_settings = () => {
     ctrl_press_command: {
       name: `Ctrl Press`,
       type: `menu`,
-      value: `show_last_settings`,
+      value: `none`,
       info: `What command to run when pressing and holding Ctrl for a short time`,
       version: 1,
       setup: (key) => {
@@ -3871,7 +3871,7 @@ App.build_settings = () => {
     shift_press_command: {
       name: `Shift Press`,
       type: `menu`,
-      value: `show_all_settings`,
+      value: `none`,
       info: `What command to run when pressing and holding Shift for a short time`,
       separator: true,
       version: 1,
