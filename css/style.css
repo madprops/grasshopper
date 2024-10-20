@@ -475,7 +475,7 @@ svg {
   transition: background-color var(--transition_delay);
   background-color: var(--close_button_color);
   border: 1px solid var(--alt_color_1);
-  width: 1.69rem;
+  width: 1.77rem;
   flex-shrink: 0;
   flex-grow: 0;
   box-sizing: border-box;
