@@ -2950,7 +2950,6 @@ App.build_settings = () => {
       info: `Command to run on middle click press on Favorites Bottom`,
       separator: true,
       version: 1,
-      separator: true,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
