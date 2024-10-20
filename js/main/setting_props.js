@@ -3669,26 +3669,6 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_up_actions_menu: {
-      name: `Wheel Up Actions`,
-      type: `menu`,
-      value: `jump_tabs_all_up`,
-      info: `Command to run when using the mousewheel up on the Actions Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_actions_menu: {
-      name: `Wheel Down Actions`,
-      type: `menu`,
-      value: `jump_tabs_all_down`,
-      info: `Command to run when using the mousewheel down on the Actions Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     click_press_actions_menu: {
       name: `Click Press Actions`,
       type: `menu`,
@@ -3704,6 +3684,26 @@ App.build_settings = () => {
       type: `menu`,
       value: `lock_screen`,
       info: `Command to run on middle click press on Actions`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_actions_menu: {
+      name: `Wheel Up Actions`,
+      type: `menu`,
+      value: `jump_tabs_all_up`,
+      info: `Command to run when using the mousewheel up on the Actions Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_actions_menu: {
+      name: `Wheel Down Actions`,
+      type: `menu`,
+      value: `jump_tabs_all_down`,
+      info: `Command to run when using the mousewheel down on the Actions Button`,
       separator: true,
       version: 1,
       setup: (key) => {
