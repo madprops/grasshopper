@@ -410,10 +410,6 @@ svg {
   padding-right: var(--item_gap);
 }
 
-.close_button.right, .close_button.hover_right {
-  margin-left: var(--item_gap);
-}
-
 .item > div:nth-child(1 of :not(.hidden):not(.close_button):not(.hover_button))  {
   padding-left: var(--item_margin);
 }
