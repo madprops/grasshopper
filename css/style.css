@@ -164,6 +164,7 @@ select {
   border-color: var(--window_border_color);
   border-width: var(--window_border_width);
   border-style: solid;
+  box-sizing: border-box;
 }
 
 #main_top {
