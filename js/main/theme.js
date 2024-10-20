@@ -125,8 +125,7 @@ App.do_apply_theme = (args = {}) => {
     let h = `${(App.get_setting(`height`) / 100) * App.popup_height}px`
     App.set_css_var(`height`, h)
 
-    let item_padding = App.get_item_padding()
-    App.set_css_var(`item_padding`, `${item_padding}rem`)
+    App.set_item_padding_vars()
 
     if (App.get_setting(`show_scrollbars`)) {
       document.body.classList.remove(`no_scrollbars`)
@@ -231,8 +230,7 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`icon_pick`)
     }
 
-    let icon_size = App.get_icon_size()
-    App.set_css_var(`icon_size`, `${icon_size}rem`)
+    App.set_icon_size_vars()
     App.set_tab_box_vars()
 
     if (App.get_setting(`text_glow`)) {
@@ -1052,7 +1050,7 @@ App.get_font_string = (font) => {
   return font_str
 }
 
-App.get_item_padding = () => {
+App.set_item_padding_vars = () => {
   let item_padding = 0.405
   let height_diff = 0.15
   let item_height = App.get_setting(`item_height`)
@@ -1070,10 +1068,11 @@ App.get_item_padding = () => {
     item_padding += height_diff * 2
   }
 
-  return Math.max(item_padding, 0.1)
+  item_padding = Math.max(item_padding, 0.1)
+  App.set_css_var(`item_padding`, `${item_padding}rem`)
 }
 
-App.get_icon_size = () => {
+App.set_icon_size_vars = () => {
   let item_icon = App.get_setting(`item_icon`)
   let icon_size = 1.11
   let icon_size_diff = 0.181
@@ -1091,7 +1090,7 @@ App.get_icon_size = () => {
     icon_size += icon_size_diff * 2
   }
 
-  return icon_size
+  App.set_css_var(`icon_size`, `${icon_size}rem`)
 }
 
 App.set_tab_box_vars = () => {

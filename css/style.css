@@ -1,7 +1,7 @@
 :root {
   --background_color: #2a2a2a;
   --item_margin: 0.45rem;
-  --item_gap: 0.620rem;
+  --item_gap: 0.309rem;
   --scroller_shadow: inset 0 0 0.1rem currentColor;
   --scroller_padding: 0.26rem;
   --color_border: 1px solid black;
@@ -21,7 +21,7 @@
   --sans: sans-serif;
   --panel_padding: 0.25rem;
   --popup_padding: 0.8rem;
-  --item_button_width: 1.89rem;
+  --item_button_width: 1.66rem;
 }
 
 @font-face {
@@ -406,12 +406,17 @@ svg {
   height: 100%;
 }
 
-.item > div:nth-child(1 of :not(.hidden):not(.close_button):not(.hover_button))  {
-  padding-left: var(--item_margin);
+.item > div:not(.close_button):not(.hover_button) {
+  padding-left: var(--item_gap);
+  padding-right: var(--item_gap);
 }
 
-.item > div:not(.close_button):not(.hover_button) {
-  padding-right: var(--item_gap);
+.close_button.right, .close_button.hover_right {
+  margin-left: var(--item_gap);
+}
+
+.item > div:nth-child(1 of :not(.hidden):not(.close_button):not(.hover_button))  {
+  padding-left: var(--item_margin);
 }
 
 .item .close_button.hover {
