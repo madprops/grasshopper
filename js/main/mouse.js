@@ -844,15 +844,15 @@ App.click_press_action = (e) => {
     return
   }
 
-  function action(s1, s2) {
+  function action(s1, s2, item) {
     if (DOM.parent(target, [s1])) {
       if (App.click_press_button === 0) {
         let cmd = App.get_setting(`click_press_${s2}`)
-        App.run_command({cmd, from: `click_press`, e})
+        App.run_command({cmd, from: `click_press`, e, item})
       }
       else if (App.click_press_button === 1) {
         let cmd = App.get_setting(`middle_click_press_${s2}`)
-        App.run_command({cmd, from: `click_press`, e})
+        App.run_command({cmd, from: `click_press`, e, item})
       }
 
       App.click_press_triggered = true
@@ -934,30 +934,12 @@ App.click_press_action = (e) => {
     }
   }
 
-  if (App.get_setting(`hover_button`) !== `none`) {
-    if (DOM.parent(target, [`.hover_button`])) {
-      if (App.show_hover_menu_2(item, e)) {
-        App.click_press_triggered = true
-      }
-      else {
-        App.click_press_triggered = false
-      }
-
-      return
-    }
+  if (action(`.close_button`, `close_button`, item)) {
+    return
   }
 
-  if (App.get_setting(`close_button`) !== `none`) {
-    if (DOM.parent(target, [`.close_button`])) {
-      if (App.show_close_button_menu_2(item, e)) {
-        App.click_press_triggered = true
-      }
-      else {
-        App.click_press_triggered = false
-      }
-
-      return
-    }
+  if (action(`.hover_button`, `hover_button`, item)) {
+    return
   }
 
   let cmd

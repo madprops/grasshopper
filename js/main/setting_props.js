@@ -1550,19 +1550,31 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Close Button`,
       version: 1,
     },
-    close_button_menu_2: {
-      name: `Close Button Menu 2`,
-      type: `list`,
-      value: [],
-      data_group: `close_button_menus`,
-      info: `Menu to show when long pressing the Close Button`,
-      version: 1,
-    },
     middle_click_close_button: {
       name: `Middle Click Close`,
       type: `menu`,
       value: `unload_tabs`,
       info: `Command to run when middle clicking the Close Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_close_button: {
+      name: `Click Press Close`,
+      type: `menu`,
+      value: `toggle_color_red`,
+      info: `Command to run when pressing the Close Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_close_button: {
+      name: `Middle Click Press Close`,
+      type: `menu`,
+      value: `toggle_color_blue`,
+      info: `Command to run when middle pressing the Close Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -1632,24 +1644,31 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Hover Button`,
       version: 1,
     },
-    hover_menu_2: {
-      name: `Hover Menu 2`,
-      type: `list`,
-      value: [
-        {cmd: `copy_tabs`},
-        {cmd: `paste_tabs`},
-        {cmd: `search_domain_history`},
-        {cmd: `search_domain_bookmarks`},
-      ],
-      data_group: `hover_menus`,
-      info: `Menu to show when long pressing or right clicking the Hover Button`,
-      version: 1,
-    },
     middle_click_hover_button: {
       name: `Middle Click Hover`,
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the Hover Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_hover_button: {
+      name: `Click Press Hover`,
+      type: `menu`,
+      value: `toggle_color_red`,
+      info: `Command to run when pressing the Hover Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_hover_button: {
+      name: `Middle Click Press Hover`,
+      type: `menu`,
+      value: `toggle_color_blue`,
+      info: `Command to run when middle pressing the Hover Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
