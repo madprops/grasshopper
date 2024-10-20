@@ -2704,7 +2704,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `left`,
       no_mirror: true,
-      separator: true,
       info: `How to show the Favorites Menu
       Either a bar, or a button at the top right`,
       version: 1,
@@ -2716,6 +2715,22 @@ App.build_settings = () => {
           {text: `Bottom`, value: `bottom`},
           {text: App.separator_string},
           {text: `Button`, value: `button`},
+        ])
+      },
+    },
+    favorites_gravity: {
+      name: `Favorites Gravity`,
+      type: `menu`,
+      value: `center`,
+      info: `Gravity of the items in side modes of the favorites bar
+      Either make them stick to the top, center, or bottom`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Top`, value: `top`},
+          {text: `Center`, value: `center`},
+          {text: `Bottom`, value: `bottom`},
         ])
       },
     },
@@ -3045,22 +3060,6 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
-      },
-    },
-    favorites_gravity: {
-      name: `Favorites Gravity`,
-      type: `menu`,
-      value: `center`,
-      info: `Gravity of the items in side modes of the favorites bar
-      Either make them stick to the top, center, or bottom`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Top`, value: `top`},
-          {text: `Center`, value: `center`},
-          {text: `Bottom`, value: `bottom`},
-        ])
       },
     },
     favorites_blur: {
