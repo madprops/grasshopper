@@ -185,8 +185,10 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `Normal`, value: `normal`},
+          {text: App.separator_string},
           {text: `Above`, value: `above`},
           {text: `Below`, value: `below`},
+          {text: App.separator_string},
           {text: `Top`, value: `top`},
           {text: `Bottom`, value: `bottom`},
         ])
@@ -3358,6 +3360,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, [
           {text: `Above`, value: `above`},
           {text: `Below`, value: `below`},
+          {text: App.separator_string},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
         ])
