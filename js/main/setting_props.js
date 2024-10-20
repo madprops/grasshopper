@@ -2081,6 +2081,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `toggle_tab_box`,
       info: `Command to run on middle click on Tab Box Title`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -2101,6 +2102,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `tab_box_close`,
       info: `Command to run on middle click press on Tab Box Title`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
