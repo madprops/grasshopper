@@ -159,6 +159,16 @@ App.mouse_click_action = (e) => {
     return
   }
 
+  if (DOM.parent(target, [`#footer_tab_box`])) {
+    App.toggle_tab_box()
+    return
+  }
+
+  if (DOM.parent(target, [`#footer_count`])) {
+    App.select_all(App.active_mode, true)
+    return
+  }
+
   if (DOM.parent(target, [`#footer_info`])) {
     App.footer_click(e)
     return

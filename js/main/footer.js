@@ -88,10 +88,6 @@ App.create_footer = () => {
       App.footer_tips(tab_box_btn)
     }
 
-    DOM.ev(tab_box_btn, `click`, () => {
-      App.toggle_tab_box()
-    })
-
     footer.append(tab_box_btn)
   }
 
@@ -113,15 +109,6 @@ App.create_footer = () => {
   }
 
   footer_content.append(footer_info)
-
-  DOM.ev(footer_count, `click`, (e) => {
-    if (e.shiftKey || e.ctrlKey) {
-      return
-    }
-
-    App.select_all(App.active_mode, true)
-  })
-
   footer.append(footer_content)
   return footer
 }
