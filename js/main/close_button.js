@@ -14,12 +14,6 @@ App.add_close_button = (item, side) => {
       return
     }
 
-    let hover_side = App.get_setting(`hover_button`)
-
-    if (side === hover_side) {
-      return
-    }
-
     let btn = DOM.create(`div`, `close_button ${c_side} item_node`)
 
     if (hover) {
