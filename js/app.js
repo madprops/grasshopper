@@ -125,6 +125,7 @@ App.default_font = `Nova Square`
 App.last_selected_date = {}
 App.semi_white_color = `rgba(250, 250, 250, 1)`
 App.semi_black_color = `rgba(5, 5, 5, 1)`
+App.mouse_inside = false
 
 App.settings_ready = false
 App.media_image_ready = false
@@ -180,7 +181,7 @@ App.last_settings_scroll_delay = 350
 App.default_combo_delay = 100
 App.mouse_over_delay = 150
 App.mouse_out_delay = 150
-App.mouse_inside = false
+App.mouse_inside_delay = 800
 
 App.settings_icons = {
   all: `🔍`,

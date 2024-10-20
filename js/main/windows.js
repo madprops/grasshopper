@@ -315,12 +315,3 @@ App.build_shell = () => {
   let footer = App.create_footer()
   bottom_c.append(footer)
 }
-
-App.mouse_inside_check = () => {
-  if (App.mouse_inside) {
-    DOM.el(`#main`).classList.add(`mouse_inside`)
-  }
-  else {
-    DOM.el(`#main`).classList.remove(`mouse_inside`)
-  }
-}

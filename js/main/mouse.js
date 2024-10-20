@@ -76,6 +76,10 @@ App.setup_mouse = () => {
   App.mouse_out_debouncer = App.create_debouncer((e) => {
     App.do_mouse_out_action(e)
   }, App.mouse_out_delay)
+
+  App.remove_mouse_inside_debouncer = App.create_debouncer((e) => {
+    App.do_remove_mouse_inside()
+  }, App.mouse_inside_delay)
 }
 
 // Using this on mousedown instead causes some problems
@@ -1214,4 +1218,23 @@ App.trigger_middle_click = () => {
 App.empty_double_click = (mode, e) => {
   let cmd = App.get_setting(`double_click_empty_${mode}`)
   App.run_command({cmd, from: `empty`, e})
+}
+
+App.mouse_inside_check = () => {
+  App.remove_mouse_inside_debouncer.cancel()
+
+  if (App.mouse_inside) {
+    DOM.el(`#main`).classList.add(`mouse_inside`)
+  }
+  else {
+    App.remove_mouse_inside()
+  }
+}
+
+App.remove_mouse_inside = () => {
+  App.remove_mouse_inside_debouncer.call()
+}
+
+App.do_remove_mouse_inside = () => {
+  DOM.el(`#main`).classList.remove(`mouse_inside`)
 }
