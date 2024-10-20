@@ -478,6 +478,7 @@ svg {
   text-align: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: var(--border_radius);
 }
 
 .close_button:hover {
