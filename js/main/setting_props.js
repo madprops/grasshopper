@@ -4377,7 +4377,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Color Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
