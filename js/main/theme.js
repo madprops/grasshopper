@@ -669,7 +669,7 @@ App.insert_icon_css = () => {
       }`
     }
     else {
-      if ([`never`, `select`, `hover`, `focus`].includes(show)) {
+      if ([`never`, `select`, `focus`, `item_hover`, `global_hover`].includes(show)) {
         css += `.${key}.item_icon_unit {
           display: none;
         }`
@@ -681,13 +681,13 @@ App.insert_icon_css = () => {
         }`
       }
 
-      if ([`focus`].includes(show)) {
+      if ([`item_hover`, `focus`].includes(show)) {
         css += `.item:hover .${key}.item_icon_unit {
           display: flex;
         }`
       }
 
-      if ([`hover`].includes(show)) {
+      if ([`global_hover`].includes(show)) {
         css += `.mouse_inside .${key}.item_icon_unit {
           display: flex;
         }`
