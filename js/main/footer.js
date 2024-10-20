@@ -224,12 +224,12 @@ App.footer_tips = (el) => {
   App.trigger_title(el, `click_footer`)
   App.trigger_title(el, `double_click_footer`)
   App.trigger_title(el, `middle_click_footer`)
+  App.trigger_title(el, `click_press_footer`)
+  App.trigger_title(el, `middle_click_press_footer`)
   App.trigger_title(el, `wheel_up_footer`)
   App.trigger_title(el, `wheel_down_footer`)
   App.trigger_title(el, `wheel_up_shift_footer`)
   App.trigger_title(el, `wheel_down_shift_footer`)
-  App.trigger_title(el, `click_press_footer`)
-  App.trigger_title(el, `middle_click_press_footer`)
 }
 
 App.footer_double_click = (e) => {
