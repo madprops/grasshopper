@@ -406,11 +406,11 @@ svg {
   height: 100%;
 }
 
-.item > div:nth-child(1 of :not(.hidden):not(.close_button)):not(.hover_button)  {
+.item > div:nth-child(1 of :not(.close_button)):not(.hover_button)  {
   padding-left: var(--item_margin);
 }
 
-.item > div:not(.hidden):not(.close_button):not(.hover_button) {
+.item > div:not(.close_button):not(.hover_button) {
   padding-right: var(--item_gap);
 }
 
