@@ -342,13 +342,6 @@ App.build_settings = () => {
       info: `Enable smooth list scrolling in some cases`,
       version: 1,
     },
-    tab_blink: {
-      name: `Tab Blink`,
-      type: `checkbox`,
-      value: true,
-      info: `Blink when focusing tabs through certain actions when not directly clicking them`,
-      version: 1,
-    },
     wrap_text: {
       name: `Wrap Text`,
       type: `checkbox`,
@@ -386,14 +379,6 @@ App.build_settings = () => {
       value: false,
       info: `Require holding Ctrl to drag tab items vertically
       This is to avoid accidental re-ordering`,
-      version: 1,
-    },
-    auto_blur: {
-      name: `Auto Blur`,
-      type: `checkbox`,
-      value: false,
-      no_mirror: true,
-      info: `Blur the sidebar automatically then the mouse moves out, for privacy`,
       version: 1,
     },
     sound_effects: {
@@ -1480,6 +1465,13 @@ App.build_settings = () => {
       info: `Show feedback messages on certain actions`,
       version: 1,
     },
+    tab_blink: {
+      name: `Tab Blink`,
+      type: `checkbox`,
+      value: true,
+      info: `Blink when focusing tabs through certain actions when not directly clicking them`,
+      version: 1,
+    },
     show_scrollbars: {
       name: `Show Scrollbars`,
       type: `checkbox`,
@@ -1509,6 +1501,14 @@ App.build_settings = () => {
       value: false,
       info: `Show numbers as a trace on recently used tabs
       It goes from 1 to 9`,
+      version: 1,
+    },
+    auto_blur: {
+      name: `Auto Blur`,
+      type: `checkbox`,
+      value: false,
+      no_mirror: true,
+      info: `Blur the sidebar automatically then the mouse moves out, for privacy`,
       version: 1,
     },
   }
