@@ -72,11 +72,11 @@ App.build_settings = () => {
         App.settings_make_menu(key, [
           {text: `Normal`, value: `normal`},
           {text: App.separator_string},
-          {text: `Above`, value: `above`},
-          {text: `Below`, value: `below`},
+          {text: `At The Top`, value: `top`},
+          {text: `At The Bottom`, value: `bottom`},
           {text: App.separator_string},
-          {text: `Top`, value: `top`},
-          {text: `Bottom`, value: `bottom`},
+          {text: `Above Current`, value: `above`},
+          {text: `Below Current`, value: `below`},
         ])
       },
     },
