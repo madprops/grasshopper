@@ -115,12 +115,12 @@ App.common_menu_items = (args = {}) => {
   }
 
   let filter_items = []
-  App.item_menu_item(filter_items, `filter_domain`, {item: args.item, short: false})
   App.item_menu_item(filter_items, `filter_title`, {item: args.item, short: false})
+  App.item_menu_item(filter_items, `filter_domain`, {item: args.item, short: false})
+  App.item_menu_item(filter_items, `filter_node_tabs`, {item: args.item, short: false})
   App.item_menu_item(filter_items, `filter_color`, {item: args.item, short: false})
   App.item_menu_item(filter_items, `filter_tag`, {item: args.item, short: false})
   App.item_menu_item(filter_items, `filter_icon`, {item: args.item, short: false})
-  App.item_menu_item(filter_items, `filter_node_tabs`, {item: args.item, short: false})
 
   if (filter_items.length) {
     items.push({
