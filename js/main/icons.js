@@ -33,8 +33,11 @@ App.add_icons = (item, side) => {
     cls = ``
     what = `image_icon`
     title = `Image`
-    cls += ` grower`
-    title += `\nClick to show image`
+
+    if (App.get_setting(`view_image_${item.mode}`) === `icon`) {
+      cls += ` grower`
+      title += `\nClick to show image`
+    }
 
     if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, classes(what))
@@ -50,8 +53,11 @@ App.add_icons = (item, side) => {
     cls = ``
     what = `video_icon`
     title = `Video`
-    cls += ` grower`
-    title += `\nClick to show video`
+
+    if (App.get_setting(`view_video_${item.mode}`) === `icon`) {
+      cls += ` grower`
+      title += `\nClick to show video`
+    }
 
     if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, classes(what))
@@ -67,8 +73,11 @@ App.add_icons = (item, side) => {
     cls = ``
     what = `audio_icon`
     title = `Audio`
-    cls += ` grower`
-    title += `\nClick to show audio`
+
+    if (App.get_setting(`view_audio_${item.mode}`) === `icon`) {
+      cls += ` grower`
+      title += `\nClick to show audio`
+    }
 
     if (App.icon_enabled(what) && check_side(what)) {
       let icon = DOM.create(`div`, classes(what))
