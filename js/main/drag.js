@@ -33,6 +33,11 @@ App.setup_item_drag = (mode) => {
       return false
     }
 
+    if (App.is_filtered(mode)) {
+      e.preventDefault()
+      return false
+    }
+
     if (DOM.parent(e.target, [`#pinline`])) {
       App.dragstart_pinline(mode, e)
       return
@@ -280,11 +285,6 @@ App.dragstart_pinline = (mode, e) => {
   App.reset_triggers()
 
   if (e.shiftKey) {
-    e.preventDefault()
-    return false
-  }
-
-  if (App.is_filtered(mode)) {
     e.preventDefault()
     return false
   }
