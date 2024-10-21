@@ -318,14 +318,14 @@ App.do_apply_theme = (args = {}) => {
     let split_side = App.get_setting(`split_side`)
     main.classList.add(`split_side_${split_side}`)
 
-    let close_btns = [`none`, `left`, `right`]
+    let c_sides = [`left`, `right`]
 
-    for (let cb of close_btns) {
-      main.classList.remove(`close_button_${cb}`)
+    for (let c_side of c_sides) {
+      main.classList.remove(`close_button_${c_side}`)
     }
 
-    let cb = App.get_setting(`close_button`)
-    main.classList.add(`close_button_${cb}`)
+    let c_side = App.get_setting(`close_button_side`)
+    main.classList.add(`close_button_${c_side}`)
 
     if (App.get_setting(`button_icons`)) {
       main.classList.add(`button_text_icon_enabled`)

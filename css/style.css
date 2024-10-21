@@ -418,11 +418,17 @@ svg {
   padding-right: var(--item_margin);
 }
 
-.item .close_button.hover {
+.item .close_button.hover,
+.item .close_button.global_hover
+{
   display: none;
 }
 
-.mouse_inside .close_button.hover {
+.item:hover .close_button.hover {
+  display: flex;
+}
+
+.mouse_inside .close_button.global_hover {
   display: flex;
 }
 

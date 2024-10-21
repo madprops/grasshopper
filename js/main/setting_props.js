@@ -1520,21 +1520,29 @@ App.build_settings = () => {
   category = `close`
 
   props = {
-    close_button: {
-      name: `Close Button`,
+    close_button_side: {
+      name: `Close Button Side`,
       type: `menu`,
-      value: `right_hover`,
-      info: `How to show the Close Button on tabs`,
+      value: `right`,
+      info: `On which side to show the Close Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
+    show_close_button: {
+      name: `Show Close Button`,
+      type: `menu`,
+      value: `global_hover`,
+      info: `How to show the Close Buttons`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
+          {text: `Never`, value: `never`},
           {text: App.separator_string},
-          {text: `Left`, value: `left`},
-          {text: `Right`, value: `right`},
-          {text: App.separator_string},
-          {text: `Left Hover`, value: `left_hover`},
-          {text: `Right Hover`, value: `right_hover`},
+          {text: `Always`, value: `always`},
+          {text: `Item Hover`, value: `hover`},
+          {text: `Global Hover`, value: `global_hover`},
         ])
       },
     },

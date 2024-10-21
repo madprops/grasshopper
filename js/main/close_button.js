@@ -1,13 +1,12 @@
 App.add_close_button = (item, side) => {
-  let cb_setting = App.get_setting(`close_button`)
+  let cb_setting = App.get_setting(`show_close_button`)
 
-  if (cb_setting === `none`) {
+  if (cb_setting === `never`) {
     return
   }
 
-  let split = cb_setting.split(`_`)
-  let c_side = split[0]
-  let hover = split.at(-1) === `hover`
+  let c_side = App.get_setting(`close_button_side`)
+  let show = App.get_setting(`show_close_button`)
 
   if (item.mode === `tabs`) {
     if (side !== c_side) {
@@ -15,12 +14,8 @@ App.add_close_button = (item, side) => {
     }
 
     let btn = DOM.create(`div`, `close_button ${c_side} item_node`)
-
-    if (hover) {
-      btn.classList.add(`hover`)
-    }
-
     btn.textContent = App.get_setting(`close_icon`) || App.close_tab_icon
+    btn.classList.add(show)
     item.element.append(btn)
   }
 }
