@@ -55,9 +55,9 @@ App.show_item_menu = async (args = {}) => {
 
     App.sep(zone_items)
 
-    App.item_menu_item(zone_items, `add_split_both`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `add_split_top`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `add_split_bottom`, {item: args.item, short: false})
+    App.item_menu_item(zone_items, `add_split_both`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `remove_split`, {item: args.item, short: false})
 
     items.push({
