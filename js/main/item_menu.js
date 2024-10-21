@@ -40,20 +40,8 @@ App.show_item_menu = async (args = {}) => {
   }
 
   if (args.item.mode === `tabs`) {
-    App.item_menu_item(items, `select_header_group`, {item: args.item})
-    App.item_menu_item(items, `close_header_group`, {item: args.item})
-    App.item_menu_item(items, `go_to_root_url`, {item: args.item})
-    App.item_menu_item(items, `focus_parent_tab`, {item: args.item})
-    App.item_menu_item(items, `filter_node_tabs`, {item: args.item})
-    App.item_menu_item(items, `load_tabs`, {item: args.item})
-
-    if (items.length) {
-      App.sep(items)
-    }
-
     App.item_menu_item(items, `pin_tabs`, {item: args.item})
     App.item_menu_item(items, `unpin_tabs`, {item: args.item})
-    App.item_menu_item(items, `open_new_tab`, {item: args.item})
     App.item_menu_item(items, `show_color_menu`, {item: args.item})
     App.item_menu_tags(items, args.item)
     App.item_menu_item(items, `edit_icon`, {item: args.item})
