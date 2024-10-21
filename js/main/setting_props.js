@@ -1616,9 +1616,10 @@ App.build_settings = () => {
       name: `Close Button Menu`,
       type: `list`,
       value: [
-        {cmd: `filter_node_tabs`},
+        {cmd: `open_new_tab`},
+        {cmd: `filter_title`},
         {cmd: `filter_domain`},
-        {cmd: `filter_color`},
+        {cmd: `filter_node_tabs`},
         {cmd: `duplicate_tabs`},
         {cmd: `unload_tabs`},
         {cmd: `settings_category_close`},
