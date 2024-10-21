@@ -284,11 +284,6 @@ App.dragstart_pinline = (mode, e) => {
     return false
   }
 
-  if (App.is_filtered(mode)) {
-    e.preventDefault()
-    return false
-  }
-
   App.dragging = true
   App.drag_mode = `pinline`
   App.drag_y = e.clientY
