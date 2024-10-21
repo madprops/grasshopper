@@ -571,7 +571,7 @@ App.update_tabs_index = async (items, direction) => {
     items = items.slice(0).reverse()
   }
 
-  let pinline = App.pinline_index()
+  let pinline = App.pinline_index(false)
 
   for (let item of items) {
     let index = App.get_item_element_index({

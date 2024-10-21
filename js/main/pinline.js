@@ -102,8 +102,8 @@ App.remove_pinline = () => {
   }
 }
 
-App.pinline_index = () => {
-  if (!App.pinline_visible) {
+App.pinline_index = (only_visible = false) => {
+  if (only_visible && !App.pinline_visible) {
     return -1
   }
 
