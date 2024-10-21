@@ -711,6 +711,10 @@ App.insert_icon_css = () => {
 
   action(`color_icon`)
   action(`custom_icon`)
+  action(`image_icon`)
+  action(`video_icon`)
+  action(`audio_icon`)
+
   App.insert_css(`icon_css`, css)
 }
 
