@@ -21,6 +21,7 @@
   --sans: sans-serif;
   --panel_padding: 0.25rem;
   --popup_padding: 0.8rem;
+  --close_button_width: 1.77rem;
 }
 
 @font-face {
@@ -421,15 +422,18 @@ svg {
 .item .close_button.hover,
 .item .close_button.global_hover
 {
-  display: none;
+  width: 0;
+  border-width: 0;
 }
 
 .item:hover .close_button.hover {
-  display: flex;
+  border-width: 1px;
+  width: var(--close_button_width);
 }
 
 .mouse_inside .close_button.global_hover {
-  display: flex;
+  border-width: 1px;
+  width: var(--close_button_width);
 }
 
 .item.loading_icon_effect .loading_icon,
@@ -478,10 +482,11 @@ svg {
 }
 
 .close_button {
-  transition: background-color var(--transition_delay);
+  transition: background-color var(--transition_delay), width 500ms, border-width 500ms;
+  width: var(--close_button_width);
   background-color: var(--close_button_color);
   border: 1px solid var(--alt_color_1);
-  width: 1.77rem;
+  border-width: 1px;
   flex-shrink: 0;
   flex-grow: 0;
   box-sizing: border-box;
@@ -489,6 +494,7 @@ svg {
   justify-content: center;
   cursor: pointer;
   border-radius: var(--border_radius);
+  overflow: hidden;
 }
 
 .close_button:hover {
