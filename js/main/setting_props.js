@@ -659,6 +659,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Image Icon`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
@@ -729,6 +730,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Video Icon`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
@@ -799,6 +801,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Audio Icon`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
