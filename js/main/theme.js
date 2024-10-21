@@ -995,7 +995,6 @@ App.set_theme = (num) => {
 App.set_background_image = (num) => {
   let bg_image = `Background ${num}`
   App.set_setting({setting: `background_image`, value: bg_image})
-  App.refresh_setting_widgets([`background_image`])
   App.apply_theme()
 }
 
@@ -1012,6 +1011,7 @@ App.pick_background = (e) => {
       image: App.background_path(bg.num),
       action: () => {
         App.set_background_image(bg.num)
+        App.refresh_setting_widgets([`background_image`])
       },
     })
   }
