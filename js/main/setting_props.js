@@ -1607,6 +1607,7 @@ App.build_settings = () => {
       name: `Close Icon`,
       type: `text_smaller`,
       value: `x`,
+      no_empty: true,
       placeholder: App.icon_placeholder,
       info: `Icon for the close buttons`,
       version: 1,

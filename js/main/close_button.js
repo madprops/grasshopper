@@ -14,7 +14,7 @@ App.add_close_button = (item, side) => {
     }
 
     let btn = DOM.create(`div`, `close_button ${c_side} item_node`)
-    btn.textContent = App.get_setting(`close_icon`) || App.close_tab_icon
+    btn.textContent = App.get_setting(`close_icon`)
     btn.classList.add(show)
     item.element.append(btn)
   }
