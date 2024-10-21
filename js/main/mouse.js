@@ -250,7 +250,7 @@ App.mouse_click_action = (e) => {
   }
 
   if (mode === `tabs`) {
-    if (App.get_setting(`close_button`) !== `none`) {
+    if (App.get_setting(`show_close_button`) !== `never`) {
       if (DOM.class(target, [`close_button`])) {
         App.close_tabs({item})
         return
