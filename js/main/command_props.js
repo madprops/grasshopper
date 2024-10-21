@@ -8,8 +8,6 @@ App.setup_commands = () => {
   let bookmarks_icon = App.mode_icon(`bookmarks`)
   let closed_icon = App.mode_icon(`closed`)
 
-  let image_icon = App.get_media_icon(`image`)
-
   let pin_icon = App.get_setting(`pin_icon`)
   let normal_icon = App.get_setting(`normal_icon`)
   let playing_icon = App.get_setting(`playing_icon`)
@@ -26,6 +24,7 @@ App.setup_commands = () => {
   let parent_icon = App.get_setting(`parent_icon`)
   let title_icon = App.get_setting(`title_icon`)
   let tags_icon = App.get_setting(`tags_icon`)
+  let image_icon = App.get_setting(`image_icon`)
 
   let main_title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
@@ -362,7 +361,7 @@ App.setup_commands = () => {
 
   for (let media of App.media_types) {
     let cap = App.capitalize(media)
-    let icon = App.get_media_icon(media)
+    let icon = App.get_setting(`${media}_icon`)
     let name = `Filter ${cap}`.trim()
 
     media_filters.push({

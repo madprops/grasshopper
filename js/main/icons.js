@@ -31,6 +31,57 @@ App.add_icons = (item, side) => {
     }
 
     cls = ``
+    what = `image_icon`
+    title = `Image`
+    cls += ` grower`
+    title += `\nClick to show image`
+
+    if (App.icon_enabled(what) && check_side(what)) {
+      let icon = DOM.create(`div`, classes(what))
+      icon.textContent = App.get_setting(what)
+
+      if (tips) {
+        icon.title = title
+      }
+
+      item.element.append(icon)
+    }
+
+    cls = ``
+    what = `video_icon`
+    title = `Video`
+    cls += ` grower`
+    title += `\nClick to show video`
+
+    if (App.icon_enabled(what) && check_side(what)) {
+      let icon = DOM.create(`div`, classes(what))
+      icon.textContent = App.get_setting(what)
+
+      if (tips) {
+        icon.title = title
+      }
+
+      item.element.append(icon)
+    }
+
+    cls = ``
+    what = `audio_icon`
+    title = `Audio`
+    cls += ` grower`
+    title += `\nClick to show audio`
+
+    if (App.icon_enabled(what) && check_side(what)) {
+      let icon = DOM.create(`div`, classes(what))
+      icon.textContent = App.get_setting(what)
+
+      if (tips) {
+        icon.title = title
+      }
+
+      item.element.append(icon)
+    }
+
+    cls = ``
     what = `pin_icon`
     title = `Pinned`
 
@@ -526,6 +577,42 @@ App.check_icons = (item) => {
     let icon = DOM.el(`.node_icon`, item.element)
 
     if (App.tab_has_parent(item)) {
+      DOM.show(icon)
+    }
+    else {
+      DOM.hide(icon)
+    }
+  }
+
+  if (App.icon_enabled(`image`)) {
+    let type = App.get_media_type(item)
+    let icon = DOM.el(`.image_icon`, item.element)
+
+    if (type === `image`) {
+      DOM.show(icon)
+    }
+    else {
+      DOM.hide(icon)
+    }
+  }
+
+  if (App.icon_enabled(`video`)) {
+    let type = App.get_media_type(item)
+    let icon = DOM.el(`.video_icon`, item.element)
+
+    if (type === `video`) {
+      DOM.show(icon)
+    }
+    else {
+      DOM.hide(icon)
+    }
+  }
+
+  if (App.icon_enabled(`audio`)) {
+    let type = App.get_media_type(item)
+    let icon = DOM.el(`.audio_icon`, item.element)
+
+    if (type === `audio`) {
       DOM.show(icon)
     }
     else {

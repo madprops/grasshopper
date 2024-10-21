@@ -315,7 +315,7 @@ App.search_media = (mode, e) => {
 
   for (let type of App.media_types) {
     let subitems = []
-    let icon = App.get_media_icon(type)
+    let icon = App.get_setting(`${type}_icon`)
 
     for (let ext of App[`${type}_extensions`]) {
       subitems.push({text: ext, icon, action: () => {
@@ -387,31 +387,4 @@ App.fill_media_window = (what) => {
   DOM.el(`#window_content_media_${what}`).append(c)
   let top = DOM.create(`div`, `flex_row_center gap_2 grow`, `media_${what}_buttons`)
   DOM.el(`#window_top_media_${what}`).append(top)
-}
-
-App.check_view_media = (item) => {
-  let type = App.get_media_type(item)
-  let view_media = DOM.el(`.view_media_button`, item.element)
-  let icon
-
-  if (type) {
-    icon = App.get_media_icon(type)
-  }
-
-  if (icon) {
-    view_media.textContent = icon
-    view_media.title = App.capitalize(type)
-    DOM.show(view_media)
-
-    if (App.get_setting(`view_${type}_${item.mode}`) !== `never`) {
-      view_media.classList.add(`grower`)
-    }
-  }
-  else {
-    DOM.hide(view_media)
-  }
-}
-
-App.get_media_icon = (type) => {
-  return App.get_setting(`${type}_icon`) || App.settings_icons.media
 }

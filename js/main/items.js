@@ -309,7 +309,6 @@ App.refresh_item_element = (item) => {
   App.check_icons(item)
   App.check_tab_colors(item)
   App.check_tab_active(item)
-  App.check_view_media(item)
   App.set_item_text(item)
   App.apply_color_mode(item)
   App.check_taglist(item)
@@ -341,9 +340,6 @@ App.create_item_element = (item) => {
     App.apply_splits(item)
   }
 
-  let view_media = DOM.create(`div`, `view_media_button hidden`)
-  item.element.append(view_media)
-  App.check_view_media(item)
   let content = DOM.create(`div`, `item_content`)
   let text = DOM.create(`div`, `item_text`)
   let text_1 = DOM.create(`div`, `item_text_line item_text_1`)

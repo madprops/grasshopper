@@ -215,7 +215,7 @@ App.mouse_click_action = (e) => {
     let media_setting = App.get_setting(`view_${media_type}_${mode}`)
 
     if (media_setting === `icon`) {
-      if (DOM.class(target, [`view_media_button`])) {
+      if (DOM.class(target, [`${media_type}_icon`])) {
         App.select_item({item, scroll: `nearest`})
         App.view_media(item)
         return

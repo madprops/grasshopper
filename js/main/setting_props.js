@@ -639,9 +639,30 @@ App.build_settings = () => {
       name: `View Image Icon`,
       type: `text_smaller`,
       value: `🖼️`,
+      no_empty: true,
       placeholder: App.icon_placeholder,
       info: `Media icon for images`,
       version: 1,
+    },
+    image_icon_side: {
+      name: `Image Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Image Icon on the left or right of text`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
+    show_image_icon: {
+      name: `Show Image Icon`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Image Icon`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.show_icon)
+      },
     },
     view_image_tabs: {
       name: `View Image (Tabs)`,
@@ -688,9 +709,30 @@ App.build_settings = () => {
       name: `View Video Icon`,
       type: `text_smaller`,
       value: `▶️`,
+      no_empty: true,
       placeholder: App.icon_placeholder,
       info: `Media icon for videos`,
       version: 1,
+    },
+    video_icon_side: {
+      name: `Video Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Video Icon on the left or right of text`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
+    show_video_icon: {
+      name: `Show Video Icon`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Video Icon`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.show_icon)
+      },
     },
     view_video_tabs: {
       name: `View Video (Tabs)`,
@@ -737,9 +779,30 @@ App.build_settings = () => {
       name: `View Audio Icon`,
       type: `text_smaller`,
       value: `🎵`,
+      no_empty: true,
       placeholder: App.icon_placeholder,
       info: `Media icon for audio`,
       version: 1,
+    },
+    audio_icon_side: {
+      name: `Audio Icon Side`,
+      type: `menu`,
+      value: `left`,
+      info: `Show the Audio Icon on the left or right of text`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
+    show_audio_icon: {
+      name: `Show Audio Icon`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Audio Icon`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.show_icon)
+      },
     },
     view_audio_tabs: {
       name: `View Audio (Tabs)`,
