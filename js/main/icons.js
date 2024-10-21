@@ -240,7 +240,7 @@ App.add_icons = (item, side) => {
   what = `image_icon`
   title = `Image`
 
-  if (App.get_setting(`view_image_${item.mode}`) === `icon`) {
+  if ([`icon`, `item`].includes(App.get_setting(`view_image_${item.mode}`))) {
     cls += ` grower`
     title += `\nClick to show image`
   }
@@ -260,7 +260,7 @@ App.add_icons = (item, side) => {
   what = `video_icon`
   title = `Video`
 
-  if (App.get_setting(`view_video_${item.mode}`) === `icon`) {
+  if ([`icon`, `item`].includes(App.get_setting(`view_video_${item.mode}`))) {
     cls += ` grower`
     title += `\nClick to show video`
   }
@@ -280,7 +280,7 @@ App.add_icons = (item, side) => {
   what = `audio_icon`
   title = `Audio`
 
-  if (App.get_setting(`view_audio_${item.mode}`) === `icon`) {
+  if ([`icon`, `item`].includes(App.get_setting(`view_audio_${item.mode}`))) {
     cls += ` grower`
     title += `\nClick to show audio`
   }
