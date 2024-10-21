@@ -482,7 +482,7 @@ svg {
 }
 
 .close_button {
-  transition: background-color var(--transition_delay), width 500ms, border-width 500ms;
+  transition: background-color var(--transition_delay), width 350ms, border-width 350ms;
   width: var(--close_button_width);
   background-color: var(--close_button_color);
   border: 1px solid var(--alt_color_1);
