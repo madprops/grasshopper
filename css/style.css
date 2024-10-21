@@ -550,8 +550,7 @@ svg {
 .icon_pick .item_container .item_icon_container:hover .item_icon,
 .header_icon_pick .item_container .header_item .item_icon_container:hover .item_icon
 {
-  outline: 2px solid var(--text_color);
-  border-radius: 50%;
+  transform: scale(1.1);
 }
 
 .icon_effect_spin .multiple_selected .item.selected .item_icon {
