@@ -236,65 +236,30 @@ App.add_icons = (item, side) => {
     }
   }
 
-  cls = ``
-  what = `image_icon`
-  title = `Image`
+  function media_icon(media, title) {
+    let what = `${media}_icon`
+    let cls = ``
 
-  if ([`icon`, `item`].includes(App.get_setting(`view_image_${item.mode}`))) {
-    cls += ` grower`
-    title += `\nClick to show image`
-  }
-
-  if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, classes(what))
-    icon.textContent = App.get_setting(what)
-
-    if (tips) {
-      icon.title = title
+    if ([`icon`, `item`].includes(App.get_setting(`view_${media}_${item.mode}`))) {
+      cls += ` grower`
+      title += `\nClick to embed ${media}`
     }
 
-    item.element.append(icon)
-  }
+    if (App.icon_enabled(what) && check_side(what)) {
+      let icon = DOM.create(`div`, classes(what))
+      icon.textContent = App.get_setting(what)
 
-  cls = ``
-  what = `video_icon`
-  title = `Video`
+      if (tips) {
+        icon.title = title
+      }
 
-  if ([`icon`, `item`].includes(App.get_setting(`view_video_${item.mode}`))) {
-    cls += ` grower`
-    title += `\nClick to show video`
-  }
-
-  if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, classes(what))
-    icon.textContent = App.get_setting(what)
-
-    if (tips) {
-      icon.title = title
+      item.element.append(icon)
     }
-
-    item.element.append(icon)
   }
 
-  cls = ``
-  what = `audio_icon`
-  title = `Audio`
-
-  if ([`icon`, `item`].includes(App.get_setting(`view_audio_${item.mode}`))) {
-    cls += ` grower`
-    title += `\nClick to show audio`
-  }
-
-  if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, classes(what))
-    icon.textContent = App.get_setting(what)
-
-    if (tips) {
-      icon.title = title
-    }
-
-    item.element.append(icon)
-  }
+  media_icon(`image`, `Image`)
+  media_icon(`video`, `Video`)
+  media_icon(`audio`, `Audio`)
 
   cls = ``
   what = `title_icon`
@@ -466,41 +431,23 @@ App.check_icons = (item) => {
     DOM.hide(custom_icon_el)
   }
 
-  if (App.icon_enabled(`image`)) {
-    let type = App.get_media_type(item)
-    let icon = DOM.el(`.image_icon`, item.element)
+  function check_media(media) {
+    if (App.icon_enabled(media)) {
+      let type = App.get_media_type(item)
+      let icon = DOM.el(`.${media}_icon`, item.element)
 
-    if (type === `image`) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
+      if (type === media) {
+        DOM.show(icon)
+      }
+      else {
+        DOM.hide(icon)
+      }
     }
   }
 
-  if (App.icon_enabled(`video`)) {
-    let type = App.get_media_type(item)
-    let icon = DOM.el(`.video_icon`, item.element)
-
-    if (type === `video`) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`audio`)) {
-    let type = App.get_media_type(item)
-    let icon = DOM.el(`.audio_icon`, item.element)
-
-    if (type === `audio`) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
+  check_media(`image`)
+  check_media(`video`)
+  check_media(`audio`)
 
   if (item.mode !== `tabs`) {
     return
