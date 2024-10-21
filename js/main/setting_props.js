@@ -1607,6 +1607,9 @@ App.build_settings = () => {
           {text: `Never`, value: `never`},
           {text: App.separator_string},
           {text: `Always`, value: `always`},
+          {text: `On Select`, value: `select`},
+          {text: `On Focus`, value: `focus`},
+          {text: App.separator_string},
           {text: `Item Hover`, value: `hover`},
           {text: `Global Hover`, value: `global_hover`},
         ])

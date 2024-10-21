@@ -420,18 +420,20 @@ svg {
 }
 
 .item .close_button.hover,
+.item .close_button.focus,
+.item .close_button.select,
 .item .close_button.global_hover
 {
   width: 0;
   border-width: 0;
 }
 
-.item:hover .close_button.hover {
-  border-width: 1px;
-  width: var(--close_button_width);
-}
-
-.mouse_inside .close_button.global_hover {
+.item:hover .close_button.hover,
+.item:hover .close_button.focus,
+.item.selected .close_button.select,
+.item.selected .close_button.focus,
+.mouse_inside .close_button.global_hover
+{
   border-width: 1px;
   width: var(--close_button_width);
 }
