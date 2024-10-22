@@ -1603,16 +1603,7 @@ App.build_settings = () => {
       info: `How to show the Close Buttons`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Never`, value: `never`},
-          {text: App.separator_string},
-          {text: `Always`, value: `always`},
-          {text: `On Select`, value: `select`},
-          {text: `On Focus`, value: `focus`},
-          {text: App.separator_string},
-          {text: `Item Hover`, value: `hover`},
-          {text: `Global Hover`, value: `global_hover`},
-        ])
+        App.settings_make_menu(key, App.show_icon)
       },
     },
     close_button_menu: {
