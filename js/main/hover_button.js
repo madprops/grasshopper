@@ -1,6 +1,6 @@
 App.create_hover_button = () => {
   let btn = DOM.create(`div`, `hover_button`)
-  btn.textContent = App.get_setting(`hover_icon`) || App.command_icon
+  btn.textContent = App.get_setting(`hover_button_icon`) || App.command_icon
   return btn
 }
 

@@ -1707,7 +1707,7 @@ App.build_settings = () => {
       info: `Horizontal padding for the Close Buttons`,
       version: 1,
     },
-    close_icon: {
+    close_button_icon: {
       name: `Close Icon`,
       type: `text_smaller`,
       value: `x`,
@@ -1819,7 +1819,7 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    hover_icon: {
+    hover_button_icon: {
       name: `Hover Icon`,
       type: `text_smaller`,
       value: `🔆`,

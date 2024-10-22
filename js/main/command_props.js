@@ -18,7 +18,8 @@ App.setup_commands = () => {
   let notes_icon = App.get_setting(`notes_icon`)
   let header_icon = App.get_setting(`header_icon`) || App.zone_icon
   let subheader_icon = App.get_setting(`subheader_icon`) || App.zone_icon
-  let hover_icon = App.get_setting(`hover_icon`)
+  let hover_button_icon = App.get_setting(`hover_button_icon`)
+  let close_button_icon = App.get_setting(`close_button_icon`)
   let root_icon = App.get_setting(`root_icon`)
   let node_icon = App.get_setting(`node_icon`)
   let parent_icon = App.get_setting(`parent_icon`)
@@ -1592,7 +1593,7 @@ App.setup_commands = () => {
       cmd: `show_hover_button_menu`,
       modes: [`items`],
       item: true,
-      icon: hover_icon,
+      icon: hover_button_icon,
       action: (args) => {
         App.show_hover_button_menu(args.item, args.e)
       },
@@ -1965,7 +1966,7 @@ App.setup_commands = () => {
       short_name: `Close`,
       cmd: `show_close_button_menu`,
       modes: [`tabs`],
-      icon: close_icon,
+      icon: close_button_icon,
       action: (args) => {
         App.show_close_button_menu(args.item, args.e)
       },
