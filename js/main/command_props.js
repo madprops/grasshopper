@@ -1587,7 +1587,7 @@ App.setup_commands = () => {
       info: `Show the Extra Menu`,
     },
     {
-      name: `Hover Menu`,
+      name: `Hover Button Menu`,
       short_name: `Hover`,
       cmd: `show_hover_button_menu`,
       modes: [`items`],
