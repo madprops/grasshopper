@@ -487,6 +487,17 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`window_border_color`, App.get_setting(`window_border_color`))
     App.set_css_var(`close_button_color`, App.get_setting(`close_button_color`))
 
+    for (let cb_show of App.remove_separators(App.show_icon)) {
+      main.classList.remove(`close_button_${cb_show.value}`)
+      main.classList.remove(`close_button_tab_box_${cb_show.value}`)
+    }
+
+    let cb_show = App.get_setting(`show_close_button`)
+    main.classList.add(`close_button_${cb_show}`)
+
+    let cb_show_tb = App.get_setting(`show_close_button_tab_box`)
+    main.classList.add(`close_button_tab_box_${cb_show_tb}`)
+
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_icon_css()

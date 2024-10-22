@@ -568,20 +568,16 @@ App.mouse_context_action = (e) => {
     }
   }
 
-  let item_container = DOM.parent(target, [`.item_container`])
-
-  if (item_container) {
-    if (App.get_setting(`icon_pick`)) {
-      if (DOM.parent(target, [`.item_icon_container`])) {
-        App.select_item({item, scroll: `nearest`, deselect: true})
-        return
-      }
+  if (App.get_setting(`icon_pick`)) {
+    if (DOM.parent(target, [`.item_icon_container`])) {
+      App.select_item({item, scroll: `nearest`, deselect: true})
+      return
     }
+  }
 
-    if (DOM.parent(target, [`.close_button`])) {
-      if (App.show_close_button_menu(item, e)) {
-        return
-      }
+  if (DOM.parent(target, [`.close_button`])) {
+    if (App.show_close_button_menu(item, e)) {
+      return
     }
   }
 
