@@ -133,17 +133,6 @@ App.do_apply_theme = (args = {}) => {
       document.body.classList.add(`no_rounded`)
     }
 
-    let effects = App.remove_separators(App.effects)
-
-    for (let eff of effects) {
-      main.classList.remove(`selected_effect_${eff.value}`)
-    }
-
-    let selected_effect = App.get_setting(`selected_effect`)
-    main.classList.add(`selected_effect_${selected_effect}`)
-    let selected_effect_2 = App.get_setting(`selected_effect_2`)
-    main.classList.add(`selected_effect_${selected_effect_2}`)
-
     if (App.get_setting(`wrap_text`)) {
       main.classList.remove(`no_wrap`)
     }
@@ -165,18 +154,6 @@ App.do_apply_theme = (args = {}) => {
       document.body.classList.remove(`text_glow`)
     }
 
-    let ie = App.get_setting(`icon_effect`)
-    let ies = [`none`, `spin`, `invert`, `border`]
-
-    for (let eff of ies) {
-      main.classList.remove(`icon_effect_${eff}`)
-    }
-
-    main.classList.add(`icon_effect_${ie}`)
-    let font = App.get_setting(`font`)
-    let font_str = App.get_font_string(font)
-    App.set_css_var(`font`, font_str)
-
     if (App.get_setting(`button_icons`)) {
       main.classList.add(`button_text_icon_enabled`)
     }
@@ -196,13 +173,6 @@ App.do_apply_theme = (args = {}) => {
     }
     else {
       main.classList.remove(`item_pointer`)
-    }
-
-    if (App.breathe_effect_on) {
-      main.classList.add(`breathe_effect`)
-    }
-    else {
-      main.classList.remove(`breathe_effect`)
     }
 
     let active_bgs = [`none`, `normal`, `tab_box`, `everywhere`]
@@ -228,6 +198,7 @@ App.do_apply_theme = (args = {}) => {
     App.set_main_title_vars()
     App.set_zone_vars()
     App.set_hover_vars()
+    App.set_effect_vars()
 
     App.insert_tab_color_css()
     App.insert_color_css()
@@ -894,7 +865,6 @@ App.set_pinline_vars = () => {
 
 App.set_tab_box_vars = () => {
   let main = DOM.el(`#main`)
-  let effects = App.remove_separators(App.effects)
 
   if (App.get_setting(`tab_box_color_enabled`)) {
     App.set_css_var(`tab_box_color`, App.get_setting(`tab_box_color`))
@@ -916,15 +886,6 @@ App.set_tab_box_vars = () => {
   else {
     document.body.classList.add(`no_tab_box_scrollbars`)
   }
-
-  for (let eff of effects) {
-    main.classList.remove(`tab_box_active_effect_${eff.value}`)
-  }
-
-  let tba_eff = App.get_setting(`tab_box_active_effect`)
-  main.classList.add(`tab_box_active_effect_${tba_eff}`)
-  let tba_eff_2 = App.get_setting(`tab_box_active_effect_2`)
-  main.classList.add(`tab_box_active_effect_${tba_eff_2}`)
 
   if (App.get_setting(`tab_box_font_enabled`)) {
     let font = App.get_setting(`tab_box_font`)
@@ -1173,7 +1134,27 @@ App.set_zone_vars = () => {
 
 App.set_hover_vars = () => {
   let main = DOM.el(`#main`)
+
+  for (let side of [`left`, `right`]) {
+    main.classList.remove(`hover_button_${side}`)
+  }
+
+  let hb = App.get_setting(`hover_button`)
+  main.classList.add(`hover_button_${hb}`)
+}
+
+App.set_effect_vars = () => {
+  let main = DOM.el(`#main`)
   let effects = App.remove_separators(App.effects)
+
+  for (let eff of effects) {
+    main.classList.remove(`selected_effect_${eff.value}`)
+  }
+
+  let selected_effect = App.get_setting(`selected_effect`)
+  main.classList.add(`selected_effect_${selected_effect}`)
+  let selected_effect_2 = App.get_setting(`selected_effect_2`)
+  main.classList.add(`selected_effect_${selected_effect_2}`)
 
   for (let eff of effects) {
     main.classList.remove(`hover_effect_${eff.value}`)
@@ -1185,6 +1166,15 @@ App.set_hover_vars = () => {
   main.classList.add(`hover_effect_${hover_effect_2}`)
 
   for (let eff of effects) {
+    main.classList.remove(`tab_box_active_effect_${eff.value}`)
+  }
+
+  let tba_eff = App.get_setting(`tab_box_active_effect`)
+  main.classList.add(`tab_box_active_effect_${tba_eff}`)
+  let tba_eff_2 = App.get_setting(`tab_box_active_effect_2`)
+  main.classList.add(`tab_box_active_effect_${tba_eff_2}`)
+
+  for (let eff of effects) {
     main.classList.remove(`tab_box_hover_effect_${eff.value}`)
   }
 
@@ -1193,10 +1183,22 @@ App.set_hover_vars = () => {
   let tbh_eff_2 = App.get_setting(`tab_box_hover_effect_2`)
   main.classList.add(`tab_box_hover_effect_${tbh_eff_2}`)
 
-  for (let side of [`left`, `right`]) {
-    main.classList.remove(`hover_button_${side}`)
+  let ie = App.get_setting(`icon_effect`)
+  let ies = [`none`, `spin`, `invert`, `border`]
+
+  for (let eff of ies) {
+    main.classList.remove(`icon_effect_${eff}`)
   }
 
-  let hb = App.get_setting(`hover_button`)
-  main.classList.add(`hover_button_${hb}`)
+  main.classList.add(`icon_effect_${ie}`)
+  let font = App.get_setting(`font`)
+  let font_str = App.get_font_string(font)
+  App.set_css_var(`font`, font_str)
+
+  if (App.breathe_effect_on) {
+    main.classList.add(`breathe_effect`)
+  }
+  else {
+    main.classList.remove(`breathe_effect`)
+  }
 }
