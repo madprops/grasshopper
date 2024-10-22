@@ -1825,7 +1825,7 @@ App.build_settings = () => {
     hover_button_pick: {
       name: `Hover Button Pick`,
       type: `checkbox`,
-      value: true,
+      value: false,
       info: `Pick items when right clicking the Hover Button`,
       version: 1,
     },
