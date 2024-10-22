@@ -5773,7 +5773,7 @@ App.build_settings = () => {
       Popup Commands open the popup first before running the command`,
     },
     compact: {
-      info: `Compact some menus to only show icons in a row`
+      info: `Compact some menus to only show icons in a row`,
     },
     warns: {
       info: `When to show the confirmation dialog on certain actions
