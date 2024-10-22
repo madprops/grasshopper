@@ -5352,6 +5352,13 @@ App.build_settings = () => {
       info: `Only show icons in the Close Button Menu`,
       version: 1,
     },
+    compact_color_menu: {
+      name: `Compact Color Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Color Menu`,
+      version: 1,
+    },
     compact_filter_menu: {
       name: `Compact Filter Menu`,
       type: `checkbox`,

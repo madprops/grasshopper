@@ -202,7 +202,7 @@ NeedContext.show = (args = {}) => {
   c.style.minHeight = `unset`
   c.style.maxWidth = `unset`
 
-  if (args.title) {
+  if (args.title && !args.compact) {
     let title = document.createElement(`div`)
     title.id = `needcontext-title`
 
