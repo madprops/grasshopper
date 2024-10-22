@@ -772,6 +772,7 @@ App.refresh_tab_box_element = (o_item) => {
         }
 
         item[key] = o_item[key]
+        item.tab_box = true
       }
 
       App.refresh_item_element(item)
