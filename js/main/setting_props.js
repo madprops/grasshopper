@@ -524,7 +524,7 @@ App.build_settings = () => {
       actions: [`theme`],
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(0, 10, 1, `px`))
+        App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
     },
     window_border_color: {
@@ -1615,7 +1615,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(0, 10, 1, `px`))
+        App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
     },
     close_button_side_tab_box: {
@@ -1647,7 +1647,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(0, 10, 1, `px`))
+        App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
     },
     close_button_menu: {

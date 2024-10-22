@@ -126,6 +126,7 @@ App.last_selected_date = {}
 App.semi_white_color = `rgba(250, 250, 250, 1)`
 App.semi_black_color = `rgba(5, 5, 5, 1)`
 App.mouse_inside = false
+App.border_widths = [0, 10, 1]
 
 App.settings_ready = false
 App.media_image_ready = false
