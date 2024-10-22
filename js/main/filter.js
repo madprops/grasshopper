@@ -1941,10 +1941,10 @@ App.show_search_empty = (mode, deep) => {
   let el = DOM.create(`div`, `search_empty_message`)
 
   if (deep) {
-    el.textContent = `No results with Deep Search enabled. You can try increasing the limits in the settings.`
+    el.textContent = `No results with Deep Search enabled. You can try increasing the limits in the settings`
   }
   else {
-    el.textContent = `No results. Try doing a Deep Search. Deep Search can also be set to run automatically in the settings.`
+    el.textContent = `No results. Try doing a Deep Search. Deep Search can also be set to run automatically in the settings`
   }
 
   let container = DOM.el(`#${mode}_container`)
@@ -1953,7 +1953,7 @@ App.show_search_empty = (mode, deep) => {
 
 App.show_search_no_value = (mode) => {
   let el = DOM.create(`div`, `search_empty_message`)
-  el.textContent = `Type something to search...`
+  el.textContent = `There is nothing here`
   let container = DOM.el(`#${mode}_container`)
   container.append(el)
 }
