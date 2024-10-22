@@ -1680,7 +1680,7 @@ App.build_settings = () => {
     click_press_close_button: {
       name: `Click Press Close`,
       type: `menu`,
-      value: `toggle_color_red`,
+      value: `none`,
       info: `Command to run when pressing the Close Button`,
       version: 1,
       setup: (key) => {
@@ -1690,7 +1690,7 @@ App.build_settings = () => {
     middle_click_press_close_button: {
       name: `Middle Click Press Close`,
       type: `menu`,
-      value: `toggle_color_blue`,
+      value: `none`,
       info: `Command to run when middle pressing the Close Button`,
       separator: true,
       version: 1,
@@ -1795,7 +1795,7 @@ App.build_settings = () => {
     click_press_hover_button: {
       name: `Click Press Hover`,
       type: `menu`,
-      value: `toggle_color_red`,
+      value: `none`,
       info: `Command to run when pressing the Hover Button`,
       version: 1,
       setup: (key) => {
@@ -1805,7 +1805,7 @@ App.build_settings = () => {
     middle_click_press_hover_button: {
       name: `Middle Click Press Hover`,
       type: `menu`,
-      value: `toggle_color_blue`,
+      value: `none`,
       info: `Command to run when middle pressing the Hover Button`,
       separator: true,
       version: 1,
