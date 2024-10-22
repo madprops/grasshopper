@@ -84,14 +84,6 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
-
-    if (App.get_setting(`main_title_font_enabled`)) {
-      App.set_css_var(`main_title_font_size`, App.get_setting(`main_title_font_size`) + `px`)
-    }
-    else {
-      App.set_css_var(`main_title_font_size`, `unset`)
-    }
-
     let w = `${(App.get_setting(`width`) / 100) * App.popup_width}px`
     App.set_css_var(`width`, w)
     let h = `${(App.get_setting(`height`) / 100) * App.popup_height}px`
@@ -198,16 +190,6 @@ App.do_apply_theme = (args = {}) => {
     let font = App.get_setting(`font`)
     let font_str = App.get_font_string(font)
     App.set_css_var(`font`, font_str)
-
-    if (App.get_setting(`main_title_font_enabled`)) {
-      font = App.get_setting(`main_title_font`)
-      font_str = App.get_font_string(font)
-      App.set_css_var(`main_title_font`, font_str)
-    }
-    else {
-      App.set_css_var(`main_title_font`, `unset`)
-    }
-
     let scv
 
     if (App.get_setting(`split_color_enabled`)) {
@@ -251,23 +233,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`autohide_taglist`)
     }
 
-    if (App.get_setting(`main_title_colors`)) {
-      App.set_css_var(`main_title_text_color`, App.get_setting(`main_title_text_color`))
-      App.set_css_var(`main_title_background_color`, App.get_setting(`main_title_background_color`))
-    }
-    else {
-      App.set_css_var(`main_title_text_color`, `unset`)
-      App.set_css_var(`main_title_background_color`, `unset`)
-    }
-
-    let title_align = App.get_setting(`main_title_align`)
-
-    for (let align of App.aligns) {
-      main.classList.remove(`main_title_align_${align.value}`)
-    }
-
-    main.classList.add(`main_title_align_${title_align}`)
-
     if (App.get_setting(`item_pointer`)) {
       main.classList.add(`item_pointer`)
     }
@@ -298,13 +263,6 @@ App.do_apply_theme = (args = {}) => {
     let active_bg = App.get_setting(`background_color_active_mode`)
     main.classList.add(`active_background_${active_bg}`)
 
-    if (App.get_setting(`wrap_main_title`)) {
-      main.classList.remove(`main_title_no_wrap`)
-    }
-    else {
-      main.classList.add(`main_title_no_wrap`)
-    }
-
     let uto = App.get_setting(`unloaded_opacity`) / 100
     App.set_css_var(`unloaded_opacity`, uto)
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
@@ -317,6 +275,7 @@ App.do_apply_theme = (args = {}) => {
     App.set_item_padding_vars()
     App.set_footer_vars()
     App.set_favorites_vars()
+    App.set_main_title_vars()
 
     App.insert_tab_color_css()
     App.insert_color_css()
@@ -1154,4 +1113,50 @@ App.set_favorites_vars = () => {
   else {
     main.classList.remove(`favorites_autohide`)
   }
+}
+
+App.set_main_title_vars = () => {
+  let main = DOM.el(`#main`)
+
+  if (App.get_setting(`wrap_main_title`)) {
+    main.classList.remove(`main_title_no_wrap`)
+  }
+  else {
+    main.classList.add(`main_title_no_wrap`)
+  }
+
+  if (App.get_setting(`main_title_font_enabled`)) {
+    App.set_css_var(`main_title_font_size`, App.get_setting(`main_title_font_size`) + `px`)
+  }
+  else {
+    App.set_css_var(`main_title_font_size`, `unset`)
+  }
+
+  if (App.get_setting(`main_title_font_enabled`)) {
+    let font = App.get_setting(`main_title_font`)
+    let font_str = App.get_font_string(font)
+    App.set_css_var(`main_title_font`, font_str)
+  }
+  else {
+    App.set_css_var(`main_title_font`, `unset`)
+  }
+
+  if (App.get_setting(`main_title_colors`)) {
+    let text_color = App.get_setting(`main_title_text_color`)
+    let bg_color = App.get_setting(`main_title_background_color`)
+    App.set_css_var(`main_title_text_color`, text_color)
+    App.set_css_var(`main_title_background_color`, bg_color)
+  }
+  else {
+    App.set_css_var(`main_title_text_color`, `unset`)
+    App.set_css_var(`main_title_background_color`, `unset`)
+  }
+
+  let title_align = App.get_setting(`main_title_align`)
+
+  for (let align of App.aligns) {
+    main.classList.remove(`main_title_align_${align.value}`)
+  }
+
+  main.classList.add(`main_title_align_${title_align}`)
 }
