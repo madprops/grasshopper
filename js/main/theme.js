@@ -68,27 +68,19 @@ App.do_apply_theme = (args = {}) => {
 
     App.set_css_var(`background_color`, args.background_color)
     App.set_css_var(`text_color`, args.text_color)
-
     let bg_opacity = App.get_setting(`background_opacity`) / 100
-
     let main_background = App.opacity(args.background_color, bg_opacity)
     App.set_css_var(`main_background`, main_background)
-
     let slight_shade = App.opacity(args.text_color, 0.1)
     App.set_css_var(`slight_shade`, slight_shade)
-
     let alt_color_0 = App.opacity(args.text_color, 0.15)
     App.set_css_var(`alt_color_0`, alt_color_0)
-
     let alt_color_1 = App.opacity(args.text_color, 0.20)
     App.set_css_var(`alt_color_1`, alt_color_1)
-
     let alt_color_2 = App.opacity(args.text_color, 0.50)
     App.set_css_var(`alt_color_2`, alt_color_2)
-
     let text_color_darker = App.contrast(args.text_color, 0.2)
     App.set_css_var(`text_color_darker`, text_color_darker)
-
     let overlay_color = App.opacity(args.background_color, 0.6)
     App.set_css_var(`overlay_color`, overlay_color)
 
@@ -105,13 +97,6 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`main_title_font_size`, `unset`)
     }
 
-    if (App.get_setting(`tab_box_font_enabled`)) {
-      App.set_css_var(`tab_box_font_size`, App.get_setting(`tab_box_font_size`) + `px`)
-    }
-    else {
-      App.set_css_var(`tab_box_font_size`, `unset`)
-    }
-
     if (App.get_setting(`footer_font_enabled`)) {
       App.set_css_var(`footer_font_size`, App.get_setting(`footer_font_size`) + `px`)
     }
@@ -121,10 +106,8 @@ App.do_apply_theme = (args = {}) => {
 
     let w = `${(App.get_setting(`width`) / 100) * App.popup_width}px`
     App.set_css_var(`width`, w)
-
     let h = `${(App.get_setting(`height`) / 100) * App.popup_height}px`
     App.set_css_var(`height`, h)
-
     App.set_item_padding_vars()
 
     if (App.get_setting(`show_scrollbars`)) {
@@ -132,13 +115,6 @@ App.do_apply_theme = (args = {}) => {
     }
     else {
       document.body.classList.add(`no_scrollbars`)
-    }
-
-    if (App.get_setting(`tab_box_scrollbars`)) {
-      document.body.classList.remove(`no_tab_box_scrollbars`)
-    }
-    else {
-      document.body.classList.add(`no_tab_box_scrollbars`)
     }
 
     let main = DOM.el(`#main`)
@@ -165,7 +141,6 @@ App.do_apply_theme = (args = {}) => {
     let item_align = App.get_setting(`item_align`)
     let item_justify = justify_map[item_align]
     App.set_css_var(`item_align`, item_justify)
-
     App.set_background(args.background_image)
     App.apply_background_effects(args.background_effect, args.background_tiles)
 
@@ -198,24 +173,6 @@ App.do_apply_theme = (args = {}) => {
     let selected_effect_2 = App.get_setting(`selected_effect_2`)
     main.classList.add(`selected_effect_${selected_effect_2}`)
 
-    for (let eff of effects) {
-      main.classList.remove(`tab_box_hover_effect_${eff.value}`)
-    }
-
-    let tbh_eff = App.get_setting(`tab_box_hover_effect`)
-    main.classList.add(`tab_box_hover_effect_${tbh_eff}`)
-    let tbh_eff_2 = App.get_setting(`tab_box_hover_effect_2`)
-    main.classList.add(`tab_box_hover_effect_${tbh_eff_2}`)
-
-    for (let eff of effects) {
-      main.classList.remove(`tab_box_active_effect_${eff.value}`)
-    }
-
-    let tba_eff = App.get_setting(`tab_box_active_effect`)
-    main.classList.add(`tab_box_active_effect_${tba_eff}`)
-    let tba_eff_2 = App.get_setting(`tab_box_active_effect_2`)
-    main.classList.add(`tab_box_active_effect_${tba_eff_2}`)
-
     if (App.get_setting(`wrap_text`)) {
       main.classList.remove(`no_wrap`)
     }
@@ -231,7 +188,6 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_icon_size_vars()
-    App.set_tab_box_vars()
 
     if (App.get_setting(`text_glow`)) {
       document.body.classList.add(`text_glow`)
@@ -246,7 +202,6 @@ App.do_apply_theme = (args = {}) => {
 
     let hb = App.get_setting(`hover_button`)
     main.classList.add(`hover_button_${hb}`)
-
     let ie = App.get_setting(`icon_effect`)
     let ies = [`none`, `spin`, `invert`, `border`]
 
@@ -255,7 +210,6 @@ App.do_apply_theme = (args = {}) => {
     }
 
     main.classList.add(`icon_effect_${ie}`)
-
     let font = App.get_setting(`font`)
     let font_str = App.get_font_string(font)
     App.set_css_var(`font`, font_str)
@@ -267,15 +221,6 @@ App.do_apply_theme = (args = {}) => {
     }
     else {
       App.set_css_var(`main_title_font`, `unset`)
-    }
-
-    if (App.get_setting(`tab_box_font_enabled`)) {
-      font = App.get_setting(`tab_box_font`)
-      font_str = App.get_font_string(font)
-      App.set_css_var(`tab_box_font`, font_str)
-    }
-    else {
-      App.set_css_var(`tab_box_font`, `unset`)
     }
 
     if (App.get_setting(`footer_font_enabled`)) {
@@ -297,7 +242,6 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`split_color`, scv)
-
     let sw = App.get_setting(`split_width`)
 
     if (App.get_setting(`split_padding`)) {
@@ -308,7 +252,6 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`split_width`, `${sw}px`)
-
     let split_sides = [`left`, `right`, `both`]
 
     for (let side of split_sides) {
@@ -317,7 +260,6 @@ App.do_apply_theme = (args = {}) => {
 
     let split_side = App.get_setting(`split_side`)
     main.classList.add(`split_side_${split_side}`)
-
     let c_sides = [`left`, `right`]
 
     for (let c_side of c_sides) {
@@ -400,28 +342,8 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`footer_background_color`, slight_shade)
     }
 
-    if (App.get_setting(`pinline_colors`)) {
-      App.set_css_var(`pinline_text_color`, App.get_setting(`pinline_text_color`))
-      App.set_css_var(`pinline_background_color`, App.get_setting(`pinline_background_color`))
-    }
-    else {
-      App.set_css_var(`pinline_text_color`, `unset`)
-      App.set_css_var(`pinline_background_color`, `unset`)
-    }
-
-    for (let align of App.aligns) {
-      main.classList.remove(`pinline_align_${align.value}`)
-    }
-
-    let align = App.get_setting(`pinline_align`)
-    main.classList.add(`pinline_align_${align}`)
-
-    if (App.get_setting(`tab_box_color_enabled`)) {
-      App.set_css_var(`tab_box_color`, App.get_setting(`tab_box_color`))
-    }
-    else {
-      App.set_css_var(`tab_box_color`, `transparent`)
-    }
+    App.set_pinline_vars()
+    App.set_tab_box_vars()
 
     if (App.get_setting(`favorites_autohide`)) {
       main.classList.add(`favorites_autohide`)
@@ -453,20 +375,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`favorites_blur`)
     }
 
-    if (App.get_setting(`tab_box_blur`)) {
-      main.classList.add(`tab_box_blur`)
-    }
-    else {
-      main.classList.remove(`tab_box_blur`)
-    }
-
-    if (App.get_setting(`tab_box_count`)) {
-      main.classList.add(`tab_box_count`)
-    }
-    else {
-      main.classList.remove(`tab_box_count`)
-    }
-
     if (App.get_setting(`wrap_main_title`)) {
       main.classList.remove(`main_title_no_wrap`)
     }
@@ -479,10 +387,8 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`footer_align`, footer_justify)
     let cb_padding = App.get_setting(`close_button_padding`)
     App.set_css_var(`close_button_padding`, `${cb_padding}px`)
-
     let uto = App.get_setting(`unloaded_opacity`) / 100
     App.set_css_var(`unloaded_opacity`, uto)
-
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
     App.set_css_var(`window_border_color`, App.get_setting(`window_border_color`))
     App.set_css_var(`close_button_color`, App.get_setting(`close_button_color`))
@@ -494,7 +400,6 @@ App.do_apply_theme = (args = {}) => {
 
     let cb_show = App.get_setting(`show_close_button`)
     main.classList.add(`close_button_${cb_show}`)
-
     let cb_show_tb = App.get_setting(`show_close_button_tab_box`)
     main.classList.add(`close_button_tab_box_${cb_show_tb}`)
 
@@ -1114,7 +1019,75 @@ App.set_icon_size_vars = () => {
   App.set_css_var(`icon_size`, `${icon_size}rem`)
 }
 
+App.set_pinline_vars = () => {
+  if (App.get_setting(`pinline_colors`)) {
+    App.set_css_var(`pinline_text_color`, App.get_setting(`pinline_text_color`))
+    App.set_css_var(`pinline_background_color`, App.get_setting(`pinline_background_color`))
+  }
+  else {
+    App.set_css_var(`pinline_text_color`, `unset`)
+    App.set_css_var(`pinline_background_color`, `unset`)
+  }
+
+  for (let align of App.aligns) {
+    main.classList.remove(`pinline_align_${align.value}`)
+  }
+
+  let align = App.get_setting(`pinline_align`)
+  main.classList.add(`pinline_align_${align}`)
+}
+
 App.set_tab_box_vars = () => {
+  if (App.get_setting(`tab_box_color_enabled`)) {
+    App.set_css_var(`tab_box_color`, App.get_setting(`tab_box_color`))
+  }
+  else {
+    App.set_css_var(`tab_box_color`, `transparent`)
+  }
+
+  if (App.get_setting(`tab_box_font_enabled`)) {
+    App.set_css_var(`tab_box_font_size`, App.get_setting(`tab_box_font_size`) + `px`)
+  }
+  else {
+    App.set_css_var(`tab_box_font_size`, `unset`)
+  }
+
+  if (App.get_setting(`tab_box_scrollbars`)) {
+    document.body.classList.remove(`no_tab_box_scrollbars`)
+  }
+  else {
+    document.body.classList.add(`no_tab_box_scrollbars`)
+  }
+
+  let effects = App.remove_separators(App.effects)
+
+  for (let eff of effects) {
+    main.classList.remove(`tab_box_hover_effect_${eff.value}`)
+  }
+
+  let tbh_eff = App.get_setting(`tab_box_hover_effect`)
+  main.classList.add(`tab_box_hover_effect_${tbh_eff}`)
+  let tbh_eff_2 = App.get_setting(`tab_box_hover_effect_2`)
+  main.classList.add(`tab_box_hover_effect_${tbh_eff_2}`)
+
+  for (let eff of effects) {
+    main.classList.remove(`tab_box_active_effect_${eff.value}`)
+  }
+
+  let tba_eff = App.get_setting(`tab_box_active_effect`)
+  main.classList.add(`tab_box_active_effect_${tba_eff}`)
+  let tba_eff_2 = App.get_setting(`tab_box_active_effect_2`)
+  main.classList.add(`tab_box_active_effect_${tba_eff_2}`)
+
+  if (App.get_setting(`tab_box_font_enabled`)) {
+    let font = App.get_setting(`tab_box_font`)
+    let font_str = App.get_font_string(font)
+    App.set_css_var(`tab_box_font`, font_str)
+  }
+  else {
+    App.set_css_var(`tab_box_font`, `unset`)
+  }
+
   let tbh_rem = 13.0
   let tbh_diff = 3.5
 
@@ -1142,5 +1115,19 @@ App.set_tab_box_vars = () => {
       let size = tbh_rem + (tbh_diff * 4)
       App.set_css_var(`tab_box_size_huge`, `${size}rem`)
     }
+  }
+
+  if (App.get_setting(`tab_box_blur`)) {
+    main.classList.add(`tab_box_blur`)
+  }
+  else {
+    main.classList.remove(`tab_box_blur`)
+  }
+
+  if (App.get_setting(`tab_box_count`)) {
+    main.classList.add(`tab_box_count`)
+  }
+  else {
+    main.classList.remove(`tab_box_count`)
   }
 }
