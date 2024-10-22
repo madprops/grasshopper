@@ -5324,6 +5324,50 @@ App.build_settings = () => {
   category = `compact`
 
   props = {
+    compact_extra_menu: {
+      name: `Compact Extra Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Extra Button Menu`,
+      version: 1,
+    },
+    compact_favorites_menu: {
+      name: `Compact Favorites Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Favorites Menu`,
+      version: 1,
+    },
+    compact_hover_button_menu: {
+      name: `Compact Hover Button Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Hover Button Menu`,
+      version: 1,
+    },
+    compact_close_button_menu: {
+      name: `Compact Close Button Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Close Button Menu`,
+      version: 1,
+    },
+    compact_filter_menu: {
+      name: `Compact Filter Menu`,
+      type: `checkbox`,
+      value: false,
+      separator: true,
+      info: `Only show icons in the Filter Menu`,
+      version: 1,
+    },
+    compact_filter_menu: {
+      name: `Compact Filter Menu`,
+      type: `checkbox`,
+      value: false,
+      separator: true,
+      info: `Only show icons in the Filter Menu`,
+      version: 1,
+    },
     compact_global_item_menu: {
       name: `Compact Global Item Menu`,
       type: `checkbox`,
@@ -5360,39 +5404,39 @@ App.build_settings = () => {
       info: `Only show icons in the Item Menu (Closed)`,
       version: 1,
     },
-    compact_extra_menu: {
-      name: `Compact Extra Menu`,
+    compact_global_actions_menu: {
+      name: `Compact Global Actions Menu`,
       type: `checkbox`,
       value: false,
-      info: `Only show icons in the Extra Button Menu`,
+      info: `Only show icons in the Actions Menu (Global)`,
       version: 1,
     },
-    compact_favorites_menu: {
-      name: `Compact Favorites Menu`,
+    compact_tabs_actions_menu: {
+      name: `Compact Tabs Actions Menu`,
       type: `checkbox`,
       value: false,
-      info: `Only show icons in the Favorites Menu`,
+      info: `Only show icons in the Actions Menu (Tabs)`,
       version: 1,
     },
-    compact_hover_button_menu: {
-      name: `Compact Hover Button Menu`,
+    compact_history_actions_menu: {
+      name: `Compact History Actions Menu`,
       type: `checkbox`,
       value: false,
-      info: `Only show icons in the Hover Button Menu`,
+      info: `Only show icons in the Actions Menu (History)`,
       version: 1,
     },
-    compact_close_button_menu: {
-      name: `Compact Close Button Menu`,
+    compact_bookmarks_actions_menu: {
+      name: `Compact Bookmarks Actions Menu`,
       type: `checkbox`,
       value: false,
-      info: `Only show icons in the Close Button Menu`,
+      info: `Only show icons in the Actions Menu (Bookmarks)`,
       version: 1,
     },
-    compact_filter_menu: {
-      name: `Compact Filter Menu`,
+    compact_closed_actions_menu: {
+      name: `Compact Closed Actions Menu`,
       type: `checkbox`,
       value: false,
-      info: `Only show icons in the Filter Menu`,
+      info: `Only show icons in the Actions Menu (Closed)`,
       version: 1,
     },
   }

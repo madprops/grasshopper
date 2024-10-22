@@ -44,7 +44,8 @@ App.show_global_menu = (e) => {
 
   let mode = App.active_mode
   let element = DOM.el(`#${mode}_actions`)
-  App.show_context({items, e, element})
+  let compact = App.get_setting(`compact_global_actions_menu`)
+  App.show_context({items, e, element, compact})
 }
 
 App.show_mode_menu = (mode, item, e) => {
@@ -54,7 +55,8 @@ App.show_mode_menu = (mode, item, e) => {
   })
 
   let element = DOM.el(`#${mode}_actions`)
-  App.show_context({items, e, element})
+  let compact = App.get_setting(`compact_${mode}_actions_menu`)
+  App.show_context({items, e, element, compact})
 }
 
 App.actions_middle_click = (e) => {

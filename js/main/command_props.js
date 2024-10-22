@@ -617,6 +617,7 @@ App.setup_commands = () => {
     },
     {
       name: `Step Back`,
+      short_name: `Back`,
       cmd: `step_back`,
       modes: [`items`],
       icon: left_icon,
@@ -627,6 +628,7 @@ App.setup_commands = () => {
     },
     {
       name: `Esc Key`,
+      short_name: `Esc`,
       cmd: `trigger_esc_key`,
       icon: keyboard_icon,
       skip_palette: true,
@@ -637,6 +639,7 @@ App.setup_commands = () => {
     },
     {
       name: `Enter Key`,
+      short_name: `Enter`,
       cmd: `trigger_enter_key`,
       icon: keyboard_icon,
       skip_palette: true,
@@ -647,6 +650,7 @@ App.setup_commands = () => {
     },
     {
       name: `Backspace Key`,
+      short_name: `Back`,
       short_name: `Backspace`,
       cmd: `trigger_backspace_key`,
       icon: keyboard_icon,
@@ -658,6 +662,7 @@ App.setup_commands = () => {
     },
     {
       name: `Up Key`,
+      short_name: `Up`,
       cmd: `trigger_up_key`,
       icon: keyboard_icon,
       skip_palette: true,
@@ -668,6 +673,7 @@ App.setup_commands = () => {
     },
     {
       name: `Down Key`,
+      short_name: `Down`,
       cmd: `trigger_down_key`,
       icon: keyboard_icon,
       skip_palette: true,
@@ -678,6 +684,7 @@ App.setup_commands = () => {
     },
     {
       name: `Left Key`,
+      short_name: `Left`,
       cmd: `trigger_left_key`,
       icon: keyboard_icon,
       skip_palette: true,
@@ -688,6 +695,7 @@ App.setup_commands = () => {
     },
     {
       name: `Right Key`,
+      short_name: `Right`,
       cmd: `trigger_right_key`,
       icon: keyboard_icon,
       skip_palette: true,
@@ -698,6 +706,7 @@ App.setup_commands = () => {
     },
     {
       name: `Left Click`,
+      short_name: `Left`,
       cmd: `trigger_left_click`,
       icon: mouse_icon,
       skip_palette: true,
@@ -708,6 +717,7 @@ App.setup_commands = () => {
     },
     {
       name: `Right Click`,
+      short_name: `Right`,
       cmd: `trigger_right_click`,
       icon: mouse_icon,
       skip_palette: true,
@@ -718,6 +728,7 @@ App.setup_commands = () => {
     },
     {
       name: `Middle Click`,
+      short_name: `Middle`,
       cmd: `trigger_middle_click`,
       icon: mouse_icon,
       skip_palette: true,
