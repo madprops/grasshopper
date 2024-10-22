@@ -36,12 +36,6 @@ App.do_apply_theme = (args = {}) => {
   App.def_args(def_args, args)
 
   try {
-    let justify_map = {
-      left: `flex-start`,
-      center: `center`,
-      right: `flex-end`,
-    }
-
     if (!args.background_color) {
       args.background_color = App.get_setting(`background_color`)
     }
@@ -83,6 +77,7 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`text_color_darker`, text_color_darker)
     let overlay_color = App.opacity(args.background_color, 0.6)
     App.set_css_var(`overlay_color`, overlay_color)
+    App.slight_shade = slight_shade
 
     if (args.safe_mode) {
       return
@@ -97,18 +92,10 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`main_title_font_size`, `unset`)
     }
 
-    if (App.get_setting(`footer_font_enabled`)) {
-      App.set_css_var(`footer_font_size`, App.get_setting(`footer_font_size`) + `px`)
-    }
-    else {
-      App.set_css_var(`footer_font_size`, `unset`)
-    }
-
     let w = `${(App.get_setting(`width`) / 100) * App.popup_width}px`
     App.set_css_var(`width`, w)
     let h = `${(App.get_setting(`height`) / 100) * App.popup_height}px`
     App.set_css_var(`height`, h)
-    App.set_item_padding_vars()
 
     if (App.get_setting(`show_scrollbars`)) {
       document.body.classList.remove(`no_scrollbars`)
@@ -139,7 +126,7 @@ App.do_apply_theme = (args = {}) => {
     }
 
     let item_align = App.get_setting(`item_align`)
-    let item_justify = justify_map[item_align]
+    let item_justify = App.justify_map[item_align]
     App.set_css_var(`item_align`, item_justify)
     App.set_background(args.background_image)
     App.apply_background_effects(args.background_effect, args.background_tiles)
@@ -187,8 +174,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`icon_pick`)
     }
 
-    App.set_icon_size_vars()
-
     if (App.get_setting(`text_glow`)) {
       document.body.classList.add(`text_glow`)
     }
@@ -221,15 +206,6 @@ App.do_apply_theme = (args = {}) => {
     }
     else {
       App.set_css_var(`main_title_font`, `unset`)
-    }
-
-    if (App.get_setting(`footer_font_enabled`)) {
-      font = App.get_setting(`footer_font`)
-      font_str = App.get_font_string(font)
-      App.set_css_var(`footer_font`, font_str)
-    }
-    else {
-      App.set_css_var(`footer_font`, `unset`)
     }
 
     let scv
@@ -325,18 +301,6 @@ App.do_apply_theme = (args = {}) => {
       App.set_css_var(`favorites_bar_color`, `unset`)
     }
 
-    if (App.get_setting(`footer_colors`)) {
-      App.set_css_var(`footer_text_color`, App.get_setting(`footer_text_color`))
-      App.set_css_var(`footer_background_color`, App.get_setting(`footer_background_color`))
-    }
-    else {
-      App.set_css_var(`footer_text_color`, `unset`)
-      App.set_css_var(`footer_background_color`, slight_shade)
-    }
-
-    App.set_pinline_vars()
-    App.set_tab_box_vars()
-
     if (App.get_setting(`favorites_autohide`)) {
       main.classList.add(`favorites_autohide`)
     }
@@ -374,14 +338,18 @@ App.do_apply_theme = (args = {}) => {
       main.classList.add(`main_title_no_wrap`)
     }
 
-    let footer_align = App.get_setting(`footer_align`)
-    let footer_justify = justify_map[footer_align]
-    App.set_css_var(`footer_align`, footer_justify)
     let uto = App.get_setting(`unloaded_opacity`) / 100
     App.set_css_var(`unloaded_opacity`, uto)
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
     App.set_css_var(`window_border_color`, App.get_setting(`window_border_color`))
+
     App.close_button_vars()
+    App.set_pinline_vars()
+    App.set_tab_box_vars()
+    App.set_icon_size_vars()
+    App.set_item_padding_vars()
+    App.set_footer_vars()
+
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_icon_css()
@@ -1150,4 +1118,35 @@ App.close_button_vars = () => {
   App.set_css_var(`close_button_border_width`, cbbw + `px`)
   let cbbwtb = App.get_setting(`close_button_border_width_tab_box`)
   App.set_css_var(`close_button_border_width_tab_box`, cbbwtb + `px`)
+}
+
+App.set_footer_vars = () => {
+  if (App.get_setting(`footer_font_enabled`)) {
+    App.set_css_var(`footer_font_size`, App.get_setting(`footer_font_size`) + `px`)
+  }
+  else {
+    App.set_css_var(`footer_font_size`, `unset`)
+  }
+
+  if (App.get_setting(`footer_font_enabled`)) {
+    let font = App.get_setting(`footer_font`)
+    let font_str = App.get_font_string(font)
+    App.set_css_var(`footer_font`, font_str)
+  }
+  else {
+    App.set_css_var(`footer_font`, `unset`)
+  }
+
+  if (App.get_setting(`footer_colors`)) {
+    App.set_css_var(`footer_text_color`, App.get_setting(`footer_text_color`))
+    App.set_css_var(`footer_background_color`, App.get_setting(`footer_background_color`))
+  }
+  else {
+    App.set_css_var(`footer_text_color`, `unset`)
+    App.set_css_var(`footer_background_color`, App.slight_shade)
+  }
+
+  let footer_align = App.get_setting(`footer_align`)
+  let footer_justify = App.justify_map[footer_align]
+  App.set_css_var(`footer_align`, footer_justify)
 }

@@ -424,3 +424,9 @@ App.opacity_values = {
   medium: 0.7,
   low: 0.55,
 }
+
+App.justify_map = {
+  left: `flex-start`,
+  center: `center`,
+  right: `flex-end`,
+}
