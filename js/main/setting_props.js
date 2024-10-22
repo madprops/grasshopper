@@ -3872,7 +3872,7 @@ App.build_settings = () => {
     click_press_playing: {
       name: `Click Press Playing`,
       type: `menu`,
-      value: `show_playing_tabs`,
+      value: `none`,
       info: `Command to run on left click press on Playing`,
       version: 1,
       setup: (key) => {
@@ -3882,7 +3882,7 @@ App.build_settings = () => {
     middle_click_press_playing: {
       name: `Middle Click Press Playing`,
       type: `menu`,
-      value: `show_playing_tabs`,
+      value: `none`,
       info: `Command to run on middle click press on Playing`,
       separator: true,
       version: 1,
@@ -3923,7 +3923,7 @@ App.build_settings = () => {
     click_press_step_back: {
       name: `Click Press Step Back`,
       type: `menu`,
-      value: `show_recent_tabs`,
+      value: `none`,
       info: `Command to run on left click press on Step Back`,
       version: 1,
       setup: (key) => {
@@ -3933,7 +3933,7 @@ App.build_settings = () => {
     middle_click_press_step_back: {
       name: `Middle Click Press Step Back`,
       type: `menu`,
-      value: `show_recent_tabs`,
+      value: `none`,
       info: `Command to run on middle click press on Step Back`,
       separator: true,
       version: 1,
@@ -4946,7 +4946,7 @@ App.build_settings = () => {
     click_press_filter_menu: {
       name: `Click Press Filter Menu`,
       type: `menu`,
-      value: `show_filter_menu`,
+      value: `none`,
       info: `Command to run on left click press on Filter Menu`,
       version: 1,
       setup: (key) => {
@@ -4956,7 +4956,7 @@ App.build_settings = () => {
     middle_click_press_filter_menu: {
       name: `Middle Click Press Filter Menu`,
       type: `menu`,
-      value: `show_filter_menu`,
+      value: `none`,
       info: `Command to run on middle click press on Filter Menu`,
       separator: true,
       version: 1,
