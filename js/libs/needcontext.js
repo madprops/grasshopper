@@ -21,7 +21,7 @@ NeedContext.layers = {}
 NeedContext.level = 0
 NeedContext.gap = `0.5rem`
 NeedContext.side_padding = `0.5rem`
-NeedContext.compact_padding = `0.25rem`
+NeedContext.compact_padding = `0.3rem`
 NeedContext.center_top = 20
 NeedContext.dragging = false
 
