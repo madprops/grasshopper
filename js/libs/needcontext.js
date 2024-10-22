@@ -277,6 +277,10 @@ NeedContext.show = (args = {}) => {
           })
         }
 
+        if (args.compact) {
+          icon.title = item.title || item.text
+        }
+
         icon.append(item.icon)
         el.append(icon)
       }
