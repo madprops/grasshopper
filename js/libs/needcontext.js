@@ -1,4 +1,4 @@
-// NeedContext v9.0
+// NeedContext v9.1
 
 // Main object
 const NeedContext = {}
@@ -201,7 +201,6 @@ NeedContext.show = (args = {}) => {
   c.style.transform = `unset`
   c.style.minWidth = `unset`
   c.style.minHeight = `unset`
-  c.style.maxWidth = `unset`
 
   if (args.title && !args.compact) {
     let title = document.createElement(`div`)
