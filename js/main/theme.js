@@ -147,13 +147,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`icon_pick`)
     }
 
-    if (App.get_setting(`text_glow`)) {
-      document.body.classList.add(`text_glow`)
-    }
-    else {
-      document.body.classList.remove(`text_glow`)
-    }
-
     if (App.get_setting(`button_icons`)) {
       main.classList.add(`button_text_icon_enabled`)
     }
@@ -1194,6 +1187,13 @@ App.set_effect_vars = () => {
   }
   else {
     main.classList.remove(`breathe_effect`)
+  }
+
+  if (App.get_setting(`text_glow`)) {
+    document.body.classList.add(`text_glow`)
+  }
+  else {
+    document.body.classList.remove(`text_glow`)
   }
 }
 
