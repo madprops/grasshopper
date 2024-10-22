@@ -1020,6 +1020,8 @@ App.set_icon_size_vars = () => {
 }
 
 App.set_pinline_vars = () => {
+  let main = DOM.el(`#main`)
+
   if (App.get_setting(`pinline_colors`)) {
     App.set_css_var(`pinline_text_color`, App.get_setting(`pinline_text_color`))
     App.set_css_var(`pinline_background_color`, App.get_setting(`pinline_background_color`))
@@ -1038,6 +1040,9 @@ App.set_pinline_vars = () => {
 }
 
 App.set_tab_box_vars = () => {
+  let main = DOM.el(`#main`)
+  let effects = App.remove_separators(App.effects)
+
   if (App.get_setting(`tab_box_color_enabled`)) {
     App.set_css_var(`tab_box_color`, App.get_setting(`tab_box_color`))
   }
@@ -1058,8 +1063,6 @@ App.set_tab_box_vars = () => {
   else {
     document.body.classList.add(`no_tab_box_scrollbars`)
   }
-
-  let effects = App.remove_separators(App.effects)
 
   for (let eff of effects) {
     main.classList.remove(`tab_box_hover_effect_${eff.value}`)
