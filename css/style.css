@@ -437,7 +437,7 @@ svg {
 .mouse_inside.close_button_global_hover .item:not(.tab_box_item) .close_button
 {
   width: var(--close_button_width);
-  border-width: 1px;
+  border-width: var(--close_button_border_width);
 }
 
 /* Close Buttons Tab Box */
@@ -458,7 +458,7 @@ svg {
 .mouse_inside.close_button_tab_box_global_hover .item.tab_box_item .close_button
 {
   width: var(--close_button_width);
-  border-width: 1px;
+  border-width: var(--close_button_border_width_tab_box);
 }
 
 /*  */
@@ -512,8 +512,8 @@ svg {
   transition: background-color var(--transition_delay), width 350ms, border-width 350ms;
   width: var(--close_button_width);
   background-color: var(--close_button_color);
-  border: 1px solid var(--alt_color_1);
-  border-width: 1px;
+  border-color: var(--alt_color_1);
+  border-style: solid;
   flex-shrink: 0;
   flex-grow: 0;
   box-sizing: border-box;
@@ -522,6 +522,14 @@ svg {
   cursor: pointer;
   border-radius: var(--border_radius);
   overflow: hidden;
+}
+
+.item:not(.tab_box_item) .close_button {
+  border-width: var(--close_button_border_width);
+}
+
+.item.tab_box_item .close_button {
+  border-width: var(--close_button_border_width_tab_box);
 }
 
 .close_button:hover {

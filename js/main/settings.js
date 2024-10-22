@@ -298,6 +298,8 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     `background_opacity`,
     `font_size`,
     `window_border_width`,
+    `close_button_border_width`,
+    `close_button_border_width_tab_box`,
   ]
 
   let btn_id = `settings_menubutton_${setting}`

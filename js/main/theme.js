@@ -1133,4 +1133,9 @@ App.set_tab_box_vars = () => {
   else {
     main.classList.remove(`tab_box_count`)
   }
+
+  let cbbw = App.get_setting(`close_button_border_width`)
+  App.set_css_var(`close_button_border_width`, cbbw + `px`)
+  let cbbwtb = App.get_setting(`close_button_border_width_tab_box`)
+  App.set_css_var(`close_button_border_width_tab_box`, cbbwtb + `px`)
 }

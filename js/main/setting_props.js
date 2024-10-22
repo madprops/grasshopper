@@ -1601,10 +1601,21 @@ App.build_settings = () => {
       type: `menu`,
       value: `global_hover`,
       info: `How to show the Close Buttons`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    close_button_border_width: {
+      name: `Close Button Border`,
+      type: `menu`,
+      value: 1,
+      placeholder: `Px`,
+      info: `Border width of Close Buttons`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(0, 10, 1, `px`))
       },
     },
     close_button_side_tab_box: {
@@ -1622,10 +1633,21 @@ App.build_settings = () => {
       type: `menu`,
       value: `global_hover`,
       info: `How to show the Close Buttons in the Tab Box`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    close_button_border_width_tab_box: {
+      name: `Close Button Tab Box Border`,
+      type: `menu`,
+      value: 1,
+      placeholder: `Px`,
+      info: `Border width of Close Buttons in the Tab Box`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(0, 10, 1, `px`))
       },
     },
     close_button_menu: {
