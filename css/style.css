@@ -22,6 +22,7 @@
   --panel_padding: 0.25rem;
   --popup_padding: 0.8rem;
   --close_button_width: 1.77rem;
+  --close_button_transition: width 350ms, border-width 350ms;
 }
 
 @font-face {
@@ -509,7 +510,7 @@ svg {
 }
 
 .close_button {
-  transition: width 350ms, border-width 350ms;
+  transition: var(--close_button_transition);
   width: var(--close_button_width);
   background-color: var(--close_button_color);
   border: 1px solid var(--alt_color_1);
@@ -524,12 +525,12 @@ svg {
 }
 
 .item:not(.tab_box_item) .close_button {
-  transition: width 350ms, border-width 350ms;
+  transition: var(--close_button_transition);
   border-width: var(--close_button_border_width);
 }
 
 .item.tab_box_item .close_button {
-  transition: width 350ms, border-width 350ms;
+  transition: var(--close_button_transition);
   border-width: var(--close_button_border_width_tab_box);
 }
 
