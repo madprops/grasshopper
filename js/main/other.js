@@ -220,6 +220,7 @@ App.generate_password = () => {
     title: `Random Password`,
     text: password,
     simple: true,
+    monospace: true,
   })
 }
 

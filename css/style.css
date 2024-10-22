@@ -2044,3 +2044,7 @@ a:hover
   background-color: white;
   z-index: 999;
 }
+
+.monospace {
+  font-family: monospace;
+}

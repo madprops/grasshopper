@@ -6,6 +6,7 @@ App.show_textarea = (args = {}) => {
     readonly: true,
     bottom: false,
     wrap: false,
+    monospace: false,
   }
 
   App.def_args(def_args, args)
@@ -27,6 +28,13 @@ App.show_textarea = (args = {}) => {
     DOM.hide(textarea)
     DOM.show(simplearea)
     simplearea.textContent = args.text
+
+    if (args.monospace) {
+      simplearea.classList.add(`monospace`)
+    }
+    else {
+      simplearea.classList.remove(`monospace`)
+    }
   }
   else {
     DOM.hide(simplearea)
