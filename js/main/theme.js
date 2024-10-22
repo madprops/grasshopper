@@ -1193,10 +1193,6 @@ App.set_hover_vars = () => {
   let hover_effect_2 = App.get_setting(`hover_effect_2`)
   main.classList.add(`hover_effect_${hover_effect_2}`)
 
-  for (let eff of effects) {
-    main.classList.remove(`hover_effect_${eff.value}`)
-  }
-
   for (let side of [`left`, `right`]) {
     main.classList.remove(`hover_button_${side}`)
   }
