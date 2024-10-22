@@ -78,6 +78,7 @@ App.do_apply_theme = (args = {}) => {
     let overlay_color = App.opacity(args.background_color, 0.6)
     App.set_css_var(`overlay_color`, overlay_color)
     App.slight_shade = slight_shade
+    App.text_color = args.text_color
 
     if (args.safe_mode) {
       return
@@ -190,34 +191,6 @@ App.do_apply_theme = (args = {}) => {
     let font = App.get_setting(`font`)
     let font_str = App.get_font_string(font)
     App.set_css_var(`font`, font_str)
-    let scv
-
-    if (App.get_setting(`split_color_enabled`)) {
-      scv = App.get_setting(`split_color`)
-    }
-    else {
-      scv = args.text_color
-    }
-
-    App.set_css_var(`split_color`, scv)
-    let sw = App.get_setting(`split_width`)
-
-    if (App.get_setting(`split_padding`)) {
-      main.classList.add(`split_padding`)
-    }
-    else {
-      main.classList.remove(`split_padding`)
-    }
-
-    App.set_css_var(`split_width`, `${sw}px`)
-    let split_sides = [`left`, `right`, `both`]
-
-    for (let side of split_sides) {
-      main.classList.remove(`split_side_${side}`)
-    }
-
-    let split_side = App.get_setting(`split_side`)
-    main.classList.add(`split_side_${split_side}`)
 
     if (App.get_setting(`button_icons`)) {
       main.classList.add(`button_text_icon_enabled`)
@@ -238,13 +211,6 @@ App.do_apply_theme = (args = {}) => {
     }
     else {
       main.classList.remove(`item_pointer`)
-    }
-
-    if (App.get_setting(`header_icon_pick`)) {
-      main.classList.add(`header_icon_pick`)
-    }
-    else {
-      main.classList.remove(`header_icon_pick`)
     }
 
     if (App.breathe_effect_on) {
@@ -274,8 +240,9 @@ App.do_apply_theme = (args = {}) => {
     App.set_icon_size_vars()
     App.set_item_padding_vars()
     App.set_footer_vars()
-    App.set_favorites_vars()
+    App.set_favorite_vars()
     App.set_main_title_vars()
+    App.set_zone_vars()
 
     App.insert_tab_color_css()
     App.insert_color_css()
@@ -1078,7 +1045,7 @@ App.set_footer_vars = () => {
   App.set_css_var(`footer_align`, footer_justify)
 }
 
-App.set_favorites_vars = () => {
+App.set_favorite_vars = () => {
   let main = DOM.el(`#main`)
 
   if (App.get_setting(`favorites_blur`)) {
@@ -1159,4 +1126,44 @@ App.set_main_title_vars = () => {
   }
 
   main.classList.add(`main_title_align_${title_align}`)
+}
+
+App.set_zone_vars = () => {
+  let main = DOM.el(`#main`)
+
+  if (App.get_setting(`header_icon_pick`)) {
+    main.classList.add(`header_icon_pick`)
+  }
+  else {
+    main.classList.remove(`header_icon_pick`)
+  }
+
+  let scv
+
+  if (App.get_setting(`split_color_enabled`)) {
+    scv = App.get_setting(`split_color`)
+  }
+  else {
+    scv = App.text_color
+  }
+
+  App.set_css_var(`split_color`, scv)
+  let sw = App.get_setting(`split_width`)
+
+  if (App.get_setting(`split_padding`)) {
+    main.classList.add(`split_padding`)
+  }
+  else {
+    main.classList.remove(`split_padding`)
+  }
+
+  App.set_css_var(`split_width`, `${sw}px`)
+  let split_sides = [`left`, `right`, `both`]
+
+  for (let side of split_sides) {
+    main.classList.remove(`split_side_${side}`)
+  }
+
+  let split_side = App.get_setting(`split_side`)
+  main.classList.add(`split_side_${split_side}`)
 }
