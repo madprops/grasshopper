@@ -113,7 +113,7 @@ App.tab_tree = {}
 App.last_settings = {}
 App.tab_box_items = []
 App.tab_box_o_items = []
-App.num_generic_menus = 8
+App.num_generic_menus = 10
 App.max_command_check_items = 50
 App.max_bookmark_folder_picks = 50
 App.max_history_picks = 50
@@ -128,6 +128,7 @@ App.semi_black_color = `rgba(5, 5, 5, 1)`
 App.mouse_inside = false
 App.border_widths = [0, 10, 1]
 App.flashlight_on = false
+App.command_combo_num = 10
 
 App.settings_ready = false
 App.media_image_ready = false

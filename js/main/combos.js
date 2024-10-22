@@ -1,3 +1,51 @@
+App.cmd_combo_keys = () => {
+  let keys = [`name`, `icon`]
+
+  for (let i = 1; i <= App.command_combo_num; i++) {
+    keys.push(`cmd_${i}`)
+  }
+
+  return keys
+}
+
+App.cmd_combo_widgets = () => {
+  let obj = {
+    name: `text`,
+    icon: `text`,
+  }
+
+  for (let i = 1; i <= App.command_combo_num; i++) {
+    obj[`cmd_${i}`] = `menu`
+  }
+
+  return obj
+}
+
+App.cmd_combo_labels = () => {
+  let obj = {
+    name: `Name`,
+    icon: `Icon`,
+  }
+
+  for (let i = 1; i <= App.command_combo_num; i++) {
+    obj[`cmd_${i}`] = `Command ${i}`
+  }
+
+  return obj
+}
+
+App.cmd_combo_sources = () => {
+  let obj = {}
+
+  for (let i = 1; i <= App.command_combo_num; i++) {
+    obj[`cmd_${i}`] = () => {
+      return App.cmdlist_single.slice(0)
+    }
+  }
+
+  return obj
+}
+
 App.start_command_combos_addlist = () => {
   if (App.command_combos_addlist_ready) {
     return
@@ -9,61 +57,10 @@ App.start_command_combos_addlist = () => {
 
   App.create_popup({...popobj, id: `addlist_${id}`,
     element: Addlist.register({...regobj, id,
-      keys: [
-        `name`, `icon`,
-        `cmd_1`, `cmd_2`, `cmd_3`, `cmd_4`,
-        `cmd_5`, `cmd_6`, `cmd_7`, `cmd_8`,
-      ],
-      widgets: {
-        icon: `text`,
-        name: `text`,
-        cmd_1: `menu`,
-        cmd_2: `menu`,
-        cmd_3: `menu`,
-        cmd_4: `menu`,
-        cmd_5: `menu`,
-        cmd_6: `menu`,
-        cmd_7: `menu`,
-        cmd_8: `menu`,
-      },
-      labels: {
-        icon: `Icon`,
-        name: `Name`,
-        cmd_1: `Command 1`,
-        cmd_2: `Command 2`,
-        cmd_3: `Command 3`,
-        cmd_4: `Command 4`,
-        cmd_5: `Command 5`,
-        cmd_6: `Command 6`,
-        cmd_7: `Command 7`,
-        cmd_8: `Command 8`,
-      },
-      sources: {
-        cmd_1: () => {
-          return App.cmdlist_single.slice(0)
-        },
-        cmd_2: () => {
-          return App.cmdlist_single.slice(0)
-        },
-        cmd_3: () => {
-          return App.cmdlist_single.slice(0)
-        },
-        cmd_4: () => {
-          return App.cmdlist_single.slice(0)
-        },
-        cmd_5: () => {
-          return App.cmdlist_single.slice(0)
-        },
-        cmd_6: () => {
-          return App.cmdlist_single.slice(0)
-        },
-        cmd_7: () => {
-          return App.cmdlist_single.slice(0)
-        },
-        cmd_8: () => {
-          return App.cmdlist_single.slice(0)
-        },
-      },
+      keys: App.cmd_combo_keys(),
+      widgets: App.cmd_combo_widgets(),
+      labels: App.cmd_combo_labels(),
+      sources: App.cmd_combo_sources(),
       list_icon: (item) => {
         return item.icon || App.combo_icon
       },
