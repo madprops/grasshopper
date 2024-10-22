@@ -21,6 +21,7 @@ NeedContext.layers = {}
 NeedContext.level = 0
 NeedContext.gap = `0.5rem`
 NeedContext.side_padding = `0.5rem`
+NeedContext.compact_padding = `0.35rem`
 NeedContext.center_top = 20
 NeedContext.dragging = false
 
@@ -637,6 +638,8 @@ NeedContext.init = () => {
     #needcontext-container.needcontext-compact {
       flex-direction: row;
       flex-wrap: wrap;
+      padding-left: ${NeedContext.compact_padding};
+      padding-right: ${NeedContext.compact_padding};
     }
 
     .needcontext-compact .needcontext-text {
