@@ -190,12 +190,7 @@ App.fill_palette = () => {
     let name = DOM.create(`div`)
     name.append(cmd.name)
     el.append(name)
-    el.title = cmd.info
-
-    if (App.get_setting(`debug_mode`)) {
-      el.title += ` (${cmd.cmd})`
-    }
-
+    el.title = `${cmd.info}\nKey: ${cmd.cmd}`
     container.append(el)
     num += 1
   }
