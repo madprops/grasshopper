@@ -2491,6 +2491,18 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
     },
+    pinline_margin: {
+      name: `Pinline Margin`,
+      type: `menu`,
+      value: 0,
+      placeholder: `Px`,
+      info: `Left/Right margin of the Pinline from the edges`,
+      actions: [`theme`],
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(0, 25, 5, `px`))
+      },
+    },
     pinline_menu: {
       name: `Pinline Menu`,
       type: `list`,

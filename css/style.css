@@ -929,6 +929,8 @@ svg {
   align-items: center;
   margin-top: 0.7rem;
   margin-bottom: 0.7rem;
+  margin-left: var(--pinline_margin);
+  margin-right: var(--pinline_margin);
   border: var(--pinline_border_width) solid var(--alt_color_1);
   padding-top: calc(var(--panel_padding) - 1px);
   padding-bottom: calc(var(--panel_padding) - 1px);

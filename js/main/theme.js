@@ -871,15 +871,25 @@ App.set_pinline_vars = () => {
     App.set_css_var(`pinline_border_radius`, `unset`)
   }
 
-  if (App.get_setting(`small_pinline`)) {
+  let pm = App.get_setting(`pinline_margin`)
+  let small = App.get_setting(`small_pinline`)
+
+  if (small) {
     App.set_css_var(`pinline_width`, `20%`)
   }
   else {
-    App.set_css_var(`pinline_width`, `100%`)
+    App.set_css_var(`pinline_width`, `calc(100% - ${pm * 2}px)`)
   }
 
   let bw = App.get_setting(`pinline_border_width`) + `px`
   App.set_css_var(`pinline_border_width`, bw)
+
+  if (small) {
+    App.set_css_var(`pinline_margin`, pm + `px`)
+  }
+  else {
+    App.set_css_var(`pinline_margin`, `0`)
+  }
 }
 
 App.set_tab_box_vars = () => {

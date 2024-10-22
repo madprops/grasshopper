@@ -301,6 +301,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     `close_button_border_width`,
     `close_button_border_width_tab_box`,
     `pinline_border_width`,
+    `pinline_margin`,
   ]
 
   let btn_id = `settings_menubutton_${setting}`
