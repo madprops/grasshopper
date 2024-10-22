@@ -536,7 +536,7 @@ svg {
 }
 
 .close_button:hover {
-  border-color: var(--alt_color_2)
+  border-color: var(--alt_color_2);
 }
 
 .close_button.left {
