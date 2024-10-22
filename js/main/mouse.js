@@ -555,28 +555,31 @@ App.mouse_context_action = (e) => {
 
   mode = item.mode
 
-  if (App.get_setting(`hover_button`) !== `none`) {
-    if (DOM.parent(target, [`.hover_button`])) {
-      if (App.get_setting(`hover_button_pick`)) {
-        App.pick(item)
-      }
-      else {
-        App.show_hover_menu(item, e)
-      }
-
-      return
+  if (DOM.parent(target, [`.hover_button`])) {
+    if (App.get_setting(`hover_button_pick`)) {
+      App.pick(item)
     }
+    else {
+      App.show_hover_menu(item, e)
+    }
+
+    return
+  }
+
+  if (DOM.parent(target, [`.close_button`])) {
+    if (App.get_setting(`close_button_pick`)) {
+      App.pick(item)
+    }
+    else {
+      App.show_close_button_menu(item, e)
+    }
+
+    return
   }
 
   if (App.get_setting(`icon_pick`)) {
     if (DOM.parent(target, [`.item_icon_container`])) {
       App.select_item({item, scroll: `nearest`, deselect: true})
-      return
-    }
-  }
-
-  if (DOM.parent(target, [`.close_button`])) {
-    if (App.show_close_button_menu(item, e)) {
       return
     }
   }

@@ -1740,10 +1740,18 @@ App.build_settings = () => {
       type: `color`,
       value: App.default_color,
       info: `Background color for the Close Buttons`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key, true)
       },
+    },
+    close_button_pick: {
+      name: `Close Button Pick`,
+      type: `checkbox`,
+      value: false,
+      info: `Pick items when right clicking the Close Button`,
+      version: 1,
     },
   }
 
