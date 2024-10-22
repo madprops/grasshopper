@@ -925,7 +925,6 @@ svg {
 }
 
 #pinline {
-  width: 100%;
   display: flex;
   align-items: center;
   margin-top: 0.7rem;
@@ -940,18 +939,24 @@ svg {
   color: var(--pinline_text_color);
   transition: box-shadow var(--transition_delay),
   text-shadow var(--transition_delay);
+  border-radius: var(--pinline_border_radius);
+  min-width: var(--pinline_width);
+  max-width: 100%;
 }
 
 .pinline_align_left #pinline {
   justify-content: flex-start;
+  align-self: flex-start;
 }
 
 .pinline_align_center #pinline {
   justify-content: center;
+  align-self: center;
 }
 
 .pinline_align_right #pinline {
   justify-content: flex-end;
+  align-self: flex-end;
 }
 
 #about_container {

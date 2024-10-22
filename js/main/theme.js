@@ -863,6 +863,20 @@ App.set_pinline_vars = () => {
 
   let align = App.get_setting(`pinline_align`)
   main.classList.add(`pinline_align_${align}`)
+
+  if (App.get_setting(`rounded_pinline`)) {
+    App.set_css_var(`pinline_border_radius`, `20px`)
+  }
+  else {
+    App.set_css_var(`pinline_border_radius`, `unset`)
+  }
+
+  if (App.get_setting(`smaller_pinline`)) {
+    App.set_css_var(`pinline_width`, `20%`)
+  }
+  else {
+    App.set_css_var(`pinline_width`, `100%`)
+  }
 }
 
 App.set_tab_box_vars = () => {

@@ -2605,6 +2605,20 @@ App.build_settings = () => {
       info: `Show icons in the Pinline`,
       version: 1,
     },
+    rounded_pinline: {
+      name: `Rounded Pinline`,
+      type: `checkbox`,
+      value: false,
+      info: `Make the Pinline more rounded`,
+      version: 1,
+    },
+    smaller_pinline: {
+      name: `Smaller Pinline`,
+      type: `checkbox`,
+      value: false,
+      info: `Make the Pinline smaller`,
+      version: 1,
+    },
   }
 
   add_props()
