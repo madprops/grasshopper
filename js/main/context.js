@@ -47,7 +47,8 @@ App.show_generic_menu = (num, item, e) => {
   })
 
   let element = item?.element
-  App.show_context({items, e, element})
+  let compact = App.get_setting(`compact_generic_menu_${num}`)
+  App.show_context({items, e, element, compact})
 }
 
 App.show_extra_menu = (item, e) => {
