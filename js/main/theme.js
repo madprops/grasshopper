@@ -1154,6 +1154,7 @@ App.set_zone_vars = () => {
 }
 
 App.set_hover_vars = () => {
+  let main = DOM.el(`#main`)
   let effects = App.remove_separators(App.effects)
 
   for (let eff of effects) {
