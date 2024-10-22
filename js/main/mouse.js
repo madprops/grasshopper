@@ -242,19 +242,15 @@ App.mouse_click_action = (e) => {
     }
   }
 
-  if (App.get_setting(`hover_button`) !== `none`) {
-    if (DOM.parent(target, [`.hover_button`])) {
-      App.show_hover_menu(item, e)
-      return
-    }
+  if (DOM.parent(target, [`.hover_button`])) {
+    App.show_hover_menu(item, e)
+    return
   }
 
   if (mode === `tabs`) {
-    if (App.get_setting(`show_close_button`) !== `never`) {
-      if (DOM.class(target, [`close_button`])) {
-        App.close_tabs({item})
-        return
-      }
+    if (DOM.class(target, [`close_button`])) {
+      App.close_tabs({item})
+      return
     }
 
     if (App.get_setting(`mute_click`)) {
