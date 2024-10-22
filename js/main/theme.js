@@ -161,13 +161,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`button_text_icon_enabled`)
     }
 
-    if (App.get_setting(`autohide_taglist`)) {
-      main.classList.add(`autohide_taglist`)
-    }
-    else {
-      main.classList.remove(`autohide_taglist`)
-    }
-
     if (App.get_setting(`item_pointer`)) {
       main.classList.add(`item_pointer`)
     }
@@ -199,6 +192,7 @@ App.do_apply_theme = (args = {}) => {
     App.set_zone_vars()
     App.set_hover_vars()
     App.set_effect_vars()
+    App.set_taglist_vars()
 
     App.insert_tab_color_css()
     App.insert_color_css()
@@ -1200,5 +1194,16 @@ App.set_effect_vars = () => {
   }
   else {
     main.classList.remove(`breathe_effect`)
+  }
+}
+
+App.set_taglist_vars = () => {
+  let main = DOM.el(`#main`)
+
+  if (App.get_setting(`autohide_taglist`)) {
+    main.classList.add(`autohide_taglist`)
+  }
+  else {
+    main.classList.remove(`autohide_taglist`)
   }
 }
