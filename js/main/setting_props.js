@@ -1846,7 +1846,7 @@ App.build_settings = () => {
       type: `list`,
       value: [],
       data_group: `normal_menus`,
-      info: `Make this the item menu for all modes that don't have an item menu set`,
+      info: `Make this the item menu for all modes that don't have an Item Menu set`,
       version: 1,
     },
     tabs_item_menu: {
@@ -1854,7 +1854,7 @@ App.build_settings = () => {
       type: `list`,
       value: [],
       data_group: `normal_menus`,
-      info: `Menu to show when using the tabs item menu`,
+      info: `Menu to show when using the Tabs Item Menu`,
       version: 1,
     },
     history_item_menu: {
@@ -1862,7 +1862,7 @@ App.build_settings = () => {
       type: `list`,
       value: [],
       data_group: `normal_menus`,
-      info: `Menu to show when using the history item menu`,
+      info: `Menu to show when using the History Item Menu`,
       version: 1,
     },
     bookmarks_item_menu: {
@@ -1870,7 +1870,7 @@ App.build_settings = () => {
       type: `list`,
       value: [],
       data_group: `normal_menus`,
-      info: `Menu to show when using the bookmarks item menu`,
+      info: `Menu to show when using the Bookmarks Item Menu`,
       version: 1,
     },
     closed_item_menu: {
@@ -1879,7 +1879,7 @@ App.build_settings = () => {
       value: [],
       separator: true,
       data_group: `normal_menus`,
-      info: `Menu to show when using the closed item menu`,
+      info: `Menu to show when using the Closed Item Menu`,
       version: 1,
     },
     global_actions_menu: {
@@ -5321,6 +5321,62 @@ App.build_settings = () => {
   props = App.setting_browser_commands()
 
   add_props()
+  category = `compact`
+
+  props = {
+    compact_global_item_menu: {
+      name: `Compact Global Item Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Item Menu (Global)`,
+      version: 1,
+    },
+    compact_tabs_item_menu: {
+      name: `Compact Tabs Item Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Item Menu (Tabs)`,
+      version: 1,
+    },
+    compact_history_item_menu: {
+      name: `Compact History Item Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Item Menu (History)`,
+      version: 1,
+    },
+    compact_bookmarks_item_menu: {
+      name: `Compact Bookmarks Item Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Item Menu (Bookmarks)`,
+      version: 1,
+    },
+    compact_closed_item_menu: {
+      name: `Compact Closed Item Menu`,
+      type: `checkbox`,
+      value: false,
+      separator: true,
+      info: `Only show icons in the Item Menu (Closed)`,
+      version: 1,
+    },
+    compact_hover_button_menu: {
+      name: `Compact Hover Button Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Hover Button Menu`,
+      version: 1,
+    },
+    compact_close_button_menu: {
+      name: `Compact Close Button Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Close Button Menu`,
+      version: 1,
+    },
+  }
+
+  add_props()
   category = `more`
 
   props = {
@@ -5715,6 +5771,9 @@ App.build_settings = () => {
       Click 'Manage Extension', then click the cog on the top right
       Then click 'Manage Extension Shortcuts' and add the shortcuts you need
       Popup Commands open the popup first before running the command`,
+    },
+    compact: {
+      info: `Compact some menus to only show icons in a row`
     },
     warns: {
       info: `When to show the confirmation dialog on certain actions

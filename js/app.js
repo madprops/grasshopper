@@ -214,6 +214,7 @@ App.settings_icons = {
   bookmarks: `⭐`,
   close: `❌`,
   pinline: `📍`,
+  compact: `💎`,
 }
 
 App.clipboard_icon = `📋`

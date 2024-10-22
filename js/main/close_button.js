@@ -41,7 +41,8 @@ App.show_close_button_menu = (item, e) => {
   })
 
   let element = item?.element
-  App.show_context({items, e, element})
+  let compact = App.get_setting(`compact_close_button_menu`)
+  App.show_context({items, e, element, compact})
   return true
 }
 

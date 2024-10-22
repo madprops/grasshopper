@@ -35,7 +35,8 @@ App.show_item_menu = async (args = {}) => {
     }
 
     App.extra_menu_items(items)
-    App.show_context({items, e: args.e, short: true})
+    let compact = App.get_setting(`compact_global_item_menu`)
+    App.show_context({items, e: args.e, short: true, compact})
     return
   }
 
@@ -104,7 +105,8 @@ App.show_item_menu = async (args = {}) => {
     App.extra_menu_items(items)
   }
 
-  App.show_context({items, e: args.e, element})
+  let compact = App.get_setting(`compact_${args.item.mode}_item_menu`)
+  App.show_context({items, e: args.e, element, compact})
 }
 
 App.common_menu_items = (args = {}) => {

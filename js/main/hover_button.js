@@ -11,7 +11,8 @@ App.show_hover_button_menu = (item, e) => {
   })
 
   let element = item?.element
-  App.show_context({items, e, element})
+  let compact = App.get_setting(`compact_hover_button_menu`)
+  App.show_context({items, e, element, compact})
 }
 
 App.hover_button_middle_click = (item, e) => {

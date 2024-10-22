@@ -121,6 +121,7 @@ NeedContext.show = (args = {}) => {
     expand: false,
     picker_mode: false,
     margin: 0,
+    compact: false,
   }
 
   NeedContext.def_args(def_args, args)
@@ -235,6 +236,13 @@ NeedContext.show = (args = {}) => {
 
   c.append(NeedContext.clear_button())
   let normal_items = []
+
+  if (args.compact) {
+    c.classList.add(`needcontext-compact`)
+  }
+  else {
+    c.classList.remove(`needcontext-compact`)
+  }
 
   for (let item of args.items) {
     let el = document.createElement(`div`)
@@ -615,6 +623,19 @@ NeedContext.init = () => {
       max-width: 98%;
     }
 
+    #needcontext-container.needcontext-compact {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .needcontext-compact .needcontext-text {
+      display: none;
+    }
+
+    .needcontext-compact .needcontext-separator {
+      display: none;
+    }
+
     #needcontext-container.without_title {
       padding-top: 5px;
     }
@@ -755,11 +776,11 @@ NeedContext.init = () => {
 
     NeedContext.keydown = true
 
-    if (e.key === `ArrowUp`) {
+    if ([`ArrowUp`, `ArrowLeft`].includes(e.key)) {
       NeedContext.select_next(`up`)
       e.preventDefault()
     }
-    else if (e.key === `ArrowDown`) {
+    else if ([`ArrowDown`, `ArrowRight`].includes(e.key)) {
       NeedContext.select_next()
       e.preventDefault()
     }
