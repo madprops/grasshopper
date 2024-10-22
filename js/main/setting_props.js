@@ -1729,7 +1729,7 @@ App.build_settings = () => {
       name: `Close Button Text Color`,
       type: `color`,
       value: App.default_color,
-      info: `Background color for the Close Buttons`,
+      info: `Text color for the Close Buttons`,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key, true)

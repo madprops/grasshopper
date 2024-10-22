@@ -83,6 +83,8 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`text_color_darker`, text_color_darker)
     let overlay_color = App.opacity(args.background_color, 0.6)
     App.set_css_var(`overlay_color`, overlay_color)
+    App.alt_color_1 = alt_color_1
+    App.alt_color_2 = alt_color_2
 
     if (args.safe_mode) {
       return
@@ -1118,8 +1120,10 @@ App.close_button_vars = () => {
   let main = DOM.el(`#main`)
 
   if (App.get_setting(`close_button_colors`)) {
-    App.set_css_var(`close_button_text_color`, App.get_setting(`close_button_text_color`))
-    App.set_css_var(`close_button_background_color`, App.get_setting(`close_button_background_color`))
+    let text_color = App.get_setting(`close_button_text_color`)
+    let bg_color = App.get_setting(`close_button_background_color`)
+    App.set_css_var(`close_button_text_color`, text_color)
+    App.set_css_var(`close_button_background_color`, bg_color)
   }
   else {
     App.set_css_var(`close_button_text_color`, `unset`)
