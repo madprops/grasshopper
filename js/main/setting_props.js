@@ -5360,6 +5360,13 @@ App.build_settings = () => {
       info: `Only show icons in the Item Menu (Closed)`,
       version: 1,
     },
+    compact_extra_menu: {
+      name: `Compact Extra Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Extra Button Menu`,
+      version: 1,
+    },
     compact_hover_button_menu: {
       name: `Compact Hover Button Menu`,
       type: `checkbox`,

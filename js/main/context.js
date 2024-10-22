@@ -57,7 +57,8 @@ App.show_extra_menu = (item, e) => {
   })
 
   let element = item?.element
-  App.show_context({items, e, element})
+  let compact = App.get_setting(`compact_extra_menu`)
+  App.show_context({items, e, element, compact})
 }
 
 App.show_empty_menu = (item, e) => {
