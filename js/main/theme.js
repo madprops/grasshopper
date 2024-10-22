@@ -1115,6 +1115,8 @@ App.set_tab_box_vars = () => {
 }
 
 App.close_button_vars = () => {
+  let main = DOM.el(`#main`)
+
   if (App.get_setting(`close_button_colors`)) {
     App.set_css_var(`close_button_text_color`, App.get_setting(`close_button_text_color`))
     App.set_css_var(`close_button_background_color`, App.get_setting(`close_button_background_color`))
