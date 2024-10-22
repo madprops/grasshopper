@@ -1,22 +1,31 @@
 App.add_close_button = (item, side) => {
-  let cb_setting = App.get_setting(`show_close_button`)
-
-  if (cb_setting === `never`) {
+  if (item.mode !== `tabs`) {
     return
   }
 
-  let c_side = App.get_setting(`close_button_side`)
-  let show = App.get_setting(`show_close_button`)
+  let cb_show
+  let c_side
 
-  if (item.mode === `tabs`) {
-    if (side !== c_side) {
-      return
-    }
-
-    let btn = DOM.create(`div`, `close_button ${c_side} item_node`)
-    btn.textContent = App.get_setting(`close_icon`)
-    item.element.append(btn)
+  if (item.tab_box) {
+    cb_show = App.get_setting(`show_close_button_tab_box`)
+    c_side = App.get_setting(`close_button_side_tab_box`)
   }
+  else {
+    cb_show = App.get_setting(`show_close_button`)
+    c_side = App.get_setting(`close_button_side`)
+  }
+
+  if (cb_show === `never`) {
+    return
+  }
+
+  if (side !== c_side) {
+    return
+  }
+
+  let btn = DOM.create(`div`, `close_button ${c_side} item_node`)
+  btn.textContent = App.get_setting(`close_icon`)
+  item.element.append(btn)
 }
 
 App.show_close_button_menu = (item, e) => {

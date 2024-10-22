@@ -1601,9 +1601,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `global_hover`,
       info: `How to show the Close Buttons`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    close_button_side_tab_box: {
+      name: `Close Button Tab Box Side`,
+      type: `menu`,
+      value: `right`,
+      info: `On which side to show the Close Button in the Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
       },
     },
     show_close_button_tab_box: {
@@ -1611,6 +1622,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `global_hover`,
       info: `How to show the Close Buttons in the Tab Box`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
