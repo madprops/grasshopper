@@ -2612,8 +2612,8 @@ App.build_settings = () => {
       info: `Make the Pinline more rounded`,
       version: 1,
     },
-    smaller_pinline: {
-      name: `Smaller Pinline`,
+    small_pinline: {
+      name: `Small Pinline`,
       type: `checkbox`,
       value: false,
       info: `Make the Pinline smaller`,

@@ -871,7 +871,7 @@ App.set_pinline_vars = () => {
     App.set_css_var(`pinline_border_radius`, `unset`)
   }
 
-  if (App.get_setting(`smaller_pinline`)) {
+  if (App.get_setting(`small_pinline`)) {
     App.set_css_var(`pinline_width`, `20%`)
   }
   else {
