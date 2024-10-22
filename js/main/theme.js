@@ -918,15 +918,6 @@ App.set_tab_box_vars = () => {
   }
 
   for (let eff of effects) {
-    main.classList.remove(`tab_box_hover_effect_${eff.value}`)
-  }
-
-  let tbh_eff = App.get_setting(`tab_box_hover_effect`)
-  main.classList.add(`tab_box_hover_effect_${tbh_eff}`)
-  let tbh_eff_2 = App.get_setting(`tab_box_hover_effect_2`)
-  main.classList.add(`tab_box_hover_effect_${tbh_eff_2}`)
-
-  for (let eff of effects) {
     main.classList.remove(`tab_box_active_effect_${eff.value}`)
   }
 
@@ -1192,6 +1183,15 @@ App.set_hover_vars = () => {
   main.classList.add(`hover_effect_${hover_effect}`)
   let hover_effect_2 = App.get_setting(`hover_effect_2`)
   main.classList.add(`hover_effect_${hover_effect_2}`)
+
+  for (let eff of effects) {
+    main.classList.remove(`tab_box_hover_effect_${eff.value}`)
+  }
+
+  let tbh_eff = App.get_setting(`tab_box_hover_effect`)
+  main.classList.add(`tab_box_hover_effect_${tbh_eff}`)
+  let tbh_eff_2 = App.get_setting(`tab_box_hover_effect_2`)
+  main.classList.add(`tab_box_hover_effect_${tbh_eff_2}`)
 
   for (let side of [`left`, `right`]) {
     main.classList.remove(`hover_button_${side}`)
