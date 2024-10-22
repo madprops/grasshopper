@@ -83,8 +83,6 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`text_color_darker`, text_color_darker)
     let overlay_color = App.opacity(args.background_color, 0.6)
     App.set_css_var(`overlay_color`, overlay_color)
-    App.alt_color_1 = alt_color_1
-    App.alt_color_2 = alt_color_2
 
     if (args.safe_mode) {
       return
