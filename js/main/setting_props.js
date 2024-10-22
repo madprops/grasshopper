@@ -1713,14 +1713,32 @@ App.build_settings = () => {
       type: `text_smaller`,
       value: `x`,
       no_empty: true,
+      separator: true,
       placeholder: App.icon_placeholder,
       info: `Icon for the close buttons`,
       version: 1,
     },
-    close_button_color: {
-      name: `Close Button Color`,
+    close_button_colors: {
+      name: `Close Button Colors`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable custom colors for the Close Buttons`,
+      version: 1,
+    },
+    close_button_text_color: {
+      name: `Close Button Text Color`,
       type: `color`,
-      value: `rgba(0, 0, 0, 0)`,
+      value: App.default_color,
+      info: `Background color for the Close Buttons`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    close_button_background_color: {
+      name: `Close Button Background Color`,
+      type: `color`,
+      value: App.default_color,
       info: `Background color for the Close Buttons`,
       version: 1,
       setup: (key) => {

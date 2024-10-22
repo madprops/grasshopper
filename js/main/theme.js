@@ -260,14 +260,6 @@ App.do_apply_theme = (args = {}) => {
 
     let split_side = App.get_setting(`split_side`)
     main.classList.add(`split_side_${split_side}`)
-    let c_sides = [`left`, `right`]
-
-    for (let c_side of c_sides) {
-      main.classList.remove(`close_button_${c_side}`)
-    }
-
-    let c_side = App.get_setting(`close_button_side`)
-    main.classList.add(`close_button_${c_side}`)
 
     if (App.get_setting(`button_icons`)) {
       main.classList.add(`button_text_icon_enabled`)
@@ -385,24 +377,11 @@ App.do_apply_theme = (args = {}) => {
     let footer_align = App.get_setting(`footer_align`)
     let footer_justify = justify_map[footer_align]
     App.set_css_var(`footer_align`, footer_justify)
-    let cb_padding = App.get_setting(`close_button_padding`)
-    App.set_css_var(`close_button_padding`, `${cb_padding}px`)
     let uto = App.get_setting(`unloaded_opacity`) / 100
     App.set_css_var(`unloaded_opacity`, uto)
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
     App.set_css_var(`window_border_color`, App.get_setting(`window_border_color`))
-    App.set_css_var(`close_button_color`, App.get_setting(`close_button_color`))
-
-    for (let cb_show of App.remove_separators(App.show_icon)) {
-      main.classList.remove(`close_button_${cb_show.value}`)
-      main.classList.remove(`close_button_tab_box_${cb_show.value}`)
-    }
-
-    let cb_show = App.get_setting(`show_close_button`)
-    main.classList.add(`close_button_${cb_show}`)
-    let cb_show_tb = App.get_setting(`show_close_button_tab_box`)
-    main.classList.add(`close_button_tab_box_${cb_show_tb}`)
-
+    App.close_button_vars()
     App.insert_tab_color_css()
     App.insert_color_css()
     App.insert_icon_css()
@@ -1133,7 +1112,36 @@ App.set_tab_box_vars = () => {
   else {
     main.classList.remove(`tab_box_count`)
   }
+}
 
+App.close_button_vars = () => {
+  if (App.get_setting(`close_button_colors`)) {
+    App.set_css_var(`close_button_text_color`, App.get_setting(`close_button_text_color`))
+    App.set_css_var(`close_button_background_color`, App.get_setting(`close_button_background_color`))
+  }
+  else {
+    App.set_css_var(`close_button_text_color`, `unset`)
+    App.set_css_var(`close_button_background_color`, `unset`)
+  }
+
+  for (let c_side of [`left`, `right`]) {
+    main.classList.remove(`close_button_${c_side}`)
+  }
+
+  let c_side = App.get_setting(`close_button_side`)
+  main.classList.add(`close_button_${c_side}`)
+  let cb_padding = App.get_setting(`close_button_padding`)
+  App.set_css_var(`close_button_padding`, `${cb_padding}px`)
+
+  for (let cb_show of App.remove_separators(App.show_icon)) {
+    main.classList.remove(`close_button_${cb_show.value}`)
+    main.classList.remove(`close_button_tab_box_${cb_show.value}`)
+  }
+
+  let cb_show = App.get_setting(`show_close_button`)
+  main.classList.add(`close_button_${cb_show}`)
+  let cb_show_tb = App.get_setting(`show_close_button_tab_box`)
+  main.classList.add(`close_button_tab_box_${cb_show_tb}`)
   let cbbw = App.get_setting(`close_button_border_width`)
   App.set_css_var(`close_button_border_width`, cbbw + `px`)
   let cbbwtb = App.get_setting(`close_button_border_width_tab_box`)
