@@ -1656,7 +1656,14 @@ App.show_filter_menu = (mode) => {
   }
 
   let btn = DOM.el(`#${mode}_filter_modes`)
-  App.show_context({element: btn, items: App.filter_menus[mode], margin: btn.clientHeight})
+  let compact = App.get_setting(`compact_filter_menu`)
+
+  App.show_context({
+    element: btn,
+    items: App.filter_menus[mode],
+    margin: btn.clientHeight,
+    compact,
+  })
 }
 
 App.cycle_filter_modes = (mode, reverse, e) => {

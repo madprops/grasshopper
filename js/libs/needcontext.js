@@ -134,7 +134,7 @@ NeedContext.show = (args = {}) => {
     NeedContext.create()
   }
 
-  if (args.e && args.e.clientX !== undefined && args.e.clientY !== undefined) {
+  if (args.e && (args.e.clientX !== undefined) && (args.e.clientY !== undefined)) {
     args.x = args.e.clientX
     args.y = args.e.clientY
   }
@@ -148,7 +148,7 @@ NeedContext.show = (args = {}) => {
     NeedContext.level = 0
   }
 
-  let center = args.x === undefined || args.y === undefined
+  let center = (args.x === undefined) || (args.y === undefined)
   args.items = args.items.slice(0)
 
   if (args.index === undefined) {
@@ -192,14 +192,15 @@ NeedContext.show = (args = {}) => {
   }
 
   let index = 0
-
   let c = NeedContext.container
+
   c.innerHTML = ``
   c.style.left = `unset`
   c.style.top = `unset`
   c.style.transform = `unset`
   c.style.minWidth = `unset`
   c.style.minHeight = `unset`
+  c.style.maxWidth = `unset`
 
   if (args.title) {
     let title = document.createElement(`div`)
@@ -278,7 +279,8 @@ NeedContext.show = (args = {}) => {
         }
 
         if (args.compact) {
-          icon.title = item.title || item.text
+          let titles = [item.title, item.text].filter(Boolean)
+          icon.title = titles.join(' - ')
         }
 
         icon.append(item.icon)
@@ -384,6 +386,7 @@ NeedContext.show = (args = {}) => {
   }
 
   c.style.minHeight = NeedContext.min_height
+
   NeedContext.filter.value = ``
   NeedContext.filtered = false
   NeedContext.select_item(selected_index)

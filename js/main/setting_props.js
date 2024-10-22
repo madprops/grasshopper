@@ -5367,6 +5367,13 @@ App.build_settings = () => {
       info: `Only show icons in the Extra Button Menu`,
       version: 1,
     },
+    compact_favorites_menu: {
+      name: `Compact Favorites Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Favorites Menu`,
+      version: 1,
+    },
     compact_hover_button_menu: {
       name: `Compact Hover Button Menu`,
       type: `checkbox`,
@@ -5379,6 +5386,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Only show icons in the Close Button Menu`,
+      version: 1,
+    },
+    compact_filter_menu: {
+      name: `Compact Filter Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Filter Menu`,
       version: 1,
     },
   }
