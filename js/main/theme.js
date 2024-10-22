@@ -282,32 +282,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`header_icon_pick`)
     }
 
-    let favgravs = [`top`, `center`, `bottom`]
-
-    for (let grav of favgravs) {
-      main.classList.remove(`favorites_gravity_${grav}`)
-    }
-
-    let grav = App.get_setting(`favorites_gravity`)
-    main.classList.add(`favorites_gravity_${grav}`)
-
-    if (App.get_setting(`favorites_bar_color_enabled`)) {
-      App.set_css_var(`favorites_bar_color`, App.get_setting(`favorites_bar_color`))
-    }
-    else if (App.favorites_bar_side()) {
-      App.set_css_var(`favorites_bar_color`, slight_shade)
-    }
-    else {
-      App.set_css_var(`favorites_bar_color`, `unset`)
-    }
-
-    if (App.get_setting(`favorites_autohide`)) {
-      main.classList.add(`favorites_autohide`)
-    }
-    else {
-      main.classList.remove(`favorites_autohide`)
-    }
-
     if (App.breathe_effect_on) {
       main.classList.add(`breathe_effect`)
     }
@@ -323,13 +297,6 @@ App.do_apply_theme = (args = {}) => {
 
     let active_bg = App.get_setting(`background_color_active_mode`)
     main.classList.add(`active_background_${active_bg}`)
-
-    if (App.get_setting(`favorites_blur`)) {
-      main.classList.add(`favorites_blur`)
-    }
-    else {
-      main.classList.remove(`favorites_blur`)
-    }
 
     if (App.get_setting(`wrap_main_title`)) {
       main.classList.remove(`main_title_no_wrap`)
@@ -349,6 +316,7 @@ App.do_apply_theme = (args = {}) => {
     App.set_icon_size_vars()
     App.set_item_padding_vars()
     App.set_footer_vars()
+    App.set_favorites_vars()
 
     App.insert_tab_color_css()
     App.insert_color_css()
@@ -1149,4 +1117,41 @@ App.set_footer_vars = () => {
   let footer_align = App.get_setting(`footer_align`)
   let footer_justify = App.justify_map[footer_align]
   App.set_css_var(`footer_align`, footer_justify)
+}
+
+App.set_favorites_vars = () => {
+  let main = DOM.el(`#main`)
+
+  if (App.get_setting(`favorites_blur`)) {
+    main.classList.add(`favorites_blur`)
+  }
+  else {
+    main.classList.remove(`favorites_blur`)
+  }
+
+  let favgravs = [`top`, `center`, `bottom`]
+
+  for (let grav of favgravs) {
+    main.classList.remove(`favorites_gravity_${grav}`)
+  }
+
+  let grav = App.get_setting(`favorites_gravity`)
+  main.classList.add(`favorites_gravity_${grav}`)
+
+  if (App.get_setting(`favorites_bar_color_enabled`)) {
+    App.set_css_var(`favorites_bar_color`, App.get_setting(`favorites_bar_color`))
+  }
+  else if (App.favorites_bar_side()) {
+    App.set_css_var(`favorites_bar_color`, App.slight_shade)
+  }
+  else {
+    App.set_css_var(`favorites_bar_color`, `unset`)
+  }
+
+  if (App.get_setting(`favorites_autohide`)) {
+    main.classList.add(`favorites_autohide`)
+  }
+  else {
+    main.classList.remove(`favorites_autohide`)
+  }
 }
