@@ -5360,14 +5360,6 @@ App.build_settings = () => {
       info: `Only show icons in the Filter Menu`,
       version: 1,
     },
-    compact_filter_menu: {
-      name: `Compact Filter Menu`,
-      type: `checkbox`,
-      value: false,
-      separator: true,
-      info: `Only show icons in the Filter Menu`,
-      version: 1,
-    },
     compact_global_item_menu: {
       name: `Compact Global Item Menu`,
       type: `checkbox`,

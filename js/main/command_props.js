@@ -650,7 +650,6 @@ App.setup_commands = () => {
     },
     {
       name: `Backspace Key`,
-      short_name: `Back`,
       short_name: `Backspace`,
       cmd: `trigger_backspace_key`,
       icon: keyboard_icon,
