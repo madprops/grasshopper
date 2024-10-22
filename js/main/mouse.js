@@ -243,7 +243,7 @@ App.mouse_click_action = (e) => {
   }
 
   if (DOM.parent(target, [`.hover_button`])) {
-    App.show_hover_menu(item, e)
+    App.show_hover_button_menu(item, e)
     return
   }
 
@@ -552,24 +552,12 @@ App.mouse_context_action = (e) => {
   mode = item.mode
 
   if (DOM.parent(target, [`.hover_button`])) {
-    if (App.get_setting(`hover_button_pick`)) {
-      App.pick(item)
-    }
-    else {
-      App.show_hover_menu(item, e)
-    }
-
+    App.check_pick_button(`hover`, item, e)
     return
   }
 
   if (DOM.parent(target, [`.close_button`])) {
-    if (App.get_setting(`close_button_pick`)) {
-      App.pick(item)
-    }
-    else {
-      App.show_close_button_menu(item, e)
-    }
-
+    App.check_pick_button(`close`, item, e)
     return
   }
 
@@ -1232,4 +1220,31 @@ App.remove_mouse_inside = () => {
 
 App.do_remove_mouse_inside = () => {
   DOM.el(`#main`).classList.remove(`mouse_inside`)
+}
+
+App.check_pick_button = (what, item, e) => {
+  function show_menu() {
+    App[`show_${what}_button_menu`](item, e)
+  }
+
+  if (App.get_setting(`${what}_button_pick`)) {
+    let selected = App.selected_items(item.mode)
+    let pick = true
+
+    if (selected.length <= 1) {
+      if (selected[0] === item) {
+        show_menu()
+        pick = false
+      }
+    }
+
+    if (pick) {
+      App.pick(item)
+    }
+  }
+  else {
+    show_menu()
+  }
+
+  return
 }

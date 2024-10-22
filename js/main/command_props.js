@@ -1589,12 +1589,12 @@ App.setup_commands = () => {
     {
       name: `Hover Menu`,
       short_name: `Hover`,
-      cmd: `show_hover_menu`,
+      cmd: `show_hover_button_menu`,
       modes: [`items`],
       item: true,
       icon: hover_icon,
       action: (args) => {
-        App.show_hover_menu(args.item, args.e)
+        App.show_hover_button_menu(args.item, args.e)
       },
       info: `Show the Hover Menu`,
     },

@@ -1663,7 +1663,6 @@ App.build_settings = () => {
         {cmd: `settings_category_close`},
       ],
       separator: true,
-      data_group: `close_button_menus`,
       info: `Menu to show when clicking the Close Button`,
       version: 1,
     },
@@ -1774,8 +1773,8 @@ App.build_settings = () => {
         ])
       },
     },
-    hover_menu: {
-      name: `Hover Menu`,
+    hover_button_menu: {
+      name: `Hover Button Menu`,
       type: `list`,
       value: [
         {cmd: `filter_node_tabs`},
@@ -1786,7 +1785,6 @@ App.build_settings = () => {
         {cmd: `settings_category_hover`},
       ],
       separator: true,
-      data_group: `hover_menus`,
       info: `Menu to show when clicking the Hover Button`,
       version: 1,
     },

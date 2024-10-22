@@ -1466,11 +1466,11 @@ App.setup_settings_addlist = () => {
   let menukeys = [
     `favorites_menu`,
     `extra_menu`,
-    `hover_menu`,
+    `hover_button_menu`,
+    `close_button_menu`,
     `footer_menu`,
     `pinline_menu`,
     `main_title_menu`,
-    `close_button_menu`,
     `tab_box_menu`,
     `favorites_menu_tabs`,
     `favorites_menu_history`,
