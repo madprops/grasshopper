@@ -136,15 +136,6 @@ App.do_apply_theme = (args = {}) => {
     let effects = App.remove_separators(App.effects)
 
     for (let eff of effects) {
-      main.classList.remove(`hover_effect_${eff.value}`)
-    }
-
-    let hover_effect = App.get_setting(`hover_effect`)
-    main.classList.add(`hover_effect_${hover_effect}`)
-    let hover_effect_2 = App.get_setting(`hover_effect_2`)
-    main.classList.add(`hover_effect_${hover_effect_2}`)
-
-    for (let eff of effects) {
       main.classList.remove(`selected_effect_${eff.value}`)
     }
 
@@ -174,12 +165,6 @@ App.do_apply_theme = (args = {}) => {
       document.body.classList.remove(`text_glow`)
     }
 
-    for (let side of [`left`, `right`]) {
-      main.classList.remove(`hover_button_${side}`)
-    }
-
-    let hb = App.get_setting(`hover_button`)
-    main.classList.add(`hover_button_${hb}`)
     let ie = App.get_setting(`icon_effect`)
     let ies = [`none`, `spin`, `invert`, `border`]
 
@@ -228,7 +213,6 @@ App.do_apply_theme = (args = {}) => {
 
     let active_bg = App.get_setting(`background_color_active_mode`)
     main.classList.add(`active_background_${active_bg}`)
-
     let uto = App.get_setting(`unloaded_opacity`) / 100
     App.set_css_var(`unloaded_opacity`, uto)
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
@@ -243,6 +227,7 @@ App.do_apply_theme = (args = {}) => {
     App.set_favorite_vars()
     App.set_main_title_vars()
     App.set_zone_vars()
+    App.set_hover_vars()
 
     App.insert_tab_color_css()
     App.insert_color_css()
@@ -1166,4 +1151,28 @@ App.set_zone_vars = () => {
 
   let split_side = App.get_setting(`split_side`)
   main.classList.add(`split_side_${split_side}`)
+}
+
+App.set_hover_vars = () => {
+  let effects = App.remove_separators(App.effects)
+
+  for (let eff of effects) {
+    main.classList.remove(`hover_effect_${eff.value}`)
+  }
+
+  let hover_effect = App.get_setting(`hover_effect`)
+  main.classList.add(`hover_effect_${hover_effect}`)
+  let hover_effect_2 = App.get_setting(`hover_effect_2`)
+  main.classList.add(`hover_effect_${hover_effect_2}`)
+
+  for (let eff of effects) {
+    main.classList.remove(`hover_effect_${eff.value}`)
+  }
+
+  for (let side of [`left`, `right`]) {
+    main.classList.remove(`hover_button_${side}`)
+  }
+
+  let hb = App.get_setting(`hover_button`)
+  main.classList.add(`hover_button_${hb}`)
 }
