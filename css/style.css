@@ -929,7 +929,7 @@ svg {
   align-items: center;
   margin-top: 0.7rem;
   margin-bottom: 0.7rem;
-  border: 1px solid var(--alt_color_1);
+  border: var(--pinline_border_width) solid var(--alt_color_1);
   padding-top: calc(var(--panel_padding) - 1px);
   padding-bottom: calc(var(--panel_padding) - 1px);
   padding-left: 0.6rem;

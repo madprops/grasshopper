@@ -2473,6 +2473,18 @@ App.build_settings = () => {
       },
       version: 1,
     },
+    pinline_border_width: {
+      name: `Pinline Border`,
+      type: `menu`,
+      value: 1,
+      placeholder: `Px`,
+      info: `Width in pixels for the Pinline`,
+      actions: [`theme`],
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
+      },
+    },
     pinline_menu: {
       name: `Pinline Menu`,
       type: `list`,

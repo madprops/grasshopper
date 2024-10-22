@@ -877,6 +877,9 @@ App.set_pinline_vars = () => {
   else {
     App.set_css_var(`pinline_width`, `100%`)
   }
+
+  let bw = App.get_setting(`pinline_border_width`) + `px`
+  App.set_css_var(`pinline_border_width`, bw)
 }
 
 App.set_tab_box_vars = () => {

@@ -300,6 +300,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     `window_border_width`,
     `close_button_border_width`,
     `close_button_border_width_tab_box`,
+    `pinline_border_width`,
   ]
 
   let btn_id = `settings_menubutton_${setting}`
