@@ -235,6 +235,10 @@ App.setup_keyboard = () => {
       return
     }
 
+    if (App.flashlight_on) {
+      return
+    }
+
     if (NeedContext.open) {
       return
     }
@@ -511,6 +515,10 @@ App.setup_keyboard = () => {
   DOM.ev(document, `keyup`, (e) => {
     if (App.locust_swarm_on) {
       App.stop_locust_swarm()
+      return
+    }
+
+    if (App.flashlight_on) {
       return
     }
 

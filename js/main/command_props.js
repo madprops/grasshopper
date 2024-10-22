@@ -66,6 +66,7 @@ App.setup_commands = () => {
   let template_icon = App.template_icon
   let plus_icon = App.plus_icon
   let minus_icon = App.minus_icon
+  let flashlight_icon = App.flashlight_icon
 
   let tbmodes = []
 
@@ -3928,6 +3929,15 @@ App.setup_commands = () => {
       info: `Generate a random password to use in websites`,
     },
     {
+      name: `Flashlight`,
+      cmd: `show_flashlight`,
+      icon: flashlight_icon,
+      action: (args) => {
+        App.show_flashlight()
+      },
+      info: `Show a white window to illuminate stuff`,
+    },
+    {
       name: `Signals`,
       cmd: `show_signals`,
       icon: signal_icon,
@@ -3973,7 +3983,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_breathe_effect()
       },
-      info: `Let the grasshopper breathe`,
+      info: `Let me breathe`,
     },
     {
       name: `Restart`,

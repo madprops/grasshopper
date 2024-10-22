@@ -127,6 +127,7 @@ App.semi_white_color = `rgba(250, 250, 250, 1)`
 App.semi_black_color = `rgba(5, 5, 5, 1)`
 App.mouse_inside = false
 App.border_widths = [0, 10, 1]
+App.flashlight_on = false
 
 App.settings_ready = false
 App.media_image_ready = false
@@ -244,6 +245,7 @@ App.combo_icon = `🍔`
 App.template_icon = `🛕`
 App.plus_icon = `📈`
 App.minus_icon = `📉`
+App.flashlight_icon = `🔦`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`
