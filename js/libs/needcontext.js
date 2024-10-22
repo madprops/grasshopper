@@ -246,6 +246,10 @@ NeedContext.show = (args = {}) => {
   }
 
   for (let item of args.items) {
+    if (args.compact && !item.icon) {
+      continue
+    }
+
     let el = document.createElement(`div`)
     el.classList.add(`needcontext-item`)
 
