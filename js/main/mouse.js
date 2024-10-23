@@ -215,7 +215,7 @@ App.mouse_click_action = (e) => {
     let media_setting = App.get_setting(`view_${media_type}_${mode}`)
 
     if (media_setting === `icon`) {
-      if (DOM.class(target, [`${media_type}_icon`])) {
+      if (DOM.parent(target, [`.${media_type}_icon`])) {
         App.select_item({item, scroll: `nearest`})
         App.view_media(item)
         return
@@ -248,13 +248,13 @@ App.mouse_click_action = (e) => {
   }
 
   if (mode === `tabs`) {
-    if (DOM.class(target, [`close_button`])) {
+    if (DOM.parent(target, [`.close_button`])) {
       App.close_tabs({item})
       return
     }
 
     if (App.get_setting(`mute_click`)) {
-      if (DOM.class(target, [`playing_icon`, `muted_icon`])) {
+      if (DOM.parent(target, [`.playing_icon`, `.muted_icon`])) {
         App.toggle_mute_tabs(item)
         return
       }
@@ -262,18 +262,18 @@ App.mouse_click_action = (e) => {
 
     if (App.taglist_enabled()) {
       if (DOM.parent(target, [`.taglist`])) {
-        if (DOM.class(target, [`taglist_item`])) {
+        if (DOM.parent(target, [`.taglist_item`])) {
           App.taglist_action(item, e)
           return
         }
 
-        if (DOM.class(target, [`taglist_left_scroll`])) {
+        if (DOM.parent(target, [`.taglist_left_scroll`])) {
           let taglist = DOM.el(`.taglist`, item.element)
           App.taglist_scroll(taglist, `left`)
           return
         }
 
-        if (DOM.class(target, [`taglist_right_scroll`])) {
+        if (DOM.parent(target, [`.taglist_right_scroll`])) {
           let taglist = DOM.el(`.taglist`, item.element)
           App.taglist_scroll(taglist, `right`)
           return
@@ -282,70 +282,70 @@ App.mouse_click_action = (e) => {
     }
 
     if (App.taglist_add_enabled()) {
-      if (DOM.class(target, [`taglist_add`])) {
+      if (DOM.parent(target, [`.taglist_add`])) {
         App.add_tags(item)
         return
       }
     }
 
     if (App.get_setting(`pin_icon_click`)) {
-      if (DOM.class(target, [`pin_icon`])) {
+      if (DOM.parent(target, [`.pin_icon`])) {
         App.unpin_tab(item.id)
         return
       }
     }
 
     if (App.get_setting(`normal_icon_click`)) {
-      if (DOM.class(target, [`normal_icon`])) {
+      if (DOM.parent(target, [`.normal_icon`])) {
         App.pin_tab(item.id)
         return
       }
     }
 
     if (App.get_setting(`loaded_icon_click`)) {
-      if (DOM.class(target, [`loaded_icon`])) {
+      if (DOM.parent(target, [`.loaded_icon`])) {
         App.unload_tabs(item, false)
         return
       }
     }
 
     if (App.get_setting(`unloaded_icon_click`)) {
-      if (DOM.class(target, [`unloaded_icon`])) {
+      if (DOM.parent(target, [`.unloaded_icon`])) {
         App.load_tabs(item, false)
         return
       }
     }
 
     if (App.get_setting(`title_icon_click`)) {
-      if (DOM.class(target, [`title_icon`])) {
+      if (DOM.parent(target, [`.title_icon`])) {
         App.edit_title(item)
         return
       }
     }
 
     if (App.get_setting(`tags_icon_click`)) {
-      if (DOM.class(target, [`tags_icon`])) {
+      if (DOM.parent(target, [`.tags_icon`])) {
         App.edit_tags(item)
         return
       }
     }
 
     if (App.get_setting(`root_icon_click`)) {
-      if (DOM.class(target, [`root_icon`])) {
+      if (DOM.parent(target, [`.root_icon`])) {
         App.go_to_root_url(item, true)
         return
       }
     }
 
     if (App.get_setting(`node_icon_click`)) {
-      if (DOM.class(target, [`node_icon`])) {
+      if (DOM.parent(target, [`.node_icon`])) {
         App.go_to_parent(item)
         return
       }
     }
 
     if (App.get_setting(`parent_icon_click`)) {
-      if (DOM.class(target, [`parent_icon`])) {
+      if (DOM.parent(target, [`.parent_icon`])) {
         App.filter_nodes(item)
         return
       }
@@ -360,14 +360,14 @@ App.mouse_click_action = (e) => {
   }
 
   if (App.get_setting(`notes_icon_click`)) {
-    if (DOM.class(target, [`notes_icon`])) {
+    if (DOM.parent(target, [`.notes_icon`])) {
       App.edit_notes(item)
       return
     }
   }
 
   if (App.get_setting(`custom_icon_click`)) {
-    if (DOM.class(target, [`custom_icon`])) {
+    if (DOM.parent(target, [`.custom_icon`])) {
       App.custom_icon_menu(item, e)
       return
     }
@@ -545,7 +545,7 @@ App.mouse_context_action = (e) => {
 
   if (App.taglist_enabled()) {
     if (DOM.parent(target, [`.taglist`])) {
-      if (DOM.class(target, [`taglist_item`])) {
+      if (DOM.parent(target, [`.taglist_item`])) {
         App.show_taglist_menu(e, item)
         return
       }
@@ -614,7 +614,7 @@ App.mouse_middle_action = (e, target_el) => {
     return
   }
 
-  if (DOM.class(target, [`favorites_button`])) {
+  if (DOM.parent(target, [`.favorites_button`])) {
     App.favorites_button_middle_click(e)
     return
   }
@@ -652,13 +652,13 @@ App.mouse_middle_action = (e, target_el) => {
 
   mode = item.mode
 
-  if (DOM.class(target, [`hover_button`])) {
+  if (DOM.parent(target, [`.hover_button`])) {
     App.hover_button_middle_click(item, e)
     return
   }
 
   if (mode === `tabs`) {
-    if (DOM.class(target, [`close_button`])) {
+    if (DOM.parent(target, [`.close_button`])) {
       App.close_button_middle_click(item, e)
       return
     }
@@ -719,7 +719,7 @@ App.mouse_middle_action = (e, target_el) => {
     }
 
     if (App.taglist_enabled()) {
-      if (DOM.class(target, [`taglist_item`])) {
+      if (DOM.parent(target, [`.taglist_item`])) {
         App.taglist_remove(e, item)
         return
       }
@@ -736,7 +736,7 @@ App.mouse_middle_action = (e, target_el) => {
       }
     }
 
-    if (DOM.class(target, [`custom_icon`])) {
+    if (DOM.parent(target, [`.custom_icon`])) {
       App.remove_item_icon(item)
       return
     }
