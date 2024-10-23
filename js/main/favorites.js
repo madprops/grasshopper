@@ -211,10 +211,22 @@ App.show_favorites_menu = (e) => {
   }
 
   let positions = []
-  let c_pos = App.get_setting(`favorites_position`)
-  let pos_opts = [`top`, `left`, `right`, `bottom`, `button`].filter(x => x !== c_pos)
+
+  let pos_opts = [
+    `top`,
+    `left`,
+    `right`,
+    `bottom`,
+    `sep`,
+    `button`,
+  ]
 
   for (let mode of pos_opts) {
+    if (mode === `sep`) {
+      App.sep(positions)
+      continue
+    }
+
     positions.push({
       text: App.capitalize(mode),
       action: () => {
