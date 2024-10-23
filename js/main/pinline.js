@@ -115,7 +115,8 @@ App.show_pinline_menu = (e) => {
     name: `pinline_menu`,
   })
 
-  App.show_context({items, e})
+  let compact = App.get_setting(`compact_pinline_menu`)
+  App.show_context({items, e, compact})
 }
 
 App.pinline_click = (e) => {

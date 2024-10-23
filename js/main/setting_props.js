@@ -2498,9 +2498,9 @@ App.build_settings = () => {
       placeholder: `Px`,
       info: `Left/Right margin of the Pinline from the edges`,
       actions: [`theme`],
-      version: 1,
+      version: 2,
       setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(0, 25, 5, `px`))
+        App.settings_make_menu(key, App.setting_steps(0, 28, 2, `px`))
       },
     },
     pinline_menu: {
@@ -5348,6 +5348,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Only show icons in the Favorites Menu`,
+      version: 1,
+    },
+    compact_pinline_menu: {
+      name: `Compact Pinline Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Pinline Menu`,
       version: 1,
     },
     compact_hover_button_menu: {
