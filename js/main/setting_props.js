@@ -5937,6 +5937,7 @@ App.build_settings = () => {
 
   App.check_settings_dups(App.setting_props)
   App.check_settings_dups(App.setting_catprops)
+  App.check_overrides()
 }
 
 App.check_settings_dups = (obj) => {

@@ -63,10 +63,9 @@ Addlist.save = (args = {}) => {
   }
 
   let lines = Addlist.get_data(args.id)
-  values._date_ = App.now()
 
   if (!data.edit) {
-    let sdate = values._date_.toString().slice(-9)
+    let sdate = App.now().toString().slice(-9)
     let id = sdate + `_` + App.random_string(5)
     values._id_ = id
   }
@@ -811,7 +810,6 @@ Addlist.list = (args) => {
     }
 
     let title = oargs.list_text(line)
-    let info = line._date_ ? App.nice_date(line._date_) : ``
 
     items.push({
       icon,
@@ -829,7 +827,6 @@ Addlist.list = (args) => {
           index: i,
         })
       },
-      info,
     })
   }
 
