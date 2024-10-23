@@ -1287,6 +1287,17 @@ App.setup_commands = () => {
       info: `Item Action but without loading unloaded tabs`,
     },
     {
+      name: `Select Item`,
+      cmd: `select_item`,
+      modes: [`items`],
+      item: true,
+      icon: command_icon,
+      action: (args) => {
+        App.select_item({item: args.item, scroll: `nearest_smooth`})
+      },
+      info: `Select an item`,
+    },
+    {
       name: `Show Favorites`,
       short_name: `Favorites`,
       cmd: `show_favorites_menu`,
