@@ -1714,7 +1714,7 @@ App.build_settings = () => {
       },
     },
     middle_click_press_close_button: {
-      name: `Middle Click Press Close`,
+      name: `Middle Click Press Close Button`,
       type: `menu`,
       value: `none`,
       info: `Command to run when middle pressing the Close Button`,
