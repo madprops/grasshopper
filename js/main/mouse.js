@@ -252,123 +252,123 @@ App.mouse_click_action = (e) => {
       return
     }
 
-    if (App.get_setting(`mute_click`)) {
-      if (DOM.parent(target, [`.playing_icon`, `.muted_icon`])) {
-        App.toggle_mute_tabs(item)
+    if (DOM.parent(target, [`.taglist`])) {
+      if (DOM.parent(target, [`.taglist_item`])) {
+        App.taglist_action(item, e)
         return
       }
-    }
 
-    if (App.taglist_enabled()) {
-      if (DOM.parent(target, [`.taglist`])) {
-        if (DOM.parent(target, [`.taglist_item`])) {
-          App.taglist_action(item, e)
-          return
-        }
-
-        if (DOM.parent(target, [`.taglist_left_scroll`])) {
-          let taglist = DOM.el(`.taglist`, item.element)
-          App.taglist_scroll(taglist, `left`)
-          return
-        }
-
-        if (DOM.parent(target, [`.taglist_right_scroll`])) {
-          let taglist = DOM.el(`.taglist`, item.element)
-          App.taglist_scroll(taglist, `right`)
-          return
-        }
+      if (DOM.parent(target, [`.taglist_left_scroll`])) {
+        let taglist = DOM.el(`.taglist`, item.element)
+        App.taglist_scroll(taglist, `left`)
+        return
       }
-    }
 
-    if (App.taglist_add_enabled()) {
+      if (DOM.parent(target, [`.taglist_right_scroll`])) {
+        let taglist = DOM.el(`.taglist`, item.element)
+        App.taglist_scroll(taglist, `right`)
+        return
+      }
+
       if (DOM.parent(target, [`.taglist_add`])) {
         App.add_tags(item)
         return
       }
     }
 
-    if (App.get_setting(`pin_icon_click`)) {
-      if (DOM.parent(target, [`.pin_icon`])) {
-        App.unpin_tab(item.id)
-        return
+    if (DOM.parent(target, [`.item_icon_unit`])) {
+      if (App.get_setting(`mute_click`)) {
+        if (DOM.parent(target, [`.playing_icon`, `.muted_icon`])) {
+          App.toggle_mute_tabs(item)
+          return
+        }
       }
-    }
 
-    if (App.get_setting(`normal_icon_click`)) {
-      if (DOM.parent(target, [`.normal_icon`])) {
-        App.pin_tab(item.id)
-        return
+      if (App.get_setting(`pin_icon_click`)) {
+        if (DOM.parent(target, [`.pin_icon`])) {
+          App.unpin_tab(item.id)
+          return
+        }
       }
-    }
 
-    if (App.get_setting(`loaded_icon_click`)) {
-      if (DOM.parent(target, [`.loaded_icon`])) {
-        App.unload_tabs(item, false)
-        return
+      if (App.get_setting(`normal_icon_click`)) {
+        if (DOM.parent(target, [`.normal_icon`])) {
+          App.pin_tab(item.id)
+          return
+        }
       }
-    }
 
-    if (App.get_setting(`unloaded_icon_click`)) {
-      if (DOM.parent(target, [`.unloaded_icon`])) {
-        App.load_tabs(item, false)
-        return
+      if (App.get_setting(`loaded_icon_click`)) {
+        if (DOM.parent(target, [`.loaded_icon`])) {
+          App.unload_tabs(item, false)
+          return
+        }
       }
-    }
 
-    if (App.get_setting(`title_icon_click`)) {
-      if (DOM.parent(target, [`.title_icon`])) {
-        App.edit_title(item)
-        return
+      if (App.get_setting(`unloaded_icon_click`)) {
+        if (DOM.parent(target, [`.unloaded_icon`])) {
+          App.load_tabs(item, false)
+          return
+        }
       }
-    }
 
-    if (App.get_setting(`tags_icon_click`)) {
-      if (DOM.parent(target, [`.tags_icon`])) {
-        App.edit_tags(item)
-        return
+      if (App.get_setting(`title_icon_click`)) {
+        if (DOM.parent(target, [`.title_icon`])) {
+          App.edit_title(item)
+          return
+        }
       }
-    }
 
-    if (App.get_setting(`root_icon_click`)) {
-      if (DOM.parent(target, [`.root_icon`])) {
-        App.go_to_root_url(item, true)
-        return
+      if (App.get_setting(`tags_icon_click`)) {
+        if (DOM.parent(target, [`.tags_icon`])) {
+          App.edit_tags(item)
+          return
+        }
       }
-    }
 
-    if (App.get_setting(`node_icon_click`)) {
-      if (DOM.parent(target, [`.node_icon`])) {
-        App.go_to_parent(item)
-        return
+      if (App.get_setting(`root_icon_click`)) {
+        if (DOM.parent(target, [`.root_icon`])) {
+          App.go_to_root_url(item, true)
+          return
+        }
       }
-    }
 
-    if (App.get_setting(`parent_icon_click`)) {
-      if (DOM.parent(target, [`.parent_icon`])) {
-        App.filter_nodes(item)
-        return
+      if (App.get_setting(`node_icon_click`)) {
+        if (DOM.parent(target, [`.node_icon`])) {
+          App.go_to_parent(item)
+          return
+        }
+      }
+
+      if (App.get_setting(`parent_icon_click`)) {
+        if (DOM.parent(target, [`.parent_icon`])) {
+          App.filter_nodes(item)
+          return
+        }
       }
     }
   }
 
-  if (App.get_setting(`color_icon_click`)) {
-    if (DOM.parent(target, [`.color_icon_container`])) {
-      App.show_color_menu(item, e, false)
-      return
+  if (DOM.parent(target, [`.item_icon_unit`])) {
+    if (App.get_setting(`color_icon_click`)) {
+      if (DOM.parent(target, [`.color_icon_container`])) {
+        App.show_color_menu(item, e, false)
+        return
+      }
     }
-  }
 
-  if (App.get_setting(`notes_icon_click`)) {
-    if (DOM.parent(target, [`.notes_icon`])) {
-      App.edit_notes(item)
-      return
+    if (App.get_setting(`notes_icon_click`)) {
+      if (DOM.parent(target, [`.notes_icon`])) {
+        App.edit_notes(item)
+        return
+      }
     }
-  }
 
-  if (App.get_setting(`custom_icon_click`)) {
-    if (DOM.parent(target, [`.custom_icon`])) {
-      App.custom_icon_menu(item, e)
-      return
+    if (App.get_setting(`custom_icon_click`)) {
+      if (DOM.parent(target, [`.custom_icon`])) {
+        App.custom_icon_menu(item, e)
+        return
+      }
     }
   }
 
@@ -674,76 +674,76 @@ App.mouse_middle_action = (e, target_el) => {
       }
     }
 
-    if (App.get_setting(`color_icon_click`)) {
-      if (DOM.parent(target, [`.color_icon_container`])) {
-        App.edit_tab_color({item})
+    if (DOM.parent(target, [`.item_icon_unit`])) {
+      if (App.get_setting(`color_icon_click`)) {
+        if (DOM.parent(target, [`.color_icon_container`])) {
+          App.edit_tab_color({item})
+          return
+        }
+      }
+
+      if (App.get_setting(`title_icon_click`)) {
+        if (DOM.parent(target, [`.title_icon`])) {
+          App.edit_tab_title({item})
+          return
+        }
+      }
+
+      if (App.get_setting(`root_icon_click`)) {
+        if (DOM.parent(target, [`.root_icon`])) {
+          App.edit_tab_root({item})
+          return
+        }
+      }
+
+      if (App.get_setting(`tags_icon_click`)) {
+        if (DOM.parent(target, [`.tags_icon`])) {
+          App.edit_tab_tags({item})
+          return
+        }
+      }
+
+      if (App.get_setting(`node_icon_click`)) {
+        if (DOM.parent(target, [`.node_icon`])) {
+          App.filter_node_tab_siblings(item)
+          return
+        }
+      }
+
+      if (App.get_setting(`parent_icon_click`)) {
+        if (DOM.parent(target, [`.parent_icon`])) {
+          App.close_node_tabs(item)
+          return
+        }
+      }
+
+      if (App.get_setting(`notes_icon_click`)) {
+        if (DOM.parent(target, [`.notes_icon`])) {
+          App.remove_notes(item)
+          return
+        }
+      }
+
+      if (DOM.parent(target, [`.custom_icon`])) {
+        App.remove_item_icon(item)
         return
       }
     }
 
-    if (App.get_setting(`title_icon_click`)) {
-      if (DOM.parent(target, [`.title_icon`])) {
-        App.edit_tab_title({item})
-        return
-      }
-    }
-
-    if (App.get_setting(`root_icon_click`)) {
-      if (DOM.parent(target, [`.root_icon`])) {
-        App.edit_tab_root({item})
-        return
-      }
-    }
-
-    if (App.get_setting(`tags_icon_click`)) {
-      if (DOM.parent(target, [`.tags_icon`])) {
-        App.edit_tab_tags({item})
-        return
-      }
-    }
-
-    if (App.get_setting(`node_icon_click`)) {
-      if (DOM.parent(target, [`.node_icon`])) {
-        App.filter_node_tab_siblings(item)
-        return
-      }
-    }
-
-    if (App.get_setting(`parent_icon_click`)) {
-      if (DOM.parent(target, [`.parent_icon`])) {
-        App.close_node_tabs(item)
-        return
-      }
-    }
-
-    if (App.get_setting(`notes_icon_click`)) {
-      if (DOM.parent(target, [`.notes_icon`])) {
-        App.remove_notes(item)
-        return
-      }
-    }
-
-    if (App.taglist_enabled()) {
-      if (DOM.parent(target, [`.taglist_item`])) {
-        App.taglist_remove(e, item)
-        return
-      }
-
-      if (DOM.parent(target, [`.taglist_container`])) {
-        return
-      }
-    }
-
-    if (App.get_setting(`parent_icon_click`)) {
-      if (DOM.parent(target, [`.parent_icon`])) {
-        App.close_node_tabs(item)
-        return
-      }
-    }
-
-    if (DOM.parent(target, [`.custom_icon`])) {
-      App.remove_item_icon(item)
+    if (DOM.parent(target, [`.taglist_item`])) {
+      App.taglist_remove(e, item)
       return
+    }
+
+    if (DOM.parent(target, [`.taglist_container`])) {
+      return
+    }
+
+    if (App.get_setting(`parent_icon_click`)) {
+      if (DOM.parent(target, [`.parent_icon`])) {
+        App.close_node_tabs(item)
+        return
+      }
     }
   }
 
