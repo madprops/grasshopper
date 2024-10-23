@@ -1118,10 +1118,6 @@ App.wheel_action = (direction, name, e) => {
   App.run_command({cmd, item, from: `mouse`, e})
 }
 
-// Custom double click function which has some advantages
-// First it checks if it was initiated and triggered by the same element
-// This avoids false double clicks when clicking on different elements
-// It also allows the user to define the double click delay
 App.check_double_click = (what, e, action) => {
   let click_date = App[`click_date_${what}`]
   let click_target = App[`click_target_${what}`]
