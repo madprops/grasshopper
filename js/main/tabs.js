@@ -290,9 +290,15 @@ App.remove_closed_tab = (id) => {
 App.tabs_action = async (args = {}) => {
   let def_args = {
     on_action: true,
+    soft: true,
   }
 
   App.def_args(def_args, args)
+
+  if (args.soft && args.item.unloaded) {
+    App.select_item({item: args.item, scroll: `nearest_smooth`})
+    return
+  }
 
   function check_blink() {
     if (!App.get_setting(`tab_blink`)) {

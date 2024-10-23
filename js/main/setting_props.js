@@ -362,13 +362,6 @@ App.build_settings = () => {
       Click and drag to select other items`,
       version: 1,
     },
-    load_lock: {
-      name: `Load Lock`,
-      type: `checkbox`,
-      value: false,
-      info: `Require a double click or command to load`,
-      version: 1,
-    },
     lock_drag: {
       name: `Lock Drag`,
       type: `checkbox`,

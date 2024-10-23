@@ -373,13 +373,6 @@ App.mouse_click_action = (e) => {
     }
   }
 
-  if (App.get_setting(`load_lock`)) {
-    if (item.unloaded) {
-      App.select_item({item, scroll: `nearest_smooth`})
-      return
-    }
-  }
-
   let cmd = App.get_setting(`click_item_${mode}`)
   App.run_command({cmd, item, from, e})
 }
@@ -451,13 +444,6 @@ App.mouse_double_click_action = (e) => {
 
   if (DOM.parent(target, [`.item_icon_container`])) {
     return
-  }
-
-  if (App.get_setting(`load_lock`)) {
-    if (item.unloaded) {
-      App[`${mode}_action`]({item, from: `click`})
-      return
-    }
   }
 
   let cmd = App.get_setting(`double_click_item_${mode}`)

@@ -1276,6 +1276,17 @@ App.setup_commands = () => {
       info: `Trigger the action for the selected item`,
     },
     {
+      name: `Soft Action`,
+      cmd: `soft_item_action`,
+      modes: [`items`],
+      item: true,
+      icon: command_icon,
+      action: (args) => {
+        App[`${args.mode}_action`]({item: args.item, from: `click`, soft: true})
+      },
+      info: `Item Action but without loading unloaded tabs`,
+    },
+    {
       name: `Show Favorites`,
       short_name: `Favorites`,
       cmd: `show_favorites_menu`,
