@@ -13,9 +13,17 @@ App.mouse_click_cmd = (mode, item, e) => {
   App.run_command({cmd, item, from: `click`, e})
 }
 
-App.middle_click_cmd = (mode, item, e) => {
+App.mouse_middle_cmd = (mode, item, e) => {
   let cmd = App.get_setting(`middle_click_item_${item.mode}`)
   App.run_command({cmd, item, from: `middle_click`, e})
+}
+
+App.mouse_context_cmd = (mode, item, e) => {
+  if (App.get_setting(`item_menu_select`)) {
+    App.select_item({item, scroll: `nearest`, deselect: !item.selected})
+  }
+
+  App.show_item_menu({item, e})
 }
 
 App.get_mouse_item = (mode, target) => {
@@ -483,6 +491,15 @@ App.mouse_context_action = (e) => {
     return
   }
 
+  let [item, item_alt] = App.get_mouse_item(mode, target)
+
+  if (item) {
+    if (App.mouse_check_skip(item, target)) {
+      App.mouse_context_cmd(mode, item, e)
+      return
+    }
+  }
+
   if (DOM.parent(target, [`.main_menu_button`])) {
     App.show_palette()
     return
@@ -538,8 +555,6 @@ App.mouse_context_action = (e) => {
     return
   }
 
-  let [item, item_alt] = App.get_mouse_item(mode, target)
-
   if (!item) {
     if (DOM.parent(target, [`.item_container`])) {
       App.show_empty_menu(undefined, e)
@@ -576,11 +591,7 @@ App.mouse_context_action = (e) => {
     }
   }
 
-  if (App.get_setting(`item_menu_select`)) {
-    App.select_item({item, scroll: `nearest`, deselect: !item.selected})
-  }
-
-  App.show_item_menu({item, e})
+  App.mouse_context_cmd(mode, item, e)
 }
 
 App.mouse_middle_action = (e, target_el) => {
@@ -593,17 +604,18 @@ App.mouse_middle_action = (e, target_el) => {
   }
 
   App.reset_triggers()
+
+  if (!App.mouse_valid_type(target)) {
+    return
+  }
+
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
   if (item) {
     if (App.mouse_check_skip(item, target)) {
-      App.middle_click_cmd(mode, item, e)
+      App.mouse_middle_cmd(mode, item, e)
       return
     }
-  }
-
-  if (!App.mouse_valid_type(target)) {
-    return
   }
 
   if (DOM.parent(target, [`.main_menu_button`])) {
@@ -772,7 +784,7 @@ App.mouse_middle_action = (e, target_el) => {
     }
   }
 
-  App.middle_click_cmd(mode, item, e)
+  App.mouse_middle_cmd(mode, item, e)
 }
 
 App.mouse_over_action = (e) => {
