@@ -691,7 +691,7 @@ App.mouse_middle_action = (e, target_el) => {
 
       if (App.get_setting(`root_icon_click`)) {
         if (DOM.parent(target, [`.root_icon`])) {
-          App.edit_tab_root({item})
+          App.remove_root_url(item)
           return
         }
       }
