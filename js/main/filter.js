@@ -1991,7 +1991,6 @@ App.filter_enter_active = (mode) => {
   if (App.search_modes.includes(mode)) {
     return sett === `search`
   }
-  else {
-    return sett === `normal`
-  }
+
+  return sett === `normal`
 }
