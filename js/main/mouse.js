@@ -1,3 +1,8 @@
+App.mouse_click_cmd = (mode, item, e) => {
+  let cmd = App.get_setting(`click_item_${mode}`)
+  App.run_command({cmd, item, from: `click`, e})
+}
+
 App.get_mouse_item = (mode, target) => {
   if (!App.mouse_valid_type(target)) {
     return
@@ -242,6 +247,17 @@ App.mouse_click_action = (e) => {
     }
   }
 
+  let skip = DOM.parent(target, [`.item_content`])
+
+  if (!skip) {
+    skip = DOM.parent(target, [`.item_icon_container`])
+  }
+
+  if (skip) {
+    App.mouse_click_cmd(mode, item, e)
+    return
+  }
+
   if (DOM.parent(target, [`.hover_button`])) {
     App.show_hover_button_menu(item, e)
     return
@@ -373,8 +389,7 @@ App.mouse_click_action = (e) => {
     }
   }
 
-  let cmd = App.get_setting(`click_item_${mode}`)
-  App.run_command({cmd, item, from, e})
+  App.mouse_click_cmd(mode, item, e)
 }
 
 App.mouse_double_click_action = (e) => {
