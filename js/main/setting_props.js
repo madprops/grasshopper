@@ -3899,7 +3899,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the middle mouse button on an item for a short time (Tabs)`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
