@@ -482,10 +482,17 @@ App.setup_item_window = (mode) => {
   App.create_window(args)
 }
 
-App.focus_or_open_item = async (item) => {
+App.focus_or_open_item = async (item, soft = false) => {
   for (let tab of App.get_items(`tabs`)) {
     if (App.urls_equal(tab.url, item.url)) {
-      await App.focus_tab({item: tab})
+      if (tab.unloaded && soft) {
+        await App.check_on_tabs()
+        App.select_item({item: tab, scroll: `nearest_smooth`})
+      }
+      else {
+        await App.focus_tab({item: tab})
+      }
+
       return `focused`
     }
   }

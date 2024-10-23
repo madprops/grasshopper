@@ -3730,7 +3730,7 @@ App.build_settings = () => {
       name: `Click Item (History)`,
       type: `menu`,
       value: `item_action`,
-      info: `Command to run when middle clicking History Items`,
+      info: `Command to run when clicking History Items`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)

@@ -73,6 +73,7 @@ App.get_history = async (query = ``, deep = false, by_what = `all`) => {
 App.history_action = (args = {}) => {
   let def_args = {
     on_action: true,
+    soft: false,
   }
 
   App.def_args(def_args, args)
@@ -82,7 +83,7 @@ App.history_action = (args = {}) => {
     App.on_action(`history`)
   }
 
-  App.focus_or_open_item(args.item)
+  App.focus_or_open_item(args.item, args.soft)
 }
 
 App.search_domain_history = (item) => {
