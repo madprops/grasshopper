@@ -265,6 +265,7 @@ App.do_filter = async (args = {}) => {
   let force_show = App.is_filtered(args.mode)
   let check_pins = !App.get_setting(`show_pinned_tabs`)
   let check_unloaded = !App.get_setting(`show_unloaded_tabs`)
+  let check_hide = check_pins || check_unloaded
   let num_matched = 0
   let check_max = false
   let max_items = 0
@@ -338,10 +339,8 @@ App.do_filter = async (args = {}) => {
       if (force_show) {
         App.show_item_2(item)
       }
-      else {
-        if ((check_pins && item.pinned) || (check_unloaded && item.unloaded)) {
-          App.check_hide_tabs(item)
-        }
+      else if (check_hide && (item.pinned || item.unloaded)) {
+        App.check_hide_tabs(item)
       }
 
       if (headers) {
