@@ -1,4 +1,5 @@
 // You can override default settings here
+// This might enable you to make your own "distro"
 //
 // For Example:
 //
