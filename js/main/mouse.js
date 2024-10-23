@@ -1,91 +1,3 @@
-App.mouse_check_skip = (item, target) => {
-  if (item.mode === `tabs`) {
-    if (DOM.parent(target, [`.taglist`])) {
-      return false
-    }
-  }
-
-  let skip = DOM.parent(target, [`.item_content`])
-
-  if (!skip) {
-    skip = DOM.parent(target, [`.item_icon_container`])
-  }
-
-  return Boolean(skip)
-}
-
-App.mouse_click_cmd = (item, target, e) => {
-  if (e.altKey) {
-    App.select_item({item, scroll: `nearest_smooth`})
-    return
-  }
-
-  let cmd = App.get_setting(`click_item_${item.mode}`)
-  App.run_command({cmd, item, from: `click`, e})
-}
-
-App.mouse_middle_cmd = (item, target, e) => {
-  let cmd = App.get_setting(`middle_click_item_${item.mode}`)
-  App.run_command({cmd, item, from: `middle_click`, e})
-}
-
-App.mouse_context_cmd = (item, target, e) => {
-  if (DOM.parent(target, [`.hover_button`])) {
-    App.check_pick_button(`hover`, item, e)
-    return
-  }
-
-  if (DOM.parent(target, [`.close_button`])) {
-    App.check_pick_button(`close`, item, e)
-    return
-  }
-
-  if (App.get_setting(`icon_pick`)) {
-    if (DOM.parent(target, [`.item_icon_container`])) {
-      App.select_item({item, scroll: `nearest`, deselect: true})
-      return
-    }
-  }
-
-  if (App.taglist_enabled()) {
-    if (DOM.parent(target, [`.taglist`])) {
-      if (DOM.parent(target, [`.taglist_item`])) {
-        App.show_taglist_menu(e, item)
-        return
-      }
-    }
-  }
-
-  if (App.get_setting(`item_menu_select`)) {
-    App.select_item({item, scroll: `nearest`, deselect: !item.selected})
-  }
-
-  App.show_item_menu({item, e})
-}
-
-App.mouse_double_cmd = (item, target, e) => {
-  if (item.header) {
-    if (!item.unloaded) {
-      if (App.do_header_action(item, `double_click_header`)) {
-        return
-      }
-    }
-  }
-
-  if (App.taglist_enabled()) {
-    if (DOM.parent(target, [`.taglist_container`])) {
-      return
-    }
-  }
-
-  if (DOM.parent(target, [`.item_icon_container`])) {
-    return
-  }
-
-  let cmd = App.get_setting(`double_click_item_${item.mode}`)
-  App.run_command({cmd, item, from: `double_click`, e})
-}
-
 App.get_mouse_item = (mode, target) => {
   if (!App.mouse_valid_type(target)) {
     return
@@ -195,13 +107,7 @@ App.mouse_click_action = (e) => {
 
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
-  if (item) {
-    if (App.mouse_check_skip(item, target)) {
-      App.mouse_click_cmd(item, target, e)
-      return
-    }
-  }
-  else {
+  if (!item) {
     if (DOM.parent(target, [`.main_menu_button`])) {
       App.show_main_menu(mode)
       return
@@ -278,9 +184,7 @@ App.mouse_click_action = (e) => {
       App.scroller_click(mode, e)
       return
     }
-  }
 
-  if (!item) {
     return
   }
 
@@ -468,7 +372,13 @@ App.mouse_click_action = (e) => {
     }
   }
 
-  App.mouse_click_cmd(item, target, e)
+  if (e.altKey) {
+    App.select_item({item, scroll: `nearest_smooth`})
+    return
+  }
+
+  let cmd = App.get_setting(`click_item_${item.mode}`)
+  App.run_command({cmd, item, from: `click`, e})
 }
 
 App.mouse_double_click_action = (e) => {
@@ -481,13 +391,7 @@ App.mouse_double_click_action = (e) => {
 
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
-  if (item) {
-    if (App.mouse_check_skip(item, target)) {
-      App.mouse_double_cmd(item, target, e)
-      return
-    }
-  }
-  else {
+  if (!item) {
     if (DOM.class(target, [`item_container`])) {
       App.empty_double_click(mode, e)
       return
@@ -522,13 +426,30 @@ App.mouse_double_click_action = (e) => {
       App.pinline_double_click(e)
       return
     }
-  }
 
-  if (!item) {
     return
   }
 
-  App.mouse_double_cmd(item, target, e)
+  if (item.header) {
+    if (!item.unloaded) {
+      if (App.do_header_action(item, `double_click_header`)) {
+        return
+      }
+    }
+  }
+
+  if (App.taglist_enabled()) {
+    if (DOM.parent(target, [`.taglist_container`])) {
+      return
+    }
+  }
+
+  if (DOM.parent(target, [`.item_icon_container`])) {
+    return
+  }
+
+  let cmd = App.get_setting(`double_click_item_${item.mode}`)
+  App.run_command({cmd, item, from: `double_click`, e})
 }
 
 App.mouse_context_action = (e) => {
@@ -542,13 +463,7 @@ App.mouse_context_action = (e) => {
 
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
-  if (item) {
-    if (App.mouse_check_skip(item, target)) {
-      App.mouse_context_cmd(item, target, e)
-      return
-    }
-  }
-  else {
+  if (!item) {
     if (DOM.parent(target, [`.main_menu_button`])) {
       App.show_palette()
       return
@@ -603,17 +518,46 @@ App.mouse_context_action = (e) => {
       App.show_footer_menu(e)
       return
     }
-  }
 
-  if (!item) {
     if (DOM.parent(target, [`.item_container`])) {
       App.show_empty_menu(undefined, e)
+      return
     }
 
     return
   }
 
-  App.mouse_context_cmd(item, target, e)
+  if (DOM.parent(target, [`.hover_button`])) {
+    App.check_pick_button(`hover`, item, e)
+    return
+  }
+
+  if (DOM.parent(target, [`.close_button`])) {
+    App.check_pick_button(`close`, item, e)
+    return
+  }
+
+  if (App.get_setting(`icon_pick`)) {
+    if (DOM.parent(target, [`.item_icon_container`])) {
+      App.select_item({item, scroll: `nearest`, deselect: true})
+      return
+    }
+  }
+
+  if (App.taglist_enabled()) {
+    if (DOM.parent(target, [`.taglist`])) {
+      if (DOM.parent(target, [`.taglist_item`])) {
+        App.show_taglist_menu(e, item)
+        return
+      }
+    }
+  }
+
+  if (App.get_setting(`item_menu_select`)) {
+    App.select_item({item, scroll: `nearest`, deselect: !item.selected})
+  }
+
+  App.show_item_menu({item, e})
 }
 
 App.mouse_middle_action = (e, target_el) => {
@@ -633,84 +577,77 @@ App.mouse_middle_action = (e, target_el) => {
 
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
-  if (item) {
-    if (App.mouse_check_skip(item, target)) {
-      App.mouse_middle_cmd(item, target, e)
+  if (!item) {
+    if (DOM.parent(target, [`.main_menu_button`])) {
+      App.main_menu_middle_click(e)
       return
     }
-  }
 
-  if (DOM.parent(target, [`.main_menu_button`])) {
-    App.main_menu_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`.step_back_button`])) {
+      App.step_back_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`.step_back_button`])) {
-    App.step_back_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`.playing_button`])) {
+      App.playing_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`.playing_button`])) {
-    App.playing_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`.actions_button`])) {
+      App.actions_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`.actions_button`])) {
-    App.actions_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`#tab_box_title`])) {
+      App.tab_box_title_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`#tab_box_title`])) {
-    App.tab_box_title_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`.filter_menu_button`])) {
+      App.filter_menu_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`.filter_menu_button`])) {
-    App.filter_menu_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`.favorites_empty_top`])) {
+      App.favorites_empty_top_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`.favorites_empty_top`])) {
-    App.favorites_empty_top_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`.favorites_empty_bottom`])) {
+      App.favorites_empty_bottom_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`.favorites_empty_bottom`])) {
-    App.favorites_empty_bottom_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`.favorites_button`])) {
+      App.favorites_button_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`.favorites_button`])) {
-    App.favorites_button_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`#pinline`])) {
+      App.pinline_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`#pinline`])) {
-    App.pinline_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`#main_title`])) {
+      App.main_title_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`#main_title`])) {
-    App.main_title_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`.mode_filter`])) {
+      App.filter_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`.mode_filter`])) {
-    App.filter_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`#footer`])) {
+      App.footer_middle_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`#footer`])) {
-    App.footer_middle_click(e)
-    return
-  }
+    if (DOM.parent(target, [`.scroller`])) {
+      App.scroll_page(mode, `up`)
+      return
+    }
 
-  if (DOM.parent(target, [`.scroller`])) {
-    App.scroll_page(mode, `up`)
-    return
-  }
-
-  if (!item) {
     return
   }
 
@@ -806,7 +743,13 @@ App.mouse_middle_action = (e, target_el) => {
     }
   }
 
-  App.mouse_middle_cmd(mode, item, target, e)
+  if (e.altKey) {
+    App.select_item({item, scroll: `nearest_smooth`})
+    return
+  }
+
+  let cmd = App.get_setting(`click_item_${item.mode}`)
+  App.run_command({cmd, item, from: `click`, e})
 }
 
 App.mouse_over_action = (e) => {
@@ -879,6 +822,8 @@ App.click_press_action = (e) => {
     return
   }
 
+  let [item, item_alt] = App.get_mouse_item(mode, target)
+
   function action(s1, s2, item) {
     if (DOM.parent(target, [s1])) {
       if (App.click_press_button === 0) {
@@ -950,8 +895,6 @@ App.click_press_action = (e) => {
       return
     }
   }
-
-  let [item, item_alt] = App.get_mouse_item(mode, target)
 
   if (!item) {
     return
