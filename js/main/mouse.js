@@ -14,22 +14,48 @@ App.mouse_check_skip = (item, target) => {
   return Boolean(skip)
 }
 
-App.mouse_click_cmd = (mode, item, target, e) => {
+App.mouse_click_cmd = (item, target, e) => {
   if (e.altKey) {
     App.select_item({item, scroll: `nearest_smooth`})
     return
   }
 
-  let cmd = App.get_setting(`click_item_${mode}`)
+  let cmd = App.get_setting(`click_item_${item.mode}`)
   App.run_command({cmd, item, from: `click`, e})
 }
 
-App.mouse_middle_cmd = (mode, item, target, e) => {
+App.mouse_middle_cmd = (item, target, e) => {
   let cmd = App.get_setting(`middle_click_item_${item.mode}`)
   App.run_command({cmd, item, from: `middle_click`, e})
 }
 
-App.mouse_context_cmd = (mode, item, target, e) => {
+App.mouse_context_cmd = (item, target, e) => {
+  if (DOM.parent(target, [`.hover_button`])) {
+    App.check_pick_button(`hover`, item, e)
+    return
+  }
+
+  if (DOM.parent(target, [`.close_button`])) {
+    App.check_pick_button(`close`, item, e)
+    return
+  }
+
+  if (App.get_setting(`icon_pick`)) {
+    if (DOM.parent(target, [`.item_icon_container`])) {
+      App.select_item({item, scroll: `nearest`, deselect: true})
+      return
+    }
+  }
+
+  if (App.taglist_enabled()) {
+    if (DOM.parent(target, [`.taglist`])) {
+      if (DOM.parent(target, [`.taglist_item`])) {
+        App.show_taglist_menu(e, item)
+        return
+      }
+    }
+  }
+
   if (App.get_setting(`item_menu_select`)) {
     App.select_item({item, scroll: `nearest`, deselect: !item.selected})
   }
@@ -37,7 +63,7 @@ App.mouse_context_cmd = (mode, item, target, e) => {
   App.show_item_menu({item, e})
 }
 
-App.mouse_double_cmd = (mode, item, target, e) => {
+App.mouse_double_cmd = (item, target, e) => {
   if (item.header) {
     if (!item.unloaded) {
       if (App.do_header_action(item, `double_click_header`)) {
@@ -56,7 +82,7 @@ App.mouse_double_cmd = (mode, item, target, e) => {
     return
   }
 
-  let cmd = App.get_setting(`double_click_item_${mode}`)
+  let cmd = App.get_setting(`double_click_item_${item.mode}`)
   App.run_command({cmd, item, from: `double_click`, e})
 }
 
@@ -171,86 +197,87 @@ App.mouse_click_action = (e) => {
 
   if (item) {
     if (App.mouse_check_skip(item, target)) {
-      App.mouse_click_cmd(mode, item, target, e)
+      App.mouse_click_cmd(item, target, e)
       return
     }
   }
-
-  if (DOM.parent(target, [`.main_menu_button`])) {
-    App.show_main_menu(mode)
-    return
-  }
-
-  if (DOM.parent(target, [`.step_back_button`])) {
-    App.step_back(mode, e)
-    return
-  }
-
-  if (DOM.parent(target, [`.playing_button`])) {
-    App.jump_tabs_playing()
-    return
-  }
-
-  if (DOM.parent(target, [`.actions_button`])) {
-    App.show_actions_menu(mode, undefined, e)
-    return
-  }
-
-  if (DOM.parent(target, [`#tab_box_title`])) {
-    if (e.shiftKey || e.ctrlKey) {
-      App.select_tab_box_tabs()
-    }
-    else {
-      App.show_tab_box_menu(e)
+  else {
+    if (DOM.parent(target, [`.main_menu_button`])) {
+      App.show_main_menu(mode)
+      return
     }
 
-    return
-  }
-
-  if (DOM.parent(target, [`.filter_menu_button`])) {
-    if (App.get_setting(`favorite_filters_click`)) {
-      App.show_favorite_filters(mode, e)
-    }
-    else {
-      App.show_filter_menu(mode)
+    if (DOM.parent(target, [`.step_back_button`])) {
+      App.step_back(mode, e)
+      return
     }
 
-    return
-  }
+    if (DOM.parent(target, [`.playing_button`])) {
+      App.jump_tabs_playing()
+      return
+    }
 
-  if (DOM.parent(target, [`#pinline`])) {
-    App.pinline_click(e)
-    return
-  }
+    if (DOM.parent(target, [`.actions_button`])) {
+      App.show_actions_menu(mode, undefined, e)
+      return
+    }
 
-  if (DOM.parent(target, [`.favorites_button`])) {
-    App.show_favorites_menu(e)
-    return
-  }
+    if (DOM.parent(target, [`#tab_box_title`])) {
+      if (e.shiftKey || e.ctrlKey) {
+        App.select_tab_box_tabs()
+      }
+      else {
+        App.show_tab_box_menu(e)
+      }
 
-  if (DOM.parent(target, [`#main_title`])) {
-    App.main_title_click(e)
-    return
-  }
+      return
+    }
 
-  if (DOM.parent(target, [`#footer_tab_box`])) {
-    App.toggle_tab_box()
-    return
-  }
+    if (DOM.parent(target, [`.filter_menu_button`])) {
+      if (App.get_setting(`favorite_filters_click`)) {
+        App.show_favorite_filters(mode, e)
+      }
+      else {
+        App.show_filter_menu(mode)
+      }
 
-  if (DOM.parent(target, [`#footer_count`])) {
-    App.select_all(App.active_mode, true)
-    return
-  }
+      return
+    }
 
-  if (DOM.parent(target, [`#footer_info`])) {
-    App.footer_click(e)
-    return
-  }
+    if (DOM.parent(target, [`#pinline`])) {
+      App.pinline_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`.scroller`])) {
-    App.scroller_click(mode, e)
-    return
+    if (DOM.parent(target, [`.favorites_button`])) {
+      App.show_favorites_menu(e)
+      return
+    }
+
+    if (DOM.parent(target, [`#main_title`])) {
+      App.main_title_click(e)
+      return
+    }
+
+    if (DOM.parent(target, [`#footer_tab_box`])) {
+      App.toggle_tab_box()
+      return
+    }
+
+    if (DOM.parent(target, [`#footer_count`])) {
+      App.select_all(App.active_mode, true)
+      return
+    }
+
+    if (DOM.parent(target, [`#footer_info`])) {
+      App.footer_click(e)
+      return
+    }
+
+    if (DOM.parent(target, [`.scroller`])) {
+      App.scroller_click(mode, e)
+      return
+    }
   }
 
   if (!item) {
@@ -441,7 +468,7 @@ App.mouse_click_action = (e) => {
     }
   }
 
-  App.mouse_click_cmd(mode, item, target, e)
+  App.mouse_click_cmd(item, target, e)
 }
 
 App.mouse_double_click_action = (e) => {
@@ -456,52 +483,52 @@ App.mouse_double_click_action = (e) => {
 
   if (item) {
     if (App.mouse_check_skip(item, target)) {
-      App.mouse_double_cmd(mode, item, target, e)
+      App.mouse_double_cmd(item, target, e)
       return
     }
   }
+  else {
+    if (DOM.class(target, [`item_container`])) {
+      App.empty_double_click(mode, e)
+      return
+    }
 
-  if (DOM.class(target, [`item_container`])) {
-    App.empty_double_click(mode, e)
-    return
-  }
+    if (DOM.parent(target, [`.favorites_empty_top`])) {
+      App.favorites_double_click(e, `top`)
+      return
+    }
 
-  if (DOM.parent(target, [`.favorites_empty_top`])) {
-    App.favorites_double_click(e, `top`)
-    return
-  }
+    if (DOM.parent(target, [`.favorites_empty_bottom`])) {
+      App.favorites_double_click(e, `bottom`)
+      return
+    }
 
-  if (DOM.parent(target, [`.favorites_empty_bottom`])) {
-    App.favorites_double_click(e, `bottom`)
-    return
-  }
+    if (DOM.parent(target, [`#main_title`])) {
+      App.main_title_double_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`#main_title`])) {
-    App.main_title_double_click(e)
-    return
-  }
+    if (DOM.parent(target, [`#footer`])) {
+      App.footer_double_click(e)
+      return
+    }
 
-  if (DOM.parent(target, [`#footer`])) {
-    App.footer_double_click(e)
-    return
-  }
+    if (DOM.parent(target, [`.mode_filter`])) {
+      App.filter_double_click(mode, e)
+      return
+    }
 
-  if (DOM.parent(target, [`.mode_filter`])) {
-    App.filter_double_click(mode, e)
-    return
-  }
-
-  if (DOM.parent(target, [`#pinline`])) {
-    App.pinline_double_click(e)
-    return
+    if (DOM.parent(target, [`#pinline`])) {
+      App.pinline_double_click(e)
+      return
+    }
   }
 
   if (!item) {
     return
   }
 
-  mode = item.mode
-  App.mouse_double_cmd(mode, item, target, e)
+  App.mouse_double_cmd(item, target, e)
 }
 
 App.mouse_context_action = (e) => {
@@ -517,64 +544,65 @@ App.mouse_context_action = (e) => {
 
   if (item) {
     if (App.mouse_check_skip(item, target)) {
-      App.mouse_context_cmd(mode, item, target, e)
+      App.mouse_context_cmd(item, target, e)
       return
     }
   }
+  else {
+    if (DOM.parent(target, [`.main_menu_button`])) {
+      App.show_palette()
+      return
+    }
 
-  if (DOM.parent(target, [`.main_menu_button`])) {
-    App.show_palette()
-    return
-  }
+    if (DOM.parent(target, [`.step_back_button`])) {
+      App.show_tab_list(`recent`, e)
+      return
+    }
 
-  if (DOM.parent(target, [`.step_back_button`])) {
-    App.show_tab_list(`recent`, e)
-    return
-  }
+    if (DOM.parent(target, [`.playing_button`])) {
+      App.show_tab_list(`playing`, e)
+      return
+    }
 
-  if (DOM.parent(target, [`.playing_button`])) {
-    App.show_tab_list(`playing`, e)
-    return
-  }
+    if (DOM.parent(target, [`.filter_menu_button`])) {
+      App.filter_menu_context(mode, e)
+      return
+    }
 
-  if (DOM.parent(target, [`.filter_menu_button`])) {
-    App.filter_menu_context(mode, e)
-    return
-  }
+    if (DOM.parent(target, [`.actions_button`])) {
+      App.show_browser_menu(e)
+      return
+    }
 
-  if (DOM.parent(target, [`.actions_button`])) {
-    App.show_browser_menu(e)
-    return
-  }
+    if (DOM.parent(target, [`#pinline`])) {
+      App.show_pinline_menu(e)
+      return
+    }
 
-  if (DOM.parent(target, [`#pinline`])) {
-    App.show_pinline_menu(e)
-    return
-  }
+    if (DOM.parent(target, [`.favorites_bar_container`, `.favorites_button`])) {
+      App.show_favorites_menu(e)
+      return
+    }
 
-  if (DOM.parent(target, [`.favorites_bar_container`, `.favorites_button`])) {
-    App.show_favorites_menu(e)
-    return
-  }
+    if (DOM.parent(target, [`#main_title`])) {
+      App.show_main_title_menu(e)
+      return
+    }
 
-  if (DOM.parent(target, [`#main_title`])) {
-    App.show_main_title_menu(e)
-    return
-  }
+    if (DOM.parent(target, [`.mode_filter`])) {
+      App.show_filter_context_menu(mode, e)
+      return
+    }
 
-  if (DOM.parent(target, [`.mode_filter`])) {
-    App.show_filter_context_menu(mode, e)
-    return
-  }
+    if (DOM.parent(target, [`#tab_box_title`])) {
+      App.show_tab_box_menu(e)
+      return
+    }
 
-  if (DOM.parent(target, [`#tab_box_title`])) {
-    App.show_tab_box_menu(e)
-    return
-  }
-
-  if (DOM.parent(target, [`#footer`])) {
-    App.show_footer_menu(e)
-    return
+    if (DOM.parent(target, [`#footer`])) {
+      App.show_footer_menu(e)
+      return
+    }
   }
 
   if (!item) {
@@ -585,35 +613,7 @@ App.mouse_context_action = (e) => {
     return
   }
 
-  mode = item.mode
-
-  if (DOM.parent(target, [`.hover_button`])) {
-    App.check_pick_button(`hover`, item, e)
-    return
-  }
-
-  if (DOM.parent(target, [`.close_button`])) {
-    App.check_pick_button(`close`, item, e)
-    return
-  }
-
-  if (App.get_setting(`icon_pick`)) {
-    if (DOM.parent(target, [`.item_icon_container`])) {
-      App.select_item({item, scroll: `nearest`, deselect: true})
-      return
-    }
-  }
-
-  if (App.taglist_enabled()) {
-    if (DOM.parent(target, [`.taglist`])) {
-      if (DOM.parent(target, [`.taglist_item`])) {
-        App.show_taglist_menu(e, item)
-        return
-      }
-    }
-  }
-
-  App.mouse_context_cmd(mode, item, target, e)
+  App.mouse_context_cmd(item, target, e)
 }
 
 App.mouse_middle_action = (e, target_el) => {
@@ -635,7 +635,7 @@ App.mouse_middle_action = (e, target_el) => {
 
   if (item) {
     if (App.mouse_check_skip(item, target)) {
-      App.mouse_middle_cmd(mode, item, target, e)
+      App.mouse_middle_cmd(item, target, e)
       return
     }
   }
