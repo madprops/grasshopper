@@ -728,6 +728,13 @@ App.mouse_middle_action = (e, target_el) => {
         App.remove_item_icon(item)
         return
       }
+
+      if (App.get_setting(`parent_icon_click`)) {
+        if (DOM.parent(target, [`.parent_icon`])) {
+          App.close_node_tabs(item)
+          return
+        }
+      }
     }
 
     if (DOM.parent(target, [`.taglist_item`])) {
@@ -737,13 +744,6 @@ App.mouse_middle_action = (e, target_el) => {
 
     if (DOM.parent(target, [`.taglist_container`])) {
       return
-    }
-
-    if (App.get_setting(`parent_icon_click`)) {
-      if (DOM.parent(target, [`.parent_icon`])) {
-        App.close_node_tabs(item)
-        return
-      }
     }
   }
 
