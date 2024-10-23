@@ -2536,6 +2536,7 @@ App.build_settings = () => {
       value: [
         {cmd: `new_pinned_tab`},
         {cmd: `new_normal_tab`},
+        {cmd: App.separator_string},
         {cmd: `select_pinned_tabs`},
         {cmd: `select_normal_tabs`},
         {cmd: `select_unloaded_tabs`},
