@@ -8,10 +8,10 @@
 //   item_height: `small`,
 //   tabs_item_menu: [
 //     {
-//       "cmd": "go_to_bottom",
+//       cmd: `go_to_bottom`,
 //     },
 //     {
-//       "cmd": "page_up",
+//       cmd: `page_up`,
 //     },
 //   ],
 // }
