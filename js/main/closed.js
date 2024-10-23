@@ -28,6 +28,7 @@ App.get_closed = async () => {
 App.closed_action = (args = {}) => {
   let def_args = {
     on_action: true,
+    soft: false,
   }
 
   App.def_args(def_args, args)
@@ -37,7 +38,7 @@ App.closed_action = (args = {}) => {
     App.on_action(`closed`)
   }
 
-  App.focus_or_open_item(args.item)
+  App.focus_or_open_item(args.item, args.soft)
 }
 
 App.reopen_tab = async () => {

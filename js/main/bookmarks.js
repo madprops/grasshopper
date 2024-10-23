@@ -77,6 +77,7 @@ App.get_bookmarks = async (query = ``, deep = false, by_what = `all`) => {
 App.bookmarks_action = (args = {}) => {
   let def_args = {
     on_action: true,
+    soft: false,
   }
 
   App.def_args(def_args, args)
@@ -92,7 +93,7 @@ App.bookmarks_action = (args = {}) => {
     App.on_action(`bookmarks`)
   }
 
-  App.focus_or_open_item(args.item)
+  App.focus_or_open_item(args.item, args.soft)
 }
 
 App.get_bookmarks_folder = async (item) => {
