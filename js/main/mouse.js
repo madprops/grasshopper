@@ -373,11 +373,6 @@ App.mouse_click_action = (e) => {
     }
   }
 
-  if (e.altKey || App.get_setting(`click_select`)) {
-    App.select_item({item, scroll: `nearest_smooth`})
-    return
-  }
-
   if (App.get_setting(`load_lock`)) {
     if (item.unloaded) {
       App.select_item({item, scroll: `nearest_smooth`})
@@ -385,7 +380,8 @@ App.mouse_click_action = (e) => {
     }
   }
 
-  App[`${mode}_action`]({item, from})
+  let cmd = App.get_setting(`click_item_${mode}`)
+  App.run_command({cmd, item, from, e})
 }
 
 App.mouse_double_click_action = (e) => {
@@ -465,13 +461,6 @@ App.mouse_double_click_action = (e) => {
   }
 
   let cmd = App.get_setting(`double_click_item_${mode}`)
-
-  if (cmd === `item_action`) {
-    if (!App.get_setting(`click_select`)) {
-      return
-    }
-  }
-
   App.run_command({cmd, item, from: `double_click`, e})
 }
 

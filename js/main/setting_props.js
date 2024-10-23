@@ -369,18 +369,11 @@ App.build_settings = () => {
       info: `Require a double click or command to load`,
       version: 1,
     },
-    click_select: {
-      name: `Click Select`,
-      type: `checkbox`,
-      value: false,
-      info: `Click to select without triggering an action`,
-      version: 1,
-    },
     lock_drag: {
       name: `Lock Drag`,
       type: `checkbox`,
       value: false,
-      info: `Require holding Ctrl to drag tab items vertically
+      info: `Require holding Ctrl to drag Tab Items vertically
       This is to avoid accidental re-ordering`,
       version: 1,
     },
@@ -3730,41 +3723,41 @@ App.build_settings = () => {
   category = `triggers`
 
   props = {
-    wheel_up_items: {
-      name: `Wheel Up Items`,
+    click_item_tabs: {
+      name: `Click Item (Tabs)`,
       type: `menu`,
-      value: `scroll_up`,
-      info: `What to do when scrolling the mousewheel up on items`,
+      value: `item_action`,
+      info: `Command to run when clicking Tab Items`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_down_items: {
-      name: `Wheel Down Items`,
+    click_item_history: {
+      name: `Click Item (History)`,
       type: `menu`,
-      value: `scroll_down`,
-      info: `What to do when scrolling the mousewheel down on items`,
+      value: `item_action`,
+      info: `Command to run when middle clicking History Items`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_up_shift_items: {
-      name: `Shift Wheel Up Items`,
+    click_item_bookmarks: {
+      name: `Click Item (Bookmarks)`,
       type: `menu`,
-      value: `page_up`,
-      info: `What to do when scrolling the mousewheel up on items while holding Shift`,
+      value: `item_action`,
+      info: `Command to run when clicking Bookmark Items`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_down_shift_items: {
-      name: `Shift Wheel Down Items`,
+    click_item_closed: {
+      name: `Click Item (Closed)`,
       type: `menu`,
-      value: `page_down`,
-      info: `What to do when scrolling the mousewheel down on items while holding Shift`,
+      value: `item_action`,
+      info: `Command to run when clicking Closed Items`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -3775,7 +3768,7 @@ App.build_settings = () => {
       name: `Middle Click Item (Tabs)`,
       type: `menu`,
       value: `close_tabs`,
-      info: `Command to run when middle clicking tab items`,
+      info: `Command to run when middle clicking Tab Items`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -3785,7 +3778,7 @@ App.build_settings = () => {
       name: `Middle Click Item (History)`,
       type: `menu`,
       value: `open_items`,
-      info: `Command to run when middle clicking history items`,
+      info: `Command to run when middle clicking History Items`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -3795,7 +3788,7 @@ App.build_settings = () => {
       name: `Middle Click Item (Bookmarks)`,
       type: `menu`,
       value: `open_items`,
-      info: `Command to run when middle clicking bookmark items`,
+      info: `Command to run when middle clicking Bookmark Items`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -3805,7 +3798,7 @@ App.build_settings = () => {
       name: `Middle Click Item (Closed)`,
       type: `menu`,
       value: `open_items`,
-      info: `Command to run when middle clicking closed items`,
+      info: `Command to run when middle clicking Closed Items`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -3929,6 +3922,47 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the middle mouse button on an item for a short time (Closed)`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_items: {
+      name: `Wheel Up Items`,
+      type: `menu`,
+      value: `scroll_up`,
+      info: `What to do when scrolling the mousewheel up on items`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_items: {
+      name: `Wheel Down Items`,
+      type: `menu`,
+      value: `scroll_down`,
+      info: `What to do when scrolling the mousewheel down on items`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_shift_items: {
+      name: `Shift Wheel Up Items`,
+      type: `menu`,
+      value: `page_up`,
+      info: `What to do when scrolling the mousewheel up on items while holding Shift`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_shift_items: {
+      name: `Shift Wheel Down Items`,
+      type: `menu`,
+      value: `page_down`,
+      info: `What to do when scrolling the mousewheel down on items while holding Shift`,
       separator: true,
       version: 1,
       setup: (key) => {
