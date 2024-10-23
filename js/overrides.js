@@ -6,7 +6,7 @@
 // App.setting_overrides = {
 //   main_title: `This is a new title`,
 //   item_height: `small`,
-//   tabs_item_menu: [
+//   item_menu_tabs: [
 //     {
 //       cmd: `go_to_bottom`,
 //     },
