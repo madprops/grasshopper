@@ -166,7 +166,6 @@ App.new_pin_tab = () => {
 App.toggle_show_pins = () => {
   let og = App.get_setting(`show_pinned_tabs`)
   App.set_setting({setting: `show_pinned_tabs`, value: !og})
-  App.check_refresh_settings()
 
   if (!og) {
     App.show_all_pins()

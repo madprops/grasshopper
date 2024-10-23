@@ -118,7 +118,6 @@ App.check_unloaded = (item) => {
 App.toggle_show_unloaded = () => {
   let og = App.get_setting(`show_unloaded_tabs`)
   App.set_setting({setting: `show_unloaded_tabs`, value: !og})
-  App.check_refresh_settings()
 
   if (!og) {
     App.show_all_unloaded()
