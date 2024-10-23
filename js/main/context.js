@@ -65,10 +65,10 @@ App.show_extra_menu = (item, e) => {
 App.show_empty_menu = (item, e) => {
   let name
   let mode = item?.mode || App.active_mode
-  let mode_menu = App.get_setting(`${mode}_empty_menu`)
+  let mode_menu = App.get_setting(`empty_menu_${mode}`)
 
   if (mode_menu.length) {
-    name = `${mode}_empty_menu`
+    name = `empty_menu_${mode}`
   }
   else {
     let global = App.get_setting(`empty_menu`)

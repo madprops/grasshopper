@@ -15,7 +15,7 @@ App.show_item_menu = async (args = {}) => {
     return
   }
 
-  let mode_menu = App.get_setting(`${args.item.mode}_item_menu`)
+  let mode_menu = App.get_setting(`item_menu_${args.item.mode}`)
 
   if (mode_menu.length) {
     for (let item of mode_menu) {

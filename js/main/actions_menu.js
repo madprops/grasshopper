@@ -1,5 +1,5 @@
 App.get_actions = (mode) => {
-  let menu = App.get_setting(`${mode}_actions_menu`)
+  let menu = App.get_setting(`actions_menu_${mode}`)
   return menu.map(item => item.cmd) || []
 }
 
@@ -24,7 +24,7 @@ App.create_actions_menu = (mode) => {
 }
 
 App.show_actions_menu = (mode, item, e) => {
-  let mode_menu = App.get_setting(`${mode}_actions_menu`)
+  let mode_menu = App.get_setting(`actions_menu_${mode}`)
 
   if (mode_menu.length) {
     App.show_mode_menu(mode, item, e)
@@ -51,7 +51,7 @@ App.show_global_actions_menu = (e) => {
 
 App.show_mode_menu = (mode, item, e) => {
   let items = App.custom_menu_items({
-    name: `${mode}_actions_menu`,
+    name: `actions_menu_${mode}`,
     item,
   })
 

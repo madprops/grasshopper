@@ -1890,32 +1890,32 @@ App.build_settings = () => {
       info: `Make this the item menu for all modes that don't have an Item Menu set`,
       version: 1,
     },
-    tabs_item_menu: {
-      name: `Tabs Item Menu`,
+    item_menu_tabs: {
+      name: `Item Menu Tabs`,
       type: `list`,
       value: [],
       data_group: `normal_menus`,
       info: `Menu to show when using the Tabs Item Menu`,
       version: 1,
     },
-    history_item_menu: {
-      name: `History Item Menu`,
+    item_menu_history: {
+      name: `Item Menu History`,
       type: `list`,
       value: [],
       data_group: `normal_menus`,
       info: `Menu to show when using the History Item Menu`,
       version: 1,
     },
-    bookmarks_item_menu: {
-      name: `Bookmarks Item Menu`,
+    item_menu_bookmarks: {
+      name: `Item Menu Bookmarks`,
       type: `list`,
       value: [],
       data_group: `normal_menus`,
       info: `Menu to show when using the Bookmarks Item Menu`,
       version: 1,
     },
-    closed_item_menu: {
-      name: `Closed Item Menu`,
+    item_menu_closed: {
+      name: `Item Menu Closed`,
       type: `list`,
       value: [],
       separator: true,
@@ -1931,8 +1931,8 @@ App.build_settings = () => {
       info: `Make this the actions menu for all modes that don't have an actions menu set`,
       version: 1,
     },
-    tabs_actions_menu: {
-      name: `Tabs Actions Menu`,
+    actions_menu_tabs: {
+      name: `Actions Menu Tabs`,
       type: `list`,
       value: [
         {cmd: `open_new_tab`},
@@ -1952,8 +1952,8 @@ App.build_settings = () => {
       info: `Menu to show when clicking the tabs actions menu`,
       version: 1,
     },
-    history_actions_menu: {
-      name: `History Actions Menu`,
+    actions_menu_history: {
+      name: `Actions Menu History`,
       type: `list`,
       value: [
         {cmd: `deep_search`},
@@ -1961,11 +1961,11 @@ App.build_settings = () => {
         {cmd: `save_history_pick`},
       ],
       data_group: `normal_menus`,
-      info: `Menu to show when clicking the history actions menu`,
+      info: `Menu to show when clicking the History Actions Menu`,
       version: 1,
     },
-    bookmarks_actions_menu: {
-      name: `Bookmarks Actions Menu`,
+    actions_menu_bookmarks: {
+      name: `Actions Menu Bookmarks`,
       type: `list`,
       value: [
         {cmd: `deep_search`},
@@ -1976,18 +1976,18 @@ App.build_settings = () => {
         {cmd: `save_bookmarks_folder_pick`},
       ],
       data_group: `normal_menus`,
-      info: `Menu to show when clicking the bookmarks actions menu`,
+      info: `Menu to show when clicking the Bookmarks Actions Menu`,
       version: 1,
     },
-    closed_actions_menu: {
-      name: `Closed Actions Menu`,
+    actions_menu_closed: {
+      name: `Actions Menu Closed`,
       type: `list`,
       value: [
         {cmd: `forget_closed`},
       ],
       separator: true,
       data_group: `normal_menus`,
-      info: `Menu to show when clicking the closed actions menu`,
+      info: `Menu to show when clicking the Closed Actions Menu`,
       version: 1,
     },
     empty_menu: {
@@ -1998,8 +1998,8 @@ App.build_settings = () => {
       info: `Use this empty menu when the specific mode is not specified`,
       version: 1,
     },
-    tabs_empty_menu: {
-      name: `Tabs Empty Menu`,
+    empty_menu_tabs: {
+      name: `Empty Menu Tabs`,
       type: `list`,
       value: [
         {cmd: `open_new_tab`},
@@ -2010,8 +2010,8 @@ App.build_settings = () => {
       info: `Menu to show when right clicking empty space in Tabs mode`,
       version: 1,
     },
-    history_empty_menu: {
-      name: `History Empty Menu`,
+    empty_menu_history: {
+      name: `Empty Menu History`,
       type: `list`,
       value: [
         {cmd: `save_history_pick`},
@@ -2021,8 +2021,8 @@ App.build_settings = () => {
       info: `Menu to show when right clicking empty space in History mode`,
       version: 1,
     },
-    bookmarks_empty_menu: {
-      name: `Bookmarks Empty Menu`,
+    empty_menu_bookmarks: {
+      name: `Empty Menu Bookmarks`,
       type: `list`,
       value: [
         {cmd: `pick_bookmarks_folder`},
@@ -2033,8 +2033,8 @@ App.build_settings = () => {
       info: `Menu to show when right clicking empty space in Bookmarks mode`,
       version: 1,
     },
-    closed_empty_menu: {
-      name: `Closed Empty Menu`,
+    empty_menu_closed: {
+      name: `Empty Menu Closed`,
       type: `list`,
       value: [
         {cmd: `reopen_tab`},

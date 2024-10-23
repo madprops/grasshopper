@@ -1465,7 +1465,6 @@ App.setup_settings_addlist = () => {
     })})
 
   let menukeys = [
-    `favorites_menu`,
     `extra_menu`,
     `hover_button_menu`,
     `close_button_menu`,
@@ -1473,6 +1472,7 @@ App.setup_settings_addlist = () => {
     `pinline_menu`,
     `main_title_menu`,
     `tab_box_menu`,
+    `favorites_menu`,
     `favorites_menu_tabs`,
     `favorites_menu_history`,
     `favorites_menu_bookmarks`,
@@ -1483,9 +1483,9 @@ App.setup_settings_addlist = () => {
   ]
 
   for (let m of App.modes) {
-    menukeys.push(`${m}_actions_menu`)
-    menukeys.push(`${m}_item_menu`)
-    menukeys.push(`${m}_empty_menu`)
+    menukeys.push(`actions_menu_${m}`)
+    menukeys.push(`item_menu_${m}`)
+    menukeys.push(`empty_menu_${m}`)
   }
 
   for (let i = 1; i <= App.num_generic_menus; i++) {
