@@ -5357,6 +5357,20 @@ App.build_settings = () => {
       info: `Only show icons in the Pinline Menu`,
       version: 1,
     },
+    compact_main_title_menu: {
+      name: `Compact Title Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Title Menu`,
+      version: 1,
+    },
+    compact_footer_menu: {
+      name: `Compact Footer Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Footer Menu`,
+      version: 1,
+    },
     compact_hover_button_menu: {
       name: `Compact Hover Button Menu`,
       type: `checkbox`,

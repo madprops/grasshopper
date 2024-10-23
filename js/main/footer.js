@@ -217,7 +217,8 @@ App.show_footer_menu = (e) => {
     name: `footer_menu`,
   })
 
-  App.show_context({items, e})
+  let compact = App.get_setting(`compact_footer_menu`)
+  App.show_context({items, e, compact})
 }
 
 App.footer_tips = (el) => {

@@ -160,7 +160,8 @@ App.show_main_title_menu = (e) => {
     name: `main_title_menu`,
   })
 
-  App.show_context({items, e})
+  let compact = App.get_setting(`compact_main_title_menu`)
+  App.show_context({items, e, compact})
 }
 
 App.main_title_double_click = (e) => {
