@@ -1,6 +1,8 @@
 App.mouse_check_skip = (item, target) => {
-  if (DOM.parent(target, [`.taglist`])) {
-    return false
+  if (item.mode === `tabs`) {
+    if (DOM.parent(target, [`.taglist`])) {
+      return false
+    }
   }
 
   let skip = DOM.parent(target, [`.item_content`])
