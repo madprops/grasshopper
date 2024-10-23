@@ -1118,7 +1118,7 @@ App.wheel_action = (direction, name, e) => {
   App.run_command({cmd, item, from: `mouse`, e})
 }
 
-App.check_double_click = (what, e, action) => {
+App.check_double_click = (what, e) => {
   let click_date = App[`click_date_${what}`]
   let click_target = App[`click_target_${what}`]
   let target = e.target
