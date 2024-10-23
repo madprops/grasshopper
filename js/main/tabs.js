@@ -1251,6 +1251,10 @@ App.show_all_tabs = () => {
 }
 
 App.check_hide_tabs = (item) => {
+  if (item.tab_box) {
+    return
+  }
+
   let show_pinned = App.get_setting(`show_pinned_tabs`)
   let show_unloaded = App.get_setting(`show_unloaded_tabs`)
 
