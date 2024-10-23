@@ -1782,7 +1782,19 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_show_pins()
       },
-      info: `Hide or show pins`,
+      info: `Hide or show pinned tabs`,
+    },
+    {
+      name: `Toggle Unloaded`,
+      short_name: `Unloaded`,
+      cmd: `toggle_show_unloaded`,
+      modes: [`tabs`],
+      item: true,
+      icon: unloaded_icon,
+      action: (args) => {
+        App.toggle_show_unloaded()
+      },
+      info: `Hide or show unloaded tabs`,
     },
     {
       name: `New Pin`,

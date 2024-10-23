@@ -114,3 +114,23 @@ App.check_unloaded = (item) => {
     item.element.classList.remove(`unloaded_tab`)
   }
 }
+
+App.toggle_show_unloaded = () => {
+  let og = App.get_setting(`show_unloaded_tabs`)
+  App.set_setting({setting: `show_unloaded_tabs`, value: !og})
+  App.check_refresh_settings()
+
+  if (!og) {
+    App.show_all_unloaded()
+  }
+
+  App.do_filter({mode: App.active_mode})
+}
+
+App.show_all_unloaded = () => {
+  for (let item of App.get_items(`tabs`)) {
+    if (item.unloaded) {
+      App.show_item_2(item)
+    }
+  }
+}

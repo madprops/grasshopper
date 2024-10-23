@@ -1244,12 +1244,6 @@ App.new_normal_tab = () => {
   App.open_new_tab({index})
 }
 
-App.show_all_tabs = () => {
-  for (let item of App.get_items(`tabs`)) {
-    App.show_item_2(item)
-  }
-}
-
 App.check_hide_tabs = (item) => {
   if (item.tab_box) {
     return

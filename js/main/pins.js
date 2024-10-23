@@ -169,7 +169,7 @@ App.toggle_show_pins = () => {
   App.check_refresh_settings()
 
   if (!og) {
-    App.show_all_tabs()
+    App.show_all_pins()
   }
 
   App.do_filter({mode: App.active_mode})
@@ -190,5 +190,13 @@ App.last_pinned_tab = () => {
 
   if (last) {
     App.tabs_action({item: last})
+  }
+}
+
+App.show_all_pins = () => {
+  for (let item of App.get_items(`tabs`)) {
+    if (item.pinned) {
+      App.show_item_2(item)
+    }
   }
 }
