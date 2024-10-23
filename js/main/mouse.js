@@ -160,9 +160,11 @@ App.mouse_click_action = (e) => {
   }
 
   let mode = App.active_mode
+  App.reset_triggers()
 
   App.check_double_click(`mouse`, e, () => {
     App.mouse_double_click_action(e)
+    return
   })
 
   let [item, item_alt] = App.get_mouse_item(mode, target)
@@ -173,8 +175,6 @@ App.mouse_click_action = (e) => {
       return
     }
   }
-
-  App.reset_triggers()
 
   if (DOM.parent(target, [`.main_menu_button`])) {
     App.show_main_menu(mode)
