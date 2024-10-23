@@ -1,6 +1,21 @@
+App.mouse_check_skip = (item, target) => {
+  let skip = DOM.parent(target, [`.item_content`])
+
+  if (!skip) {
+    skip = DOM.parent(target, [`.item_icon_container`])
+  }
+
+  return skip
+}
+
 App.mouse_click_cmd = (mode, item, e) => {
   let cmd = App.get_setting(`click_item_${mode}`)
   App.run_command({cmd, item, from: `click`, e})
+}
+
+App.middle_click_cmd = (mode, item, e) => {
+  let cmd = App.get_setting(`middle_click_item_${item.mode}`)
+  App.run_command({cmd, item, from: `middle_click`, e})
 }
 
 App.get_mouse_item = (mode, target) => {
@@ -103,7 +118,14 @@ App.mouse_click_action = (e) => {
   }
 
   let mode = App.active_mode
-  let from = `click`
+  let [item, item_alt] = App.get_mouse_item(mode, target)
+
+  if (item) {
+    if (App.mouse_check_skip(item, target)) {
+      App.mouse_click_cmd(mode, item, e)
+      return
+    }
+  }
 
   App.check_double_click(`mouse`, e, () => {
     App.mouse_double_click_action(e)
@@ -188,8 +210,6 @@ App.mouse_click_action = (e) => {
     return
   }
 
-  let [item, item_alt] = App.get_mouse_item(mode, target)
-
   if (!item) {
     return
   }
@@ -245,17 +265,6 @@ App.mouse_click_action = (e) => {
         return
       }
     }
-  }
-
-  let skip = DOM.parent(target, [`.item_content`])
-
-  if (!skip) {
-    skip = DOM.parent(target, [`.item_icon_container`])
-  }
-
-  if (skip) {
-    App.mouse_click_cmd(mode, item, e)
-    return
   }
 
   if (DOM.parent(target, [`.hover_button`])) {
@@ -584,6 +593,14 @@ App.mouse_middle_action = (e, target_el) => {
   }
 
   App.reset_triggers()
+  let [item, item_alt] = App.get_mouse_item(mode, target)
+
+  if (item) {
+    if (App.mouse_check_skip(item, target)) {
+      App.middle_click_cmd(mode, item, e)
+      return
+    }
+  }
 
   if (!App.mouse_valid_type(target)) {
     return
@@ -658,8 +675,6 @@ App.mouse_middle_action = (e, target_el) => {
     App.scroll_page(mode, `up`)
     return
   }
-
-  let [item, item_alt] = App.get_mouse_item(mode, target)
 
   if (!item) {
     return
@@ -757,8 +772,7 @@ App.mouse_middle_action = (e, target_el) => {
     }
   }
 
-  let cmd = App.get_setting(`middle_click_item_${item.mode}`)
-  App.run_command({cmd, item, from: `middle_click`, e})
+  App.middle_click_cmd(mode, item, e)
 }
 
 App.mouse_over_action = (e) => {
