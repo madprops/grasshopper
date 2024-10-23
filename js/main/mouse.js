@@ -9,6 +9,11 @@ App.mouse_check_skip = (item, target) => {
 }
 
 App.mouse_click_cmd = (mode, item, e) => {
+  if (e.altKey) {
+    App.select_item({item, scroll: `nearest_smooth`})
+    return
+  }
+
   let cmd = App.get_setting(`click_item_${mode}`)
   App.run_command({cmd, item, from: `click`, e})
 }
