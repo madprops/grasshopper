@@ -377,7 +377,7 @@ App.mouse_click_action = (e) => {
     return
   }
 
-  let cmd = App.get_setting(`click_item_${item.mode}`)
+  let cmd = App.get_setting(`click_item_${mode}`)
   App.run_command({cmd, item, from: `click`, e})
 }
 
@@ -430,6 +430,8 @@ App.mouse_double_click_action = (e) => {
     return
   }
 
+  mode = item.mode
+
   if (item.header) {
     if (!item.unloaded) {
       if (App.do_header_action(item, `double_click_header`)) {
@@ -448,7 +450,7 @@ App.mouse_double_click_action = (e) => {
     return
   }
 
-  let cmd = App.get_setting(`double_click_item_${item.mode}`)
+  let cmd = App.get_setting(`double_click_item_${mode}`)
   App.run_command({cmd, item, from: `double_click`, e})
 }
 
@@ -526,6 +528,8 @@ App.mouse_context_action = (e) => {
 
     return
   }
+
+  mode = item.mode
 
   if (DOM.parent(target, [`.hover_button`])) {
     App.check_pick_button(`hover`, item, e)
@@ -748,7 +752,7 @@ App.mouse_middle_action = (e, target_el) => {
     return
   }
 
-  let cmd = App.get_setting(`click_item_${item.mode}`)
+  let cmd = App.get_setting(`click_item_${mode}`)
   App.run_command({cmd, item, from: `click`, e})
 }
 
@@ -823,90 +827,73 @@ App.click_press_action = (e) => {
   }
 
   let [item, item_alt] = App.get_mouse_item(mode, target)
-
-  function action(s1, s2, item) {
-    if (DOM.parent(target, [s1])) {
-      if (App.click_press_button === 0) {
-        let cmd = App.get_setting(`click_press_${s2}`)
-        App.run_command({cmd, from: `click_press`, e, item})
-      }
-      else if (App.click_press_button === 1) {
-        let cmd = App.get_setting(`middle_click_press_${s2}`)
-        App.run_command({cmd, from: `click_press`, e, item})
-      }
-
-      App.click_press_triggered = true
-      return true
-    }
-
-    return false
-  }
-
-  if (action(`.main_menu_button`, `main_menu`)) {
-    return
-  }
-
-  if (action(`.step_back_button`, `step_back`)) {
-    return
-  }
-
-  if (action(`.playing_button`, `playing`)) {
-    return
-  }
-
-  if (action(`#pinline`, `pinline`)) {
-    return
-  }
-
-  if (action(`.filter_menu_button`, `filter_menu`)) {
-    return
-  }
-
-  if (action(`.actions_button`, `actions_menu`)) {
-    return
-  }
-
-  if (action(`#footer`, `footer`)) {
-    return
-  }
-
-  if (action(`.favorites_empty_top`, `favorites_top`)) {
-    return
-  }
-
-  if (action(`.favorites_empty_bottom`, `favorites_bottom`)) {
-    return
-  }
-
-  if (action(`.favorites_button`, `favorites_button`)) {
-    return
-  }
-
-  if (action(`#tab_box_title`, `tab_box_title`)) {
-    return
-  }
-
-  if (action(`#main_title`, `main_title`)) {
-    return
-  }
-
-  if (!App.filter_has_value(mode)) {
-    if (action(`.mode_filter`, `filter`)) {
-      return
-    }
-  }
+  let obj = {item, target, e}
 
   if (!item) {
+    if (App.mouse_press_action(`.main_menu_button`, `main_menu`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`.step_back_button`, `step_back`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`.playing_button`, `playing`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`#pinline`, `pinline`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`.filter_menu_button`, `filter_menu`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`.actions_button`, `actions_menu`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`#footer`, `footer`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`.favorites_empty_top`, `favorites_top`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`.favorites_empty_bottom`, `favorites_bottom`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`.favorites_button`, `favorites_button`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`#tab_box_title`, `tab_box_title`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`#main_title`, `main_title`, obj)) {
+      return
+    }
+
+    if (!App.filter_has_value(mode)) {
+      if (App.mouse_press_action(`.mode_filter`, `filter`, obj)) {
+        return
+      }
+    }
+
     return
   }
 
   mode = item.mode
 
-  if (action(`.close_button`, `close_button`, item)) {
+  if (App.mouse_press_action(`.close_button`, `close_button`, obj)) {
     return
   }
 
-  if (action(`.hover_button`, `hover_button`, item)) {
+  if (App.mouse_press_action(`.hover_button`, `hover_button`, obj)) {
     return
   }
 
@@ -1224,4 +1211,22 @@ App.check_pick_button = (what, item, e) => {
   }
 
   return
+}
+
+App.mouse_press_action = (s1, s2, obj) => {
+  if (DOM.parent(obj.target, [s1])) {
+    if (App.click_press_button === 0) {
+      let cmd = App.get_setting(`click_press_${s2}`)
+      App.run_command({cmd, from: `click_press`, e: obj.e, item: obj.item})
+    }
+    else if (App.click_press_button === 1) {
+      let cmd = App.get_setting(`middle_click_press_${s2}`)
+      App.run_command({cmd, from: `click_press`, e: obj.e, item: obj.item})
+    }
+
+    App.click_press_triggered = true
+    return true
+  }
+
+  return false
 }
