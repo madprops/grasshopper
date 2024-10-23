@@ -896,6 +896,14 @@ App.click_press_action = (e) => {
 
   mode = item.mode
 
+  if (action(`.close_button`, `close_button`, item)) {
+    return
+  }
+
+  if (action(`.hover_button`, `hover_button`, item)) {
+    return
+  }
+
   if (item.header) {
     let sett
 
@@ -910,14 +918,6 @@ App.click_press_action = (e) => {
       App.click_press_triggered = true
       return
     }
-  }
-
-  if (action(`.close_button`, `close_button`, item)) {
-    return
-  }
-
-  if (action(`.hover_button`, `hover_button`, item)) {
-    return
   }
 
   let cmd
