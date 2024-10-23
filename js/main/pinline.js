@@ -17,7 +17,7 @@ App.do_check_pinline = () => {
   let cls = `element tabs_element glowbox`
 
   if (show === `auto`) {
-    if (App.get_setting(`hide_pins`)) {
+    if (!App.get_setting(`show_pinned_tabs`)) {
       if (!App.is_filtered(`tabs`)) {
         show = `never`
       }

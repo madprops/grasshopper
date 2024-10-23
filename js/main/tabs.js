@@ -1234,15 +1234,6 @@ App.blank_tab = async () => {
   await App.open_new_tab({url: `about:blank`})
 }
 
-App.check_unloaded = (item) => {
-  if (item.unloaded) {
-    item.element.classList.add(`unloaded_tab`)
-  }
-  else {
-    item.element.classList.remove(`unloaded_tab`)
-  }
-}
-
 App.set_tabs_title = (title) => {
   let btn = DOM.el(`#tabs_main_menu`)
   App.set_main_menu_text(btn, `tabs`, title)
@@ -1251,4 +1242,25 @@ App.set_tabs_title = (title) => {
 App.new_normal_tab = () => {
   let index = App.get_first_normal_index()
   App.open_new_tab({index})
+}
+
+App.show_all_tabs = () => {
+  for (let item of App.get_items(`tabs`)) {
+    App.show_item_2(item)
+  }
+}
+
+App.check_hide_tabs = (item) => {
+  let show_pinned = App.get_setting(`show_pinned_tabs`)
+  let show_unloaded = App.get_setting(`show_unloaded_tabs`)
+
+  if (!show_pinned && item.pinned) {
+    App.hide_item_2(item)
+  }
+  else if (!show_unloaded && item.unloaded) {
+    App.hide_item_2(item)
+  }
+  else {
+    App.show_item_2(item)
+  }
 }

@@ -1541,6 +1541,20 @@ App.build_settings = () => {
       info: `Show the Actions Button`,
       version: 1,
     },
+    show_pinned_tabs: {
+      name: `Show Pins`,
+      type: `checkbox`,
+      value: true,
+      info: `Show pinned tabs`,
+      version: 1,
+    },
+    show_unloaded_tabs: {
+      name: `Show Unloaded`,
+      type: `checkbox`,
+      value: true,
+      info: `Show unloaded tabs`,
+      version: 1,
+    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
@@ -1589,14 +1603,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Show the protocol (like https://) when URLs are displayed`,
-      version: 1,
-    },
-    hide_pins: {
-      name: `Hide Pins`,
-      type: `checkbox`,
-      value: false,
-      info: `Don't show the pins in All filter mode.
-      Might be used in combination with the Tab Box or Show Pins`,
       version: 1,
     },
     active_trace: {

@@ -262,8 +262,9 @@ App.do_filter = async (args = {}) => {
   let headers = filter_mode === `filter_header_tabs`
   let header_match = 0
   let max_header = App.get_setting(`header_filter_context`)
-  let force_pins = App.is_filtered(args.mode)
-  let check_pins = App.get_setting(`hide_pins`)
+  let force_show = App.is_filtered(args.mode)
+  let check_pins = !App.get_setting(`show_pinned_tabs`)
+  let check_unloaded = !App.get_setting(`show_unloaded_tabs`)
   let num_matched = 0
   let check_max = false
   let max_items = 0
@@ -332,13 +333,16 @@ App.do_filter = async (args = {}) => {
         continue
       }
 
-      if (check_pins) {
-        if (item.pinned) {
-          App.check_pins(item, force_pins)
+      App.show_item(item)
+
+      if (force_show) {
+        App.show_item_2(item)
+      }
+      else {
+        if ((check_pins && item.pinned) || (check_unloaded && item.unloaded)) {
+          App.check_hide_tabs(item)
         }
       }
-
-      App.show_item(item)
 
       if (headers) {
         if (item.header) {

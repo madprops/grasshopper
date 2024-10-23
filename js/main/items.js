@@ -303,7 +303,6 @@ App.clear_all_items = () => {
 
 App.refresh_item_element = (item) => {
   App.check_header(item)
-  App.check_pins(item)
   App.check_tab_loading(item)
   App.check_item_icon(item)
   App.check_icons(item)
@@ -313,6 +312,7 @@ App.refresh_item_element = (item) => {
   App.apply_color_mode(item)
   App.check_taglist(item)
   App.check_unloaded(item)
+  App.check_hide_tabs(item)
 
   if (App.zones_unlocked(item.mode)) {
     App.apply_splits(item)
@@ -372,8 +372,8 @@ App.create_item_element = (item) => {
     App.check_tab_loading(item)
     App.check_tab_colors(item)
     App.check_tab_active(item)
-    App.check_pins(item)
     App.check_unloaded(item)
+    App.check_hide_tabs(item)
   }
 
   if (item.selected) {
@@ -1401,4 +1401,14 @@ App.toggle_wrap_text = () => {
   let wrap = App.get_setting(`wrap_text`)
   App.set_setting({setting: `wrap_text`, value: !wrap})
   App.apply_theme()
+}
+
+App.hide_item_2 = (item) => {
+  DOM.hide(item.element, 2)
+  item.visible = false
+}
+
+App.show_item_2 = (item) => {
+  DOM.show(item.element, 2)
+  item.visible = true
 }

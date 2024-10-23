@@ -105,3 +105,12 @@ App.unload_other_tabs = (item) => {
     },
   })
 }
+
+App.check_unloaded = (item) => {
+  if (item.unloaded) {
+    item.element.classList.add(`unloaded_tab`)
+  }
+  else {
+    item.element.classList.remove(`unloaded_tab`)
+  }
+}

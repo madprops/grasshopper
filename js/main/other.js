@@ -263,6 +263,6 @@ App.turn_flashlight_off = () => {
 
 App.check_show_button = (name, btn) => {
   if (!App.get_setting(`show_${name}_button`)) {
-    btn.classList.add(`hidden_2`)
+    DOM.hide(btn, 2)
   }
 }

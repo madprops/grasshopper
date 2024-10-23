@@ -159,44 +159,17 @@ App.get_last_pin_index = () => {
   return i
 }
 
-App.check_pins = (item, force = false) => {
-  if (App.get_setting(`hide_pins`) && !item.tab_box) {
-    if (!force && item.pinned) {
-      App.hide_pin(item)
-    }
-    else {
-      App.show_pin(item)
-    }
-  }
-}
-
-App.hide_pin = (item) => {
-  DOM.hide(item.element, 2)
-  item.visible = false
-}
-
-App.show_pin = (item) => {
-  DOM.show(item.element, 2)
-  item.visible = true
-}
-
-App.show_all_pins = () => {
-  for (let item of App.get_items(`tabs`)) {
-    App.show_pin(item)
-  }
-}
-
 App.new_pin_tab = () => {
   App.open_new_tab({pinned: true})
 }
 
 App.toggle_show_pins = () => {
-  let hide = App.get_setting(`hide_pins`)
-  App.set_setting({setting: `hide_pins`, value: !hide})
+  let og = App.get_setting(`show_pinned_tabs`)
+  App.set_setting({setting: `show_pinned_tabs`, value: !og})
   App.check_refresh_settings()
 
-  if (hide) {
-    App.show_all_pins()
+  if (!og) {
+    App.show_all_tabs()
   }
 
   App.do_filter({mode: App.active_mode})
