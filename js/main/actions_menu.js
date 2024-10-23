@@ -31,21 +31,21 @@ App.show_actions_menu = (mode, item, e) => {
     return
   }
 
-  let global = App.get_setting(`global_actions_menu`)
+  let global = App.get_setting(`actions_menu`)
 
   if (global.length) {
-    App.show_global_menu(e)
+    App.show_global_actions_menu(e)
   }
 }
 
-App.show_global_menu = (e) => {
+App.show_global_actions_menu = (e) => {
   let items = App.custom_menu_items({
-    name: `global_actions_menu`,
+    name: `actions_menu`,
   })
 
   let mode = App.active_mode
   let element = DOM.el(`#${mode}_actions`)
-  let compact = App.get_setting(`compact_global_actions_menu`)
+  let compact = App.get_setting(`compact_actions_menu`)
   App.show_context({items, e, element, compact})
 }
 
@@ -56,7 +56,7 @@ App.show_mode_menu = (mode, item, e) => {
   })
 
   let element = DOM.el(`#${mode}_actions`)
-  let compact = App.get_setting(`compact_${mode}_actions_menu`)
+  let compact = App.get_setting(`compact_actions_menu`)
   App.show_context({items, e, element, compact})
 }
 

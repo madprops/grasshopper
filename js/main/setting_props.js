@@ -1882,8 +1882,8 @@ App.build_settings = () => {
   category = `menus`
 
   props = {
-    global_item_menu: {
-      name: `Global Item Menu`,
+    item_menu: {
+      name: `Item Menu`,
       type: `list`,
       value: [],
       data_group: `normal_menus`,
@@ -1923,8 +1923,8 @@ App.build_settings = () => {
       info: `Menu to show when using the Closed Item Menu`,
       version: 1,
     },
-    global_actions_menu: {
-      name: `Global Actions Menu`,
+    actions_menu: {
+      name: `Actions Menu`,
       type: `list`,
       value: [],
       data_group: `normal_menus`,
@@ -1990,8 +1990,8 @@ App.build_settings = () => {
       info: `Menu to show when clicking the closed actions menu`,
       version: 1,
     },
-    global_empty_menu: {
-      name: `Global Empty Menu`,
+    empty_menu: {
+      name: `Empty Menu`,
       type: `list`,
       value: [],
       data_group: `normal_menus`,
@@ -5447,79 +5447,28 @@ App.build_settings = () => {
       name: `Compact Filter Menu`,
       type: `checkbox`,
       value: false,
-      separator: true,
       info: `Only show icons in the Filter Menu`,
       version: 1,
     },
-    compact_global_item_menu: {
-      name: `Compact Global Item Menu`,
+    compact_item_menu: {
+      name: `Compact Item Menu`,
       type: `checkbox`,
       value: false,
-      info: `Only show icons in the Item Menu (Global)`,
+      info: `Only show icons in the Item Menu`,
       version: 1,
     },
-    compact_tabs_item_menu: {
-      name: `Compact Tabs Item Menu`,
+    compact_actions_menu: {
+      name: `Compact Actions Menu`,
       type: `checkbox`,
       value: false,
-      info: `Only show icons in the Item Menu (Tabs)`,
+      info: `Only show icons in the Actions Menu`,
       version: 1,
     },
-    compact_history_item_menu: {
-      name: `Compact History Item Menu`,
+    compact_empty_menu: {
+      name: `Compact Empty Menu`,
       type: `checkbox`,
       value: false,
-      info: `Only show icons in the Item Menu (History)`,
-      version: 1,
-    },
-    compact_bookmarks_item_menu: {
-      name: `Compact Bookmarks Item Menu`,
-      type: `checkbox`,
-      value: false,
-      info: `Only show icons in the Item Menu (Bookmarks)`,
-      version: 1,
-    },
-    compact_closed_item_menu: {
-      name: `Compact Closed Item Menu`,
-      type: `checkbox`,
-      value: false,
-      separator: true,
-      info: `Only show icons in the Item Menu (Closed)`,
-      version: 1,
-    },
-    compact_global_actions_menu: {
-      name: `Compact Global Actions Menu`,
-      type: `checkbox`,
-      value: false,
-      info: `Only show icons in the Actions Menu (Global)`,
-      version: 1,
-    },
-    compact_tabs_actions_menu: {
-      name: `Compact Tabs Actions Menu`,
-      type: `checkbox`,
-      value: false,
-      info: `Only show icons in the Actions Menu (Tabs)`,
-      version: 1,
-    },
-    compact_history_actions_menu: {
-      name: `Compact History Actions Menu`,
-      type: `checkbox`,
-      value: false,
-      info: `Only show icons in the Actions Menu (History)`,
-      version: 1,
-    },
-    compact_bookmarks_actions_menu: {
-      name: `Compact Bookmarks Actions Menu`,
-      type: `checkbox`,
-      value: false,
-      info: `Only show icons in the Actions Menu (Bookmarks)`,
-      version: 1,
-    },
-    compact_closed_actions_menu: {
-      name: `Compact Closed Actions Menu`,
-      type: `checkbox`,
-      value: false,
-      info: `Only show icons in the Actions Menu (Closed)`,
+      info: `Only show icons in the Empty Menu`,
       version: 1,
     },
   }

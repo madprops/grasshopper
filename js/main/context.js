@@ -71,10 +71,10 @@ App.show_empty_menu = (item, e) => {
     name = `${mode}_empty_menu`
   }
   else {
-    let global = App.get_setting(`global_empty_menu`)
+    let global = App.get_setting(`empty_menu`)
 
     if (global.length) {
-      name = `global_empty_menu`
+      name = `empty_menu`
     }
   }
 

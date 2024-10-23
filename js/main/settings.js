@@ -1477,9 +1477,9 @@ App.setup_settings_addlist = () => {
     `favorites_menu_history`,
     `favorites_menu_bookmarks`,
     `favorites_menu_closed`,
-    `global_actions_menu`,
-    `global_item_menu`,
-    `global_empty_menu`,
+    `actions_menu`,
+    `item_menu`,
+    `empty_menu`,
   ]
 
   for (let m of App.modes) {

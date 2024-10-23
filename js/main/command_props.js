@@ -1538,17 +1538,6 @@ App.setup_commands = () => {
       },
       info: `Show the filter menu`,
     },
-    {
-      name: `Global Menu`,
-      short_name: `Global`,
-      cmd: `show_global_menu`,
-      modes: [`items`],
-      icon: menu_icon,
-      action: (args) => {
-        App.show_global_menu(args.e)
-      },
-      info: `Show the Global Menu`,
-    },
 
     ...mode_menus,
 
