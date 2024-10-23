@@ -464,7 +464,7 @@ App.mouse_double_click_action = (e) => {
     }
   }
 
-  let cmd = App.get_setting(`double_click_item`)
+  let cmd = App.get_setting(`double_click_item_${mode}`)
 
   if (cmd === `item_action`) {
     if (!App.get_setting(`click_select`)) {
@@ -948,10 +948,10 @@ App.click_press_action = (e) => {
   let cmd
 
   if (App.click_press_button === 0) {
-    cmd = App.get_setting(`click_press_item`)
+    cmd = App.get_setting(`click_press_item_${mode}`)
   }
   else if (App.click_press_button === 1) {
-    cmd = App.get_setting(`middle_click_press_item`)
+    cmd = App.get_setting(`middle_click_press_item_${mode}`)
   }
 
   if (cmd) {

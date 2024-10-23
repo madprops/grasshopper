@@ -3730,37 +3730,6 @@ App.build_settings = () => {
   category = `triggers`
 
   props = {
-    double_click_item: {
-      name: `Double Click Item`,
-      type: `menu`,
-      value: `item_action`,
-      info: `What command to run when double clicking an item`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_item: {
-      name: `Click Press Item`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the left mouse button on an item for a short time`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_item: {
-      name: `Middle Click Press Item`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the middle mouse button on an item for a short time`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     wheel_up_items: {
       name: `Wheel Up Items`,
       type: `menu`,
@@ -3837,6 +3806,130 @@ App.build_settings = () => {
       type: `menu`,
       value: `open_items`,
       info: `Command to run when middle clicking closed items`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_item_tabs: {
+      name: `Double Click Item (Tabs)`,
+      type: `menu`,
+      value: `item_action`,
+      info: `What command to run when double clicking an item (Tabs)`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_item_history: {
+      name: `Double Click Item (History)`,
+      type: `menu`,
+      value: `item_action`,
+      info: `What command to run when double clicking an item (History)`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_item_bookmarks: {
+      name: `Double Click Item (Bookmarks)`,
+      type: `menu`,
+      value: `item_action`,
+      info: `What command to run when double clicking an item (Bookmarks)`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_item_closed: {
+      name: `Double Click Item (Closed)`,
+      type: `menu`,
+      value: `item_action`,
+      info: `What command to run when double clicking an item (Closed)`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_item_tabs: {
+      name: `Click Press Item (Tabs)`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the left mouse button on an item for a short time (Tabs)`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_item_history: {
+      name: `Click Press Item (History)`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the left mouse button on an item for a short time (History)`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_item_bookmarks: {
+      name: `Click Press Item (Bookmarks)`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the left mouse button on an item for a short time (Bookmarks)`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_item_closed: {
+      name: `Click Press Item (Closed)`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the left mouse button on an item for a short time (Closed)`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_item_tabs: {
+      name: `Middle Click Press Item (Tabs)`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the middle mouse button on an item for a short time (Tabs)`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_item_history: {
+      name: `Middle Click Press Item (History)`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the middle mouse button on an item for a short time (History)`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_item_bookmarks: {
+      name: `Middle Click Press Item (Bookmarks)`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the middle mouse button on an item for a short time (Bookmarks)`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_item_closed: {
+      name: `Middle Click Press Item (Closed)`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the middle mouse button on an item for a short time (Closed)`,
       separator: true,
       version: 1,
       setup: (key) => {

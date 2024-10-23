@@ -103,7 +103,7 @@ App.do_show_mode = async (args = {}) => {
   }
 
   App.mode_vars[args.mode].middle_click_info = mclicks
-  let clickp = App.get_command(App.get_setting(`click_press_item`))
+  let clickp = App.get_command(App.get_setting(`click_press_item_${args.mode}`))
   let clickps = ``
 
   if (clickp) {
@@ -111,7 +111,7 @@ App.do_show_mode = async (args = {}) => {
   }
 
   App.mode_vars[args.mode].click_press_info = clickps
-  let mclickp = App.get_command(App.get_setting(`middle_click_press_item`))
+  let mclickp = App.get_command(App.get_setting(`middle_click_press_item_${args.mode}`))
   let mclickps = ``
 
   if (mclickp) {
