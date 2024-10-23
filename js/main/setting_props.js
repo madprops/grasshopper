@@ -1694,7 +1694,7 @@ App.build_settings = () => {
       version: 1,
     },
     middle_click_close_button: {
-      name: `Middle Click Close`,
+      name: `Middle Click Close Button`,
       type: `menu`,
       value: `unload_tabs`,
       info: `Command to run when middle clicking the Close Button`,
@@ -1704,7 +1704,7 @@ App.build_settings = () => {
       },
     },
     click_press_close_button: {
-      name: `Click Press Close`,
+      name: `Click Press Close Button`,
       type: `menu`,
       value: `none`,
       info: `Command to run when pressing the Close Button`,
