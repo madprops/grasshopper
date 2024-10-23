@@ -14,7 +14,7 @@ App.mouse_check_skip = (item, target) => {
   return Boolean(skip)
 }
 
-App.mouse_click_cmd = (mode, item, e) => {
+App.mouse_click_cmd = (mode, item, target, e) => {
   if (e.altKey) {
     App.select_item({item, scroll: `nearest_smooth`})
     return
@@ -24,17 +24,40 @@ App.mouse_click_cmd = (mode, item, e) => {
   App.run_command({cmd, item, from: `click`, e})
 }
 
-App.mouse_middle_cmd = (mode, item, e) => {
+App.mouse_middle_cmd = (mode, item, target, e) => {
   let cmd = App.get_setting(`middle_click_item_${item.mode}`)
   App.run_command({cmd, item, from: `middle_click`, e})
 }
 
-App.mouse_context_cmd = (mode, item, e) => {
+App.mouse_context_cmd = (mode, item, target, e) => {
   if (App.get_setting(`item_menu_select`)) {
     App.select_item({item, scroll: `nearest`, deselect: !item.selected})
   }
 
   App.show_item_menu({item, e})
+}
+
+App.mouse_double_cmd = (mode, item, target, e) => {
+  if (item.header) {
+    if (!item.unloaded) {
+      if (App.do_header_action(item, `double_click_header`)) {
+        return
+      }
+    }
+  }
+
+  if (App.taglist_enabled()) {
+    if (DOM.parent(target, [`.taglist_container`])) {
+      return
+    }
+  }
+
+  if (DOM.parent(target, [`.item_icon_container`])) {
+    return
+  }
+
+  let cmd = App.get_setting(`double_click_item_${mode}`)
+  App.run_command({cmd, item, from: `double_click`, e})
 }
 
 App.get_mouse_item = (mode, target) => {
@@ -137,18 +160,19 @@ App.mouse_click_action = (e) => {
   }
 
   let mode = App.active_mode
-  let [item, item_alt] = App.get_mouse_item(mode, target)
-
-  if (item) {
-    if (App.mouse_check_skip(item, target)) {
-      App.mouse_click_cmd(mode, item, e)
-      return
-    }
-  }
 
   App.check_double_click(`mouse`, e, () => {
     App.mouse_double_click_action(e)
   })
+
+  let [item, item_alt] = App.get_mouse_item(mode, target)
+
+  if (item) {
+    if (App.mouse_check_skip(item, target)) {
+      App.mouse_click_cmd(mode, item, target, e)
+      return
+    }
+  }
 
   App.reset_triggers()
 
@@ -417,7 +441,7 @@ App.mouse_click_action = (e) => {
     }
   }
 
-  App.mouse_click_cmd(mode, item, e)
+  App.mouse_click_cmd(mode, item, target, e)
 }
 
 App.mouse_double_click_action = (e) => {
@@ -426,6 +450,15 @@ App.mouse_double_click_action = (e) => {
 
   if (!App.mouse_valid_type(target)) {
     return
+  }
+
+  let [item, item_alt] = App.get_mouse_item(mode, target)
+
+  if (item) {
+    if (App.mouse_check_skip(item, target)) {
+      App.mouse_double_cmd(mode, item, target, e)
+      return
+    }
   }
 
   if (DOM.class(target, [`item_container`])) {
@@ -463,34 +496,12 @@ App.mouse_double_click_action = (e) => {
     return
   }
 
-  let [item, item_alt] = App.get_mouse_item(mode, target)
-
   if (!item) {
     return
   }
 
   mode = item.mode
-
-  if (item.header) {
-    if (!item.unloaded) {
-      if (App.do_header_action(item, `double_click_header`)) {
-        return
-      }
-    }
-  }
-
-  if (App.taglist_enabled()) {
-    if (DOM.parent(target, [`.taglist_container`])) {
-      return
-    }
-  }
-
-  if (DOM.parent(target, [`.item_icon_container`])) {
-    return
-  }
-
-  let cmd = App.get_setting(`double_click_item_${mode}`)
-  App.run_command({cmd, item, from: `double_click`, e})
+  App.mouse_double_cmd(mode, item, target, e)
 }
 
 App.mouse_context_action = (e) => {
@@ -506,7 +517,7 @@ App.mouse_context_action = (e) => {
 
   if (item) {
     if (App.mouse_check_skip(item, target)) {
-      App.mouse_context_cmd(mode, item, e)
+      App.mouse_context_cmd(mode, item, target, e)
       return
     }
   }
@@ -602,7 +613,7 @@ App.mouse_context_action = (e) => {
     }
   }
 
-  App.mouse_context_cmd(mode, item, e)
+  App.mouse_context_cmd(mode, item, target, e)
 }
 
 App.mouse_middle_action = (e, target_el) => {
@@ -624,7 +635,7 @@ App.mouse_middle_action = (e, target_el) => {
 
   if (item) {
     if (App.mouse_check_skip(item, target)) {
-      App.mouse_middle_cmd(mode, item, e)
+      App.mouse_middle_cmd(mode, item, target, e)
       return
     }
   }
@@ -795,7 +806,7 @@ App.mouse_middle_action = (e, target_el) => {
     }
   }
 
-  App.mouse_middle_cmd(mode, item, e)
+  App.mouse_middle_cmd(mode, item, target, e)
 }
 
 App.mouse_over_action = (e) => {
