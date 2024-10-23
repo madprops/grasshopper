@@ -539,14 +539,6 @@ svg {
   border-color: var(--alt_color_2);
 }
 
-.close_button.left {
-  left: 0;
-}
-
-.close_button.right {
-  right: 0;
-}
-
 .borders_normal .item {
   border-top-width: 1px;
   border-bottom-width: 1px;
@@ -1759,11 +1751,11 @@ a:hover
 }
 
 .close_button_left .taglist.left {
-  left: 1.777rem;
+  left: calc(var(--close_button_width) + 1px);
 }
 
 .close_button_right .taglist.right {
-  right: 1.777rem;
+  right: calc(var(--close_button_width) + 1px);
 }
 
 .taglist_container > div {
