@@ -290,7 +290,7 @@ App.remove_closed_tab = (id) => {
 App.tabs_action = async (args = {}) => {
   let def_args = {
     on_action: true,
-    soft: true,
+    soft: false,
   }
 
   App.def_args(def_args, args)
