@@ -1,11 +1,15 @@
 App.mouse_check_skip = (item, target) => {
+  if (DOM.parent(target, [`.taglist`])) {
+    return false
+  }
+
   let skip = DOM.parent(target, [`.item_content`])
 
   if (!skip) {
     skip = DOM.parent(target, [`.item_icon_container`])
   }
 
-  return skip
+  return Boolean(skip)
 }
 
 App.mouse_click_cmd = (mode, item, e) => {
