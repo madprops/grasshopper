@@ -95,7 +95,7 @@ App.do_show_mode = async (args = {}) => {
   let rclick = App.get_cmd_name(`show_item_menu`)
   App.mode_vars[args.mode].right_click_info = `Right Click: ${rclick}`
 
-  let mclick = App.get_command(App.get_setting(`middle_click_${args.mode}`))
+  let mclick = App.get_command(App.get_setting(`middle_click_item_${args.mode}`))
   let mclicks = ``
 
   if (mclick) {

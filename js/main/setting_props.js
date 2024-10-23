@@ -1891,7 +1891,7 @@ App.build_settings = () => {
       version: 1,
     },
     item_menu_tabs: {
-      name: `Item Menu Tabs`,
+      name: `Item Menu (Tabs)`,
       type: `list`,
       value: [],
       data_group: `normal_menus`,
@@ -1899,7 +1899,7 @@ App.build_settings = () => {
       version: 1,
     },
     item_menu_history: {
-      name: `Item Menu History`,
+      name: `Item Menu (History)`,
       type: `list`,
       value: [],
       data_group: `normal_menus`,
@@ -1907,7 +1907,7 @@ App.build_settings = () => {
       version: 1,
     },
     item_menu_bookmarks: {
-      name: `Item Menu Bookmarks`,
+      name: `Item Menu (Bookmarks)`,
       type: `list`,
       value: [],
       data_group: `normal_menus`,
@@ -1915,7 +1915,7 @@ App.build_settings = () => {
       version: 1,
     },
     item_menu_closed: {
-      name: `Item Menu Closed`,
+      name: `Item Menu (Closed)`,
       type: `list`,
       value: [],
       separator: true,
@@ -1932,7 +1932,7 @@ App.build_settings = () => {
       version: 1,
     },
     actions_menu_tabs: {
-      name: `Actions Menu Tabs`,
+      name: `Actions Menu (Tabs)`,
       type: `list`,
       value: [
         {cmd: `open_new_tab`},
@@ -1953,7 +1953,7 @@ App.build_settings = () => {
       version: 1,
     },
     actions_menu_history: {
-      name: `Actions Menu History`,
+      name: `Actions Menu (History)`,
       type: `list`,
       value: [
         {cmd: `deep_search`},
@@ -1965,7 +1965,7 @@ App.build_settings = () => {
       version: 1,
     },
     actions_menu_bookmarks: {
-      name: `Actions Menu Bookmarks`,
+      name: `Actions Menu (Bookmarks)`,
       type: `list`,
       value: [
         {cmd: `deep_search`},
@@ -1980,7 +1980,7 @@ App.build_settings = () => {
       version: 1,
     },
     actions_menu_closed: {
-      name: `Actions Menu Closed`,
+      name: `Actions Menu (Closed)`,
       type: `list`,
       value: [
         {cmd: `forget_closed`},
@@ -1999,7 +1999,7 @@ App.build_settings = () => {
       version: 1,
     },
     empty_menu_tabs: {
-      name: `Empty Menu Tabs`,
+      name: `Empty Menu (Tabs)`,
       type: `list`,
       value: [
         {cmd: `open_new_tab`},
@@ -2011,7 +2011,7 @@ App.build_settings = () => {
       version: 1,
     },
     empty_menu_history: {
-      name: `Empty Menu History`,
+      name: `Empty Menu (History)`,
       type: `list`,
       value: [
         {cmd: `save_history_pick`},
@@ -2022,7 +2022,7 @@ App.build_settings = () => {
       version: 1,
     },
     empty_menu_bookmarks: {
-      name: `Empty Menu Bookmarks`,
+      name: `Empty Menu (Bookmarks)`,
       type: `list`,
       value: [
         {cmd: `pick_bookmarks_folder`},
@@ -2034,7 +2034,7 @@ App.build_settings = () => {
       version: 1,
     },
     empty_menu_closed: {
-      name: `Empty Menu Closed`,
+      name: `Empty Menu (Closed)`,
       type: `list`,
       value: [
         {cmd: `reopen_tab`},
@@ -3802,8 +3802,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_tabs: {
-      name: `Middle Click Tabs`,
+    middle_click_item_tabs: {
+      name: `Middle Click Item (Tabs)`,
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking tab items`,
@@ -3812,8 +3812,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_history: {
-      name: `Middle Click History`,
+    middle_click_item_history: {
+      name: `Middle Click Item (History)`,
       type: `menu`,
       value: `open_items`,
       info: `Command to run when middle clicking history items`,
@@ -3822,8 +3822,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_bookmarks: {
-      name: `Middle Click Bookmarks`,
+    middle_click_item_bookmarks: {
+      name: `Middle Click Item (Bookmarks)`,
       type: `menu`,
       value: `open_items`,
       info: `Command to run when middle clicking bookmark items`,
@@ -3832,8 +3832,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_closed: {
-      name: `Middle Click Closed`,
+    middle_click_item_closed: {
+      name: `Middle Click Item (Closed)`,
       type: `menu`,
       value: `open_items`,
       info: `Command to run when middle clicking closed items`,
