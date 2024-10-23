@@ -18,10 +18,7 @@ App.create_playing_button = (mode) => {
     App.trigger_title(btn, `wheel_down_playing`)
   }
 
-  if (!App.get_setting(`show_playing_button`)) {
-    btn.classList.add(`hidden_2`)
-  }
-
+  App.check_show_button(`playing`, btn)
   let icon = App.get_svg_icon(`speaker`)
   btn.append(icon)
   return btn

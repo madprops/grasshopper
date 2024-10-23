@@ -1538,10 +1538,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push({cmd: `refine`, text: `Refine`, icon: filter_icon, skip: true, info: `Show the Refine Filters`})
   fmodes.push({cmd: `custom`, text: `Custom`, icon: filter_icon, skip: true, info: `Show the Custom Filters`})
 
-  if (!App.get_setting(`show_filter_menu_button`)) {
-    btn.classList.add(`hidden_2`)
-  }
-
+  App.check_show_button(`filter_menu`, btn)
   App[`${mode}_filter_modes_all`] = fmodes
   return btn
 }

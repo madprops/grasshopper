@@ -12,10 +12,7 @@ App.create_step_back_button = (mode) => {
     App.trigger_title(btn, `wheel_down_step_back`)
   }
 
-  if (!App.get_setting(`show_step_back_button`)) {
-    btn.classList.add(`hidden_2`)
-  }
-
+  App.check_show_button(`step_back`, btn)
   btn.append(App.get_svg_icon(`back`))
   return btn
 }

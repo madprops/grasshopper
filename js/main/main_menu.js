@@ -10,10 +10,7 @@ App.create_main_menu = (mode) => {
     App.trigger_title(btn, `middle_click_press_main_menu`)
   }
 
-  if (!App.get_setting(`show_main_menu_button`)) {
-    btn.classList.add(`hidden_2`)
-  }
-
+  App.check_show_button(`main_menu`, btn)
   App.set_main_menu_text(btn, mode)
   return btn
 }
