@@ -19,6 +19,10 @@ App.create_actions_menu = (mode) => {
     App.trigger_title(btn, `wheel_down_actions_menu`)
   }
 
+  if (!App.get_setting(`show_actions_button`)) {
+    btn.classList.add(`hidden_2`)
+  }
+
   return btn
 }
 

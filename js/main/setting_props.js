@@ -1506,6 +1506,41 @@ App.build_settings = () => {
   category = `show`
 
   props = {
+    show_main_menu_button: {
+      name: `Show Main Menu`,
+      type: `checkbox`,
+      value: true,
+      info: `Don't show the Main Menu Button`,
+      version: 1,
+    },
+    show_filter_menu_button: {
+      name: `Show Filter Menu`,
+      type: `checkbox`,
+      value: true,
+      info: `Don't show the Filter Menu Button`,
+      version: 1,
+    },
+    show_playing_button: {
+      name: `Show Playing`,
+      type: `checkbox`,
+      value: true,
+      info: `Don't show the Playing Button`,
+      version: 1,
+    },
+    show_step_back_button: {
+      name: `Show Step Back`,
+      type: `checkbox`,
+      value: true,
+      info: `Don't show the Step Back Button`,
+      version: 1,
+    },
+    show_actions_button: {
+      name: `Show Actions`,
+      type: `checkbox`,
+      value: true,
+      info: `Don't show the Actions Button`,
+      version: 1,
+    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
