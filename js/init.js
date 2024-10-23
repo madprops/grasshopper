@@ -43,6 +43,7 @@ App.init = async () => {
   App.setup_recent_tabs()
   App.setup_context()
   App.build_shell()
+  App.mouse_inside_check()
   await App.clear_show()
   App.init_tab_box()
   App.make_window_visible()
