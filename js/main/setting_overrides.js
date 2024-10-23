@@ -2,7 +2,7 @@
 //
 // For Example:
 //
-// App.overrides = {
+// App.setting_overrides = {
 //   main_title: `This is a new title`,
 //   item_height: `small`,
 //   tabs_item_menu: [
@@ -15,4 +15,4 @@
 //   ],
 // }
 
-App.overrides = {}
+App.setting_overrides = {}

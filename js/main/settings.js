@@ -2180,8 +2180,8 @@ App.decrease_font_size = () => {
   App.apply_theme()
 }
 
-App.check_overrides = () => {
-  for (let key in App.overrides) {
-    App.setting_props[key].value = App.overrides[key]
+App.check_setting_overrides = () => {
+  for (let key in App.setting_overrides) {
+    App.setting_props[key].value = App.setting_overrides[key]
   }
 }
