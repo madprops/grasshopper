@@ -83,5 +83,6 @@ App.show_empty_menu = (item, e) => {
   }
 
   let items = App.custom_menu_items({name, item})
-  App.show_context({items, e})
+  let compact = App.get_setting(`compact_empty_menu`)
+  App.show_context({items, e, compact})
 }
