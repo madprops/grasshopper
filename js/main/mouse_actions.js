@@ -780,10 +780,6 @@ App.click_press_action = (e) => {
   }
 }
 
-App.mouse_over_action = (e) => {
-  App.mouse_over_debouncer.call(e)
-}
-
 App.do_mouse_over_action = (e) => {
   App.mouse_over_debouncer.cancel()
   let target = e.target
@@ -808,10 +804,6 @@ App.do_mouse_over_action = (e) => {
   }
 
   App.update_footer_info(item)
-}
-
-App.mouse_out_action = (e) => {
-  App.mouse_out_debouncer.call(e)
 }
 
 App.do_mouse_out_action = (e) => {

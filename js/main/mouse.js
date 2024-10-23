@@ -400,3 +400,11 @@ App.mouse_press_action = (s1, s2, obj) => {
 
   return false
 }
+
+App.mouse_over_action = (e) => {
+  App.mouse_over_debouncer.call(e)
+}
+
+App.mouse_out_action = (e) => {
+  App.mouse_out_debouncer.call(e)
+}
