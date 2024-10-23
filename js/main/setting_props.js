@@ -5077,6 +5077,22 @@ App.build_settings = () => {
         ])
       },
     },
+    filter_enter: {
+      name: `Filter Enter`,
+      type: `menu`,
+      value: `never`,
+      info: `When to require enter when using the Filter`,
+      version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Never`, value: `never`},
+          {text: App.separator_string},
+          {text: `Always`, value: `always`},
+          {text: `On Normal`, value: `normal`, info: `Modes like Tabs and Closed`},
+          {text: `On Search`, value: `search`, info: `Modes like History and Bookmarks`},
+        ])
+      },
+    },
     clock_format: {
       name: `Clock Format`,
       type: `text`,
@@ -5267,13 +5283,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Clear the filter when clicking All`,
-      version: 1,
-    },
-    filter_enter: {
-      name: `Filter Enter`,
-      type: `checkbox`,
-      value: false,
-      info: `Require pressing Enter to trigger the filter`,
       version: 1,
     },
     favorite_filters_click: {

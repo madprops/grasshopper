@@ -116,7 +116,7 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `Enter`) {
       if (filter_focus) {
-        if (App.get_setting(`filter_enter`)) {
+        if (App.filter_enter_active(mode)) {
           let current = App.get_filter(mode)
           let last = App[`last_${mode}_filter`]
 

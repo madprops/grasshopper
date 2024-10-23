@@ -864,8 +864,10 @@ App.create_filter = (mode) => {
   }
 
   DOM.ev(filter, `input`, () => {
-    if (App.get_setting(`filter_enter`)) {
-      return
+    if (App.filter_has_value(mode)) {
+      if (App.filter_enter_active(mode)) {
+        return
+      }
     }
 
     App.filter({mode})
@@ -1974,4 +1976,22 @@ App.filter_menu_middle_click = (e) => {
 App.filter_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_filter`)
   App.run_command({cmd, from: `filter`, e})
+}
+
+App.filter_enter_active = (mode) => {
+  let sett = App.get_setting(`filter_enter`)
+
+  if (sett === `never`) {
+    return false
+  }
+  else if (sett === `always`) {
+    return true
+  }
+
+  if (App.search_modes.includes(mode)) {
+    return sett === `search`
+  }
+  else {
+    return sett === `normal`
+  }
 }
