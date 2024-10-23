@@ -3317,6 +3317,7 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `edit_main_title`},
+        {cmd: App.separator_string},
         {cmd: `copy_main_title`},
         {cmd: `toggle_main_title_date`},
         {cmd: `toggle_main_title`},
