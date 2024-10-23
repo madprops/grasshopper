@@ -4444,6 +4444,13 @@ App.build_settings = () => {
       info: `Treat edited tabs as special`,
       version: 1,
     },
+    warn_special_unloaded: {
+      name: `Unloaded Special`,
+      type: `checkbox`,
+      value: false,
+      info: `Treat unloaded tabs as special`,
+      version: 1,
+    },
   }
 
   add_props()

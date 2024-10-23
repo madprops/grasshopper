@@ -112,6 +112,10 @@ App.check_force = (warn_setting, items) => {
         return false
       }
 
+      if (item.unloaded && App.get_setting(`warn_special_unloaded`)) {
+        return false
+      }
+
       if (!item.header && App.get_setting(`warn_special_edited`)) {
         if (App.edited(item, false)) {
           return false
