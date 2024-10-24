@@ -920,7 +920,21 @@ Addlist.add_buttons = (id) => {
     Addlist.list({id})
   })
 
-  DOM.ev(`#addlist_button_${id}_add`, `click`, () => {
+  DOM.ev(`#addlist_button_${id}_add`, `click`, (e) => {
+    if (e.shiftKey && e.ctrlKey) {
+      let oargs = Addlist.oargs(id)
+
+      if (oargs.special_add) {
+        let items = oargs.special_add()
+        let data = Addlist.get_data(id)
+        data.unshift(...items)
+        Addlist.set_data(id, data)
+        Addlist.update_count(id)
+      }
+
+      return
+    }
+
     Addlist.edit({id, items: {}})
   })
 

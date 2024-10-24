@@ -1417,6 +1417,19 @@ App.setup_settings_addlist = () => {
   let id = `settings_aliases`
   let props = App.setting_props.aliases
 
+  let add_cmd_single = () => {
+    let cmds = App.shuffle_array(App.commands)
+    let ans = []
+
+    for (let o of cmds.slice(0, 5)) {
+      ans.push({
+        cmd: o.cmd,
+      })
+    }
+
+    return ans
+  }
+
   App.create_popup({...popobj, id: `addlist_${id}`,
     element: Addlist.register({...regobj, id,
       keys: [`a`, `b`],
@@ -1543,42 +1556,9 @@ App.setup_settings_addlist = () => {
             alt: `Command on Alt + Click`,
           },
           title: props.name,
-        })})
-    }
-  }
-
-  menukeys = []
-
-  for (let key in App.setting_props) {
-    if (menukeys.includes(key)) {
-      let id = `settings_${key}`
-      let props = App.setting_props[key]
-
-      App.create_popup({...popobj, id: `addlist_${id}`,
-        element: Addlist.register({...regobj, id,
-          keys: [`cmd`],
-          widgets: {
-            cmd: `menu`,
-          },
-          labels: {
-            cmd: `Command`,
-          },
-          sources: {
-            cmd: () => {
-              return App.cmdlist_pure.slice(0)
-            },
-          },
-          list_icon: (item) => {
-            return App.settings_cmd_icon(item.cmd)
-          },
-          list_text: (item) => {
-            return App.settings_cmd_name(item.cmd)
-          },
-          tooltips: {
-            cmd: `Command on Click`,
-          },
-          automenu: true,
-          title: props.name,
+          special_add: () => {
+            return add_cmd_single()
+          }
         })})
     }
   }
