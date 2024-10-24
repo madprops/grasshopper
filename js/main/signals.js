@@ -94,6 +94,13 @@ App.start_signals = () => {
 }
 
 App.show_signals = () => {
+  let signals = App.get_setting(`signals`)
+
+  if (!signals.length) {
+    App.show_settings_category(`signals`)
+    return
+  }
+
   App.start_signals()
   App.show_window(`signals`)
   App.focus_signals_filter()
