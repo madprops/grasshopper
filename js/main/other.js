@@ -127,17 +127,6 @@ App.check_force = (warn_setting, items) => {
   return true
 }
 
-App.toggle_fullscreen = () => {
-  if (App.fullscreen) {
-    App.main_remove(`fullscreen`)
-  }
-  else {
-    App.main_add(`fullscreen`)
-  }
-
-  App.fullscreen = !App.fullscreen
-}
-
 App.reset_triggers = () => {
   App.reset_keyboard()
   App.reset_mouse()

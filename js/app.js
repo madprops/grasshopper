@@ -94,7 +94,6 @@ App.last_opacity_cycle_date = 0
 App.settings_list_id = 1
 App.playing = false
 App.settings_done = false
-App.fullscreen = false
 App.last_main_title = ``
 App.main_title_scroll_direction = `right`
 App.main_title_min_overflow = 24

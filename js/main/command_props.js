@@ -1228,7 +1228,7 @@ App.setup_commands = () => {
       short_name: `Footer`,
       cmd: `toggle_footer`,
       modes: [`items`],
-      icon: command_icon,
+      icon: footer_icon,
       action: (args) => {
         App.toggle_footer()
       },
@@ -1243,15 +1243,6 @@ App.setup_commands = () => {
         App.toggle_auto_blur()
       },
       info: `Enable or disable Auto Blur`,
-    },
-    {
-      name: `Fullscreen`,
-      cmd: `toggle_fullscreen`,
-      icon: command_icon,
-      action: (args) => {
-        App.toggle_fullscreen()
-      },
-      info: `Hide some interface components`,
     },
     {
       name: `Item Menu`,

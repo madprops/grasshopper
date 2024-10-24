@@ -1661,11 +1661,6 @@ a:hover
   opacity: 1;
 }
 
-.fullscreen .window_top_mode {
-  position: fixed;
-  top: -25rem;
-}
-
 .taglist {
   display: none;
   flex-direction: row;

@@ -284,10 +284,6 @@ App.main_title_enabled = () => {
     return false
   }
 
-  if (App.fullscreen) {
-    return false
-  }
-
   if (App.screen_locked) {
     return false
   }
