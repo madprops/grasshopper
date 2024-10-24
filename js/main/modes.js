@@ -107,7 +107,7 @@ App.do_show_mode = async (args = {}) => {
   App.trigger_title(cb_obj, `middle_click_press_close_button`)
   App.mode_vars[args.mode].close_button_info = cb_obj.title
 
-  let hov_obj = {title: `Hover Button`}
+  let hov_obj = {title: `Click: Show Menu`}
   App.trigger_title(hov_obj, `middle_click_hover_button`)
   App.trigger_title(hov_obj, `click_press_hover_button`)
   App.trigger_title(hov_obj, `middle_click_press_hover_button`)
