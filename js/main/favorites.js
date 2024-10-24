@@ -402,9 +402,11 @@ App.toggle_favorites_autohide = () => {
   App.check_refresh_settings()
 
   if (App.fav_autohide_enabled()) {
+    App.footer_message(`Favorites Autohide Enabled`)
     App.on_favorites_leave(App.active_mode)
   }
   else {
+    App.footer_message(`Favorites Autohide Disabled`)
     App.on_favorites_enter(App.active_mode)
   }
 }
