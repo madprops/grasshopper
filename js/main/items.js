@@ -323,6 +323,7 @@ App.create_item_element = (item) => {
   item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item element ${item.mode}_element`)
   item.element.dataset.id = item.id
   App.check_header(item)
+  App.create_hover_button(item, `left`)
   App.add_close_button(item, `left`)
   let trace = App.create_active_trace()
   item.element.append(trace)
@@ -368,6 +369,7 @@ App.create_item_element = (item) => {
   App.apply_color_mode(item)
 
   if (item.mode === `tabs`) {
+    App.create_hover_button(item, `right`)
     App.add_close_button(item, `right`)
     App.check_tab_loading(item)
     App.check_tab_colors(item)

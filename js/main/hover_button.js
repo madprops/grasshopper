@@ -1,7 +1,11 @@
-App.create_hover_button = () => {
+App.create_hover_button = (item, side) => {
+  if (side !== App.get_setting(`hover_button`)) {
+    return
+  }
+
   let btn = DOM.create(`div`, `hover_button`)
   btn.textContent = App.get_setting(`hover_button_icon`) || App.command_icon
-  return btn
+  item.element.append(btn)
 }
 
 App.show_hover_button_menu = (item, e) => {

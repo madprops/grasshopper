@@ -357,13 +357,6 @@ App.add_icons = (item, side) => {
     item.element.append(icon)
   }
 
-  if (App.get_setting(`hover_button`) !== `none`) {
-    if (!item.special) {
-      let btn = App.create_hover_button()
-      item.element.append(btn)
-    }
-  }
-
   App.add_custom_icon(item, side)
 }
 
