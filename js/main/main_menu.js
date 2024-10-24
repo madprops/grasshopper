@@ -60,6 +60,10 @@ App.show_main_menu = (mode) => {
   App.sep(stuff)
   stuff.push(App.cmd_item({cmd: `toggle_wrap_text`}))
   stuff.push(App.cmd_item({cmd: `toggle_auto_blur`}))
+  App.sep(stuff)
+  stuff.push(App.cmd_item({cmd: `set_next_theme`}))
+  stuff.push(App.cmd_item({cmd: `increase_background_opacity`}))
+  stuff.push(App.cmd_item({cmd: `decrease_background_opacity`}))
 
   App.sep(items)
   items.push(App.cmd_item({cmd: `show_settings`, short: true}))
