@@ -437,6 +437,7 @@ App.favorites_empty_bottom_middle_click = (e) => {
 }
 
 App.fav_tips_empty = (el, where) => {
+  App.trigger_title(el, `click_favorites_${where}`)
   App.trigger_title(el, `double_click_favorites_${where}`)
   App.trigger_title(el, `middle_click_favorites_${where}`)
   App.trigger_title(el, `click_press_favorites_${where}`)

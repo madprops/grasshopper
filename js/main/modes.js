@@ -120,14 +120,19 @@ App.do_show_mode = async (args = {}) => {
 
   App.mode_vars[args.mode].middle_click_press_info = mclickps
 
-  let click = App.get_cmd_name(`close_tabs`)
-  App.mode_vars[args.mode].close_button_click_info = `Click: ${click}`
+  let cb_obj = {title: ``}
+  App.trigger_title(cb_obj, `click_close_button`)
+  App.trigger_title(cb_obj, `double_click_close_button`)
+  App.trigger_title(cb_obj, `middle_click_close_button`)
+  App.trigger_title(cb_obj, `click_press_close_button`)
+  App.trigger_title(cb_obj, `middle_click_press_close_button`)
+  App.mode_vars[args.mode].close_button_info = cb_obj.title
 
-  mclick = App.get_cmd_name(App.get_setting(`middle_click_close_button`))
-  App.mode_vars[args.mode].close_button_middle_click_info = `Middle Click: ${mclick}`
-
-  mclick = App.get_cmd_name(App.get_setting(`middle_click_hover_button`))
-  App.mode_vars[args.mode].hover_button_middle_click_info = `Middle Click: ${mclick}`
+  let hov_obj = {title: ``}
+  App.trigger_title(hov_obj, `middle_click_hover_button`)
+  App.trigger_title(hov_obj, `click_press_hover_button`)
+  App.trigger_title(hov_obj, `middle_click_press_hover_button`)
+  App.mode_vars[args.mode].hover_button_info = hov_obj.title
 
   if (persistent) {
     if (App[`${args.mode}_items`].length) {

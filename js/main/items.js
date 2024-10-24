@@ -1386,19 +1386,13 @@ App.set_item_tooltips = (item) => {
   let close_btn = DOM.el(`.close_button`, item.element)
 
   if (close_btn) {
-    tips = []
-    tips.push(App.mode_vars[item.mode].close_button_click_info)
-    tips.push(App.mode_vars[item.mode].close_button_middle_click_info)
-    close_btn.title = tips.join(`\n`)
+    close_btn.title = App.mode_vars[item.mode].close_button_info
   }
 
   let hover_btn = DOM.el(`.hover_button`, item.element)
 
   if (hover_btn) {
-    tips = []
-    tips.push(`Click: Hover Menu`)
-    tips.push(App.mode_vars[item.mode].hover_button_middle_click_info)
-    hover_btn.title = tips.join(`\n`)
+    hover_btn.title = App.mode_vars[item.mode].hover_button_info
   }
 
   item.has_tooltips = true
