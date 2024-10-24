@@ -665,8 +665,8 @@ App.mouse_middle_action = (e, target_el) => {
     return
   }
 
-  let cmd = App.get_setting(`click_item_${mode}`)
-  App.run_command({cmd, item, from: `click`, e})
+  let cmd = App.get_setting(`middle_click_item_${mode}`)
+  App.run_command({cmd, item, from: `middle_click`, e})
 }
 
 App.click_press_action = (e) => {
