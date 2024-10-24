@@ -411,6 +411,16 @@ App.toggle_favorites_autohide = () => {
   }
 }
 
+App.fav_empty_top_click = (e) => {
+  let cmd = App.get_setting(`click_favorites_top`)
+  App.run_command({cmd, from: `favorites_empty`, e})
+}
+
+App.fav_empty_bottom_click = (e) => {
+  let cmd = App.get_setting(`click_favorites_bottom`)
+  App.run_command({cmd, from: `favorites_empty`, e})
+}
+
 App.favorites_button_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_favorites_button`)
   App.run_command({cmd, from: `favorites_button`, e})

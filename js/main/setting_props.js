@@ -3036,6 +3036,16 @@ App.build_settings = () => {
         App.start_color_picker(key, true)
       },
     },
+    click_favorites_top: {
+      name: `Click Fav Top`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when clicking the top empty area of the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     double_click_favorites_top: {
       name: `Double Click Fav Top`,
       type: `menu`,
@@ -3155,6 +3165,16 @@ App.build_settings = () => {
       value: `page_down`,
       info: `Command to run when using the mousewheel down on the center area of the Favorites Bar while holding Shift`,
       separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_favorites_bottom: {
+      name: `Click Fav Bottom`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when clicking the bottom empty area of the Favorites Bar`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)

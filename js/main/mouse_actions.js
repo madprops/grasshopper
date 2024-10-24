@@ -41,6 +41,16 @@ App.mouse_click_action = (e) => {
       return
     }
 
+    if (DOM.parent(target, [`.favorites_empty_top`])) {
+      App.fav_empty_top_click(e)
+      return
+    }
+
+    if (DOM.parent(target, [`.favorites_empty_bottom`])) {
+      App.fav_empty_bottom_click(e)
+      return
+    }
+
     if (DOM.parent(target, [`#tab_box_title`])) {
       if (e.shiftKey || e.ctrlKey) {
         App.select_tab_box_tabs()
