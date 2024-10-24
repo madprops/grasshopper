@@ -3960,7 +3960,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.generate_password()
       },
-      info: `Generate a random password to use in websites`,
+      info: `Generate a random password`,
     },
     {
       name: `Flashlight`,
@@ -3969,7 +3969,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_flashlight()
       },
-      info: `Show a white window to illuminate stuff`,
+      info: `Show a white window to illuminate`,
     },
     {
       name: `Signals`,
@@ -4001,8 +4001,7 @@ App.setup_commands = () => {
       info: `Close the browser sidebar`,
     },
     {
-      name: `Locust Swarm`,
-      short_name: `Swarm`,
+      name: `Swarm`,
       cmd: `locust_swarm`,
       icon: grasshopper_icon,
       action: (args) => {

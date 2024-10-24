@@ -41,11 +41,26 @@ App.show_main_menu = (mode) => {
     })
   }
 
+  let stuff = []
+  stuff.push(App.cmd_item({cmd: `show_flashlight`}))
+  stuff.push(App.cmd_item({cmd: `generate_password`}))
+  stuff.push(App.cmd_item({cmd: `breathe_effect`}))
+  stuff.push(App.cmd_item({cmd: `locust_swarm`}))
+
   App.sep(items)
   items.push(App.cmd_item({cmd: `show_settings`, short: true}))
-  items.push(App.cmd_item({cmd: `show_about`, short: true}))
   App.sep(items)
+  items.push(App.cmd_item({cmd: `show_signals`, short: true}))
+  items.push(App.cmd_item({cmd: `show_about`, short: true}))
 
+  items.push({
+    icon: `🍄`,
+    text: `Stuff`,
+    items: stuff,
+  })
+
+  App.sep(items)
+  items.push(App.cmd_item({cmd: `lock_screen`, short: true}))
   items.push(App.cmd_item({cmd: `show_palette`, short: true}))
   let btn = DOM.el(`#${mode}_main_menu`)
 
