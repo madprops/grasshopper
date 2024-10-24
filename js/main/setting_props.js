@@ -5724,6 +5724,13 @@ App.build_settings = () => {
       info: `Only show icons in the Empty Menu`,
       version: 1,
     },
+    compact_stuff_menu: {
+      name: `Compact Stuff Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Stuff Menu`,
+      version: 1,
+    },
   }
 
   add_props()

@@ -89,6 +89,7 @@ App.show_empty_menu = (item, e) => {
 
 App.show_stuff_menu = (item, e) => {
   let items = App.custom_menu_items({name: `stuff_menu`, item})
+  let compact = App.get_setting(`compact_stuff_menu`)
 
   App.show_context({
     e,
@@ -96,5 +97,6 @@ App.show_stuff_menu = (item, e) => {
     title: `Stuff`,
     title_icon: App.shroom_icon,
     title_number: true,
+    compact,
   })
 }
