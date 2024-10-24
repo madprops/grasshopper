@@ -11,7 +11,7 @@ App.create_actions_menu = (mode) => {
   let rclick = App.get_cmd_name(`show_browser_menu`)
 
   if (App.get_setting(`show_tooltips`)) {
-    btn.title = `Click: ${click} (Ctrl + Right)\nRight Click: ${rclick}`
+    btn.title = `Click: ${click}\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_actions_menu`)
     App.trigger_title(btn, `click_press_actions_menu`)
     App.trigger_title(btn, `middle_click_press_actions_menu`)
