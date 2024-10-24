@@ -630,7 +630,7 @@ App.is_json = (text) => {
 
 App.shuffle_array = (array) => {
   return array
-  .map(value => ({value, sort: Math.random()}))
-  .sort((a, b) => a.sort - b.sort)
-  .map(({value}) => value)
+    .map(value => ({value, sort: Math.random()}))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({value}) => value)
 }

@@ -1558,7 +1558,7 @@ App.setup_settings_addlist = () => {
           title: props.name,
           special_add: () => {
             return add_cmd_single()
-          }
+          },
         })})
     }
   }
