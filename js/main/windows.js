@@ -291,13 +291,6 @@ App.toggle_auto_blur = () => {
   let setting = !App.get_setting(`auto_blur`)
   App.set_setting({setting: `auto_blur`, value: setting, refresh: true})
   App.check_refresh_settings()
-
-  if (setting) {
-    App.alert_autohide(`Auto Blur Enabled`)
-  }
-  else {
-    App.alert_autohide(`Auto Blur Disabled`)
-  }
 }
 
 App.build_shell = () => {

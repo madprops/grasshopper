@@ -52,13 +52,16 @@ App.copy_to_clipboard = (text, what = ``) => {
   }
 
   navigator.clipboard.writeText(text)
+  let msg
 
   if (what) {
-    App.alert_autohide(`${what} copied to clipboard`)
+    msg = `${what} copied to clipboard`
   }
   else {
-    App.footer_message(`Copied to clipboard`)
+    msg = `Copied to clipboard`
   }
+
+  App.footer_message(msg)
 }
 
 App.plural = (n, singular, plural) => {
