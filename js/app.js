@@ -406,8 +406,8 @@ App.show_icon = [
   {text: App.separator_string},
   {text: `Always`, value: `always`, info: `Always show the icon`},
   {text: `On Select`, value: `select`, info: `Show when an item is selected`},
-  {text: `On Focus`, value: `focus`, info: `Show on select or item hover`},
   {text: `On Hover`, value: `hover`, info: `Show when hovering an item`},
+  {text: `On Focus`, value: `focus`, info: `Show on select or hover`},
   {text: `On Global`, value: `global`, info: `Show when hovering the window`},
 ]
 
