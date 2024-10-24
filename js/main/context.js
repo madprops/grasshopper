@@ -89,32 +89,38 @@ App.show_empty_menu = (item, e) => {
 
 App.show_stuff = (e) => {
   let items = []
-  items.push(App.cmd_item({cmd: `show_flashlight`}))
-  items.push(App.cmd_item({cmd: `generate_password`}))
-  items.push(App.cmd_item({cmd: `breathe_effect`}))
-  items.push(App.cmd_item({cmd: `locust_swarm`}))
+
+  function add(cmd) {
+    items.push(App.cmd_item({cmd}))
+  }
+
+  add(`show_flashlight`)
+  add(`generate_password`)
+  add(`breathe_effect`)
+  add(`locust_swarm`)
   App.sep(items)
-  items.push(App.cmd_item({cmd: `toggle_main_title`}))
-  items.push(App.cmd_item({cmd: `toggle_taglist`}))
-  items.push(App.cmd_item({cmd: `toggle_favorites`}))
-  items.push(App.cmd_item({cmd: `toggle_favorites_autohide`}))
-  items.push(App.cmd_item({cmd: `toggle_tab_box`}))
-  items.push(App.cmd_item({cmd: `toggle_footer`}))
+  add(`toggle_main_title`)
+  add(`toggle_taglist`)
+  add(`toggle_favorites`)
+  add(`toggle_favorites_autohide`)
+  add(`toggle_tab_box`)
+  add(`toggle_footer`)
   App.sep(items)
-  items.push(App.cmd_item({cmd: `toggle_show_pins`}))
-  items.push(App.cmd_item({cmd: `toggle_show_unloaded`}))
-  items.push(App.cmd_item({cmd: `toggle_tab_sort`}))
+  add(`toggle_show_pins`)
+  add(`toggle_show_unloaded`)
+  add(`toggle_tab_sort`)
   App.sep(items)
-  items.push(App.cmd_item({cmd: `toggle_wrap_text`}))
-  items.push(App.cmd_item({cmd: `toggle_auto_blur`}))
+  add(`toggle_wrap_text`)
+  add(`toggle_auto_blur`)
   App.sep(items)
-  items.push(App.cmd_item({cmd: `set_next_theme`}))
-  items.push(App.cmd_item({cmd: `increase_background_opacity`}))
-  items.push(App.cmd_item({cmd: `decrease_background_opacity`}))
+  add(`set_next_theme`)
+  add(`increase_background_opacity`)
+  add(`decrease_background_opacity`)
 
   App.show_context({
     e,
     items,
     title: `Stuff`,
+    title_icon: App.shroom_icon,
   })
 }
