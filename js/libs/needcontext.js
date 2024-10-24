@@ -282,11 +282,6 @@ NeedContext.show = (args = {}) => {
           })
         }
 
-        if (args.compact) {
-          let titles = [item.text, item.info].filter(Boolean)
-          icon.title = titles.join(' - ')
-        }
-
         icon.append(item.icon)
         el.append(icon)
       }
@@ -298,7 +293,13 @@ NeedContext.show = (args = {}) => {
         el.append(text)
       }
 
-      if (item.info && !args.compact) {
+      if (args.compact) {
+        if (args.compact) {
+          let titles = [item.text, item.info].filter(Boolean)
+          el.title = titles.join(' - ')
+        }
+      }
+      else if (item.info) {
         el.title = item.info.trim()
       }
 
