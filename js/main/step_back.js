@@ -1,10 +1,10 @@
 App.create_step_back_button = (mode) => {
   let btn = DOM.create(`div`, `step_back_button button icon_button`, `${mode}_back`)
-  let click = App.get_cmd_name(`step_back`)
   let rclick = App.get_cmd_name(`show_recent_tabs`)
 
   if (App.get_setting(`show_tooltips`)) {
-    btn.title = `Click: ${click} (Esc)\nRight Click: ${rclick}`
+    App.trigger_title(btn, `click_step_back`)
+    btn.title += `\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_step_back`)
     App.trigger_title(btn, `click_press_step_back`)
     App.trigger_title(btn, `middle_click_press_step_back`)
@@ -65,6 +65,11 @@ App.step_back = (mode = App.active_mode, e = undefined) => {
     App.blur_filter(mode)
     App.focus_items(mode)
   }
+}
+
+App.step_back_click = (e) => {
+  let cmd = App.get_setting(`click_step_back`)
+  App.run_command({cmd, from: `step_back_aux`, e})
 }
 
 App.step_back_middle_click = (e) => {

@@ -6,11 +6,11 @@ App.setup_playing = () => {
 
 App.create_playing_button = (mode) => {
   let btn = DOM.create(`div`, `button icon_button playing_button hidden`, `playing_button_${mode}`)
-  let click = App.get_cmd_name(`jump_tabs_playing_down`)
   let rclick = App.get_cmd_name(`show_playing_tabs`)
 
   if (App.get_setting(`show_tooltips`)) {
-    btn.title = `Click: ${click} (Ctrl + Dot)\nRight Click: ${rclick}`
+    App.trigger_title(btn, `click_playing`)
+    btn.title += `\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_playing`)
     App.trigger_title(btn, `click_press_playing`)
     App.trigger_title(btn, `middle_click_press_playing`)
@@ -57,6 +57,11 @@ App.do_check_playing = (mode = App.active_mode, force = false) => {
 
 App.get_playing_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.playing)
+}
+
+App.playing_click = (e) => {
+  let cmd = App.get_setting(`click_playing`)
+  App.run_command({cmd, from: `playing_aux`, e})
 }
 
 App.playing_middle_click = (e) => {

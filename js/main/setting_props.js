@@ -4076,10 +4076,21 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    click_playing: {
+      name: `Click Playing`,
+      type: `menu`,
+      value: `jump_tabs_playing_down`,
+      info: `Command to run when clicking the Playing Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     middle_click_playing: {
       name: `Middle Click Playing`,
       type: `menu`,
       value: `toggle_mute_tabs`,
+      separator: true,
       info: `Command to run when middle clicking the Playing Button`,
       version: 1,
       setup: (key) => {
@@ -4128,11 +4139,22 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    click_step_back: {
+      name: `Click Step Back`,
+      type: `menu`,
+      value: `step_back`,
+      info: `Command to run when clicking the Step Back Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     middle_click_step_back: {
       name: `Middle Click Step Back`,
       type: `menu`,
       value: `recent_tabs_forwards`,
       info: `Command to run when middle clicking the Step Back Button`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)

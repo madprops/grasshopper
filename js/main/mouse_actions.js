@@ -27,12 +27,12 @@ App.mouse_click_action = (e) => {
     }
 
     if (DOM.parent(target, [`.step_back_button`])) {
-      App.step_back(mode, e)
+      App.step_back_click(e)
       return
     }
 
     if (DOM.parent(target, [`.playing_button`])) {
-      App.jump_tabs_playing()
+      App.playing_click(e)
       return
     }
 
