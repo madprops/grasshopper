@@ -93,32 +93,11 @@ App.do_show_mode = async (args = {}) => {
 
   // Tooltips info
   let rclick = App.get_cmd_name(`show_item_menu`)
-  App.mode_vars[args.mode].right_click_info = `Right Click: ${rclick}`
-
-  let mclick = App.get_command(App.get_setting(`middle_click_item_${args.mode}`))
-  let mclicks = ``
-
-  if (mclick) {
-    mclicks = `Middle Click: ${mclick.name}`
-  }
-
-  App.mode_vars[args.mode].middle_click_info = mclicks
-  let clickp = App.get_command(App.get_setting(`click_press_item_${args.mode}`))
-  let clickps = ``
-
-  if (clickp) {
-    clickps = `Click Press: ${clickp.name}`
-  }
-
-  App.mode_vars[args.mode].click_press_info = clickps
-  let mclickp = App.get_command(App.get_setting(`middle_click_press_item_${args.mode}`))
-  let mclickps = ``
-
-  if (mclickp) {
-    mclickps = `Middle Click Press: ${mclickp.name}`
-  }
-
-  App.mode_vars[args.mode].middle_click_press_info = mclickps
+  let it_obj = {title: `Right Click: ${rclick}`}
+  App.trigger_title(it_obj, `middle_click_item_${args.mode}`)
+  App.trigger_title(it_obj, `click_press_item_${args.mode}`)
+  App.trigger_title(it_obj, `middle_click_press_item_${args.mode}`)
+  App.mode_vars[args.mode].item_info = it_obj.title
 
   let cb_obj = {title: ``}
   App.trigger_title(cb_obj, `click_close_button`)
@@ -128,7 +107,7 @@ App.do_show_mode = async (args = {}) => {
   App.trigger_title(cb_obj, `middle_click_press_close_button`)
   App.mode_vars[args.mode].close_button_info = cb_obj.title
 
-  let hov_obj = {title: ``}
+  let hov_obj = {title: `Hover Button`}
   App.trigger_title(hov_obj, `middle_click_hover_button`)
   App.trigger_title(hov_obj, `click_press_hover_button`)
   App.trigger_title(hov_obj, `middle_click_press_hover_button`)

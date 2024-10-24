@@ -1359,25 +1359,7 @@ App.set_item_tooltips = (item) => {
     tips.push(`Tags: ${tags.join(`, `)}`)
   }
 
-  tips.push(App.mode_vars[item.mode].right_click_info)
-  let mci = App.mode_vars[item.mode].middle_click_info
-
-  if (mci) {
-    tips.push(mci)
-  }
-
-  let cpi = App.mode_vars[item.mode].click_press_info
-
-  if (cpi) {
-    tips.push(cpi)
-  }
-
-  let mcpi = App.mode_vars[item.mode].middle_click_press_info
-
-  if (mcpi) {
-    tips.push(mcpi)
-  }
-
+  tips.push(App.mode_vars[item.mode].item_info)
   item.element.title = tips.join(`\n`)
 
   if (App.get_setting(`icon_pick`)) {
