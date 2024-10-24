@@ -1845,7 +1845,7 @@ App.build_settings = () => {
       version: 1,
     },
     middle_click_hover_button: {
-      name: `Middle Click Hover`,
+      name: `Middle Click Hover Button`,
       type: `menu`,
       value: `close_tabs`,
       info: `Command to run when middle clicking the Hover Button`,
@@ -1855,7 +1855,7 @@ App.build_settings = () => {
       },
     },
     click_press_hover_button: {
-      name: `Click Press Hover`,
+      name: `Click Press Hover Button`,
       type: `menu`,
       value: `none`,
       info: `Command to run when pressing the Hover Button`,
@@ -1865,7 +1865,7 @@ App.build_settings = () => {
       },
     },
     middle_click_press_hover_button: {
-      name: `Middle Click Press Hover`,
+      name: `Middle Click Press Hover Button`,
       type: `menu`,
       value: `none`,
       info: `Command to run when middle pressing the Hover Button`,
@@ -1876,7 +1876,7 @@ App.build_settings = () => {
       },
     },
     hover_button_icon: {
-      name: `Hover Icon`,
+      name: `Hover Button Icon`,
       type: `text_smaller`,
       value: `🔆`,
       no_empty: true,
