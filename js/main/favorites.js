@@ -263,8 +263,9 @@ App.show_favorites_menu = (e) => {
     e,
     items,
     compact,
-    title: `Favorites (${items.length})`,
+    title: `Favorites`,
     title_icon: App.settings_icons.favorites,
+    title_number: true,
   })
 }
 
