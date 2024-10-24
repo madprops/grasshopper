@@ -1,4 +1,4 @@
-// NeedContext v9.1
+// NeedContext v9.2
 
 // Main object
 const NeedContext = {}
@@ -283,7 +283,7 @@ NeedContext.show = (args = {}) => {
         }
 
         if (args.compact) {
-          let titles = [item.title, item.text].filter(Boolean)
+          let titles = [item.text, item.info].filter(Boolean)
           icon.title = titles.join(' - ')
         }
 
@@ -298,7 +298,7 @@ NeedContext.show = (args = {}) => {
         el.append(text)
       }
 
-      if (item.info) {
+      if (item.info && !args.compact) {
         el.title = item.info.trim()
       }
 
