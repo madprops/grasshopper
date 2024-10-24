@@ -74,5 +74,5 @@ App.step_back_click = (e) => {
 
 App.step_back_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_step_back`)
-  App.run_command({cmd, from: `step_back_aux`, e})
+  App.run_command({cmd, from: `step_back`, e})
 }

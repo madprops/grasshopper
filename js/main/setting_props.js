@@ -1693,11 +1693,32 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Close Button`,
       version: 1,
     },
+    click_close_button: {
+      name: `Click Close Button`,
+      type: `menu`,
+      value: `close_tabs`,
+      info: `Command to run when clicking the Close Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_close_button: {
+      name: `Double Click Close Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when double clicking the Close Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     middle_click_close_button: {
       name: `Middle Click Close Button`,
       type: `menu`,
       value: `unload_tabs`,
       info: `Command to run when middle clicking the Close Button`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)

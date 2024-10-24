@@ -171,7 +171,7 @@ App.mouse_click_action = (e) => {
 
   if (mode === `tabs`) {
     if (DOM.parent(target, [`.close_button`])) {
-      App.close_tabs({item})
+      App.close_button_click(item, e)
       return
     }
 
@@ -363,10 +363,13 @@ App.mouse_double_click_action = (e) => {
     }
   }
 
-  if (App.taglist_enabled()) {
-    if (DOM.parent(target, [`.taglist_container`])) {
-      return
-    }
+  if (DOM.parent(target, [`.close_button`])) {
+    App.close_button_double_click(item, e)
+    return
+  }
+
+  if (DOM.parent(target, [`.taglist_container`])) {
+    return
   }
 
   if (DOM.parent(target, [`.item_icon_container`])) {

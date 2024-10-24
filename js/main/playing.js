@@ -66,5 +66,5 @@ App.playing_click = (e) => {
 
 App.playing_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_playing`)
-  App.run_command({cmd, from: `playing_aux`, e})
+  App.run_command({cmd, from: `playing`, e})
 }
