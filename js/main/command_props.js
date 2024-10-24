@@ -68,6 +68,7 @@ App.setup_commands = () => {
   let plus_icon = App.plus_icon
   let minus_icon = App.minus_icon
   let flashlight_icon = App.flashlight_icon
+  let shroom_icon = App.shroom_icon
 
   let tbmodes = []
 
@@ -3933,6 +3934,16 @@ App.setup_commands = () => {
         App.repeat_command()
       },
       info: `Repeat the last command`,
+    },
+    {
+      name: `Show Stuff`,
+      short_name: `Stuff`,
+      cmd: `show_stuff_menu`,
+      icon: shroom_icon,
+      action: (args) => {
+        App.show_stuff_menu(args.e)
+      },
+      info: `Menu to use some selected commands`,
     },
     {
       name: `Lock Screen`,

@@ -41,41 +41,11 @@ App.show_main_menu = (mode) => {
     })
   }
 
-  let stuff = []
-  stuff.push(App.cmd_item({cmd: `show_flashlight`}))
-  stuff.push(App.cmd_item({cmd: `generate_password`}))
-  stuff.push(App.cmd_item({cmd: `breathe_effect`}))
-  stuff.push(App.cmd_item({cmd: `locust_swarm`}))
-  App.sep(stuff)
-  stuff.push(App.cmd_item({cmd: `toggle_main_title`}))
-  stuff.push(App.cmd_item({cmd: `toggle_taglist`}))
-  stuff.push(App.cmd_item({cmd: `toggle_favorites`}))
-  stuff.push(App.cmd_item({cmd: `toggle_favorites_autohide`}))
-  stuff.push(App.cmd_item({cmd: `toggle_tab_box`}))
-  stuff.push(App.cmd_item({cmd: `toggle_footer`}))
-  App.sep(stuff)
-  stuff.push(App.cmd_item({cmd: `toggle_show_pins`}))
-  stuff.push(App.cmd_item({cmd: `toggle_show_unloaded`}))
-  stuff.push(App.cmd_item({cmd: `toggle_tab_sort`}))
-  App.sep(stuff)
-  stuff.push(App.cmd_item({cmd: `toggle_wrap_text`}))
-  stuff.push(App.cmd_item({cmd: `toggle_auto_blur`}))
-  App.sep(stuff)
-  stuff.push(App.cmd_item({cmd: `set_next_theme`}))
-  stuff.push(App.cmd_item({cmd: `increase_background_opacity`}))
-  stuff.push(App.cmd_item({cmd: `decrease_background_opacity`}))
-
   App.sep(items)
   items.push(App.cmd_item({cmd: `show_settings`, short: true}))
   App.sep(items)
   items.push(App.cmd_item({cmd: `show_signals`, short: true}))
-
-  items.push({
-    icon: App.shroom_icon,
-    text: `Stuff`,
-    items: stuff,
-  })
-
+  items.push(App.cmd_item({cmd: `show_stuff_menu`, short: true}))
   items.push(App.cmd_item({cmd: `show_about`, short: true}))
   App.sep(items)
   items.push(App.cmd_item({cmd: `lock_screen`, short: true}))

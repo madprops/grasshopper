@@ -86,3 +86,35 @@ App.show_empty_menu = (item, e) => {
   let compact = App.get_setting(`compact_empty_menu`)
   App.show_context({items, e, compact})
 }
+
+App.show_stuff_menu = (e) => {
+  let items = []
+  items.push(App.cmd_item({cmd: `show_flashlight`}))
+  items.push(App.cmd_item({cmd: `generate_password`}))
+  items.push(App.cmd_item({cmd: `breathe_effect`}))
+  items.push(App.cmd_item({cmd: `locust_swarm`}))
+  App.sep(items)
+  items.push(App.cmd_item({cmd: `toggle_main_title`}))
+  items.push(App.cmd_item({cmd: `toggle_taglist`}))
+  items.push(App.cmd_item({cmd: `toggle_favorites`}))
+  items.push(App.cmd_item({cmd: `toggle_favorites_autohide`}))
+  items.push(App.cmd_item({cmd: `toggle_tab_box`}))
+  items.push(App.cmd_item({cmd: `toggle_footer`}))
+  App.sep(items)
+  items.push(App.cmd_item({cmd: `toggle_show_pins`}))
+  items.push(App.cmd_item({cmd: `toggle_show_unloaded`}))
+  items.push(App.cmd_item({cmd: `toggle_tab_sort`}))
+  App.sep(items)
+  items.push(App.cmd_item({cmd: `toggle_wrap_text`}))
+  items.push(App.cmd_item({cmd: `toggle_auto_blur`}))
+  App.sep(items)
+  items.push(App.cmd_item({cmd: `set_next_theme`}))
+  items.push(App.cmd_item({cmd: `increase_background_opacity`}))
+  items.push(App.cmd_item({cmd: `decrease_background_opacity`}))
+
+  App.show_context({
+    e,
+    items,
+    title: `Stuff`,
+  })
+}
