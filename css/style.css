@@ -2042,3 +2042,8 @@ a:hover
 .monospace {
   font-family: monospace;
 }
+
+#about_dev {
+  padding-bottom: 0.8rem;
+  gap: 0.35rem;
+}

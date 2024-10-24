@@ -73,6 +73,20 @@ App.start_about = () => {
         }
       })
 
+      let dev = DOM.el(`#about_dev`)
+
+      let what = DOM.create(`div`, `bigger`)
+      what.textContent = `Advanced Tab Manager`
+      dev.append(what)
+
+      let devby = DOM.create(`div`, `bigger`)
+      devby.textContent = `Developed by ${App.manifest.author}`
+      dev.append(devby)
+
+      let since = DOM.create(`div`, `bigger`)
+      since.textContent = `Since 2022`
+      dev.append(since)
+
       let info = DOM.el(`#about_info`)
 
       for (let item of App.about_info_items) {

@@ -3,6 +3,7 @@
   "name": "Grasshopper",
   "version": "6300",
   "description": "Godspeed You Tab Emperor",
+  "author": "Merkoba",
   "permissions": [
     "tabs",
     "sessions",
