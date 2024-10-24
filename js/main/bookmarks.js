@@ -213,7 +213,7 @@ App.bookmark_items = async (args = {}) => {
       let feedback = App.get_setting(`show_feedback`)
 
       if (feedback) {
-        App.alert_autohide(`Bookmarked`)
+        App.footer_message(`Bookmarked`)
       }
     },
     force,
@@ -469,7 +469,7 @@ App.create_bookmarks_folder = (callback) => {
         let feedback = App.get_setting(`show_feedback`)
 
         if (feedback) {
-          App.alert_autohide(`Folder Created`)
+          App.footer_message(`Folder Created`)
         }
       }
     }
