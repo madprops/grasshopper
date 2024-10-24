@@ -1790,6 +1790,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `This is a button that appears on the side of items, to run commands`,
+      separator: true,
       version: 2,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -1811,7 +1812,6 @@ App.build_settings = () => {
         {cmd: `unload_tabs`},
         {cmd: `settings_category_hover`},
       ],
-      separator: true,
       info: `Menu to show when clicking the Hover Button`,
       version: 1,
     },
