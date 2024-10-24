@@ -634,3 +634,11 @@ App.shuffle_array = (array) => {
     .sort((a, b) => a.sort - b.sort)
     .map(({value}) => value)
 }
+
+App.clone_if_node = (el) => {
+  if (el instanceof Node) {
+    return el.cloneNode(true)
+  }
+
+  return el
+}

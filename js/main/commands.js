@@ -440,7 +440,7 @@ App.cmd_item = (args = {}) => {
 
   return {
     e: args.e,
-    icon: args.command.icon,
+    icon: App.clone_if_node(args.command.icon),
     text: App.command_name(args.command, args.short),
     info: args.command.info,
     action: (e) => {
@@ -570,7 +570,7 @@ App.show_cmds_menu = (args = {}) => {
             App.run_command(cmd_obj)
           }
         },
-        icon: cmd.icon,
+        icon: App.clone_if_node(cmd.icon),
       }
 
       infos.push(cmd.info)
