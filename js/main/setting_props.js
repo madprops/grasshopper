@@ -4025,7 +4025,7 @@ App.build_settings = () => {
       },
     },
     middle_click_actions_menu: {
-      name: `Middle Click Actions`,
+      name: `Middle Click Actions Menu`,
       type: `menu`,
       value: `browser_reload`,
       info: `Command to run when middle clicking the Actions Menu`,
@@ -4035,7 +4035,7 @@ App.build_settings = () => {
       },
     },
     click_press_actions_menu: {
-      name: `Click Press Actions`,
+      name: `Click Press Actions Menu`,
       type: `menu`,
       value: `edit_global_notes`,
       info: `Command to run on left click press on Actions`,
@@ -4045,17 +4045,18 @@ App.build_settings = () => {
       },
     },
     middle_click_press_actions_menu: {
-      name: `Middle Click Press Actions`,
+      name: `Middle Click Press Actions Menu`,
       type: `menu`,
       value: `lock_screen`,
       info: `Command to run on middle click press on Actions`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
     wheel_up_actions_menu: {
-      name: `Wheel Up Actions`,
+      name: `Wheel Up Actions Menu`,
       type: `menu`,
       value: `jump_tabs_all_up`,
       info: `Command to run when using the mousewheel up on the Actions Button`,
@@ -4065,7 +4066,7 @@ App.build_settings = () => {
       },
     },
     wheel_down_actions_menu: {
-      name: `Wheel Down Actions`,
+      name: `Wheel Down Actions Menu`,
       type: `menu`,
       value: `jump_tabs_all_down`,
       info: `Command to run when using the mousewheel down on the Actions Button`,
@@ -4080,26 +4081,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `toggle_mute_tabs`,
       info: `Command to run when middle clicking the Playing Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_playing: {
-      name: `Wheel Up Playing`,
-      type: `menu`,
-      value: `jump_tabs_playing_down`,
-      info: `Command to run when using the mousewheel up on the Playing Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_playing: {
-      name: `Wheel Down Playing`,
-      type: `menu`,
-      value: `jump_tabs_playing_up`,
-      info: `Command to run when using the mousewheel down on the Playing Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -4126,31 +4107,32 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    wheel_up_playing: {
+      name: `Wheel Up Playing`,
+      type: `menu`,
+      value: `jump_tabs_playing_down`,
+      info: `Command to run when using the mousewheel up on the Playing Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_playing: {
+      name: `Wheel Down Playing`,
+      type: `menu`,
+      value: `jump_tabs_playing_up`,
+      info: `Command to run when using the mousewheel down on the Playing Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     middle_click_step_back: {
       name: `Middle Click Step Back`,
       type: `menu`,
       value: `recent_tabs_forwards`,
       info: `Command to run when middle clicking the Step Back Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_step_back: {
-      name: `Wheel Up Step Back`,
-      type: `menu`,
-      value: `recent_tabs_forwards`,
-      info: `Command to run when using the mousewheel up on the Step Back Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_step_back: {
-      name: `Wheel Down Step Back`,
-      type: `menu`,
-      value: `recent_tabs_backwards`,
-      info: `Command to run when using the mousewheel down on the Step Back Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -4171,6 +4153,27 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Command to run on middle click press on Step Back`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_step_back: {
+      name: `Wheel Up Step Back`,
+      type: `menu`,
+      value: `recent_tabs_forwards`,
+      info: `Command to run when using the mousewheel up on the Step Back Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_step_back: {
+      name: `Wheel Down Step Back`,
+      type: `menu`,
+      value: `recent_tabs_backwards`,
+      info: `Command to run when using the mousewheel down on the Step Back Button`,
       separator: true,
       version: 1,
       setup: (key) => {
