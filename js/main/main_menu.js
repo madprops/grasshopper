@@ -71,7 +71,7 @@ App.show_main_menu = (mode) => {
   items.push(App.cmd_item({cmd: `show_signals`, short: true}))
 
   items.push({
-    icon: `🍄`,
+    icon: App.shroom_icon,
     text: `Stuff`,
     items: stuff,
   })
