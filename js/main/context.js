@@ -87,7 +87,7 @@ App.show_empty_menu = (item, e) => {
   App.show_context({items, e, compact})
 }
 
-App.show_stuff = (e) => {
+App.show_stuff_menu = (e) => {
   let items = []
 
   function add(cmd) {

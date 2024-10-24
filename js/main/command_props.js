@@ -3938,10 +3938,10 @@ App.setup_commands = () => {
     {
       name: `Show Stuff`,
       short_name: `Stuff`,
-      cmd: `show_stuff`,
+      cmd: `show_stuff_menu`,
       icon: shroom_icon,
       action: (args) => {
-        App.show_stuff(args.e)
+        App.show_stuff_menu(args.e)
       },
       info: `Show a menu with some selected commands`,
     },
