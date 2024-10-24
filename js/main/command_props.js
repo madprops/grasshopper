@@ -3941,7 +3941,7 @@ App.setup_commands = () => {
       cmd: `show_stuff_menu`,
       icon: shroom_icon,
       action: (args) => {
-        App.show_stuff_menu(args.e)
+        App.show_stuff_menu(args.item, args.e)
       },
       info: `Show a menu with some selected commands`,
     },
