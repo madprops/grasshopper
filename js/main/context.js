@@ -87,7 +87,7 @@ App.show_empty_menu = (item, e) => {
   App.show_context({items, e, compact})
 }
 
-App.show_stuff_menu = (e) => {
+App.show_stuff = (e) => {
   let items = []
   items.push(App.cmd_item({cmd: `show_flashlight`}))
   items.push(App.cmd_item({cmd: `generate_password`}))

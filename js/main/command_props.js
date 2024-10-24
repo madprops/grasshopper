@@ -3938,12 +3938,12 @@ App.setup_commands = () => {
     {
       name: `Show Stuff`,
       short_name: `Stuff`,
-      cmd: `show_stuff_menu`,
+      cmd: `show_stuff`,
       icon: shroom_icon,
       action: (args) => {
-        App.show_stuff_menu(args.e)
+        App.show_stuff(args.e)
       },
-      info: `Menu to use some selected commands`,
+      info: `Show a menu with some selected commands`,
     },
     {
       name: `Lock Screen`,
