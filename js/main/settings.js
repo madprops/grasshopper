@@ -1128,7 +1128,7 @@ App.settings_menu_items = () => {
   let items = []
 
   items.push({
-    text: `All Settings`,
+    text: `${App.green_icon} Find`,
     info: `Show all the settings`,
     action: () => {
       App.show_all_settings()
@@ -1136,7 +1136,7 @@ App.settings_menu_items = () => {
   })
 
   items.push({
-    text: `Last Settings`,
+    text: `${App.green_icon} Return`,
     info: `Show the last settings`,
     action: () => {
       App.show_last_settings()

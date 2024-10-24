@@ -248,6 +248,7 @@ App.template_icon = `🛕`
 App.plus_icon = `📈`
 App.minus_icon = `📉`
 App.flashlight_icon = `🔦`
+App.green_icon = `🟢`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`
