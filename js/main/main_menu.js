@@ -50,6 +50,7 @@ App.show_main_menu = (mode) => {
   stuff.push(App.cmd_item({cmd: `toggle_main_title`}))
   stuff.push(App.cmd_item({cmd: `toggle_taglist`}))
   stuff.push(App.cmd_item({cmd: `toggle_favorites`}))
+  stuff.push(App.cmd_item({cmd: `toggle_favorites_autohide`}))
   stuff.push(App.cmd_item({cmd: `toggle_tab_box`}))
   stuff.push(App.cmd_item({cmd: `toggle_footer`}))
   App.sep(stuff)
