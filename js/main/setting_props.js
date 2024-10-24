@@ -2108,7 +2108,6 @@ App.build_settings = () => {
     stuff_menu: {
       name: `Stuff Menu`,
       type: `list`,
-      separator: true,
       data_group: `normal_menus`,
       value: [
         {cmd: `show_flashlight`},
