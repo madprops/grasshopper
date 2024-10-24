@@ -80,9 +80,13 @@ App.setup_mouse = () => {
     App.do_mouse_out_action(e)
   }, App.mouse_out_delay)
 
+  App.add_mouse_inside_debouncer = App.create_debouncer((e) => {
+    App.do_add_mouse_inside()
+  }, App.mouse_inside_in_delay)
+
   App.remove_mouse_inside_debouncer = App.create_debouncer((e) => {
     App.do_remove_mouse_inside()
-  }, App.mouse_inside_delay)
+  }, App.mouse_inside_out_delay)
 }
 
 App.reset_mouse = () => {
@@ -338,18 +342,27 @@ App.empty_double_click = (mode, e) => {
 }
 
 App.mouse_inside_check = () => {
+  App.add_mouse_inside_debouncer.cancel()
   App.remove_mouse_inside_debouncer.cancel()
 
   if (App.mouse_inside) {
-    DOM.el(`#main`).classList.add(`mouse_inside`)
+    App.add_mouse_inside()
   }
   else {
     App.remove_mouse_inside()
   }
 }
 
+App.add_mouse_inside = () => {
+  App.add_mouse_inside_debouncer.call()
+}
+
 App.remove_mouse_inside = () => {
   App.remove_mouse_inside_debouncer.call()
+}
+
+App.do_add_mouse_inside = () => {
+  DOM.el(`#main`).classList.add(`mouse_inside`)
 }
 
 App.do_remove_mouse_inside = () => {
