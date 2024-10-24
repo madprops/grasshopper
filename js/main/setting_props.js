@@ -1626,9 +1626,9 @@ App.build_settings = () => {
     show_close_button: {
       name: `Show Close Button`,
       type: `menu`,
-      value: `global_hover`,
+      value: `global`,
       info: `How to show the Close Buttons`,
-      version: 1,
+      version: 2,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
       },
@@ -1658,9 +1658,9 @@ App.build_settings = () => {
     show_close_button_tab_box: {
       name: `Show Close Button Tab Box`,
       type: `menu`,
-      value: `global_hover`,
+      value: `global`,
       info: `How to show the Close Buttons in the Tab Box`,
-      version: 1,
+      version: 2,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
       },

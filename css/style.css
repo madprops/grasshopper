@@ -425,7 +425,7 @@ svg {
 .close_button_hover .item:not(.tab_box_item) .close_button,
 .close_button_focus .item:not(.tab_box_item) .close_button,
 .close_button_select .item:not(.tab_box_item) .close_button,
-.close_button_global_hover .item:not(.tab_box_item) .close_button
+.close_button_global .item:not(.tab_box_item) .close_button
 {
   width: 0;
   border-width: 0;
@@ -435,7 +435,7 @@ svg {
 .close_button_focus .item:not(.tab_box_item):hover .close_button,
 .close_button_select .item:not(.tab_box_item).selected .close_button,
 .close_button_focus .item:not(.tab_box_item).selected .close_button,
-.mouse_inside.close_button_global_hover .item:not(.tab_box_item) .close_button
+.mouse_inside.close_button_global .item:not(.tab_box_item) .close_button
 {
   width: var(--close_button_width);
   border-width: var(--close_button_border_width);
@@ -446,7 +446,7 @@ svg {
 .close_button_tab_box_hover .item.tab_box_item .close_button,
 .close_button_tab_box_focus .item.tab_box_item .close_button,
 .close_button_tab_box_select .item.tab_box_item .close_button,
-.close_button_tab_box_global_hover .item.tab_box_item .close_button
+.close_button_tab_box_global .item.tab_box_item .close_button
 {
   width: 0;
   border-width: 0;
@@ -456,7 +456,7 @@ svg {
 .close_button_tab_box_focus .item.tab_box_item:hover .close_button,
 .close_button_tab_box_select .item.tab_box_item.selected .close_button,
 .close_button_tab_box_focus .item.tab_box_item.selected .close_button,
-.mouse_inside.close_button_tab_box_global_hover .item.tab_box_item .close_button
+.mouse_inside.close_button_tab_box_global .item.tab_box_item .close_button
 {
   width: var(--close_button_width);
   border-width: var(--close_button_border_width_tab_box);

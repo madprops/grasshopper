@@ -408,7 +408,7 @@ App.show_icon = [
   {text: `On Select`, value: `select`, info: `Show when the item is selected`},
   {text: `On Focus`, value: `focus`, info: `Show on select or item hover`},
   {text: `On Hover`, value: `hover`, info: `Show when hovering the item`},
-  {text: `On Global Hover`, value: `global_hover`, info: `Show when hovering the window`},
+  {text: `On Global`, value: `global`, info: `Show when hovering the window`},
 ]
 
 App.header_actions = [
