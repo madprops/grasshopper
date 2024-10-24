@@ -61,7 +61,7 @@ App.get_playing_tabs = () => {
 
 App.playing_click = (e) => {
   let cmd = App.get_setting(`click_playing`)
-  App.run_command({cmd, from: `playing_aux`, e})
+  App.run_command({cmd, from: `playing`, e})
 }
 
 App.playing_middle_click = (e) => {
