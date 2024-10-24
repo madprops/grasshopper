@@ -4014,7 +4014,7 @@ App.setup_commands = () => {
       cmd: `breathe_effect`,
       icon: tree_icon,
       action: (args) => {
-        App.toggle_breathe_effect()
+        App.start_breathe_effect()
       },
       info: `Let me breathe`,
     },

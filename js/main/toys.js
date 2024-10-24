@@ -75,7 +75,17 @@ App.stop_locust_swarm = () => {
   App.locust_swarm_on = false
 }
 
-App.toggle_breathe_effect = () => {
+App.start_breathe_effect = () => {
+  clearTimeout(App.breathe_effect_timeout)
   App.breathe_effect_on = !App.breathe_effect_on
+  App.apply_theme()
+
+  App.breathe_effect_timeout = setTimeout(() => {
+    App.stop_breathe_effect()
+  }, App.SECOND * 9)
+}
+
+App.stop_breathe_effect = () => {
+  App.breathe_effect_on = false
   App.apply_theme()
 }
