@@ -1473,16 +1473,14 @@ App.setup_settings_addlist = () => {
     `main_title_menu`,
     `tab_box_menu`,
     `favorites_menu`,
-    `favorites_menu_tabs`,
-    `favorites_menu_history`,
-    `favorites_menu_bookmarks`,
-    `favorites_menu_closed`,
     `actions_menu`,
     `item_menu`,
     `empty_menu`,
   ]
 
   for (let m of App.modes) {
+    menukeys.push(`hover_button_menu_${m}`)
+    menukeys.push(`favorites_menu_${m}`)
     menukeys.push(`actions_menu_${m}`)
     menukeys.push(`item_menu_${m}`)
     menukeys.push(`empty_menu_${m}`)

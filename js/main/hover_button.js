@@ -5,14 +5,28 @@ App.create_hover_button = () => {
 }
 
 App.show_hover_button_menu = (item, e) => {
-  let items = App.custom_menu_items({
-    name: `hover_button_menu`,
-    item,
-  })
+  let name
+  let mode = item?.mode || App.active_mode
+  let mode_menu = App.get_setting(`hover_button_menu_${mode}`)
 
-  let element = item?.element
+  if (mode_menu.length) {
+    name = `hover_button_menu_${mode}`
+  }
+  else {
+    let global = App.get_setting(`hover_button_menu`)
+
+    if (global.length) {
+      name = `hover_button_menu`
+    }
+  }
+
+  if (!name) {
+    return
+  }
+
+  let items = App.custom_menu_items({name, item})
   let compact = App.get_setting(`compact_hover_button_menu`)
-  App.show_context({items, e, element, compact})
+  App.show_context({items, e, compact})
 }
 
 App.hover_button_middle_click = (item, e) => {
