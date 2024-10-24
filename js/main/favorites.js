@@ -258,7 +258,14 @@ App.show_favorites_menu = (e) => {
   })
 
   let compact = App.get_setting(`compact_favorites_menu`)
-  App.show_context({items, e, compact})
+
+  App.show_context({
+    e,
+    items,
+    compact,
+    title: `Favorites`,
+    title_icon: App.settings_icons.favorites,
+  })
 }
 
 App.get_mode_favorites = () => {
