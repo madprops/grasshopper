@@ -1489,6 +1489,7 @@ App.setup_settings_addlist = () => {
     `actions_menu`,
     `item_menu`,
     `empty_menu`,
+    `stuff_menu`,
   ]
 
   for (let m of App.modes) {

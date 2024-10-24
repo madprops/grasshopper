@@ -88,34 +88,7 @@ App.show_empty_menu = (item, e) => {
 }
 
 App.show_stuff_menu = (e) => {
-  let items = []
-
-  function add(cmd) {
-    items.push(App.cmd_item({cmd}))
-  }
-
-  add(`show_flashlight`)
-  add(`generate_password`)
-  add(`breathe_effect`)
-  add(`locust_swarm`)
-  App.sep(items)
-  add(`toggle_main_title`)
-  add(`toggle_taglist`)
-  add(`toggle_favorites`)
-  add(`toggle_favorites_autohide`)
-  add(`toggle_tab_box`)
-  add(`toggle_footer`)
-  App.sep(items)
-  add(`toggle_show_pins`)
-  add(`toggle_show_unloaded`)
-  add(`toggle_tab_sort`)
-  App.sep(items)
-  add(`toggle_wrap_text`)
-  add(`toggle_auto_blur`)
-  App.sep(items)
-  add(`set_next_theme`)
-  add(`increase_background_opacity`)
-  add(`decrease_background_opacity`)
+  let items = App.custom_menu_items({name: `stuff_menu`})
 
   App.show_context({
     e,
