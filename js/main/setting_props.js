@@ -1639,11 +1639,26 @@ App.build_settings = () => {
       value: 1,
       placeholder: `Px`,
       info: `Border width of Close Buttons`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
+    },
+    close_button_menu: {
+      name: `Close Button Menu`,
+      type: `list`,
+      value: [
+        {cmd: `open_new_tab`},
+        {cmd: `filter_title`},
+        {cmd: `filter_domain`},
+        {cmd: `filter_node_tabs`},
+        {cmd: `duplicate_tabs`},
+        {cmd: `unload_tabs`},
+        {cmd: `settings_category_close`},
+      ],
+      separator: true,
+      info: `Menu to show when clicking the Close Button`,
+      version: 1,
     },
     close_button_side_tab_box: {
       name: `Close Button Tab Box Side`,
@@ -1676,22 +1691,6 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
-    },
-    close_button_menu: {
-      name: `Close Button Menu`,
-      type: `list`,
-      value: [
-        {cmd: `open_new_tab`},
-        {cmd: `filter_title`},
-        {cmd: `filter_domain`},
-        {cmd: `filter_node_tabs`},
-        {cmd: `duplicate_tabs`},
-        {cmd: `unload_tabs`},
-        {cmd: `settings_category_close`},
-      ],
-      separator: true,
-      info: `Menu to show when clicking the Close Button`,
-      version: 1,
     },
     click_close_button: {
       name: `Click Close Button`,
