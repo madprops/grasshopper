@@ -323,13 +323,13 @@ App.start_signal_intervals = () => {
 App.set_signals_info = (amount) => {
   let el = DOM.el(`#signals_info`)
   let icon = App.settings_icons.signals
+  let text = `${icon} Signals`
 
   if (amount) {
-    el.textContent = `${icon} Signals (${amount})`
+    text += ` (${amount})`
   }
-  else {
-    el.textContent = `${icon} Signals`
-  }
+
+  el.textContent = text
 }
 
 App.edit_signal = (index) => {
