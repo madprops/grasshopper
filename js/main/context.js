@@ -120,7 +120,7 @@ App.show_stuff_menu = (e) => {
   App.show_context({
     e,
     items,
-    title: `Stuff`,
+    title: `Stuff (${items.length})`,
     title_icon: App.shroom_icon,
   })
 }
