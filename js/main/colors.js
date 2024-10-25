@@ -239,13 +239,23 @@ App.edit_tab_color = (args = {}) => {
   })
 }
 
-App.color_menu_items = (item) => {
+App.color_menu_items = (item, e) => {
   let items = []
   let item_color = App.get_color(item)
+  let c_icon = App.color_icon(item_color)
 
   if (item_color) {
     items.push({
+      text: `Show`,
+      icon: App.clone_if_node(c_icon),
+      action: () => {
+        App.show_tab_list(`color_${item_color}`, e)
+      },
+    })
+
+    items.push({
       text: `Filter`,
+      icon: App.clone_if_node(c_icon),
       action: () => {
         App.filter_color({mode: item.mode, id: item_color})
       },
@@ -295,7 +305,7 @@ App.color_menu_items = (item) => {
 }
 
 App.show_color_menu = (item, e, show_title = true) => {
-  let items = App.color_menu_items(item)
+  let items = App.color_menu_items(item, e)
   let title = show_title ? `Color` : undefined
   let element = item?.element
   let compact = App.get_setting(`compact_color_menu`)
