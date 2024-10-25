@@ -505,7 +505,7 @@ App.show_edits_info = (item) => {
 
   App.show_textarea({
     title: `Edits Info`,
-    title_icon: App.notepad_icon,
+    title_icon: App.get_setting(`edited_icon`),
     text: infos.join(`\n`),
   })
 }
