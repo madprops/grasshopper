@@ -410,6 +410,10 @@ App.mouse_context_action = (e) => {
       App.show_taglist_menu(e, item)
       return
     }
+
+    if (DOM.parent(target, [`.taglist_container`])) {
+      return
+    }
   }
 
   if (DOM.parent(target, [`.color_icon`])) {
@@ -705,6 +709,10 @@ App.click_press_action = (e) => {
       App.click_press_triggered = true
       return
     }
+  }
+
+  if (DOM.parent(target, [`.taglist_container`])) {
+    return
   }
 
   let what
