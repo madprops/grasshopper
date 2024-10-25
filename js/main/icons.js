@@ -1,201 +1,139 @@
-App.add_icons = (item, side) => {
+App.proc_item_icon = (args = {}) => {
+  let side_ok = args.side === App.get_setting(`${args.what}_side`)
+
+  if (!App.icon_enabled(args.what) || !side_ok) {
+    return
+  }
+
+  let cls = `${args.what} item_node hidden item_icon_unit ${args.cls}`
+  let icon = DOM.create(`div`, cls)
+
+  if ([`color_icon`, `custom_icon`].includes(args.what)) {
+    // Don't add content
+  }
+  else {
+    icon.textContent = App.get_setting(args.what)
+  }
+
   let tips = App.get_setting(`show_tooltips`)
-  let what = ``
-  let cls = ``
-  let title = ``
 
-  function check_side(whats) {
-    return side === App.get_setting(`${whats}_side`)
+  if (tips) {
+    icon.title = args.title
   }
 
-  let item_cls = ` item_node hidden item_icon_unit`
+  args.item.element.append(icon)
+}
 
-  function classes(what) {
-    return what + item_cls + cls
+App.add_item_icon = (item, side, name) => {
+  if (name === `active`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Active`
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
   }
+  else if (name === `pin`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Pinned`
 
-  if (item.mode === `tabs`) {
-    cls = ``
-    what = `active_icon`
-    title = `Active`
-
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
-
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
-
-    cls = ``
-    what = `pin_icon`
-    title = `Pinned`
-
-    if (App.get_setting(`pin_icon_click`)) {
+    if (App.get_setting(`${name}_icon_click`)) {
       cls += ` grower`
       title += `\nClick to unpin`
     }
 
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
+  }
+  else if (name === `normal`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Normal`
 
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
-
-    cls = ``
-    what = `normal_icon`
-    title = `Normal`
-
-    if (App.get_setting(`normal_icon_click`)) {
+    if (App.get_setting(`${name}_icon_click`)) {
       cls += ` grower`
       title += `\nClick to pin`
     }
 
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
+  }
+  else if (name === `loaded`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Loaded`
 
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
-
-    cls = ``
-    what = `loaded_icon`
-    title = `Loaded`
-
-    if (App.get_setting(`loaded_icon_click`)) {
+    if (App.get_setting(`${name}_icon_click`)) {
       cls += ` grower`
       title += `\nClick to unload`
     }
 
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
+  }
+  else if (name === `unloaded`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Unloaded`
 
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
-
-    cls = ``
-    what = `unloaded_icon`
-    title = `Unloaded`
-
-    if (App.get_setting(`unloaded_icon_click`)) {
+    if (App.get_setting(`${name}_icon_click`)) {
       cls += ` grower`
       title += `\nClick to load`
     }
 
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
-
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
-
-    cls = ``
-    what = `playing_icon`
-    title = `Playing`
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
+  }
+  else if (name === `playing`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Playing`
 
     if (App.get_setting(`mute_click`)) {
       cls += ` grower`
       title += `\nClick to toggle mute`
     }
 
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
+  }
+  else if (name === `muted`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Muted`
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
+  }
+  else if (name === `unread`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Unread`
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
+  }
+  else if (name === `loading`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Loading`
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
+  }
+  else if (name === `root`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Go to the root URL`
 
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
-
-    what = `muted_icon`
-    title = `Muted`
-
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
-
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
-
-    cls = ``
-    what = `unread_icon`
-    title = `Unread`
-
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
-
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
-
-    cls = ``
-    what = `loading_icon`
-    title = `Loading`
-
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
-
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
-
-    cls = ``
-    what = `root_icon`
-    title = `Go to the root URL`
-
-    if (App.get_setting(`root_icon_click`)) {
+    if (App.get_setting(`${name}_icon_click`)) {
       cls += ` grower`
     }
 
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
-
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
-
-    cls = ``
-    what = `parent_icon`
-    title = `Parent`
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
+  }
+  else if (name === `parent`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Parent`
 
     if (App.get_setting(`parent_icon_click`)) {
       cls += ` grower`
@@ -203,20 +141,13 @@ App.add_icons = (item, side) => {
       title += `\nMiddle Click to close nodes`
     }
 
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
-
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
-
-    cls = ``
-    what = `node_icon`
-    title = `Node`
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
+  }
+  else if (name === `node`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Node`
 
     if (App.get_setting(`node_icon_click`)) {
       cls += ` grower`
@@ -224,140 +155,151 @@ App.add_icons = (item, side) => {
       title += `\nMiddle Click to filter siblings`
     }
 
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
-
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
   }
-
-  function media_icon(media, title) {
-    let what = `${media}_icon`
+  else if (name === `image`) {
     let cls = ``
+    let what = `${name}_icon`
+    let title = `Image`
 
-    if ([`icon`, `item`].includes(App.get_setting(`view_${media}_${item.mode}`))) {
+    if ([`icon`, `item`].includes(App.get_setting(`view_${name}_${item.mode}`))) {
       cls += ` grower`
-      title += `\nClick to embed ${media}`
+      title += `\nClick to embed ${name}`
     }
 
-    if (App.icon_enabled(what) && check_side(what)) {
-      let icon = DOM.create(`div`, classes(what))
-      icon.textContent = App.get_setting(what)
-
-      if (tips) {
-        icon.title = title
-      }
-
-      item.element.append(icon)
-    }
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
   }
+  else if (name === `video`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Video`
 
-  media_icon(`image`, `Image`)
-  media_icon(`video`, `Video`)
-  media_icon(`audio`, `Audio`)
-
-  cls = ``
-  what = `title_icon`
-  title = `Titled`
-
-  if (App.get_setting(`title_icon_click`)) {
-    cls += ` grower`
-    title += `\nClick to edit the title`
-    title += `\nMiddle Click to remove title`
-  }
-
-  if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, classes(what))
-    icon.textContent = App.get_setting(what)
-
-    if (tips) {
-      icon.title = title
+    if ([`icon`, `item`].includes(App.get_setting(`view_${name}_${item.mode}`))) {
+      cls += ` grower`
+      title += `\nClick to embed ${name}`
     }
 
-    item.element.append(icon)
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
   }
+  else if (name === `audio`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Audio`
 
-  cls = ``
-  what = `tags_icon`
-  title = `Tagged`
-
-  if (App.get_setting(`tags_icon_click`)) {
-    cls += ` grower`
-    title += `\nClick to edit the tags`
-    title += `\nMiddle Click to remove tags`
-  }
-
-  if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, classes(what))
-    icon.textContent = App.get_setting(what)
-
-    if (tips) {
-      icon.title = title
+    if ([`icon`, `item`].includes(App.get_setting(`view_${name}_${item.mode}`))) {
+      cls += ` grower`
+      title += `\nClick to embed ${name}`
     }
 
-    item.element.append(icon)
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
   }
+  else if (name === `title`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Titled`
 
-  cls = ``
-  what = `edited_icon`
-  title = `Edited`
-
-  if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, classes(what))
-    icon.textContent = App.get_setting(what)
-
-    if (tips) {
-      icon.title = title
+    if (App.get_setting(`${name}_icon_click`)) {
+      cls += ` grower`
+      title += `\nClick to edit the title`
+      title += `\nMiddle Click to remove title`
     }
 
-    item.element.append(icon)
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
   }
+  else if (name === `tags`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Tagged`
 
-  cls = ``
-  what = `notes_icon`
-  title = `Notes`
-
-  if (App.get_setting(`notes_icon_click`)) {
-    cls += ` grower`
-    title += `\nClick to open the notes`
-    title += `\nMiddle Click to remove notes`
-  }
-
-  if (App.icon_enabled(what) && check_side(what)) {
-    let icon = DOM.create(`div`, classes(what))
-    icon.textContent = App.get_setting(what)
-
-    if (tips) {
-      icon.title = title
+    if (App.get_setting(`${name}_icon_click`)) {
+      cls += ` grower`
+      title += `\nClick to edit the tags`
+      title += `\nMiddle Click to remove tags`
     }
 
-    item.element.append(icon)
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
   }
-
-  cls = ` color_icon_container`
-  what = `color_icon`
-
-  if (App.get_setting(`color_icon_click`)) {
-    cls += ` effect`
-    title += `\nClick to show the color menu`
-    title += `\nMiddle Click to close nodes`
+  else if (name === `edited`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Edited`
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
   }
+  else if (name === `notes`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Notes`
 
-  if (App.get_setting(`color_mode`).includes(`background`)) {
-    cls += ` grower`
+    if (App.get_setting(`${name}_icon_click`)) {
+      cls += ` grower`
+      title += `\nClick to open the notes`
+      title += `\nMiddle Click to remove notes`
+    }
+
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
   }
+  else if (name === `color`) {
+    let cls = ` color_icon_container`
+    let what = `color_icon`
+    let title = ``
 
-  if (check_side(what)) {
-    let icon = DOM.create(`div`, classes(what))
-    item.element.append(icon)
+    if (App.get_setting(`${name}_icon_click`)) {
+      cls += ` effect`
+      title += `\nClick to show the color menu`
+      title += `\nMiddle Click to close nodes`
+    }
+
+    if (App.get_setting(`color_mode`).includes(`background`)) {
+      cls += ` grower`
+    }
+
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
   }
+  else if (name === `custom`) {
+    let cls = ``
+    let what = `${name}_icon`
+    let title = `Custom Icon`
 
-  App.add_custom_icon(item, side)
+    if (App.get_setting(`${name}_icon_click`)) {
+      cls += ` grower`
+      title += `\nClick to show the menu`
+    }
+
+    let obj = {what, title, cls, side, item}
+    App.proc_item_icon(obj)
+  }
+}
+
+App.add_icons = (item, side) => {
+  App.add_item_icon(item, side, `active`)
+  App.add_item_icon(item, side, `pin`)
+  App.add_item_icon(item, side, `normal`)
+  App.add_item_icon(item, side, `loaded`)
+  App.add_item_icon(item, side, `unloaded`)
+  App.add_item_icon(item, side, `playing`)
+  App.add_item_icon(item, side, `muted`)
+  App.add_item_icon(item, side, `unread`)
+  App.add_item_icon(item, side, `loading`)
+  App.add_item_icon(item, side, `root`)
+  App.add_item_icon(item, side, `parent`)
+  App.add_item_icon(item, side, `node`)
+  App.add_item_icon(item, side, `image`)
+  App.add_item_icon(item, side, `video`)
+  App.add_item_icon(item, side, `audio`)
+  App.add_item_icon(item, side, `title`)
+  App.add_item_icon(item, side, `edited`)
+  App.add_item_icon(item, side, `notes`)
+  App.add_item_icon(item, side, `color`)
+  App.add_item_icon(item, side, `custom`)
 }
 
 App.check_icons = (item) => {
@@ -825,30 +767,6 @@ App.fetch_favicon_url = (item) => {
   return `https://www.google.com/s2/favicons?sz=64&domain=${item.hostname}`
 }
 
-App.add_custom_icon = (item, side) => {
-  let icon_side = App.get_setting(`custom_icon_side`)
-
-  if (side !== icon_side) {
-    return
-  }
-
-  let cls = `custom_icon item_node hidden item_icon_unit`
-  let title = `Custom Icon`
-
-  if (App.get_setting(`custom_icon_click`)) {
-    cls += ` grower`
-    title += `\nClick to show the menu`
-  }
-
-  let icon = DOM.create(`div`, cls)
-
-  if (App.get_setting(`show_tooltips`)) {
-    icon.title = title
-  }
-
-  item.element.append(icon)
-}
-
 App.get_icon_items = (mode, show = false) => {
   function icon_sort(a, b) {
     let ai = App.icon_history.indexOf(a)
@@ -1015,7 +933,15 @@ App.icon_enabled = (what) => {
     what = what.split(`_icon`)[0]
   }
 
-  let icon = App.get_setting(`${what}_icon`)
+  let icon
+
+  if ([`color`, `custom`].includes(what)) {
+    icon = true
+  }
+  else {
+    icon = Boolean(App.get_setting(`${what}_icon`))
+  }
+
   let show = App.get_setting(`show_${what}_icon`)
   return icon && (show !== `never`)
 }
