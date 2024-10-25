@@ -944,6 +944,11 @@ App.set_setting = (args = {}) => {
 
   App.def_args(def_args, args)
 
+  if (App.settings[args.setting] === undefined) {
+    App.error(`Setting not found: ${args.setting}`)
+    return
+  }
+
   if (App.str(App.settings[args.setting].value) !== App.str(args.value)) {
     let props = App.setting_props[args.setting]
     App.settings[args.setting].value = args.value
@@ -1091,32 +1096,6 @@ App.get_filter_cmds = (include_none, include_sep) => {
     }
 
     if (cmd.filter_mode) {
-      App.add_settings_cmd(items, cmd)
-    }
-  }
-
-  App.clean_setting_headers(items)
-  return items
-}
-
-App.get_signal_cmds = (include_none, include_sep) => {
-  let items = []
-
-  App.add_setting_headers(items, include_none, include_sep)
-
-  if (include_none) {
-    items = [
-      {text: `Do Nothing`, value: `none`},
-      {text: App.separator_string},
-    ]
-  }
-
-  for (let cmd of App.commands) {
-    if (cmd.skip_settings) {
-      continue
-    }
-
-    if (cmd.signal_mode) {
       App.add_settings_cmd(items, cmd)
     }
   }

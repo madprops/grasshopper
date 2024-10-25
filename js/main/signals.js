@@ -154,6 +154,11 @@ App.fill_signals = () => {
       name.textContent += ` (P)`
     }
 
+    if (signal.send_active) {
+      title += ` (Active)`
+      name.textContent += ` (P)`
+    }
+
     if (signal.interval) {
       title += ` (${signal.interval})`
     }
@@ -200,7 +205,12 @@ App.do_send_signal = async (signal, from) => {
       method: signal.method,
     }
 
-    if (signal.arguments || signal.send_tabs || signal.send_settings) {
+    if ([
+      `arguments`,
+      `send_tabs`,
+      `send_settings`,
+      `send_active`,
+    ].some(key => signal[key])) {
       obj.headers = {
         "Content-Type": `application/json`,
       }
@@ -218,6 +228,10 @@ App.do_send_signal = async (signal, from) => {
 
       if (signal.send_settings) {
         args.settings = App.get_settings_snapshot()
+      }
+
+      if (signal.send_active) {
+        args.active = App.get_tab_snapshot(true)
       }
 
       obj.body = JSON.stringify(args)
@@ -377,6 +391,7 @@ App.start_signals_addlist = () => {
         `update_title`,
         `send_tabs`,
         `send_settings`,
+        `send_active`,
         `import_tabs`,
         `import_settings`,
       ],
@@ -396,6 +411,7 @@ App.start_signals_addlist = () => {
         interval: `number`,
         startup: `checkbox`,
         confirm: `checkbox`,
+        send_active: `checkbox`,
       },
       labels: {
         name: `Name`,
@@ -412,6 +428,7 @@ App.start_signals_addlist = () => {
         send_settings: `Send Settings`,
         import_settings: `Import Settings`,
         confirm: `Confirm`,
+        send_active: `Send Active`,
       },
       list_icon: (item) => {
         return item.icon || App.settings_icons.signal
@@ -426,12 +443,12 @@ App.start_signals_addlist = () => {
       },
       tooltips: {
         url: `URL to send the request to`,
-        arguments: `JSON string to use as arguments for POST`,
+        arguments: `JSON string to use for POST`,
         feedback: `Show the response in a popup`,
         update_title: `Update the Title with the response`,
-        send_tabs: `Send a snapshot of the tabs as the 'tabs' argument`,
+        send_tabs: `Send a snapshot of the tabs as 'tabs'`,
         import_tabs: `Automatically import tabs from the response`,
-        send_settings: `Send a snapshot of the settings as the 'settings' argument`,
+        send_settings: `Send a snapshot of the settings as 'settings'`,
         import_settings: `Automatically import settings from the response`,
         interval: `Run this signal every x seconds`,
         startup: `Run this signal at startup`,
@@ -439,6 +456,7 @@ App.start_signals_addlist = () => {
         method: `HTTP method to use`,
         name: `Name of the signal`,
         confirm: `Needs confirmation before running`,
+        send_active: `Send the active tab as 'active'`,
       },
       process: {
         url: (url) => {
@@ -603,4 +621,30 @@ App.signal_by_index = (index) => {
 App.signals_bottom = () => {
   let container = DOM.el(`#window_content_signals`)
   container.scrollTop = container.scrollHeight
+}
+
+App.get_signal_cmds = (include_none, include_sep) => {
+  let items = []
+
+  App.add_setting_headers(items, include_none, include_sep)
+
+  if (include_none) {
+    items = [
+      {text: `Do Nothing`, value: `none`},
+      {text: App.separator_string},
+    ]
+  }
+
+  for (let cmd of App.commands) {
+    if (cmd.skip_settings) {
+      continue
+    }
+
+    if (cmd.signal_mode) {
+      App.add_settings_cmd(items, cmd)
+    }
+  }
+
+  App.clean_setting_headers(items)
+  return items
 }

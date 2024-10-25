@@ -1159,8 +1159,16 @@ App.focus_tab_number = (num) => {
   }
 }
 
-App.get_tab_snapshot = () => {
-  let items = App.get_items(`tabs`)
+App.get_tab_snapshot = (only_active = false) => {
+  let items
+
+  if (only_active) {
+    items = [App.get_active_tab_item()]
+  }
+  else {
+    items = App.get_items(`tabs`)
+  }
+
   let infos = []
 
   for (let item of items) {
@@ -1175,6 +1183,11 @@ App.get_tab_snapshot = () => {
     }
 
     App.fill_custom_props(info, item)
+
+    if (only_active) {
+      return info
+    }
+
     infos.push(info)
   }
 

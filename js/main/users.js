@@ -18,7 +18,6 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `autohide_context`, value: true})
   App.set_setting({setting: `sound_effects`, value: true})
-  App.set_setting({setting: `unloaded_icon_click`, value: false})
   App.set_setting({setting: `click_item_tabs`, value: `soft_item_action`})
 
   // Main Title
@@ -123,6 +122,9 @@ App.user_madprops_settings = () => {
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Load Settings`, url: `http://127.0.0.1:5000/get-backup-settings`, method: `GET`, icon: `⚡`, import_settings: true, _id_: `sig_get_backup_settings`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Active Test`, url: `http://127.0.0.1:5000/active-test`, method: `POST`, icon: `🐵`, send_active: true, feedback: true, _id_: `sig_active_test`}
   App.append_list_setting(sett, cmd)
 
   // Custom URLs

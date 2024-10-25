@@ -259,6 +259,21 @@ def get_backups_settings():
     return msg
 
 
+@app.route("/active-test", methods=["POST"])
+def active_test():
+    msg = ""
+
+    if request.content_type == "application/json":
+        data = get_arg("active")
+        print(data)
+        msg = f"URL: {data["url"]} | Pinned: {data["pinned"]}"
+
+    if not msg:
+        msg = "You sent nothing"
+
+    return msg
+
+
 # ----------
 
 
