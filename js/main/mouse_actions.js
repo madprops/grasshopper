@@ -744,7 +744,7 @@ App.do_mouse_over_action = (e) => {
   App.set_item_tooltips(item)
 
   if (DOM.parent(target, [`.item_icon_unit`])) {
-    App.update_icon_tooltips(target)
+    App.update_icon_tooltips(item, target)
   }
 
   if (App.icon_pick_down) {

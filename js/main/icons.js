@@ -92,17 +92,17 @@ App.add_item_icon = (item, side, name) => {
     App.proc_item_icon(obj)
   }
   else if (name === `image`) {
-    let title = `Image\nClick to view`
+    let title = `Image`
     obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `video`) {
-    let title = `Video\nClick to view`
+    let title = `Video`
     obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `audio`) {
-    let title = `Audio\nClick to view`
+    let title = `Audio`
     obj = {...obj, title}
     App.proc_item_icon(obj)
   }
@@ -867,7 +867,7 @@ App.item_icon_click = (item, target, e) => {
   return true
 }
 
-App.update_icon_tooltips = (target) => {
+App.update_icon_tooltips = (item, target) => {
   let el = DOM.parent(target, [`.item_icon_unit`])
 
   if (!el) {
@@ -887,7 +887,15 @@ App.update_icon_tooltips = (target) => {
 
   let cmd
 
-  if (icon === `color`) {
+  if (App.media_icons.includes(icon)) {
+    let sett = App.get_setting(`view_${icon}_${item.mode}`)
+
+    if ([`icon`, `item`].includes(sett)) {
+      let iname = App.capitalize(icon)
+      el.title = `Click: View ${iname}`
+    }
+  }
+  else if (icon === `color`) {
     let color = el.dataset.color
     cmd = App.get_color_icon_command(color)
   }
