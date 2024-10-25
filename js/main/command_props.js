@@ -3109,7 +3109,7 @@ App.setup_commands = () => {
     },
     {
       name: `Show Domain`,
-      cmd: `show_domain`,
+      cmd: `show_same_domain`,
       modes: [`items`],
       item: true,
       single: true,
@@ -3132,6 +3132,18 @@ App.setup_commands = () => {
         App.filter_title(args.item)
       },
       info: `Filter same title`,
+    },
+    {
+      name: `Show Title`,
+      cmd: `show_same_title`,
+      modes: [`items`],
+      item: true,
+      single: true,
+      icon: filter_icon,
+      action: (args) => {
+        App.show_tab_list(`title`, args.e, args.item)
+      },
+      info: `Show same title`,
     },
     {
       name: `Filter Nodes`,

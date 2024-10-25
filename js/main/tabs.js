@@ -1292,5 +1292,12 @@ App.check_hide_tabs = (item) => {
 }
 
 App.get_domain_tabs = (item) => {
-  return App.get_items(`tabs`).filter(x => x.hostname === item.hostname)
+  let items = App.get_items(`tabs`)
+  return items.filter(x => x.hostname === item.hostname)
+}
+
+App.get_title_tabs = (item) => {
+  let items = App.get_items(`tabs`)
+  let title = App.title(item).toLowerCase()
+  return items.filter(x => App.title(x).toLowerCase().includes(title))
 }
