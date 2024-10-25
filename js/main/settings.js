@@ -928,6 +928,11 @@ App.settings_label_menu = (e, args) => {
 }
 
 App.get_setting = (setting) => {
+  if (App.settings[setting] === undefined) {
+    App.error(`Setting not found: ${setting}`)
+    return
+  }
+
   let value = App.settings[setting].value
 
   if (value === App.default_setting_string) {

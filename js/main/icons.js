@@ -857,3 +857,63 @@ App.icon_has_command = (icon) => {
   let cmd = App.get_setting(`${icon}_command`)
   return cmd && (cmd !== `none`)
 }
+
+App.item_icon_click = (item, target, e) => {
+  let icon
+
+  if (DOM.parent(target, [`.playing_icon`])) {
+    icon = `playing`
+  }
+  else if (DOM.parent(target, [`.muted_icon`])) {
+    icon = `muted`
+  }
+  else if (DOM.parent(target, [`.pin_icon`])) {
+    icon = `pin`
+  }
+  else if (DOM.parent(target, [`.normal_icon`])) {
+    icon = `normal`
+  }
+  else if (DOM.parent(target, [`.loaded_icon`])) {
+    icon = `loaded`
+  }
+  else if (DOM.parent(target, [`.unloaded_icon`])) {
+    icon = `unloaded`
+  }
+  else if (DOM.parent(target, [`.title_icon`])) {
+    icon = `title`
+  }
+  else if (DOM.parent(target, [`.tags_icon`])) {
+    icon = `tags`
+  }
+  else if (DOM.parent(target, [`.notes_icon`])) {
+    icon = `notes`
+  }
+  else if (DOM.parent(target, [`.root_icon`])) {
+    icon = `root`
+  }
+  else if (DOM.parent(target, [`.node_icon`])) {
+    icon = `node`
+  }
+  else if (DOM.parent(target, [`.parent_icon`])) {
+    icon = `parent`
+  }
+  else if (DOM.parent(target, [`.color_icon_container`])) {
+    icon = `color`
+  }
+  else if (DOM.parent(target, [`.custom_icon`])) {
+    icon = `custom`
+  }
+
+  if (!icon) {
+    return false
+  }
+
+  let cmd = App.get_setting(`${icon}_icon_command`)
+
+  if (!cmd || cmd === `none`) {
+    return false
+  }
+
+  App.run_command({cmd, item, from: `icon_click`, e})
+  return true
+}

@@ -357,6 +357,10 @@ App.insert_icon_css = () => {
     let show
 
     try {
+      if (App.settings[`show_${key}`] === undefined) {
+        return
+      }
+
       show = App.get_setting(`show_${key}`)
     }
     catch (err) {
