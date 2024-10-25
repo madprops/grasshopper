@@ -816,6 +816,10 @@ Addlist.list = (args) => {
       icon,
       text: title,
       action: () => {
+        if (!oargs.editable) {
+          return
+        }
+
         args.index = i
         Addlist.view(args)
       },
@@ -926,11 +930,6 @@ Addlist.add_buttons = (id) => {
   el.append(list)
   let data = DOM.create(`div`, cls, `addlist_button_${id}_data`)
   data.textContent = `Data`
-
-  if (!oargs.editable) {
-    data.classList.add(`hidden`)
-  }
-
   el.append(data)
 
   DOM.ev(`#addlist_button_${id}_count`, `click`, () => {
