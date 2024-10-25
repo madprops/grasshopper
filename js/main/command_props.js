@@ -2777,7 +2777,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_global_notes()
       },
-      info: `Edit the global notes`,
+      info: `Edit the Global Notes`,
     },
     {
       name: `Split Both`,
