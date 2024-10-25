@@ -82,21 +82,21 @@ App.add_item_icon = (item, side, name) => {
   else if (name === `root`) {
     let what = `${name}_icon`
     let title = `Go to the root URL`
-    title += `Middle Click: Remove Root`
+    title += `\nMiddle Click: Remove Root`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `parent`) {
     let what = `${name}_icon`
     let title = `Parent`
-    title += `Middle Click: Close Nodes`
+    title += `\nMiddle Click: Close Nodes`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `node`) {
     let what = `${name}_icon`
     let title = `Node`
-    title += `Middle Click: Filter Siblings`
+    title += `\nMiddle Click: Filter Siblings`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
@@ -121,14 +121,14 @@ App.add_item_icon = (item, side, name) => {
   else if (name === `title`) {
     let what = `${name}_icon`
     let title = `Titled`
-    title += `Middle Click: Remove Tags`
+    title += `\nMiddle Click: Remove Tags`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `tags`) {
     let what = `${name}_icon`
     let title = `Tagged`
-    title += `Middle Click: Remove Tags`
+    title += `\nMiddle Click: Remove Tags`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
@@ -141,7 +141,7 @@ App.add_item_icon = (item, side, name) => {
   else if (name === `notes`) {
     let what = `${name}_icon`
     let title = `Notes`
-    title += `Middle Click: Remove Notes`
+    title += `\nMiddle Click: Remove Notes`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
@@ -149,14 +149,14 @@ App.add_item_icon = (item, side, name) => {
     let cls = `color_icon_container`
     let what = `color_icon`
     let title = ``
-    title += `Middle Click: Remove Color`
+    title += `\nMiddle Click: Remove Color`
     let obj = {what, title, side, item, cls}
     App.proc_item_icon(obj)
   }
   else if (name === `custom`) {
     let what = `${name}_icon`
     let title = `Custom Icon`
-    title += `Middle Click: Remove Icon`
+    title += `\nMiddle Click: Remove Icon`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }

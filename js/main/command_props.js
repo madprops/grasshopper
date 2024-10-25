@@ -3198,6 +3198,19 @@ App.setup_commands = () => {
       info: `Filter all tabs that are a node`,
     },
     {
+      name: `Filter Siblings`,
+      short_name: `Parent`,
+      cmd: `filter_node_tab_sibling`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      icon: node_icon,
+      action: (args) => {
+        App.filter_node_tab_siblings(args.item)
+      },
+      info: `Filter the siblings of a tab`,
+    },
+    {
       name: `Filter Color`,
       cmd: `filter_color`,
       modes: [`items`],
