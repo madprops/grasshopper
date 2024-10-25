@@ -29,6 +29,7 @@ App.make_tab_box_modes = () => {
     recent: {info: `Recently visited tabs`, icon: App.mode_icon(`tabs`)},
     pins: {info: `Pinned tabs`, icon: App.get_setting(`pin_icon`)},
     playing: {info: `Tabs emitting sound`, icon: App.get_setting(`playing_icon`)},
+    unloaded: {info: `Unloaded tabs`, icon: App.get_setting(`unloaded_icon`)},
     colors: {info: `Tabs with colors`, icon: App.settings_icons.colors},
     tags: {info: `Tabs with tags`, icon: App.get_setting(`tags_icon`)},
     icons: {info: `Tabs with icons`, icon: App.bot_icon},
@@ -235,6 +236,11 @@ App.update_tab_box_pins = () => {
 App.update_tab_box_playing = () => {
   let o_items = App.get_playing_tabs()
   return App.tab_box_show(`playing`, o_items)
+}
+
+App.update_tab_box_unloaded = () => {
+  let o_items = App.get_unloaded_tabs()
+  return App.tab_box_show(`unloaded`, o_items)
 }
 
 App.update_tab_box_colors = () => {
