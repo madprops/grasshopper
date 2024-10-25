@@ -1381,11 +1381,18 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Custom Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
       },
+    },
+    custom_icon_commands: {
+      name: `Custom Icon Commands`,
+      type: `list`,
+      value: [],
+      separator: true,
+      info: `Define the action when clicking specific custom icons`,
+      version: 1,
     },
     item_icon_order: {
       name: `Icon Order`,

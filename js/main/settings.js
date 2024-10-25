@@ -1643,6 +1643,44 @@ App.setup_settings_addlist = () => {
     }
   }
 
+  menukeys = [
+    `custom_icon_commands`,
+  ]
+
+  for (let key in App.setting_props) {
+    if (menukeys.includes(key)) {
+      let id = `settings_${key}`
+      let props = App.setting_props[key]
+
+      App.create_popup({...popobj, id: `addlist_${id}`,
+        element: Addlist.register({...regobj, id,
+          keys: [`icon`, `cmd`],
+          pk: `icon`,
+          widgets: {
+            icon: `text`,
+            cmd: `menu`,
+          },
+          labels: {
+            icon: `Icon`,
+            cmd: `Command`,
+          },
+          sources: {
+            cmd: () => {
+              return App.cmdlist_pure.slice(0)
+            },
+          },
+          list_icon: (item) => {
+            return item.icon
+          },
+          list_text: (item) => {
+            let cmd = App.settings_cmd_name(item.cmd)
+            return `= ${cmd}`
+          },
+          title: props.name,
+        })})
+    }
+  }
+
   App.start_domain_rules_addlist()
   App.start_bookmark_rules_addlist()
   App.start_signals_addlist()

@@ -277,7 +277,7 @@ App.add_item_icon = (item, side, name) => {
 
     if (App.get_setting(`${name}_icon_click`)) {
       cls += ` grower`
-      title += `\nClick to show the menu`
+      title += `\nClick to show the menu or run a custom command`
     }
 
     let obj = {what, title, cls, side, item}
@@ -935,4 +935,29 @@ App.icon_enabled = (what) => {
 
   let show = App.get_setting(`show_${what}_icon`)
   return icon && (show !== `never`)
+}
+
+App.custom_icon_click = (item, icon, e) => {
+  let cmd = App.get_custom_icon_command(icon)
+
+  if (cmd) {
+    App.run_command({cmd, from: `custom_icon`, e})
+  }
+  else {
+    App.custom_icon_menu(item, e)
+  }
+}
+
+App.get_custom_icon_command = (icon) => {
+  let custom_cmds = App.get_setting(`custom_icon_commands`)
+  let cmd
+
+  for (let item of custom_cmds) {
+    if (item.icon === icon) {
+      cmd = item.cmd
+      break
+    }
+  }
+
+  return cmd
 }

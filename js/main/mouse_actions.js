@@ -288,8 +288,10 @@ App.mouse_click_action = (e) => {
     }
 
     if (App.get_setting(`custom_icon_click`)) {
-      if (DOM.parent(target, [`.custom_icon`])) {
-        App.custom_icon_menu(item, e)
+      let icon = DOM.parent(target, [`.custom_icon`])
+
+      if (icon) {
+        App.custom_icon_click(item, icon.textContent, e)
         return
       }
     }
