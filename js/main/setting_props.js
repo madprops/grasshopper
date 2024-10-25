@@ -1285,46 +1285,6 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    tags_icon: {
-      name: `Tags Icon`,
-      type: `text_smaller`,
-      value: `✝️`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
-      info: `Icon for tagged tabs`,
-      version: 1,
-    },
-    tags_icon_side: {
-      name: `Tags Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Tags Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_tags_icon: {
-      name: `Show Tags Icon`,
-      type: `menu`,
-      value: `never`,
-      info: `When to show the Tags Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    tags_icon_command: {
-      name: `Tags Icon Command`,
-      type: `menu`,
-      value: `edit_tags`,
-      info: `Command to run when clicking the Tags Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     notes_icon: {
       name: `Notes Icon`,
       type: `text_smaller`,
@@ -3786,7 +3746,7 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `taglist`
+  category = `tags`
 
   props = {
     show_taglist: {
@@ -3819,6 +3779,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `filter`,
       info: `What to do when clicking the Taglist items`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -3829,6 +3790,46 @@ App.build_settings = () => {
           {text: `Filter`, value: `filter`},
           {text: `Remove`, value: `remove`},
         ])
+      },
+    },
+    tags_icon: {
+      name: `Tags Icon`,
+      type: `text_smaller`,
+      value: `✝️`,
+      no_empty: true,
+      placeholder: App.icon_placeholder,
+      info: `Icon for tagged tabs`,
+      version: 1,
+    },
+    tags_icon_side: {
+      name: `Tags Icon Side`,
+      type: `menu`,
+      value: `right`,
+      info: `Show the Tags Icon on the left or right of text`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
+    show_tags_icon: {
+      name: `Show Tags Icon`,
+      type: `menu`,
+      value: `never`,
+      info: `When to show the Tags Icon`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    tags_icon_command: {
+      name: `Tags Icon Command`,
+      type: `menu`,
+      value: `edit_tags`,
+      info: `Command to run when clicking the Tags Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     taglist_add: {
@@ -3850,6 +3851,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Sort tags alphabetically in the Taglist`,
+      version: 1,
+    },
+    auto_tag_picker: {
+      name: `Auto Tag Picker`,
+      type: `checkbox`,
+      value: false,
+      info: `Add tags quickly with the auto picker`,
       version: 1,
     },
   }
@@ -6089,13 +6097,6 @@ App.build_settings = () => {
       info: `Auto-clear after no items remain when closing tabs`,
       version: 1,
     },
-    auto_tag_picker: {
-      name: `Auto Tag Picker`,
-      type: `checkbox`,
-      value: false,
-      info: `Add tags quickly with the auto picker`,
-      version: 1,
-    },
     autohide_context: {
       name: `Autohide Context`,
       type: `checkbox`,
@@ -6263,9 +6264,8 @@ App.build_settings = () => {
       info: `Configure the Title
       The title is text that appears at the top`,
     },
-    taglist: {
-      info: `Configure the Taglist
-      This is a component that shows item tags in various ways`,
+    tags: {
+      info: `Configure Tags and the Taglist`,
     },
     favorites: {
       info: `Configure favorite commands

@@ -198,7 +198,7 @@ App.settings_icons = {
   menus: `📑`,
   tab_box: `📦`,
   favorites: `❤️`,
-  taglist: `✝️`,
+  tags: `✝️`,
   gestures: `⏫`,
   warns: `🚨`,
   filter: `🔍`,
