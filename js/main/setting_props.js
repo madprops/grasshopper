@@ -5780,7 +5780,7 @@ App.build_settings = () => {
     mouse_outside_delay: {
       name: `Mouse Outside Delay`,
       type: `number`,
-      value: App.SECOND,
+      value: 800,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
