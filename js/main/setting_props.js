@@ -1478,7 +1478,7 @@ App.build_settings = () => {
     node_icon_command: {
       name: `Node Icon Command`,
       type: `menu`,
-      value: `focus_parent_tab`,
+      value: `show_parent_tab`,
       info: `Command to run when clicking the Node Icon`,
       separator: true,
       version: 1,

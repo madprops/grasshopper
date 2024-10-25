@@ -3201,6 +3201,20 @@ App.setup_commands = () => {
       info: `Show the nodes of this tab`,
     },
     {
+      name: `Show Parent`,
+      short_name: `Nodes`,
+      cmd: `show_parent_tab`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      some_parent: true,
+      icon: parent_icon,
+      action: (args) => {
+        App.show_tab_list(`parent`, args.e, args.item)
+      },
+      info: `Show the parent of this tab`,
+    },
+    {
       name: `Close Nodes`,
       short_name: `Nodes`,
       cmd: `close_node_tabs`,

@@ -19,6 +19,10 @@ App.show_tab_list = (what, e, item) => {
     tabs = App.get_tab_nodes(item)
     title = `Nodes`
   }
+  else if (what === `parent`) {
+    tabs = [App.get_parent_item(item)]
+    title = `Parent`
+  }
   else if (what === `domain`) {
     tabs = App.get_domain_tabs(item)
     title = `Domain`
