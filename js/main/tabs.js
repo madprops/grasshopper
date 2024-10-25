@@ -291,6 +291,8 @@ App.tabs_action = async (args = {}) => {
   let def_args = {
     on_action: true,
     soft: false,
+    hard: false,
+    reload: false,
   }
 
   App.def_args(def_args, args)
@@ -427,6 +429,13 @@ App.tabs_action = async (args = {}) => {
 
   if (filter_change) {
     do_blink = false
+  }
+
+  if (args.reload) {
+    App.browser_reload(args.item)
+  }
+  else if (args.hard) {
+    App.browser_reload(args.item, true)
   }
 
   blink_item()

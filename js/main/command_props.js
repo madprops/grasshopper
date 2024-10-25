@@ -1279,6 +1279,28 @@ App.setup_commands = () => {
       info: `Item Action but without loading unloaded tabs`,
     },
     {
+      name: `Reload Action`,
+      cmd: `hard_item_action`,
+      modes: [`items`],
+      item: true,
+      icon: command_icon,
+      action: (args) => {
+        App[`${args.mode}_action`]({item: args.item, from: `click`, reload: true})
+      },
+      info: `Item Action that selects an item and triggers a reload`,
+    },
+    {
+      name: `Hard Action`,
+      cmd: `reload_item_action`,
+      modes: [`items`],
+      item: true,
+      icon: command_icon,
+      action: (args) => {
+        App[`${args.mode}_action`]({item: args.item, from: `click`, hard: true})
+      },
+      info: `Item Action that selects an item and triggers a hard reload`,
+    },
+    {
       name: `Select Item`,
       cmd: `select_item`,
       modes: [`items`],
