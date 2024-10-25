@@ -275,7 +275,7 @@ App.mouse_click_action = (e) => {
   if (DOM.parent(target, [`.item_icon_unit`])) {
     if (App.get_setting(`color_icon_click`)) {
       if (DOM.parent(target, [`.color_icon_container`])) {
-        App.show_color_menu(item, e, false)
+        App.color_icon_click(item, e)
         return
       }
     }
@@ -288,10 +288,8 @@ App.mouse_click_action = (e) => {
     }
 
     if (App.get_setting(`custom_icon_click`)) {
-      let icon = DOM.parent(target, [`.custom_icon`])
-
-      if (icon) {
-        App.custom_icon_click(item, icon.textContent, e)
+      if (DOM.parent(target, [`.custom_icon`])) {
+        App.custom_icon_click(item, e)
         return
       }
     }

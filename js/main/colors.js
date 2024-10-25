@@ -621,17 +621,24 @@ App.start_colors_addlist = () => {
 
   App.create_popup({...popobj, id: `addlist_${id}`,
     element: Addlist.register({...regobj, id,
-      keys: [`name`, `value`, `text`],
+      keys: [`name`, `value`, `text`, `cmd`],
       pk: `name`,
       widgets: {
         name: `text`,
         value: `color`,
         text: `color`,
+        cmd: `menu`,
       },
       labels: {
         name: `Name`,
         value: `Value`,
         text: `Text`,
+        cmd: `Command`,
+      },
+      sources: {
+        cmd: () => {
+          return App.cmdlist_single.slice(0)
+        },
       },
       list_icon: (item) => {
         return App.color_icon(item._id_)
@@ -651,4 +658,30 @@ App.start_colors_addlist = () => {
     })})
 
   App.colors_addlist_ready = true
+}
+
+App.color_icon_click = (item, e) => {
+  let color = App.get_color(item)
+  let cmd = App.get_color_icon_command(color)
+
+  if (cmd && (cmd !== `none`)) {
+    App.run_command({cmd, from: `color_icon`, item, e})
+  }
+  else {
+    App.show_color_menu(item, e, false)
+  }
+}
+
+App.get_color_icon_command = (id) => {
+  let colors = App.get_setting(`colors`)
+  let cmd
+
+  for (let item of colors) {
+    if (item._id_ === id) {
+      cmd = item.cmd
+      break
+    }
+  }
+
+  return cmd
 }

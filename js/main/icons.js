@@ -937,7 +937,8 @@ App.icon_enabled = (what) => {
   return icon && (show !== `never`)
 }
 
-App.custom_icon_click = (item, icon, e) => {
+App.custom_icon_click = (item, e) => {
+  let icon = App.get_icon(item)
   let cmd = App.get_custom_icon_command(icon)
 
   if (cmd) {
