@@ -1290,3 +1290,7 @@ App.check_hide_tabs = (item) => {
     App.show_item_2(item)
   }
 }
+
+App.get_domain_tabs = (item) => {
+  return App.get_items(`tabs`).filter(x => x.hostname === item.hostname)
+}

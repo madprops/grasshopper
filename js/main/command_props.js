@@ -3108,6 +3108,20 @@ App.setup_commands = () => {
       info: `Filter same domain`,
     },
     {
+      name: `Show Domain`,
+      cmd: `show_domain`,
+      modes: [`items`],
+      item: true,
+      single: true,
+      some_no_header: true,
+      some_hostname: true,
+      icon: filter_icon,
+      action: (args) => {
+        App.show_tab_list(`domain`, args.e, args.item)
+      },
+      info: `Show same domain`,
+    },
+    {
       name: `Filter Title`,
       cmd: `filter_title`,
       modes: [`items`],
