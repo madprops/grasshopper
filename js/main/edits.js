@@ -491,7 +491,7 @@ App.show_edits_info = (item) => {
         value = value.join(`, `)
       }
 
-      value = value.substring(0, 50).trim()
+      value = App.no_linebreaks(value).substring(0, 50).trim()
       infos.push(`${name}: ${value}`)
     }
   }

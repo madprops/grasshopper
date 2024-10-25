@@ -280,6 +280,10 @@ App.wheel_direction = (e) => {
   return `up`
 }
 
+App.no_linebreaks = (s) => {
+  return s.replace(/\n/g, ` `)
+}
+
 App.one_linebreak = (s) => {
   return s.replace(/(\n\s*){2,}/g, `\n`).replace(/ +/g, ` `).trim()
 }
