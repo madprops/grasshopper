@@ -19,12 +19,14 @@ App.proc_item_icon = (args = {}) => {
     icon.title = args.title
   }
 
+  icon.dataset.has_tooltips = false
+  icon.dataset.icon = args.name
   args.item.element.append(icon)
 }
 
 App.add_item_icon = (item, side, name) => {
   let what = `${name}_icon`
-  let obj = {item, side, what}
+  let obj = {item, side, what, name}
 
   if (name === `active`) {
     let title = `Active`
@@ -90,17 +92,17 @@ App.add_item_icon = (item, side, name) => {
     App.proc_item_icon(obj)
   }
   else if (name === `image`) {
-    let title = `Image`
+    let title = `Image\nClick to view`
     obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `video`) {
-    let title = `Video`
+    let title = `Video\nClick to view`
     obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `audio`) {
-    let title = `Audio`
+    let title = `Audio\nClick to view`
     obj = {...obj, title}
     App.proc_item_icon(obj)
   }
@@ -208,6 +210,7 @@ App.check_icons = (item) => {
 
   if (custom_icon) {
     custom_icon_el.innerHTML = custom_icon
+    custom_icon_el.dataset.content = custom_icon
     DOM.show(custom_icon_el)
   }
   else {
@@ -833,43 +836,13 @@ App.get_custom_icon_command = (icon) => {
 }
 
 App.item_icon_click = (item, target, e) => {
-  let icon
+  let el = DOM.parent(target, [`.item_icon_unit`])
 
-  function check(what) {
-    if (DOM.parent(target, [`.${what}_icon`])) {
-      icon = what
-      return true
-    }
-
+  if (!el) {
     return false
   }
 
-  let icons = [
-    `playing`,
-    `muted`,
-    `active`,
-    `pin`,
-    `normal`,
-    `loading`,
-    `loaded`,
-    `unread`,
-    `unloaded`,
-    `title`,
-    `tags`,
-    `notes`,
-    `edited`,
-    `root`,
-    `node`,
-    `parent`,
-    `color`,
-    `custom`,
-  ]
-
-  for (let ic of icons) {
-    if (check(ic)) {
-      break
-    }
-  }
+  let icon = el.dataset.icon
 
   if (!icon) {
     return false
@@ -892,4 +865,42 @@ App.item_icon_click = (item, target, e) => {
 
   App.run_command({cmd, item, from: `icon_click`, e})
   return true
+}
+
+App.update_icon_tooltips = (target) => {
+  let el = DOM.parent(target, [`.item_icon_unit`])
+
+  if (!el) {
+    return
+  }
+
+  if (App.boolstring(el.dataset.has_tooltips)) {
+    return
+  }
+
+  el.dataset.has_tooltips = true
+  let icon = el.dataset.icon
+
+  if (!icon) {
+    return
+  }
+
+  let cmd
+
+  if (icon === `color`) {
+    let color = el.dataset.color
+    cmd = App.get_color_icon_command(color)
+  }
+  else if (icon === `custom`) {
+    let content = el.dataset.content
+    cmd = App.get_custom_icon_command(content)
+  }
+  else {
+    cmd = App.get_setting(`${icon}_icon_command`)
+  }
+
+  if (cmd && (cmd !== `none`)) {
+    let cmd_name = App.get_cmd_name(cmd)
+    el.title += `\nClick: ${cmd_name}`
+  }
 }

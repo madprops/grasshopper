@@ -118,14 +118,16 @@ App.apply_color_mode = (item) => {
       DOM.hide(el)
     }
 
+    el.dataset.color = color
+
     if (App.get_setting(`show_tooltips`)) {
       let c_obj = App.get_color_by_id(color)
 
       if (c_obj) {
         el.title = c_obj.name
 
-        if (App.get_setting(`color_icon_click`)) {
-          el.title += `\nClick to show menu\nMiddle Click to uncolor`
+        if (App.get_setting(`icons_middle_click`)) {
+          el.title += `\nMiddle Click: Remove color`
         }
       }
       else {

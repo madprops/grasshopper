@@ -743,6 +743,10 @@ App.do_mouse_over_action = (e) => {
   mode = item.mode
   App.set_item_tooltips(item)
 
+  if (DOM.parent(target, [`.item_icon_unit`])) {
+    App.update_icon_tooltips(target)
+  }
+
   if (App.icon_pick_down) {
     App.toggle_selected({item, what: true})
     return

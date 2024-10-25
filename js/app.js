@@ -434,3 +434,9 @@ App.justify_map = {
   center: `center`,
   right: `flex-end`,
 }
+
+App.media_icons = [
+  `image`,
+  `video`,
+  `audio`,
+]
