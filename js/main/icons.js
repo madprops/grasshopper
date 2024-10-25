@@ -701,11 +701,21 @@ App.filter_by_icon = (item) => {
   }
 }
 
-App.custom_icon_menu_items = (item) => {
+App.custom_icon_menu_items = (item, e) => {
   let items = []
+  let icon = App.get_icon(item)
+
+  items.push({
+    text: `Show`,
+    icon,
+    action: () => {
+      App.show_tab_list(`icon_${icon}`, e)
+    },
+  })
 
   items.push({
     text: `Filter`,
+    icon,
     action: () => {
       App.filter_by_icon(item)
     },
@@ -714,6 +724,8 @@ App.custom_icon_menu_items = (item) => {
   if (item.mode !== `tabs`) {
     return items
   }
+
+  App.sep(items)
 
   items.push({
     text: `Change`,
@@ -735,7 +747,7 @@ App.custom_icon_menu_items = (item) => {
 }
 
 App.custom_icon_menu = (item, e) => {
-  let items = App.custom_icon_menu_items(item)
+  let items = App.custom_icon_menu_items(item, e)
   App.show_context({items, e})
 }
 
