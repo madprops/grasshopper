@@ -63,6 +63,7 @@ Addlist.save = (args = {}) => {
   }
 
   let lines = Addlist.get_data(args.id)
+  Addlist.fill_ids(lines)
 
   if (!data.edit) {
     let sdate = App.now().toString().slice(-9)
@@ -972,15 +973,6 @@ Addlist.add_buttons = (id) => {
 Addlist.get_data = (id) => {
   let oargs = Addlist.oargs(id)
   let lines = App.clone(oargs.get_data(id))
-
-  // Check for empty _id_ and fill it
-  for (let item of lines) {
-    if (!item._id_) {
-      item._id_ = `autoid_${Addlist.fill_id}`
-      Addlist.fill_id += 1
-    }
-  }
-
   return lines
 }
 
@@ -1148,4 +1140,13 @@ Addlist.swap_menus = (id_1, id_2) => {
 
   btn_1.set(value_2)
   btn_2.set(value_1)
+}
+
+Addlist.fill_ids = (lines) => {
+  for (let item of lines) {
+    if (!item._id_) {
+      item._id_ = `autoid_${Addlist.fill_id}`
+      Addlist.fill_id += 1
+    }
+  }
 }

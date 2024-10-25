@@ -3836,9 +3836,9 @@ App.build_settings = () => {
     custom_tags: {
       name: `Custom Tags`,
       type: `list`,
-      value: [{
-        tag: `later`,
-      }],
+      value: [
+        {tag: `later`},
+      ],
       separator: true,
       actions: [`commands`],
       info: `Tag commands to assign to tabs`,
