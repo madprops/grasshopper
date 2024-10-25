@@ -547,7 +547,7 @@ App.mouse_middle_action = (e, target_el) => {
         }
 
         if (DOM.parent(target, [`.tags_icon`])) {
-          App.edit_tab_tags({item})
+          App.remove_tags(item)
           return
         }
 

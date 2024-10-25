@@ -502,3 +502,12 @@ App.get_tag_tabs = (tag, rule = true) => {
 
   return tabs
 }
+
+App.remove_tags = (item) => {
+  App.show_confirm({
+    message: `Remove tags?`,
+    confirm_action: () => {
+      App.edit_tab_tags({item})
+    }
+  })
+}

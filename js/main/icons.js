@@ -88,6 +88,7 @@ App.add_item_icon = (item, side, name) => {
   else if (name === `parent`) {
     let what = `${name}_icon`
     let title = `Parent`
+    title += `Middle Click: Close Nodes`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
@@ -124,6 +125,7 @@ App.add_item_icon = (item, side, name) => {
   else if (name === `tags`) {
     let what = `${name}_icon`
     let title = `Tagged`
+    title += `Middle Click: Remove Tags`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
@@ -136,6 +138,7 @@ App.add_item_icon = (item, side, name) => {
   else if (name === `notes`) {
     let what = `${name}_icon`
     let title = `Notes`
+    title += `Middle Click: Remove Notes`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
@@ -143,12 +146,14 @@ App.add_item_icon = (item, side, name) => {
     let cls = `color_icon_container`
     let what = `color_icon`
     let title = ``
+    title += `Middle Click: Remove Color`
     let obj = {what, title, side, item, cls}
     App.proc_item_icon(obj)
   }
   else if (name === `custom`) {
     let what = `${name}_icon`
     let title = `Custom Icon`
+    title += `Middle Click: Remove Icon`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
