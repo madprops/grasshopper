@@ -15,9 +15,7 @@ App.proc_item_icon = (args = {}) => {
     icon.textContent = App.get_setting(args.what)
   }
 
-  let tips = App.get_setting(`show_tooltips`)
-
-  if (tips) {
+  if (args.tips) {
     icon.title = args.title
   }
 
@@ -25,139 +23,125 @@ App.proc_item_icon = (args = {}) => {
 }
 
 App.add_item_icon = (item, side, name) => {
+  let what = `${name}_icon`
+
+  let obj = {
+    item, side, what,
+    tips: App.get_setting(`show_tooltips`)
+  }
+
   if (name === `active`) {
-    let what = `${name}_icon`
     let title = `Active`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `pin`) {
-    let what = `${name}_icon`
     let title = `Pinned`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `normal`) {
-    let what = `${name}_icon`
     let title = `Normal`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `loaded`) {
-    let what = `${name}_icon`
     let title = `Loaded`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `unloaded`) {
-    let what = `${name}_icon`
     let title = `Unloaded`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `playing`) {
-    let what = `${name}_icon`
     let title = `Playing`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `muted`) {
-    let what = `${name}_icon`
     let title = `Muted`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `unread`) {
-    let what = `${name}_icon`
     let title = `Unread`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `loading`) {
-    let what = `${name}_icon`
     let title = `Loading`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `root`) {
-    let what = `${name}_icon`
     let title = `Go to the root URL`
     title += `\nMiddle Click: Remove Root`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `parent`) {
-    let what = `${name}_icon`
     let title = `Parent`
     title += `\nMiddle Click: Close Nodes`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `node`) {
-    let what = `${name}_icon`
     let title = `Node`
     title += `\nMiddle Click: Filter Siblings`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `image`) {
-    let what = `${name}_icon`
     let title = `Image`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `video`) {
-    let what = `${name}_icon`
     let title = `Video`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `audio`) {
-    let what = `${name}_icon`
     let title = `Audio`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `title`) {
-    let what = `${name}_icon`
     let title = `Titled`
     title += `\nMiddle Click: Remove Tags`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `tags`) {
-    let what = `${name}_icon`
     let title = `Tagged`
     title += `\nMiddle Click: Remove Tags`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `edited`) {
-    let what = `${name}_icon`
     let title = `Edited`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `notes`) {
-    let what = `${name}_icon`
     let title = `Notes`
     title += `\nMiddle Click: Remove Notes`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
   else if (name === `color`) {
     let cls = `color_icon_container`
-    let what = `color_icon`
     let title = ``
     title += `\nMiddle Click: Remove Color`
-    let obj = {what, title, side, item, cls}
+    obj = {...obj, title, cls}
     App.proc_item_icon(obj)
   }
   else if (name === `custom`) {
-    let what = `${name}_icon`
     let title = `Custom Icon`
     title += `\nMiddle Click: Remove Icon`
-    let obj = {what, title, side, item}
+    obj = {...obj, title}
     App.proc_item_icon(obj)
   }
 }
