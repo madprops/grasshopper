@@ -15,7 +15,7 @@ App.proc_item_icon = (args = {}) => {
     icon.textContent = App.get_setting(args.what)
   }
 
-  if (args.tips) {
+  if (App.get_setting(`show_tooltips`)) {
     icon.title = args.title
   }
 
@@ -24,11 +24,7 @@ App.proc_item_icon = (args = {}) => {
 
 App.add_item_icon = (item, side, name) => {
   let what = `${name}_icon`
-
-  let obj = {
-    item, side, what,
-    tips: App.get_setting(`show_tooltips`)
-  }
+  let obj = {item, side, what}
 
   if (name === `active`) {
     let title = `Active`
