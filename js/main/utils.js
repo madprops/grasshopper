@@ -639,9 +639,5 @@ App.shuffle_array = (array) => {
 }
 
 App.clone_if_node = (el) => {
-  if (el instanceof Node) {
-    return el.cloneNode(true)
-  }
-
-  return el
+  return el instanceof Node ? el.cloneNode(true) : el
 }
