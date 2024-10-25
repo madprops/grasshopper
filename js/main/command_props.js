@@ -273,7 +273,7 @@ App.setup_commands = () => {
     action: (args) => {
       App.show_filter_color_menu(args.mode, args.e)
     },
-    info: `Show the filter color menu`,
+    info: `Show the Filter Color Menu`,
   })
 
   color_changers.push({
@@ -286,7 +286,7 @@ App.setup_commands = () => {
     action: (args) => {
       App.show_color_menu(args.item, args.e)
     },
-    info: `Show the colors menu`,
+    info: `Show the Colors Menu`,
   })
 
   color_removers.push({
@@ -377,7 +377,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Filter media (${media})`,
+      info: `Filter Media (${media})`,
     })
   }
 
@@ -397,7 +397,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_mode({mode, reuse_filter: true})
       },
-      info: `Show mode: ${mode}`,
+      info: `Show Mode: ${mode}`,
     })
   }
 
@@ -409,7 +409,7 @@ App.setup_commands = () => {
     action: (args) => {
       App.show_main_mode()
     },
-    info: `Show the main mode`,
+    info: `Show the Main Mode`,
   })
 
   let settings_categories = []
@@ -427,7 +427,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_settings_category(category)
       },
-      info: `Show settings (${c_name})`,
+      info: `Show Settings (${c_name})`,
     })
   }
 
@@ -463,7 +463,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.send_signal(item)
       },
-      info: `Send this signal (${num})`,
+      info: `Send Signal (${num})`,
     })
   }
 
@@ -477,7 +477,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.set_theme(i)
       },
-      info: `Set theme number ${i}`,
+      info: `Set Theme (${i})`,
     })
   }
 
@@ -492,7 +492,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.focus_tab_number(i)
       },
-      info: `Focus a tab at the top (${i})`,
+      info: `Focus tab by index (${i})`,
     })
   }
 
@@ -1087,7 +1087,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_palette()
       },
-      info: `Show the command Palette`,
+      info: `Show the Command Palette`,
     },
     {
       name: `Toggle Favorites`,
@@ -1098,7 +1098,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_favorites(args.mode)
       },
-      info: `Show or hide the Favorites bar or button`,
+      info: `Show or hide the Favorites Bar or Button`,
     },
     {
       name: `Favorites Autohide`,
@@ -1109,7 +1109,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_favorites_autohide()
       },
-      info: `Enable or disable Favorites autohide`,
+      info: `Enable or disable Favorites Autohide`,
     },
     {
       name: `Toggle Tab Box`,
@@ -1298,7 +1298,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_favorites_menu(args.e)
       },
-      info: `Show the Favorites menu`,
+      info: `Show the Favorites Menu`,
     },
     {
       name: `Filter All`,
@@ -1550,7 +1550,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_main_menu(args.mode)
       },
-      info: `Show the main menu`,
+      info: `Show the Main Menu`,
     },
     {
       name: `Filter Menu`,
@@ -1561,7 +1561,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_filter_menu(args.mode)
       },
-      info: `Show the filter menu`,
+      info: `Show the Filter Menu`,
     },
 
     ...mode_menus,
@@ -1575,7 +1575,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_actions_menu(args.mode, args.item, args.e)
       },
-      info: `Show the actions menu`,
+      info: `Show the Actions Menu`,
     },
     {
       name: `Browser Menu`,
@@ -2164,7 +2164,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.sort_tabs()
       },
-      info: `Open the sort tabs window`,
+      info: `Open the Sort Tabs window`,
     },
     {
       name: `Reverse`,
@@ -2472,7 +2472,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_notes(args.item)
       },
-      info: `Edit tab notes`,
+      info: `Edit the notes of tabs`,
     },
     {
       name: `Jump Up`,

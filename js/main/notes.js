@@ -5,16 +5,19 @@ App.edit_notes = (item) => {
     button: `Save`,
     action: (text) => {
       let notes = App.single_linebreak(text)
+      let active = App.get_active_items({mode: item.mode, item})
 
-      if (item.rule_notes) {
-        if (item.rule_notes === notes) {
-          return
+      for (let it of active) {
+        if (it.rule_notes) {
+          if (it.rule_notes === notes) {
+            continue
+          }
         }
-      }
 
-      App.apply_edit({what: `notes`, item, value: notes, on_change: (value) => {
-        App.custom_save(item.id, `notes`, value)
-      }})
+        App.apply_edit({what: `notes`, item: it, value: notes, on_change: (value) => {
+          App.custom_save(it.id, `notes`, value)
+        }})
+      }
 
       return true
     },
