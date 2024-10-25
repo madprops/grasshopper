@@ -478,9 +478,10 @@ App.fill_custom_props = (obj, item) => {
 }
 
 App.show_edits_info = (item) => {
+  let content = []
   let infos = []
 
-  function action(key, what, title) {
+  function action(key, what) {
     let props = App.edit_props[key]
     let name = App.capitalize(key)
     let value = item[`${what}_${key}`]
@@ -491,21 +492,35 @@ App.show_edits_info = (item) => {
       }
 
       value = value.substring(0, 50).trim()
-      infos.push(`${title} ${name}: ${value}`)
+      infos.push(`${name}: ${value}`)
+    }
+  }
+
+  function add(text, title) {
+    if (text) {
+      let sep = `------`
+      content.push(`${title}\n${sep}\n${text}`)
     }
   }
 
   for (let key in App.edit_props) {
-    action(key, `custom`, `Custom`)
+    action(key, `custom`)
   }
 
+  let text = infos.join(`\n`)
+  add(text, `Custom`)
+  infos = []
+
   for (let key in App.edit_props) {
-    action(key, `rule`, `Rule`)
+    action(key, `rule`)
   }
+
+  text = infos.join(`\n`)
+  add(text, `Rules`)
 
   App.show_textarea({
     title: `Edits Info`,
     title_icon: App.get_setting(`edited_icon`),
-    text: infos.join(`\n`),
+    text: content.join(`\n\n`),
   })
 }
