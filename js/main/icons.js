@@ -843,6 +843,17 @@ App.get_custom_icon_command = (icon) => {
   return cmd
 }
 
-App.icon_has_command = () => {
-  return true
+App.icon_has_command = (icon) => {
+  if ([
+    `color_icon`,
+    `custom_icon`,
+    `image_icon`,
+    `video_icon`,
+    `audio_icon`,
+  ].includes(icon)) {
+    return true
+  }
+
+  let cmd = App.get_setting(`${icon}_command`)
+  return cmd && (cmd !== `none`)
 }
