@@ -530,7 +530,7 @@ App.mouse_middle_action = (e, target_el) => {
     }
 
     if (DOM.parent(target, [`.item_icon_unit`])) {
-      if (App.get_setting(`middle_click_icon_actions`)) {
+      if (App.get_setting(`icons_middle_click`)) {
         if (DOM.parent(target, [`.color_icon_container`])) {
           App.edit_tab_color({item})
           return
