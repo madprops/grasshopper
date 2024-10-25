@@ -917,7 +917,7 @@ App.build_settings = () => {
     active_icon_command: {
       name: `Active Icon Command`,
       type: `menu`,
-      value: `none`,
+      value: `show_same_domain`,
       info: `Command to run when clicking the Active Icon`,
       separator: true,
       version: 1,

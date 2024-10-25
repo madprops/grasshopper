@@ -829,6 +829,9 @@ App.item_icon_click = (item, target, e) => {
   else if (DOM.parent(target, [`.muted_icon`])) {
     icon = `muted`
   }
+  else if (DOM.parent(target, [`.active_icon`])) {
+    icon = `active`
+  }
   else if (DOM.parent(target, [`.pin_icon`])) {
     icon = `pin`
   }
