@@ -1606,7 +1606,7 @@ App.setup_settings_addlist = () => {
   }
 
   menukeys = [
-    `item_icon_order`
+    `item_icon_order`,
   ]
 
   for (let key in App.setting_props) {
