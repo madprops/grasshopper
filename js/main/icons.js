@@ -853,8 +853,8 @@ App.item_icon_click = (item, target, e) => {
     `custom`,
   ]
 
-  for (let i of icons) {
-    if (check(i)) {
+  for (let ic of icons) {
+    if (check(ic)) {
       break
     }
   }
