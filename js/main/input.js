@@ -56,6 +56,7 @@ App.show_input = (args = {}) => {
   App.show_textarea({
     on_enter,
     title: args.title,
+    title_icon: args.title_icon,
     bottom: args.bottom,
     wrap: args.wrap,
     text: args.value,

@@ -18,7 +18,13 @@ App.show_textarea = (args = {}) => {
 
   if (args.title) {
     DOM.show(title)
-    title.textContent = args.title
+    let text = args.title
+
+    if (args.title_icon) {
+      text = `${args.title_icon} ${text}`
+    }
+
+    title.textContent = text
   }
   else {
     DOM.hide(title)

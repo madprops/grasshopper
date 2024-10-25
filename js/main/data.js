@@ -5,7 +5,8 @@ App.export_data = (what, obj) => {
 App.import_data = (what, action, value = ``) => {
   App.show_input({
     value,
-    title: `${App.data_icon} Paste ${what} Data`,
+    title: `Paste ${what} Data`,
+    title_icon: App.data_icon,
     button: `Import`,
     action: (text) => {
       if (!text.trim()) {
