@@ -101,6 +101,12 @@ App.add_item_icon = (item, side, name) => {
     let cls = ``
     let what = `${name}_icon`
     let title = `Muted`
+
+    if (App.get_setting(`mute_click`)) {
+      cls += ` grower`
+      title += `\nClick to toggle mute`
+    }
+
     let obj = {what, title, cls, side, item}
     App.proc_item_icon(obj)
   }
