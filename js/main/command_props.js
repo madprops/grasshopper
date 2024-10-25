@@ -1531,6 +1531,17 @@ App.setup_commands = () => {
       info: `Reload the current page`,
     },
     {
+      name: `Hard Reload`,
+      short_name: `H. Reload`,
+      cmd: `browser_reload`,
+      icon: browser_icon,
+      modes: [`items`],
+      action: (args) => {
+        App.browser_reload(args.item, true)
+      },
+      info: `Reload the current page ignoring the cache`,
+    },
+    {
       name: `Main Menu`,
       short_name: `Menu`,
       cmd: `show_main_menu`,

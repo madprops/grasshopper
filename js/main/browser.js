@@ -87,9 +87,9 @@ App.browser_action = (item, action) => {
   }
 }
 
-App.browser_reload = (item) => {
+App.browser_reload = (item, bypass = false) => {
   App.browser_action(item, (id) => {
-    browser.tabs.reload(id)
+    browser.tabs.reload(id, {bypassCache: bypass})
   })
 }
 
