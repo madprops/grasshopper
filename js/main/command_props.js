@@ -1533,7 +1533,7 @@ App.setup_commands = () => {
     {
       name: `Hard Reload`,
       short_name: `H. Reload`,
-      cmd: `browser_reload`,
+      cmd: `browser_hard_reload`,
       icon: browser_icon,
       modes: [`items`],
       action: (args) => {

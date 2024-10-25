@@ -3,6 +3,7 @@ App.show_browser_menu = (e) => {
     `browser_back`,
     `browser_forward`,
     `browser_reload`,
+    `browser_hard_reload`,
   ]
 
   let urls = App.get_setting(`custom_urls`)
