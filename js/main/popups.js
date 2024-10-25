@@ -87,7 +87,7 @@ App.show_popup = (id) => {
     return a.show_date < b.show_date ? -1 : 1
   })
 
-  let zindex = 999
+  let zindex = 99999
 
   for (let popup of open) {
     popup.element.style.zIndex = zindex
