@@ -1631,9 +1631,8 @@ App.setup_settings_addlist = () => {
             else if (item.icon === `custom`) {
               return App.bot_icon
             }
-            else {
-              return App.get_setting(`${item.icon}_icon`)
-            }
+
+            return App.get_setting(`${item.icon}_icon`)
           },
           list_text: (item) => {
             return App.capitalize_words(item.icon)
