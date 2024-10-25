@@ -1157,7 +1157,7 @@ App.build_settings = () => {
     loading_icon_command: {
       name: `Loading Icon Command`,
       type: `menu`,
-      value: `none`,
+      value: `browser_reload`,
       info: `Command to run when clicking the Loading Icon`,
       separator: true,
       version: 1,
@@ -1237,7 +1237,7 @@ App.build_settings = () => {
     unread_icon_command: {
       name: `Unread Icon Command`,
       type: `menu`,
-      value: `none`,
+      value: `add_tag_later`,
       info: `Command to run when clicking the Unread Icon`,
       separator: true,
       version: 1,
@@ -1398,7 +1398,7 @@ App.build_settings = () => {
     edited_icon_command: {
       name: `Edited Icon Command`,
       type: `menu`,
-      value: `none`,
+      value: `remove_item_edits`,
       info: `Command to run when clicking the Edited Icon`,
       separator: true,
       version: 1,
