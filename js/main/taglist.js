@@ -155,6 +155,13 @@ App.show_taglist_menu = (e, item) => {
   }
 
   items.push({
+    text: `Show`,
+    action: () => {
+      App.show_tab_list(`tag_${tag}`, e)
+    },
+  })
+
+  items.push({
     text: `Filter`,
     action: () => {
       App.filter_tag({mode: item.mode, tag})
