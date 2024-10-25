@@ -941,7 +941,7 @@ App.custom_icon_click = (item, icon, e) => {
   let cmd = App.get_custom_icon_command(icon)
 
   if (cmd) {
-    App.run_command({cmd, from: `custom_icon`, e})
+    App.run_command({cmd, from: `custom_icon`, item, e})
   }
   else {
     App.custom_icon_menu(item, e)
