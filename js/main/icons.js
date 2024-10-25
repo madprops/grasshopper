@@ -823,50 +823,40 @@ App.get_custom_icon_command = (icon) => {
 App.item_icon_click = (item, target, e) => {
   let icon
 
-  if (DOM.parent(target, [`.playing_icon`])) {
-    icon = `playing`
+  function check(what) {
+    if (DOM.parent(target, [`.${what}_icon`])) {
+      icon = what
+      return true
+    }
+
+    return false
   }
-  else if (DOM.parent(target, [`.muted_icon`])) {
-    icon = `muted`
-  }
-  else if (DOM.parent(target, [`.active_icon`])) {
-    icon = `active`
-  }
-  else if (DOM.parent(target, [`.pin_icon`])) {
-    icon = `pin`
-  }
-  else if (DOM.parent(target, [`.normal_icon`])) {
-    icon = `normal`
-  }
-  else if (DOM.parent(target, [`.loaded_icon`])) {
-    icon = `loaded`
-  }
-  else if (DOM.parent(target, [`.unloaded_icon`])) {
-    icon = `unloaded`
-  }
-  else if (DOM.parent(target, [`.title_icon`])) {
-    icon = `title`
-  }
-  else if (DOM.parent(target, [`.tags_icon`])) {
-    icon = `tags`
-  }
-  else if (DOM.parent(target, [`.notes_icon`])) {
-    icon = `notes`
-  }
-  else if (DOM.parent(target, [`.root_icon`])) {
-    icon = `root`
-  }
-  else if (DOM.parent(target, [`.node_icon`])) {
-    icon = `node`
-  }
-  else if (DOM.parent(target, [`.parent_icon`])) {
-    icon = `parent`
-  }
-  else if (DOM.parent(target, [`.color_icon_container`])) {
-    icon = `color`
-  }
-  else if (DOM.parent(target, [`.custom_icon`])) {
-    icon = `custom`
+
+  let icons = [
+    `playing`,
+    `muted`,
+    `active`,
+    `pin`,
+    `normal`,
+    `loading`,
+    `loaded`,
+    `unread`,
+    `unloaded`,
+    `title`,
+    `tags`,
+    `notes`,
+    `edited`,
+    `root`,
+    `node`,
+    `parent`,
+    `color`,
+    `custom`,
+  ]
+
+  for (let i of icons) {
+    if (check(i)) {
+      break
+    }
   }
 
   if (!icon) {
