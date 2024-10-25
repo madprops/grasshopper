@@ -46,7 +46,8 @@ App.show_tab_list = (what, e, item) => {
   else if (what.startsWith(`tag_`)) {
     let tag = what.split(`_`)[1]
     tabs = App.get_tag_tabs(tag)
-    title = `Tag: ${tag}`
+    title = tag
+    title_icon = App.get_setting(`tags_icon`)
   }
   else if (what.startsWith(`icon_`)) {
     let icon = what.split(`_`)[1]
