@@ -508,6 +508,6 @@ App.remove_tags = (item) => {
     message: `Remove tags?`,
     confirm_action: () => {
       App.edit_tab_tags({item})
-    }
+    },
   })
 }
