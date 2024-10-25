@@ -52,7 +52,7 @@ App.show_tab_list = (what, e, item) => {
   else if (what.startsWith(`icon_`)) {
     let icon = what.split(`_`)[1]
     tabs = App.get_icon_tabs(icon)
-    title = `Icon: ${icon}`
+    title = icon
   }
 
   let items = []
