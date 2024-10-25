@@ -4418,6 +4418,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `previous_filter`,
       info: `What command to run when pressing Shift twice quickly`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
