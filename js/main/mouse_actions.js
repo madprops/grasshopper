@@ -177,8 +177,10 @@ App.mouse_click_action = (e) => {
 
     if (DOM.parent(target, [`.taglist`])) {
       if (DOM.parent(target, [`.taglist_item`])) {
-        App.taglist_action(item, e)
-        return
+        if (App.get_setting(`taglist_mode`) !== `none`) {
+          App.taglist_action(item, e)
+          return
+        }
       }
 
       if (DOM.parent(target, [`.taglist_left_scroll`])) {

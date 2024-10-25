@@ -76,13 +76,11 @@ App.check_taglist = (item) => {
 
     let cls = ``
 
-    if (mode !== `none`) {
-      if (position === `left` || position === `right`) {
-        cls += ` linkbutton`
-      }
-      else if (position === `above` || position === `below`) {
-        cls += ` doubleline`
-      }
+    if (position === `left` || position === `right`) {
+      cls += ` linkbutton`
+    }
+    else if (position === `above` || position === `below`) {
+      cls += ` doubleline`
     }
 
     for (let tag of tags) {
@@ -166,8 +164,7 @@ App.show_taglist_menu = (e, item) => {
 
   if (is_custom) {
     items.push({
-      text: `Edit`,
-      icon: tags_icon,
+      text: `Change`,
       action: () => {
         App.edit_tag(item, tag)
       },
@@ -177,7 +174,6 @@ App.show_taglist_menu = (e, item) => {
   if (is_custom) {
     items.push({
       text: `Remove`,
-      icon: tags_icon,
       action: () => {
         App.remove_tag(item, tag)
       },
