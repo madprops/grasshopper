@@ -3964,7 +3964,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.lock_screen()
       },
-      info: `Lock the screen which might require a code to unlock`,
+      info: `Lock the screen. Signals are not sent when locked`,
     },
     {
       name: `Password`,
