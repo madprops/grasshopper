@@ -26,6 +26,7 @@ App.setup_commands = () => {
   let title_icon = App.get_setting(`title_icon`)
   let tags_icon = App.get_setting(`tags_icon`)
   let image_icon = App.get_setting(`image_icon`)
+  let edited_icon = App.get_setting(`edited_icon`)
 
   let main_title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
@@ -3081,7 +3082,7 @@ App.setup_commands = () => {
       short_name: `Rm Edits`,
       cmd: `remove_all_edits`,
       modes: [`tabs`],
-      icon: notepad_icon,
+      icon: edited_icon,
       action: (args) => {
         App.remove_all_edits()
       },
@@ -3094,7 +3095,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_edits: true,
-      icon: notepad_icon,
+      icon: edited_icon,
       action: (args) => {
         App.remove_item_edits(args.item)
       },
@@ -3108,7 +3109,7 @@ App.setup_commands = () => {
       item: true,
       some_edits: true,
       single: true,
-      icon: notepad_icon,
+      icon: edited_icon,
       action: (args) => {
         App.show_edits_info(args.item)
       },
