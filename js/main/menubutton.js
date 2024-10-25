@@ -163,12 +163,7 @@ Menubutton.set_text = (args, opt) => {
 
   if (opt.icon) {
     let icon = DOM.create(`div`, `menupanel_icon`)
-    let icon_s = opt.icon
-
-    if (icon_s instanceof Node) {
-      icon_s = icon_s.cloneNode(true)
-    }
-
+    let icon_s = App.clone_if_node(opt.icon)
     icon.append(icon_s)
     args.button.append(icon)
   }

@@ -106,12 +106,7 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
   for (let fav of favs) {
     let btn = DOM.create(`div`, `favorites_bar_item button button_3`)
     let icon = DOM.create(`div`, `favorites_bar_icon`)
-    let icon_s = fav.cmd.icon
-
-    if (icon_s instanceof Node) {
-      icon_s = icon_s.cloneNode(true)
-    }
-
+    let icon_s = App.clone_if_node(fav.cmd.icon)
     icon.append(icon_s)
     btn.append(icon)
     btn.title = fav.cmd.name
