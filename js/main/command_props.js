@@ -3100,6 +3100,20 @@ App.setup_commands = () => {
       },
       info: `Remove all edits from specific items`,
     },
+    {
+      name: `Edits Info`,
+      short_name: `Edits`,
+      cmd: `show_edits_info`,
+      modes: [`tabs`],
+      item: true,
+      some_edits: true,
+      single: true,
+      icon: notepad_icon,
+      action: (args) => {
+        App.show_edits_info(args.item)
+      },
+      info: `Show the edits of an item`,
+    },
 
     ...color_changers,
     ...media_filters,

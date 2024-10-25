@@ -476,3 +476,36 @@ App.fill_custom_props = (obj, item) => {
     }
   }
 }
+
+App.show_edits_info = (item) => {
+  let infos = []
+
+  function action(key, what, title) {
+    let props = App.edit_props[key]
+    let name = App.capitalize(key)
+    let value = item[`${what}_${key}`]
+
+    if (value !== undefined) {
+      if (props.type === `list`) {
+        value = value.join(`, `)
+      }
+
+      value = value.substring(0, 50).trim()
+      infos.push(`${title} ${name}: ${value}`)
+    }
+  }
+
+  for (let key in App.edit_props) {
+    action(key, `custom`, `Custom`)
+  }
+
+  for (let key in App.edit_props) {
+    action(key, `rule`, `Rule`)
+  }
+
+  App.show_textarea({
+    title: `Edits Info`,
+    title_icon: App.notepad_icon,
+    text: infos.join(`\n`),
+  })
+}

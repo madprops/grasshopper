@@ -1398,7 +1398,7 @@ App.build_settings = () => {
     edited_icon_command: {
       name: `Edited Icon Command`,
       type: `menu`,
-      value: `remove_item_edits`,
+      value: `show_edits_info`,
       info: `Command to run when clicking the Edited Icon`,
       separator: true,
       version: 1,
