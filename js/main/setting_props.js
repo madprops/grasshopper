@@ -1606,6 +1606,13 @@ App.build_settings = () => {
       info: `Generate icons if favicons are not found`,
       version: 1,
     },
+    middle_click_icon_actions: {
+      name: `Middle Click Icon Actions`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable middle click actions for item icons`,
+      version: 1,
+    },
   }
 
   add_props()

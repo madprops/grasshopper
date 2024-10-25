@@ -530,61 +530,47 @@ App.mouse_middle_action = (e, target_el) => {
     }
 
     if (DOM.parent(target, [`.item_icon_unit`])) {
-      if (App.get_setting(`color_icon_click`)) {
+      if (App.get_setting(`middle_click_icon_actions`)) {
         if (DOM.parent(target, [`.color_icon_container`])) {
           App.edit_tab_color({item})
           return
         }
-      }
 
-      if (App.get_setting(`title_icon_click`)) {
         if (DOM.parent(target, [`.title_icon`])) {
           App.edit_tab_title({item})
           return
         }
-      }
 
-      if (App.get_setting(`root_icon_click`)) {
         if (DOM.parent(target, [`.root_icon`])) {
           App.remove_root_url(item)
           return
         }
-      }
 
-      if (App.get_setting(`tags_icon_click`)) {
         if (DOM.parent(target, [`.tags_icon`])) {
           App.edit_tab_tags({item})
           return
         }
-      }
 
-      if (App.get_setting(`node_icon_click`)) {
         if (DOM.parent(target, [`.node_icon`])) {
           App.filter_node_tab_siblings(item)
           return
         }
-      }
 
-      if (App.get_setting(`parent_icon_click`)) {
         if (DOM.parent(target, [`.parent_icon`])) {
           App.close_node_tabs(item)
           return
         }
-      }
 
-      if (App.get_setting(`notes_icon_click`)) {
         if (DOM.parent(target, [`.notes_icon`])) {
           App.remove_notes(item)
           return
         }
-      }
 
-      if (DOM.parent(target, [`.custom_icon`])) {
-        App.remove_item_icon(item)
-        return
-      }
+        if (DOM.parent(target, [`.custom_icon`])) {
+          App.remove_item_icon(item)
+          return
+        }
 
-      if (App.get_setting(`parent_icon_click`)) {
         if (DOM.parent(target, [`.parent_icon`])) {
           App.close_node_tabs(item)
           return

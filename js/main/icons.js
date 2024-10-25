@@ -1,22 +1,11 @@
 App.proc_item_icon = (args = {}) => {
-  let def_args = {
-    cls: ``,
-  }
-
-  App.def_args(def_args, args)
-
-  if (App.icon_has_command(args.what)) {
-    args.cls += ` grower`
-  }
-
-  args.cls = args.cls.trim()
   let side_ok = args.side === App.get_setting(`${args.what}_side`)
 
   if (!App.icon_enabled(args.what) || !side_ok) {
     return
   }
 
-  let cls = `${args.what} item_node hidden item_icon_unit ${args.cls}`
+  let cls = `${args.what} item_node hidden grower item_icon_unit ${args.cls}`
   let icon = DOM.create(`div`, cls)
 
   if ([`color_icon`, `custom_icon`].includes(args.what)) {
@@ -841,21 +830,6 @@ App.get_custom_icon_command = (icon) => {
   }
 
   return cmd
-}
-
-App.icon_has_command = (icon) => {
-  if ([
-    `color_icon`,
-    `custom_icon`,
-    `image_icon`,
-    `video_icon`,
-    `audio_icon`,
-  ].includes(icon)) {
-    return true
-  }
-
-  let cmd = App.get_setting(`${icon}_command`)
-  return cmd && (cmd !== `none`)
 }
 
 App.item_icon_click = (item, target, e) => {
