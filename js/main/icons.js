@@ -286,26 +286,11 @@ App.add_item_icon = (item, side, name) => {
 }
 
 App.add_icons = (item, side) => {
-  App.add_item_icon(item, side, `active`)
-  App.add_item_icon(item, side, `pin`)
-  App.add_item_icon(item, side, `normal`)
-  App.add_item_icon(item, side, `loaded`)
-  App.add_item_icon(item, side, `unloaded`)
-  App.add_item_icon(item, side, `playing`)
-  App.add_item_icon(item, side, `muted`)
-  App.add_item_icon(item, side, `unread`)
-  App.add_item_icon(item, side, `loading`)
-  App.add_item_icon(item, side, `root`)
-  App.add_item_icon(item, side, `parent`)
-  App.add_item_icon(item, side, `node`)
-  App.add_item_icon(item, side, `image`)
-  App.add_item_icon(item, side, `video`)
-  App.add_item_icon(item, side, `audio`)
-  App.add_item_icon(item, side, `title`)
-  App.add_item_icon(item, side, `edited`)
-  App.add_item_icon(item, side, `notes`)
-  App.add_item_icon(item, side, `color`)
-  App.add_item_icon(item, side, `custom`)
+  let icons = App.get_setting(`item_icon_order`)
+
+  for (let icon of icons) {
+    App.add_item_icon(item, side, icon.icon)
+  }
 }
 
 App.check_icons = (item) => {
