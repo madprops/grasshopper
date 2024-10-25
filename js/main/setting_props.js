@@ -1558,7 +1558,6 @@ App.build_settings = () => {
       name: `Icon Order`,
       type: `list`,
       value: [
-        {icon: `color`},
         {icon: `image`},
         {icon: `video`},
         {icon: `audio`},
@@ -1579,6 +1578,7 @@ App.build_settings = () => {
         {icon: `node`},
         {icon: `root`},
         {icon: `custom`},
+        {icon: `color`},
       ],
       separator: true,
       info: `Define the left-right order of item icons`,
