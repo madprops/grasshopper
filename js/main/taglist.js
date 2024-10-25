@@ -129,6 +129,9 @@ App.taglist_action = (item, e) => {
   else if (mode === `edit`) {
     App.edit_tag(item, tag)
   }
+  else if (mode === `show`) {
+    App.show_tab_list(`tag_${tag}`, e)
+  }
   else if (mode === `filter`) {
     App.taglist_filter(item, tag)
   }

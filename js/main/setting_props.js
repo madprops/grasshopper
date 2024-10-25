@@ -3787,6 +3787,7 @@ App.build_settings = () => {
           {text: App.separator_string},
           {text: `Menu`, value: `menu`},
           {text: `Edit`, value: `edit`},
+          {text: `Show`, value: `show`},
           {text: `Filter`, value: `filter`},
           {text: `Remove`, value: `remove`},
         ])
