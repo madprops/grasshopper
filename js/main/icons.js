@@ -1,4 +1,15 @@
 App.proc_item_icon = (args = {}) => {
+  let def_args = {
+    cls: ``,
+  }
+
+  App.def_args(def_args, args)
+
+  if (App.icon_has_command(args.what)) {
+    args.cls += ` grower`
+  }
+
+  args.cls = args.cls.trim()
   let side_ok = args.side === App.get_setting(`${args.what}_side`)
 
   if (!App.icon_enabled(args.what) || !side_ok) {
@@ -26,261 +37,130 @@ App.proc_item_icon = (args = {}) => {
 
 App.add_item_icon = (item, side, name) => {
   if (name === `active`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Active`
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `pin`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Pinned`
-
-    if (App.get_setting(`${name}_icon_click`)) {
-      cls += ` grower`
-      title += `\nClick to unpin`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `normal`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Normal`
-
-    if (App.get_setting(`${name}_icon_click`)) {
-      cls += ` grower`
-      title += `\nClick to pin`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `loaded`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Loaded`
-
-    if (App.get_setting(`${name}_icon_click`)) {
-      cls += ` grower`
-      title += `\nClick to unload`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `unloaded`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Unloaded`
-
-    if (App.get_setting(`${name}_icon_click`)) {
-      cls += ` grower`
-      title += `\nClick to load`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `playing`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Playing`
-
-    if (App.get_setting(`mute_click`)) {
-      cls += ` grower`
-      title += `\nClick to toggle mute`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `muted`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Muted`
-
-    if (App.get_setting(`mute_click`)) {
-      cls += ` grower`
-      title += `\nClick to toggle mute`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `unread`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Unread`
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `loading`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Loading`
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `root`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Go to the root URL`
-
-    if (App.get_setting(`${name}_icon_click`)) {
-      cls += ` grower`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `parent`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Parent`
-
-    if (App.get_setting(`parent_icon_click`)) {
-      cls += ` grower`
-      title += `\nClick to filter the nodes of this tab`
-      title += `\nMiddle Click to close nodes`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `node`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Node`
-
-    if (App.get_setting(`node_icon_click`)) {
-      cls += ` grower`
-      title += `\nClick to focus the parent of this tab`
-      title += `\nMiddle Click to filter siblings`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `image`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Image`
-
-    if ([`icon`, `item`].includes(App.get_setting(`view_${name}_${item.mode}`))) {
-      cls += ` grower`
-      title += `\nClick to embed ${name}`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `video`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Video`
-
-    if ([`icon`, `item`].includes(App.get_setting(`view_${name}_${item.mode}`))) {
-      cls += ` grower`
-      title += `\nClick to embed ${name}`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `audio`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Audio`
-
-    if ([`icon`, `item`].includes(App.get_setting(`view_${name}_${item.mode}`))) {
-      cls += ` grower`
-      title += `\nClick to embed ${name}`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `title`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Titled`
-
-    if (App.get_setting(`${name}_icon_click`)) {
-      cls += ` grower`
-      title += `\nClick to edit the title`
-      title += `\nMiddle Click to remove title`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `tags`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Tagged`
-
-    if (App.get_setting(`${name}_icon_click`)) {
-      cls += ` grower`
-      title += `\nClick to edit the tags`
-      title += `\nMiddle Click to remove tags`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `edited`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Edited`
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `notes`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Notes`
-
-    if (App.get_setting(`${name}_icon_click`)) {
-      cls += ` grower`
-      title += `\nClick to open the notes`
-      title += `\nMiddle Click to remove notes`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
   else if (name === `color`) {
-    let cls = ` color_icon_container`
+    let cls = `color_icon_container`
     let what = `color_icon`
     let title = ``
-
-    if (App.get_setting(`${name}_icon_click`)) {
-      cls += ` effect`
-      title += `\nClick to show the color menu`
-      title += `\nMiddle Click to close nodes`
-    }
-
-    if (App.get_setting(`color_mode`).includes(`background`)) {
-      cls += ` grower`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item, cls}
     App.proc_item_icon(obj)
   }
   else if (name === `custom`) {
-    let cls = ``
     let what = `${name}_icon`
     let title = `Custom Icon`
-
-    if (App.get_setting(`${name}_icon_click`)) {
-      cls += ` grower`
-      title += `\nClick to show the menu or run a custom command`
-    }
-
-    let obj = {what, title, cls, side, item}
+    let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
 }
@@ -961,4 +841,8 @@ App.get_custom_icon_command = (icon) => {
   }
 
   return cmd
+}
+
+App.icon_has_command = () => {
+  return true
 }

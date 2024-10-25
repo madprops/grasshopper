@@ -939,10 +939,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `never`,
       info: `When to show the Pin Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    pin_icon_command: {
+      name: `Pin Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Pin Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     normal_icon: {
@@ -969,10 +979,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `never`,
       info: `When to show the Normal Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    normal_icon_command: {
+      name: `Normal Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Normal Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     playing_icon: {
@@ -999,10 +1019,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Playing Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    playing_icon_command: {
+      name: `Playing Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Playing Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     muted_icon: {
@@ -1029,10 +1059,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Muted Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    muted_icon_command: {
+      name: `Muted Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Muted Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     unloaded_icon: {
@@ -1059,10 +1099,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Unloaded Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    unloaded_icon_command: {
+      name: `Unloaded Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Unloaded Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     loading_icon: {
@@ -1089,10 +1139,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Loading Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    loading_icon_command: {
+      name: `Loading Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Loading Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     loaded_icon: {
@@ -1119,10 +1179,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `never`,
       info: `When to show the Loaded Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    loaded_icon_command: {
+      name: `Loaded Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Loaded Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     unread_icon: {
@@ -1149,10 +1219,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Unread Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    unread_icon_command: {
+      name: `Unread Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Unread Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     title_icon: {
@@ -1179,10 +1259,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `never`,
       info: `When to show the Title Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    title_icon_command: {
+      name: `Title Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Title Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     tags_icon: {
@@ -1209,10 +1299,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `never`,
       info: `When to show the Tags Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    tags_icon_command: {
+      name: `Tags Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Tags Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     notes_icon: {
@@ -1239,10 +1339,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Notes Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    notes_icon_command: {
+      name: `Notes Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Notes Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     edited_icon: {
@@ -1270,10 +1380,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `never`,
       info: `When to show the Edited Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    edited_icon_command: {
+      name: `Edited Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Edited Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     parent_icon: {
@@ -1300,10 +1420,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `never`,
       info: `When to show the Parent Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    parent_icon_command: {
+      name: `Parent Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Parent Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     node_icon: {
@@ -1330,10 +1460,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `never`,
       info: `When to show the Nodes Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    node_icon_command: {
+      name: `Node Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Node Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     root_icon: {
@@ -1360,10 +1500,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `focus`,
       info: `When to show the Root Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    root_icon_command: {
+      name: `Root Icon Command`,
+      type: `menu`,
+      value: `toggle_pin_tabs`,
+      info: `Command to run when clicking the Root Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     custom_icon_side: {
@@ -1422,83 +1572,6 @@ App.build_settings = () => {
       ],
       separator: true,
       info: `Define the left-right order of item icons`,
-      version: 1,
-    },
-    pin_icon_click: {
-      name: `Pin Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Unpin the tab when clicking the pin icon`,
-      version: 1,
-    },
-    normal_icon_click: {
-      name: `Normal Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Pin the tab when clicking the normal icon`,
-      version: 1,
-    },
-    notes_icon_click: {
-      name: `Notes Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the notes when clicking the notes icon`,
-      version: 1,
-    },
-    parent_icon_click: {
-      name: `Parent Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Go to the item's nodes`,
-      version: 1,
-    },
-    node_icon_click: {
-      name: `Nodes Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the item's parent`,
-      version: 1,
-    },
-    root_icon_click: {
-      name: `Root Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Go to the root when clicking the root icon`,
-      version: 1,
-    },
-    loaded_icon_click: {
-      name: `Loaded Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Unload the tab when clicking the loaded icon`,
-      version: 1,
-    },
-    unloaded_icon_click: {
-      name: `Unloaded Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Load the tab when clicking the unloaded icon`,
-      version: 1,
-    },
-    title_icon_click: {
-      name: `Title Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Edit the tab's title when clicking the title icon`,
-      version: 1,
-    },
-    tags_icon_click: {
-      name: `Tags Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Edit the tab's tags when clicking the tags icon`,
-      version: 1,
-    },
-    custom_icon_click: {
-      name: `Custom Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Show a menu when clicking the custom icons`,
       version: 1,
     },
     auto_root_icon: {
