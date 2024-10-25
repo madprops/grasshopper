@@ -300,7 +300,12 @@ App.mouse_click_action = (e) => {
     return
   }
 
-  let cmd = App.get_setting(`click_item_${mode}`)
+  let cmd = App.get_unloaded_mouse_command(item, `click`)
+
+  if (!cmd) {
+    cmd = App.get_setting(`click_item_${mode}`)
+  }
+
   App.run_command({cmd, item, from: `click`, e})
 }
 
@@ -376,7 +381,12 @@ App.mouse_double_click_action = (e) => {
     return
   }
 
-  let cmd = App.get_setting(`double_click_item_${mode}`)
+  let cmd = App.get_unloaded_mouse_command(item, `double_click`)
+
+  if (!cmd) {
+    cmd = App.get_setting(`double_click_item_${mode}`)
+  }
+
   App.run_command({cmd, item, from: `double_click`, e})
 }
 
@@ -678,7 +688,12 @@ App.mouse_middle_action = (e, target_el) => {
     return
   }
 
-  let cmd = App.get_setting(`middle_click_item_${mode}`)
+  let cmd = App.get_unloaded_mouse_command(item, `middle_click`)
+
+  if (!cmd) {
+    cmd = App.get_setting(`middle_click_item_${mode}`)
+  }
+
   App.run_command({cmd, item, from: `middle_click`, e})
 }
 
@@ -777,13 +792,19 @@ App.click_press_action = (e) => {
     }
   }
 
-  let cmd
+  let what
 
   if (App.click_press_button === 0) {
-    cmd = App.get_setting(`click_press_item_${mode}`)
+    what = `click_press`
   }
   else if (App.click_press_button === 1) {
-    cmd = App.get_setting(`middle_click_press_item_${mode}`)
+    what = `middle_click_press`
+  }
+
+  let cmd = App.get_unloaded_mouse_command(item, what)
+
+  if (!cmd) {
+    cmd = App.get_setting(`${what}_item_${mode}`)
   }
 
   if (cmd) {

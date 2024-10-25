@@ -3896,47 +3896,6 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_item_tabs: {
-      name: `Middle Click Item (Tabs)`,
-      type: `menu`,
-      value: `close_tabs`,
-      info: `Command to run when middle clicking Tab Items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_item_history: {
-      name: `Middle Click Item (History)`,
-      type: `menu`,
-      value: `open_items`,
-      info: `Command to run when middle clicking History Items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_item_bookmarks: {
-      name: `Middle Click Item (Bookmarks)`,
-      type: `menu`,
-      value: `open_items`,
-      info: `Command to run when middle clicking Bookmark Items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_item_closed: {
-      name: `Middle Click Item (Closed)`,
-      type: `menu`,
-      value: `open_items`,
-      info: `Command to run when middle clicking Closed Items`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     double_click_item_tabs: {
       name: `Double Click Item (Tabs)`,
       type: `menu`,
@@ -3972,6 +3931,47 @@ App.build_settings = () => {
       type: `menu`,
       value: `item_action`,
       info: `What command to run when double clicking an item (Closed)`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_item_tabs: {
+      name: `Middle Click Item (Tabs)`,
+      type: `menu`,
+      value: `close_tabs`,
+      info: `Command to run when middle clicking Tab Items`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_item_history: {
+      name: `Middle Click Item (History)`,
+      type: `menu`,
+      value: `open_items`,
+      info: `Command to run when middle clicking History Items`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_item_bookmarks: {
+      name: `Middle Click Item (Bookmarks)`,
+      type: `menu`,
+      value: `open_items`,
+      info: `Command to run when middle clicking Bookmark Items`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_item_closed: {
+      name: `Middle Click Item (Closed)`,
+      type: `menu`,
+      value: `open_items`,
+      info: `Command to run when middle clicking Closed Items`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -4345,6 +4345,58 @@ App.build_settings = () => {
       type: `menu`,
       value: `show_empty_menu`,
       info: `What command to run when double clicking empty space (Closed)`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_unloaded_tab: {
+      name: `Click Unloaded Tab`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when clicking an unloaded tab`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_unloaded_tab: {
+      name: `Double Click Unloaded Tab`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when double clicking an unloaded tab`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_unloaded_tab: {
+      name: `Middle Click Unloaded Tab`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when middle clicking an unloaded tab`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_unloaded_tab: {
+      name: `Click Press Unloaded Tab`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when click pressing an unloaded tab`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_unloaded_tab: {
+      name: `Middle Click Unloaded Tab`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when middle click pressing an unloaded tab`,
       separator: true,
       version: 1,
       setup: (key) => {

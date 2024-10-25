@@ -425,3 +425,13 @@ App.mouse_over_action = (e) => {
 App.mouse_out_action = (e) => {
   App.mouse_out_debouncer.call(e)
 }
+
+App.get_unloaded_mouse_command = (item, what) => {
+  if (item.unloaded) {
+    let ucmd = App.get_setting(`${what}_unloaded_tab`)
+
+    if (ucmd && (ucmd !== `none`)) {
+      return ucmd
+    }
+  }
+}
