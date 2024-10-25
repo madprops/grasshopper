@@ -909,10 +909,20 @@ App.build_settings = () => {
       type: `menu`,
       value: `never`,
       info: `When to show the Active Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    active_icon_command: {
+      name: `Active Icon Command`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when clicking the Active Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
       },
     },
     pin_icon: {
@@ -1027,7 +1037,7 @@ App.build_settings = () => {
     playing_icon_command: {
       name: `Playing Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `toggle_mute_tabs`,
       info: `Command to run when clicking the Playing Icon`,
       separator: true,
       version: 1,
@@ -1067,7 +1077,7 @@ App.build_settings = () => {
     muted_icon_command: {
       name: `Muted Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `toggle_mute_tabs`,
       info: `Command to run when clicking the Muted Icon`,
       separator: true,
       version: 1,
@@ -1107,7 +1117,7 @@ App.build_settings = () => {
     unloaded_icon_command: {
       name: `Unloaded Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `load_tabs`,
       info: `Command to run when clicking the Unloaded Icon`,
       separator: true,
       version: 1,
@@ -1147,7 +1157,7 @@ App.build_settings = () => {
     loading_icon_command: {
       name: `Loading Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `none`,
       info: `Command to run when clicking the Loading Icon`,
       separator: true,
       version: 1,
@@ -1187,7 +1197,7 @@ App.build_settings = () => {
     loaded_icon_command: {
       name: `Loaded Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `unload_tabs`,
       info: `Command to run when clicking the Loaded Icon`,
       separator: true,
       version: 1,
@@ -1227,7 +1237,7 @@ App.build_settings = () => {
     unread_icon_command: {
       name: `Unread Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `none`,
       info: `Command to run when clicking the Unread Icon`,
       separator: true,
       version: 1,
@@ -1267,7 +1277,7 @@ App.build_settings = () => {
     title_icon_command: {
       name: `Title Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `edit_title`,
       info: `Command to run when clicking the Title Icon`,
       separator: true,
       version: 1,
@@ -1307,7 +1317,7 @@ App.build_settings = () => {
     tags_icon_command: {
       name: `Tags Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `edit_tags`,
       info: `Command to run when clicking the Tags Icon`,
       separator: true,
       version: 1,
@@ -1347,7 +1357,7 @@ App.build_settings = () => {
     notes_icon_command: {
       name: `Notes Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `edit_notes`,
       info: `Command to run when clicking the Notes Icon`,
       separator: true,
       version: 1,
@@ -1388,7 +1398,7 @@ App.build_settings = () => {
     edited_icon_command: {
       name: `Edited Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `none`,
       info: `Command to run when clicking the Edited Icon`,
       separator: true,
       version: 1,
@@ -1428,7 +1438,7 @@ App.build_settings = () => {
     parent_icon_command: {
       name: `Parent Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `filter_node_tabs`,
       info: `Command to run when clicking the Parent Icon`,
       separator: true,
       version: 1,
@@ -1468,7 +1478,7 @@ App.build_settings = () => {
     node_icon_command: {
       name: `Node Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `focus_parent_tab`,
       info: `Command to run when clicking the Node Icon`,
       separator: true,
       version: 1,
@@ -1508,7 +1518,7 @@ App.build_settings = () => {
     root_icon_command: {
       name: `Root Icon Command`,
       type: `menu`,
-      value: `toggle_pin_tabs`,
+      value: `go_to_root_url`,
       info: `Command to run when clicking the Root Icon`,
       separator: true,
       version: 1,
