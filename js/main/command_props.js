@@ -3275,7 +3275,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_filter_icon_menu(args.mode, args.e)
       },
-      info: `Show the filter icon menu`,
+      info: `Show the Filter Icon Menu`,
     },
     {
       name: `Show Icon`,
@@ -3550,7 +3550,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.search_domain_history(args.item)
       },
-      info: `Search this domain in history mode`,
+      info: `Search this domain in History mode`,
     },
     {
       name: `Domain Bookmarks`,
@@ -3562,7 +3562,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.search_domain_bookmarks(args.item)
       },
-      info: `Search this domain in bookmarks mode`,
+      info: `Search this domain in Bookmarks mode`,
     },
     {
       name: `Default Font`,
@@ -3736,7 +3736,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_main_title()
       },
-      info: `Edit the main title`,
+      info: `Edit the Title`,
     },
     {
       name: `Title Menu`,
@@ -3746,7 +3746,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_main_title_menu(args.e)
       },
-      info: `Show the main title menu`,
+      info: `Show the Title Menu`,
     },
     {
       name: `Red Title`,
@@ -3755,7 +3755,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.color_main_title(`red`)
       },
-      info: `Apply red color to the main title`,
+      info: `Apply red color to the Title`,
     },
     {
       name: `Green Title`,
@@ -3764,7 +3764,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.color_main_title(`green`)
       },
-      info: `Apply green color to the main title`,
+      info: `Apply green color to the Title`,
     },
     {
       name: `Blue Title`,
@@ -3773,7 +3773,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.color_main_title(`blue`)
       },
-      info: `Apply blue color to the main title`,
+      info: `Apply blue color to the Title`,
     },
     {
       name: `Black Title`,
@@ -3782,7 +3782,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.color_main_title(`black`)
       },
-      info: `Apply black color to the main title`,
+      info: `Apply black color to the Title`,
     },
     {
       name: `White Title`,
@@ -3791,7 +3791,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.color_main_title(`white`)
       },
-      info: `Apply white color to the main title`,
+      info: `Apply white color to the Title`,
     },
     {
       name: `Dark Title Theme`,
@@ -3801,7 +3801,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.dark_main_title()
       },
-      info: `Apply a random dark color theme to the main title`,
+      info: `Apply a random dark color theme to the Title`,
     },
     {
       name: `Light Title Theme`,
@@ -3811,7 +3811,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.light_main_title()
       },
-      info: `Apply a random light color theme to the main title`,
+      info: `Apply a random light color theme to the Title`,
     },
     {
       name: `Prev Title Color`,
@@ -3820,7 +3820,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.next_main_title_color(`prev`)
       },
-      info: `Apply the previous color to the main title`,
+      info: `Apply the previous color to the Title`,
     },
     {
       name: `Next Title Color`,
@@ -3829,7 +3829,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.next_main_title_color(`next`)
       },
-      info: `Apply the next color to the main title`,
+      info: `Apply the next color to the Title`,
     },
     {
       name: `Uncolor Title`,
@@ -3838,7 +3838,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.uncolor_main_title()
       },
-      info: `Remove colors from the main title`,
+      info: `Remove colors from the Title`,
     },
     {
       name: `Toggle Date`,
@@ -3848,7 +3848,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_main_title_date()
       },
-      info: `Show or hide the date in the main title`,
+      info: `Show or hide the date in the Title`,
     },
     {
       name: `Toggle Title`,
@@ -3858,7 +3858,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_main_title()
       },
-      info: `Show or hide the main title`,
+      info: `Show or hide the Title`,
     },
     {
       name: `Copy Title`,
@@ -3867,7 +3867,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.copy_main_title()
       },
-      info: `Copy the main title`,
+      info: `Copy the Title`,
     },
     {
       name: `Scroll Title Left`,
@@ -3877,7 +3877,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.scroll_main_title(`left`)
       },
-      info: `Scroll the main title to the left`,
+      info: `Scroll the Title to the left`,
     },
     {
       name: `Scroll Title Right`,
@@ -3887,7 +3887,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.scroll_main_title(`right`)
       },
-      info: `Scroll the main title to the right`,
+      info: `Scroll the Title to the right`,
     },
     {
       name: `Toggle Wrap`,
