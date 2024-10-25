@@ -1,5 +1,9 @@
 App.export_data = (what, obj) => {
-  App.show_textarea({title: `${App.data_icon} Copy ${what} Data`, text: App.str(obj, true)})
+  App.show_textarea({
+    title: `Copy ${what} Data`,
+    title_icon: App.data_icon,
+    text: App.str(obj, true),
+  })
 }
 
 App.import_data = (what, action, value = ``) => {
