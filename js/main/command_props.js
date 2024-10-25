@@ -1276,7 +1276,7 @@ App.setup_commands = () => {
       action: (args) => {
         App[`${args.mode}_action`]({item: args.item, from: `click`, soft: true})
       },
-      info: `Item Action but without loading unloaded tabs`,
+      info: `Item action but without loading unloaded tabs`,
     },
     {
       name: `Reload Action`,
@@ -1287,7 +1287,7 @@ App.setup_commands = () => {
       action: (args) => {
         App[`${args.mode}_action`]({item: args.item, from: `click`, reload: true})
       },
-      info: `Item Action that selects an item and triggers a reload`,
+      info: `Item action that also triggers a reload`,
     },
     {
       name: `Hard Action`,
@@ -1298,7 +1298,7 @@ App.setup_commands = () => {
       action: (args) => {
         App[`${args.mode}_action`]({item: args.item, from: `click`, hard: true})
       },
-      info: `Item Action that selects an item and triggers a hard reload`,
+      info: `Item action that also triggers a hard reload`,
     },
     {
       name: `Select Item`,
