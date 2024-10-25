@@ -292,6 +292,10 @@ App.mouse_double_click_action = (e) => {
     return
   }
 
+  if (DOM.parent(target, [`.item_icon_unit`])) {
+    return
+  }
+
   let cmd = App.get_unloaded_mouse_command(item, `double_click`)
 
   if (!cmd) {
