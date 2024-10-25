@@ -6,7 +6,7 @@ App.create_debouncer = (func, delay) => {
     return
   }
 
-  if (!delay) {
+  if ((typeof delay !== `number`) || (delay < 0)) {
     App.error(`Invalid debouncer delay`)
     return
   }

@@ -80,13 +80,17 @@ App.setup_mouse = () => {
     App.do_mouse_out_action(e)
   }, App.mouse_out_delay)
 
+  App.refresh_mouse()
+}
+
+App.refresh_mouse = () => {
   App.add_mouse_inside_debouncer = App.create_debouncer((e) => {
     App.do_add_mouse_inside()
-  }, App.mouse_inside_in_delay)
+  }, App.get_setting(`mouse_inside_delay`))
 
   App.remove_mouse_inside_debouncer = App.create_debouncer((e) => {
     App.do_remove_mouse_inside()
-  }, App.mouse_inside_out_delay)
+  }, App.get_setting(`mouse_outside_delay`))
 }
 
 App.reset_mouse = () => {
