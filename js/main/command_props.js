@@ -554,6 +554,23 @@ App.setup_commands = () => {
     })
   }
 
+  let custom_tags = []
+
+  for (let item of App.get_setting(`custom_tags`)) {
+    custom_tags.push({
+      name: `Tag: ${item.tag}`,
+      short_name: item.tag,
+      cmd: `add_tag_${item.tag}`,
+      modes: [`tabs`],
+      item: true,
+      icon: tags_icon,
+      action: (args) => {
+        App.add_tag(args.item, item.tag)
+      },
+      info: `Add the '${item.tag}' tag to tabs`,
+    })
+  }
+
   App.commands = [
     {
       name: `Go To Top`,
@@ -2448,18 +2465,6 @@ App.setup_commands = () => {
       info: `Add tags to tabs`,
     },
     {
-      name: `Tag: Later`,
-      short_name: `Later`,
-      cmd: `add_tag_later`,
-      modes: [`tabs`],
-      item: true,
-      icon: tags_icon,
-      action: (args) => {
-        App.add_tag(args.item, `later`)
-      },
-      info: `Add the 'later' tag to tabs`,
-    },
-    {
       name: `Edit Root`,
       short_name: `Root`,
       cmd: `edit_root_url`,
@@ -3356,6 +3361,9 @@ App.setup_commands = () => {
       },
       info: `Filter all tags`,
     },
+
+    ...custom_tags,
+
     {
       name: `Filter Icon`,
       cmd: `filter_icon`,

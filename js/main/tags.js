@@ -83,19 +83,23 @@ App.get_tag_list = (value) => {
 }
 
 App.add_tag = (item, tag) => {
-  let tags = App.get_tags(item, false).slice(0)
+  let active = App.get_active_items({mode: item.mode, item})
 
-  if (tags.includes(tag)) {
-    return
+  for (let it of active) {
+    let tags = App.get_tags(it, false).slice(0)
+
+    if (tags.includes(tag)) {
+      return
+    }
+
+    tags.push(tag)
+
+    App.apply_edit({what: `tags`, item: it, value: tags, on_change: (value) => {
+      App.custom_save(it.id, `tags`, value)
+    }})
+
+    App.push_to_tag_history([tag])
   }
-
-  tags.push(tag)
-
-  App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
-    App.custom_save(item.id, `tags`, value)
-  }})
-
-  App.push_to_tag_history([tag])
 }
 
 App.add_tag_all = (item, tag) => {

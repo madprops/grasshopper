@@ -3832,6 +3832,17 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    custom_tags: {
+      name: `Custom Tags`,
+      type: `list`,
+      value: [{
+        tag: `later`,
+      }],
+      separator: true,
+      actions: [`commands`],
+      info: `Tag commands to assign to tabs`,
+      version: 1,
+    },
     taglist_add: {
       name: `Taglist Add`,
       type: `checkbox`,

@@ -1665,6 +1665,36 @@ App.setup_settings_addlist = () => {
     }
   }
 
+  menukeys = [
+    `custom_tags`,
+  ]
+
+  for (let key in App.setting_props) {
+    if (menukeys.includes(key)) {
+      let id = `settings_${key}`
+      let props = App.setting_props[key]
+
+      App.create_popup({...popobj, id: `addlist_${id}`,
+        element: Addlist.register({...regobj, id,
+          keys: [`tag`],
+          pk: `tag`,
+          widgets: {
+            tag: `text`,
+          },
+          labels: {
+            tag: `Tag`,
+          },
+          list_icon: (item) => {
+            return App.get_setting(`tags_icon`)
+          },
+          list_text: (item) => {
+            return item.tag
+          },
+          title: props.name,
+        })})
+    }
+  }
+
   App.start_domain_rules_addlist()
   App.start_bookmark_rules_addlist()
   App.start_signals_addlist()
