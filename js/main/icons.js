@@ -908,6 +908,15 @@ App.item_icon_click = (item, target, e) => {
     return false
   }
 
+  if (icon === `color`) {
+    App.color_icon_click(item, e)
+    return true
+  }
+  else if (icon === `custom`) {
+    App.custom_icon_click(item, e)
+    return true
+  }
+
   let cmd = App.get_setting(`${icon}_icon_command`)
 
   if (!cmd || cmd === `none`) {
