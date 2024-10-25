@@ -199,6 +199,10 @@ App.mouse_click_action = (e) => {
         App.add_tags(item)
         return
       }
+
+      if (DOM.parent(target, [`.taglist_container`])) {
+        return
+      }
     }
 
     if (DOM.parent(target, [`.item_icon_unit`])) {
