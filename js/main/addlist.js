@@ -292,6 +292,7 @@ Addlist.register = (args = {}) => {
     on_check: {},
     lowercase: false,
     automenu: false,
+    editable: true,
     buttons: [],
     list_text: () => {
       return `Item`
@@ -898,6 +899,7 @@ Addlist.no_items = () => {
 }
 
 Addlist.add_buttons = (id) => {
+  let oargs = Addlist.oargs(id)
   let el = DOM.el(`#${id}`)
   let cls = `doubleline`
   let count = DOM.create(`div`, `action`, `addlist_button_${id}_count`)
@@ -905,15 +907,30 @@ Addlist.add_buttons = (id) => {
   el.append(count)
   let add = DOM.create(`div`, cls, `addlist_button_${id}_add`)
   add.textContent = `Add`
+
+  if (!oargs.editable) {
+    add.classList.add(`hidden`)
+  }
+
   el.append(add)
   let edit = DOM.create(`div`, cls, `addlist_button_${id}_edit`)
   edit.textContent = `Edit`
+
+  if (!oargs.editable) {
+    edit.classList.add(`hidden`)
+  }
+
   el.append(edit)
   let list = DOM.create(`div`, cls, `addlist_button_${id}_list`)
   list.textContent = `List`
   el.append(list)
   let data = DOM.create(`div`, cls, `addlist_button_${id}_data`)
   data.textContent = `Data`
+
+  if (!oargs.editable) {
+    data.classList.add(`hidden`)
+  }
+
   el.append(data)
 
   DOM.ev(`#addlist_button_${id}_count`, `click`, () => {

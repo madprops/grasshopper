@@ -1605,6 +1605,34 @@ App.setup_settings_addlist = () => {
     }
   }
 
+  menukeys = [
+    `item_icon_order`
+  ]
+
+  for (let key in App.setting_props) {
+    if (menukeys.includes(key)) {
+      let id = `settings_${key}`
+      let props = App.setting_props[key]
+
+      App.create_popup({...popobj, id: `addlist_${id}`,
+        element: Addlist.register({...regobj, id,
+          keys: [`icon`],
+          pk: `icon`,
+          widgets: {
+            icon: `text`,
+          },
+          labels: {
+            icon: `Icon`,
+          },
+          list_text: (item) => {
+            return App.capitalize_words(item.icon)
+          },
+          title: props.name,
+          editable: false,
+        })})
+    }
+  }
+
   App.start_domain_rules_addlist()
   App.start_bookmark_rules_addlist()
   App.start_signals_addlist()
