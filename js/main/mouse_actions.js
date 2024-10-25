@@ -484,13 +484,21 @@ App.mouse_context_action = (e) => {
     }
   }
 
-  if (App.taglist_enabled()) {
-    if (DOM.parent(target, [`.taglist`])) {
-      if (DOM.parent(target, [`.taglist_item`])) {
-        App.show_taglist_menu(e, item)
-        return
-      }
+  if (DOM.parent(target, [`.taglist`])) {
+    if (DOM.parent(target, [`.taglist_item`])) {
+      App.show_taglist_menu(e, item)
+      return
     }
+  }
+
+  if (DOM.parent(target, [`.color_icon`])) {
+    App.show_color_menu(item, e, false)
+    return
+  }
+
+  if (DOM.parent(target, [`.custom_icon`])) {
+    App.custom_icon_menu(item, e)
+    return
   }
 
   if (App.get_setting(`item_menu_select`)) {
