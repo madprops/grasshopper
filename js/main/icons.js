@@ -912,12 +912,10 @@ App.update_icon_tooltips = (item, target) => {
     let cmd_name = App.get_cmd_name(cmd)
     el.title += `\nClick: ${cmd_name}`
   }
-  else {
-    if (icon === `color`) {
-      el.title += `\nClick: Show Menu`
-    }
-    else if (icon === `custom`) {
-      el.title += `\nClick: Show Menu`
-    }
+  else if (icon === `color`) {
+    el.title += `\nClick: Show Menu`
+  }
+  else if (icon === `custom`) {
+    el.title += `\nClick: Show Menu`
   }
 }
