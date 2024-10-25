@@ -1624,6 +1624,17 @@ App.setup_settings_addlist = () => {
           labels: {
             icon: `Icon`,
           },
+          list_icon: (item) => {
+            if (item.icon === `color`) {
+              return App.settings_icons.colors
+            }
+            else if (item.icon === `custom`) {
+              return App.bot_icon
+            }
+            else {
+              return App.get_setting(`${item.icon}_icon`)
+            }
+          },
           list_text: (item) => {
             return App.capitalize_words(item.icon)
           },
