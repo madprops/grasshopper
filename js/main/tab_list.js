@@ -1,4 +1,4 @@
-App.show_tab_list = (what, e) => {
+App.show_tab_list = (what, e, item) => {
   let tabs, title, title_icon
 
   if (what === `recent`) {
@@ -14,6 +14,10 @@ App.show_tab_list = (what, e) => {
   else if (what === `playing`) {
     tabs = App.get_playing_tabs()
     title = `Playing`
+  }
+  else if (what === `nodes`) {
+    tabs = App.get_tab_nodes(item)
+    title = `Nodes`
   }
   else if (what.startsWith(`color_`)) {
     let color_id = what.split(`_`)[1]

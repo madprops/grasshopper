@@ -3134,6 +3134,20 @@ App.setup_commands = () => {
       info: `Filter the tabs that were opened through this tab`,
     },
     {
+      name: `Show Nodes`,
+      short_name: `Nodes`,
+      cmd: `show_node_tabs`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      some_nodes: true,
+      icon: node_icon,
+      action: (args) => {
+        App.show_tab_list(`nodes`, args.e, args.item)
+      },
+      info: `Show the nodes of this tab`,
+    },
+    {
       name: `Close Nodes`,
       short_name: `Nodes`,
       cmd: `close_node_tabs`,

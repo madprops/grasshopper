@@ -1438,7 +1438,7 @@ App.build_settings = () => {
     parent_icon_command: {
       name: `Parent Icon Command`,
       type: `menu`,
-      value: `filter_node_tabs`,
+      value: `show_node_tabs`,
       info: `Command to run when clicking the Parent Icon`,
       separator: true,
       version: 1,
