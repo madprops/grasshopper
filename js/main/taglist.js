@@ -144,18 +144,11 @@ App.show_taglist_menu = (e, item) => {
   let tag = e.target.textContent
   let custom = App.get_tags(item, false)
   let is_custom = custom.includes(tag)
-
-  if (is_custom) {
-    items.push({
-      text: `Edit`,
-      action: () => {
-        App.edit_tag(item, tag)
-      },
-    })
-  }
+  let tags_icon = App.get_setting(`tags_icon`)
 
   items.push({
     text: `Show`,
+    icon: tags_icon,
     action: () => {
       App.show_tab_list(`tag_${tag}`, e)
     },
@@ -163,14 +156,28 @@ App.show_taglist_menu = (e, item) => {
 
   items.push({
     text: `Filter`,
+    icon: tags_icon,
     action: () => {
       App.filter_tag({mode: item.mode, tag})
     },
   })
 
+  App.sep(items)
+
+  if (is_custom) {
+    items.push({
+      text: `Edit`,
+      icon: tags_icon,
+      action: () => {
+        App.edit_tag(item, tag)
+      },
+    })
+  }
+
   if (is_custom) {
     items.push({
       text: `Remove`,
+      icon: tags_icon,
       action: () => {
         App.remove_tag(item, tag)
       },
