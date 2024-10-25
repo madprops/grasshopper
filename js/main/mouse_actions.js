@@ -570,11 +570,6 @@ App.mouse_middle_action = (e, target_el) => {
           App.remove_item_icon(item)
           return
         }
-
-        if (DOM.parent(target, [`.parent_icon`])) {
-          App.close_node_tabs(item)
-          return
-        }
       }
     }
 

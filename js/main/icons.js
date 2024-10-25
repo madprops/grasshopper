@@ -82,6 +82,7 @@ App.add_item_icon = (item, side, name) => {
   else if (name === `root`) {
     let what = `${name}_icon`
     let title = `Go to the root URL`
+    title += `Middle Click: Remove Root`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
@@ -95,6 +96,7 @@ App.add_item_icon = (item, side, name) => {
   else if (name === `node`) {
     let what = `${name}_icon`
     let title = `Node`
+    title += `Middle Click: Filter Siblings`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
@@ -119,6 +121,7 @@ App.add_item_icon = (item, side, name) => {
   else if (name === `title`) {
     let what = `${name}_icon`
     let title = `Titled`
+    title += `Middle Click: Remove Tags`
     let obj = {what, title, side, item}
     App.proc_item_icon(obj)
   }
