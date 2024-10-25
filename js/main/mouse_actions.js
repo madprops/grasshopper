@@ -565,6 +565,11 @@ App.mouse_middle_action = (e, target_el) => {
           return
         }
 
+        if (DOM.parent(target, [`.edited_icon`])) {
+          App.remove_item_edits(item)
+          return
+        }
+
         if (DOM.parent(target, [`.notes_icon`])) {
           App.remove_notes(item)
           return
