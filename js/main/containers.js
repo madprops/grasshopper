@@ -174,5 +174,7 @@ App.open_in_tab_container = async (item, e) => {
     })
   }
 
-  App.show_context({items, e})
+  let title = `Open In`
+  let title_icon = App.container_icon
+  App.show_context({items, e, title, title_icon})
 }
