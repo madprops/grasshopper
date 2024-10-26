@@ -399,8 +399,8 @@ App.insert_icon_css = () => {
     }
   }
 
-  for (let item of App.get_setting(`item_icon_order`)) {
-    action(`${item.icon}_icon`)
+  for (let icon of App.all_icon_list()) {
+    action(`${icon}_icon`)
   }
 
   App.insert_css(`icon_css`, css)

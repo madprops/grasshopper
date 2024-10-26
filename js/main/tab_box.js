@@ -40,7 +40,7 @@ App.make_tab_box_modes = () => {
     parents: {info: `Tabs that are parents to other tabs`, icon: App.get_setting(`parent_icon`)},
     nodes: {info: `Tabs that were opened by another tab`, icon: App.get_setting(`node_icon`)},
     nodez: {info: `The tabs opened by the selected tab`, icon: App.get_setting(`node_icon`)},
-    containers: {info: `Tabs with containers`, icon: App.container_icon},
+    containers: {info: `Tabs with containers`, icon: App.get_setting(`container_icon`)},
     headers: {info: `Headers and subheaders`, icon: App.get_setting(`header_icon`) || App.zone_icon},
     history: {info: `Pick a query to search history`, icon: App.mode_icon(`history`)},
     folders: {info: `Pick a bookmarks folder`, icon: App.mode_icon(`bookmarks`)},

@@ -27,6 +27,7 @@ App.setup_commands = () => {
   let tags_icon = App.get_setting(`tags_icon`)
   let image_icon = App.get_setting(`image_icon`)
   let edited_icon = App.get_setting(`edited_icon`)
+  let container_icon = App.get_setting(`container_icon`)
 
   let main_title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
@@ -70,7 +71,6 @@ App.setup_commands = () => {
   let minus_icon = App.minus_icon
   let flashlight_icon = App.flashlight_icon
   let shroom_icon = App.shroom_icon
-  let container_icon = App.container_icon
 
   let tbmodes = []
 

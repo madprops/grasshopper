@@ -1493,6 +1493,13 @@ App.build_settings = () => {
       info: `Show the root icon only when not at the root already`,
       version: 1,
     },
+    container_icon: {
+      name: `Container Icon`,
+      type: `text`,
+      value: `🛍️`,
+      info: `The icon to represent containers`,
+      version: 1,
+    },
     container_icon_side: {
       name: `Container Icon Side`,
       type: `menu`,

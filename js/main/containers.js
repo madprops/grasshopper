@@ -45,7 +45,7 @@ App.tab_container_menu_items = (item, e) => {
 
   items.push({
     text: `Open`,
-    icon: App.container_icon,
+    icon: App.get_setting(`container_icon`),
     action: () => {
       App.open_in_tab_container(item, e)
     },
@@ -91,7 +91,7 @@ App.get_container_items = (mode, show) => {
   }
 
   if (containers.length) {
-    let icon = App.container_icon
+    let icon = App.get_setting(`container_icon`)
 
     if (!show) {
       items.push({
@@ -183,6 +183,6 @@ App.open_in_tab_container = async (item, e) => {
   }
 
   let title = `Open In`
-  let title_icon = App.container_icon
+  let title_icon = App.get_setting(`container_icon`)
   App.show_context({items, e, title, title_icon})
 }
