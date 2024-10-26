@@ -176,7 +176,7 @@ App.open_in_tab_container = async (item, e) => {
         let active = App.get_active_items({mode: item.mode, item})
 
         for (let it of active) {
-          App.open_new_tab({url: it.url, cookieStoreId: c.id})
+          App.create_new_tab({url: it.url, cookieStoreId: c.id}, it)
         }
       },
     })
