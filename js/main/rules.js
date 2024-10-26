@@ -247,7 +247,7 @@ App.start_domain_rules_addlist = () => {
         root: `Make this the root URL for matches`,
       },
       list_icon: (item) => {
-        return App.notepad_icon
+        return item.icon || App.notepad_icon
       },
       list_text: (item) => {
         return item.domain
