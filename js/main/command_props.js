@@ -3340,7 +3340,7 @@ App.setup_commands = () => {
       info: `Filter by picking a tag from the current item`,
     },
     {
-      name: `Filter Tags`,
+      name: `Filter Tag Menu`,
       short_name: `Tags`,
       cmd: `show_filter_tag_menu`,
       modes: [`items`],
@@ -3428,7 +3428,7 @@ App.setup_commands = () => {
       info: `Filter all icons`,
     },
     {
-      name: `Filter Icons`,
+      name: `Filter Icon Menu`,
       short_name: `Icons`,
       cmd: `show_filter_icon_menu`,
       modes: [`items`],
