@@ -49,6 +49,12 @@ App.check_tab_container = async (tab) => {
   if (ident) {
     tab.container_name = ident.name
     tab.container_color = ident.colorCode
+
+    if (App.container_data[ident.name] === undefined) {
+      App.container_data[ident.name] = {}
+    }
+
+    App.container_data[ident.name].color = ident.colorCode
   }
 }
 

@@ -850,6 +850,10 @@ App.filter_mode_text = (args = {}) => {
         icon = App.color_icon(color)
       }
     }
+    else if (args.name.startsWith(`container-`)) {
+      let name = args.name.replace(`container-`, ``)
+      icon = App.color_icon_square(App.container_data[name].color)
+    }
 
     text = args.title
   }
