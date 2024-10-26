@@ -2059,6 +2059,11 @@ a:hover
   font-size: 0.9rem;
 }
 
-.alt_background {
+.container_with_text .item .container_icon_container {
   background-color: var(--alt_color_0);
+}
+
+.container_with_text .item.selected .container_icon_container {
+  background-color: unset;
+  text-decoration: underline;
 }

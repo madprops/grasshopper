@@ -174,6 +174,13 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
     App.set_css_var(`window_border_color`, App.get_setting(`window_border_color`))
 
+    if (App.get_setting(`container_icon_text`)) {
+      main.classList.add(`container_with_text`)
+    }
+    else {
+      main.classList.remove(`container_with_text`)
+    }
+
     App.close_button_vars()
     App.set_pinline_vars()
     App.set_tab_box_vars()

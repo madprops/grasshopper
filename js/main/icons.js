@@ -806,10 +806,6 @@ App.check_container_icon = (item) => {
       let text = DOM.create(`div`)
       text.textContent = item.container_name
       container_el.append(text)
-      container_el.classList.add(`alt_background`)
-    }
-    else {
-      container_el.classList.remove(`alt_background`)
     }
 
     container_el.dataset.content = item.container_name
