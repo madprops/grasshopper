@@ -167,56 +167,23 @@ App.add_icons = (item, side) => {
   }
 }
 
+App.do_icon_check = (what, show, item) => {
+  if (App.icon_enabled(what)) {
+    let icon = DOM.el(`.${what}_icon`, item.element)
+
+    if (show) {
+      DOM.show(icon)
+    }
+    else {
+      DOM.hide(icon)
+    }
+  }
+}
+
 App.check_icons = (item) => {
   if (item.tab_box) {
     if (!App.get_setting(`tab_box_icons`)) {
       return
-    }
-  }
-
-  if (App.icon_enabled(`notes`)) {
-    let icon = DOM.el(`.notes_icon`, item.element)
-
-    if (App.get_notes(item)) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`title`)) {
-    if (!item.header) {
-      let icon = DOM.el(`.title_icon`, item.element)
-
-      if (App.get_title(item)) {
-        DOM.show(icon)
-      }
-      else {
-        DOM.hide(icon)
-      }
-    }
-  }
-
-  if (App.icon_enabled(`tags`)) {
-    let icon = DOM.el(`.tags_icon`, item.element)
-
-    if (App.tagged(item)) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`edited`)) {
-    let icon = DOM.el(`.edited_icon`, item.element)
-
-    if (App.edited(item)) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
     }
   }
 
@@ -232,150 +199,33 @@ App.check_icons = (item) => {
     DOM.hide(custom_icon_el)
   }
 
-  function check_media(media) {
-    if (App.icon_enabled(media)) {
-      let type = App.get_media_type(item)
-      let icon = DOM.el(`.${media}_icon`, item.element)
-
-      if (type === media) {
-        DOM.show(icon)
-      }
-      else {
-        DOM.hide(icon)
-      }
-    }
-  }
-
-  check_media(`image`)
-  check_media(`video`)
-  check_media(`audio`)
+  App.do_icon_check(`notes`, App.get_notes(item), item)
+  App.do_icon_check(`title`, !item.header && App.get_title(item), item)
+  App.do_icon_check(`tags`, App.tagged(item), item)
+  App.do_icon_check(`edited`, App.edited(item), item)
+  App.do_icon_check(`image`, App.get_media_type(item) === `image`, item)
+  App.do_icon_check(`video`, App.get_media_type(item) === `video`, item)
+  App.do_icon_check(`audio`, App.get_media_type(item) === `audio`, item)
 
   if (item.mode !== `tabs`) {
     return
   }
 
-  if (App.icon_enabled(`active`)) {
-    let icon = DOM.el(`.active_icon`, item.element)
+  App.do_icon_check(`active`, item.active, item)
+  App.do_icon_check(`pin`, item.pinned, item)
+  App.do_icon_check(`normal`, !item.pinned, item)
+  App.do_icon_check(`loaded`, !item.unloaded, item)
+  App.do_icon_check(`unloaded`, item.unloaded, item)
+  App.do_icon_check(`playing`, item.playing && !item.muted, item)
+  App.do_icon_check(`muted`, item.muted, item)
+  App.do_icon_check(`unread`, item.unread, item)
 
-    if (item.active) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
+  let auto_root = App.get_setting(`auto_root_icon`)
+  let show_root = auto_root ? App.root_possible(item) : App.item_has_root(item)
+  App.do_icon_check(`root`, show_root, item)
 
-  if (App.icon_enabled(`pin`)) {
-    let icon = DOM.el(`.pin_icon`, item.element)
-
-    if (item.pinned) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`normal`)) {
-    let icon = DOM.el(`.normal_icon`, item.element)
-
-    if (!item.pinned) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`loaded`)) {
-    let icon = DOM.el(`.loaded_icon`, item.element)
-
-    if (!item.unloaded) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`unloaded`)) {
-    let icon = DOM.el(`.unloaded_icon`, item.element)
-
-    if (item.unloaded) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`playing`)) {
-    let icon = DOM.el(`.playing_icon`, item.element)
-
-    if (item.playing && !item.muted) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`muted`)) {
-    let icon = DOM.el(`.muted_icon`, item.element)
-
-    if (item.muted) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`unread`)) {
-    let icon = DOM.el(`.unread_icon`, item.element)
-
-    if (item.unread) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`root`)) {
-    let icon = DOM.el(`.root_icon`, item.element)
-    let auto = App.get_setting(`auto_root_icon`)
-    let show = auto ? App.root_possible(item) : App.item_has_root(item)
-
-    if (show) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`parent`)) {
-    let icon = DOM.el(`.parent_icon`, item.element)
-
-    if (App.tab_has_nodes(item)) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
-
-  if (App.icon_enabled(`node`)) {
-    let icon = DOM.el(`.node_icon`, item.element)
-
-    if (App.tab_has_parent(item)) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
-  }
+  App.do_icon_check(`parent`, App.tab_has_nodes(item), item)
+  App.do_icon_check(`node`, App.tab_has_parent(item), item)
 
   let container_el = DOM.el(`.container_icon`, item.element)
 
@@ -395,6 +245,7 @@ App.check_icons = (item) => {
 
     container_el.append(c_icon)
     container_el.title = item.container_name
+    container_el.dataset.has_tooltips = false
     DOM.show(container_el)
   }
   else {
