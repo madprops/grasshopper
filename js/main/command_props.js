@@ -3662,14 +3662,14 @@ App.setup_commands = () => {
     },
     {
       name: `Open In Container`,
-      short_name: `Open`,
+      short_name: `Container`,
       cmd: `open_tab_in_container`,
       modes: [`tabs`],
       icon: container_icon,
       action: (args) => {
         App.open_in_tab_container(args.item, args.e)
       },
-      info: `Open the tab in a new container`,
+      info: `Open a tab in a new container`,
     },
     {
       name: `Pick Container`,

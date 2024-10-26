@@ -47,10 +47,6 @@ App.tab_container_menu_items = (item, e) => {
 }
 
 App.check_tab_container = async (tab) => {
-  if (!App.get_setting(`container_support`)) {
-    return
-  }
-
   let ident = await App.get_contextual_identity(tab)
 
   if (ident) {
@@ -169,7 +165,11 @@ App.open_in_tab_container = async (item, e) => {
       text: c.name,
       icon: App.color_icon_square(c.color),
       action: () => {
-        App.open_new_tab({url: item.url, cookieStoreId: c.id})
+        let active = App.get_active_items({mode: item.mode, item})
+
+        for (let it of active) {
+          App.open_new_tab({url: it.url, cookieStoreId: c.id})
+        }
       },
     })
   }
