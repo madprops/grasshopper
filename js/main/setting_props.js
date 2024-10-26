@@ -1516,7 +1516,7 @@ App.build_settings = () => {
     container_icon_command: {
       name: `Container Icon Command`,
       type: `menu`,
-      value: `show_tab_container`,
+      value: `none`,
       info: `Command to run when clicking the Container Icon`,
       version: 1,
       setup: (key) => {

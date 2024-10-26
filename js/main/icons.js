@@ -668,11 +668,22 @@ App.custom_icon_click = (item, e) => {
   let icon = App.get_icon(item)
   let cmd = App.get_custom_icon_command(icon)
 
-  if (cmd) {
+  if (cmd && (cmd !== `none`)) {
     App.run_command({cmd, from: `custom_icon`, item, e})
   }
   else {
     App.custom_icon_menu(item, e)
+  }
+}
+
+App.container_icon_click = (item, e) => {
+  let cmd = App.get_setting(`container_icon_command`)
+
+  if (cmd && (cmd !== `none`)) {
+    App.run_command({cmd, from: `container_icon`, item, e})
+  }
+  else {
+    App.tab_container_menu(item, e)
   }
 }
 
@@ -709,6 +720,10 @@ App.item_icon_click = (item, target, e) => {
   }
   else if (icon === `custom`) {
     App.custom_icon_click(item, e)
+    return true
+  }
+  else if (icon === `container`) {
+    App.container_icon_click(item, e)
     return true
   }
 
@@ -775,6 +790,9 @@ App.update_icon_tooltips = (item, target) => {
     el.title += `\nClick: Show Menu`
   }
   else if (icon === `custom`) {
+    el.title += `\nClick: Show Menu`
+  }
+  else if (icon === `container`) {
     el.title += `\nClick: Show Menu`
   }
 }

@@ -43,6 +43,14 @@ App.tab_container_menu_items = (item, e) => {
     },
   })
 
+  items.push({
+    text: `Open`,
+    icon: App.container_icon,
+    action: () => {
+      App.open_in_tab_container(item, e)
+    },
+  })
+
   return items
 }
 
