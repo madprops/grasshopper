@@ -672,7 +672,7 @@ App.custom_icon_click = (item, e) => {
     App.run_command({cmd, from: `custom_icon`, item, e})
   }
   else {
-    App.custom_icon_menu(item, e)
+    App.show_tab_list(`icon_${icon}`, e)
   }
 }
 
@@ -771,7 +771,7 @@ App.update_icon_tooltips = (item, target) => {
     el.title += `\nClick: Show Menu`
   }
   else if (icon === `custom`) {
-    el.title += `\nClick: Show Menu`
+    el.title += `\nClick: Show Icon`
   }
 }
 
@@ -814,4 +814,9 @@ App.check_custom_icon = (item) => {
   else {
     DOM.hide(custom_icon_el)
   }
+}
+
+App.show_custom_icon = (item, e) => {
+  let icon = App.get_icon(item)
+  App.show_tab_list(`icon_${icon}`, e)
 }
