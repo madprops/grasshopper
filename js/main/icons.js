@@ -375,7 +375,7 @@ App.check_icons = (item) => {
   let container_el = DOM.el(`.container_icon`, item.element)
 
   if (item.container_name) {
-    let c_icon = App.color_icon_2(item.container_color)
+    let c_icon = App.color_icon_square(item.container_color)
     container_el.innerHTML = ``
     container_el.append(c_icon)
     container_el.title = item.container_name

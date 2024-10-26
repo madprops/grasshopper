@@ -1381,6 +1381,13 @@ a:hover
   flex-grow: 0;
 }
 
+.color_icon_square {
+  height: 1rem;
+  width: 1rem;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
 .item .color_icon_container.effect:hover {
   cursor: pointer;
 }
