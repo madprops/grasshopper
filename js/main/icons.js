@@ -149,7 +149,7 @@ App.add_item_icon = (item, side, name) => {
   else if (name === `container`) {
     let cls = `container_icon_container`
     let title = `Container`
-    obj = {...obj, title}
+    obj = {...obj, title, cls}
     App.proc_item_icon(obj)
   }
 }

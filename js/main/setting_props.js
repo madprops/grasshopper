@@ -1499,7 +1499,7 @@ App.build_settings = () => {
     show_container_icon: {
       name: `Show Container Icon`,
       type: `menu`,
-      value: `focus`,
+      value: `always`,
       info: `When to show the Container Icon`,
       version: 1,
       setup: (key) => {

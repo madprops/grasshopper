@@ -399,25 +399,9 @@ App.insert_icon_css = () => {
     }
   }
 
-  for (let key in App.setting_props) {
-    let sett = App.setting_props[key]
-
-    if (sett.category !== `icons`) {
-      continue
-    }
-
-    if (!key.endsWith(`_icon`)) {
-      continue
-    }
-
-    action(key)
+  for (let item of App.get_setting(`item_icon_order`)) {
+    action(`${item.icon}_icon`)
   }
-
-  action(`color_icon`)
-  action(`custom_icon`)
-  action(`image_icon`)
-  action(`video_icon`)
-  action(`audio_icon`)
 
   App.insert_css(`icon_css`, css)
 }
