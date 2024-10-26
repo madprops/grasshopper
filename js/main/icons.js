@@ -906,7 +906,6 @@ App.update_icon_tooltips = (item, target) => {
     return
   }
 
-  el.dataset.has_tooltips = true
   let icon = el.dataset.icon
 
   if (!icon) {
@@ -914,6 +913,7 @@ App.update_icon_tooltips = (item, target) => {
   }
 
   let cmd
+  el.dataset.has_tooltips = true
 
   if (App.media_icons.includes(icon)) {
     let sett = App.get_setting(`view_${icon}_${item.mode}`)
