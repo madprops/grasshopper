@@ -42,3 +42,12 @@ App.tab_container_menu_items = (item, e) => {
 
   return items
 }
+
+App.check_tab_container = async (tab) => {
+  let ident = await App.get_contextual_identity(tab)
+
+  if (ident) {
+    tab.container_name = ident.name
+    tab.container_color = ident.colorCode
+  }
+}

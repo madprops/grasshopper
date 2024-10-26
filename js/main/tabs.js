@@ -132,12 +132,7 @@ App.get_tabs = async () => {
   }
 
   for (let tab of tabs) {
-    let ident = await App.get_contextual_identity(tab)
-
-    if (ident) {
-      tab.container_name = ident.name
-      tab.container_color = ident.colorCode
-    }
+    await App.check_tab_container(tab)
   }
 
   return tabs
@@ -238,6 +233,7 @@ App.refresh_tab = async (args = {}) => {
     return
   }
 
+  await App.check_tab_container(args.info)
   let item = App.get_item_by_id(`tabs`, args.id)
 
   if (item) {
