@@ -3661,6 +3661,17 @@ App.setup_commands = () => {
       info: `Show the Filter Container Menu`,
     },
     {
+      name: `Pick Container`,
+      short_name: `Container`,
+      cmd: `pick_tab_container`,
+      modes: [`items`],
+      icon: container_icon,
+      action: (args) => {
+        App.show_filter_container_menu(args.mode, args.e, true)
+      },
+      info: `Pick a specific container to show`,
+    },
+    {
       name: `Filter Edited`,
       short_name: `Edited`,
       cmd: `filter_edited_tabs`,

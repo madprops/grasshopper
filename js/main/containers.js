@@ -9,9 +9,8 @@ App.get_contextual_identity = async (tab) => {
   }
 }
 
-App.get_container_tabs = (item) => {
+App.get_container_tabs = (name) => {
   let items = App.get_items(`tabs`)
-  let name = item.container_name
   return items.filter(x => x.container_name === name)
 }
 
@@ -71,7 +70,7 @@ App.show_filter_container_menu = (mode, e, show = false) => {
   App.show_context({items, e, title: `Containers`})
 }
 
-App.get_container_items = (mode) => {
+App.get_container_items = (mode, show) => {
   let items = []
   let containers = []
 
@@ -86,16 +85,18 @@ App.get_container_items = (mode) => {
   if (containers.length) {
     let icon = App.container_icon
 
-    items.push({
-      icon,
-      text: `All`,
-      action: () => {
-        App.filter_cmd(mode, `filter_tab_containers_all`, `containers_menu`)
-      },
-      middle_action: () => {
-        App.filter_container({mode, container: `all`, from: App.refine_string})
-      },
-    })
+    if (!show) {
+      items.push({
+        icon,
+        text: `All`,
+        action: () => {
+          App.filter_cmd(mode, `filter_tab_containers_all`, `containers_menu`)
+        },
+        middle_action: () => {
+          App.filter_container({mode, container: `all`, from: App.refine_string})
+        },
+      })
+    }
 
     for (let container of containers) {
       let icon = App.color_icon_square(App.container_data[container].color)
@@ -104,10 +105,20 @@ App.get_container_items = (mode) => {
         icon,
         text: container,
         action: (e) => {
-          App.filter_container({mode, container})
+          if (show) {
+            App.show_tab_list(`container_${container}`, e)
+          }
+          else {
+            App.filter_container({mode, container})
+          }
         },
         middle_action: (e) => {
-          App.filter_container({mode, container, from: App.refine_string})
+          if (show) {
+            //
+          }
+          else {
+            App.filter_container({mode, container, from: App.refine_string})
+          }
         },
       })
     }

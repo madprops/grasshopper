@@ -32,9 +32,15 @@ App.show_tab_list = (what, e, item) => {
     title = `Title`
   }
   else if (what === `container`) {
-    tabs = App.get_container_tabs(item)
+    tabs = App.get_container_tabs(item.cotnainer_name)
     title = item.container_name
     title_icon = App.color_icon_square(item.container_color)
+  }
+  else if (what.startsWith(`container_`)) {
+    let name = what.split(`_`)[1]
+    tabs = App.get_container_tabs(name)
+    title = name
+    title_icon = App.color_icon_square(App.container_data[name].color)
   }
   else if (what.startsWith(`color_`)) {
     let color_id = what.split(`_`)[1]
