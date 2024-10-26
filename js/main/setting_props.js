@@ -5729,6 +5729,13 @@ App.build_settings = () => {
       info: `Consider tags when using the filter normally, by typing a tag name`,
       version: 1,
     },
+    filter_containers: {
+      name: `Filter Containers`,
+      type: `checkbox`,
+      value: true,
+      info: `Consider containers when using the filter normally, like typing 'work'`,
+      version: 1,
+    },
     reuse_filter: {
       name: `Reuse Filter`,
       type: `checkbox`,

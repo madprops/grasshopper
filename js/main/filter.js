@@ -537,6 +537,15 @@ App.filter_check = (args) => {
     }
   }
 
+  if (!match) {
+    if ((args.by_what === `all`) && App.get_setting(`filter_containers`)) {
+      if (args.item.container_name) {
+        let cname = App.clean_filter(args.item.container_name, true)
+        match = cname === args.value_lower
+      }
+    }
+  }
+
   if (match) {
     if (args.filter_mode === `all`) {
       match = true
