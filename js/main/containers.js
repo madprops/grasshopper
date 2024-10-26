@@ -36,7 +36,7 @@ App.tab_container_menu_items = (item, e) => {
     text: `Filter`,
     icon,
     action: () => {
-      App.filter_container(item)
+      App.filter_same_container(item)
     },
   })
 
@@ -50,4 +50,8 @@ App.check_tab_container = async (tab) => {
     tab.container_name = ident.name
     tab.container_color = ident.colorCode
   }
+}
+
+App.filter_same_container = (item) => {
+  App.filter_container({mode: item.mode, container: item.container_name})
 }

@@ -1124,15 +1124,6 @@ App.filter_nodes = (item) => {
   })
 }
 
-App.filter_container = (item) => {
-  App.filter_common({
-    name: `container`,
-    full: `Container`,
-    prop: item.container_name,
-    item,
-  })
-}
-
 App.filter_all = (mode = App.active_mode, from = `normal`) => {
   if (App.is_filtered(mode)) {
     App.set_filter_mode({mode, cmd: `all`, filter: false})
@@ -1434,6 +1425,24 @@ App.filter_tag = (args = {}) => {
     text: args.tag,
     short: `tag`,
     full: `Tags`,
+    toggle: args.toggle,
+    from: args.from,
+  })
+}
+
+App.filter_container = (args = {}) => {
+  let def_args = {
+    toggle: false,
+  }
+
+  App.def_args(def_args, args)
+
+  App.complex_filter({
+    mode: args.mode,
+    value: args.container,
+    text: args.container,
+    short: `container`,
+    full: `Containers`,
     toggle: args.toggle,
     from: args.from,
   })

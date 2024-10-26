@@ -3369,7 +3369,7 @@ App.setup_commands = () => {
       name: `Show Container`,
       short_name: `Container`,
       cmd: `show_tab_container`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: container_icon,
       single: true,
       some_container: true,
@@ -3382,12 +3382,12 @@ App.setup_commands = () => {
       name: `Filter Container`,
       short_name: `Container`,
       cmd: `filter_tab_container`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: container_icon,
       single: true,
       some_container: true,
       action: (args) => {
-        App.filter_container(args.item)
+        App.filter_same_container(args.item)
       },
       info: `Filter tabs with the same container`,
     },
