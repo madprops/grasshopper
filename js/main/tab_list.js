@@ -18,10 +18,17 @@ App.show_tab_list = (what, e, item) => {
   else if (what === `nodes`) {
     tabs = App.get_tab_nodes(item)
     title = `Nodes`
+    title_icon = App.get_setting(`node_icon`)
   }
   else if (what === `parent`) {
     tabs = [App.get_parent_item(item)]
     title = `Parent`
+    title_icon = App.get_setting(`parent_icon`)
+  }
+  else if (what === `siblings`) {
+    tabs = App.get_tab_siblings(item)
+    title = `Siblings`
+    title_icon = App.get_setting(`node_icon`)
   }
   else if (what === `domain`) {
     tabs = App.get_domain_tabs(item)

@@ -3296,9 +3296,22 @@ App.setup_commands = () => {
       info: `Filter all tabs that are a node`,
     },
     {
+      name: `Show Siblings`,
+      short_name: `Siblings`,
+      cmd: `show_node_tab_siblings`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      icon: node_icon,
+      action: (args) => {
+        App.show_tab_list(`siblings`, args.e, args.item)
+      },
+      info: `Show the siblings of a tab`,
+    },
+    {
       name: `Filter Siblings`,
-      short_name: `Parent`,
-      cmd: `filter_node_tab_sibling`,
+      short_name: `Siblings`,
+      cmd: `filter_node_tab_siblings`,
       modes: [`tabs`],
       item: true,
       single: true,

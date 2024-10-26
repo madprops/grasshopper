@@ -173,3 +173,13 @@ App.filter_node_tab_siblings = (item) => {
     item,
   })
 }
+
+App.get_tab_siblings = (item) => {
+  let tree = App.tab_tree[item.parent]
+
+  if (tree) {
+    return tree.nodes
+  }
+
+  return []
+}
