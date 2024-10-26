@@ -3663,7 +3663,7 @@ App.setup_commands = () => {
     {
       name: `Open In Container`,
       short_name: `Container`,
-      cmd: `open_tab_in_container`,
+      cmd: `open_tabs_in_container`,
       modes: [`tabs`],
       icon: container_icon,
       action: (args) => {
