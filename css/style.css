@@ -2059,6 +2059,6 @@ a:hover
   font-size: 0.9rem;
 }
 
-.shade {
-  background-color: var(--slight_shade);
+.alt_background {
+  background-color: var(--alt_color_0);
 }
