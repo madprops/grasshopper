@@ -3371,6 +3371,8 @@ App.setup_commands = () => {
       cmd: `show_tab_container`,
       modes: [`items`],
       icon: container_icon,
+      single: true,
+      some_container: true,
       action: (args) => {
         App.show_tab_list(`container`, args.e, args.item)
       },
@@ -3382,6 +3384,8 @@ App.setup_commands = () => {
       cmd: `filter_tab_container`,
       modes: [`items`],
       icon: container_icon,
+      single: true,
+      some_container: true,
       action: (args) => {
         App.filter_container(args.item)
       },

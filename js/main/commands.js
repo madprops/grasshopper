@@ -249,6 +249,10 @@ App.check_command = (command, args = {}) => {
       if (item.ruled) {
         args.some_ruled = true
       }
+
+      if (item.container_name) {
+        args.some_container = true
+      }
     }
   }
 
@@ -342,6 +346,7 @@ App.check_command = (command, args = {}) => {
   check_1(`some_root_possible`)
   check_1(`some_hostname`)
   check_1(`some_ruled`)
+  check_1(`some_container`)
 
   let edit_props = App.get_edit_prop_list()
   edit_props.push(`split`)

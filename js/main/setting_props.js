@@ -1509,7 +1509,7 @@ App.build_settings = () => {
     container_icon_command: {
       name: `Container Icon Command`,
       type: `menu`,
-      value: `show_about`,
+      value: `show_tab_container`,
       info: `Command to run when clicking the Container Icon`,
       separator: true,
       version: 1,
