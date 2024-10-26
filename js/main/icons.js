@@ -1,4 +1,9 @@
 App.proc_item_icon = (args = {}) => {
+  let def_args = {
+    cls: ``,
+  }
+
+  App.def_args(def_args, args)
   let side_ok = args.side === App.get_setting(`${args.what}_side`)
 
   if (!App.icon_enabled(args.what) || !side_ok) {
@@ -6,7 +11,7 @@ App.proc_item_icon = (args = {}) => {
   }
 
   let cls = `${args.what} item_node hidden grower item_icon_unit ${args.cls}`
-  let icon = DOM.create(`div`, cls)
+  let icon = DOM.create(`div`, cls.trim())
 
   if ([
     `color_icon`,
