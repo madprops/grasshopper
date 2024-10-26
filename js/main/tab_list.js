@@ -6,14 +6,17 @@ App.show_tab_list = (what, e, item) => {
     let active = App.get_setting(`recent_active`)
     tabs = App.get_recent_tabs({max, active})
     title = `Recent`
+    title_icon = App.get_setting(`_icon`)
   }
   else if (what === `pins`) {
     tabs = App.get_pinned_tabs()
     title = `Pinned`
+    title_icon = App.get_setting(`tabs_mode_icon`)
   }
   else if (what === `playing`) {
     tabs = App.get_playing_tabs()
     title = `Playing`
+    title_icon = App.get_setting(`playing_icon`)
   }
   else if (what === `nodes`) {
     tabs = App.get_tab_nodes(item)
@@ -33,10 +36,12 @@ App.show_tab_list = (what, e, item) => {
   else if (what === `domain`) {
     tabs = App.get_domain_tabs(item)
     title = `Domain`
+    title_icon = App.settings_icons.filter
   }
   else if (what === `title`) {
     tabs = App.get_title_tabs(item)
     title = `Title`
+    title_icon = App.settings_icons.filter
   }
   else if (what === `container`) {
     tabs = App.get_container_tabs(item.container_name)
