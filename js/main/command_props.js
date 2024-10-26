@@ -3650,7 +3650,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Container Menu`,
-      short_name: `Container`,
+      short_name: `Containers`,
       cmd: `show_filter_container_menu`,
       modes: [`items`],
       item: true,
