@@ -8,7 +8,11 @@ App.proc_item_icon = (args = {}) => {
   let cls = `${args.what} item_node hidden grower item_icon_unit ${args.cls}`
   let icon = DOM.create(`div`, cls)
 
-  if ([`color_icon`, `custom_icon`].includes(args.what)) {
+  if ([
+    `color_icon`,
+    `custom_icon`,
+    `container_icon`,
+  ].includes(args.what)) {
     // Don't add content
   }
   else {
@@ -139,6 +143,12 @@ App.add_item_icon = (item, side, name) => {
   else if (name === `custom`) {
     let title = `Custom Icon`
     title += `\nMiddle Click: Remove Icon`
+    obj = {...obj, title}
+    App.proc_item_icon(obj)
+  }
+  else if (name === `container`) {
+    let cls = `container_icon_container`
+    let title = `Container`
     obj = {...obj, title}
     App.proc_item_icon(obj)
   }
@@ -360,6 +370,19 @@ App.check_icons = (item) => {
     else {
       DOM.hide(icon)
     }
+  }
+
+  let container_el = DOM.el(`.container_icon`, item.element)
+
+  if (item.container_name) {
+    let c_icon = App.color_icon_2(item.container_color)
+    container_el.innerHTML = ``
+    container_el.append(c_icon)
+    container_el.title = item.container_name
+    DOM.show(container_el)
+  }
+  else {
+    DOM.hide(container_el)
   }
 }
 
@@ -798,7 +821,7 @@ App.icon_enabled = (what) => {
 
   let icon
 
-  if ([`color`, `custom`].includes(what)) {
+  if ([`color`, `custom`, `container`].includes(what)) {
     icon = true
   }
   else {

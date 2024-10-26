@@ -131,6 +131,15 @@ App.get_tabs = async () => {
     App.set_tabs_title(`Recent`)
   }
 
+  for (let tab of tabs) {
+    let ident = await App.get_contextual_identity(tab)
+
+    if (ident) {
+      tab.container_name = ident.name
+      tab.container_color = ident.colorCode
+    }
+  }
+
   return tabs
 }
 

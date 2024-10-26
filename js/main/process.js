@@ -144,6 +144,8 @@ App.process_info = (args = {}) => {
     item.last_access = args.info.lastAccessed
     item.status = args.info.status
     item.parent = args.info.openerTabId
+    item.container_name = args.info.container_name
+    item.container_color = args.info.container_color
   }
   else if (args.mode === `history`) {
     item.last_visit = args.info.lastVisitTime

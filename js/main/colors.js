@@ -190,6 +190,13 @@ App.color_icon = (id) => {
   return DOM.create(`div`, s)
 }
 
+App.color_icon_2 = (color) => {
+  let cls = `color_icon_inner`
+  let el = DOM.create(`div`, cls)
+  el.style.backgroundColor = color
+  return el
+}
+
 App.edit_tab_color = (args = {}) => {
   let def_args = {
     color: ``,

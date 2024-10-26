@@ -345,6 +345,13 @@ App.build_settings = () => {
       info: `Enable smooth list scrolling in some cases`,
       version: 1,
     },
+    show_tab_containers: {
+      name: `Show Containers`,
+      type: `checkbox`,
+      value: true,
+      info: `Show indicators for tab containers`,
+      version: 1,
+    },
     wrap_text: {
       name: `Wrap Text`,
       type: `checkbox`,
@@ -1486,6 +1493,37 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    container_icon_side: {
+      name: `Container Icon Side`,
+      type: `menu`,
+      value: `right`,
+      info: `Show the Container Icon on the left or right of text`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
+    show_container_icon: {
+      name: `Show Container Icon`,
+      type: `menu`,
+      value: `focus`,
+      info: `When to show the Container Icon`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    container_icon_command: {
+      name: `Container Icon Command`,
+      type: `menu`,
+      value: `show_about`,
+      info: `Command to run when clicking the Container Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     custom_icon_side: {
       name: `Custom Icon Side`,
       type: `menu`,
@@ -1536,6 +1574,7 @@ App.build_settings = () => {
         {icon: `edited`},
         {icon: `parent`},
         {icon: `node`},
+        {icon: `container`},
         {icon: `root`},
         {icon: `custom`},
         {icon: `color`},
