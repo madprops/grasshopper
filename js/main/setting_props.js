@@ -3837,6 +3837,11 @@ App.build_settings = () => {
       name: `Custom Tags`,
       type: `list`,
       value: [
+        {tag: `work`},
+        {tag: `personal`},
+        {tag: `shopping`},
+        {tag: `research`},
+        {tag: `travel`},
         {tag: `later`},
       ],
       separator: true,
