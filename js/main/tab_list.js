@@ -6,12 +6,12 @@ App.show_tab_list = (what, e, item) => {
     let active = App.get_setting(`recent_active`)
     tabs = App.get_recent_tabs({max, active})
     title = `Recent`
-    title_icon = App.get_setting(`_icon`)
+    title_icon = App.get_setting(`tabs_mode_icon`)
   }
   else if (what === `pins`) {
     tabs = App.get_pinned_tabs()
     title = `Pinned`
-    title_icon = App.get_setting(`tabs_mode_icon`)
+    title_icon = App.get_setting(`pin_icon`)
   }
   else if (what === `playing`) {
     tabs = App.get_playing_tabs()
