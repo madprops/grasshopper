@@ -106,7 +106,7 @@ App.apply_color_mode = (item) => {
     color_mode = `icon`
   }
 
-  if (color_mode.includes(`icon`)) {
+  if (color_mode.includes(`icon`) && App.icon_enabled(`color`)) {
     let el = DOM.el(`.color_icon_container`, item.element)
 
     if (color) {
@@ -127,7 +127,7 @@ App.apply_color_mode = (item) => {
         el.title = c_obj.name
 
         if (App.get_setting(`icons_middle_click`)) {
-          el.title += `\nMiddle Click: Remove color`
+          el.title += `\nMiddle Click: Remove Color`
         }
       }
       else {

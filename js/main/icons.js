@@ -796,6 +796,10 @@ App.update_icon_tooltips = (item, target) => {
 }
 
 App.check_container_icon = (item) => {
+  if (!App.icon_enabled(`container`)) {
+    return
+  }
+
   let container_el = DOM.el(`.container_icon`, item.element)
 
   if (item.container_name) {
@@ -818,6 +822,10 @@ App.check_container_icon = (item) => {
 }
 
 App.check_custom_icon = (item) => {
+  if (!App.icon_enabled(`custom`)) {
+    return
+  }
+
   let custom_icon = App.get_icon(item)
   let custom_icon_el = DOM.el(`.custom_icon`, item.element)
 
