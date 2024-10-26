@@ -14,3 +14,31 @@ App.get_container_tabs = (item) => {
   let name = item.container_name
   return items.filter(x => x.container_name === name)
 }
+
+App.tab_container_menu = (item, e) => {
+  let items = App.tab_container_menu_items(item, e)
+  App.show_context({items, e})
+}
+
+App.tab_container_menu_items = (item, e) => {
+  let items = []
+  let icon = App.container_icon
+
+  items.push({
+    text: `Show`,
+    icon,
+    action: () => {
+      App.show_tab_list(`container`, e, item)
+    },
+  })
+
+  items.push({
+    text: `Filter`,
+    icon,
+    action: () => {
+      App.filter_container(item)
+    },
+  })
+
+  return items
+}

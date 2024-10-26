@@ -426,6 +426,11 @@ App.mouse_context_action = (e) => {
     return
   }
 
+  if (DOM.parent(target, [`.container_icon`])) {
+    App.tab_container_menu(item, e)
+    return
+  }
+
   if (App.get_setting(`item_menu_select`)) {
     App.select_item({item, scroll: `nearest`, deselect: !item.selected})
   }
