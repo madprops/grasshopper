@@ -3661,6 +3661,17 @@ App.setup_commands = () => {
       info: `Show the Filter Container Menu`,
     },
     {
+      name: `Open In Container`,
+      short_name: `Open`,
+      cmd: `open_tab_in_container`,
+      modes: [`tabs`],
+      icon: container_icon,
+      action: (args) => {
+        App.open_in_tab_container(args.item, args.e)
+      },
+      info: `Open the tab in a new container`,
+    },
+    {
       name: `Pick Container`,
       short_name: `Container`,
       cmd: `pick_tab_container`,

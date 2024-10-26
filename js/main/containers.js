@@ -138,3 +138,41 @@ App.get_container_items = (mode, show) => {
 
   return items
 }
+
+App.get_all_containers = async () => {
+  let containers = []
+
+  try {
+    let data = await browser.contextualIdentities.query({})
+
+    for (let c of data) {
+      containers.push({
+        id: c.cookieStoreId,
+        name: c.name,
+        color: c.colorCode,
+      })
+    }
+
+    return containers
+  }
+  catch (error) {
+    App.error(error)
+  }
+}
+
+App.open_in_tab_container = async (item, e) => {
+  let containers = await App.get_all_containers()
+  let items = []
+
+  for (let c of containers) {
+    items.push({
+      text: c.name,
+      icon: App.color_icon_square(c.color),
+      action: () => {
+        App.open_new_tab({url: item.url, cookieStoreId: c.id})
+      },
+    })
+  }
+
+  App.show_context({items, e})
+}

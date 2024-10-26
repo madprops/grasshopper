@@ -1595,7 +1595,7 @@ App.build_settings = () => {
       ],
       separator: true,
       info: `Define the left-right order of item icons`,
-      version: 1,
+      version: 2,
     },
     button_icons: {
       name: `Button Icons`,
