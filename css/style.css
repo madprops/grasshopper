@@ -571,6 +571,10 @@ svg {
   justify-content: center;
 }
 
+.item_icon_unit {
+  flex-shrink: 0;
+}
+
 .icon_pick .item_container .item_icon_container,
 .item_container .header_item .item_icon_container
 {
