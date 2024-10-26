@@ -3649,7 +3649,7 @@ App.setup_commands = () => {
       info: `Filter tabs that have containers`,
     },
     {
-      name: `Pick Container`,
+      name: `Filter Container Menu`,
       short_name: `Container`,
       cmd: `show_filter_container_menu`,
       modes: [`items`],
