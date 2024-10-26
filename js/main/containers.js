@@ -15,6 +15,11 @@ App.get_container_tabs = (item) => {
   return items.filter(x => x.container_name === name)
 }
 
+App.get_all_container_tabs = () => {
+  let items = App.get_items(`tabs`)
+  return items.filter(x => x.container_name)
+}
+
 App.tab_container_menu = (item, e) => {
   let items = App.tab_container_menu_items(item, e)
   App.show_context({items, e})

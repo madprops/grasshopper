@@ -40,6 +40,7 @@ App.make_tab_box_modes = () => {
     parents: {info: `Tabs that are parents to other tabs`, icon: App.get_setting(`parent_icon`)},
     nodes: {info: `Tabs that were opened by another tab`, icon: App.get_setting(`node_icon`)},
     nodez: {info: `The tabs opened by the selected tab`, icon: App.get_setting(`node_icon`)},
+    containers: {info: `Tabs with containers`, icon: App.container_icon},
     headers: {info: `Headers and subheaders`, icon: App.get_setting(`header_icon`) || App.zone_icon},
     history: {info: `Pick a query to search history`, icon: App.mode_icon(`history`)},
     folders: {info: `Pick a bookmarks folder`, icon: App.mode_icon(`bookmarks`)},
@@ -287,6 +288,11 @@ App.update_tab_box_nodes = () => {
 App.update_tab_box_nodez = () => {
   let o_items = App.get_current_tab_nodes()
   return App.tab_box_show(`nodez`, o_items)
+}
+
+App.update_tab_box_containers = () => {
+  let o_items = App.get_all_container_tabs()
+  return App.tab_box_show(`containers`, o_items)
 }
 
 App.update_tab_box_notes = () => {
