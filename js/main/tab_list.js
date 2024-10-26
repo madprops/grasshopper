@@ -32,7 +32,7 @@ App.show_tab_list = (what, e, item) => {
     title = `Title`
   }
   else if (what === `container`) {
-    tabs = App.get_container_tabs(item.cotnainer_name)
+    tabs = App.get_container_tabs(item.container_name)
     title = item.container_name
     title_icon = App.color_icon_square(item.container_color)
   }
