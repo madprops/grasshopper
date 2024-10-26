@@ -992,7 +992,7 @@ App.get_default_setting = (setting) => {
   let value = App.setting_props[setting].value
 
   if (typeof value === `object`) {
-    value = [...value]
+    value = App.clone(value)
   }
 
   return value
