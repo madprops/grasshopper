@@ -1427,6 +1427,9 @@ App.setup_settings_addlist = () => {
         a: `Term A`,
         b: `Term B`,
       },
+      list_icon: (item) => {
+        return App.settings_icons.filter
+      },
       list_text: (item) => {
         return `${item.a} = ${item.b}`
       },
@@ -1452,6 +1455,9 @@ App.setup_settings_addlist = () => {
       },
       labels: {
         filter: `Filter`,
+      },
+      list_icon: (item) => {
+        return App.settings_icons.filter
       },
       list_text: (item) => {
         return item.filter
