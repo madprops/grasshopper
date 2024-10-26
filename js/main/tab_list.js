@@ -33,7 +33,7 @@ App.show_tab_list = (what, e, item) => {
   }
   else if (what === `container`) {
     tabs = App.get_container_tabs(item)
-    title = `Container`
+    title = item.container_name
     title_icon = App.container_icon
   }
   else if (what.startsWith(`color_`)) {
