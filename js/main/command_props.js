@@ -3637,9 +3637,9 @@ App.setup_commands = () => {
       info: `Filter tabs that have roots`,
     },
     {
-      name: `Filter Containers`,
+      name: `Filter All Containers`,
       short_name: `Containers`,
-      cmd: `filter_tab_containers`,
+      cmd: `filter_tab_containers_all`,
       modes: [`tabs`],
       icon: container_icon,
       filter_mode: true,
@@ -3647,6 +3647,18 @@ App.setup_commands = () => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Filter tabs that have containers`,
+    },
+    {
+      name: `Pick Container`,
+      short_name: `Container`,
+      cmd: `show_filter_container_menu`,
+      modes: [`items`],
+      item: true,
+      icon: container_icon,
+      action: (args) => {
+        App.show_filter_container_menu(args.mode, args.e)
+      },
+      info: `Show the Filter Container Menu`,
     },
     {
       name: `Filter Edited`,

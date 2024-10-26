@@ -659,7 +659,7 @@ App.filter_check = (args) => {
 
       match = no_tab
     }
-    else if (args.filter_mode === `filter_tab_containers`) {
+    else if (args.filter_mode === `filter_tab_containers_all`) {
       match = args.item.container_name
     }
   }
@@ -1556,13 +1556,24 @@ App.create_filter_menu = (mode) => {
   fmodes.push({cmd: `filter_media_video`})
   fmodes.push({cmd: `filter_media_audio`})
   fmodes.push(separator())
+
   cmd = App.get_command(`show_filter_color_menu`)
   fmodes.push({cmd: `color_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
+
   cmd = App.get_command(`show_filter_tag_menu`)
   fmodes.push({cmd: `tag_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
+
   cmd = App.get_command(`show_filter_icon_menu`)
   fmodes.push({cmd: `icon_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
+
   fmodes.push({cmd: `filter_root_tabs`})
+
+  if (mode === `tabs`) {
+    fmodes.push(separator())
+    cmd = App.get_command(`show_filter_container_menu`)
+    fmodes.push({cmd: `container_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
+  }
+
   fmodes.push(separator())
   fmodes.push({cmd: `filter_titled_tabs`})
   fmodes.push({cmd: `filter_notes_tabs`})
@@ -1669,6 +1680,16 @@ App.show_filter_menu = (mode) => {
           text: filter_mode.text,
           get_items: () => {
             return App.get_icon_items(mode)
+          },
+          info: filter_mode.info,
+        })
+      }
+      else if (filter_mode.cmd === `container_menu`) {
+        items.push({
+          icon: filter_mode.icon,
+          text: filter_mode.text,
+          get_items: () => {
+            return App.get_container_items(mode)
           },
           info: filter_mode.info,
         })

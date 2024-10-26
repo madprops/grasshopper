@@ -65,3 +65,61 @@ App.check_tab_container = async (tab) => {
 App.filter_same_container = (item) => {
   App.filter_container({mode: item.mode, container: item.container_name})
 }
+
+App.show_filter_container_menu = (mode, e, show = false) => {
+  let items = App.get_container_items(mode, show)
+  App.show_context({items, e, title: `Tags`})
+}
+
+App.get_container_items = (mode) => {
+  let items = []
+  let containers = []
+
+  for (let tab of App.get_items(`tabs`)) {
+    if (tab.container_name) {
+      if (!containers.includes(tab.container_name)) {
+        containers.push(tab.container_name)
+      }
+    }
+  }
+
+  if (containers.length) {
+    let icon = App.container_icon
+
+    items.push({
+      icon,
+      text: `All`,
+      action: () => {
+        App.filter_cmd(mode, `filter_tab_containers_all`, `containers_menu`)
+      },
+      middle_action: () => {
+        App.filter_container({mode, container: `all`, from: App.refine_string})
+      },
+    })
+
+    for (let container of containers) {
+      let icon = App.color_icon_square(App.container_data[container].color)
+
+      items.push({
+        icon,
+        text: container,
+        action: (e) => {
+          App.filter_container({mode, container})
+        },
+        middle_action: (e) => {
+          App.filter_container({mode, container, from: App.refine_string})
+        },
+      })
+    }
+  }
+  else {
+    items.push({
+      text: `No containers in use`,
+      action: () => {
+        App.alert(`Open containers in Firefox to use this feature`)
+      },
+    })
+  }
+
+  return items
+}

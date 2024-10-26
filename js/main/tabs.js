@@ -97,7 +97,6 @@ App.build_tab_filters = () => {
     {cmd: `filter_duplicate_tabs`},
     {cmd: `filter_all_parent_tabs`},
     {cmd: `filter_all_node_tabs`},
-    {cmd: `filter_tab_containers`},
   ]
 }
 
