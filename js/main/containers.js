@@ -68,7 +68,7 @@ App.filter_same_container = (item) => {
 
 App.show_filter_container_menu = (mode, e, show = false) => {
   let items = App.get_container_items(mode, show)
-  App.show_context({items, e, title: `Tags`})
+  App.show_context({items, e, title: `Containers`})
 }
 
 App.get_container_items = (mode) => {
