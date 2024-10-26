@@ -188,6 +188,7 @@ App.edit_prompt = (args = {}) => {
   }
 
   let name = App.capitalize(args.what)
+  let single_word = false
   let suggestions = []
   let tags, titles, icons, roots
 
@@ -202,6 +203,7 @@ App.edit_prompt = (args = {}) => {
   else if (args.what === `icon`) {
     icons = App.get_all_icons()
     suggestions = icons
+    single_word = true
   }
   else if (args.what === `root`) {
     roots = App.get_all_roots()
@@ -288,6 +290,12 @@ App.edit_prompt = (args = {}) => {
     append,
     fill: args.fill,
     on_submit: (ans) => {
+      if (single_word) {
+        if (ans.includes(` `)) {
+          return
+        }
+      }
+
       if (args.url) {
         if (ans) {
           ans = App.fix_url(ans)
