@@ -165,18 +165,30 @@ App.get_all_containers = async () => {
 }
 
 App.open_in_tab_container = async (item, e) => {
+  let new_tab_mode = App.get_setting(`new_tab_mode`)
   let containers = await App.get_all_containers()
+  let active = App.get_active_items({mode: item.mode, item})
   let items = []
+  let o_item
+
+  if (new_tab_mode === `above`) {
+    o_item = active[0]
+  }
+  else if (new_tab_mode === `below`) {
+    o_item = active.at(-1)
+  }
+  else {
+    o_item = active[0]
+  }
 
   for (let c of containers) {
     items.push({
       text: c.name,
       icon: App.color_icon_square(c.color),
       action: () => {
-        let active = App.get_active_items({mode: item.mode, item})
 
         for (let it of active) {
-          App.create_new_tab({url: it.url, cookieStoreId: c.id}, it)
+          App.create_new_tab({url: it.url, cookieStoreId: c.id}, o_item)
         }
       },
     })
