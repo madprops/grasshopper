@@ -22,11 +22,10 @@ App.tab_container_menu = (item, e) => {
 
 App.tab_container_menu_items = (item, e) => {
   let items = []
-  let icon = App.container_icon
 
   items.push({
     text: `Show`,
-    icon,
+    icon: App.color_icon_square(item.container_color),
     action: () => {
       App.show_tab_list(`container`, e, item)
     },
@@ -34,7 +33,7 @@ App.tab_container_menu_items = (item, e) => {
 
   items.push({
     text: `Filter`,
-    icon,
+    icon: App.color_icon_square(item.container_color),
     action: () => {
       App.filter_same_container(item)
     },
