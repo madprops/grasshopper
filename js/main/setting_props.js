@@ -345,6 +345,13 @@ App.build_settings = () => {
       info: `Enable smooth list scrolling in some cases`,
       version: 1,
     },
+    container_support: {
+      name: `Container Support`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable tab container support`,
+      version: 1,
+    },
     wrap_text: {
       name: `Wrap Text`,
       type: `checkbox`,

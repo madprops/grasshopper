@@ -47,6 +47,10 @@ App.tab_container_menu_items = (item, e) => {
 }
 
 App.check_tab_container = async (tab) => {
+  if (!App.get_setting(`container_support`)) {
+    return
+  }
+
   let ident = await App.get_contextual_identity(tab)
 
   if (ident) {
