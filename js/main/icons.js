@@ -187,18 +187,7 @@ App.check_icons = (item) => {
     }
   }
 
-  let custom_icon = App.get_icon(item)
-  let custom_icon_el = DOM.el(`.custom_icon`, item.element)
-
-  if (custom_icon) {
-    custom_icon_el.innerHTML = custom_icon
-    custom_icon_el.dataset.content = custom_icon
-    DOM.show(custom_icon_el)
-  }
-  else {
-    DOM.hide(custom_icon_el)
-  }
-
+  App.check_custom_icon(item)
   App.do_icon_check(`notes`, App.get_notes(item), item)
   App.do_icon_check(`title`, !item.header && App.get_title(item), item)
   App.do_icon_check(`tags`, App.tagged(item), item)
@@ -226,31 +215,7 @@ App.check_icons = (item) => {
 
   App.do_icon_check(`parent`, App.tab_has_nodes(item), item)
   App.do_icon_check(`node`, App.tab_has_parent(item), item)
-
-  let container_el = DOM.el(`.container_icon`, item.element)
-
-  if (item.container_name) {
-    let c_icon = App.color_icon_square(item.container_color)
-    container_el.innerHTML = ``
-
-    if (App.get_setting(`container_icon_text`)) {
-      let text = DOM.create(`div`)
-      text.textContent = item.container_name
-      container_el.append(text)
-      container_el.classList.add(`shade`)
-    }
-    else {
-      container_el.classList.remove(`shade`)
-    }
-
-    container_el.append(c_icon)
-    container_el.title = item.container_name
-    container_el.dataset.has_tooltips = false
-    DOM.show(container_el)
-  }
-  else {
-    DOM.hide(container_el)
-  }
+  App.check_container_icon(item)
 }
 
 App.check_item_icon = (item) => {
@@ -807,5 +772,46 @@ App.update_icon_tooltips = (item, target) => {
   }
   else if (icon === `custom`) {
     el.title += `\nClick: Show Menu`
+  }
+}
+
+App.check_container_icon = (item) => {
+  let container_el = DOM.el(`.container_icon`, item.element)
+
+  if (item.container_name) {
+    let c_icon = App.color_icon_square(item.container_color)
+    container_el.innerHTML = ``
+
+    if (App.get_setting(`container_icon_text`)) {
+      let text = DOM.create(`div`)
+      text.textContent = item.container_name
+      container_el.append(text)
+      container_el.classList.add(`shade`)
+    }
+    else {
+      container_el.classList.remove(`shade`)
+    }
+
+    container_el.append(c_icon)
+    container_el.title = item.container_name
+    container_el.dataset.has_tooltips = false
+    DOM.show(container_el)
+  }
+  else {
+    DOM.hide(container_el)
+  }
+}
+
+App.check_custom_icon = (item) => {
+  let custom_icon = App.get_icon(item)
+  let custom_icon_el = DOM.el(`.custom_icon`, item.element)
+
+  if (custom_icon) {
+    custom_icon_el.innerHTML = custom_icon
+    custom_icon_el.dataset.content = custom_icon
+    DOM.show(custom_icon_el)
+  }
+  else {
+    DOM.hide(custom_icon_el)
   }
 }
