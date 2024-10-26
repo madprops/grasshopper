@@ -3637,6 +3637,18 @@ App.setup_commands = () => {
       info: `Filter tabs that have roots`,
     },
     {
+      name: `Filter Containers`,
+      short_name: `Containers`,
+      cmd: `filter_tab_containers`,
+      modes: [`tabs`],
+      icon: container_icon,
+      filter_mode: true,
+      action: (args) => {
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter tabs that have containers`,
+    },
+    {
       name: `Filter Edited`,
       short_name: `Edited`,
       cmd: `filter_edited_tabs`,

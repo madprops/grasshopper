@@ -659,6 +659,9 @@ App.filter_check = (args) => {
 
       match = no_tab
     }
+    else if (args.filter_mode === `filter_tab_containers`) {
+      match = args.item.container_name
+    }
   }
 
   return Boolean(match)
@@ -1559,6 +1562,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push({cmd: `tag_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
   cmd = App.get_command(`show_filter_icon_menu`)
   fmodes.push({cmd: `icon_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
+  fmodes.push({cmd: `filter_root_tabs`})
   fmodes.push({cmd: `filter_root_tabs`})
   fmodes.push(separator())
   fmodes.push({cmd: `filter_titled_tabs`})
