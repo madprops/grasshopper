@@ -451,9 +451,9 @@ App.tabs_action = async (args = {}) => {
   blink_item()
 }
 
-App.duplicate_tab = async (item) => {
+App.duplicate_tab = async (item, args = {}) => {
   try {
-    await browser.tabs.duplicate(item.id)
+    await browser.tabs.duplicate(item.id, args)
   }
   catch (err) {
     App.error(err)
@@ -463,12 +463,14 @@ App.duplicate_tab = async (item) => {
 App.duplicate_tabs = (item) => {
   let items = App.get_active_items({mode: `tabs`, item})
   let force = App.check_force(`warn_on_duplicate_tabs`, items)
+  let args = {}
+  App.get_new_tab_args(item, `duplicate`, args)
 
   App.show_confirm({
     message:`Duplicate tabs? (${items.length})`,
     confirm_action: () => {
       for (let it of items) {
-        App.duplicate_tab(it)
+        App.duplicate_tab(it, args)
       }
     },
     force,
@@ -1155,6 +1157,10 @@ App.get_new_tab_args = (item, from, args) => {
   if (index !== undefined) {
     args.index = index
     args.pinned = pinned
+  }
+
+  if (from === `duplicate`) {
+    delete args.pinned
   }
 
   return args

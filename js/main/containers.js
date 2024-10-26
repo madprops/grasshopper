@@ -186,7 +186,6 @@ App.open_in_tab_container = async (item, e) => {
       text: c.name,
       icon: App.color_icon_square(c.color),
       action: () => {
-
         for (let it of active) {
           App.create_new_tab({url: it.url, cookieStoreId: c.id}, o_item)
         }
