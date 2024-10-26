@@ -2053,3 +2053,12 @@ a:hover
   padding-bottom: 0.8rem;
   gap: 0.35rem;
 }
+
+.container_icon_container {
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.shade {
+  background-color: var(--slight_shade);
+}

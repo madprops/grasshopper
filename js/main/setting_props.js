@@ -1480,11 +1480,18 @@ App.build_settings = () => {
       type: `menu`,
       value: `go_to_root_url`,
       info: `Command to run when clicking the Root Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
+    },
+    auto_root_icon: {
+      name: `Auto Root Icon`,
+      type: `checkbox`,
+      value: true,
+      separator: true,
+      info: `Show the root icon only when not at the root already`,
+      version: 1,
     },
     container_icon_side: {
       name: `Container Icon Side`,
@@ -1511,11 +1518,18 @@ App.build_settings = () => {
       type: `menu`,
       value: `show_tab_container`,
       info: `Command to run when clicking the Container Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
+    },
+    container_icon_text: {
+      name: `Container Icon Text`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the container name next to the icon`,
+      separator: true,
+      version: 1,
     },
     custom_icon_side: {
       name: `Custom Icon Side`,
@@ -1574,13 +1588,6 @@ App.build_settings = () => {
       ],
       separator: true,
       info: `Define the left-right order of item icons`,
-      version: 1,
-    },
-    auto_root_icon: {
-      name: `Auto Root Icon`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the root icon only when not at the root already`,
       version: 1,
     },
     button_icons: {

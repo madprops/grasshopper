@@ -382,6 +382,17 @@ App.check_icons = (item) => {
   if (item.container_name) {
     let c_icon = App.color_icon_square(item.container_color)
     container_el.innerHTML = ``
+
+    if (App.get_setting(`container_icon_text`)) {
+      let text = DOM.create(`div`)
+      text.textContent = item.container_name
+      container_el.append(text)
+      container_el.classList.add(`shade`)
+    }
+    else {
+      container_el.classList.remove(`shade`)
+    }
+
     container_el.append(c_icon)
     container_el.title = item.container_name
     DOM.show(container_el)
