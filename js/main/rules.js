@@ -246,6 +246,9 @@ App.start_domain_rules_addlist = () => {
         split_bottom: `Add a split bottom to matches`,
         root: `Make this the root URL for matches`,
       },
+      list_icon: (item) => {
+        return App.notepad_icon
+      },
       list_text: (item) => {
         return item.domain
       },

@@ -635,6 +635,9 @@ App.start_bookmark_rules_addlist = () => {
         folder: `Folder`,
         mode: `Mode`,
       },
+      list_icon: (item) => {
+        return App.settings_icons.bookmarks
+      },
       list_text: (item) => {
         return App.remove_protocol(item.value)
       },
