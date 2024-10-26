@@ -555,6 +555,9 @@ App.filter_check = (args) => {
         match = false
       }
     }
+    else if (args.filter_mode === `container`) {
+      return args.item.container_name === args.f_value
+    }
     else if (args.filter_mode === `color`) {
       if (args.f_value === `all`) {
         match = App.get_color(args.item)
@@ -1108,6 +1111,15 @@ App.filter_nodes = (item) => {
     name: `node`,
     full: `Node`,
     prop: item.id,
+    item,
+  })
+}
+
+App.filter_container = (item) => {
+  App.filter_common({
+    name: `container`,
+    full: `Container`,
+    prop: item.container_name,
     item,
   })
 }

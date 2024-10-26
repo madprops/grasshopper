@@ -70,6 +70,7 @@ App.setup_commands = () => {
   let minus_icon = App.minus_icon
   let flashlight_icon = App.flashlight_icon
   let shroom_icon = App.shroom_icon
+  let container_icon = App.container_icon
 
   let tbmodes = []
 
@@ -3364,6 +3365,28 @@ App.setup_commands = () => {
 
     ...custom_tags,
 
+    {
+      name: `Show Container`,
+      short_name: `Container`,
+      cmd: `show_tab_container`,
+      modes: [`items`],
+      icon: container_icon,
+      action: (args) => {
+        App.show_tab_list(`container`, args.e, args.item)
+      },
+      info: `Show other tabs with the same container`,
+    },
+    {
+      name: `Filter Container`,
+      short_name: `Container`,
+      cmd: `filter_tab_container`,
+      modes: [`items`],
+      icon: container_icon,
+      action: (args) => {
+        App.filter_container(args.item)
+      },
+      info: `Filter tabs with the same container`,
+    },
     {
       name: `Filter Icon`,
       cmd: `filter_icon`,

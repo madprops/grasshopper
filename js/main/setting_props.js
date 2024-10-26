@@ -345,13 +345,6 @@ App.build_settings = () => {
       info: `Enable smooth list scrolling in some cases`,
       version: 1,
     },
-    show_tab_containers: {
-      name: `Show Containers`,
-      type: `checkbox`,
-      value: true,
-      info: `Show indicators for tab containers`,
-      version: 1,
-    },
     wrap_text: {
       name: `Wrap Text`,
       type: `checkbox`,
