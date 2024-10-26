@@ -1,6 +1,7 @@
 App.proc_item_icon = (args = {}) => {
   let def_args = {
     cls: ``,
+    title: ``,
   }
 
   App.def_args(def_args, args)
@@ -153,8 +154,7 @@ App.add_item_icon = (item, side, name) => {
   }
   else if (name === `container`) {
     let cls = `container_icon_container`
-    let title = `Container`
-    obj = {...obj, title, cls}
+    obj = {...obj, cls}
     App.proc_item_icon(obj)
   }
 }
@@ -763,6 +763,10 @@ App.update_icon_tooltips = (item, target) => {
     cmd = App.get_setting(`${icon}_icon_command`)
   }
 
+  if (icon === `container`) {
+    el.title = el.dataset.content
+  }
+
   if (cmd && (cmd !== `none`)) {
     let cmd_name = App.get_cmd_name(cmd)
     el.title += `\nClick: ${cmd_name}`
@@ -792,9 +796,8 @@ App.check_container_icon = (item) => {
       container_el.classList.remove(`shade`)
     }
 
+    container_el.dataset.content = item.container_name
     container_el.append(c_icon)
-    container_el.title = item.container_name
-    container_el.dataset.has_tooltips = false
     DOM.show(container_el)
   }
   else {
