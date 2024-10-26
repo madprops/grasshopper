@@ -3127,6 +3127,17 @@ App.setup_commands = () => {
     ...color_filters,
 
     {
+      name: `Pick Color`,
+      short_name: `color`,
+      cmd: `pick_color`,
+      modes: [`items`],
+      icon: colors_icon,
+      action: (args) => {
+        App.show_color_picker(args.e)
+      },
+      info: `Pick a color to show`,
+    },
+    {
       name: `Filter Domain`,
       cmd: `filter_domain`,
       modes: [`items`],
@@ -3340,15 +3351,15 @@ App.setup_commands = () => {
       info: `Show the filter tag menu`,
     },
     {
-      name: `Show Tag`,
+      name: `Pick Tag`,
       short_name: `Tag`,
-      cmd: `show_tag`,
+      cmd: `pick_tag`,
       modes: [`items`],
       icon: tags_icon,
       action: (args) => {
         App.show_filter_tag_menu(args.mode, args.e, true)
       },
-      info: `Show the filter tag menu for showing instead of filtering`,
+      info: `Pick a tag to show`,
     },
     {
       name: `Filter All Tags`,

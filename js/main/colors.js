@@ -704,3 +704,22 @@ App.get_color_icon_command = (id) => {
 
   return cmd
 }
+
+App.show_color_picker = (e) => {
+  let colors = App.get_setting(`colors`)
+  let items = []
+
+  for (let color of colors) {
+    items.push({
+      icon: App.color_icon(color._id_),
+      text: color.name,
+      action: () => {
+        App.show_tab_list(`color_${color._id_}`, e)
+      },
+    })
+  }
+
+  let title = `Colors`
+  let title_icon = App.settings_icons.colors
+  App.show_context({items, e, title, title_icon})
+}
