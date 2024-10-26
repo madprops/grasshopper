@@ -1382,8 +1382,8 @@ a:hover
 }
 
 .color_icon_square {
-  height: 1rem;
-  width: 1rem;
+  height: 0.92rem;
+  width: 0.92rem;
   flex-shrink: 0;
   flex-grow: 0;
 }
