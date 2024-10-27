@@ -5,24 +5,21 @@ App.proc_item_icon = (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  let side_ok = args.side === App.get_setting(`${args.what}_side`)
+  let name_icon = `${args.name}_icon`
+  let side_ok = args.side === App.get_setting(`${name_icon}_side`)
 
   if (!App.icon_enabled(args.name) || !side_ok) {
     return
   }
 
-  let cls = `${args.what} item_node hidden grower item_icon_unit ${args.cls}`
+  let cls = `${name_icon} item_node hidden grower item_icon_unit ${args.cls}`
   let icon = DOM.create(`div`, cls.trim())
 
-  if ([
-    `color_icon`,
-    `custom_icon`,
-    `container_icon`,
-  ].includes(args.what)) {
+  if ([`color`, `custom`, `container`].includes(args.name)) {
     // Don't add content
   }
   else {
-    icon.textContent = App.get_setting(args.what)
+    icon.textContent = App.get_setting(name_icon)
   }
 
   if (App.get_setting(`show_tooltips`)) {
@@ -35,8 +32,7 @@ App.proc_item_icon = (args = {}) => {
 }
 
 App.add_item_icon = (item, side, name) => {
-  let what = `${name}_icon`
-  let obj = {item, side, what, name}
+  let obj = {item, side, name}
 
   if (name === `active`) {
     let title = `Active`
@@ -644,8 +640,8 @@ App.get_icon_tabs = (icon) => {
   return tabs
 }
 
-App.icon_enabled = (what) => {
-  let show = App.get_setting(`show_${what}_icon`)
+App.icon_enabled = (name) => {
+  let show = App.get_setting(`show_${name}_icon`)
   return show !== `never`
 }
 
