@@ -442,3 +442,36 @@ App.media_icons = [
   `video`,
   `audio`,
 ]
+
+App.item_icons = [
+  `image`,
+  `video`,
+  `audio`,
+  `active`,
+  `pin`,
+  `normal`,
+  `playing`,
+  `muted`,
+  `unloaded`,
+  `loading`,
+  `loaded`,
+  `unread`,
+  `title`,
+  `tags`,
+  `notes`,
+  `edited`,
+  `parent`,
+  `node`,
+  `container`,
+  `root`,
+  `custom`,
+  `color`,
+]
+
+App.icon_weight = [
+  {text: `One`, value: 1},
+  {text: `Two`, value: 2},
+  {text: `Three`, value: 3},
+  {text: `Four`, value: 4},
+  {text: `Five`, value: 5},
+]

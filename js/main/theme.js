@@ -406,7 +406,7 @@ App.insert_icon_css = () => {
     }
   }
 
-  for (let icon of App.all_icon_list()) {
+  for (let icon of App.item_icons) {
     action(`${icon}_icon`)
   }
 

@@ -651,6 +651,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    image_icon_weight: {
+      name: `Image Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Image Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     view_image_tabs: {
       name: `View Image (Tabs)`,
       type: `menu`,
@@ -722,6 +732,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    video_icon_weight: {
+      name: `Video Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Video Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     view_video_tabs: {
       name: `View Video (Tabs)`,
       type: `menu`,
@@ -791,6 +811,16 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    audio_icon_weight: {
+      name: `Audio Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Audio Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
       },
     },
     view_audio_tabs: {
@@ -914,6 +944,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    active_icon_weight: {
+      name: `Active Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Active Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     active_icon_command: {
       name: `Active Icon Command`,
       type: `menu`,
@@ -952,6 +992,16 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    pin_icon_weight: {
+      name: `Pin Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Pin Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
       },
     },
     pin_icon_command: {
@@ -994,6 +1044,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    normal_icon_weight: {
+      name: `Normal Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Normal Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     normal_icon_command: {
       name: `Normal Icon Command`,
       type: `menu`,
@@ -1032,6 +1092,16 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    playing_icon_weight: {
+      name: `Playing Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Playing Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
       },
     },
     playing_icon_command: {
@@ -1074,6 +1144,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    muted_icon_weight: {
+      name: `Muted Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Muted Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     muted_icon_command: {
       name: `Muted Icon Command`,
       type: `menu`,
@@ -1112,6 +1192,16 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    unloaded_icon_weight: {
+      name: `Unloaded Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Unloaded Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
       },
     },
     unloaded_icon_command: {
@@ -1154,6 +1244,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    loading_icon_weight: {
+      name: `Loading Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Loading Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     loading_icon_command: {
       name: `Loading Icon Command`,
       type: `menu`,
@@ -1192,6 +1292,16 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    loaded_icon_weight: {
+      name: `Loaded Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Loaded Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
       },
     },
     loaded_icon_command: {
@@ -1234,6 +1344,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    unread_icon_weight: {
+      name: `Unread Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Unread Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     unread_icon_command: {
       name: `Unread Icon Command`,
       type: `menu`,
@@ -1274,6 +1394,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    title_icon_weight: {
+      name: `Title Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Title Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     title_icon_command: {
       name: `Title Icon Command`,
       type: `menu`,
@@ -1312,6 +1442,16 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    notes_icon_weight: {
+      name: `Notes Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Notes Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
       },
     },
     notes_icon_command: {
@@ -1355,6 +1495,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    edited_icon_weight: {
+      name: `Edited Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Edited Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     edited_icon_command: {
       name: `Edited Icon Command`,
       type: `menu`,
@@ -1393,6 +1543,16 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    parent_icon_weight: {
+      name: `Parent Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Parent Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
       },
     },
     parent_icon_command: {
@@ -1435,6 +1595,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    node_icon_weight: {
+      name: `Node Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Node Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     node_icon_command: {
       name: `Node Icon Command`,
       type: `menu`,
@@ -1473,6 +1643,16 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    root_icon_weight: {
+      name: `Root Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Root Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
       },
     },
     root_icon_command: {
@@ -1522,6 +1702,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    container_icon_weight: {
+      name: `Container Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Container Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     container_icon_command: {
       name: `Container Icon Command`,
       type: `menu`,
@@ -1560,6 +1750,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    custom_icon_weight: {
+      name: `Custom Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Custom Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     custom_icon_commands: {
       name: `Custom Icon Commands`,
       type: `list`,
@@ -1567,37 +1767,6 @@ App.build_settings = () => {
       separator: true,
       info: `Define the action when clicking specific custom icons`,
       version: 1,
-    },
-    item_icon_order: {
-      name: `Icon Order`,
-      type: `list`,
-      value: [
-        {icon: `image`},
-        {icon: `video`},
-        {icon: `audio`},
-        {icon: `active`},
-        {icon: `pin`},
-        {icon: `normal`},
-        {icon: `playing`},
-        {icon: `muted`},
-        {icon: `unloaded`},
-        {icon: `loading`},
-        {icon: `loaded`},
-        {icon: `unread`},
-        {icon: `title`},
-        {icon: `tags`},
-        {icon: `notes`},
-        {icon: `edited`},
-        {icon: `parent`},
-        {icon: `node`},
-        {icon: `container`},
-        {icon: `root`},
-        {icon: `custom`},
-        {icon: `color`},
-      ],
-      separator: true,
-      info: `Define the left-right order of item icons`,
-      version: 2,
     },
     button_icons: {
       name: `Button Icons`,
@@ -5120,6 +5289,17 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    color_icon_weight: {
+      name: `Color Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Color Icon be`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
       },
     },
     text_color_active_mode: {

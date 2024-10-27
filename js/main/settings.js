@@ -1596,44 +1596,6 @@ App.setup_settings_addlist = () => {
   }
 
   menukeys = [
-    `item_icon_order`,
-  ]
-
-  for (let key in App.setting_props) {
-    if (menukeys.includes(key)) {
-      let id = `settings_${key}`
-      let props = App.setting_props[key]
-
-      App.create_popup({...popobj, id: `addlist_${id}`,
-        element: Addlist.register({...regobj, id,
-          keys: [`icon`],
-          pk: `icon`,
-          widgets: {
-            icon: `text`,
-          },
-          labels: {
-            icon: `Icon`,
-          },
-          list_icon: (item) => {
-            if (item.icon === `color`) {
-              return App.settings_icons.colors
-            }
-            else if (item.icon === `custom`) {
-              return App.bot_icon
-            }
-
-            return App.get_setting(`${item.icon}_icon`)
-          },
-          list_text: (item) => {
-            return App.capitalize_words(item.icon)
-          },
-          title: props.name,
-          editable: false,
-        })})
-    }
-  }
-
-  menukeys = [
     `custom_icon_commands`,
   ]
 

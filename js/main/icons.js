@@ -156,8 +156,17 @@ App.add_item_icon = (item, side, name) => {
 }
 
 App.add_icons = (item, side) => {
-  for (let icon of App.all_icon_list()) {
-    App.add_item_icon(item, side, icon)
+  let icons = []
+
+  for (let name of App.item_icons) {
+    let weight = App.get_setting(`${name}_icon_weight`)
+    icons.push({name, weight})
+  }
+
+  icons.sort((a, b) => a.weight - b.weight)
+
+  for (let icon of icons) {
+    App.add_item_icon(item, side, icon.name)
   }
 }
 
@@ -826,8 +835,4 @@ App.check_custom_icon = (item) => {
 App.show_custom_icon = (item, e) => {
   let icon = App.get_icon(item)
   App.show_tab_list(`icon_${icon}`, e)
-}
-
-App.all_icon_list = () => {
-  return App.setting_props.item_icon_order.value.map(x => x.icon)
 }
