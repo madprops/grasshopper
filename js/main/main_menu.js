@@ -51,6 +51,9 @@ App.show_main_menu = (mode) => {
   App.sep(items)
   items.push(App.cmd_item({cmd: `lock_screen`, short: true}))
   items.push(App.cmd_item({cmd: `show_palette`, short: true}))
+  App.sep(items)
+  items.push(App.cmd_item({cmd: `focus_window_menu`, short: true}))
+
   let btn = DOM.el(`#${mode}_main_menu`)
 
   App.show_context({

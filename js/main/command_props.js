@@ -1757,6 +1757,7 @@ App.setup_commands = () => {
     },
     {
       name: `Move To Window`,
+      short_name: `Window`,
       cmd: `show_windows_menu`,
       modes: [`tabs`],
       item: true,
@@ -1768,6 +1769,7 @@ App.setup_commands = () => {
     },
     {
       name: `Focus Window`,
+      short_name: `Window`,
       cmd: `focus_window_menu`,
       modes: [`items`],
       item: true,
