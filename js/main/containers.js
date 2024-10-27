@@ -21,7 +21,7 @@ App.get_all_container_tabs = () => {
 
 App.tab_container_menu = (item, e) => {
   let items = App.tab_container_menu_items(item, e)
-  App.show_context({items, e, compact})
+  App.show_context({items, e})
 }
 
 App.tab_container_menu_items = (item, e) => {
