@@ -316,9 +316,10 @@ App.color_menu_items = (item, e) => {
 App.show_color_menu = (item, e, show_title = true) => {
   let items = App.color_menu_items(item, e)
   let title = show_title ? `Color` : undefined
+  let title_icon = App.settings_icons.colors
   let element = item?.element
   let compact = App.get_setting(`compact_color_menu`)
-  App.show_context({items, e, title, element, compact})
+  App.show_context({items, e, title, title_icon, element, compact})
 }
 
 App.get_color_items = (mode) => {
