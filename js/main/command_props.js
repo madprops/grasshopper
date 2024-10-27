@@ -228,7 +228,7 @@ App.setup_commands = () => {
     color_closers.push({
       name,
       cmd: `close_color_${color.id}`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_color(color.id)
@@ -332,7 +332,7 @@ App.setup_commands = () => {
   color_closers.push({
     name: `Close Color`,
     cmd: `close_color_all`,
-    modes: [`tabs`],
+    modes: [`items`],
     icon: close_icon,
     action: (args) => {
       App.close_color_all(args.e)
@@ -1134,7 +1134,7 @@ App.setup_commands = () => {
       name: `Toggle Tab Box`,
       short_name: `Tab Box`,
       cmd: `toggle_tab_box`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: tab_box_icon,
       action: (args) => {
         App.toggle_tab_box()
@@ -2031,7 +2031,7 @@ App.setup_commands = () => {
       name: `Close Menu`,
       short_name: `Close`,
       cmd: `show_close_tabs_menu`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.show_close_tabs_menu(args.e, args.item)
@@ -2042,7 +2042,7 @@ App.setup_commands = () => {
       name: `Close Button Menu`,
       short_name: `Close`,
       cmd: `show_close_button_menu`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: close_button_icon,
       action: (args) => {
         App.show_close_button_menu(args.item, args.e)
@@ -2052,7 +2052,7 @@ App.setup_commands = () => {
     {
       name: `Close Normal`,
       cmd: `close_normal_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`normal`)
@@ -2062,7 +2062,7 @@ App.setup_commands = () => {
     {
       name: `Close Playing`,
       cmd: `close_playing_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`playing`)
@@ -2072,7 +2072,7 @@ App.setup_commands = () => {
     {
       name: `Close Loaded`,
       cmd: `close_loaded_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`loaded`)
@@ -2082,7 +2082,7 @@ App.setup_commands = () => {
     {
       name: `Close Unloaded`,
       cmd: `close_unloaded_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`unloaded`)
@@ -2092,7 +2092,7 @@ App.setup_commands = () => {
     {
       name: `Close Duplicates`,
       cmd: `close_duplicate_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`duplicate`)
@@ -2123,7 +2123,7 @@ App.setup_commands = () => {
     {
       name: `Close Pins`,
       cmd: `close_pinned_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       item: true,
       icon: close_icon,
       action: (args) => {
@@ -2134,7 +2134,7 @@ App.setup_commands = () => {
     {
       name: `Close All`,
       cmd: `close_all_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       item: true,
       icon: close_icon,
       action: (args) => {
@@ -2145,7 +2145,7 @@ App.setup_commands = () => {
     {
       name: `Close Empty`,
       cmd: `close_empty_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       item: true,
       icon: close_icon,
       action: (args) => {
@@ -2156,7 +2156,7 @@ App.setup_commands = () => {
     {
       name: `Close First`,
       cmd: `close_first_tab`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_first_tab()
@@ -2166,7 +2166,7 @@ App.setup_commands = () => {
     {
       name: `Close Last`,
       cmd: `close_last_tab`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_last_tab()
@@ -3665,7 +3665,7 @@ App.setup_commands = () => {
       name: `Filter Container Menu`,
       short_name: `Containers`,
       cmd: `show_filter_container_menu`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       icon: container_icon,
       action: (args) => {
