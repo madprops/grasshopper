@@ -645,7 +645,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Image Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
@@ -655,6 +654,7 @@ App.build_settings = () => {
       name: `Image Icon Weight`,
       type: `menu`,
       value: 1,
+      separator: true,
       info: `How much to the right should the Image Icon be`,
       version: 1,
       setup: (key) => {
@@ -726,7 +726,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Video Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
@@ -736,6 +735,7 @@ App.build_settings = () => {
       name: `Video Icon Weight`,
       type: `menu`,
       value: 1,
+      separator: true,
       info: `How much to the right should the Video Icon be`,
       version: 1,
       setup: (key) => {
@@ -807,7 +807,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `When to show the Audio Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.show_icon)
@@ -817,6 +816,7 @@ App.build_settings = () => {
       name: `Audio Icon Weight`,
       type: `menu`,
       value: 1,
+      separator: true,
       info: `How much to the right should the Audio Icon be`,
       version: 1,
       setup: (key) => {
