@@ -4039,6 +4039,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    tags_icon_weight: {
+      name: `Tags Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the left or right should the Tags Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
     tags_icon_command: {
       name: `Tags Icon Command`,
       type: `menu`,
