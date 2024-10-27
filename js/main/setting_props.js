@@ -655,7 +655,7 @@ App.build_settings = () => {
       name: `Image Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Image Icon be`,
+      info: `How much to the right should the Image Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -736,7 +736,7 @@ App.build_settings = () => {
       name: `Video Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Video Icon be`,
+      info: `How much to the right should the Video Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -817,7 +817,7 @@ App.build_settings = () => {
       name: `Audio Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Audio Icon be`,
+      info: `How much to the right should the Audio Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -948,7 +948,7 @@ App.build_settings = () => {
       name: `Active Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Active Icon be`,
+      info: `How much to the right should the Active Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -998,7 +998,7 @@ App.build_settings = () => {
       name: `Pin Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Pin Icon be`,
+      info: `How much to the right should the Pin Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1048,7 +1048,7 @@ App.build_settings = () => {
       name: `Normal Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Normal Icon be`,
+      info: `How much to the right should the Normal Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1098,7 +1098,7 @@ App.build_settings = () => {
       name: `Playing Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Playing Icon be`,
+      info: `How much to the right should the Playing Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1148,7 +1148,7 @@ App.build_settings = () => {
       name: `Muted Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Muted Icon be`,
+      info: `How much to the right should the Muted Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1198,7 +1198,7 @@ App.build_settings = () => {
       name: `Unloaded Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Unloaded Icon be`,
+      info: `How much to the right should the Unloaded Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1248,7 +1248,7 @@ App.build_settings = () => {
       name: `Loading Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Loading Icon be`,
+      info: `How much to the right should the Loading Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1298,7 +1298,7 @@ App.build_settings = () => {
       name: `Loaded Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Loaded Icon be`,
+      info: `How much to the right should the Loaded Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1348,7 +1348,7 @@ App.build_settings = () => {
       name: `Unread Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Unread Icon be`,
+      info: `How much to the right should the Unread Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1398,7 +1398,7 @@ App.build_settings = () => {
       name: `Title Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Title Icon be`,
+      info: `How much to the right should the Title Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1448,7 +1448,7 @@ App.build_settings = () => {
       name: `Notes Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Notes Icon be`,
+      info: `How much to the right should the Notes Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1499,7 +1499,7 @@ App.build_settings = () => {
       name: `Edited Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Edited Icon be`,
+      info: `How much to the right should the Edited Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1549,7 +1549,7 @@ App.build_settings = () => {
       name: `Parent Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Parent Icon be`,
+      info: `How much to the right should the Parent Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1599,7 +1599,7 @@ App.build_settings = () => {
       name: `Node Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Node Icon be`,
+      info: `How much to the right should the Node Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1649,7 +1649,7 @@ App.build_settings = () => {
       name: `Root Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Root Icon be`,
+      info: `How much to the right should the Root Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1706,7 +1706,7 @@ App.build_settings = () => {
       name: `Container Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Container Icon be`,
+      info: `How much to the right should the Container Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -1754,7 +1754,7 @@ App.build_settings = () => {
       name: `Custom Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Custom Icon be`,
+      info: `How much to the right should the Custom Icon be`,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.icon_weight)
@@ -5295,7 +5295,7 @@ App.build_settings = () => {
       name: `Color Icon Weight`,
       type: `menu`,
       value: 1,
-      info: `How much to the left or right should the Color Icon be`,
+      info: `How much to the right should the Color Icon be`,
       separator: true,
       version: 1,
       setup: (key) => {
