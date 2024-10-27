@@ -7,7 +7,7 @@ App.proc_item_icon = (args = {}) => {
   App.def_args(def_args, args)
   let side_ok = args.side === App.get_setting(`${args.what}_side`)
 
-  if (!App.icon_enabled(args.what) || !side_ok) {
+  if (!App.icon_enabled(args.name) || !side_ok) {
     return
   }
 
@@ -165,9 +165,9 @@ App.add_icons = (item, side) => {
   }
 }
 
-App.do_icon_check = (what, show, item) => {
-  if (App.icon_enabled(what)) {
-    let icon = DOM.el(`.${what}_icon`, item.element)
+App.do_icon_check = (name, show, item) => {
+  if (App.icon_enabled(name)) {
+    let icon = DOM.el(`.${name}_icon`, item.element)
 
     if (show) {
       DOM.show(icon)
@@ -645,21 +645,8 @@ App.get_icon_tabs = (icon) => {
 }
 
 App.icon_enabled = (what) => {
-  if (what.endsWith(`_icon`)) {
-    what = what.split(`_icon`)[0]
-  }
-
-  let icon
-
-  if ([`color`, `custom`, `container`].includes(what)) {
-    icon = true
-  }
-  else {
-    icon = Boolean(App.get_setting(`${what}_icon`))
-  }
-
   let show = App.get_setting(`show_${what}_icon`)
-  return icon && (show !== `never`)
+  return show !== `never`
 }
 
 App.custom_icon_click = (item, e) => {

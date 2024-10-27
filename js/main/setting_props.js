@@ -1495,9 +1495,11 @@ App.build_settings = () => {
     },
     container_icon: {
       name: `Container Icon`,
-      type: `text`,
+      type: `text_smaller`,
       value: `🛍️`,
-      info: `The icon to represent containers`,
+      no_empty: true,
+      placeholder: App.icon_placeholder,
+      info: `Icon for containers`,
       version: 1,
     },
     container_icon_side: {
