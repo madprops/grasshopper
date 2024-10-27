@@ -920,7 +920,8 @@ App.get_custom_filters = (mode) => {
 
 App.show_custom_filters = (mode, e) => {
   let items = App.get_custom_filters(mode)
-  App.show_context({items, e, title: `Custom`})
+  let title_icon = App.settings_icons.filter
+  App.show_context({items, e, title: `Custom`, title_icon})
 }
 
 App.set_custom_filter = (mode, filter) => {
@@ -1860,7 +1861,8 @@ App.filter_cmd_name = (cmd) => {
 
 App.show_exact_filters = (mode, e) => {
   let items = App.get_filter_exact(mode)
-  App.show_context({items, e, title: `Exact`})
+  let title_icon = App.settings_icons.filter
+  App.show_context({items, e, title: `Exact`, title_icon})
 }
 
 App.filter_menu_context = (mode, e) => {
@@ -1920,7 +1922,8 @@ App.show_favorite_filters = (mode, e) => {
     }
   }
 
-  App.show_context({items, e, title: `Favorites`})
+  let title_icon = App.settings_icons.filter
+  App.show_context({items, e, title: `Favorites`, title_icon})
 }
 
 App.cycle_filters = (mode, direction) => {
