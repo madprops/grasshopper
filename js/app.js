@@ -459,13 +459,13 @@ App.item_icons = [
   `title`,
   `tags`,
   `notes`,
+  `root`,
   `edited`,
   `parent`,
   `node`,
-  `container`,
-  `root`,
-  `custom`,
   `color`,
+  `custom`,
+  `container`,
 ]
 
 App.icon_weight = [
