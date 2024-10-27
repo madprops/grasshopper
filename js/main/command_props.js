@@ -3792,7 +3792,7 @@ App.setup_commands = () => {
       modes: [`items`],
       item: true,
       some_hostname: true,
-      icon: filter_icon,
+      icon: history_icon,
       action: (args) => {
         App.search_domain_history(args.item)
       },
@@ -3804,7 +3804,7 @@ App.setup_commands = () => {
       modes: [`items`],
       item: true,
       some_hostname: true,
-      icon: filter_icon,
+      icon: bookmarks_icon,
       action: (args) => {
         App.search_domain_bookmarks(args.item)
       },

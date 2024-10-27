@@ -124,6 +124,8 @@ App.common_menu_items = (args = {}) => {
   App.item_menu_item(filter_items, `filter_color`, {item: args.item, short: false})
   App.item_menu_item(filter_items, `filter_tag`, {item: args.item, short: false})
   App.item_menu_item(filter_items, `filter_icon`, {item: args.item, short: false})
+  App.item_menu_item(filter_items, `search_domain_history`, {item: args.item, short: false})
+  App.item_menu_item(filter_items, `search_domain_bookmarks`, {item: args.item, short: false})
 
   if (filter_items.length) {
     items.push({
@@ -175,8 +177,6 @@ App.more_menu_items = (args = {}) => {
   App.item_menu_item(items, `bookmark_items`, {item: args.item, short: false})
   App.item_menu_item(items, `set_background_image`, {item: args.item, short: false})
   App.item_menu_item(items, `edit_domain_rule`, {item: args.item, short: false})
-  App.item_menu_item(items, `search_domain_history`, {item: args.item, short: false})
-  App.item_menu_item(items, `search_domain_bookmarks`, {item: args.item, short: false})
 
   if (args.item.mode === `tabs`) {
     if (items.length) {
