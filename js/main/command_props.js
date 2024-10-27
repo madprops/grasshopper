@@ -1756,7 +1756,7 @@ App.setup_commands = () => {
       info: `Duplicate tabs`,
     },
     {
-      name: `To Window`,
+      name: `Move To Window`,
       cmd: `show_windows_menu`,
       modes: [`tabs`],
       item: true,
@@ -1765,6 +1765,17 @@ App.setup_commands = () => {
         App.show_windows_menu(args.item, args.e)
       },
       info: `Move tabs to another window`,
+    },
+    {
+      name: `Focus Window`,
+      cmd: `focus_window_menu`,
+      modes: [`items`],
+      item: true,
+      icon: window_icon,
+      action: (args) => {
+        App.show_focus_a_window(args.e)
+      },
+      info: `Focus a specific window`,
     },
     {
       name: `Move To Top`,

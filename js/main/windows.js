@@ -310,3 +310,38 @@ App.build_shell = () => {
   let footer = App.create_footer()
   bottom_c.append(footer)
 }
+
+App.focus_window_menu = async () => {
+  let wins = await browser.windows.getAll({populate: false})
+  let items = []
+
+  for (let win of wins) {
+    if (App.window_id === win.id) {
+      continue
+    }
+
+    let text = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
+
+    items.push({
+      text,
+      action: () => {
+        App.focus_a_window(win.id)
+      },
+    })
+  }
+
+  return items
+}
+
+App.show_focus_a_window = async (e) => {
+  let items = await App.focus_window_menu()
+
+  if (items) {
+    let title_icon = App.window_icon
+    App.show_context({items, e, title: `Windows`, title_icon})
+  }
+}
+
+App.focus_a_window = async (id) => {
+  await browser.windows.update(id, {focused: true})
+}
