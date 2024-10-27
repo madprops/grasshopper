@@ -21,7 +21,7 @@ App.get_all_container_tabs = () => {
 
 App.tab_container_menu = (item, e) => {
   let items = App.tab_container_menu_items(item, e)
-  App.show_context({items, e})
+  App.show_context({items, e, compact})
 }
 
 App.tab_container_menu_items = (item, e) => {
@@ -75,7 +75,8 @@ App.filter_same_container = (item) => {
 
 App.show_filter_container_menu = (mode, e, show = false) => {
   let items = App.get_container_items(mode, show)
-  App.show_context({items, e, title: `Containers`})
+  let compact = App.get_setting(`compact_container_menu`)
+  App.show_context({items, e, title: `Containers`, compact})
 }
 
 App.get_container_items = (mode, show) => {
@@ -195,5 +196,6 @@ App.open_in_tab_container = async (item, e) => {
 
   let title = `Open In`
   let title_icon = App.get_setting(`container_icon`)
-  App.show_context({items, e, title, title_icon})
+  let compact = App.get_setting(`compact_container_menu`)
+  App.show_context({items, e, title, title_icon, compact})
 }

@@ -5983,6 +5983,13 @@ App.build_settings = () => {
       info: `Only show icons in the Stuff Menu`,
       version: 1,
     },
+    compact_container_menu: {
+      name: `Compact Container Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Container Menu`,
+      version: 1,
+    },
   }
 
   add_props()
