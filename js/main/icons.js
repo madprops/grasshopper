@@ -609,7 +609,8 @@ App.change_icon = (item) => {
 
 App.show_filter_icon_menu = (mode, e, show = false) => {
   let items = App.get_icon_items(mode, show)
-  App.show_context({items, e, title: `Icons`})
+  let title_icon = App.bot_icon
+  App.show_context({items, e, title: `Icons`, title_icon})
 }
 
 App.get_iconed_items = (mode) => {
