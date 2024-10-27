@@ -75,8 +75,9 @@ App.filter_same_container = (item) => {
 
 App.show_filter_container_menu = (mode, e, show = false) => {
   let items = App.get_container_items(mode, show)
+  let title_icon = App.get_setting(`container_icon`)
   let compact = App.get_setting(`compact_container_menu`)
-  App.show_context({items, e, title: `Containers`, compact})
+  App.show_context({items, e, title: `Containers`, title_icon, compact})
 }
 
 App.get_container_items = (mode, show) => {

@@ -476,7 +476,8 @@ App.tagged = (item) => {
 
 App.show_filter_tag_menu = (mode, e, show = false) => {
   let items = App.get_tag_items(mode, show)
-  App.show_context({items, e, title: `Tags`})
+  let title_icon = App.get_setting(`tags_icon`)
+  App.show_context({items, e, title: `Tags`, title_icon})
 }
 
 App.get_tagged_items = (mode) => {
