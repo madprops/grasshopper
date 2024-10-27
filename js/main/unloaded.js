@@ -33,7 +33,7 @@ App.unload_tabs = (item, multiple = true) => {
 
         if (succ) {
           let method = `unload`
-          await App.focus_tab({item: succ, scroll: `nearest`, method})
+          await App.focus_tab({item: succ, scroll: `nearest_smooth`, method})
         }
         else {
           await App.blank_tab()
