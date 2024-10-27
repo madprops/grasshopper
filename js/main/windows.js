@@ -245,12 +245,6 @@ App.close_window = () => {
 
 App.get_window_menu_items = async (item) => {
   let wins = await browser.windows.getAll({populate: false})
-
-  if (wins.length === 1) {
-    App.move_tabs_to_new_window(item)
-    return
-  }
-
   let items = []
 
   items.push({
@@ -283,7 +277,8 @@ App.show_windows_menu = async (item, e) => {
 
   if (items) {
     let element = item?.element
-    App.show_context({items, e, title: `Move To Window`, element})
+    let title_icon = App.window_icon
+    App.show_context({items, e, title: `Windows`, title_icon, element})
   }
 }
 

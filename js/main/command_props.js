@@ -71,6 +71,7 @@ App.setup_commands = () => {
   let minus_icon = App.minus_icon
   let flashlight_icon = App.flashlight_icon
   let shroom_icon = App.shroom_icon
+  let window_icon = App.window_icon
 
   let tbmodes = []
 
@@ -1759,7 +1760,7 @@ App.setup_commands = () => {
       cmd: `show_windows_menu`,
       modes: [`tabs`],
       item: true,
-      icon: tabs_icon,
+      icon: window_icon,
       action: (args) => {
         App.show_windows_menu(args.item, args.e)
       },
