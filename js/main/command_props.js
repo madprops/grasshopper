@@ -3676,7 +3676,7 @@ App.setup_commands = () => {
       info: `Filter tabs that have containers`,
     },
     {
-      name: `Container Menu`,
+      name: `Filter Containers`,
       short_name: `Containers`,
       cmd: `show_filter_container_menu`,
       modes: [`tabs`],
