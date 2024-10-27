@@ -426,7 +426,8 @@ App.do_select_bookmarks_folder = (args = {}) => {
     return
   }
 
-  App.show_context({items, title: `Pick Folder`, e: args.e, index})
+  let title_icon = App.get_setting(`bookmarks_mode_icon`)
+  App.show_context({items, title: `Folders`, title_icon, e: args.e, index})
 }
 
 App.search_bookmarks_folder = async (callback) => {
@@ -751,7 +752,9 @@ App.save_bookmarks_folder_pick = (item, e) => {
     },
   ]
 
-  App.show_context({items, e})
+  let title = `Save Folder`
+  let title_icon = App.get_setting(`bookmarks_mode_icon`)
+  App.show_context({items, title, title_icon, e})
 }
 
 App.do_save_bookmarks_folder_pick = (folder) => {
