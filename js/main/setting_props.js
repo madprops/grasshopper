@@ -4625,58 +4625,6 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_actions_menu: {
-      name: `Middle Click Actions Menu`,
-      type: `menu`,
-      value: `browser_reload`,
-      info: `Command to run when middle clicking the Actions Menu`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_actions_menu: {
-      name: `Click Press Actions Menu`,
-      type: `menu`,
-      value: `edit_global_notes`,
-      info: `Command to run on left click press on Actions Menu`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_actions_menu: {
-      name: `Middle Click Press Actions Menu`,
-      type: `menu`,
-      value: `lock_screen`,
-      info: `Command to run on middle click press on Actions Menu`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_actions_menu: {
-      name: `Wheel Up Actions Menu`,
-      type: `menu`,
-      value: `jump_tabs_all_up`,
-      info: `Command to run when using the mousewheel up on the Actions Menu`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_actions_menu: {
-      name: `Wheel Down Actions Menu`,
-      type: `menu`,
-      value: `jump_tabs_all_down`,
-      info: `Command to run when using the mousewheel down on the Actions Menu`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
     click_playing: {
       name: `Click Playing`,
       type: `menu`,
@@ -4797,6 +4745,58 @@ App.build_settings = () => {
       type: `menu`,
       value: `recent_tabs_backwards`,
       info: `Command to run when using the mousewheel down on the Step Back Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_actions_menu: {
+      name: `Middle Click Actions Menu`,
+      type: `menu`,
+      value: `browser_reload`,
+      info: `Command to run when middle clicking the Actions Menu`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_actions_menu: {
+      name: `Click Press Actions Menu`,
+      type: `menu`,
+      value: `edit_global_notes`,
+      info: `Command to run on left click press on Actions Menu`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_actions_menu: {
+      name: `Middle Click Press Actions Menu`,
+      type: `menu`,
+      value: `lock_screen`,
+      info: `Command to run on middle click press on Actions Menu`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_actions_menu: {
+      name: `Wheel Up Actions Menu`,
+      type: `menu`,
+      value: `jump_tabs_all_up`,
+      info: `Command to run when using the mousewheel up on the Actions Menu`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_actions_menu: {
+      name: `Wheel Down Actions Menu`,
+      type: `menu`,
+      value: `jump_tabs_all_down`,
+      info: `Command to run when using the mousewheel down on the Actions Menu`,
       separator: true,
       version: 1,
       setup: (key) => {
