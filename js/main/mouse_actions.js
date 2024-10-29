@@ -21,7 +21,7 @@ App.mouse_click_action = (e) => {
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
   if (!item) {
-    if (DOM.parent(target, [`.main_menu_button`])) {
+    if (DOM.parent(target, [`.main_button`])) {
       App.show_main_menu(mode)
       return
     }
@@ -343,7 +343,7 @@ App.mouse_context_action = (e) => {
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
   if (!item) {
-    if (DOM.parent(target, [`.main_menu_button`])) {
+    if (DOM.parent(target, [`.main_button`])) {
       App.show_palette()
       return
     }
@@ -486,8 +486,8 @@ App.mouse_middle_action = (e, target_el) => {
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
   if (!item) {
-    if (DOM.parent(target, [`.main_menu_button`])) {
-      App.main_menu_middle_click(e)
+    if (DOM.parent(target, [`.main_button`])) {
+      App.main_button_middle_click(e)
       return
     }
 
@@ -673,7 +673,7 @@ App.click_press_action = (e) => {
   let obj = {item, target, e}
 
   if (!item) {
-    if (App.mouse_press_action(`.main_menu_button`, `main_menu`, obj)) {
+    if (App.mouse_press_action(`.main_button`, `main_button`, obj)) {
       return
     }
 
@@ -889,8 +889,8 @@ App.mouse_wheel_action = (e) => {
   else if (DOM.parent(target, [`.step_back_button`])) {
     App.wheel_action(direction, `step_back`, e)
   }
-  else if (DOM.parent(target, [`.main_menu_button`])) {
-    App.wheel_action(direction, `main_menu`, e)
+  else if (DOM.parent(target, [`.main_button`])) {
+    App.wheel_action(direction, `main_button`, e)
   }
   else if (DOM.parent(target, [`.filter_button`])) {
     App.wheel_action(direction, `filter_button`, e)

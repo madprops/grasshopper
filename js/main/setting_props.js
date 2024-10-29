@@ -4573,52 +4573,52 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_main_menu: {
-      name: `Middle Click Main Menu`,
+    middle_click_main_button: {
+      name: `Middle Click Main Button`,
       type: `menu`,
       value: `show_main_mode`,
-      info: `Command to run when middle clicking the Main Menu`,
+      info: `Command to run when middle clicking the Main Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    click_press_main_menu: {
-      name: `Click Press Main Menu`,
+    click_press_main_button: {
+      name: `Click Press Main Button`,
       type: `menu`,
       value: `toggle_tab_sort`,
-      info: `Command to run on left click press on Main Menu`,
+      info: `Command to run on left click press on Main Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_press_main_menu: {
-      name: `Middle Click Press Main Menu`,
+    middle_click_press_main_button: {
+      name: `Middle Click Press Main Button`,
       type: `menu`,
       value: `lock_screen`,
-      info: `Command to run on middle click press on Main Menu`,
+      info: `Command to run on middle click press on Main Button`,
       separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_up_main_menu: {
-      name: `Wheel Up Main Menu`,
+    wheel_up_main_button: {
+      name: `Wheel Up Main Button`,
       type: `menu`,
       value: `show_previous_mode`,
-      info: `Command to run when using the mousewheel up on the Main Menu`,
+      info: `Command to run when using the mousewheel up on the Main Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_down_main_menu: {
-      name: `Wheel Down Main Menu`,
+    wheel_down_main_button: {
+      name: `Wheel Down Main Button`,
       type: `menu`,
       value: `show_next_mode`,
-      info: `Command to run when using the mousewheel down on the Main Menu`,
+      info: `Command to run when using the mousewheel down on the Main Button`,
       separator: true,
       version: 1,
       setup: (key) => {

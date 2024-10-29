@@ -1516,7 +1516,7 @@ App.check_filtered = (mode) => {
   }
 }
 
-App.create_filter_menu = (mode) => {
+App.create_filter_button = (mode) => {
   function separator () {
     return {cmd: App.separator_string, skip: true}
   }

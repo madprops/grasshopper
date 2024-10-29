@@ -1,5 +1,5 @@
-App.create_main_menu = (mode) => {
-  let btn = DOM.create(`div`, `button main_menu_button icon_button`, `${mode}_main_menu`)
+App.create_main_button = (mode) => {
+  let btn = DOM.create(`div`, `button main_button icon_button`, `${mode}_main_menu`)
   let click = App.get_cmd_name(`show_main_menu`)
   let rclick = App.get_cmd_name(`show_palette`)
 
@@ -81,7 +81,7 @@ App.set_main_menu_text = (btn, mode, name = ``) => {
   btn.append(value)
 }
 
-App.main_menu_middle_click = (e) => {
-  let cmd = App.get_setting(`middle_click_main_menu`)
+App.main_button_middle_click = (e) => {
+  let cmd = App.get_setting(`middle_click_main_button`)
   App.run_command({cmd, from: `main_menu`, e})
 }
