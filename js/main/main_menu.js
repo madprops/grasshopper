@@ -8,6 +8,8 @@ App.create_main_menu = (mode) => {
     App.trigger_title(btn, `middle_click_main_menu`)
     App.trigger_title(btn, `click_press_main_menu`)
     App.trigger_title(btn, `middle_click_press_main_menu`)
+    App.trigger_title(btn, `wheel_up_main_menu`)
+    App.trigger_title(btn, `wheel_down_main_menu`)
   }
 
   App.check_show_button(`main_menu`, btn)
