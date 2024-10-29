@@ -3,18 +3,30 @@ App.autoclick_action = (e) => {
   let el = e.target
   let mode = App.active_mode
   let [item, item_alt] = App.get_mouse_item(mode, el)
-  let element
 
-  function action() {
-    App.click_element(element, e)
+  function check(what, cls, elem) {
+    let aclick = App.get_setting(`${what}_autoclick`)
+    let element
+
+    if (cls) {
+      element = DOM.parent(el, [cls])
+    }
+    else {
+      element = elem
+    }
+
+    if (aclick && Boolean(element)) {
+      let delay = App.get_setting(`${what}_autoclick_delay`)
+
+      App.autoclick_timeout = setTimeout(() => {
+        App.click_element(element, e)
+      }, delay)
+
+      return true
+    }
+
+    return false
   }
-
-  function check(what, cls) {
-    element = DOM.parent(el, [cls])
-    return App.get_setting(`${what}_autoclick`) && Boolean(element)
-  }
-
-  let do_action = false
 
   if (item || item_alt) {
     let elem
@@ -31,44 +43,46 @@ App.autoclick_action = (e) => {
     }
 
     if (check(`hover_button`, `.hover_button`)) {
-      do_action = true
+      return
     }
-    else if (check(`close_button`, `.close_button`)) {
-      do_action = true
+
+    if (check(`close_button`, `.close_button`)) {
+      return
     }
-    else if (item.unloaded) {
-      if (App.get_setting(`unloaded_tab_autoclick`)) {
-        element = elem
-        do_action = true
+
+    if (item.unloaded) {
+      if (check(`unloaded`, undefined, elem)) {
+        return
       }
     }
-    else if (App.get_setting(`item_autoclick`)) {
-      element = elem
-      do_action = true
+    else if (check(`item`, undefined, elem)) {
+      return
     }
-  }
-  else if (check(`main_button`, `.main_button`)) {
-    do_action = true
-  }
-  else if (check(`filter_button`, `.filter_button`)) {
-    do_action = true
-  }
-  else if (check(`actions_button`, `.actions_button`)) {
-    do_action = true
-  }
-  else if (check(`main_title_left_button`, `#main_title_left_button`)) {
-    do_action = true
-  }
-  else if (check(`main_title_right_button`, `#main_title_right_button`)) {
-    do_action = true
-  }
-  else if (check(`favorites`, `.favorites_bar_item`)) {
-    do_action = true
+
+    return
   }
 
-  if (do_action) {
-    App.autoclick_timeout = setTimeout(() => {
-      action()
-    }, App.get_setting(`autoclick_delay`))
+  if (check(`main_button`, `.main_button`)) {
+    return
+  }
+
+  if (check(`filter_button`, `.filter_button`)) {
+    return
+  }
+
+  if (check(`actions_button`, `.actions_button`)) {
+    return
+  }
+
+  if (check(`main_title_left_button`, `#main_title_left_button`)) {
+    return
+  }
+
+  if (check(`main_title_right_button`, `#main_title_right_button`)) {
+    return
+  }
+
+  if (check(`favorites`, `.favorites_bar_item`)) {
+    return
   }
 }
