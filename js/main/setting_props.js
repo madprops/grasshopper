@@ -1800,14 +1800,14 @@ App.build_settings = () => {
       name: `Show Main Btn`,
       type: `checkbox`,
       value: true,
-      info: `Show the Main Menu Button`,
+      info: `Show the Main Button`,
       version: 1,
     },
-    show_filter_menu_button: {
+    show_filter_button: {
       name: `Show Filter Btn`,
       type: `checkbox`,
       value: true,
-      info: `Show the Filter Menu`,
+      info: `Show the Filter Button`,
       version: 1,
     },
     show_playing_button: {
@@ -1829,7 +1829,7 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       separator: true,
-      info: `Show the Actions Menu`,
+      info: `Show the Actions Button`,
       version: 1,
     },
     show_pinned_tabs: {
@@ -5858,31 +5858,52 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_filter_menu: {
-      name: `Middle Click Filter Menu`,
+    middle_click_filter_button: {
+      name: `Middle Click Filter Button`,
       type: `menu`,
       value: `previous_filter`,
-      info: `Command to run when middle clicking the Filter Menu`,
+      info: `Command to run when middle clicking the Filter Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    click_press_filter_menu: {
-      name: `Click Press Filter Menu`,
+    click_press_filter_button: {
+      name: `Click Press Filter Button`,
       type: `menu`,
       value: `none`,
-      info: `Command to run on left click press on Filter Menu`,
+      info: `Command to run on left click press on Filter Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_press_filter_menu: {
-      name: `Middle Click Press Filter Menu`,
+    middle_click_press_filter_button: {
+      name: `Middle Click Press Filter Button`,
       type: `menu`,
       value: `none`,
-      info: `Command to run on middle click press on Filter Menu`,
+      info: `Command to run on middle click press on Filter Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_up_filter_button: {
+      name: `Wheel Up Filter Button`,
+      type: `menu`,
+      value: `do_prev_filter`,
+      info: `Command to run when using the mousewheel up on the Filter Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_filter_button: {
+      name: `Wheel Down Filter Button`,
+      type: `menu`,
+      value: `do_next_filter`,
+      info: `Command to run when using the mousewheel down on the Filter Button`,
       separator: true,
       version: 1,
       setup: (key) => {

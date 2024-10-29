@@ -62,7 +62,7 @@ App.mouse_click_action = (e) => {
       return
     }
 
-    if (DOM.parent(target, [`.filter_menu_button`])) {
+    if (DOM.parent(target, [`.filter_button`])) {
       if (App.get_setting(`favorite_filters_click`)) {
         App.show_favorite_filters(mode, e)
       }
@@ -358,7 +358,7 @@ App.mouse_context_action = (e) => {
       return
     }
 
-    if (DOM.parent(target, [`.filter_menu_button`])) {
+    if (DOM.parent(target, [`.filter_button`])) {
       App.filter_menu_context(mode, e)
       return
     }
@@ -511,7 +511,7 @@ App.mouse_middle_action = (e, target_el) => {
       return
     }
 
-    if (DOM.parent(target, [`.filter_menu_button`])) {
+    if (DOM.parent(target, [`.filter_button`])) {
       App.filter_menu_middle_click(e)
       return
     }
@@ -689,7 +689,7 @@ App.click_press_action = (e) => {
       return
     }
 
-    if (App.mouse_press_action(`.filter_menu_button`, `filter_menu`, obj)) {
+    if (App.mouse_press_action(`.filter_button`, `filter_menu`, obj)) {
       return
     }
 
@@ -862,16 +862,6 @@ App.mouse_wheel_action = (e) => {
       }
     }
   }
-  else if (DOM.parent(target, [`.filter_menu_button`])) {
-    let direction = App.wheel_direction(e)
-
-    if (direction === `up`) {
-      App.cycle_filter_modes(mode, true, e)
-    }
-    else if (direction === `down`) {
-      App.cycle_filter_modes(mode, false, e)
-    }
-  }
   else if (target.closest(`.favorites_empty_top`)) {
     App.wheel_action(direction, `favorites_top`, e)
   }
@@ -901,6 +891,9 @@ App.mouse_wheel_action = (e) => {
   }
   else if (DOM.parent(target, [`.main_menu_button`])) {
     App.wheel_action(direction, `main_menu`, e)
+  }
+  else if (DOM.parent(target, [`.filter_button`])) {
+    App.wheel_action(direction, `filter_button`, e)
   }
   else if (DOM.parent(target, [`.actions_button`])) {
     App.wheel_action(direction, `actions_menu`, e)

@@ -1521,7 +1521,7 @@ App.create_filter_menu = (mode) => {
     return {cmd: App.separator_string, skip: true}
   }
 
-  let btn = DOM.create(`div`, `button icon_button filter_menu_button`, `${mode}_filter_modes`)
+  let btn = DOM.create(`div`, `button icon_button filter_button`, `${mode}_filter_modes`)
   let click = App.get_cmd_name(`show_filter_menu`)
   let rclick = ``
 
@@ -1592,7 +1592,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push({cmd: `refine`, text: `Refine`, icon: filter_icon, skip: true, info: `Show the Refine Filters`})
   fmodes.push({cmd: `custom`, text: `Custom`, icon: filter_icon, skip: true, info: `Show the Custom Filters`})
 
-  App.check_show_button(`filter_menu`, btn)
+  App.check_show_button(`filter`, btn)
   App[`${mode}_filter_modes_all`] = fmodes
   return btn
 }

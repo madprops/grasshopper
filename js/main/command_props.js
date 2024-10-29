@@ -977,6 +977,26 @@ App.setup_commands = () => {
       },
       info: `Go to the next mode`,
     },
+    {
+      name: `Prev Filter`,
+      cmd: `do_prev_filter`,
+      modes: [`items`],
+      icon: command_icon,
+      action: (args) => {
+        App.cycle_filter_modes(args.mode, true, args.e)
+      },
+      info: `Go to the next mode`,
+    },
+    {
+      name: `Next Filter`,
+      cmd: `do_next_filter`,
+      modes: [`items`],
+      icon: command_icon,
+      action: (args) => {
+        App.cycle_filter_modes(args.mode, false, args.e)
+      },
+      info: `Go to the next mode`,
+    },
 
     ...show_modes,
 
