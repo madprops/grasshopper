@@ -14,49 +14,52 @@ App.autoclick_action = (e) => {
     return App.get_setting(`${what}_autoclick`) && Boolean(element)
   }
 
-  let delay
+  let do_action = false
 
   if (item) {
     element = item.element
 
     if (item.unloaded) {
       if (App.get_setting(`unloaded_tab_autoclick`)) {
-        delay = App.get_setting(`unloaded_tab_autoclick_delay`)
+        do_action = true
       }
     }
     else if (App.get_setting(`item_autoclick`)) {
-      delay = App.get_setting(`item_autoclick_delay`)
+      do_action = true
     }
   }
   else if (item_alt) {
     element = item_alt.element
 
     if (App.get_setting(`unloaded_tab_autoclick`)) {
-      delay = App.get_setting(`unloaded_tab_autoclick_delay`)
+      do_action = true
     }
   }
   else if (check(`hover_button`, `.hover_button`)) {
-    delay = App.get_setting(`hover_button_autoclick_delay`)
+    do_action = true
   }
   else if (check(`main_button`, `.main_button`)) {
-    delay = App.get_setting(`main_button_autoclick_delay`)
+    do_action = true
   }
   else if (check(`filter_button`, `.filter_button`)) {
-    delay = App.get_setting(`filter_button_autoclick_delay`)
+    do_action = true
   }
   else if (check(`actions_button`, `.actions_button`)) {
-    delay = App.get_setting(`actions_button_autoclick_delay`)
+    do_action = true
   }
   else if (check(`main_title_left_button`, `#main_title_left_button`)) {
-    delay = App.get_setting(`main_title_left_button_autoclick_delay`)
+    do_action = true
   }
   else if (check(`main_title_right_button`, `#main_title_right_button`)) {
-    delay = App.get_setting(`main_title_right_button_autoclick_delay`)
+    do_action = true
+  }
+  else if (check(`favorites`, `.favorites_bar_item`)) {
+    do_action = true
   }
 
-  if (delay) {
+  if (do_action) {
     App.autoclick_timeout = setTimeout(() => {
       action()
-    }, delay)
+    }, App.get_setting(`autoclick_delay`))
   }
 }

@@ -28,6 +28,7 @@ App.show_context = (args = {}) => {
   }
 
   args.autohide = App.get_setting(`context_autohide`)
+  args.autoclick = App.get_setting(`context_autoclick`)
   NeedContext.show(args)
 }
 

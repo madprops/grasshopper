@@ -25,6 +25,7 @@ NeedContext.compact_padding = `0.3rem`
 NeedContext.center_top = 20
 NeedContext.dragging = false
 NeedContext.autohide_delay = 500
+NeedContext.autoclick_delay = 500
 
 // Set defaults
 NeedContext.set_defaults = () => {
@@ -127,6 +128,7 @@ NeedContext.show = (args = {}) => {
     margin: 0,
     compact: false,
     autohide: false,
+    autoclick: false,
   }
 
   NeedContext.def_args(def_args, args)
@@ -800,12 +802,29 @@ NeedContext.init = () => {
       return
     }
 
-    if (NeedContext.args.autohide && NeedContext.mouse_activity) {
+    NeedContext.autohide_debouncer.cancel()
+    NeedContext.autoclick_debouncer.cancel()
+
+    if (!NeedContext.mouse_activity) {
+      return
+    }
+
+    if (NeedContext.args.autohide) {
       if ((e.target.id === `needcontext-main`)) {
         NeedContext.autohide_debouncer.call()
       }
-      else {
-        NeedContext.autohide_debouncer.cancel()
+    }
+
+    if (NeedContext.args.autoclick) {
+      let item = e.target.closest(`.needcontext-item`)
+
+      if (!item) {
+        item = e.target.closest(`.needcontext-button`)
+      }
+
+      if (item) {
+        NeedContext.autoclick_element = item
+        NeedContext.autoclick_debouncer.call()
       }
     }
   })
@@ -867,6 +886,24 @@ NeedContext.init = () => {
   NeedContext.autohide_debouncer = NeedContext.create_debouncer(() => {
     NeedContext.hide()
   }, NeedContext.autohide_delay)
+
+  NeedContext.autoclick_debouncer = NeedContext.create_debouncer(() => {
+    let ev = new MouseEvent(`mousedown`, {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+    })
+
+    NeedContext.autoclick_element.dispatchEvent(ev)
+
+    let ev2 = new MouseEvent(`mouseup`, {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+    })
+
+    NeedContext.autoclick_element.dispatchEvent(ev2)
+  }, NeedContext.autoclick_delay)
 
   NeedContext.set_defaults()
 }
@@ -982,7 +1019,12 @@ NeedContext.go_back = () => {
 
   let layer = NeedContext.prev_layer()
   NeedContext.level -= 1
-  NeedContext.show({x: layer.x, y: layer.y, items: layer.items, root: layer.root})
+
+  let args = {x: layer.x, y: layer.y, items: layer.items, root: layer.root}
+  args.compact = NeedContext.args.compact
+  args.autohide = NeedContext.args.autohide
+  args.autoclick = NeedContext.args.autoclick
+  NeedContext.show(args)
 }
 
 // Create back button
