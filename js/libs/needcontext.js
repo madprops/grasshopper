@@ -819,12 +819,11 @@ NeedContext.init = () => {
       let item = e.target.closest(`.needcontext-item`)
 
       if (!item) {
-        item = e.target.closest(`.needcontext-button`)
+        item = e.target.closest(`.needcontext-back`)
       }
 
       if (item) {
-        NeedContext.autoclick_element = item
-        NeedContext.autoclick_debouncer.call()
+        NeedContext.autoclick_debouncer.call(item, e)
       }
     }
   })
@@ -887,22 +886,13 @@ NeedContext.init = () => {
     NeedContext.hide()
   }, NeedContext.autohide_delay)
 
-  NeedContext.autoclick_debouncer = NeedContext.create_debouncer(() => {
-    let ev = new MouseEvent(`mousedown`, {
-      bubbles: true,
-      cancelable: true,
-      view: window,
-    })
-
-    NeedContext.autoclick_element.dispatchEvent(ev)
-
-    let ev2 = new MouseEvent(`mouseup`, {
-      bubbles: true,
-      cancelable: true,
-      view: window,
-    })
-
-    NeedContext.autoclick_element.dispatchEvent(ev2)
+  NeedContext.autoclick_debouncer = NeedContext.create_debouncer((el, e) => {
+    if (el.closest(`.needcontext-item`)) {
+      NeedContext.select_action(e)
+    }
+    else if (el.closest(`.needcontext-back`)) {
+      NeedContext.go_back()
+    }
   }, NeedContext.autoclick_delay)
 
   NeedContext.set_defaults()
