@@ -5075,6 +5075,13 @@ App.build_settings = () => {
       info: `Auto-click on unloaded tabs`,
       version: 1,
     },
+    tab_box_autoclick: {
+      name: `Tab Box Autoclick`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-click on Tab Box items`,
+      version: 1,
+    },
     hover_button_autoclick_delay: {
       name: `Hover Button Autoclick Delay`,
       type: `number`,
@@ -5123,6 +5130,16 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Delay in milliseconds for Unloaded Autoclick`,
+      version: 1,
+    },
+    tab_box_autoclick_delay: {
+      name: `Tab Box Autoclick Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay in milliseconds for Tab Box Autoclick`,
       version: 1,
     },
   }

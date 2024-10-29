@@ -940,33 +940,53 @@ App.wheel_action = (direction, name, e) => {
 
 App.autoclick_action = (e) => {
   clearInterval(App.autoclick_timeout)
-  let el = e.target
-  let autoclick = DOM.parent(el, [`.autoclick`])
+  let el = DOM.parent(e.target, [`.autoclick`])
 
-  if (!autoclick) {
+  if (!el) {
     return false
   }
 
+  let mode = App.active_mode
+  let [item, item_alt] = App.get_mouse_item(mode, el)
+
   function action() {
-    App.click_element(autoclick, e)
+    App.click_element(el, e)
   }
 
   let start = false
   let delay
 
-  if (DOM.parent(el, [`.hover_button`])) {
+  if (DOM.class(el, [`item`])) {
+    if (item_alt) {
+      if (App.get_setting(`tab_box_autoclick`)) {
+        delay = App.get_setting(`tab_box_autoclick_delay`)
+        start = true
+      }
+    }
+    else if (item.unloaded) {
+      if (App.get_setting(`unloaded_tab_autoclick`)) {
+        delay = App.get_setting(`unloaded_tab_autoclick_delay`)
+        start = true
+      }
+    }
+    else if (App.get_setting(`item_autoclick`)) {
+      delay = App.get_setting(`item_autoclick_delay`)
+      start = true
+    }
+  }
+  else if (DOM.class(el, [`hover_button`])) {
     if (App.get_setting(`hover_button_autoclick`)) {
       delay = App.get_setting(`hover_button_autoclick_delay`)
       start = true
     }
   }
-  else if (DOM.parent(el, [`#main_title_left_button`])) {
+  else if (el.id === `main_title_left_button`) {
     if (App.get_setting(`main_title_left_button_autoclick`)) {
       delay = App.get_setting(`main_title_left_button_autoclick_delay`)
       start = true
     }
   }
-  else if (DOM.parent(el, [`#main_title_right_button`])) {
+  else if (el.id === `#main_title_right_button`) {
     if (App.get_setting(`main_title_right_button_autoclick`)) {
       delay = App.get_setting(`main_title_right_button_autoclick_delay`)
       start = true

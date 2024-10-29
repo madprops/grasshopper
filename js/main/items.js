@@ -320,7 +320,7 @@ App.refresh_item_element = (item) => {
 }
 
 App.create_item_element = (item) => {
-  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item element ${item.mode}_element`)
+  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item element ${item.mode}_element autoclick`)
   item.element.dataset.id = item.id
   App.check_header(item)
   App.create_hover_button(item, `left`)
