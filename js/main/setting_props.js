@@ -1828,7 +1828,6 @@ App.build_settings = () => {
       name: `Show Actions Btn`,
       type: `checkbox`,
       value: true,
-      separator: true,
       info: `Show the Actions Button`,
       version: 1,
     },
