@@ -943,13 +943,15 @@ App.autoclick_action = (e) => {
   let el = e.target
   let mode = App.active_mode
   let [item, item_alt] = App.get_mouse_item(mode, el)
+  let element
 
   function action() {
-    App.click_element(el, e)
+    App.click_element(element, e)
   }
 
   function check(what, cls) {
-    return App.get_setting(`${what}_autoclick`) && DOM.parent(el, [cls])
+    element = DOM.parent(el, [cls])
+    return App.get_setting(`${what}_autoclick`) && Boolean(element)
   }
 
   let delay
