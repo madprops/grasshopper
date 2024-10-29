@@ -2,7 +2,7 @@ App.create_step_back_button = (mode) => {
   let btn = DOM.create(`div`, `step_back_button button icon_button`, `${mode}_back`)
   let rclick = App.get_cmd_name(`show_recent_tabs`)
 
-  if (App.get_setting(`show_tooltips`)) {
+  if (App.tooltips()) {
     App.trigger_title(btn, `click_step_back`)
     btn.title += `\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_step_back`)

@@ -68,7 +68,7 @@ App.do_check_pinline = () => {
   let sep = `&nbsp;&nbsp;+&nbsp;&nbsp;`
   pinline.innerHTML = `${left}${sep}${right}`
 
-  if (App.get_setting(`show_tooltips`)) {
+  if (App.tooltips()) {
     pinline.title = `This is the Pinline.\nPinned tabs above. Normal tabs below`
     App.trigger_title(pinline, `click_pinline`)
     App.trigger_title(pinline, `middle_click_pinline`)

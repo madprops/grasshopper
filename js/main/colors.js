@@ -120,7 +120,7 @@ App.apply_color_mode = (item) => {
 
     el.dataset.color = color
 
-    if (App.get_setting(`show_tooltips`)) {
+    if (App.tooltips()) {
       let c_obj = App.get_color_by_id(color)
 
       if (c_obj) {

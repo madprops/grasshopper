@@ -259,3 +259,7 @@ App.check_show_button = (name, btn) => {
     DOM.hide(btn, 2)
   }
 }
+
+App.tooltips = () => {
+  return App.get_setting(`show_tooltips`)
+}

@@ -22,7 +22,7 @@ App.proc_item_icon = (args = {}) => {
     icon.textContent = App.get_setting(name_icon)
   }
 
-  if (App.get_setting(`show_tooltips`)) {
+  if (App.tooltips()) {
     icon.title = args.title
   }
 
@@ -729,7 +729,7 @@ App.item_icon_click = (item, target, e) => {
 }
 
 App.update_icon_tooltips = (item, target) => {
-  if (!App.get_setting(`show_tooltips`)) {
+  if (!App.tooltips()) {
     return
   }
 

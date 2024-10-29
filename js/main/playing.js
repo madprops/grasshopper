@@ -8,7 +8,7 @@ App.create_playing_button = (mode) => {
   let btn = DOM.create(`div`, `button icon_button playing_button hidden`, `playing_button_${mode}`)
   let rclick = App.get_cmd_name(`show_playing_tabs`)
 
-  if (App.get_setting(`show_tooltips`)) {
+  if (App.tooltips()) {
     App.trigger_title(btn, `click_playing`)
     btn.title += `\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_playing`)

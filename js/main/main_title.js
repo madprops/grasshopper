@@ -71,7 +71,7 @@ App.create_main_title = () => {
   el.append(inner)
   el.append(btn_right)
 
-  if (App.get_setting(`show_tooltips`)) {
+  if (App.tooltips()) {
     el.title = `Right Click: ${rclick}`
     App.trigger_title(el, `middle_click_main_title`)
     App.trigger_title(el, `double_click_main_title`)
@@ -126,7 +126,7 @@ App.set_main_title_text = (text) => {
 }
 
 App.update_main_title_tooltips = (el) => {
-  if (!App.get_setting(`show_tooltips`)) {
+  if (!App.tooltips()) {
     return
   }
 

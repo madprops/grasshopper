@@ -1325,7 +1325,7 @@ App.blink_item = (item) => {
 }
 
 App.set_item_tooltips = (item) => {
-  if (!App.get_setting(`show_tooltips`)) {
+  if (!App.tooltips()) {
     return
   }
 

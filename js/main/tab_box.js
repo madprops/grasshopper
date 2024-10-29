@@ -62,7 +62,7 @@ App.create_tab_box = () => {
   let tab_box = DOM.create(`div`, `box`, `tab_box`)
   let title = DOM.create(`div`, `box_title glowbox`, `tab_box_title`)
 
-  if (App.get_setting(`show_tooltips`)) {
+  if (App.tooltips()) {
     let parts = [
       `This is the Tab Box`,
       `Click to select a mode`,
@@ -379,7 +379,7 @@ App.fill_tab_box = (items) => {
   c.innerHTML = ``
 
   for (let item of items) {
-    if (App.get_setting(`show_tooltips`)) {
+    if (App.tooltips()) {
       if (text_mode === `url`) {
         item.element.title = item.tooltips_title
       }

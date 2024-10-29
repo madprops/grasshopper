@@ -31,7 +31,7 @@ App.create_favorites_bar = (mode) => {
     cls += ` hidden`
   }
 
-  let tips = App.get_setting(`show_tooltips`)
+  let tips = App.tooltips()
   let bar = DOM.create(`div`, cls, `favorites_bar_${mode}`)
   let empty_top = DOM.create(`div`, `favorites_empty favorites_empty_top`, `favorites_empty_top_${mode}`)
 
@@ -101,7 +101,7 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
 
   let favs = App.get_favorites()
   let c = DOM.el(`#favorites_bar_${mode}`)
-  let tips = App.get_setting(`show_tooltips`)
+  let tips = App.tooltips()
   c.innerHTML = ``
 
   for (let fav of favs) {

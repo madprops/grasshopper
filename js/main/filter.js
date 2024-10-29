@@ -873,7 +873,7 @@ App.create_filter = (mode) => {
   let rclick = App.get_cmd_name(`show_filter_context_menu`)
   let mclick = App.get_cmd_name(`show_refine_filters`)
 
-  if (App.get_setting(`show_tooltips`)) {
+  if (App.tooltips()) {
     filter.title = `Type to filter or search\nRight Click: ${rclick}\nMiddle Click: ${mclick}`
     App.trigger_title(filter, `double_click_filter`)
   }
@@ -1534,7 +1534,7 @@ App.create_filter_menu = (mode) => {
     }
   }
 
-  if (App.get_setting(`show_tooltips`)) {
+  if (App.tooltips()) {
     btn.title = `Click: ${click}\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_filter_menu`)
     App.trigger_title(btn, `click_press_filter_menu`)

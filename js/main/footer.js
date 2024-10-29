@@ -82,7 +82,7 @@ App.create_footer = () => {
     let tab_box_btn = DOM.create(`div`, `pointer`, `footer_tab_box`)
     tab_box_btn.append(App.get_svg_icon(`arrow_up`))
 
-    if (App.get_setting(`show_tooltips`)) {
+    if (App.tooltips()) {
       let click = App.get_cmd_name(`toggle_tab_box`)
       tab_box_btn.title = `Click: ${click}`
       App.footer_tips(tab_box_btn)
@@ -91,7 +91,7 @@ App.create_footer = () => {
     footer.append(tab_box_btn)
   }
 
-  let tips = App.get_setting(`show_tooltips`)
+  let tips = App.tooltips()
   let footer_content = DOM.create(`div`, `glow`, `footer_content`)
   let footer_count = DOM.create(`div`, ``, `footer_count`)
 

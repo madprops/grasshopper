@@ -3,7 +3,7 @@ App.create_main_menu = (mode) => {
   let click = App.get_cmd_name(`show_main_menu`)
   let rclick = App.get_cmd_name(`show_palette`)
 
-  if (App.get_setting(`show_tooltips`)) {
+  if (App.tooltips()) {
     btn.title = `Click: ${click}\nRight Click: ${rclick}`
     App.trigger_title(btn, `middle_click_main_menu`)
     App.trigger_title(btn, `click_press_main_menu`)

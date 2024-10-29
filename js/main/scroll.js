@@ -178,7 +178,7 @@ App.create_scroller = (mode) => {
   let scroller = DOM.create(`div`, `scroller glowbox`, `${mode}_scroller`)
   let content = DOM.create(`div`, `scroller_content`)
 
-  if (App.get_setting(`show_tooltips`)) {
+  if (App.tooltips()) {
     let click = App.get_cmd_name(`go_to_top`)
     let mclick = App.get_cmd_name(`page_up`)
     scroller.title = `This is the Scroller\nClick: ${click}\nMiddle Click: ${mclick}`
