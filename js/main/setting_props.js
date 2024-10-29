@@ -1997,58 +1997,17 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
     },
-    click_close_button: {
-      name: `Click Close Button`,
-      type: `menu`,
-      value: `close_tabs`,
-      info: `Command to run when clicking the Close Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_close_button: {
-      name: `Double Click Close Button`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when double clicking the Close Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_close_button: {
-      name: `Middle Click Close Button`,
-      type: `menu`,
-      value: `unload_tabs`,
-      info: `Command to run when middle clicking the Close Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_close_button: {
-      name: `Click Press Close Button`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when pressing the Close Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_close_button: {
-      name: `Middle Click Press Close Button`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when middle pressing the Close Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+
+    ...App.make_mouse_settings({
+      what: `close_button`,
+      title: `Close Btn`,
+      click: `close_tabs`,
+      double_click: `none`,
+      middle_click: `unload_tabs`,
+      click_press: `none`,
+      middle_click_press: `none`,
+    }),
+
     close_button_padding: {
       name: `Close Button Padding`,
       type: `number`,
@@ -2169,37 +2128,15 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Hover Button (Closed)`,
       version: 1,
     },
-    middle_click_hover_button: {
-      name: `Middle Click Hover Button`,
-      type: `menu`,
-      value: `close_tabs`,
-      info: `Command to run when middle clicking the Hover Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_hover_button: {
-      name: `Click Press Hover Button`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when pressing the Hover Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_hover_button: {
-      name: `Middle Click Press Hover Button`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when middle pressing the Hover Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+
+    ...App.make_mouse_settings({
+      what: `hover_button`,
+      title: `Hover Btn`,
+      middle_click: `close_tabs`,
+      click_press: `none`,
+      middle_click_press: `none`,
+    }),
+
     hover_button_icon: {
       name: `Hover Button Icon`,
       type: `text_smaller`,
@@ -2630,99 +2567,26 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.scroll_modes)
       },
     },
-    middle_click_tab_box_title: {
-      name: `Middle Click Tab Box Title`,
-      type: `menu`,
-      value: `toggle_tab_box`,
-      info: `Command to run on middle click on Tab Box Title`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_tab_box_title: {
-      name: `Click Press Tab Box Title`,
-      type: `menu`,
-      value: `tab_box_select`,
-      info: `Command to run on left click press on Tab Box Title`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_tab_box_title: {
-      name: `Middle Click Press Tab Box Title`,
-      type: `menu`,
-      value: `tab_box_close`,
-      info: `Command to run on middle click press on Tab Box Title`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_tab_box_title: {
-      name: `Wheel Up Tab Box Title`,
-      type: `menu`,
-      value: `tab_box_previous_mode`,
-      info: `Command to run when using the mousewheel up on the Tab Box Title`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_tab_box_title: {
-      name: `Wheel Down Tab Box Title`,
-      type: `menu`,
-      value: `tab_box_next_mode`,
-      info: `Command to run when using the mousewheel down on the Tab Box Title`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_tab_box: {
-      name: `Wheel Up Tab Box`,
-      type: `menu`,
-      value: `tab_box_scroll_up`,
-      info: `Command to run when using the mousewheel up on the Tab Box`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_tab_box: {
-      name: `Wheel Down Tab Box`,
-      type: `menu`,
-      value: `tab_box_scroll_down`,
-      info: `Command to run when using the mousewheel down on the Tab Box`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_shift_tab_box: {
-      name: `Shift Wheel Up Tab Box`,
-      type: `menu`,
-      value: `tab_box_previous_mode`,
-      info: `Command to run when using the mousewheel up on the Tab Box while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_tab_box: {
-      name: `Shift Wheel Down Tab Box`,
-      type: `menu`,
-      value: `tab_box_next_mode`,
-      info: `Command to run when using the mousewheel down on the Tab Box while holding Shift`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+
+    ...App.make_mouse_settings({
+      what: `tab_box_title`,
+      title: `Tab Box Title`,
+      middle_click: `toggle_tab_box`,
+      click_press: `tab_box_select`,
+      middle_click_press: `tab_box_close`,
+      wheel_up: `tab_box_previous_mode`,
+      wheel_down: `tab_box_next_mode`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `tab_box`,
+      title: `Tab Box`,
+      wheel_up: `tab_box_scroll_up`,
+      wheel_down: `tab_box_scroll_down`,
+      wheel_up_shift: `tab_box_previous_mode`,
+      wheel_down_shift: `tab_box_next_mode`,
+    }),
+
     tab_box_color_enabled: {
       name: `Tab Box Color`,
       type: `checkbox`,
