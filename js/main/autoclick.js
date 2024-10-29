@@ -16,27 +16,36 @@ App.autoclick_action = (e) => {
 
   let do_action = false
 
-  if (item) {
-    element = item.element
+  if (item || item_alt) {
+    let elem
 
-    if (item.unloaded) {
+    if (item_alt) {
+      if (!App.get_setting(`tab_box_autoclick`)) {
+        return
+      }
+
+      elem = item_alt.element
+    }
+    else {
+      elem = item.element
+    }
+
+    if (check(`hover_button`, `.hover_button`)) {
+      do_action = true
+    }
+    else if (check(`close_button`, `.close_button`)) {
+      do_action = true
+    }
+    else if (item.unloaded) {
       if (App.get_setting(`unloaded_tab_autoclick`)) {
+        element = elem
         do_action = true
       }
     }
     else if (App.get_setting(`item_autoclick`)) {
+      element = elem
       do_action = true
     }
-  }
-  else if (item_alt) {
-    element = item_alt.element
-
-    if (App.get_setting(`unloaded_tab_autoclick`)) {
-      do_action = true
-    }
-  }
-  else if (check(`hover_button`, `.hover_button`)) {
-    do_action = true
   }
   else if (check(`main_button`, `.main_button`)) {
     do_action = true
