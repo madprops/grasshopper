@@ -5489,11 +5489,11 @@ App.build_settings = () => {
       info: `Auto-clear after no items remain when closing tabs`,
       version: 1,
     },
-    autohide_context: {
-      name: `Autohide Context`,
+    context_autohide: {
+      name: `Context Autohide`,
       type: `checkbox`,
-      value: false,
-      info: `Autohide context menus when the mouse moves away from the window`,
+      value: true,
+      info: `Autohide context menus when the mouse moves away from them`,
       version: 1,
     },
     jump_unfold: {

@@ -35,6 +35,8 @@ NeedContext.set_defaults = () => {
   NeedContext.last_x = 0
   NeedContext.last_y = 0
   NeedContext.layers = {}
+  NeedContext.mouse_activity = false
+  NeedContext.autohide_debouncer.cancel()
 }
 
 // Clear the filter
@@ -123,6 +125,7 @@ NeedContext.show = (args = {}) => {
     picker_mode: false,
     margin: 0,
     compact: false,
+    autohide: false,
   }
 
   NeedContext.def_args(def_args, args)
@@ -783,6 +786,29 @@ NeedContext.init = () => {
     NeedContext.mousedown = false
   })
 
+  document.addEventListener(`mousemove`, (e) => {
+    if (!NeedContext.open || !e.target) {
+      return
+    }
+
+    NeedContext.mouse_activity = true
+  })
+
+  document.addEventListener(`mouseover`, (e) => {
+    if (!NeedContext.open || !e.target) {
+      return
+    }
+
+    if (NeedContext.args.autohide && NeedContext.mouse_activity) {
+      if ((e.target.id === `needcontext-main`)) {
+        NeedContext.autohide_debouncer.call()
+      }
+      else {
+        NeedContext.autohide_debouncer.cancel()
+      }
+    }
+  })
+
   document.addEventListener(`keydown`, (e) => {
     if (!NeedContext.open) {
       return
@@ -826,6 +852,10 @@ NeedContext.init = () => {
       e.preventDefault()
     }
   })
+
+  NeedContext.autohide_debouncer = NeedContext.create_debouncer(() => {
+    NeedContext.hide()
+  }, 500)
 
   NeedContext.set_defaults()
 }
@@ -1150,4 +1180,37 @@ NeedContext.count_items = () => {
   items = items.filter(x => !x.removed)
   items = items.filter(x => !x.fake)
   return items.length
+}
+
+// Util to create a debouncer
+NeedContext.create_debouncer = (func, delay) => {
+  let timer
+  let obj = {}
+
+  function clear () {
+    clearTimeout(timer)
+  }
+
+  function run (...args) {
+    func(...args)
+  }
+
+  obj.call = (...args) => {
+    clear()
+
+    timer = setTimeout(() => {
+      run(...args)
+    }, delay)
+  }
+
+  obj.now = (...args) => {
+    clear()
+    run(...args)
+  }
+
+  obj.cancel = () => {
+    clear()
+  }
+
+  return obj
 }

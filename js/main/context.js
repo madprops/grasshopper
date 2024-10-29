@@ -9,6 +9,8 @@ App.show_context = (args = {}) => {
     return
   }
 
+  clearInterval(App.autoclick_timeout)
+
   if (!args.items.length) {
     args.items.push({
       text: `No items`,
@@ -25,6 +27,7 @@ App.show_context = (args = {}) => {
     args.title = undefined
   }
 
+  args.autohide = App.get_setting(`context_autohide`)
   NeedContext.show(args)
 }
 

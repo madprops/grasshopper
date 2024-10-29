@@ -179,7 +179,6 @@ App.setup_window = () => {
       App.clear_restore()
     }
 
-    App.clear_context_auto_hide()
     App.remove_auto_blur()
     App.mouse_inside_check()
   })
@@ -197,27 +196,9 @@ App.setup_window = () => {
       App.start_auto_restore()
     }
 
-    App.start_context_auto_hide()
     App.auto_blur()
     App.mouse_inside_check()
   })
-}
-
-App.start_context_auto_hide = () => {
-  if (!App.get_setting(`autohide_context`)) {
-    return
-  }
-
-  App.clear_context_auto_hide()
-
-  App.context_auto_hide_timeout = setTimeout(() => {
-    App.hide_context()
-    App.hide_palette()
-  }, App.context_auto_hide_delay)
-}
-
-App.clear_context_auto_hide = () => {
-  clearTimeout(App.context_auto_hide_timeout)
 }
 
 App.window_goto_top = (mode) => {
