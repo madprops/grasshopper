@@ -3742,203 +3742,51 @@ App.build_settings = () => {
       info: `Menu to show when right clicking the Title`,
       version: 1,
     },
-    click_main_title: {
-      name: `Click Title`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when clicking the Title`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_main_title: {
-      name: `Double Click Title`,
-      type: `menu`,
-      value: `edit_main_title`,
-      info: `Command to run when double clicking the Title`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_main_title: {
-      name: `Middle Click Title`,
-      type: `menu`,
-      value: `toggle_main_title_date`,
-      info: `Command to run when middle clicking the Title`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_main_title: {
-      name: `Click Press Title`,
-      type: `menu`,
-      value: `edit_global_notes`,
-      info: `Command to run when press clicking the Title`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_main_title: {
-      name: `Middle Click Press Title`,
-      type: `menu`,
-      value: `lock_screen`,
-      info: `Command to run when middle press clicking the Title`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_main_title: {
-      name: `Wheel Up Title`,
-      type: `menu`,
-      value: `scroll_main_title_left`,
-      info: `Command to run when using the mousewheel up on the Title`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_main_title: {
-      name: `Wheel Down Title`,
-      type: `menu`,
-      value: `scroll_main_title_right`,
-      info: `Command to run when using the mousewheel down on the Title`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_shift_main_title: {
-      name: `Shift Wheel Up Title`,
-      type: `menu`,
-      value: `previous_main_title_color`,
-      info: `Command to run when using the mousewheel up on the Title while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_main_title: {
-      name: `Shift Wheel Down Title`,
-      type: `menu`,
-      value: `next_main_title_color`,
-      info: `Command to run when using the mousewheel down on the Title while holding Shift`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_main_title_left_button: {
-      name: `Click Title Left`,
-      type: `menu`,
-      value: `show_main_title_left_button_menu`,
-      info: `Command to run when clicking the Title Left Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_main_title_left_button: {
-      name: `Double Click Title Left`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when double clicking the Title Left Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_main_title_left_button: {
-      name: `Middle Click Title Left`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when middle clicking the Title Left Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_main_title_left_button: {
-      name: `Click Press Title Left`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when click pressing the Title Left Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_main_title_left_button: {
-      name: `Middle Click Press Title Left`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when middle click pressing the Title Left Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_main_title_right_button: {
-      name: `Click Title Right`,
-      type: `menu`,
-      value: `show_main_title_right_button_menu`,
-      info: `Command to run when clicking the Title Right Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_main_title_right_button: {
-      name: `Double Click Title Right`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when double clicking the Title Right Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_main_title_right_button: {
-      name: `Middle Click Title Right`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when middle clicking the Title Right Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_main_title_right_button: {
-      name: `Click Press Title Right`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when click pressing the Title Right Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_main_title_right_button: {
-      name: `Middle Click Press Title Right`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when middle click pressing the Title Right Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+
+    ...App.make_mouse_settings({
+      what: `main_title`,
+      title: `Title`,
+      click: true,
+      double_click: true,
+      double_click_value: `edit_main_title`,
+      middle_click: true,
+      middle_click_value: `toggle_main_title_date`,
+      click_press: true,
+      click_press_value: `edit_global_notes`,
+      middle_click_press: true,
+      middle_click_press_value: `lock_screen`,
+      wheel_up: true,
+      wheel_up_value: `scroll_main_title_left`,
+      wheel_down: true,
+      wheel_down_value: `scroll_main_title_right`,
+      wheel_up_shift: true,
+      wheel_up_shift_value: `previous_main_title_color`,
+      wheel_down_shift: true,
+      wheel_down_shift_value: `next_main_title_color`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `main_title_left_button`,
+      title: `Title Left`,
+      click: true,
+      click_value: `show_main_title_left_button_menu`,
+      double_click: true,
+      middle_click: true,
+      click_press: true,
+      middle_click_press: true,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `main_title_right_button`,
+      title: `Title Right`,
+      click: true,
+      click_value: `show_main_title_right_button_menu`,
+      double_click: true,
+      middle_click: true,
+      click_press: true,
+      middle_click_press: true,
+    }),
+
     main_title_left_button_menu: {
       name: `Title Left Menu`,
       type: `list`,

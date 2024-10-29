@@ -2227,3 +2227,154 @@ App.check_setting_overrides = () => {
     }
   }
 }
+
+App.make_mouse_settings = (args = {}) => {
+  let def_args = {
+    click: false,
+    double_click: false,
+    middle_click: false,
+    click_press: false,
+    middle_click_press: false,
+    wheel_up: false,
+    wheel_down: false,
+    wheel_up_shift: false,
+    wheel_down_shift: false,
+    click_value: `none`,
+    double_click_value: `none`,
+    middle_click_value: `none`,
+    click_press_value: `none`,
+    middle_click_press_value: `none`,
+    wheel_up_value: `none`,
+    wheel_down_value: `none`,
+    wheel_up_shift_value: `none`,
+    wheel_down_shift_value: `none`,
+    add_separator: true,
+  }
+
+  App.def_args(def_args, args)
+  let obj = {}
+
+  if (args.click) {
+    obj[`click_${args.what}`] = {
+      name: `Click ${args.title}`,
+      type: `menu`,
+      value: args.click_value,
+      info: `Command to run when clicking the ${args.title}`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    }
+  }
+
+  if (args.double_click) {
+    obj[`double_click_${args.what}`] = {
+      name: `Click ${args.title}`,
+      type: `menu`,
+      value: args.double_click_value,
+      info: `Command to run when double clicking the ${args.title}`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    }
+  }
+
+  if (args.middle_click) {
+    obj[`middle_click_${args.what}`] = {
+      name: `Click ${args.title}`,
+      type: `menu`,
+      value: args.middle_click_value,
+      info: `Command to run when middle clicking the ${args.title}`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    }
+  }
+
+  if (args.click_press) {
+    obj[`click_press_${args.what}`] = {
+      name: `Click ${args.title}`,
+      type: `menu`,
+      value: args.click_press_value,
+      info: `Command to run when click pressing the ${args.title}`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    }
+  }
+
+  if (args.middle_click_press) {
+    obj[`middle_click_press_${args.what}`] = {
+      name: `Middle Click ${args.title}`,
+      type: `menu`,
+      value: args.middle_click_press_value,
+      info: `Command to run when middle click pressing the ${args.title}`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    }
+  }
+
+  if (args.wheel_up) {
+    obj[`wheel_up_${args.what}`] = {
+      name: `Wheel Up ${args.title}`,
+      type: `menu`,
+      value: args.wheel_up_value,
+      info: `Command to run when using wheel up on the ${args.title}`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    }
+  }
+
+  if (args.wheel_down) {
+    obj[`wheel_down_${args.what}`] = {
+      name: `Wheel Down ${args.title}`,
+      type: `menu`,
+      value: args.wheel_down_value,
+      info: `Command to run when using wheel down on the ${args.title}`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    }
+  }
+
+  if (args.wheel_up_shift) {
+    obj[`wheel_up_shift_${args.what}`] = {
+      name: `Shift Wheel Up ${args.title}`,
+      type: `menu`,
+      value: args.wheel_up_shift_value,
+      info: `Command to run when using shift wheel up on the ${args.title}`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    }
+  }
+
+  if (args.wheel_down_shift) {
+    obj[`wheel_down_shift_${args.what}`] = {
+      name: `Shift Wheel Down ${args.title}`,
+      type: `menu`,
+      value: args.wheel_down_shift_value,
+      info: `Command to run when using shift wheel down on the ${args.title}`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    }
+  }
+
+  if (args.add_separator) {
+    let keys = Object.keys(obj)
+    obj[keys.at(-1)].separator = true
+  }
+
+  return obj
+}
