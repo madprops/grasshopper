@@ -957,6 +957,8 @@ App.autoclick_action = (e) => {
   let delay
 
   if (item) {
+    element = item.element
+
     if (item.unloaded) {
       if (App.get_setting(`unloaded_tab_autoclick`)) {
         delay = App.get_setting(`unloaded_tab_autoclick_delay`)
@@ -967,6 +969,8 @@ App.autoclick_action = (e) => {
     }
   }
   else if (item_alt) {
+    element = item_alt.element
+
     if (App.get_setting(`unloaded_tab_autoclick`)) {
       delay = App.get_setting(`unloaded_tab_autoclick_delay`)
     }
