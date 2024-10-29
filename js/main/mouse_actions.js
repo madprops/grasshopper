@@ -798,10 +798,6 @@ App.do_mouse_over_action = (e) => {
     return
   }
 
-  if (App.check_autoshow(target, e)) {
-    return
-  }
-
   let mode = App.active_mode
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
@@ -940,4 +936,46 @@ App.wheel_action = (direction, name, e) => {
 
   let cmd = App.get_setting(name)
   App.run_command({cmd, item, from: `mouse`, e})
+}
+
+App.autoshow_action = (e) => {
+  clearInterval(App.autoshow_timeout)
+  let el = e.target
+  let autoshow = DOM.parent(el, [`.autoshow`])
+
+  if (!autoshow) {
+    return false
+  }
+
+  function action() {
+    App.click_element(autoshow, e)
+  }
+
+  let start = false
+  let delay
+
+  if (DOM.parent(el, [`.hover_button`])) {
+    if (App.get_setting(`hover_button_autoshow`)) {
+      delay = App.get_setting(`hover_button_autoshow_delay`)
+      start = true
+    }
+  }
+  else if (DOM.parent(el, [`#main_title_left_button`])) {
+    if (App.get_setting(`main_title_left_button_autoshow`)) {
+      delay = App.get_setting(`main_title_left_button_autoshow_delay`)
+      start = true
+    }
+  }
+  else if (DOM.parent(el, [`#main_title_right_button`])) {
+    if (App.get_setting(`main_title_right_button_autoshow`)) {
+      delay = App.get_setting(`main_title_right_button_autoshow_delay`)
+      start = true
+    }
+  }
+
+  if (start) {
+    App.autoshow_timeout = setTimeout(() => {
+      action()
+    }, delay)
+  }
 }
