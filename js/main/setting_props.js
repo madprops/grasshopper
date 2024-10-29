@@ -4676,99 +4676,26 @@ App.build_settings = () => {
       Used to further refine filtered items`,
       version: 1,
     },
-    middle_click_filter: {
-      name: `Middle Click Filter`,
-      type: `menu`,
-      value: `show_refine_filters`,
-      info: `What command to run when middle clicking the Filter`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_filter: {
-      name: `Double Click Filter`,
-      type: `menu`,
-      value: `toggle_main_title`,
-      info: `What command to run when double clicking the Filter`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_filter: {
-      name: `Click Press Filter`,
-      type: `menu`,
-      value: `edit_global_notes`,
-      info: `Command to run when pressing the Filter`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_filter: {
-      name: `Middle Click Press Filter`,
-      type: `menu`,
-      value: `lock_screen`,
-      info: `Command to run when middle pressing the Filter`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_filter_button: {
-      name: `Middle Click Filter Button`,
-      type: `menu`,
-      value: `previous_filter`,
-      info: `Command to run when middle clicking the Filter Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_filter_button: {
-      name: `Click Press Filter Button`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on left click press on Filter Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_filter_button: {
-      name: `Middle Click Press Filter Button`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on middle click press on Filter Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_filter_button: {
-      name: `Wheel Up Filter Button`,
-      type: `menu`,
-      value: `do_prev_filter`,
-      info: `Command to run when using the mousewheel up on the Filter Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_filter_button: {
-      name: `Wheel Down Filter Button`,
-      type: `menu`,
-      value: `do_next_filter`,
-      info: `Command to run when using the mousewheel down on the Filter Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+
+    ...App.make_mouse_settings({
+      what: `filter`,
+      title: `Filter`,
+      double_click: `toggle_main_title`,
+      middle_click: `show_refine_filters`,
+      click_press: `edit_global_notes`,
+      middle_click_press: `lock_screen`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `filter_button`,
+      title: `Filter Btn`,
+      middle_click: `previous_filter`,
+      click_press: `none`,
+      middle_click_press: `none`,
+      wheel_up: `do_prev_filter`,
+      wheel_down: `do_next_filter`,
+    }),
+
     filter_effect: {
       name: `Filter Effect`,
       type: `menu`,
