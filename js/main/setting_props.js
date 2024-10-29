@@ -3104,99 +3104,21 @@ App.build_settings = () => {
       info: `Menu to show when right clicking the Footer`,
       version: 1,
     },
-    click_footer: {
-      name: `Click Footer`,
-      type: `menu`,
-      value: `go_to_bottom`,
-      info: `Command to run when clicking the Footer`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_footer: {
-      name: `Double Click Footer`,
-      type: `menu`,
-      value: `open_new_tab`,
-      info: `Command to run when double clicking the Footer`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_footer: {
-      name: `Middle Click Footer`,
-      type: `menu`,
-      value: `copy_item_url`,
-      info: `Command to run when middle clicking the Footer`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_footer: {
-      name: `Click Press Footer`,
-      type: `menu`,
-      value: `toggle_tab_box`,
-      info: `Command to run on left click press on Footer`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_footer: {
-      name: `Middle Click Press Footer`,
-      type: `menu`,
-      value: `copy_item_title`,
-      info: `Command to run on middle click press on Footer`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_footer: {
-      name: `Wheel Up Footer`,
-      type: `menu`,
-      value: `scroll_up`,
-      info: `Command to run when using the mousewheel up on the Footer`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_footer: {
-      name: `Wheel Down Footer`,
-      type: `menu`,
-      value: `scroll_down`,
-      info: `Command to run when using the mousewheel down on the Footer`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_shift_footer: {
-      name: `Shift Wheel Up Footer`,
-      type: `menu`,
-      value: `page_up`,
-      info: `Command to run when using the mousewheel up on the Footer while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_footer: {
-      name: `Shift Wheel Down Footer`,
-      type: `menu`,
-      value: `page_down`,
-      info: `Command to run when using the mousewheel down on the Footer while holding Shift`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+
+    ...App.make_mouse_settings({
+      what: `footer`,
+      title: `Footer`,
+      click: `go_to_bottom`,
+      double_click: `open_new_tab`,
+      middle_click: `copy_item_url`,
+      click_press: `toggle_tab_box`,
+      middle_click_press: `copy_item_title`,
+      wheel_up: `scroll_up`,
+      wheel_down: `scroll_down`,
+      wheel_up_shift: `page_up`,
+      wheel_down_shift: `page_down`,
+    }),
+
     footer_font_enabled: {
       name: `Footer Font Enabled`,
       type: `checkbox`,
@@ -4165,211 +4087,46 @@ App.build_settings = () => {
   category = `triggers`
 
   props = {
-    click_item_tabs: {
-      name: `Click Item (Tabs)`,
-      type: `menu`,
-      value: `item_action`,
-      info: `Command to run when clicking Tab Items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_item_history: {
-      name: `Click Item (History)`,
-      type: `menu`,
-      value: `item_action`,
-      info: `Command to run when clicking History Items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_item_bookmarks: {
-      name: `Click Item (${bkmarks})`,
-      type: `menu`,
-      value: `item_action`,
-      info: `Command to run when clicking Bookmark Items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_item_closed: {
-      name: `Click Item (Closed)`,
-      type: `menu`,
-      value: `item_action`,
-      info: `Command to run when clicking Closed Items`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_item_tabs: {
-      name: `Double Click Item (Tabs)`,
-      type: `menu`,
-      value: `item_action`,
-      info: `What command to run when double clicking an item (Tabs)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_item_history: {
-      name: `Double Click Item (History)`,
-      type: `menu`,
-      value: `item_action`,
-      info: `What command to run when double clicking an item (History)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_item_bookmarks: {
-      name: `Double Click Item (${bkmarks})`,
-      type: `menu`,
-      value: `item_action`,
-      info: `What command to run when double clicking an item (Bookmarks)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_item_closed: {
-      name: `Double Click Item (Closed)`,
-      type: `menu`,
-      value: `item_action`,
-      info: `What command to run when double clicking an item (Closed)`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_item_tabs: {
-      name: `Middle Click Item (Tabs)`,
-      type: `menu`,
-      value: `close_tabs`,
-      info: `Command to run when middle clicking Tab Items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_item_history: {
-      name: `Middle Click Item (History)`,
-      type: `menu`,
-      value: `open_items`,
-      info: `Command to run when middle clicking History Items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_item_bookmarks: {
-      name: `Middle Click Item (${bkmarks})`,
-      type: `menu`,
-      value: `open_items`,
-      info: `Command to run when middle clicking Bookmark Items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_item_closed: {
-      name: `Middle Click Item (Closed)`,
-      type: `menu`,
-      value: `open_items`,
-      info: `Command to run when middle clicking Closed Items`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_item_tabs: {
-      name: `Click Press Item (Tabs)`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the left mouse button on an item for a short time (Tabs)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_item_history: {
-      name: `Click Press Item (History)`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the left mouse button on an item for a short time (History)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_item_bookmarks: {
-      name: `Click Press Item (${bkmarks})`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the left mouse button on an item for a short time (Bookmarks)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_item_closed: {
-      name: `Click Press Item (Closed)`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the left mouse button on an item for a short time (Closed)`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_item_tabs: {
-      name: `Middle Click Press Item (Tabs)`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the middle mouse button on an item for a short time (Tabs)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_item_history: {
-      name: `Middle Click Press Item (History)`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the middle mouse button on an item for a short time (History)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_item_bookmarks: {
-      name: `Middle Click Press Item (${bkmarks})`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the middle mouse button on an item for a short time (Bookmarks)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_item_closed: {
-      name: `Middle Click Press Item (Closed)`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the middle mouse button on an item for a short time (Closed)`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+    ...App.make_mouse_settings({
+      what: `item_tabs`,
+      title: `Item (Tabs)`,
+      click: `item_action`,
+      double_click: `item_action`,
+      middle_click: `close_tabs`,
+      click_press: `none`,
+      middle_click_press: `none`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `item_history`,
+      title: `Item (History)`,
+      click: `item_action`,
+      double_click: `item_action`,
+      middle_click: `open_items`,
+      click_press: `none`,
+      middle_click_press: `none`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `item_bookmarks`,
+      title: `Item (${bkmarks})`,
+      click: `item_action`,
+      double_click: `item_action`,
+      middle_click: `open_items`,
+      click_press: `none`,
+      middle_click_press: `none`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `item_closed`,
+      title: `Item (Closed)`,
+      click: `item_action`,
+      double_click: `item_action`,
+      middle_click: `open_items`,
+      click_press: `none`,
+      middle_click_press: `none`,
+    }),
+
     wheel_up_items: {
       name: `Wheel Up Items`,
       type: `menu`,
