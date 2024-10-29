@@ -58,10 +58,18 @@ App.main_title_scroll_do_timeout = () => {
 App.create_main_title = () => {
   let el = DOM.create(`div`, ``, `main_title`)
   let inner = DOM.create(`div`, ``, `main_title_inner`)
-  el.append(inner)
   let title = App.get_setting(`main_title`)
-  inner.textContent = App.check_caps(title)
   let rclick = App.get_cmd_name(`show_main_title_menu`)
+  inner.textContent = App.check_caps(title)
+
+  let btn_left = DOM.create(`div`, `main_title_button`, `main_title_left_button`)
+  let btn_right = DOM.create(`div`, `main_title_button`, `main_title_right_button`)
+  btn_left.textContent = "◄"
+  btn_right.textContent = "►"
+
+  el.append(btn_left)
+  el.append(inner)
+  el.append(btn_right)
 
   if (App.get_setting(`show_tooltips`)) {
     el.title = `Right Click: ${rclick}`
@@ -158,6 +166,24 @@ App.copy_main_title = () => {
 App.show_main_title_menu = (e) => {
   let items = App.custom_menu_items({
     name: `main_title_menu`,
+  })
+
+  let compact = App.get_setting(`compact_main_title_menu`)
+  App.show_context({items, e, compact})
+}
+
+App.show_main_title_left_button_menu = (e) => {
+  let items = App.custom_menu_items({
+    name: `main_title_left_button_menu`,
+  })
+
+  let compact = App.get_setting(`compact_main_title_menu`)
+  App.show_context({items, e, compact})
+}
+
+App.show_main_title_right_button_menu = (e) => {
+  let items = App.custom_menu_items({
+    name: `main_title_right_button_menu`,
   })
 
   let compact = App.get_setting(`compact_main_title_menu`)
@@ -406,4 +432,34 @@ App.light_main_title = () => {
   let text = App.colorlib.get_dark_color()
   let bg = App.colorlib.get_light_color()
   App.set_main_title_color(text, bg)
+}
+
+App.main_title_click_left_button = (e) => {
+  let cmd = App.get_setting(`click_main_title_left_button`)
+  App.run_command({cmd, from: `main_title`, e})
+}
+
+App.main_title_click_right_button = (e) => {
+  let cmd = App.get_setting(`click_main_title_right_button`)
+  App.run_command({cmd, from: `main_title`, e})
+}
+
+App.main_title_double_click_left_button = (e) => {
+  let cmd = App.get_setting(`double_click_main_title_left_button`)
+  App.run_command({cmd, from: `main_title`, e})
+}
+
+App.main_title_double_click_right_button = (e) => {
+  let cmd = App.get_setting(`double_click_main_title_right_button`)
+  App.run_command({cmd, from: `main_title`, e})
+}
+
+App.main_title_middle_click_left_button = (e) => {
+  let cmd = App.get_setting(`middle_click_main_title_left_button`)
+  App.run_command({cmd, from: `main_title`, e})
+}
+
+App.main_title_middle_click_right_button = (e) => {
+  let cmd = App.get_setting(`middle_click_main_title_right_button`)
+  App.run_command({cmd, from: `main_title`, e})
 }

@@ -1475,6 +1475,8 @@ App.setup_settings_addlist = () => {
     `footer_menu`,
     `pinline_menu`,
     `main_title_menu`,
+    `main_title_left_button_menu`,
+    `main_title_right_button_menu`,
     `tab_box_menu`,
     `favorites_menu`,
     `actions_menu`,

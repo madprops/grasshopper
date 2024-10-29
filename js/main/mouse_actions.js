@@ -83,6 +83,16 @@ App.mouse_click_action = (e) => {
       return
     }
 
+    if (DOM.parent(target, [`#main_title_left_button`])) {
+      App.main_title_click_left_button(e)
+      return
+    }
+
+    if (DOM.parent(target, [`#main_title_right_button`])) {
+      App.main_title_click_right_button(e)
+      return
+    }
+
     if (DOM.parent(target, [`#main_title`])) {
       App.main_title_click(e)
       return
@@ -252,6 +262,16 @@ App.mouse_double_click_action = (e) => {
       return
     }
 
+    if (DOM.parent(target, [`#main_title_left_button`])) {
+      App.main_title_double_click_left_button(e)
+      return
+    }
+
+    if (DOM.parent(target, [`#main_title_right_button`])) {
+      App.main_title_double_click_right_button(e)
+      return
+    }
+
     if (DOM.parent(target, [`#main_title`])) {
       App.main_title_double_click(e)
       return
@@ -355,6 +375,16 @@ App.mouse_context_action = (e) => {
 
     if (DOM.parent(target, [`.favorites_bar_container`, `.favorites_button`])) {
       App.show_favorites_menu(e)
+      return
+    }
+
+    if (DOM.parent(target, [`#main_title_left_button`])) {
+      App.show_main_title_left_button_menu(e)
+      return
+    }
+
+    if (DOM.parent(target, [`#main_title_right_button`])) {
+      App.show_main_title_right_button_menu(e)
       return
     }
 
@@ -503,6 +533,16 @@ App.mouse_middle_action = (e, target_el) => {
 
     if (DOM.parent(target, [`#pinline`])) {
       App.pinline_middle_click(e)
+      return
+    }
+
+    if (DOM.parent(target, [`#main_title_left_button`])) {
+      App.main_title_middle_click_left_button(e)
+      return
+    }
+
+    if (DOM.parent(target, [`#main_title_right_button`])) {
+      App.main_title_middle_click_left_button(e)
       return
     }
 
@@ -674,6 +714,14 @@ App.click_press_action = (e) => {
     }
 
     if (App.mouse_press_action(`#tab_box_title`, `tab_box_title`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`#main_title_left_button`, `main_title_left_button`, obj)) {
+      return
+    }
+
+    if (App.mouse_press_action(`#main_title_right_button`, `main_title_right_button`, obj)) {
       return
     }
 

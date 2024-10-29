@@ -3834,6 +3834,131 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    click_main_title_left_button: {
+      name: `Click Title Left Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when clicking the Title Left Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_main_title_left_button: {
+      name: `Double Click Title Left Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when double clicking the Title Left Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_main_title_left_button: {
+      name: `Middle Click Title Left Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when middle clicking the Title Left Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_main_title_left_button: {
+      name: `Click Press Title Left Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when click pressing the Title Left Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_main_title_left_button: {
+      name: `Middle Click Press Title Left Btn`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when middle click pressing the Title Left Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_main_title_right_button: {
+      name: `Click Title Right Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when clicking the Title Right Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    double_click_main_title_right_button: {
+      name: `Double Click Title Right Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when double clicking the Title Right Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_main_title_right_button: {
+      name: `Middle Click Title Right Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when middle clicking the Title Right Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    click_press_main_title_right_button: {
+      name: `Click Press Title Right Button`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when click pressing the Title Right Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    middle_click_press_main_title_right_button: {
+      name: `Middle Click Press Title Right Btn`,
+      type: `menu`,
+      value: `none`,
+      info: `Command to run when middle click pressing the Title Right Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    main_title_left_button_menu: {
+      name: `Title Left Button Menu`,
+      type: `list`,
+      value: [
+        {cmd: `previous_main_title_color`},
+        {cmd: `set_previous_theme`},
+      ],
+      info: `Menu to show when clicking the Title Left Button`,
+      version: 1,
+    },
+    main_title_right_button_menu: {
+      name: `Title Right Button Menu`,
+      type: `list`,
+      value: [
+        {cmd: `next_main_title_color`},
+        {cmd: `set_next_theme`},
+      ],
+      separator: true,
+      info: `Menu to show when clicking the Title Right Button`,
+      version: 1,
+    },
     main_title_font_enabled: {
       name: `Title Font Enabled`,
       type: `checkbox`,
