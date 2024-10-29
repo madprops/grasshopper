@@ -1825,7 +1825,7 @@ App.build_settings = () => {
       version: 1,
     },
     show_actions_menu_button: {
-      name: `Show Actions Menu`,
+      name: `Show Actions`,
       type: `checkbox`,
       value: true,
       info: `Show the Actions Menu`,
