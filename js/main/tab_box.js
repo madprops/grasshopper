@@ -379,11 +379,13 @@ App.fill_tab_box = (items) => {
   c.innerHTML = ``
 
   for (let item of items) {
-    if (text_mode === `url`) {
-      item.element.title = item.tooltips_title
-    }
-    else {
-      item.element.title = item.tooltips_url
+    if (App.get_setting(`show_tooltips`)) {
+      if (text_mode === `url`) {
+        item.element.title = item.tooltips_title
+      }
+      else {
+        item.element.title = item.tooltips_url
+      }
     }
 
     c.append(item.element)
