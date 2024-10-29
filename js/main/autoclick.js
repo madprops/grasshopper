@@ -51,7 +51,7 @@ App.autoclick_action = (e) => {
     }
 
     if (item.unloaded) {
-      if (check(`unloaded`, undefined, elem)) {
+      if (check(`unloaded_tab`, undefined, elem)) {
         return
       }
     }

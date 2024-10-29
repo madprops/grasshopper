@@ -5058,14 +5058,14 @@ App.build_settings = () => {
       info: `Delay in milliseconds for Item Autoclick`,
       version: 1,
     },
-    unloaded_autoclick: {
+    unloaded_tab_autoclick: {
       name: `Unloaded Autoclick`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on unloaded tabs`,
       version: 1,
     },
-    unloaded_autoclick_delay: {
+    unloaded_tab_autoclick_delay: {
       name: `Unloaded Autoclick Delay`,
       type: `number`,
       value: App.autoclick_delay,
@@ -5137,7 +5137,7 @@ App.build_settings = () => {
       info: `Auto-click on the Main Button`,
       version: 1,
     },
-    main_button_autoclick_delay: {
+    main_button_button_autoclick_delay: {
       name: `Main Btn Autoclick Delay`,
       type: `number`,
       value: App.autoclick_delay,
