@@ -3986,13 +3986,32 @@ App.setup_commands = () => {
     },
     {
       name: `Title Menu`,
-      short_name: `Title Menu`,
       cmd: `show_main_title_menu`,
       icon: main_title_icon,
       action: (args) => {
         App.show_main_title_menu(args.e)
       },
       info: `Show the Title Menu`,
+    },
+    {
+      name: `Title Left Menu`,
+      short_name: `Left Menu`,
+      cmd: `show_main_title_left_button_menu`,
+      icon: main_title_icon,
+      action: (args) => {
+        App.show_main_title_left_button_menu(args.e)
+      },
+      info: `Show the Title Left Menu`,
+    },
+    {
+      name: `Title Right Menu`,
+      short_name: `Right Menu`,
+      cmd: `show_main_title_right_button_menu`,
+      icon: main_title_icon,
+      action: (args) => {
+        App.show_main_title_right_button_menu(args.e)
+      },
+      info: `Show the Title Right Menu`,
     },
     {
       name: `Red Title`,

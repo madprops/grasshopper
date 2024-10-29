@@ -3835,9 +3835,9 @@ App.build_settings = () => {
       },
     },
     click_main_title_left_button: {
-      name: `Click Title Left Button`,
+      name: `Click Title Left`,
       type: `menu`,
-      value: `none`,
+      value: `show_main_title_left_button_menu`,
       info: `Command to run when clicking the Title Left Button`,
       version: 1,
       setup: (key) => {
@@ -3845,7 +3845,7 @@ App.build_settings = () => {
       },
     },
     double_click_main_title_left_button: {
-      name: `Double Click Title Left Button`,
+      name: `Double Click Title Left`,
       type: `menu`,
       value: `none`,
       info: `Command to run when double clicking the Title Left Button`,
@@ -3855,7 +3855,7 @@ App.build_settings = () => {
       },
     },
     middle_click_main_title_left_button: {
-      name: `Middle Click Title Left Button`,
+      name: `Middle Click Title Left`,
       type: `menu`,
       value: `none`,
       info: `Command to run when middle clicking the Title Left Button`,
@@ -3866,7 +3866,7 @@ App.build_settings = () => {
       },
     },
     click_press_main_title_left_button: {
-      name: `Click Press Title Left Button`,
+      name: `Click Press Title Left`,
       type: `menu`,
       value: `none`,
       info: `Command to run when click pressing the Title Left Button`,
@@ -3876,7 +3876,7 @@ App.build_settings = () => {
       },
     },
     middle_click_press_main_title_left_button: {
-      name: `Middle Click Press Title Left Btn`,
+      name: `Middle Click Press Title Left`,
       type: `menu`,
       value: `none`,
       info: `Command to run when middle click pressing the Title Left Button`,
@@ -3887,9 +3887,9 @@ App.build_settings = () => {
       },
     },
     click_main_title_right_button: {
-      name: `Click Title Right Button`,
+      name: `Click Title Right`,
       type: `menu`,
-      value: `none`,
+      value: `show_main_title_right_button_menu`,
       info: `Command to run when clicking the Title Right Button`,
       version: 1,
       setup: (key) => {
@@ -3897,7 +3897,7 @@ App.build_settings = () => {
       },
     },
     double_click_main_title_right_button: {
-      name: `Double Click Title Right Button`,
+      name: `Double Click Title Right`,
       type: `menu`,
       value: `none`,
       info: `Command to run when double clicking the Title Right Button`,
@@ -3907,7 +3907,7 @@ App.build_settings = () => {
       },
     },
     middle_click_main_title_right_button: {
-      name: `Middle Click Title Right Button`,
+      name: `Middle Click Title Right`,
       type: `menu`,
       value: `none`,
       info: `Command to run when middle clicking the Title Right Button`,
@@ -3918,7 +3918,7 @@ App.build_settings = () => {
       },
     },
     click_press_main_title_right_button: {
-      name: `Click Press Title Right Button`,
+      name: `Click Press Title Right`,
       type: `menu`,
       value: `none`,
       info: `Command to run when click pressing the Title Right Button`,
@@ -3928,7 +3928,7 @@ App.build_settings = () => {
       },
     },
     middle_click_press_main_title_right_button: {
-      name: `Middle Click Press Title Right Btn`,
+      name: `Middle Click Press Title Right`,
       type: `menu`,
       value: `none`,
       info: `Command to run when middle click pressing the Title Right Button`,
@@ -3939,21 +3939,25 @@ App.build_settings = () => {
       },
     },
     main_title_left_button_menu: {
-      name: `Title Left Button Menu`,
+      name: `Title Left Menu`,
       type: `list`,
       value: [
         {cmd: `previous_main_title_color`},
         {cmd: `set_previous_theme`},
+        {cmd: `show_previous_mode`},
+        {cmd: `browser_back`},
       ],
       info: `Menu to show when clicking the Title Left Button`,
       version: 1,
     },
     main_title_right_button_menu: {
-      name: `Title Right Button Menu`,
+      name: `Title Right Menu`,
       type: `list`,
       value: [
         {cmd: `next_main_title_color`},
         {cmd: `set_next_theme`},
+        {cmd: `show_next_mode`},
+        {cmd: `browser_forward`},
       ],
       separator: true,
       info: `Menu to show when clicking the Title Right Button`,
