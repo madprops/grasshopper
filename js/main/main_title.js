@@ -64,8 +64,8 @@ App.create_main_title = () => {
 
   let btn_left = DOM.create(`div`, `main_title_button`, `main_title_left_button`)
   let btn_right = DOM.create(`div`, `main_title_button`, `main_title_right_button`)
-  btn_left.textContent = "◄"
-  btn_right.textContent = "►"
+  btn_left.textContent = `◄`
+  btn_right.textContent = `►`
 
   el.append(btn_left)
   el.append(inner)
