@@ -693,7 +693,7 @@ App.click_press_action = (e) => {
       return
     }
 
-    if (App.mouse_press_action(`.actions_button`, `actions_menu`, obj)) {
+    if (App.mouse_press_action(`.actions_button`, `actions_button`, obj)) {
       return
     }
 
@@ -896,7 +896,7 @@ App.mouse_wheel_action = (e) => {
     App.wheel_action(direction, `filter_button`, e)
   }
   else if (DOM.parent(target, [`.actions_button`])) {
-    App.wheel_action(direction, `actions_menu`, e)
+    App.wheel_action(direction, `actions_button`, e)
   }
   else if (DOM.parent(target, [`#tab_box_title`])) {
     App.wheel_action(direction, `tab_box_title`, e)

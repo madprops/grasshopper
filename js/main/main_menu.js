@@ -12,7 +12,7 @@ App.create_main_button = (mode) => {
     App.trigger_title(btn, `wheel_down_main_menu`)
   }
 
-  App.check_show_button(`main_menu`, btn)
+  App.check_show_button(`main`, btn)
   App.set_main_menu_text(btn, mode)
   return btn
 }

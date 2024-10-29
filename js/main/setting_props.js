@@ -1796,7 +1796,7 @@ App.build_settings = () => {
   category = `show`
 
   props = {
-    show_main_menu_button: {
+    show_main_button: {
       name: `Show Main Btn`,
       type: `checkbox`,
       value: true,
@@ -1824,7 +1824,7 @@ App.build_settings = () => {
       info: `Show the Step Back Button`,
       version: 1,
     },
-    show_actions_menu_button: {
+    show_actions_button: {
       name: `Show Actions Btn`,
       type: `checkbox`,
       value: true,
@@ -4751,52 +4751,52 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_actions_menu: {
-      name: `Middle Click Actions Menu`,
+    middle_click_actions_button: {
+      name: `Middle Click Actions Button`,
       type: `menu`,
       value: `browser_reload`,
-      info: `Command to run when middle clicking the Actions Menu`,
+      info: `Command to run when middle clicking the Actions Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    click_press_actions_menu: {
-      name: `Click Press Actions Menu`,
+    click_press_actions_button: {
+      name: `Click Press Actions Button`,
       type: `menu`,
       value: `edit_global_notes`,
-      info: `Command to run on left click press on Actions Menu`,
+      info: `Command to run on left click press on Actions Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_press_actions_menu: {
-      name: `Middle Click Press Actions Menu`,
+    middle_click_press_actions_button: {
+      name: `Middle Click Press Actions Button`,
       type: `menu`,
       value: `lock_screen`,
-      info: `Command to run on middle click press on Actions Menu`,
+      info: `Command to run on middle click press on Actions Button`,
       separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_up_actions_menu: {
-      name: `Wheel Up Actions Menu`,
+    wheel_up_actions_button: {
+      name: `Wheel Up Actions Button`,
       type: `menu`,
       value: `jump_tabs_all_up`,
-      info: `Command to run when using the mousewheel up on the Actions Menu`,
+      info: `Command to run when using the mousewheel up on the Actions Button`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_down_actions_menu: {
-      name: `Wheel Down Actions Menu`,
+    wheel_down_actions_button: {
+      name: `Wheel Down Actions Button`,
       type: `menu`,
       value: `jump_tabs_all_down`,
-      info: `Command to run when using the mousewheel down on the Actions Menu`,
+      info: `Command to run when using the mousewheel down on the Actions Button`,
       separator: true,
       version: 1,
       setup: (key) => {

@@ -19,7 +19,7 @@ App.create_actions_menu = (mode) => {
     App.trigger_title(btn, `wheel_down_actions_menu`)
   }
 
-  App.check_show_button(`actions_menu`, btn)
+  App.check_show_button(`actions`, btn)
   return btn
 }
 
@@ -61,6 +61,6 @@ App.show_mode_menu = (mode, item, e) => {
 }
 
 App.actions_middle_click = (e) => {
-  let cmd = App.get_setting(`middle_click_actions_menu`)
+  let cmd = App.get_setting(`middle_click_actions_button`)
   App.run_command({cmd, from: `actions_menu`, e})
 }
