@@ -5426,7 +5426,7 @@ App.build_settings = () => {
     context_autohide: {
       name: `Context Autohide`,
       type: `checkbox`,
-      value: true,
+      value: false,
       info: `Autohide context menus when the mouse moves away from them`,
       version: 1,
     },
