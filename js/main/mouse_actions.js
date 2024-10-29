@@ -980,6 +980,24 @@ App.autoclick_action = (e) => {
       start = true
     }
   }
+  else if (DOM.class(el, [`main_button`])) {
+    if (App.get_setting(`main_button_autoclick`)) {
+      delay = App.get_setting(`main_button_autoclick_delay`)
+      start = true
+    }
+  }
+  else if (DOM.class(el, [`filter_button`])) {
+    if (App.get_setting(`filter_button_autoclick`)) {
+      delay = App.get_setting(`filter_button_autoclick_delay`)
+      start = true
+    }
+  }
+  else if (DOM.class(el, [`actions_button`])) {
+    if (App.get_setting(`actions_button_autoclick`)) {
+      delay = App.get_setting(`actions_button_autoclick_delay`)
+      start = true
+    }
+  }
   else if (el.id === `main_title_left_button`) {
     if (App.get_setting(`main_title_left_button_autoclick`)) {
       delay = App.get_setting(`main_title_left_button_autoclick_delay`)
