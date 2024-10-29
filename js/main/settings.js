@@ -2258,7 +2258,7 @@ App.make_mouse_settings = (args = {}) => {
     obj[`click_${args.what}`] = {
       name: `Click ${args.title}`,
       type: `menu`,
-      value: args.click_value,
+      value: args.click,
       info: `Command to run when clicking the ${args.title}`,
       version: 1,
       setup: (key) => {
@@ -2269,9 +2269,9 @@ App.make_mouse_settings = (args = {}) => {
 
   if (args.double_click) {
     obj[`double_click_${args.what}`] = {
-      name: `Click ${args.title}`,
+      name: `Double Click ${args.title}`,
       type: `menu`,
-      value: args.double_click_value,
+      value: args.double_click,
       info: `Command to run when double clicking the ${args.title}`,
       version: 1,
       setup: (key) => {
@@ -2282,9 +2282,9 @@ App.make_mouse_settings = (args = {}) => {
 
   if (args.middle_click) {
     obj[`middle_click_${args.what}`] = {
-      name: `Click ${args.title}`,
+      name: `Middle Click ${args.title}`,
       type: `menu`,
-      value: args.middle_click_value,
+      value: args.middle_click,
       info: `Command to run when middle clicking the ${args.title}`,
       version: 1,
       setup: (key) => {
@@ -2295,9 +2295,9 @@ App.make_mouse_settings = (args = {}) => {
 
   if (args.click_press) {
     obj[`click_press_${args.what}`] = {
-      name: `Click ${args.title}`,
+      name: `Click Press ${args.title}`,
       type: `menu`,
-      value: args.click_press_value,
+      value: args.click_press,
       info: `Command to run when click pressing the ${args.title}`,
       version: 1,
       setup: (key) => {
@@ -2308,9 +2308,9 @@ App.make_mouse_settings = (args = {}) => {
 
   if (args.middle_click_press) {
     obj[`middle_click_press_${args.what}`] = {
-      name: `Middle Click ${args.title}`,
+      name: `Middle Click Press ${args.title}`,
       type: `menu`,
-      value: args.middle_click_press_value,
+      value: args.middle_click_press,
       info: `Command to run when middle click pressing the ${args.title}`,
       version: 1,
       setup: (key) => {
@@ -2323,7 +2323,7 @@ App.make_mouse_settings = (args = {}) => {
     obj[`wheel_up_${args.what}`] = {
       name: `Wheel Up ${args.title}`,
       type: `menu`,
-      value: args.wheel_up_value,
+      value: args.wheel_up,
       info: `Command to run when using wheel up on the ${args.title}`,
       version: 1,
       setup: (key) => {
@@ -2336,7 +2336,7 @@ App.make_mouse_settings = (args = {}) => {
     obj[`wheel_down_${args.what}`] = {
       name: `Wheel Down ${args.title}`,
       type: `menu`,
-      value: args.wheel_down_value,
+      value: args.wheel_down,
       info: `Command to run when using wheel down on the ${args.title}`,
       version: 1,
       setup: (key) => {
@@ -2349,7 +2349,7 @@ App.make_mouse_settings = (args = {}) => {
     obj[`wheel_up_shift_${args.what}`] = {
       name: `Shift Wheel Up ${args.title}`,
       type: `menu`,
-      value: args.wheel_up_shift_value,
+      value: args.wheel_up_shift,
       info: `Command to run when using shift wheel up on the ${args.title}`,
       version: 1,
       setup: (key) => {
@@ -2362,7 +2362,7 @@ App.make_mouse_settings = (args = {}) => {
     obj[`wheel_down_shift_${args.what}`] = {
       name: `Shift Wheel Down ${args.title}`,
       type: `menu`,
-      value: args.wheel_down_shift_value,
+      value: args.wheel_down_shift,
       info: `Command to run when using shift wheel down on the ${args.title}`,
       version: 1,
       setup: (key) => {

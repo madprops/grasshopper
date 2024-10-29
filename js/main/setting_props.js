@@ -3746,45 +3746,35 @@ App.build_settings = () => {
     ...App.make_mouse_settings({
       what: `main_title`,
       title: `Title`,
-      click: true,
-      double_click: true,
-      double_click_value: `edit_main_title`,
-      middle_click: true,
-      middle_click_value: `toggle_main_title_date`,
-      click_press: true,
-      click_press_value: `edit_global_notes`,
-      middle_click_press: true,
-      middle_click_press_value: `lock_screen`,
-      wheel_up: true,
-      wheel_up_value: `scroll_main_title_left`,
-      wheel_down: true,
-      wheel_down_value: `scroll_main_title_right`,
-      wheel_up_shift: true,
-      wheel_up_shift_value: `previous_main_title_color`,
-      wheel_down_shift: true,
-      wheel_down_shift_value: `next_main_title_color`,
+      click: `none`,
+      double_click: `edit_main_title`,
+      middle_click: `toggle_main_title_date`,
+      click_press: `edit_global_notes`,
+      middle_click_press: `lock_screen`,
+      wheel_up: `scroll_main_title_left`,
+      wheel_down: `scroll_main_title_right`,
+      wheel_up_shift: `previous_main_title_color`,
+      wheel_down_shift: `next_main_title_color`,
     }),
 
     ...App.make_mouse_settings({
       what: `main_title_left_button`,
       title: `Title Left`,
-      click: true,
-      click_value: `show_main_title_left_button_menu`,
-      double_click: true,
-      middle_click: true,
-      click_press: true,
-      middle_click_press: true,
+      click: `show_main_title_left_button_menu`,
+      double_click: `none`,
+      middle_click: `none`,
+      click_press: `none`,
+      middle_click_press: `none`,
     }),
 
     ...App.make_mouse_settings({
       what: `main_title_right_button`,
       title: `Title Right`,
-      click: true,
-      click_value: `show_main_title_right_button_menu`,
-      double_click: true,
-      middle_click: true,
-      click_press: true,
-      middle_click_press: true,
+      click: `show_main_title_right_button_menu`,
+      double_click: `none`,
+      middle_click: `none`,
+      click_press: `none`,
+      middle_click_press: `none`,
     }),
 
     main_title_left_button_menu: {
@@ -4421,121 +4411,28 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_main_button: {
-      name: `Middle Click Main Btn`,
-      type: `menu`,
-      value: `show_main_mode`,
-      info: `Command to run when middle clicking the Main Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_main_button: {
-      name: `Click Press Main Btn`,
-      type: `menu`,
-      value: `toggle_tab_sort`,
-      info: `Command to run on left click press on Main Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_main_button: {
-      name: `Middle Click Press Main Btn`,
-      type: `menu`,
-      value: `lock_screen`,
-      info: `Command to run on middle click press on Main Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_main_button: {
-      name: `Wheel Up Main Btn`,
-      type: `menu`,
-      value: `show_previous_mode`,
-      info: `Command to run when using the mousewheel up on the Main Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_main_button: {
-      name: `Wheel Down Main Btn`,
-      type: `menu`,
-      value: `show_next_mode`,
-      info: `Command to run when using the mousewheel down on the Main Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_playing_button: {
-      name: `Click Playing Btn`,
-      type: `menu`,
-      value: `jump_tabs_playing_down`,
-      info: `Command to run when clicking the Playing Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_playing_button: {
-      name: `Middle Click Playing Btn`,
-      type: `menu`,
-      value: `toggle_mute_tabs`,
-      separator: true,
-      info: `Command to run when middle clicking the Playing Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_playing_button: {
-      name: `Click Press Playing Btn`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on left click press on Playing`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_playing_button: {
-      name: `Middle Click Press Playing Btn`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on middle click press on Playing`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_playing_button: {
-      name: `Wheel Up Playing Btn`,
-      type: `menu`,
-      value: `jump_tabs_playing_down`,
-      info: `Command to run when using the mousewheel up on the Playing Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_playing_button: {
-      name: `Wheel Down Playing Btn`,
-      type: `menu`,
-      value: `jump_tabs_playing_up`,
-      info: `Command to run when using the mousewheel down on the Playing Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+
+    ...App.make_mouse_settings({
+      what: `main_button`,
+      title: `Main Btn`,
+      middle_click: `show_main_mode`,
+      click_press: `none`,
+      middle_click_press: `none`,
+      wheel_up: `jump_tabs_playing_down`,
+      wheel_down: `show_next_mode`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `playing_button`,
+      title: `Playing Btn`,
+      click: `jump_tabs_playing_down`,
+      middle_click: `toggle_mute_tabs`,
+      click_press: `toggle_tab_sort`,
+      middle_click_press: `lock_screen`,
+      wheel_up: `jump_tabs_playing_down`,
+      wheel_down: `jump_tabs_playing_up`,
+    }),
+
     click_step_back_button: {
       name: `Click Step Back Btn`,
       type: `menu`,
