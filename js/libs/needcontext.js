@@ -1,4 +1,4 @@
-// NeedContext v9.3
+// NeedContext v9.4
 
 // Main object
 const NeedContext = {}
@@ -24,6 +24,7 @@ NeedContext.side_padding = `0.5rem`
 NeedContext.compact_padding = `0.3rem`
 NeedContext.center_top = 20
 NeedContext.dragging = false
+NeedContext.autohide_delay = 500
 
 // Set defaults
 NeedContext.set_defaults = () => {
@@ -865,7 +866,7 @@ NeedContext.init = () => {
 
   NeedContext.autohide_debouncer = NeedContext.create_debouncer(() => {
     NeedContext.hide()
-  }, 500)
+  }, NeedContext.autohide_delay)
 
   NeedContext.set_defaults()
 }
