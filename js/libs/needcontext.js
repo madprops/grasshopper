@@ -809,6 +809,16 @@ NeedContext.init = () => {
     }
   })
 
+  document.documentElement.addEventListener(`mouseleave`, () => {
+    if (!NeedContext.open) {
+      return
+    }
+
+    if (NeedContext.args.autohide) {
+      NeedContext.autohide_debouncer.call()
+    }
+  })
+
   document.addEventListener(`keydown`, (e) => {
     if (!NeedContext.open) {
       return
