@@ -1705,7 +1705,7 @@ App.show_filter_menu = (mode) => {
             icon: cmd.icon,
             text: cmd.short_name || cmd.name,
             action: (e) => {
-              App.run_command({cmd: cmd.cmd, from: `filter_menu`, e})
+              App.run_command({cmd: cmd.cmd, from: `filter_button`, e})
             },
             middle_action: (e) => {
               App.run_command({cmd: cmd.cmd, from: App.refine_string, e})
@@ -1865,7 +1865,7 @@ App.show_exact_filters = (mode, e) => {
   App.show_context({items, e, title: `Exact`, title_icon})
 }
 
-App.filter_menu_context = (mode, e) => {
+App.filter_button_context = (mode, e) => {
   if (App.get_setting(`favorite_filters`).length) {
     if (App.get_setting(`favorite_filters_click`)) {
       App.show_filter_menu(mode)
@@ -2032,9 +2032,9 @@ App.show_search_no_value = (mode) => {
   container.append(el)
 }
 
-App.filter_menu_middle_click = (e) => {
-  let cmd = App.get_setting(`middle_click_filter_menu`)
-  App.run_command({cmd, from: `filter_menu`, e})
+App.filter_button_middle_click = (e) => {
+  let cmd = App.get_setting(`middle_click_filter_button`)
+  App.run_command({cmd, from: `filter_button`, e})
 }
 
 App.filter_middle_click = (e) => {

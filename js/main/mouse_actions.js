@@ -359,7 +359,7 @@ App.mouse_context_action = (e) => {
     }
 
     if (DOM.parent(target, [`.filter_button`])) {
-      App.filter_menu_context(mode, e)
+      App.filter_button_context(mode, e)
       return
     }
 
@@ -512,7 +512,7 @@ App.mouse_middle_action = (e, target_el) => {
     }
 
     if (DOM.parent(target, [`.filter_button`])) {
-      App.filter_menu_middle_click(e)
+      App.filter_button_middle_click(e)
       return
     }
 
@@ -689,7 +689,7 @@ App.click_press_action = (e) => {
       return
     }
 
-    if (App.mouse_press_action(`.filter_button`, `filter_menu`, obj)) {
+    if (App.mouse_press_action(`.filter_button`, `filter_button`, obj)) {
       return
     }
 
