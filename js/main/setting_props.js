@@ -2153,13 +2153,6 @@ App.build_settings = () => {
       info: `Pick items when right clicking the Hover Button`,
       version: 1,
     },
-    hover_button_autoshow: {
-      name: `Hover Autoshow`,
-      type: `checkbox`,
-      value: false,
-      info: `Auto-show the menu when hovering the Hover Button`,
-      version: 1,
-    },
   }
 
   add_props()
@@ -3428,20 +3421,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Make the title text wrap on long titles`,
-      version: 1,
-    },
-    main_title_left_button_autoshow: {
-      name: `Title Left Autoshow`,
-      type: `checkbox`,
-      value: false,
-      info: `Auto-show the menu when hovering the Left Main Title Button`,
-      version: 1,
-    },
-    main_title_right_button_autoshow: {
-      name: `Title Right Autoshow`,
-      type: `checkbox`,
-      value: false,
-      info: `Auto-show the menu when hovering the Right Main Title Button`,
       version: 1,
     },
   }
@@ -5058,6 +5037,97 @@ App.build_settings = () => {
   props = App.setting_browser_commands()
 
   add_props()
+  category = `autoclick`
+
+  props = {
+    hover_button_autoclick: {
+      name: `Hover Autoclick`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-click the menu when hovering the Hover Button`,
+      version: 1,
+    },
+    main_title_left_button_autoclick: {
+      name: `Title Left Autoclick`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-click the menu when hovering the Left Main Title Button`,
+      version: 1,
+    },
+    main_title_right_button_autoclick: {
+      name: `Title Right Autoclick`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-click the menu when hovering the Right Main Title Button`,
+      version: 1,
+    },
+    item_autoclick: {
+      name: `Item Autoclick`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-click on items`,
+      version: 1,
+    },
+    unloaded_tab_autoclick: {
+      name: `Unloaded Autoclick`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-click on unloaded tabs`,
+      version: 1,
+    },
+    hover_button_autoclick_delay: {
+      name: `Hover Button Autoclick Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay in milliseconds for Hover Button Autoclick`,
+      version: 1,
+    },
+    main_title_left_button_autoclick_delay: {
+      name: `Title Left Autoclick Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay in milliseconds for Title Left Button Autoclick`,
+      version: 1,
+    },
+    main_title_right_button_autoclick_delay: {
+      name: `Title Right Autoclick Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay in milliseconds for Title Right Button Autoclick`,
+      version: 1,
+    },
+    item_autoclick_delay: {
+      name: `Item Autoclick Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay in milliseconds for Item Autoclick`,
+      version: 1,
+    },
+    unloaded_tab_autoclick_delay: {
+      name: `Unloaded Autoclick Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay in milliseconds for Unloaded Autoclick`,
+      version: 1,
+    },
+  }
+
+  add_props()
   category = `compact`
 
   props = {
@@ -5227,36 +5297,6 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Delay in milliseconds for effects like Global when the mouse leaves`,
-      version: 1,
-    },
-    hover_button_autoshow_delay: {
-      name: `Hover Button Autoshow Delay`,
-      type: `number`,
-      value: 500,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Delay in milliseconds for Hover Button Autoshow`,
-      version: 1,
-    },
-    main_title_left_button_autoshow_delay: {
-      name: `Title Left Autoshow Delay`,
-      type: `number`,
-      value: 500,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Delay in milliseconds for Title Left Button Autoshow`,
-      version: 1,
-    },
-    main_title_right_button_autoshow_delay: {
-      name: `Title Right Autoshow Delay`,
-      type: `number`,
-      value: 500,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Delay in milliseconds for Title Right Button Autoshow`,
       version: 1,
     },
     close_on_focus: {
@@ -5612,6 +5652,9 @@ App.build_settings = () => {
       Click 'Manage Extension', then click the cog on the top right
       Then click 'Manage Extension Shortcuts' and add the shortcuts you need
       Popup Commands open the popup first before running the command`,
+    },
+    autoclick: {
+      info: `Enable auto-click actions on some components`,
     },
     compact: {
       info: `Compact some menus to only show icons in a row`,

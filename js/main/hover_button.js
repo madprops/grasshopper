@@ -3,7 +3,7 @@ App.create_hover_button = (item, side) => {
     return
   }
 
-  let btn = DOM.create(`div`, `hover_button autoshow`)
+  let btn = DOM.create(`div`, `hover_button autoclick`)
   btn.textContent = App.get_setting(`hover_button_icon`) || App.command_icon
   item.element.append(btn)
 }

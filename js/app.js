@@ -216,6 +216,7 @@ App.settings_icons = {
   close: `❌`,
   pinline: `📍`,
   compact: `💎`,
+  autoclick: `🖱️`,
 }
 
 App.clipboard_icon = `📋`
