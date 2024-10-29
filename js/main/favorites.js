@@ -101,6 +101,7 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
 
   let favs = App.get_favorites()
   let c = DOM.el(`#favorites_bar_${mode}`)
+  let tips = App.get_setting(`show_tooltips`)
   c.innerHTML = ``
 
   for (let fav of favs) {
@@ -109,7 +110,10 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
     let icon_s = App.clone_if_node(fav.cmd.icon)
     icon.append(icon_s)
     btn.append(icon)
-    btn.title = fav.cmd.name
+
+    if (tips) {
+      btn.title = fav.cmd.name
+    }
 
     DOM.ev(btn, `click`, (e) => {
       let cmd
@@ -138,7 +142,9 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
     let middle = App.get_command(fav.fav.middle)
 
     if (middle) {
-      btn.title += `\nMiddle: ${middle.name}`
+      if (tips) {
+        btn.title += `\nMiddle: ${middle.name}`
+      }
 
       DOM.ev(btn, `auxclick`, (e) => {
         if (e.button === 1) {
@@ -154,26 +160,28 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
 
     let shift = App.get_command(fav.fav.shift)
 
-    if (shift) {
-      btn.title += `\nShift: ${shift.name}`
+    if (tips) {
+      if (shift) {
+        btn.title += `\nShift: ${shift.name}`
+      }
+
+      let ctrl = App.get_command(fav.fav.ctrl)
+
+      if (ctrl) {
+        btn.title += `\nCtrl: ${ctrl.name}`
+      }
+
+      let alt = App.get_command(fav.fav.alt)
+
+      if (alt) {
+        btn.title += `\nAlt: ${alt.name}`
+      }
+
+      App.trigger_title(btn, `wheel_up_favorites_center`)
+      App.trigger_title(btn, `wheel_down_favorites_center`)
+      App.trigger_title(btn, `wheel_up_shift_favorites_center`)
+      App.trigger_title(btn, `wheel_down_shift_favorites_center`)
     }
-
-    let ctrl = App.get_command(fav.fav.ctrl)
-
-    if (ctrl) {
-      btn.title += `\nCtrl: ${ctrl.name}`
-    }
-
-    let alt = App.get_command(fav.fav.alt)
-
-    if (alt) {
-      btn.title += `\nAlt: ${alt.name}`
-    }
-
-    App.trigger_title(btn, `wheel_up_favorites_center`)
-    App.trigger_title(btn, `wheel_down_favorites_center`)
-    App.trigger_title(btn, `wheel_up_shift_favorites_center`)
-    App.trigger_title(btn, `wheel_down_shift_favorites_center`)
 
     c.append(btn)
   }

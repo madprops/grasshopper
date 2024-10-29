@@ -729,6 +729,10 @@ App.item_icon_click = (item, target, e) => {
 }
 
 App.update_icon_tooltips = (item, target) => {
+  if (!App.get_setting(`show_tooltips`)) {
+    return
+  }
+
   let el = DOM.parent(target, [`.item_icon_unit`])
 
   if (!el) {
