@@ -5,11 +5,11 @@ App.create_main_button = (mode) => {
 
   if (App.tooltips()) {
     btn.title = `Click: ${click}\nRight Click: ${rclick}`
-    App.trigger_title(btn, `middle_click_main_menu`)
-    App.trigger_title(btn, `click_press_main_menu`)
-    App.trigger_title(btn, `middle_click_press_main_menu`)
-    App.trigger_title(btn, `wheel_up_main_menu`)
-    App.trigger_title(btn, `wheel_down_main_menu`)
+    App.trigger_title(btn, `middle_click_main_button`)
+    App.trigger_title(btn, `click_press_main_button`)
+    App.trigger_title(btn, `middle_click_press_main_button`)
+    App.trigger_title(btn, `wheel_up_main_button`)
+    App.trigger_title(btn, `wheel_down_main_button`)
   }
 
   App.check_show_button(`main`, btn)

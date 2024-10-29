@@ -4573,7 +4573,7 @@ App.build_settings = () => {
       },
     },
     middle_click_main_button: {
-      name: `Middle Click Main Button`,
+      name: `Middle Click Main Btn`,
       type: `menu`,
       value: `show_main_mode`,
       info: `Command to run when middle clicking the Main Button`,
@@ -4583,7 +4583,7 @@ App.build_settings = () => {
       },
     },
     click_press_main_button: {
-      name: `Click Press Main Button`,
+      name: `Click Press Main Btn`,
       type: `menu`,
       value: `toggle_tab_sort`,
       info: `Command to run on left click press on Main Button`,
@@ -4593,7 +4593,7 @@ App.build_settings = () => {
       },
     },
     middle_click_press_main_button: {
-      name: `Middle Click Press Main Button`,
+      name: `Middle Click Press Main Btn`,
       type: `menu`,
       value: `lock_screen`,
       info: `Command to run on middle click press on Main Button`,
@@ -4604,7 +4604,7 @@ App.build_settings = () => {
       },
     },
     wheel_up_main_button: {
-      name: `Wheel Up Main Button`,
+      name: `Wheel Up Main Btn`,
       type: `menu`,
       value: `show_previous_mode`,
       info: `Command to run when using the mousewheel up on the Main Button`,
@@ -4614,7 +4614,7 @@ App.build_settings = () => {
       },
     },
     wheel_down_main_button: {
-      name: `Wheel Down Main Button`,
+      name: `Wheel Down Main Btn`,
       type: `menu`,
       value: `show_next_mode`,
       info: `Command to run when using the mousewheel down on the Main Button`,
@@ -4624,8 +4624,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    click_playing: {
-      name: `Click Playing`,
+    click_playing_button: {
+      name: `Click Playing Btn`,
       type: `menu`,
       value: `jump_tabs_playing_down`,
       info: `Command to run when clicking the Playing Button`,
@@ -4634,8 +4634,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_playing: {
-      name: `Middle Click Playing`,
+    middle_click_playing_button: {
+      name: `Middle Click Playing Btn`,
       type: `menu`,
       value: `toggle_mute_tabs`,
       separator: true,
@@ -4645,8 +4645,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    click_press_playing: {
-      name: `Click Press Playing`,
+    click_press_playing_button: {
+      name: `Click Press Playing Btn`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Playing`,
@@ -4655,8 +4655,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_press_playing: {
-      name: `Middle Click Press Playing`,
+    middle_click_press_playing_button: {
+      name: `Middle Click Press Playing Btn`,
       type: `menu`,
       value: `none`,
       info: `Command to run on middle click press on Playing`,
@@ -4666,8 +4666,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_up_playing: {
-      name: `Wheel Up Playing`,
+    wheel_up_playing_button: {
+      name: `Wheel Up Playing Btn`,
       type: `menu`,
       value: `jump_tabs_playing_down`,
       info: `Command to run when using the mousewheel up on the Playing Button`,
@@ -4676,8 +4676,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_down_playing: {
-      name: `Wheel Down Playing`,
+    wheel_down_playing_button: {
+      name: `Wheel Down Playing Btn`,
       type: `menu`,
       value: `jump_tabs_playing_up`,
       info: `Command to run when using the mousewheel down on the Playing Button`,
@@ -4687,8 +4687,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    click_step_back: {
-      name: `Click Step Back`,
+    click_step_back_button: {
+      name: `Click Step Back Btn`,
       type: `menu`,
       value: `step_back`,
       info: `Command to run when clicking the Step Back Button`,
@@ -4697,8 +4697,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_step_back: {
-      name: `Middle Click Step Back`,
+    middle_click_step_back_button: {
+      name: `Middle Click Step Back Btn`,
       type: `menu`,
       value: `recent_tabs_forwards`,
       info: `Command to run when middle clicking the Step Back Button`,
@@ -4708,8 +4708,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    click_press_step_back: {
-      name: `Click Press Step Back`,
+    click_press_step_back_button: {
+      name: `Click Press Step Back Btn`,
       type: `menu`,
       value: `none`,
       info: `Command to run on left click press on Step Back`,
@@ -4718,8 +4718,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    middle_click_press_step_back: {
-      name: `Middle Click Press Step Back`,
+    middle_click_press_step_back_button: {
+      name: `Middle Click Press Step Back Btn`,
       type: `menu`,
       value: `none`,
       info: `Command to run on middle click press on Step Back`,
@@ -4729,8 +4729,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_up_step_back: {
-      name: `Wheel Up Step Back`,
+    wheel_up_step_back_button: {
+      name: `Wheel Up Step Back Btn`,
       type: `menu`,
       value: `recent_tabs_forwards`,
       info: `Command to run when using the mousewheel up on the Step Back Button`,
@@ -4739,8 +4739,8 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
-    wheel_down_step_back: {
-      name: `Wheel Down Step Back`,
+    wheel_down_step_back_button: {
+      name: `Wheel Down Step Back Btn`,
       type: `menu`,
       value: `recent_tabs_backwards`,
       info: `Command to run when using the mousewheel down on the Step Back Button`,
@@ -4751,7 +4751,7 @@ App.build_settings = () => {
       },
     },
     middle_click_actions_button: {
-      name: `Middle Click Actions Button`,
+      name: `Middle Click Actions Btn`,
       type: `menu`,
       value: `browser_reload`,
       info: `Command to run when middle clicking the Actions Button`,
@@ -4761,7 +4761,7 @@ App.build_settings = () => {
       },
     },
     click_press_actions_button: {
-      name: `Click Press Actions Button`,
+      name: `Click Press Actions Btn`,
       type: `menu`,
       value: `edit_global_notes`,
       info: `Command to run on left click press on Actions Button`,
@@ -4771,7 +4771,7 @@ App.build_settings = () => {
       },
     },
     middle_click_press_actions_button: {
-      name: `Middle Click Press Actions Button`,
+      name: `Middle Click Press Actions Btn`,
       type: `menu`,
       value: `lock_screen`,
       info: `Command to run on middle click press on Actions Button`,
@@ -4782,7 +4782,7 @@ App.build_settings = () => {
       },
     },
     wheel_up_actions_button: {
-      name: `Wheel Up Actions Button`,
+      name: `Wheel Up Actions Btn`,
       type: `menu`,
       value: `jump_tabs_all_up`,
       info: `Command to run when using the mousewheel up on the Actions Button`,
@@ -4792,7 +4792,7 @@ App.build_settings = () => {
       },
     },
     wheel_down_actions_button: {
-      name: `Wheel Down Actions Button`,
+      name: `Wheel Down Actions Btn`,
       type: `menu`,
       value: `jump_tabs_all_down`,
       info: `Command to run when using the mousewheel down on the Actions Button`,

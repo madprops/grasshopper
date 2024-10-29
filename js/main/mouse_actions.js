@@ -677,11 +677,11 @@ App.click_press_action = (e) => {
       return
     }
 
-    if (App.mouse_press_action(`.step_back_button`, `step_back`, obj)) {
+    if (App.mouse_press_action(`.step_back_button`, `step_back_button`, obj)) {
       return
     }
 
-    if (App.mouse_press_action(`.playing_button`, `playing`, obj)) {
+    if (App.mouse_press_action(`.playing_button`, `playing_button`, obj)) {
       return
     }
 
@@ -884,10 +884,10 @@ App.mouse_wheel_action = (e) => {
     App.wheel_action(direction, `pinline`, e)
   }
   else if (DOM.parent(target, [`.playing_button`])) {
-    App.wheel_action(direction, `playing`, e)
+    App.wheel_action(direction, `playing_button`, e)
   }
   else if (DOM.parent(target, [`.step_back_button`])) {
-    App.wheel_action(direction, `step_back`, e)
+    App.wheel_action(direction, `step_back_button`, e)
   }
   else if (DOM.parent(target, [`.main_button`])) {
     App.wheel_action(direction, `main_button`, e)

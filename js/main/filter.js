@@ -1536,9 +1536,9 @@ App.create_filter_button = (mode) => {
 
   if (App.tooltips()) {
     btn.title = `Click: ${click}\nRight Click: ${rclick}`
-    App.trigger_title(btn, `middle_click_filter_menu`)
-    App.trigger_title(btn, `click_press_filter_menu`)
-    App.trigger_title(btn, `middle_click_press_filter_menu`)
+    App.trigger_title(btn, `middle_click_filter_button`)
+    App.trigger_title(btn, `click_press_filter_button`)
+    App.trigger_title(btn, `middle_click_press_filter_button`)
   }
 
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))

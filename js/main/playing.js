@@ -9,13 +9,13 @@ App.create_playing_button = (mode) => {
   let rclick = App.get_cmd_name(`show_playing_tabs`)
 
   if (App.tooltips()) {
-    App.trigger_title(btn, `click_playing`)
+    App.trigger_title(btn, `click_playing_button`)
     btn.title += `\nRight Click: ${rclick}`
-    App.trigger_title(btn, `middle_click_playing`)
-    App.trigger_title(btn, `click_press_playing`)
-    App.trigger_title(btn, `middle_click_press_playing`)
-    App.trigger_title(btn, `wheel_up_playing`)
-    App.trigger_title(btn, `wheel_down_playing`)
+    App.trigger_title(btn, `middle_click_playing_button`)
+    App.trigger_title(btn, `click_press_playing_button`)
+    App.trigger_title(btn, `middle_click_press_playing_button`)
+    App.trigger_title(btn, `wheel_up_playing_button`)
+    App.trigger_title(btn, `wheel_down_playing_button`)
   }
 
   App.check_show_button(`playing`, btn)
@@ -60,11 +60,11 @@ App.get_playing_tabs = () => {
 }
 
 App.playing_click = (e) => {
-  let cmd = App.get_setting(`click_playing`)
+  let cmd = App.get_setting(`click_playing_button`)
   App.run_command({cmd, from: `playing`, e})
 }
 
 App.playing_middle_click = (e) => {
-  let cmd = App.get_setting(`middle_click_playing`)
+  let cmd = App.get_setting(`middle_click_playing_button`)
   App.run_command({cmd, from: `playing`, e})
 }

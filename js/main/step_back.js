@@ -3,13 +3,13 @@ App.create_step_back_button = (mode) => {
   let rclick = App.get_cmd_name(`show_recent_tabs`)
 
   if (App.tooltips()) {
-    App.trigger_title(btn, `click_step_back`)
+    App.trigger_title(btn, `click_step_back_button`)
     btn.title += `\nRight Click: ${rclick}`
-    App.trigger_title(btn, `middle_click_step_back`)
-    App.trigger_title(btn, `click_press_step_back`)
-    App.trigger_title(btn, `middle_click_press_step_back`)
-    App.trigger_title(btn, `wheel_up_step_back`)
-    App.trigger_title(btn, `wheel_down_step_back`)
+    App.trigger_title(btn, `middle_click_step_back_button`)
+    App.trigger_title(btn, `click_press_step_back_button`)
+    App.trigger_title(btn, `middle_click_press_step_back_button`)
+    App.trigger_title(btn, `wheel_up_step_back_button`)
+    App.trigger_title(btn, `wheel_down_step_back_button`)
   }
 
   App.check_show_button(`step_back`, btn)
@@ -68,11 +68,11 @@ App.step_back = (mode = App.active_mode, e = undefined) => {
 }
 
 App.step_back_click = (e) => {
-  let cmd = App.get_setting(`click_step_back`)
+  let cmd = App.get_setting(`click_step_back_button`)
   App.run_command({cmd, from: `step_back`, e})
 }
 
 App.step_back_middle_click = (e) => {
-  let cmd = App.get_setting(`middle_click_step_back`)
+  let cmd = App.get_setting(`middle_click_step_back_button`)
   App.run_command({cmd, from: `step_back`, e})
 }
