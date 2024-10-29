@@ -2358,7 +2358,10 @@ App.make_mouse_settings = (args = {}) => {
 
   if (args.separator) {
     let keys = Object.keys(obj)
-    obj[keys.at(-1)].separator = true
+
+    if (keys.length) {
+      obj[keys.at(-1)].separator = true
+    }
   }
 
   return obj
