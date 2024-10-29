@@ -11,6 +11,7 @@ App.build_settings = () => {
     }
   }
 
+  let bkmarks = App.bkmarks
   category = `general`
 
   props = {
@@ -682,7 +683,7 @@ App.build_settings = () => {
       },
     },
     view_image_bookmarks: {
-      name: `View Image (Bkmarks)`,
+      name: `View Image (${bkmarks})`,
       type: `menu`,
       value: `icon`,
       info: `What to do when clicking on an image in Bookmarks mode`,
@@ -763,7 +764,7 @@ App.build_settings = () => {
       },
     },
     view_video_bookmarks: {
-      name: `View Video (Bkmarks)`,
+      name: `View Video (${bkmarks})`,
       type: `menu`,
       value: `icon`,
       info: `What to do when clicking on a video in Bookmarks mode`,
@@ -844,7 +845,7 @@ App.build_settings = () => {
       },
     },
     view_audio_bookmarks: {
-      name: `View Audio (Bkmarks)`,
+      name: `View Audio (${bkmarks})`,
       type: `menu`,
       value: `icon`,
       info: `What to do when clicking on an audio in Bookmarks mode`,
@@ -2154,7 +2155,7 @@ App.build_settings = () => {
       version: 1,
     },
     hover_button_menu_bookmarks: {
-      name: `Hover Button Menu (Bkmarks)`,
+      name: `Hover Button Menu (${bkmarks})`,
       type: `list`,
       value: [],
       info: `Menu to show when clicking the Hover Button (Bookmarks)`,
@@ -2246,7 +2247,7 @@ App.build_settings = () => {
       version: 1,
     },
     item_menu_bookmarks: {
-      name: `Item Menu (Bkmarks)`,
+      name: `Item Menu (${bkmarks})`,
       type: `list`,
       value: [],
       data_group: `normal_menus`,
@@ -2304,7 +2305,7 @@ App.build_settings = () => {
       version: 1,
     },
     actions_menu_bookmarks: {
-      name: `Actions Menu (Bkmarks)`,
+      name: `Actions Menu (${bkmarks})`,
       type: `list`,
       value: [
         {cmd: `deep_search`},
@@ -2361,7 +2362,7 @@ App.build_settings = () => {
       version: 1,
     },
     empty_menu_bookmarks: {
-      name: `Empty Menu (Bkmarks)`,
+      name: `Empty Menu (${bkmarks})`,
       type: `list`,
       value: [
         {cmd: `pick_bookmarks_folder`},
@@ -3356,7 +3357,7 @@ App.build_settings = () => {
       version: 1,
     },
     favorites_menu_bookmarks: {
-      name: `Favorites Menu (Bkmarks)`,
+      name: `Favorites Menu (${bkmarks})`,
       type: `list`,
       value: [],
       data_group: `favorite_menus`,
@@ -4347,7 +4348,7 @@ App.build_settings = () => {
       },
     },
     click_item_bookmarks: {
-      name: `Click Item (Bkmarks)`,
+      name: `Click Item (${bkmarks})`,
       type: `menu`,
       value: `item_action`,
       info: `Command to run when clicking Bookmark Items`,
@@ -4388,7 +4389,7 @@ App.build_settings = () => {
       },
     },
     double_click_item_bookmarks: {
-      name: `Double Click Item (Bkmarks)`,
+      name: `Double Click Item (${bkmarks})`,
       type: `menu`,
       value: `item_action`,
       info: `What command to run when double clicking an item (Bookmarks)`,
@@ -4429,7 +4430,7 @@ App.build_settings = () => {
       },
     },
     middle_click_item_bookmarks: {
-      name: `Middle Click Item (Bkmarks)`,
+      name: `Middle Click Item (${bkmarks})`,
       type: `menu`,
       value: `open_items`,
       info: `Command to run when middle clicking Bookmark Items`,
@@ -4470,7 +4471,7 @@ App.build_settings = () => {
       },
     },
     click_press_item_bookmarks: {
-      name: `Click Press Item (Bkmarks)`,
+      name: `Click Press Item (${bkmarks})`,
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the left mouse button on an item for a short time (Bookmarks)`,
@@ -4511,7 +4512,7 @@ App.build_settings = () => {
       },
     },
     middle_click_press_item_bookmarks: {
-      name: `Middle Click Press Item (Bkmarks)`,
+      name: `Middle Click Press Item (${bkmarks})`,
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the middle mouse button on an item for a short time (Bookmarks)`,
@@ -4823,7 +4824,7 @@ App.build_settings = () => {
       },
     },
     double_click_empty_bookmarks: {
-      name: `Double Click Empty (Bkmarks)`,
+      name: `Double Click Empty (${bkmarks})`,
       type: `menu`,
       value: `show_empty_menu`,
       info: `What command to run when double clicking empty space (Bookmarks)`,
@@ -6016,7 +6017,7 @@ App.build_settings = () => {
       version: 1,
     },
     max_search_items_bookmarks: {
-      name: `Max Search (Bkmarks)`,
+      name: `Max Search (${bkmarks})`,
       type: `number`,
       value: 500,
       placeholder: `Number`,
@@ -6026,7 +6027,7 @@ App.build_settings = () => {
       version: 1,
     },
     deep_max_search_items_bookmarks: {
-      name: `Deep Search (Bkmarks)`,
+      name: `Deep Search (${bkmarks})`,
       type: `number`,
       value: 5000,
       placeholder: `Number`,
@@ -6145,7 +6146,7 @@ App.build_settings = () => {
       version: 1,
     },
     auto_deep_search_bookmarks: {
-      name: `Auto Deep (Bkmarks)`,
+      name: `Auto Deep (${bkmarks})`,
       type: `checkbox`,
       value: false,
       info: `Do a deep search automatically when using a text query (Bookmarks)`,

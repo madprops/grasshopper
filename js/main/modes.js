@@ -206,7 +206,7 @@ App.get_mode_index = (mode) => {
 
 App.get_mode_name = (mode, shorten = false) => {
   if ((mode === `bookmarks`) && shorten) {
-    return `Bkmarks`
+    return App.bkmarks
   }
 
   return App.capitalize(mode)

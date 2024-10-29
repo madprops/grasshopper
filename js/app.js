@@ -129,6 +129,7 @@ App.border_widths = [0, 10, 1]
 App.flashlight_on = false
 App.command_combo_num = 10
 App.container_data = {}
+App.bkmarks = `Bkmarks`
 
 App.settings_ready = false
 App.media_image_ready = false
