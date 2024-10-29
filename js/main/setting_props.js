@@ -2797,79 +2797,19 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-    click_pinline: {
-      name: `Click Pinline`,
-      type: `menu`,
-      value: `show_pinline_menu`,
-      info: `Command to run when clicking the Pinline`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_pinline: {
-      name: `Double Click Pinline`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when double clicking the Pinline`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_pinline: {
-      name: `Middle Click Pinline`,
-      type: `menu`,
-      value: `show_close_tabs_menu`,
-      info: `Command to run when middle clicking the Pinline`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_pinline: {
-      name: `Click Press Pinline`,
-      type: `menu`,
-      value: `edit_global_notes`,
-      info: `Command to run on left click press on Pinline`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_pinline: {
-      name: `Middle Click Press Pinline`,
-      type: `menu`,
-      value: `lock_screen`,
-      info: `Command to run on middle click press on Pinline`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_pinline: {
-      name: `Wheel Up Pinline`,
-      type: `menu`,
-      value: `scroll_up`,
-      info: `Command to run when using the mousewheel up on the Pinline`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_pinline: {
-      name: `Wheel Down Pinline`,
-      type: `menu`,
-      value: `scroll_down`,
-      info: `Command to run when using the mousewheel down on the Pinline`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+
+    ...App.make_mouse_settings({
+      what: `pinline`,
+      title: `Pinline`,
+      click: `show_pinline_menu`,
+      double_click: `none`,
+      middle_click: `show_close_tabs_menu`,
+      click_press: `edit_global_notes`,
+      middle_click_press: `lock_screen`,
+      wheel_up: `scroll_up`,
+      wheel_down: `scroll_down`,
+    }),
+
     pinline_colors: {
       name: `Pinline Colors`,
       type: `checkbox`,
@@ -3178,285 +3118,54 @@ App.build_settings = () => {
         App.start_color_picker(key, true)
       },
     },
-    click_favorites_top: {
-      name: `Click Fav Top`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when clicking the top empty area of the Favorites Bar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_favorites_top: {
-      name: `Double Click Fav Top`,
-      type: `menu`,
-      value: `open_new_tab`,
-      info: `Command to run when double clicking the top empty area of the Favorites Bar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_favorites_top: {
-      name: `Middle Click Fav Top`,
-      type: `menu`,
-      value: `close_tabs`,
-      info: `Command to run when middle clicking the top empty area of the Favorites Bar`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_favorites_top: {
-      name: `Click Press Fav Top`,
-      type: `menu`,
-      value: `select_pinned_tabs`,
-      info: `Command to run on left click press on Favorites Top`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_favorites_top: {
-      name: `Middle Click Press Fav Top`,
-      type: `menu`,
-      value: `close_pinned_tabs`,
-      info: `Command to run on middle click press on Favorites Top`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_favorites_top: {
-      name: `Wheel Up Fav Top`,
-      type: `menu`,
-      value: `scroll_up`,
-      info: `Command to run when using the mousewheel up on the top empty area of the Favorites Bar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_favorites_top: {
-      name: `Wheel Down Fav Top`,
-      type: `menu`,
-      value: `scroll_down`,
-      info: `Command to run when using the mousewheel down on the top empty area of the Favorites Bar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_shift_favorites_top: {
-      name: `Shift Wheel Up Fav Top`,
-      type: `menu`,
-      value: `page_up`,
-      info: `Command to run when using the mousewheel up on the top area of the Favorites Bar while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_favorites_top: {
-      name: `Shift Wheel Down Fav Top`,
-      type: `menu`,
-      value: `page_down`,
-      info: `Command to run when using the mousewheel down on the top area of the Favorites Bar while holding Shift`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_favorites_center: {
-      name: `Wheel Up Fav Center`,
-      type: `menu`,
-      value: `scroll_up`,
-      info: `Command to run when using the mousewheel up on the center area of the Favorites Bar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_favorites_center: {
-      name: `Wheel Down Fav Center`,
-      type: `menu`,
-      value: `scroll_down`,
-      info: `Command to run when using the mousewheel down on the center area of the Favorites Bar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_shift_favorites_center: {
-      name: `Shift Wheel Up Fav Center`,
-      type: `menu`,
-      value: `page_up`,
-      info: `Command to run when using the mousewheel up on the center area of the Favorites Bar while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_favorites_center: {
-      name: `Shift Wheel Down Fav Center`,
-      type: `menu`,
-      value: `page_down`,
-      info: `Command to run when using the mousewheel down on the center area of the Favorites Bar while holding Shift`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_favorites_bottom: {
-      name: `Click Fav Bottom`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when clicking the bottom empty area of the Favorites Bar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_favorites_bottom: {
-      name: `Double Click Fav Bottom`,
-      type: `menu`,
-      value: `open_new_tab`,
-      info: `Command to run when double clicking the bottom empty area of the Favorites Bar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_favorites_bottom: {
-      name: `Middle Click Fav Bottom`,
-      type: `menu`,
-      value: `close_tabs`,
-      info: `Command to run when middle clicking the bottom empty area of the Favorites Bar`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_favorites_bottom: {
-      name: `Click Press Fav Bottom`,
-      type: `menu`,
-      value: `select_normal_tabs`,
-      info: `Command to run on left click press on Favorites Bottom`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_favorites_bottom: {
-      name: `Middle Click Press Fav Bottom`,
-      type: `menu`,
-      value: `close_normal_tabs`,
-      info: `Command to run on middle click press on Favorites Bottom`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_favorites_bottom: {
-      name: `Wheel Up Fav Bottom`,
-      type: `menu`,
-      value: `scroll_up`,
-      info: `Command to run when using the mousewheel up on the bottom empty area of the Favorites Bar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_favorites_bottom: {
-      name: `Wheel Down Fav Bottom`,
-      type: `menu`,
-      value: `scroll_down`,
-      info: `Command to run when using the mousewheel down on the bottom empty area of the Favorites Bar`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_shift_favorites_bottom: {
-      name: `Shift Wheel Up Fav Bottom`,
-      type: `menu`,
-      value: `page_up`,
-      info: `Command to run when using the mousewheel up on the bottom area of the Favorites Bar while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_favorites_bottom: {
-      name: `Shift Wheel Down Fav Bottom`,
-      type: `menu`,
-      value: `page_down`,
-      info: `Command to run when using the mousewheel down on the bottom area of the Favorites Bar while holding Shift`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_favorites_button: {
-      name: `Middle Click Fav Button`,
-      type: `menu`,
-      value: `settings_category_favorites`,
-      info: `Command to run when middle clicking the Favorites Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_favorites_button: {
-      name: `Click Press Fav Button`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on left click press on Favorites Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_favorites_button: {
-      name: `Middle Click Press Fav Button`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on middle click press on Favorites Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_favorites_button: {
-      name: `Wheel Up Fav Button`,
-      type: `menu`,
-      value: `jump_tabs_all_up`,
-      info: `Command to run when using the mousewheel up on the Favorites Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_favorites_button: {
-      name: `Wheel Down Fav Button`,
-      type: `menu`,
-      value: `jump_tabs_all_down`,
-      info: `Command to run when using the mousewheel down on the Favorites Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+
+    ...App.make_mouse_settings({
+      what: `favorites_top`,
+      title: `Fav Top`,
+      click: `none`,
+      double_click: `open_new_tab`,
+      middle_click: `close_tabs`,
+      click_press: `select_pinned_tabs`,
+      middle_click_press: `close_pinned_tabs`,
+      wheel_up: `scroll_up`,
+      wheel_down: `scroll_down`,
+      wheel_up_shift: `page_up`,
+      wheel_down_shift: `page_down`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `favorites_center`,
+      title: `Fav Center`,
+      wheel_up: `scroll_up`,
+      wheel_down: `scroll_down`,
+      wheel_up_shift: `page_up`,
+      wheel_down_shift: `page_down`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `favorites_bottom`,
+      title: `Fav Bottom`,
+      click: `none`,
+      double_click: `open_new_tab`,
+      middle_click: `close_tabs`,
+      click_press: `select_normal_tabs`,
+      middle_click_press: `close_normal_tabs`,
+      wheel_up: `scroll_up`,
+      wheel_down: `scroll_down`,
+      wheel_up_shift: `page_up`,
+      wheel_down_shift: `page_down`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `favorites_button`,
+      title: `Fav Button`,
+      middle_click: `settings_category_favorites`,
+      click_press: `none`,
+      middle_click_press: `none`,
+      wheel_up: `jump_tabs_all_up`,
+      wheel_down: `jump_tabs_all_down`,
+    }),
+
     favorites_blur: {
       name: `Favorites Blur`,
       type: `checkbox`,
