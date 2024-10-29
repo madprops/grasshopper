@@ -3158,7 +3158,7 @@ App.build_settings = () => {
 
     ...App.make_mouse_settings({
       what: `favorites_button`,
-      title: `Fav Button`,
+      title: `Fav Btn`,
       middle_click: `settings_category_favorites`,
       click_press: `none`,
       middle_click_press: `none`,
