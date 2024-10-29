@@ -469,6 +469,7 @@ App.main_title_middle_click_right_button = (e) => {
 
 App.main_title_side_button_tooltips = (el, what) => {
   App.trigger_title(el, `click_main_title_${what}_button`)
+  el.title += `\nRight Click: Show Menu`
   App.trigger_title(el, `middle_click_main_title_${what}_button`)
   App.trigger_title(el, `double_click_main_title_${what}_button`)
   App.trigger_title(el, `click_press_main_title_${what}_button`)
