@@ -5137,7 +5137,7 @@ App.build_settings = () => {
       info: `Auto-click on the Main Button`,
       version: 1,
     },
-    main_button_button_autoclick_delay: {
+    main_button_autoclick_delay: {
       name: `Main Btn Autoclick Delay`,
       type: `number`,
       value: App.autoclick_delay,
@@ -5209,7 +5209,7 @@ App.build_settings = () => {
       info: `Auto-click the menu when hovering the Left Main Title Button`,
       version: 1,
     },
-    title_left_autoclick_delay: {
+    main_title_left_button_autoclick_delay: {
       name: `Title Left Autoclick Delay`,
       type: `number`,
       value: App.autoclick_delay,
@@ -5227,7 +5227,7 @@ App.build_settings = () => {
       info: `Auto-click the menu when hovering the Right Main Title Button`,
       version: 1,
     },
-    title_right_autoclick_delay: {
+    main_title_right_button_autoclick_delay: {
       name: `Title Right Autoclick Delay`,
       type: `number`,
       value: App.autoclick_delay,

@@ -36,7 +36,7 @@ App.autoclick_action = (e) => {
         return
       }
 
-      elem = item_alt.element
+      elem = item_alt
     }
     else {
       elem = item.element
