@@ -40,7 +40,7 @@ App.setup_mouse = () => {
   })
 
   DOM.ev(window, `wheel`, (e) => {
-    App.on_mouse_wheel(e)
+    App.mouse_wheel_action(e)
   })
 
   let container = DOM.el(`#main`)
@@ -105,125 +105,6 @@ App.start_click_press_timeout = (e) => {
   App.click_press_timeout = setTimeout(() => {
     App.click_press_action(e)
   }, App.get_setting(`click_press_delay`))
-}
-
-App.on_mouse_wheel = (e) => {
-  let target = e.target
-  let mode = App.window_mode
-
-  if (!App.mouse_valid_type(target)) {
-    return
-  }
-
-  let direction = App.wheel_direction(e)
-
-  if (DOM.parent(target, [`.main_menu_button`])) {
-    if (direction === `up`) {
-      App.cycle_modes(true)
-    }
-    else if (direction === `down`) {
-      App.cycle_modes(false)
-    }
-
-    return
-  }
-
-  if (DOM.parent(target, [`.scroller`])) {
-    if (direction === `up`) {
-      if (e.shiftKey) {
-        App.scroll_page(mode, `up`)
-      }
-      else {
-        App.scroll(mode, `up`)
-      }
-    }
-    else if (direction === `down`) {
-      if (e.shiftKey) {
-        App.scroll_page(mode, `down`)
-      }
-      else {
-        App.scroll(mode, `down`)
-      }
-    }
-  }
-  else if (DOM.parent(target, [`.filter_menu_button`])) {
-    let direction = App.wheel_direction(e)
-
-    if (direction === `up`) {
-      App.cycle_filter_modes(mode, true, e)
-    }
-    else if (direction === `down`) {
-      App.cycle_filter_modes(mode, false, e)
-    }
-  }
-  else if (target.closest(`.favorites_empty_top`)) {
-    App.wheel_action(direction, `favorites_top`, e)
-  }
-  else if (target.closest(`.favorites_bar`)) {
-    App.wheel_action(direction, `favorites_center`, e)
-  }
-  else if (target.closest(`.favorites_empty_bottom`)) {
-    App.wheel_action(direction, `favorites_bottom`, e)
-  }
-  else if (target.closest(`.favorites_button`)) {
-    App.wheel_action(direction, `favorites_button`, e)
-  }
-  else if (target.closest(`#footer`)) {
-    App.wheel_action(direction, `footer`, e)
-  }
-  else if (target.closest(`#main_title`)) {
-    App.wheel_action(direction, `main_title`, e)
-  }
-  else if (DOM.parent(target, [`#pinline`])) {
-    App.wheel_action(direction, `pinline`, e)
-  }
-  else if (DOM.parent(target, [`.playing_button`])) {
-    App.wheel_action(direction, `playing`, e)
-  }
-  else if (DOM.parent(target, [`.step_back_button`])) {
-    App.wheel_action(direction, `step_back`, e)
-  }
-  else if (DOM.parent(target, [`.actions_button`])) {
-    App.wheel_action(direction, `actions_menu`, e)
-  }
-  else if (DOM.parent(target, [`#tab_box_title`])) {
-    App.wheel_action(direction, `tab_box_title`, e)
-  }
-  else if (DOM.parent(target, [`#tab_box_container`])) {
-    App.wheel_action(direction, `tab_box`, e)
-  }
-  else if (DOM.parent(target, [`.item_container`])) {
-    App.wheel_action(direction, `items`, e)
-  }
-}
-
-App.wheel_action = (direction, name, e) => {
-  let target = e.target
-  let mode = App.window_mode
-
-  if (e.shiftKey) {
-    name = `shift_${name}`
-  }
-
-  if (direction === `up`) {
-    name = `wheel_up_${name}`
-  }
-  else if (direction === `down`) {
-    name = `wheel_down_${name}`
-  }
-
-  if (!App.settings[name]) {
-    return
-  }
-
-  let item, item_alt
-
-  if (App.get_setting(`wheel_hover_item`)) {
-    [item, item_alt] = App.get_mouse_item(mode, target)
-  }
-
-  let cmd = App.get_setting(name)
-  App.run_command({cmd, item, from: `mouse`, e})
 }
 
 App.check_double_click = (what, e) => {

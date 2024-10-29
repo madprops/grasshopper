@@ -19,7 +19,7 @@ App.create_actions_menu = (mode) => {
     App.trigger_title(btn, `wheel_down_actions_menu`)
   }
 
-  App.check_show_button(`actions`, btn)
+  App.check_show_button(`actions_menu`, btn)
   return btn
 }
 

@@ -1807,7 +1807,7 @@ App.build_settings = () => {
       name: `Show Filter Menu`,
       type: `checkbox`,
       value: true,
-      info: `Show the Filter Menu Button`,
+      info: `Show the Filter Menu`,
       version: 1,
     },
     show_playing_button: {
@@ -1824,11 +1824,11 @@ App.build_settings = () => {
       info: `Show the Step Back Button`,
       version: 1,
     },
-    show_actions_button: {
-      name: `Show Actions`,
+    show_actions_menu_button: {
+      name: `Show Actions Menu`,
       type: `checkbox`,
       value: true,
-      info: `Show the Actions Button`,
+      info: `Show the Actions Menu`,
       version: 1,
     },
     show_pinned_tabs: {
@@ -4603,6 +4603,27 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    wheel_up_main_menu: {
+      name: `Wheel Up Main Menu`,
+      type: `menu`,
+      value: `show_previous_mode`,
+      info: `Command to run when using the mousewheel up on the Main Menu`,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
+    wheel_down_main_menu: {
+      name: `Wheel Down Main Menu`,
+      type: `menu`,
+      value: `show_next_mode`,
+      info: `Command to run when using the mousewheel down on the Main Menu`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     middle_click_actions_menu: {
       name: `Middle Click Actions Menu`,
       type: `menu`,
@@ -4617,7 +4638,7 @@ App.build_settings = () => {
       name: `Click Press Actions Menu`,
       type: `menu`,
       value: `edit_global_notes`,
-      info: `Command to run on left click press on Actions`,
+      info: `Command to run on left click press on Actions Menu`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -4627,7 +4648,7 @@ App.build_settings = () => {
       name: `Middle Click Press Actions Menu`,
       type: `menu`,
       value: `lock_screen`,
-      info: `Command to run on middle click press on Actions`,
+      info: `Command to run on middle click press on Actions Menu`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -4638,7 +4659,7 @@ App.build_settings = () => {
       name: `Wheel Up Actions Menu`,
       type: `menu`,
       value: `jump_tabs_all_up`,
-      info: `Command to run when using the mousewheel up on the Actions Button`,
+      info: `Command to run when using the mousewheel up on the Actions Menu`,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -4648,7 +4669,7 @@ App.build_settings = () => {
       name: `Wheel Down Actions Menu`,
       type: `menu`,
       value: `jump_tabs_all_down`,
-      info: `Command to run when using the mousewheel down on the Actions Button`,
+      info: `Command to run when using the mousewheel down on the Actions Menu`,
       separator: true,
       version: 1,
       setup: (key) => {
