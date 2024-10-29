@@ -2153,6 +2153,13 @@ App.build_settings = () => {
       info: `Pick items when right clicking the Hover Button`,
       version: 1,
     },
+    hover_button_autoshow: {
+      name: `Hover Autoshow`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-show the menu when hovering the Hover Button`,
+      version: 1,
+    },
   }
 
   add_props()
@@ -3421,6 +3428,20 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Make the title text wrap on long titles`,
+      version: 1,
+    },
+    main_title_left_button_autoshow: {
+      name: `Title Left Autoshow`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-show the menu when hovering the Left Main Title Button`,
+      version: 1,
+    },
+    main_title_right_button_autoshow: {
+      name: `Title Right Autoshow`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-show the menu when hovering the Right Main Title Button`,
       version: 1,
     },
   }
@@ -5407,13 +5428,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Auto-pick 'Unloaded' when on the Close Tab Dialog`,
-      version: 1,
-    },
-    hover_autoshow: {
-      name: `Hover Autoshow`,
-      type: `checkbox`,
-      value: false,
-      info: `Auto-show certain components on hover`,
       version: 1,
     },
     debug_mode: {

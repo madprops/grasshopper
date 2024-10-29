@@ -334,3 +334,36 @@ App.click_element = (el, e) => {
 
   el.dispatchEvent(ev)
 }
+
+App.check_autoshow = (el, e) => {
+  let autoshow = DOM.parent(el, [`.autoshow`])
+
+  if (!autoshow) {
+    return false
+  }
+
+  let do_autoshow = false
+
+  if (DOM.parent(autoshow, [`.hover_button`])) {
+    if (App.get_setting(`hover_button_autoshow`)) {
+      do_autoshow = true
+    }
+  }
+  else if (DOM.parent(autoshow, [`#main_title_left_button`])) {
+    if (App.get_setting(`main_title_left_button_autoshow`)) {
+      do_autoshow = true
+    }
+  }
+  else if (DOM.parent(autoshow, [`#main_title_right_button`])) {
+    if (App.get_setting(`main_title_right_button_autoshow`)) {
+      do_autoshow = true
+    }
+  }
+
+  if (do_autoshow) {
+    App.click_element(autoshow, e)
+    return true
+  }
+
+  return false
+}

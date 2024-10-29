@@ -798,13 +798,8 @@ App.do_mouse_over_action = (e) => {
     return
   }
 
-  if (App.get_setting(`hover_autoshow`)) {
-    let autoshow = DOM.parent(target, [`.autoshow`])
-
-    if (autoshow) {
-      App.click_element(autoshow, e)
-      return
-    }
+  if (App.check_autoshow(target, e)) {
+    return
   }
 
   let mode = App.active_mode
