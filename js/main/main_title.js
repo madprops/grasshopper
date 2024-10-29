@@ -180,7 +180,7 @@ App.show_main_title_left_button_menu = (e) => {
     name: `main_title_left_button_menu`,
   })
 
-  let compact = App.get_setting(`compact_main_title_menu`)
+  let compact = App.get_setting(`compact_main_title_left_button_menu`)
   App.show_context({items, e, compact})
 }
 
@@ -189,7 +189,7 @@ App.show_main_title_right_button_menu = (e) => {
     name: `main_title_right_button_menu`,
   })
 
-  let compact = App.get_setting(`compact_main_title_menu`)
+  let compact = App.get_setting(`compact_main_title_right_button_menu`)
   App.show_context({items, e, compact})
 }
 

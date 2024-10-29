@@ -985,7 +985,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.cycle_filter_modes(args.mode, true, args.e)
       },
-      info: `Go to the next mode`,
+      info: `Cycle to the previous filter`,
     },
     {
       name: `Next Filter`,
@@ -995,7 +995,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.cycle_filter_modes(args.mode, false, args.e)
       },
-      info: `Go to the next mode`,
+      info: `Cycle to the next filter`,
     },
 
     ...show_modes,

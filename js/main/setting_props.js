@@ -6281,6 +6281,20 @@ App.build_settings = () => {
       info: `Only show icons in the Title Menu`,
       version: 1,
     },
+    compact_main_title_left_button_menu: {
+      name: `Compact Title Left Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Title Left Menu`,
+      version: 1,
+    },
+    compact_main_title_right_button_menu: {
+      name: `Compact Title Right Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Title Right Menu`,
+      version: 1,
+    },
     compact_footer_menu: {
       name: `Compact Footer Menu`,
       type: `checkbox`,
