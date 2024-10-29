@@ -989,19 +989,13 @@ App.insert_item = (mode, info) => {
   return item
 }
 
-App.copy_url = (item, feedback = false) => {
-  let what = ``
-
-  if (feedback) {
-    what = `URL`
-  }
-
-  App.copy_to_clipboard(item.url, what)
+App.copy_url = (item) => {
+  App.copy_to_clipboard(item.url, `URL`)
 }
 
 App.copy_title = (item) => {
   let title = App.title(item)
-  App.copy_to_clipboard(title)
+  App.copy_to_clipboard(title, `Title`)
 }
 
 App.on_items = (mode = App.window_mode, check_popups = false) => {

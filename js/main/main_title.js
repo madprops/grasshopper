@@ -152,7 +152,7 @@ App.set_main_title = (title, force = true) => {
 }
 
 App.copy_main_title = () => {
-  App.copy_to_clipboard(App.get_setting(`main_title`))
+  App.copy_to_clipboard(App.get_setting(`main_title`), `Title`)
 }
 
 App.show_main_title_menu = (e) => {

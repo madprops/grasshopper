@@ -241,7 +241,7 @@ App.open_media = (what = App.current_media_type) => {
 }
 
 App.media_copy = (what) => {
-  App.copy_url(App[`current_media_${what}_item`], true)
+  App.copy_url(App[`current_media_${what}_item`])
 }
 
 App.media_background = (what) => {
