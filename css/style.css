@@ -1924,6 +1924,7 @@ a:hover
   border-color: var(--main_title_text_color);
   border-width: 0;
   border-radius: 20%;
+  cursor: pointer;
 }
 
 .main_title_button:hover {
@@ -1931,12 +1932,12 @@ a:hover
 }
 
 #main_title_left_button {
-  border-right-width: 2px;
+  border-right-width: 1px;
   left: 0;
 }
 
 #main_title_right_button {
-  border-left-width: 2px;
+  border-left-width: 1px;
   right: 0;
 }
 
