@@ -38,7 +38,7 @@ NeedContext.set_defaults = () => {
   NeedContext.last_y = 0
   NeedContext.layers = {}
   NeedContext.mouse_activity = false
-  NeedContext.autohide_debouncer.cancel()
+  NeedContext.reset_debouncers()
 }
 
 // Clear the filter
@@ -136,6 +136,8 @@ NeedContext.show = (args = {}) => {
   if (!args.items.length) {
     return
   }
+
+  NeedContext.reset_debouncers()
 
   if (!NeedContext.created) {
     NeedContext.create()
@@ -1256,4 +1258,9 @@ NeedContext.create_debouncer = (func, delay) => {
   }
 
   return obj
+}
+
+NeedContext.reset_debouncers = () => {
+  NeedContext.autohide_debouncer.cancel()
+  NeedContext.autoclick_debouncer.cancel()
 }
