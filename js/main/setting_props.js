@@ -4127,47 +4127,14 @@ App.build_settings = () => {
       middle_click_press: `none`,
     }),
 
-    wheel_up_items: {
-      name: `Wheel Up Items`,
-      type: `menu`,
-      value: `scroll_up`,
-      info: `What to do when scrolling the mousewheel up on items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_items: {
-      name: `Wheel Down Items`,
-      type: `menu`,
-      value: `scroll_down`,
-      info: `What to do when scrolling the mousewheel down on items`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_shift_items: {
-      name: `Shift Wheel Up Items`,
-      type: `menu`,
-      value: `page_up`,
-      info: `What to do when scrolling the mousewheel up on items while holding Shift`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_shift_items: {
-      name: `Shift Wheel Down Items`,
-      type: `menu`,
-      value: `page_down`,
-      info: `What to do when scrolling the mousewheel down on items while holding Shift`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+    ...App.make_mouse_settings({
+      what: `items`,
+      title: `Items`,
+      wheel_up: `scroll_up`,
+      wheel_down: `scroll_down`,
+      wheel_up_shift: `page_up`,
+      wheel_down_shift: `page_down`,
+    }),
 
     ...App.make_mouse_settings({
       what: `main_button`,
@@ -4190,214 +4157,64 @@ App.build_settings = () => {
       wheel_down: `jump_tabs_playing_up`,
     }),
 
-    click_step_back_button: {
-      name: `Click Step Back Btn`,
-      type: `menu`,
-      value: `step_back`,
-      info: `Command to run when clicking the Step Back Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_step_back_button: {
-      name: `Middle Click Step Back Btn`,
-      type: `menu`,
-      value: `recent_tabs_forwards`,
-      info: `Command to run when middle clicking the Step Back Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_step_back_button: {
-      name: `Click Press Step Back Btn`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on left click press on Step Back`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_step_back_button: {
-      name: `Middle Click Press Step Back Btn`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run on middle click press on Step Back`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_step_back_button: {
-      name: `Wheel Up Step Back Btn`,
-      type: `menu`,
-      value: `recent_tabs_forwards`,
-      info: `Command to run when using the mousewheel up on the Step Back Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_step_back_button: {
-      name: `Wheel Down Step Back Btn`,
-      type: `menu`,
-      value: `recent_tabs_backwards`,
-      info: `Command to run when using the mousewheel down on the Step Back Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_actions_button: {
-      name: `Middle Click Actions Btn`,
-      type: `menu`,
-      value: `browser_reload`,
-      info: `Command to run when middle clicking the Actions Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_actions_button: {
-      name: `Click Press Actions Btn`,
-      type: `menu`,
-      value: `edit_global_notes`,
-      info: `Command to run on left click press on Actions Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_actions_button: {
-      name: `Middle Click Press Actions Btn`,
-      type: `menu`,
-      value: `lock_screen`,
-      info: `Command to run on middle click press on Actions Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_up_actions_button: {
-      name: `Wheel Up Actions Btn`,
-      type: `menu`,
-      value: `jump_tabs_all_up`,
-      info: `Command to run when using the mousewheel up on the Actions Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    wheel_down_actions_button: {
-      name: `Wheel Down Actions Btn`,
-      type: `menu`,
-      value: `jump_tabs_all_down`,
-      info: `Command to run when using the mousewheel down on the Actions Button`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_empty_tabs: {
-      name: `Double Click Empty (Tabs)`,
-      type: `menu`,
-      value: `open_new_tab`,
-      info: `What command to run when double clicking empty space (Tabs)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_empty_history: {
-      name: `Double Click Empty (History)`,
-      type: `menu`,
-      value: `show_empty_menu`,
-      info: `What command to run when double clicking empty space (History)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_empty_bookmarks: {
-      name: `Double Click Empty (${bkmarks})`,
-      type: `menu`,
-      value: `show_empty_menu`,
-      info: `What command to run when double clicking empty space (Bookmarks)`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_empty_closed: {
-      name: `Double Click Empty (Closed)`,
-      type: `menu`,
-      value: `show_empty_menu`,
-      info: `What command to run when double clicking empty space (Closed)`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_unloaded_tab: {
-      name: `Click Unloaded Tab`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when clicking an unloaded tab`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    double_click_unloaded_tab: {
-      name: `Double Click Unloaded Tab`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when double clicking an unloaded tab`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_unloaded_tab: {
-      name: `Middle Click Unloaded Tab`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when middle clicking an unloaded tab`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    click_press_unloaded_tab: {
-      name: `Click Press Unloaded Tab`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when click pressing an unloaded tab`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    middle_click_press_unloaded_tab: {
-      name: `Middle Click Unloaded Tab`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when middle click pressing an unloaded tab`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+    ...App.make_mouse_settings({
+      what: `step_back_button`,
+      title: `Step Back Btn`,
+      click: `step_back`,
+      middle_click: `recent_tabs_forwards`,
+      click_press: `none`,
+      middle_click_press: `none`,
+      wheel_up: `recent_tabs_forwards`,
+      wheel_down: `recent_tabs_backwards`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `actions_button`,
+      title: `Actions Btn`,
+      middle_click: `browser_reload`,
+      click_press: `edit_global_notes`,
+      middle_click_press: `lock_screen`,
+      wheel_up: `jump_tabs_all_up`,
+      wheel_down: `jump_tabs_all_down`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `empty_tabs`,
+      title: `Empty (Tabs)`,
+      double_click: `open_new_tab`,
+      separator: false,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `empty_history`,
+      title: `Empty (History)`,
+      double_click: `show_empty_menu`,
+      separator: false,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `empty_bookmarks`,
+      title: `Empty (${bkmarks})`,
+      double_click: `show_empty_menu`,
+      separator: false,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `empty_closed`,
+      title: `Empty (Closed)`,
+      double_click: `show_empty_menu`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `unloaded_tab`,
+      title: `Unloaded Tab`,
+      click: `none`,
+      double_click: `none`,
+      middle_click: `none`,
+      click_press: `none`,
+      middle_click_press: `none`,
+    }),
+
     double_ctrl_command: {
       name: `Double Ctrl`,
       type: `menu`,

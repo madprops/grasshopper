@@ -2248,7 +2248,7 @@ App.make_mouse_settings = (args = {}) => {
     wheel_down_value: `none`,
     wheel_up_shift_value: `none`,
     wheel_down_shift_value: `none`,
-    add_separator: true,
+    separator: true,
   }
 
   App.def_args(def_args, args)
@@ -2371,7 +2371,7 @@ App.make_mouse_settings = (args = {}) => {
     }
   }
 
-  if (args.add_separator) {
+  if (args.separator) {
     let keys = Object.keys(obj)
     obj[keys.at(-1)].separator = true
   }
