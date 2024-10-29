@@ -2249,6 +2249,9 @@ App.make_mouse_settings = (args = {}) => {
     wheel_up_shift_value: `none`,
     wheel_down_shift_value: `none`,
     separator: true,
+    setup: (key) => {
+      App.settings_cmdlist_single(key)
+    },
   }
 
   App.def_args(def_args, args)
@@ -2261,9 +2264,7 @@ App.make_mouse_settings = (args = {}) => {
       value: args.click,
       info: `Command to run when clicking the ${args.title}`,
       version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
+      setup: args.setup,
     }
   }
 
@@ -2274,9 +2275,7 @@ App.make_mouse_settings = (args = {}) => {
       value: args.double_click,
       info: `Command to run when double clicking the ${args.title}`,
       version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
+      setup: args.setup,
     }
   }
 
@@ -2287,9 +2286,7 @@ App.make_mouse_settings = (args = {}) => {
       value: args.middle_click,
       info: `Command to run when middle clicking the ${args.title}`,
       version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
+      setup: args.setup,
     }
   }
 
@@ -2300,9 +2297,7 @@ App.make_mouse_settings = (args = {}) => {
       value: args.click_press,
       info: `Command to run when click pressing the ${args.title}`,
       version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
+      setup: args.setup,
     }
   }
 
@@ -2313,9 +2308,7 @@ App.make_mouse_settings = (args = {}) => {
       value: args.middle_click_press,
       info: `Command to run when middle click pressing the ${args.title}`,
       version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
+      setup: args.setup,
     }
   }
 
@@ -2326,9 +2319,7 @@ App.make_mouse_settings = (args = {}) => {
       value: args.wheel_up,
       info: `Command to run when using wheel up on the ${args.title}`,
       version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
+      setup: args.setup,
     }
   }
 
@@ -2339,9 +2330,7 @@ App.make_mouse_settings = (args = {}) => {
       value: args.wheel_down,
       info: `Command to run when using wheel down on the ${args.title}`,
       version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
+      setup: args.setup,
     }
   }
 
@@ -2352,9 +2341,7 @@ App.make_mouse_settings = (args = {}) => {
       value: args.wheel_up_shift,
       info: `Command to run when using shift wheel up on the ${args.title}`,
       version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
+      setup: args.setup,
     }
   }
 
@@ -2365,9 +2352,7 @@ App.make_mouse_settings = (args = {}) => {
       value: args.wheel_down_shift,
       info: `Command to run when using shift wheel down on the ${args.title}`,
       version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
+      setup: args.setup,
     }
   }
 

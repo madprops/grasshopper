@@ -4101,52 +4101,19 @@ App.build_settings = () => {
         ])
       },
     },
-    double_click_header: {
-      name: `Double Click Header`,
-      type: `menu`,
-      value: `select_group`,
-      info: `What to do when double clicking a header`,
-      version: 1,
+
+    ...App.make_mouse_settings({
+      what: `header`,
+      title: `Header`,
+      double_click: `select_group`,
+      middle_click: `normal`,
+      click_press: `select_group`,
+      middle_click_press: `close_group`,
       setup: (key) => {
         App.settings_make_menu(key, App.header_actions)
       },
-    },
-    middle_click_header: {
-      name: `Middle Click Header`,
-      type: `menu`,
-      value: `normal`,
-      info: `What to do when middle clicking a header`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.header_actions)
-      },
-    },
-    click_press_header: {
-      name: `Click Press Header`,
-      type: `menu`,
-      value: `select_group`,
-      info: `What to do when pressing a header with the left click`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.header_actions)
-      },
-    },
-    middle_click_press_header: {
-      name: `Middle Click Press Header`,
-      type: `menu`,
-      value: `close_group`,
-      info: `What to do when pressing a header with the middle click`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Normal`, value: `normal`},
-          {text: `Select Group`, value: `select_group`},
-          {text: `Close Group`, value: `close_group`},
-        ])
-      },
-    },
+    }),
+
     header_icon: {
       name: `Header Icon`,
       type: `text_smaller`,
