@@ -5,7 +5,7 @@ App.get_actions = (mode) => {
 
 App.create_actions_menu = (mode) => {
   App[`${mode}_actions`] = App.get_actions(mode)
-  let btn = DOM.create(`div`, `actions_button button icon_button autoclick`, `${mode}_actions`)
+  let btn = DOM.create(`div`, `actions_button button icon_button`, `${mode}_actions`)
   btn.append(App.get_svg_icon(`sun`))
   let click = App.get_cmd_name(`show_actions_menu`)
   let rclick = App.get_cmd_name(`show_browser_menu`)
