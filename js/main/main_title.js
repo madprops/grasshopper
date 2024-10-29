@@ -62,8 +62,8 @@ App.create_main_title = () => {
   let rclick = App.get_cmd_name(`show_main_title_menu`)
   inner.textContent = App.check_caps(title)
 
-  let btn_left = DOM.create(`div`, `main_title_button`, `main_title_left_button`)
-  let btn_right = DOM.create(`div`, `main_title_button`, `main_title_right_button`)
+  let btn_left = DOM.create(`div`, `main_title_button autoshow`, `main_title_left_button`)
+  let btn_right = DOM.create(`div`, `main_title_button autoshow`, `main_title_right_button`)
   btn_left.textContent = `◄`
   btn_right.textContent = `►`
 

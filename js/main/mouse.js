@@ -316,3 +316,21 @@ App.get_unloaded_mouse_command = (item, what) => {
     }
   }
 }
+
+App.click_element = (el, e) => {
+  let x = el.getBoundingClientRect().left
+  let y = el.getBoundingClientRect().top
+  x += el.offsetWidth / 2
+  y += el.offsetHeight / 2
+
+  let ev = new MouseEvent(`click`, {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+    clientX: x,
+    clientY: y,
+    button: el,
+  })
+
+  el.dispatchEvent(ev)
+}

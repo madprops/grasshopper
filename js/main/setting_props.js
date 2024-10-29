@@ -5409,6 +5409,13 @@ App.build_settings = () => {
       info: `Auto-pick 'Unloaded' when on the Close Tab Dialog`,
       version: 1,
     },
+    hover_autoshow: {
+      name: `Hover Autoshow`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-show certain components on hover`,
+      version: 1,
+    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,
