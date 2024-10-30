@@ -73,3 +73,10 @@ App.generic_gestures = (el) => {
 
   NiceGesture.start(el, obj)
 }
+
+App.toggle_gestures = () => {
+  let enabled = App.get_setting(`gestures_enabled`)
+  App.set_setting({setting: `gestures_enabled`, value: !enabled})
+  App.refresh_gestures()
+  App.footer_message(`Gestures ${enabled ? `Disabled` : `Enabled`}`)
+}
