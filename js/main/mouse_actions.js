@@ -312,6 +312,16 @@ App.mouse_double_click_action = (e) => {
       return
     }
 
+    if (DOM.parent(target, [`#tab_box_title_left`])) {
+      App.tab_box_left_click()
+      return
+    }
+
+    if (DOM.parent(target, [`#tab_box_title_right`])) {
+      App.tab_box_right_click()
+      return
+    }
+
     return
   }
 
