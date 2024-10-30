@@ -16,7 +16,6 @@ App.user_madprops_settings = () => {
 
   App.set_theme(3)
 
-  App.set_setting({setting: `autohide_context`, value: true})
   App.set_setting({setting: `sound_effects`, value: true})
   App.set_setting({setting: `click_item_tabs`, value: `soft_item_action`})
 

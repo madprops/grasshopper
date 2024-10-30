@@ -172,7 +172,6 @@ App.raise_window = (mode) => {
 
 App.setup_window = () => {
   DOM.ev(document.documentElement, `mouseenter`, () => {
-    clearInterval(App.autoclick_timeout)
     App.mouse_inside = true
 
     if (App.get_setting(`auto_restore`) !== `never`) {

@@ -19,7 +19,7 @@ App.autoclick_action = (e) => {
       let delay = App.get_setting(`${what}_autoclick_delay`)
 
       App.autoclick_timeout = setTimeout(() => {
-        App.click_element(element, e)
+        App.click_element(element)
       }, delay)
 
       return true

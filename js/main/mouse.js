@@ -318,7 +318,7 @@ App.get_unloaded_mouse_command = (item, what) => {
   }
 }
 
-App.click_element = (el, e) => {
+App.click_element = (el) => {
   let x = el.getBoundingClientRect().left
   let y = el.getBoundingClientRect().top
   x += el.offsetWidth / 2
