@@ -79,6 +79,14 @@ App.close_tabs = (args = {}) => {
   })
 }
 
+App.close_active_tab = () => {
+  let active = App.get_active_tab_item()
+
+  if (active) {
+    App.close_tab_or_tabs(active.id)
+  }
+}
+
 App.start_close_tabs = () => {
   if (App.check_ready(`close_tabs`)) {
     return

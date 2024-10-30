@@ -510,7 +510,6 @@ App.setup_commands = () => {
     cmd_combos.push({
       name: combo.name,
       short: short_name(combo.name),
-      modes: [`items`],
       cmd: `run_command_combo_${combo._id_}`,
       icon: combo.icon || combo_icon,
       action: async (args) => {
@@ -1574,7 +1573,6 @@ App.setup_commands = () => {
       short_name: `Back`,
       cmd: `browser_back`,
       icon: browser_icon,
-      modes: [`items`],
       action: (args) => {
         App.browser_back(args.item)
       },
@@ -1585,7 +1583,6 @@ App.setup_commands = () => {
       short_name: `Forward`,
       cmd: `browser_forward`,
       icon: browser_icon,
-      modes: [`items`],
       action: (args) => {
         App.browser_forward(args.item)
       },
@@ -1596,7 +1593,6 @@ App.setup_commands = () => {
       short_name: `Reload`,
       cmd: `browser_reload`,
       icon: browser_icon,
-      modes: [`items`],
       action: (args) => {
         App.browser_reload(args.item)
       },
@@ -1607,7 +1603,6 @@ App.setup_commands = () => {
       short_name: `Hard`,
       cmd: `browser_hard_reload`,
       icon: browser_icon,
-      modes: [`items`],
       action: (args) => {
         App.browser_reload(args.item, true)
       },
@@ -1729,7 +1724,6 @@ App.setup_commands = () => {
       name: `New Tab`,
       short_name: `New`,
       cmd: `open_new_tab`,
-      modes: [`items`],
       icon: new_icon,
       action: (args) => {
         App.new_tab(args.item, args.from)
@@ -2073,6 +2067,16 @@ App.setup_commands = () => {
       info: `Close tabs`,
     },
     {
+      name: `Close Page`,
+      short_name: `Close`,
+      cmd: `close_page`,
+      icon: close_icon,
+      action: (args) => {
+        App.close_active_tab()
+      },
+      info: `Close tabs`,
+    },
+    {
       name: `Close Menu`,
       short_name: `Close`,
       cmd: `show_close_tabs_menu`,
@@ -2097,7 +2101,6 @@ App.setup_commands = () => {
     {
       name: `Close Normal`,
       cmd: `close_normal_tabs`,
-      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`normal`)
@@ -2107,7 +2110,6 @@ App.setup_commands = () => {
     {
       name: `Close Playing`,
       cmd: `close_playing_tabs`,
-      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`playing`)
@@ -2117,7 +2119,6 @@ App.setup_commands = () => {
     {
       name: `Close Loaded`,
       cmd: `close_loaded_tabs`,
-      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`loaded`)
@@ -2127,7 +2128,6 @@ App.setup_commands = () => {
     {
       name: `Close Unloaded`,
       cmd: `close_unloaded_tabs`,
-      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`unloaded`)
@@ -2137,7 +2137,6 @@ App.setup_commands = () => {
     {
       name: `Close Duplicates`,
       cmd: `close_duplicate_tabs`,
-      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`duplicate`)
@@ -2168,8 +2167,6 @@ App.setup_commands = () => {
     {
       name: `Close Pins`,
       cmd: `close_pinned_tabs`,
-      modes: [`items`],
-      item: true,
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`pinned`, args.item)
@@ -2179,8 +2176,6 @@ App.setup_commands = () => {
     {
       name: `Close All`,
       cmd: `close_all_tabs`,
-      modes: [`items`],
-      item: true,
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`all`, args.item)
@@ -2190,8 +2185,6 @@ App.setup_commands = () => {
     {
       name: `Close Empty`,
       cmd: `close_empty_tabs`,
-      modes: [`items`],
-      item: true,
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`empty`, args.item)
@@ -2201,7 +2194,6 @@ App.setup_commands = () => {
     {
       name: `Close First`,
       cmd: `close_first_tab`,
-      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_first_tab()
@@ -2211,7 +2203,6 @@ App.setup_commands = () => {
     {
       name: `Close Last`,
       cmd: `close_last_tab`,
-      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_last_tab()
