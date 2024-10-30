@@ -3194,6 +3194,20 @@ App.build_settings = () => {
       info: `Autohide the Favorites Bar when on left or right mode`,
       version: 1,
     },
+    bigger_favorites: {
+      name: `Bigger Favorites`,
+      type: `checkbox`,
+      value: false,
+      info: `Make Favorites wider`,
+      version: 1,
+    },
+    dense_favorites: {
+      name: `Dense Favorites`,
+      type: `checkbox`,
+      value: false,
+      info: `Make Favorite bar items more close to each other`,
+      version: 1,
+    },
   }
 
   add_props()

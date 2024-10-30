@@ -1564,7 +1564,7 @@ a:hover
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
+  gap: var(--favorites_gap);
 }
 
 .fav_top .favorites_bar, .fav_bottom .favorites_bar {
@@ -1595,8 +1595,8 @@ a:hover
 .fav_left .favorites_bar .favorites_bar_item,
 .fav_right .favorites_bar .favorites_bar_item
 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  padding-left: var(--favorites_padding);
+  padding-right: var(--favorites_padding);
 }
 
 .favorites_gravity_top .fav_left .favorites_empty_top,

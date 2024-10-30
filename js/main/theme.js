@@ -1031,6 +1031,20 @@ App.set_favorite_vars = () => {
   else {
     main.classList.remove(`favorites_autohide`)
   }
+
+  if (App.get_setting(`bigger_favorites`)) {
+    App.set_css_var(`favorites_padding`, `0.5rem`)
+  }
+  else {
+    App.set_css_var(`favorites_padding`, `0.25rem`)
+  }
+
+  if (App.get_setting(`dense_favorites`)) {
+    App.set_css_var(`favorites_gap`, `0.2rem`)
+  }
+  else {
+    App.set_css_var(`favorites_gap`, `0.35rem`)
+  }
 }
 
 App.set_main_title_vars = () => {
