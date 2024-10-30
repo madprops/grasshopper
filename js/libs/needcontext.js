@@ -26,6 +26,7 @@ NeedContext.center_top = 20
 NeedContext.dragging = false
 NeedContext.autohide_delay = 500
 NeedContext.autoclick_delay = 500
+NeedContext.autohide_threshold = 5
 
 // Set defaults
 NeedContext.set_defaults = () => {
@@ -798,7 +799,7 @@ NeedContext.init = () => {
 
     NeedContext.mouse_activity += 1
 
-    if (NeedContext.mouse_activity > 5) {
+    if (NeedContext.mouse_activity > NeedContext.autohide_threshold) {
       NeedContext.check_auto_funcs(e)
     }
   })
@@ -808,7 +809,7 @@ NeedContext.init = () => {
       return
     }
 
-    if (NeedContext.mouse_activity > 5) {
+    if (NeedContext.mouse_activity > NeedContext.autohide_threshold) {
       NeedContext.check_auto_funcs(e)
     }
   })
