@@ -97,17 +97,19 @@ App.select_to_edge = (mode, dir) => {
   let item = App.get_selected(mode)
   let items = App.get_items(mode).slice(0)
 
-  if (mode === `tabs`) {
-    if (item.pinned) {
-      if (dir === `down`) {
-        if (item !== App.get_last_pinned_tab()) {
-          items = items.filter(x => x.pinned)
+  if (App.tabs_normal()) {
+    if (mode === `tabs`) {
+      if (item.pinned) {
+        if (dir === `down`) {
+          if (item !== App.get_last_pinned_tab()) {
+            items = items.filter(x => x.pinned)
+          }
         }
       }
-    }
-    else if (dir === `up`) {
-      if (item !== App.get_first_normal_tab()) {
-        items = items.filter(x => !x.pinned)
+      else if (dir === `up`) {
+        if (item !== App.get_first_normal_tab()) {
+          items = items.filter(x => !x.pinned)
+        }
       }
     }
   }
