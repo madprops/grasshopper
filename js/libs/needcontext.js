@@ -798,17 +798,7 @@ NeedContext.init = () => {
       return
     }
 
-    let rect = NeedContext.container.getBoundingClientRect()
-    let x = e.clientX
-    let y = e.clientY
-    let min = 5
-
-    if ((x >= rect.left - min) &&
-    (x <= rect.right + min) &&
-    (y >= rect.top - min) &&
-    (y <= rect.bottom + min)) {
-      NeedContext.autohide_enabled = true
-    }
+    NeedContext.check_mouse_range(e)
 
     if (NeedContext.autohide_enabled) {
       NeedContext.mouse_activity += 1
@@ -823,6 +813,8 @@ NeedContext.init = () => {
     if (!NeedContext.open || !e.target) {
       return
     }
+
+    NeedContext.check_mouse_range(e)
 
     if (NeedContext.mouse_activity > NeedContext.autohide_threshold) {
       NeedContext.check_auto_funcs(e)
@@ -1295,4 +1287,18 @@ NeedContext.start_autohide_timeout = () => {
   NeedContext.autohide_timeout = setTimeout(() => {
     NeedContext.hide()
   }, NeedContext.autohide_delay)
+}
+
+NeedContext.check_mouse_range = (e) => {
+  let rect = NeedContext.container.getBoundingClientRect()
+  let x = e.clientX
+  let y = e.clientY
+  let min = NeedContext.autohide_threshold
+
+  if ((x >= rect.left - min) &&
+  (x <= rect.right + min) &&
+  (y >= rect.top - min) &&
+  (y <= rect.bottom + min)) {
+    NeedContext.autohide_enabled = true
+  }
 }
