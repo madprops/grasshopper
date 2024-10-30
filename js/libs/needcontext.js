@@ -39,6 +39,7 @@ NeedContext.set_defaults = () => {
   NeedContext.last_y = 0
   NeedContext.layers = {}
   NeedContext.mouse_activity = 0
+  NeedContext.autohide_enabled = false
   NeedContext.reset_debouncers()
 }
 
@@ -797,10 +798,24 @@ NeedContext.init = () => {
       return
     }
 
-    NeedContext.mouse_activity += 1
+    let rect = NeedContext.container.getBoundingClientRect()
+    let x = e.clientX
+    let y = e.clientY
+    let min = 5
 
-    if (NeedContext.mouse_activity > NeedContext.autohide_threshold) {
-      NeedContext.check_auto_funcs(e)
+    if ((x >= rect.left - min) &&
+    (x <= rect.right + min) &&
+    (y >= rect.top - min) &&
+    (y <= rect.bottom + min)) {
+      NeedContext.autohide_enabled = true
+    }
+
+    if (NeedContext.autohide_enabled) {
+      NeedContext.mouse_activity += 1
+
+      if (NeedContext.mouse_activity > NeedContext.autohide_threshold) {
+        NeedContext.check_auto_funcs(e)
+      }
     }
   })
 
