@@ -1958,6 +1958,10 @@ App.setting_browser_commands = () => {
 }
 
 App.refresh_setting_widgets = (keys) => {
+  if (!App.on_settings()) {
+    return
+  }
+
   function update(key) {
     let props = App.setting_props[key]
     let el = DOM.el(`#settings_${key}`)

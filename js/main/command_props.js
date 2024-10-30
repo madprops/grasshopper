@@ -4199,6 +4199,7 @@ App.setup_commands = () => {
       name: `Toggle Autoclick`,
       short_name: `Autoclick`,
       cmd: `toggle_autoclick`,
+      modes: [`items`],
       icon: mouse_icon,
       action: (args) => {
         App.toggle_autoclick()
