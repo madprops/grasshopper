@@ -1304,7 +1304,6 @@ NeedContext.check_mouse_range = (e) => {
   }
 
   let rect = NeedContext.container.getBoundingClientRect()
-  let done = false
 
   function check(diff) {
     let done = diff > NeedContext.autohide_threshold
@@ -1316,31 +1315,43 @@ NeedContext.check_mouse_range = (e) => {
     return done
   }
 
-  if (!done && (y < rect.top)) {
+  if (y < rect.top) {
     if ((y < NeedContext.mouse_activity.initial_y) && (y < rect.top)) {
       let diff = rect.top - y
-      done = check(diff)
+
+      if (check(diff)) {
+        return
+      }
     }
   }
 
-  if (!done && (y > rect.bottom)) {
+  if (y > rect.bottom) {
     if ((y > NeedContext.mouse_activity.initial_y) && (y > rect.bottom)) {
       let diff = y - rect.bottom
-      done = check(diff)
+
+      if (check(diff)) {
+        return
+      }
     }
   }
 
-  if (!done && (x < rect.left)) {
+  if (x < rect.left) {
     if ((x < NeedContext.mouse_activity.initial_x) && (x < rect.left)) {
       let diff = rect.left - x
-      done = check(diff)
+
+      if (check(diff)) {
+        return
+      }
     }
   }
 
-  if (!done && (x > rect.right)) {
+  if (x > rect.right) {
     if ((x > NeedContext.mouse_activity.initial_x) && (x > rect.right)) {
       let diff = x - rect.right
-      done = check(diff)
+
+      if (check(diff)) {
+        return
+      }
     }
   }
 }
