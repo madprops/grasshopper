@@ -1486,8 +1486,6 @@ a:hover
   background-color: var(--slight_shade);
   border-top: 1px solid var(--alt_color_1);
   border-bottom: 1px solid var(--alt_color_1);
-  padding-top: calc(var(--panel_padding) - 1px);
-  padding-bottom: calc(var(--panel_padding) - 1px);
   gap: 0.5rem;
 }
 
@@ -2105,4 +2103,17 @@ a:hover
 
 .footer_button:hover {
   outline: 1px solid var(--footer_text_color);
+}
+
+.box_title_button {
+  flex-shrink: 0;
+  height: 100%;
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
+}
+
+.box_title_center {
+  flex-grow: 1;
+  padding-top: calc(var(--panel_padding) - 1px);
+  padding-bottom: calc(var(--panel_padding) - 1px);
 }

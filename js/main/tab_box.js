@@ -60,7 +60,7 @@ App.reset_tab_box = () => {
 
 App.create_tab_box = () => {
   let tab_box = DOM.create(`div`, `box`, `tab_box`)
-  let title = DOM.create(`div`, `box_title glowbox`, `tab_box_title`)
+  let title = DOM.create(`div`, `box_title`, `tab_box_title`)
 
   if (App.tooltips()) {
     let parts = [
@@ -73,12 +73,24 @@ App.create_tab_box = () => {
     title.title = parts.join(`\n`)
   }
 
+  let left = DOM.create(`div`, `pointer flex_column_center box_title_button box_title_left glowbox`, `tab_box_title_left`)
+  left.append(App.get_svg_icon(`arrow_left`))
+  title.append(left)
+
+  let title_center = DOM.create(`div`, `box_title_center glowbox flex_row_center`)
+
   let title_main = DOM.create(`div`, `box_title_main`, `tab_box_title_main`)
-  title.append(title_main)
+  title_center.append(title_main)
   let title_count = DOM.create(`div`, `box_title_count`, `tab_box_title_count`)
-  title.append(title_count)
+  title_center.append(title_count)
   let title_scroll = DOM.create(`div`, `box_title_scroll`, `tab_box_title_scroll`)
-  title.append(title_scroll)
+  title_center.append(title_scroll)
+  title.append(title_center)
+
+  let right = DOM.create(`div`, `pointer flex_column_center box_title_button box_title_right glowbox`, `tab_box_title_right`)
+  right.append(App.get_svg_icon(`arrow_right`))
+  title.append(right)
+
   tab_box.append(title)
   let container = DOM.create(`div`, `box_container`, `tab_box_container`)
   tab_box.append(container)
@@ -1057,4 +1069,12 @@ App.tab_box_scroll_down = () => {
 App.tab_box_title_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_tab_box_title`)
   App.run_command({cmd, from: `tab_box`, e})
+}
+
+App.tab_box_left_click = () => {
+  console.log(11)
+}
+
+App.tab_box_right_click = () => {
+  console.log(1)
 }
