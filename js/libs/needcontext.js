@@ -802,10 +802,7 @@ NeedContext.init = () => {
 
     if (NeedContext.autohide_enabled) {
       NeedContext.mouse_activity += 1
-
-      if (NeedContext.mouse_activity > NeedContext.autohide_threshold) {
-        NeedContext.check_auto_funcs(e)
-      }
+      NeedContext.check_auto_funcs(e)
     }
   })
 
@@ -815,10 +812,7 @@ NeedContext.init = () => {
     }
 
     NeedContext.check_mouse_range(e)
-
-    if (NeedContext.mouse_activity > NeedContext.autohide_threshold) {
-      NeedContext.check_auto_funcs(e)
-    }
+    NeedContext.check_auto_funcs(e)
   })
 
   document.documentElement.addEventListener(`mouseleave`, () => {
@@ -1255,6 +1249,10 @@ NeedContext.reset_debouncers = () => {
 
 NeedContext.check_auto_funcs = (e) => {
   if (!NeedContext.open || !e.target) {
+    return
+  }
+
+  if (NeedContext.mouse_activity <= NeedContext.autohide_threshold) {
     return
   }
 
