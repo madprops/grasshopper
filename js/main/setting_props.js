@@ -5491,7 +5491,7 @@ App.build_settings = () => {
     mouse_inside_delay: {
       name: `Mouse Inside Delay`,
       type: `number`,
-      value: 450,
+      value: 380,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
