@@ -2010,7 +2010,7 @@ App.build_settings = () => {
       name: `Close Button Tab Box Size`,
       type: `menu`,
       value: `normal`,
-      info: `The size of the Close Button`,
+      info: `The size of the Close Button in the Tab Box`,
       separator: true,
       version: 1,
       setup: (key) => {

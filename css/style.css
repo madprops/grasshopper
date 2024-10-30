@@ -1568,15 +1568,6 @@ a:hover
   gap: var(--favorites_gap);
 }
 
-.fav_top .favorites_bar, .fav_bottom .favorites_bar {
-  padding-bottom: 0.25rem;
-}
-
-.fav_bottom .favorites_bar {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
 .fav_left .favorites_bar, .fav_right .favorites_bar {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1591,6 +1582,13 @@ a:hover
 
 .fav_top .favorites_bar {
   margin-bottom: 0.1rem;
+}
+
+.fav_top .favorites_bar .favorites_bar_item,
+.fav_bottom .favorites_bar .favorites_bar_item
+{
+  padding-top: var(--favorites_padding);
+  padding-bottom: var(--favorites_padding);
 }
 
 .fav_left .favorites_bar .favorites_bar_item,
