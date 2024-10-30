@@ -1,5 +1,10 @@
 App.autoclick_action = (e) => {
+  if (!App.get_setting(`autoclick_enabled`)) {
+    return
+  }
+
   clearInterval(App.autoclick_timeout)
+
   let el = e.target
   let mode = App.active_mode
   let [item, item_alt] = App.get_mouse_item(mode, el)
@@ -85,4 +90,10 @@ App.autoclick_action = (e) => {
   if (check(`favorites`, `.favorites_bar_item`)) {
     return
   }
+}
+
+App.toggle_autoclick = () => {
+  let aclick = App.get_setting(`autoclick_enabled`)
+  App.set_setting({setting: `autoclick_enabled`, value: !aclick})
+  App.footer_message(`Autoclick ${!aclick ? `Enabled` : `Disabled`}`)
 }

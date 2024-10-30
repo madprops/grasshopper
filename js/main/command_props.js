@@ -4196,6 +4196,16 @@ App.setup_commands = () => {
       info: `Toggle the tab sort`,
     },
     {
+      name: `Toggle Autoclick`,
+      short_name: `Autoclick`,
+      cmd: `toggle_autoclick`,
+      icon: mouse_icon,
+      action: (args) => {
+        App.toggle_autoclick()
+      },
+      info: `Enable or disable Autoclick`,
+    },
+    {
       name: `Sleep 500ms`,
       short_name: `Sleep`,
       cmd: `sleep_ms_500`,

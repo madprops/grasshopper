@@ -5040,6 +5040,15 @@ App.build_settings = () => {
   category = `autoclick`
 
   props = {
+    autoclick_enabled: {
+      name: `Autoclick Enabled`,
+      type: `checkbox`,
+      value: false,
+      separator: true,
+      no_mirror: true,
+      info: `Enable or disable autoclick globally`,
+      version: 1,
+    },
     item_autoclick: {
       name: `Item Autoclick`,
       type: `checkbox`,
