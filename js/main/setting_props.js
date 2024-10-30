@@ -2063,6 +2063,13 @@ App.build_settings = () => {
       info: `Pick items when right clicking the Close Button`,
       version: 1,
     },
+    bigger_close_button: {
+      name: `Bigger Close Button`,
+      type: `checkbox`,
+      value: false,
+      info: `Make the Close Button wider`,
+      version: 1,
+    },
   }
 
   add_props()

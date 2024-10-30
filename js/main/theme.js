@@ -956,6 +956,13 @@ App.close_button_vars = () => {
   App.set_css_var(`close_button_border_width`, cbbw + `px`)
   let cbbwtb = App.get_setting(`close_button_border_width_tab_box`)
   App.set_css_var(`close_button_border_width_tab_box`, cbbwtb + `px`)
+
+  if (App.get_setting(`bigger_close_button`)) {
+    App.set_css_var(`close_button_width`, `2.14rem`)
+  }
+  else {
+    App.set_css_var(`close_button_width`, `1.77rem`)
+  }
 }
 
 App.set_footer_vars = () => {
