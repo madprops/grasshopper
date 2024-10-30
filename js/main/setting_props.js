@@ -1954,7 +1954,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `normal`,
       info: `The size of the Close Button`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sizes_3)
@@ -2002,10 +2001,20 @@ App.build_settings = () => {
       value: 1,
       placeholder: `Px`,
       info: `Border width of Close Buttons in the Tab Box`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
+      },
+    },
+    close_button_size_tab_box: {
+      name: `Close Button Tab Box Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the Close Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes_3)
       },
     },
 
