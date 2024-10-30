@@ -2064,8 +2064,8 @@ App.setup_commands = () => {
     {
       name: `Close Page`,
       short_name: `Close`,
-      cmd: `close_page`,
-      icon: close_icon,
+      cmd: `browser_close`,
+      icon: browser_icon,
       action: (args) => {
         App.close_active_tab()
       },
