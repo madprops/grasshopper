@@ -5265,6 +5265,23 @@ App.build_settings = () => {
       info: `Delay in milliseconds for Settings Autoclick`,
       version: 1,
     },
+    palette_autoclick: {
+      name: `Palette Autoclick`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-click on the Command Palette`,
+      version: 1,
+    },
+    palette_autoclick_delay: {
+      name: `Palette Autoclick Delay`,
+      type: `number`,
+      value: App.autoclick_delay,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay in milliseconds for Palette Autoclick`,
+      version: 1,
+    },
     context_autoclick: {
       name: `Context Autoclick`,
       type: `checkbox`,

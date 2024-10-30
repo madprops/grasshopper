@@ -87,6 +87,10 @@ App.autoclick_action = (e) => {
     return
   }
 
+  if (check(`palette`, [`.palette_item`])) {
+    return
+  }
+
   if (check(`settings`, [
     `.settings_title`,
     `.settings_arrow`,
