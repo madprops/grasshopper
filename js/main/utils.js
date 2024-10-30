@@ -16,6 +16,7 @@ App.create_debouncer = (func, delay) => {
 
   function clear () {
     clearTimeout(timer)
+    timer = undefined
   }
 
   function run (...args) {
@@ -28,6 +29,14 @@ App.create_debouncer = (func, delay) => {
     timer = setTimeout(() => {
       run(...args)
     }, delay)
+  }
+
+  obj.call_2 = (...args) => {
+    if (timer) {
+      return
+    }
+
+    obj.call(args)
   }
 
   obj.now = (...args) => {
