@@ -1268,8 +1268,8 @@ a:hover
   gap: 0.5rem;
   font-size: var(--footer_font_size);
   font-family: var(--footer_font);
-  padding-top: var(--panel_padding);
-  padding-bottom: var(--panel_padding);
+  padding-top: var(--footer_padding);
+  padding-bottom: var(--footer_padding);
 }
 
 .show_footer #footer {
@@ -1890,8 +1890,8 @@ a:hover
   align-items: center;
   color: var(--main_title_text_color);
   background-color: var(--main_title_background_color);
-  padding-top: var(--panel_padding);
-  padding-bottom: var(--panel_padding);
+  padding-top: var(--main_title_padding);
+  padding-bottom: var(--main_title_padding);
   padding-left: 0.66rem;
   padding-right: 0.66rem;
   margin-bottom: 0.25rem;

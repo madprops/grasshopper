@@ -1010,6 +1010,17 @@ App.set_footer_vars = () => {
   let footer_align = App.get_setting(`footer_align`)
   let footer_justify = App.justify_map[footer_align]
   App.set_css_var(`footer_align`, footer_justify)
+  let size = App.get_setting(`footer_size`)
+
+  if (size === `small`) {
+    App.set_css_var(`footer_padding`, `0.15rem`)
+  }
+  else if (size === `normal`) {
+    App.set_css_var(`footer_padding`, `0.25rem`)
+  }
+  else if (size === `big`) {
+    App.set_css_var(`footer_padding`, `0.35rem`)
+  }
 }
 
 App.set_favorite_vars = () => {
@@ -1117,6 +1128,17 @@ App.set_main_title_vars = () => {
   }
 
   main.classList.add(`main_title_align_${title_align}`)
+  let size = App.get_setting(`main_title_size`)
+
+  if (size === `small`) {
+    App.set_css_var(`main_title_padding`, `0.15rem`)
+  }
+  else if (size === `normal`) {
+    App.set_css_var(`main_title_padding`, `0.25rem`)
+  }
+  else if (size === `big`) {
+    App.set_css_var(`main_title_padding`, `0.35rem`)
+  }
 }
 
 App.set_zone_vars = () => {

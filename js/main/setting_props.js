@@ -2925,6 +2925,16 @@ App.build_settings = () => {
         ])
       },
     },
+    footer_size: {
+      name: `Footer Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the Footer`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes_3)
+      },
+    },
     footer_menu: {
       name: `Footer Menu`,
       type: `list`,
@@ -3272,6 +3282,16 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.aligns)
+      },
+    },
+    main_title_size: {
+      name: `Title Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the Title`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes_3)
       },
     },
     main_title_menu: {
