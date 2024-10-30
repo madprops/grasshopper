@@ -61,8 +61,9 @@ App.reset_tab_box = () => {
 App.create_tab_box = () => {
   let tab_box = DOM.create(`div`, `box`, `tab_box`)
   let title = DOM.create(`div`, `box_title`, `tab_box_title`)
+  let tips = App.tooltips()
 
-  if (App.tooltips()) {
+  if (tips) {
     let parts = [
       `This is the Tab Box`,
       `Click to select a mode`,
@@ -78,6 +79,11 @@ App.create_tab_box = () => {
   if (btns) {
     let left = DOM.create(`div`, `pointer flex_column_center box_title_button box_title_left glowbox`, `tab_box_title_left`)
     left.append(App.get_svg_icon(`arrow_left`))
+
+    if (tips) {
+      left.title = `Click: Previous Mode`
+    }
+
     title.append(left)
   }
 
@@ -94,6 +100,11 @@ App.create_tab_box = () => {
   if (btns) {
     let right = DOM.create(`div`, `pointer flex_column_center box_title_button box_title_right glowbox`, `tab_box_title_right`)
     right.append(App.get_svg_icon(`arrow_right`))
+
+    if (tips) {
+      right.title = `Click: Next Mode`
+    }
+
     title.append(right)
   }
 
