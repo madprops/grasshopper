@@ -1,4 +1,4 @@
-// NeedContext v9.4
+// NeedContext v9.5
 
 // Main object
 const NeedContext = {}
@@ -37,7 +37,7 @@ NeedContext.set_defaults = () => {
   NeedContext.last_x = 0
   NeedContext.last_y = 0
   NeedContext.layers = {}
-  NeedContext.mouse_activity = false
+  NeedContext.mouse_activity = 0
   NeedContext.reset_debouncers()
 }
 
@@ -796,7 +796,11 @@ NeedContext.init = () => {
       return
     }
 
-    NeedContext.mouse_activity = true
+    NeedContext.mouse_activity += 1
+
+    if (NeedContext.mouse_activity > 5) {
+      NeedContext.check_auto_funcs(e)
+    }
   })
 
   document.addEventListener(`mouseover`, (e) => {
@@ -804,29 +808,8 @@ NeedContext.init = () => {
       return
     }
 
-    NeedContext.autohide_debouncer.cancel()
-    NeedContext.autoclick_debouncer.cancel()
-
-    if (!NeedContext.mouse_activity) {
-      return
-    }
-
-    if (NeedContext.args.autohide) {
-      if ((e.target.id === `needcontext-main`)) {
-        NeedContext.autohide_debouncer.call()
-      }
-    }
-
-    if (NeedContext.args.autoclick) {
-      let item = e.target.closest(`.needcontext-item`)
-
-      if (!item) {
-        item = e.target.closest(`.needcontext-back`)
-      }
-
-      if (item) {
-        NeedContext.autoclick_debouncer.call(item, e)
-      }
+    if (NeedContext.mouse_activity > 5) {
+      NeedContext.check_auto_funcs(e)
     }
   })
 
@@ -836,7 +819,7 @@ NeedContext.init = () => {
     }
 
     if (NeedContext.args.autohide) {
-      NeedContext.autohide_debouncer.call()
+      NeedContext.start_autohide_timeout()
     }
   })
 
@@ -883,10 +866,6 @@ NeedContext.init = () => {
       e.preventDefault()
     }
   })
-
-  NeedContext.autohide_debouncer = NeedContext.create_debouncer(() => {
-    NeedContext.hide()
-  }, NeedContext.autohide_delay)
 
   NeedContext.autoclick_debouncer = NeedContext.create_debouncer((el, e) => {
     if (el.closest(`.needcontext-item`)) {
@@ -1261,6 +1240,43 @@ NeedContext.create_debouncer = (func, delay) => {
 }
 
 NeedContext.reset_debouncers = () => {
-  NeedContext.autohide_debouncer.cancel()
+  clearTimeout(NeedContext.autohide_timeout)
+  NeedContext.autohide_timeout = undefined
   NeedContext.autoclick_debouncer.cancel()
+}
+
+NeedContext.check_auto_funcs = (e) => {
+  if (!NeedContext.open || !e.target) {
+    return
+  }
+
+  let is_main = e.target.id === `needcontext-main`
+
+  if (!is_main) {
+    NeedContext.reset_debouncers()
+  }
+
+  if (NeedContext.args.autohide) {
+    if (is_main && !NeedContext.autohide_timeout) {
+      NeedContext.start_autohide_timeout()
+    }
+  }
+
+  if (NeedContext.args.autoclick) {
+    let item = e.target.closest(`.needcontext-item`)
+
+    if (!item) {
+      item = e.target.closest(`.needcontext-back`)
+    }
+
+    if (item) {
+      NeedContext.autoclick_debouncer.call(item, e)
+    }
+  }
+}
+
+NeedContext.start_autohide_timeout = () => {
+  NeedContext.autohide_timeout = setTimeout(() => {
+    NeedContext.hide()
+  }, NeedContext.autohide_delay)
 }
