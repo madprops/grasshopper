@@ -1257,7 +1257,8 @@ App.settings_summary = () => {
   }
 
   let n = Object.keys(App.settings).length
-  App.show_textarea({title: `Settings (${n})`, text: lines.join(`\n`)})
+  let title_icon = App.settings_icons.general
+  App.show_textarea({title: `Settings (${n})`, title_icon, text: lines.join(`\n`)})
 }
 
 App.get_background_effect = (value) => {

@@ -557,7 +557,6 @@ App.cycle_background_opacity = (how = `cycle`) => {
   }
 
   App.set_setting({setting: `background_opacity`, value: opacity})
-  App.check_refresh_settings()
   App.footer_message(`Opacity: ${opacity}%`)
   App.last_opacity_cycle_date = App.now()
   App.apply_theme()

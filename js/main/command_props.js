@@ -84,6 +84,7 @@ App.setup_commands = () => {
     tbmodes.push({
       name,
       short_name: m_name,
+      modes: [`items`],
       cmd: `change_tab_box_${mode}`,
       icon,
       action: (args) => {
@@ -476,6 +477,7 @@ App.setup_commands = () => {
   for (let i = 1; i <= App.themes.length; i++) {
     theme_nums.push({
       name: `Theme ${i}`,
+      modes: [`items`],
       cmd: `set_theme_${i}`,
       icon: theme_icon,
       action: (args) => {
@@ -1075,6 +1077,7 @@ App.setup_commands = () => {
     {
       name: `Prev Theme`,
       cmd: `set_previous_theme`,
+      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.set_previous_theme()
@@ -1084,6 +1087,7 @@ App.setup_commands = () => {
     {
       name: `Next Theme`,
       cmd: `set_next_theme`,
+      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.set_next_theme()
@@ -1423,6 +1427,7 @@ App.setup_commands = () => {
     {
       name: `Bookmark Page`,
       short_name: `Bookmark`,
+      modes: [`items`],
       cmd: `bookmark_page`,
       icon: bookmarks_icon,
       action: (args) => {
@@ -1721,6 +1726,7 @@ App.setup_commands = () => {
       name: `New Tab`,
       short_name: `New`,
       cmd: `open_new_tab`,
+      modes: [`items`],
       icon: new_icon,
       action: (args) => {
         App.new_tab(args.item, args.from)
@@ -2333,6 +2339,7 @@ App.setup_commands = () => {
       name: `Reopen Tab`,
       short_name: `Reopen`,
       cmd: `reopen_tab`,
+      modes: [`items`],
       icon: rewind_icon,
       action: (args) => {
         App.reopen_tab()
@@ -3959,6 +3966,7 @@ App.setup_commands = () => {
     {
       name: `Cycle Opacity`,
       short_name: `Opacity`,
+      modes: [`items`],
       cmd: `cycle_background_opacity`,
       icon: theme_icon,
       action: (args) => {
@@ -3969,6 +3977,7 @@ App.setup_commands = () => {
     {
       name: `Increase Opacity`,
       short_name: `Opacity +`,
+      modes: [`items`],
       cmd: `increase_background_opacity`,
       icon: theme_icon,
       action: (args) => {
@@ -3979,6 +3988,7 @@ App.setup_commands = () => {
     {
       name: `Decrease Opacity`,
       short_name: `Opacity -`,
+      modes: [`items`],
       cmd: `decrease_background_opacity`,
       icon: theme_icon,
       action: (args) => {
@@ -4324,6 +4334,7 @@ App.setup_commands = () => {
     {
       name: `Breathe`,
       cmd: `breathe_effect`,
+      modes: [`items`],
       icon: tree_icon,
       action: (args) => {
         App.start_breathe_effect()
