@@ -744,13 +744,13 @@ App.move_tabs_vertically = (direction, item) => {
 
   if ((direction === `down`) && active.at(-1).pinned) {
     if (active.at(-1) === App.get_last_pinned_tab()) {
-      App.unpin_tabs(item, true)
+      App.unpin_tabs(item)
       return
     }
   }
   else if ((direction === `up`) && !active[0].pinned) {
     if (active[0] === App.get_first_normal_tab()) {
-      App.pin_tabs(item, true)
+      App.pin_tabs(item)
       return
     }
   }
