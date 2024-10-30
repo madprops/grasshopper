@@ -1358,7 +1358,6 @@ App.setup_commands = () => {
       name: `Show Favorites`,
       short_name: `Favorites`,
       cmd: `show_favorites_menu`,
-      modes: [`items`],
       icon: favorites_icon,
       action: (args) => {
         App.show_favorites_menu(args.e)
@@ -1632,7 +1631,6 @@ App.setup_commands = () => {
       name: `Actions Menu`,
       short_name: `Actions`,
       cmd: `show_actions_menu`,
-      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.show_actions_menu(args.mode, args.item, args.e)
@@ -1643,7 +1641,6 @@ App.setup_commands = () => {
       name: `Browser Menu`,
       short_name: `Browser`,
       cmd: `show_browser_menu`,
-      modes: [`items`],
       icon: browser_icon,
       action: (args) => {
         App.show_browser_menu(args.e)
@@ -1677,7 +1674,6 @@ App.setup_commands = () => {
       name: `Hover Button Menu`,
       short_name: `Hover`,
       cmd: `show_hover_button_menu`,
-      modes: [`items`],
       item: true,
       icon: hover_button_icon,
       action: (args) => {
@@ -2075,7 +2071,6 @@ App.setup_commands = () => {
       name: `Close Menu`,
       short_name: `Close`,
       cmd: `show_close_tabs_menu`,
-      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.show_close_tabs_menu(args.e, args.item)
@@ -2086,7 +2081,6 @@ App.setup_commands = () => {
       name: `Close Button Menu`,
       short_name: `Close`,
       cmd: `show_close_button_menu`,
-      modes: [`items`],
       icon: close_button_icon,
       action: (args) => {
         App.show_close_button_menu(args.item, args.e)
