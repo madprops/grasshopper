@@ -1653,7 +1653,7 @@ a:hover
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.89rem;
+  width: var(--hover_button_width);
   flex-shrink: 0;
   flex-grow: 0;
 }

@@ -181,7 +181,8 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`container_with_text`)
     }
 
-    App.close_button_vars()
+    App.set_close_button_vars()
+    App.set_hover_button_vars()
     App.set_pinline_vars()
     App.set_tab_box_vars()
     App.set_icon_size_vars()
@@ -190,7 +191,6 @@ App.do_apply_theme = (args = {}) => {
     App.set_favorite_vars()
     App.set_main_title_vars()
     App.set_zone_vars()
-    App.set_hover_vars()
     App.set_effect_vars()
     App.set_taglist_vars()
 
@@ -920,7 +920,7 @@ App.set_tab_box_vars = () => {
   }
 }
 
-App.close_button_vars = () => {
+App.set_close_button_vars = () => {
   let main = DOM.el(`#main`)
 
   if (App.get_setting(`close_button_colors`)) {
@@ -1119,7 +1119,7 @@ App.set_zone_vars = () => {
   main.classList.add(`split_side_${split_side}`)
 }
 
-App.set_hover_vars = () => {
+App.set_hover_button_vars = () => {
   let main = DOM.el(`#main`)
 
   for (let side of [`left`, `right`]) {
@@ -1128,6 +1128,13 @@ App.set_hover_vars = () => {
 
   let hb = App.get_setting(`hover_button`)
   main.classList.add(`hover_button_${hb}`)
+
+  if (App.get_setting(`bigger_hover_button`)) {
+    App.set_css_var(`hover_button_width`, `2.24rem`)
+  }
+  else {
+    App.set_css_var(`hover_button_width`, `1.89rem`)
+  }
 }
 
 App.set_effect_vars = () => {

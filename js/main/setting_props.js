@@ -2160,6 +2160,13 @@ App.build_settings = () => {
       info: `Pick items when right clicking the Hover Button`,
       version: 1,
     },
+    bigger_hover_button: {
+      name: `Bigger Hover Button`,
+      type: `checkbox`,
+      value: false,
+      info: `Make the Hover Button wider`,
+      version: 1,
+    },
   }
 
   add_props()
