@@ -311,9 +311,9 @@ App.check_command = (command, args = {}) => {
   }
 
   if (valid) {
-    if (command.modes) {
+    if (command.modes && ![`lock_screen`].includes(args.mode)) {
       if (command.modes.includes(`items`)) {
-        if (!args.on_items && ![`lock_screen`].includes(args.mode)) {
+        if (!args.on_items) {
           valid = false
         }
       }
