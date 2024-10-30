@@ -113,12 +113,31 @@ App.create_footer = () => {
 
   let btn_up = DOM.create(`div`, `footer_up footer_button`, `footer_up_tabs`)
   btn_up.textContent = App.up_arrow_icon
-  btn_up.title = `Click: Move To Top\nMiddle Click: Select Above`
   footer.append(btn_up)
 
   let btn_down = DOM.create(`div`, `footer_down footer_button`, `footer_down_tabs`)
   btn_down.textContent = App.down_arrow_icon
-  btn_down.title = `Click: Move To Bottom\nMiddle Click: Select Below`
+
+  if (App.tooltips()) {
+    let up_tips = [
+      `Click: Move To Top`,
+      `Middle Click: Select Above`,
+      `Shift + Click: Page Up`,
+      `Ctrl + Click: Tab Up`,
+    ]
+
+    btn_up.title = up_tips.join(`\n`)
+
+    let down_tips = [
+      `Click: Move To Bottom`,
+      `Middle Click: Select Below`,
+      `Shift + Click: Page Down`,
+      `Ctrl + Click: Tab Down`,
+    ]
+
+    btn_down.title = down_tips.join(`\n`)
+  }
+
   footer.append(btn_down)
 
   if (!App.get_setting(`show_footer_buttons`)) {
@@ -265,10 +284,32 @@ App.footer_middle_click = (e) => {
 }
 
 App.footer_up_click = (e) => {
+  let mode = App.active_mode
+
+  if (e.shiftKey) {
+    App.scroll_page(mode, `up`)
+    return
+  }
+  else if (e.ctrlKey) {
+    App.jump_tabs_all(true)
+    return
+  }
+
   App.move_tabs_vertically(`up`)
 }
 
 App.footer_down_click = (e) => {
+  let mode = App.active_mode
+
+  if (e.shiftKey) {
+    App.scroll_page(mode, `down`)
+    return
+  }
+  else if (e.ctrlKey) {
+    App.jump_tabs_all()
+    return
+  }
+
   App.move_tabs_vertically(`down`)
 }
 
