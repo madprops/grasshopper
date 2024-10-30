@@ -815,13 +815,13 @@ NeedContext.init = () => {
     NeedContext.check_auto_funcs(e)
   })
 
-  document.documentElement.addEventListener(`mouseleave`, () => {
+  document.documentElement.addEventListener(`mouseleave`, (e) => {
     if (!NeedContext.open) {
       return
     }
 
     if (NeedContext.args.autohide) {
-      NeedContext.start_autohide_timeout()
+      NeedContext.autohide_debouncer.call_2(e)
     }
   })
 
@@ -868,6 +868,10 @@ NeedContext.init = () => {
       e.preventDefault()
     }
   })
+
+  NeedContext.autohide_debouncer = NeedContext.create_debouncer((e) => {
+    NeedContext.hide(e)
+  }, NeedContext.autohide_delay)
 
   NeedContext.autoclick_debouncer = NeedContext.create_debouncer((el, e) => {
     if (el.closest(`.needcontext-item`)) {
@@ -1215,6 +1219,7 @@ NeedContext.create_debouncer = (func, delay) => {
 
   function clear () {
     clearTimeout(timer)
+    timer = undefined
   }
 
   function run (...args) {
@@ -1227,6 +1232,14 @@ NeedContext.create_debouncer = (func, delay) => {
     timer = setTimeout(() => {
       run(...args)
     }, delay)
+  }
+
+  obj.call_2 = (...args) => {
+    if (timer) {
+      return
+    }
+
+    obj.call(args)
   }
 
   obj.now = (...args) => {
@@ -1242,8 +1255,7 @@ NeedContext.create_debouncer = (func, delay) => {
 }
 
 NeedContext.reset_debouncers = () => {
-  clearTimeout(NeedContext.autohide_timeout)
-  NeedContext.autohide_timeout = undefined
+  NeedContext.autohide_debouncer.cancel()
   NeedContext.autoclick_debouncer.cancel()
 }
 
@@ -1263,8 +1275,8 @@ NeedContext.check_auto_funcs = (e) => {
   }
 
   if (NeedContext.args.autohide) {
-    if (is_main && !NeedContext.autohide_timeout) {
-      NeedContext.start_autohide_timeout()
+    if (is_main) {
+      NeedContext.autohide_debouncer.call_2(e)
     }
   }
 
@@ -1279,12 +1291,6 @@ NeedContext.check_auto_funcs = (e) => {
       NeedContext.autoclick_debouncer.call(item, e)
     }
   }
-}
-
-NeedContext.start_autohide_timeout = () => {
-  NeedContext.autohide_timeout = setTimeout(() => {
-    NeedContext.hide()
-  }, NeedContext.autohide_delay)
 }
 
 NeedContext.check_mouse_range = (e) => {
