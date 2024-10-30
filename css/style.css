@@ -362,7 +362,9 @@ select {
   max-width: 100%;
 }
 
-.filter_button {
+.filter_button,
+.filter_btn
+{
   padding: 0.185rem;
 }
 

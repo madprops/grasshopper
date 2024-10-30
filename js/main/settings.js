@@ -358,7 +358,7 @@ App.add_settings_filter = (category) => {
 
   filter.placeholder = `Filter (${count})`
 
-  let bottom = DOM.create(`div`, `button filter_button`)
+  let bottom = DOM.create(`div`, `button filter_btn`)
   bottom.textContent = App.filter_bottom_icon
   bottom.title = App.filter_bottom_title
 
@@ -366,7 +366,7 @@ App.add_settings_filter = (category) => {
     App.settings_bottom()
   })
 
-  let clear = DOM.create(`div`, `button filter_button`)
+  let clear = DOM.create(`div`, `button filter_btn`)
   clear.textContent = App.filter_clear_icon
   clear.title = App.filter_clear_title
 
