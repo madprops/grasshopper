@@ -1140,7 +1140,6 @@ App.setup_commands = () => {
       name: `Toggle Favorites`,
       short_name: `Favs`,
       cmd: `toggle_favorites`,
-      modes: [`items`],
       icon: favorites_icon,
       action: (args) => {
         App.toggle_favorites(args.mode)
@@ -1162,7 +1161,6 @@ App.setup_commands = () => {
       name: `Toggle Tab Box`,
       short_name: `Tab Box`,
       cmd: `toggle_tab_box`,
-      modes: [`items`],
       icon: tab_box_icon,
       action: (args) => {
         App.toggle_tab_box()
@@ -1264,7 +1262,6 @@ App.setup_commands = () => {
       name: `Toggle Taglist`,
       short_name: `Taglist`,
       cmd: `toggle_taglist`,
-      modes: [`items`],
       icon: tags_icon,
       action: (args) => {
         App.toggle_taglist(args.mode)
@@ -1275,7 +1272,6 @@ App.setup_commands = () => {
       name: `Toggle Footer`,
       short_name: `Footer`,
       cmd: `toggle_footer`,
-      modes: [`items`],
       icon: footer_icon,
       action: (args) => {
         App.toggle_footer()
@@ -1287,7 +1283,6 @@ App.setup_commands = () => {
       short_name: `Auto Blur`,
       cmd: `toggle_auto_blur`,
       icon: command_icon,
-      modes: [`items`],
       action: (args) => {
         App.toggle_auto_blur()
       },
@@ -3837,7 +3832,6 @@ App.setup_commands = () => {
       name: `Default Font`,
       short_name: `Def Font`,
       cmd: `default_font_size`,
-      modes: [`items`],
       icon: notepad_icon,
       action: (args) => {
         App.set_default_font()
@@ -3848,7 +3842,6 @@ App.setup_commands = () => {
       name: `Increase Font`,
       short_name: `Font +`,
       cmd: `increase_font_size`,
-      modes: [`items`],
       icon: plus_icon,
       action: (args) => {
         App.increase_font_size()
@@ -3859,7 +3852,6 @@ App.setup_commands = () => {
       name: `Decrease Font`,
       short_name: `Font -`,
       cmd: `decrease_font_size`,
-      modes: [`items`],
       icon: minus_icon,
       action: (args) => {
         App.decrease_font_size()
@@ -3964,7 +3956,6 @@ App.setup_commands = () => {
     {
       name: `Cycle Opacity`,
       short_name: `Opacity`,
-      modes: [`items`],
       cmd: `cycle_background_opacity`,
       icon: theme_icon,
       action: (args) => {
@@ -3975,7 +3966,6 @@ App.setup_commands = () => {
     {
       name: `Increase Opacity`,
       short_name: `Opacity +`,
-      modes: [`items`],
       cmd: `increase_background_opacity`,
       icon: theme_icon,
       action: (args) => {
@@ -3986,7 +3976,6 @@ App.setup_commands = () => {
     {
       name: `Decrease Opacity`,
       short_name: `Opacity -`,
-      modes: [`items`],
       cmd: `decrease_background_opacity`,
       icon: theme_icon,
       action: (args) => {
@@ -4008,7 +3997,6 @@ App.setup_commands = () => {
     {
       name: `Set Title`,
       cmd: `edit_main_title`,
-      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.edit_main_title()
@@ -4128,7 +4116,6 @@ App.setup_commands = () => {
       name: `Toggle Date`,
       short_name: `Date`,
       cmd: `toggle_main_title_date`,
-      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.toggle_main_title_date()
@@ -4139,7 +4126,6 @@ App.setup_commands = () => {
       name: `Toggle Title`,
       short_name: `Title`,
       cmd: `toggle_main_title`,
-      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.toggle_main_title()
@@ -4182,7 +4168,6 @@ App.setup_commands = () => {
       name: `Toggle Wrap`,
       short_name: `Wrap`,
       cmd: `toggle_wrap_text`,
-      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.toggle_wrap_text()
@@ -4204,7 +4189,6 @@ App.setup_commands = () => {
       name: `Toggle Autoclick`,
       short_name: `Autoclick`,
       cmd: `toggle_autoclick`,
-      modes: [`items`],
       icon: mouse_icon,
       action: (args) => {
         App.toggle_autoclick()
@@ -4215,7 +4199,6 @@ App.setup_commands = () => {
       name: `Toggle Gestures`,
       short_name: `Gestures`,
       cmd: `toggle_gestures`,
-      modes: [`items`],
       icon: gestures_icon,
       action: (args) => {
         App.toggle_gestures()
@@ -4252,7 +4235,6 @@ App.setup_commands = () => {
       name: `Repeat Command`,
       short_name: `Repeat`,
       cmd: `repeat_command`,
-      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.repeat_command()
@@ -4329,7 +4311,6 @@ App.setup_commands = () => {
     {
       name: `Swarm`,
       cmd: `locust_swarm`,
-      modes: [`items`],
       icon: grasshopper_icon,
       action: (args) => {
         App.locust_swarm()
