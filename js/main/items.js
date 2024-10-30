@@ -105,11 +105,9 @@ App.select_to_edge = (mode, dir) => {
         }
       }
     }
-    else {
-      if (dir === `up`) {
-        if (item !== App.get_first_normal_tab()) {
-          items = items.filter(x => !x.pinned)
-        }
+    else if (dir === `up`) {
+      if (item !== App.get_first_normal_tab()) {
+        items = items.filter(x => !x.pinned)
       }
     }
   }
