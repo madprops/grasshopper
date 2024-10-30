@@ -36,6 +36,7 @@ App.show_palette = (prefilter = ``) => {
   let els = DOM.els(`.palette_item`, container)
   let active = App.get_active_items()
   let too_many = active.length > App.max_command_check_items
+  let num = 0
 
   for (let el of els) {
     if (el.dataset.name.startsWith(`!`)) {
@@ -49,12 +50,14 @@ App.show_palette = (prefilter = ``) => {
 
     if (too_many || App.check_command(command, {from: `palette`})) {
       DOM.show(el, 2)
+      num += 1
     }
     else {
       DOM.hide(el, 2)
     }
   }
 
+  filter.placeholder = `Command (${num})`
   App.hide_context()
   App.show_popup(`palette`)
   App.palette_select_first()
@@ -194,9 +197,6 @@ App.fill_palette = () => {
     container.append(el)
     num += 1
   }
-
-  let filter = DOM.el(`#palette_filter`)
-  filter.placeholder = `Command (${num})`
 }
 
 App.palette_filter_focused = () => {
