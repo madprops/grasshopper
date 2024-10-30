@@ -3014,6 +3014,13 @@ App.build_settings = () => {
       info: `Show the item count on the Footer`,
       version: 1,
     },
+    show_footer_buttons: {
+      name: `Buttons In Footer`,
+      type: `checkbox`,
+      value: true,
+      info: `Show buttons on the right side of the Footer`,
+      version: 1,
+    },
   }
 
   add_props()

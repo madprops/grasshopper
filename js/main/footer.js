@@ -121,6 +121,11 @@ App.create_footer = () => {
   btn_down.title = `Click: Move To Bottom\nMiddle Click: Select Below`
   footer.append(btn_down)
 
+  if (!App.get_setting(`show_footer_buttons`)) {
+    DOM.hide(btn_up, 2)
+    DOM.hide(btn_down, 2)
+  }
+
   return footer
 }
 
