@@ -2069,7 +2069,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_active_tab()
       },
-      info: `Close tabs`,
+      info: `Close current page`,
     },
     {
       name: `Close Menu`,
