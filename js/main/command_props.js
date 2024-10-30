@@ -4036,7 +4036,6 @@ App.setup_commands = () => {
       name: `Red Title`,
       cmd: `color_main_title_red`,
       icon: main_title_icon,
-      modes: [`items`],
       action: (args) => {
         App.color_main_title(`red`)
       },
@@ -4045,7 +4044,6 @@ App.setup_commands = () => {
     {
       name: `Green Title`,
       cmd: `color_main_title_green`,
-      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.color_main_title(`green`)
@@ -4055,7 +4053,6 @@ App.setup_commands = () => {
     {
       name: `Blue Title`,
       cmd: `color_main_title_blue`,
-      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.color_main_title(`blue`)
@@ -4065,7 +4062,6 @@ App.setup_commands = () => {
     {
       name: `Black Title`,
       cmd: `color_main_title_black`,
-      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.color_main_title(`black`)
@@ -4075,7 +4071,6 @@ App.setup_commands = () => {
     {
       name: `White Title`,
       cmd: `color_main_title_white`,
-      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.color_main_title(`white`)
@@ -4086,7 +4081,6 @@ App.setup_commands = () => {
       name: `Prev Title Color`,
       cmd: `previous_main_title_color`,
       icon: main_title_icon,
-      modes: [`items`],
       action: (args) => {
         App.next_main_title_color(`prev`)
       },
@@ -4096,7 +4090,6 @@ App.setup_commands = () => {
       name: `Next Title Color`,
       cmd: `next_main_title_color`,
       icon: main_title_icon,
-      modes: [`items`],
       action: (args) => {
         App.next_main_title_color(`next`)
       },
@@ -4105,7 +4098,6 @@ App.setup_commands = () => {
     {
       name: `Uncolor Title`,
       cmd: `uncolor_main_title`,
-      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.uncolor_main_title()
@@ -4136,7 +4128,6 @@ App.setup_commands = () => {
       name: `Copy Title`,
       cmd: `copy_main_title`,
       icon: main_title_icon,
-      modes: [`items`],
       action: (args) => {
         App.copy_main_title()
       },
