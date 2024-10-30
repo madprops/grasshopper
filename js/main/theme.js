@@ -273,7 +273,6 @@ App.random_color = (what, type) => {
 
   color = App.colorlib.hex_to_rgb(color)
   App.set_setting({setting: `${what}_color`, value: color})
-  App.check_refresh_settings()
   App.apply_theme()
 }
 

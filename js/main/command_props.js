@@ -445,6 +445,7 @@ App.setup_commands = () => {
     custom_urls.push({
       name: item.name,
       cmd: `open_url_${id}`,
+      modes: [`items`],
       icon: item.icon || browser_icon,
       action: (args) => {
         App.open_custom_url(args.item, num, args.from)
@@ -462,6 +463,7 @@ App.setup_commands = () => {
     signals.push({
       name: item.name,
       short_name: short_name(item.name),
+      modes: [`items`],
       cmd: `send_signal_${id}`,
       icon: item.icon || signal_icon,
       signal_mode: true,
@@ -508,6 +510,7 @@ App.setup_commands = () => {
     cmd_combos.push({
       name: combo.name,
       short: short_name(combo.name),
+      modes: [`items`],
       cmd: `run_command_combo_${combo._id_}`,
       icon: combo.icon || combo_icon,
       action: async (args) => {
@@ -3924,6 +3927,7 @@ App.setup_commands = () => {
       name: `Light Colors`,
       short_name: `Light`,
       cmd: `set_light_colors`,
+      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.set_light_colors()
@@ -3934,6 +3938,7 @@ App.setup_commands = () => {
       name: `Dark Colors`,
       short_name: `Dark`,
       cmd: `set_dark_colors`,
+      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.set_dark_colors()
@@ -3944,6 +3949,7 @@ App.setup_commands = () => {
       name: `Random Light`,
       short_name: `Light`,
       cmd: `set_random_light_colors`,
+      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.random_colors(`light`)
@@ -3954,6 +3960,7 @@ App.setup_commands = () => {
       name: `Random Dark`,
       short_name: `Dark`,
       cmd: `set_random_dark_colors`,
+      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.random_colors(`dark`)
@@ -4100,6 +4107,7 @@ App.setup_commands = () => {
       name: `Prev Title Color`,
       cmd: `previous_main_title_color`,
       icon: main_title_icon,
+      modes: [`items`],
       action: (args) => {
         App.next_main_title_color(`prev`)
       },
@@ -4109,6 +4117,7 @@ App.setup_commands = () => {
       name: `Next Title Color`,
       cmd: `next_main_title_color`,
       icon: main_title_icon,
+      modes: [`items`],
       action: (args) => {
         App.next_main_title_color(`next`)
       },
@@ -4150,6 +4159,7 @@ App.setup_commands = () => {
       name: `Copy Title`,
       cmd: `copy_main_title`,
       icon: main_title_icon,
+      modes: [`items`],
       action: (args) => {
         App.copy_main_title()
       },
@@ -4159,6 +4169,7 @@ App.setup_commands = () => {
       name: `Scroll Title Left`,
       short_name: `Title Left`,
       cmd: `scroll_main_title_left`,
+      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.scroll_main_title(`left`)
@@ -4169,6 +4180,7 @@ App.setup_commands = () => {
       name: `Scroll Title Right`,
       short_name: `Title Right`,
       cmd: `scroll_main_title_right`,
+      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.scroll_main_title(`right`)
@@ -4249,6 +4261,7 @@ App.setup_commands = () => {
       name: `Repeat Command`,
       short_name: `Repeat`,
       cmd: `repeat_command`,
+      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.repeat_command()
@@ -4325,6 +4338,7 @@ App.setup_commands = () => {
     {
       name: `Swarm`,
       cmd: `locust_swarm`,
+      modes: [`items`],
       icon: grasshopper_icon,
       action: (args) => {
         App.locust_swarm()
