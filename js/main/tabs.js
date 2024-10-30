@@ -742,15 +742,17 @@ App.move_tabs_vertically = (direction, item) => {
 
   let active = App.get_active_items({mode: item.mode, item})
 
-  if ((direction === `down`) && (active.at(-1).pinned)) {
+  if ((direction === `down`) && active.at(-1).pinned) {
     if (active.at(-1) === App.get_last_pinned_tab()) {
       App.unpin_tabs(item, true)
       return
     }
   }
-  else if ((direction === `up`) && (active[0] === App.get_first_normal_tab())) {
-    App.pin_tabs(item, true)
-    return
+  else if ((direction === `up`) && !active[0].pinned) {
+    if (active[0] === App.get_first_normal_tab()) {
+      App.pin_tabs(item, true)
+      return
+    }
   }
 
   let first, last
