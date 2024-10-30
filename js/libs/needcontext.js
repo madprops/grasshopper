@@ -38,7 +38,7 @@ NeedContext.set_defaults = () => {
   NeedContext.last_x = 0
   NeedContext.last_y = 0
   NeedContext.layers = {}
-  NeedContext.mouse_activity = 0
+  NeedContext.mouse_activity = {}
   NeedContext.autohide_enabled = false
   NeedContext.reset_debouncers()
 }
@@ -799,11 +799,7 @@ NeedContext.init = () => {
     }
 
     NeedContext.check_mouse_range(e)
-
-    if (NeedContext.autohide_enabled) {
-      NeedContext.mouse_activity += 1
-      NeedContext.check_auto_funcs(e)
-    }
+    NeedContext.check_auto_funcs(e)
   })
 
   document.addEventListener(`mouseover`, (e) => {
@@ -1264,10 +1260,6 @@ NeedContext.check_auto_funcs = (e) => {
     return
   }
 
-  if (NeedContext.mouse_activity <= NeedContext.autohide_threshold) {
-    return
-  }
-
   let is_main = e.target.id === `needcontext-main`
 
   if (!is_main) {
@@ -1275,7 +1267,7 @@ NeedContext.check_auto_funcs = (e) => {
   }
 
   if (NeedContext.args.autohide) {
-    if (is_main) {
+    if (is_main && NeedContext.autohide_enabled) {
       NeedContext.autohide_debouncer.call_2(e)
     }
   }
@@ -1298,15 +1290,57 @@ NeedContext.check_mouse_range = (e) => {
     return
   }
 
-  let rect = NeedContext.container.getBoundingClientRect()
+  if (e.target.id !== `needcontext-main`) {
+    return
+  }
+
   let x = e.clientX
   let y = e.clientY
-  let min = NeedContext.autohide_threshold
 
-  if ((x >= rect.left - min) &&
-  (x <= rect.right + min) &&
-  (y >= rect.top - min) &&
-  (y <= rect.bottom + min)) {
-    NeedContext.autohide_enabled = true
+  if (NeedContext.mouse_activity.initial_x === undefined) {
+    NeedContext.mouse_activity.initial_x = x
+    NeedContext.mouse_activity.initial_y = y
+    return
+  }
+
+  let rect = NeedContext.container.getBoundingClientRect()
+  let done = false
+
+  function check(diff) {
+    let done = diff > NeedContext.autohide_threshold
+
+    if (done) {
+      NeedContext.autohide_enabled = true
+    }
+
+    return done
+  }
+
+  if (!done && (y < rect.top)) {
+    if (y < NeedContext.mouse_activity.initial_y) {
+      let diff = rect.top - y
+      done = check(diff)
+    }
+  }
+
+  if (!done && (y > rect.bottom)) {
+    if (y > NeedContext.mouse_activity.initial_y) {
+      let diff = y - rect.bottom
+      done = check(diff)
+    }
+  }
+
+  if (!done && (x < rect.left)) {
+    if (x < NeedContext.mouse_activity.initial_x) {
+      let diff = rect.left - x
+      done = check(diff)
+    }
+  }
+
+  if (!done && (x > rect.right)) {
+    if (x > NeedContext.mouse_activity.initial_x) {
+      let diff = x - rect.right
+      done = check(diff)
+    }
   }
 }
