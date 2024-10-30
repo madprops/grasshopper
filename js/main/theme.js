@@ -956,12 +956,16 @@ App.set_close_button_vars = () => {
   App.set_css_var(`close_button_border_width`, cbbw + `px`)
   let cbbwtb = App.get_setting(`close_button_border_width_tab_box`)
   App.set_css_var(`close_button_border_width_tab_box`, cbbwtb + `px`)
+  let size = App.get_setting(`close_button_size`)
 
-  if (App.get_setting(`bigger_close_button`)) {
-    App.set_css_var(`close_button_width`, `2.18rem`)
+  if (size === `small`) {
+    App.set_css_var(`close_button_width`, `1.42rem`)
   }
-  else {
+  else if (size === `normal`) {
     App.set_css_var(`close_button_width`, `1.77rem`)
+  }
+  else if (size === `big`) {
+    App.set_css_var(`close_button_width`, `2.18rem`)
   }
 }
 
@@ -1153,11 +1157,16 @@ App.set_hover_button_vars = () => {
   let hb = App.get_setting(`hover_button`)
   main.classList.add(`hover_button_${hb}`)
 
-  if (App.get_setting(`bigger_hover_button`)) {
-    App.set_css_var(`hover_button_width`, `2.24rem`)
+  let size = App.get_setting(`hover_button_size`)
+
+  if (size === `small`) {
+    App.set_css_var(`hover_button_width`, `1.42rem`)
   }
-  else {
+  else if (size === `normal`) {
     App.set_css_var(`hover_button_width`, `1.89rem`)
+  }
+  else if (size === `big`) {
+    App.set_css_var(`hover_button_width`, `2.24rem`)
   }
 }
 

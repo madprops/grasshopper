@@ -278,6 +278,12 @@ App.sizes_2 = [
   {text: `Huge`, value: `huge`},
 ]
 
+App.sizes_3 = [
+  {text: `Small`, value: `small`},
+  {text: `Normal`, value: `normal`},
+  {text: `Big`, value: `big`},
+]
+
 App.dark_colors = {
   background: `rgb(45, 45, 55)`,
   text: `rgb(233, 233, 233)`,

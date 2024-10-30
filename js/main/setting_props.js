@@ -1949,6 +1949,17 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
     },
+    close_button_size: {
+      name: `Close Button Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the Close Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes_3)
+      },
+    },
     close_button_menu: {
       name: `Close Button Menu`,
       type: `list`,
@@ -2063,13 +2074,6 @@ App.build_settings = () => {
       info: `Pick items when right clicking the Close Button`,
       version: 1,
     },
-    bigger_close_button: {
-      name: `Bigger Close Button`,
-      type: `checkbox`,
-      value: false,
-      info: `Make the Close Button wider`,
-      version: 1,
-    },
   }
 
   add_props()
@@ -2081,7 +2085,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `This is a button that appears on the side of items, to run commands`,
-      separator: true,
       version: 2,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -2090,6 +2093,17 @@ App.build_settings = () => {
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
         ])
+      },
+    },
+    hover_button_size: {
+      name: `Hover Button Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the Hover Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes_3)
       },
     },
     hover_button_menu: {
@@ -2158,13 +2172,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Pick items when right clicking the Hover Button`,
-      version: 1,
-    },
-    bigger_hover_button: {
-      name: `Bigger Hover Button`,
-      type: `checkbox`,
-      value: false,
-      info: `Make the Hover Button wider`,
       version: 1,
     },
   }
@@ -3091,11 +3098,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Small`, value: `small`},
-          {text: `Normal`, value: `normal`},
-          {text: `Big`, value: `big`},
-        ])
+        App.settings_make_menu(key, App.sizes_3)
       },
     },
     favorites_menu: {
