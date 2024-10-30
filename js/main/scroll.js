@@ -258,5 +258,9 @@ App.goto_top_or_bottom = (args = {}) => {
 }
 
 App.scroller_click = (mode, e) => {
+  if (e.shiftKey || e.ctrlKey) {
+    return
+  }
+
   App.goto_top_or_bottom({what: `top`, mode})
 }
