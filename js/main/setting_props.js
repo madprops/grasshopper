@@ -3748,9 +3748,9 @@ App.build_settings = () => {
       what: `main_button`,
       title: `Main Btn`,
       middle_click: `show_main_mode`,
-      click_press: `none`,
+      click_press: `toggle_tab_sort`,
       middle_click_press: `none`,
-      wheel_up: `jump_tabs_playing_down`,
+      wheel_up: `show_previous_mode`,
       wheel_down: `show_next_mode`,
     }),
 
