@@ -2706,6 +2706,13 @@ App.build_settings = () => {
       info: `Show the scroll percentange on the Tab Box title`,
       version: 1,
     },
+    tab_box_buttons: {
+      name: `Tab Box Buttons`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the left and right buttons in the Tab Box`,
+      version: 1,
+    },
     tab_box_auto_history: {
       name: `Tab Box Auto History`,
       type: `checkbox`,

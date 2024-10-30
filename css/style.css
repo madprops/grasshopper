@@ -1486,7 +1486,6 @@ a:hover
   background-color: var(--slight_shade);
   border-top: 1px solid var(--alt_color_1);
   border-bottom: 1px solid var(--alt_color_1);
-  gap: 0.5rem;
 }
 
 #tab_box_title_count {
@@ -2116,4 +2115,5 @@ a:hover
   flex-grow: 1;
   padding-top: calc(var(--panel_padding) - 1px);
   padding-bottom: calc(var(--panel_padding) - 1px);
+  gap: 0.5rem;
 }
