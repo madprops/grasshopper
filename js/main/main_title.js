@@ -246,13 +246,11 @@ App.set_main_title_color = (text, bg) => {
   App.set_setting({setting: `main_title_colors`, value: true})
   App.set_setting({setting: `main_title_text_color`, value: text})
   App.set_setting({setting: `main_title_background_color`, value: bg})
-  App.check_refresh_settings()
   App.apply_theme()
 }
 
 App.uncolor_main_title = () => {
   App.set_setting({setting: `main_title_colors`, value: false})
-  App.check_refresh_settings()
   App.apply_theme()
 }
 
@@ -274,7 +272,6 @@ App.get_main_title_date = () => {
 App.toggle_main_title_date = () => {
   let show_date = !App.get_setting(`main_title_date`)
   App.set_setting({setting: `main_title_date`, value: show_date})
-  App.check_refresh_settings()
   App.check_main_title()
 }
 
@@ -423,18 +420,6 @@ App.main_title_right = (el) => {
 
 App.main_title_pause = () => {
   App.main_title_scroll_pause = true
-}
-
-App.dark_main_title = () => {
-  let text = App.colorlib.get_light_color()
-  let bg = App.colorlib.get_dark_color()
-  App.set_main_title_color(text, bg)
-}
-
-App.light_main_title = () => {
-  let text = App.colorlib.get_dark_color()
-  let bg = App.colorlib.get_light_color()
-  App.set_main_title_color(text, bg)
 }
 
 App.main_title_click_left_button = (e) => {

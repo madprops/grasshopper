@@ -267,14 +267,7 @@ App.show_windows_menu = async (item, e) => {
 App.toggle_auto_blur = () => {
   let setting = !App.get_setting(`auto_blur`)
   App.set_setting({setting: `auto_blur`, value: setting, refresh: true})
-  App.check_refresh_settings()
-
-  if (setting) {
-    App.footer_message(`Auto Blur Enabled`)
-  }
-  else {
-    App.footer_message(`Auto Blur Disabled`)
-  }
+  App.footer_message(`Auto Blur: ${setting ? `Enabled` : `Disabled`}`)
 }
 
 App.build_shell = () => {

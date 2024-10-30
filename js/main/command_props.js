@@ -1281,6 +1281,7 @@ App.setup_commands = () => {
       short_name: `Auto Blur`,
       cmd: `toggle_auto_blur`,
       icon: command_icon,
+      modes: [`items`],
       action: (args) => {
         App.toggle_auto_blur()
       },
@@ -3999,6 +4000,7 @@ App.setup_commands = () => {
     {
       name: `Set Title`,
       cmd: `edit_main_title`,
+      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.edit_main_title()
@@ -4038,6 +4040,7 @@ App.setup_commands = () => {
       name: `Red Title`,
       cmd: `color_main_title_red`,
       icon: main_title_icon,
+      modes: [`items`],
       action: (args) => {
         App.color_main_title(`red`)
       },
@@ -4046,6 +4049,7 @@ App.setup_commands = () => {
     {
       name: `Green Title`,
       cmd: `color_main_title_green`,
+      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.color_main_title(`green`)
@@ -4055,6 +4059,7 @@ App.setup_commands = () => {
     {
       name: `Blue Title`,
       cmd: `color_main_title_blue`,
+      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.color_main_title(`blue`)
@@ -4064,6 +4069,7 @@ App.setup_commands = () => {
     {
       name: `Black Title`,
       cmd: `color_main_title_black`,
+      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.color_main_title(`black`)
@@ -4073,31 +4079,12 @@ App.setup_commands = () => {
     {
       name: `White Title`,
       cmd: `color_main_title_white`,
+      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.color_main_title(`white`)
       },
       info: `Apply white color to the Title`,
-    },
-    {
-      name: `Dark Title Theme`,
-      short_name: `Dark Title`,
-      cmd: `set_random_dark_main_title_theme`,
-      icon: main_title_icon,
-      action: (args) => {
-        App.dark_main_title()
-      },
-      info: `Apply a random dark color theme to the Title`,
-    },
-    {
-      name: `Light Title Theme`,
-      short_name: `Light Title`,
-      cmd: `set_random_light_main_title_theme`,
-      icon: main_title_icon,
-      action: (args) => {
-        App.light_main_title()
-      },
-      info: `Apply a random light color theme to the Title`,
     },
     {
       name: `Prev Title Color`,
@@ -4120,6 +4107,7 @@ App.setup_commands = () => {
     {
       name: `Uncolor Title`,
       cmd: `uncolor_main_title`,
+      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.uncolor_main_title()
@@ -4130,6 +4118,7 @@ App.setup_commands = () => {
       name: `Toggle Date`,
       short_name: `Date`,
       cmd: `toggle_main_title_date`,
+      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.toggle_main_title_date()
@@ -4140,6 +4129,7 @@ App.setup_commands = () => {
       name: `Toggle Title`,
       short_name: `Title`,
       cmd: `toggle_main_title`,
+      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.toggle_main_title()
@@ -4179,6 +4169,7 @@ App.setup_commands = () => {
       name: `Toggle Wrap`,
       short_name: `Wrap`,
       cmd: `toggle_wrap_text`,
+      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.toggle_wrap_text()
