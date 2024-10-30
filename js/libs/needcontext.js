@@ -1290,6 +1290,10 @@ NeedContext.start_autohide_timeout = () => {
 }
 
 NeedContext.check_mouse_range = (e) => {
+  if (NeedContext.autohide_enabled) {
+    return
+  }
+
   let rect = NeedContext.container.getBoundingClientRect()
   let x = e.clientX
   let y = e.clientY
