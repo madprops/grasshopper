@@ -16,7 +16,7 @@ App.unpin_tab = async (id) => {
   }
 }
 
-App.pin_tabs = (item) => {
+App.pin_tabs = (item, force = false) => {
   let items = []
 
   for (let it of App.get_active_items({mode: `tabs`, item})) {
@@ -31,7 +31,10 @@ App.pin_tabs = (item) => {
     return
   }
 
-  let force = App.check_force(`warn_on_pin_tabs`, items)
+  if (!force) {
+    force = App.check_force(`warn_on_pin_tabs`, items)
+  }
+
   let ids = items.map(x => x.id)
 
   App.show_confirm({
@@ -45,7 +48,7 @@ App.pin_tabs = (item) => {
   })
 }
 
-App.unpin_tabs = (item) => {
+App.unpin_tabs = (item, force = false) => {
   let items = []
 
   for (let it of App.get_active_items({mode: `tabs`, item})) {
@@ -60,7 +63,10 @@ App.unpin_tabs = (item) => {
     return
   }
 
-  let force = App.check_force(`warn_on_unpin_tabs`, items)
+  if (!force) {
+    force = App.check_force(`warn_on_unpin_tabs`, items)
+  }
+
   let ids = items.map(x => x.id)
 
   App.show_confirm({
