@@ -14,7 +14,7 @@ App.autoclick_action = (e) => {
     let element
 
     if (cls) {
-      element = DOM.parent(el, [cls])
+      element = DOM.parent(el, cls)
     }
     else {
       element = elem
@@ -47,11 +47,11 @@ App.autoclick_action = (e) => {
       elem = item.element
     }
 
-    if (check(`hover_button`, `.hover_button`)) {
+    if (check(`hover_button`, [`.hover_button`])) {
       return
     }
 
-    if (check(`close_button`, `.close_button`)) {
+    if (check(`close_button`, [`.close_button`])) {
       return
     }
 
@@ -67,27 +67,36 @@ App.autoclick_action = (e) => {
     return
   }
 
-  if (check(`main_button`, `.main_button`)) {
+  if (check(`main_button`, [`.main_button`])) {
     return
   }
 
-  if (check(`filter_button`, `.filter_button`)) {
+  if (check(`filter_button`, [`.filter_button`])) {
     return
   }
 
-  if (check(`actions_button`, `.actions_button`)) {
+  if (check(`actions_button`, [`.actions_button`])) {
     return
   }
 
-  if (check(`main_title_left_button`, `#main_title_left_button`)) {
+  if (check(`main_title_left_button`, [`#main_title_left_button`])) {
     return
   }
 
-  if (check(`main_title_right_button`, `#main_title_right_button`)) {
+  if (check(`main_title_right_button`, [`#main_title_right_button`])) {
     return
   }
 
-  if (check(`favorites`, `.favorites_bar_item`)) {
+  if (check(`settings`, [
+    `.settings_title`,
+    `.settings_arrow`,
+    `.settings_actions`,
+    `.settings_close`,
+  ])) {
+    return
+  }
+
+  if (check(`favorites`, [`.favorites_bar_item`])) {
     return
   }
 }

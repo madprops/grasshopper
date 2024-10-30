@@ -632,12 +632,12 @@ App.add_settings_switchers = (category) => {
   let text = App.category_string(category, true)
   title.append(App.button_text(icon, text))
   container.append(title)
-  let actions = DOM.create(`div`, `button icon_button`)
+  let actions = DOM.create(`div`, `button icon_button settings_actions`)
   actions.id = `settings_actions_${category}`
   actions.title = `Actions`
   actions.append(App.get_svg_icon(`sun`))
   container.append(actions)
-  let close = DOM.create(`div`, `button`)
+  let close = DOM.create(`div`, `button settings_close`)
   close.textContent = App.close_text
   container.append(close)
 
@@ -649,7 +649,7 @@ App.add_settings_switchers = (category) => {
     App.hide_window()
   })
 
-  let prev = DOM.create(`div`, `button arrow_button arrow_prev`)
+  let prev = DOM.create(`div`, `button settings_arrow arrow_button arrow_prev`)
   prev.textContent = `<`
   container.prepend(prev)
 
@@ -657,7 +657,7 @@ App.add_settings_switchers = (category) => {
     App.show_prev_settings()
   })
 
-  let next = DOM.create(`div`, `button arrow_button arrow_next`)
+  let next = DOM.create(`div`, `button settings_arrow arrow_button arrow_next`)
   next.textContent = `>`
   container.append(next)
 

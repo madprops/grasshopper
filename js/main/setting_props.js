@@ -5215,7 +5215,7 @@ App.build_settings = () => {
       name: `Title Left Autoclick`,
       type: `checkbox`,
       value: false,
-      info: `Auto-click the menu when hovering the Left Main Title Button`,
+      info: `Auto-click the menu when hovering the Title Left Button`,
       version: 1,
     },
     main_title_left_button_autoclick_delay: {
@@ -5233,7 +5233,7 @@ App.build_settings = () => {
       name: `Title Right Autoclick`,
       type: `checkbox`,
       value: false,
-      info: `Auto-click the menu when hovering the Right Main Title Button`,
+      info: `Auto-click the menu when hovering the Title Right Button`,
       version: 1,
     },
     main_title_right_button_autoclick_delay: {
@@ -5245,6 +5245,24 @@ App.build_settings = () => {
       max: App.number_max,
       separator: true,
       info: `Delay in milliseconds for Title Right Autoclick`,
+      version: 1,
+    },
+    settings_autoclick: {
+      name: `Settings Autoclick`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto-click the menu when hovering the Settings buttons`,
+      version: 1,
+    },
+    settings_autoclick_delay: {
+      name: `Settings Autoclick Delay`,
+      type: `number`,
+      value: App.autoclick_delay,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      separator: true,
+      info: `Delay in milliseconds for Settings Autoclick`,
       version: 1,
     },
     context_autoclick: {
