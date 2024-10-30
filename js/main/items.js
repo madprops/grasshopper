@@ -94,7 +94,17 @@ App.select_next = (mode, dir) => {
 }
 
 App.select_to_edge = (mode, dir) => {
+  let item = App.get_selected(mode)
   let items = App.get_items(mode).slice(0)
+
+  if (mode === `tabs`) {
+    if (item.pinned) {
+      items = items.filter(x => x.pinned)
+    }
+    else {
+      items = items.filter(x => !x.pinned)
+    }
+  }
 
   if (!items.length) {
     return
