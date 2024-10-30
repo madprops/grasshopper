@@ -1033,7 +1033,7 @@ App.set_favorite_vars = () => {
   }
 
   if (App.get_setting(`bigger_favorites`)) {
-    App.set_css_var(`favorites_padding`, `0.5rem`)
+    App.set_css_var(`favorites_padding`, `0.45rem`)
   }
   else {
     App.set_css_var(`favorites_padding`, `0.25rem`)
