@@ -958,7 +958,7 @@ App.close_button_vars = () => {
   App.set_css_var(`close_button_border_width_tab_box`, cbbwtb + `px`)
 
   if (App.get_setting(`bigger_close_button`)) {
-    App.set_css_var(`close_button_width`, `2.14rem`)
+    App.set_css_var(`close_button_width`, `2.18rem`)
   }
   else {
     App.set_css_var(`close_button_width`, `1.77rem`)
