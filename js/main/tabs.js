@@ -1040,18 +1040,26 @@ App.tabs_in_same_place = (items) => {
   return all_pinned || all_normal
 }
 
-App.first_normal_tab = () => {
+App.get_first_normal_tab = () => {
   let items = App.get_items(`tabs`)
-  let first = items.find(x => !x.pinned)
+  return items.find(x => !x.pinned)
+}
+
+App.first_normal_tab = () => {
+  let first = App.get_first_normal_tab()
 
   if (first) {
     App.tabs_action({item: first})
   }
 }
 
-App.last_normal_tab = () => {
+App.get_last_normal_tab = () => {
   let items = App.get_items(`tabs`)
-  let last = items.slice(0).reverse().find(x => !x.pinned)
+  return items.slice(0).reverse().find(x => !x.pinned)
+}
+
+App.last_normal_tab = () => {
+  let last = App.get_last_normal_tab()
 
   if (last) {
     App.tabs_action({item: last})

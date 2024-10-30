@@ -174,18 +174,26 @@ App.toggle_show_pins = () => {
   App.do_filter({mode: App.active_mode})
 }
 
-App.first_pinned_tab = () => {
+App.get_first_pinned_tab = () => {
   let items = App.get_items(`tabs`)
-  let first = items.find(x => x.pinned)
+  return items.find(x => x.pinned)
+}
+
+App.first_pinned_tab = () => {
+  let first = App.get_first_pinned_tab()
 
   if (first) {
     App.tabs_action({item: first})
   }
 }
 
-App.last_pinned_tab = () => {
+App.get_last_pinned_tab = () => {
   let items = App.get_items(`tabs`)
-  let last = items.slice(0).reverse().find(x => x.pinned)
+  return items.slice(0).reverse().find(x => x.pinned)
+}
+
+App.last_pinned_tab = () => {
+  let last = App.get_last_pinned_tab()
 
   if (last) {
     App.tabs_action({item: last})
