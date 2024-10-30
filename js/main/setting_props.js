@@ -3060,13 +3060,41 @@ App.build_settings = () => {
       value: `center`,
       info: `Gravity of the items in side modes of the favorites bar
       Either make them stick to the top, center, or bottom`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `Top`, value: `top`},
           {text: `Center`, value: `center`},
           {text: `Bottom`, value: `bottom`},
+        ])
+      },
+    },
+    favorites_density: {
+      name: `Favorites Density`,
+      type: `menu`,
+      value: `normal`,
+      info: `How close the items are to each other in the Favorites Bar`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Compact`, value: `compact`},
+          {text: `Normal`, value: `normal`},
+          {text: `Space`, value: `space`},
+        ])
+      },
+    },
+    favorites_size: {
+      name: `Favorites Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the Favorites panel`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Small`, value: `small`},
+          {text: `Normal`, value: `normal`},
+          {text: `Big`, value: `big`},
         ])
       },
     },
@@ -3199,20 +3227,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Autohide the Favorites Bar when on left or right mode`,
-      version: 1,
-    },
-    bigger_favorites: {
-      name: `Bigger Favorites`,
-      type: `checkbox`,
-      value: false,
-      info: `Make Favorites wider`,
-      version: 1,
-    },
-    dense_favorites: {
-      name: `Dense Favorites`,
-      type: `checkbox`,
-      value: false,
-      info: `Make Favorite bar items more close to each other`,
       version: 1,
     },
   }
