@@ -110,6 +110,17 @@ App.create_footer = () => {
 
   footer_content.append(footer_info)
   footer.append(footer_content)
+
+  let btn_up = DOM.create(`div`, `footer_up footer_button`, `footer_up_tabs`)
+  btn_up.textContent = App.up_arrow_icon
+  btn_up.title = `Click: Move To Top\nMiddle Click: Select Above`
+  footer.append(btn_up)
+
+  let btn_down = DOM.create(`div`, `footer_down footer_button`, `footer_down_tabs`)
+  btn_down.textContent = App.down_arrow_icon
+  btn_down.title = `Click: Move To Bottom\nMiddle Click: Select Below`
+  footer.append(btn_down)
+
   return footer
 }
 
@@ -246,4 +257,34 @@ App.footer_click = (e) => {
 App.footer_middle_click = (e) => {
   let cmd = App.get_setting(`middle_click_footer`)
   App.run_command({cmd, from: `footer`, e})
+}
+
+App.footer_up_click = (e) => {
+  App.move_tabs_vertically(`up`)
+}
+
+App.footer_down_click = (e) => {
+  App.move_tabs_vertically(`down`)
+}
+
+App.footer_up_middle_click = (e) => {
+  App.select_to_edge(`tabs`, `up`)
+}
+
+App.footer_down_middle_click = (e) => {
+  App.select_to_edge(`tabs`, `down`)
+}
+
+App.check_footer_mode = (mode) => {
+  let up = DOM.el(`#footer_up_tabs`)
+  let down = DOM.el(`#footer_down_tabs`)
+
+  if (mode === `tabs`) {
+    DOM.show(up)
+    DOM.show(down)
+  }
+  else {
+    DOM.hide(up)
+    DOM.hide(down)
+  }
 }

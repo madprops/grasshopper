@@ -113,6 +113,16 @@ App.mouse_click_action = (e) => {
       return
     }
 
+    if (DOM.parent(target, [`.footer_up`])) {
+      App.footer_up_click(e)
+      return
+    }
+
+    if (DOM.parent(target, [`.footer_down`])) {
+      App.footer_down_click(e)
+      return
+    }
+
     if (DOM.parent(target, [`.scroller`])) {
       App.scroller_click(mode, e)
       return
@@ -277,7 +287,7 @@ App.mouse_double_click_action = (e) => {
       return
     }
 
-    if (DOM.parent(target, [`#footer`])) {
+    if (DOM.parent(target, [`#footer_info`])) {
       App.footer_double_click(e)
       return
     }
@@ -556,8 +566,18 @@ App.mouse_middle_action = (e, target_el) => {
       return
     }
 
-    if (DOM.parent(target, [`#footer`])) {
+    if (DOM.parent(target, [`#footer_info`])) {
       App.footer_middle_click(e)
+      return
+    }
+
+    if (DOM.parent(target, [`.footer_up`])) {
+      App.footer_up_middle_click(e)
+      return
+    }
+
+    if (DOM.parent(target, [`.footer_down`])) {
+      App.footer_down_middle_click(e)
       return
     }
 

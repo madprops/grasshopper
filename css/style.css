@@ -2098,3 +2098,12 @@ a:hover
   background-color: unset;
   text-decoration: underline;
 }
+
+.footer_button {
+  cursor: pointer;
+  outline: 1px solid transparent;
+}
+
+.footer_button:hover {
+  outline: 1px solid var(--footer_text_color);
+}

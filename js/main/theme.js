@@ -987,7 +987,7 @@ App.set_footer_vars = () => {
     App.set_css_var(`footer_background_color`, App.get_setting(`footer_background_color`))
   }
   else {
-    App.set_css_var(`footer_text_color`, `unset`)
+    App.set_css_var(`footer_text_color`, App.text_color)
     App.set_css_var(`footer_background_color`, App.slight_shade)
   }
 
