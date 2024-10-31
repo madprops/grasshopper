@@ -2066,3 +2066,11 @@ App.focus_filter_input = () => {
     filter.focus()
   }
 }
+
+App.unfocus_filter_input = () => {
+  let filter = App.get_filter_el(App.active_mode)
+
+  if (filter) {
+    filter.blur()
+  }
+}

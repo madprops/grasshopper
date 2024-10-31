@@ -1606,6 +1606,16 @@ App.setup_commands = () => {
       },
       info: `Focus the filter input`,
     },
+    {
+      name: `Unfocus Filter`,
+      short_name: `Unfocus`,
+      cmd: `unfocus_filter_input`,
+      icon: filter_icon,
+      action: (args) => {
+        App.unfocus_filter_input()
+      },
+      info: `Unfocus the filter input`,
+    },
 
     ...mode_menus,
 
