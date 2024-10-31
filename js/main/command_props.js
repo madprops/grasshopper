@@ -84,7 +84,6 @@ App.setup_commands = () => {
     tbmodes.push({
       name,
       short_name: m_name,
-      modes: [`items`],
       cmd: `change_tab_box_${mode}`,
       icon,
       action: (args) => {
@@ -148,7 +147,6 @@ App.setup_commands = () => {
       name,
       short_name: color.name,
       cmd: `show_color_${color.id}`,
-      modes: [`items`],
       icon,
       action: (args) => {
         App.show_tab_list(`color_${color.id}`, args.e)
@@ -231,7 +229,6 @@ App.setup_commands = () => {
     color_closers.push({
       name,
       cmd: `close_color_${color.id}`,
-      modes: [`items`],
       icon: close_icon,
       action: (args) => {
         App.close_color(color.id)
@@ -245,7 +242,6 @@ App.setup_commands = () => {
     color_closers.push({
       name,
       cmd: `jump_tabs_color_${color.id}_up`,
-      modes: [`items`],
       icon,
       action: (args) => {
         App.jump_tabs_color(color.id, true)
@@ -259,7 +255,6 @@ App.setup_commands = () => {
     color_closers.push({
       name,
       cmd: `jump_tabs_color_${color.id}_down`,
-      modes: [`items`],
       icon,
       action: (args) => {
         App.jump_tabs_color(color.id)
@@ -445,7 +440,6 @@ App.setup_commands = () => {
     custom_urls.push({
       name: item.name,
       cmd: `open_url_${id}`,
-      modes: [`items`],
       icon: item.icon || browser_icon,
       action: (args) => {
         App.open_custom_url(args.item, num, args.from)
@@ -1904,7 +1898,6 @@ App.setup_commands = () => {
     {
       name: `Tab Up`,
       cmd: `jump_tabs_all_up`,
-      modes: [`items`],
       icon: up_icon,
       action: (args) => {
         App.jump_tabs_all(true)
@@ -1914,7 +1907,6 @@ App.setup_commands = () => {
     {
       name: `Tab Down`,
       cmd: `jump_tabs_all_down`,
-      modes: [`items`],
       icon: down_icon,
       action: (args) => {
         App.jump_tabs_all()
