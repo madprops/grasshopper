@@ -302,6 +302,16 @@ App.mouse_double_click_action = (e) => {
       return
     }
 
+    if (DOM.parent(target, [`#footer_up_tabs`])) {
+      App.footer_up_click(e)
+      return
+    }
+
+    if (DOM.parent(target, [`#footer_down_tabs`])) {
+      App.footer_down_click(e)
+      return
+    }
+
     if (DOM.parent(target, [`.mode_filter`])) {
       App.filter_double_click(mode, e)
       return
