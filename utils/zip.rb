@@ -20,5 +20,5 @@ end
 
 # Create the new zip file
 new_name = "#{name}_v#{version}.zip"
-`zip -r #{new_name} * -x "*.zip" "node_modules/*" "package-lock.json"`
+`zip -r #{new_name} * -x "*.zip" "node_modules/*" "package-lock.json" ".eslintcache" ".directory"`
 puts "Created #{new_name}"
