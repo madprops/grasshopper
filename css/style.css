@@ -2140,7 +2140,7 @@ a:hover
 }
 
 .filter_focus_effect .mode_filter:focus {
-  box-shadow: inset 0 0 0 1px var(--text_color);
+  box-shadow: inset 0 0 0 1px var(--text_color_darker);
 }
 
 .filter_effect {
