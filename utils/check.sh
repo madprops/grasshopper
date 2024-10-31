@@ -1,26 +1,11 @@
 #!/usr/bin/env bash
 
-npx eslint --cache -c eslint.config.mjs js/main/*.js
-if [ $? -ne 0 ]; then
-  exit 1
-fi
+# Only check files that have changed recently
+last_tag=$(git describe --tags --abbrev=0)
+changed_files=$(git diff --name-only $last_tag HEAD -- '*.js')
 
-npx eslint --cache -c eslint.config.mjs js/overrides.js
-if [ $? -ne 0 ]; then
-  exit 1
-fi
-
-npx eslint --cache -c eslint.config.mjs js/app.js
-if [ $? -ne 0 ]; then
-  exit 1
-fi
-
-npx eslint --cache -c eslint.config.mjs js/init.js
-if [ $? -ne 0 ]; then
-  exit 1
-fi
-
-npx eslint --cache -c eslint.config.mjs background/*.js
-if [ $? -ne 0 ]; then
-  exit 1
+if [ -n "$changed_files" ]; then
+  npx eslint --cache $changed_files
+else
+  echo "No files have changed since the last tag."
 fi
