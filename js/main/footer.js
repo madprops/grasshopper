@@ -79,7 +79,7 @@ App.create_footer = () => {
   let footer = DOM.create(`div`, ``, `footer`)
 
   if (App.get_setting(`show_footer_tab_box`)) {
-    let tab_box_btn = DOM.create(`div`, `boxicon`, `footer_tab_box`)
+    let tab_box_btn = DOM.create(`div`, `grower`, `footer_tab_box`)
     tab_box_btn.append(App.get_svg_icon(`arrow_up`))
 
     if (App.tooltips()) {
