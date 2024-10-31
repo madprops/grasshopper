@@ -490,3 +490,9 @@ App.title_buttons = [
   {text: `Hover`, value: `hover`},
   {text: `Fixed`, value: `fixed`},
 ]
+
+App.panel_sizes = {
+  small: `0.12rem`,
+  normal: `0.25rem`,
+  big: `0.35rem`,
+}
