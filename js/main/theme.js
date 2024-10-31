@@ -106,21 +106,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.add(`hide_scroller`)
     }
 
-    let borders_opts = [`normal`, `big`, `huge`]
-
-    for (let b of borders_opts) {
-      main.classList.remove(`borders_${b}`)
-    }
-
-    let borders = App.get_setting(`item_border`)
-
-    if (borders_opts.includes(borders)) {
-      main.classList.add(`borders_${borders}`)
-    }
-
-    let item_align = App.get_setting(`item_align`)
-    let item_justify = App.justify_map[item_align]
-    App.set_css_var(`item_align`, item_justify)
     App.set_background(args.background_image)
     App.apply_background_effects(args.background_effect, args.background_tiles)
 
@@ -133,32 +118,11 @@ App.do_apply_theme = (args = {}) => {
       document.body.classList.add(`no_rounded`)
     }
 
-    if (App.get_setting(`wrap_text`)) {
-      main.classList.remove(`no_wrap`)
-    }
-    else {
-      main.classList.add(`no_wrap`)
-    }
-
-    if (App.get_setting(`icon_pick`)) {
-      main.classList.add(`icon_pick`)
-    }
-    else {
-      main.classList.remove(`icon_pick`)
-    }
-
     if (App.get_setting(`button_icons`)) {
       main.classList.add(`button_text_icon_enabled`)
     }
     else {
       main.classList.remove(`button_text_icon_enabled`)
-    }
-
-    if (App.get_setting(`item_pointer`)) {
-      main.classList.add(`item_pointer`)
-    }
-    else {
-      main.classList.remove(`item_pointer`)
     }
 
     let active_bgs = [`none`, `normal`, `tab_box`, `everywhere`]
@@ -181,6 +145,7 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`container_with_text`)
     }
 
+    App.set_item_vars()
     App.set_close_button_vars()
     App.set_hover_button_vars()
     App.set_pinline_vars()
@@ -1297,5 +1262,45 @@ App.set_filter_vars = () => {
   }
   else {
     main.classList.remove(`filter_focus_effect`)
+  }
+}
+
+App.set_item_vars = () => {
+  let main = DOM.el(`#main`)
+  let borders_opts = [`normal`, `big`, `huge`]
+
+  for (let b of borders_opts) {
+    main.classList.remove(`borders_${b}`)
+  }
+
+  let borders = App.get_setting(`item_border`)
+
+  if (borders_opts.includes(borders)) {
+    main.classList.add(`borders_${borders}`)
+  }
+
+  let item_align = App.get_setting(`item_align`)
+  let item_justify = App.justify_map[item_align]
+  App.set_css_var(`item_align`, item_justify)
+
+  if (App.get_setting(`wrap_text`)) {
+    main.classList.remove(`no_wrap`)
+  }
+  else {
+    main.classList.add(`no_wrap`)
+  }
+
+  if (App.get_setting(`icon_pick`)) {
+    main.classList.add(`icon_pick`)
+  }
+  else {
+    main.classList.remove(`icon_pick`)
+  }
+
+  if (App.get_setting(`item_pointer`)) {
+    main.classList.add(`item_pointer`)
+  }
+  else {
+    main.classList.remove(`item_pointer`)
   }
 }
