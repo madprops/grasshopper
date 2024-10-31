@@ -49,7 +49,7 @@ App.double_key_date = 0
 App.scroller_max_top = 8
 App.dragging = false
 App.new_tab_url = `about:newtab`
-App.header_file = "header/index.html"
+App.header_file = `header/index.html`
 App.search_modes = [`history`, `bookmarks`]
 App.media_scroll = 33
 App.media_types = [`image`, `video`, `audio`]
@@ -194,7 +194,6 @@ App.settings_icons = {
   colors: `🇲🇲`,
   zones: `🚥`,
   edits: `📝`,
-  icons: `🖼️`,
   media: `📷`,
   icons: `😀`,
   show: `👁️`,

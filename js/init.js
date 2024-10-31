@@ -2,7 +2,7 @@ App.init = async () => {
   let win = await browser.windows.getCurrent({populate: false})
   App.window_id = win.id
   App.manifest = browser.runtime.getManifest()
-  App.header_url = browser.extension.getURL("header/index.html")
+  App.header_url = browser.extension.getURL(`header/index.html`)
   App.extension_id = browser.runtime.id
   App.print_intro()
   App.build_settings()
