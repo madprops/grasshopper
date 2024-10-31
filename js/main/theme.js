@@ -1106,11 +1106,22 @@ App.set_main_title_vars = () => {
     App.set_css_var(`main_title_padding`, `0.35rem`)
   }
 
-  if (App.get_setting(`fixed_main_title_buttons`)) {
-    main.classList.add(`fixed_main_title_buttons`)
+  let lb = App.get_setting(`main_title_left_button`)
+
+  if (lb === `fixed`) {
+    main.classList.add(`fixed_main_title_left`)
   }
   else {
-    main.classList.remove(`fixed_main_title_buttons`)
+    main.classList.remove(`fixed_main_title_left`)
+  }
+
+  let rb = App.get_setting(`main_title_right_button`)
+
+  if (rb === `fixed`) {
+    main.classList.add(`fixed_main_title_right`)
+  }
+  else {
+    main.classList.remove(`fixed_main_title_right`)
   }
 }
 

@@ -483,3 +483,9 @@ App.icon_weight = [
   {text: `Four`, value: 4},
   {text: `Five`, value: 5},
 ]
+
+App.title_buttons = [
+  {text: `None`, value: `none`},
+  {text: `Hover`, value: `hover`},
+  {text: `Fixed`, value: `fixed`},
+]

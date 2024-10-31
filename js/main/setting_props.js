@@ -3300,6 +3300,26 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sizes_3)
       },
     },
+    main_title_left_button: {
+      name: `Title Left Button`,
+      type: `menu`,
+      value: `hover`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.title_buttons)
+      },
+      info: `How to show the Title Left Button`,
+      version: 1,
+    },
+    main_title_right_button: {
+      name: `Title Right Button`,
+      type: `menu`,
+      value: `hover`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.title_buttons)
+      },
+      info: `How to show the Title Right Button`,
+      version: 1,
+    },
     main_title_menu: {
       name: `Title Menu`,
       type: `list`,
@@ -3501,20 +3521,6 @@ App.build_settings = () => {
       separator: true,
       info: `Pause these milliseconds after reaching the edges when scrolling
       Or after manually scrolling`,
-      version: 1,
-    },
-    show_main_title_buttons: {
-      name: `Show Title Buttons`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the Tile left and right buttons`,
-      version: 1,
-    },
-    fixed_main_title_buttons: {
-      name: `Fixed Title Buttons`,
-      type: `checkbox`,
-      value: false,
-      info: `Always show the Title left and right buttons`,
       version: 1,
     },
     wrap_main_title: {

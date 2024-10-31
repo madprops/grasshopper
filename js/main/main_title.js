@@ -61,9 +61,8 @@ App.create_main_title = () => {
   let title = App.get_setting(`main_title`)
   let rclick = App.get_cmd_name(`show_main_title_menu`)
   inner.textContent = App.check_caps(title)
-  let buttons = App.get_setting(`show_main_title_buttons`)
 
-  if (buttons) {
+  if (App.get_setting(`main_title_left_button`) !== `none`) {
     let btn_left = DOM.create(`div`, `main_title_button`, `main_title_left_button`)
     btn_left.textContent = `◄`
     App.main_title_side_button_tooltips(btn_left, `left`)
@@ -72,7 +71,7 @@ App.create_main_title = () => {
 
   el.append(inner)
 
-  if (buttons) {
+  if (App.get_setting(`main_title_right_button`) !== `none`) {
     let btn_right = DOM.create(`div`, `main_title_button`, `main_title_right_button`)
     btn_right.textContent = `►`
     App.main_title_side_button_tooltips(btn_right, `right`)

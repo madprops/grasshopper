@@ -1947,13 +1947,17 @@ a:hover
   flex-grow: 0;
 }
 
-.fixed_main_title_buttons .main_title_button {
+.fixed_main_title_left #main_title_left_button,
+.fixed_main_title_right #main_title_right_button
+{
   position: relative;
   opacity: 1;
   height: 100%;
 }
 
-.fixed_main_title_buttons .main_title_button:hover {
+.fixed_main_title_left #main_title_left_button:hover,
+.fixed_main_title_right #main_title_right_button:hover
+{
   border-width: 1px;
 }
 
