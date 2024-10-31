@@ -231,7 +231,7 @@ App.cycle_modes = async (reverse, reuse_filter = true) => {
     })
   }
 
-  let index = modes.indexOf(App.window_mode)
+  let index = modes.indexOf(App.active_mode)
   let new_mode
 
   if (index === -1) {

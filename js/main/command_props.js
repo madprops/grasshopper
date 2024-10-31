@@ -908,7 +908,6 @@ App.setup_commands = () => {
     {
       name: `Edge Up`,
       cmd: `tabs_edge_up`,
-      modes: [`items`],
       icon: right_icon,
       action: (args) => {
         App.edge_tab_up_down(`up`)
@@ -918,7 +917,6 @@ App.setup_commands = () => {
     {
       name: `Edge Down`,
       cmd: `tabs_edge_down`,
-      modes: [`items`],
       icon: right_icon,
       action: (args) => {
         App.edge_tab_up_down(`down`)
@@ -952,7 +950,6 @@ App.setup_commands = () => {
     {
       name: `Prev Mode`,
       cmd: `show_previous_mode`,
-      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.cycle_modes(true)
@@ -962,7 +959,6 @@ App.setup_commands = () => {
     {
       name: `Next Mode`,
       cmd: `show_next_mode`,
-      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.cycle_modes()
