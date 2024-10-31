@@ -4105,6 +4105,16 @@ App.setup_commands = () => {
       info: `Enable or disable Gestures`,
     },
     {
+      name: `Toggle Hover Button`,
+      short_name: `Hover Btn`,
+      cmd: `toggle_hover_button`,
+      icon: hover_button_icon,
+      action: (args) => {
+        App.toggle_hover_button()
+      },
+      info: `Enable or disable the Hover Button`,
+    },
+    {
       name: `Sleep 500ms`,
       short_name: `Sleep`,
       cmd: `sleep_ms_500`,

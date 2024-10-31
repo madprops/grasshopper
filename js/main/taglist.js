@@ -225,7 +225,6 @@ App.taglist_scroll = (taglist, direction) => {
 
 App.set_show_taglist = (what) => {
   App.set_setting({setting: `show_taglist`, value: what})
-  App.check_refresh_settings()
 }
 
 App.init_taglist = () => {

@@ -2089,19 +2089,22 @@ App.build_settings = () => {
   category = `hover`
 
   props = {
-    hover_button: {
-      name: `Hover Button`,
+    show_hover_button: {
+      name: `Show Hover Button`,
+      type: `checkbox`,
+      value: false,
+      no_mirror: true,
+      info: `Enable or disable the Hover Button`,
+      version: 1,
+    },
+    hover_button_side: {
+      name: `Hover Button Side`,
       type: `menu`,
-      value: `none`,
-      info: `This is a button that appears on the side of items, to run commands`,
-      version: 2,
+      value: `left`,
+      info: `Where to show the Hover Button`,
+      version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: App.separator_string},
-          {text: `Left`, value: `left`},
-          {text: `Right`, value: `right`},
-        ])
+        App.settings_make_menu(key, App.sides)
       },
     },
     hover_button_size: {

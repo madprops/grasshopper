@@ -1188,9 +1188,8 @@ App.set_hover_button_vars = () => {
     main.classList.remove(`hover_button_${side}`)
   }
 
-  let hb = App.get_setting(`hover_button`)
-  main.classList.add(`hover_button_${hb}`)
-
+  let hbs = App.get_setting(`hover_button_side`)
+  main.classList.add(`hover_button_${hbs}`)
   let size = App.get_setting(`hover_button_size`)
 
   if (size === `small`) {
