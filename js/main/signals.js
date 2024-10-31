@@ -194,10 +194,6 @@ App.send_signal = async (signal, from = `cmd`) => {
 }
 
 App.do_send_signal = async (signal, from) => {
-  if (App.screen_locked) {
-    return
-  }
-
   let res, text
 
   try {
@@ -320,9 +316,17 @@ App.start_signal_intervals = () => {
       App.log(`Signal: ${signal.name} Interval: ${signal.interval}`)
 
       let id = setInterval(() => {
-        if (App.get_setting(`signals_enabled`)) {
-          App.send_signal(signal)
+        if (!App.get_setting(`signals_enabled`)) {
+          return
         }
+
+        if (App.screen_locked) {
+          if (App.get_setting(`lock_screen_block_signals`)) {
+            return
+          }
+        }
+
+        App.send_signal(signal)
       }, signal.interval * 1000)
 
       App.signal_intervals.push(id)

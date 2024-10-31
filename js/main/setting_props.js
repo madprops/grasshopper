@@ -5139,6 +5139,13 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    lock_screen_block_signals: {
+      name: `Lock Screen Block Signals`,
+      type: `checkbox`,
+      value: true,
+      info: `Block signals when the screen is locked`,
+      version: 1,
+    },
     empty_lock_screen: {
       name: `Empty Lock Screen`,
       type: `checkbox`,
