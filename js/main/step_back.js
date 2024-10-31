@@ -50,8 +50,12 @@ App.step_back = (mode = App.active_mode, e = undefined) => {
   else if (tabs && item && !item.active) {
     App.focus_current_tab(scroll)
   }
+  else if (App.filter_is_focused(mode)) {
+    App.unfocus_filter(mode)
+    App.focus_items(mode)
+  }
   else if (tabs) {
-    if (App.get_setting(`step_back_recent`) && e && e.key !== `Escape`) {
+    if (App.get_setting(`step_back_recent`) && e && (e.key !== `Escape`)) {
       App.show_tab_list(`recent`, e)
     }
     else {
