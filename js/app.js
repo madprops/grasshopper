@@ -486,6 +486,7 @@ App.icon_weight = [
 
 App.title_buttons = [
   {text: `None`, value: `none`},
+  {text: App.separator_string},
   {text: `Hover`, value: `hover`},
   {text: `Fixed`, value: `fixed`},
 ]
