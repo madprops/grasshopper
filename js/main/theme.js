@@ -181,13 +181,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`container_with_text`)
     }
 
-    if (App.get_setting(`filter_focus_effect`)) {
-      main.classList.add(`filter_focus_effect`)
-    }
-    else {
-      main.classList.remove(`filter_focus_effect`)
-    }
-
     App.set_close_button_vars()
     App.set_hover_button_vars()
     App.set_pinline_vars()
@@ -200,6 +193,7 @@ App.do_apply_theme = (args = {}) => {
     App.set_zone_vars()
     App.set_effect_vars()
     App.set_taglist_vars()
+    App.set_filter_vars()
 
     App.insert_tab_color_css()
     App.insert_color_css()
@@ -1292,5 +1286,16 @@ App.set_taglist_vars = () => {
   }
   else {
     main.classList.remove(`autohide_taglist`)
+  }
+}
+
+App.set_filter_vars = () => {
+  let main = DOM.el(`#main`)
+
+  if (App.get_setting(`filter_focus_effect`)) {
+    main.classList.add(`filter_focus_effect`)
+  }
+  else {
+    main.classList.remove(`filter_focus_effect`)
   }
 }
