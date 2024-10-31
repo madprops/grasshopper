@@ -1936,7 +1936,7 @@ a:hover
   align-items: center;
   justify-content: center;
   width: 1.8rem;
-  background-color: var(--main_title_background_color);
+  background-color: var(--main_title_button_color);
   opacity: 0;
   border-style: solid;
   border-color: var(--main_title_text_color);

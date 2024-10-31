@@ -3461,6 +3461,16 @@ App.build_settings = () => {
       type: `color`,
       value: `rgba(88, 132, 118, 1)`,
       info: `Background color of the Title`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    main_title_button_color: {
+      name: `Title Button Color`,
+      type: `color`,
+      value: `rgba(0, 0, 0, 0)`,
+      info: `Background color of the Title Buttons`,
       separator: true,
       version: 1,
       setup: (key) => {

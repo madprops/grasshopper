@@ -1079,12 +1079,15 @@ App.set_main_title_vars = () => {
   if (App.get_setting(`main_title_colors`)) {
     let text_color = App.get_setting(`main_title_text_color`)
     let bg_color = App.get_setting(`main_title_background_color`)
+    let btn_color = App.get_setting(`main_title_button_color`)
     App.set_css_var(`main_title_text_color`, text_color)
     App.set_css_var(`main_title_background_color`, bg_color)
+    App.set_css_var(`main_title_button_color`, btn_color)
   }
   else {
     App.set_css_var(`main_title_text_color`, `unset`)
     App.set_css_var(`main_title_background_color`, `unset`)
+    App.set_css_var(`main_title_button_color`, `unset`)
   }
 
   let title_align = App.get_setting(`main_title_align`)
