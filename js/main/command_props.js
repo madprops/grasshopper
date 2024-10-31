@@ -4218,6 +4218,15 @@ App.setup_commands = () => {
       info: `Show the window to run and edit signals`,
     },
     {
+      name: `Toggle Signals`,
+      cmd: `toggle_signals`,
+      icon: signal_icon,
+      action: (args) => {
+        App.toggle_signals()
+      },
+      info: `Enable or disable automatic signals`,
+    },
+    {
       name: `Open Sidebar`,
       short_name: `Sidebar`,
       cmd: `open_sidebar`,

@@ -320,7 +320,9 @@ App.start_signal_intervals = () => {
       App.log(`Signal: ${signal.name} Interval: ${signal.interval}`)
 
       let id = setInterval(() => {
-        App.send_signal(signal)
+        if (App.get_setting(`signals_enabled`)) {
+          App.send_signal(signal)
+        }
       }, signal.interval * 1000)
 
       App.signal_intervals.push(id)
@@ -647,4 +649,10 @@ App.get_signal_cmds = (include_none, include_sep) => {
 
   App.clean_setting_headers(items)
   return items
+}
+
+App.toggle_signals = () => {
+  let enabled = App.get_setting(`signals_enabled`)
+  App.set_setting({setting: `signals_enabled`, value: !enabled})
+  App.footer_message(`Signals ${!enabled ? `Enabled` : `Disabled`}`)
 }

@@ -5075,6 +5075,14 @@ App.build_settings = () => {
       info: `The list of signal items to use with the Signals command`,
       version: 1,
     },
+    signals_enabled: {
+      name: `Signals Enabled`,
+      type: `checkbox`,
+      value: true,
+      no_mirror: true,
+      info: `Enable or disable automatic signals`,
+      version: 1,
+    },
     signal_title_icon: {
       name: `Signal Title Icon`,
       type: `checkbox`,
