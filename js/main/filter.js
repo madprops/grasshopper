@@ -671,6 +671,10 @@ App.focus_filter = (mode = App.active_mode) => {
   App.get_filter_el(mode).focus()
 }
 
+App.unfocus_filter = (mode = App.active_mode) => {
+  App.get_filter_el(mode).blur()
+}
+
 App.is_filtered = (mode = App.active_mode) => {
   return App.filter_has_value(mode) || (App.filter_mode(mode) !== `all`)
 }
@@ -1474,10 +1478,6 @@ App.filter_icon = (args = {}) => {
   })
 }
 
-App.blur_filter = (mode) => {
-  DOM.el(`#${mode}_filter`).blur()
-}
-
 App.check_filtered = (mode) => {
   let container = DOM.el(`#${mode}_container`)
   let filtered = App.is_filtered(mode)
@@ -2057,20 +2057,4 @@ App.filter_enter_active = (mode) => {
   }
 
   return sett === `normal`
-}
-
-App.focus_filter_input = () => {
-  let filter = App.get_filter_el(App.active_mode)
-
-  if (filter) {
-    filter.focus()
-  }
-}
-
-App.unfocus_filter_input = () => {
-  let filter = App.get_filter_el(App.active_mode)
-
-  if (filter) {
-    filter.blur()
-  }
 }

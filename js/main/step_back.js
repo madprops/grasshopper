@@ -62,7 +62,7 @@ App.step_back = (mode = App.active_mode, e = undefined) => {
     App.show_main_mode()
   }
   else {
-    App.blur_filter(mode)
+    App.unfocus_filter(mode)
     App.focus_items(mode)
   }
 }

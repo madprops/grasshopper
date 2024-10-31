@@ -1602,7 +1602,7 @@ App.setup_commands = () => {
       cmd: `focus_filter_input`,
       icon: filter_icon,
       action: (args) => {
-        App.focus_filter_input()
+        App.focus_filter(args.mode)
       },
       info: `Focus the filter input`,
     },
@@ -1612,7 +1612,7 @@ App.setup_commands = () => {
       cmd: `unfocus_filter_input`,
       icon: filter_icon,
       action: (args) => {
-        App.unfocus_filter_input()
+        App.unfocus_filter(args.mode)
       },
       info: `Unfocus the filter input`,
     },
