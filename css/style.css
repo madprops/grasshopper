@@ -2146,4 +2146,5 @@ a:hover
 .filter_effect {
   background-color: var(--text_color);
   color: var(--background_color);
+  box-shadow: none;
 }
