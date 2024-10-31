@@ -2097,13 +2097,12 @@ a:hover
   text-decoration: underline;
 }
 
-.footer_button {
+.boxicon {
   cursor: pointer;
-  outline: 1px solid transparent;
 }
 
-.footer_button:hover {
-  outline: 1px solid var(--footer_text_color);
+.boxicon:hover {
+  transform: scale(1.5);
 }
 
 .box_title_button {
