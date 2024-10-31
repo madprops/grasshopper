@@ -111,11 +111,11 @@ App.create_footer = () => {
   footer_content.append(footer_info)
   footer.append(footer_content)
 
-  let btn_up = DOM.create(`div`, `footer_button grower`, `footer_up_tabs`)
+  let btn_up = DOM.create(`div`, `footer_button grower footer_ghost`, `footer_up_tabs`)
   btn_up.textContent = App.up_arrow_icon
   footer.append(btn_up)
 
-  let btn_down = DOM.create(`div`, `footer_button grower`, `footer_down_tabs`)
+  let btn_down = DOM.create(`div`, `footer_button grower footer_ghost`, `footer_down_tabs`)
   btn_down.textContent = App.down_arrow_icon
 
   if (App.tooltips()) {

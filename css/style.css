@@ -2110,3 +2110,11 @@ a:hover
   padding-bottom: calc(var(--panel_padding) - 1px);
   gap: 0.5rem;
 }
+
+.footer_ghost {
+  display: none;
+}
+
+#footer:hover .footer_ghost {
+  display: flex;
+}
