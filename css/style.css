@@ -1278,7 +1278,7 @@ a:hover
   display: flex;
 }
 
-#footer_tab_box {
+.footer_button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2095,14 +2095,6 @@ a:hover
 .container_with_text .item.selected .container_icon_container {
   background-color: unset;
   text-decoration: underline;
-}
-
-.boxicon {
-  cursor: pointer;
-}
-
-.boxicon:hover {
-  transform: scale(1.4);
 }
 
 .box_title_button {

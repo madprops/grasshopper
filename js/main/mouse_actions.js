@@ -123,12 +123,12 @@ App.mouse_click_action = (e) => {
       return
     }
 
-    if (DOM.parent(target, [`.footer_up`])) {
+    if (DOM.parent(target, [`#footer_up_tabs`])) {
       App.footer_up_click(e)
       return
     }
 
-    if (DOM.parent(target, [`.footer_down`])) {
+    if (DOM.parent(target, [`#footer_down_tabs`])) {
       App.footer_down_click(e)
       return
     }
@@ -591,12 +591,12 @@ App.mouse_middle_action = (e, target_el) => {
       return
     }
 
-    if (DOM.parent(target, [`.footer_up`])) {
+    if (DOM.parent(target, [`#footer_up_tabs`])) {
       App.footer_up_middle_click(e)
       return
     }
 
-    if (DOM.parent(target, [`.footer_down`])) {
+    if (DOM.parent(target, [`#footer_down_tabs`])) {
       App.footer_down_middle_click(e)
       return
     }

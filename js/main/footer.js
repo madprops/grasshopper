@@ -79,7 +79,7 @@ App.create_footer = () => {
   let footer = DOM.create(`div`, ``, `footer`)
 
   if (App.get_setting(`show_footer_tab_box`)) {
-    let tab_box_btn = DOM.create(`div`, `grower`, `footer_tab_box`)
+    let tab_box_btn = DOM.create(`div`, `footer_button grower`, `footer_tab_box`)
     tab_box_btn.append(App.get_svg_icon(`arrow_up`))
 
     if (App.tooltips()) {
@@ -111,11 +111,11 @@ App.create_footer = () => {
   footer_content.append(footer_info)
   footer.append(footer_content)
 
-  let btn_up = DOM.create(`div`, `footer_up boxicon`, `footer_up_tabs`)
+  let btn_up = DOM.create(`div`, `footer_button grower`, `footer_up_tabs`)
   btn_up.textContent = App.up_arrow_icon
   footer.append(btn_up)
 
-  let btn_down = DOM.create(`div`, `footer_down boxicon`, `footer_down_tabs`)
+  let btn_down = DOM.create(`div`, `footer_button grower`, `footer_down_tabs`)
   btn_down.textContent = App.down_arrow_icon
 
   if (App.tooltips()) {
