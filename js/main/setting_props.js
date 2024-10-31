@@ -3503,6 +3503,13 @@ App.build_settings = () => {
       Or after manually scrolling`,
       version: 1,
     },
+    fixed_main_title_buttons: {
+      name: `Fixed Title Buttons`,
+      type: `checkbox`,
+      value: false,
+      info: `Always show the Title left and right buttons`,
+      version: 1,
+    },
     wrap_main_title: {
       name: `Wrap Title`,
       type: `checkbox`,

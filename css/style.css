@@ -1909,10 +1909,6 @@ a:hover
   align-items: center;
   color: var(--main_title_text_color);
   background-color: var(--main_title_background_color);
-  padding-top: var(--main_title_padding);
-  padding-bottom: var(--main_title_padding);
-  padding-left: 0.66rem;
-  padding-right: 0.66rem;
   margin-bottom: 0.25rem;
   position: relative;
 }
@@ -1920,6 +1916,11 @@ a:hover
 #main_title_inner {
   font-size: var(--main_title_font_size);
   font-family: var(--main_title_font);
+  padding-top: var(--main_title_padding);
+  padding-bottom: var(--main_title_padding);
+  margin-left: 0.66rem;
+  margin-right: 0.66rem;
+  flex-grow: 1;
 }
 
 .main_title_no_wrap #main_title_inner {
@@ -1942,6 +1943,18 @@ a:hover
   border-width: 0;
   border-radius: 20%;
   cursor: pointer;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.fixed_main_title_buttons .main_title_button {
+  position: relative;
+  opacity: 1;
+  height: 100%;
+}
+
+.fixed_main_title_buttons .main_title_button:hover {
+  border-width: 1px;
 }
 
 .main_title_button:hover {

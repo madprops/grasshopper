@@ -1146,6 +1146,13 @@ App.set_main_title_vars = () => {
   else if (size === `big`) {
     App.set_css_var(`main_title_padding`, `0.35rem`)
   }
+
+  if (App.get_setting(`fixed_main_title_buttons`)) {
+    main.classList.add(`fixed_main_title_buttons`)
+  }
+  else {
+    main.classList.remove(`fixed_main_title_buttons`)
+  }
 }
 
 App.set_zone_vars = () => {
