@@ -2058,3 +2058,11 @@ App.filter_enter_active = (mode) => {
 
   return sett === `normal`
 }
+
+App.focus_filter_input = () => {
+  let filter = App.get_filter_el(App.active_mode)
+
+  if (filter) {
+    filter.focus()
+  }
+}

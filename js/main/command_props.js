@@ -1596,6 +1596,16 @@ App.setup_commands = () => {
       },
       info: `Show the Filter Menu`,
     },
+    {
+      name: `Focus Filter`,
+      short_name: `Focus`,
+      cmd: `focus_filter_input`,
+      icon: filter_icon,
+      action: (args) => {
+        App.focus_filter_input()
+      },
+      info: `Focus the filter input`,
+    },
 
     ...mode_menus,
 
