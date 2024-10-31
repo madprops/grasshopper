@@ -3103,11 +3103,7 @@ App.build_settings = () => {
       info: `How close the items are to each other in the Favorites Bar`,
       version: 2,
       setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Small`, value: `small`},
-          {text: `Normal`, value: `normal`},
-          {text: `Big`, value: `big`},
-        ])
+        App.settings_make_menu(key, App.sizes_3)
       },
     },
     favorites_gravity: {
