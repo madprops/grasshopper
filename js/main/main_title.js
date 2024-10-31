@@ -62,14 +62,23 @@ App.create_main_title = () => {
   let rclick = App.get_cmd_name(`show_main_title_menu`)
   inner.textContent = App.check_caps(title)
 
-  let btn_left = DOM.create(`div`, `main_title_button`, `main_title_left_button`)
-  let btn_right = DOM.create(`div`, `main_title_button`, `main_title_right_button`)
-  btn_left.textContent = `◄`
-  btn_right.textContent = `►`
+  let buttons = App.get_setting(`show_main_title_buttons`)
 
-  el.append(btn_left)
+  if (buttons) {
+    let btn_left = DOM.create(`div`, `main_title_button`, `main_title_left_button`)
+    btn_left.textContent = `◄`
+    App.main_title_side_button_tooltips(btn_left, `left`)
+    el.append(btn_left)
+  }
+
   el.append(inner)
-  el.append(btn_right)
+
+  if (buttons) {
+    let btn_right = DOM.create(`div`, `main_title_button`, `main_title_right_button`)
+    btn_right.textContent = `►`
+    App.main_title_side_button_tooltips(btn_right, `right`)
+    el.append(btn_right)
+  }
 
   if (App.tooltips()) {
     el.title = `Right Click: ${rclick}`
@@ -81,9 +90,6 @@ App.create_main_title = () => {
     App.trigger_title(el, `wheel_down_main_title`)
     App.trigger_title(el, `wheel_up_shift_main_title`)
     App.trigger_title(el, `wheel_down_shift_main_title`)
-
-    App.main_title_side_button_tooltips(btn_left, `left`)
-    App.main_title_side_button_tooltips(btn_right, `right`)
   }
 
   App.main_title_tooltip = el.title

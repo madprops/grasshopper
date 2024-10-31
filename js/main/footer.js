@@ -111,38 +111,35 @@ App.create_footer = () => {
   footer_content.append(footer_info)
   footer.append(footer_content)
 
-  let btn_up = DOM.create(`div`, `footer_button grower footer_ghost`, `footer_up_tabs`)
-  btn_up.textContent = App.up_arrow_icon
-  footer.append(btn_up)
+  if (App.get_setting(`show_footer_buttons`)) {
+    let btn_up = DOM.create(`div`, `footer_button grower footer_ghost`, `footer_up_tabs`)
+    btn_up.textContent = App.up_arrow_icon
+    footer.append(btn_up)
 
-  let btn_down = DOM.create(`div`, `footer_button grower footer_ghost`, `footer_down_tabs`)
-  btn_down.textContent = App.down_arrow_icon
+    let btn_down = DOM.create(`div`, `footer_button grower footer_ghost`, `footer_down_tabs`)
+    btn_down.textContent = App.down_arrow_icon
 
-  if (App.tooltips()) {
-    let up_tips = [
-      `Click: Move To Top`,
-      `Middle Click: Select Above`,
-      `Shift + Click: Page Up`,
-      `Ctrl + Click: Tab Up`,
-    ]
+    if (App.tooltips()) {
+      let up_tips = [
+        `Click: Move To Top`,
+        `Middle Click: Select Above`,
+        `Shift + Click: Page Up`,
+        `Ctrl + Click: Tab Up`,
+      ]
 
-    btn_up.title = up_tips.join(`\n`)
+      btn_up.title = up_tips.join(`\n`)
 
-    let down_tips = [
-      `Click: Move To Bottom`,
-      `Middle Click: Select Below`,
-      `Shift + Click: Page Down`,
-      `Ctrl + Click: Tab Down`,
-    ]
+      let down_tips = [
+        `Click: Move To Bottom`,
+        `Middle Click: Select Below`,
+        `Shift + Click: Page Down`,
+        `Ctrl + Click: Tab Down`,
+      ]
 
-    btn_down.title = down_tips.join(`\n`)
-  }
+      btn_down.title = down_tips.join(`\n`)
+    }
 
-  footer.append(btn_down)
-
-  if (!App.get_setting(`show_footer_buttons`)) {
-    DOM.hide(btn_up, 2)
-    DOM.hide(btn_down, 2)
+    footer.append(btn_down)
   }
 
   return footer
@@ -322,6 +319,10 @@ App.footer_down_middle_click = (e) => {
 }
 
 App.check_footer_mode = (mode) => {
+  if (!App.get_setting(`show_footer_buttons`)) {
+    return
+  }
+
   let up = DOM.el(`#footer_up_tabs`)
   let down = DOM.el(`#footer_down_tabs`)
 

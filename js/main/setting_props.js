@@ -3503,6 +3503,13 @@ App.build_settings = () => {
       Or after manually scrolling`,
       version: 1,
     },
+    show_main_title_buttons: {
+      name: `Show Title Buttons`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the Tile left and right buttons`,
+      version: 1,
+    },
     fixed_main_title_buttons: {
       name: `Fixed Title Buttons`,
       type: `checkbox`,
