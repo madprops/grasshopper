@@ -181,6 +181,13 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`container_with_text`)
     }
 
+    if (App.get_setting(`filter_focus_effect`)) {
+      main.classList.add(`filter_focus_effect`)
+    }
+    else {
+      main.classList.remove(`filter_focus_effect`)
+    }
+
     App.set_close_button_vars()
     App.set_hover_button_vars()
     App.set_pinline_vars()

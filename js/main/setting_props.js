@@ -5011,6 +5011,13 @@ App.build_settings = () => {
       info: `Keep the selected item on filters instead of selecting the first item`,
       version: 1,
     },
+    filter_focus_effect: {
+      name: `Filter Focus Effect`,
+      type: `checkbox`,
+      value: true,
+      info: `Show an effect on focused filter inputs`,
+      version: 1,
+    },
     auto_deep_search_history: {
       name: `Auto Deep (History)`,
       type: `checkbox`,

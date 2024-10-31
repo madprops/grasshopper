@@ -2138,3 +2138,7 @@ a:hover
 #footer:hover .footer_ghost {
   display: flex;
 }
+
+.filter_focus_effect .mode_filter:focus {
+  outline: 1px solid var(--text_color);
+}
