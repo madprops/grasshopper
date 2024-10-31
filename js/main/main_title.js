@@ -61,7 +61,6 @@ App.create_main_title = () => {
   let title = App.get_setting(`main_title`)
   let rclick = App.get_cmd_name(`show_main_title_menu`)
   inner.textContent = App.check_caps(title)
-
   let buttons = App.get_setting(`show_main_title_buttons`)
 
   if (buttons) {
