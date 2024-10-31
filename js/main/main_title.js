@@ -250,6 +250,7 @@ App.set_main_title_color = (text, bg) => {
   App.set_setting({setting: `main_title_colors`, value: true})
   App.set_setting({setting: `main_title_text_color`, value: text})
   App.set_setting({setting: `main_title_background_color`, value: bg})
+  App.set_setting({setting: `main_title_button_color`, value: bg})
   App.apply_theme()
 }
 

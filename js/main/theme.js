@@ -79,6 +79,8 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`overlay_color`, overlay_color)
     App.slight_shade = slight_shade
     App.text_color = args.text_color
+    App.background_color = args.background_color
+    App.text_color_darker = text_color_darker
 
     if (args.safe_mode) {
       return
@@ -1087,7 +1089,8 @@ App.set_main_title_vars = () => {
   else {
     App.set_css_var(`main_title_text_color`, `unset`)
     App.set_css_var(`main_title_background_color`, `unset`)
-    App.set_css_var(`main_title_button_color`, `unset`)
+    console.log(444)
+    App.set_css_var(`main_title_button_color`, App.background_color)
   }
 
   let title_align = App.get_setting(`main_title_align`)
