@@ -330,7 +330,6 @@ App.setup_commands = () => {
   color_closers.push({
     name: `Close Color`,
     cmd: `close_color_all`,
-    modes: [`items`],
     icon: close_icon,
     action: (args) => {
       App.close_color_all(args.e)
@@ -457,7 +456,6 @@ App.setup_commands = () => {
     signals.push({
       name: item.name,
       short_name: short_name(item.name),
-      modes: [`items`],
       cmd: `send_signal_${id}`,
       icon: item.icon || signal_icon,
       signal_mode: true,
@@ -473,7 +471,6 @@ App.setup_commands = () => {
   for (let i = 1; i <= App.themes.length; i++) {
     theme_nums.push({
       name: `Theme ${i}`,
-      modes: [`items`],
       cmd: `set_theme_${i}`,
       icon: theme_icon,
       action: (args) => {
@@ -869,7 +866,6 @@ App.setup_commands = () => {
     {
       name: `First Pin`,
       cmd: `go_to_first_pinned_tab`,
-      modes: [`items`],
       icon: pin_icon,
       action: (args) => {
         App.first_pinned_tab()
@@ -879,7 +875,6 @@ App.setup_commands = () => {
     {
       name: `Last Pin`,
       cmd: `go_to_last_pinned_tab`,
-      modes: [`items`],
       icon: pin_icon,
       action: (args) => {
         App.last_pinned_tab()
@@ -889,7 +884,6 @@ App.setup_commands = () => {
     {
       name: `First Normal`,
       cmd: `go_to_first_normal_tab`,
-      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.first_normal_tab()
@@ -899,7 +893,6 @@ App.setup_commands = () => {
     {
       name: `Last Normal`,
       cmd: `go_to_last_normal_tab`,
-      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.last_normal_tab()
