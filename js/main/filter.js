@@ -673,6 +673,7 @@ App.focus_filter = (mode = App.active_mode) => {
 
 App.unfocus_filter = (mode = App.active_mode) => {
   App.get_filter_el(mode).blur()
+  App.focus_items(mode)
 }
 
 App.is_filtered = (mode = App.active_mode) => {
