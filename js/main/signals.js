@@ -316,14 +316,8 @@ App.start_signal_intervals = () => {
       App.log(`Signal: ${signal.name} Interval: ${signal.interval}`)
 
       let id = setInterval(() => {
-        if (!App.get_setting(`signals_enabled`)) {
+        if (App.signals_blocked()) {
           return
-        }
-
-        if (App.screen_locked) {
-          if (App.get_setting(`lock_screen_block_signals`)) {
-            return
-          }
         }
 
         App.send_signal(signal)
@@ -335,6 +329,10 @@ App.start_signal_intervals = () => {
 
   for (let signal of signals) {
     if (signal.startup) {
+      if (App.signals_blocked()) {
+        return
+      }
+
       App.send_signal(signal)
     }
   }
@@ -659,4 +657,18 @@ App.toggle_signals = () => {
   let enabled = App.get_setting(`signals_enabled`)
   App.set_setting({setting: `signals_enabled`, value: !enabled})
   App.footer_message(`Signals ${!enabled ? `Enabled` : `Disabled`}`)
+}
+
+App.signals_blocked = () => {
+  if (!App.get_setting(`signals_enabled`)) {
+    return true
+  }
+
+  if (App.screen_locked) {
+    if (App.get_setting(`lock_screen_block_signals`)) {
+      return true
+    }
+  }
+
+  return false
 }
