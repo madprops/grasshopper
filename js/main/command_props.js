@@ -1396,7 +1396,6 @@ App.setup_commands = () => {
     {
       name: `Bookmark Page`,
       short_name: `Bookmark`,
-      modes: [`items`],
       cmd: `bookmark_page`,
       icon: bookmarks_icon,
       action: (args) => {
@@ -1760,8 +1759,6 @@ App.setup_commands = () => {
       name: `Focus Window`,
       short_name: `Window`,
       cmd: `focus_window_menu`,
-      modes: [`items`],
-      item: true,
       icon: window_icon,
       action: (args) => {
         App.show_focus_a_window(args.e)
@@ -2180,7 +2177,6 @@ App.setup_commands = () => {
       name: `Sort Tabs`,
       short_name: `Sort`,
       cmd: `sort_tabs`,
-      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.sort_tabs()
@@ -2224,7 +2220,6 @@ App.setup_commands = () => {
       name: `Tab Info`,
       short_name: `Info`,
       cmd: `show_tab_info`,
-      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.show_tab_info()
@@ -2235,7 +2230,6 @@ App.setup_commands = () => {
       name: `Show URLs`,
       short_name: `URLs`,
       cmd: `show_tab_urls`,
-      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.show_tab_urls()
@@ -2246,7 +2240,6 @@ App.setup_commands = () => {
       name: `Open URLs`,
       short_name: `Open`,
       cmd: `open_tab_urls`,
-      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.open_tab_urls()
