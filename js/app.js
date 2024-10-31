@@ -406,6 +406,12 @@ App.aligns = [
   {text: `Right`, value: `right`},
 ]
 
+App.aligns_2 = [
+  {text: `Top`, value: `top`},
+  {text: `Center`, value: `center`},
+  {text: `Bottom`, value: `bottom`},
+]
+
 App.sides = [
   {text: `Left`, value: `left`},
   {text: `Right`, value: `right`},

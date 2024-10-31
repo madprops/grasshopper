@@ -3115,11 +3115,7 @@ App.build_settings = () => {
       Either make them stick to the top, center, or bottom`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Top`, value: `top`},
-          {text: `Center`, value: `center`},
-          {text: `Bottom`, value: `bottom`},
-        ])
+        App.settings_make_menu(key, App.aligns_2)
       },
     },
     favorites_menu: {
