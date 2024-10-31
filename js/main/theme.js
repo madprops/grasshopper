@@ -1074,13 +1074,13 @@ App.set_favorite_vars = () => {
   let dens = App.get_setting(`favorites_density`)
 
   if (dens === `compact`) {
-    App.set_css_var(`favorites_gap`, `0.2rem`)
+    App.set_css_var(`favorites_gap`, `0.18rem`)
   }
   else if (dens === `normal`) {
     App.set_css_var(`favorites_gap`, `0.35rem`)
   }
   else if (dens === `space`) {
-    App.set_css_var(`favorites_gap`, `0.5rem`)
+    App.set_css_var(`favorites_gap`, `0.51rem`)
   }
 }
 
