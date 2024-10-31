@@ -1089,7 +1089,6 @@ App.set_main_title_vars = () => {
   else {
     App.set_css_var(`main_title_text_color`, `unset`)
     App.set_css_var(`main_title_background_color`, `unset`)
-    console.log(444)
     App.set_css_var(`main_title_button_color`, App.background_color)
   }
 
