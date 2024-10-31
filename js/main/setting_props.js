@@ -1938,6 +1938,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
+    close_button_size: {
+      name: `Close Button Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the Close Button`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes_3)
+      },
+    },
     close_button_border_width: {
       name: `Close Button Border`,
       type: `menu`,
@@ -1947,16 +1957,6 @@ App.build_settings = () => {
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
-      },
-    },
-    close_button_size: {
-      name: `Close Button Size`,
-      type: `menu`,
-      value: `normal`,
-      info: `The size of the Close Button`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sizes_3)
       },
     },
     close_button_menu: {
@@ -1995,26 +1995,26 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.show_icon)
       },
     },
-    close_button_border_width_tab_box: {
-      name: `Close Button Tab Box Border`,
-      type: `menu`,
-      value: 1,
-      placeholder: `Px`,
-      info: `Border width of Close Buttons in the Tab Box`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
-      },
-    },
     close_button_size_tab_box: {
       name: `Close Button Tab Box Size`,
       type: `menu`,
       value: `normal`,
       info: `The size of the Close Button in the Tab Box`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.sizes_3)
+      },
+    },
+    close_button_border_width_tab_box: {
+      name: `Close Button Tab Box Border`,
+      type: `menu`,
+      value: 1,
+      placeholder: `Px`,
+      separator: true,
+      info: `Border width of Close Buttons in the Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
     },
 
