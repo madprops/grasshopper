@@ -2270,7 +2270,6 @@ App.setup_commands = () => {
       name: `Reopen Tab`,
       short_name: `Reopen`,
       cmd: `reopen_tab`,
-      modes: [`items`],
       icon: rewind_icon,
       action: (args) => {
         App.reopen_tab()
@@ -3088,7 +3087,6 @@ App.setup_commands = () => {
       name: `Pick Color`,
       short_name: `color`,
       cmd: `pick_color`,
-      modes: [`items`],
       icon: colors_icon,
       action: (args) => {
         App.show_color_picker(args.e)
@@ -3325,7 +3323,6 @@ App.setup_commands = () => {
       name: `Pick Tag`,
       short_name: `Tag`,
       cmd: `pick_tag`,
-      modes: [`items`],
       icon: tags_icon,
       action: (args) => {
         App.show_filter_tag_menu(args.mode, args.e, true)
@@ -3414,7 +3411,6 @@ App.setup_commands = () => {
       name: `Pick Icon`,
       short_name: `Icon`,
       cmd: `pick_custom_icon`,
-      modes: [`items`],
       icon: bot_icon,
       action: (args) => {
         App.show_filter_icon_menu(args.mode, args.e, true)
@@ -3448,7 +3444,6 @@ App.setup_commands = () => {
       name: `Show Pins`,
       short_name: `Pins`,
       cmd: `show_pinned_tabs`,
-      modes: [`items`],
       icon: pin_icon,
       action: (args) => {
         App.show_tab_list(`pins`, args.e)
