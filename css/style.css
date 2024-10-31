@@ -1597,14 +1597,34 @@ a:hover
   padding-right: var(--favorites_padding);
 }
 
-.favorites_gravity_top .fav_left .favorites_empty_top,
-.favorites_gravity_top .fav_right .favorites_empty_top
+.favorites_gravity_top .favorites_bar {
+  justify-content: flex-start;
+}
+
+.favorites_gravity_bottom .favorites_bar {
+  justify-content: flex-end;
+}
+
+.favorites_gravity_top .fav_top .favorites_bar,
+.favorites_gravity_top .fav_bottom .favorites_bar
+{
+  padding-left: 0.35rem;
+}
+
+.favorites_gravity_bottom .fav_top .favorites_bar,
+.favorites_gravity_bottom .fav_bottom .favorites_bar
+{
+  padding-right: 0.35rem;
+}
+
+.favorites_gravity_top .favorites_empty_top,
+.favorites_gravity_top .favorites_empty_top
 {
   display: none;
 }
 
-.favorites_gravity_bottom .fav_left .favorites_empty_bottom,
-.favorites_gravity_bottom .fav_right .favorites_empty_bottom
+.favorites_gravity_bottom .favorites_empty_bottom,
+.favorites_gravity_bottom .favorites_empty_bottom
 {
   display: none;
 }
