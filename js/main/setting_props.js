@@ -3096,10 +3096,25 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sizes_3)
       },
     },
+    favorites_gap: {
+      name: `Favorites Gap`,
+      type: `menu`,
+      value: `normal`,
+      info: `How close the items are to each other in the Favorites Bar`,
+      version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Small`, value: `small`},
+          {text: `Normal`, value: `normal`},
+          {text: `Big`, value: `big`},
+        ])
+      },
+    },
     favorites_gravity: {
       name: `Favorites Gravity`,
       type: `menu`,
       value: `center`,
+      separator: true,
       info: `Gravity of the items in side modes of the favorites bar
       Either make them stick to the top, center, or bottom`,
       version: 1,
@@ -3108,21 +3123,6 @@ App.build_settings = () => {
           {text: `Top`, value: `top`},
           {text: `Center`, value: `center`},
           {text: `Bottom`, value: `bottom`},
-        ])
-      },
-    },
-    favorites_density: {
-      name: `Favorites Density`,
-      type: `menu`,
-      value: `normal`,
-      info: `How close the items are to each other in the Favorites Bar`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Compact`, value: `compact`},
-          {text: `Normal`, value: `normal`},
-          {text: `Space`, value: `space`},
         ])
       },
     },

@@ -1039,15 +1039,15 @@ App.set_favorite_vars = () => {
     App.set_css_var(`favorites_padding`, `0.45rem`)
   }
 
-  let dens = App.get_setting(`favorites_density`)
+  let gap = App.get_setting(`favorites_gap`)
 
-  if (dens === `compact`) {
+  if (gap === `small`) {
     App.set_css_var(`favorites_gap`, `0.18rem`)
   }
-  else if (dens === `normal`) {
+  else if (gap === `normal`) {
     App.set_css_var(`favorites_gap`, `0.35rem`)
   }
-  else if (dens === `space`) {
+  else if (gap === `big`) {
     App.set_css_var(`favorites_gap`, `0.51rem`)
   }
 }
