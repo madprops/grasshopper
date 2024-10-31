@@ -1062,7 +1062,6 @@ App.setup_commands = () => {
     {
       name: `Prev Theme`,
       cmd: `set_previous_theme`,
-      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.set_previous_theme()
@@ -1072,7 +1071,6 @@ App.setup_commands = () => {
     {
       name: `Next Theme`,
       cmd: `set_next_theme`,
-      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.set_next_theme()
@@ -1133,7 +1131,6 @@ App.setup_commands = () => {
       name: `Favorites Autohide`,
       short_name: `Favs Autohide`,
       cmd: `toggle_favorites_autohide`,
-      modes: [`items`],
       icon: favorites_icon,
       action: (args) => {
         App.toggle_favorites_autohide()
@@ -1165,7 +1162,6 @@ App.setup_commands = () => {
       name: `Tab Box Close`,
       short_name: `Close`,
       cmd: `tab_box_close`,
-      modes: [`items`],
       icon: tab_box_icon,
       action: (args) => {
         App.close_tab_box_tabs()
@@ -1176,7 +1172,6 @@ App.setup_commands = () => {
       name: `Tab Box Top`,
       short_name: `TB Top`,
       cmd: `tab_box_go_to_top`,
-      modes: [`items`],
       icon: up_icon,
       action: (args) => {
         App.scroll_tab_box_top()
@@ -1187,7 +1182,6 @@ App.setup_commands = () => {
       name: `Tab Box Bottom`,
       short_name: `TB Bottom`,
       cmd: `tab_box_go_to_bottom`,
-      modes: [`items`],
       icon: down_icon,
       action: (args) => {
         App.scroll_tab_box_bottom()
@@ -1198,7 +1192,6 @@ App.setup_commands = () => {
       name: `Tab Box Scroll Up`,
       short_name: `TB Up`,
       cmd: `tab_box_scroll_up`,
-      modes: [`items`],
       icon: up_icon,
       action: (args) => {
         App.tab_box_scroll_up()
@@ -1209,7 +1202,6 @@ App.setup_commands = () => {
       name: `Tab Box Scroll Down`,
       short_name: `TB Down`,
       cmd: `tab_box_scroll_down`,
-      modes: [`items`],
       icon: down_icon,
       action: (args) => {
         App.tab_box_scroll_down()
@@ -1220,7 +1212,6 @@ App.setup_commands = () => {
       name: `Tab Box Prev Mode`,
       short_name: `TB Prev`,
       cmd: `tab_box_previous_mode`,
-      modes: [`items`],
       icon: left_icon,
       action: (args) => {
         App.cycle_tab_box_mode(`prev`)
@@ -1231,7 +1222,6 @@ App.setup_commands = () => {
       name: `Tab Box Next Mode`,
       short_name: `TB Next`,
       cmd: `tab_box_next_mode`,
-      modes: [`items`],
       icon: right_icon,
       action: (args) => {
         App.cycle_tab_box_mode(`next`)
