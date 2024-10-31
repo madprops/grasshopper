@@ -2928,11 +2928,7 @@ App.build_settings = () => {
       info: `How to align the Footer text`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `Left`, value: `left`},
-          {text: `Center`, value: `center`},
-          {text: `Right`, value: `right`},
-        ])
+        App.settings_make_menu(key, App.aligns)
       },
     },
     footer_size: {
