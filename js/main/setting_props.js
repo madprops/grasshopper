@@ -3086,6 +3086,16 @@ App.build_settings = () => {
         ])
       },
     },
+    favorites_size: {
+      name: `Favorites Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the Favorites panel`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes_3)
+      },
+    },
     favorites_gravity: {
       name: `Favorites Gravity`,
       type: `menu`,
@@ -3106,6 +3116,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `normal`,
       info: `How close the items are to each other in the Favorites Bar`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, [
@@ -3113,17 +3124,6 @@ App.build_settings = () => {
           {text: `Normal`, value: `normal`},
           {text: `Space`, value: `space`},
         ])
-      },
-    },
-    favorites_size: {
-      name: `Favorites Size`,
-      type: `menu`,
-      value: `normal`,
-      info: `The size of the Favorites panel`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sizes_3)
       },
     },
     favorites_menu: {
