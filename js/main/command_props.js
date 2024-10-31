@@ -3044,7 +3044,6 @@ App.setup_commands = () => {
       name: `Remove All Edits`,
       short_name: `Rm Edits`,
       cmd: `remove_all_edits`,
-      modes: [`tabs`],
       icon: edited_icon,
       action: (args) => {
         App.remove_all_edits()
@@ -3478,7 +3477,6 @@ App.setup_commands = () => {
       name: `Show Playing`,
       short_name: `Playing`,
       cmd: `show_playing_tabs`,
-      modes: [`items`],
       icon: playing_icon,
       action: (args) => {
         App.show_tab_list(`playing`, args.e)
@@ -3489,7 +3487,6 @@ App.setup_commands = () => {
       name: `Show Recent`,
       short_name: `Recent`,
       cmd: `show_recent_tabs`,
-      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.show_tab_list(`recent`, args.e)
@@ -3500,7 +3497,6 @@ App.setup_commands = () => {
       name: `Recent Backwards`,
       short_name: `Recent`,
       cmd: `recent_tabs_backwards`,
-      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.go_to_previous_tab()
@@ -3511,7 +3507,6 @@ App.setup_commands = () => {
       name: `Recent Forwards`,
       short_name: `Recent`,
       cmd: `recent_tabs_forwards`,
-      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.go_to_previous_tab(true)
@@ -3641,7 +3636,6 @@ App.setup_commands = () => {
       name: `Pick Container`,
       short_name: `Container`,
       cmd: `pick_tab_container`,
-      modes: [`items`],
       icon: container_icon,
       action: (args) => {
         App.show_filter_container_menu(args.mode, args.e, true)
@@ -3808,7 +3802,6 @@ App.setup_commands = () => {
       name: `Rm All Domain Rules`,
       short_name: `Rm Rules`,
       cmd: `remove_all_domain_rules`,
-      modes: [`items`],
       icon: notepad_icon,
       action: (args) => {
         App.remove_all_domain_rules()
@@ -3831,7 +3824,6 @@ App.setup_commands = () => {
       name: `Light Colors`,
       short_name: `Light`,
       cmd: `set_light_colors`,
-      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.set_light_colors()
@@ -3842,7 +3834,6 @@ App.setup_commands = () => {
       name: `Dark Colors`,
       short_name: `Dark`,
       cmd: `set_dark_colors`,
-      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.set_dark_colors()
@@ -3853,7 +3844,6 @@ App.setup_commands = () => {
       name: `Random Light`,
       short_name: `Light`,
       cmd: `set_random_light_colors`,
-      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.random_colors(`light`)
@@ -3864,7 +3854,6 @@ App.setup_commands = () => {
       name: `Random Dark`,
       short_name: `Dark`,
       cmd: `set_random_dark_colors`,
-      modes: [`items`],
       icon: theme_icon,
       action: (args) => {
         App.random_colors(`dark`)
@@ -4058,7 +4047,6 @@ App.setup_commands = () => {
       name: `Scroll Title Left`,
       short_name: `Title Left`,
       cmd: `scroll_main_title_left`,
-      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.scroll_main_title(`left`)
@@ -4069,7 +4057,6 @@ App.setup_commands = () => {
       name: `Scroll Title Right`,
       short_name: `Title Right`,
       cmd: `scroll_main_title_right`,
-      modes: [`items`],
       icon: main_title_icon,
       action: (args) => {
         App.scroll_main_title(`right`)
