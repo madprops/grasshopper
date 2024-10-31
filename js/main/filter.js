@@ -1508,10 +1508,10 @@ App.check_filtered = (mode) => {
     }
 
     if (apply) {
-      filter.classList.add(`invert`)
+      filter.classList.add(`filter_effect`)
     }
     else {
-      filter.classList.remove(`invert`)
+      filter.classList.remove(`filter_effect`)
     }
   }
 }
