@@ -454,8 +454,10 @@ App.prepare_all_settings = () => {
 }
 
 App.prepare_settings_category = (category) => {
-  App.fill_settings(category)
+  DOM.el(`#setting_${category}`).innerHTML = ``
+
   App.settings_buttons(category)
+  App.fill_settings(category)
   App.settings_setup_texts(category)
   App.settings_setup_checkboxes(category)
   App.settings_setup_numbers(category)
@@ -464,6 +466,7 @@ App.prepare_settings_category = (category) => {
   App.add_settings_switchers(category)
   App.add_settings_filter(category)
   App.run_setting_setups(category)
+
   let container = DOM.el(`#settings_${category}_container`)
   container.classList.add(`filter_container`)
 
@@ -1293,15 +1296,17 @@ App.settings_buttons = (category) => {
       btc.append(row_el)
     }
 
-    DOM.el(`#setting_${category}`).before(btc)
+    let c = DOM.el(`#setting_${category}`)
+    let separator = App.settings_separator()
+    c.append(separator)
+    c.append(btc)
   }
 }
 
 App.fill_settings = (category) => {
   let c = DOM.el(`#setting_${category}`)
-  c.innerHTML = ``
 
-  function input (type, cls, placeholder) {
+  function input(type, cls, placeholder) {
     let widget
 
     if (type === `textarea`) {
@@ -1317,6 +1322,9 @@ App.fill_settings = (category) => {
     widget.placeholder = placeholder || ``
     return widget
   }
+
+  let separator = App.settings_separator()
+  c.append(separator)
 
   for (let key in App.setting_props) {
     let props = App.setting_props[key]
@@ -1375,7 +1383,7 @@ App.fill_settings = (category) => {
       c.append(el)
 
       if (props.separator) {
-        c.append(DOM.create(`div`, `settings_separator filter_ignore`))
+        c.append(App.settings_separator())
       }
     }
   }
@@ -2369,4 +2377,8 @@ App.make_mouse_settings = (args = {}) => {
   }
 
   return obj
+}
+
+App.settings_separator = () => {
+  return DOM.create(`div`, `settings_separator filter_ignore`)
 }
