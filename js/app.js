@@ -428,7 +428,7 @@ App.sides = [
 App.sides_2 = [
   {text: `Left`, value: `left`},
   {text: `Right`, value: `right`},
-  {text: `Icon`, value: `icon`},
+  {text: `Icon`, value: `icon`, info: `Replace the normal item icon with this one`},
 ]
 
 App.show_icon = [
