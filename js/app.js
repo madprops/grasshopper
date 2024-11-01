@@ -511,11 +511,13 @@ App.panel_sizes = {
   big: `0.35rem`,
 }
 
+App.footer_tab_box_click_cmd = `toggle_tab_box`
+//
 App.footer_up_click_cmd = `move_tabs_to_top`
 App.footer_up_middle_click_cmd = `select_items_above`
 App.footer_up_shift_click_cmd = `page_up`
 App.footer_up_ctrl_click_cmd = `jump_tabs_all_up`
-
+//
 App.footer_down_click_cmd = `move_tabs_to_bottom`
 App.footer_down_middle_click_cmd = `select_items_below`
 App.footer_down_shift_click_cmd = `page_down`

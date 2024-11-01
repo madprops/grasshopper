@@ -83,7 +83,7 @@ App.create_footer = () => {
     tab_box_btn.append(App.get_svg_icon(`arrow_up`))
 
     if (App.tooltips()) {
-      let click = App.get_cmd_name(`toggle_tab_box`)
+      let click = App.get_cmd_name(App.footer_tab_box_click_cmd)
       tab_box_btn.title = `Click: ${click}`
     }
 
@@ -347,4 +347,9 @@ App.check_footer_mode = (mode) => {
     DOM.hide(up)
     DOM.hide(down)
   }
+}
+
+App.footer_tab_box_click = (e) => {
+  let cmd = App.footer_tab_box_click_cmd
+  App.run_command({cmd, from: `footer`, e})
 }

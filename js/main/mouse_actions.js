@@ -109,7 +109,7 @@ App.mouse_click_action = (e) => {
     }
 
     if (DOM.parent(target, [`#footer_tab_box`])) {
-      App.toggle_tab_box()
+      App.footer_tab_box_click(e)
       return
     }
 
