@@ -27,9 +27,6 @@ App.user_madprops_settings = () => {
 
   // Favorites
 
-  App.set_setting({setting: `double_click_favorites_top`, value: `focus_parent_tab`})
-  App.set_setting({setting: `middle_click_favorites_top`, value: `toggle_pin_tabs`})
-
   sett = `favorites_menu`
   App.set_setting({setting: sett, value: []})
 
