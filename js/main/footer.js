@@ -119,20 +119,30 @@ App.create_footer = () => {
     btn_down.textContent = App.down_arrow_icon
 
     if (App.tooltips()) {
+      let cmd_1 = App.get_cmd_name(`move_tabs_to_top`)
+      let cmd_2 = App.get_cmd_name(`select_items_above`)
+      let cmd_3 = App.get_cmd_name(`page_up`)
+      let cmd_4 = App.get_cmd_name(`jump_tabs_all_up`)
+
       let up_tips = [
-        `Click: Move To Top`,
-        `Middle Click: Select Above`,
-        `Shift + Click: Page Up`,
-        `Ctrl + Click: Tab Up`,
+        `Click: ${cmd_1}`,
+        `Middle Click: ${cmd_2}`,
+        `Shift + Click: ${cmd_3}`,
+        `Ctrl + Click: ${cmd_4}`,
       ]
 
       btn_up.title = up_tips.join(`\n`)
 
+      cmd_1 = App.get_cmd_name(`move_tabs_to_bottom`)
+      cmd_2 = App.get_cmd_name(`select_items_below`)
+      cmd_3 = App.get_cmd_name(`page_down`)
+      cmd_4 = App.get_cmd_name(`jump_tabs_all_down`)
+
       let down_tips = [
-        `Click: Move To Bottom`,
-        `Middle Click: Select Below`,
-        `Shift + Click: Page Down`,
-        `Ctrl + Click: Tab Down`,
+        `Click: ${cmd_1}`,
+        `Middle Click: ${cmd_2}`,
+        `Shift + Click: ${cmd_3}`,
+        `Ctrl + Click: ${cmd_4}`,
       ]
 
       btn_down.title = down_tips.join(`\n`)
