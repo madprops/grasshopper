@@ -462,7 +462,7 @@ App.duplicate_tab = async (item, args = {}) => {
 
 App.duplicate_tabs = (item) => {
   let items = App.get_active_items({mode: `tabs`, item})
-  let force = App.check_force(`warn_on_duplicate_tabs`, items)
+  let force = App.check_warn(`warn_on_duplicate_tabs`, items)
   let args = {}
   App.get_new_tab_args(item, `duplicate`, args)
 
@@ -924,7 +924,7 @@ App.load_tabs = (item, multiple = true) => {
     return
   }
 
-  let force = App.check_force(`warn_on_load_tabs`, items)
+  let force = App.check_warn(`warn_on_load_tabs`, items)
 
   App.show_confirm({
     message: `Load items? (${items.length})`,

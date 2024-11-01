@@ -6,7 +6,7 @@ App.edit_tab_root = (args = {}) => {
   App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let s = args.root ? `Edit root?` : `Remove root?`
-  let force = App.check_force(`warn_on_edit_tabs`, active)
+  let force = App.check_warn(`warn_on_edit_tabs`, active)
 
   App.show_confirm({
     message: `${s} (${active.length})`,

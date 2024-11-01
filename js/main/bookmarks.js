@@ -187,7 +187,7 @@ App.bookmark_items = async (args = {}) => {
     return
   }
 
-  let force = App.check_force(`warn_on_bookmark`, items)
+  let force = App.check_warn(`warn_on_bookmark`, items)
 
   App.show_confirm({
     message: `Bookmark items? (${items.length})`,

@@ -347,7 +347,7 @@ App.remove_edits = (args = {}) => {
   }
 
   if (!args.force) {
-    args.force = App.check_force(`warn_on_edit_tabs`, args.items)
+    args.force = App.check_warn(`warn_on_edit_tabs`, args.items)
   }
 
   if (args.force_ask) {

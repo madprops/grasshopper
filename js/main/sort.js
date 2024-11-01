@@ -125,7 +125,7 @@ App.sort_selected_tabs = async (direction) => {
     new_items.reverse()
   }
 
-  let force = App.check_force(`warn_on_sort_tabs`, items)
+  let force = App.check_warn(`warn_on_sort_tabs`, items)
 
   App.show_confirm({
     message: `Sort tabs? (${new_items.length})`,

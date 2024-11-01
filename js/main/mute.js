@@ -29,7 +29,7 @@ App.mute_tabs = (item) => {
     return
   }
 
-  let force = App.check_force(`warn_on_mute_tabs`, items)
+  let force = App.check_warn(`warn_on_mute_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm({
@@ -56,7 +56,7 @@ App.unmute_tabs = (item) => {
     return
   }
 
-  let force = App.check_force(`warn_on_unmute_tabs`, items)
+  let force = App.check_warn(`warn_on_unmute_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm({
@@ -119,7 +119,7 @@ App.mute_playing_tabs = () => {
     return
   }
 
-  let force = App.check_force(`warn_on_mute_tabs`, items)
+  let force = App.check_warn(`warn_on_mute_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm({
@@ -140,7 +140,7 @@ App.unmute_all_tabs = () => {
     return
   }
 
-  let force = App.check_force(`warn_on_unmute_tabs`, items)
+  let force = App.check_warn(`warn_on_unmute_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm({

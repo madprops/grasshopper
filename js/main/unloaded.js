@@ -22,7 +22,7 @@ App.unload_tabs = (item, multiple = true) => {
     return
   }
 
-  let force = App.check_force(`warn_on_unload_tabs`, items)
+  let force = App.check_warn(`warn_on_unload_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm({

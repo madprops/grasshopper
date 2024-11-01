@@ -33,7 +33,7 @@ App.close_tabs = (args = {}) => {
   }
 
   if (!args.force) {
-    args.force = App.check_force(`warn_on_close_tabs`, items)
+    args.force = App.check_warn(`warn_on_close_tabs`, items)
   }
 
   let smart_switch = App.get_setting(`smart_tab_switch`)

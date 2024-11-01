@@ -32,7 +32,7 @@ App.pin_tabs = (item, force = false) => {
   }
 
   if (!force) {
-    force = App.check_force(`warn_on_pin_tabs`, items)
+    force = App.check_warn(`warn_on_pin_tabs`, items)
   }
 
   let ids = items.map(x => x.id)
@@ -64,7 +64,7 @@ App.unpin_tabs = (item, force = false) => {
   }
 
   if (!force) {
-    force = App.check_force(`warn_on_unpin_tabs`, items)
+    force = App.check_warn(`warn_on_unpin_tabs`, items)
   }
 
   let ids = items.map(x => x.id)
@@ -121,7 +121,7 @@ App.toggle_pin_tabs = (item) => {
     return
   }
 
-  let force = App.check_force(`warn_on_pin_tabs`, items)
+  let force = App.check_warn(`warn_on_pin_tabs`, items)
   let ids = items.map(x => x.id)
   let msg = ``
 

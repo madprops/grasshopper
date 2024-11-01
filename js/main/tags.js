@@ -19,7 +19,7 @@ App.edit_tab_tags = (args = {}) => {
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let s = args.tags ? `Edit tags?` : `Remove tags?`
   let tag_list = App.get_tag_list(args.tags)
-  let force = App.check_force(`warn_on_edit_tabs`, active)
+  let force = App.check_warn(`warn_on_edit_tabs`, active)
 
   App.show_confirm({
     message: `${s} (${active.length})`,
