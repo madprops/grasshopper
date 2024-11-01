@@ -253,6 +253,8 @@ App.green_icon = `🟢`
 App.shroom_icon = `🍄`
 App.window_icon = `🪟`
 App.hat_icon = `📤`
+App.letters_icon = `🔠`
+App.blur_icon = `🥶`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

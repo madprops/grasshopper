@@ -44,6 +44,8 @@ App.setup_commands = () => {
   let pinline_icon = App.settings_icons.pinline
   let gestures_icon = App.settings_icons.gestures
   let hat_icon = App.hat_icon
+  let letters_icon = App.letters_icon
+  let blur_icon = App.blur_icon
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -1256,7 +1258,7 @@ App.setup_commands = () => {
       name: `Toggle Auto Blur`,
       short_name: `Auto Blur`,
       cmd: `toggle_auto_blur`,
-      icon: command_icon,
+      icon: blur_icon,
       action: (args) => {
         App.toggle_auto_blur()
       },
@@ -4098,7 +4100,7 @@ App.setup_commands = () => {
       name: `Toggle Wrap`,
       short_name: `Wrap`,
       cmd: `toggle_wrap_text`,
-      icon: command_icon,
+      icon: letters_icon,
       action: (args) => {
         App.toggle_wrap_text()
       },
