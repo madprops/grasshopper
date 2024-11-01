@@ -43,6 +43,7 @@ App.setup_commands = () => {
   let footer_icon = App.settings_icons.footer
   let pinline_icon = App.settings_icons.pinline
   let gestures_icon = App.settings_icons.gestures
+  let hat_icon = App.hat_icon
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -4067,7 +4068,7 @@ App.setup_commands = () => {
       name: `Toggle Top`,
       short_name: `Top`,
       cmd: `toggle_top_panel`,
-      icon: command_icon,
+      icon: hat_icon,
       action: (args) => {
         App.toggle_top_panel()
       },
