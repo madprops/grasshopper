@@ -46,7 +46,7 @@ App.setup_commands = () => {
   let hat_icon = App.hat_icon
   let letters_icon = App.letters_icon
   let blur_icon = App.blur_icon
-  let prev_icon = App.pev_icon
+  let prev_icon = App.prev_icon
   let next_icon = App.next_icon
   let open_icon = App.open_icon
   let action_icon = App.action_icon
