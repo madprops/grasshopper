@@ -85,7 +85,6 @@ App.create_footer = () => {
     if (App.tooltips()) {
       let click = App.get_cmd_name(`toggle_tab_box`)
       tab_box_btn.title = `Click: ${click}`
-      App.footer_tips(tab_box_btn)
     }
 
     footer.append(tab_box_btn)
