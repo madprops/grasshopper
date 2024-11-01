@@ -2170,3 +2170,7 @@ a:hover
   position: fixed;
   top: -99999px;
 }
+
+.hide_settings_info .settings_info {
+  display: none;
+}

@@ -1877,6 +1877,14 @@ App.build_settings = () => {
       info: `Show the scroll percentage on the Scroller`,
       version: 1,
     },
+    show_settings_info: {
+      name: `Show Settings Info`,
+      type: `checkbox`,
+      value: true,
+      actions: [`theme`],
+      info: `Show the description info at the top of setting categories`,
+      version: 1,
+    },
     show_feedback: {
       name: `Show Feedback`,
       type: `checkbox`,
