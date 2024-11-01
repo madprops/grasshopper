@@ -1802,6 +1802,7 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       separator: true,
+      no_mirror: true,
       info: `Show or hide the whole top panel`,
       version: 1,
     },

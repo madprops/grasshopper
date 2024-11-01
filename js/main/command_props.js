@@ -4064,6 +4064,16 @@ App.setup_commands = () => {
       info: `Copy the Title`,
     },
     {
+      name: `Toggle Top Panel`,
+      short_name: `Top Panel`,
+      cmd: `toggle_top_panel`,
+      icon: command_icon,
+      action: (args) => {
+        App.toggle_top_panel()
+      },
+      info: `Show or hide the Top Panel`,
+    },
+    {
       name: `Scroll Title Left`,
       short_name: `Title Left`,
       cmd: `scroll_main_title_left`,

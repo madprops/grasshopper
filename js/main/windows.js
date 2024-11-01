@@ -320,3 +320,10 @@ App.show_focus_a_window = async (e) => {
 App.focus_a_window = async (id) => {
   await browser.windows.update(id, {focused: true})
 }
+
+App.toggle_top_panel = () => {
+  let sett = !App.get_setting(`show_top_panel`)
+  App.set_setting({setting: `show_top_panel`, value: sett})
+  App.apply_theme()
+  App.footer_message(`Top Panel ${sett ? `Enabled` : `Disabled`}`)
+}
