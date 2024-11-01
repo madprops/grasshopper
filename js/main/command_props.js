@@ -49,6 +49,8 @@ App.setup_commands = () => {
   let prev_icon = App.hand_left_icon
   let next_icon = App.hand_right_icon
   let open_icon = App.open_icon
+  let action_icon = App.action_icon
+  let select_icon = App.select_icon
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -764,7 +766,7 @@ App.setup_commands = () => {
       short_name: `Select`,
       cmd: `select_all_items`,
       modes: [`items`],
-      icon: command_icon,
+      icon: select_icon,
       action: (args) => {
         App.select_all(args.mode, true)
       },
@@ -775,7 +777,7 @@ App.setup_commands = () => {
       short_name: `Deselect`,
       cmd: `dselect_all_items`,
       modes: [`items`],
-      icon: command_icon,
+      icon: select_icon,
       action: (args) => {
         App.deselect_all(args.mode, true)
       },
@@ -1283,7 +1285,7 @@ App.setup_commands = () => {
       cmd: `item_action`,
       modes: [`items`],
       item: true,
-      icon: command_icon,
+      icon: action_icon,
       action: (args) => {
         App[`${args.mode}_action`]({item: args.item, from: `click`})
       },
@@ -1294,7 +1296,7 @@ App.setup_commands = () => {
       cmd: `soft_item_action`,
       modes: [`items`],
       item: true,
-      icon: command_icon,
+      icon: action_icon,
       action: (args) => {
         App[`${args.mode}_action`]({item: args.item, from: `click`, soft: true})
       },
@@ -1305,7 +1307,7 @@ App.setup_commands = () => {
       cmd: `hard_item_action`,
       modes: [`items`],
       item: true,
-      icon: command_icon,
+      icon: action_icon,
       action: (args) => {
         App[`${args.mode}_action`]({item: args.item, from: `click`, reload: true})
       },
@@ -1316,7 +1318,7 @@ App.setup_commands = () => {
       cmd: `reload_item_action`,
       modes: [`items`],
       item: true,
-      icon: command_icon,
+      icon: action_icon,
       action: (args) => {
         App[`${args.mode}_action`]({item: args.item, from: `click`, hard: true})
       },
@@ -1327,7 +1329,7 @@ App.setup_commands = () => {
       cmd: `select_item`,
       modes: [`items`],
       item: true,
-      icon: command_icon,
+      icon: select_icon,
       action: (args) => {
         App.select_item({item: args.item, scroll: `nearest_smooth`})
       },

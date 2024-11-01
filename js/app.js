@@ -258,6 +258,8 @@ App.blur_icon = `🥶`
 App.hand_left_icon = `👈`
 App.hand_right_icon = `👉`
 App.open_icon = `🌻`
+App.action_icon = `🚀`
+App.select_icon = `🎯`
 
 
 App.filter_bottom_icon = `v`
