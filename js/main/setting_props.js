@@ -4178,6 +4178,13 @@ App.build_settings = () => {
       info: `Treat unloaded tabs as special`,
       version: 1,
     },
+    warn_on_empty_tabs: {
+      name: `Warn On Empty Tabs`,
+      type: `checkbox`,
+      value: false,
+      info: `Warn on empty tabs`,
+      version: 1,
+    },
   }
 
   add_props()

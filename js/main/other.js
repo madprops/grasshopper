@@ -81,6 +81,14 @@ App.check_force = (warn_setting, items) => {
     return false
   }
 
+  let warn_empty = App.get_setting(`warn_on_empty_tabs`)
+
+  if (!warn_empty) {
+    if (items.every(App.is_empty_tab)) {
+      return true
+    }
+  }
+
   let warn_on_action = App.get_setting(warn_setting)
 
   if (warn_on_action === `always`) {
@@ -100,8 +108,10 @@ App.check_force = (warn_setting, items) => {
     }
 
     for (let item of items) {
-      if (App.is_empty_tab(item)) {
-        continue
+      if (!warn_empty) {
+        if (App.is_empty_tab(item)) {
+          continue
+        }
       }
 
       if (item.pinned && App.get_setting(`warn_special_pinned`)) {
