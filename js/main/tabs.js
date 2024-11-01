@@ -1323,3 +1323,7 @@ App.get_title_tabs = (item) => {
   let title = App.title(item).toLowerCase()
   return items.filter(x => App.title(x).toLowerCase().includes(title))
 }
+
+App.is_empty_tab = (item) => {
+  return [`about:blank`, `about:newtab`].includes(item.url)
+}

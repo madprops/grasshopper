@@ -100,6 +100,10 @@ App.check_force = (warn_setting, items) => {
     }
 
     for (let item of items) {
+      if (App.is_empty_tab(item)) {
+        continue
+      }
+
       if (item.pinned && App.get_setting(`warn_special_pinned`)) {
         return false
       }
