@@ -147,6 +147,13 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`container_with_text`)
     }
 
+    if (!App.get_setting(`show_top_panel`)) {
+      main.classList.add(`hide_top_panel`)
+    }
+    else {
+      main.classList.remove(`hide_top_panel`)
+    }
+
     App.set_item_vars()
     App.set_close_button_vars()
     App.set_hover_button_vars()

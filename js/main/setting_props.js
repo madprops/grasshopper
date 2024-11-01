@@ -1797,6 +1797,14 @@ App.build_settings = () => {
   category = `show`
 
   props = {
+    show_top_panel: {
+      name: `Show Top Panel`,
+      type: `checkbox`,
+      value: true,
+      separator: true,
+      info: `Show or hide the whole top panel`,
+      version: 1,
+    },
     show_main_button: {
       name: `Show Main Btn`,
       type: `checkbox`,
@@ -1809,6 +1817,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the Filter Button`,
+      version: 1,
+    },
+    show_filter_input: {
+      name: `Show Filter Inp`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the Filter Input`,
       version: 1,
     },
     show_playing_button: {
@@ -1829,6 +1844,7 @@ App.build_settings = () => {
       name: `Show Actions Btn`,
       type: `checkbox`,
       value: true,
+      separator: true,
       info: `Show the Actions Button`,
       version: 1,
     },

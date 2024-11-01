@@ -2165,3 +2165,7 @@ a:hover
   color: var(--background_color);
   box-shadow: none;
 }
+
+.hide_top_panel .window_top_mode {
+  display: none;
+}
