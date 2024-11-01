@@ -889,7 +889,7 @@ svg {
 }
 
 .settings_separator {
-  width: 14rem;
+  width: 13.8rem;
   height: 1px;
   background-color: var(--alt_color_1);
   margin-top: 0.25rem;
