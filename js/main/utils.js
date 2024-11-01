@@ -64,7 +64,7 @@ App.copy_to_clipboard = (text, what = ``) => {
   let msg
 
   if (what) {
-    msg = `${what} copied to clipboard`
+    msg = `${what} Copied`
   }
   else {
     msg = `Copied to clipboard`
