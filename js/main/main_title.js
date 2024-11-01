@@ -234,11 +234,11 @@ App.color_main_title = (what) => {
   else if (what === `blue`) {
     bg_color = App.blue_title
   }
-  else if (what === `black`) {
-    bg_color = App.black_title
+  else if (what === `dark`) {
+    bg_color = App.dark_title
   }
-  else if (what === `white`) {
-    bg_color = App.white_title
+  else if (what === `light`) {
+    bg_color = App.light_title
     text = App.semi_black_color
   }
 
@@ -288,7 +288,7 @@ App.next_main_title_color = (dir = `next`) => {
   }
 
   let current = App.get_setting(`main_title_background_color`)
-  let colors = [`red`, `green`, `blue`, `black`, `white`]
+  let colors = [`red`, `green`, `blue`, `dark`, `light`]
 
   if (dir === `prev`) {
     colors = colors.reverse()

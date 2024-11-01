@@ -3998,22 +3998,22 @@ App.setup_commands = () => {
       info: `Apply blue color to the Title`,
     },
     {
-      name: `Black Title`,
-      cmd: `color_main_title_black`,
+      name: `Dark Title`,
+      cmd: `color_main_title_dark`,
       icon: main_title_icon,
       action: (args) => {
-        App.color_main_title(`black`)
+        App.color_main_title(`dark`)
       },
-      info: `Apply black color to the Title`,
+      info: `Apply dark colors to the Title`,
     },
     {
-      name: `White Title`,
-      cmd: `color_main_title_white`,
+      name: `Light Title`,
+      cmd: `color_main_title_light`,
       icon: main_title_icon,
       action: (args) => {
-        App.color_main_title(`white`)
+        App.color_main_title(`light`)
       },
-      info: `Apply white color to the Title`,
+      info: `Apply light colors to the Title`,
     },
     {
       name: `Prev Title Color`,
