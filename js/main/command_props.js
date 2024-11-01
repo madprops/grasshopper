@@ -4064,8 +4064,8 @@ App.setup_commands = () => {
       info: `Copy the Title`,
     },
     {
-      name: `Toggle Top Panel`,
-      short_name: `Top Panel`,
+      name: `Toggle Top`,
+      short_name: `Top`,
       cmd: `toggle_top_panel`,
       icon: command_icon,
       action: (args) => {
