@@ -425,6 +425,12 @@ App.sides = [
   {text: `Right`, value: `right`},
 ]
 
+App.sides_2 = [
+  {text: `Left`, value: `left`},
+  {text: `Right`, value: `right`},
+  {text: `Icon`, value: `icon`},
+]
+
 App.show_icon = [
   {text: `Never`, value: `never`, info: `Never show the icon`},
   {text: App.separator_string},

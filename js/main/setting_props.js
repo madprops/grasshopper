@@ -1738,7 +1738,7 @@ App.build_settings = () => {
       info: `Show the Custom Icon on the left or right of text`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.sides)
+        App.settings_make_menu(key, App.sides_2)
       },
     },
     show_custom_icon: {

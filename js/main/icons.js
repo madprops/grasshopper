@@ -157,8 +157,17 @@ App.add_item_icon = (item, side, name) => {
 
 App.add_icons = (item, side) => {
   let icons = []
+  let custom_icon = false
+
+  if (App.get_setting(`custom_icon_side`) === `icon`) {
+    custom_icon = true
+  }
 
   for (let name of App.item_icons) {
+    if (custom_icon && (name === `custom`)) {
+      continue
+    }
+
     let weight = App.get_setting(`${name}_icon_weight`)
     icons.push({name, weight})
   }
@@ -264,6 +273,14 @@ App.make_item_icon = (item, normal = true) => {
 
   let no_favicon = App.no_favicons.includes(item.mode)
   let fetch = no_favicon && App.get_setting(`fetch_favicons`)
+
+  if (!text_icon) {
+    let c_icon = App.get_icon(item)
+
+    if ((App.get_setting(`custom_icon_side`) === `icon`) && c_icon) {
+      text_icon = c_icon
+    }
+  }
 
   if (svg_icon) {
     icon = App.get_svg_icon(svg_icon, `item_icon`)
@@ -651,6 +668,12 @@ App.get_icon_tabs = (icon) => {
 }
 
 App.icon_enabled = (name) => {
+  if (name === `custom`) {
+    if (App.get_setting(`custom_icon_side`) === `icon`) {
+      return false
+    }
+  }
+
   let show = App.get_setting(`show_${name}_icon`)
   return show !== `never`
 }
