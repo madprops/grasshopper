@@ -46,8 +46,8 @@ App.setup_commands = () => {
   let hat_icon = App.hat_icon
   let letters_icon = App.letters_icon
   let blur_icon = App.blur_icon
-  let prev_icon = App.hand_left_icon
-  let next_icon = App.hand_right_icon
+  let prev_icon = App.pev_icon
+  let next_icon = App.next_icon
   let open_icon = App.open_icon
   let action_icon = App.action_icon
   let select_icon = App.select_icon
@@ -1274,7 +1274,7 @@ App.setup_commands = () => {
       cmd: `show_item_menu`,
       modes: [`items`],
       item: true,
-      icon: command_icon,
+      icon: menu_icon,
       action: (args) => {
         App.show_item_menu({item: args.item, e: args.e})
       },
@@ -1631,7 +1631,7 @@ App.setup_commands = () => {
       name: `Actions Menu`,
       short_name: `Actions`,
       cmd: `show_actions_menu`,
-      icon: command_icon,
+      icon: menu_icon,
       action: (args) => {
         App.show_actions_menu(args.mode, args.item, args.e)
       },

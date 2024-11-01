@@ -255,12 +255,11 @@ App.window_icon = `🪟`
 App.hat_icon = `📤`
 App.letters_icon = `🔠`
 App.blur_icon = `🥶`
-App.hand_left_icon = `👈`
-App.hand_right_icon = `👉`
+App.prev_icon = `👈`
+App.next_icon = `👉`
 App.open_icon = `🌻`
 App.action_icon = `🚀`
 App.select_icon = `🎯`
-
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`
