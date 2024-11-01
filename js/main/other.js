@@ -260,6 +260,9 @@ App.check_show_button = (name, btn) => {
   if (hide) {
     DOM.hide(btn, 2)
   }
+  else {
+    DOM.show(btn, 2)
+  }
 }
 
 App.tooltips = () => {
