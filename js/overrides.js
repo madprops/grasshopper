@@ -17,3 +17,5 @@
 // }
 
 App.setting_overrides = {}
+
+// You can also override any other globals below:
