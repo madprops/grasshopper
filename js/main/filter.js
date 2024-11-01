@@ -905,7 +905,6 @@ App.create_filter = (mode) => {
     App.cycle_filters(mode, direction)
   })
 
-  App.check_show_button(`filter`, filter, `input`)
   return filter
 }
 

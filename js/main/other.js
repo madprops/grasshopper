@@ -254,11 +254,10 @@ App.turn_flashlight_off = () => {
   App.flashlight = undefined
 }
 
-App.check_show_button = (name, btn, what = `button`) => {
-  let hide = !App.get_setting(`show_top_panel`)
-  let hide_2 = !App.get_setting(`show_${name}_${what}`)
+App.check_show_button = (name, btn) => {
+  let hide = !App.get_setting(`show_${name}_button`)
 
-  if (hide || hide_2) {
+  if (hide) {
     DOM.hide(btn, 2)
   }
 }

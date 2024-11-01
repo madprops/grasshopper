@@ -2167,5 +2167,6 @@ a:hover
 }
 
 .hide_top_panel .window_top_mode {
-  display: none;
+  position: fixed;
+  top: -1000px;
 }

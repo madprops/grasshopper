@@ -1819,13 +1819,6 @@ App.build_settings = () => {
       info: `Show the Filter Button`,
       version: 1,
     },
-    show_filter_input: {
-      name: `Show Filter Inp`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the Filter Input`,
-      version: 1,
-    },
     show_playing_button: {
       name: `Show Playing Btn`,
       type: `checkbox`,
