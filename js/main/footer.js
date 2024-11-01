@@ -118,16 +118,6 @@ App.create_footer = () => {
     let btn_down = DOM.create(`div`, `footer_button grower footer_ghost`, `footer_down_tabs`)
     btn_down.textContent = App.down_arrow_icon
 
-    App.footer_up_click_cmd = `move_tabs_to_top`
-    App.footer_up_middle_click_cmd = `select_items_above`
-    App.footer_up_shift_click_cmd = `page_up`
-    App.footer_up_ctrl_click_cmd = `jump_tabs_all_up`
-
-    App.footer_down_click_cmd = `move_tabs_to_bottom`
-    App.footer_down_middle_click_cmd = `select_items_below`
-    App.footer_down_shift_click_cmd = `page_down`
-    App.footer_down_ctrl_click_cmd = `jump_tabs_all_down`
-
     if (App.tooltips()) {
       let cmd_1 = App.get_cmd_name(App.footer_up_click_cmd)
       let cmd_2 = App.get_cmd_name(App.footer_up_middle_click_cmd)
