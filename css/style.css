@@ -1956,10 +1956,13 @@ a:hover
   height: 100%;
 }
 
-.fixed_main_title_left #main_title_left_button:hover,
+.fixed_main_title_left #main_title_left_button:hover {
+  border-right-width: 2px;
+}
+
 .fixed_main_title_right #main_title_right_button:hover
 {
-  border-width: 1px;
+  border-left-width: 2px;
 }
 
 .main_title_button:hover {
