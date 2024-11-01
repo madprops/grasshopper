@@ -46,6 +46,9 @@ App.setup_commands = () => {
   let hat_icon = App.hat_icon
   let letters_icon = App.letters_icon
   let blur_icon = App.blur_icon
+  let prev_icon = App.hand_left_icon
+  let next_icon = App.hand_right_icon
+  let open_icon = App.open_icon
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -953,7 +956,7 @@ App.setup_commands = () => {
     {
       name: `Prev Mode`,
       cmd: `show_previous_mode`,
-      icon: command_icon,
+      icon: prev_icon,
       action: (args) => {
         App.cycle_modes(true)
       },
@@ -962,7 +965,7 @@ App.setup_commands = () => {
     {
       name: `Next Mode`,
       cmd: `show_next_mode`,
-      icon: command_icon,
+      icon: next_icon,
       action: (args) => {
         App.cycle_modes()
       },
@@ -972,7 +975,7 @@ App.setup_commands = () => {
       name: `Prev Filter`,
       cmd: `do_prev_filter`,
       modes: [`items`],
-      icon: command_icon,
+      icon: filter_icon,
       action: (args) => {
         App.cycle_filter_modes(args.mode, true, args.e)
       },
@@ -982,7 +985,7 @@ App.setup_commands = () => {
       name: `Next Filter`,
       cmd: `do_next_filter`,
       modes: [`items`],
-      icon: command_icon,
+      icon: filter_icon,
       action: (args) => {
         App.cycle_filter_modes(args.mode, false, args.e)
       },
@@ -1366,7 +1369,7 @@ App.setup_commands = () => {
       cmd: `open_items`,
       modes: [`items`],
       item: true,
-      icon: command_icon,
+      icon: open_icon,
       action: (args) => {
         App.open_items(args.item, true)
       },
