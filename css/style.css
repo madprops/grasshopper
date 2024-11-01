@@ -890,6 +890,7 @@ svg {
 
 .settings_separator {
   width: 13.8rem;
+  max-width: 100%;
   height: 1px;
   background-color: var(--alt_color_1);
   margin-top: 0.25rem;
