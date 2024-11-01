@@ -1765,8 +1765,15 @@ App.build_settings = () => {
       name: `Custom Icon Commands`,
       type: `list`,
       value: [],
-      separator: true,
       info: `Define the action when clicking specific custom icons`,
+      version: 1,
+    },
+    auto_icon_picker: {
+      name: `Auto Icon Picker`,
+      type: `checkbox`,
+      value: false,
+      separator: true,
+      info: `Add icons quickly with the auto picker`,
       version: 1,
     },
     button_icons: {

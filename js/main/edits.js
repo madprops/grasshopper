@@ -274,7 +274,9 @@ App.edit_prompt = (args = {}) => {
   }
 
   if (args.what === `icon`) {
-    show_list = true
+    if (App.get_setting(`auto_icon_picker`)) {
+      show_list = true
+    }
   }
 
   App.show_prompt({
