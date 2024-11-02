@@ -165,16 +165,14 @@ App.add_icons = (item, side) => {
 }
 
 App.do_icon_check = (name, item) => {
-  if (App.icon_enabled(name, item)) {
-    let show = App.check_icon_active(name, item)
-    let icon = DOM.el(`.${name}_icon`, item.element)
+  let active = App.check_icon_active(name, item)
+  let icon = DOM.el(`.${name}_icon`, item.element)
 
-    if (show) {
-      DOM.show(icon)
-    }
-    else {
-      DOM.hide(icon)
-    }
+  if (active && App.icon_enabled(name, item)) {
+    DOM.show(icon)
+  }
+  else {
+    DOM.hide(icon)
   }
 }
 
@@ -836,13 +834,9 @@ App.update_icon_tooltips = (item, target) => {
 }
 
 App.check_container_icon = (item) => {
-  if (!App.icon_enabled(`container`, item)) {
-    return
-  }
-
   let container_el = DOM.el(`.container_icon`, item.element)
 
-  if (item.container_name) {
+  if (item.container_name && App.icon_enabled(`container`, item)) {
     let c_icon = App.color_icon_square(item.container_color)
     container_el.innerHTML = ``
 
@@ -862,13 +856,9 @@ App.check_container_icon = (item) => {
 }
 
 App.check_custom_icon = (item) => {
-  if (!App.icon_enabled(`custom`, item)) {
-    return
-  }
-
   let custom_icon_el = DOM.el(`.custom_icon`, item.element)
 
-  if (App.check_icon_active(`custom`, item)) {
+  if (App.check_icon_active(`custom`, item) && App.icon_enabled(`custom`, item)) {
     let custom_icon = App.get_icon(item)
     custom_icon_el.innerHTML = custom_icon
     custom_icon_el.dataset.content = custom_icon

@@ -106,10 +106,10 @@ App.apply_color_mode = (item) => {
     color_mode = `icon`
   }
 
-  if (color_mode.includes(`icon`) && App.icon_enabled(`color`, item)) {
+  if (color_mode.includes(`icon`)) {
     let el = DOM.el(`.color_icon_container`, item.element)
 
-    if (App.check_icon_active(`color`, item)) {
+    if (App.icon_enabled(`color`, item) && App.check_icon_active(`color`, item)) {
       el.innerHTML = ``
       el.append(App.color_icon(color))
       DOM.show(el)
