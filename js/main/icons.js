@@ -965,25 +965,6 @@ App.get_icon_value = (icon, item) => {
   return value
 }
 
-App.get_icon_value_2 = (icon) => {
-  let value
-
-  if (icon === `color`) {
-    value = App.color_icon(`green`)
-  }
-  else if (icon === `container`) {
-    value = App.color_icon_square(`orange`)
-  }
-  else if (icon === `custom`) {
-    value = App.bot_icon
-  }
-  else {
-    value = App.get_setting(`${icon}_icon`)
-  }
-
-  return value
-}
-
 App.resolve_icons = () => {
   let icons = []
 
