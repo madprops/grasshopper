@@ -53,7 +53,7 @@ App.setup_mouse = () => {
     // Using this on mousedown instead causes some problems
     // For instance can't move a tab without selecting it
     // And in a popup it would close the popup on selection
-    App.mouse_click_action(e)
+    App.mouse_click_action(e, e.custom_from)
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
@@ -330,8 +330,8 @@ App.click_element = (el) => {
     cancelable: true,
     clientX: x,
     clientY: y,
-    button: el,
   })
 
+  ev.custom_from = `autoclick`
   el.dispatchEvent(ev)
 }

@@ -1,4 +1,5 @@
-App.mouse_click_action = (e) => {
+App.mouse_click_action = (e, from = `click`) => {
+  clearInterval(App.autoclick_timeout)
   let target = e.target
 
   if (App.click_press_triggered) {
@@ -253,7 +254,7 @@ App.mouse_click_action = (e) => {
     cmd = App.get_setting(`click_item_${mode}`)
   }
 
-  App.run_command({cmd, item, from: `click`, e})
+  App.run_command({cmd, item, from, e})
 }
 
 App.mouse_double_click_action = (e) => {

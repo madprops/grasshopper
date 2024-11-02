@@ -1287,7 +1287,7 @@ App.setup_commands = () => {
       item: true,
       icon: action_icon,
       action: (args) => {
-        App[`${args.mode}_action`]({item: args.item, from: `click`})
+        App[`${args.mode}_action`]({item: args.item, from: args.from})
       },
       info: `Trigger the action for the selected item`,
     },
@@ -1298,7 +1298,7 @@ App.setup_commands = () => {
       item: true,
       icon: action_icon,
       action: (args) => {
-        App[`${args.mode}_action`]({item: args.item, from: `click`, soft: true})
+        App[`${args.mode}_action`]({item: args.item, from: args.from, soft: true})
       },
       info: `Item action but without loading unloaded tabs`,
     },
@@ -1309,7 +1309,7 @@ App.setup_commands = () => {
       item: true,
       icon: action_icon,
       action: (args) => {
-        App[`${args.mode}_action`]({item: args.item, from: `click`, reload: true})
+        App[`${args.mode}_action`]({item: args.item, from: args.from, reload: true})
       },
       info: `Item action that also triggers a reload`,
     },
@@ -1320,7 +1320,7 @@ App.setup_commands = () => {
       item: true,
       icon: action_icon,
       action: (args) => {
-        App[`${args.mode}_action`]({item: args.item, from: `click`, hard: true})
+        App[`${args.mode}_action`]({item: args.item, from: args.from, hard: true})
       },
       info: `Item action that also triggers a hard reload`,
     },
