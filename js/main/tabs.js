@@ -478,27 +478,11 @@ App.duplicate_tabs = (item) => {
 }
 
 App.get_tab_succ = (items, method) => {
-  let mode = `tabs`
-  let next
-
-  if (method === `close`) {
-    if (App.is_filtered(mode)) {
-      let visible = App.get_visible(mode)
-
-      if (visible.length) {
-        next = visible[0]
-      }
-    }
-  }
-
-  if (!next) {
-    let recent = App.get_recent_tabs()
-    recent = recent.filter(x => !x.unloaded)
-    recent = recent.filter(x => !items.includes(x))
-    next = recent.at(0)
-  }
-
-  return next
+  let list = App.get_recent_tabs()
+  list = list.filter(x => x.visible)
+  list = list.filter(x => !x.unloaded)
+  list = list.filter(x => !items.includes(x))
+  return list.at(0)
 }
 
 App.show_tab_info = () => {
