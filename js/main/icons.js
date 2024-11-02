@@ -281,7 +281,6 @@ App.make_item_icon = (item, normal = true) => {
 
         if (override_icon) {
           item.override_icon = o_icon
-          console.log(o_icon)
         }
 
         break
@@ -996,13 +995,17 @@ App.get_icon_value_2 = (icon) => {
 }
 
 App.resolve_icons = () => {
-  App.override_icons = []
+  let icons = []
 
-  for (let icon of App.item_icons) {
-    let side = App.get_setting(`${icon}_icon_side`)
+  for (let name of App.item_icons) {
+    let side = App.get_setting(`${name}_icon_side`)
 
     if (side === `icon`) {
-      App.override_icons.push(icon)
+      let weight = App.get_setting(`${name}_icon_weight`)
+      icons.push({name, weight})
     }
   }
+
+  icons.sort((a, b) => a.weight - b.weight)
+  App.override_icons = icons.map(x => x.name)
 }
