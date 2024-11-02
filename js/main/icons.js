@@ -304,7 +304,6 @@ App.make_item_icon = (item, normal = true) => {
       }
       else {
         override_icon = App.get_setting(`${oname}_icon`)
-        console.log(override_icon)
       }
     }
   }
