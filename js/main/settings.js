@@ -520,6 +520,7 @@ App.refresh_settings = () => {
   App.build_tab_filters()
   App.reset_main_title()
   App.start_signal_intervals()
+  App.resolve_icons()
 }
 
 App.build_setting_cmds = () => {
@@ -2381,25 +2382,4 @@ App.make_mouse_settings = (args = {}) => {
 
 App.settings_separator = () => {
   return DOM.create(`div`, `settings_separator filter_ignore`)
-}
-
-App.settings_override_icons = (key) => {
-  let items = [
-    {
-      text: `None`,
-      value: `none`,
-    },
-  ]
-
-  for (let name of App.item_icons) {
-    let icon = App.get_icon_value_2(name)
-
-    items.push({
-      text: App.capitalize_words(name),
-      icon,
-      value: name,
-    })
-  }
-
-  return App.settings_make_menu(key, items)
 }

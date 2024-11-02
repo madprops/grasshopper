@@ -6,12 +6,6 @@ App.proc_item_icon = (args = {}) => {
 
   App.def_args(def_args, args)
   let name_icon = `${args.name}_icon`
-  let side_ok = args.side === App.get_setting(`${name_icon}_side`)
-
-  if (!App.icon_enabled(args.name) || !side_ok) {
-    return
-  }
-
   let cls = `${name_icon} item_node hidden grower item_icon_unit ${args.cls}`
   let icon = DOM.create(`div`, cls.trim())
 
@@ -157,13 +151,8 @@ App.add_item_icon = (item, side, name) => {
 
 App.add_icons = (item, side) => {
   let icons = []
-  let override = App.get_setting(`override_icon`)
 
   for (let name of App.item_icons) {
-    if (override === name) {
-      continue
-    }
-
     let weight = App.get_setting(`${name}_icon_weight`)
     icons.push({name, weight})
   }
@@ -176,7 +165,7 @@ App.add_icons = (item, side) => {
 }
 
 App.do_icon_check = (name, item) => {
-  if (App.icon_enabled(name)) {
+  if (App.icon_enabled(name, item)) {
     let show = App.check_icon_active(name, item)
     let icon = DOM.el(`.${name}_icon`, item.element)
 
@@ -280,13 +269,23 @@ App.make_item_icon = (item, normal = true) => {
 
   let no_favicon = App.no_favicons.includes(item.mode)
   let fetch = no_favicon && App.get_setting(`fetch_favicons`)
+  item.override_icon = undefined
   let override_icon
 
   if (!svg_icon && !text_icon) {
-    let oname = App.get_setting(`override_icon`)
+    let o_icons = App.override_icons
 
-    if (oname && App.check_icon_active(oname, item)) {
-      override_icon = App.get_icon_value(oname, item)
+    for (let o_icon of o_icons) {
+      if (App.check_icon_active(o_icon, item)) {
+        override_icon = App.get_icon_value(o_icon, item)
+
+        if (override_icon) {
+          item.override_icon = o_icon
+          console.log(o_icon)
+        }
+
+        break
+      }
     }
   }
 
@@ -691,8 +690,8 @@ App.get_icon_tabs = (icon) => {
   return tabs
 }
 
-App.icon_enabled = (name) => {
-  if (App.get_setting(`override_icon`) === name) {
+App.icon_enabled = (name, item) => {
+  if (item.override_icon === name) {
     return false
   }
 
@@ -838,7 +837,7 @@ App.update_icon_tooltips = (item, target) => {
 }
 
 App.check_container_icon = (item) => {
-  if (!App.icon_enabled(`container`)) {
+  if (!App.icon_enabled(`container`, item)) {
     return
   }
 
@@ -864,7 +863,7 @@ App.check_container_icon = (item) => {
 }
 
 App.check_custom_icon = (item) => {
-  if (!App.icon_enabled(`custom`)) {
+  if (!App.icon_enabled(`custom`, item)) {
     return
   }
 
@@ -994,4 +993,16 @@ App.get_icon_value_2 = (icon) => {
   }
 
   return value
+}
+
+App.resolve_icons = () => {
+  App.override_icons = []
+
+  for (let icon of App.item_icons) {
+    let side = App.get_setting(`${icon}_icon_side`)
+
+    if (side === `icon`) {
+      App.override_icons.push(icon)
+    }
+  }
 }

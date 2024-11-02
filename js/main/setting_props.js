@@ -878,17 +878,6 @@ App.build_settings = () => {
   category = `icons`
 
   props = {
-    override_icon: {
-      name: `Override Icon`,
-      type: `menu`,
-      value: `none`,
-      info: `Override item icons with this item icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_override_icons(key)
-      },
-    },
     tabs_mode_icon: {
       name: `Tabs Icon`,
       type: `text_smaller`,

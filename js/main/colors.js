@@ -106,7 +106,7 @@ App.apply_color_mode = (item) => {
     color_mode = `icon`
   }
 
-  if (color_mode.includes(`icon`) && App.icon_enabled(`color`)) {
+  if (color_mode.includes(`icon`) && App.icon_enabled(`color`, item)) {
     let el = DOM.el(`.color_icon_container`, item.element)
 
     if (App.check_icon_active(`color`, item)) {

@@ -186,6 +186,7 @@ App.last_settings_scroll_delay = 350
 App.default_combo_delay = 100
 App.mouse_over_delay = 150
 App.mouse_out_delay = 150
+App.override_icons = []
 
 App.settings_icons = {
   all: `🔍`,
@@ -423,6 +424,7 @@ App.aligns_2 = [
 App.sides = [
   {text: `Left`, value: `left`},
   {text: `Right`, value: `right`},
+  {text: `Icon`, value: `icon`, info: `Replace the normal item icon with this one`},
 ]
 
 App.show_icon = [
