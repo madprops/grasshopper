@@ -152,7 +152,18 @@ App.add_item_icon = (item, side, name) => {
 App.add_icons = (item, side) => {
   let icons = []
 
+
   for (let name of App.item_icons) {
+    let icon_side = App.get_setting(`${name}_icon_side`)
+
+    if (App.override_icons.includes(name)) {
+      icon_side = `left`
+    }
+
+    if (icon_side !== side) {
+      continue
+    }
+
     let weight = App.get_setting(`${name}_icon_weight`)
     icons.push({name, weight})
   }
