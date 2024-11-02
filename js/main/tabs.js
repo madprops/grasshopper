@@ -480,7 +480,7 @@ App.duplicate_tabs = (item) => {
   })
 }
 
-App.get_tab_succ = (items, method) => {
+App.get_tab_succ = (items) => {
   let list = App.get_recent_tabs()
   list = list.filter(x => x.visible)
   list = list.filter(x => !x.unloaded)

@@ -283,7 +283,7 @@ App.make_item_icon = (item, normal = true) => {
     let o_icons = App.override_icons
 
     for (let o_icon of o_icons) {
-      if (App.check_icon_active(o_icon, item)) {
+      if (App.check_icon_active(o_icon, item) && App.icon_enabled_2(o_icon)) {
         let [value, icon_code] = App.get_icon_value(o_icon, item)
 
         if (value) {
@@ -294,9 +294,8 @@ App.make_item_icon = (item, normal = true) => {
           item.override_icon = o_icon
           item.override_icon_code = icon_code
           override_icon = value
+          break
         }
-
-        break
       }
     }
   }
@@ -706,6 +705,11 @@ App.icon_enabled = (name, item) => {
     return false
   }
 
+  let show = App.get_setting(`show_${name}_icon`)
+  return show !== `never`
+}
+
+App.icon_enabled_2 = (name) => {
   let show = App.get_setting(`show_${name}_icon`)
   return show !== `never`
 }

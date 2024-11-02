@@ -47,7 +47,7 @@ App.close_tabs = (args = {}) => {
     confirm_action: async () => {
       if (smart_switch) {
         if (active) {
-          let succ = App.get_tab_succ(items, `close`)
+          let succ = App.get_tab_succ(items)
 
           if (succ) {
             for (let it of items) {

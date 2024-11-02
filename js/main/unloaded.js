@@ -29,7 +29,7 @@ App.unload_tabs = (item, multiple = true) => {
     message: `Unload tabs? (${ids.length})`,
     confirm_action: async () => {
       if (active) {
-        let succ = await App.get_tab_succ(items, `unload`)
+        let succ = await App.get_tab_succ(items)
 
         if (succ) {
           let method = `unload`
