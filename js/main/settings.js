@@ -520,6 +520,7 @@ App.refresh_settings = () => {
   App.build_tab_filters()
   App.reset_main_title()
   App.start_signal_intervals()
+  App.resolve_icons()
 }
 
 App.build_setting_cmds = () => {

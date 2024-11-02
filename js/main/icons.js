@@ -157,14 +157,9 @@ App.add_item_icon = (item, side, name) => {
 
 App.add_icons = (item, side) => {
   let icons = []
-  let custom_icon = false
-
-  if (App.get_setting(`custom_icon_side`) === `icon`) {
-    custom_icon = true
-  }
 
   for (let name of App.item_icons) {
-    if (custom_icon && (name === `custom`)) {
+    if (App.override_icon === name) {
       continue
     }
 
@@ -179,8 +174,9 @@ App.add_icons = (item, side) => {
   }
 }
 
-App.do_icon_check = (name, show, item) => {
+App.do_icon_check = (name, item) => {
   if (App.icon_enabled(name)) {
+    let show = App.check_icon_active(name, item)
     let icon = DOM.el(`.${name}_icon`, item.element)
 
     if (show) {
@@ -200,34 +196,44 @@ App.check_icons = (item) => {
   }
 
   App.check_custom_icon(item)
-  App.do_icon_check(`notes`, App.get_notes(item), item)
-  App.do_icon_check(`title`, !item.header && App.get_title(item), item)
-  App.do_icon_check(`tags`, App.tagged(item), item)
-  App.do_icon_check(`edited`, App.edited(item), item)
-  App.do_icon_check(`image`, App.get_media_type(item) === `image`, item)
-  App.do_icon_check(`video`, App.get_media_type(item) === `video`, item)
-  App.do_icon_check(`audio`, App.get_media_type(item) === `audio`, item)
+
+  let icons = [
+    `notes`,
+    `title`,
+    `tags`,
+    `edited`,
+    `image`,
+    `video`,
+    `audio`,
+  ]
+
+  for (let icon of icons) {
+    App.do_icon_check(icon, item)
+  }
 
   if (item.mode !== `tabs`) {
     return
   }
 
-  App.do_icon_check(`active`, item.active, item)
-  App.do_icon_check(`pin`, item.pinned, item)
-  App.do_icon_check(`normal`, !item.pinned, item)
-  App.do_icon_check(`loaded`, !item.unloaded, item)
-  App.do_icon_check(`unloaded`, item.unloaded, item)
-  App.do_icon_check(`playing`, item.playing && !item.muted, item)
-  App.do_icon_check(`muted`, item.muted, item)
-  App.do_icon_check(`unread`, item.unread, item)
-
-  let auto_root = App.get_setting(`auto_root_icon`)
-  let show_root = auto_root ? App.root_possible(item) : App.item_has_root(item)
-  App.do_icon_check(`root`, show_root, item)
-
-  App.do_icon_check(`parent`, App.tab_has_nodes(item), item)
-  App.do_icon_check(`node`, App.tab_has_parent(item), item)
   App.check_container_icon(item)
+
+  icons = [
+    `active`,
+    `pin`,
+    `normal`,
+    `loaded`,
+    `unloaded`,
+    `playing`,
+    `muted`,
+    `unread`,
+    `root`,
+    `parent`,
+    `node`,
+  ]
+
+  for (let icon of icons) {
+    App.do_icon_check(icon, item)
+  }
 }
 
 App.check_item_icon = (item) => {
@@ -273,12 +279,33 @@ App.make_item_icon = (item, normal = true) => {
 
   let no_favicon = App.no_favicons.includes(item.mode)
   let fetch = no_favicon && App.get_setting(`fetch_favicons`)
+  let override_icon
 
-  if (!text_icon) {
-    let c_icon = App.get_icon(item)
+  if (!svg_icon && !text_icon) {
+    let oname = App.override_icon
 
-    if ((App.get_setting(`custom_icon_side`) === `icon`) && c_icon) {
-      text_icon = c_icon
+    if (oname && App.check_icon_active(oname, item)) {
+      if (oname === `color`) {
+        let color = App.get_color(item)
+
+        if (color) {
+          override_icon = App.color_icon(color)
+        }
+      }
+      else if (oname === `container`) {
+        let color = item.container_color
+
+        if (color) {
+          override_icon = App.color_icon_square(color)
+        }
+      }
+      else if (oname === `custom`) {
+        override_icon = App.get_icon(item)
+      }
+      else {
+        override_icon = App.get_setting(`${oname}_icon`)
+        console.log(override_icon)
+      }
     }
   }
 
@@ -290,6 +317,7 @@ App.make_item_icon = (item, normal = true) => {
       item.text_icon_used = undefined
       item.favicon_used = undefined
       item.generated_icon = undefined
+      item.override_icon_used = undefined
     }
   }
   else if (text_icon) {
@@ -302,6 +330,18 @@ App.make_item_icon = (item, normal = true) => {
     icon = App.get_text_icon(text_icon)
 
     if (normal) {
+      item.text_icon_used = text_icon
+      item.favicon_used = undefined
+      item.generated_icon = undefined
+      item.svg_icon = undefined
+      item.override_icon_used = undefined
+    }
+  }
+  else if (override_icon) {
+    icon = override_icon
+
+    if (normal) {
+      item.override_icon_used = override_icon
       item.text_icon_used = text_icon
       item.favicon_used = undefined
       item.generated_icon = undefined
@@ -326,6 +366,7 @@ App.make_item_icon = (item, normal = true) => {
       item.generated_icon = undefined
       item.text_icon_used = undefined
       item.svg_icon = undefined
+      item.override_icon_used = undefined
     }
   }
   else if (App.get_setting(`generate_icons`)) {
@@ -342,6 +383,7 @@ App.make_item_icon = (item, normal = true) => {
       item.favicon_used = undefined
       item.text_icon_used = undefined
       item.svg_icon = undefined
+      item.override_icon_used = undefined
     }
   }
   else {
@@ -353,6 +395,7 @@ App.make_item_icon = (item, normal = true) => {
       item.generated_icon = undefined
       item.text_icon_used = undefined
       item.svg_icon = undefined
+      item.override_icon_used = undefined
     }
   }
 
@@ -668,10 +711,8 @@ App.get_icon_tabs = (icon) => {
 }
 
 App.icon_enabled = (name) => {
-  if (name === `custom`) {
-    if (App.get_setting(`custom_icon_side`) === `icon`) {
-      return false
-    }
+  if (App.get_setting(`${name}_icon_side`) === `icon`) {
+    return false
   }
 
   let show = App.get_setting(`show_${name}_icon`)
@@ -846,10 +887,10 @@ App.check_custom_icon = (item) => {
     return
   }
 
-  let custom_icon = App.get_icon(item)
   let custom_icon_el = DOM.el(`.custom_icon`, item.element)
 
-  if (custom_icon) {
+  if (App.check_icon_active(`custom`, item)) {
+    let custom_icon = App.get_icon(item)
     custom_icon_el.innerHTML = custom_icon
     custom_icon_el.dataset.content = custom_icon
     DOM.show(custom_icon_el)
@@ -862,4 +903,81 @@ App.check_custom_icon = (item) => {
 App.show_custom_icon = (item, e) => {
   let icon = App.get_icon(item)
   App.show_tab_list(`icon_${icon}`, e)
+}
+
+App.resolve_icons = () => {
+  App.override_icon = undefined
+
+  for (let icon of App.item_icons) {
+    let side = App.get_setting(`${icon}_icon_side`)
+
+    if (side === `icon`) {
+      App.override_icon = icon
+      return
+    }
+  }
+}
+
+App.check_icon_active = (icon, item) => {
+  if (icon === `notes`) {
+    return App.get_notes(item)
+  }
+  else if (icon === `title`) {
+    return !item.header && App.get_title(item)
+  }
+  else if (icon === `tags`) {
+    return App.tagged(item)
+  }
+  else if (icon === `edited`) {
+    return App.edited(item)
+  }
+  else if (icon === `image`) {
+    return App.get_media_type(item) === `image`
+  }
+  else if (icon === `video`) {
+    return App.get_media_type(item) === `video`
+  }
+  else if (icon === `audio`) {
+    return App.get_media_type(item) === `audio`
+  }
+  else if (icon === `active`) {
+    return item.active
+  }
+  else if (icon === `pin`) {
+    return item.pinned
+  }
+  else if (icon === `normal`) {
+    return !item.pinned
+  }
+  else if (icon === `loaded`) {
+    return !item.unloaded
+  }
+  else if (icon === `unloaded`) {
+    return item.unloaded
+  }
+  else if (icon === `playing`) {
+    return item.playing && !item.muted
+  }
+  else if (icon === `muted`) {
+    return item.muted
+  }
+  else if (icon === `unread`) {
+    return item.unread
+  }
+  else if (icon === `custom`) {
+    return App.get_icon(item)
+  }
+  else if (icon === `color`) {
+    return App.get_color(item)
+  }
+  else if (icon === `root`) {
+    let auto_root = App.get_setting(`auto_root_icon`)
+    return auto_root ? App.root_possible(item) : App.item_has_root(item)
+  }
+  else if (icon === `parent`) {
+    return App.tab_has_nodes(item)
+  }
+  else if (icon === `node`) {
+    return App.tab_has_parent(item)
+  }
 }
