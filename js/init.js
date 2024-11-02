@@ -44,7 +44,6 @@ App.init = async () => {
   App.setup_context()
   App.build_shell()
   App.mouse_inside_check()
-  App.resolve_icons()
   await App.clear_show()
   App.init_tab_box()
   App.make_window_visible()

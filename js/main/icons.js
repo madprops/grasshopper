@@ -157,9 +157,10 @@ App.add_item_icon = (item, side, name) => {
 
 App.add_icons = (item, side) => {
   let icons = []
+  let override = App.get_setting(`override_icon`)
 
   for (let name of App.item_icons) {
-    if (App.override_icon === name) {
+    if (override === name) {
       continue
     }
 
@@ -282,29 +283,10 @@ App.make_item_icon = (item, normal = true) => {
   let override_icon
 
   if (!svg_icon && !text_icon) {
-    let oname = App.override_icon
+    let oname = App.get_setting(`override_icon`)
 
     if (oname && App.check_icon_active(oname, item)) {
-      if (oname === `color`) {
-        let color = App.get_color(item)
-
-        if (color) {
-          override_icon = App.color_icon(color)
-        }
-      }
-      else if (oname === `container`) {
-        let color = item.container_color
-
-        if (color) {
-          override_icon = App.color_icon_square(color)
-        }
-      }
-      else if (oname === `custom`) {
-        override_icon = App.get_icon(item)
-      }
-      else {
-        override_icon = App.get_setting(`${oname}_icon`)
-      }
+      override_icon = App.get_icon_value(oname, item)
     }
   }
 
@@ -710,7 +692,7 @@ App.get_icon_tabs = (icon) => {
 }
 
 App.icon_enabled = (name) => {
-  if (App.get_setting(`${name}_icon_side`) === `icon`) {
+  if (App.get_setting(`override_icon`) === name) {
     return false
   }
 
@@ -904,19 +886,6 @@ App.show_custom_icon = (item, e) => {
   App.show_tab_list(`icon_${icon}`, e)
 }
 
-App.resolve_icons = () => {
-  App.override_icon = undefined
-
-  for (let icon of App.item_icons) {
-    let side = App.get_setting(`${icon}_icon_side`)
-
-    if (side === `icon`) {
-      App.override_icon = icon
-      return
-    }
-  }
-}
-
 App.check_icon_active = (icon, item) => {
   if (icon === `notes`) {
     return App.get_notes(item)
@@ -979,4 +948,50 @@ App.check_icon_active = (icon, item) => {
   else if (icon === `node`) {
     return App.tab_has_parent(item)
   }
+}
+
+App.get_icon_value = (icon, item) => {
+  let value
+
+  if (icon === `color`) {
+    let color = App.get_color(item)
+
+    if (color) {
+      value = App.color_icon(color)
+    }
+  }
+  else if (icon === `container`) {
+    let color = item.container_color
+
+    if (color) {
+      value = App.color_icon_square(color)
+    }
+  }
+  else if (icon === `custom`) {
+    value = App.get_icon(item)
+  }
+  else {
+    value = App.get_setting(`${icon}_icon`)
+  }
+
+  return value
+}
+
+App.get_icon_value_2 = (icon) => {
+  let value
+
+  if (icon === `color`) {
+    value = App.color_icon(`green`)
+  }
+  else if (icon === `container`) {
+    value = App.color_icon_square(`orange`)
+  }
+  else if (icon === `custom`) {
+    value = App.bot_icon
+  }
+  else {
+    value = App.get_setting(`${icon}_icon`)
+  }
+
+  return value
 }

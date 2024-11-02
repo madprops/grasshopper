@@ -423,7 +423,6 @@ App.aligns_2 = [
 App.sides = [
   {text: `Left`, value: `left`},
   {text: `Right`, value: `right`},
-  {text: `Icon`, value: `icon`, info: `Replace the normal item icon with this one`},
 ]
 
 App.show_icon = [

@@ -915,6 +915,17 @@ App.build_settings = () => {
       info: `Icon for the Closed mode`,
       version: 1,
     },
+    override_icon: {
+      name: `Override Icon`,
+      type: `menu`,
+      value: `none`,
+      info: `Override item icons with this item icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_override_icons(key)
+      },
+    },
     active_icon: {
       name: `Active Icon`,
       type: `text_smaller`,
