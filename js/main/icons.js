@@ -152,7 +152,6 @@ App.add_item_icon = (item, side, name) => {
 App.add_icons = (item, side) => {
   let icons = []
 
-
   for (let name of App.item_icons) {
     let icon_side = App.get_setting(`${name}_icon_side`)
 
@@ -278,7 +277,6 @@ App.make_item_icon = (item, normal = true) => {
 
   let no_favicon = App.no_favicons.includes(item.mode)
   let fetch = no_favicon && App.get_setting(`fetch_favicons`)
-  item.override_icon = undefined
   let override_icon
 
   if (!svg_icon && !text_icon) {
@@ -286,15 +284,26 @@ App.make_item_icon = (item, normal = true) => {
 
     for (let o_icon of o_icons) {
       if (App.check_icon_active(o_icon, item)) {
-        override_icon = App.get_icon_value(o_icon, item)
+        let [value, icon_code] = App.get_icon_value(o_icon, item)
 
-        if (override_icon) {
+        if (value) {
+          if (item.override_icon_code === icon_code) {
+            return {add: false}
+          }
+
           item.override_icon = o_icon
+          item.override_icon_code = icon_code
+          override_icon = value
         }
 
         break
       }
     }
+  }
+
+  if (!override_icon) {
+    item.override_icon = undefined
+    item.override_icon_code = undefined
   }
 
   if (svg_icon) {
@@ -305,7 +314,6 @@ App.make_item_icon = (item, normal = true) => {
       item.text_icon_used = undefined
       item.favicon_used = undefined
       item.generated_icon = undefined
-      item.override_icon_used = undefined
     }
   }
   else if (text_icon) {
@@ -322,14 +330,12 @@ App.make_item_icon = (item, normal = true) => {
       item.favicon_used = undefined
       item.generated_icon = undefined
       item.svg_icon = undefined
-      item.override_icon_used = undefined
     }
   }
   else if (override_icon) {
     icon = override_icon
 
     if (normal) {
-      item.override_icon_used = override_icon
       item.text_icon_used = text_icon
       item.favicon_used = undefined
       item.generated_icon = undefined
@@ -354,7 +360,6 @@ App.make_item_icon = (item, normal = true) => {
       item.generated_icon = undefined
       item.text_icon_used = undefined
       item.svg_icon = undefined
-      item.override_icon_used = undefined
     }
   }
   else if (App.get_setting(`generate_icons`)) {
@@ -371,7 +376,6 @@ App.make_item_icon = (item, normal = true) => {
       item.favicon_used = undefined
       item.text_icon_used = undefined
       item.svg_icon = undefined
-      item.override_icon_used = undefined
     }
   }
   else {
@@ -383,7 +387,6 @@ App.make_item_icon = (item, normal = true) => {
       item.generated_icon = undefined
       item.text_icon_used = undefined
       item.svg_icon = undefined
-      item.override_icon_used = undefined
     }
   }
 
@@ -950,13 +953,14 @@ App.check_icon_active = (icon, item) => {
 }
 
 App.get_icon_value = (icon, item) => {
-  let value
+  let value, code
 
   if (icon === `color`) {
     let color = App.get_color(item)
 
     if (color) {
       value = App.color_icon(color)
+      code = `color_${color}`
     }
   }
   else if (icon === `container`) {
@@ -964,16 +968,19 @@ App.get_icon_value = (icon, item) => {
 
     if (color) {
       value = App.color_icon_square(color)
+      code = `container_${color}`
     }
   }
   else if (icon === `custom`) {
     value = App.get_icon(item)
+    code = `custom_${value}`
   }
   else {
     value = App.get_setting(`${icon}_icon`)
+    code = `icon_${value}`
   }
 
-  return value
+  return [value, code]
 }
 
 App.resolve_icons = () => {
