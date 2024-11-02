@@ -2391,7 +2391,6 @@ App.settings_override_icons = (key) => {
     },
   ]
 
-
   for (let name of App.item_icons) {
     let icon = App.get_icon_value_2(name)
 
