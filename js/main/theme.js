@@ -1144,7 +1144,10 @@ App.set_main_title_vars = () => {
   main.classList.add(`main_title_align_${title_align}`)
   let size = App.get_setting(`main_title_size`)
 
-  if (size === `small`) {
+  if (size === `tiny`) {
+    App.set_css_var(`main_title_padding`, App.panel_sizes.small)
+  }
+  else if (size === `small`) {
     App.set_css_var(`main_title_padding`, App.panel_sizes.small)
   }
   else if (size === `normal`) {
@@ -1152,6 +1155,9 @@ App.set_main_title_vars = () => {
   }
   else if (size === `big`) {
     App.set_css_var(`main_title_padding`, App.panel_sizes.big)
+  }
+  else if (size === `huge`) {
+    App.set_css_var(`main_title_padding`, App.panel_sizes.huge)
   }
 
   let lb = App.get_setting(`main_title_left_button`)
