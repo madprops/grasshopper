@@ -1791,6 +1791,13 @@ App.build_settings = () => {
       info: `Generate icons if favicons are not found`,
       version: 1,
     },
+    icons_click: {
+      name: `Icons Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable click actions for item icons`,
+      version: 1,
+    },
     icons_middle_click: {
       name: `Icons Middle Click`,
       type: `checkbox`,

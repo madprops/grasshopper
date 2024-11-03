@@ -768,6 +768,10 @@ App.get_custom_icon_command = (icon) => {
 }
 
 App.item_icon_click = (args = {}) => {
+  if (!App.get_setting(`icons_click`)) {
+    return false
+  }
+
   if (!args.icon) {
     let el = DOM.parent(args.target, [`.item_icon_unit`])
 
