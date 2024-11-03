@@ -1221,19 +1221,19 @@ App.set_hover_button_vars = () => {
   let size = App.get_setting(`hover_button_size`)
 
   if (size === `tiny`) {
-    App.set_css_var(`hover_button_width`, `1.2rem`)
+    App.set_css_var(`hover_button_padding`, `0.1rem`)
   }
   else if (size === `small`) {
-    App.set_css_var(`hover_button_width`, `1.42rem`)
+    App.set_css_var(`hover_button_padding`, `0.3rem`)
   }
   else if (size === `normal`) {
-    App.set_css_var(`hover_button_width`, `1.89rem`)
+    App.set_css_var(`hover_button_padding`, `0.5rem`)
   }
   else if (size === `big`) {
-    App.set_css_var(`hover_button_width`, `2.24rem`)
+    App.set_css_var(`hover_button_padding`, `0.7rem`)
   }
   else if (size === `huge`) {
-    App.set_css_var(`hover_button_width`, `2.5rem`)
+    App.set_css_var(`hover_button_padding`, `0.9rem`)
   }
 }
 
