@@ -962,16 +962,6 @@ App.set_close_button_vars = () => {
 
   let size_tb = App.get_setting(`close_button_size_tab_box`)
   set_size(size_tb, `close_button_width_tab_box`)
-
-  if (size_tb === `small`) {
-    App.set_css_var(`close_button_width_tab_box`, `1.42rem`)
-  }
-  else if (size_tb === `normal`) {
-    App.set_css_var(`close_button_width_tab_box`, `1.77rem`)
-  }
-  else if (size_tb === `big`) {
-    App.set_css_var(`close_button_width_tab_box`, `2.18rem`)
-  }
 }
 
 App.set_footer_vars = () => {
