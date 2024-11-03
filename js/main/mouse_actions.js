@@ -192,6 +192,9 @@ App.mouse_click_action = (e, from = `click`) => {
       else if (App.get_setting(`icon_pick`)) {
         return
       }
+      else if (App.check_item_icon_click({item, target, e})) {
+        return
+      }
     }
   }
 
@@ -237,7 +240,7 @@ App.mouse_click_action = (e, from = `click`) => {
     }
 
     if (DOM.parent(target, [`.item_icon_unit`])) {
-      if (App.item_icon_click(item, target, e)) {
+      if (App.item_icon_click({item, target, e})) {
         return
       }
     }

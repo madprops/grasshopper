@@ -750,39 +750,41 @@ App.get_custom_icon_command = (icon) => {
   return cmd
 }
 
-App.item_icon_click = (item, target, e) => {
-  let el = DOM.parent(target, [`.item_icon_unit`])
+App.item_icon_click = (args = {}) => {
+  if (!args.icon) {
+    let el = DOM.parent(args.target, [`.item_icon_unit`])
 
-  if (!el) {
+    if (!el) {
+      return false
+    }
+
+    args.icon = el.dataset.icon
+  }
+
+  if (!args.icon) {
     return false
   }
 
-  let icon = el.dataset.icon
-
-  if (!icon) {
-    return false
-  }
-
-  if (icon === `color`) {
-    App.color_icon_click(item, e)
+  if (args.icon === `color`) {
+    App.color_icon_click(args.item, args.e)
     return true
   }
-  else if (icon === `custom`) {
-    App.custom_icon_click(item, e)
+  else if (args.icon === `custom`) {
+    App.custom_icon_click(args.item, args.e)
     return true
   }
-  else if (icon === `container`) {
-    App.container_icon_click(item, e)
+  else if (args.icon === `container`) {
+    App.container_icon_click(args.item, args.e)
     return true
   }
 
-  let cmd = App.get_setting(`${icon}_icon_command`)
+  let cmd = App.get_setting(`${args.icon}_icon_command`)
 
   if (!cmd || cmd === `none`) {
     return false
   }
 
-  App.run_command({cmd, item, from: `icon_click`, e})
+  App.run_command({cmd, item: args.item, from: `icon_click`, e: args.e})
   return true
 }
 
@@ -1000,4 +1002,13 @@ App.resolve_icons = () => {
 
   icons.sort((a, b) => a.weight - b.weight)
   App.override_icons = icons.map(x => x.name)
+}
+
+App.check_item_icon_click = (args = {}) => {
+  if (!args.item.override_icon) {
+    return false
+  }
+
+  args.icon = args.item.override_icon
+  return App.item_icon_click(args)
 }
