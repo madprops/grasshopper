@@ -302,7 +302,7 @@ App.make_item_icon = (item, normal = true) => {
           let c = DOM.create(`div`, `item_icon`)
 
           if (o_icon.command) {
-            classes.push(`pointer`)
+            classes.push(`grower`)
           }
 
           c.append(value)
