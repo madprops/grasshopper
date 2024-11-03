@@ -705,8 +705,7 @@ App.icon_enabled = (name, item) => {
     return false
   }
 
-  let show = App.get_setting(`show_${name}_icon`)
-  return show !== `never`
+  return App.icon_enabled_2(name)
 }
 
 App.icon_enabled_2 = (name) => {
