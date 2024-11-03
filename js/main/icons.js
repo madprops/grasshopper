@@ -151,11 +151,12 @@ App.add_item_icon = (item, side, name) => {
 
 App.add_icons = (item, side) => {
   let icons = []
+  let o_icons = App.override_icons.map(x => x.name)
 
   for (let name of App.item_icons) {
     let icon_side = App.get_setting(`${name}_icon_side`)
 
-    if (App.override_icons.includes(name)) {
+    if (o_icons.includes(name)) {
       icon_side = `left`
     }
 
@@ -244,6 +245,12 @@ App.check_item_icon = (item) => {
 
     let container = DOM.el(`.item_icon_container`, item.element)
 
+    if (ans.classes) {
+      for (let cls of ans.classes) {
+        container.classList.add(cls)
+      }
+    }
+
     if (ans.icon) {
       container.innerHTML = ``
       container.append(ans.icon)
@@ -257,6 +264,7 @@ App.check_item_icon = (item) => {
 
 App.make_item_icon = (item, normal = true) => {
   let icon, text_icon, svg_icon
+  let classes = []
 
   if (item.tab_box) {
     normal = false
@@ -283,8 +291,8 @@ App.make_item_icon = (item, normal = true) => {
     let o_icons = App.override_icons
 
     for (let o_icon of o_icons) {
-      if (App.check_icon_active(o_icon, item) && App.icon_enabled_2(o_icon)) {
-        let [value, icon_code] = App.get_icon_value(o_icon, item)
+      if (App.check_icon_active(o_icon.name, item) && App.icon_enabled_2(o_icon.name)) {
+        let [value, icon_code] = App.get_icon_value(o_icon.name, item)
 
         if (value) {
           if (item.override_icon_code === icon_code) {
@@ -292,9 +300,13 @@ App.make_item_icon = (item, normal = true) => {
           }
 
           let c = DOM.create(`div`, `item_icon`)
-          c.append(value)
 
-          item.override_icon = o_icon
+          if (o_icon.command) {
+            classes.push(`pointer`)
+          }
+
+          c.append(value)
+          item.override_icon = o_icon.name
           item.override_icon_code = icon_code
           override_icon = c
           break
@@ -395,6 +407,7 @@ App.make_item_icon = (item, normal = true) => {
   return {
     add: true,
     icon,
+    classes,
   }
 }
 
@@ -1004,7 +1017,16 @@ App.resolve_icons = () => {
   }
 
   icons.sort((a, b) => a.weight - b.weight)
-  App.override_icons = icons.map(x => x.name)
+
+  for (let icon of icons) {
+    let cmd = App.get_setting(`${icon.name}_icon_command`)
+
+    if (cmd && (cmd !== `none`)) {
+      icon.command = cmd
+    }
+  }
+
+  App.override_icons = icons
 }
 
 App.check_item_icon_click = (args = {}) => {
