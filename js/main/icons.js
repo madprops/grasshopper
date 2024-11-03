@@ -291,9 +291,12 @@ App.make_item_icon = (item, normal = true) => {
             return {add: false}
           }
 
+          let c = DOM.create(`div`, `item_icon`)
+          c.append(value)
+
           item.override_icon = o_icon
           item.override_icon_code = icon_code
-          override_icon = value
+          override_icon = c
           break
         }
       }
