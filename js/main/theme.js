@@ -938,19 +938,30 @@ App.set_close_button_vars = () => {
   App.set_css_var(`close_button_border_width`, cbbw + `px`)
   let cbbwtb = App.get_setting(`close_button_border_width_tab_box`)
   App.set_css_var(`close_button_border_width_tab_box`, cbbwtb + `px`)
-  let size = App.get_setting(`close_button_size`)
 
-  if (size === `small`) {
-    App.set_css_var(`close_button_width`, `1.42rem`)
+  function set_size (size, var_name) {
+    if (size === `tiny`) {
+      App.set_css_var(var_name, `1.2rem`)
+    }
+    else if (size === `small`) {
+      App.set_css_var(var_name, `1.42rem`)
+    }
+    else if (size === `normal`) {
+      App.set_css_var(var_name, `1.77rem`)
+    }
+    else if (size === `big`) {
+      App.set_css_var(var_name, `2.18rem`)
+    }
+    else if (size === `huge`) {
+      App.set_css_var(var_name, `2.5rem`)
+    }
   }
-  else if (size === `normal`) {
-    App.set_css_var(`close_button_width`, `1.77rem`)
-  }
-  else if (size === `big`) {
-    App.set_css_var(`close_button_width`, `2.18rem`)
-  }
+
+  let size = App.get_setting(`close_button_size`)
+  set_size(size, `close_button_width`)
 
   let size_tb = App.get_setting(`close_button_size_tab_box`)
+  set_size(size_tb, `close_button_width_tab_box`)
 
   if (size_tb === `small`) {
     App.set_css_var(`close_button_width_tab_box`, `1.42rem`)
@@ -994,7 +1005,10 @@ App.set_footer_vars = () => {
   App.set_css_var(`footer_align`, footer_justify)
   let size = App.get_setting(`footer_size`)
 
-  if (size === `small`) {
+  if (size === `tiny`) {
+    App.set_css_var(`footer_padding`, App.panel_sizes.tiny)
+  }
+  else if (size === `small`) {
     App.set_css_var(`footer_padding`, App.panel_sizes.small)
   }
   else if (size === `normal`) {
@@ -1002,6 +1016,9 @@ App.set_footer_vars = () => {
   }
   else if (size === `big`) {
     App.set_css_var(`footer_padding`, App.panel_sizes.big)
+  }
+  else if (size === `huge`) {
+    App.set_css_var(`footer_padding`, App.panel_sizes.huge)
   }
 }
 
@@ -1043,7 +1060,10 @@ App.set_favorite_vars = () => {
 
   let size = App.get_setting(`favorites_size`)
 
-  if (size === `small`) {
+  if (size === `tiny`) {
+    App.set_css_var(`favorites_padding`, `0.06rem`)
+  }
+  else if (size === `small`) {
     App.set_css_var(`favorites_padding`, `0.1rem`)
   }
   else if (size === `normal`) {
@@ -1052,10 +1072,16 @@ App.set_favorite_vars = () => {
   else if (size === `big`) {
     App.set_css_var(`favorites_padding`, `0.45rem`)
   }
+  else if (size === `huge`) {
+    App.set_css_var(`favorites_padding`, `0.6rem`)
+  }
 
   let gap = App.get_setting(`favorites_gap`)
 
-  if (gap === `small`) {
+  if (gap === `tiny`) {
+    App.set_css_var(`favorites_gap`, `0.1rem`)
+  }
+  else if (gap === `small`) {
     App.set_css_var(`favorites_gap`, `0.18rem`)
   }
   else if (gap === `normal`) {
@@ -1063,6 +1089,9 @@ App.set_favorite_vars = () => {
   }
   else if (gap === `big`) {
     App.set_css_var(`favorites_gap`, `0.51rem`)
+  }
+  else if (gap === `huge`) {
+    App.set_css_var(`favorites_gap`, `0.66rem`)
   }
 }
 
@@ -1195,7 +1224,10 @@ App.set_hover_button_vars = () => {
   main.classList.add(`hover_button_${hbs}`)
   let size = App.get_setting(`hover_button_size`)
 
-  if (size === `small`) {
+  if (size === `tiny`) {
+    App.set_css_var(`hover_button_width`, `1.2rem`)
+  }
+  else if (size === `small`) {
     App.set_css_var(`hover_button_width`, `1.42rem`)
   }
   else if (size === `normal`) {
@@ -1203,6 +1235,9 @@ App.set_hover_button_vars = () => {
   }
   else if (size === `big`) {
     App.set_css_var(`hover_button_width`, `2.24rem`)
+  }
+  else if (size === `huge`) {
+    App.set_css_var(`hover_button_width`, `2.5rem`)
   }
 }
 

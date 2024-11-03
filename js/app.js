@@ -287,9 +287,11 @@ App.sizes_2 = [
 ]
 
 App.sizes_3 = [
+  {text: `Tiny`, value: `tiny`},
   {text: `Small`, value: `small`},
   {text: `Normal`, value: `normal`},
   {text: `Big`, value: `big`},
+  {text: `Huge`, value: `huge`},
 ]
 
 App.dark_colors = {
@@ -508,9 +510,11 @@ App.title_buttons = [
 ]
 
 App.panel_sizes = {
+  tiny: `0.06rem`,
   small: `0.12rem`,
   normal: `0.25rem`,
   big: `0.35rem`,
+  huge: `0.5rem`,
 }
 
 App.footer_tab_box_click_cmd = `toggle_tab_box`
