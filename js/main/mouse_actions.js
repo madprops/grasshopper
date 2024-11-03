@@ -625,6 +625,12 @@ App.mouse_middle_action = (e, target_el) => {
 
   mode = item.mode
 
+  if (DOM.parent(target, [`.item_icon_container`])) {
+    if (App.check_item_icon_middle_click_2(item, target)) {
+      return
+    }
+  }
+
   if (DOM.parent(target, [`.hover_button`])) {
     App.hover_button_middle_click(item, e)
     return
@@ -643,51 +649,8 @@ App.mouse_middle_action = (e, target_el) => {
     }
 
     if (DOM.parent(target, [`.item_icon_unit`])) {
-      if (App.get_setting(`icons_middle_click`)) {
-        if (DOM.parent(target, [`.color_icon_container`])) {
-          App.edit_tab_color({item})
-          return
-        }
-
-        if (DOM.parent(target, [`.title_icon`])) {
-          App.edit_tab_title({item})
-          return
-        }
-
-        if (DOM.parent(target, [`.root_icon`])) {
-          App.remove_root_url(item)
-          return
-        }
-
-        if (DOM.parent(target, [`.tags_icon`])) {
-          App.remove_tags(item)
-          return
-        }
-
-        if (DOM.parent(target, [`.node_icon`])) {
-          App.filter_node_tab_siblings(item)
-          return
-        }
-
-        if (DOM.parent(target, [`.parent_icon`])) {
-          App.close_node_tabs(item)
-          return
-        }
-
-        if (DOM.parent(target, [`.edited_icon`])) {
-          App.remove_item_edits(item)
-          return
-        }
-
-        if (DOM.parent(target, [`.notes_icon`])) {
-          App.remove_notes(item)
-          return
-        }
-
-        if (DOM.parent(target, [`.custom_icon`])) {
-          App.remove_item_icon(item)
-          return
-        }
+      if (App.check_item_icon_middle_click(item, target)) {
+        return
       }
     }
 

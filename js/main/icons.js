@@ -1048,3 +1048,100 @@ App.check_item_icon_click = (args = {}) => {
   args.icon = args.item.override_icon
   return App.item_icon_click(args)
 }
+
+App.check_item_icon_middle_click = (item, target, icon = ``) => {
+  if (!App.get_setting(`icons_middle_click`)) {
+    return false
+  }
+
+  if (!icon) {
+    if (DOM.parent(target, [`.color_icon_container`])) {
+      icon = `color`
+    }
+    else if (DOM.parent(target, [`.title_icon`])) {
+      icon = `title`
+    }
+    else if (DOM.parent(target, [`.root_icon`])) {
+      icon = `root`
+    }
+    else if (DOM.parent(target, [`.tags_icon`])) {
+      icon = `tags`
+    }
+    else if (DOM.parent(target, [`.node_icon`])) {
+      icon = `node`
+    }
+    else if (DOM.parent(target, [`.parent_icon`])) {
+      icon = `parent`
+    }
+    else if (DOM.parent(target, [`.edited_icon`])) {
+      icon = `edited`
+    }
+    else if (DOM.parent(target, [`.notes_icon`])) {
+      icon = `notes`
+    }
+    else if (DOM.parent(target, [`.custom_icon`])) {
+      icon = `custom`
+    }
+  }
+
+  if (!icon) {
+    return false
+  }
+
+  if (icon === `color`) {
+    App.edit_tab_color({item})
+    return true
+  }
+
+  if (icon === `title`) {
+    App.edit_tab_title({item})
+    return true
+  }
+
+  if (icon === `root`) {
+    App.remove_root_url(item)
+    return true
+  }
+
+  if (icon === `tags`) {
+    App.remove_tags(item)
+    return true
+  }
+
+  if (icon === `node`) {
+    App.filter_node_tab_siblings(item)
+    return true
+  }
+
+  if (icon === `parent`) {
+    App.close_node_tabs(item)
+    return true
+  }
+
+  if (icon === `edited`) {
+    App.remove_item_edits(item)
+    return true
+  }
+
+  if (icon === `notes`) {
+    App.remove_notes(item)
+    return true
+  }
+
+  if (icon === `custom`) {
+    App.remove_item_icon(item)
+    return true
+  }
+
+  return false
+}
+
+App.check_item_icon_middle_click_2 = (item) => {
+  let icon = item.override_icon
+
+  if (!icon) {
+    return false
+  }
+
+  return App.check_item_icon_middle_click(item, item.element, icon)
+}
