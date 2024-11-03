@@ -1054,32 +1054,36 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
     return false
   }
 
+  function check(what) {
+    return DOM.parent(target, [what])
+  }
+
   if (!icon) {
-    if (DOM.parent(target, [`.color_icon_container`])) {
+    if (check(`.color_icon_container`)) {
       icon = `color`
     }
-    else if (DOM.parent(target, [`.title_icon`])) {
+    else if (check(`.title_icon`)) {
       icon = `title`
     }
-    else if (DOM.parent(target, [`.root_icon`])) {
+    else if (check(`.root_icon`)) {
       icon = `root`
     }
-    else if (DOM.parent(target, [`.tags_icon`])) {
+    else if (check(`.tags_icon`)) {
       icon = `tags`
     }
-    else if (DOM.parent(target, [`.node_icon`])) {
+    else if (check(`.node_icon`)) {
       icon = `node`
     }
-    else if (DOM.parent(target, [`.parent_icon`])) {
+    else if (check(`.parent_icon`)) {
       icon = `parent`
     }
-    else if (DOM.parent(target, [`.edited_icon`])) {
+    else if (check(`.edited_icon`)) {
       icon = `edited`
     }
-    else if (DOM.parent(target, [`.notes_icon`])) {
+    else if (check(`.notes_icon`)) {
       icon = `notes`
     }
-    else if (DOM.parent(target, [`.custom_icon`])) {
+    else if (check(`.custom_icon`)) {
       icon = `custom`
     }
   }
