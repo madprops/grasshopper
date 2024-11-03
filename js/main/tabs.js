@@ -307,8 +307,26 @@ App.tabs_action = async (args = {}) => {
 
   App.def_args(def_args, args)
 
+  if (!args.scroll) {
+    if (args.from === `tab_box`) {
+      args.scroll = `center_smooth`
+    }
+    else if (args.from === `jump_zone`) {
+      args.scroll = `center_smooth`
+    }
+    else if (args.from === `tab_cmd`) {
+      args.scroll = `nearest_instant`
+    }
+    else if (args.from === `autoclick`) {
+      args.scroll = `none`
+    }
+    else {
+      args.scroll = `nearest_smooth`
+    }
+  }
+
   if (args.soft && args.item.unloaded) {
-    App.select_item({item: args.item, scroll: `nearest_smooth`})
+    App.select_item({item: args.item, scroll: args.scroll})
     return
   }
 
@@ -359,24 +377,6 @@ App.tabs_action = async (args = {}) => {
   if (args.from === `tab_box`) {
     if (App.is_filtered(`tabs`)) {
       App.filter_all(`tabs`)
-    }
-  }
-
-  if (!args.scroll) {
-    if (args.from === `tab_box`) {
-      args.scroll = `center_smooth`
-    }
-    else if (args.from === `jump_zone`) {
-      args.scroll = `center_smooth`
-    }
-    else if (args.from === `tab_cmd`) {
-      args.scroll = `nearest_instant`
-    }
-    else if (args.from === `autoclick`) {
-      args.scroll = `none`
-    }
-    else {
-      args.scroll = `nearest_smooth`
     }
   }
 
