@@ -2136,7 +2136,7 @@ App.build_settings = () => {
       info: `Where to show the Hover Button`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.sides)
+        App.settings_make_menu(key, App.sides_2)
       },
     },
     hover_button_size: {
