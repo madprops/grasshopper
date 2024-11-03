@@ -300,8 +300,9 @@ App.make_item_icon = (item, normal = true) => {
           }
 
           let c = DOM.create(`div`, `item_icon`)
+          let special = [`custom`, `color`, `container`]
 
-          if (o_icon.command) {
+          if (o_icon.command || special.includes(o_icon.name)) {
             classes.push(`grower`)
           }
 
@@ -1019,7 +1020,17 @@ App.resolve_icons = () => {
   icons.sort((a, b) => a.weight - b.weight)
 
   for (let icon of icons) {
-    let cmd = App.get_setting(`${icon.name}_icon_command`)
+    let cmd
+
+    if (icon.name === `custom`) {
+      cmd = App.get_custom_icon_command(icon)
+    }
+    else if (icon.name === `color`) {
+      cmd = App.get_color_icon_command(icon)
+    }
+    else {
+      cmd = App.get_setting(`${icon.name}_icon_command`)
+    }
 
     if (cmd && (cmd !== `none`)) {
       icon.command = cmd
