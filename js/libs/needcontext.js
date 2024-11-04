@@ -505,7 +505,7 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
   let y = NeedContext.last_y
   let item = NeedContext.get_layer().normal_items[index]
 
-  function show_below (items) {
+  function show_below(items) {
     NeedContext.get_layer().last_index = index
     NeedContext.level += 1
 
@@ -516,7 +516,7 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
     NeedContext.show({x, y, items, root: false})
   }
 
-  function do_items (items) {
+  function do_items(items) {
     if (items.length === 1 && items[0].direct) {
       NeedContext.action(items[0], e)
     }
@@ -527,7 +527,7 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
     return
   }
 
-  async function check_item () {
+  async function check_item() {
     if (item.action) {
       if (e.shiftKey) {
         if (item.shift_action) {
@@ -1200,12 +1200,12 @@ NeedContext.create_debouncer = (func, delay) => {
   let timer
   let obj = {}
 
-  function clear () {
+  function clear() {
     clearTimeout(timer)
     timer = undefined
   }
 
-  function run (...args) {
+  function run(...args) {
     func(...args)
   }
 

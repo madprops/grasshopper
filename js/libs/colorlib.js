@@ -25,12 +25,12 @@ const ColorLib = (function() {
 
   let num_instances = 0
 
-  let factory = function () {
+  let factory = function() {
     let instance = {}
     num_instances += 1
     instance.id = num_instances
 
-    instance.get_dominant = function (
+    instance.get_dominant = function(
       image,
       palette_size = 1,
       use_limits = false,
@@ -94,7 +94,7 @@ const ColorLib = (function() {
         }
       }
 
-      pixelArray.sort(function (a, b) {
+      pixelArray.sort(function(a, b) {
         return b[3] - a[3]
       })
 
@@ -121,7 +121,7 @@ const ColorLib = (function() {
       return instance.array_to_rgb(palette)
     }
 
-    instance.get_lighter_or_darker = function (rgb, amount = 0.2) {
+    instance.get_lighter_or_darker = function(rgb, amount = 0.2) {
       let mode = `rgb`
 
       if (rgb.startsWith(`#`)) {
@@ -145,7 +145,7 @@ const ColorLib = (function() {
       return instance.rgb_to_hex(new_rgb)
     }
 
-    instance.get_darker = function (rgb, amount = 0.2) {
+    instance.get_darker = function(rgb, amount = 0.2) {
       let mode = `rgb`
 
       if (rgb.startsWith(`#`)) {
@@ -162,7 +162,7 @@ const ColorLib = (function() {
       return instance.rgb_to_hex(new_rgb)
     }
 
-    instance.get_lighter = function (rgb, amount = 0.2) {
+    instance.get_lighter = function(rgb, amount = 0.2) {
       let mode = `rgb`
 
       if (rgb.startsWith(`#`)) {
@@ -179,7 +179,7 @@ const ColorLib = (function() {
       return instance.rgb_to_hex(new_rgb)
     }
 
-    instance.is_light = function (rgb) {
+    instance.is_light = function(rgb) {
       if (rgb.startsWith(`#`)) {
         rgb = instance.hex_to_rgb(rgb)
       }
@@ -205,11 +205,11 @@ const ColorLib = (function() {
       return L > 0.179 ? true : false
     }
 
-    instance.is_dark = function (rgb) {
+    instance.is_dark = function(rgb) {
       return !instance.is_light(rgb)
     }
 
-    instance.get_proper_font = function (rgb) {
+    instance.get_proper_font = function(rgb) {
       if (instance.is_light(rgb)) {
         return `#000000`
       }
@@ -217,7 +217,7 @@ const ColorLib = (function() {
       return `#ffffff`
     }
 
-    instance.array_to_rgb = function (array) {
+    instance.array_to_rgb = function(array) {
       let rgb
 
       if (Array.isArray(array[0])) {
@@ -234,7 +234,7 @@ const ColorLib = (function() {
       return rgb
     }
 
-    instance.rgb_to_array = function (rgb) {
+    instance.rgb_to_array = function(rgb) {
       let array
 
       if (Array.isArray(rgb)) {
@@ -259,7 +259,7 @@ const ColorLib = (function() {
       return array
     }
 
-    instance.rgba_to_array = function (rgba) {
+    instance.rgba_to_array = function(rgba) {
       let array
 
       if (Array.isArray(rgba)) {
@@ -284,7 +284,7 @@ const ColorLib = (function() {
       return array
     }
 
-    instance.increase_alpha = function (rgba, amount = 0.2) {
+    instance.increase_alpha = function(rgba, amount = 0.2) {
       let array
 
       if (rgba.startsWith(`rgb(`)) {
@@ -300,7 +300,7 @@ const ColorLib = (function() {
       return `rgba(${array[0]}, ${array[1]}, ${array[2]}, ${new_alpha})`
     }
 
-    instance.rgb_to_rgba = function (rgb, alpha) {
+    instance.rgb_to_rgba = function(rgb, alpha) {
       if (rgb.startsWith(`rgba(`)) {
         let array = instance.rgba_to_array(rgb)
         return `rgba(${array[0]}, ${array[1]}, ${array[2]}, ${alpha})`
@@ -315,7 +315,7 @@ const ColorLib = (function() {
       return rgba
     }
 
-    instance.rgba_to_rgb = function (rgb) {
+    instance.rgba_to_rgb = function(rgb) {
       let split = rgb
         .replace(`rgba(`, ``)
         .replace(`)`, ``)
@@ -325,7 +325,7 @@ const ColorLib = (function() {
       return nrgb
     }
 
-    instance.rgb_to_hex = function (rgb, hash = true) {
+    instance.rgb_to_hex = function(rgb, hash = true) {
       if (typeof rgb === `string`) {
         rgb = instance.rgb_to_array(rgb)
       }
@@ -341,10 +341,10 @@ const ColorLib = (function() {
       return code
     }
 
-    instance.hex_to_rgb_array = function (hex) {
+    instance.hex_to_rgb_array = function(hex) {
       let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
 
-      hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+      hex = hex.replace(shorthandRegex, function(m, r, g, b) {
         return r + r + g + g + b + b
       })
 
@@ -359,11 +359,11 @@ const ColorLib = (function() {
         : null
     }
 
-    instance.hex_to_rgb = function (hex) {
+    instance.hex_to_rgb = function(hex) {
       return instance.array_to_rgb(instance.hex_to_rgb_array(hex))
     }
 
-    instance.check_array = function (array) {
+    instance.check_array = function(array) {
       for (let i = 0; i < array.length; i++) {
         if (array[i] < 0) {
           array[i] = 0
@@ -376,7 +376,7 @@ const ColorLib = (function() {
       return array
     }
 
-    instance.check_rgb = function (rgb) {
+    instance.check_rgb = function(rgb) {
       if (!Array.isArray(rgb)) {
         rgb = instance.rgb_to_array(rgb)
       }
@@ -385,7 +385,7 @@ const ColorLib = (function() {
     }
 
     // This should be replaced with something easier to read
-    instance.shadeBlendConvert = function (p, from, to) {
+    instance.shadeBlendConvert = function(p, from, to) {
       if (
         typeof p !== `number` ||
         p < -1 ||
@@ -501,7 +501,7 @@ const ColorLib = (function() {
       )
     }
 
-    instance.lab2rgb = function (lab) {
+    instance.lab2rgb = function(lab) {
       let y = (lab[0] + 16) / 116,
         x = lab[1] / 500 + y,
         z = y - lab[2] / 200,
@@ -528,7 +528,7 @@ const ColorLib = (function() {
       ]
     }
 
-    instance.rgb2lab = function (rgb) {
+    instance.rgb2lab = function(rgb) {
       let r = rgb[0] / 255,
         g = rgb[1] / 255,
         b = rgb[2] / 255,
@@ -551,7 +551,7 @@ const ColorLib = (function() {
       return [116 * y - 16, 500 * (x - y), 200 * (y - z)]
     }
 
-    instance.deltaE = function (labA, labB) {
+    instance.deltaE = function(labA, labB) {
       let deltaL = labA[0] - labB[0]
       let deltaA = labA[1] - labB[1]
       let deltaB = labA[2] - labB[2]
@@ -572,27 +572,27 @@ const ColorLib = (function() {
       return i < 0 ? 0 : Math.sqrt(i)
     }
 
-    instance.get_random_hex = function () {
+    instance.get_random_hex = function() {
       let r = get_random_int(0, 255)
       let g = get_random_int(0, 255)
       let b = get_random_int(0, 255)
       return instance.rgb_to_hex([r, g, b])
     }
 
-    instance.get_rgb_distance = function (a, b) {
+    instance.get_rgb_distance = function(a, b) {
       return Math.sqrt(((a[0] - b[0]) * (a[0] - b[0]) +
                          (a[1] - b[1]) * (a[1] - b[1]) +
                          (a[2] - b[2]) * (a[2] - b[2])) / (256 * Math.sqrt(3)))
     }
 
-    instance.get_rgba_distance = function (a, b) {
+    instance.get_rgba_distance = function(a, b) {
       return Math.sqrt(((a[0] - b[0]) * (a[0] - b[0]) +
                          (a[1] - b[1]) * (a[1] - b[1]) +
                          (a[2] - b[2]) * (a[2] - b[2]) +
                          (a[3] - b[3]) * (a[3] - b[3])) / (256 * Math.sqrt(4)))
     }
 
-    instance.get_dark_color = function (rand) {
+    instance.get_dark_color = function(rand) {
       let n = 55
 
       return instance.rgb_to_hex([
@@ -602,7 +602,7 @@ const ColorLib = (function() {
       ])
     }
 
-    instance.get_light_color = function (rand) {
+    instance.get_light_color = function(rand) {
       let n = 55
 
       return instance.rgb_to_hex([
