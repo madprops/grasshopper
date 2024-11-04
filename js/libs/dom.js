@@ -98,7 +98,7 @@ DOM.create = (type, classes = ``, id = ``) => {
   let el = document.createElement(type)
 
   if (classes) {
-    let classlist = classes.split(` `).filter(x => x != ``)
+    let classlist = classes.split(` `).filter(x => x !== ``)
 
     for (let cls of classlist) {
       el.classList.add(cls)
@@ -124,15 +124,6 @@ DOM.evs = (el, events, callback, extra) => {
 
   for (let event of events) {
     el.addEventListener(event, callback, extra)
-  }
-}
-
-// Like jQuery's nextAll
-DOM.next_all = function* (e, selector) {
-  while (e = e.nextElementSibling) {
-    if (e.matches(selector)) {
-      yield e;
-    }
   }
 }
 
