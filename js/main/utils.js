@@ -14,12 +14,12 @@ App.create_debouncer = (func, delay) => {
   let timer
   let obj = {}
 
-  function clear () {
+  function clear() {
     clearTimeout(timer)
     timer = undefined
   }
 
-  function run (...args) {
+  function run(...args) {
     func(...args)
   }
 

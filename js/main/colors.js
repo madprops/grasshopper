@@ -3,7 +3,7 @@ App.check_tab_colors = (item) => {
     return
   }
 
-  function is_enabled (type, what, mode) {
+  function is_enabled(type, what, mode) {
     let s_mode = App.get_setting(`${what}_color_${type}_mode`)
 
     if (s_mode !== mode) {
@@ -24,7 +24,7 @@ App.check_tab_colors = (item) => {
     return true
   }
 
-  function check (type, mode) {
+  function check(type, mode) {
     let enabled = false
 
     if (is_enabled(type, `text`, mode)) {
@@ -40,11 +40,11 @@ App.check_tab_colors = (item) => {
     return enabled
   }
 
-  function add_class (type, what) {
+  function add_class(type, what) {
     item.element.classList.add(`tab_${what}_color_${type}`)
   }
 
-  function proc (mode) {
+  function proc(mode) {
     if (item.active && check(`active`, mode)) {
       return true
     }

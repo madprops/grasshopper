@@ -242,7 +242,7 @@ App.do_filter = async (args = {}) => {
 
   let f_value_lower = f_value ? f_value.toLowerCase() : ``
 
-  function check_match (item) {
+  function check_match(item) {
     let args = {
       item,
       regexes,
@@ -1519,7 +1519,7 @@ App.check_filtered = (mode) => {
 }
 
 App.create_filter_button = (mode) => {
-  function separator () {
+  function separator() {
     return {cmd: App.separator_string, skip: true}
   }
 
@@ -1739,7 +1739,7 @@ App.cycle_filter_modes = (mode, reverse, e) => {
   favorites = App.remove_separators(favorites)
   let modes = []
 
-  function proc (cmd) {
+  function proc(cmd) {
     if (cmd === `all`) {
       App.filter_all(mode)
     }

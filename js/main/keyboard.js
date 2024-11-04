@@ -5,7 +5,7 @@ App.check_items_keyboard = (e) => {
   let filter_filled = App.filter_has_value(mode)
   let filter_end = App.filter_at_end(mode)
 
-  function arrow (direction, e) {
+  function arrow(direction, e) {
     if (!item) {
       e.preventDefault()
       return

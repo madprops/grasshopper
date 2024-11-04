@@ -259,7 +259,7 @@ App.random_color = (what, type) => {
 }
 
 App.set_background = (url) => {
-  function unset () {
+  function unset() {
     App.set_css_var(`background_image`, `unset`)
   }
 
@@ -296,11 +296,11 @@ App.set_background = (url) => {
 App.apply_background_effects = (effect, tiles) => {
   let bg = DOM.el(`#background`)
 
-  function bg_add (cls) {
+  function bg_add(cls) {
     bg.classList.add(cls)
   }
 
-  function bg_rem (cls) {
+  function bg_rem(cls) {
     bg.classList.remove(cls)
   }
 

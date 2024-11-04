@@ -28,7 +28,7 @@ App.get_settings_label = (setting) => {
 }
 
 App.settings_setup_labels = (category) => {
-  function proc (item, btns) {
+  function proc(item, btns) {
     let bc = DOM.create(`div`, `flex_row_center gap_1`)
 
     for (let btn of btns) {
@@ -1783,7 +1783,7 @@ App.check_setting_empty = (setting) => {
 }
 
 App.get_setting_addlist_objects = () => {
-  function on_hide () {
+  function on_hide() {
     Addlist.hide()
   }
 

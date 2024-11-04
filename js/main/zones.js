@@ -174,7 +174,7 @@ App.check_header = (item) => {
     return
   }
 
-  function no_header () {
+  function no_header() {
     item.header = false
     item.element.classList.remove(`header_item`)
   }

@@ -134,7 +134,7 @@ Addlist.build = (oargs) => {
 
   let els = []
 
-  function add_label (el, key) {
+  function add_label(el, key) {
     if (oargs.labels[key]) {
       let label = DOM.create(`div`)
       label.textContent = oargs.labels[key]

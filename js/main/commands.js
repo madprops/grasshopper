@@ -272,7 +272,7 @@ App.check_command = (command, args = {}) => {
 
   let valid = true
 
-  function check_1 (what) {
+  function check_1(what) {
     if (!valid) {
       return
     }
@@ -284,7 +284,7 @@ App.check_command = (command, args = {}) => {
     }
   }
 
-  function check_2 (what, value) {
+  function check_2(what, value) {
     if (!valid) {
       return
     }
@@ -296,7 +296,7 @@ App.check_command = (command, args = {}) => {
     }
   }
 
-  function check_3 (what) {
+  function check_3(what) {
     if (!valid) {
       return
     }
@@ -370,7 +370,7 @@ App.check_command = (command, args = {}) => {
 
 // For devs to check once in a while
 App.check_dead_commands = () => {
-  function check (cmd, key) {
+  function check(cmd, key) {
     if (cmd === `none`) {
       return
     }

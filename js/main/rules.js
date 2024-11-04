@@ -86,7 +86,7 @@ App.refresh_rules = (mode) => {
 }
 
 App.edit_domain_rule = (item, e) => {
-  function edit (obj, edit = true) {
+  function edit(obj, edit = true) {
     App.start_domain_rules_addlist()
 
     Addlist.edit_object(`settings_domain_rules`, obj, edit, () => {
@@ -94,7 +94,7 @@ App.edit_domain_rule = (item, e) => {
     })
   }
 
-  function add (value, by_title = false) {
+  function add(value, by_title = false) {
     let obj = {}
     obj.domain = value
 

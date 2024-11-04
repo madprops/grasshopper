@@ -17,11 +17,11 @@ function debouncer(func, delay) {
   let timer
   let obj = {}
 
-  function clear () {
+  function clear() {
     clearTimeout(timer)
   }
 
-  function run (...args) {
+  function run(...args) {
     func(...args)
   }
 

@@ -4,7 +4,7 @@ App.build_settings = () => {
   let category, props
 
   // Add category props to main object
-  function add_props () {
+  function add_props() {
     for (let key in props) {
       props[key].category = category
       App.setting_props[key] = props[key]

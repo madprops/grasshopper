@@ -22,7 +22,7 @@ App.sort_tabs = () => {
 }
 
 App.do_sort_tabs = () => {
-  function sort (list, reverse) {
+  function sort(list, reverse) {
     list.sort((a, b) => {
       if (a.hostname !== b.hostname) {
         if (reverse) {
