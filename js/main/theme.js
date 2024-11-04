@@ -963,40 +963,9 @@ App.set_favorite_vars = () => {
   }
 
   let size = App.get_setting(`favorites_size`)
-
-  if (size === `tiny`) {
-    App.set_css_var(`favorites_padding`, `0.06rem`)
-  }
-  else if (size === `small`) {
-    App.set_css_var(`favorites_padding`, `0.1rem`)
-  }
-  else if (size === `normal`) {
-    App.set_css_var(`favorites_padding`, `0.25rem`)
-  }
-  else if (size === `big`) {
-    App.set_css_var(`favorites_padding`, `0.45rem`)
-  }
-  else if (size === `huge`) {
-    App.set_css_var(`favorites_padding`, `0.6rem`)
-  }
-
+  App.theme_sizer(size, `favorites_padding`, App.panel_sizes.normal, App.panel_sizes.steps)
   let gap = App.get_setting(`favorites_gap`)
-
-  if (gap === `tiny`) {
-    App.set_css_var(`favorites_gap`, `0.1rem`)
-  }
-  else if (gap === `small`) {
-    App.set_css_var(`favorites_gap`, `0.18rem`)
-  }
-  else if (gap === `normal`) {
-    App.set_css_var(`favorites_gap`, `0.35rem`)
-  }
-  else if (gap === `big`) {
-    App.set_css_var(`favorites_gap`, `0.51rem`)
-  }
-  else if (gap === `huge`) {
-    App.set_css_var(`favorites_gap`, `0.66rem`)
-  }
+  App.theme_sizer(gap, `favorites_gap`, 0.35, 0.15)
 }
 
 App.set_main_title_vars = () => {
