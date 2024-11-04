@@ -923,22 +923,7 @@ App.set_footer_vars = () => {
   let footer_justify = App.justify_map[footer_align]
   App.set_css_var(`footer_align`, footer_justify)
   let size = App.get_setting(`footer_size`)
-
-  if (size === `tiny`) {
-    App.set_css_var(`footer_padding`, App.panel_sizes.tiny)
-  }
-  else if (size === `small`) {
-    App.set_css_var(`footer_padding`, App.panel_sizes.small)
-  }
-  else if (size === `normal`) {
-    App.set_css_var(`footer_padding`, App.panel_sizes.normal)
-  }
-  else if (size === `big`) {
-    App.set_css_var(`footer_padding`, App.panel_sizes.big)
-  }
-  else if (size === `huge`) {
-    App.set_css_var(`footer_padding`, App.panel_sizes.huge)
-  }
+  App.theme_sizer(size, `footer_padding`, App.panel_sizes.normal, App.panel_sizes.steps)
 }
 
 App.set_favorite_vars = () => {
@@ -1062,23 +1047,7 @@ App.set_main_title_vars = () => {
 
   main.classList.add(`main_title_align_${title_align}`)
   let size = App.get_setting(`main_title_size`)
-
-  if (size === `tiny`) {
-    App.set_css_var(`main_title_padding`, App.panel_sizes.small)
-  }
-  else if (size === `small`) {
-    App.set_css_var(`main_title_padding`, App.panel_sizes.small)
-  }
-  else if (size === `normal`) {
-    App.set_css_var(`main_title_padding`, App.panel_sizes.normal)
-  }
-  else if (size === `big`) {
-    App.set_css_var(`main_title_padding`, App.panel_sizes.big)
-  }
-  else if (size === `huge`) {
-    App.set_css_var(`main_title_padding`, App.panel_sizes.huge)
-  }
-
+  App.theme_sizer(size, `main_title_padding`, App.panel_sizes.normal, App.panel_sizes.steps)
   let lb = App.get_setting(`main_title_left_button`)
 
   if (lb === `fixed`) {

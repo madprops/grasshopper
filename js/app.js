@@ -515,11 +515,8 @@ App.title_buttons = [
 ]
 
 App.panel_sizes = {
-  tiny: `0.06rem`,
-  small: `0.12rem`,
-  normal: `0.25rem`,
-  big: `0.35rem`,
-  huge: `0.5rem`,
+  normal: 0.25,
+  steps: 0.1,
 }
 
 App.footer_tab_box_click_cmd = `toggle_tab_box`
