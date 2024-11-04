@@ -971,7 +971,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.clear_filter(args.mode)
       },
-      info: `Clear the filter`,
+      info: `Clear the filter input`,
     },
     {
       name: `Prev Mode`,
