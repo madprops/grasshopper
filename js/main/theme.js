@@ -923,7 +923,7 @@ App.set_footer_vars = () => {
   let footer_justify = App.justify_map[footer_align]
   App.set_css_var(`footer_align`, footer_justify)
   let size = App.get_setting(`footer_size`)
-  App.theme_sizer(size, `footer_padding`, App.panel_sizes.normal, App.panel_sizes.steps)
+  App.theme_sizer_panel(size, `footer_padding`)
 }
 
 App.set_favorite_vars = () => {
@@ -963,7 +963,7 @@ App.set_favorite_vars = () => {
   }
 
   let size = App.get_setting(`favorites_size`)
-  App.theme_sizer(size, `favorites_padding`, App.panel_sizes.normal, App.panel_sizes.steps)
+  App.theme_sizer_panel(size, `favorites_padding`)
   let gap = App.get_setting(`favorites_gap`)
   App.theme_sizer(gap, `favorites_gap`, 0.35, 0.15)
 }
@@ -1016,7 +1016,7 @@ App.set_main_title_vars = () => {
 
   main.classList.add(`main_title_align_${title_align}`)
   let size = App.get_setting(`main_title_size`)
-  App.theme_sizer(size, `main_title_padding`, App.panel_sizes.normal, App.panel_sizes.steps)
+  App.theme_sizer_panel(size, `main_title_padding`)
   let lb = App.get_setting(`main_title_left_button`)
 
   if (lb === `fixed`) {
@@ -1238,4 +1238,10 @@ App.theme_sizer = (size, what, normal, steps) => {
   }
 
   App.set_css_var(what, `${rem}rem`)
+}
+
+App.theme_sizer_panel = (size, what) => {
+  let normal = App.panel_sizes.normal
+  let steps = App.panel_sizes.steps
+  App.theme_sizer(size, what, normal, steps)
 }
