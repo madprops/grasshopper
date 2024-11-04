@@ -261,6 +261,7 @@ App.mouse_click_action = (e, from = `click`) => {
 }
 
 App.mouse_double_click_action = (e) => {
+  clearInterval(App.autoclick_timeout)
   let target = e.target
   let mode = App.active_mode
 
@@ -376,6 +377,7 @@ App.mouse_double_click_action = (e) => {
 }
 
 App.mouse_context_action = (e) => {
+  clearInterval(App.autoclick_timeout)
   let target = e.target
   let mode = App.active_mode
   e.preventDefault()
@@ -513,6 +515,7 @@ App.mouse_context_action = (e) => {
 }
 
 App.mouse_middle_action = (e, target_el) => {
+  clearInterval(App.autoclick_timeout)
   let target = e.target || target_el
   let mode = App.active_mode
 
@@ -679,6 +682,7 @@ App.mouse_middle_action = (e, target_el) => {
 }
 
 App.click_press_action = (e) => {
+  clearInterval(App.autoclick_timeout)
   let target = e.target
   let mode = App.active_mode
 

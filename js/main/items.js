@@ -1224,6 +1224,7 @@ App.build_item_window = (mode) => {
   App.check_clock(true)
 
   DOM.ev(container, `scroll`, () => {
+    clearInterval(App.autoclick_timeout)
     App.check_scroller(mode)
   })
 
