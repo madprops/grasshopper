@@ -71,9 +71,7 @@ App.close_tabs = (args = {}) => {
         App.check_clear_on_close()
       }
 
-      if (App.get_setting(`sound_effects`)) {
-        App.play_sound(`close`)
-      }
+      App.play_sound(`effect_1`)
     },
     force: args.force,
   })

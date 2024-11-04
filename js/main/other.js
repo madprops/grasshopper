@@ -167,6 +167,10 @@ App.generate_password = () => {
 }
 
 App.play_sound = (name) => {
+  if (!App.get_setting(`sound_effects`)) {
+    return
+  }
+
   let pname = `audio_player_${name}`
 
   if (!App[pname]) {

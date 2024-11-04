@@ -713,6 +713,8 @@ App.toggle_tab_box = () => {
     App.check_tab_box_auto()
     App.show_tab_box(true, true)
   }
+
+  App.play_sound(`effect_1`)
 }
 
 App.check_tab_box_scroll = () => {
