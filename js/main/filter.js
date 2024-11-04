@@ -459,6 +459,7 @@ App.make_filter_regex = (value, by_what, quotes = true) => {
       cleaned = cleaned.replace(/"/g, `\\b`)
     }
 
+    cleaned = cleaned.replace(/\s*\|\s*/g, `|`)
     regex = new RegExp(cleaned, ci ? `i` : ``)
   }
 

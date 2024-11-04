@@ -4822,8 +4822,8 @@ App.build_settings = () => {
       name: `Custom Filters`,
       type: `list`,
       value: [
-        {filter: `re: (today|$day)`},
-        {filter: `re: ($month|$year)`},
+        {filter: `today | $day`},
+        {filter: `$month | $year`},
       ],
       info: `Pre-made filters to use
       These appear in the Custom section or by using the command`,
