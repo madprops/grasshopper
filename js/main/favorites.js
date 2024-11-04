@@ -396,6 +396,8 @@ App.toggle_favorites = (mode = App.active_mode) => {
   else {
     App.show_favorites(mode, true)
   }
+
+  App.toggle_message(`Favorites`, `show_favorites`)
 }
 
 App.favorites_bar_side = () => {
