@@ -954,6 +954,16 @@ App.setup_commands = () => {
       info: `Paste tabs at the current position`,
     },
     {
+      name: `Paste Filter`,
+      short_name: `Paste`,
+      cmd: `paste_filter`,
+      icon: filter_icon,
+      action: (args) => {
+        App.paste_filter(args.mode)
+      },
+      info: `Paste into the filter input`,
+    },
+    {
       name: `Prev Mode`,
       cmd: `show_previous_mode`,
       icon: prev_icon,
