@@ -1038,6 +1038,14 @@ App.set_main_title_vars = () => {
   else {
     main.classList.remove(`fixed_main_title_right`)
   }
+
+  let normal = 1.8
+  let steps = 0.3
+
+  let left_size = App.get_setting(`main_title_left_button_size`)
+  App.theme_sizer(left_size, `main_title_left_button_width`, normal, steps)
+  let right_size = App.get_setting(`main_title_right_button_size`)
+  App.theme_sizer(right_size, `main_title_right_button_width`, normal, steps)
 }
 
 App.set_zone_vars = () => {

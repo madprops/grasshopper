@@ -3327,26 +3327,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sizes_3)
       },
     },
-    main_title_left_button: {
-      name: `Title Left Button`,
-      type: `menu`,
-      value: `hover`,
-      setup: (key) => {
-        App.settings_make_menu(key, App.title_buttons)
-      },
-      info: `How to show the Title Left Button`,
-      version: 1,
-    },
-    main_title_right_button: {
-      name: `Title Right Button`,
-      type: `menu`,
-      value: `hover`,
-      setup: (key) => {
-        App.settings_make_menu(key, App.title_buttons)
-      },
-      info: `How to show the Title Right Button`,
-      version: 1,
-    },
     main_title_menu: {
       name: `Title Menu`,
       type: `list`,
@@ -3370,6 +3350,48 @@ App.build_settings = () => {
       separator: true,
       info: `Menu to show when right clicking the Title`,
       version: 1,
+    },
+    main_title_left_button: {
+      name: `Title Left Button`,
+      type: `menu`,
+      value: `hover`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.title_buttons)
+      },
+      info: `How to show the Title Left Button`,
+      version: 1,
+    },
+    main_title_left_button_size: {
+      name: `Title Left Btn Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the Title Left Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes_3)
+      },
+    },
+    main_title_right_button: {
+      name: `Title Right Button`,
+      type: `menu`,
+      value: `hover`,
+      setup: (key) => {
+        App.settings_make_menu(key, App.title_buttons)
+      },
+      info: `How to show the Title Right Button`,
+      version: 1,
+    },
+    main_title_right_button_size: {
+      name: `Title Right Btn Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the Title Right Button`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes_3)
+      },
     },
 
     ...App.make_mouse_settings({
