@@ -3,31 +3,29 @@ App.setup_commands = () => {
     return name.substring(0, 10).trim()
   }
 
-  let tabs_icon = App.mode_icon(`tabs`)
-  let history_icon = App.mode_icon(`history`)
-  let bookmarks_icon = App.mode_icon(`bookmarks`)
-  let closed_icon = App.mode_icon(`closed`)
-
-  let pin_icon = App.get_setting(`pin_icon`)
-  let normal_icon = App.get_setting(`normal_icon`)
-  let playing_icon = App.get_setting(`playing_icon`)
-  let loaded_icon = App.get_setting(`loaded_icon`)
-  let unloaded_icon = App.get_setting(`unloaded_icon`)
-  let muted_icon = App.get_setting(`muted_icon`)
-  let unread_icon = App.get_setting(`unread_icon`)
-  let notes_icon = App.get_setting(`notes_icon`)
-  let header_icon = App.get_setting(`header_icon`) || App.zone_icon
-  let subheader_icon = App.get_setting(`subheader_icon`) || App.zone_icon
-  let hover_button_icon = App.get_setting(`hover_button_icon`)
-  let close_button_icon = App.get_setting(`close_button_icon`)
-  let root_icon = App.get_setting(`root_icon`)
-  let node_icon = App.get_setting(`node_icon`)
-  let parent_icon = App.get_setting(`parent_icon`)
-  let title_icon = App.get_setting(`title_icon`)
-  let tags_icon = App.get_setting(`tags_icon`)
-  let image_icon = App.get_setting(`image_icon`)
-  let edited_icon = App.get_setting(`edited_icon`)
-  let container_icon = App.get_setting(`container_icon`)
+  let tabs_icon = App.get_setting_icon(`tabs_mode`)
+  let history_icon = App.get_setting_icon(`history_mode`)
+  let bookmarks_icon = App.get_setting_icon(`bookmarks_mode`)
+  let closed_icon = App.get_setting_icon(`closed_mode`)
+  let pin_icon = App.get_setting_icon(`pin`)
+  let normal_icon = App.get_setting_icon(`normal`)
+  let playing_icon = App.get_setting_icon(`playing`)
+  let loaded_icon = App.get_setting_icon(`loaded`)
+  let unloaded_icon = App.get_setting_icon(`unloaded`)
+  let muted_icon = App.get_setting_icon(`muted`)
+  let unread_icon = App.get_setting_icon(`unread`)
+  let notes_icon = App.get_setting_icon(`notes`)
+  let header_icon = App.get_setting_icon(`header`) || App.zone_icon
+  let subheader_icon = App.get_setting_icon(`subheader`) || App.zone_icon
+  let hover_button_icon = App.get_setting_icon(`hover_button`)
+  let root_icon = App.get_setting_icon(`root`)
+  let node_icon = App.get_setting_icon(`node`)
+  let parent_icon = App.get_setting_icon(`parent`)
+  let title_icon = App.get_setting_icon(`title`)
+  let tags_icon = App.get_setting_icon(`tags`)
+  let image_icon = App.get_setting_icon(`image`)
+  let edited_icon = App.get_setting_icon(`edited`)
+  let container_icon = App.get_setting_icon(`container`)
 
   let main_title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
@@ -1671,7 +1669,7 @@ App.setup_commands = () => {
       info: `Show the Extra Menu`,
     },
     {
-      name: `Hover Button Menu`,
+      name: `Hover Btn Menu`,
       short_name: `Hover`,
       cmd: `show_hover_button_menu`,
       item: true,
@@ -2060,10 +2058,10 @@ App.setup_commands = () => {
       info: `Open the menu with some tab closing options`,
     },
     {
-      name: `Close Button Menu`,
+      name: `Close Btn Menu`,
       short_name: `Close`,
       cmd: `show_close_button_menu`,
-      icon: close_button_icon,
+      icon: close_icon,
       action: (args) => {
         App.show_close_button_menu(args.item, args.e)
       },
@@ -4143,7 +4141,7 @@ App.setup_commands = () => {
       info: `Enable or disable Gestures`,
     },
     {
-      name: `Toggle Hover Button`,
+      name: `Toggle Hover Btn`,
       short_name: `Hover Btn`,
       cmd: `toggle_hover_button`,
       icon: hover_button_icon,

@@ -2383,3 +2383,13 @@ App.make_mouse_settings = (args = {}) => {
 App.settings_separator = () => {
   return DOM.create(`div`, `settings_separator filter_ignore`)
 }
+
+App.get_setting_icon = (name) => {
+  let icon = App.get_setting(`${name}_icon`)
+
+  if (icon && icon.length > 1) {
+    icon = App.command_icon
+  }
+
+  return icon
+}
