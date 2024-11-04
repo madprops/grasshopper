@@ -91,6 +91,10 @@ App.autoclick_action = (e) => {
     return
   }
 
+  if (check(`pinline`, [`#pinline`])) {
+    return
+  }
+
   if (check(`settings`, [
     `.settings_title`,
     `.settings_arrow`,
