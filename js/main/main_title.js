@@ -325,6 +325,7 @@ App.main_title_enabled = () => {
 App.toggle_main_title = () => {
   let new_value = !App.get_setting(`show_main_title`)
   App.set_setting({setting: `show_main_title`, value: new_value, action: true})
+  App.toggle_message(`Title`, `show_main_title`)
   App.refresh_main_title()
   App.apply_theme()
 }
