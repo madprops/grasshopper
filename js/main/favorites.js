@@ -411,18 +411,15 @@ App.toggle_favorites_autohide = () => {
   let autohide = !App.get_setting(`favorites_autohide`)
   App.set_setting({setting: `favorites_autohide`, value: autohide})
   App.check_refresh_settings()
-  let setting
 
   if (App.fav_autohide_enabled()) {
-    setting = false
     App.on_favorites_leave(App.active_mode)
   }
   else {
-    setting = true
     App.on_favorites_enter(App.active_mode)
   }
 
-  App.toggle_message(`Fav Autohide`, setting)
+  App.toggle_message(`Fav Autohide`, `favorites_autohide`)
 }
 
 App.fav_empty_top_click = (e) => {

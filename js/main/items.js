@@ -1398,7 +1398,7 @@ App.set_item_tooltips = (item) => {
 App.toggle_wrap_text = () => {
   let wrap = App.get_setting(`wrap_text`)
   App.set_setting({setting: `wrap_text`, value: !wrap})
-  App.toggle_message(`Wrap Text`, wrap)
+  App.toggle_message(`Wrap Text`, `wrap_text`)
   App.apply_theme()
 }
 
@@ -1415,5 +1415,5 @@ App.show_item_2 = (item) => {
 App.toggle_auto_scroll = () => {
   let sett = App.get_setting(`auto_scroll`)
   App.set_setting({setting: `auto_scroll`, value: !sett})
-  App.toggle_message(`Auto Scroll`, sett)
+  App.toggle_message(`Auto Scroll`, `auto_scroll`)
 }

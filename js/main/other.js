@@ -222,6 +222,8 @@ App.tooltips = () => {
   return App.get_setting(`show_tooltips`)
 }
 
-App.toggle_message = (msg, value) => {
-  App.footer_message(`${msg} ${!value ? `Enabled` : `Disabled`}`)
+App.toggle_message = (msg, setting) => {
+  let sett = App.get_setting(setting)
+  let what = sett ? `Enabled` : `Disabled`
+  App.footer_message(`${msg} ${what}`)
 }

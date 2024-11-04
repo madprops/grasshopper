@@ -77,6 +77,6 @@ App.generic_gestures = (el) => {
 App.toggle_gestures = () => {
   let enabled = App.get_setting(`gestures_enabled`)
   App.set_setting({setting: `gestures_enabled`, value: !enabled})
+  App.toggle_message(`Gestures`, `gestures_enabled`)
   App.refresh_gestures()
-  App.toggle_message(`Gestures`, enabled)
 }

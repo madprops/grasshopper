@@ -267,7 +267,7 @@ App.show_windows_menu = async (item, e) => {
 App.toggle_auto_blur = () => {
   let setting = !App.get_setting(`auto_blur`)
   App.set_setting({setting: `auto_blur`, value: setting, refresh: true})
-  App.toggle_message(`Auto Blur`, setting)
+  App.toggle_message(`Auto Blur`, `auto_blur`)
 }
 
 App.build_shell = () => {
@@ -324,6 +324,6 @@ App.focus_a_window = async (id) => {
 App.toggle_top_panel = () => {
   let sett = !App.get_setting(`show_top_panel`)
   App.set_setting({setting: `show_top_panel`, value: sett})
-  App.toggle_message(`Top Panel`, sett)
+  App.toggle_message(`Top Panel`, `show_top_panel`)
   App.apply_theme()
 }
