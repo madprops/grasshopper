@@ -1237,6 +1237,7 @@ App.theme_sizer = (size, what, normal, steps) => {
     rem = normal + (steps * 2)
   }
 
+  rem = Math.max(rem, 0)
   App.set_css_var(what, `${rem}rem`)
 }
 
