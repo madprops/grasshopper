@@ -79,11 +79,11 @@ App.autoclick_action = (e) => {
     return
   }
 
-  if (check(`main_title_left_button`, [`#main_title_left_button`])) {
-    return
-  }
-
-  if (check(`main_title_right_button`, [`#main_title_right_button`])) {
+  if (check(`main_title`, [
+    `#main_title_left_button`,
+    `#main_title_right_button`,
+    `#main_title`,
+  ])) {
     return
   }
 
