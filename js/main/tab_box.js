@@ -714,6 +714,7 @@ App.toggle_tab_box = () => {
     App.show_tab_box(true, true)
   }
 
+  App.toggle_message(`Tab Box`, `show_tab_box`)
   App.play_sound(`effect_1`)
 }
 
