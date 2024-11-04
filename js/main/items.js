@@ -1397,6 +1397,7 @@ App.set_item_tooltips = (item) => {
 App.toggle_wrap_text = () => {
   let wrap = App.get_setting(`wrap_text`)
   App.set_setting({setting: `wrap_text`, value: !wrap})
+  App.toggle_message(`Wrap Text`, wrap)
   App.apply_theme()
 }
 
@@ -1408,4 +1409,10 @@ App.hide_item_2 = (item) => {
 App.show_item_2 = (item) => {
   DOM.show(item.element, 2)
   item.visible = true
+}
+
+App.toggle_smooth_scroll = () => {
+  let sett = App.get_setting(`smooth_scroll`)
+  App.set_setting({setting: `smooth_scroll`, value: !sett})
+  App.toggle_message(`Smooth Scroll`, sett)
 }

@@ -217,3 +217,7 @@ App.check_show_button = (name, btn) => {
 App.tooltips = () => {
   return App.get_setting(`show_tooltips`)
 }
+
+App.toggle_message = (msg, value) => {
+  App.footer_message(`${msg} ${!value ? `Enabled` : `Disabled`}`)
+}

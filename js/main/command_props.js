@@ -4130,6 +4130,16 @@ App.setup_commands = () => {
       info: `Enable or disable the text wrapping of items`,
     },
     {
+      name: `Toggle Smooth Scroll`,
+      short_name: `Smooth`,
+      cmd: `toggle_smooth_scroll`,
+      icon: mouse_icon,
+      action: (args) => {
+        App.toggle_smooth_scroll()
+      },
+      info: `Enable or disable smooth scroll in the item list`,
+    },
+    {
       name: `Toggle Tab Sort`,
       short_name: `Sort`,
       cmd: `toggle_tab_sort`,

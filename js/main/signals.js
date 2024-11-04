@@ -656,7 +656,7 @@ App.get_signal_cmds = (include_none, include_sep) => {
 App.toggle_signals = () => {
   let enabled = App.get_setting(`signals_enabled`)
   App.set_setting({setting: `signals_enabled`, value: !enabled})
-  App.footer_message(`Signals ${!enabled ? `Enabled` : `Disabled`}`)
+  App.toggle_message(`Signals`, enabled)
 }
 
 App.signals_blocked = () => {

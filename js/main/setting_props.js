@@ -343,6 +343,7 @@ App.build_settings = () => {
       name: `Smooth Scroll`,
       type: `checkbox`,
       value: true,
+      no_mirror: true,
       info: `Enable smooth list scrolling in some cases`,
       version: 1,
     },
