@@ -964,6 +964,16 @@ App.setup_commands = () => {
       info: `Paste into the filter input`,
     },
     {
+      name: `Clear Filter`,
+      short_name: `Paste`,
+      cmd: `clear_filter`,
+      icon: filter_icon,
+      action: (args) => {
+        App.clear_filter(args.mode)
+      },
+      info: `Clear the filter`,
+    },
+    {
       name: `Prev Mode`,
       cmd: `show_previous_mode`,
       icon: prev_icon,
