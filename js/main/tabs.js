@@ -336,7 +336,7 @@ App.tabs_action = async (args = {}) => {
       return false
     }
 
-    let no_blink = [`click`, `enter`, `tab_cmd`, `close`]
+    let no_blink = [`click`, `enter`, `tab_cmd`, `close`, `autoclick`]
 
     if (no_blink.includes(args.from)) {
       return false
