@@ -2180,3 +2180,7 @@ a:hover
 .hide_settings_info .settings_info {
   display: none;
 }
+
+.hide_hover_button .hover_button {
+  display: none;
+}

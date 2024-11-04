@@ -1099,6 +1099,13 @@ App.set_hover_button_vars = () => {
   main.classList.add(`hover_button_${hbs}`)
   let size = App.get_setting(`hover_button_size`)
   App.theme_sizer(size, `hover_button_padding`, 0.5, 0.2)
+
+  if (App.get_setting(`show_hover_button`)) {
+    main.classList.remove(`hide_hover_button`)
+  }
+  else {
+    main.classList.add(`hide_hover_button`)
+  }
 }
 
 App.set_effect_vars = () => {

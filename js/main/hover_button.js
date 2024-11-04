@@ -1,8 +1,4 @@
 App.create_hover_button = (item, side) => {
-  if (!App.get_setting(`show_hover_button`)) {
-    return
-  }
-
   if (side !== App.get_setting(`hover_button_side`)) {
     return
   }
@@ -45,5 +41,6 @@ App.hover_button_middle_click = (item, e) => {
 App.toggle_hover_button = (item, e) => {
   let sett = App.get_setting(`show_hover_button`)
   App.set_setting({setting: `show_hover_button`, value: !sett})
-  App.clear_show()
+  App.toggle_message(`Hover Btn`, `show_hover_button`)
+  App.set_hover_button_vars()
 }
