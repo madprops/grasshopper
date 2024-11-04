@@ -887,10 +887,14 @@ App.set_close_button_vars = () => {
   App.set_css_var(`close_button_border_width`, cbbw + `px`)
   let cbbwtb = App.get_setting(`close_button_border_width_tab_box`)
   App.set_css_var(`close_button_border_width_tab_box`, cbbwtb + `px`)
+
+  let normal = 1.77
+  let steps = 0.3
+
   let size = App.get_setting(`close_button_size`)
-  App.theme_sizer(size, `close_button_width`, 1.77, 0.3)
+  App.theme_sizer(size, `close_button_width`, normal, steps)
   let size_tb = App.get_setting(`close_button_size_tab_box`)
-  App.theme_sizer(size_tb, `close_button_width_tab_box`, 1.77, 0.3)
+  App.theme_sizer(size_tb, `close_button_width_tab_box`, normal, steps)
 }
 
 App.set_footer_vars = () => {
