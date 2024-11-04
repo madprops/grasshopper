@@ -521,6 +521,7 @@ App.refresh_settings = () => {
   App.reset_main_title()
   App.start_signal_intervals()
   App.resolve_icons()
+  App.refresh_context()
 }
 
 App.build_setting_cmds = () => {

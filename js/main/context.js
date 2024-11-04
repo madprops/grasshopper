@@ -2,6 +2,14 @@ App.setup_context = () => {
   NeedContext.min_width = `1rem`
   NeedContext.center_top = 50
   NeedContext.init()
+  App.refresh_context()
+}
+
+App.refresh_context = () => {
+  let autohide_delay = App.get_setting(`context_autohide_delay`)
+  let autoclick_delay = App.get_setting(`context_autoclick_delay`)
+  NeedContext.start_autohide(autohide_delay)
+  NeedContext.start_autoclick(autoclick_delay)
 }
 
 App.show_context = (args = {}) => {

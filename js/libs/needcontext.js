@@ -1,4 +1,4 @@
-// NeedContext v9.5
+// NeedContext v9.6
 
 // Main object
 const NeedContext = {}
@@ -865,19 +865,8 @@ NeedContext.init = () => {
     }
   })
 
-  NeedContext.autohide_debouncer = NeedContext.create_debouncer((e) => {
-    NeedContext.hide(e)
-  }, NeedContext.autohide_delay)
-
-  NeedContext.autoclick_debouncer = NeedContext.create_debouncer((el, e) => {
-    if (el.closest(`.needcontext-item`)) {
-      NeedContext.select_action(e)
-    }
-    else if (el.closest(`.needcontext-back`)) {
-      NeedContext.go_back()
-    }
-  }, NeedContext.autoclick_delay)
-
+  NeedContext.start_autohide()
+  NeedContext.start_autoclick()
   NeedContext.set_defaults()
 }
 
@@ -1354,4 +1343,21 @@ NeedContext.check_mouse_range = (e) => {
       }
     }
   }
+}
+
+NeedContext.start_autohide = (delay) => {
+  NeedContext.autohide_debouncer = NeedContext.create_debouncer((e) => {
+    NeedContext.hide(e)
+  }, delay || NeedContext.autohide_delay)
+}
+
+NeedContext.start_autoclick = (delay) => {
+  NeedContext.autoclick_debouncer = NeedContext.create_debouncer((el, e) => {
+    if (el.closest(`.needcontext-item`)) {
+      NeedContext.select_action(e)
+    }
+    else if (el.closest(`.needcontext-back`)) {
+      NeedContext.go_back()
+    }
+  }, delay || NeedContext.autoclick_delay)
 }

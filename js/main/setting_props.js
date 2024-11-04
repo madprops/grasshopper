@@ -5668,6 +5668,16 @@ App.build_settings = () => {
       info: `Delay in milliseconds for effects like Global when the mouse leaves`,
       version: 1,
     },
+    context_autohide_delay: {
+      name: `Context Autohide Delay`,
+      type: `number`,
+      value: 800,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay in milliseconds for Context Autohide`,
+      version: 1,
+    },
     close_on_focus: {
       name: `Close On Focus`,
       type: `checkbox`,
