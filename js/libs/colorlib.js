@@ -384,7 +384,6 @@ const ColorLib = (function() {
       return rgb
     }
 
-    // This should be replaced with something easier to read
     instance.shadeBlendConvert = function(p, from, to) {
       if (
         typeof p !== `number` ||
