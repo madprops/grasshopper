@@ -1411,8 +1411,8 @@ App.show_item_2 = (item) => {
   item.visible = true
 }
 
-App.toggle_smooth_scroll = () => {
-  let sett = App.get_setting(`smooth_scroll`)
-  App.set_setting({setting: `smooth_scroll`, value: !sett})
-  App.toggle_message(`Smooth Scroll`, sett)
+App.toggle_auto_scroll = () => {
+  let sett = App.get_setting(`auto_scroll`)
+  App.set_setting({setting: `auto_scroll`, value: !sett})
+  App.toggle_message(`Auto Scroll`, sett)
 }
