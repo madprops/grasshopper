@@ -736,46 +736,13 @@ App.get_font_string = (font) => {
 }
 
 App.set_item_padding_vars = () => {
-  let item_padding = 0.405
-  let height_diff = 0.15
   let item_height = App.get_setting(`item_height`)
-
-  if (item_height === `tiny`) {
-    item_padding -= height_diff * 2
-  }
-  else if (item_height === `small`) {
-    item_padding -= height_diff
-  }
-  else if (item_height === `big`) {
-    item_padding += height_diff
-  }
-  else if (item_height === `huge`) {
-    item_padding += height_diff * 2
-  }
-
-  item_padding = Math.max(item_padding, 0.1)
-  App.set_css_var(`item_padding`, `${item_padding}rem`)
+  App.theme_sizer(item_height, `item_padding`, 0.405, 0.15)
 }
 
 App.set_icon_size_vars = () => {
   let item_icon = App.get_setting(`item_icon`)
-  let icon_size = 1.11
-  let icon_size_diff = 0.181
-
-  if (item_icon === `tiny`) {
-    icon_size -= icon_size_diff * 2
-  }
-  else if (item_icon === `small`) {
-    icon_size -= icon_size_diff
-  }
-  else if (item_icon === `big`) {
-    icon_size += icon_size_diff
-  }
-  else if (item_icon === `huge`) {
-    icon_size += icon_size_diff * 2
-  }
-
-  App.set_css_var(`icon_size`, `${icon_size}rem`)
+  App.theme_sizer(item_icon, `icon_size`, 1.11, 0.181)
 }
 
 App.set_pinline_vars = () => {
@@ -858,33 +825,15 @@ App.set_tab_box_vars = () => {
     App.set_css_var(`tab_box_font`, `unset`)
   }
 
-  let tbh_rem = 13.0
-  let tbh_diff = 3.5
+  for (let osize of App.sizes_2) {
+    let size = osize.value
 
-  for (let size of App.sizes_2) {
-    if (size.value === `compact`) {
-      App.set_css_var(`tab_box_size_compact`, `1.9rem`)
+    if (size === `compact`) {
+      App.set_css_var(`tab_box_size_${size}`, `1.9rem`)
+      continue
     }
-    else if (size.value === `tiny`) {
-      let size = tbh_rem - (tbh_diff * 2)
-      App.set_css_var(`tab_box_size_tiny`, `${size}rem`)
-    }
-    else if (size.value === `small`) {
-      let size = tbh_rem - tbh_diff
-      App.set_css_var(`tab_box_size_small`, `${size}rem`)
-    }
-    else if (size.value === `normal`) {
-      let size = tbh_rem
-      App.set_css_var(`tab_box_size_normal`, `${size}rem`)
-    }
-    else if (size.value === `big`) {
-      let size = tbh_rem + (tbh_diff * 2)
-      App.set_css_var(`tab_box_size_big`, `${size}rem`)
-    }
-    else if (size.value === `huge`) {
-      let size = tbh_rem + (tbh_diff * 4)
-      App.set_css_var(`tab_box_size_huge`, `${size}rem`)
-    }
+
+    App.theme_sizer(size, `tab_box_size_${size}`, 13, 3.5)
   }
 
   if (App.get_setting(`tab_box_blur`)) {
@@ -938,30 +887,10 @@ App.set_close_button_vars = () => {
   App.set_css_var(`close_button_border_width`, cbbw + `px`)
   let cbbwtb = App.get_setting(`close_button_border_width_tab_box`)
   App.set_css_var(`close_button_border_width_tab_box`, cbbwtb + `px`)
-
-  function set_size (size, var_name) {
-    if (size === `tiny`) {
-      App.set_css_var(var_name, `1.2rem`)
-    }
-    else if (size === `small`) {
-      App.set_css_var(var_name, `1.42rem`)
-    }
-    else if (size === `normal`) {
-      App.set_css_var(var_name, `1.77rem`)
-    }
-    else if (size === `big`) {
-      App.set_css_var(var_name, `2.18rem`)
-    }
-    else if (size === `huge`) {
-      App.set_css_var(var_name, `2.5rem`)
-    }
-  }
-
   let size = App.get_setting(`close_button_size`)
-  set_size(size, `close_button_width`)
-
+  App.theme_sizer(size, `close_button_width`, 1.77, 0.3)
   let size_tb = App.get_setting(`close_button_size_tab_box`)
-  set_size(size_tb, `close_button_width_tab_box`)
+  App.theme_sizer(size_tb, `close_button_width_tab_box`, 1.77, 0.3)
 }
 
 App.set_footer_vars = () => {
@@ -1219,22 +1148,7 @@ App.set_hover_button_vars = () => {
   let hbs = App.get_setting(`hover_button_side`)
   main.classList.add(`hover_button_${hbs}`)
   let size = App.get_setting(`hover_button_size`)
-
-  if (size === `tiny`) {
-    App.set_css_var(`hover_button_padding`, `0.1rem`)
-  }
-  else if (size === `small`) {
-    App.set_css_var(`hover_button_padding`, `0.3rem`)
-  }
-  else if (size === `normal`) {
-    App.set_css_var(`hover_button_padding`, `0.5rem`)
-  }
-  else if (size === `big`) {
-    App.set_css_var(`hover_button_padding`, `0.7rem`)
-  }
-  else if (size === `huge`) {
-    App.set_css_var(`hover_button_padding`, `0.9rem`)
-  }
+  App.theme_sizer(size, `hover_button_padding`, 0.5, 0.2)
 }
 
 App.set_effect_vars = () => {
@@ -1364,4 +1278,26 @@ App.set_item_vars = () => {
   else {
     main.classList.remove(`item_pointer`)
   }
+}
+
+App.theme_sizer = (size, what, normal, steps) => {
+  let rem
+
+  if (size === `tiny`) {
+    rem = normal - (steps * 2)
+  }
+  else if (size === `small`) {
+    rem = normal - steps
+  }
+  else if (size === `normal`) {
+    rem = normal
+  }
+  else if (size === `big`) {
+    rem = normal + steps
+  }
+  else if (size === `huge`) {
+    rem = normal + (steps * 2)
+  }
+
+  App.set_css_var(what, `${rem}rem`)
 }
