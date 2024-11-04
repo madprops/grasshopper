@@ -160,4 +160,6 @@ App.toggle_tab_sort = () => {
   App.set_setting({setting: `tab_sort`, value})
   App.clear_items(`tabs`)
   App.do_show_mode({mode: `tabs`})
+  let name = App.capitalize(value)
+  App.footer_message(`Sort: ${name}`)
 }

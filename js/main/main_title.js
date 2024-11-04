@@ -277,6 +277,7 @@ App.get_main_title_date = () => {
 App.toggle_main_title_date = () => {
   let show_date = !App.get_setting(`main_title_date`)
   App.set_setting({setting: `main_title_date`, value: show_date})
+  App.toggle_message(`Date`, `main_title_date`)
   App.check_main_title()
 }
 
