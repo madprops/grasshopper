@@ -325,5 +325,5 @@ App.toggle_top_panel = () => {
   let sett = !App.get_setting(`show_top_panel`)
   App.set_setting({setting: `show_top_panel`, value: sett})
   App.toggle_message(`Top`, `show_top_panel`)
-  App.apply_theme()
+  App.set_top_panel_vars()
 }

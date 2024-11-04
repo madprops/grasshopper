@@ -1399,7 +1399,7 @@ App.toggle_wrap_text = () => {
   let wrap = App.get_setting(`wrap_text`)
   App.set_setting({setting: `wrap_text`, value: !wrap})
   App.toggle_message(`Wrap Text`, `wrap_text`)
-  App.apply_theme()
+  App.set_item_vars()
 }
 
 App.hide_item_2 = (item) => {

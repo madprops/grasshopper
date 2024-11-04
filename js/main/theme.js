@@ -147,13 +147,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`container_with_text`)
     }
 
-    if (!App.get_setting(`show_top_panel`)) {
-      main.classList.add(`hide_top_panel`)
-    }
-    else {
-      main.classList.remove(`hide_top_panel`)
-    }
-
     if (!App.get_setting(`show_settings_info`)) {
       main.classList.add(`hide_settings_info`)
     }
@@ -175,6 +168,7 @@ App.do_apply_theme = (args = {}) => {
     App.set_effect_vars()
     App.set_taglist_vars()
     App.set_filter_vars()
+    App.set_top_panel_vars()
 
     App.insert_tab_color_css()
     App.insert_color_css()
@@ -1264,4 +1258,15 @@ App.theme_sizer_panel = (size, what) => {
   let normal = App.panel_sizes.normal
   let steps = App.panel_sizes.steps
   App.theme_sizer(size, what, normal, steps)
+}
+
+App.set_top_panel_vars = () => {
+  let main = DOM.el(`#main`)
+
+  if (!App.get_setting(`show_top_panel`)) {
+    main.classList.add(`hide_top_panel`)
+  }
+  else {
+    main.classList.remove(`hide_top_panel`)
+  }
 }
