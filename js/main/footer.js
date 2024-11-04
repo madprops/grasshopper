@@ -236,6 +236,8 @@ App.toggle_footer = () => {
   else {
     App.show_footer(true, true)
   }
+
+  App.toggle_message(`Footer`, `show_footer`)
 }
 
 App.footer_message = (msg) => {
