@@ -259,4 +259,6 @@ App.toggle_taglist = () => {
   else {
     App.show_taglist(true)
   }
+
+  App.toggle_message(`Taglist`, `show_taglist`)
 }

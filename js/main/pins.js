@@ -178,6 +178,7 @@ App.toggle_show_pins = () => {
   }
 
   App.do_filter({mode: App.active_mode})
+  App.toggle_message(`Pins`, `show_pinned_tabs`)
 }
 
 App.get_first_pinned_tab = () => {

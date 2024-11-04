@@ -124,6 +124,7 @@ App.toggle_show_unloaded = () => {
   }
 
   App.do_filter({mode: App.active_mode})
+  App.toggle_message(`Unloaded`, `show_unloaded_tabs`)
 }
 
 App.show_all_unloaded = () => {
