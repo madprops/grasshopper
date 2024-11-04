@@ -189,7 +189,7 @@ App.mouse_event = (what, type = `normal`) => {
 
   let button
 
-  if (type === `middle`) {
+  if (type === `middle`) {``
     button = 1
   }
 

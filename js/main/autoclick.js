@@ -95,6 +95,16 @@ App.autoclick_action = (e) => {
     return
   }
 
+  if (check(`footer`, [
+    `#footer_info`,
+    `#footer_count`,
+    `#footer_tab_box`,
+    `#footer_up_tabs`,
+    `#footer_down_tabs`,
+  ])) {
+    return
+  }
+
   if (check(`settings`, [
     `.settings_title`,
     `.settings_arrow`,
