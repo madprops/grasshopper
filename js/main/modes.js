@@ -325,5 +325,5 @@ App.check_init_mode = async () => {
 }
 
 App.mode_icon = (mode) => {
-  return App.get_setting(`${mode}_mode_icon`)
+  return App.get_setting_icon(`${mode}_mode`)
 }

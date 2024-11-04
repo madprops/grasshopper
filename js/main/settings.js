@@ -2385,11 +2385,5 @@ App.settings_separator = () => {
 }
 
 App.get_setting_icon = (name) => {
-  let icon = App.get_setting(`${name}_icon`)
-
-  if (icon && icon.length > 1) {
-    icon = App.command_icon
-  }
-
-  return icon
+  return App.get_setting(`${name}_icon`)
 }
