@@ -306,7 +306,7 @@ NeedContext.show = (args = {}) => {
       if (args.compact) {
         if (args.compact) {
           let titles = [item.text, item.info].filter(Boolean)
-          el.title = titles.join(' - ')
+          el.title = titles.join(` - `)
         }
       }
       else if (item.info) {
@@ -344,7 +344,7 @@ NeedContext.show = (args = {}) => {
   NeedContext.layers[NeedContext.level] = {
     root: args.root,
     items: args.items,
-    normal_items: normal_items,
+    normal_items,
     last_index: selected_index,
     x: args.x,
     y: args.y,
@@ -371,12 +371,12 @@ NeedContext.show = (args = {}) => {
 
   if (((args.y + c.offsetHeight) + 5) > window.innerHeight) {
     let diff = Math.abs((args.y + c.offsetHeight) - window.innerHeight)
-    args.y -= (diff + pad)
+    args.y -= diff + pad
   }
 
   if (((args.x + c.offsetWidth) + 5) > window.innerWidth) {
     let diff = Math.abs((args.x + c.offsetWidth) - window.innerWidth)
-    args.x -= (diff + pad)
+    args.x -= diff + pad
   }
 
   NeedContext.last_x = args.x
@@ -449,7 +449,7 @@ NeedContext.scroll_to_selected = (block = `center`) => {
   let el = document.querySelector(`.needcontext-item-selected`)
 
   if (el) {
-    el.scrollIntoView({block: block})
+    el.scrollIntoView({block})
   }
 }
 
@@ -489,9 +489,8 @@ NeedContext.select_next = (direction = `down`, bounce = false) => {
     NeedContext.scroll_to_selected(`nearest`)
     return true
   }
-  else {
-    NeedContext.select_next(`up`)
-  }
+
+  NeedContext.select_next(`up`)
 }
 
 // Do the selected action
@@ -514,7 +513,7 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
       y = e.clientY
     }
 
-    NeedContext.show({x: x, y: y, items: items, root: false})
+    NeedContext.show({x, y, items, root: false})
   }
 
   function do_items (items) {
@@ -914,7 +913,6 @@ NeedContext.create = () => {
 
 // Drag start
 NeedContext.dragstart_action = (e) => {
-  if (NeedContext)
   NeedContext.dragged_item = e.target
   let list = NeedContext.container
   let items = Array.from(list.querySelectorAll(`.needcontext-item`))
@@ -1191,7 +1189,7 @@ NeedContext.update_title = () => {
 
 // Count the number of items
 NeedContext.count_items = () => {
-  items = NeedContext.get_layer().normal_items
+  let items = NeedContext.get_layer().normal_items
   items = items.filter(x => !x.removed)
   items = items.filter(x => !x.fake)
   return items.length
