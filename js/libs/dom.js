@@ -1,4 +1,4 @@
-// DOM v1.0.0
+// DOM v2.0.0
 const DOM = {}
 DOM.dataset_obj = {}
 DOM.dataset_id = 0
