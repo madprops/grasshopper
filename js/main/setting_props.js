@@ -5518,7 +5518,15 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
+      separator: true,
       info: `Delay in milliseconds for Context Autoclick`,
+      version: 1,
+    },
+    autoclick_no_scroll: {
+      name: `Autoclick No Scroll`,
+      type: `checkbox`,
+      value: false,
+      info: `Disable auto scrolling when autoclicking`,
       version: 1,
     },
   }
