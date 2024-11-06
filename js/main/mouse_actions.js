@@ -169,13 +169,23 @@ App.mouse_click_action = (e, from = `click`) => {
 
     if (media_setting === `icon`) {
       if (DOM.parent(target, [`.${media_type}_icon`])) {
-        App.select_item({item, scroll: `nearest`, check_auto_scroll: true})
+        App.select_item({
+          item,
+          scroll: `nearest`,
+          check_auto_scroll: true,
+        })
+
         App.view_media(item)
         return
       }
     }
     else if (media_setting === `item`) {
-      App.select_item({item, scroll: `nearest`, check_auto_scroll: true})
+      App.select_item({
+        item,
+        scroll: `nearest`,
+        check_auto_scroll: true,
+      })
+
       App.view_media(item)
       return
     }
@@ -247,7 +257,12 @@ App.mouse_click_action = (e, from = `click`) => {
   }
 
   if (e.altKey) {
-    App.select_item({item, scroll: `nearest_smooth`, check_auto_scroll: true})
+    App.select_item({
+      item,
+      scroll: `nearest_smooth`,
+      check_auto_scroll: true,
+    })
+
     return
   }
 
@@ -481,7 +496,13 @@ App.mouse_context_action = (e) => {
 
   if (App.get_setting(`icon_pick`)) {
     if (DOM.parent(target, [`.item_icon_container`])) {
-      App.select_item({item, scroll: `nearest`, deselect: true, check_auto_scroll: true})
+      App.select_item({
+        item,
+        scroll: `nearest`,
+        deselect: true,
+        check_auto_scroll: true,
+      })
+
       return
     }
   }
@@ -513,7 +534,12 @@ App.mouse_context_action = (e) => {
   }
 
   if (App.get_setting(`item_menu_select`)) {
-    App.select_item({item, scroll: `nearest`, deselect: !item.selected, check_auto_scroll: true})
+    App.select_item({
+      item,
+      scroll: `nearest`,
+      deselect: !item.selected,
+      check_auto_scroll: true,
+    })
   }
 
   App.show_item_menu({item, e})
@@ -673,7 +699,12 @@ App.mouse_middle_action = (e, target_el) => {
   }
 
   if (e.altKey) {
-    App.select_item({item, scroll: `nearest_smooth`, check_auto_scroll: true})
+    App.select_item({
+      item,
+      scroll: `nearest_smooth`,
+      check_auto_scroll: true,
+    })
+
     return
   }
 

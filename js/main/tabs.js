@@ -157,7 +157,12 @@ App.focus_tab = async (args = {}) => {
   if (args.select) {
     args.item.active = true
     App.check_tab_active(args.item)
-    App.select_item({item: args.item, scroll: args.scroll, check_auto_scroll: true})
+
+    App.select_item({
+      item: args.item,
+      scroll: args.scroll,
+      check_auto_scroll: true,
+    })
   }
 
   if (args.item.window_id) {
@@ -323,7 +328,12 @@ App.tabs_action = async (args = {}) => {
   }
 
   if (args.soft && args.item.unloaded) {
-    App.select_item({item: args.item, scroll: args.scroll, check_auto_scroll: true})
+    App.select_item({
+      item: args.item,
+      scroll: args.scroll,
+      check_auto_scroll: true,
+    })
+
     return
   }
 
@@ -382,7 +392,13 @@ App.tabs_action = async (args = {}) => {
 
     if (header_action === `none`) {
       if (args.from === `tab_box`) {
-        App.select_item({item: args.item, scroll: args.scroll, from: args.from, check_auto_scroll: true})
+        App.select_item({
+          item: args.item,
+          scroll: args.scroll,
+          from: args.from,
+          check_auto_scroll: true,
+        })
+
         blink_item()
       }
 
@@ -402,7 +418,13 @@ App.tabs_action = async (args = {}) => {
         return
       }
 
-      App.select_item({item: args.item, scroll: args.scroll, from: args.from, check_auto_scroll: true})
+      App.select_item({
+        item: args.item,
+        scroll: args.scroll,
+        from: args.from,
+        check_auto_scroll: true,
+      })
+
       blink_item()
       return
     }
