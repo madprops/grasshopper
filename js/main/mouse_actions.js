@@ -292,6 +292,16 @@ App.mouse_double_click_action = (e) => {
       return
     }
 
+    if (DOM.parent(target, [`.playing_button`])) {
+      App.playing_click(e)
+      return
+    }
+
+    if (DOM.parent(target, [`.actions_button`])) {
+      App.show_actions_menu(mode, undefined, e)
+      return
+    }
+
     if (DOM.class(target, [`item_container`])) {
       App.empty_double_click(mode, e)
       return
