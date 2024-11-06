@@ -344,7 +344,7 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       no_mirror: true,
-      info: `Enable auto scrolling when selecting items`,
+      info: `Enable auto-scrolling when clicking items`,
       version: 1,
     },
     smooth_scroll: {
@@ -5520,13 +5520,6 @@ App.build_settings = () => {
       max: App.number_max,
       separator: true,
       info: `Delay in milliseconds for Context Autoclick`,
-      version: 1,
-    },
-    autoclick_no_scroll: {
-      name: `Autoclick No Scroll`,
-      type: `checkbox`,
-      value: false,
-      info: `Disable auto scrolling when autoclicking`,
       version: 1,
     },
   }

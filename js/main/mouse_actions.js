@@ -272,6 +272,11 @@ App.mouse_double_click_action = (e) => {
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
   if (!item) {
+    if (DOM.parent(target, [`.step_back_button`])) {
+      App.step_back_click(e)
+      return
+    }
+
     if (DOM.class(target, [`item_container`])) {
       App.empty_double_click(mode, e)
       return

@@ -317,11 +317,14 @@ App.tabs_action = async (args = {}) => {
     else if (args.from === `tab_cmd`) {
       args.scroll = `nearest_instant`
     }
-    else if ((args.from === `autoclick`) && App.get_setting(`autoclick_no_scroll`)) {
-      args.scroll = `none`
-    }
     else {
       args.scroll = `nearest_smooth`
+    }
+
+    if ([`click`, `autoclick`].includes(args.from)) {
+      if (!App.get_setting(`auto_scroll`)) {
+        args.scroll = `none`
+      }
     }
   }
 

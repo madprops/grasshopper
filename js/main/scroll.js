@@ -13,10 +13,6 @@ App.scroll_to_item = (args = {}) => {
 
     App.def_args(def_args, args)
 
-    if (!App.get_setting(`auto_scroll`)) {
-      return
-    }
-
     if (args.scroll === `none`) {
       return
     }
