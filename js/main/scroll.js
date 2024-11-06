@@ -264,11 +264,3 @@ App.scroller_click = (mode, e) => {
 
   App.goto_top_or_bottom({what: `top`, mode})
 }
-
-App.check_auto_scroll = (args) => {
-  if ([`click`, `autoclick`].includes(args.from)) {
-    if (!App.get_setting(`auto_scroll`)) {
-      args.scroll = `none`
-    }
-  }
-}

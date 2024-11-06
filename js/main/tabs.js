@@ -320,12 +320,10 @@ App.tabs_action = async (args = {}) => {
     else {
       args.scroll = `nearest_smooth`
     }
-
-    App.check_auto_scroll(args)
   }
 
   if (args.soft && args.item.unloaded) {
-    App.select_item({item: args.item, scroll: args.scroll})
+    App.select_item({item: args.item, scroll: args.scroll, check_auto_scroll: true})
     return
   }
 

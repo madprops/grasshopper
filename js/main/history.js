@@ -77,8 +77,7 @@ App.history_action = (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  App.check_auto_scroll(args)
-  App.select_item({item: args.item, scroll: `nearest_smooth`})
+  App.select_item({item: args.item, scroll: `nearest_smooth`, check_auto_scroll: true})
 
   if (args.on_action) {
     App.on_action(`history`)

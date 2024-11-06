@@ -15,6 +15,7 @@ App.select_item = (args = {}) => {
     deselect: true,
     scroll: `center`,
     from: `normal`,
+    check_auto_scroll: false,
   }
 
   App.def_args(def_args, args)
@@ -33,6 +34,12 @@ App.select_item = (args = {}) => {
 
   if (args.from === `tab_box`) {
     if (!App.get_setting(`tab_box_focus`)) {
+      args.scroll = `none`
+    }
+  }
+
+  if (args.check_auto_scroll) {
+    if (!App.get_setting(`auto_scroll`)) {
       args.scroll = `none`
     }
   }
