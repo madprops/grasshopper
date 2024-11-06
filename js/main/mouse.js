@@ -149,7 +149,7 @@ App.on_mouse_down = (e) => {
         let [item, item_alt] = App.get_mouse_item(mode, target)
 
         if (item) {
-          App.pick(item)
+          App.pick(item, true)
 
           if (item.selected) {
             App.icon_pick_down = true

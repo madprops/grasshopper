@@ -1087,14 +1087,19 @@ App.remove_duplicates = (items) => {
   return objs
 }
 
-App.pick = (item) => {
+App.pick = (item, check_auto_scroll = false) => {
   let was_selected = item.selected
 
   if (item.selected) {
     App.toggle_selected({item, what: false})
   }
   else {
-    App.select_item({item, scroll: `nearest`, deselect: false})
+    App.select_item({
+      item,
+      scroll: `nearest`,
+      deselect: false,
+      check_auto_scroll,
+    })
   }
 
   return item.selected !== was_selected
