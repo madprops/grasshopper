@@ -169,13 +169,17 @@ App.mouse_click_action = (e, from = `click`) => {
 
     if (media_setting === `icon`) {
       if (DOM.parent(target, [`.${media_type}_icon`])) {
-        App.select_item({item, scroll: `nearest`})
+        let argz = {item, scroll: `nearest`}
+        App.check_auto_scroll(argz)
+        App.select_item(argz)
         App.view_media(item)
         return
       }
     }
     else if (media_setting === `item`) {
-      App.select_item({item, scroll: `nearest`})
+      let argz = {item, scroll: `nearest`}
+      App.check_auto_scroll(argz)
+      App.select_item(argz)
       App.view_media(item)
       return
     }
@@ -247,7 +251,9 @@ App.mouse_click_action = (e, from = `click`) => {
   }
 
   if (e.altKey) {
-    App.select_item({item, scroll: `nearest_smooth`})
+    let argz = {item, scroll: `nearest_smooth`, from}
+    App.check_auto_scroll(argz)
+    App.select_item(argz)
     return
   }
 

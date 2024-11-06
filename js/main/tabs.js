@@ -321,11 +321,7 @@ App.tabs_action = async (args = {}) => {
       args.scroll = `nearest_smooth`
     }
 
-    if ([`click`, `autoclick`].includes(args.from)) {
-      if (!App.get_setting(`auto_scroll`)) {
-        args.scroll = `none`
-      }
-    }
+    App.check_auto_scroll(args)
   }
 
   if (args.soft && args.item.unloaded) {

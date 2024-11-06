@@ -87,6 +87,7 @@ App.bookmarks_action = (args = {}) => {
     return
   }
 
+  App.check_auto_scroll(args)
   App.select_item({item: args.item, scroll: `nearest_smooth`})
 
   if (args.on_action) {

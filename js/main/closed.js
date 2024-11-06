@@ -32,6 +32,7 @@ App.closed_action = (args = {}) => {
   }
 
   App.def_args(def_args, args)
+  App.check_auto_scroll(args)
   App.select_item({item: args.item, scroll: `nearest_smooth`})
 
   if (args.on_action) {
