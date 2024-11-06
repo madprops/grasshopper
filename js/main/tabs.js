@@ -144,6 +144,7 @@ App.focus_tab = async (args = {}) => {
     show_tabs: false,
     scroll: `center`,
     select: true,
+    check_auto_scroll: false,
   }
 
   App.def_args(def_args, args)
@@ -161,7 +162,7 @@ App.focus_tab = async (args = {}) => {
     App.select_item({
       item: args.item,
       scroll: args.scroll,
-      check_auto_scroll: true,
+      check_auto_scroll: args.check_auto_scroll,
     })
   }
 
@@ -327,11 +328,16 @@ App.tabs_action = async (args = {}) => {
     }
   }
 
+  let check_auto_scroll = [
+    `click`,
+    `autoclick`,
+  ].includes(args.from)
+
   if (args.soft && args.item.unloaded) {
     App.select_item({
       item: args.item,
       scroll: args.scroll,
-      check_auto_scroll: true,
+      check_auto_scroll,
     })
 
     return
@@ -396,7 +402,7 @@ App.tabs_action = async (args = {}) => {
           item: args.item,
           scroll: args.scroll,
           from: args.from,
-          check_auto_scroll: true,
+          check_auto_scroll,
         })
 
         blink_item()
@@ -422,7 +428,7 @@ App.tabs_action = async (args = {}) => {
         item: args.item,
         scroll: args.scroll,
         from: args.from,
-        check_auto_scroll: true,
+        check_auto_scroll,
       })
 
       blink_item()
@@ -444,7 +450,7 @@ App.tabs_action = async (args = {}) => {
     item: args.item,
     select: true,
     scroll: args.scroll,
-    check_auto_scroll: true,
+    check_auto_scroll,
     method,
   })
 
