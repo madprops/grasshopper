@@ -853,7 +853,6 @@ App.click_press_action = (e) => {
 }
 
 App.do_mouse_over_action = (e) => {
-  console.log(2)
   App.mouse_over_debouncer.cancel()
   let target = e.target
 
