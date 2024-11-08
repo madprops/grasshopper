@@ -73,6 +73,10 @@ App.setup_mouse = () => {
     App.mouse_move_action(e)
   })
 
+  App.mouse_over_debouncer = App.create_debouncer((e) => {
+    App.do_mouse_over_action(e)
+  }, App.mouse_over_delay)
+
   App.mouse_out_debouncer = App.create_debouncer((e) => {
     App.do_mouse_out_action(e)
   }, App.mouse_out_delay)
@@ -264,6 +268,21 @@ App.mouse_press_action = (s1, s2, obj) => {
   }
 
   return false
+}
+
+App.mouse_over_action = (e) => {
+  let target = e.target
+  let mode = App.active_mode
+
+  if (App.icon_pick_down) {
+    let [item, item_alt] = App.get_mouse_item(mode, target)
+
+    if (item) {
+      App.toggle_selected({item, what: true})
+    }
+  }
+
+  App.mouse_over_debouncer.call(e)
 }
 
 App.mouse_out_action = (e) => {

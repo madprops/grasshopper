@@ -852,7 +852,9 @@ App.click_press_action = (e) => {
   }
 }
 
-App.mouse_over_action = (e) => {
+App.do_mouse_over_action = (e) => {
+  console.log(2)
+  App.mouse_over_debouncer.cancel()
   let target = e.target
 
   if (!App.mouse_valid_type(target)) {
@@ -871,11 +873,6 @@ App.mouse_over_action = (e) => {
 
   if (DOM.parent(target, [`.item_icon_unit`])) {
     App.update_icon_tooltips(item, target)
-  }
-
-  if (App.icon_pick_down) {
-    App.toggle_selected({item, what: true})
-    return
   }
 
   App.update_footer_info(item)
