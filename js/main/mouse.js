@@ -46,7 +46,7 @@ App.setup_mouse = () => {
   let container = DOM.el(`#main`)
 
   DOM.ev(container, `mousedown`, (e) => {
-    App.on_mouse_down(e)
+    App.mouse_down_action(e)
   })
 
   DOM.ev(container, `click`, (e) => {
@@ -72,10 +72,6 @@ App.setup_mouse = () => {
   DOM.ev(container, `mousemove`, (e) => {
     App.mouse_move_action(e)
   })
-
-  App.mouse_over_debouncer = App.create_debouncer((e) => {
-    App.do_mouse_over_action(e)
-  }, App.mouse_over_delay)
 
   App.mouse_out_debouncer = App.create_debouncer((e) => {
     App.do_mouse_out_action(e)
@@ -136,36 +132,6 @@ App.check_double_click = (what, e) => {
 
   App[`click_date_${what}`] = date_now
   return false
-}
-
-App.on_mouse_down = (e) => {
-  let target = e.target
-  let mode = App.active_mode
-  App.reset_triggers()
-
-  if (App.get_setting(`icon_pick`)) {
-    if (e.button === 0) {
-      if (DOM.parent(target, [`.item_icon_container`])) {
-        let [item, item_alt] = App.get_mouse_item(mode, target)
-
-        if (item) {
-          App.pick(item, true)
-
-          if (item.selected) {
-            App.icon_pick_down = true
-          }
-
-          return
-        }
-      }
-    }
-  }
-
-  if (e.button === 0 || e.button === 1) {
-    App.click_press_button = e.button
-    App.click_press_triggered = false
-    App.start_click_press_timeout(e)
-  }
 }
 
 App.mouse_valid_type = (target) => {
@@ -298,10 +264,6 @@ App.mouse_press_action = (s1, s2, obj) => {
   }
 
   return false
-}
-
-App.mouse_over_action = (e) => {
-  App.mouse_over_debouncer.call(e)
 }
 
 App.mouse_out_action = (e) => {

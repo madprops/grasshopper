@@ -852,8 +852,7 @@ App.click_press_action = (e) => {
   }
 }
 
-App.do_mouse_over_action = (e) => {
-  App.mouse_over_debouncer.cancel()
+App.mouse_over_action = (e) => {
   let target = e.target
 
   if (!App.mouse_valid_type(target)) {
@@ -998,4 +997,34 @@ App.wheel_action = (direction, name, e) => {
 
   let cmd = App.get_setting(name)
   App.run_command({cmd, item, from: `mouse`, e})
+}
+
+App.mouse_down_action = (e) => {
+  let target = e.target
+  let mode = App.active_mode
+  App.reset_triggers()
+
+  if (App.get_setting(`icon_pick`)) {
+    if (e.button === 0) {
+      if (DOM.parent(target, [`.item_icon_container`])) {
+        let [item, item_alt] = App.get_mouse_item(mode, target)
+
+        if (item) {
+          App.pick(item, true)
+
+          if (item.selected) {
+            App.icon_pick_down = true
+          }
+
+          return
+        }
+      }
+    }
+  }
+
+  if (e.button === 0 || e.button === 1) {
+    App.click_press_button = e.button
+    App.click_press_triggered = false
+    App.start_click_press_timeout(e)
+  }
 }
