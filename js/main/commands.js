@@ -463,7 +463,7 @@ App.cmd_item = (args = {}) => {
   }
 
   if (args.middle_command) {
-    obj.info += `\nMiddle Click: ${args.middle_command.name}`
+    obj.info += `\nMiddle: ${args.middle_command.name}`
 
     obj.middle_action = (e) => {
       App.run_command({
