@@ -443,10 +443,6 @@ App.cmd_item = (args = {}) => {
     return
   }
 
-  if (args.middle) {
-    args.middle_command = App.get_command(args.middle)
-  }
-
   let obj = {
     e: args.e,
     icon: App.clone_if_node(args.command.icon),
@@ -462,18 +458,33 @@ App.cmd_item = (args = {}) => {
     },
   }
 
-  if (args.middle_command) {
-    obj.info += `\nMiddle: ${args.middle_command.name}`
+  function add_cmd(what, name) {
+    let cmd
+
+    if (args[what]) {
+      cmd = App.get_command(args[what])
+    }
+
+    if (!cmd) {
+      return
+    }
+
+    obj.info += `\n${name}: ${cmd.name}`
 
     obj.middle_action = (e) => {
       App.run_command({
-        cmd: args.middle_command.cmd,
+        cmd: cmd.cmd,
         item: args.item,
         from: args.from,
         e,
       })
     }
   }
+
+  add_cmd(`middle`, `Middle`)
+  add_cmd(`shift`, `Shift`)
+  add_cmd(`ctrl`, `Ctrl`)
+  add_cmd(`alt`, `Alt`)
 
   return obj
 }
