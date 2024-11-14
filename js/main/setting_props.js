@@ -5518,7 +5518,6 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      separator: true,
       info: `Delay in milliseconds for Context Autoclick`,
       version: 1,
     },

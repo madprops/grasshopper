@@ -1218,6 +1218,8 @@ App.settings_actions = (category) => {
     },
   })
 
+  App.sep(items)
+
   items.push({
     icon: App.data_icon,
     text: `Reset Settings`,
