@@ -485,7 +485,6 @@ App.cmd_item = (args = {}) => {
   add_cmd(`shift`, `Shift`)
   add_cmd(`ctrl`, `Ctrl`)
   add_cmd(`alt`, `Alt`)
-
   return obj
 }
 
