@@ -44,7 +44,7 @@ App.show_main_menu = (mode) => {
   }
 
   App.sep(items)
-  items.push(App.cmd_item({cmd: `show_settings`, short: true}))
+  items.push(App.cmd_item({cmd: `show_settings`, middle: `export_settings`, short: true}))
   App.sep(items)
   items.push(App.cmd_item({cmd: `show_signals`, short: true}))
   items.push(App.cmd_item({cmd: `edit_global_notes`, short: true}))

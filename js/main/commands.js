@@ -443,7 +443,11 @@ App.cmd_item = (args = {}) => {
     return
   }
 
-  return {
+  if (args.middle) {
+    args.middle_command = App.get_command(args.middle)
+  }
+
+  let obj = {
     e: args.e,
     icon: App.clone_if_node(args.command.icon),
     text: App.command_name(args.command, args.short),
@@ -457,6 +461,19 @@ App.cmd_item = (args = {}) => {
       })
     },
   }
+
+  if (args.middle_command) {
+    obj.middle_action = (e) => {
+      App.run_command({
+        cmd: args.middle_command.cmd,
+        item: args.item,
+        from: args.from,
+        e,
+      })
+    }
+  }
+
+  return obj
 }
 
 App.cmd_list = (cmds, short = false) => {
