@@ -834,8 +834,10 @@ App.after_focus = (args = {}) => {
   }
 
   if (args.method === `normal`) {
-    if (App.get_setting(`close_on_focus`)) {
-      App.close_window()
+    if (App.is_popup()) {
+      if (App.get_setting(`close_on_focus`)) {
+        App.close_window()
+      }
     }
   }
 

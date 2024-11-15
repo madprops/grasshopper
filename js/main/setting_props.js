@@ -2691,14 +2691,11 @@ App.build_settings = () => {
       info: `Max items to show in the Tab Box`,
       version: 1,
     },
-    tab_box_min_height: {
-      name: `Tab Box Min Height`,
-      type: `number`,
-      value: 0,
-      placeholder: `Number`,
-      min: 0,
-      max: App.number_max,
-      info: `If the window is smaller in height than these pixels, don't show the Tab Box`,
+    tab_box_hide_popup: {
+      name: `Tab Box Hide Popup`,
+      type: `checkbox`,
+      value: true,
+      info: `Don't auto-show the Tab Box when in popup mode`,
       version: 1,
     },
     tab_box_icons: {
@@ -5705,6 +5702,20 @@ App.build_settings = () => {
       info: `Delay in milliseconds for Context Autohide`,
       version: 1,
     },
+    close_on_focus: {
+      name: `Close On Focus`,
+      type: `checkbox`,
+      value: true,
+      info: `Close the popup when focusing a tab`,
+      version: 1,
+    },
+    close_on_open: {
+      name: `Close On Open`,
+      type: `checkbox`,
+      value: true,
+      info: `Close the popup when opening a tab`,
+      version: 1,
+    },
     mute_click: {
       name: `Mute Click`,
       type: `checkbox`,
@@ -5812,20 +5823,6 @@ App.build_settings = () => {
       value: true,
       info: `Auto-clear after no items remain when closing tabs`,
       version: 1,
-    },
-    close_on_focus: {
-      name: `Close On Focus`,
-      type: `checkbox`,
-      value: false,
-      info: `Close the popup when focusing a tab`,
-      version: 2,
-    },
-    close_on_open: {
-      name: `Close On Open`,
-      type: `checkbox`,
-      value: false,
-      info: `Close the popup when opening a tab`,
-      version: 2,
     },
     context_autohide: {
       name: `Context Autohide`,

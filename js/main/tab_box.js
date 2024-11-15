@@ -673,11 +673,16 @@ App.tab_box_check_size = () => {
 }
 
 App.init_tab_box = () => {
+  if (App.is_popup()) {
+    if (App.get_setting(`tab_box_hide_popup`)) {
+      App.set_setting({setting: `show_tab_box`, value: false})
+    }
+  }
+
   App.tab_box_check_size()
   App.check_tab_box_footer()
-  let limited = App.tab_box_limited()
 
-  if (!limited && App.get_setting(`show_tab_box`)) {
+  if (App.get_setting(`show_tab_box`)) {
     App.show_tab_box()
   }
   else {
@@ -864,18 +869,6 @@ App.tab_box_make_item_first = (item) => {
   }
 
   return false
-}
-
-App.tab_box_limited = () => {
-  let limited = false
-  let win_height = window.innerHeight
-  let tb_min_height = App.get_setting(`tab_box_min_height`)
-
-  if (tb_min_height > 0) {
-    limited = win_height < tb_min_height
-  }
-
-  return limited
 }
 
 App.fill_tab_box_folders = () => {

@@ -327,3 +327,11 @@ App.toggle_top_panel = () => {
   App.toggle_message(`Top`, `show_top_panel`)
   App.set_top_panel_vars()
 }
+
+App.is_popup = () => {
+  return location.search.includes(`popup`)
+}
+
+App.is_sidebar = () => {
+  return location.search.includes(`sidebar`)
+}
