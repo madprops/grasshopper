@@ -5705,20 +5705,6 @@ App.build_settings = () => {
       info: `Delay in milliseconds for Context Autohide`,
       version: 1,
     },
-    close_on_focus: {
-      name: `Close On Focus`,
-      type: `checkbox`,
-      value: true,
-      info: `Close the popup when focusing a tab`,
-      version: 1,
-    },
-    close_on_open: {
-      name: `Close On Open`,
-      type: `checkbox`,
-      value: true,
-      info: `Close the popup when opening a tab`,
-      version: 1,
-    },
     mute_click: {
       name: `Mute Click`,
       type: `checkbox`,
@@ -5826,6 +5812,20 @@ App.build_settings = () => {
       value: true,
       info: `Auto-clear after no items remain when closing tabs`,
       version: 1,
+    },
+    close_on_focus: {
+      name: `Close On Focus`,
+      type: `checkbox`,
+      value: false,
+      info: `Close the popup when focusing a tab`,
+      version: 2,
+    },
+    close_on_open: {
+      name: `Close On Open`,
+      type: `checkbox`,
+      value: false,
+      info: `Close the popup when opening a tab`,
+      version: 2,
     },
     context_autohide: {
       name: `Context Autohide`,
