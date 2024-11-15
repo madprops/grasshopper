@@ -108,6 +108,12 @@ browser.contextMenus.create({
 })
 
 browser.contextMenus.create({
+  type: `separator`,
+  id: `separator1`,
+  contexts: [`browser_action`],
+})
+
+browser.contextMenus.create({
   id: `open_tabs`,
   title: `Open Tabs`,
   contexts: [`browser_action`],
