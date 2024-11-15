@@ -102,8 +102,8 @@ browser.commands.onCommand.addListener((command) => {
 })
 
 browser.contextMenus.create({
-  id: `open_sidebar`,
-  title: `Open Sidebar`,
+  id: `toggle_sidebar`,
+  title: `Toggle Sidebar`,
   contexts: [`browser_action`],
 })
 
@@ -140,8 +140,8 @@ browser.contextMenus.create({
 browser.contextMenus.onClicked.addListener((info, tab) => {
   let id = info.menuItemId
 
-  if (id === `open_sidebar`) {
-    browser.sidebarAction.open()
+  if (id === `toggle_sidebar`) {
+    browser.sidebarAction.toggle()
   }
   else if (id === `open_tabs`) {
     open_popup_mode(`tabs`)
