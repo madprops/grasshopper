@@ -100,3 +100,53 @@ browser.commands.onCommand.addListener((command) => {
     }
   }
 })
+
+browser.contextMenus.create({
+  id: "open_sidebar",
+  title: "Open Sidebar",
+  contexts: ["browser_action"]
+})
+
+browser.contextMenus.create({
+  id: "open_tabs",
+  title: "Open Tabs",
+  contexts: ["browser_action"]
+})
+
+browser.contextMenus.create({
+  id: "open_history",
+  title: "Open History",
+  contexts: ["browser_action"]
+})
+
+browser.contextMenus.create({
+  id: "open_bookmarks",
+  title: "Open Bookmarks",
+  contexts: ["browser_action"]
+})
+
+browser.contextMenus.create({
+  id: "open_closed",
+  title: "Open Closed",
+  contexts: ["browser_action"]
+})
+
+browser.contextMenus.onClicked.addListener((info, tab) => {
+  let id = info.menuItemId
+
+  if (id === "open_sidebar") {
+    browser.sidebarAction.open()
+  }
+  else if (id === "open_tabs") {
+    open_popup_mode(`tabs`)
+  }
+  else if (id === "open_history") {
+    open_popup_mode(`history`)
+  }
+  else if (id === "open_bookmarks") {
+    open_popup_mode(`bookmarks`)
+  }
+  else if (id === "open_closed") {
+    open_popup_mode(`closed`)
+  }
+})
