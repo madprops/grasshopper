@@ -674,7 +674,7 @@ App.tab_box_check_size = () => {
 
 App.init_tab_box = () => {
   if (App.is_popup()) {
-    if (App.get_setting(`tab_box_hide_popup`)) {
+    if (App.get_setting(`hide_popup_tab_box`)) {
       App.set_setting({setting: `show_tab_box`, value: false})
     }
   }

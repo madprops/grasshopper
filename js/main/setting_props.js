@@ -2691,8 +2691,8 @@ App.build_settings = () => {
       info: `Max items to show in the Tab Box`,
       version: 1,
     },
-    tab_box_hide_popup: {
-      name: `Tab Box Hide Popup`,
+    hide_popup_tab_box: {
+      name: `Hide Popup Tab Box`,
       type: `checkbox`,
       value: true,
       info: `Don't auto-show the Tab Box when in popup mode`,
