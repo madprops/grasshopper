@@ -155,6 +155,10 @@ App.close_sidebar = () => {
   browser.sidebarAction.close()
 }
 
+App.toggle_sidebar = () => {
+  browser.sidebarAction.toggle()
+}
+
 App.generate_password = () => {
   let password = App.random_string(App.password_length)
 

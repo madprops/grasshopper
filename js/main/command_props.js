@@ -4293,6 +4293,16 @@ App.setup_commands = () => {
       info: `Close the browser sidebar`,
     },
     {
+      name: `Toggle Sidebar`,
+      short_name: `Sidebar`,
+      cmd: `toggle_sidebar`,
+      icon: bot_icon,
+      action: (args) => {
+        App.toggle_sidebar()
+      },
+      info: `Toggle the browser sidebar`,
+    },
+    {
       name: `Swarm`,
       cmd: `locust_swarm`,
       icon: grasshopper_icon,
