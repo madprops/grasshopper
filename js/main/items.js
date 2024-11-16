@@ -853,8 +853,10 @@ App.after_open = (shift = false) => {
     return
   }
 
-  if (App.get_setting(`close_on_open`)) {
-    App.close_window()
+  if (App.is_popup()) {
+    if (App.get_setting(`close_on_open`)) {
+      App.close_window()
+    }
   }
 }
 
