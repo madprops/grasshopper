@@ -2451,7 +2451,6 @@ App.build_settings = () => {
         {cmd: `increase_background_opacity`},
         {cmd: `decrease_background_opacity`},
       ],
-      separator: true,
       info: `Items for the Stuff Menu`,
       version: 1,
     },

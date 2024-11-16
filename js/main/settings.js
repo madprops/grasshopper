@@ -1495,6 +1495,7 @@ App.setup_settings_addlist = () => {
     `item_menu`,
     `empty_menu`,
     `stuff_menu`,
+    `scroller_menu`,
   ]
 
   for (let m of App.modes) {
