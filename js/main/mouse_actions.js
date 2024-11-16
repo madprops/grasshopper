@@ -479,6 +479,11 @@ App.mouse_context_action = (e) => {
       return
     }
 
+    if (DOM.parent(target, [`.scroller`])) {
+      App.show_scroller_menu(e)
+      return
+    }
+
     if (DOM.parent(target, [`.item_container`])) {
       App.show_empty_menu(undefined, e)
       return

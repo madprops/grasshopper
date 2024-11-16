@@ -264,3 +264,11 @@ App.scroller_click = (mode, e) => {
 
   App.goto_top_or_bottom({what: `top`, mode})
 }
+
+App.show_scroller_menu = (e) => {
+  let items = App.custom_menu_items({
+    name: `scroller_menu`,
+  })
+
+  App.show_context({items, e})
+}
