@@ -218,11 +218,11 @@ App.remove_mouse_inside = () => {
 }
 
 App.do_add_mouse_inside = () => {
-  DOM.el(`#main`).classList.add(`mouse_inside`)
+  App.main_add(`mouse_inside`)
 }
 
 App.do_remove_mouse_inside = () => {
-  DOM.el(`#main`).classList.remove(`mouse_inside`)
+  App.main_remove(`mouse_inside`)
 }
 
 App.check_pick_button = (what, item, e) => {

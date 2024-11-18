@@ -99,13 +99,11 @@ App.do_apply_theme = (args = {}) => {
       document.body.classList.add(`no_scrollbars`)
     }
 
-    let main = DOM.el(`#main`)
-
     if (App.get_setting(`show_scroller`)) {
-      main.classList.remove(`hide_scroller`)
+      App.main_remove(`hide_scroller`)
     }
     else {
-      main.classList.add(`hide_scroller`)
+      App.main_add(`hide_scroller`)
     }
 
     App.set_background(args.background_image)
@@ -121,37 +119,37 @@ App.do_apply_theme = (args = {}) => {
     }
 
     if (App.get_setting(`button_icons`)) {
-      main.classList.add(`button_text_icon_enabled`)
+      App.main_add(`button_text_icon_enabled`)
     }
     else {
-      main.classList.remove(`button_text_icon_enabled`)
+      App.main_remove(`button_text_icon_enabled`)
     }
 
     let active_bgs = [`none`, `normal`, `tab_box`, `everywhere`]
 
     for (let bg of active_bgs) {
-      main.classList.remove(`active_background_${bg}`)
+      App.main_remove(`active_background_${bg}`)
     }
 
     let active_bg = App.get_setting(`background_color_active_mode`)
-    main.classList.add(`active_background_${active_bg}`)
+    App.main_add(`active_background_${active_bg}`)
     let uto = App.get_setting(`unloaded_opacity`) / 100
     App.set_css_var(`unloaded_opacity`, uto)
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
     App.set_css_var(`window_border_color`, App.get_setting(`window_border_color`))
 
     if (App.get_setting(`container_icon_text`)) {
-      main.classList.add(`container_with_text`)
+      App.main_add(`container_with_text`)
     }
     else {
-      main.classList.remove(`container_with_text`)
+      App.main_remove(`container_with_text`)
     }
 
     if (!App.get_setting(`show_settings_info`)) {
-      main.classList.add(`hide_settings_info`)
+      App.main_add(`hide_settings_info`)
     }
     else {
-      main.classList.remove(`hide_settings_info`)
+      App.main_remove(`hide_settings_info`)
     }
 
     App.set_item_vars()
@@ -740,8 +738,6 @@ App.set_icon_size_vars = () => {
 }
 
 App.set_pinline_vars = () => {
-  let main = DOM.el(`#main`)
-
   if (App.get_setting(`pinline_colors`)) {
     App.set_css_var(`pinline_text_color`, App.get_setting(`pinline_text_color`))
     App.set_css_var(`pinline_background_color`, App.get_setting(`pinline_background_color`))
@@ -752,11 +748,11 @@ App.set_pinline_vars = () => {
   }
 
   for (let align of App.aligns) {
-    main.classList.remove(`pinline_align_${align.value}`)
+    App.main_remove(`pinline_align_${align.value}`)
   }
 
   let align = App.get_setting(`pinline_align`)
-  main.classList.add(`pinline_align_${align}`)
+  App.main_add(`pinline_align_${align}`)
 
   if (App.get_setting(`rounded_pinline`)) {
     App.set_css_var(`pinline_border_radius`, `20px`)
@@ -787,8 +783,6 @@ App.set_pinline_vars = () => {
 }
 
 App.set_tab_box_vars = () => {
-  let main = DOM.el(`#main`)
-
   if (App.get_setting(`tab_box_color_enabled`)) {
     App.set_css_var(`tab_box_color`, App.get_setting(`tab_box_color`))
   }
@@ -831,23 +825,21 @@ App.set_tab_box_vars = () => {
   }
 
   if (App.get_setting(`tab_box_blur`)) {
-    main.classList.add(`tab_box_blur`)
+    App.main_add(`tab_box_blur`)
   }
   else {
-    main.classList.remove(`tab_box_blur`)
+    App.main_remove(`tab_box_blur`)
   }
 
   if (App.get_setting(`tab_box_count`)) {
-    main.classList.add(`tab_box_count`)
+    App.main_add(`tab_box_count`)
   }
   else {
-    main.classList.remove(`tab_box_count`)
+    App.main_remove(`tab_box_count`)
   }
 }
 
 App.set_close_button_vars = () => {
-  let main = DOM.el(`#main`)
-
   if (App.get_setting(`close_button_colors`)) {
     let text_color = App.get_setting(`close_button_text_color`)
     let bg_color = App.get_setting(`close_button_background_color`)
@@ -860,23 +852,23 @@ App.set_close_button_vars = () => {
   }
 
   for (let c_side of [`left`, `right`]) {
-    main.classList.remove(`close_button_${c_side}`)
+    App.main_remove(`close_button_${c_side}`)
   }
 
   let c_side = App.get_setting(`close_button_side`)
-  main.classList.add(`close_button_${c_side}`)
+  App.main_add(`close_button_${c_side}`)
   let cb_padding = App.get_setting(`close_button_padding`)
   App.set_css_var(`close_button_padding`, `${cb_padding}px`)
 
   for (let cb_show of App.remove_separators(App.show_icon)) {
-    main.classList.remove(`close_button_${cb_show.value}`)
-    main.classList.remove(`close_button_tab_box_${cb_show.value}`)
+    App.main_remove(`close_button_${cb_show.value}`)
+    App.main_remove(`close_button_tab_box_${cb_show.value}`)
   }
 
   let cb_show = App.get_setting(`show_close_button`)
-  main.classList.add(`close_button_${cb_show}`)
+  App.main_add(`close_button_${cb_show}`)
   let cb_show_tb = App.get_setting(`show_close_button_tab_box`)
-  main.classList.add(`close_button_tab_box_${cb_show_tb}`)
+  App.main_add(`close_button_tab_box_${cb_show_tb}`)
   let cbbw = App.get_setting(`close_button_border_width`)
   App.set_css_var(`close_button_border_width`, cbbw + `px`)
   let cbbwtb = App.get_setting(`close_button_border_width_tab_box`)
@@ -925,23 +917,21 @@ App.set_footer_vars = () => {
 }
 
 App.set_favorite_vars = () => {
-  let main = DOM.el(`#main`)
-
   if (App.get_setting(`favorites_blur`)) {
-    main.classList.add(`favorites_blur`)
+    App.main_add(`favorites_blur`)
   }
   else {
-    main.classList.remove(`favorites_blur`)
+    App.main_remove(`favorites_blur`)
   }
 
   let favgravs = [`top`, `center`, `bottom`]
 
   for (let grav of favgravs) {
-    main.classList.remove(`favorites_gravity_${grav}`)
+    App.main_remove(`favorites_gravity_${grav}`)
   }
 
   let grav = App.get_setting(`favorites_gravity`)
-  main.classList.add(`favorites_gravity_${grav}`)
+  App.main_add(`favorites_gravity_${grav}`)
 
   if (App.get_setting(`favorites_bar_color_enabled`)) {
     App.set_css_var(`favorites_bar_color`, App.get_setting(`favorites_bar_color`))
@@ -954,10 +944,10 @@ App.set_favorite_vars = () => {
   }
 
   if (App.get_setting(`favorites_autohide`)) {
-    main.classList.add(`favorites_autohide`)
+    App.main_add(`favorites_autohide`)
   }
   else {
-    main.classList.remove(`favorites_autohide`)
+    App.main_remove(`favorites_autohide`)
   }
 
   let size = App.get_setting(`favorites_size`)
@@ -967,13 +957,11 @@ App.set_favorite_vars = () => {
 }
 
 App.set_main_title_vars = () => {
-  let main = DOM.el(`#main`)
-
   if (App.get_setting(`wrap_main_title`)) {
-    main.classList.remove(`main_title_no_wrap`)
+    App.main_remove(`main_title_no_wrap`)
   }
   else {
-    main.classList.add(`main_title_no_wrap`)
+    App.main_add(`main_title_no_wrap`)
   }
 
   if (App.get_setting(`main_title_font_enabled`)) {
@@ -1009,28 +997,28 @@ App.set_main_title_vars = () => {
   let title_align = App.get_setting(`main_title_align`)
 
   for (let align of App.aligns) {
-    main.classList.remove(`main_title_align_${align.value}`)
+    App.main_remove(`main_title_align_${align.value}`)
   }
 
-  main.classList.add(`main_title_align_${title_align}`)
+  App.main_add(`main_title_align_${title_align}`)
   let size = App.get_setting(`main_title_size`)
   App.theme_sizer_panel(size, `main_title_padding`)
   let lb = App.get_setting(`main_title_left_button`)
 
   if (lb === `fixed`) {
-    main.classList.add(`fixed_main_title_left`)
+    App.main_add(`fixed_main_title_left`)
   }
   else {
-    main.classList.remove(`fixed_main_title_left`)
+    App.main_remove(`fixed_main_title_left`)
   }
 
   let rb = App.get_setting(`main_title_right_button`)
 
   if (rb === `fixed`) {
-    main.classList.add(`fixed_main_title_right`)
+    App.main_add(`fixed_main_title_right`)
   }
   else {
-    main.classList.remove(`fixed_main_title_right`)
+    App.main_remove(`fixed_main_title_right`)
   }
 
   let normal = 1.8
@@ -1043,13 +1031,11 @@ App.set_main_title_vars = () => {
 }
 
 App.set_zone_vars = () => {
-  let main = DOM.el(`#main`)
-
   if (App.get_setting(`header_icon_pick`)) {
-    main.classList.add(`header_icon_pick`)
+    App.main_add(`header_icon_pick`)
   }
   else {
-    main.classList.remove(`header_icon_pick`)
+    App.main_remove(`header_icon_pick`)
   }
 
   let scv
@@ -1065,100 +1051,97 @@ App.set_zone_vars = () => {
   let sw = App.get_setting(`split_width`)
 
   if (App.get_setting(`split_padding`)) {
-    main.classList.add(`split_padding`)
+    App.main_add(`split_padding`)
   }
   else {
-    main.classList.remove(`split_padding`)
+    App.main_remove(`split_padding`)
   }
 
   App.set_css_var(`split_width`, `${sw}px`)
   let split_sides = [`left`, `right`, `both`]
 
   for (let side of split_sides) {
-    main.classList.remove(`split_side_${side}`)
+    App.main_remove(`split_side_${side}`)
   }
 
   let split_side = App.get_setting(`split_side`)
-  main.classList.add(`split_side_${split_side}`)
+  App.main_add(`split_side_${split_side}`)
 }
 
 App.set_hover_button_vars = () => {
-  let main = DOM.el(`#main`)
-
   for (let side of [`left`, `right`]) {
-    main.classList.remove(`hover_button_${side}`)
+    App.main_remove(`hover_button_${side}`)
   }
 
   let hbs = App.get_setting(`hover_button_side`)
-  main.classList.add(`hover_button_${hbs}`)
+  App.main_add(`hover_button_${hbs}`)
   let size = App.get_setting(`hover_button_size`)
   App.theme_sizer(size, `hover_button_padding`, 0.5, 0.2)
 
   if (App.get_setting(`show_hover_button`)) {
-    main.classList.remove(`hide_hover_button`)
+    App.main_remove(`hide_hover_button`)
   }
   else {
-    main.classList.add(`hide_hover_button`)
+    App.main_add(`hide_hover_button`)
   }
 }
 
 App.set_effect_vars = () => {
-  let main = DOM.el(`#main`)
   let effects = App.remove_separators(App.effects)
 
   for (let eff of effects) {
-    main.classList.remove(`selected_effect_${eff.value}`)
+    App.main_remove(`selected_effect_${eff.value}`)
   }
 
   let selected_effect = App.get_setting(`selected_effect`)
-  main.classList.add(`selected_effect_${selected_effect}`)
+  App.main_add(`selected_effect_${selected_effect}`)
   let selected_effect_2 = App.get_setting(`selected_effect_2`)
-  main.classList.add(`selected_effect_${selected_effect_2}`)
+  App.main_add(`selected_effect_${selected_effect_2}`)
 
   for (let eff of effects) {
-    main.classList.remove(`hover_effect_${eff.value}`)
+    App.main_remove(`hover_effect_${eff.value}`)
   }
 
   let hover_effect = App.get_setting(`hover_effect`)
-  main.classList.add(`hover_effect_${hover_effect}`)
+  App.main_add(`hover_effect_${hover_effect}`)
   let hover_effect_2 = App.get_setting(`hover_effect_2`)
-  main.classList.add(`hover_effect_${hover_effect_2}`)
+  App.main_add(`hover_effect_${hover_effect_2}`)
 
   for (let eff of effects) {
-    main.classList.remove(`tab_box_active_effect_${eff.value}`)
+    App.main_remove(`tab_box_active_effect_${eff.value}`)
   }
 
   let tba_eff = App.get_setting(`tab_box_active_effect`)
-  main.classList.add(`tab_box_active_effect_${tba_eff}`)
+  App.main_add(`tab_box_active_effect_${tba_eff}`)
   let tba_eff_2 = App.get_setting(`tab_box_active_effect_2`)
-  main.classList.add(`tab_box_active_effect_${tba_eff_2}`)
+  App.main_add(`tab_box_active_effect_${tba_eff_2}`)
 
   for (let eff of effects) {
-    main.classList.remove(`tab_box_hover_effect_${eff.value}`)
+    App.main_remove(`tab_box_hover_effect_${eff.value}`)
   }
 
   let tbh_eff = App.get_setting(`tab_box_hover_effect`)
-  main.classList.add(`tab_box_hover_effect_${tbh_eff}`)
+  App.main_add(`tab_box_hover_effect_${tbh_eff}`)
   let tbh_eff_2 = App.get_setting(`tab_box_hover_effect_2`)
-  main.classList.add(`tab_box_hover_effect_${tbh_eff_2}`)
+  App.main_add(`tab_box_hover_effect_${tbh_eff_2}`)
 
   let ie = App.get_setting(`icon_effect`)
   let ies = [`none`, `spin`, `invert`, `border`]
 
   for (let eff of ies) {
-    main.classList.remove(`icon_effect_${eff}`)
+    App.main_remove(`icon_effect_${eff}`)
   }
 
-  main.classList.add(`icon_effect_${ie}`)
+  App.main_add(`icon_effect_${ie}`)
   let font = App.get_setting(`font`)
   let font_str = App.get_font_string(font)
   App.set_css_var(`font`, font_str)
 
   if (App.breathe_effect_on) {
-    main.classList.add(`breathe_effect`)
+    App.main_add(`breathe_effect`)
   }
   else {
-    main.classList.remove(`breathe_effect`)
+    App.main_remove(`breathe_effect`)
   }
 
   if (App.get_setting(`text_glow`)) {
@@ -1170,39 +1153,34 @@ App.set_effect_vars = () => {
 }
 
 App.set_taglist_vars = () => {
-  let main = DOM.el(`#main`)
-
   if (App.get_setting(`autohide_taglist`)) {
-    main.classList.add(`autohide_taglist`)
+    App.main_add(`autohide_taglist`)
   }
   else {
-    main.classList.remove(`autohide_taglist`)
+    App.main_remove(`autohide_taglist`)
   }
 }
 
 App.set_filter_vars = () => {
-  let main = DOM.el(`#main`)
-
   if (App.get_setting(`filter_focus_effect`)) {
-    main.classList.add(`filter_focus_effect`)
+    App.main_add(`filter_focus_effect`)
   }
   else {
-    main.classList.remove(`filter_focus_effect`)
+    App.main_remove(`filter_focus_effect`)
   }
 }
 
 App.set_item_vars = () => {
-  let main = DOM.el(`#main`)
   let borders_opts = [`normal`, `big`, `huge`]
 
   for (let b of borders_opts) {
-    main.classList.remove(`borders_${b}`)
+    App.main_remove(`borders_${b}`)
   }
 
   let borders = App.get_setting(`item_border`)
 
   if (borders_opts.includes(borders)) {
-    main.classList.add(`borders_${borders}`)
+    App.main_add(`borders_${borders}`)
   }
 
   let item_align = App.get_setting(`item_align`)
@@ -1210,24 +1188,24 @@ App.set_item_vars = () => {
   App.set_css_var(`item_align`, item_justify)
 
   if (App.get_setting(`wrap_text`)) {
-    main.classList.remove(`no_wrap`)
+    App.main_remove(`no_wrap`)
   }
   else {
-    main.classList.add(`no_wrap`)
+    App.main_add(`no_wrap`)
   }
 
   if (App.get_setting(`icon_pick`)) {
-    main.classList.add(`icon_pick`)
+    App.main_add(`icon_pick`)
   }
   else {
-    main.classList.remove(`icon_pick`)
+    App.main_remove(`icon_pick`)
   }
 
   if (App.get_setting(`item_pointer`)) {
-    main.classList.add(`item_pointer`)
+    App.main_add(`item_pointer`)
   }
   else {
-    main.classList.remove(`item_pointer`)
+    App.main_remove(`item_pointer`)
   }
 }
 
@@ -1261,12 +1239,10 @@ App.theme_sizer_panel = (size, what) => {
 }
 
 App.set_top_panel_vars = () => {
-  let main = DOM.el(`#main`)
-
   if (!App.get_setting(`show_top_panel`)) {
-    main.classList.add(`hide_top_panel`)
+    App.main_add(`hide_top_panel`)
   }
   else {
-    main.classList.remove(`hide_top_panel`)
+    App.main_remove(`hide_top_panel`)
   }
 }
