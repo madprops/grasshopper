@@ -1,11 +1,11 @@
 App.setup_drag = () => {
-  let container = DOM.el(`#main`)
+  let main = App.main()
 
-  container.ondragover = (e) => {
+  main.ondragover = (e) => {
     e.preventDefault()
   }
 
-  container.ondrop = (e) => {
+  main.ondrop = (e) => {
     e.preventDefault()
     let id_1 = e.dataTransfer.getData(`text/plain`)
     let menubutton = DOM.parent(e.target, [`.menubutton`])

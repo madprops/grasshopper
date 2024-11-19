@@ -132,19 +132,20 @@ App.permission_msg = (what) => {
   App.alert(`${s1} ${s2}`)
 }
 
+App.main = () => {
+  return DOM.el(`#main`)
+}
+
 App.main_add = (cls) => {
-  let main = DOM.el(`#main`)
-  main.classList.add(cls)
+  App.main().classList.add(cls)
 }
 
 App.main_remove = (cls) => {
-  let main = DOM.el(`#main`)
-  main.classList.remove(cls)
+  App.main().classList.remove(cls)
 }
 
 App.main_has = (cls) => {
-  let main = DOM.el(`#main`)
-  return main.classList.contains(cls)
+  return App.main().classList.contains(cls)
 }
 
 App.open_sidebar = () => {

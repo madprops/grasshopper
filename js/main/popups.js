@@ -30,7 +30,7 @@ App.create_popup = (args) => {
   })
 
   popup.append(container)
-  DOM.el(`#main`).append(popup)
+  App.main().append(popup)
   p.element = popup
 
   p.setup = () => {

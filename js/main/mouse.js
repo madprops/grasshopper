@@ -43,7 +43,7 @@ App.setup_mouse = () => {
     App.mouse_wheel_action(e)
   })
 
-  let container = DOM.el(`#main`)
+  let container = App.main()
 
   DOM.ev(container, `mousedown`, (e) => {
     App.mouse_down_action(e)
