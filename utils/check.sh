@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export NODE_OPTIONS="--no-warnings"
 
 # Only check files that have changed recently
 last_tag=$(git describe --tags --abbrev=0)
