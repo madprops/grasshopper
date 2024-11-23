@@ -226,7 +226,7 @@ App.close_window = () => {
 }
 
 App.get_window_menu_items = async (item) => {
-  let wins = await browser.windows.getAll({populate: true})
+  let wins = await App.get_windows()
   let items = []
 
   items.push({
@@ -287,7 +287,7 @@ App.build_shell = () => {
 }
 
 App.focus_window_menu = async () => {
-  let wins = await browser.windows.getAll({populate: true})
+  let wins = await App.get_windows()
   let items = []
 
   for (let win of wins) {
@@ -346,4 +346,8 @@ App.window_text = (win) => {
   }
 
   return text
+}
+
+App.get_windows = async (populate = true) => {
+  return await browser.windows.getAll({populate})
 }
