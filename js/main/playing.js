@@ -25,12 +25,22 @@ App.create_playing_button = (mode) => {
 }
 
 App.show_playing = (mode) => {
+  if (App.playing) {
+    return
+  }
+
   DOM.show(`#playing_button_${mode}`)
+  App.update_tab_box()
   App.playing = true
 }
 
 App.hide_playing = (mode) => {
+  if (!App.playing) {
+    return
+  }
+
   DOM.hide(`#playing_button_${mode}`)
+  App.update_tab_box()
   App.playing = false
 }
 
@@ -50,7 +60,7 @@ App.do_check_playing = (mode = App.active_mode, force = false) => {
       }
     }
   }
-  else if (App.playing) {
+  else {
     App.hide_playing(mode)
   }
 }
