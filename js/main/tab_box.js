@@ -570,7 +570,7 @@ App.do_check_tab_box_playing = () => {
 
   if (playing.length > 0) {
     if (!App.get_setting(`show_tab_box`)) {
-      App.show_tab_box(false)
+      App.show_tab_box(false, true)
     }
 
     if (App.get_tab_box_mode() !== `playing`) {
