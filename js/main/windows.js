@@ -227,7 +227,6 @@ App.close_window = () => {
 
 App.get_window_menu_items = async (item) => {
   let wins = await browser.windows.getAll({populate: true})
-  let playing_icon = App.get_setting_icon(`playing`)
   let items = []
 
   items.push({
@@ -242,11 +241,7 @@ App.get_window_menu_items = async (item) => {
       continue
     }
 
-    let text = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
-
-    if (App.window_audible(win)) {
-      text = `${playing_icon} ${text}`.trim()
-    }
+    let text = App.window_text(win)
 
     items.push({
       text,
@@ -293,7 +288,6 @@ App.build_shell = () => {
 
 App.focus_window_menu = async () => {
   let wins = await browser.windows.getAll({populate: true})
-  let playing_icon = App.get_setting_icon(`playing`)
   let items = []
 
   for (let win of wins) {
@@ -301,11 +295,7 @@ App.focus_window_menu = async () => {
       continue
     }
 
-    let text = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
-
-    if (App.window_audible(win)) {
-      text = `${playing_icon} ${text}`.trim()
-    }
+    let text = App.window_text(win)
 
     items.push({
       text,
@@ -346,6 +336,14 @@ App.is_sidebar = () => {
   return location.search.includes(`sidebar`)
 }
 
-App.window_audible = (win) => {
-  return win.tabs.some(tab => tab.audible)
+App.window_text = (win) => {
+  let text = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
+  let audible = win.tabs.some(tab => tab.audible)
+
+  if (audible) {
+    let playing_icon = App.get_setting_icon(`playing`)
+    text = `${playing_icon} ${text}`.trim()
+  }
+
+  return text
 }
