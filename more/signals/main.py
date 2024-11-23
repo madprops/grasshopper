@@ -1,9 +1,3 @@
-# requirements.txt:
-# -----------------
-# Flask == 3.0.3
-# Flask-Cors == 4.0.1
-
-
 import json
 import subprocess
 from datetime import datetime
