@@ -243,9 +243,8 @@ App.get_window_menu_items = async (item) => {
     }
 
     let text = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
-    let playing = win.tabs.some(tab => tab.audible)
 
-    if (playing) {
+    if (App.window_audible(win)) {
       text = `${playing_icon} ${text}`.trim()
     }
 
@@ -303,9 +302,8 @@ App.focus_window_menu = async () => {
     }
 
     let text = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
-    let playing = win.tabs.some(tab => tab.audible)
 
-    if (playing) {
+    if (App.window_audible(win)) {
       text = `${playing_icon} ${text}`.trim()
     }
 
@@ -346,4 +344,8 @@ App.is_popup = () => {
 
 App.is_sidebar = () => {
   return location.search.includes(`sidebar`)
+}
+
+App.window_audible = (win) => {
+  return win.tabs.some(tab => tab.audible)
 }
