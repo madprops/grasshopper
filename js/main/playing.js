@@ -25,23 +25,23 @@ App.create_playing_button = (mode) => {
 }
 
 App.show_playing = (mode) => {
-  if (App.playing) {
-    return
-  }
-
-  DOM.show(`#playing_button_${mode}`)
-  App.update_tab_box()
   App.playing = true
+  DOM.show(`#playing_button_${mode}`)
+  App.on_playing_change()
 }
 
 App.hide_playing = (mode) => {
-  if (!App.playing) {
-    return
-  }
-
-  DOM.hide(`#playing_button_${mode}`)
-  App.update_tab_box()
   App.playing = false
+  DOM.hide(`#playing_button_${mode}`)
+  App.on_playing_change()
+}
+
+App.on_playing_change = () => {
+  let tb_mode = App.get_tab_box_mode()
+
+  if ([`playing`].includes(tb_mode)) {
+    App.update_tab_box()
+  }
 }
 
 App.check_playing = () => {
@@ -54,13 +54,10 @@ App.do_check_playing = (mode = App.active_mode, force = false) => {
   if (playing.length) {
     if (!App.playing || force) {
       App.show_playing(mode)
-
-      if (mode === `tabs`) {
-        App.check_tab_box_playing()
-      }
+      App.check_tab_box_playing()
     }
   }
-  else {
+  else if (App.playing) {
     App.hide_playing(mode)
   }
 }
