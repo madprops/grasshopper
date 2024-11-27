@@ -2184,3 +2184,8 @@ a:hover
 .hide_hover_button .hover_button {
   display: none;
 }
+
+.empty_element {
+  height: 2rem;
+  width: 100%;
+}

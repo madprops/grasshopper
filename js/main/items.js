@@ -2,6 +2,8 @@ App.setup_items = () => {
   App.check_selected_debouncer = App.create_debouncer((mode) => {
     App.do_check_selected(mode)
   }, App.check_selected_delay)
+
+  App.start_item_observer()
 }
 
 App.remove_selected_class = (mode) => {
@@ -327,6 +329,10 @@ App.clear_all_items = () => {
 }
 
 App.refresh_item_element = (item) => {
+  if (!item.element_ready) {
+    return
+  }
+
   App.check_header(item)
   App.check_tab_loading(item)
   App.check_item_icon(item)
@@ -344,9 +350,17 @@ App.refresh_item_element = (item) => {
   }
 }
 
-App.create_item_element = (item) => {
-  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item element ${item.mode}_element`)
+App.create_empty_item_element = (item) => {
+  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item element ${item.mode}_element empty_item`)
   item.element.dataset.id = item.id
+  item.element.textContent = `.`
+  item.element_ready = false
+  App.item_observer.observe(item.element)
+}
+
+App.create_item_element = (item) => {
+  item.element.textContent = ``
+  item.element.classList.remove(`empty_item`)
   App.check_header(item)
   App.create_hover_button(item, `left`)
   App.add_close_button(item, `left`)
@@ -409,6 +423,9 @@ App.create_item_element = (item) => {
   else {
     item.element.classList.remove(`selected`)
   }
+
+  App.item_observer.unobserve(item.element)
+  item.element_ready = true
 }
 
 App.set_item_text = (item) => {
@@ -1432,4 +1449,18 @@ App.toggle_auto_scroll = () => {
   let sett = App.get_setting(`auto_scroll`)
   App.set_setting({setting: `auto_scroll`, value: !sett})
   App.toggle_message(`Auto Scroll`, `auto_scroll`)
+}
+
+App.start_item_observer = (item) => {
+  App.item_observer = new IntersectionObserver((entries) => {
+    for (let entry of entries) {
+      if (entry.isIntersecting) {
+        let item = App.get_item_by_id(App.active_mode, entry.target.dataset.id)
+
+        if (item) {
+          App.create_item_element(item)
+        }
+      }
+    }
+  })
 }
