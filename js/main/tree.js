@@ -45,14 +45,19 @@ App.remove_tree_item = (item) => {
 
 App.update_tab_parent = (id) => {
   let tree = App.tab_tree[id]
-  App.check_item_icon(tree.parent)
-  App.check_icons(tree.parent)
+
+  if (tree.parent.element_ready) {
+    App.check_item_icon(tree.parent)
+    App.check_icons(tree.parent)
+  }
 }
 
 App.update_tab_nodes = (nodes) => {
   for (let node of nodes) {
-    App.check_item_icon(node)
-    App.check_icons(node)
+    if (node.element_ready) {
+      App.check_item_icon(node)
+      App.check_icons(node)
+    }
   }
 }
 
