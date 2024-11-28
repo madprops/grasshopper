@@ -353,13 +353,11 @@ App.refresh_item_element = (item) => {
 App.create_empty_item_element = (item) => {
   item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item element ${item.mode}_element empty_item`)
   item.element.dataset.id = item.id
-  item.element.textContent = `.`
   item.element_ready = false
   App.item_observer.observe(item.element)
 }
 
 App.create_item_element = (item) => {
-  item.element.textContent = ``
   item.element.classList.remove(`empty_item`)
   App.check_header(item)
   App.create_hover_button(item, `left`)

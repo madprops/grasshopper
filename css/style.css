@@ -2185,7 +2185,8 @@ a:hover
   display: none;
 }
 
-.empty_element {
-  height: 2rem;
+.empty_item {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   width: 100%;
 }
