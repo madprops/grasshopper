@@ -295,7 +295,7 @@ App.do_ensure_scroll = (args) => {
   let top = args.item.element.offsetTop
   let bottom = top + args.item.element.offsetHeight
 
-  if (top < 0 || bottom > container.clientHeight) {
+  if ((top < 0) || (bottom > container.clientHeight)) {
     args.item.element.scrollIntoView({
       block: args.scroll,
       behavior: `instant`,
