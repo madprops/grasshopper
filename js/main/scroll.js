@@ -2,6 +2,10 @@ App.setup_scroll = () => {
   App.scroller_debouncer = App.create_debouncer((mode) => {
     App.do_check_scroller(mode)
   }, App.scroller_delay)
+
+  App.ensure_scroll_debouncer = App.create_debouncer((args) => {
+    App.do_ensure_scroll(args)
+  }, App.ensure_scroll_delay)
 }
 
 App.scroll_to_item = (args = {}) => {
@@ -59,11 +63,13 @@ App.scroll_to_item = (args = {}) => {
       }
     }
 
+    App.ensure_scroll(args)
     args.item.last_scroll = App.now()
   })
 }
 
 App.scroll = (mode, direction) => {
+  App.stop_ensure_scroll()
   let container = DOM.el(`#${mode}_container`)
   let amount = App.get_setting(`scroll_amount`)
 
@@ -95,6 +101,7 @@ App.get_scroll_waypoints = (mode) => {
 }
 
 App.scroll_page = (mode, direction) => {
+  App.stop_ensure_scroll()
   let waypoints = App.get_scroll_waypoints(mode)
   let el = DOM.el(`#${mode}_container`)
   let current = el.scrollTop
@@ -216,6 +223,7 @@ App.goto_top_or_bottom = (args = {}) => {
   }
 
   App.def_args(def_args, args)
+  App.stop_ensure_scroll()
 
   if (args.select) {
     let visible = App.get_visible(args.mode).slice()
@@ -271,4 +279,26 @@ App.show_scroller_menu = (e) => {
   })
 
   App.show_context({items, e})
+}
+
+App.ensure_scroll = (args) => {
+  App.ensure_scroll_debouncer.call(args)
+}
+
+App.stop_ensure_scroll = () => {
+  App.ensure_scroll_debouncer.cancel()
+}
+
+App.do_ensure_scroll = (args) => {
+  let mode = args.item.mode
+  let container = DOM.el(`#${mode}_container`)
+  let top = args.item.element.offsetTop
+  let bottom = top + args.item.element.offsetHeight
+
+  if (top < 0 || bottom > container.clientHeight) {
+    args.item.element.scrollIntoView({
+      block: `nearest`,
+      behavior: `instant`,
+    })
+  }
 }
