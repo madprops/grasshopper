@@ -5841,6 +5841,13 @@ App.build_settings = () => {
       info: `Auto-clear after no items remain when closing tabs`,
       version: 1,
     },
+    fill_elements: {
+      name: `Fill Elements`,
+      type: `checkbox`,
+      value: false,
+      info: `Fill item elements immediately instead of using the observer`,
+      version: 1,
+    },
     context_autohide: {
       name: `Context Autohide`,
       type: `checkbox`,

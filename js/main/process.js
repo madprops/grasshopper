@@ -183,6 +183,10 @@ App.process_info = (args = {}) => {
     item.last_scroll = 0
     App.create_empty_item_element(item)
 
+    if (App.get_setting(`fill_elements`)) {
+      App.create_item_element(item)
+    }
+
     if (args.mode === `tabs`) {
       if (args.add_parent) {
         App.add_tab_parent(item)
