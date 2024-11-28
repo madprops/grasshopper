@@ -189,6 +189,11 @@ DOM.hidden = (num = 1) => {
   return cls
 }
 
+// Check if an element is hidden
+DOM.is_hidden = (el, num = 1) => {
+  return el.classList.contains(DOM.hidden(num))
+}
+
 // Resolve the element
 DOM.element = (el) => {
   if (typeof el === `string`) {
@@ -196,9 +201,4 @@ DOM.element = (el) => {
   }
 
   return el
-}
-
-// Check if an element is hidden
-DOM.is_hidden = (el, num = 1) => {
-  return el.classList.contains(DOM.hidden(num))
 }

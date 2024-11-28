@@ -294,8 +294,17 @@ App.do_ensure_scroll = (args) => {
   let container = DOM.el(`#${mode}_container`)
   let top = args.item.element.offsetTop
   let bottom = top + args.item.element.offsetHeight
+  let scroller = DOM.el(`#${mode}_scroller`)
+  let scroller_height
 
-  if ((top < 0) || (bottom > container.clientHeight)) {
+  if (!DOM.is_hidden(scroller)) {
+    scroller_height = scroller.offsetHeight
+  }
+  else {
+    scroller_height = 0
+  }
+
+  if ((top < scroller_height) || (bottom > container.clientHeight)) {
     args.item.element.scrollIntoView({
       block: args.scroll,
       behavior: `instant`,
