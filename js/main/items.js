@@ -351,14 +351,14 @@ App.refresh_item_element = (item) => {
 }
 
 App.create_empty_item_element = (item) => {
-  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item element ${item.mode}_element empty_item`)
+  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item element ${item.mode}_element empty_element`)
   item.element.dataset.id = item.id
   item.element_ready = false
   App.item_observer.observe(item.element)
 }
 
 App.create_item_element = (item) => {
-  item.element.classList.remove(`empty_item`)
+  item.element.classList.remove(`empty_element`)
   App.check_header(item)
   App.create_hover_button(item, `left`)
   App.add_close_button(item, `left`)
