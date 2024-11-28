@@ -297,7 +297,7 @@ App.do_ensure_scroll = (args) => {
 
   if (top < 0 || bottom > container.clientHeight) {
     args.item.element.scrollIntoView({
-      block: `nearest`,
+      block: args.scroll,
       behavior: `instant`,
     })
   }
