@@ -567,6 +567,12 @@ App.do_check_tab_box_playing = () => {
     return
   }
 
+  if (App.is_popup()) {
+    if (App.get_setting(`hide_popup_tab_box`)) {
+      return
+    }
+  }
+
   let playing = App.get_playing_tabs()
 
   if (playing.length > 0) {
