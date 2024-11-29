@@ -189,6 +189,12 @@ App.jump_tabs = async (args = {}) => {
   if (first && (first !== args.item)) {
     jump(first)
   }
+
+  if (first && (first === args.item)) {
+    if (first.element && !App.item_is_visible(first)) {
+      App.select_item({item: first, scroll: `center_smooth`})
+    }
+  }
 }
 
 App.get_jump_target = (num) => {
