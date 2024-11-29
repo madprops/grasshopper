@@ -186,12 +186,11 @@ App.jump_tabs = async (args = {}) => {
     }
   }
 
-  if (first && (first !== args.item)) {
-    jump(first)
-  }
-
-  if (first && (first === args.item)) {
-    if (first.element && !App.item_is_visible(first)) {
+  if (first && first.element) {
+    if (first !== args.item) {
+      jump(first)
+    }
+    else if (!App.item_is_visible(first)) {
       App.select_item({item: first, scroll: `center_smooth`})
     }
   }
