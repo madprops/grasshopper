@@ -2354,7 +2354,7 @@ App.build_settings = () => {
       name: `Empty Menu (Tabs)`,
       type: `list`,
       value: [
-        {cmd: `open_new_tab`},
+        {cmd: `open_new_tab_bottom`},
         {cmd: `reopen_tab`},
         {cmd: `select_all_items`},
       ],
@@ -3001,7 +3001,7 @@ App.build_settings = () => {
       name: `Footer Menu`,
       type: `list`,
       value: [
-        {cmd: `open_new_tab`},
+        {cmd: `open_new_tab_bottom`},
         {cmd: `copy_item_url`},
         {cmd: `copy_item_title`},
         {cmd: App.separator_string},

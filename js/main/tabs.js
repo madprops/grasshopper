@@ -1164,11 +1164,7 @@ App.get_new_tab_args = (item, from, args) => {
 
   let index, pinned
 
-  if ([`empty`, `global_empty_menu`, `tabs_empty_menu`, `footer`].includes(from)) {
-    index = items.length + 10
-    args.pinned = false
-  }
-  else if ([`top`, `bottom`].includes(new_mode)) {
+  if ([`top`, `bottom`].includes(new_mode)) {
     if (new_mode === `top`) {
       index = 0
       pinned = items.length && items[0].pinned
