@@ -358,6 +358,7 @@ App.create_empty_item_element = (item) => {
 }
 
 App.create_item_element = (item) => {
+  App.item_observer.unobserve(item.element)
   item.element.classList.remove(`empty_element`)
   App.check_header(item)
   App.create_hover_button(item, `left`)
@@ -422,7 +423,6 @@ App.create_item_element = (item) => {
     item.element.classList.remove(`selected`)
   }
 
-  App.item_observer.unobserve(item.element)
   item.element_ready = true
 }
 

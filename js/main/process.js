@@ -32,7 +32,9 @@ App.process_info_list = (mode, info_list) => {
       continue
     }
 
-    if (item.header && zones_locked) {
+    let is_header = App.is_header_url(item.url)
+
+    if (is_header && zones_locked) {
       continue
     }
 
