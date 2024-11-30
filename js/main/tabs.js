@@ -1144,7 +1144,24 @@ App.edge_tab_up_down = (direction) => {
 
 App.get_new_tab_args = (item, from, args) => {
   let items = App.get_items(`tabs`)
-  let new_mode = App.get_setting(`new_tab_mode`)
+  let new_mode
+
+  if (from === `cmd_above`) {
+    new_mode = `above`
+  }
+  else if (from === `cmd_below`) {
+    new_mode = `below`
+  }
+  else if (from === `cmd_top`) {
+    new_mode = `top`
+  }
+  else if (from === `cmd_bottom`) {
+    new_mode = `bottom`
+  }
+  else {
+    new_mode = App.get_setting(`new_tab_mode`)
+  }
+
   let index, pinned
 
   if ([`empty`, `global_empty_menu`, `tabs_empty_menu`, `footer`].includes(from)) {

@@ -1740,6 +1740,46 @@ App.setup_commands = () => {
       info: `Open a new tab`,
     },
     {
+      name: `New Tab Above`,
+      short_name: `New Above`,
+      cmd: `open_new_tab_above`,
+      icon: new_icon,
+      action: (args) => {
+        App.new_tab(args.item, `cmd_above`)
+      },
+      info: `Open a new tab above`,
+    },
+    {
+      name: `New Tab Below`,
+      short_name: `New Below`,
+      cmd: `open_new_tab_below`,
+      icon: new_icon,
+      action: (args) => {
+        App.new_tab(args.item, `cmd_below`)
+      },
+      info: `Open a new tab below`,
+    },
+    {
+      name: `New Tab Top`,
+      short_name: `New Top`,
+      cmd: `open_new_tab_top`,
+      icon: new_icon,
+      action: (args) => {
+        App.new_tab(args.item, `cmd_top`)
+      },
+      info: `Open a new tab at the top`,
+    },
+    {
+      name: `New Tab Bottom`,
+      short_name: `New Bottom`,
+      cmd: `open_new_tab_bottom`,
+      icon: new_icon,
+      action: (args) => {
+        App.new_tab(args.item, `cmd_bottom`)
+      },
+      info: `Open a new tab at the bottom`,
+    },
+    {
       name: `Unload Tab`,
       short_name: `Unload`,
       cmd: `unload_tabs`,
