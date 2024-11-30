@@ -35,6 +35,7 @@ App.autoclick_action = (e) => {
 
   if (item || item_alt) {
     let elem
+    let name
 
     if (item_alt) {
       if (!App.get_setting(`tab_box_autoclick`)) {
@@ -42,9 +43,11 @@ App.autoclick_action = (e) => {
       }
 
       elem = item_alt
+      name = `tab_box`
     }
     else {
       elem = item.element
+      name = `item`
     }
 
     if (check(`hover_button`, [`.hover_button`])) {
@@ -56,11 +59,16 @@ App.autoclick_action = (e) => {
     }
 
     if (item.unloaded) {
-      if (check(`unloaded_tab`, undefined, elem)) {
+      if (name === `tab_box`) {
+        if (check(name, undefined, elem)) {
+          return
+        }
+      }
+      else if (check(`unloaded_tab`, undefined, elem)) {
         return
       }
     }
-    else if (check(`item`, undefined, elem)) {
+    else if (check(name, undefined, elem)) {
       return
     }
 
