@@ -1149,7 +1149,13 @@ App.select_item_by_id = (mode, id) => {
 }
 
 App.item_is_visible = (item) => {
-  let container_rect = item.element.parentElement.getBoundingClientRect()
+  let parent = item.element.parentElement
+
+  if (!parent) {
+    return false
+  }
+
+  let container_rect = parent.getBoundingClientRect()
   let rect = item.element.getBoundingClientRect()
   let top = container_rect.top
 

@@ -29,6 +29,10 @@ App.scroll_to_item = (args = {}) => {
       }
     }
 
+    if (!args.item.element) {
+      return
+    }
+
     let behavior
 
     if (args.scroll.includes(`_`)) {
