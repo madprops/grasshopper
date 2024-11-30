@@ -39,8 +39,7 @@ App.select_item = (args = {}) => {
       args.scroll = `none`
     }
   }
-
-  if (args.check_auto_scroll) {
+  else if (args.check_auto_scroll) {
     if (!App.get_setting(`auto_scroll`)) {
       args.scroll = `none`
     }

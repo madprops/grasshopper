@@ -21,6 +21,10 @@ App.mouse_click_action = (e, from = `click`) => {
 
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
+  if (item_alt) {
+    from = `tab_box`
+  }
+
   if (!item) {
     if (DOM.parent(target, [`.main_button`])) {
       App.show_main_menu(mode)
