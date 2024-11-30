@@ -132,6 +132,7 @@ App.container_data = {}
 App.bkmarks = `Bkmarks`
 App.autoclick_delay = 450
 App.override_icons = []
+App.tabs_to_first = []
 
 App.settings_ready = false
 App.media_image_ready = false

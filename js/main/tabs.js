@@ -106,6 +106,7 @@ App.pre_show_tabs = () => {
 
 App.get_tabs = async () => {
   App.getting(`tabs`)
+  App.tabs_to_first = []
   let tabs
 
   try {
@@ -153,7 +154,7 @@ App.focus_tab = async (args = {}) => {
     return
   }
 
-  App.check_tab_first(args.item)
+  App.tabs_to_first.push(args.item)
 
   if (args.select) {
     args.item.active = true
@@ -665,7 +666,7 @@ App.on_tab_activated = async (info) => {
 
     if (item.active) {
       item.unread = false
-      App.check_tab_first(item)
+      App.tabs_to_first.push(item)
     }
   }
 
@@ -950,9 +951,11 @@ App.load_tabs = (item, multiple = true) => {
   })
 }
 
-App.check_tab_first = (item) => {
+App.check_tab_first = () => {
   if (App.tabs_recent()) {
-    App.make_item_first(item)
+    for (let tab of App.tabs_to_first) {
+      App.make_item_first(tab)
+    }
   }
 }
 
