@@ -32,9 +32,7 @@ App.process_info_list = (mode, info_list) => {
       continue
     }
 
-    let is_header = App.is_header_url(item.url)
-
-    if (is_header && zones_locked) {
+    if (item.header && zones_locked) {
       continue
     }
 
@@ -133,8 +131,9 @@ App.process_info = (args = {}) => {
     image,
     video,
     audio,
-    is_item: true,
     special,
+    is_item: true,
+    header: false,
   }
 
   if (args.mode === `tabs`) {
@@ -148,6 +147,7 @@ App.process_info = (args = {}) => {
     item.parent = args.info.openerTabId
     item.container_name = args.info.container_name
     item.container_color = args.info.container_color
+    item.header = App.is_header_url(item.url)
   }
   else if (args.mode === `history`) {
     item.last_visit = args.info.lastVisitTime
@@ -180,7 +180,6 @@ App.process_info = (args = {}) => {
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true
     item.selected = false
-    item.header = false
     item.tab_box = false
     item.last_scroll = 0
     App.create_empty_item_element(item)
