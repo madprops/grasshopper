@@ -3016,7 +3016,7 @@ App.build_settings = () => {
       what: `footer`,
       title: `Footer`,
       click: `go_to_bottom`,
-      double_click: `open_new_tab`,
+      double_click: `open_new_tab_bottom`,
       middle_click: `copy_item_url`,
       click_press: `toggle_tab_box`,
       middle_click_press: `copy_item_title`,
@@ -3272,7 +3272,7 @@ App.build_settings = () => {
       what: `favorites_bottom`,
       title: `Fav Bottom`,
       click: `none`,
-      double_click: `open_new_tab`,
+      double_click: `open_new_tab_bottom`,
       middle_click: `close_tabs`,
       click_press: `select_normal_tabs`,
       middle_click_press: `close_normal_tabs`,
@@ -3942,7 +3942,7 @@ App.build_settings = () => {
     ...App.make_mouse_settings({
       what: `empty_tabs`,
       title: `Empty (Tabs)`,
-      double_click: `open_new_tab`,
+      double_click: `open_new_tab_bottom`,
       separator: false,
     }),
 
