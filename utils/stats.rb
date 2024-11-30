@@ -42,7 +42,7 @@ def print_files(files)
   return "#{files} #{word}"
 end
 
-def show(path)
+def show(path, name = nil)
   is_subdir = path.split(".").length == 1
 
   if is_subdir
@@ -56,8 +56,12 @@ def show(path)
   $total_size += size
   $total_files += files
 
+  if name == nil
+    name = path
+  end
+
   msg = [
-    "\e[34m#{path}\e[0m",
+    "\e[34m#{name}\e[0m",
     "#{lines} lines",
     "#{size} KB",
   ]
@@ -88,12 +92,12 @@ intro()
 
 show("js/main")
 show("js/libs")
-show("js/app.js")
-show("js/init.js")
+show("js/app.js", "app.js")
+show("js/init.js", "init.js")
 show("background")
 show("main.html")
+show("more/signals", "signals")
 show("utils")
 show("css")
-show("more")
 
 total()
