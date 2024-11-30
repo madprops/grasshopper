@@ -956,6 +956,8 @@ App.check_tab_first = () => {
     for (let tab of App.tabs_to_first) {
       App.make_item_first(tab)
     }
+
+    App.tabs_to_first = []
   }
 }
 
