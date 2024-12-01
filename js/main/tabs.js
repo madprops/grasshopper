@@ -666,7 +666,7 @@ App.on_tab_activated = async (info) => {
 
     if (item.active) {
       item.unread = false
-      App.push_recent_tab.push(item)
+      App.push_recent_tab(item)
     }
   }
 
@@ -1362,6 +1362,10 @@ App.is_empty_tab = (item) => {
 }
 
 App.push_recent_tab = (item) => {
+  if (!App.tabs_recent()) {
+    return
+  }
+
   if (App.get_setting(`instant_recent`)) {
     App.make_item_first(item)
   }
