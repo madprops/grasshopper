@@ -154,7 +154,7 @@ App.focus_tab = async (args = {}) => {
     return
   }
 
-  App.tabs_to_first.push(args.item)
+  App.push_recent_tab(args.item)
 
   if (args.select) {
     args.item.active = true
@@ -666,7 +666,7 @@ App.on_tab_activated = async (info) => {
 
     if (item.active) {
       item.unread = false
-      App.tabs_to_first.push(item)
+      App.push_recent_tab.push(item)
     }
   }
 
@@ -954,7 +954,9 @@ App.load_tabs = (item, multiple = true) => {
 App.check_tab_first = () => {
   if (App.tabs_recent()) {
     for (let tab of App.tabs_to_first) {
-      App.make_item_first(tab)
+      if (tab && !tab.removed) {
+        App.make_item_first(tab)
+      }
     }
 
     App.tabs_to_first = []
@@ -1357,4 +1359,13 @@ App.get_title_tabs = (item) => {
 
 App.is_empty_tab = (item) => {
   return [`about:blank`, `about:newtab`].includes(item.url)
+}
+
+App.push_recent_tab = (item) => {
+  if (App.get_setting(`instant_recent`)) {
+    App.make_item_first(item)
+  }
+  else {
+    App.tabs_to_first.push(item)
+  }
 }

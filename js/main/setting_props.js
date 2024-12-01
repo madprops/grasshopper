@@ -5927,6 +5927,13 @@ App.build_settings = () => {
       info: `Auto-pick 'Unloaded' when on the Close Tab Dialog`,
       version: 1,
     },
+    instant_recent: {
+      name: `Instant Recent`,
+      type: `checkbox`,
+      value: false,
+      info: `Move focused items to the top on Recent tabs mode instantly`,
+      version: 1,
+    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,
