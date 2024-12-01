@@ -953,6 +953,10 @@ App.load_tabs = (item, multiple = true) => {
 
 App.check_tab_first = () => {
   if (App.tabs_recent()) {
+    if (!App.tabs_to_first.length) {
+      return
+    }
+
     for (let tab of App.tabs_to_first) {
       if (tab && !tab.removed) {
         App.make_item_first(tab)
