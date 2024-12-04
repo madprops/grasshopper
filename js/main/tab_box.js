@@ -1103,11 +1103,3 @@ App.tab_box_left_click = () => {
 App.tab_box_right_click = () => {
   App.cycle_tab_box_mode(`next`)
 }
-
-App.get_tab_box_item = (id) => {
-  for (let item of App.tab_box_items) {
-    if (item.id === id) {
-      return item
-    }
-  }
-}
