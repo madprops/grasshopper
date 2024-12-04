@@ -357,6 +357,10 @@ App.create_empty_item_element = (item) => {
 }
 
 App.create_item_element = (item) => {
+  if (item.element_ready) {
+    return
+  }
+
   App.item_observer.unobserve(item.element)
   item.element.classList.remove(`empty_element`)
   App.check_header(item)
@@ -1458,7 +1462,8 @@ App.start_item_observer = (item) => {
   App.item_observer = new IntersectionObserver((entries) => {
     for (let entry of entries) {
       if (entry.isIntersecting) {
-        let item = App.get_item_by_id(App.active_mode, entry.target.dataset.id)
+        let id = entry.target.dataset.id
+        let item = App.get_item_by_id(App.active_mode, id)
 
         if (item) {
           App.create_item_element(item)

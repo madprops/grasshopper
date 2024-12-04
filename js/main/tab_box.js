@@ -362,6 +362,11 @@ App.get_tab_box_items = (o_items, mode) => {
 
     let {element, ...item} = o_item
     item.tab_box = true
+
+    if (!o_item.element_ready) {
+      App.create_item_element(o_item)
+    }
+
     App.create_empty_item_element(item)
     App.create_item_element(item)
     item.element.classList.add(`tab_box_item`)
@@ -1097,4 +1102,12 @@ App.tab_box_left_click = () => {
 
 App.tab_box_right_click = () => {
   App.cycle_tab_box_mode(`next`)
+}
+
+App.get_tab_box_item = (id) => {
+  for (let item of App.tab_box_items) {
+    if (item.id === id) {
+      return item
+    }
+  }
 }
