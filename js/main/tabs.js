@@ -1373,10 +1373,10 @@ App.push_recent_tab = (item) => {
     return
   }
 
-  if (App.get_setting(`instant_recent`)) {
+  App.tabs_to_first.push(item)
+  let instant = App.get_setting(`instant_recent`) || !App.mouse_inside
+
+  if (instant) {
     App.make_item_first(item)
-  }
-  else {
-    App.tabs_to_first.push(item)
   }
 }
