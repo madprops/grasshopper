@@ -325,6 +325,20 @@ App.build_settings = () => {
       separator: true,
       version: 4,
     },
+    close_on_focus: {
+      name: `Close On Focus`,
+      type: `checkbox`,
+      value: true,
+      info: `Close the popup when focusing a tab`,
+      version: 1,
+    },
+    close_on_open: {
+      name: `Close On Open`,
+      type: `checkbox`,
+      value: true,
+      info: `Close the popup when opening a tab`,
+      version: 1,
+    },
     open_in_new_tab: {
       name: `Open In New Tab`,
       type: `checkbox`,
@@ -5717,20 +5731,6 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Delay in milliseconds for Context Autohide`,
-      version: 1,
-    },
-    close_on_focus: {
-      name: `Close On Focus`,
-      type: `checkbox`,
-      value: true,
-      info: `Close the popup when focusing a tab`,
-      version: 1,
-    },
-    close_on_open: {
-      name: `Close On Open`,
-      type: `checkbox`,
-      value: true,
-      info: `Close the popup when opening a tab`,
       version: 1,
     },
     mute_click: {
