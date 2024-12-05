@@ -63,7 +63,7 @@ App.user_madprops_settings = () => {
 
   sett = `command_combos`
 
-  cmd = {name: `On Lock`, icon: `🔒`, cmd_1: `open_new_tab`, _id_: `on_lock`}
+  cmd = {name: `On Lock`, icon: `🔒`, cmd_1: `open_new_tab_bottom`, _id_: `on_lock`}
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `On Unlock`, icon: `🔒`, cmd_1: `recent_tabs_backwards`, cmd_2: `close_last_tab`, _id_: `on_unlock`}
