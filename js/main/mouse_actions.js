@@ -499,7 +499,6 @@ App.mouse_context_action = (e) => {
   mode = item.mode
 
   if (DOM.parent(target, [`.hover_button`])) {
-    App.check_pick_button(`hover`, item, e)
     return
   }
 
@@ -1009,9 +1008,26 @@ App.mouse_down_action = (e) => {
   let mode = App.active_mode
   App.reset_triggers()
 
-  if (App.get_setting(`icon_pick`)) {
-    if (e.button === 0) {
+  if (e.button === 0) {
+    if (App.get_setting(`icon_pick`)) {
       if (DOM.parent(target, [`.item_icon_container`])) {
+        let [item, item_alt] = App.get_mouse_item(mode, target)
+
+        if (item) {
+          App.pick(item, true)
+
+          if (item.selected) {
+            App.icon_pick_down = true
+          }
+
+          return
+        }
+      }
+    }
+  }
+  else if (e.button === 2) {
+    if (DOM.parent(target, [`.hover_button`])) {
+      if (App.get_setting(`hover_button_pick`)) {
         let [item, item_alt] = App.get_mouse_item(mode, target)
 
         if (item) {

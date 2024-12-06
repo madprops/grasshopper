@@ -2177,12 +2177,12 @@ App.build_settings = () => {
       name: `Hover Button Menu`,
       type: `list`,
       value: [
+        {cmd: `select_item`},
         {cmd: `filter_node_tabs`},
         {cmd: `filter_domain`},
         {cmd: `filter_color`},
         {cmd: `duplicate_tabs`},
         {cmd: `unload_tabs`},
-        {cmd: App.separator_string},
         {cmd: `settings_category_hover`},
       ],
       info: `Menu to show when clicking the Hover Button`,
