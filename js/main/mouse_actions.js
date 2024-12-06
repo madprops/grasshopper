@@ -503,6 +503,10 @@ App.mouse_context_action = (e) => {
   }
 
   if (DOM.parent(target, [`.hover_button`])) {
+    if (!App.get_setting(`hover_button_pick`)) {
+      App.check_pick_button(`hover`, item, e)
+    }
+
     return
   }
 
