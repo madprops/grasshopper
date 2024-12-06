@@ -498,6 +498,10 @@ App.mouse_context_action = (e) => {
 
   mode = item.mode
 
+  if ((App.now() - App.icon_pick_date) < App.icon_pick_delay) {
+    return
+  }
+
   if (DOM.parent(target, [`.hover_button`])) {
     return
   }

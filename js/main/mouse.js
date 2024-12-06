@@ -34,7 +34,10 @@ App.setup_mouse = () => {
   })
 
   DOM.ev(window, `mouseup`, (e) => {
-    App.icon_pick_down = false
+    if (App.icon_pick_down) {
+      App.icon_pick_down = false
+      App.icon_pick_date = App.now()
+    }
   })
 
   DOM.ev(window, `wheel`, (e) => {
