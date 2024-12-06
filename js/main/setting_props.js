@@ -2017,6 +2017,7 @@ App.build_settings = () => {
       name: `Close Button Menu`,
       type: `list`,
       value: [
+        {cmd: `select_item`},
         {cmd: `open_new_tab`},
         {cmd: `filter_title`},
         {cmd: `filter_domain`},
