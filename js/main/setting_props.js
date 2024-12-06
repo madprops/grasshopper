@@ -2018,6 +2018,8 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `select_item`},
+        {cmd: `select_item_range`},
+        {cmd: App.separator_string},
         {cmd: `open_new_tab`},
         {cmd: `filter_title`},
         {cmd: `filter_domain`},
@@ -2179,6 +2181,8 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `select_item`},
+        {cmd: `select_item_range`},
+        {cmd: App.separator_string},
         {cmd: `filter_node_tabs`},
         {cmd: `filter_domain`},
         {cmd: `filter_color`},

@@ -1354,6 +1354,17 @@ App.setup_commands = () => {
       info: `Select an item`,
     },
     {
+      name: `Select Range`,
+      cmd: `select_item_range`,
+      modes: [`items`],
+      item: true,
+      icon: select_icon,
+      action: (args) => {
+        App.select_range(args.item)
+      },
+      info: `Select range up to this item`,
+    },
+    {
       name: `Show Favorites`,
       short_name: `Favorites`,
       cmd: `show_favorites_menu`,
