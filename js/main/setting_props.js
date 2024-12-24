@@ -125,7 +125,7 @@ App.build_settings = () => {
       separator: true,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.sizes)
+        App.settings_make_menu(key, App.sizes_3)
       },
     },
     width: {
