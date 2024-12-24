@@ -302,15 +302,21 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     `close_button_border_width_tab_box`,
     `pinline_border_width`,
     `pinline_margin`,
+    `item_height`,
   ]
 
   let btn_id = `settings_menubutton_${setting}`
+  let wrap = !no_wrap.includes(setting)
+
+  if (wrap) {
+    wrap = !setting.endsWith(`_icon_weight`)
+  }
 
   App[btn_id] = Menubutton.create({
     opts,
     button: DOM.el(`#settings_${setting}`),
     selected: App.get_setting(setting),
-    wrap: !no_wrap.includes(setting),
+    wrap,
     on_change: (args, opt) => {
       App.set_setting({setting, value: opt.value, action: true})
       action()

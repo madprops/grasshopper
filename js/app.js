@@ -504,11 +504,11 @@ App.item_icons = [
 ]
 
 App.icon_weight = [
-  {text: `One`, value: 1},
-  {text: `Two`, value: 2},
-  {text: `Three`, value: 3},
-  {text: `Four`, value: 4},
-  {text: `Five`, value: 5},
+  {text: `1: One`, value: 1},
+  {text: `2: Two`, value: 2},
+  {text: `3: Three`, value: 3},
+  {text: `4: Four`, value: 4},
+  {text: `5: Five`, value: 5},
 ]
 
 App.title_buttons = [

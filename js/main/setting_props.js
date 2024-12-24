@@ -88,7 +88,7 @@ App.build_settings = () => {
       info: `How big each item is`,
       version: 1,
       setup: (key) => {
-        App.settings_make_menu(key, App.sizes)
+        App.settings_make_menu(key, App.sizes_3)
       },
     },
     item_border: {
