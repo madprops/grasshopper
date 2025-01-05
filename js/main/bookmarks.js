@@ -215,6 +215,8 @@ App.bookmark_items = async (args = {}) => {
       if (feedback) {
         App.footer_message(`Bookmarked`)
       }
+
+      App.play_sound(`effect_2`)
     },
     force,
   })
