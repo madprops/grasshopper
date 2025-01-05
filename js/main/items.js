@@ -481,6 +481,17 @@ App.set_item_text = (item) => {
   item.tooltips_title = title
   item.tooltips_url = url
   item.has_tooltips = false
+  item.obfuscated = false
+}
+
+App.change_item_text = (item, text) => {
+  let lines = DOM.els(`.item_text_line`, item.element)
+
+  for (let line of lines) {
+    line.textContent = ``
+  }
+
+  lines[0].textContent = text
 }
 
 App.get_item_by_id = (mode, id) => {

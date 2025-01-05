@@ -455,6 +455,10 @@ App.tabs_action = async (args = {}) => {
     method,
   })
 
+  if (args.item.obfuscated) {
+    App.set_item_text(args.item)
+  }
+
   if (args.from === `tab_box`) {
     if (!App.get_setting(`tab_box_focus`)) {
       args.on_action = false
@@ -1417,4 +1421,28 @@ App.change_tab_url = (item) => {
       }
     },
   })
+}
+
+App.obfuscate_tabs = (item) => {
+  let items = App.get_active_items({mode: item.mode})
+  let force = App.check_warn(`warn_on_obfuscate_tabs`, items)
+
+  App.show_confirm({
+    message: `Obfuscate tabs? (${items.length})`,
+    confirm_action: () => {
+      for (let item of items) {
+        App.obfuscate_tab(item)
+      }
+    },
+    force,
+  })
+}
+
+App.obfuscate_tab = (item) => {
+  if (item.obfuscated) {
+    return
+  }
+
+  App.change_item_text(item, App.now())
+  item.obfuscated = true
 }

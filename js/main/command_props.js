@@ -1854,6 +1854,19 @@ App.setup_commands = () => {
       info: `Change the URL of tabs`,
     },
     {
+      name: `Obfuscate Tab`,
+      short_name: `Obfuscate`,
+      cmd: `obfuscate_tabs`,
+      modes: [`tabs`],
+      item: true,
+      some_no_header: true,
+      icon: tabs_icon,
+      action: (args) => {
+        App.obfuscate_tabs(args.item)
+      },
+      info: `Hide the text of tabs for privacy reasons`,
+    },
+    {
       name: `Move To Window`,
       short_name: `Window`,
       cmd: `show_windows_menu`,

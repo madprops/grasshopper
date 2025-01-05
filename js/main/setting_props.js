@@ -4213,6 +4213,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.warn_modes)
       },
     },
+    warn_on_obfuscate_tabs: {
+      name: `Warn On Obfuscate Tabs`,
+      type: `menu`,
+      value: `multiple`,
+      info: `Warn when obfuscating tab text`,
+      version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
+    },
     max_warn_limit: {
       name: `Max Warn Limit`,
       type: `number`,
