@@ -16,7 +16,7 @@ App.start_auto_restore = () => {
   App.clear_restore()
   let d = App.get_setting(`auto_restore`)
 
-  if (d === `never` || d === `action`) {
+  if ((d === `never`) || (d === `action`)) {
     return
   }
 

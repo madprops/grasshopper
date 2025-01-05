@@ -838,7 +838,7 @@ App.move_folders_pick = (from, to) => {
   let from_index = picks.findIndex(pick => pick.id === from)
   let to_index = picks.findIndex(pick => pick.id === to)
 
-  if (from_index === -1 || to_index === -1) {
+  if ((from_index === -1) || (to_index === -1)) {
     return
   }
 

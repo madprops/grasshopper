@@ -216,7 +216,7 @@ App.edit_tab_color = (args = {}) => {
 
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
 
-  if (active.length === 1 && !args.color) {
+  if ((active.length === 1) && !args.color) {
     if (active[0].rule_color && !args.item.custom_color) {
       App.domain_rule_message()
       return

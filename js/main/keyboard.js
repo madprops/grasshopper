@@ -217,7 +217,7 @@ App.check_items_keyboard = (e) => {
   if (!filter_focus) {
     let allowed = [`Backspace`]
 
-    if (e.key.length === 1 || allowed.includes(e.key)) {
+    if ((e.key.length === 1) || allowed.includes(e.key)) {
       App.focus_filter(mode)
     }
   }
@@ -253,7 +253,7 @@ App.setup_keyboard = () => {
 
     let mode = App.window_mode
 
-    if (e.key === `Control` || e.key === `Shift`) {
+    if ((e.key === `Control`) || (e.key === `Shift`)) {
       App.start_press_timeout()
 
       if (App.pressed_key === e.key) {

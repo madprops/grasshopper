@@ -1051,7 +1051,7 @@ App.mouse_down_action = (e) => {
     }
   }
 
-  if (e.button === 0 || e.button === 1) {
+  if ((e.button === 0) || (e.button === 1)) {
     App.click_press_button = e.button
     App.click_press_triggered = false
     App.start_click_press_timeout(e)

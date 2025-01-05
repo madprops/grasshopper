@@ -331,7 +331,7 @@ App.make_html_safe = (s) => {
 }
 
 App.is_object = (o) => {
-  if ((typeof o === `object`) && !Array.isArray(o) && o !== null) {
+  if ((typeof o === `object`) && !Array.isArray(o) && (o !== null)) {
     return true
   }
 
@@ -430,15 +430,15 @@ App.timeago = (date) => {
     m = [`minute`, `minutes`]
     decimals = false
   }
-  else if (diff >= App.HOUR && diff < App.DAY) {
+  else if ((diff >= App.HOUR) && (diff < App.DAY)) {
     n = diff / App.HOUR
     m = [`hour`, `hours`]
   }
-  else if (diff >= App.DAY && diff < App.MONTH) {
+  else if ((diff >= App.DAY) && (diff < App.MONTH)) {
     n = diff / App.DAY
     m = [`day`, `days`]
   }
-  else if (diff >= App.MONTH && diff < App.YEAR) {
+  else if ((diff >= App.MONTH) && (diff < App.YEAR)) {
     n = diff / App.MONTH
     m = [`month`, `months`]
   }
@@ -517,7 +517,7 @@ App.sort_alpha = (array) => {
 }
 
 App.same_arrays = (a, b) => {
-  return a.length === b.length && a.every(el => b.includes(el))
+  return (a.length === b.length) && a.every(el => b.includes(el))
 }
 
 App.wildcard = (pattern, str, exact = false) => {
@@ -637,7 +637,7 @@ App.urls_match = (url_1, url_2) => {
 App.is_json = (text) => {
   try {
     let parsed = JSON.parse(text)
-    return (typeof parsed === `object`) && parsed !== null
+    return ((typeof parsed === `object`)) && (parsed !== null)
   }
   catch (e) {
     return false

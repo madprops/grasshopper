@@ -77,7 +77,7 @@ App.check_popup_command_close = () => {
 }
 
 App.browser_action = (item, action) => {
-  if (item && item.mode === `tabs`) {
+  if (item && (item.mode === `tabs`)) {
     let active = App.get_active_items({mode: `tabs`, item})
 
     for (let it of active) {

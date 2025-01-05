@@ -257,7 +257,7 @@ App.edit_tab_split = (args = {}) => {
 
   let force = App.check_warn(`warn_on_edit_tabs`, active)
 
-  if (args.which === `top` || args.which === `bottom`) {
+  if ((args.which === `top`) || (args.which === `bottom`)) {
     let other = args.which === `top` ? `bottom` : `top`
 
     App.show_confirm({

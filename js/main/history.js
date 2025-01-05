@@ -129,7 +129,7 @@ App.move_history_pick = (from, to) => {
   let from_index = picks.indexOf(from)
   let to_index = picks.indexOf(to)
 
-  if (from_index === -1 || to_index === -1) {
+  if ((from_index === -1) || (to_index === -1)) {
     return
   }
 

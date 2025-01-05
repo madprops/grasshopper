@@ -70,7 +70,7 @@ App.drag_active = (mode, e) => {
     return false
   }
 
-  if (mode !== `tabs` || !App.tabs_normal()) {
+  if ((mode !== `tabs`) || !App.tabs_normal()) {
     return false
   }
 

@@ -801,7 +801,7 @@ App.item_icon_click = (args = {}) => {
 
   let cmd = App.get_setting(`${args.icon}_icon_command`)
 
-  if (!cmd || cmd === `none`) {
+  if (!cmd || (cmd === `none`)) {
     return false
   }
 

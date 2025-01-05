@@ -183,7 +183,7 @@ App.do_filter = async (args = {}) => {
     f_value = filter_mode_split.slice(1).join(`-`)
   }
 
-  let skip = !value && filter_mode === `all`
+  let skip = !value && (filter_mode === `all`)
   let duplicates
 
   if (filter_mode === `filter_duplicate_tabs`) {
@@ -203,7 +203,7 @@ App.do_filter = async (args = {}) => {
 
   let insensitive = App.get_setting(`case_insensitive`)
 
-  if (value && by_what === `all`) {
+  if (value && (by_what === `all`)) {
     value = App.clean_filter(value)
     let value_lower = value.toLowerCase()
     let aliases = App.get_setting(`aliases`)
@@ -475,7 +475,7 @@ App.filter_check = (args) => {
     let clean_title = App.clean_filter(title)
 
     for (let regex of args.regexes) {
-      if (args.by_what === `all` || args.by_what === `re`) {
+      if ((args.by_what === `all`) || (args.by_what === `re`)) {
         match = regex.test(clean_title)
 
         if (!match && !args.item.header) {
@@ -1068,7 +1068,7 @@ App.was_filtered = (mode) => {
 
   let fmode = App.filter_mode(mode)
 
-  if (fmode && fmode !== `all`) {
+  if (fmode && (fmode !== `all`)) {
     return true
   }
 
@@ -1331,8 +1331,8 @@ App.filter_is_focused = (mode) => {
 
 App.filter_at_end = (mode) => {
   let filter = App.get_filter_el(mode)
-  return filter.selectionStart === filter.selectionEnd &&
-  filter.selectionEnd === filter.value.length
+  return (filter.selectionStart === filter.selectionEnd) &&
+  (filter.selectionEnd === filter.value.length)
 }
 
 App.clean_filter = (s, lower_case = false) => {

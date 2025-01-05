@@ -331,7 +331,7 @@ Addlist.edit = (args = {}) => {
     let el = Addlist.widget(args.id, key)
     let w = widgets[key]
 
-    if (w === `text` || w === `textarea` || w === `key` || w === `number`) {
+    if ((w === `text`) || (w === `textarea`) || (w === `key`) || (w === `number`)) {
       if (value) {
         el.value = value
       }
@@ -671,12 +671,12 @@ Addlist.move = (dir) => {
         lines.push(item)
       }
       else if (dir === `up`) {
-        if (i > 0 && i < lines.length) {
+        if ((i > 0) && (i < lines.length)) {
           [lines[i], lines[i - 1]] = [lines[i - 1], lines[i]]
         }
       }
       else if (dir === `down`) {
-        if (i >= 0 && i < lines.length - 1) {
+        if ((i >= 0) && (i < (lines.length - 1))) {
           [lines[i], lines[i + 1]] = [lines[i + 1], lines[i]]
         }
       }
@@ -694,7 +694,7 @@ Addlist.get_value = (key) => {
   let el = Addlist.widget(id, key)
   let value
 
-  if (w === `text` || w === `textarea` || w === `key` || w === `number`) {
+  if ((w === `text`) || (w === `textarea`) || (w === `key`) || (w === `number`)) {
     value = el.value.trim()
 
     if (oargs.lowercase) {

@@ -22,7 +22,7 @@ App.sort_commands = () => {
     let ia = App.command_history.indexOf(a.cmd)
     let ib = App.command_history.indexOf(b.cmd)
 
-    if (ia !== -1 && ib !== -1) {
+    if ((ia !== -1) && (ib !== -1)) {
       return ia - ib
     }
 
@@ -37,7 +37,7 @@ App.sort_commands = () => {
 }
 
 App.get_command = (cmd) => {
-  if (!cmd || cmd === `none`) {
+  if (!cmd || (cmd === `none`)) {
     return
   }
 
@@ -49,7 +49,7 @@ App.get_command = (cmd) => {
 }
 
 App.run_command = async (args) => {
-  if (!args.cmd || args.cmd === `none`) {
+  if (!args.cmd || (args.cmd === `none`)) {
     return false
   }
 

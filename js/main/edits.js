@@ -129,7 +129,7 @@ App.same_edit = (what, item, value, type = `custom`) => {
     return false
   }
 
-  if (props.type === `string` || props.type === `bool`) {
+  if ((props.type === `string`) || (props.type === `bool`)) {
     if (ovalue === value) {
       return true
     }
@@ -239,7 +239,7 @@ App.edit_prompt = (args = {}) => {
   if ((args.what === `tags`) && App.get_setting(`auto_tag_picker`)) {
     list_submit = true
   }
-  else if (args.what === `title` || args.what === `icon`) {
+  else if ((args.what === `title`) || (args.what === `icon`)) {
     list_submit = true
   }
   else {
@@ -414,7 +414,7 @@ App.apply_edit = (args = {}) => {
       }
     }
     else if (props.type === `bool`) {
-      if (args.value !== true && args.value !== false) {
+      if ((args.value !== true) && (args.value !== false)) {
         return
       }
     }

@@ -68,7 +68,7 @@ App.settings_setup_checkboxes = (category) => {
   for (let key in App.setting_props) {
     let props = App.setting_props[key]
 
-    if ((props.category === category) && props.type === `checkbox`) {
+    if ((props.category === category) && (props.type === `checkbox`)) {
       let el = DOM.el(`#settings_${key}`)
       el.checked = App.get_setting(key)
 
@@ -1024,9 +1024,9 @@ App.check_settings = () => {
 
   for (let key in App.setting_props) {
     // Fill defaults
-    if (App.settings[key] === undefined ||
-      App.settings[key].value === undefined ||
-      App.settings[key].version === undefined) {
+    if ((App.settings[key] === undefined) ||
+      (App.settings[key].value === undefined) ||
+      (App.settings[key].version === undefined)) {
       App.settings[key] = {}
       App.def_setting(key)
       changed = true

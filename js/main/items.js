@@ -249,7 +249,7 @@ App.get_item_count = (mode = App.active_mode) => {
 }
 
 App.select_first_item = (mode, by_active = false, scroll = `center`) => {
-  if (mode === `tabs` && by_active) {
+  if ((mode === `tabs`) && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
         App.select_item({item, scroll})
@@ -397,7 +397,7 @@ App.create_item_element = (item) => {
   text.append(text_2)
   content.append(text)
 
-  if (taglist_pos !== `none` && taglist_pos !== `above`) {
+  if ((taglist_pos !== `none`) && (taglist_pos !== `above`)) {
     content.append(taglist)
   }
 
@@ -790,7 +790,7 @@ App.toggle_selected = (args = {}) => {
     App.set_selected(args.item)
   }
   else {
-    if (items.length === 1 && args.select) {
+    if ((items.length === 1) && args.select) {
       return
     }
 
@@ -800,7 +800,7 @@ App.toggle_selected = (args = {}) => {
   args.item.selected = selected
 
   if (args.select && !selected) {
-    if (items.length && App.get_selected(args.item.mode) === args.item) {
+    if (items.length && (App.get_selected(args.item.mode) === args.item)) {
       for (let it of items) {
         if (it === args.item) {
           continue

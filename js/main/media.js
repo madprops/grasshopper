@@ -45,7 +45,7 @@ App.start_media = (what) => {
           DOM.hide(`#media_${what}_loading`)
         })
       }
-      else if (what === `video` || what === `audio`) {
+      else if ((what === `video`) || (what === `audio`)) {
         DOM.ev(media, `canplay`, () => {
           App.stop_media_timeout(what)
           DOM.show(media)
@@ -87,7 +87,7 @@ App.start_media = (what) => {
       })
     },
     after_hide: () => {
-      if (what === `video` || what === `audio`) {
+      if ((what === `video`) || (what === `audio`)) {
         App.stop_media_player(what)
       }
 
@@ -231,7 +231,7 @@ App.media_show_error = (what) => {
 }
 
 App.open_media = (what = App.current_media_type) => {
-  if (what === `video` || what === `audio`) {
+  if ((what === `video`) || (what === `audio`)) {
     App.stop_media_player(what)
   }
 

@@ -12,7 +12,7 @@ App.create_taglist = () => {
   taglist.append(container)
   taglist.append(right_scroll)
 
-  if (position === `left` || position === `right`) {
+  if ((position === `left`) || (position === `right`)) {
     taglist.classList.add(`hover`)
     taglist.classList.add(position)
   }
@@ -21,7 +21,7 @@ App.create_taglist = () => {
   }
 
   DOM.ev(taglist, `wheel`, (e) => {
-    if (position === `left` || position === `right`) {
+    if ((position === `left`) || (position === `right`)) {
       if (DOM.class(taglist, [`overflow`])) {
         e.stopPropagation()
         e.preventDefault()
@@ -76,10 +76,10 @@ App.check_taglist = (item) => {
 
     let cls = ``
 
-    if (position === `left` || position === `right`) {
+    if ((position === `left`) || (position === `right`)) {
       cls += ` linkbutton`
     }
-    else if (position === `above` || position === `below`) {
+    else if ((position === `above`) || (position === `below`)) {
       cls += ` doubleline`
     }
 
@@ -101,7 +101,7 @@ App.check_taglist = (item) => {
 
     DOM.show(taglist)
 
-    if (position === `left` || position === `right`) {
+    if ((position === `left`) || (position === `right`)) {
       if (container.scrollWidth > container.clientWidth) {
         taglist.classList.add(`overflow`)
       }
