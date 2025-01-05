@@ -1867,6 +1867,19 @@ App.setup_commands = () => {
       info: `Hide the text of tabs for privacy reasons`,
     },
     {
+      name: `Deobfuscate Tab`,
+      short_name: `Deobfuscate`,
+      cmd: `deobfuscate_tabs`,
+      modes: [`tabs`],
+      item: true,
+      some_no_header: true,
+      icon: tabs_icon,
+      action: (args) => {
+        App.deobfuscate_tabs(args.item)
+      },
+      info: `Restore the text of obfuscated tabs`,
+    },
+    {
       name: `Move To Window`,
       short_name: `Window`,
       cmd: `show_windows_menu`,

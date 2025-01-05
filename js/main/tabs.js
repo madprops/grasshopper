@@ -1446,3 +1446,26 @@ App.obfuscate_tab = (item) => {
   App.change_item_text(item, App.now())
   item.obfuscated = true
 }
+
+App.deobfuscate_tabs = (item) => {
+  let items = App.get_active_items({mode: item.mode})
+  let force = App.check_warn(`warn_on_deobfuscate_tabs`, items)
+
+  App.show_confirm({
+    message: `Deobfuscate tabs? (${items.length})`,
+    confirm_action: () => {
+      for (let item of items) {
+        App.deobfuscate_tab(item)
+      }
+    },
+    force,
+  })
+}
+
+App.deobfuscate_tab = (item) => {
+  if (!item.obfuscated) {
+    return
+  }
+
+  App.set_item_text(item)
+}
