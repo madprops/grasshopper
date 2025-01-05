@@ -1380,3 +1380,41 @@ App.push_recent_tab = (item) => {
     App.make_item_first(item)
   }
 }
+
+App.change_tab_url = (item) => {
+  let value = ``
+  let active = App.get_active_items({mode: item.mode, item})
+  let active_tab = App.get_active_tab_item()
+
+  if (active.length === 1) {
+    value = active[0].url
+  }
+
+  App.show_prompt({
+    value,
+    placeholder: `Change URL`,
+    on_submit: async (url) => {
+      let changed = false
+
+      for (let it of active) {
+        let url_ = App.fix_url(url)
+
+        if (url_ === it.url) {
+          continue
+        }
+
+        if (App.is_url(url_)) {
+          await App.change_url(it, url_)
+        }
+
+        changed = true
+      }
+
+      if (changed) {
+        if (!active.includes(active_tab)) {
+          App.tabs_action({item: active[0]})
+        }
+      }
+    },
+  })
+}

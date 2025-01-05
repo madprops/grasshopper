@@ -114,7 +114,9 @@ App.set_prompt_suggestions = (suggestions) => {
 }
 
 App.prompt_clear = () => {
-  DOM.el(`#prompt_input`).value = ``
+  let input = DOM.el(`#prompt_input`)
+  input.value = ``
+  input.focus()
 }
 
 App.show_prompt_list = (from = `click`) => {

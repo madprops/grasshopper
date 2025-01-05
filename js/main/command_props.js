@@ -1841,6 +1841,19 @@ App.setup_commands = () => {
       info: `Duplicate tabs`,
     },
     {
+      name: `Change URL`,
+      short_name: `URL`,
+      cmd: `change_tab_url`,
+      modes: [`tabs`],
+      item: true,
+      some_no_header: true,
+      icon: tabs_icon,
+      action: (args) => {
+        App.change_tab_url(args.item)
+      },
+      info: `Change the URL of tabs`,
+    },
+    {
       name: `Move To Window`,
       short_name: `Window`,
       cmd: `show_windows_menu`,
