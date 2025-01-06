@@ -668,7 +668,15 @@ App.set_theme = (num) => {
     App.set_default_setting(`background_tiles`)
   }
 
+  if (theme.zoom) {
+    App.set_setting({setting: `background_zoom`, value: theme.zoom})
+  }
+  else {
+    App.set_default_setting(`background_zoom`)
+  }
+
   App.set_background_image(theme.num)
+  App.check_refresh_settings()
 }
 
 App.set_background_image = (num) => {
