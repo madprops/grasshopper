@@ -1861,6 +1861,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_no_header: true,
+      some_no_obfuscated: true,
       icon: obfuscated_icon,
       action: (args) => {
         App.obfuscate_tabs(args.item)
@@ -1874,11 +1875,25 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_no_header: true,
+      some_obfuscated: true,
       icon: obfuscated_icon,
       action: (args) => {
         App.deobfuscate_tabs(args.item)
       },
       info: `Restore the text of obfuscated tabs`,
+    },
+    {
+      name: `Toggle Obfuscate`,
+      short_name: `Obfuscate`,
+      cmd: `toggle_obfuscate_tabs`,
+      modes: [`tabs`],
+      item: true,
+      some_no_header: true,
+      icon: obfuscated_icon,
+      action: (args) => {
+        App.toggle_obfuscate_tabs(args.item)
+      },
+      info: `Obfuscate or deobfuscate tabs`,
     },
     {
       name: `Move To Window`,

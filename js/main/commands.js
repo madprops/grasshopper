@@ -253,6 +253,13 @@ App.check_command = (command, args = {}) => {
       if (item.container_name) {
         args.some_container = true
       }
+
+      if (item.obfuscated) {
+        args.some_obfuscated = true
+      }
+      else {
+        args.some_no_obfuscated = true
+      }
     }
   }
 
@@ -347,6 +354,8 @@ App.check_command = (command, args = {}) => {
   check_1(`some_hostname`)
   check_1(`some_ruled`)
   check_1(`some_container`)
+  check_1(`some_obfuscated`)
+  check_1(`some_no_obfuscated`)
 
   let edit_props = App.get_edit_prop_list()
   edit_props.push(`split`)

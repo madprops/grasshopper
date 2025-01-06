@@ -1469,3 +1469,12 @@ App.deobfuscate_tab = (item) => {
   item.obfuscated = false
   App.set_item_text(item)
 }
+
+App.toggle_obfuscate_tabs = (item) => {
+  if (item.obfuscated) {
+    App.deobfuscate_tabs(item)
+  }
+  else {
+    App.obfuscate_tabs(item)
+  }
+}
