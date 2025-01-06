@@ -1798,6 +1798,16 @@ App.build_settings = () => {
       info: `Add icons quickly with the auto picker`,
       version: 1,
     },
+    obfuscated_icon: {
+      name: `Obfuscated Icon`,
+      type: `text_smaller`,
+      value: `👻`,
+      no_empty: true,
+      separator: true,
+      info: `Icons for obfuscated tabs`,
+      placeholder: App.icon_placeholder,
+      version: 1,
+    },
     button_icons: {
       name: `Button Icons`,
       type: `checkbox`,
@@ -1825,15 +1835,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Enable middle click actions for item icons`,
-      version: 1,
-    },
-    obfuscated_icon: {
-      name: `Obfuscated Icon`,
-      type: `text_smaller`,
-      value: `👻`,
-      no_empty: true,
-      info: `Icons for obfuscated tabs`,
-      placeholder: App.icon_placeholder,
       version: 1,
     },
   }
