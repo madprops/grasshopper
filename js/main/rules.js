@@ -142,6 +142,7 @@ App.start_domain_rules_addlist = () => {
         `notes`,
         `split_top`,
         `split_bottom`,
+        `obfuscated`,
       ],
       pk: `domain`,
       widgets: {
@@ -154,6 +155,7 @@ App.start_domain_rules_addlist = () => {
         notes: `textarea`,
         split_top: `checkbox`,
         split_bottom: `checkbox`,
+        obfuscated: `checkbox`,
         exact: `checkbox`,
         by_title: `checkbox`,
       },
@@ -185,6 +187,7 @@ App.start_domain_rules_addlist = () => {
         notes: `Notes`,
         split_top: `Split Top`,
         split_bottom: `Split Bottom`,
+        obfuscated: `Obfuscated`,
         exact: `Exact Match`,
         by_title: `By Title`,
         root: `Root`,
@@ -223,6 +226,7 @@ App.start_domain_rules_addlist = () => {
           !values.tags &&
           !values.split_top &&
           !values.split_bottom &&
+          !values.obfuscated &&
           !values.notes
         ) {
           return false
@@ -244,6 +248,7 @@ App.start_domain_rules_addlist = () => {
         notes: `Add these notes to matches`,
         split_top: `Add a split top to matches`,
         split_bottom: `Add a split bottom to matches`,
+        obfuscated: `Obfuscate the text of matches`,
         root: `Make this the root URL for matches`,
       },
       list_icon: (item) => {

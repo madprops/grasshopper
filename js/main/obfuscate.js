@@ -27,6 +27,13 @@ App.deobfuscate_tabs = (item) => {
   let items = App.get_active_items({mode: item.mode, item})
   let force = App.check_warn(`warn_on_deobfuscate_tabs`, items)
 
+  if (items.length === 1) {
+    if (item.rule_obfuscated) {
+      App.domain_rule_message()
+      return
+    }
+  }
+
   App.show_confirm({
     message: `Deobfuscate tabs? (${items.length})`,
     confirm_action: () => {
