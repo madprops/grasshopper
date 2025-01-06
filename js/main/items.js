@@ -1410,24 +1410,31 @@ App.set_item_tooltips = (item) => {
   let title = item.tooltips_title || `No Title`
   let url = item.tooltips_url || `No URL`
 
-  tips.push(`Title: ${title}`)
-  tips.push(`URL: ${url}`)
-
-  if (item.last_visit) {
-    tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)
+  if (App.get_setting(`simple_tooltips`)) {
+    tips.push(title)
+    tips.push(url)
+    item.element.title = tips.join(`\n`)
   }
+  else {
+    tips.push(`Title: ${title}`)
+    tips.push(`URL: ${url}`)
 
-  if (item.date_added) {
-    tips.push(`Date Added: ${App.nice_date(item.date_added)}`)
+    if (item.last_visit) {
+      tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)
+    }
+
+    if (item.date_added) {
+      tips.push(`Date Added: ${App.nice_date(item.date_added)}`)
+    }
+
+    if (App.tagged(item)) {
+      let tags = App.tags(item)
+      tips.push(`Tags: ${tags.join(`, `)}`)
+    }
+
+    tips.push(App.mode_vars[item.mode].item_info)
+    item.element.title = tips.join(`\n`)
   }
-
-  if (App.tagged(item)) {
-    let tags = App.tags(item)
-    tips.push(`Tags: ${tags.join(`, `)}`)
-  }
-
-  tips.push(App.mode_vars[item.mode].item_info)
-  item.element.title = tips.join(`\n`)
 
   if (App.get_setting(`icon_pick`)) {
     let icon_container = DOM.el(`.item_icon_container`, item.element)

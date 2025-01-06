@@ -5968,6 +5968,13 @@ App.build_settings = () => {
       info: `Move focused items to the top on Recent tabs mode instantly`,
       version: 1,
     },
+    simple_tooltips: {
+      name: `Simple Tooltips`,
+      type: `checkbox`,
+      value: false,
+      info: `Show tooltips with less information`,
+      version: 1,
+    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,
