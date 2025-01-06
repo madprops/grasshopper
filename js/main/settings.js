@@ -2409,3 +2409,62 @@ App.settings_separator = () => {
 App.get_setting_icon = (name) => {
   return App.get_setting(`${name}_icon`)
 }
+
+App.make_icon_setting = (args = {}) => {
+  let obj = {}
+
+  obj[`${args.what}_icon`] = {
+    name: `${args.name} Icon`,
+    type: `text_smaller`,
+    value: args.icon,
+    no_empty: true,
+    placeholder: App.icon_placeholder,
+    info: args.info,
+    version: 1,
+  }
+
+  obj[`${args.what}_icon_side`] = {
+    name: `${args.name} Icon Side`,
+    type: `menu`,
+    value: args.side,
+    info: `Show the ${args.name} Icon on the left or right of text`,
+    version: 1,
+    setup: (key) => {
+      App.settings_make_menu(key, App.sides)
+    },
+  }
+
+  obj[`show_${args.what}_icon`] = {
+    name: `Show ${args.name} Icon`,
+    type: `menu`,
+    value: args.show,
+    info: `When to show the ${args.name} Icon`,
+    version: 1,
+    setup: (key) => {
+      App.settings_make_menu(key, App.show_icon)
+    },
+  }
+
+  obj[`${args.what}_icon_weight`] = {
+    name: `${args.name} Icon Weight`,
+    type: `menu`,
+    value: 1,
+    info: `How much to the right should the ${args.name} Icon be`,
+    version: 1,
+    setup: (key) => {
+      App.settings_make_menu(key, App.icon_weight)
+    },
+  }
+
+  obj[`${args.what}_icon_command`] = {
+    name: `${args.name} Icon Command`,
+    type: `menu`,
+    value: args.cmd,
+    info: `Command to run when clicking the ${args.name} Icon`,
+    separator: true,
+    version: 1,
+    setup: (key) => {
+      App.settings_cmdlist_single(key)
+    },
+  },
+}

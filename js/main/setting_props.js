@@ -961,557 +961,128 @@ App.build_settings = () => {
       info: `Icon for the Closed mode`,
       version: 1,
     },
-    active_icon: {
-      name: `Active Icon`,
-      type: `text_smaller`,
-      value: `😀`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+
+    ...App.make_mouse_settings({
+      what: `active`,
+      name: `Active`,
+      icon: `😀`,
       info: `Icon for active tabs
-      Active means the current visible tab in the browser`,
-      version: 1,
-    },
-    active_icon_side: {
-      name: `Active Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Active Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_active_icon: {
-      name: `Show Active Icon`,
-      type: `menu`,
-      value: `never`,
-      info: `When to show the Active Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    active_icon_weight: {
-      name: `Active Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Active Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    active_icon_command: {
-      name: `Active Icon Command`,
-      type: `menu`,
-      value: `show_same_domain`,
-      info: `Command to run when clicking the Active Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    pin_icon: {
-      name: `Pin Icon`,
-      type: `text_smaller`,
-      value: `📌`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+      Active means the current viible tab in the browser`,
+      side: `right`,
+      show: `never`,
+      cmd: `show_same_domain`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `pin`,
+      name: `Pin`,
+      icon: `📌`,
       info: `Icon for pinned tabs`,
-      version: 1,
-    },
-    pin_icon_side: {
-      name: `Pin Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Pin Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_pin_icon: {
-      name: `Show Pin Icon`,
-      type: `menu`,
-      value: `never`,
-      info: `When to show the Pin Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    pin_icon_weight: {
-      name: `Pin Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Pin Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    pin_icon_command: {
-      name: `Pin Icon Command`,
-      type: `menu`,
-      value: `toggle_pin_tabs`,
-      info: `Command to run when clicking the Pin Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    normal_icon: {
-      name: `Normal Icon`,
-      type: `text_smaller`,
-      value: `📚`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
-      info: `Icon for normal tabs`,
-      version: 1,
-    },
-    normal_icon_side: {
-      name: `Normal Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Normal Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_normal_icon: {
-      name: `Show Normal Icon`,
-      type: `menu`,
-      value: `never`,
-      info: `When to show the Normal Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    normal_icon_weight: {
-      name: `Normal Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Normal Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    normal_icon_command: {
-      name: `Normal Icon Command`,
-      type: `menu`,
-      value: `toggle_pin_tabs`,
-      info: `Command to run when clicking the Normal Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    playing_icon: {
-      name: `Playing Icon`,
-      type: `text_smaller`,
-      value: `🔊`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+      side: `right`,
+      show: `never`,
+      cmd: `toggle_pin_tabs`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `normal`,
+      name: `Normal`,
+      icon: `📚`,
+      info: `Icon for pinned tabs`,
+      side: `right`,
+      show: `never`,
+      cmd: `toggle_pin_tabs`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `playing`,
+      name: `Playing`,
+      icon: `🔊`,
       info: `Icons for tabs emitting sound`,
-      version: 1,
-    },
-    playing_icon_side: {
-      name: `Playing Icon Side`,
-      type: `menu`,
-      value: `left`,
-      info: `Show the Playing Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_playing_icon: {
-      name: `Show Playing Icon`,
-      type: `menu`,
-      value: `always`,
-      info: `When to show the Playing Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    playing_icon_weight: {
-      name: `Playing Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Playing Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    playing_icon_command: {
-      name: `Playing Icon Command`,
-      type: `menu`,
-      value: `toggle_mute_tabs`,
-      info: `Command to run when clicking the Playing Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    muted_icon: {
-      name: `Muted Icon`,
-      type: `text_smaller`,
-      value: `🔇`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+      side: `left`,
+      show: `always`,
+      cmd: `toggle_mute_tabs`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `muted`,
+      name: `Muted`,
+      icon: `🔇`,
       info: `Icons for muted tabs`,
-      version: 1,
-    },
-    muted_icon_side: {
-      name: `Muted Icon Side`,
-      type: `menu`,
-      value: `left`,
-      info: `Show the Muted Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_muted_icon: {
-      name: `Show Muted Icon`,
-      type: `menu`,
-      value: `always`,
-      info: `When to show the Muted Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    muted_icon_weight: {
-      name: `Muted Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Muted Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    muted_icon_command: {
-      name: `Muted Icon Command`,
-      type: `menu`,
-      value: `toggle_mute_tabs`,
-      info: `Command to run when clicking the Muted Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    unloaded_icon: {
-      name: `Unloaded Icon`,
-      type: `text_smaller`,
-      value: `💤`,
-      no_empty: true,
+      side: `left`,
+      show: `always`,
+      cmd: `toggle_mute_tabs`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `unloaded`,
+      name: `Unloaded`,
+      icon: `💤`,
       info: `Icons for unloaded tabs`,
-      placeholder: App.icon_placeholder,
-      version: 1,
-    },
-    unloaded_icon_side: {
-      name: `Unloaded Icon Side`,
-      type: `menu`,
-      value: `left`,
-      info: `Show the Unloaded Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_unloaded_icon: {
-      name: `Show Unloaded Icon`,
-      type: `menu`,
-      value: `always`,
-      info: `When to show the Unloaded Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    unloaded_icon_weight: {
-      name: `Unloaded Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Unloaded Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    unloaded_icon_command: {
-      name: `Unloaded Icon Command`,
-      type: `menu`,
-      value: `load_tabs`,
-      info: `Command to run when clicking the Unloaded Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    loading_icon: {
-      name: `Loading Icon`,
-      type: `text_smaller`,
-      value: `⏳`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+      side: `left`,
+      show: `always`,
+      cmd: `load_tabs`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `loading`,
+      name: `Loading`,
+      icon: `⏳`,
       info: `Icon for tabs that are still loading`,
-      version: 1,
-    },
-    loading_icon_side: {
-      name: `Loading Icon Side`,
-      type: `menu`,
-      value: `left`,
-      info: `Show the Loading Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_loading_icon: {
-      name: `Show Loading Icon`,
-      type: `menu`,
-      value: `always`,
-      info: `When to show the Loading Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    loading_icon_weight: {
-      name: `Loading Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Loading Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    loading_icon_command: {
-      name: `Loading Icon Command`,
-      type: `menu`,
-      value: `browser_reload`,
-      info: `Command to run when clicking the Loading Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    loaded_icon: {
-      name: `Loaded Icon`,
-      type: `text_smaller`,
-      value: `🚛`,
-      no_empty: true,
+      side: `left`,
+      show: `always`,
+      cmd: `browser_reload`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `loaded`,
+      name: `Loaded`,
+      icon: `🚛`,
       info: `Icons for loaded tabs`,
-      placeholder: App.icon_placeholder,
-      version: 1,
-    },
-    loaded_icon_side: {
-      name: `Loaded Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Loaded Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_loaded_icon: {
-      name: `Show Loaded Icon`,
-      type: `menu`,
-      value: `never`,
-      info: `When to show the Loaded Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    loaded_icon_weight: {
-      name: `Loaded Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Loaded Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    loaded_icon_command: {
-      name: `Loaded Icon Command`,
-      type: `menu`,
-      value: `unload_tabs`,
-      info: `Command to run when clicking the Loaded Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    unread_icon: {
-      name: `Unread Icon`,
-      type: `text_smaller`,
-      value: `⭕`,
-      no_empty: true,
+      side: `right`,
+      show: `never`,
+      cmd: `unload_tabs`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `unread`,
+      name: `Unread`,
+      icon: `⭕`,
       info: `Icons for unread tabs`,
-      placeholder: App.icon_placeholder,
-      version: 1,
-    },
-    unread_icon_side: {
-      name: `Unread Icon Side`,
-      type: `menu`,
-      value: `left`,
-      info: `Show the Unread Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_unread_icon: {
-      name: `Show Unread Icon`,
-      type: `menu`,
-      value: `always`,
-      info: `When to show the Unread Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    unread_icon_weight: {
-      name: `Unread Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Unread Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    unread_icon_command: {
-      name: `Unread Icon Command`,
-      type: `menu`,
-      value: `add_tag_later`,
-      info: `Command to run when clicking the Unread Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    title_icon: {
-      name: `Title Icon`,
-      type: `text_smaller`,
-      value: `✏️`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+      side: `left`,
+      show: `always`,
+      cmd: `add_tag_later`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `title`,
+      name: `Title`,
+      icon: `✏️`,
       info: `Icon for tabs with a custom title`,
-      version: 1,
-    },
-    title_icon_side: {
-      name: `Title Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Title Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_title_icon: {
-      name: `Show Title Icon`,
-      type: `menu`,
-      value: `never`,
-      info: `When to show the Title Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    title_icon_weight: {
-      name: `Title Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Title Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    title_icon_command: {
-      name: `Title Icon Command`,
-      type: `menu`,
-      value: `edit_title`,
-      info: `Command to run when clicking the Title Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    notes_icon: {
-      name: `Notes Icon`,
-      type: `text_smaller`,
-      value: `📝`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+      side: `right`,
+      show: `never`,
+      cmd: `edit_title`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `notes`,
+      name: `Notes`,
+      icon: `📝`,
       info: `Icon for tabs with notes`,
-      version: 1,
-    },
-    notes_icon_side: {
-      name: `Notes Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Notes Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_notes_icon: {
-      name: `Show Notes Icon`,
-      type: `menu`,
-      value: `always`,
-      info: `When to show the Notes Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    notes_icon_weight: {
-      name: `Notes Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Notes Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    notes_icon_command: {
-      name: `Notes Icon Command`,
-      type: `menu`,
-      value: `edit_notes`,
-      info: `Command to run when clicking the Notes Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+      side: `right`,
+      show: `always`,
+      cmd: `edit_notes`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `notes`,
+      name: `Notes`,
+      icon: `📝`,
+      info: `Icon for tabs with notes`,
+      side: `right`,
+      show: `always`,
+      cmd: `edit_notes`,
+    }),
+
     edited_icon: {
       name: `Edited Icon`,
       type: `text_smaller`,
