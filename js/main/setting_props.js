@@ -1827,6 +1827,15 @@ App.build_settings = () => {
       info: `Enable middle click actions for item icons`,
       version: 1,
     },
+    obfuscated_icon: {
+      name: `Obfuscated Icon`,
+      type: `text_smaller`,
+      value: `👻`,
+      no_empty: true,
+      info: `Icons for obfuscated tabs`,
+      placeholder: App.icon_placeholder,
+      version: 1,
+    },
   }
 
   add_props()

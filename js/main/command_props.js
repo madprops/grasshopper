@@ -14,6 +14,7 @@ App.setup_commands = () => {
   let unloaded_icon = App.get_setting_icon(`unloaded`)
   let muted_icon = App.get_setting_icon(`muted`)
   let unread_icon = App.get_setting_icon(`unread`)
+  let obfuscated_icon = App.get_setting_icon(`obfuscated`)
   let notes_icon = App.get_setting_icon(`notes`)
   let header_icon = App.get_setting_icon(`header`) || App.zone_icon
   let subheader_icon = App.get_setting_icon(`subheader`) || App.zone_icon
@@ -1860,7 +1861,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_no_header: true,
-      icon: tabs_icon,
+      icon: obfuscated_icon,
       action: (args) => {
         App.obfuscate_tabs(args.item)
       },
@@ -1873,7 +1874,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_no_header: true,
-      icon: tabs_icon,
+      icon: obfuscated_icon,
       action: (args) => {
         App.deobfuscate_tabs(args.item)
       },
@@ -3696,6 +3697,18 @@ App.setup_commands = () => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Filter unread tabs`,
+    },
+    {
+      name: `Filter Obfuscated`,
+      short_name: `Obfuscated`,
+      cmd: `filter_obfuscated_tabs`,
+      modes: [`tabs`],
+      icon: obfuscated_icon,
+      filter_mode: true,
+      action: (args) => {
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter obfuscated tabs`,
     },
     {
       name: `Filter Titled`,

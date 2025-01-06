@@ -648,6 +648,9 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `filter_all_parent_tabs`) {
       match = App.tab_has_nodes(args.item)
     }
+    else if (args.filter_mode === `filter_obfuscated_tabs`) {
+      match = args.item.obfuscated
+    }
     else if (args.filter_mode === `filter_no_tab`) {
       let no_tab = true
 

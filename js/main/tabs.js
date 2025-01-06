@@ -95,6 +95,7 @@ App.build_tab_filters = () => {
     {cmd: `filter_unread_tabs`},
     {cmd: `filter_header_tabs`},
     {cmd: `filter_duplicate_tabs`},
+    {cmd: `filter_obfuscated_tabs`},
     {cmd: `filter_all_parent_tabs`},
     {cmd: `filter_all_node_tabs`},
   ]
@@ -454,10 +455,6 @@ App.tabs_action = async (args = {}) => {
     check_auto_scroll,
     method,
   })
-
-  if (args.item.obfuscated) {
-    App.set_item_text(args.item)
-  }
 
   if (args.from === `tab_box`) {
     if (!App.get_setting(`tab_box_focus`)) {
@@ -1430,8 +1427,8 @@ App.obfuscate_tabs = (item) => {
   App.show_confirm({
     message: `Obfuscate tabs? (${items.length})`,
     confirm_action: () => {
-      for (let item of items) {
-        App.obfuscate_tab(item)
+      for (let it of items) {
+        App.obfuscate_tab(it)
       }
     },
     force,
@@ -1443,7 +1440,9 @@ App.obfuscate_tab = (item) => {
     return
   }
 
-  App.change_item_text(item, App.now())
+  let icon = App.get_setting(`obfuscated_icon`)
+  let text = `${icon} ${App.random_string(10)}`
+  App.change_item_text(item, text)
   item.obfuscated = true
 }
 
@@ -1454,8 +1453,8 @@ App.deobfuscate_tabs = (item) => {
   App.show_confirm({
     message: `Deobfuscate tabs? (${items.length})`,
     confirm_action: () => {
-      for (let item of items) {
-        App.deobfuscate_tab(item)
+      for (let it of items) {
+        App.deobfuscate_tab(it)
       }
     },
     force,
@@ -1467,5 +1466,6 @@ App.deobfuscate_tab = (item) => {
     return
   }
 
+  item.obfuscated = false
   App.set_item_text(item)
 }

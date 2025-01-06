@@ -468,6 +468,10 @@ App.set_item_text = (item) => {
   }
 
   for (let [i, line] of lines.entries()) {
+    if (item.obfuscated) {
+      continue
+    }
+
     if (!line) {
       line = `Empty`
     }
@@ -481,7 +485,6 @@ App.set_item_text = (item) => {
   item.tooltips_title = title
   item.tooltips_url = url
   item.has_tooltips = false
-  item.obfuscated = false
 }
 
 App.change_item_text = (item, text) => {
