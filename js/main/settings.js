@@ -2411,6 +2411,11 @@ App.get_setting_icon = (name) => {
 }
 
 App.make_icon_settings = (args = {}) => {
+  let def_args = {
+    separator: true,
+  }
+
+  App.def_args(def_args, args)
   let obj = {}
 
   if (args.icon) {
@@ -2464,7 +2469,6 @@ App.make_icon_settings = (args = {}) => {
       type: `menu`,
       value: args.cmd,
       info: `Command to run when clicking the ${args.name} Icon`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_cmdlist_single(key)
@@ -2472,7 +2476,7 @@ App.make_icon_settings = (args = {}) => {
     }
   }
 
-  if (true) {
+  if (args.separator) {
     let keys = Object.keys(obj)
 
     if (keys.length) {

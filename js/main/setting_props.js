@@ -1122,16 +1122,7 @@ App.build_settings = () => {
       side: `right`,
       show: `focus`,
       cmd: `go_to_root_url`,
-    }),
-
-    ...App.make_icon_settings({
-      what: `root`,
-      name: `Root`,
-      icon: `🌀`,
-      info: `Icon for tabs with a root`,
-      side: `right`,
-      show: `focus`,
-      cmd: `go_to_root_url`,
+      separator: false,
     }),
     auto_root_icon: {
       name: `Auto Root Icon`,
@@ -1150,6 +1141,7 @@ App.build_settings = () => {
       side: `right`,
       show: `always`,
       cmd: `none`,
+      separator: false,
     }),
     container_icon_text: {
       name: `Container Icon Text`,
@@ -1166,6 +1158,7 @@ App.build_settings = () => {
       info: `Icon for containers`,
       side: `right`,
       show: `always`,
+      separator: false,
     }),
     custom_icon_commands: {
       name: `Custom Icon Commands`,
