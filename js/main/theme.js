@@ -60,6 +60,10 @@ App.do_apply_theme = (args = {}) => {
       args.background_tiles = App.get_setting(`background_tiles`)
     }
 
+    if (!args.background_zoom) {
+      args.background_zoom = App.get_setting(`background_zoom`)
+    }
+
     App.set_css_var(`background_color`, args.background_color)
     App.set_css_var(`text_color`, args.text_color)
     let bg_opacity = App.get_setting(`background_opacity`) / 100
@@ -107,7 +111,12 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_background(args.background_image)
-    App.apply_background_effects(args.background_effect, args.background_tiles)
+
+    App.apply_background_effects(
+      args.background_effect,
+      args.background_tiles,
+      args.background_zoom,
+    )
 
     if (App.get_setting(`rounded_corners`)) {
       App.set_css_var(`border_radius`, `3px`)
@@ -285,7 +294,7 @@ App.set_background = (url) => {
   App.set_css_var(`background_image`, `url(${url})`)
 }
 
-App.apply_background_effects = (effect, tiles) => {
+App.apply_background_effects = (effect, tiles, zoom) => {
   let bg = DOM.el(`#background`)
 
   function bg_add(cls) {
@@ -314,6 +323,8 @@ App.apply_background_effects = (effect, tiles) => {
     bg.style.backgroundSize = `cover`
     bg_rem(`tiles`)
   }
+
+  bg.style.transform = `scale(${zoom})`
 }
 
 App.insert_css = (name, css) => {
@@ -538,6 +549,7 @@ App.cycle_background_opacity = (how = `cycle`) => {
 App.reset_theme = () => {
   App.set_default_setting(`background_effect`)
   App.set_default_setting(`background_tiles`)
+  App.set_default_setting(`background_zoom`)
 }
 
 App.show_theme_menu = (e) => {

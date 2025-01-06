@@ -140,6 +140,7 @@ select {
   background-repeat: no-repeat;
 	background-position: center;
   background-size: cover;
+  transform-origin: center center;
 }
 
 #background.tiles {

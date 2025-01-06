@@ -487,10 +487,34 @@ App.build_settings = () => {
       actions: [`theme`],
       placeholder: `Opacity`,
       info: `The lower the number, the more the background image is shown`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.setting_steps(0, 100, 5, `%`))
+      },
+    },
+    background_zoom: {
+      name: `Background Zoom`,
+      type: `menu`,
+      value: 1.0,
+      actions: [`theme`],
+      info: `Zoom level of the background image`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `No Zoom`, value: 1.0},
+          {text: App.separator_string},
+          {text: `10%`, value: 1.1},
+          {text: `20%`, value: 1.2},
+          {text: `30%`, value: 1.3},
+          {text: `40%`, value: 1.4},
+          {text: `50%`, value: 1.5},
+          {text: `60%`, value: 1.6},
+          {text: `70%`, value: 1.7},
+          {text: `80%`, value: 1.8},
+          {text: `90%`, value: 1.9},
+          {text: `100%`, value: 2.0},
+        ])
       },
     },
     font: {

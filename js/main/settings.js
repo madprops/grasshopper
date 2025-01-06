@@ -296,6 +296,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     `width`,
     `height`,
     `background_opacity`,
+    `background_zoom`,
     `font_size`,
     `window_border_width`,
     `close_button_border_width`,
