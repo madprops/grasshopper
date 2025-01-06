@@ -1563,6 +1563,57 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    obfuscated_icon: {
+      name: `Obfuscated Icon`,
+      type: `text_smaller`,
+      value: `👻`,
+      no_empty: true,
+      separator: true,
+      info: `Icons for obfuscated tabs`,
+      placeholder: App.icon_placeholder,
+      version: 1,
+    },
+    obfuscated_icon_side: {
+      name: `Obfuscated Icon Side`,
+      type: `menu`,
+      value: `right`,
+      info: `Show the Obfuscated Icon on the left or right of text`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sides)
+      },
+    },
+    show_obfuscated_icon: {
+      name: `Show Obfuscated Icon`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Obfuscated Icon`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.show_icon)
+      },
+    },
+    obfuscated_icon_weight: {
+      name: `Obfuscated Icon Weight`,
+      type: `menu`,
+      value: 1,
+      info: `How much to the right should the Obfuscated Icon be`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.icon_weight)
+      },
+    },
+    obfuscated_icon_command: {
+      name: `Obfuscated Icon Command`,
+      type: `menu`,
+      value: `deobfuscate_tabs`,
+      info: `Command to run when clicking the Obfuscated Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    },
     parent_icon: {
       name: `Parent Icon`,
       type: `text_smaller`,
@@ -1820,16 +1871,6 @@ App.build_settings = () => {
       value: false,
       separator: true,
       info: `Add icons quickly with the auto picker`,
-      version: 1,
-    },
-    obfuscated_icon: {
-      name: `Obfuscated Icon`,
-      type: `text_smaller`,
-      value: `👻`,
-      no_empty: true,
-      separator: true,
-      info: `Icons for obfuscated tabs`,
-      placeholder: App.icon_placeholder,
       version: 1,
     },
     button_icons: {

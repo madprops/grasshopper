@@ -496,6 +496,7 @@ App.item_icons = [
   `notes`,
   `root`,
   `edited`,
+  `obfuscated`,
   `parent`,
   `node`,
   `color`,

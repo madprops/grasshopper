@@ -123,6 +123,11 @@ App.add_item_icon = (item, side, name) => {
     obj = {...obj, title}
     App.proc_item_icon(obj)
   }
+  else if (name === `obfuscated`) {
+    let title = `Obfuscated`
+    obj = {...obj, title}
+    App.proc_item_icon(obj)
+  }
   else if (name === `notes`) {
     let title = `Notes`
     title += `\nMiddle Click: Remove Notes`
@@ -225,6 +230,7 @@ App.check_icons = (item) => {
     `playing`,
     `muted`,
     `unread`,
+    `obfuscated`,
     `root`,
     `parent`,
     `node`,
@@ -927,6 +933,9 @@ App.check_icon_active = (icon, item) => {
   else if (icon === `edited`) {
     return App.edited(item)
   }
+  else if (icon === `obfuscated`) {
+    return item.obfuscated
+  }
   else if (icon === `image`) {
     return App.get_media_type(item) === `image`
   }
@@ -1084,6 +1093,9 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
     else if (check(`.edited_icon`)) {
       icon = `edited`
     }
+    else if (check(`.obfuscated_icon`)) {
+      icon = `obfuscated`
+    }
     else if (check(`.notes_icon`)) {
       icon = `notes`
     }
@@ -1128,6 +1140,11 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
 
   if (icon === `edited`) {
     App.remove_item_edits(item)
+    return true
+  }
+
+  if (icon === `obfuscated`) {
+    App.deobfuscate_tab(item)
     return true
   }
 

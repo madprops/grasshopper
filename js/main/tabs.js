@@ -1440,10 +1440,10 @@ App.obfuscate_tab = (item) => {
     return
   }
 
-  let icon = App.get_setting(`obfuscated_icon`)
-  let text = `${icon} ${App.random_string(10)}`
+  let text = App.random_string(10)
   App.change_item_text(item, text)
   item.obfuscated = true
+  App.check_icons(item)
 }
 
 App.deobfuscate_tabs = (item) => {
@@ -1468,6 +1468,7 @@ App.deobfuscate_tab = (item) => {
 
   item.obfuscated = false
   App.set_item_text(item)
+  App.check_icons(item)
 }
 
 App.toggle_obfuscate_tabs = (item) => {
