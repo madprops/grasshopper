@@ -134,7 +134,6 @@ App.process_info = (args = {}) => {
     special,
     is_item: true,
     header: false,
-    obfuscated: false,
   }
 
   if (args.mode === `tabs`) {
@@ -182,6 +181,7 @@ App.process_info = (args = {}) => {
     item.visible = true
     item.selected = false
     item.tab_box = false
+    item.obfuscated = false
     item.last_scroll = 0
     App.create_empty_item_element(item)
 
