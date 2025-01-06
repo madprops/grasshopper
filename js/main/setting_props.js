@@ -5773,6 +5773,15 @@ App.build_settings = () => {
   category = `more`
 
   props = {
+    obfuscated_text: {
+      name: `Obfuscated Text`,
+      type: `text`,
+      value: `Obfuscated`,
+      placeholder: `Text`,
+      no_empty: true,
+      info: `Text to use for obfuscated tabs`,
+      version: 1,
+    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,

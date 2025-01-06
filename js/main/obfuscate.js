@@ -65,5 +65,5 @@ App.toggle_obfuscate_tabs = (item) => {
 }
 
 App.get_obfuscated_text = (item) => {
-  return `Obfuscated`
+  return App.get_setting(`obfuscated_text`)
 }
