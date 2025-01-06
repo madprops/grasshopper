@@ -449,10 +449,6 @@ App.set_item_text = (item) => {
   let text_mode = App.get_setting(`text_mode`)
   let title = App.title(item)
 
-  if (App.get_obfuscated(item)) {
-    title = App.obfuscate_text(title)
-  }
-
   if (text_mode === `title`) {
     lines.push(title || url)
     item.footer = url || title
@@ -478,6 +474,11 @@ App.set_item_text = (item) => {
     }
 
     let text = line.substring(0, App.max_text_length).trim()
+
+    if (App.get_obfuscated(item)) {
+      text = App.obfuscate_text(text)
+    }
+
     let text_el = DOM.el(`.item_text_${i + 1}`, item.element)
     DOM.show(text_el)
     text_el.textContent = text
