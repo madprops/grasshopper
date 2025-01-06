@@ -967,7 +967,7 @@ App.build_settings = () => {
       name: `Active`,
       icon: `😀`,
       info: `Icon for active tabs
-      Active means the current viible tab in the browser`,
+      Active means the current visible tab in the browser`,
       side: `right`,
       show: `never`,
       cmd: `show_same_domain`,
@@ -1155,7 +1155,6 @@ App.build_settings = () => {
     ...App.make_icon_settings({
       what: `custom`,
       name: `Custom`,
-      info: `Icon for containers`,
       side: `right`,
       show: `always`,
       separator: false,
