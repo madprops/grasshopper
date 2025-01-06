@@ -343,6 +343,7 @@ App.refresh_item_element = (item) => {
   App.check_taglist(item)
   App.check_unloaded(item)
   App.check_hide_tabs(item)
+  App.check_obfuscated(item)
 
   if (App.zones_unlocked(item.mode)) {
     App.apply_splits(item)
@@ -467,20 +468,15 @@ App.set_item_text = (item) => {
     item.footer = title || url
   }
 
-  if (App.get_obfuscated(item)) {
-    App.change_item_text(item, App.get_obfuscated_text())
-  }
-  else {
-    for (let [i, line] of lines.entries()) {
-      if (!line) {
-        line = `Empty`
-      }
-
-      let text = line.substring(0, App.max_text_length).trim()
-      let text_el = DOM.el(`.item_text_${i + 1}`, item.element)
-      DOM.show(text_el)
-      text_el.textContent = text
+  for (let [i, line] of lines.entries()) {
+    if (!line) {
+      line = `Empty`
     }
+
+    let text = line.substring(0, App.max_text_length).trim()
+    let text_el = DOM.el(`.item_text_${i + 1}`, item.element)
+    DOM.show(text_el)
+    text_el.textContent = text
   }
 
   item.tooltips_title = title

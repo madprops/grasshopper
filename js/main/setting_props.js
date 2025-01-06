@@ -5075,15 +5075,6 @@ App.build_settings = () => {
   category = `more`
 
   props = {
-    obfuscated_text: {
-      name: `Obfuscated Text`,
-      type: `text`,
-      value: `Obfuscated`,
-      placeholder: `Text`,
-      no_empty: true,
-      info: `Text to use for obfuscated tabs`,
-      version: 1,
-    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,
@@ -5250,6 +5241,20 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Auto-clear after no items remain when closing tabs`,
+      version: 1,
+    },
+    obfuscate_text: {
+      name: `Obfuscate Text`,
+      type: `checkbox`,
+      value: true,
+      info: `Obfuscate the text when the tab is obfuscated`,
+      version: 1,
+    },
+    obfuscate_icons: {
+      name: `Obfuscate Icons`,
+      type: `checkbox`,
+      value: true,
+      info: `Obfuscate the icons when the tab is obfuscated`,
       version: 1,
     },
     fill_elements: {

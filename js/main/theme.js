@@ -176,6 +176,7 @@ App.do_apply_theme = (args = {}) => {
     App.set_taglist_vars()
     App.set_filter_vars()
     App.set_top_panel_vars()
+    App.set_obfuscate_vars()
 
     App.insert_tab_color_css()
     App.insert_color_css()
@@ -1264,5 +1265,21 @@ App.set_top_panel_vars = () => {
   }
   else {
     App.main_remove(`hide_top_panel`)
+  }
+}
+
+App.set_obfuscate_vars = () => {
+  if (App.get_setting(`obfuscate_icons`)) {
+    App.main_add(`obfuscate_icons`)
+  }
+  else {
+    App.main_remove(`obfuscate_icons`)
+  }
+
+  if (App.get_setting(`obfuscate_text`)) {
+    App.main_add(`obfuscate_text`)
+  }
+  else {
+    App.main_remove(`obfuscate_text`)
   }
 }

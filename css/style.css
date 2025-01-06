@@ -2191,3 +2191,7 @@ a:hover
   padding-bottom: 2rem;
   width: 100%;
 }
+
+.obfuscate_icons .obfuscated .item_icon {
+  filter: blur(2px);
+}

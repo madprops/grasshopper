@@ -64,6 +64,11 @@ App.toggle_obfuscate_tabs = (item) => {
   }
 }
 
-App.get_obfuscated_text = (item) => {
-  return App.get_setting(`obfuscated_text`)
+App.check_obfuscated = (item) => {
+  if (App.get_obfuscated(item)) {
+    item.element.classList.add(`obfuscated`)
+  }
+  else {
+    item.element.classList.remove(`obfuscated`)
+  }
 }
