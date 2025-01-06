@@ -962,7 +962,7 @@ App.build_settings = () => {
       version: 1,
     },
 
-    ...App.make_mouse_settings({
+    ...App.make_icon_settings({
       what: `active`,
       name: `Active`,
       icon: `😀`,
@@ -973,7 +973,7 @@ App.build_settings = () => {
       cmd: `show_same_domain`,
     }),
 
-    ...App.make_mouse_settings({
+    ...App.make_icon_settings({
       what: `pin`,
       name: `Pin`,
       icon: `📌`,
@@ -983,17 +983,17 @@ App.build_settings = () => {
       cmd: `toggle_pin_tabs`,
     }),
 
-    ...App.make_mouse_settings({
+    ...App.make_icon_settings({
       what: `normal`,
       name: `Normal`,
       icon: `📚`,
-      info: `Icon for pinned tabs`,
+      info: `Icon for normal tabs`,
       side: `right`,
       show: `never`,
       cmd: `toggle_pin_tabs`,
     }),
 
-    ...App.make_mouse_settings({
+    ...App.make_icon_settings({
       what: `playing`,
       name: `Playing`,
       icon: `🔊`,
@@ -1003,7 +1003,7 @@ App.build_settings = () => {
       cmd: `toggle_mute_tabs`,
     }),
 
-    ...App.make_mouse_settings({
+    ...App.make_icon_settings({
       what: `muted`,
       name: `Muted`,
       icon: `🔇`,
@@ -1013,7 +1013,7 @@ App.build_settings = () => {
       cmd: `toggle_mute_tabs`,
     }),
 
-    ...App.make_mouse_settings({
+    ...App.make_icon_settings({
       what: `unloaded`,
       name: `Unloaded`,
       icon: `💤`,
@@ -1023,7 +1023,7 @@ App.build_settings = () => {
       cmd: `load_tabs`,
     }),
 
-    ...App.make_mouse_settings({
+    ...App.make_icon_settings({
       what: `loading`,
       name: `Loading`,
       icon: `⏳`,
@@ -1033,7 +1033,7 @@ App.build_settings = () => {
       cmd: `browser_reload`,
     }),
 
-    ...App.make_mouse_settings({
+    ...App.make_icon_settings({
       what: `loaded`,
       name: `Loaded`,
       icon: `🚛`,
@@ -1043,7 +1043,7 @@ App.build_settings = () => {
       cmd: `unload_tabs`,
     }),
 
-    ...App.make_mouse_settings({
+    ...App.make_icon_settings({
       what: `unread`,
       name: `Unread`,
       icon: `⭕`,
@@ -1053,7 +1053,7 @@ App.build_settings = () => {
       cmd: `add_tag_later`,
     }),
 
-    ...App.make_mouse_settings({
+    ...App.make_icon_settings({
       what: `title`,
       name: `Title`,
       icon: `✏️`,
@@ -1063,7 +1063,7 @@ App.build_settings = () => {
       cmd: `edit_title`,
     }),
 
-    ...App.make_mouse_settings({
+    ...App.make_icon_settings({
       what: `notes`,
       name: `Notes`,
       icon: `📝`,
@@ -1073,267 +1073,66 @@ App.build_settings = () => {
       cmd: `edit_notes`,
     }),
 
-    ...App.make_mouse_settings({
-      what: `notes`,
-      name: `Notes`,
-      icon: `📝`,
-      info: `Icon for tabs with notes`,
-      side: `right`,
-      show: `always`,
-      cmd: `edit_notes`,
-    }),
-
-    edited_icon: {
-      name: `Edited Icon`,
-      type: `text_smaller`,
-      value: `🪬`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+    ...App.make_icon_settings({
+      what: `edited`,
+      name: `Edited`,
+      icon: `🪬`,
       info: `Icon for edited tabs
       Edits include color, tags, notes, etc`,
-      version: 1,
-    },
-    edited_icon_side: {
-      name: `Edited Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Edited Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_edited_icon: {
-      name: `Show Edited Icon`,
-      type: `menu`,
-      value: `never`,
-      info: `When to show the Edited Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    edited_icon_weight: {
-      name: `Edited Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Edited Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    edited_icon_command: {
-      name: `Edited Icon Command`,
-      type: `menu`,
-      value: `show_edits_info`,
-      info: `Command to run when clicking the Edited Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    obfuscated_icon: {
-      name: `Obfuscated Icon`,
-      type: `text_smaller`,
-      value: `👻`,
-      no_empty: true,
-      separator: true,
+      side: `right`,
+      show: `never`,
+      cmd: `show_edits_info`,
+    }),
+
+    ...App.make_icon_settings({
+      what: `obfuscated`,
+      name: `Obfuscated`,
+      icon: `👻`,
       info: `Icons for obfuscated tabs`,
-      placeholder: App.icon_placeholder,
-      version: 1,
-    },
-    obfuscated_icon_side: {
-      name: `Obfuscated Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Obfuscated Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_obfuscated_icon: {
-      name: `Show Obfuscated Icon`,
-      type: `menu`,
-      value: `always`,
-      info: `When to show the Obfuscated Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    obfuscated_icon_weight: {
-      name: `Obfuscated Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Obfuscated Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    obfuscated_icon_command: {
-      name: `Obfuscated Icon Command`,
-      type: `menu`,
-      value: `deobfuscate_tabs`,
-      info: `Command to run when clicking the Obfuscated Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    parent_icon: {
-      name: `Parent Icon`,
-      type: `text_smaller`,
-      value: `🤿`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+      side: `right`,
+      show: `always`,
+      cmd: `deobfuscate_tabs`,
+    }),
+
+    ...App.make_icon_settings({
+      what: `parent`,
+      name: `Parent`,
+      icon: `🤿`,
       info: `Icon for tabs that are parents`,
-      version: 1,
-    },
-    parent_icon_side: {
-      name: `Parent Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Parent Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_parent_icon: {
-      name: `Show Parent Icon`,
-      type: `menu`,
-      value: `never`,
-      info: `When to show the Parent Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    parent_icon_weight: {
-      name: `Parent Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Parent Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    parent_icon_command: {
-      name: `Parent Icon Command`,
-      type: `menu`,
-      value: `show_node_tabs`,
-      info: `Command to run when clicking the Parent Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    node_icon: {
-      name: `Node Icon`,
-      type: `text_smaller`,
-      value: `🦠`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+      side: `right`,
+      show: `never`,
+      cmd: `show_node_tabs`,
+    }),
+
+    ...App.make_icon_settings({
+      what: `node`,
+      name: `Node`,
+      icon: `🦠`,
       info: `Icon for tabs that are nodes`,
-      version: 1,
-    },
-    node_icon_side: {
-      name: `Nodes Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Nodes Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_node_icon: {
-      name: `Show Nodes Icon`,
-      type: `menu`,
-      value: `never`,
-      info: `When to show the Nodes Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    node_icon_weight: {
-      name: `Node Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Node Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    node_icon_command: {
-      name: `Node Icon Command`,
-      type: `menu`,
-      value: `show_parent_tab`,
-      info: `Command to run when clicking the Node Icon`,
-      separator: true,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
-    root_icon: {
-      name: `Root Icon`,
-      type: `text_smaller`,
-      value: `🌀`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+      side: `right`,
+      show: `never`,
+      cmd: `show_parent_tab`,
+    }),
+
+    ...App.make_icon_settings({
+      what: `root`,
+      name: `Root`,
+      icon: `🌀`,
       info: `Icon for tabs with a root`,
-      version: 1,
-    },
-    root_icon_side: {
-      name: `Root Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Root Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_root_icon: {
-      name: `Show Root Icon`,
-      type: `menu`,
-      value: `focus`,
-      info: `When to show the Root Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    root_icon_weight: {
-      name: `Root Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Root Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    root_icon_command: {
-      name: `Root Icon Command`,
-      type: `menu`,
-      value: `go_to_root_url`,
-      info: `Command to run when clicking the Root Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+      side: `right`,
+      show: `focus`,
+      cmd: `go_to_root_url`,
+    }),
+
+    ...App.make_icon_settings({
+      what: `root`,
+      name: `Root`,
+      icon: `🌀`,
+      info: `Icon for tabs with a root`,
+      side: `right`,
+      show: `focus`,
+      cmd: `go_to_root_url`,
+    }),
     auto_root_icon: {
       name: `Auto Root Icon`,
       type: `checkbox`,
@@ -1342,55 +1141,16 @@ App.build_settings = () => {
       info: `Show the root icon only when not at the root already`,
       version: 1,
     },
-    container_icon: {
-      name: `Container Icon`,
-      type: `text_smaller`,
-      value: `🛍️`,
-      no_empty: true,
-      placeholder: App.icon_placeholder,
+
+    ...App.make_icon_settings({
+      what: `container`,
+      name: `Container`,
+      icon: `🛍️`,
       info: `Icon for containers`,
-      version: 1,
-    },
-    container_icon_side: {
-      name: `Container Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Container Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_container_icon: {
-      name: `Show Container Icon`,
-      type: `menu`,
-      value: `always`,
-      info: `When to show the Container Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    container_icon_weight: {
-      name: `Container Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Container Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
-    container_icon_command: {
-      name: `Container Icon Command`,
-      type: `menu`,
-      value: `none`,
-      info: `Command to run when clicking the Container Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_cmdlist_single(key)
-      },
-    },
+      side: `right`,
+      show: `always`,
+      cmd: `none`,
+    }),
     container_icon_text: {
       name: `Container Icon Text`,
       type: `checkbox`,
@@ -1399,36 +1159,14 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-    custom_icon_side: {
-      name: `Custom Icon Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Show the Custom Icon on the left or right of text`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.sides)
-      },
-    },
-    show_custom_icon: {
-      name: `Show Custom Icon`,
-      type: `menu`,
-      value: `always`,
-      info: `When to show the Custom Icon`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.show_icon)
-      },
-    },
-    custom_icon_weight: {
-      name: `Custom Icon Weight`,
-      type: `menu`,
-      value: 1,
-      info: `How much to the right should the Custom Icon be`,
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.icon_weight)
-      },
-    },
+
+    ...App.make_icon_settings({
+      what: `custom`,
+      name: `Custom`,
+      info: `Icon for containers`,
+      side: `right`,
+      show: `always`,
+    }),
     custom_icon_commands: {
       name: `Custom Icon Commands`,
       type: `list`,
@@ -1444,6 +1182,7 @@ App.build_settings = () => {
       info: `Add icons quickly with the auto picker`,
       version: 1,
     },
+
     button_icons: {
       name: `Button Icons`,
       type: `checkbox`,

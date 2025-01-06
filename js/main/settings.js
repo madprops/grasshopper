@@ -2410,17 +2410,19 @@ App.get_setting_icon = (name) => {
   return App.get_setting(`${name}_icon`)
 }
 
-App.make_icon_setting = (args = {}) => {
+App.make_icon_settings = (args = {}) => {
   let obj = {}
 
-  obj[`${args.what}_icon`] = {
-    name: `${args.name} Icon`,
-    type: `text_smaller`,
-    value: args.icon,
-    no_empty: true,
-    placeholder: App.icon_placeholder,
-    info: args.info,
-    version: 1,
+  if (args.icon) {
+    obj[`${args.what}_icon`] = {
+      name: `${args.name} Icon`,
+      type: `text_smaller`,
+      value: args.icon,
+      no_empty: true,
+      placeholder: App.icon_placeholder,
+      info: args.info,
+      version: 1,
+    }
   }
 
   obj[`${args.what}_icon_side`] = {
@@ -2456,15 +2458,27 @@ App.make_icon_setting = (args = {}) => {
     },
   }
 
-  obj[`${args.what}_icon_command`] = {
-    name: `${args.name} Icon Command`,
-    type: `menu`,
-    value: args.cmd,
-    info: `Command to run when clicking the ${args.name} Icon`,
-    separator: true,
-    version: 1,
-    setup: (key) => {
-      App.settings_cmdlist_single(key)
-    },
-  },
+  if (args.cmd) {
+    obj[`${args.what}_icon_command`] = {
+      name: `${args.name} Icon Command`,
+      type: `menu`,
+      value: args.cmd,
+      info: `Command to run when clicking the ${args.name} Icon`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_cmdlist_single(key)
+      },
+    }
+  }
+
+  if (true) {
+    let keys = Object.keys(obj)
+
+    if (keys.length) {
+      obj[keys.at(-1)].separator = true
+    }
+  }
+
+  return obj
 }
