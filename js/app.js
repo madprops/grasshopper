@@ -411,7 +411,11 @@ App.themes = [
   },
   {
     num: 5, opacity: 80,
-    effect: `invert`,
+    effect: `rotate_2`,
+  },
+  {
+    num: 6, opacity: 70,
+    effect: `rotate_3`,
   },
 ]
 
