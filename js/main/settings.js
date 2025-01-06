@@ -2283,6 +2283,15 @@ App.make_mouse_settings = (args = {}) => {
     wheel_down_value: `none`,
     wheel_up_shift_value: `none`,
     wheel_down_shift_value: `none`,
+    click_version: 1,
+    double_click_version: 1,
+    middle_click_version: 1,
+    click_press_version: 1,
+    middle_click_press_version: 1,
+    wheel_up_version: 1,
+    wheel_down_version: 1,
+    wheel_up_shift_version: 1,
+    wheel_down_shift_version: 1,
     separator: true,
     setup: (key) => {
       App.settings_cmdlist_single(key)
@@ -2298,7 +2307,7 @@ App.make_mouse_settings = (args = {}) => {
       type: `menu`,
       value: args.click,
       info: `Command to run when clicking the ${args.title}`,
-      version: 1,
+      version: args.click_version,
       setup: args.setup,
     }
   }
@@ -2309,7 +2318,7 @@ App.make_mouse_settings = (args = {}) => {
       type: `menu`,
       value: args.double_click,
       info: `Command to run when double clicking the ${args.title}`,
-      version: 1,
+      version: args.double_click_version,
       setup: args.setup,
     }
   }
@@ -2320,7 +2329,7 @@ App.make_mouse_settings = (args = {}) => {
       type: `menu`,
       value: args.middle_click,
       info: `Command to run when middle clicking the ${args.title}`,
-      version: 1,
+      version: args.middle_click_version,
       setup: args.setup,
     }
   }
@@ -2331,7 +2340,7 @@ App.make_mouse_settings = (args = {}) => {
       type: `menu`,
       value: args.click_press,
       info: `Command to run when click pressing the ${args.title}`,
-      version: 1,
+      version: args.click_press_version,
       setup: args.setup,
     }
   }
@@ -2342,7 +2351,7 @@ App.make_mouse_settings = (args = {}) => {
       type: `menu`,
       value: args.middle_click_press,
       info: `Command to run when middle click pressing the ${args.title}`,
-      version: 1,
+      version: args.middle_click_press_version,
       setup: args.setup,
     }
   }
@@ -2353,7 +2362,7 @@ App.make_mouse_settings = (args = {}) => {
       type: `menu`,
       value: args.wheel_up,
       info: `Command to run when using wheel up on the ${args.title}`,
-      version: 1,
+      version: args.wheel_up_version,
       setup: args.setup,
     }
   }
@@ -2364,7 +2373,7 @@ App.make_mouse_settings = (args = {}) => {
       type: `menu`,
       value: args.wheel_down,
       info: `Command to run when using wheel down on the ${args.title}`,
-      version: 1,
+      version: args.wheel_down_version,
       setup: args.setup,
     }
   }
@@ -2375,7 +2384,7 @@ App.make_mouse_settings = (args = {}) => {
       type: `menu`,
       value: args.wheel_up_shift,
       info: `Command to run when using shift wheel up on the ${args.title}`,
-      version: 1,
+      version: args.wheel_up_shift_version,
       setup: args.setup,
     }
   }
@@ -2386,7 +2395,7 @@ App.make_mouse_settings = (args = {}) => {
       type: `menu`,
       value: args.wheel_down_shift,
       info: `Command to run when using shift wheel down on the ${args.title}`,
-      version: 1,
+      version: args.wheel_down_shift_version,
       setup: args.setup,
     }
   }
@@ -2413,6 +2422,11 @@ App.get_setting_icon = (name) => {
 App.make_icon_settings = (args = {}) => {
   let def_args = {
     separator: true,
+    icon_version: 1,
+    side_version: 1,
+    show_version: 1,
+    weight_version: 1,
+    command_version: 1,
   }
 
   App.def_args(def_args, args)
@@ -2426,7 +2440,7 @@ App.make_icon_settings = (args = {}) => {
       no_empty: true,
       placeholder: App.icon_placeholder,
       info: args.info,
-      version: 1,
+      version: args.icon_version,
     }
   }
 
@@ -2435,7 +2449,7 @@ App.make_icon_settings = (args = {}) => {
     type: `menu`,
     value: args.side,
     info: `Show the ${args.name} Icon on the left or right of text`,
-    version: 1,
+    version: args.side_version,
     setup: (key) => {
       App.settings_make_menu(key, App.sides)
     },
@@ -2446,7 +2460,7 @@ App.make_icon_settings = (args = {}) => {
     type: `menu`,
     value: args.show,
     info: `When to show the ${args.name} Icon`,
-    version: 1,
+    version: args.show_version,
     setup: (key) => {
       App.settings_make_menu(key, App.show_icon)
     },
@@ -2457,7 +2471,7 @@ App.make_icon_settings = (args = {}) => {
     type: `menu`,
     value: 1,
     info: `How much to the right should the ${args.name} Icon be`,
-    version: 1,
+    version: args.weight_version,
     setup: (key) => {
       App.settings_make_menu(key, App.icon_weight)
     },
@@ -2469,7 +2483,7 @@ App.make_icon_settings = (args = {}) => {
       type: `menu`,
       value: args.cmd,
       info: `Command to run when clicking the ${args.name} Icon`,
-      version: 1,
+      version: args.command_version,
       setup: (key) => {
         App.settings_cmdlist_single(key)
       },
