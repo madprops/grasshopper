@@ -254,7 +254,7 @@ App.check_command = (command, args = {}) => {
         args.some_container = true
       }
 
-      if (item.obfuscated) {
+      if (App.get_obfuscated(item)) {
         args.some_obfuscated = true
       }
       else {

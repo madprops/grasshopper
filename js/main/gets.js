@@ -52,3 +52,7 @@ App.get_split = (item, what, rule = true) => {
     return App.get_split_bottom(item, rule)
   }
 }
+
+App.get_obfuscated = (item, rule = true) => {
+  return App.get_edit(item, `obfuscated`, rule)
+}

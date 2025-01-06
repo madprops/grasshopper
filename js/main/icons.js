@@ -934,7 +934,7 @@ App.check_icon_active = (icon, item) => {
     return App.edited(item)
   }
   else if (icon === `obfuscated`) {
-    return item.obfuscated
+    return App.get_obfuscated(item)
   }
   else if (icon === `image`) {
     return App.get_media_type(item) === `image`

@@ -467,19 +467,20 @@ App.set_item_text = (item) => {
     item.footer = title || url
   }
 
-  for (let [i, line] of lines.entries()) {
-    if (item.obfuscated) {
-      continue
-    }
+  if (App.get_obfuscated(item)) {
+    App.change_item_text(item, App.get_obfuscated_text())
+  }
+  else {
+    for (let [i, line] of lines.entries()) {
+      if (!line) {
+        line = `Empty`
+      }
 
-    if (!line) {
-      line = `Empty`
+      let text = line.substring(0, App.max_text_length).trim()
+      let text_el = DOM.el(`.item_text_${i + 1}`, item.element)
+      DOM.show(text_el)
+      text_el.textContent = text
     }
-
-    let text = line.substring(0, App.max_text_length).trim()
-    let text_el = DOM.el(`.item_text_${i + 1}`, item.element)
-    DOM.show(text_el)
-    text_el.textContent = text
   }
 
   item.tooltips_title = title

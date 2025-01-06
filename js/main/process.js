@@ -181,8 +181,8 @@ App.process_info = (args = {}) => {
     item.visible = true
     item.selected = false
     item.tab_box = false
-    item.obfuscated = false
     item.last_scroll = 0
+
     App.create_empty_item_element(item)
 
     if (App.get_setting(`fill_elements`)) {

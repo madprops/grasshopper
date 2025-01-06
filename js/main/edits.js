@@ -23,6 +23,9 @@ App.edit_props = {
   root: {
     type: `string`,
   },
+  obfuscated: {
+    type: `bool`,
+  },
 }
 
 App.get_edit_prop_list = () => {
