@@ -1421,7 +1421,7 @@ App.change_tab_url = (item) => {
 }
 
 App.obfuscate_tabs = (item) => {
-  let items = App.get_active_items({mode: item.mode})
+  let items = App.get_active_items({mode: item.mode, item})
   let force = App.check_warn(`warn_on_obfuscate_tabs`, items)
 
   App.show_confirm({
@@ -1447,7 +1447,7 @@ App.obfuscate_tab = (item) => {
 }
 
 App.deobfuscate_tabs = (item) => {
-  let items = App.get_active_items({mode: item.mode})
+  let items = App.get_active_items({mode: item.mode, item})
   let force = App.check_warn(`warn_on_deobfuscate_tabs`, items)
 
   App.show_confirm({
