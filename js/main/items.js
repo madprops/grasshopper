@@ -449,6 +449,10 @@ App.set_item_text = (item) => {
   let text_mode = App.get_setting(`text_mode`)
   let title = App.title(item)
 
+  if (App.get_obfuscated(item)) {
+    title = App.obfuscate_text(title)
+  }
+
   if (text_mode === `title`) {
     lines.push(title || url)
     item.footer = url || title

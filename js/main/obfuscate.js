@@ -72,3 +72,7 @@ App.check_obfuscated = (item) => {
     item.element.classList.remove(`obfuscated`)
   }
 }
+
+App.obfuscate_text = (text) => {
+  return text.replace(/./g, `x`)
+}

@@ -2193,5 +2193,5 @@ a:hover
 }
 
 .obfuscate_icons .obfuscated .item_icon {
-  filter: blur(2px);
+  filter: hue-rotate(90deg);
 }
