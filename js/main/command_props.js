@@ -1075,6 +1075,15 @@ App.setup_commands = () => {
       info: `Show the settings summary`,
     },
     {
+      name: `Setting Guides`,
+      cmd: `show_setting_guides`,
+      icon: settings_icon,
+      action: (args) => {
+        App.show_setting_guides()
+      },
+      info: `Show the setting guides`,
+    },
+    {
       name: `Reset Settings`,
       cmd: `reset_settings`,
       icon: settings_icon,
