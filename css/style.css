@@ -1957,13 +1957,18 @@ a:hover
   height: 100%;
 }
 
-.fixed_main_title_left #main_title_left_button:hover {
+#main_title_left_button:hover {
   border-right-width: 2px;
 }
 
-.fixed_main_title_right #main_title_right_button:hover
-{
+#main_title_right_button:hover {
   border-left-width: 2px;
+}
+
+.mouse_inside.global_main_title_left #main_title_left_button,
+.mouse_inside.global_main_title_right #main_title_right_button
+{
+  opacity: 1;
 }
 
 .main_title_button:hover {

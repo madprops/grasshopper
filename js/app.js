@@ -520,8 +520,9 @@ App.icon_weight = [
 App.title_buttons = [
   {text: `None`, value: `none`},
   {text: App.separator_string},
-  {text: `Hover`, value: `hover`},
-  {text: `Fixed`, value: `fixed`},
+  {text: `Hover`, value: `hover`, info: `Show when hovering the button`},
+  {text: `Fixed`, value: `fixed`, info: `Always show the button`},
+  {text: `Global`, value: `global`, info: `Show when hovering the window`},
 ]
 
 App.panel_sizes = {

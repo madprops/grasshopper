@@ -1068,6 +1068,13 @@ App.set_main_title_vars = () => {
     App.main_remove(`fixed_main_title_left`)
   }
 
+  if (lb === `global`) {
+    App.main_add(`global_main_title_left`)
+  }
+  else {
+    App.main_remove(`global_main_title_left`)
+  }
+
   let rb = App.get_setting(`main_title_right_button`)
 
   if (rb === `fixed`) {
@@ -1075,6 +1082,13 @@ App.set_main_title_vars = () => {
   }
   else {
     App.main_remove(`fixed_main_title_right`)
+  }
+
+  if (rb === `global`) {
+    App.main_add(`global_main_title_right`)
+  }
+  else {
+    App.main_remove(`global_main_title_right`)
   }
 
   if (App.get_setting(`main_title_border_top`)) {
