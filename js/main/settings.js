@@ -120,6 +120,10 @@ App.settings_setup_texts = (category) => {
         value = App.get_default_setting(key) || App.get_setting(key)
       }
 
+      if (props.character) {
+        value = Array.from(value)[0]
+      }
+
       el.value = value
       el.scrollTop = 0
       App.set_setting({setting: key, value, action: true})

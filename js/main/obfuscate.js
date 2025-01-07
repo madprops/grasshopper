@@ -74,5 +74,6 @@ App.check_obfuscated = (item) => {
 }
 
 App.obfuscate_text = (text) => {
-  return text.replace(/./g, `x`)
+  let symbol = App.get_setting(`obfuscate_symbol`)
+  return text.replace(/./g, symbol)
 }

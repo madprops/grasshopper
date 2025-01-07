@@ -5135,6 +5135,16 @@ App.build_settings = () => {
       info: `Delay in milliseconds for Context Autohide`,
       version: 1,
     },
+    obfuscate_symbol: {
+      name: `Obfuscate Symbol`,
+      type: `text_smaller`,
+      value: `x`,
+      no_empty: true,
+      character: true,
+      placeholder: `Symbol`,
+      info: `Symbol to use on obfuscated text`,
+      version: 1,
+    },
     mute_click: {
       name: `Mute Click`,
       type: `checkbox`,
