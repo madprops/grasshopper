@@ -1077,6 +1077,20 @@ App.set_main_title_vars = () => {
     App.main_remove(`fixed_main_title_right`)
   }
 
+  if (App.get_setting(`main_title_border_top`)) {
+    App.main_add(`main_title_border_top`)
+  }
+  else {
+    App.main_remove(`main_title_border_top`)
+  }
+
+  if (App.get_setting(`main_title_border_bottom`)) {
+    App.main_add(`main_title_border_bottom`)
+  }
+  else {
+    App.main_remove(`main_title_border_bottom`)
+  }
+
   let normal = 1.8
   let steps = 0.3
 

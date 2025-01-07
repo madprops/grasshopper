@@ -3007,6 +3007,20 @@ App.build_settings = () => {
       info: `Make the title text wrap on long titles`,
       version: 1,
     },
+    main_title_border_top: {
+      name: `Title Border Top`,
+      type: `checkbox`,
+      value: false,
+      info: `Add a border to the top of the Title`,
+      version: 1,
+    },
+    main_title_border_bottom: {
+      name: `Title Border Bottom`,
+      type: `checkbox`,
+      value: false,
+      info: `Add a border to the bottom of the Title`,
+      version: 1,
+    },
   }
 
   add_props()

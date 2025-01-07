@@ -464,8 +464,6 @@ svg {
   border-width: var(--close_button_border_width_tab_box);
 }
 
-/*  */
-
 .item.loading_icon_effect .loading_icon,
 .item.loading_icon_spin_effect .loading_icon,
 .item.loading_icon_fade_effect .loading_icon
@@ -1908,8 +1906,6 @@ a:hover
   pointer-events: none;
 }
 
-/*  */
-
 #main_title {
   display: flex;
   flex-direction: row;
@@ -1986,8 +1982,6 @@ a:hover
   right: 0;
 }
 
-/*  */
-
 .main_title_align_left #main_title {
   justify-content: flex-start;
 }
@@ -1995,8 +1989,6 @@ a:hover
 .main_title_align_left #main_title_inner {
   text-align: left;
 }
-
-/*  */
 
 .main_title_align_center #main_title {
   justify-content: center;
@@ -2006,8 +1998,6 @@ a:hover
   text-align: center;
 }
 
-/*  */
-
 .main_title_align_right #main_title {
   justify-content: flex-end;
 }
@@ -2016,7 +2006,13 @@ a:hover
   text-align: right;
 }
 
-/*  */
+.main_title_border_top #main_title {
+  border-top: 1px solid var(--main_title_text_color);
+}
+
+.main_title_border_bottom #main_title {
+  border-bottom: 1px solid var(--main_title_text_color);
+}
 
 #canvas_locust_swarm {
   z-index: 999999;
