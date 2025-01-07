@@ -64,7 +64,7 @@ App.start_signals = () => {
       return
     }
 
-    let index = item.dataset.index
+    let index = parseInt(item.dataset.index)
     App.select_signal(item)
     App.focus_signals_filter()
 
@@ -84,7 +84,7 @@ App.start_signals = () => {
       return
     }
 
-    let index = item.dataset.index
+    let index = parseInt(item.dataset.index)
 
     if (DOM.class(e.target, [`signal_name`])) {
       let signal = App.signal_by_index(index)
