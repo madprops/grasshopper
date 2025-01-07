@@ -668,7 +668,7 @@ App.add_settings_switchers = (category) => {
   container.append(close)
 
   DOM.ev(actions, `click`, () => {
-    App.settings_actions(category)
+    App.settings_actions()
   })
 
   DOM.ev(close, `click`, () => {
@@ -1184,8 +1184,9 @@ App.set_settings_menu = (setting, value, on_change) => {
   App[`settings_menubutton_${setting}`].set(value, on_change)
 }
 
-App.settings_actions = (category) => {
-  let cat = App.category_string(App.settings_category)
+App.settings_actions = () => {
+  let category = App.settings_category
+  let cat = App.category_string(category)
   let items = []
 
   items.push({
@@ -1251,6 +1252,14 @@ App.settings_actions = (category) => {
   })
 
   App.sep(items)
+
+  items.push({
+    icon: App.settings_icons.general,
+    text: `Guides`,
+    action: () => {
+      App.show_setting_guides()
+    },
+  })
 
   items.push({
     icon: App.settings_icons.general,
@@ -2503,4 +2512,20 @@ App.make_icon_settings = (args = {}) => {
   }
 
   return obj
+}
+
+App.show_setting_guides = () => {
+  let items = []
+
+  items.push({
+    icon: App.settings_icons.general,
+    text: `Don't load unloaded tabs on click`,
+    action: () => {
+      App.alert(App.setting_guides.unloaded)
+    },
+  })
+
+  let category = App.settings_category
+  let btn = DOM.el(`#settings_actions_${category}`)
+  App.show_context({element: btn, items, expand: true, margin: btn.clientHeight})
 }

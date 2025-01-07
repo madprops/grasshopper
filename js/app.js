@@ -539,3 +539,13 @@ App.footer_down_click_cmd = `move_tabs_to_bottom`
 App.footer_down_middle_click_cmd = `select_items_below`
 App.footer_down_shift_click_cmd = `page_down`
 App.footer_down_ctrl_click_cmd = `jump_tabs_all_down`
+
+App.setting_guides = {
+  unloaded: `To avoid loading unloaded tabs when clicking on them:
+
+  Go to "Triggers", then change "Click Item (Tabs)" to "Soft Action".
+
+  Now to load them, double clicking is required.
+
+  Single click will only select them, not load them.`,
+}
