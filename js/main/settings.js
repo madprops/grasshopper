@@ -1264,8 +1264,8 @@ App.settings_actions = () => {
   items.push({
     icon: App.settings_icons.general,
     text: `Guides`,
-    action: () => {
-      App.show_setting_guides()
+    action: (e) => {
+      App.show_setting_guides(e)
     },
   })
 
@@ -2514,18 +2514,18 @@ App.make_icon_settings = (args = {}) => {
   return obj
 }
 
-App.show_setting_guides = () => {
+App.show_setting_guides = (e) => {
   let items = []
 
-  items.push({
-    icon: App.settings_icons.general,
-    text: `Don't load unloaded tabs on click`,
-    action: () => {
-      App.alert(App.setting_guides.unloaded)
-    },
-  })
+  for (let guide of App.setting_guides) {
+    items.push({
+      icon: App.settings_icons.general,
+      text: guide.title,
+      action: () => {
+        App.alert(guide.text)
+      },
+    })
+  }
 
-  let category = App.settings_category
-  let btn = DOM.el(`#settings_actions_${category}`)
-  App.show_context({element: btn, items, expand: true, margin: btn.clientHeight})
+  App.show_context({e, items, expand: true})
 }

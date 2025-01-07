@@ -540,12 +540,25 @@ App.footer_down_middle_click_cmd = `select_items_below`
 App.footer_down_shift_click_cmd = `page_down`
 App.footer_down_ctrl_click_cmd = `jump_tabs_all_down`
 
-App.setting_guides = {
-  unloaded: `To avoid loading unloaded tabs when clicking on them:
+App.setting_guides = [
+  {
+    title: `Don't load unloaded tabs on click`,
+    text: `To avoid loading unloaded tabs when clicking on them:
 
-  Go to "Triggers", then change "Click Item (Tabs)" to "Soft Action".
+    Go to "Triggers", then change "Click Item (Tabs)" to "Soft Action".
 
-  Now to load them, double clicking is required.
+    Now to load them, double clicking is required.
 
-  Single click will only select them, not load them.`,
-}
+    Single click will only select them, not load them.`,
+  },
+  {
+    title: `Importing settings`,
+    text: `Settings can be imported by using JSON.
+
+    You can import all settings or just some of them, the ones you need.
+
+    This means other people can share their configuration with you.
+
+    Or you can back up your settings and apply them to another computer.`
+  },
+]
