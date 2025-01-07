@@ -2949,7 +2949,7 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       no_mirror: true,
-      info: `Show the current date as the Title`,
+      info: `Show the current date or time as the Title. To use text surround it between [ and ], like: [Time]: HH:MM:ss`,
       version: 2,
     },
     main_title_date_format: {
