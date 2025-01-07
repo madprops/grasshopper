@@ -411,7 +411,7 @@ App.themes = [
   },
   {
     num: 5, opacity: 80,
-    effect: `rotate_2`,
+    effect: `rotate_3`,
   },
   {
     num: 6, opacity: 70,
