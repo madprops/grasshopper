@@ -1943,10 +1943,19 @@ a:hover
   border-style: solid;
   border-color: var(--main_title_text_color);
   border-width: 0;
-  border-radius: 20%;
   cursor: pointer;
   flex-shrink: 0;
   flex-grow: 0;
+}
+
+/* Border Radius: Top-left, top-right, bottom-right, bottom-left */
+
+#main_title_left_button {
+  border-radius: 0 20% 20% 0;
+}
+
+#main_title_right_button {
+  border-radius: 20% 0 0 20%;
 }
 
 .fixed_main_title_left #main_title_left_button,
