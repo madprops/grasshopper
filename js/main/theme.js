@@ -1059,13 +1059,20 @@ App.set_main_title_vars = () => {
   App.main_add(`main_title_align_${title_align}`)
   let size = App.get_setting(`main_title_size`)
   App.theme_sizer_panel(size, `main_title_padding`)
-  let lb = App.get_setting(`main_title_left_button`)
+  let lb = App.get_setting(`show_main_title_left_button`)
 
-  if (lb === `fixed`) {
-    App.main_add(`fixed_main_title_left`)
+  if (lb === `hidden`) {
+    App.main_add(`hidden_main_title_left`)
   }
   else {
-    App.main_remove(`fixed_main_title_left`)
+    App.main_remove(`hidden_main_title_left`)
+  }
+
+  if (lb === `hover`) {
+    App.main_add(`hover_main_title_left`)
+  }
+  else {
+    App.main_remove(`hover_main_title_left`)
   }
 
   if (lb === `global`) {
@@ -1075,13 +1082,20 @@ App.set_main_title_vars = () => {
     App.main_remove(`global_main_title_left`)
   }
 
-  let rb = App.get_setting(`main_title_right_button`)
+  let rb = App.get_setting(`show_main_title_right_button`)
 
-  if (rb === `fixed`) {
-    App.main_add(`fixed_main_title_right`)
+  if (rb === `hidden`) {
+    App.main_add(`hidden_main_title_right`)
   }
   else {
-    App.main_remove(`fixed_main_title_right`)
+    App.main_remove(`hidden_main_title_right`)
+  }
+
+  if (rb === `hover`) {
+    App.main_add(`hover_main_title_right`)
+  }
+  else {
+    App.main_remove(`hover_main_title_right`)
   }
 
   if (rb === `global`) {

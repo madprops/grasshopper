@@ -1939,7 +1939,7 @@ a:hover
   align-items: center;
   justify-content: center;
   background-color: var(--main_title_button_color);
-  opacity: 0;
+  opacity: 1;
   border-style: solid;
   border-color: var(--main_title_text_color);
   border-width: 0;
@@ -1971,7 +1971,27 @@ a:hover
   opacity: 1;
 }
 
-.main_title_button:hover {
+.hover_main_title_left #main_title_left_button,
+.hover_main_title_right #main_title_right_button
+{
+  opacity: 0;
+}
+
+.global_main_title_left #main_title_left_button,
+.global_main_title_right #main_title_right_button
+{
+  opacity: 0;
+}
+
+.hover_main_title_left #main_title_left_button:hover,
+.hover_main_title_right #main_title_right_button:hover
+{
+  opacity: 1;
+}
+
+.global_main_title_left #main_title_left_button:hover,
+.global_main_title_right #main_title_right_button:hover
+{
   opacity: 1;
 }
 

@@ -2769,7 +2769,7 @@ App.build_settings = () => {
       info: `Menu to show when right clicking the Title`,
       version: 1,
     },
-    main_title_left_button: {
+    show_main_title_left_button: {
       name: `Title Left Button`,
       type: `menu`,
       value: `hover`,
@@ -2790,7 +2790,7 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sizes_3)
       },
     },
-    main_title_right_button: {
+    show_main_title_right_button: {
       name: `Title Right Button`,
       type: `menu`,
       value: `hover`,
