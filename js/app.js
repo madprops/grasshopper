@@ -553,9 +553,9 @@ App.setting_guides = [
   },
   {
     title: `Type to filter lists`,
-    text: `On any list like command lists, you can type to filter the items.
+    text: `On any list, like command lists, you can type to filter the items.
 
-    This is very important since it's much faster than scrolling down the lists.`,
+    This is very important since it's much faster than scrolling down the lists to find items.`,
   },
   {
     title: `Don't load unloaded tabs on click`,
