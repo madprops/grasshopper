@@ -540,3 +540,5 @@ App.footer_down_click_cmd = `move_tabs_to_bottom`
 App.footer_down_middle_click_cmd = `select_items_below`
 App.footer_down_shift_click_cmd = `page_down`
 App.footer_down_ctrl_click_cmd = `jump_tabs_all_down`
+
+App.date_format_info = `To use text surround it between [ and ], like -> [Time]: HH:MM:ss`

@@ -2949,7 +2949,7 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       no_mirror: true,
-      info: `Show the current date or time as the Title. To use text surround it between [ and ], like: [Time]: HH:MM:ss`,
+      info: `Show the current date or time as the Title.`,
       version: 2,
     },
     main_title_date_format: {
@@ -2958,7 +2958,7 @@ App.build_settings = () => {
       value: `dddd dS mmmm yyyy`,
       placeholder: `Date Format`,
       separator: true,
-      info: `Format to use when showing the date as the Title`,
+      info: `Format to use when showing the date as the Title. ${App.date_format_info}`,
       version: 1,
     },
     main_title_auto_scroll: {
@@ -4378,7 +4378,7 @@ App.build_settings = () => {
       placeholder: `Format`,
       separator: true,
       btns: [`pick`],
-      info: `Clock format to use in the filter input. Leave empty to disable`,
+      info: `Clock format to use in the filter input. Leave empty to disable. ${App.date_format_info}`,
       setup: (key) => {
         DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
           App.pick_clock_format(e)
