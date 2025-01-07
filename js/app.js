@@ -559,6 +559,6 @@ App.setting_guides = [
 
     This means other people can share their configuration with you.
 
-    Or you can back up your settings and apply them to another computer.`,
+    Or you can back up your settings and apply them on another computer.`,
   },
 ]
