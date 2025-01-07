@@ -1255,17 +1255,17 @@ App.settings_actions = () => {
 
   items.push({
     icon: App.settings_icons.general,
-    text: `Guides`,
+    text: `Summary`,
     action: () => {
-      App.show_setting_guides()
+      App.settings_summary()
     },
   })
 
   items.push({
     icon: App.settings_icons.general,
-    text: `Summary`,
+    text: `Guides`,
     action: () => {
-      App.settings_summary()
+      App.show_setting_guides()
     },
   })
 
