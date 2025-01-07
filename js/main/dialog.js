@@ -42,7 +42,16 @@ App.show_dialog = (args = {}) => {
     }
   }
 
-  App.focus_dialog_button(args.buttons.length - 1)
+  let focused_button
+
+  if (args.focused_button !== undefined) {
+    focused_button = args.focused_button
+  }
+  else {
+    focused_button = args.buttons.length - 1
+  }
+
+  App.focus_dialog_button(focused_button)
   App.show_popup(`dialog`)
 }
 

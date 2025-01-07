@@ -2530,7 +2530,15 @@ App.show_setting_guides = (e) => {
   App.show_context({e, items, expand: true})
 }
 
-App.show_setting_guide = (i) => {
+App.show_setting_guide = (i, focused_button = 1) => {
+  if (i < 0) {
+    i = 0
+  }
+
+  if (i >= App.setting_guides.length) {
+    i = App.setting_guides.length - 1
+  }
+
   let guide = App.setting_guides[i]
 
   if (!guide) {
@@ -2539,24 +2547,21 @@ App.show_setting_guide = (i) => {
 
   let buttons = []
 
-  if (i > 0) {
-    buttons.push([
-      `Prev`, () => {
-        App.show_setting_guide(i - 1)
-      },
-    ])
-  }
+  buttons.push([
+    `Prev`, () => {
+      App.show_setting_guide(i - 1, 0)
+    },
+  ])
 
-  if (i < App.setting_guides.length - 1) {
-    buttons.push([
-      `Next`, () => {
-        App.show_setting_guide(i + 1)
-      },
-    ])
-  }
+  buttons.push([
+    `Next`, () => {
+      App.show_setting_guide(i + 1, 1)
+    },
+  ])
 
   App.show_dialog({
     message: App.indent(guide.text),
+    focused_button,
     buttons,
   })
 }
