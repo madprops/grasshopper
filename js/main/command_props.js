@@ -4067,6 +4067,36 @@ App.setup_commands = () => {
       info: `Decrease the background opacity`,
     },
     {
+      name: `Cycle Zoom`,
+      short_name: `Zoom`,
+      cmd: `cycle_background_zoom`,
+      icon: theme_icon,
+      action: (args) => {
+        App.cycle_background_zoom()
+      },
+      info: `Change background zoom in increments`,
+    },
+    {
+      name: `Increase Zoom`,
+      short_name: `Zoom +`,
+      cmd: `increase_background_zoom`,
+      icon: theme_icon,
+      action: (args) => {
+        App.cycle_background_zoom(`increase`)
+      },
+      info: `Increase the background zoom`,
+    },
+    {
+      name: `Decrease Zoom`,
+      short_name: `Zoom -`,
+      cmd: `decrease_background_zoom`,
+      icon: theme_icon,
+      action: (args) => {
+        App.cycle_background_zoom(`decrease`)
+      },
+      info: `Decrease the background zoom`,
+    },
+    {
       name: `Background`,
       cmd: `set_background_image`,
       media: `image`,

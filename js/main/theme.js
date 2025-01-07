@@ -547,6 +547,41 @@ App.cycle_background_opacity = (how = `cycle`) => {
   App.apply_theme()
 }
 
+App.cycle_background_zoom = (how = `cycle`) => {
+  let zoom = App.get_setting(`background_zoom`)
+
+  if (how === `cycle`) {
+    zoom += 0.1
+
+    if (zoom > 2.0) {
+      if ((App.now() - App.last_zoom_cycle_date) < App.SECOND) {
+        return
+      }
+
+      zoom = 1.0
+    }
+  }
+  else if (how === `increase`) {
+    zoom += 0.1
+
+    if (zoom > 2.0) {
+      zoom = 2.0
+    }
+  }
+  else if (how === `decrease`) {
+    zoom -= 0.1
+
+    if (zoom < 1.0) {
+      zoom = 1.0
+    }
+  }
+
+  App.set_setting({setting: `background_zoom`, value: zoom})
+  App.footer_message(`Zoom: ${zoom}%`)
+  App.last_zoom_cycle_date = App.now()
+  App.apply_theme()
+}
+
 App.reset_theme = () => {
   App.set_default_setting(`background_effect`)
   App.set_default_setting(`background_tiles`)

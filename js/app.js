@@ -91,6 +91,7 @@ App.password_length = 20
 App.mode_vars = {}
 App.locust_swarm_on = false
 App.last_opacity_cycle_date = 0
+App.last_zoom_cycle_date = 0
 App.settings_list_id = 1
 App.playing = false
 App.settings_done = false
