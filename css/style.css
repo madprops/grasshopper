@@ -1044,6 +1044,10 @@ a:hover
   white-space: pre;
 }
 
+.pre_wrap {
+  white-space: pre-wrap;
+}
+
 .textarea {
   background-color: var(--slight_shade);
   color: var(--text_color);

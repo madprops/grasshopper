@@ -658,3 +658,8 @@ App.clone_if_node = (el) => {
 App.boolstring = (s) => {
   return s && (s === `true`)
 }
+
+App.indent = (s, n) => {
+  let lines = s.split(`\n`).map(x => x.trim())
+  return lines.join(`\n`)
+}

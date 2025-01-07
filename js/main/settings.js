@@ -2517,15 +2517,47 @@ App.make_icon_settings = (args = {}) => {
 App.show_setting_guides = (e) => {
   let items = []
 
-  for (let guide of App.setting_guides) {
+  for (let [i, guide] of App.setting_guides.entries()) {
     items.push({
       icon: App.settings_icons.general,
       text: guide.title,
       action: () => {
-        App.alert(guide.text)
+        App.show_setting_guide(i)
       },
     })
   }
 
   App.show_context({e, items, expand: true})
+}
+
+App.show_setting_guide = (i) => {
+  let guide = App.setting_guides[i]
+
+  if (!guide) {
+    return
+  }
+
+  let buttons = []
+  console.log(i)
+
+  if (i > 0) {
+    buttons.push([
+      `Prev`, () => {
+        App.show_setting_guide(i - 1)
+      },
+    ])
+  }
+
+  if (i < App.setting_guides.length - 1) {
+    buttons.push([
+      `Next`, () => {
+        App.show_setting_guide(i + 1)
+      },
+    ])
+  }
+
+  App.show_dialog({
+    message: App.indent(guide.text),
+    buttons,
+  })
 }
