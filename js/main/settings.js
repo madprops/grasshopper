@@ -2538,7 +2538,6 @@ App.show_setting_guide = (i) => {
   }
 
   let buttons = []
-  console.log(i)
 
   if (i > 0) {
     buttons.push([
