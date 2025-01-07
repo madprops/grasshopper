@@ -552,6 +552,12 @@ App.setting_guides = [
     Or you can back up your settings and apply them on another computer.`,
   },
   {
+    title: `Type to filter lists`,
+    text: `On any list like command lists, you can type to filter the items.
+
+    This is very important since it's much faster than scrolling down the lists.`,
+  },
+  {
     title: `Don't load unloaded tabs on click`,
     text: `To avoid loading unloaded tabs when clicking on them:
 
