@@ -3,6 +3,7 @@ App.show_item_menu = async (args = {}) => {
     return
   }
 
+  App.item_menu_separable = false
   App.item_menu_args = args
   App.item_menu_active = App.get_active_items({mode: args.item.mode, item: args.item})
   App.item_menu_too_many = App.item_menu_active.length > App.max_command_check_items
@@ -241,9 +242,7 @@ App.extra_menu_items = (o_items) => {
     }
   }
   else if (mode === `flat`) {
-    if (o_items.length) {
-      App.sep(o_items)
-    }
+    App.item_menu_separate(items)
 
     for (let item of items) {
       o_items.push(item)
@@ -253,6 +252,7 @@ App.extra_menu_items = (o_items) => {
 
 App.item_menu_item = (items, cmd, obj) => {
   let command = App.get_command(cmd)
+  let added = false
 
   if (App.item_menu_too_many || (command && App.check_command(command, obj))) {
     obj.from = `item_menu`
@@ -266,6 +266,11 @@ App.item_menu_item = (items, cmd, obj) => {
     }
 
     items.push(App.cmd_item(obj))
+    added = true
+  }
+
+  if (added) {
+    App.item_menu_separable = true
   }
 }
 
@@ -286,5 +291,12 @@ App.item_menu_tags = (items, item) => {
   }
   else {
     App.item_menu_item(items, `add_tags`, {item})
+  }
+}
+
+App.item_menu_separate = (items) => {
+  if (App.item_menu_separable) {
+    App.sep(items)
+    App.item_menu_separable = false
   }
 }

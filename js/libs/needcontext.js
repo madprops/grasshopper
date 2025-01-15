@@ -1,4 +1,4 @@
-// NeedContext v9.6
+// NeedContext v9.7
 
 // Main object
 const NeedContext = {}
@@ -53,7 +53,7 @@ NeedContext.clear_filter = () => {
 // Filter from keyboard input
 NeedContext.do_filter = () => {
   let value = NeedContext.filter.value
-  let cleaned = NeedContext.remove_spaces(value).toLowerCase()
+  let cleaned = NeedContext.remove_spaces_2(value).toLowerCase()
   let colons = cleaned.includes(`:`)
   let selected = false
 
@@ -604,6 +604,11 @@ NeedContext.is_visible = (el) => {
 // Remove all spaces from text
 NeedContext.remove_spaces = (text) => {
   return text.replace(/[\s-]+/g, ``)
+}
+
+// Remove all spaces from text (without -)
+NeedContext.remove_spaces_2 = (text) => {
+  return text.replace(/\s+/g, ``)
 }
 
 // Prepare css and events
