@@ -517,7 +517,7 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
   }
 
   function do_items(items) {
-    if (items.length === 1 && items[0].direct) {
+    if ((items.length === 1) && items[0].direct) {
       NeedContext.action(items[0], e)
     }
     else {
