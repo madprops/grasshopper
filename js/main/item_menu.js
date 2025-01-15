@@ -3,7 +3,6 @@ App.show_item_menu = async (args = {}) => {
     return
   }
 
-  App.item_menu_separable = false
   App.item_menu_args = args
   App.item_menu_active = App.get_active_items({mode: args.item.mode, item: args.item})
   App.item_menu_too_many = App.item_menu_active.length > App.max_command_check_items
@@ -55,9 +54,7 @@ App.show_item_menu = async (args = {}) => {
 
     App.item_menu_item(zone_items, `insert_header`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `insert_subheader`, {item: args.item, short: false})
-
-    App.sep(zone_items)
-
+    App.item_menu_separate(zone_items)
     App.item_menu_item(zone_items, `add_split_top`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `add_split_bottom`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `add_split_both`, {item: args.item, short: false})
@@ -83,9 +80,7 @@ App.show_item_menu = async (args = {}) => {
 
     App.more_menu_items(more_obj)
     App.extra_menu_items(items)
-
-    App.sep(items)
-
+    App.item_menu_separate(items)
     App.item_menu_item(items, `close_tabs`, {item: args.item})
   }
   else {
@@ -140,9 +135,7 @@ App.common_menu_items = (args = {}) => {
 
   App.item_menu_item(copy_items, `copy_item_url`, {item: args.item, short: false})
   App.item_menu_item(copy_items, `copy_item_title`, {item: args.item, short: false})
-
-  App.sep(copy_items)
-
+  App.item_menu_separate(copy_items)
   App.item_menu_item(copy_items, `copy_tabs`, {item: args.item, short: false})
   App.item_menu_item(copy_items, `paste_tabs`, {item: args.item, short: false})
 
@@ -180,13 +173,10 @@ App.more_menu_items = (args = {}) => {
   App.item_menu_item(items, `edit_domain_rule`, {item: args.item, short: false})
 
   if (args.item.mode === `tabs`) {
-    if (items.length) {
-      App.sep(items)
-    }
-
+    App.item_menu_separate(items)
     App.item_menu_item(items, `move_tabs_to_top`, {item: args.item, short: false})
     App.item_menu_item(items, `move_tabs_to_bottom`, {item: args.item, short: false})
-    App.sep(items)
+    App.item_menu_separate(items)
     App.item_menu_item(items, `show_windows_menu`, {item: args.item, short: false})
   }
 
@@ -252,7 +242,6 @@ App.extra_menu_items = (o_items) => {
 
 App.item_menu_item = (items, cmd, obj) => {
   let command = App.get_command(cmd)
-  let added = false
 
   if (App.item_menu_too_many || (command && App.check_command(command, obj))) {
     obj.from = `item_menu`
@@ -266,11 +255,6 @@ App.item_menu_item = (items, cmd, obj) => {
     }
 
     items.push(App.cmd_item(obj))
-    added = true
-  }
-
-  if (added) {
-    App.item_menu_separable = true
   }
 }
 
@@ -295,8 +279,13 @@ App.item_menu_tags = (items, item) => {
 }
 
 App.item_menu_separate = (items) => {
-  if (App.item_menu_separable) {
-    App.sep(items)
-    App.item_menu_separable = false
+  if (!items.length) {
+    return
   }
+
+  if (items.slice(-1).separator) {
+    return
+  }
+
+  App.sep(items)
 }
