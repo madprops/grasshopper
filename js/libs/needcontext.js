@@ -1242,11 +1242,13 @@ NeedContext.create_debouncer = (func, delay) => {
   return obj
 }
 
+// Reset debouncers
 NeedContext.reset_debouncers = () => {
   NeedContext.autohide_debouncer.cancel()
   NeedContext.autoclick_debouncer.cancel()
 }
 
+// Check auto functions
 NeedContext.check_auto_funcs = (e) => {
   if (!NeedContext.open || !e.target) {
     return
@@ -1277,6 +1279,7 @@ NeedContext.check_auto_funcs = (e) => {
   }
 }
 
+// Check mouse range
 NeedContext.check_mouse_range = (e) => {
   if (NeedContext.autohide_enabled) {
     return
@@ -1348,12 +1351,14 @@ NeedContext.check_mouse_range = (e) => {
   }
 }
 
+// Start autohide
 NeedContext.start_autohide = (delay) => {
   NeedContext.autohide_debouncer = NeedContext.create_debouncer((e) => {
     NeedContext.hide(e)
   }, delay || NeedContext.autohide_delay)
 }
 
+// Start autoclick
 NeedContext.start_autoclick = (delay) => {
   NeedContext.autoclick_debouncer = NeedContext.create_debouncer((el, e) => {
     if (el.closest(`.needcontext-item`)) {
