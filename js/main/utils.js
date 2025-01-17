@@ -51,7 +51,7 @@ App.create_debouncer = (func, delay) => {
   return obj
 }
 
-App.remove_protocol = (url, www = false) => {
+App.remove_protocol = (url, www = true) => {
   url = url.replace(/^https?:\/\//, ``)
 
   if (www) {
@@ -126,7 +126,7 @@ App.format_url = (url) => {
 }
 
 App.get_path = (url) => {
-  return App.remove_slashes_end(App.remove_protocol(url, true))
+  return App.remove_slashes_end(App.remove_protocol(url))
 }
 
 App.capitalize = (s) => {
