@@ -51,8 +51,14 @@ App.create_debouncer = (func, delay) => {
   return obj
 }
 
-App.remove_protocol = (url) => {
-  return url.replace(/^https?:\/\//, ``)
+App.remove_protocol = (url, www = false) => {
+  url = url.replace(/^https?:\/\//, ``)
+
+  if (www) {
+    url = url.replace(/^www\./, ``)
+  }
+
+  return url
 }
 
 App.copy_to_clipboard = (text, what = ``) => {
@@ -120,7 +126,7 @@ App.format_url = (url) => {
 }
 
 App.get_path = (url) => {
-  return App.remove_slashes_end(App.remove_protocol(url))
+  return App.remove_slashes_end(App.remove_protocol(url, true))
 }
 
 App.capitalize = (s) => {
