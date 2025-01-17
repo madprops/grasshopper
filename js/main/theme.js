@@ -1164,6 +1164,13 @@ App.set_zone_vars = () => {
 
   let split_side = App.get_setting(`split_side`)
   App.main_add(`split_side_${split_side}`)
+
+  if (App.get_setting(`hide_splits_on_filter`)) {
+    App.main_add(`hide_splits_on_filter`)
+  }
+  else {
+    App.main_remove(`hide_splits_on_filter`)
+  }
 }
 
 App.set_hover_button_vars = () => {

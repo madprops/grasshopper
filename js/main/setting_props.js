@@ -3776,8 +3776,15 @@ App.build_settings = () => {
       name: `Hide Zones On Recent`,
       type: `checkbox`,
       value: true,
-      separator: true,
       info: `Don't show zones like headers or splits when on recent tabs sort`,
+      version: 1,
+    },
+    hide_splits_on_filter: {
+      name: `Hide Splits On Filter`,
+      type: `checkbox`,
+      value: false,
+      separator: true,
+      info: `Don't show splits top/bottom when on a filtered view`,
       version: 1,
     },
     split_color_enabled: {

@@ -66,7 +66,6 @@ App.do_filter = async (args = {}) => {
   App.def_args(def_args, args)
   App.debug(`Filter: ${args.mode}`)
   let value = App.get_filter(args.mode)
-  App.check_filtered(args.mode)
   App[`last_${args.mode}_filter`] = value
   value = App.remove_protocol(value)
   App.save_previous_filter(args.mode)
@@ -259,6 +258,7 @@ App.do_filter = async (args = {}) => {
     return App.filter_check(args)
   }
 
+  App.check_filtered(args.mode)
   let headers = filter_mode === `filter_header_tabs`
   let header_match = 0
   let max_header = App.get_setting(`header_filter_context`)
