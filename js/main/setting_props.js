@@ -4385,7 +4385,7 @@ App.build_settings = () => {
       placeholder: `Format`,
       separator: true,
       btns: [`pick`],
-      info: `Clock format to use in the filter input. Leave empty to disable. ${App.date_format_info}`,
+      info: `Clock time format to use in the filter input. Leave empty to disable. ${App.date_format_info}`,
       setup: (key) => {
         DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
           App.pick_clock_format(e)
@@ -5560,9 +5560,9 @@ App.build_settings = () => {
     },
   }
 
-  App.sort_catprops()
   App.check_settings_dups(App.setting_props)
   App.check_settings_dups(App.setting_catprops)
+  App.sort_catprops()
   App.check_setting_overrides()
 }
 
