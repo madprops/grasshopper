@@ -5560,9 +5560,28 @@ App.build_settings = () => {
     },
   }
 
+  App.sort_catprops()
   App.check_settings_dups(App.setting_props)
   App.check_settings_dups(App.setting_catprops)
   App.check_setting_overrides()
+}
+
+App.sort_catprops = () => {
+  let sorted_props = {}
+  let keys = Object.keys(App.setting_catprops)
+  let general = keys.splice(keys.indexOf(`general`), 1)[0]
+  let more = keys.splice(keys.indexOf(`more`), 1)[0]
+
+  keys.sort()
+
+  sorted_props[general] = App.setting_catprops[general]
+
+  keys.forEach(key => {
+    sorted_props[key] = App.setting_catprops[key]
+  })
+
+  sorted_props[more] = App.setting_catprops[more]
+  App.setting_catprops = sorted_props
 }
 
 App.check_settings_dups = (obj) => {
