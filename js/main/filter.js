@@ -958,6 +958,8 @@ App.do_filter_2 = (mode) => {
 
   for (let item of items) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
+    let tooltip = item.title
+
     text = App.clean_filter(text, true)
 
     if (!colons) {
@@ -971,6 +973,10 @@ App.do_filter_2 = (mode) => {
     }
     else {
       show = text.includes(value)
+    }
+
+    if (!show && tooltip) {
+      show = tooltip.includes(value)
     }
 
     if (show) {

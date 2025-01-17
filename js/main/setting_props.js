@@ -5576,9 +5576,9 @@ App.sort_catprops = () => {
 
   sorted_props[general] = App.setting_catprops[general]
 
-  keys.forEach(key => {
+  for (let key of keys) {
     sorted_props[key] = App.setting_catprops[key]
-  })
+  }
 
   sorted_props[more] = App.setting_catprops[more]
   App.setting_catprops = sorted_props
