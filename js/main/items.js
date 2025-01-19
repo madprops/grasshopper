@@ -1415,7 +1415,7 @@ App.set_item_tooltips = (item) => {
   if (App.get_setting(`simple_tooltips`)) {
     tips.push(title)
     tips.push(url)
-    item.element.title = tips.join(`\n`)
+    item.element.title = tips.join(`\n\n`)
   }
   else {
     tips.push(`Title: ${title}`)
