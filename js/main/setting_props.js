@@ -257,6 +257,23 @@ App.build_settings = () => {
         })
       },
     },
+    tooltips_mode: {
+      name: `Tooltips Mode`,
+      type: `menu`,
+      value: `full`,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Full`, value: `full`},
+          {text: `Simple 1`, value: `simple_1`},
+          {text: `Simple 2`, value: `simple_2`},
+          {text: `Simple 3`, value: `simple_3`},
+          {text: `Simple 4`, value: `simple_4`},
+          {text: `Simple 5`, value: `simple_5`},
+        ])
+      },
+      info: `How to present the tooltips of items`,
+      version: 1,
+    },
     prompt_mode: {
       name: `Prompt Mode`,
       type: `menu`,
@@ -5379,13 +5396,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Move focused items to the top on Recent tabs mode instantly`,
-      version: 1,
-    },
-    simple_tooltips: {
-      name: `Simple Tooltips`,
-      type: `checkbox`,
-      value: false,
-      info: `Show tooltips with less information`,
       version: 1,
     },
     debug_mode: {

@@ -1411,11 +1411,32 @@ App.set_item_tooltips = (item) => {
   let tips = []
   let title = item.tooltips_title || `No Title`
   let url = item.tooltips_url || `No URL`
+  let t_mode = App.get_setting(`tooltips_mode`)
 
-  if (App.get_setting(`simple_tooltips`)) {
+  if (t_mode === `simple_1`) {
+    tips.push(title)
+    tips.push(url)
+    item.element.title = tips.join(`\n`)
+  }
+  else if (t_mode === `simple_2`) {
     tips.push(title)
     tips.push(url)
     item.element.title = tips.join(`\n\n`)
+  }
+  else if (t_mode === `simple_3`) {
+    tips.push(title)
+    tips.push(`<${url}>`)
+    item.element.title = tips.join(`\n`)
+  }
+  else if (t_mode === `simple_4`) {
+    tips.push(title)
+    tips.push(`[${url}]`)
+    item.element.title = tips.join(`\n`)
+  }
+  else if (t_mode === `simple_5`) {
+    tips.push(title)
+    tips.push(`>>${url}`)
+    item.element.title = tips.join(`\n`)
   }
   else {
     tips.push(`Title: ${title}`)
