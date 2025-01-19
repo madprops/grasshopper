@@ -264,12 +264,12 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `Full`, value: `full`},
-          {text: `Simple 1`, value: `simple_1`},
-          {text: `Simple 2`, value: `simple_2`},
-          {text: `Simple 3`, value: `simple_3`},
-          {text: `Simple 4`, value: `simple_4`},
-          {text: `Simple 5`, value: `simple_5`},
-          {text: `Simple 6`, value: `simple_6`},
+          {text: `Simple`, value: `simple`},
+          {text: `Minimal`, value: `minimal`},
+          {text: `Space`, value: `space`},
+          {text: `Angle`, value: `angle`},
+          {text: `Brackets`, value: `brackets`},
+          {text: `Arrows`, value: `arrows`},
         ])
       },
       info: `How to present the tooltips of items`,

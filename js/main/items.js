@@ -1421,37 +1421,37 @@ App.tooltip_modes = {
     tips.push(App.mode_vars[args.item.mode].item_info)
     args.item.element.title = tips.join(`\n`)
   },
-  simple_1: (args) => {
+  simple: (args) => {
     let tips = []
     tips.push(`Title: ${args.title}`)
     tips.push(`URL: ${args.url}`)
     args.item.element.title = tips.join(`\n`)
   },
-  simple_2: (args) => {
+  minimal: (args) => {
     let tips = []
     tips.push(args.title)
     tips.push(args.url)
     args.item.element.title = tips.join(`\n`)
   },
-  simple_3: (args) => {
+  space: (args) => {
     let tips = []
     tips.push(args.title)
     tips.push(args.url)
     args.item.element.title = tips.join(`\n\n`)
   },
-  simple_4: (args) => {
+  angle: (args) => {
     let tips = []
     tips.push(args.title)
     tips.push(`<${args.url}>`)
     args.item.element.title = tips.join(`\n`)
   },
-  simple_5: (args) => {
+  brackets: (args) => {
     let tips = []
     tips.push(args.title)
     tips.push(`[${args.url}]`)
     args.item.element.title = tips.join(`\n`)
   },
-  simple_6: (args) => {
+  arrows: (args) => {
     let tips = []
     tips.push(args.title)
     tips.push(`>>${args.url}`)
