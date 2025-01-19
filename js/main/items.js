@@ -1399,6 +1399,66 @@ App.blink_item = (item) => {
   item.blink_interval = interval
 }
 
+App.tooltip_modes = {
+  full: (args) => {
+    let tips = []
+    tips.push(`Title: ${args.title}`)
+    tips.push(`URL: ${args.url}`)
+
+    if (args.item.last_visit) {
+      tips.push(`Last Visit: ${App.nice_date(args.item.last_visit)}`)
+    }
+
+    if (args.item.date_added) {
+      tips.push(`Date Added: ${App.nice_date(args.item.date_added)}`)
+    }
+
+    if (App.tagged(args.item)) {
+      let tags = App.tags(args.item)
+      tips.push(`Tags: ${tags.join(`, `)}`)
+    }
+
+    tips.push(App.mode_vars[args.item.mode].item_info)
+    args.item.element.title = tips.join(`\n`)
+  },
+  simple_1: (args) => {
+    let tips = []
+    tips.push(`Title: ${args.title}`)
+    tips.push(`URL: ${args.url}`)
+    args.item.element.title = tips.join(`\n`)
+  },
+  simple_2: (args) => {
+    let tips = []
+    tips.push(args.title)
+    tips.push(args.url)
+    args.item.element.title = tips.join(`\n`)
+  },
+  simple_3: (args) => {
+    let tips = []
+    tips.push(args.title)
+    tips.push(args.url)
+    args.item.element.title = tips.join(`\n\n`)
+  },
+  simple_4: (args) => {
+    let tips = []
+    tips.push(args.title)
+    tips.push(`<${args.url}>`)
+    args.item.element.title = tips.join(`\n`)
+  },
+  simple_5: (args) => {
+    let tips = []
+    tips.push(args.title)
+    tips.push(`[${args.url}]`)
+    args.item.element.title = tips.join(`\n`)
+  },
+  simple_6: (args) => {
+    let tips = []
+    tips.push(args.title)
+    tips.push(`>>${args.url}`)
+    args.item.element.title = tips.join(`\n`)
+  },
+}
+
 App.set_item_tooltips = (item) => {
   if (!App.tooltips()) {
     return
@@ -1408,56 +1468,10 @@ App.set_item_tooltips = (item) => {
     return
   }
 
-  let tips = []
   let title = item.tooltips_title || `No Title`
   let url = item.tooltips_url || `No URL`
   let t_mode = App.get_setting(`tooltips_mode`)
-
-  if (t_mode === `simple_1`) {
-    tips.push(title)
-    tips.push(url)
-    item.element.title = tips.join(`\n`)
-  }
-  else if (t_mode === `simple_2`) {
-    tips.push(title)
-    tips.push(url)
-    item.element.title = tips.join(`\n\n`)
-  }
-  else if (t_mode === `simple_3`) {
-    tips.push(title)
-    tips.push(`<${url}>`)
-    item.element.title = tips.join(`\n`)
-  }
-  else if (t_mode === `simple_4`) {
-    tips.push(title)
-    tips.push(`[${url}]`)
-    item.element.title = tips.join(`\n`)
-  }
-  else if (t_mode === `simple_5`) {
-    tips.push(title)
-    tips.push(`>>${url}`)
-    item.element.title = tips.join(`\n`)
-  }
-  else {
-    tips.push(`Title: ${title}`)
-    tips.push(`URL: ${url}`)
-
-    if (item.last_visit) {
-      tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)
-    }
-
-    if (item.date_added) {
-      tips.push(`Date Added: ${App.nice_date(item.date_added)}`)
-    }
-
-    if (App.tagged(item)) {
-      let tags = App.tags(item)
-      tips.push(`Tags: ${tags.join(`, `)}`)
-    }
-
-    tips.push(App.mode_vars[item.mode].item_info)
-    item.element.title = tips.join(`\n`)
-  }
+  App.tooltip_modes[t_mode]({item, title, url})
 
   if (App.get_setting(`icon_pick`)) {
     let icon_container = DOM.el(`.item_icon_container`, item.element)

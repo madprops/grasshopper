@@ -269,6 +269,7 @@ App.build_settings = () => {
           {text: `Simple 3`, value: `simple_3`},
           {text: `Simple 4`, value: `simple_4`},
           {text: `Simple 5`, value: `simple_5`},
+          {text: `Simple 6`, value: `simple_6`},
         ])
       },
       info: `How to present the tooltips of items`,
