@@ -8,7 +8,7 @@ Lots of ideas by [N3C2L](https://github.com/N3C2L)
 
 ---
 
-![](img/leaf.jpg)
+<img src="img/leaf.jpg" width="380">
 
 Grasshoppers are a group of insects belonging to the suborder Caelifera. They are among what is possibly the most ancient living group of chewing herbivorous insects, dating back to the early Triassic around 250 million years ago.
 
