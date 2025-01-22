@@ -257,6 +257,36 @@ App.build_settings = () => {
         })
       },
     },
+    command_palette_sort: {
+      name: `Command Palette Sort`,
+      type: `menu`,
+      value: `recent`,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: `Recent`, value: `recent`},
+          {text: `Alpha`, value: `alpha`},
+        ])
+      },
+      actions: [`commands`],
+      info: `How to sort the command palette`,
+      version: 1,
+    },
+    command_menu_sort: {
+      name: `Command Menu Sort`,
+      type: `menu`,
+      value: `none`,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `None`, value: `none`},
+          {text: `Recent`, value: `recent`},
+          {text: `Alpha`, value: `alpha`},
+        ])
+      },
+      actions: [`commands`],
+      info: `How to sort the command menus`,
+      version: 1,
+    },
     tooltips_mode: {
       name: `Tooltips Mode`,
       type: `menu`,
@@ -272,6 +302,7 @@ App.build_settings = () => {
           {text: `Arrows`, value: `arrows`},
         ])
       },
+      actions: [`commands`],
       info: `How to present the tooltips of items`,
       version: 1,
     },
@@ -5197,13 +5228,6 @@ App.build_settings = () => {
       value: true,
       actions: [`theme`],
       info: `Allow rounded corners in some parts of the interface`,
-      version: 1,
-    },
-    sort_commands: {
-      name: `Sort Commands`,
-      type: `checkbox`,
-      value: true,
-      info: `Sort commands in the Palette by recent use`,
       version: 1,
     },
     check_commands: {

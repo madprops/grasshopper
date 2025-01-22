@@ -12,28 +12,41 @@ App.update_command_history = (cmd) => {
 }
 
 App.sort_commands = () => {
-  App.sorted_commands = App.commands.slice(0)
+  function sort(what) {
+    let items = `command_${what}_items`
+    App[items] = App.commands.slice(0)
+    let setting = App.get_setting(`command_${what}_sort`)
 
-  if (!App.get_setting(`sort_commands`)) {
-    return
+    if (setting === `none`) {
+      // Do nothing
+    }
+    else if (setting === `recent`) {
+      App[items].sort((a, b) => {
+        let ia = App.command_history.indexOf(a.cmd)
+        let ib = App.command_history.indexOf(b.cmd)
+
+        if ((ia !== -1) && (ib !== -1)) {
+          return ia - ib
+        }
+
+        if (ia !== -1) {
+          return -1
+        }
+
+        if (ib !== -1) {
+          return 1
+        }
+      })
+    }
+    else if (setting === `alpha`) {
+      App[items].sort((a, b) => {
+        return a.name.localeCompare(b.name)
+      })
+    }
   }
 
-  App.sorted_commands.sort((a, b) => {
-    let ia = App.command_history.indexOf(a.cmd)
-    let ib = App.command_history.indexOf(b.cmd)
-
-    if ((ia !== -1) && (ib !== -1)) {
-      return ia - ib
-    }
-
-    if (ia !== -1) {
-      return -1
-    }
-
-    if (ib !== -1) {
-      return 1
-    }
-  })
+  sort(`palette`)
+  sort(`menu`)
 }
 
 App.get_command = (cmd) => {

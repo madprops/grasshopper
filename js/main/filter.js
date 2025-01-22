@@ -973,10 +973,10 @@ App.do_filter_2 = (mode) => {
     }
     else {
       show = text.includes(value)
-    }
 
-    if (!show && tooltip) {
-      show = tooltip.includes(value)
+      if (!show && tooltip) {
+        show = tooltip.includes(value)
+      }
     }
 
     if (show) {

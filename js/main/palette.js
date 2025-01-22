@@ -175,7 +175,7 @@ App.fill_palette = () => {
   container.innerHTML = ``
   let num = 0
 
-  for (let cmd of App.sorted_commands) {
+  for (let cmd of App.command_palette_items) {
     if (cmd.skip_palette) {
       continue
     }

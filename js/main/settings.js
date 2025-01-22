@@ -10,6 +10,7 @@ App.settings_do_actions = (actions) => {
     else if (action === `commands`) {
       App.setup_commands()
       App.build_setting_cmds()
+      App.fill_palette()
     }
     else if (action === `filters`) {
       App.start_filter_debouncers()
@@ -1096,7 +1097,7 @@ App.settings_commands = (include_none, include_sep) => {
 
   App.add_setting_headers(items, include_none, include_sep)
 
-  for (let cmd of App.commands) {
+  for (let cmd of App.command_menu_items) {
     if (cmd.skip_settings) {
       continue
     }
