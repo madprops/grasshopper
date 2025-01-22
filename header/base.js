@@ -154,7 +154,7 @@ App.set_color = (color) => {
 }
 
 App.toggle_fullscreen = () => {
-  if(document.fullscreenElement) {
+  if (document.fullscreenElement) {
     document.exitFullscreen()
   }
   else {
