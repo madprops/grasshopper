@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+files=$(git ls-files -- "*.js")
+files=$(echo $files | tr " " "\n" | grep -v "/libs/" | tr "\n" " ")
 
-npm run --silent fix eslint.config.mjs js/main/*.js
-npm run --silent fix eslint.config.mjs background/*.js
+if [ -n "$files" ]; then
+  npm run --silent fix $files
+fi
