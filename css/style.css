@@ -328,7 +328,6 @@ select {
   cursor: pointer;
   background-color: var(--alt_color_0);
   color: var(--text_color);
-  border-width: 0;
   text-align: center;
   padding-top: 0.18rem;
   padding-bottom: 0.18rem;
@@ -491,9 +490,6 @@ svg {
 
 .item_container .header_item {
   background-color: var(--slight_shade);
-}
-
-.item_container .header_item {
   margin-top: var(--header_margin);
   margin-bottom: var(--header_margin);
 }
@@ -576,6 +572,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 
 .item_icon_unit {
@@ -1069,7 +1066,7 @@ a:hover
   text-align: center;
   padding-left: var(--popup_padding);
   padding-right: var(--popup_padding);
-  word-break: break-word;
+  word-break: break-all;
 }
 
 #textarea_content {
@@ -1094,7 +1091,7 @@ a:hover
   padding: 0.1rem;
   user-select: text;
   cursor: text;
-  word-break: break-word;
+  word-break: break-all;
 }
 
 #textarea_simple.left {
@@ -1103,10 +1100,6 @@ a:hover
 
 #textarea_simple.center {
   text-align: center;
-}
-
-.pre_wrap {
-  white-space: pre-wrap;
 }
 
 .full_width {
@@ -1627,15 +1620,11 @@ a:hover
   padding-right: 0.35rem;
 }
 
-.favorites_gravity_top .favorites_empty_top,
-.favorites_gravity_top .favorites_empty_top
-{
+.favorites_gravity_top .favorites_empty_top {
   display: none;
 }
 
-.favorites_gravity_bottom .favorites_empty_bottom,
-.favorites_gravity_bottom .favorites_empty_bottom
-{
+.favorites_gravity_bottom .favorites_empty_bottom {
   display: none;
 }
 
@@ -1915,10 +1904,6 @@ a:hover
   position: relative;
 }
 
-.item_icon {
-  pointer-events: none;
-}
-
 #main_title {
   display: flex;
   flex-direction: row;
@@ -1962,14 +1947,6 @@ a:hover
 }
 
 /* Border Radius: Top-left, top-right, bottom-right, bottom-left */
-
-#main_title_left_button {
-  border-radius: 0 20% 20% 0;
-}
-
-#main_title_right_button {
-  border-radius: 20% 0 0 20%;
-}
 
 .fixed_main_title_left #main_title_left_button,
 .fixed_main_title_right #main_title_right_button
@@ -2018,12 +1995,14 @@ a:hover
 }
 
 #main_title_left_button {
+  border-radius: 0 20% 20% 0;
   width: var(--main_title_left_button_width);
   border-right-width: 1px;
   left: 0;
 }
 
 #main_title_right_button {
+  border-radius: 20% 0 0 20%;
   width: var(--main_title_right_button_width);
   border-left-width: 1px;
   right: 0;
