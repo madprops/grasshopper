@@ -1066,7 +1066,7 @@ a:hover
   text-align: center;
   padding-left: var(--popup_padding);
   padding-right: var(--popup_padding);
-  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 #textarea_content {
@@ -1091,7 +1091,7 @@ a:hover
   padding: 0.1rem;
   user-select: text;
   cursor: text;
-  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 #textarea_simple.left {
