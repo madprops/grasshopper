@@ -624,9 +624,11 @@ App.show_cmds_menu = (args = {}) => {
             cmd_obj.e = e
             cmd_obj.cmd = cmd.cmd
             App.run_command(cmd_obj)
+            App.update_command_history(cmd.cmd)
           }
         },
         icon: App.clone_if_node(cmd.icon),
+        cmd: cmd.cmd,
       }
 
       infos.push(cmd.info)
@@ -656,6 +658,41 @@ App.show_cmds_menu = (args = {}) => {
       item_obj.info = infos.join(`\n`)
       items.push(item_obj)
     }
+  }
+
+  items = App.sort_command_menu(items)
+  return items
+}
+
+App.sort_command_menu = (items) => {
+  let setting = App.get_setting(`command_menu_sort`)
+
+  if (setting !== `none`) {
+    items = items.filter(x => !x.separator)
+  }
+
+  if (setting === `recent`) {
+    items.sort((a, b) => {
+      let ia = App.command_history.indexOf(a.cmd)
+      let ib = App.command_history.indexOf(b.cmd)
+
+      if ((ia !== -1) && (ib !== -1)) {
+        return ia - ib
+      }
+
+      if (ia !== -1) {
+        return -1
+      }
+
+      if (ib !== -1) {
+        return 1
+      }
+    })
+  }
+  else if (setting === `alpha`) {
+    items.sort((a, b) => {
+      return a.text.localeCompare(b.text)
+    })
   }
 
   return items
