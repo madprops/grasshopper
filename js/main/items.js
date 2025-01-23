@@ -418,6 +418,7 @@ App.create_item_element = (item) => {
     App.check_tab_active(item)
     App.check_unloaded(item)
     App.check_hide_tabs(item)
+    App.check_obfuscated(item)
   }
 
   if (item.selected) {
