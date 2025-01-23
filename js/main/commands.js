@@ -676,6 +676,10 @@ App.sort_command_menu = (items) => {
 
   if (setting === `recent`) {
     items.sort((a, b) => {
+      if (!a.cmd || !b.cmd) {
+        return 0
+      }
+
       let ia = App.command_history.indexOf(a.cmd)
       let ib = App.command_history.indexOf(b.cmd)
 
