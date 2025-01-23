@@ -627,7 +627,12 @@ svg {
   animation: breathe 3s 60 linear;
 }
 
+.item_text_line {
+  overflow-wrap: anywhere;
+}
+
 .no_wrap .item_text_line {
+  overflow-wrap: unset;
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
