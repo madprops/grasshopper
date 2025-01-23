@@ -538,22 +538,42 @@ App.add_settings_switchers = (category) => {
 
   let prev = DOM.create(`div`, `button settings_arrow arrow_button arrow_prev`)
   prev.textContent = `<`
+  prev.title = `Previous Category`
   container.prepend(prev)
 
   DOM.ev(prev, `click`, () => {
     App.show_prev_settings()
   })
 
+  DOM.ev(prev, `auxclick`, (e) => {
+    if (e.button === 1) {
+      App.show_settings_category(`general`)
+    }
+  })
+
   let next = DOM.create(`div`, `button settings_arrow arrow_button arrow_next`)
   next.textContent = `>`
+  next.title = `Next Category`
   container.append(next)
 
   DOM.ev(next, `click`, () => {
     App.show_next_settings()
   })
 
+  DOM.ev(next, `auxclick`, (e) => {
+    if (e.button === 1) {
+      App.show_settings_category(`more`)
+    }
+  })
+
   DOM.ev(title, `click`, (e) => {
     App.show_settings_menu(e)
+  })
+
+  DOM.ev(title, `auxclick`, (e) => {
+    if (e.button === 1) {
+      App.show_settings_category(`general`)
+    }
   })
 
   DOM.ev(DOM.parent(title, [`.window_top`]), `wheel`, (e) => {
