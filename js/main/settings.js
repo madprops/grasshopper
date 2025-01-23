@@ -1340,6 +1340,7 @@ App.setup_settings_addlist = () => {
         a: `Term A`,
         b: `Term B`,
       },
+      sort_key: `a`,
       list_icon: (item) => {
         return App.settings_icons.filter
       },
@@ -1369,6 +1370,7 @@ App.setup_settings_addlist = () => {
       labels: {
         filter: `Filter`,
       },
+      sort_key: `filter`,
       list_icon: (item) => {
         return App.settings_icons.filter
       },
@@ -1433,6 +1435,7 @@ App.setup_settings_addlist = () => {
             ctrl: `Ctrl`,
             alt: `Alt`,
           },
+          sort_key: `cmd`,
           sources: {
             cmd: () => {
               return App.cmdlist_menu.slice(0)
@@ -1491,6 +1494,7 @@ App.setup_settings_addlist = () => {
           labels: {
             cmd: `Command`,
           },
+          sort_key: `cmd`,
           sources: {
             cmd: () => {
               return App.filter_cmds_menu.slice(0)
@@ -1532,6 +1536,7 @@ App.setup_settings_addlist = () => {
             icon: `Icon`,
             cmd: `Command`,
           },
+          sort_key: `cmd`,
           sources: {
             cmd: () => {
               return App.cmdlist_pure.slice(0)
@@ -1568,6 +1573,7 @@ App.setup_settings_addlist = () => {
           labels: {
             tag: `Tag`,
           },
+          sort_key: `tag`,
           list_icon: (item) => {
             return App.get_setting(`tags_icon`)
           },
@@ -1604,6 +1610,7 @@ App.setup_settings_addlist = () => {
         url: `URL`,
         icon: `Icon`,
       },
+      sort_key: `name`,
       list_icon: (item) => {
         return item.icon || App.settings_icons.browser
       },

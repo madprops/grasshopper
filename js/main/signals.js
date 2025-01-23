@@ -400,6 +400,7 @@ App.start_signals_addlist = () => {
         `import_settings`,
       ],
       pk: `name`,
+      sort_key: `name`,
       widgets: {
         name: `text`,
         url: `text`,

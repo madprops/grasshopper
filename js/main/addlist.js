@@ -294,6 +294,7 @@ Addlist.register = (args = {}) => {
     lowercase: false,
     automenu: false,
     editable: true,
+    sort_key: `name`,
     buttons: [],
     list_text: () => {
       return `Item`
@@ -1007,6 +1008,39 @@ Addlist.edit_all = (id) => {
   })
 }
 
+Addlist.sort = (id, force = false) => {
+  let data = Addlist.get_data(id)
+
+  if (!data) {
+    return
+  }
+
+  let oargs = Addlist.oargs(id)
+
+  App.show_confirm({
+    message: `Sort this list?`,
+    confirm_action: () => {
+      data.sort((a, b) => {
+        let v1 = a[oargs.sort_key]
+        let v2 = b[oargs.sort_key]
+
+        if (v1 < v2) {
+          return -1
+        }
+
+        if (v1 > v2) {
+          return 1
+        }
+
+        return 0
+      })
+
+      Addlist.after(id, data)
+    },
+    force,
+  })
+}
+
 Addlist.update_count = (id) => {
   let lines = Addlist.get_data(id)
 
@@ -1037,6 +1071,13 @@ Addlist.data_menu = (id) => {
     text: `Edit`,
     action: () => {
       Addlist.edit_all(id)
+    },
+  })
+
+  items.push({
+    text: `Sort`,
+    action: () => {
+      Addlist.sort(id)
     },
   })
 
