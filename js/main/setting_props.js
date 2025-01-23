@@ -1452,6 +1452,7 @@ App.build_settings = () => {
         {cmd: `filter_node_tabs`},
         {cmd: `duplicate_tabs`},
         {cmd: `unload_tabs`},
+        {cmd: `obfuscate_tabs`},
         {cmd: App.separator_string},
         {cmd: `settings_category_close`},
       ],
