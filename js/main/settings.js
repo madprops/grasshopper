@@ -76,18 +76,6 @@ App.settings_setup_checkboxes = (category) => {
       DOM.ev(el, `change`, () => {
         App.set_setting({setting: key, value: el.checked, action: true})
       })
-
-      DOM.ev(App.get_settings_label(key), `click`, (e) => {
-        App.settings_label_menu(e,
-          [
-            {
-              name: `Reset`, action: () => {
-                App.set_default_setting(key, true)
-                el.checked = App.get_setting(key)
-              },
-            },
-          ])
-      })
     }
   }
 }
@@ -100,12 +88,7 @@ App.settings_setup_texts = (category) => {
       continue
     }
 
-    if (![
-      `text`,
-      `text_smaller`,
-      `password`,
-      `textarea`,
-    ].includes(props.type)) {
+    if (!App.is_text_setting(props.type)) {
       continue
     }
 
@@ -128,73 +111,6 @@ App.settings_setup_texts = (category) => {
       el.value = value
       el.scrollTop = 0
       App.set_setting({setting: key, value, action: true})
-    })
-
-    let menu = [
-      {
-        name: `Reset`, action: () => {
-          let force = App.check_setting_default(key) || App.check_setting_empty(key)
-
-          if (props.type !== `textarea`) {
-            force = true
-          }
-
-          App.show_confirm({
-            message: `Reset setting?`,
-            confirm_action: () => {
-              App.set_default_setting(key, true)
-              el.value = App.get_setting(key)
-              App.scroll_to_top(el)
-            },
-            force,
-          })
-        },
-      },
-      {
-        name: `Copy`, action: () => {
-          if (el.value === ``) {
-            return
-          }
-
-          App.copy_to_clipboard(el.value)
-        },
-      },
-    ]
-
-    menu.push({
-      name: `Edit`, action: () => {
-        App.edit_text_setting(key)
-      },
-    })
-
-    if (!props.no_empty) {
-      menu.push({
-        name: `Clear`, action: () => {
-          if (el.value === ``) {
-            return
-          }
-
-          let force = false
-
-          if (props.type !== `textarea`) {
-            force = true
-          }
-
-          App.show_confirm({
-            message: `Clear setting?`,
-            confirm_action: () => {
-              el.value = ``
-              App.set_setting({setting: key, value: ``, action: true})
-              el.focus()
-            },
-            force,
-          })
-        },
-      })
-    }
-
-    DOM.ev(App.get_settings_label(key), `click`, (e) => {
-      App.settings_label_menu(e, menu)
     })
   }
 }
@@ -235,29 +151,6 @@ App.settings_setup_numbers = (category) => {
       el.value = value
       App.set_setting({setting: key, value, action: true})
     })
-
-    let menu = [
-      {
-        name: `Reset`, action: () => {
-          App.set_default_setting(key, true)
-          let value = App.get_setting(key)
-          el.value = value
-        },
-      },
-      {
-        name: `Copy`, action: () => {
-          if (el.value === ``) {
-            return
-          }
-
-          App.copy_to_clipboard(el.value)
-        },
-      },
-    ]
-
-    DOM.ev(App.get_settings_label(key), `click`, (e) => {
-      App.settings_label_menu(e, menu)
-    })
   }
 }
 
@@ -271,27 +164,6 @@ App.setting_setup_lists = (category) => {
       }
 
       Addlist.add_buttons(`settings_${key}`)
-
-      let menu = [
-        {
-          name: `Reset`, action: () => {
-            let force = App.check_setting_default(key) || App.check_setting_empty(key)
-
-            App.show_confirm({
-              message: `Reset setting?`,
-              confirm_action: () => {
-                App.set_default_setting(key, true)
-                Addlist.update_count(`settings_${key}`)
-              },
-              force,
-            })
-          },
-        },
-      ]
-
-      DOM.ev(App.get_settings_label(key), `click`, (e) => {
-        App.settings_label_menu(e, menu)
-      })
     }
   }
 }
@@ -352,19 +224,6 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
   if (!App[btn_id].first_set) {
     App.error(`Menubutton not set: ${setting}`)
   }
-
-  DOM.ev(App.get_settings_label(setting), `click`, (e) => {
-    App.settings_label_menu(e,
-      [
-        {
-          name: `Reset`, action: () => {
-            App.set_default_setting(setting, true)
-            App.set_settings_menu(setting, undefined, false)
-            action()
-          },
-        },
-      ])
-  })
 }
 
 App.add_settings_filter = (category) => {
@@ -726,18 +585,6 @@ App.start_color_picker = (setting, alpha = false) => {
     }
 
     App.set_setting({setting, value: rgb, action: true})
-  })
-
-  DOM.ev(App.get_settings_label(setting), `click`, (e) => {
-    App.settings_label_menu(e,
-      [
-        {
-          name: `Reset`, action: () => {
-            picker.setColor(App.get_default_setting(setting))
-            App.set_default_setting(setting, true)
-          },
-        },
-      ])
   })
 
   App[`settings_color_picker_${setting}`] = picker
@@ -1371,6 +1218,7 @@ App.fill_settings = (category) => {
       let label = DOM.create(`div`, `settings_label`)
       label.id = `settings_label_${key}`
       label.textContent = props.name
+      App.add_label_menu(label, key)
 
       if (props.hide_name) {
         DOM.hide(label)
@@ -1796,6 +1644,31 @@ App.edit_text_setting = (key) => {
   })
 }
 
+App.clear_text_setting = (key) => {
+  let props = App.setting_props[key]
+  let el = DOM.el(`#settings_${key}`)
+
+  if (el.value === ``) {
+    return
+  }
+
+  let force = false
+
+  if (props.type !== `textarea`) {
+    force = true
+  }
+
+  App.show_confirm({
+    message: `Clear setting?`,
+    confirm_action: () => {
+      el.value = ``
+      App.set_setting({setting: key, value: ``, action: true})
+      el.focus()
+    },
+    force,
+  })
+}
+
 App.is_default_setting = (setting) => {
   return (App.settings[setting].value === App.default_setting_string) ||
   (App.str(App.settings[setting].value) === App.str(App.get_default_setting(setting)))
@@ -1808,9 +1681,8 @@ App.check_setting_default = (setting) => {
 App.check_setting_empty = (setting) => {
   let props = App.setting_props[setting]
   let value = App.get_setting(setting)
-  let text_types = [`text`, `text_smaller`, `password`, `textarea`, `number`]
 
-  if (text_types.includes(props.type)) {
+  if (App.is_value_setting(props.type)) {
     return value === ``
   }
   else if (props.type === `list`) {
@@ -2019,13 +1891,7 @@ App.refresh_setting_widgets = (keys) => {
     else if (props.type === `list`) {
       Addlist.update_count(`settings_${key}`)
     }
-    else if ([
-      `text`,
-      `password`,
-      `textarea`,
-      `number`,
-      `text_smaller`,
-    ].includes(props.type)) {
+    else if (App.is_value_setting(props.type)) {
       el.value = value
     }
     else if (props.type === `checkbox`) {
@@ -2565,5 +2431,116 @@ App.show_setting_guide = (i, focused_button = 1) => {
     message: App.indent(guide.text),
     focused_button,
     buttons,
+  })
+}
+
+App.is_text_setting = (type) => {
+  return [`text`, `text_smaller`, `password`, `textarea`].includes(type)
+}
+
+App.is_value_setting = (type) => {
+  return App.is_text_setting(type) || (type === `number`)
+}
+
+App.reset_setting = (key) => {
+  let props = App.setting_props[key]
+  let el = DOM.el(`#settings_${key}`)
+
+  if (props.type === `checkbox`) {
+    App.set_default_setting(key, true)
+    el.checked = App.get_setting(key)
+  }
+  else if (App.is_text_setting(props.type)) {
+    let force = App.check_setting_default(key) || App.check_setting_empty(key)
+
+    if (props.type !== `textarea`) {
+      force = true
+    }
+
+    App.show_confirm({
+      message: `Reset setting?`,
+      confirm_action: () => {
+        App.set_default_setting(key, true)
+        el.value = App.get_setting(key)
+        App.scroll_to_top(el)
+      },
+      force,
+    })
+  }
+  else if (props.type === `list`) {
+    let force = App.check_setting_default(key) || App.check_setting_empty(key)
+
+    App.show_confirm({
+      message: `Reset setting?`,
+      confirm_action: () => {
+        App.set_default_setting(key, true)
+        Addlist.update_count(`settings_${key}`)
+      },
+      force,
+    })
+  }
+  else if (props.type === `menu`) {
+    App.set_default_setting(key, true)
+    App.set_settings_menu(key, undefined, false)
+  }
+  else if (props.type === `color`) {
+    let picker = App[`settings_color_picker_${key}`]
+    picker.setColor(App.get_default_setting(key))
+    App.set_default_setting(key, true)
+  }
+}
+
+App.copy_setting_value = (key) => {
+  let el = DOM.el(`#settings_${key}`)
+
+  if (el.value === ``) {
+    return
+  }
+
+  App.copy_to_clipboard(el.value)
+}
+
+App.add_label_menu = (label, key) => {
+  let props = App.setting_props[key]
+  let menu = []
+
+  menu.push({
+    name: `Reset`, action: () => {
+      App.reset_setting(key)
+    },
+  })
+
+  if (App.is_value_setting(props.type)) {
+    menu.push({
+      name: `Copy`, action: () => {
+        App.copy_setting_value(key)
+      },
+    })
+  }
+
+  if (App.is_text_setting(props.type)) {
+    menu.push({
+      name: `Edit`, action: () => {
+        App.edit_text_setting(key)
+      },
+    })
+
+    if (!props.no_empty) {
+      menu.push({
+        name: `Clear`, action: () => {
+          App.clear_text_setting(key)
+        },
+      })
+    }
+  }
+
+  DOM.ev(label, `click`, (e) => {
+    App.settings_label_menu(e, menu)
+  })
+
+  DOM.ev(label, `auxclick`, (e) => {
+    if (e.button === 1) {
+      App.reset_setting(key)
+    }
   })
 }
