@@ -87,6 +87,10 @@ App.run_command = async (args) => {
     }
 
     await command.action(args)
+
+    if (args.history) {
+      App.update_command_history(args.cmd)
+    }
   }
 
   return true
@@ -622,8 +626,8 @@ App.show_cmds_menu = (args = {}) => {
           if (cmd_ok) {
             cmd_obj.e = e
             cmd_obj.cmd = cmd.cmd
+            cmd_obj.history = true
             App.run_command(cmd_obj)
-            App.update_command_history(cmd.cmd)
           }
         },
         icon: App.clone_if_node(cmd.icon),

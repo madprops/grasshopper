@@ -1916,10 +1916,12 @@ App.show_favorite_filters = (mode, e) => {
         icon: command.icon,
         text: App.command_name(command, true),
         info: command.info,
+        cmd: command.cmd,
         action: (e) => {
           App.run_command({
             e,
             cmd: command.cmd,
+            history: true,
           })
         },
         middle_action: (e) => {
