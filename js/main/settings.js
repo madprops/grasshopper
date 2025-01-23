@@ -1218,7 +1218,7 @@ App.fill_settings = (category) => {
       let label = DOM.create(`div`, `settings_label`)
       label.id = `settings_label_${key}`
       label.textContent = props.name
-      App.add_label_menu(label, key)
+      App.add_setting_label_menu(label, key)
 
       if (props.hide_name) {
         DOM.hide(label)
@@ -2504,7 +2504,7 @@ App.copy_setting_value = (key) => {
   App.copy_to_clipboard(el.value)
 }
 
-App.add_label_menu = (label, key) => {
+App.add_setting_label_menu = (label, key) => {
   let props = App.setting_props[key]
   let menu = []
 
