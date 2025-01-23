@@ -1933,6 +1933,7 @@ App.show_favorite_filters = (mode, e) => {
     }
   }
 
+  items = App.sort_command_menu(items)
   let title_icon = App.settings_icons.filter
   App.show_context({items, e, title: `Favorites`, title_icon})
 }

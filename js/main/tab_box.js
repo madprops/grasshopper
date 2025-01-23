@@ -447,6 +447,7 @@ App.show_tab_box_menu = (e) => {
     })
   }
 
+  items = App.sort_command_menu(items)
   App.sep(items)
   let sizes = []
   let c_size = App.get_setting(`tab_box_size`)
