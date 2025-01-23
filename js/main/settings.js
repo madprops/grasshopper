@@ -2542,6 +2542,11 @@ App.add_setting_label_menu = (label, key) => {
     App.settings_label_menu(e, menu)
   })
 
+  DOM.ev(label, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.settings_label_menu(e, menu)
+  })
+
   DOM.ev(label, `auxclick`, (e) => {
     if (e.button === 1) {
       App.reset_setting(key)
