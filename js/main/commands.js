@@ -46,7 +46,6 @@ App.sort_commands = () => {
   }
 
   sort(`palette`)
-  sort(`menu`)
 }
 
 App.get_command = (cmd) => {

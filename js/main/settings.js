@@ -1097,7 +1097,7 @@ App.settings_commands = (include_none, include_sep) => {
 
   App.add_setting_headers(items, include_none, include_sep)
 
-  for (let cmd of App.command_menu_items) {
+  for (let cmd of App.commands) {
     if (cmd.skip_settings) {
       continue
     }
