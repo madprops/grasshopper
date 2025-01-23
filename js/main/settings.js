@@ -2467,6 +2467,10 @@ App.reset_setting = (key) => {
       force,
     })
   }
+  else if (props.type === `number`) {
+    App.set_default_setting(key, true)
+    el.value = App.get_setting(key)
+  }
   else if (props.type === `list`) {
     let force = App.check_setting_default(key) || App.check_setting_empty(key)
 
