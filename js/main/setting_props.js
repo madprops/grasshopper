@@ -3372,6 +3372,7 @@ App.build_settings = () => {
       title: `Playing Btn`,
       click: `jump_tabs_playing_down`,
       middle_click: `toggle_mute_tabs`,
+      click_press: `none`,
       middle_click_press: `lock_screen`,
       wheel_up: `jump_tabs_playing_down`,
       wheel_down: `jump_tabs_playing_up`,
