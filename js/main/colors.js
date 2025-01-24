@@ -655,7 +655,6 @@ App.start_colors_addlist = () => {
         text: `Text`,
         cmd: `Command`,
       },
-      sort_key: `name`,
       sources: {
         cmd: () => {
           return App.cmdlist_single.slice(0)

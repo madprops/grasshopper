@@ -638,7 +638,6 @@ App.start_bookmark_rules_addlist = () => {
         folder: `Folder`,
         mode: `Mode`,
       },
-      sort_key: `value`,
       list_icon: (item) => {
         return App.settings_icons.bookmarks
       },

@@ -832,7 +832,6 @@ App.start_keyboard_addlist = () => {
         shift: `Require Shift`,
         alt: `Require Alt`,
       },
-      sort_key: `cmd`,
       sources: {
         cmd: () => {
           return App.cmdlist_single.slice(0)

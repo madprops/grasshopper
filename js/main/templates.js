@@ -25,7 +25,6 @@ App.start_templates_addlist = () => {
         `split_bottom`,
       ],
       pk: `name`,
-      sort_key: `name`,
       widgets: {
         name: `text`,
         cmd_icon: `text`,

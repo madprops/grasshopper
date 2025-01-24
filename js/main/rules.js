@@ -145,7 +145,6 @@ App.start_domain_rules_addlist = () => {
         `obfuscated`,
       ],
       pk: `domain`,
-      sort_key: `domain`,
       widgets: {
         domain: `text`,
         color: `menu`,

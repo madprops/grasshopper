@@ -67,7 +67,6 @@ App.start_command_combos_addlist = () => {
       list_text: (item) => {
         return item.name
       },
-      sort_key: `name`,
       required: {
         name: true,
       },

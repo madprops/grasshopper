@@ -294,7 +294,6 @@ Addlist.register = (args = {}) => {
     lowercase: false,
     automenu: false,
     editable: true,
-    sort_key: `name`,
     buttons: [],
     list_text: () => {
       return `Item`
@@ -1020,19 +1019,14 @@ Addlist.sort = (id, force = false) => {
   App.show_confirm({
     message: `Sort this list?`,
     confirm_action: () => {
+      for (let line of data) {
+        line.sort_text = oargs.list_text(line).toLowerCase()
+      }
+
       data.sort((a, b) => {
-        let v1 = a[oargs.sort_key]
-        let v2 = b[oargs.sort_key]
-
-        if (v1 < v2) {
-          return -1
-        }
-
-        if (v1 > v2) {
-          return 1
-        }
-
-        return 0
+        let t1 = a.sort_text
+        let t2 = b.sort_text
+        return t1.localeCompare(t2)
       })
 
       Addlist.after(id, data)
