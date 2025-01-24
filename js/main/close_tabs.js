@@ -604,7 +604,7 @@ App.close_first_tab = () => {
 }
 
 App.close_last_tab = () => {
-  let last = App.get_items(`tabs`).slice(-1)[0]
+  let last = App.get_items(`tabs`).at(-1)
   App.close_tabs({item: last})
 }
 

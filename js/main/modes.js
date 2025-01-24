@@ -240,7 +240,7 @@ App.cycle_modes = async (reverse, reuse_filter = true) => {
 
   if (reverse) {
     if (index === 0) {
-      new_mode = modes.slice(-1)[0]
+      new_mode = modes.at(-1)
     }
     else {
       new_mode = modes[index - 1]

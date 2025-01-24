@@ -283,7 +283,7 @@ App.item_menu_separate = (items) => {
     return
   }
 
-  if (items.slice(-1)[0].separator) {
+  if (items.at(-1).separator) {
     return
   }
 
