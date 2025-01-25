@@ -1,3 +1,10 @@
+// ########################################################
+// Please don't ruin the code with terrible formatting
+// There's an eslint config that should clean up things
+// It should be ran periodically to find and fix flaws
+// But apart from that, all the code is structured manually
+// ########################################################
+
 const App = {}
 
 App.stor_settings_name = `settings_v200`
