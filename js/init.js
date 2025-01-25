@@ -1,11 +1,14 @@
 App.init = async () => {
   let win = await browser.windows.getCurrent({populate: false})
+
   App.window_id = win.id
   App.manifest = browser.runtime.getManifest()
   App.header_url = browser.runtime.getURL(`header/index.html`)
   App.extension_id = browser.runtime.id
+
   App.print_intro()
   App.build_settings()
+
   await App.stor_compat_check()
   await App.stor_get_settings()
   await App.stor_get_command_history()
@@ -17,6 +20,7 @@ App.init = async () => {
   await App.stor_get_bookmark_folder_picks()
   await App.stor_get_history_picks()
   await App.check_init_mode()
+
   App.make_tab_box_modes()
   App.setup_commands()
   App.setup_tabs()
@@ -45,7 +49,9 @@ App.init = async () => {
   App.build_shell()
   App.mouse_inside_check()
   App.resolve_icons()
+
   await App.clear_show()
+
   App.init_tab_box()
   App.make_window_visible()
   App.check_first_time()
@@ -53,6 +59,7 @@ App.init = async () => {
   App.start_main_title()
   App.check_init_commands()
   App.start_signal_intervals()
+
   App.start_date = App.now()
 }
 
