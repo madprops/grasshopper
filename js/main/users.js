@@ -13,7 +13,7 @@ App.user_settings = (who) => {
 
 App.user_madprops_settings = () => {
   let cmd, sett
-  App.set_theme(6)
+  App.set_theme(3)
 
   App.set_setting({setting: `sound_effects`, value: true})
   App.set_setting({setting: `click_item_tabs`, value: `soft_item_action`})
