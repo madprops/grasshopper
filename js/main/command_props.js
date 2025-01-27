@@ -2109,6 +2109,7 @@ App.setup_commands = () => {
       short_name: `Mute`,
       cmd: `mute_tabs`,
       icon: muted_icon,
+      some_unmuted: true,
       action: (args) => {
         App.mute_tabs(args.item)
       },
@@ -2119,6 +2120,7 @@ App.setup_commands = () => {
       short_name: `Unmute`,
       cmd: `unmute_tabs`,
       icon: muted_icon,
+      some_muted: true,
       action: (args) => {
         App.unmute_tabs(args.item)
       },
