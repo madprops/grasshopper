@@ -280,6 +280,10 @@ App.get_muted_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.muted)
 }
 
+App.get_unmuted_tabs = () => {
+  return App.get_items(`tabs`).filter(x => !x.muted)
+}
+
 App.get_loaded_tabs = () => {
   return App.get_items(`tabs`).filter(x => !x.unloaded)
 }
