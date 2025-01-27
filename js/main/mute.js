@@ -134,43 +134,19 @@ App.mute_playing_tabs = () => {
 }
 
 App.mute_all_tabs = () => {
-  let items = App.get_unmuted_tabs()
-
-  if (!items.length) {
-    return
-  }
-
-  let force = App.check_warn(`warn_on_mute_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm({
-    message: `Mute items? (${ids.length})`,
-    confirm_action: async () => {
-      for (let id of ids) {
-        App.mute_tab(id)
-      }
-    },
-    force,
+  App.change_all_tabs({
+    items: App.get_unmuted_tabs(),
+    warn: `warn_on_mute_tabs`,
+    message: `Mute items`,
+    action: App.mute_tab,
   })
 }
 
 App.unmute_all_tabs = () => {
-  let items = App.get_muted_tabs()
-
-  if (!items.length) {
-    return
-  }
-
-  let force = App.check_warn(`warn_on_unmute_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm({
-    message: `Unmute items? (${ids.length})`,
-    confirm_action: async () => {
-      for (let id of ids) {
-        App.unmute_tab(id)
-      }
-    },
-    force,
+  App.change_all_tabs({
+    items: App.get_muted_tabs(),
+    warn: `warn_on_unmute_tabs`,
+    message: `Unmute items`,
+    action: App.unmute_tab,
   })
 }

@@ -2001,16 +2001,26 @@ App.setup_commands = () => {
       info: `Hide or show pinned tabs`,
     },
     {
-      name: `Toggle Unloaded`,
-      short_name: `Unloaded`,
-      cmd: `toggle_show_unloaded`,
+      name: `Pin All`,
+      cmd: `pin_all_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: unloaded_icon,
+      icon: pin_icon,
       action: (args) => {
-        App.toggle_show_unloaded()
+        App.pin_all_tabs(args.item)
       },
-      info: `Hide or show unloaded tabs`,
+      info: `Pin all unpinned tabs`,
+    },
+    {
+      name: `Unpin All`,
+      cmd: `unpin_all_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: pin_icon,
+      action: (args) => {
+        App.unpin_all_tabs(args.item)
+      },
+      info: `Unpin all pinned tabs`,
     },
     {
       name: `New Pin`,
@@ -2021,6 +2031,18 @@ App.setup_commands = () => {
         App.new_pin_tab(args.item)
       },
       info: `Make a new tab and pin it automatically`,
+    },
+    {
+      name: `Toggle Unloaded`,
+      short_name: `Unloaded`,
+      cmd: `toggle_show_unloaded`,
+      modes: [`tabs`],
+      item: true,
+      icon: unloaded_icon,
+      action: (args) => {
+        App.toggle_show_unloaded()
+      },
+      info: `Hide or show unloaded tabs`,
     },
     {
       name: `New Normal`,
@@ -2159,7 +2181,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.mute_all_tabs(args.item)
       },
-      info: `Unmute all muted tabs`,
+      info: `Mute all unmuted tabs`,
     },
     {
       name: `Unmute All`,

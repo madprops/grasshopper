@@ -1423,3 +1423,31 @@ App.change_tab_url = (item) => {
     },
   })
 }
+
+App.change_all_tabs = (args = {}) => {
+  let def_args = {
+    on_action: true,
+    soft: false,
+    hard: false,
+    reload: false,
+  }
+
+  App.def_args(def_args, args)
+
+  if (!args.items.length) {
+    return
+  }
+
+  let force = App.check_warn(args.warn, args.items)
+  let ids = args.items.map(x => x.id)
+
+  App.show_confirm({
+    message: `${args.message}? (${ids.length})`,
+    confirm_action: async () => {
+      for (let id of ids) {
+        args.action(id)
+      }
+    },
+    force,
+  })
+}

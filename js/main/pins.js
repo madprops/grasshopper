@@ -214,3 +214,21 @@ App.show_all_pins = () => {
     }
   }
 }
+
+App.pin_all_tabs = () => {
+  App.change_all_tabs({
+    items: App.get_normal_tabs(),
+    warn: `warn_on_pin_tabs`,
+    message: `Pin items`,
+    action: App.pin_tab,
+  })
+}
+
+App.unpin_all_tabs = () => {
+  App.change_all_tabs({
+    items: App.get_pinned_tabs(),
+    warn: `warn_on_unpin_tabs`,
+    message: `Unpin items`,
+    action: App.unpin_tab,
+  })
+}
