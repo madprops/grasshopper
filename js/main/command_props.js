@@ -455,6 +455,7 @@ App.setup_commands = () => {
 
     custom_urls.push({
       name: `${item.name} (Pin)`,
+      short_name: item.name,
       cmd: `open_url_${id}_pin`,
       icon: item.icon || browser_icon,
       action: (args) => {
@@ -465,6 +466,7 @@ App.setup_commands = () => {
 
     custom_urls.push({
       name: `${item.name} (Normal)`,
+      short_name: item.name,
       cmd: `open_url_${id}_normal`,
       icon: item.icon || browser_icon,
       action: (args) => {
@@ -475,6 +477,7 @@ App.setup_commands = () => {
 
     custom_urls.push({
       name: `${item.name} (Replace)`,
+      short_name: item.name,
       cmd: `open_url_${id}_replace`,
       icon: item.icon || browser_icon,
       action: (args) => {
