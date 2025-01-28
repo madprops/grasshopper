@@ -21,7 +21,7 @@ App.show_browser_menu = (e) => {
   App.show_context({items, e})
 }
 
-App.open_custom_url = (item, num, from = `normal`) => {
+App.open_custom_url = (item, num, from = `normal`, mode = `auto`) => {
   let urls = App.get_setting(`custom_urls`)
 
   if (!urls.length) {
@@ -34,11 +34,25 @@ App.open_custom_url = (item, num, from = `normal`) => {
     return
   }
 
+  if (mode === `replace`) {
+    let item = App.get_selected(`tabs`)
+    App.change_url(item, url)
+    return
+  }
+
   let args = {
     url,
   }
 
   App.get_new_tab_args(item, from, args)
+
+  if (mode === `pin`) {
+    args.pinned = true
+  }
+  else if (mode === `normal`) {
+    args.pinned = false
+  }
+
   App.open_new_tab(args)
   App.after_focus({show_tabs: true})
 }

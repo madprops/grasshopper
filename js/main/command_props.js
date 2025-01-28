@@ -452,6 +452,36 @@ App.setup_commands = () => {
       },
       info: `Open Custom URL (${num})`,
     })
+
+    custom_urls.push({
+      name: `${item.name} (Pin)`,
+      cmd: `open_url_${id}_pin`,
+      icon: item.icon || browser_icon,
+      action: (args) => {
+        App.open_custom_url(args.item, num, args.from, `pin`)
+      },
+      info: `Open Custom URL (${num}) (Pin)`,
+    })
+
+    custom_urls.push({
+      name: `${item.name} (Normal)`,
+      cmd: `open_url_${id}_normal`,
+      icon: item.icon || browser_icon,
+      action: (args) => {
+        App.open_custom_url(args.item, num, args.from, `normal`)
+      },
+      info: `Open Custom URL (${num}) (Normal)`,
+    })
+
+    custom_urls.push({
+      name: `${item.name} (Replace)`,
+      cmd: `open_url_${id}_replace`,
+      icon: item.icon || browser_icon,
+      action: (args) => {
+        App.open_custom_url(args.item, num, args.from, `replace`)
+      },
+      info: `Open Custom URL (${num}) (Replace)`,
+    })
   }
 
   let signals = []
