@@ -67,7 +67,6 @@ App.do_filter = async (args = {}) => {
   App.debug(`Filter: ${args.mode}`)
   let value = App.get_filter(args.mode)
   App[`last_${args.mode}_filter`] = value
-  value = App.remove_protocol(value)
   App.save_previous_filter(args.mode)
 
   if (value.endsWith(`|`)) {
