@@ -6,6 +6,8 @@ Programmed by [madprops](https://github.com/madprops)
 
 Lots of ideas by [N3C2L](https://github.com/N3C2L)
 
+Good feedback by [user0022](https://github.com/user0022)
+
 ---
 
 <img src="img/leaf.jpg" width="380">
