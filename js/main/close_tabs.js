@@ -45,6 +45,8 @@ App.close_tabs = (args = {}) => {
   App.show_confirm({
     message: `Close ${args.title}? (${items.length})`,
     confirm_action: async () => {
+      App.close_tabs_date = App.now()
+
       if (smart_switch) {
         if (active) {
           let succ = App.get_tab_succ(items)

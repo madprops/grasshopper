@@ -54,8 +54,12 @@ App.select_item = (args = {}) => {
     App.scroll_to_item({item: args.item, scroll: args.scroll})
   }
 
-  // If the cursor is already outside then scroll
-  if (!App.mouse_inside) {
+  // If the cursor is already outside or
+  // if a tab hasn't been closed recently
+  // then run the function immidiately
+  let d = App.now() - App.close_tabs_date
+
+  if (!App.mouse_inside || (d > App.close_tabs_min)) {
     App.do_scroll_on_mouse_out()
   }
 

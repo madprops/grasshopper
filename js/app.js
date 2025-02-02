@@ -142,6 +142,8 @@ App.autoclick_delay = 450
 App.override_icons = []
 App.tabs_to_first = []
 App.icon_pick_date = 0
+App.close_tabs_date = 0
+App.close_tabs_min = 500
 
 App.settings_ready = false
 App.media_image_ready = false
