@@ -546,11 +546,13 @@ App.some = (value) => {
 }
 
 App.remove_undefined = (arr) => {
-  arr.map((v, i, o) => {
-    if (v === undefined) {
-      o.splice(i, 1)
-    }
-  })
+  if (!arr.some(x => x === undefined)) {
+    return
+  }
+
+  let filtered = arr.filter(x => x !== undefined)
+  arr.length = 0;
+  arr.push(...filtered)
 }
 
 App.trigger_title = (el, name) => {
