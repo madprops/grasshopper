@@ -198,6 +198,7 @@ App.setup_window = () => {
     App.auto_blur()
     App.check_tab_first()
     App.mouse_inside_check()
+    App.do_scroll_on_mouse_out()
   })
 }
 

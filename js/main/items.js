@@ -46,7 +46,14 @@ App.select_item = (args = {}) => {
   }
 
   App.toggle_selected({item: args.item, what: true})
-  App.scroll_to_item({item: args.item, scroll: args.scroll})
+  App.scroll_on_mouse_out = () => {
+    App.scroll_to_item({item: args.item, scroll: args.scroll})
+  }
+
+  if (!App.mouse_inside) {
+    App.do_scroll_on_mouse_out()
+  }
+
   App.last_selected_date[args.item.mode] = App.now()
   let tb_mode = App.get_tab_box_mode()
 
@@ -1531,4 +1538,11 @@ App.start_item_observer = (item) => {
       }
     }
   })
+}
+
+App.do_scroll_on_mouse_out = () => {
+  if (App.scroll_on_mouse_out) {
+    App.scroll_on_mouse_out()
+    App.scroll_on_mouse_out = undefined
+  }
 }
