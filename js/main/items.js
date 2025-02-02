@@ -46,10 +46,15 @@ App.select_item = (args = {}) => {
   }
 
   App.toggle_selected({item: args.item, what: true})
+
+  // To avoid scrolling when closing multiple tabs with the mouse
+  // only scroll the item when the mouse goes out of the window
+  // else it interrupts the closing process from the user
   App.scroll_on_mouse_out = () => {
     App.scroll_to_item({item: args.item, scroll: args.scroll})
   }
 
+  // If the cursor is already outside then scroll
   if (!App.mouse_inside) {
     App.do_scroll_on_mouse_out()
   }
