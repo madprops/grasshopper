@@ -551,7 +551,7 @@ App.remove_undefined = (arr) => {
   }
 
   let filtered = arr.filter(x => x !== undefined)
-  arr.length = 0;
+  arr.length = 0
   arr.push(...filtered)
 }
 
