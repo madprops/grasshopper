@@ -1217,6 +1217,26 @@ App.setup_commands = () => {
       info: `Show or hide the Tab Box`,
     },
     {
+      name: `Show Tab Box`,
+      short_name: `Tab Box`,
+      cmd: `show_tab_box`,
+      icon: tab_box_icon,
+      action: (args) => {
+        App.show_tab_box(true, true)
+      },
+      info: `Show the Tab Box`,
+    },
+    {
+      name: `Hide Tab Box`,
+      short_name: `Tab Box`,
+      cmd: `hide_tab_box`,
+      icon: tab_box_icon,
+      action: (args) => {
+        App.hide_tab_box(true)
+      },
+      info: `Hide the Tab Box`,
+    },
+    {
       name: `Tab Box Select`,
       short_name: `Select`,
       cmd: `tab_box_select`,
