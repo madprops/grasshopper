@@ -1208,7 +1208,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Tab Box`,
-      short_name: `Toggle`,
+      short_name: `Tab Box`,
       cmd: `toggle_tab_box`,
       icon: tab_box_icon,
       action: (args) => {
