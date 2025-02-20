@@ -1208,7 +1208,7 @@ App.setup_commands = () => {
     },
     {
       name: `Toggle Tab Box`,
-      short_name: `Tab Box`,
+      short_name: `Toggle`,
       cmd: `toggle_tab_box`,
       icon: tab_box_icon,
       action: (args) => {
@@ -1218,7 +1218,7 @@ App.setup_commands = () => {
     },
     {
       name: `Show Tab Box`,
-      short_name: `Tab Box`,
+      short_name: `Show`,
       cmd: `show_tab_box`,
       icon: tab_box_icon,
       action: (args) => {
@@ -1228,7 +1228,7 @@ App.setup_commands = () => {
     },
     {
       name: `Hide Tab Box`,
-      short_name: `Tab Box`,
+      short_name: `Hide`,
       cmd: `hide_tab_box`,
       icon: tab_box_icon,
       action: (args) => {
