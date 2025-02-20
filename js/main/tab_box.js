@@ -704,6 +704,16 @@ App.init_tab_box = () => {
 }
 
 App.show_tab_box = (refresh = true, set = false) => {
+  let item = App.get_selected(`tabs`)
+  let was_visible
+
+  if (item) {
+    was_visible = App.item_is_visible(item)
+  }
+  else {
+    was_visible = false
+  }
+
   App.main_add(`show_tab_box`)
 
   if (refresh) {
@@ -712,6 +722,15 @@ App.show_tab_box = (refresh = true, set = false) => {
 
   if (set) {
     App.set_show_tab_box(true)
+  }
+
+  if (was_visible) {
+    let is_visible = App.item_is_visible(item)
+
+    if (!is_visible) {
+      let scroll = `nearest_instant`
+      App.scroll_to_item({item, scroll})
+    }
   }
 }
 
