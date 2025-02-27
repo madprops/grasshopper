@@ -807,7 +807,7 @@ App.setup_commands = () => {
     {
       name: `Deselect All`,
       short_name: `Deselect`,
-      cmd: `dselect_all_items`,
+      cmd: `deselect_all_items`,
       modes: [`items`],
       icon: select_icon,
       action: (args) => {

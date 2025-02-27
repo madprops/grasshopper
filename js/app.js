@@ -138,12 +138,12 @@ App.flashlight_on = false
 App.command_combo_num = 10
 App.container_data = {}
 App.bkmarks = `Bkmarks`
-App.autoclick_delay = 450
 App.override_icons = []
 App.tabs_to_first = []
 App.icon_pick_date = 0
 App.close_tabs_date = 0
 App.close_tabs_min = 500
+App.scroll_done = false
 
 App.settings_ready = false
 App.media_image_ready = false
@@ -201,6 +201,7 @@ App.mouse_over_delay = 150
 App.mouse_out_delay = 150
 App.ensure_scroll_delay = 800
 App.icon_pick_delay = 100
+App.autoclick_delay = 450
 
 App.settings_icons = {
   all: `🔍`,

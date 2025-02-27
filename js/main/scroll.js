@@ -74,6 +74,7 @@ App.scroll_to_item = (args = {}) => {
 
 App.scroll = (mode, direction) => {
   App.stop_ensure_scroll()
+  App.scroll_done = true
   let container = DOM.el(`#${mode}_container`)
   let amount = App.get_setting(`scroll_amount`)
 

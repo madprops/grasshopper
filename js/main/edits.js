@@ -73,7 +73,10 @@ App.check_tab_session = async (items = [], force = false) => {
     App.tab_session_first = true
 
     if (App.active_mode === `tabs`) {
-      App.scroll_to_item({item: App.get_selected(`tabs`), force: true})
+      if (!App.scroll_done) {
+        App.scroll_to_item({item: App.get_selected(`tabs`), force: true})
+      }
+
       App.update_tab_box()
     }
   }
