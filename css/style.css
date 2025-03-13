@@ -2052,6 +2052,10 @@ a:hover
   left: 0;
 }
 
+#lock_screen_container {
+  padding-bottom: 2.6rem;
+}
+
 #lock_screen_image {
   width: 90%;
   height: auto;
