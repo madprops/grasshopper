@@ -31,6 +31,7 @@ App.make_tab_box_modes = () => {
     playing: {info: `Tabs emitting sound`, icon: App.get_setting(`playing_icon`)},
     loaded: {info: `Loaded tabs`, icon: App.get_setting(`loaded_icon`)},
     unloaded: {info: `Unloaded tabs`, icon: App.get_setting(`unloaded_icon`)},
+    unread: {info: `Unread tabs`, icon: App.get_setting(`unread_icon`)},
     colors: {info: `Tabs with colors`, icon: App.settings_icons.colors},
     tags: {info: `Tabs with tags`, icon: App.get_setting(`tags_icon`)},
     icons: {info: `Tabs with icons`, icon: App.bot_icon},
@@ -277,6 +278,11 @@ App.update_tab_box_loaded = () => {
 App.update_tab_box_unloaded = () => {
   let o_items = App.get_unloaded_tabs()
   return App.tab_box_show(`unloaded`, o_items)
+}
+
+App.update_tab_box_unread = () => {
+  let o_items = App.get_unread_tabs()
+  return App.tab_box_show(`unread`, o_items)
 }
 
 App.update_tab_box_colors = () => {
