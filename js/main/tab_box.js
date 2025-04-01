@@ -26,6 +26,7 @@ App.setup_tab_box = () => {
 
 App.make_tab_box_modes = () => {
   App.tab_box_modes = {
+    special: {info: `Mix of some relevant tabs`, icon: App.mode_icon(`tabs`)},
     recent: {info: `Recently visited tabs`, icon: App.mode_icon(`tabs`)},
     pins: {info: `Pinned tabs`, icon: App.get_setting(`pin_icon`)},
     playing: {info: `Tabs emitting sound`, icon: App.get_setting(`playing_icon`)},
@@ -268,6 +269,11 @@ App.update_tab_box_pins = () => {
 App.update_tab_box_playing = () => {
   let o_items = App.get_playing_tabs()
   return App.tab_box_show(`playing`, o_items)
+}
+
+App.update_tab_box_special = () => {
+  let o_items = App.get_special_tabs()
+  return App.tab_box_show(`special`, o_items)
 }
 
 App.update_tab_box_loaded = () => {

@@ -1451,3 +1451,12 @@ App.change_all_tabs = (args = {}) => {
     force,
   })
 }
+
+App.get_special_tabs = () => {
+  let pinned = App.get_pinned_tabs()
+  let recent = App.get_recent_tabs()
+  recent = recent.filter(x => !x.pinned && !x.unloaded).at(0)
+  let playing = App.get_playing_tabs()
+  let filtered = new Set([...playing, recent, ...pinned])
+  return [...filtered]
+}
