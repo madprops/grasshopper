@@ -1457,12 +1457,16 @@ App.get_special_tabs = () => {
   let pinned = App.get_pinned_tabs()
   let recent = App.get_recent_tabs()
 
-  recent = App.remove_boring_tabs(recent)
-  first_recent = recent.at(0)
-  pinned = pinned.filter(x => x !== first_recent)
-  pinned = App.remove_boring_tabs(pinned)
+  recent = App.remove_empty_tabs(recent)
+  recent = App.remove_unloaded_tabs(recent)
+  recent = recent.slice(0, 2)
+  recent = recent.filter(x => !pinned.includes(x))
 
-  let filtered = new Set([...playing, first_recent, ...pinned])
+  pinned = pinned.filter(x => !recent.includes(x))
+  pinned = App.remove_empty_tabs(pinned)
+  pinned = App.remove_unloaded_tabs(pinned)
+
+  let filtered = new Set([...playing, ...recent, ...pinned])
   return [...filtered]
 }
 
@@ -1470,7 +1474,6 @@ App.remove_empty_tabs = (tabs) => {
   return tabs.filter(x => !App.is_new_tab(x.url))
 }
 
-App.remove_boring_tabs = (tabs) => {
-  tabs = tabs.filter(x => !x.playing && !x.unloaded)
-  return tabs.filter(x => !App.is_new_tab(x.url))
+App.remove_unloaded_tabs = (tabs) => {
+  return tabs.filter(x => !x.unloaded)
 }
