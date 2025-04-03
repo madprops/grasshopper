@@ -19,6 +19,10 @@ App.setup_tab_box = () => {
     App.do_tab_box_shrink()
   }, App.tab_box_shrink_delay)
 
+  App.tab_box_follow_debouncer = App.create_debouncer(() => {
+    App.do_tab_box_follow()
+  }, App.tab_box_follow_delay)
+
   App.tab_box_scroll_info_debouncer = App.create_debouncer((mode) => {
     App.do_check_tab_box_scroll_info(mode)
   }, App.scroller_delay)
@@ -886,11 +890,24 @@ App.tab_box_update_active = () => {
       item.element.classList.add(`active_tab`)
 
       if (App.get_setting(`tab_box_follow`)) {
-        item.element.scrollIntoView({block: `nearest`})
+        App.tab_box_follow()
       }
     }
     else {
       item.element.classList.remove(`active_tab`)
+    }
+  }
+}
+
+App.tab_box_follow = () => {
+  App.tab_box_follow_debouncer.call()
+}
+
+App.do_tab_box_follow = () => {
+  for (let item of App.tab_box_items) {
+    if (item.active) {
+      item.element.scrollIntoView({block: `nearest`})
+      return
     }
   }
 }

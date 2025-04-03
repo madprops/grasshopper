@@ -2232,18 +2232,18 @@ App.build_settings = () => {
       info: `Set Folders mode when entering Bookmarks mode`,
       version: 1,
     },
+    tab_box_follow: {
+      name: `Tab Box Follow`,
+      type: `checkbox`,
+      value: true,
+      info: `When a tab gets activated scroll to it in the Tab Box`,
+      version: 1,
+    },
     tab_box_auto_playing: {
       name: `Tab Box Auto Playing`,
       type: `checkbox`,
       value: false,
       info: `Auto show the Tab Box when a tab is playing`,
-      version: 1,
-    },
-    tab_box_follow: {
-      name: `Tab Box Follow`,
-      type: `checkbox`,
-      value: false,
-      info: `When a tab gets activated scroll to it in the Tab Box`,
       version: 1,
     },
     tab_box_reverse: {
