@@ -1456,6 +1456,7 @@ App.get_special_tabs = () => {
   let playing = App.get_playing_tabs()
   let pinned = App.get_pinned_tabs()
   let recent = App.get_recent_tabs()
+  let normal = App.get_normal_tabs()
 
   recent = App.remove_empty_tabs(recent)
   recent = App.remove_unloaded_tabs(recent)
@@ -1466,7 +1467,11 @@ App.get_special_tabs = () => {
   pinned = App.remove_empty_tabs(pinned)
   pinned = App.remove_unloaded_tabs(pinned)
 
-  let filtered = new Set([...playing, ...recent, ...pinned])
+  normal = App.remove_empty_tabs(normal)
+  normal = App.remove_unloaded_tabs(normal)
+  normal = normal.slice(0, 20)
+
+  let filtered = new Set([...playing, ...recent, ...pinned, ...normal])
   return [...filtered]
 }
 
