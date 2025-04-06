@@ -448,14 +448,17 @@ App.show_tab_box_menu = (e) => {
   let c_mode = App.get_tab_box_mode()
 
   for (let tbmode in App.tab_box_modes) {
+    let highlight = false
+
     if (c_mode === tbmode) {
-      continue
+      highlight = true
     }
 
     items.push({
       text: App.capitalize(tbmode),
       icon: App.tab_box_modes[tbmode].icon,
       info: App.tab_box_modes[tbmode].info,
+      highlight,
       action: () => {
         App.change_tab_box_mode(tbmode)
         App.show_tab_box(true, true)

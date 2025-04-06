@@ -1,4 +1,4 @@
-// NeedContext v9.7
+// NeedContext v9.8
 
 // Main object
 const NeedContext = {}
@@ -268,6 +268,10 @@ NeedContext.show = (args = {}) => {
     }
     else {
       el.classList.add(`needcontext-normal`)
+
+      if (item.highlight) {
+        el.classList.add(`needcontext-highlight`)
+      }
 
       if (item.image) {
         let image = document.createElement(`img`)
@@ -701,6 +705,11 @@ NeedContext.init = () => {
       padding-top: ${NeedContext.item_sep};
       padding-bottom: ${NeedContext.item_sep};
       cursor: pointer;
+    }
+
+    .needcontext-highlight {
+      border: 2px solid currentColor !important;
+      border-radius: 10px;
     }
 
     .needcontext-picked .needcontext-text {
