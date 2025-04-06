@@ -224,8 +224,8 @@ App.tab_box_show = (mode, o_items) => {
   if (mode === App.get_tab_box_mode()) {
     if (!App.tab_box_special()) {
       if (o_items.length && (o_items.length === App.tab_box_o_items.length)) {
-        different = !o_items.every(item =>
-          App.tab_box_o_items.some(item_2 => item.id === item_2.id),
+        different = !o_items.every((item, index) =>
+          item.id === App.tab_box_o_items[index].id,
         )
       }
     }
