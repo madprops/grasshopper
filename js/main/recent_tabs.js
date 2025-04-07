@@ -89,6 +89,6 @@ App.go_to_previous_tab = (reverse = false) => {
   let prev = items[App.previous_tabs_index]
 
   if (prev) {
-    App.tabs_action({item: prev, from: `previous`})
+    App.tabs_action({item: prev, from: `previous`, scroll: `center_instant`})
   }
 }
