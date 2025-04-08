@@ -14,6 +14,7 @@ App.setup_tabs = () => {
 
       if (item) {
         App.check_tab_session([item])
+        App.update_tab_box()
       }
     }
   })
@@ -30,6 +31,10 @@ App.setup_tabs = () => {
 
       if (changed.audible !== undefined) {
         App.check_playing()
+      }
+
+      if (changed.url !== undefined) {
+        App.update_tab_box()
       }
     }
   })
@@ -259,6 +264,7 @@ App.refresh_tab = async (args = {}) => {
   else {
     item = App.insert_item(`tabs`, args.info)
     App.check_pinline()
+    App.update_tab_box()
   }
 
   if (args.select && !item.selected && item.visible) {
