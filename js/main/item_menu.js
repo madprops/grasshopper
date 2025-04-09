@@ -139,11 +139,17 @@ App.common_menu_items = (args = {}) => {
   App.item_menu_item(copy_items, `copy_tabs`, {item: args.item, short: false})
   App.item_menu_item(copy_items, `paste_tabs`, {item: args.item, short: false})
 
-  items.push({
-    icon: App.clipboard_icon,
-    text: `Copy`,
-    items: copy_items,
-  })
+  if (copy_items.length) {
+    if (copy_items.at(-1).separator) {
+      copy_items.pop()
+    }
+
+    items.push({
+      icon: App.clipboard_icon,
+      text: `Copy`,
+      items: copy_items,
+    })
+  }
 
   if (items.length) {
     for (let c of items) {
