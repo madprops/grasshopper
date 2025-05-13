@@ -25,6 +25,10 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `main_title`, value: `Loading...`})
   App.set_setting({setting: `main_title_date`, value: false})
 
+  // Filter
+
+  App.set_setting({setting: `clock_format`, value: ``})
+
   // Favorites
 
   sett = `favorites_menu`

@@ -1878,6 +1878,28 @@ App.setup_commands = () => {
       info: `Unload all tabs except the selected one`,
     },
     {
+      name: `Unload Normal`,
+      cmd: `unload_normal_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: unloaded_icon,
+      action: (args) => {
+        App.unload_normal_tabs(args.item)
+      },
+      info: `Unload all normal tabs`,
+    },
+    {
+      name: `Unload Pinned`,
+      cmd: `unload_pinned_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: unloaded_icon,
+      action: (args) => {
+        App.unload_pinned_tabs(args.item)
+      },
+      info: `Unload all pinned tabs`,
+    },
+    {
       name: `Load Tab`,
       short_name: `Load`,
       cmd: `load_tabs`,

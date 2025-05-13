@@ -1,4 +1,4 @@
-App.unload_tabs = (item, multiple = true) => {
+App.unload_tabs = (item, multiple = true, mode = `all`) => {
   let items = []
   let active = false
 
@@ -9,6 +9,17 @@ App.unload_tabs = (item, multiple = true) => {
 
     if (App.is_new_tab(it.url)) {
       continue
+    }
+
+    if (mode === `normal`) {
+      if (it.pinned) {
+        continue
+      }
+    }
+    else if (mode === `pinned`) {
+      if (!it.pinned) {
+        continue
+      }
     }
 
     if (it.active) {
@@ -31,7 +42,7 @@ App.unload_tabs = (item, multiple = true) => {
       if (active) {
         let succ = await App.get_tab_succ(items)
 
-        if (succ) {
+        if ((mode === `all`) && succ) {
           let method = `unload`
           await App.focus_tab({item: succ, scroll: `nearest_smooth`, method})
         }
@@ -44,6 +55,14 @@ App.unload_tabs = (item, multiple = true) => {
     },
     force,
   })
+}
+
+App.unload_normal_tabs = (item) => {
+  App.unload_tabs(item, true, `normal`)
+}
+
+App.unload_pinned_tabs = (item) => {
+  App.unload_tabs(item, true, `pinned`)
 }
 
 App.do_unload_tabs = async (ids) => {
