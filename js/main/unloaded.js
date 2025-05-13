@@ -2,7 +2,19 @@ App.unload_tabs = (item, multiple = true, mode = `all`) => {
   let items = []
   let active = false
 
-  for (let it of App.get_active_items({mode: `tabs`, item, multiple})) {
+  let used_items
+
+  if (mode === `all`) {
+    used_items = App.get_active_items({mode: `tabs`, item, multiple})
+  }
+  else if (mode === `normal`) {
+    used_items = App.get_normal_tabs()
+  }
+  else if (mode === `pinned`) {
+    used_items = App.get_pinned_tabs()
+  }
+
+  for (let it of used_items) {
     if (it.unloaded) {
       continue
     }
