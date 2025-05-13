@@ -274,6 +274,10 @@ App.refresh_tab = async (args = {}) => {
   return item
 }
 
+App.get_all_tabs = () => {
+  return App.get_items(`tabs`)
+}
+
 App.get_pinned_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.pinned)
 }
