@@ -15,7 +15,7 @@ App.user_madprops_settings = () => {
   let cmd, sett
   App.set_theme(3)
 
-  App.set_setting({setting: `sound_effects`, value: true})
+  App.set_setting({setting: `sound_effects`, value: false})
   App.set_setting({setting: `click_item_tabs`, value: `soft_item_action`})
   App.set_setting({setting: `show_settings_info`, value: false})
   App.set_setting({setting: `double_shift_command`, value: `filter_loaded_tabs`})
