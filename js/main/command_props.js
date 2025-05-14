@@ -1889,7 +1889,7 @@ App.setup_commands = () => {
       info: `Unload all normal tabs`,
     },
     {
-      name: `Unload Pinned`,
+      name: `Unload Pins`,
       cmd: `unload_pinned_tabs`,
       modes: [`tabs`],
       item: true,
