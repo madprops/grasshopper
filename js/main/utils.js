@@ -411,6 +411,15 @@ App.scroll_to_top = (el) => {
   el.scrollLeft = 0
 }
 
+App.scroll_to_left = (el) => {
+  el.scrollLeft = 0
+  let pos = el.selectionStart
+  let text = el.value
+  let new_pos = text.lastIndexOf(`\n`, pos - 1)
+  let start = new_pos === -1 ? 0 : new_pos + 1
+  el.setSelectionRange(start, start)
+}
+
 App.scroll_to_right = (el) => {
   el.scrollLeft = el.scrollWidth
 }

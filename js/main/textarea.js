@@ -4,6 +4,7 @@ App.show_textarea = (args = {}) => {
     buttons: [],
     align: `center`,
     readonly: true,
+    left: false,
     bottom: false,
     wrap: false,
     monospace: false,
@@ -112,6 +113,10 @@ App.show_textarea = (args = {}) => {
 
     if (args.bottom) {
       App.cursor_at_end(textarea)
+    }
+
+    if (args.left) {
+      App.scroll_to_left(textarea)
     }
   })
 }

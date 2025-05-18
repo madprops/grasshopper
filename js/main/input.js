@@ -2,6 +2,7 @@ App.show_input = (args = {}) => {
   let def_args = {
     value: ``,
     bottom: false,
+    left: false,
     wrap: false,
   }
 
@@ -57,6 +58,7 @@ App.show_input = (args = {}) => {
     on_enter,
     title: args.title,
     title_icon: args.title_icon,
+    left: args.left,
     bottom: args.bottom,
     wrap: args.wrap,
     text: args.value,

@@ -23,6 +23,7 @@ App.edit_notes = (item) => {
     },
     value: App.get_notes(item),
     autosave: true,
+    left: true,
     bottom: true,
     wrap: true,
     readonly: item.mode !== `tabs`,
@@ -72,6 +73,7 @@ App.edit_global_notes = () => {
     },
     value: App.notes,
     autosave: true,
+    left: true,
     bottom: true,
     wrap: true,
   })
