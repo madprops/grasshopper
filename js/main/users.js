@@ -13,7 +13,7 @@ App.user_settings = (who) => {
 
 App.user_madprops_settings = () => {
   let cmd, sett
-  App.set_theme(3)
+  App.set_theme(6)
 
   App.set_setting({setting: `sound_effects`, value: false})
   App.set_setting({setting: `click_item_tabs`, value: `soft_item_action`})
@@ -22,7 +22,9 @@ App.user_madprops_settings = () => {
 
   // Main Title
 
-  App.set_setting({setting: `main_title`, value: `Loading...`})
+  App.set_setting({setting: `main_title`, value: `Armentos iLadel`})
+  App.set_setting({setting: `main_title_background_color`, value: `rgba(93, 93, 188, 1)`})
+  App.set_setting({setting: `main_title_text_color`, value: `rgba(250, 250, 250, 1)`})
   App.set_setting({setting: `main_title_date`, value: false})
 
   // Filter
@@ -61,7 +63,7 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `set_random_dark_colors`, middle: `set_random_light_colors`, shift: `set_next_theme`, ctrl: `set_previous_theme`, alt: `settings_category_theme`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `pick_bookmarks_folder`}
+  cmd = {cmd: `bookmark_items`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `reopen_tab`}
