@@ -52,8 +52,12 @@ App.check_warn = (warn_setting, items) => {
         return false
       }
 
+      if (App.get_obfuscated(item) && App.get_setting(`warn_special_obfuscated`)) {
+        return false
+      }
+
       if (!item.header && App.get_setting(`warn_special_edited`)) {
-        if (App.edited(item, false)) {
+        if (App.edited(item, false, [`obfuscated`])) {
           return false
         }
       }

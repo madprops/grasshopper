@@ -3719,6 +3719,13 @@ App.build_settings = () => {
       info: `Treat unloaded tabs as special`,
       version: 1,
     },
+    warn_special_obfuscated: {
+      name: `Obfuscated Special`,
+      type: `checkbox`,
+      value: false,
+      info: `Treat obfuscated tabs as special`,
+      version: 1,
+    },
     warn_on_empty_tabs: {
       name: `Warn On Empty Tabs`,
       type: `checkbox`,

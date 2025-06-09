@@ -106,10 +106,14 @@ App.custom_save = async (id, what, value) => {
   }
 }
 
-App.edited = (item, include_ruled = true) => {
+App.edited = (item, include_ruled = true, ignore = []) => {
   let edited = false
 
   for (let key in App.edit_props) {
+    if (ignore.includes(key)) {
+      continue
+    }
+
     if (item[`custom_${key}`] !== undefined) {
       edited = true
       break
