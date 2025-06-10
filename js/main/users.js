@@ -170,6 +170,23 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: sett, value: []})
 
+  cmd = {name: `YouTube`, url: `https://youtube.com`, _id_: `youtube`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Instagram`, url: `https://instagram.com`, _id_: `instagram`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Hacker News`, url: `https://news.ycombinator.com/`, _id_: `hackernews`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Slashdot`, url: `https://slashdot.org/`, _id_: `slashdot`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `GitHub`, url: `https://github.com`, _id_: `github`}
+  App.append_list_setting(sett, cmd)
+
+  // ---------------------
+
   cmd = {name: `Mikaeli`, url: `https://www.youtube.com/watch?v=spdfnqS3bDg`}
   App.append_list_setting(sett, cmd)
 
@@ -189,23 +206,6 @@ App.user_madprops_settings = () => {
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Fresh`, url: `https://www.youtube.com/watch?v=lkIIOaxyR0k`}
-  App.append_list_setting(sett, cmd)
-
-  // ---------------------
-
-  cmd = {name: `YouTube`, url: `https://youtube.com`, _id_: `youtube`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {name: `Instagram`, url: `https://instagram.com`, _id_: `instagram`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {name: `Hacker News`, url: `https://news.ycombinator.com/`, _id_: `hackernews`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {name: `Slashdot`, url: `https://slashdot.org/`, _id_: `slashdot`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {name: `GitHub`, url: `https://github.com`, _id_: `github`}
   App.append_list_setting(sett, cmd)
 
   // Browser Commands
