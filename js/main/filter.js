@@ -893,7 +893,14 @@ App.create_filter = (mode) => {
     filter.placeholder = App.filter_placeholder
   }
 
-  DOM.ev(filter, `input`, () => {
+  DOM.ev(filter, `keydown`, (e) => {
+    if (App.popup_open()) {
+      e.preventDefault()
+      return false
+    }
+  })
+
+  DOM.ev(filter, `input`, (e) => {
     if (App.filter_has_value(mode)) {
       if (App.filter_enter_active(mode)) {
         return
