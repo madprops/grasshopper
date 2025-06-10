@@ -4599,6 +4599,7 @@ App.setup_commands = () => {
     {
       name: `!madprops`,
       cmd: `user_madprops_settings`,
+      icon: bot_icon,
       action: (args) => {
         App.user_settings(`madprops`)
       },

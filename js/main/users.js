@@ -29,10 +29,13 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `main_title_left_button_menu`, value: [
     {
-      "cmd": `restart_extension`,
+      "cmd": `toggle_sidebar`,
     },
     {
-      "cmd": `toggle_sidebar`,
+      "cmd": `user_madprops_settings`,
+    },
+    {
+      "cmd": `restart_extension`,
     },
   ]})
 
