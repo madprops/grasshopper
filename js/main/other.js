@@ -168,6 +168,28 @@ App.generate_password = () => {
     text: password,
     simple: true,
     monospace: true,
+    buttons: [
+      {
+        text: `Again`,
+        action: () => {
+          App.generate_password()
+        }
+      },
+      {
+        text: `Copy`,
+        action: () => {
+          App.copy_to_clipboard(password)
+          App.footer_message(`Password copied to clipboard`)
+          App.close_textarea()
+        }
+      },
+      {
+        text: `Close`,
+        action: () => {
+          App.close_textarea()
+        }
+      }
+    ]
   })
 }
 
