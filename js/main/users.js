@@ -170,6 +170,11 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: sett, value: []})
 
+  // ---------------------
+
+  cmd = {name: `GitHub`, url: `https://github.com`, _id_: `github`}
+  App.append_list_setting(sett, cmd)
+
   cmd = {name: `YouTube`, url: `https://youtube.com`, _id_: `youtube`}
   App.append_list_setting(sett, cmd)
 
@@ -180,9 +185,6 @@ App.user_madprops_settings = () => {
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Slashdot`, url: `https://slashdot.org/`, _id_: `slashdot`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {name: `GitHub`, url: `https://github.com`, _id_: `github`}
   App.append_list_setting(sett, cmd)
 
   // ---------------------
