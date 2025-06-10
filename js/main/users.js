@@ -27,6 +27,34 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `main_title_text_color`, value: `rgba(250, 250, 250, 1)`})
   App.set_setting({setting: `main_title_date`, value: false})
 
+  App.set_setting({setting: `main_title_left_button_menu`, value: [
+    {
+      "cmd": `restart_extension`,
+    },
+    {
+      "cmd": `toggle_sidebar`,
+    },
+  ]})
+
+  App.set_setting({setting: `main_title_right_button_menu`, value: [
+    {
+      "cmd": `open_url_youtube_replace`,
+      "middle": `open_url_youtube`,
+    },
+    {
+      "cmd": `open_url_instagram_replace`,
+      "middle": `open_url_instagram`,
+    },
+    {
+      "cmd": `open_url_hackernews_replace`,
+      "middle": `open_url_hackernews`,
+    },
+    {
+      "cmd": `open_url_slashdot_replace`,
+      "middle": `open_url_slashdot`,
+    },
+  ]})
+
   // Filter
 
   App.set_setting({setting: `clock_format`, value: ``})
@@ -161,6 +189,23 @@ App.user_madprops_settings = () => {
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Fresh`, url: `https://www.youtube.com/watch?v=lkIIOaxyR0k`}
+  App.append_list_setting(sett, cmd)
+
+  // ---------------------
+
+  cmd = {name: `YouTube`, url: `https://youtube.com`, _id_: `youtube`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Instagram`, url: `https://instagram.com`, _id_: `instagram`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Hacker News`, url: `https://news.ycombinator.com/`, _id_: `hackernews`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Slashdot`, url: `https://slashdot.org/`, _id_: `slashdot`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `GitHub`, url: `https://github.com`, _id_: `github`}
   App.append_list_setting(sett, cmd)
 
   // Browser Commands

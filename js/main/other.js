@@ -173,7 +173,7 @@ App.generate_password = () => {
         text: `Again`,
         action: () => {
           App.generate_password()
-        }
+        },
       },
       {
         text: `Copy`,
@@ -181,15 +181,15 @@ App.generate_password = () => {
           App.copy_to_clipboard(password)
           App.footer_message(`Password copied to clipboard`)
           App.close_textarea()
-        }
+        },
       },
       {
         text: `Close`,
         action: () => {
           App.close_textarea()
-        }
-      }
-    ]
+        },
+      },
+    ],
   })
 }
 
