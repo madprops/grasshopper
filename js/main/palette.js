@@ -39,7 +39,17 @@ App.show_palette = (prefilter = ``) => {
   let num = 0
 
   for (let el of els) {
-    if (el.dataset.name.startsWith(`!`)) {
+    let split = el.dataset.name.split(` `)
+    let cname
+
+    if (split.length < 2) {
+      cname = el.dataset.name
+    }
+    else {
+      cname = split.slice(1).join(` `)
+    }
+
+    if (cname.startsWith(`!`)) {
       DOM.hide(el)
     }
     else {
