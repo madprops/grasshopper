@@ -41,6 +41,10 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `main_title_right_button_menu`, value: [
     {
+      "cmd": `open_url_github_replace`,
+      "middle": `open_url_github`,
+    },
+    {
       "cmd": `open_url_youtube_replace`,
       "middle": `open_url_youtube`,
     },
