@@ -41,6 +41,7 @@ App.show_palette = (prefilter = ``) => {
 
   for (let el of els) {
     let split = el.dataset.name.split(` `)
+    let command = App.get_command(el.dataset.command)
     let cname
 
     if (split.length < 2) {
@@ -54,17 +55,16 @@ App.show_palette = (prefilter = ``) => {
       DOM.hide(el)
     }
     else {
+      let nel = DOM.el(`.cmd_name`, el)
+
+      if ((num_selected > 1) && command.name_multiple) {
+        nel.textContent = command.name_multiple
+      }
+      else {
+        nel.textContent = command.name
+      }
+
       DOM.show(el)
-    }
-
-    let command = App.get_command(el.dataset.command)
-    let nel = DOM.el(`.cmd_name`, el)
-
-    if ((num_selected > 1) && command.name_multiple) {
-      nel.textContent = command.name_multiple
-    }
-    else {
-      nel.textContent = command.name
     }
 
     if (too_many || App.check_command(command, {from: `palette`})) {
