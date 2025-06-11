@@ -13,11 +13,12 @@ App.start_clock = () => {
 
 App.check_clock = (force = false) => {
   let placeholder
-  let clock_format = App.get_setting(`clock_format`)
+  let enabled = App.get_setting(`clock_enabled`)
+  let format = App.get_setting(`clock_format`)
 
-  if (clock_format) {
+  if (enabled && format) {
     let date = App.now()
-    placeholder = dateFormat(date, clock_format)
+    placeholder = dateFormat(date, format)
   }
   else {
     placeholder = App.filter_placeholder

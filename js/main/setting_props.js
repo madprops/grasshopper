@@ -4440,7 +4440,6 @@ App.build_settings = () => {
       type: `text`,
       value: `h:MM tt Z`,
       placeholder: `Format`,
-      separator: true,
       btns: [`pick`],
       info: `Clock time format to use in the filter input. Leave empty to disable. ${App.date_format_info}`,
       setup: (key) => {
@@ -4448,6 +4447,14 @@ App.build_settings = () => {
           App.pick_clock_format(e)
         })
       },
+      version: 1,
+    },
+    clock_enabled: {
+      name: `Clock Enabled`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable the clock in the filter input`,
+      separator: true,
       version: 1,
     },
     max_search_items_history: {
