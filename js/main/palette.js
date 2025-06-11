@@ -36,6 +36,7 @@ App.show_palette = (prefilter = ``) => {
   let els = DOM.els(`.palette_item`, container)
   let active = App.get_active_items()
   let too_many = active.length > App.max_command_check_items
+  let num_selected = App.get_active_items().length
   let num = 0
 
   for (let el of els) {
@@ -57,6 +58,14 @@ App.show_palette = (prefilter = ``) => {
     }
 
     let command = App.get_command(el.dataset.command)
+    let nel = DOM.el(`.cmd_name`, el)
+
+    if ((num_selected > 1) && command.name_multiple) {
+      nel.textContent = command.name_multiple
+    }
+    else {
+      nel.textContent = command.name
+    }
 
     if (too_many || App.check_command(command, {from: `palette`})) {
       DOM.show(el, 2)
@@ -200,7 +209,7 @@ App.fill_palette = () => {
       el.append(icon)
     }
 
-    let name = DOM.create(`div`)
+    let name = DOM.create(`div`, `cmd_name`)
     name.append(cmd.name)
     el.append(name)
     el.title = `${cmd.info}\nKey: ${cmd.cmd}`

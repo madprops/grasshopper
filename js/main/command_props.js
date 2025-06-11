@@ -1855,6 +1855,7 @@ App.setup_commands = () => {
     },
     {
       name: `Unload Tab`,
+      name_multiple: `Unload Tabs`,
       short_name: `Unload`,
       cmd: `unload_tabs`,
       modes: [`tabs`],
@@ -1901,6 +1902,7 @@ App.setup_commands = () => {
     },
     {
       name: `Load Tab`,
+      name_multiple: `Load Tabs`,
       short_name: `Load`,
       cmd: `load_tabs`,
       modes: [`tabs`],
@@ -1914,6 +1916,7 @@ App.setup_commands = () => {
     },
     {
       name: `Duplicate Tab`,
+      name_multiple: `Duplicate Tabs`,
       short_name: `Duplicate`,
       cmd: `duplicate_tabs`,
       modes: [`tabs`],
@@ -1940,6 +1943,7 @@ App.setup_commands = () => {
     },
     {
       name: `Obfuscate Tab`,
+      name_multiple: `Obfuscate Tabs`,
       short_name: `Obfuscate`,
       cmd: `obfuscate_tabs`,
       modes: [`tabs`],
@@ -1954,6 +1958,7 @@ App.setup_commands = () => {
     },
     {
       name: `Deobfuscate Tab`,
+      name_multiple: `Deobfuscate Tabs`,
       short_name: `Deobfuscate`,
       cmd: `deobfuscate_tabs`,
       modes: [`tabs`],
@@ -2027,6 +2032,7 @@ App.setup_commands = () => {
     },
     {
       name: `Pin Tab`,
+      name_multiple: `Pin Tabs`,
       short_name: `Pin`,
       cmd: `pin_tabs`,
       modes: [`tabs`],
@@ -2040,6 +2046,7 @@ App.setup_commands = () => {
     },
     {
       name: `Unpin Tab`,
+      name_multiple: `Unpin Tabs`,
       short_name: `Unpin`,
       cmd: `unpin_tabs`,
       modes: [`tabs`],
@@ -2203,6 +2210,7 @@ App.setup_commands = () => {
     },
     {
       name: `Mute Tab`,
+      name_multiple: `Mute Tabs`,
       short_name: `Mute`,
       cmd: `mute_tabs`,
       icon: muted_icon,
@@ -2214,6 +2222,7 @@ App.setup_commands = () => {
     },
     {
       name: `Unmute Tab`,
+      name_multiple: `Unmute Tabs`,
       short_name: `Unmute`,
       cmd: `unmute_tabs`,
       icon: muted_icon,
@@ -2271,6 +2280,7 @@ App.setup_commands = () => {
     },
     {
       name: `Close Tab`,
+      name_multiple: `Close Tabs`,
       short_name: `Close`,
       cmd: `close_tabs`,
       modes: [`tabs`],
@@ -2283,6 +2293,7 @@ App.setup_commands = () => {
     },
     {
       name: `Close Tab (F)`,
+      name_multiple: `Close Tabs (F)`,
       short_name: `Close`,
       cmd: `close_tabs_force`,
       modes: [`tabs`],
