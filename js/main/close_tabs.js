@@ -4,6 +4,7 @@ App.close_tabs = (args = {}) => {
     multiple: true,
     title: `tabs`,
     force: false,
+    full_force: false,
     no_smart: false,
     clear: true,
   }
@@ -32,7 +33,10 @@ App.close_tabs = (args = {}) => {
     return
   }
 
-  if (!args.force) {
+  if (args.full_force) {
+    args.force = true
+  }
+  else if (!args.force) {
     args.force = App.check_warn(`warn_on_close_tabs`, items)
   }
 

@@ -41,7 +41,7 @@ App.user_madprops_settings = () => {
       "cmd": `toggle_sidebar`,
     },
     {
-      "cmd": `user_madprops_settings_2`,
+      "cmd": `user_madprops_settings_force`,
     },
     {
       "cmd": `restart_extension`,

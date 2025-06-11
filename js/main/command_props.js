@@ -2282,6 +2282,18 @@ App.setup_commands = () => {
       info: `Close tabs`,
     },
     {
+      name: `Close Tab (F)`,
+      short_name: `Close`,
+      cmd: `close_tabs_force`,
+      modes: [`tabs`],
+      item: true,
+      icon: close_icon,
+      action: (args) => {
+        App.close_tabs({item: args.item, full_force: true})
+      },
+      info: `Close tabs without confirmation`,
+    },
+    {
       name: `Close Page`,
       short_name: `Close`,
       cmd: `browser_close`,
@@ -4607,8 +4619,8 @@ App.setup_commands = () => {
       info: `Use the preferred settings for madprops`,
     },
     {
-      name: `!madprops (2)`,
-      cmd: `user_madprops_settings_2`,
+      name: `!madprops (F)`,
+      cmd: `user_madprops_settings_force`,
       icon: bot_icon,
       action: (args) => {
         App.user_settings(`madprops`, true)
