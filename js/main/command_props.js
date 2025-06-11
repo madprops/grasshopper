@@ -4606,6 +4606,16 @@ App.setup_commands = () => {
       skip_settings: true,
       info: `Use the preferred settings for madprops`,
     },
+    {
+      name: `!madprops (2)`,
+      cmd: `user_madprops_settings_2`,
+      icon: bot_icon,
+      action: (args) => {
+        App.user_settings(`madprops`, true)
+      },
+      skip_settings: true,
+      info: `Use the preferred settings for madprops without confirmation`,
+    },
   ]
 
   let infos = App.commands.map(command => command.info)

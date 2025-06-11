@@ -1,12 +1,21 @@
-App.user_settings = (who) => {
+App.user_settings = (who, force = false) => {
+  function action() {
+    App.def_all_settings()
+    App[`user_${who}_settings`]()
+    App.refresh_settings()
+    App.clear_show()
+    App.alert_autohide(`Welcome ${who}`)
+  }
+
+  if (force) {
+    action()
+    return
+  }
+
   App.show_confirm({
     message: `Apply settings?`,
     confirm_action: () => {
-      App.def_all_settings()
-      App[`user_${who}_settings`]()
-      App.refresh_settings()
-      App.clear_show()
-      App.alert_autohide(`Welcome ${who}`)
+      action()
     },
   })
 }
@@ -32,7 +41,7 @@ App.user_madprops_settings = () => {
       "cmd": `toggle_sidebar`,
     },
     {
-      "cmd": `user_madprops_settings`,
+      "cmd": `user_madprops_settings_2`,
     },
     {
       "cmd": `restart_extension`,
