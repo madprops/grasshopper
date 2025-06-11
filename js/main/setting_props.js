@@ -2769,7 +2769,7 @@ App.build_settings = () => {
     main_title: {
       name: `Title`,
       type: `text`,
-      value: ``,
+      value: `Grasshopper`,
       no_mirror: true,
       placeholder: `Text to show`,
       info: `The text to show in the Title`,
@@ -2997,7 +2997,7 @@ App.build_settings = () => {
     main_title_date: {
       name: `Title Date`,
       type: `checkbox`,
-      value: true,
+      value: false,
       no_mirror: true,
       info: `Show the current date or time as the Title.`,
       version: 2,
