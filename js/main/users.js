@@ -28,6 +28,7 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `click_item_tabs`, value: `soft_item_action`})
   App.set_setting({setting: `show_settings_info`, value: false})
   App.set_setting({setting: `double_shift_command`, value: `filter_loaded_tabs`})
+  App.set_setting({setting: `tab_count`, value: true})
 
   // Main Title
 
