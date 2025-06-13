@@ -311,7 +311,6 @@ App.remove_item = (item) => {
 
   if (mode === `tabs`) {
     App.update_tab_box()
-    App.update_tab_count(item)
   }
 }
 
