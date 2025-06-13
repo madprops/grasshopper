@@ -2403,6 +2403,7 @@ App.setup_commands = () => {
     {
       name: `Close Domain`,
       cmd: `close_domain_tabs`,
+      item: true,
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`domain`, args.item)
@@ -2411,7 +2412,9 @@ App.setup_commands = () => {
     },
     {
       name: `Close Domain (Other)`,
+      short_name: `Close Domain (O)`,
       cmd: `close_domain_other_tabs`,
+      item: true,
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`domain_other`, args.item)
