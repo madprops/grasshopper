@@ -336,6 +336,7 @@ App.effects = [
 App.background_effects = [
   {text: `None`, value: `none`},
   {text: App.separator_string},
+  {text: `Blur`, value: `blur`},
   {text: `Gray`, value: `grayscale`},
   {text: `Gray Blur`, value: `grayscale_blur`},
   {text: `Invert`, value: `invert`},
@@ -346,7 +347,6 @@ App.background_effects = [
   {text: `Rotate 2 Blur`, value: `rotate_2_blur`},
   {text: `Rotate 3`, value: `rotate_3`},
   {text: `Rotate 3 Blur`, value: `rotate_3_blur`},
-  {text: `Blur`, value: `blur`},
 ]
 
 App.color_modes = [
