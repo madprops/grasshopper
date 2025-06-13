@@ -1384,6 +1384,13 @@ App.build_settings = () => {
       It goes from 1 to 9`,
       version: 1,
     },
+    tab_count: {
+      name: `Tab Count`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the number of tabs from the same domain that are open`,
+      version: 1,
+    },
     auto_blur: {
       name: `Auto Blur`,
       type: `checkbox`,

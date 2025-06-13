@@ -311,6 +311,7 @@ App.remove_item = (item) => {
 
   if (mode === `tabs`) {
     App.update_tab_box()
+    App.update_tab_count(item)
   }
 }
 
@@ -385,6 +386,8 @@ App.create_item_element = (item) => {
   App.add_close_button(item, `left`)
   let trace = App.create_active_trace()
   item.element.append(trace)
+  let count = App.create_tab_count()
+  item.element.append(count)
 
   if (App.get_setting(`item_icon`) !== `none`) {
     let icon_container = DOM.create(`div`, `item_icon_container item_node`)
@@ -608,7 +611,12 @@ App.update_item = (args = {}) => {
     if (item.id === args.id) {
       App.process_info({mode: args.mode, info: args.info, o_item: item, url: args.url})
       App.check_filter(args.mode)
-      App.update_active_trace()
+
+      if (args.mode === `tabs`) {
+        App.update_active_trace()
+        App.update_tab_count(item)
+      }
+
       break
     }
   }

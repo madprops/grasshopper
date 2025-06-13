@@ -28,6 +28,7 @@ App.init = async () => {
   App.setup_settings()
   App.setup_tab_box()
   App.setup_active_trace()
+  App.setup_tab_count()
   App.setup_keyboard()
   App.setup_window()
   App.setup_gestures()

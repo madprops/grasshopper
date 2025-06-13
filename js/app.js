@@ -186,6 +186,7 @@ App.check_selected_delay = 100
 App.update_tab_box_delay = 100
 App.check_tab_box_playing_delay = 100
 App.update_active_trace_delay = 100
+App.update_tab_count_delay = 100
 App.check_playing_delay = 100
 App.context_auto_hide_delay = App.SECOND
 App.restore_delay = 600
