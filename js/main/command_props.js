@@ -2419,7 +2419,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_tabs_popup(`domain_other`, args.item)
       },
-      info: `Close all tabs from the same domain except the active ones`,
+      info: `Close all tabs from the same domain except the active one`,
     },
     {
       name: `Close Pins`,
