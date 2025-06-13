@@ -311,6 +311,7 @@ App.remove_item = (item) => {
 
   if (mode === `tabs`) {
     App.update_tab_box()
+    App.update_tab_count()
   }
 }
 
@@ -613,7 +614,7 @@ App.update_item = (args = {}) => {
 
       if (args.mode === `tabs`) {
         App.update_active_trace()
-        App.update_tab_count(item)
+        App.update_tab_count()
       }
 
       break

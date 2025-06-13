@@ -34,8 +34,13 @@ App.do_update_tab_count = () => {
       let count = DOM.el(`.tab_count`, item.element)
 
       if (count) {
-        DOM.show(count)
-        count.textContent = num
+        if (num > 1) {
+          count.textContent = num
+          DOM.show(count)
+        }
+        else {
+          DOM.hide(count)
+        }
       }
     }
   }

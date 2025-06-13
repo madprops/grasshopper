@@ -33,8 +33,8 @@ App.do_update_active_trace = () => {
     }
 
     let trace = DOM.el(`.item_trace`, item.element)
-    DOM.show(trace)
     trace.textContent = n
+    DOM.show(trace)
 
     if (n === 9) {
       break
