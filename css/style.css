@@ -1371,12 +1371,24 @@ a:hover
   filter: hue-rotate(90deg);
 }
 
+.rotate_1_blur {
+  filter: hue-rotate(90deg) blur(6px);
+}
+
 .rotate_2 {
   filter: hue-rotate(180deg);
 }
 
+.rotate_2_blur {
+  filter: hue-rotate(180deg) blur(6px);
+}
+
 .rotate_3 {
   filter: hue-rotate(270deg);
+}
+
+.rotate_3_blur {
+  filter: hue-rotate(270deg) blur(6px);
 }
 
 .flipped {

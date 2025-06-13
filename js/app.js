@@ -339,8 +339,11 @@ App.background_effects = [
   {text: `Gray`, value: `grayscale`},
   {text: `Invert`, value: `invert`},
   {text: `Rotate 1`, value: `rotate_1`},
+  {text: `Rotate 1 Blur`, value: `rotate_1_blur`},
   {text: `Rotate 2`, value: `rotate_2`},
+  {text: `Rotate 2 Blur`, value: `rotate_2_blur`},
   {text: `Rotate 3`, value: `rotate_3`},
+  {text: `Rotate 3 Blur`, value: `rotate_3_blur`},
   {text: `Blur`, value: `blur`},
 ]
 
