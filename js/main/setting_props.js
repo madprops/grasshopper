@@ -3334,6 +3334,7 @@ App.build_settings = () => {
       middle_click: `open_items`,
       click_press: `none`,
       middle_click_press: `none`,
+      ctrl_shift_click: `none`,
     }),
 
     ...App.make_mouse_settings({
@@ -3344,6 +3345,7 @@ App.build_settings = () => {
       middle_click: `open_items`,
       click_press: `none`,
       middle_click_press: `none`,
+      ctrl_shift_click: `none`,
     }),
 
     ...App.make_mouse_settings({
@@ -3354,6 +3356,7 @@ App.build_settings = () => {
       middle_click: `open_items`,
       click_press: `none`,
       middle_click_press: `none`,
+      ctrl_shift_click: `none`,
     }),
 
     ...App.make_mouse_settings({
