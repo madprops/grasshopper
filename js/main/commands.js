@@ -705,12 +705,33 @@ App.sort_command_menu = (items) => {
   return items
 }
 
-App.command_name = (command, force_short = false) => {
+App.command_name = (command, force_short = false, num_selected = 0) => {
+  let use_short = false
+  let multiple = num_selected > 1
+
   if (command.short_name && App.get_setting(`short_commands`)) {
-    return command.short_name
+    use_short = true
   }
   else if (command.short_name && force_short) {
-    return command.short_name
+    use_short = true
+  }
+
+  if (use_short) {
+    if (multiple) {
+      if (command.short_name_multiple) {
+        return command.short_name_multiple
+      }
+    }
+
+    if (command.short_name) {
+      return command.short_name
+    }
+  }
+
+  if (multiple) {
+    if (command.name_multiple) {
+      return command.name_multiple
+    }
   }
 
   return command.name

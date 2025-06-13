@@ -2292,9 +2292,10 @@ App.setup_commands = () => {
       info: `Close tabs`,
     },
     {
-      name: `Close Tab (F)`,
+      name: `Close Tab (Force)`,
+      short_name: `Close (F)`,
       name_multiple: `Close Tabs (F)`,
-      short_name: `Close`,
+      name_multiple_short: `Close (F)`,
       cmd: `close_tabs_force`,
       modes: [`tabs`],
       item: true,
@@ -4651,7 +4652,8 @@ App.setup_commands = () => {
       info: `Use the preferred settings for madprops`,
     },
     {
-      name: `!madprops (F)`,
+      name: `!madprops (Force)`,
+      short_name: `!madprops (F)`,
       cmd: `user_madprops_settings_force`,
       icon: bot_icon,
       action: (args) => {

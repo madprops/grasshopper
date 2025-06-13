@@ -37,6 +37,7 @@ App.show_palette = (prefilter = ``) => {
   let active = App.get_active_items()
   let too_many = active.length > App.max_command_check_items
   let num_selected = App.get_active_items().length
+  let use_short = App.get_setting(`short_commands`)
   let num = 0
 
   for (let el of els) {
@@ -57,13 +58,13 @@ App.show_palette = (prefilter = ``) => {
     else {
       let nel = DOM.el(`.cmd_name`, el)
 
-      if ((num_selected > 1) && command.name_multiple) {
-        nel.textContent = command.name_multiple
-      }
-      else {
-        nel.textContent = command.name
-      }
+      let name = App.command_name(
+        command,
+        use_short,
+        num_selected,
+      )
 
+      nel.textContent = name
       DOM.show(el)
     }
 
