@@ -15,8 +15,7 @@ App.do_update_tab_count = (item) => {
     return
   }
 
-  let hostname = App.get_hostname(item.url)
-  let items = App.get_domain_tabs(hostname)
+  let items = App.get_domain_tabs(item)
 
   if (!items.length) {
     return
