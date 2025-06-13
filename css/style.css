@@ -1363,8 +1363,16 @@ a:hover
   filter: grayscale(1);
 }
 
+.grayscale_blur {
+  filter: grayscale(1) blur(6px);
+}
+
 .invert {
   filter: invert(1);
+}
+
+.invert_blur {
+  filter: invert(1) blur(6px);
 }
 
 .rotate_1 {
