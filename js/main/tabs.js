@@ -1373,6 +1373,23 @@ App.get_domain_tabs = (item) => {
   return items.filter(x => x.hostname === item.hostname)
 }
 
+App.group_tabs_by_domain = () => {
+  let items = App.get_items(`tabs`)
+  let grouped = {}
+
+  for (let item of items) {
+    let hostname = item.hostname || `unknown`
+
+    if (!grouped[hostname]) {
+      grouped[hostname] = []
+    }
+
+    grouped[hostname].push(item)
+  }
+
+  return grouped
+}
+
 App.get_title_tabs = (item) => {
   let items = App.get_items(`tabs`)
   let title = App.title(item).toLowerCase()

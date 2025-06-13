@@ -1,32 +1,43 @@
 App.setup_tab_count = () => {
-  App.update_tab_count_debouncer = App.create_debouncer((item) => {
-    App.do_update_tab_count(item)
+  App.update_tab_count_debouncer = App.create_debouncer(() => {
+    App.do_update_tab_count()
   }, App.update_tab_count_delay)
 }
 
-App.update_tab_count = (item) => {
-  App.update_tab_count_debouncer.call(item)
+App.update_tab_count = () => {
+  App.update_tab_count_debouncer.call()
 }
 
-App.do_update_tab_count = (item) => {
+App.do_update_tab_count = () => {
   App.update_tab_count_debouncer.cancel()
 
   if (!App.get_setting(`tab_count`)) {
     return
   }
 
-  let items = App.get_domain_tabs(item)
+  let domains = App.group_tabs_by_domain()
 
-  if (!items.length) {
-    return
-  }
+  for (let domain in domains) {
+    let items = domains[domain]
 
-  let num = items.length
+    if (!items.length) {
+      return
+    }
 
-  for (let item of items) {
-    let count = DOM.el(`.tab_count`, item.element)
-    DOM.show(count)
-    count.textContent = num
+    let num = items.length
+
+    for (let item of items) {
+      if (!item.element) {
+        continue
+      }
+
+      let count = DOM.el(`.tab_count`, item.element)
+
+      if (count) {
+        DOM.show(count)
+        count.textContent = num
+      }
+    }
   }
 }
 
