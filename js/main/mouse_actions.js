@@ -156,6 +156,11 @@ App.mouse_click_action = (e, from = `click`) => {
     }
   }
 
+  if (e.ctrlKey && e.shiftKey) {
+    App.mouse_ctrl_shift_click_action(e)
+    return
+  }
+
   if (e.shiftKey) {
     App.select_range(item)
     return
@@ -403,6 +408,32 @@ App.mouse_double_click_action = (e) => {
   }
 
   App.run_command({cmd, item, from: `double_click`, e})
+}
+
+App.mouse_ctrl_shift_click_action = (e) => {
+  clearInterval(App.autoclick_timeout)
+
+  let target = e.target
+  let mode = App.active_mode
+
+  if (App.click_press_triggered) {
+    App.reset_triggers()
+    return
+  }
+
+  let [item, item_alt] = App.get_mouse_item(mode, target)
+
+  if (!item) {
+    return
+  }
+
+  let cmd = App.get_setting(`ctrl_shift_click_item_${item.mode}`)
+
+  if (!cmd) {
+    return
+  }
+
+  App.run_command({cmd, item, from: `ctrl_shift_click`, e})
 }
 
 App.mouse_context_action = (e) => {

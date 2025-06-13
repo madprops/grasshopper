@@ -2169,6 +2169,7 @@ App.make_mouse_settings = (args = {}) => {
     click: ``,
     double_click: ``,
     middle_click: ``,
+    ctrl_shift_click: ``,
     click_press: ``,
     middle_click_press: ``,
     wheel_up: ``,
@@ -2184,6 +2185,7 @@ App.make_mouse_settings = (args = {}) => {
     wheel_down_version: 1,
     wheel_up_shift_version: 1,
     wheel_down_shift_version: 1,
+    ctrl_shift_click_version: 1,
     separator: true,
     setup: (key) => {
       App.settings_cmdlist_single(key)
@@ -2222,6 +2224,17 @@ App.make_mouse_settings = (args = {}) => {
       value: args.middle_click,
       info: `Command to run when middle clicking the ${args.title}`,
       version: args.middle_click_version,
+      setup: args.setup,
+    }
+  }
+
+  if (args.ctrl_shift_click) {
+    obj[`ctrl_shift_click_${args.what}`] = {
+      name: `Ctrl Shift Click ${args.title}`,
+      type: `menu`,
+      value: args.ctrl_shift_click,
+      info: `Command to run when ctrl shift clicking the ${args.title}`,
+      version: args.ctrl_shift_click_version,
       setup: args.setup,
     }
   }
