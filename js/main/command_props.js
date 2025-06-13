@@ -2401,6 +2401,24 @@ App.setup_commands = () => {
       info: `Close other tabs`,
     },
     {
+      name: `Close Domain`,
+      cmd: `close_domain_tabs`,
+      icon: close_icon,
+      action: (args) => {
+        App.close_tabs_popup(`domain`, args.item)
+      },
+      info: `Close all tabs from the same domain`,
+    },
+    {
+      name: `Close Domain (Other)`,
+      cmd: `close_domain_other_tabs`,
+      icon: close_icon,
+      action: (args) => {
+        App.close_tabs_popup(`domain_other`, args.item)
+      },
+      info: `Close all tabs from the same domain except the active ones`,
+    },
+    {
       name: `Close Pins`,
       cmd: `close_pinned_tabs`,
       icon: close_icon,

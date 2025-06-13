@@ -20,7 +20,7 @@ App.stor_history_picks = `history_picks_v202`
 
 // Backwards compatibility check
 // This should only be used if the structure of the objects have not changed
-// Like when moving from one storage method to another
+// Like when moving from one storage methood to another
 // Empty array to disable compat check
 App.stor_compat_check_name = `compat_check_v1`
 App.stor_compat = []
@@ -38,7 +38,7 @@ App.BLUE = `rgba(0, 0, 255, 1)`
 
 App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
-App.close_tabs_types = [`normal`, `pinned`, `playing`, `unloaded`, `loaded`, `duplicate`, `visible`, `empty`, `other`, `all`]
+App.close_tabs_types = [`normal`, `pinned`, `playing`, `unloaded`, `loaded`, `duplicate`, `visible`, `empty`, `other`, `domain`, `domain_other`, `all`]
 App.no_favicons = [`history`, `bookmarks`]
 App.fonts = [`serif`, `sans-serif`, `monospace`, `Nova Square`]
 App.optional_modes = [`history`, `bookmarks`]

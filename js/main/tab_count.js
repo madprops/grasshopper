@@ -1,4 +1,3 @@
-// Setup tab count
 App.setup_tab_count = () => {
   App.update_tab_count_debouncer = App.create_debouncer((item) => {
     App.do_update_tab_count(item)
@@ -9,7 +8,6 @@ App.update_tab_count = (item) => {
   App.update_tab_count_debouncer.call(item)
 }
 
-// Show the number of tabs from the same domain
 App.do_update_tab_count = (item) => {
   App.update_tab_count_debouncer.cancel()
 
@@ -18,7 +16,7 @@ App.do_update_tab_count = (item) => {
   }
 
   let hostname = App.get_hostname(item.url)
-  let items = App.hostname_items(hostname)
+  let items = App.get_domain_tabs(hostname)
 
   if (!items.length) {
     return
@@ -31,19 +29,6 @@ App.do_update_tab_count = (item) => {
     DOM.show(count)
     count.textContent = num
   }
-}
-
-// Get the number of tabs for a given hostname
-App.hostname_items = (hostname) => {
-  let items = []
-
-  for (let item of App.get_items(`tabs`)) {
-    if (App.get_hostname(item.url) === hostname) {
-      items.push(item)
-    }
-  }
-
-  return items
 }
 
 App.create_tab_count = () => {

@@ -461,8 +461,57 @@ App.get_other_tabs_items = (pins, normal, unloaded) => {
   return items
 }
 
+App.get_domain_tabs_items = (pins, normal, unloaded) => {
+  let active = App.get_active_items({mode: `tabs`, item: App.close_tabs_item})
+
+  if (!active.length) {
+    return []
+  }
+
+  let items = App.get_domain_tabs(active[0])
+
+  if (!pins) {
+    items = items.filter(x => !x.pinned)
+  }
+
+  if (!normal) {
+    items = items.filter(x => x.pinned)
+  }
+
+  if (!unloaded) {
+    items = items.filter(x => !x.unloaded)
+  }
+
+  return items
+}
+
+App.get_domain_other_tabs_items = (pins, normal, unloaded) => {
+  let items = App.get_domain_tabs_items(pins, normal, unloaded)
+  return items.filter(x => x.id !== App.close_tabs_item.id)
+}
+
 App.close_other_tabs = (pins, normal, unloaded) => {
   let items = App.get_other_tabs_items(pins, normal, unloaded)
+
+  if (!items.length) {
+    return
+  }
+
+  App.close_tabs_method(items)
+}
+
+App.close_domain_tabs = (pins, normal, unloaded) => {
+  let items = App.get_domain_tabs_items(pins, normal, unloaded)
+
+  if (!items.length) {
+    return
+  }
+
+  App.close_tabs_method(items)
+}
+
+App.close_domain_other_tabs = (pins, normal, unloaded) => {
+  let items = App.get_domain_other_tabs_items(pins, normal, unloaded)
 
   if (!items.length) {
     return
