@@ -135,8 +135,9 @@ App.user_madprops_settings = () => {
   // Signals
 
   sett = `signals`
+  let minute = 60
 
-  cmd = {name: `Words`, url: `http://127.0.0.1:5000/words`, method: `POST`, icon: `🥁`, interval: 1800, update_title: true, startup: true, arguments: `{"num": 2}`, _id_: `sig_words`}
+  cmd = {name: `Words`, url: `http://127.0.0.1:5000/words`, method: `POST`, icon: `🥁`, interval: minute * 30, update_title: true, startup: true, arguments: `{"num": 2}`, _id_: `sig_words`}
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, update_title: true, _id_: `sig_np`}
