@@ -3324,7 +3324,7 @@ App.build_settings = () => {
       click_press: `none`,
       middle_click_press: `none`,
       ctrl_shift_click: `duplicate_tabs`,
-      ctrl_shift_middle_click: `none`,
+      ctrl_shift_middle_click: `unload_tabs`,
     }),
 
     ...App.make_mouse_settings({
