@@ -292,7 +292,12 @@ App.footer_middle_click = (e) => {
 }
 
 App.footer_up_click = (e) => {
-  if (e.shiftKey) {
+  if (e.ctrlKey && e.shiftKey) {
+    let cmd = App.footer_up_ctrl_shift_click_cmd
+    App.run_command({cmd, from: `footer`, e})
+    return
+  }
+  else if (e.shiftKey) {
     let cmd = App.footer_up_shift_click_cmd
     App.run_command({cmd, from: `footer`, e})
     return
@@ -308,7 +313,12 @@ App.footer_up_click = (e) => {
 }
 
 App.footer_down_click = (e) => {
-  if (e.shiftKey) {
+  if (e.ctrlKey && e.shiftKey) {
+    let cmd = App.footer_down_ctrl_shift_click_cmd
+    App.run_command({cmd, from: `footer`, e})
+    return
+  }
+  else if (e.shiftKey) {
     let cmd = App.footer_down_shift_click_cmd
     App.run_command({cmd, from: `footer`, e})
     return

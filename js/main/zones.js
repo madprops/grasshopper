@@ -447,12 +447,14 @@ App.move_to_zone_up = (item) => {
     return
   }
 
+  let direction = `up`
+
   for (let it of tabs) {
-    if (!App.move_zone_check(it, first_index, `up`)) {
+    if (!App.move_zone_check(it, first_index, direction)) {
       continue
     }
 
-    App.move_zone_move(items, it, `up`)
+    App.move_zone_move(items, it, direction)
     return
   }
 }
@@ -464,12 +466,14 @@ App.move_to_zone_down = (item) => {
     return
   }
 
+  let direction = `down`
+
   for (let it of tabs) {
-    if (!App.move_zone_check(it, first_index, `down`)) {
+    if (!App.move_zone_check(it, first_index, direction)) {
       continue
     }
 
-    App.move_zone_move(items, it, `down`)
+    App.move_zone_move(items, it, direction)
     return
   }
 }
