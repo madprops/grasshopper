@@ -628,6 +628,7 @@ App.get_item_index = (mode, item) => {
 
 App.get_item_element_index = (args = {}) => {
   let def_args = {
+    mode: App.active_mode,
     include_all: false,
   }
 

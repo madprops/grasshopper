@@ -402,3 +402,74 @@ App.zones_locked = (mode) => {
 App.zones_unlocked = (mode) => {
   return !App.zones_locked(mode)
 }
+
+App.move_zone_prepare = (item) => {
+  let items = App.get_active_items({item})
+  let first_index = App.get_item_element_index({element: items[0].element})
+  let tabs = App.get_items(`tabs`)
+  return [items, tabs, first_index]
+}
+
+App.move_zone_check = (item, first_index, direction) => {
+  let is_header = App.is_header(item) || App.is_subheader(item)
+
+  if (!is_header) {
+    return false
+  }
+
+  let header_index = App.get_item_element_index({element: item.element})
+
+  if (direction === `up`) {
+    if ((header_index + 1) >= first_index) {
+      return false
+    }
+  }
+  else if (direction === `down`) {
+    if ((header_index + 1) <= first_index) {
+      return false
+    }
+  }
+
+  return true
+}
+
+App.move_zone_move = (items, header, direction) => {
+  let els = items.map(x => x.element)
+  header.element.after(...els)
+  App.update_tabs_index(items, direction)
+}
+
+App.move_to_zone_up = (item) => {
+  let [items, tabs, first_index] = App.move_zone_prepare(item)
+  tabs = tabs.slice().reverse()
+
+  if (!items.length) {
+    return
+  }
+
+  for (let it of tabs) {
+    if (!App.move_zone_check(it, first_index, `up`)) {
+      continue
+    }
+
+    App.move_zone_move(items, it, `up`)
+    return
+  }
+}
+
+App.move_to_zone_down = (item) => {
+  let [items, tabs, first_index] = App.move_zone_prepare(item)
+
+  if (!items.length) {
+    return
+  }
+
+  for (let it of tabs) {
+    if (!App.move_zone_check(it, first_index, `down`)) {
+      continue
+    }
+
+    App.move_zone_move(items, it, `down`)
+    return
+  }
+}

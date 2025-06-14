@@ -904,6 +904,30 @@ App.setup_commands = () => {
       info: `Select the item below ignoring unloaded`,
     },
     {
+      name: `Move To Zone Up`,
+      short_name: `Zone Up`,
+      cmd: `move_to_zone_up`,
+      modes: [`tabs`],
+      item: true,
+      icon: up_icon,
+      action: (args) => {
+        App.move_to_zone_up(args.item)
+      },
+      info: `Move item to the zone above`,
+    },
+    {
+      name: `Move To Zone Down`,
+      short_name: `Zone Down`,
+      cmd: `move_to_zone_down`,
+      modes: [`tabs`],
+      item: true,
+      icon: down_icon,
+      action: (args) => {
+        App.move_to_zone_down()
+      },
+      info: `Move item to the zone below`,
+    },
+    {
       name: `First Pin`,
       cmd: `go_to_first_pinned_tab`,
       icon: pin_icon,
