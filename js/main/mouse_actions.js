@@ -436,6 +436,32 @@ App.mouse_ctrl_shift_click_action = (e) => {
   App.run_command({cmd, item, from: `ctrl_shift_click`, e})
 }
 
+App.mouse_ctrl_shift_middle_click_action = (e) => {
+  clearInterval(App.autoclick_timeout)
+
+  let target = e.target
+  let mode = App.active_mode
+
+  if (App.click_press_triggered) {
+    App.reset_triggers()
+    return
+  }
+
+  let [item, item_alt] = App.get_mouse_item(mode, target)
+
+  if (!item) {
+    return
+  }
+
+  let cmd = App.get_setting(`ctrl_shift_middle_click_item_${item.mode}`)
+
+  if (!cmd) {
+    return
+  }
+
+  App.run_command({cmd, item, from: `ctrl_shift_middle_click`, e})
+}
+
 App.mouse_context_action = (e) => {
   clearInterval(App.autoclick_timeout)
   let target = e.target
@@ -610,6 +636,11 @@ App.mouse_middle_action = (e, target_el) => {
   App.reset_triggers()
 
   if (!App.mouse_valid_type(target)) {
+    return
+  }
+
+  if (e.ctrlKey && e.shiftKey) {
+    App.mouse_ctrl_shift_middle_click_action(e)
     return
   }
 

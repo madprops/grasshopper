@@ -706,12 +706,8 @@ App.sort_command_menu = (items) => {
 }
 
 App.command_name = (command, force_short = false, num_selected = 0) => {
-  let use_short = false
+  let use_short = force_short || App.get_setting(`short_commands`)
   let multiple = num_selected > 1
-
-  if (App.get_setting(`short_commands`) || force_short) {
-    use_short = true
-  }
 
   if (use_short) {
     if (multiple) {

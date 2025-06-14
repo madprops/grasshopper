@@ -3324,6 +3324,7 @@ App.build_settings = () => {
       click_press: `none`,
       middle_click_press: `none`,
       ctrl_shift_click: `duplicate_tabs`,
+      ctrl_shift_middle_click: `none`,
     }),
 
     ...App.make_mouse_settings({
@@ -3335,6 +3336,7 @@ App.build_settings = () => {
       click_press: `none`,
       middle_click_press: `none`,
       ctrl_shift_click: `none`,
+      ctrl_shift_middle_click: `none`,
     }),
 
     ...App.make_mouse_settings({
@@ -3346,6 +3348,7 @@ App.build_settings = () => {
       click_press: `none`,
       middle_click_press: `none`,
       ctrl_shift_click: `none`,
+      ctrl_shift_middle_click: `none`,
     }),
 
     ...App.make_mouse_settings({
@@ -3357,6 +3360,7 @@ App.build_settings = () => {
       click_press: `none`,
       middle_click_press: `none`,
       ctrl_shift_click: `none`,
+      ctrl_shift_middle_click: `none`,
     }),
 
     ...App.make_mouse_settings({
