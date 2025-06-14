@@ -37,7 +37,6 @@ App.show_palette = (prefilter = ``) => {
   let active = App.get_active_items()
   let too_many = active.length > App.max_command_check_items
   let num_selected = App.get_active_items().length
-  let use_short = App.get_setting(`short_commands`)
   let num = 0
 
   for (let el of els) {
@@ -60,7 +59,7 @@ App.show_palette = (prefilter = ``) => {
 
       let name = App.command_name(
         command,
-        use_short,
+        false,
         num_selected,
       )
 

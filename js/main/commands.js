@@ -709,10 +709,7 @@ App.command_name = (command, force_short = false, num_selected = 0) => {
   let use_short = false
   let multiple = num_selected > 1
 
-  if (command.short_name && App.get_setting(`short_commands`)) {
-    use_short = true
-  }
-  else if (command.short_name && force_short) {
+  if (App.get_setting(`short_commands`) || force_short) {
     use_short = true
   }
 
