@@ -124,7 +124,19 @@ App.mouse_click_action = (e, from = `click`) => {
     }
 
     if (DOM.parent(target, [`#footer_info`])) {
-      App.footer_click(e)
+      if (e.ctrlKey && e.shiftKey) {
+        App.footer_ctrl_shift_click(e)
+      }
+      else if (e.ctrlKey) {
+        App.footer_ctrl_click(e)
+      }
+      else if (e.shiftKey) {
+        App.footer_shift_click(e)
+      }
+      else {
+        App.footer_click(e)
+      }
+
       return
     }
 
@@ -723,7 +735,19 @@ App.mouse_middle_action = (e, target_el) => {
     }
 
     if (DOM.parent(target, [`#footer_info`])) {
-      App.footer_middle_click(e)
+      if (e.ctrlKey && e.shiftKey) {
+        App.footer_ctrl_shift_middle_click(e)
+      }
+      else if (e.ctrlKey) {
+        App.footer_ctrl_middle_click(e)
+      }
+      else if (e.shiftKey) {
+        App.footer_shift_middle_click(e)
+      }
+      else {
+        App.footer_middle_click(e)
+      }
+
       return
     }
 

@@ -271,6 +271,12 @@ App.show_footer_menu = (e) => {
 App.footer_tips = (el) => {
   App.trigger_title(el, `click_footer`)
   App.trigger_title(el, `double_click_footer`)
+  App.trigger_title(el, `ctrl_click_footer`)
+  App.trigger_title(el, `shift_click_footer`)
+  App.trigger_title(el, `ctrl_shift_click_footer`)
+  App.trigger_title(el, `ctrl_middle_click_footer`)
+  App.trigger_title(el, `shift_middle_click_footer`)
+  App.trigger_title(el, `ctrl_shift_middle_click_footer`)
   App.trigger_title(el, `middle_click_footer`)
   App.trigger_title(el, `click_press_footer`)
   App.trigger_title(el, `middle_click_press_footer`)
@@ -285,8 +291,38 @@ App.footer_double_click = (e) => {
   App.run_command({cmd, from: `footer`, e})
 }
 
+App.footer_ctrl_click = (e) => {
+  let cmd = App.get_setting(`ctrl_click_footer`)
+  App.run_command({cmd, from: `footer`, e})
+}
+
+App.footer_shift_click = (e) => {
+  let cmd = App.get_setting(`shift_click_footer`)
+  App.run_command({cmd, from: `footer`, e})
+}
+
+App.footer_ctrl_shift_click = (e) => {
+  let cmd = App.get_setting(`ctrl_shift_click_footer`)
+  App.run_command({cmd, from: `footer`, e})
+}
+
 App.footer_click = (e) => {
   let cmd = App.get_setting(`click_footer`)
+  App.run_command({cmd, from: `footer`, e})
+}
+
+App.footer_ctrl_middle_click = (e) => {
+  let cmd = App.get_setting(`ctrl_middle_click_footer`)
+  App.run_command({cmd, from: `footer`, e})
+}
+
+App.footer_shift_middle_click = (e) => {
+  let cmd = App.get_setting(`shift_middle_click_footer`)
+  App.run_command({cmd, from: `footer`, e})
+}
+
+App.footer_ctrl_shift_middle_click = (e) => {
+  let cmd = App.get_setting(`ctrl_shift_middle_click_footer`)
   App.run_command({cmd, from: `footer`, e})
 }
 
