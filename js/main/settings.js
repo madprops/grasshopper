@@ -2169,7 +2169,11 @@ App.make_mouse_settings = (args = {}) => {
     click: ``,
     double_click: ``,
     middle_click: ``,
+    ctrl_click: ``,
+    shift_click: ``,
     ctrl_shift_click: ``,
+    ctrl_middle_click: ``,
+    shift_middle_click: ``,
     ctrl_shift_middle_click: ``,
     click_press: ``,
     middle_click_press: ``,
@@ -2186,6 +2190,10 @@ App.make_mouse_settings = (args = {}) => {
     wheel_down_version: 1,
     wheel_up_shift_version: 1,
     wheel_down_shift_version: 1,
+    ctrl_click_version: 1,
+    shift_click_version: 1,
+    ctrl_middle_click_version: 1,
+    shift_middle_click_version: 1,
     ctrl_shift_click_version: 1,
     ctrl_shift_middle_click_version: 1,
     separator: true,
@@ -2230,6 +2238,28 @@ App.make_mouse_settings = (args = {}) => {
     }
   }
 
+  if (args.ctrl_click) {
+    obj[`ctrl_click_${args.what}`] = {
+      name: `Ctrl Click ${args.title}`,
+      type: `menu`,
+      value: args.ctrl_click,
+      info: `Command to run when ctrl clicking the ${args.title}`,
+      version: args.ctrl_click_version,
+      setup: args.setup,
+    }
+  }
+
+  if (args.shift_click) {
+    obj[`shift_click_${args.what}`] = {
+      name: `Shift Click ${args.title}`,
+      type: `menu`,
+      value: args.shift_click,
+      info: `Command to run when shift clicking the ${args.title}`,
+      version: args.shift_click_version,
+      setup: args.setup,
+    }
+  }
+
   if (args.ctrl_shift_click) {
     obj[`ctrl_shift_click_${args.what}`] = {
       name: `Ctrl Shift Click ${args.title}`,
@@ -2237,6 +2267,28 @@ App.make_mouse_settings = (args = {}) => {
       value: args.ctrl_shift_click,
       info: `Command to run when ctrl shift clicking the ${args.title}`,
       version: args.ctrl_shift_click_version,
+      setup: args.setup,
+    }
+  }
+
+  if (args.ctrl_middle_click) {
+    obj[`ctrl_middle_click_${args.what}`] = {
+      name: `Ctrl Middle Click ${args.title}`,
+      type: `menu`,
+      value: args.ctrl_middle_click,
+      info: `Command to run when ctrl middle clicking the ${args.title}`,
+      version: args.ctrl_middle_click_version,
+      setup: args.setup,
+    }
+  }
+
+  if (args.shift_middle_click) {
+    obj[`shift_middle_click_${args.what}`] = {
+      name: `Shift Middle Click ${args.title}`,
+      type: `menu`,
+      value: args.shift_middle_click,
+      info: `Command to run when shift middle clicking the ${args.title}`,
+      version: args.shift_middle_click_version,
       setup: args.setup,
     }
   }

@@ -60,3 +60,33 @@ App.close_button_middle_click = (item, e) => {
   let cmd = App.get_setting(`middle_click_close_button`)
   App.run_command({cmd, item, from: `close_button`, e})
 }
+
+App.close_button_ctrl_click = (item, e) => {
+  let cmd = App.get_setting(`ctrl_click_close_button`)
+  App.run_command({cmd, item, from: `close_button`, e})
+}
+
+App.close_button_shift_click = (item, e) => {
+  let cmd = App.get_setting(`shift_click_close_button`)
+  App.run_command({cmd, item, from: `close_button`, e})
+}
+
+App.close_button_ctrl_shift_click = (item, e) => {
+  let cmd = App.get_setting(`ctrl_shift_click_close_button`)
+  App.run_command({cmd, item, from: `close_button`, e})
+}
+
+App.close_button_ctrl_middle_click = (item, e) => {
+  let cmd = App.get_setting(`ctrl_middle_click_close_button`)
+  App.run_command({cmd, item, from: `close_button`, e})
+}
+
+App.close_button_shift_middle_click = (item, e) => {
+  let cmd = App.get_setting(`shift_middle_click_close_button`)
+  App.run_command({cmd, item, from: `close_button`, e})
+}
+
+App.close_button_ctrl_shift_middle_click = (item, e) => {
+  let cmd = App.get_setting(`ctrl_shift_middle_click_close_button`)
+  App.run_command({cmd, item, from: `close_button`, e})
+}

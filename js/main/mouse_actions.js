@@ -156,21 +156,6 @@ App.mouse_click_action = (e, from = `click`) => {
     }
   }
 
-  if (e.ctrlKey && e.shiftKey) {
-    App.mouse_ctrl_shift_click_action(e)
-    return
-  }
-
-  if (e.shiftKey) {
-    App.select_range(item)
-    return
-  }
-
-  if (e.ctrlKey) {
-    App.pick(item)
-    return
-  }
-
   let media_type = App.get_media_type(item)
 
   if (media_type) {
@@ -224,7 +209,19 @@ App.mouse_click_action = (e, from = `click`) => {
 
   if (mode === `tabs`) {
     if (DOM.parent(target, [`.close_button`])) {
-      App.close_button_click(item, e)
+      if (e.ctrlKey && e.shiftKey) {
+        App.close_button_ctrl_shift_click(item, e)
+      }
+      else if (e.ctrlKey) {
+        App.close_button_ctrl_click(item, e)
+      }
+      else if (e.shiftKey) {
+        App.close_button_shift_click(item, e)
+      }
+      else {
+        App.close_button_click(item, e)
+      }
+
       return
     }
 
@@ -272,6 +269,19 @@ App.mouse_click_action = (e, from = `click`) => {
       check_auto_scroll: true,
     })
 
+    return
+  }
+
+  if (e.ctrlKey && e.shiftKey) {
+    App.mouse_ctrl_shift_click_action(e)
+    return
+  }
+  else if (e.shiftKey) {
+    App.select_range(item)
+    return
+  }
+  else if (e.ctrlKey) {
+    App.pick(item)
     return
   }
 
@@ -639,11 +649,6 @@ App.mouse_middle_action = (e, target_el) => {
     return
   }
 
-  if (e.ctrlKey && e.shiftKey) {
-    App.mouse_ctrl_shift_middle_click_action(e)
-    return
-  }
-
   let [item, item_alt] = App.get_mouse_item(mode, target)
 
   if (!item) {
@@ -740,6 +745,11 @@ App.mouse_middle_action = (e, target_el) => {
     return
   }
 
+  if (e.ctrlKey && e.shiftKey) {
+    App.mouse_ctrl_shift_middle_click_action(e)
+    return
+  }
+
   mode = item.mode
 
   if (DOM.parent(target, [`.item_icon_container`])) {
@@ -755,7 +765,19 @@ App.mouse_middle_action = (e, target_el) => {
 
   if (mode === `tabs`) {
     if (DOM.parent(target, [`.close_button`])) {
-      App.close_button_middle_click(item, e)
+      if (e.ctrlKey && e.shiftKey) {
+        App.close_button_ctrl_shift_middle_click(item, e)
+      }
+      else if (e.ctrlKey) {
+        App.close_button_ctrl_middle_click(item, e)
+      }
+      else if (e.shiftKey) {
+        App.close_button_shift_middle_click(item, e)
+      }
+      else {
+        App.close_button_middle_click(item, e)
+      }
+
       return
     }
 
