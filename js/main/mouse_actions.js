@@ -745,11 +745,6 @@ App.mouse_middle_action = (e, target_el) => {
     return
   }
 
-  if (e.ctrlKey && e.shiftKey) {
-    App.mouse_ctrl_shift_middle_click_action(e)
-    return
-  }
-
   mode = item.mode
 
   if (DOM.parent(target, [`.item_icon_container`])) {
@@ -810,6 +805,11 @@ App.mouse_middle_action = (e, target_el) => {
       check_auto_scroll: true,
     })
 
+    return
+  }
+
+  if (e.ctrlKey && e.shiftKey) {
+    App.mouse_ctrl_shift_middle_click_action(e)
     return
   }
 
