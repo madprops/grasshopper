@@ -433,29 +433,47 @@ App.move_zone_check = (item, first_index, direction) => {
   return true
 }
 
-App.move_zone_move = (items, header, direction) => {
+App.move_zone_move = (items, target, direction, mode = `after`) => {
   let els = items.map(x => x.element)
-  header.element.after(...els)
+
+  if (mode === `after`) {
+    target.element.after(...els)
+  }
+  else if (mode === `before`) {
+    target.element.before(...els)
+  }
+
   App.update_tabs_index(items, direction)
 }
 
 App.move_to_zone_up = (item) => {
   let [items, tabs, first_index] = App.move_zone_prepare(item)
-  tabs = tabs.slice().reverse()
+  let tabs_reversed = tabs.slice().reverse()
 
   if (!items.length) {
     return
   }
 
+  if (first_index === 0) {
+    return
+  }
+
   let direction = `up`
 
-  for (let it of tabs) {
+  for (let it of tabs_reversed) {
     if (!App.move_zone_check(it, first_index, direction)) {
       continue
     }
 
     App.move_zone_move(items, it, direction)
     return
+  }
+
+  let first_normal = tabs.find(x => !x.pinned)
+  let first_normal_index = App.get_item_element_index({element: first_normal.element})
+
+  if (first_normal_index <= first_index) {
+    App.move_zone_move(items, first_normal, direction, `before`)
   }
 }
 
