@@ -469,12 +469,7 @@ App.move_to_zone_up = (item) => {
     return
   }
 
-  let first_normal = tabs.find(x => !x.pinned)
-  let first_normal_index = App.get_item_element_index({element: first_normal.element})
-
-  if (first_normal_index <= first_index) {
-    App.move_zone_move(items, first_normal, direction, `before`)
-  }
+  App.move_tabs_vertically(direction, items[0])
 }
 
 App.move_to_zone_down = (item) => {
@@ -494,4 +489,6 @@ App.move_to_zone_down = (item) => {
     App.move_zone_move(items, it, direction)
     return
   }
+
+  App.move_tabs_vertically(direction, items[0])
 }

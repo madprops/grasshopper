@@ -123,12 +123,14 @@ App.create_footer = () => {
       let cmd_2 = App.get_cmd_name(App.footer_up_middle_click_cmd)
       let cmd_3 = App.get_cmd_name(App.footer_up_shift_click_cmd)
       let cmd_4 = App.get_cmd_name(App.footer_up_ctrl_click_cmd)
+      let cmd_5 = App.get_cmd_name(App.footer_up_ctrl_shift_click_cmd)
 
       let up_tips = [
         `Click: ${cmd_1}`,
         `Middle Click: ${cmd_2}`,
         `Shift + Click: ${cmd_3}`,
         `Ctrl + Click: ${cmd_4}`,
+        `Ctrl + Shift + Click: ${cmd_5}`,
       ]
 
       btn_up.title = up_tips.join(`\n`)
@@ -137,12 +139,14 @@ App.create_footer = () => {
       cmd_2 = App.get_cmd_name(App.footer_down_middle_click_cmd)
       cmd_3 = App.get_cmd_name(App.footer_down_shift_click_cmd)
       cmd_4 = App.get_cmd_name(App.footer_down_ctrl_click_cmd)
+      cmd_5 = App.get_cmd_name(App.footer_down_ctrl_shift_click_cmd)
 
       let down_tips = [
         `Click: ${cmd_1}`,
         `Middle Click: ${cmd_2}`,
         `Shift + Click: ${cmd_3}`,
         `Ctrl + Click: ${cmd_4}`,
+        `Ctrl + Shift + Click: ${cmd_5}`,
       ]
 
       btn_down.title = down_tips.join(`\n`)

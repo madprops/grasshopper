@@ -904,7 +904,7 @@ App.setup_commands = () => {
       info: `Select the item below ignoring unloaded`,
     },
     {
-      name: `Move To Zone Up`,
+      name: `To Zone Up`,
       short_name: `Zone Up`,
       cmd: `move_to_zone_up`,
       modes: [`tabs`],
@@ -916,7 +916,7 @@ App.setup_commands = () => {
       info: `Move item to the zone above`,
     },
     {
-      name: `Move To Zone Down`,
+      name: `To Zone Down`,
       short_name: `Zone Down`,
       cmd: `move_to_zone_down`,
       modes: [`tabs`],
