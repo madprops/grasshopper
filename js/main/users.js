@@ -80,6 +80,9 @@ App.user_madprops_settings = () => {
   sett = `favorites_menu`
   App.set_setting({setting: sett, value: []})
 
+  cmd = {cmd: `edit_global_notes`}
+  App.append_list_setting(sett, cmd)
+
   cmd = {cmd: `select_normal_tabs`, middle: `deselect_all_items`}
   App.append_list_setting(sett, cmd)
 

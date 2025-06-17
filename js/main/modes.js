@@ -101,8 +101,13 @@ App.do_show_mode = async (args = {}) => {
 
   let cb_obj = {title: ``}
   App.trigger_title(cb_obj, `click_close_button`)
-  cb_obj.title += `\nRight Click: Show Menu`
   App.trigger_title(cb_obj, `double_click_close_button`)
+  App.trigger_title(cb_obj, `ctrl_click_close_button`)
+  App.trigger_title(cb_obj, `shift_click_close_button`)
+  App.trigger_title(cb_obj, `ctrl_shift_click_close_button`)
+  App.trigger_title(cb_obj, `ctrl_middle_click_close_button`)
+  App.trigger_title(cb_obj, `shift_middle_click_close_button`)
+  App.trigger_title(cb_obj, `ctrl_shift_middle_click_close_button`)
   App.trigger_title(cb_obj, `middle_click_close_button`)
   App.trigger_title(cb_obj, `click_press_close_button`)
   App.trigger_title(cb_obj, `middle_click_press_close_button`)

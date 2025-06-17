@@ -598,6 +598,24 @@ App.trigger_title = (el, name) => {
       else if (name.startsWith(`wheel_down`)) {
         el.title += `\nWheel Down: ${cmd.name}`
       }
+      else if (name.startsWith(`ctrl_click`)) {
+        el.title += `\nCtrl Click: ${cmd.name}`
+      }
+      else if (name.startsWith(`shift_click`)) {
+        el.title += `\nShift Click: ${cmd.name}`
+      }
+      else if (name.startsWith(`ctrl_shift_click`)) {
+        el.title += `\nCtrl Shift Click: ${cmd.name}`
+      }
+      else if (name.startsWith(`ctrl_middle_click`)) {
+        el.title += `\nCtrl Middle Click: ${cmd.name}`
+      }
+      else if (name.startsWith(`shift_middle_click`)) {
+        el.title += `\nShift Middle Click: ${cmd.name}`
+      }
+      else if (name.startsWith(`ctrl_shift_middle_click`)) {
+        el.title += `\nCtrl Shift Middle Click: ${cmd.name}`
+      }
 
       el.title = el.title.trim()
     }
