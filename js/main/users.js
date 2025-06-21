@@ -31,6 +31,7 @@ App.user_madprops_settings = () => {
 
   // Main Title
 
+  App.set_setting({setting: `show_main_title`, value: false})
   App.set_setting({setting: `main_title`, value: `Armentos iLadel`})
   App.set_setting({setting: `main_title_background_color`, value: `rgba(93, 93, 188, 1)`})
   App.set_setting({setting: `main_title_text_color`, value: `rgba(250, 250, 250, 1)`})

@@ -4286,6 +4286,15 @@ App.setup_commands = () => {
       info: `Change the background to the selected image`,
     },
     {
+      name: `Title History`,
+      cmd: `show_title_history`,
+      icon: main_title_icon,
+      action: (args) => {
+        App.show_title_history()
+      },
+      info: `Show a list with recent main title changes`,
+    },
+    {
       name: `Set Title`,
       cmd: `edit_main_title`,
       icon: main_title_icon,

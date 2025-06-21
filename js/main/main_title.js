@@ -127,6 +127,7 @@ App.set_main_title_text = (text) => {
   App.update_main_title_tooltips(el)
   el.scrollLeft = 0
   App.main_title_pause()
+  App.add_to_title_history(text)
 }
 
 App.update_main_title_tooltips = (el) => {
@@ -466,4 +467,27 @@ App.main_title_side_button_tooltips = (el, what) => {
   App.trigger_title(el, `double_click_main_title_${what}_button`)
   App.trigger_title(el, `click_press_main_title_${what}_button`)
   App.trigger_title(el, `middle_click_press_main_title_${what}_button`)
+}
+
+App.add_to_title_history = (title) => {
+  title = title.trim()
+
+  if (!title) {
+    return
+  }
+
+  if (App.main_title_history.includes(title)) {
+    return
+  }
+
+  App.main_title_history.push(title)
+
+  if (App.main_title_history.length > App.main_title_history_max) {
+    App.main_title_history.shift()
+  }
+}
+
+App.show_title_history = () => {
+  let text = App.main_title_history.join(`\n`)
+  App.show_textarea({title: `Title History`, text})
 }

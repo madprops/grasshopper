@@ -2780,7 +2780,7 @@ App.build_settings = () => {
     show_main_title: {
       name: `Show Title`,
       type: `checkbox`,
-      value: true,
+      value: false,
       no_mirror: true,
       info: `Show the Title at the top`,
       version: 1,
