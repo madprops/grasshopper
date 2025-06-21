@@ -488,6 +488,6 @@ App.add_to_title_history = (title) => {
 }
 
 App.show_title_history = () => {
-  let text = App.main_title_history.join(`\n`)
+  let text = App.main_title_history.slice().reverse().join(`\n`)
   App.show_textarea({title: `Title History`, text})
 }
