@@ -1487,10 +1487,6 @@ App.get_special_tabs = () => {
 
   if (recent.length && normal.length) {
     normal.sort((a, b) => {
-      return a.lastAccessed > b.lastAccessed ? -1 : 1
-    })
-
-    normal.sort((a, b) => {
       // Get indices of tabs in the recent array
       const index_a = recent.findIndex(tab => tab.id === a.id)
       const index_b = recent.findIndex(tab => tab.id === b.id)
