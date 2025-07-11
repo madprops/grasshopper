@@ -215,6 +215,7 @@ select {
 .auto_blur .window_top,
 .auto_blur #main_title,
 .auto_blur #footer,
+.auto_blur #tab_box,
 .auto_blur .favorites_bar
 {
   filter: blur(3px) !important;
