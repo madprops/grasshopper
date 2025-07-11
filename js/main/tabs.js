@@ -1485,6 +1485,30 @@ App.get_special_tabs = () => {
   let recent = App.get_recent_tabs()
   let normal = App.get_normal_tabs()
 
+  if (recent.length && normal.length) {
+    normal.sort((a, b) => {
+      return a.lastAccessed > b.lastAccessed ? -1 : 1
+    })
+
+    normal.sort((a, b) => {
+      // Get indices of tabs in the recent array
+      const index_a = recent.findIndex(tab => tab.id === a.id)
+      const index_b = recent.findIndex(tab => tab.id === b.id)
+
+      // If both tabs are in recent, sort by their position in recent
+      if (index_a !== -1 && index_b !== -1) {
+        return index_a - index_b
+      }
+
+      // If only one tab is in recent, prioritize it
+      if (index_a !== -1) return -1
+      if (index_b !== -1) return 1
+
+      // If neither tab is in recent, sort by lastAccessed
+      return a.lastAccessed > b.lastAccessed ? -1 : 1
+    })
+  }
+
   recent = recent.filter(x => !playing.includes(x))
   recent = App.remove_empty_tabs(recent)
   recent = App.remove_unloaded_tabs(recent)
