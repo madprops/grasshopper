@@ -202,6 +202,14 @@ select {
   border-bottom-width: 0;
 }
 
+#main.mirror_horizontal {
+  transform: scaleX(-1);
+}
+
+#main.mirror_vertical {
+  transform: scaleY(-1);
+}
+
 #main_top {
   flex-shrink: 0;
   flex-grow: 0;

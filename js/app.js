@@ -146,6 +146,7 @@ App.close_tabs_min = 500
 App.scroll_done = false
 App.main_title_history = []
 App.main_title_history_max = 100
+App.mirror_mode = `none`
 
 App.settings_ready = false
 App.media_image_ready = false
@@ -280,6 +281,7 @@ App.next_icon = `👉`
 App.open_icon = `🌻`
 App.action_icon = `🚀`
 App.select_icon = `🎯`
+App.mirror_icon = `🪞`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

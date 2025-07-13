@@ -80,6 +80,7 @@ App.setup_commands = () => {
   let flashlight_icon = App.flashlight_icon
   let shroom_icon = App.shroom_icon
   let window_icon = App.window_icon
+  let mirror_icon = App.mirror_icon
 
   let tbmodes = []
 
@@ -4674,6 +4675,26 @@ App.setup_commands = () => {
         App.start_breathe_effect()
       },
       info: `Let me breathe`,
+    },
+    {
+      name: `Mirror Horizontal`,
+      cmd: `mirror_horizontal`,
+      modes: [`items`],
+      icon: mirror_icon,
+      action: (args) => {
+        App.mirror(`horizontal`)
+      },
+      info: `The grass is meaner on the other side`,
+    },
+    {
+      name: `Mirror Vertical`,
+      cmd: `mirror_vertical`,
+      modes: [`items`],
+      icon: mirror_icon,
+      action: (args) => {
+        App.mirror(`vertical`)
+      },
+      info: `The grass is leaner on the other side`,
     },
     {
       name: `Restart`,

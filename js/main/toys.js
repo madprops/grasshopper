@@ -89,3 +89,16 @@ App.stop_breathe_effect = () => {
   App.breathe_effect_on = false
   App.apply_theme()
 }
+
+App.mirror = (what) => {
+  if (App.mirror_mode === what) {
+    App.mirror_mode = `none`
+  }
+  else {
+    App.mirror_mode = what
+  }
+
+  App.main_remove(`mirror_horizontal`)
+  App.main_remove(`mirror_vertical`)
+  App.main_add(`mirror_${App.mirror_mode}`)
+}
