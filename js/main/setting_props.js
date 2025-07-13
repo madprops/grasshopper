@@ -597,18 +597,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.setting_steps(...App.font_sizes, `px`))
       },
     },
-    window_border_width: {
-      name: `Border Width`,
-      type: `menu`,
-      value: 0,
-      placeholder: `Px`,
-      info: `Width in pixels for the window border`,
-      actions: [`theme`],
-      version: 1,
-      setup: (key) => {
-        App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
-      },
-    },
     window_border_sides: {
       name: `Border Sides`,
       type: `menu`,
@@ -627,6 +615,18 @@ App.build_settings = () => {
         ])
       },
     },
+    window_border_width: {
+      name: `Border Width`,
+      type: `menu`,
+      value: 0,
+      placeholder: `Px`,
+      info: `Width in pixels for the window border`,
+      actions: [`theme`],
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
+      },
+    },
     window_border_color: {
       name: `Border Color`,
       type: `color`,
@@ -639,16 +639,41 @@ App.build_settings = () => {
       },
     },
     window_border_glow: {
-      name: `Border Glow`,
+      name: `Border Glow Color`,
       type: `color`,
       value: `rgb(40, 232, 174)`,
       actions: [`theme`],
       info: `Color to use for the window glow`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key, true)
       },
+    },
+    window_border_glow_speed: {
+      name: `Border Glow Speed`,
+      type: `menu`,
+      value: 5,
+      placeholder: `Px`,
+      info: `Width in pixels for the window border`,
+      actions: [`theme`],
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Very Slow`, value: 7},
+          {text: `Slow`, value: 6},
+          {text: `Normal`, value: 5},
+          {text: `Fast`, value: 4},
+          {text: `Very Fast`, value: 3},
+        ])
+      },
+    },
+    enable_border_glow: {
+      name: `Enable Border Glow`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable a glow effect on the window border`,
+      separator: true,
+      version: 1,
     },
     custom_css: {
       name: `Custom CSS`,

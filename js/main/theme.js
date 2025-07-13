@@ -142,11 +142,17 @@ App.do_apply_theme = (args = {}) => {
 
     let active_bg = App.get_setting(`background_color_active_mode`)
     App.main_add(`active_background_${active_bg}`)
+
     let uto = App.get_setting(`unloaded_opacity`) / 100
+    let border_color = App.get_setting(`window_border_color`)
+    let glow_color = App.get_setting(`window_border_glow`)
+    let glow_speed = App.get_setting(`window_border_glow_speed`)
+
     App.set_css_var(`unloaded_opacity`, uto)
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
-    App.set_css_var(`window_border_color`, App.get_setting(`window_border_color`))
-    App.set_css_var(`window_border_glow`, App.get_setting(`window_border_glow`))
+    App.set_css_var(`window_border_color`, border_color)
+    App.set_css_var(`window_border_glow`, glow_color)
+    App.set_css_var(`window_border_glow_speed`, `${glow_speed}s`)
 
     App.main_remove(`window_border_full`)
     App.main_remove(`window_border_top`)
@@ -159,7 +165,12 @@ App.do_apply_theme = (args = {}) => {
 
     if (sides === `full`) {
       App.main_add(`window_border_full`)
-      App.main_add(`window_border_glow`)
+
+      if (App.get_setting(`enable_border_glow`)) {
+        if (border_color !== glow_color) {
+          App.main_add(`window_border_glow`)
+        }
+      }
     }
     else if (sides === `top`) {
       App.main_add(`window_border_top`)

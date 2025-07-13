@@ -246,7 +246,7 @@ select {
   bottom: 0;
   border: var(--window_border_width) solid transparent;
   pointer-events: none;
-  animation: border_travel 5s infinite linear;
+  animation: border_travel var(--window_border_glow_speed) infinite linear;
   z-index: 1000;
 }
 
