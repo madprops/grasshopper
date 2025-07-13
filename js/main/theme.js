@@ -146,17 +146,20 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`unloaded_opacity`, uto)
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
     App.set_css_var(`window_border_color`, App.get_setting(`window_border_color`))
+    App.set_css_var(`window_border_glow`, App.get_setting(`window_border_glow`))
 
     App.main_remove(`window_border_full`)
     App.main_remove(`window_border_top`)
     App.main_remove(`window_border_bottom`)
     App.main_remove(`window_border_left`)
     App.main_remove(`window_border_right`)
+    App.main_remove(`window_border_glow`)
 
     let sides = App.get_setting(`window_border_sides`)
 
     if (sides === `full`) {
       App.main_add(`window_border_full`)
+      App.main_add(`window_border_glow`)
     }
     else if (sides === `top`) {
       App.main_add(`window_border_top`)

@@ -630,9 +630,21 @@ App.build_settings = () => {
     window_border_color: {
       name: `Border Color`,
       type: `color`,
-      value: `rgba(40, 40, 232, 1)`,
+      value: `rgb(71, 71, 229)`,
       actions: [`theme`],
       info: `Color to use for the window border`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    window_border_glow: {
+      name: `Border Glow`,
+      type: `color`,
+      value: `rgb(40, 232, 174)`,
+      actions: [`theme`],
+      info: `Color to use for the window glow`,
       separator: true,
       version: 1,
       setup: (key) => {
