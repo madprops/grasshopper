@@ -265,4 +265,9 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `footer_colors`, value: true})
   App.set_setting({setting: `footer_background_color`, value: `rgba(92, 152, 182, 0.65)`})
+
+  // Window Border
+  App.set_setting({setting: `window_border_width`, value: 5})
+  App.set_setting({setting: `window_border_sides`, value: `right`})
+  App.set_setting({setting: `window_border_color`, value: `#a6beb7ff`})
 }
