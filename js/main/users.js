@@ -22,12 +22,22 @@ App.user_settings = (who, force = false) => {
 
 App.user_madprops_settings = () => {
   let cmd, sett
-  App.set_theme(6)
 
   App.set_setting({setting: `sound_effects`, value: false})
   App.set_setting({setting: `click_item_tabs`, value: `soft_item_action`})
   App.set_setting({setting: `show_settings_info`, value: false})
   App.set_setting({setting: `double_shift_command`, value: `filter_loaded_tabs`})
+
+  // Theme
+
+  App.set_setting({setting: `text_color`, value: `rgb(231, 243, 244)`})
+  App.set_setting({setting: `background_color`, value: `rgb(93, 102, 118)`})
+  App.set_setting({setting: `background_image`, value: `https://i.imgur.com/ts4cFaL.gif`})
+  App.set_setting({setting: `background_effect`, value: `blur`})
+  App.set_setting({setting: `background_opacity`, value: 90})
+  App.set_setting({setting: `background_zoom`, value: 1.2})
+  App.set_setting({setting: `window_border_color`, value: `rgba(166, 190, 183, 1)`})
+  App.set_setting({setting: `window_border_sides`, value: `right`})
 
   // Main Title
 
