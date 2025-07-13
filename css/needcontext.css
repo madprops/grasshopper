@@ -3,6 +3,14 @@
   scrollbar-color: var(--alt_color_2) var(--alt_color_1) !important;
 }
 
+body.mirror_horizontal #needcontext-container {
+  transform: scaleX(-1) !important;
+}
+
+body.mirror_vertical #needcontext-container {
+  transform: scaleY(-1) !important;
+}
+
 #needcontext-container {
   background-color: var(--background_color) !important;
   color: var(--text_color) !important;

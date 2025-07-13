@@ -132,6 +132,10 @@ App.permission_msg = (what) => {
   App.alert(`${s1} ${s2}`)
 }
 
+App.body = () => {
+  return DOM.el(`body`)
+}
+
 App.main = () => {
   return DOM.el(`#main`)
 }
@@ -146,6 +150,14 @@ App.main_remove = (cls) => {
 
 App.main_has = (cls) => {
   return App.main().classList.contains(cls)
+}
+
+App.body_add = (cls) => {
+  App.body().classList.add(cls)
+}
+
+App.body_remove = (cls) => {
+  App.body().classList.remove(cls)
 }
 
 App.open_sidebar = () => {

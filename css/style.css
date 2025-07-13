@@ -229,11 +229,11 @@ select {
   border-bottom-width: 0;
 }
 
-#main.mirror_horizontal {
+body.mirror_horizontal #main {
   transform: scaleX(-1);
 }
 
-#main.mirror_vertical {
+body.mirror_vertical #main {
   transform: scaleY(-1);
 }
 

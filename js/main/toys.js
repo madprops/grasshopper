@@ -98,7 +98,7 @@ App.mirror = (what) => {
     App.mirror_mode = what
   }
 
-  App.main_remove(`mirror_horizontal`)
-  App.main_remove(`mirror_vertical`)
-  App.main_add(`mirror_${App.mirror_mode}`)
+  App.body_remove(`mirror_horizontal`)
+  App.body_remove(`mirror_vertical`)
+  App.body_add(`mirror_${App.mirror_mode}`)
 }
