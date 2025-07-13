@@ -147,6 +147,30 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
     App.set_css_var(`window_border_color`, App.get_setting(`window_border_color`))
 
+    App.main_remove(`window_border_full`)
+    App.main_remove(`window_border_top`)
+    App.main_remove(`window_border_bottom`)
+    App.main_remove(`window_border_left`)
+    App.main_remove(`window_border_right`)
+
+    let sides = App.get_setting(`window_border_sides`)
+
+    if (sides === `full`) {
+      App.main_add(`window_border_full`)
+    }
+    else if (sides === `top`) {
+      App.main_add(`window_border_top`)
+    }
+    else if (sides === `bottom`) {
+      App.main_add(`window_border_bottom`)
+    }
+    else if (sides === `left`) {
+      App.main_add(`window_border_left`)
+    }
+    else if (sides === `right`) {
+      App.main_add(`window_border_right`)
+    }
+
     if (App.get_setting(`container_icon_text`)) {
       App.main_add(`container_with_text`)
     }

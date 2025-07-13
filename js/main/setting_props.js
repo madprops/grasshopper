@@ -609,6 +609,24 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
     },
+    window_border_sides: {
+      name: `Border Sides`,
+      type: `menu`,
+      value: `full`,
+      placeholder: `Px`,
+      info: `Where to apply the window border`,
+      actions: [`theme`],
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Full`, value: `full`},
+          {text: `Top`, value: `top`},
+          {text: `Bottom`, value: `bottom`},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+        ])
+      },
+    },
     window_border_color: {
       name: `Border Color`,
       type: `color`,
