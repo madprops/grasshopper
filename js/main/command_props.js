@@ -96,9 +96,21 @@ App.setup_commands = () => {
       icon,
       action: (args) => {
         App.change_tab_box_mode(mode)
-        App.show_tab_box(true, true)
       },
       info: `Change the Tab Box mode: ${mode}`,
+    })
+
+    name = `Toggle Tab Box: ${m_name}`
+
+    tbmodes.push({
+      name,
+      short_name: m_name,
+      cmd: `toggle_tab_box_${mode}`,
+      icon,
+      action: (args) => {
+        App.change_tab_box_mode(mode, true, true)
+      },
+      info: `Toggle the Tab Box mode: ${mode}`,
     })
   }
 

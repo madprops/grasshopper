@@ -3466,7 +3466,7 @@ App.build_settings = () => {
       click: `step_back`,
       middle_click: `recent_tabs_forwards`,
       click_press: `none`,
-      middle_click_press: `change_tab_box_recent`,
+      middle_click_press: `toggle_tab_box_recent`,
       wheel_up: `recent_tabs_forwards`,
       wheel_down: `recent_tabs_backwards`,
     }),

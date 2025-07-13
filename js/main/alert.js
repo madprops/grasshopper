@@ -1,6 +1,7 @@
 App.alert = (message, autohide_delay = 0) => {
   App.start_popups()
   let msg = DOM.el(`#alert_message`)
+  message = message.toString()
   let text = App.make_html_safe(message)
   text = text.replace(/\n/g, `<br>`)
   msg.innerHTML = text

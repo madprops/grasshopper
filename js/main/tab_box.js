@@ -208,12 +208,21 @@ App.do_update_tab_box = () => {
   App.do_check_tab_box_scroll_info()
 }
 
-App.change_tab_box_mode = (what, set = true) => {
+App.change_tab_box_mode = (what, set = true, toggle = false) => {
+  if (toggle) {
+    if (App.tab_box_enabled() && (App.current_tab_box_mode === what)) {
+      App.hide_tab_box(true)
+      return
+    }
+  }
+
   App.current_tab_box_mode = what
 
   if (set) {
     App.set_tab_box_mode(what)
   }
+
+  App.show_tab_box(true, true)
 }
 
 App.tab_box_show = (mode, o_items) => {
