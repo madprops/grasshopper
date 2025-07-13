@@ -5492,6 +5492,13 @@ App.build_settings = () => {
       info: `ALL CAPS when you spell the tab name`,
       version: 1,
     },
+    enable_speech: {
+      name: `Enable Speech`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable speech synthesis for some actions`,
+      version: 1,
+    },
     item_menu_select: {
       name: `Item Menu Select`,
       type: `checkbox`,

@@ -265,3 +265,16 @@ App.toggle_message = (msg, setting) => {
   let what = sett ? `Enabled` : `Disabled`
   App.footer_message(`${msg} ${what}`)
 }
+
+App.speech = (text) => {
+  if (!window.speechSynthesis) {
+    App.error(`Speech synthesis not supported`)
+    return
+  }
+
+  let utterance = new SpeechSynthesisUtterance(text)
+  utterance.lang = `en-US`
+  utterance.rate = 0.5
+
+  window.speechSynthesis.speak(utterance)
+}
