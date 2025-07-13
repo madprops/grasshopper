@@ -3444,7 +3444,7 @@ App.build_settings = () => {
       title: `Main Btn`,
       middle_click: `show_main_mode`,
       click_press: `toggle_tab_sort`,
-      middle_click_press: `none`,
+      middle_click_press: `lock_screen`,
       wheel_up: `show_previous_mode`,
       wheel_down: `show_next_mode`,
     }),
