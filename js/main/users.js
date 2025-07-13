@@ -149,7 +149,7 @@ App.user_madprops_settings = () => {
   cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, update_title: true, _id_: `sig_np`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `🎵`, _id_: `sig_play`}
+  cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `🎸`, _id_: `sig_play`}
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Music Next`, url: `http://127.0.0.1:5000/music-next`, method: `POST`, icon: `⏭️`, _id_: `sig_next`, update_title: true}
