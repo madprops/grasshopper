@@ -633,7 +633,6 @@ App.build_settings = () => {
       value: `rgb(71, 71, 229)`,
       actions: [`theme`],
       info: `Color to use for the window border`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key, true)
