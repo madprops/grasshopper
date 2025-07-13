@@ -1190,6 +1190,16 @@ App.setup_commands = () => {
       info: `Show the background menu`,
     },
     {
+      name: `Paste Background`,
+      short_name: `BG Menu`,
+      cmd: `paste_background`,
+      icon: theme_icon,
+      action: (args) => {
+        App.paste_background()
+      },
+      info: `Apply background from image URL in clipboard`,
+    },
+    {
       name: `Show About`,
       short_name: `About`,
       cmd: `show_about`,

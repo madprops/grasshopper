@@ -1367,3 +1367,8 @@ App.set_obfuscate_vars = () => {
     App.main_remove(`obfuscate_text`)
   }
 }
+
+App.paste_background = async () => {
+  let url = await App.read_clipboard()
+  App.set_background(url)
+}
