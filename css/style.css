@@ -111,6 +111,15 @@
   100% { transform: translate(0, 0); }
 }
 
+@keyframes shake2 {
+  0% { transform: translate(0, 0) scaleX(-1); }
+  20% { transform: translate(-5px, -3px) scaleX(-1); }
+  40% { transform: translate(5px, 3px) scaleX(-1); }
+  60% { transform: translate(-3px, 5px) scaleX(-1); }
+  80% { transform: translate(3px, -5px) scaleX(-1); }
+  100% { transform: translate(0, 0) scaleX(-1); }
+}
+
 body,
 html
 {
@@ -1087,8 +1096,12 @@ svg {
   cursor: pointer;
 }
 
-#about_image:hover {
+#about_image.normal:hover {
   animation: shake 0.9s ease-in-out infinite;
+}
+
+#about_image.flipped:hover {
+  animation: shake2 0.9s ease-in-out infinite;
 }
 
 a:visited,

@@ -50,8 +50,8 @@ App.start_about = () => {
       })
 
       close.textContent = App.close_text
-
       let image = DOM.el(`#about_image`)
+      image.classList.add(`normal`)
 
       DOM.ev(image, `click`, () => {
         if (DOM.class(image, [`rotate_1`])) {
@@ -63,9 +63,11 @@ App.start_about = () => {
 
           if (DOM.class(image, [`flipped`])) {
             image.classList.remove(`flipped`)
+            image.classList.add(`normal`)
           }
           else {
             image.classList.add(`flipped`)
+            image.classList.remove(`normal`)
           }
         }
         else {
