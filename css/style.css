@@ -102,6 +102,15 @@
   }
 }
 
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-5px, -3px); }
+  40% { transform: translate(5px, 3px); }
+  60% { transform: translate(-3px, 5px); }
+  80% { transform: translate(3px, -5px); }
+  100% { transform: translate(0, 0); }
+}
+
 body,
 html
 {
@@ -1076,6 +1085,10 @@ svg {
 #about_image {
   width: 45%;
   cursor: pointer;
+}
+
+#about_image:hover {
+  animation: shake 0.9s ease-in-out infinite;
 }
 
 a:visited,
