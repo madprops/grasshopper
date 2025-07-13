@@ -151,7 +151,7 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`unloaded_opacity`, uto)
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
     App.set_css_var(`window_border_color`, border_color)
-    App.set_css_var(`window_border_glow`, glow_color)
+    App.set_css_var(`window_border_glow_color`, glow_color)
     App.set_css_var(`window_border_glow_speed`, `${glow_speed}s`)
 
     App.main_remove(`window_border_full`)
@@ -166,7 +166,7 @@ App.do_apply_theme = (args = {}) => {
     if (sides === `full`) {
       App.main_add(`window_border_full`)
 
-      if (App.get_setting(`enable_border_glow`)) {
+      if (App.get_setting(`enable_window_border_glow`)) {
         if (border_color !== glow_color) {
           App.main_add(`window_border_glow`)
         }

@@ -73,32 +73,32 @@
 
 @keyframes border_travel {
   0%, 100% {
-    border-top-color: var(--window_border_glow);
+    border-top-color: var(--window_border_glow_color);
     border-right-color: transparent;
     border-bottom-color: transparent;
     border-left-color: transparent;
-    box-shadow: 0 -3px 10px -1px var(--window_border_glow);
+    box-shadow: 0 -3px 10px -1px var(--window_border_glow_color);
   }
   25% {
     border-top-color: transparent;
-    border-right-color: var(--window_border_glow);
+    border-right-color: var(--window_border_glow_color);
     border-bottom-color: transparent;
     border-left-color: transparent;
-    box-shadow: 3px 0 10px -1px var(--window_border_glow);
+    box-shadow: 3px 0 10px -1px var(--window_border_glow_color);
   }
   50% {
     border-top-color: transparent;
     border-right-color: transparent;
-    border-bottom-color: var(--window_border_glow);
+    border-bottom-color: var(--window_border_glow_color);
     border-left-color: transparent;
-    box-shadow: 0 3px 10px -1px var(--window_border_glow);
+    box-shadow: 0 3px 10px -1px var(--window_border_glow_color);
   }
   75% {
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
-    border-left-color: var(--window_border_glow);
-    box-shadow: -3px 0 10px -1px var(--window_border_glow);
+    border-left-color: var(--window_border_glow_color);
+    box-shadow: -3px 0 10px -1px var(--window_border_glow_color);
   }
 }
 
