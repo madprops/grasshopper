@@ -58,7 +58,7 @@ App.main_title_scroll_do_timeout = () => {
 App.create_main_title = () => {
   let el = DOM.create(`div`, ``, `main_title`)
   let inner = DOM.create(`div`, ``, `main_title_inner`)
-  let title = App.get_setting(`main_title`)
+  let title = App.get_main_title()
   let rclick = App.get_cmd_name(`show_main_title_menu`)
   inner.textContent = App.check_caps(title)
 
@@ -103,7 +103,7 @@ App.check_main_title = () => {
     title = App.get_main_title_date()
   }
   else {
-    title = App.get_setting(`main_title`)
+    title = App.get_main_title()
   }
 
   if (!title) {
@@ -146,7 +146,7 @@ App.update_main_title_tooltips = (el) => {
 
 App.edit_main_title = () => {
   App.show_prompt({
-    value: App.get_setting(`main_title`),
+    value: App.get_main_title(false),
     placeholder: `Title`,
     on_submit: (ans) => {
       App.set_main_title(ans.trim())
@@ -168,7 +168,7 @@ App.set_main_title = (title, force = true) => {
 }
 
 App.copy_main_title = () => {
-  App.copy_to_clipboard(App.get_setting(`main_title`), `Title`)
+  App.copy_to_clipboard(App.get_main_title(), `Title`)
 }
 
 App.show_main_title_menu = (e) => {
@@ -490,4 +490,18 @@ App.add_to_title_history = (title) => {
 App.show_title_history = () => {
   let text = App.main_title_history.slice().reverse().join(`\n`)
   App.show_textarea({title: `Title History`, text})
+}
+
+App.replace_title_vars = (title) => {
+  return title.replace(/\$version/g, `v${App.manifest.version}`)
+}
+
+App.get_main_title = (replace = true) => {
+  let title = App.get_setting(`main_title`)
+
+  if (replace) {
+    title = App.replace_title_vars(title)
+  }
+
+  return title
 }

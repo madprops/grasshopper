@@ -2844,7 +2844,7 @@ App.build_settings = () => {
     main_title: {
       name: `Title`,
       type: `text`,
-      value: `Grasshopper`,
+      value: `Grasshopper $version`,
       no_mirror: true,
       placeholder: `Text to show`,
       info: `The text to show in the Title`,
