@@ -562,6 +562,9 @@ App.fill_headers = (e) => {
 }
 
 App.do_fill_headers = (num, full = true) => {
+  App.close_headers(true)
+  App.close_subheaders(true)
+
   let tabs = App.get_normal_tabs()
   let step = parseInt(tabs.length / num)
   let items = tabs.filter((_, i) => (((i % step) === 0) && (i > 0))).slice(0, num)
