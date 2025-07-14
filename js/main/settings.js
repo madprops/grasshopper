@@ -18,6 +18,9 @@ App.settings_do_actions = (actions) => {
     else if (action === `gestures`) {
       App.refresh_gestures()
     }
+    else if (action === `sort_settings`) {
+      App.sort_catprops()
+    }
   }
 }
 
@@ -388,7 +391,7 @@ App.setup_settings = () => {
     }
   }, App.settings_save_delay)
 
-  App.settings_categories = Object.keys(App.setting_catprops)
+  App.sort_catprops()
 
   App.check_refresh_settings_debouncer = App.create_debouncer(() => {
     App.do_check_refresh_settings()
@@ -2645,4 +2648,11 @@ App.add_setting_label_menu = (label, key) => {
       App.reset_setting(key)
     }
   })
+}
+
+App.sort_settings = () => {
+  if (App.get_setting(`sort_settings`)) {
+    let keys = Object.keys(App.setting_catprops)
+    keys.sort()
+  }
 }

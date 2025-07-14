@@ -5433,6 +5433,14 @@ App.build_settings = () => {
       info: `Obfuscate the icons when the tab is obfuscated`,
       version: 1,
     },
+    sort_settings: {
+      name: `Sort Settings`,
+      type: `checkbox`,
+      value: true,
+      actions: [`sort_settings`],
+      info: `Sort setting categories`,
+      version: 1,
+    },
     fill_elements: {
       name: `Fill Elements`,
       type: `checkbox`,
@@ -5707,17 +5715,19 @@ App.build_settings = () => {
 
   App.check_settings_dups(App.setting_props)
   App.check_settings_dups(App.setting_catprops)
-  App.sort_catprops()
   App.check_setting_overrides()
+  App.original_setting_catprops = Object.keys(App.setting_catprops)
 }
 
 App.sort_catprops = () => {
   let sorted_props = {}
-  let keys = Object.keys(App.setting_catprops)
+  let keys = App.clone(App.original_setting_catprops)
   let general = keys.splice(keys.indexOf(`general`), 1)[0]
   let more = keys.splice(keys.indexOf(`more`), 1)[0]
 
-  keys.sort()
+  if (App.get_setting(`sort_settings`)) {
+    keys.sort()
+  }
 
   sorted_props[general] = App.setting_catprops[general]
 
@@ -5727,6 +5737,7 @@ App.sort_catprops = () => {
 
   sorted_props[more] = App.setting_catprops[more]
   App.setting_catprops = sorted_props
+  App.settings_categories = Object.keys(App.setting_catprops)
 }
 
 App.check_settings_dups = (obj) => {
