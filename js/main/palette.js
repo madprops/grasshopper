@@ -358,6 +358,7 @@ App.paste_palette = async () => {
 
   if (palette) {
     App.set_palette(palette)
+    App.do_filter_palette()
   }
 }
 
