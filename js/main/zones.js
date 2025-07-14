@@ -507,56 +507,31 @@ App.move_to_zone_down = (item) => {
 }
 
 App.fill_headers = (e) => {
-  let items = [
-    {
-      text: `2 Headers`,
+  let items = []
+
+  for (let n = 2; n <= 10; n++) {
+    items.push({
+      text: `${n} Headers`,
       action: () => {
-        App.do_fill_headers(2)
+        App.do_fill_headers(n)
       },
-    },
-    {
-      text: `3 Headers`,
+    })
+  }
+
+  App.show_context({items, e})
+}
+
+App.fill_subheaders = (e) => {
+  let items = []
+
+  for (let n = 2; n <= 10; n++) {
+    items.push({
+      text: `${n} Subheaders`,
       action: () => {
-        App.do_fill_headers(3)
+        App.do_fill_headers(n, false)
       },
-    },
-    {
-      text: `4 Headers`,
-      action: () => {
-        App.do_fill_headers(4)
-      },
-    },
-    {
-      text: `5 Headers`,
-      action: () => {
-        App.do_fill_headers(5)
-      },
-    },
-    {
-      text: `2 Sub Headers`,
-      action: () => {
-        App.do_fill_headers(2, false)
-      },
-    },
-    {
-      text: `3 Sub Headers`,
-      action: () => {
-        App.do_fill_headers(3, false)
-      },
-    },
-    {
-      text: `4 Sub Headers`,
-      action: () => {
-        App.do_fill_headers(4, false)
-      },
-    },
-    {
-      text: `5 Sub Headers`,
-      action: () => {
-        App.do_fill_headers(5, false)
-      },
-    },
-  ]
+    })
+  }
 
   App.show_context({items, e})
 }

@@ -4730,6 +4730,16 @@ App.setup_commands = () => {
       info: `Insert x number of headers between the tabs`,
     },
     {
+      name: `Fill Subheaders`,
+      cmd: `fill_subheaders`,
+      modes: [`tabs`],
+      icon: zone_icon,
+      action: (args) => {
+        App.fill_subheaders(args.e)
+      },
+      info: `Insert x number of subheaders between the tabs`,
+    },
+    {
       name: `Restart`,
       cmd: `restart_extension`,
       icon: bot_icon,
