@@ -1511,6 +1511,7 @@ App.build_settings = () => {
       value: [
         {cmd: `select_item`},
         {cmd: `select_item_range`},
+        {cmd: `pick_item`},
         {cmd: App.separator_string},
         {cmd: `open_new_tab`},
         {cmd: `filter_title`},
