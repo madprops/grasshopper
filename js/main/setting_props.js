@@ -1578,7 +1578,7 @@ App.build_settings = () => {
       shift_middle_click: `none`,
       ctrl_shift_middle_click: `none`,
       click_press: `none`,
-      middle_click_press: `none`,
+      middle_click_press: `close_domain_tabs`,
     }),
 
     close_button_padding: {
@@ -1677,6 +1677,7 @@ App.build_settings = () => {
       value: [
         {cmd: `select_item`},
         {cmd: `select_item_range`},
+        {cmd: `pick_item`},
         {cmd: App.separator_string},
         {cmd: `filter_node_tabs`},
         {cmd: `filter_domain`},
@@ -1723,7 +1724,7 @@ App.build_settings = () => {
       title: `Hover Btn`,
       middle_click: `close_tabs`,
       click_press: `none`,
-      middle_click_press: `none`,
+      middle_click_press: `unload_tabs`,
     }),
 
     hover_button_icon: {
@@ -2807,7 +2808,7 @@ App.build_settings = () => {
       title: `Fav Btn`,
       middle_click: `settings_category_favorites`,
       click_press: `none`,
-      middle_click_press: `none`,
+      middle_click_press: `settings_category_favorites`,
       wheel_up: `jump_tabs_all_up`,
       wheel_down: `jump_tabs_all_down`,
     }),
@@ -2957,7 +2958,7 @@ App.build_settings = () => {
       double_click: `none`,
       middle_click: `none`,
       click_press: `none`,
-      middle_click_press: `none`,
+      middle_click_press: `set_previous_theme`,
     }),
 
     ...App.make_mouse_settings({
@@ -2967,7 +2968,7 @@ App.build_settings = () => {
       double_click: `none`,
       middle_click: `none`,
       click_press: `none`,
-      middle_click_press: `none`,
+      middle_click_press: `set_next_theme`,
     }),
 
     main_title_left_button_menu: {
