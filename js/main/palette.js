@@ -29,8 +29,14 @@ App.start_palette = () => {
     App.do_filter_palette()
   }, App.filter_delay_2)
 
-  DOM.ev(`#palette_filter_clear`, `click`, () => {
+  let btn = DOM.el(`#palette_filter_clear`)
+
+  DOM.ev(btn, `click`, () => {
     App.reset_generic_filter(`palette`)
+  })
+
+  DOM.ev(btn, `contextmenu`, (e) => {
+    App.show_palette_context_menu(e)
   })
 }
 
