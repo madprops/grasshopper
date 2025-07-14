@@ -1,13 +1,20 @@
-App.insert_header = async (item, full = true) => {
-  if (App.zones_locked(item.mode)) {
+App.insert_header = async (args = {}) => {
+  let def_args = {
+    full: true,
+    title: ``,
+  }
+
+  App.def_args(def_args, args)
+
+  if (App.zones_locked(args.item.mode)) {
     return
   }
 
-  let active = App.get_active_items({mode: item.mode, item})
+  let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let first = active.at(0)
   let index = App.get_item_element_index({mode: first.mode, element: first.element})
-  let tab = await App.open_new_tab({url: App.header_url, index, pinned: item.pinned, active: false})
-  let header = App.get_item_by_id(item.mode, tab.id)
+  let tab = await App.open_new_tab({url: App.header_url, index, pinned: args.item.pinned, active: false})
+  let header = App.get_item_by_id(args.item.mode, tab.id)
 
   if (active.length > 1) {
     for (let it of active.slice(1, -1)) {
@@ -28,11 +35,17 @@ App.insert_header = async (item, full = true) => {
   }
 
   if (header) {
-    if (full) {
+    if (args.full) {
       App.edit_tab_split({item: header, which: `top`})
     }
 
-    App.edit_title(header, false)
+    if (args.title) {
+      App.edit_title_directly(header, args.title)
+    }
+    else {
+      App.edit_title(header, false)
+    }
+
     App.update_tab_box()
   }
 }
@@ -491,4 +504,70 @@ App.move_to_zone_down = (item) => {
   }
 
   App.move_tabs_vertically(direction, items[0])
+}
+
+App.fill_headers = (e) => {
+  let items = [
+    {
+      text: `2 Headers`,
+      action: () => {
+        App.do_fill_headers(2)
+      },
+    },
+    {
+      text: `3 Headers`,
+      action: () => {
+        App.do_fill_headers(3)
+      },
+    },
+    {
+      text: `4 Headers`,
+      action: () => {
+        App.do_fill_headers(4)
+      },
+    },
+    {
+      text: `5 Headers`,
+      action: () => {
+        App.do_fill_headers(5)
+      },
+    },
+    {
+      text: `2 Sub Headers`,
+      action: () => {
+        App.do_fill_headers(2, false)
+      },
+    },
+    {
+      text: `3 Sub Headers`,
+      action: () => {
+        App.do_fill_headers(3, false)
+      },
+    },
+    {
+      text: `4 Sub Headers`,
+      action: () => {
+        App.do_fill_headers(4, false)
+      },
+    },
+    {
+      text: `5 Sub Headers`,
+      action: () => {
+        App.do_fill_headers(5, false)
+      },
+    },
+  ]
+
+  App.show_context({items, e})
+}
+
+App.do_fill_headers = (num, full = true) => {
+  let tabs = App.get_normal_tabs()
+  let step = parseInt(tabs.length / num)
+  let items = tabs.filter((_, i) => (((i % step) === 0) && (i > 0))).slice(0, num)
+
+  for (let item of items) {
+    let title = App.random_word()
+    App.insert_header({item, full, title})
+  }
 }

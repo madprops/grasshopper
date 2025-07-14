@@ -4720,6 +4720,16 @@ App.setup_commands = () => {
       info: `The grass is leaner on the other side`,
     },
     {
+      name: `Fill Headers`,
+      cmd: `fill_headers`,
+      modes: [`tabs`],
+      icon: zone_icon,
+      action: (args) => {
+        App.fill_headers(args.e)
+      },
+      info: `Insert x number of headers between the tabs`,
+    },
+    {
       name: `Restart`,
       cmd: `restart_extension`,
       icon: bot_icon,

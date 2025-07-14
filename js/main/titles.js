@@ -114,3 +114,10 @@ App.get_titled_items = (mode) => {
 
   return items
 }
+
+App.edit_title_directly = (item, value) => {
+  let obj = {}
+  obj.title = value
+  obj.item = item
+  App.edit_tab_title(obj)
+}

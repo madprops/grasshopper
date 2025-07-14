@@ -714,3 +714,28 @@ App.indent = (s, n) => {
   let lines = s.split(`\n`).map(x => x.trim())
   return lines.join(`\n`)
 }
+
+App.random_word = (parts = 3, cap = true) => {
+  let cons = `bcdfghjklmnpqrstvwxyz`
+  let vowels = `aeiou`
+  let cons_next = App.random_int(0, 1) === 0;
+  let word = ``
+
+  for (let i = 0; i < parts * 2; i++) {
+    if (cons_next) {
+      let index = App.random_int(0, cons.length - 1)
+      word += cons[index]
+    } else {
+      let index = App.random_int(0, vowels.length - 1)
+      word += vowels[index]
+    }
+
+    cons_next = !cons_next
+  }
+
+  if (cap) {
+    word = App.capitalize(word)
+  }
+
+  return word
+}
