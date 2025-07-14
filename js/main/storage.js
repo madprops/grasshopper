@@ -88,6 +88,16 @@ App.stor_save_filter_history = () => {
   App.save_local_storage(App.stor_filter_history_name, App.filter_history)
 }
 
+App.stor_get_palette_history = async () => {
+  App.palette_history = await App.get_local_storage(App.stor_palette_history_name, [])
+  App.debug(`Stor: Got palette history`)
+}
+
+App.stor_save_palette_history = () => {
+  App.debug(`Stor: Saving palette history`)
+  App.save_local_storage(App.stor_palette_history_name, App.palette_history)
+}
+
 App.stor_get_tag_history = async () => {
   let def = [`jump`]
   App.tag_history = await App.get_local_storage(App.stor_tag_history_name, def)

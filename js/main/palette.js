@@ -13,8 +13,14 @@ App.start_palette = () => {
         App.palette_action(e.target)
       })
 
-      DOM.ev(`#palette_filter`, `input`, () => {
+      let filter = App.get_palette_filter()
+
+      DOM.ev(filter, `input`, () => {
         App.filter_palette()
+      })
+
+      DOM.ev(filter, `contextmenu`, (e) => {
+        App.show_palette_context_menu(e)
       })
     },
   })
@@ -32,7 +38,7 @@ App.show_palette = (prefilter = ``) => {
   App.start_palette()
   App.setup_popup(`palette`)
   let container = DOM.el(`#palette_items`)
-  let filter = DOM.el(`#palette_filter`)
+  let filter = App.get_palette_filter()
   let els = DOM.els(`.palette_item`, container)
   let active = App.get_active_items()
   let too_many = active.length > App.max_command_check_items
@@ -180,6 +186,7 @@ App.palette_action = (el) => {
   if (cmd) {
     App.hide_all_popups()
     App.update_command_history(cmd)
+    App.update_palette_history()
     App.fill_palette()
     App.run_command({cmd, from: `palette`})
   }
@@ -240,4 +247,134 @@ App.do_filter_palette = () => {
   App.palette_selected = undefined
   App.do_filter_2(`palette`)
   App.palette_select_first()
+}
+
+App.show_palette_context_menu = (e) => {
+  let items = []
+  let value = App.get_palette_filter_value()
+
+  for (let value of App.palette_history) {
+    items.push({
+      text: value.substring(0, 25).trim(),
+      action: () => {
+        App.set_palette(value)
+        App.do_filter_palette()
+      },
+      middle_action: () => {
+        App.forget_palette_history_item(value)
+        App.show_palette_context_menu(e)
+      },
+    })
+  }
+
+  if (items.length) {
+    App.sep(items)
+
+    items.push({
+      text: `Forget`,
+      action: () => {
+        App.forget_palette_history()
+      },
+    })
+
+    App.sep(items)
+  }
+
+  if (value) {
+    items.push({
+      icon: App.clipboard_icon,
+      text: `Copy`,
+      action: () => {
+        App.copy_palette()
+      },
+    })
+  }
+
+  items.push({
+    icon: App.clipboard_icon,
+    text: `Paste`,
+    action: () => {
+      App.paste_palette()
+    },
+  })
+
+  if (value) {
+    App.sep(items)
+
+    items.push({
+      icon: App.notepad_icon,
+      text: `Clear`,
+      action: () => {
+        App.clear_palette()
+      },
+    })
+  }
+
+  App.show_context({items, e})
+}
+
+App.update_palette_history = () => {
+  App.debug(`Update Palette History`)
+  let value = App.get_palette_filter_value()
+
+  if (!value) {
+    return
+  }
+
+  App.palette_history = App.palette_history.filter(x => x !== value)
+  App.palette_history.unshift(value)
+  let max = App.get_setting(`max_palette_history`)
+  App.palette_history = App.palette_history.slice(0, max)
+  App.stor_save_palette_history()
+}
+
+App.forget_palette_history = () => {
+  App.show_confirm({
+    message: `Forget palette history?`,
+    confirm_action: () => {
+      App.palette_history = []
+      App.stor_save_palette_history()
+    },
+  })
+}
+
+App.forget_palette_history_item = (value) => {
+  App.palette_history = App.palette_history.palette(x => x !== value)
+  App.stor_save_palette_history()
+}
+
+App.copy_palette = () => {
+  App.copy_to_clipboard(App.get_palette_filter_value(), `Palette`)
+}
+
+App.paste_palette = async () => {
+  let perm = await App.ask_permission(`clipboardRead`)
+
+  if (!perm) {
+    return
+  }
+
+  let palette = await navigator.clipboard.readText()
+
+  if (palette) {
+    App.set_palette(palette)
+  }
+}
+
+App.get_palette_filter = () => {
+  return DOM.el(`#palette_filter`)
+}
+
+App.set_palette = (text) => {
+  let el = App.get_palette_filter()
+
+  if (!el) {
+    return
+  }
+
+  el.value = text
+}
+
+App.get_palette_filter_value = () => {
+  return App.get_palette_filter().value.trim()
 }

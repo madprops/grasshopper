@@ -10,6 +10,7 @@ const App = {}
 App.stor_settings_name = `settings_v200`
 App.stor_command_history_name = `command_history_v200`
 App.stor_filter_history_name = `filter_history_v200`
+App.stor_palette_history_name = `palette_history_v200`
 App.stor_tag_history_name = `tag_history_v200`
 App.stor_title_history_name = `title_history_v200`
 App.stor_icon_history_name = `icon_history_v200`

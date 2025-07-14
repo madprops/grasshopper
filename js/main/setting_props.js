@@ -5308,6 +5308,16 @@ App.build_settings = () => {
       info: `Delay in milliseconds for Context Autohide`,
       version: 1,
     },
+    max_palette_history: {
+      name: `Max Palette History`,
+      type: `number`,
+      value: 10,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Max items to show in the Palette History`,
+      version: 1,
+    },
     obfuscate_symbol: {
       name: `Obfuscate Symbol`,
       type: `text_smaller`,

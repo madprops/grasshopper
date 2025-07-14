@@ -766,7 +766,7 @@ App.get_filter = (mode = App.active_mode) => {
     return ``
   }
 
-  return App.get_filter_el(mode).value
+  return el.value
 }
 
 App.filter_empty = (mode) => {
