@@ -298,7 +298,7 @@ App.random_color = (what, type) => {
   App.apply_theme()
 }
 
-App.set_background = (url) => {
+App.set_background = async (url) => {
   function unset() {
     App.set_css_var(`background_image`, `unset`)
   }
@@ -308,7 +308,9 @@ App.set_background = (url) => {
     return
   }
 
-  if (url.toLowerCase().startsWith(`background`)) {
+  let lower = url.toLowerCase()
+
+  if (lower.startsWith(`background`)) {
     let match = url.match(/\d+/)
 
     if (!match) {
@@ -324,6 +326,9 @@ App.set_background = (url) => {
     }
 
     url = App.background_path(num)
+  }
+  else if (lower === `uploaded`) {
+    url = await App.get_stored_background()
   }
   else if (!App.is_url(url)) {
     unset()
@@ -773,6 +778,18 @@ App.pick_background = (e) => {
       action: () => {
         App.set_background_image(bg.num)
         App.refresh_setting_widgets([`background_image`])
+      },
+    })
+  }
+
+  let stored = App.get_stored_background()
+
+  if (stored) {
+    items.push({
+      text: `Uploaded`,
+      icon: `📷`,
+      action: () => {
+        App.set_uploaded_image()
       },
     })
   }
@@ -1409,4 +1426,57 @@ App.set_obfuscate_vars = () => {
 App.paste_background = async () => {
   let url = await App.read_clipboard()
   App.set_background(url)
+}
+
+App.upload_background = () => {
+    let input = document.createElement(`input`)
+    input.type = `file`
+    input.accept = `image/*`
+
+    input.onchange = async (e) => {
+      let file = e.target.files[0]
+
+      if (!file) {
+        return
+      }
+
+      if (file.size > 100 * 1024 * 1024) {
+        return
+      }
+
+      let reader = new FileReader()
+
+      reader.onload = async (event) => {
+        let data = event.target.result
+        await browser.storage.local.set({storedImage: data})
+        App.set_uploaded_image()
+      }
+
+      reader.onerror = (error) => reject(error)
+      reader.readAsDataURL(file)
+    }
+
+    input.click()
+}
+
+App.get_stored_background = async () => {
+  try {
+    let result = await browser.storage.local.get(`storedImage`)
+
+    if (result.storedImage) {
+      return result.storedImage
+    }
+
+    return null
+  }
+  catch (error) {
+    console.error(`Error retrieving stored image:`, error)
+    return null
+  }
+}
+
+App.set_uploaded_image = () => {
+  App.set_setting({setting: `background_image`, value: `uploaded`})
+  App.apply_theme()
+  App.refresh_setting_widgets([`background_image`])
 }

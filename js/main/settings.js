@@ -58,6 +58,10 @@ App.settings_setup_labels = (category) => {
         btns.push([`settings_${key}_pick`, `Pick`])
       }
 
+      if (props.btns.includes(`upload`)) {
+        btns.push([`settings_${key}_upload`, `Upload`])
+      }
+
       if (btns.length) {
         proc(DOM.el(`#settings_label_${key}`), btns)
       }

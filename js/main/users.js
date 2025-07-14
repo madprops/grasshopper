@@ -32,7 +32,7 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `text_color`, value: `rgb(231, 243, 244)`})
   App.set_setting({setting: `background_color`, value: `rgb(93, 102, 118)`})
-  App.set_setting({setting: `background_image`, value: `https://harambe.merkoba.com/file/01k01zydwm/circular-motion-fractal-oup72plsi9v3vzdo.gif`})
+  App.set_setting({setting: `background_image`, value: `uploaded`})
   App.set_setting({setting: `background_effect`, value: `blur`})
   App.set_setting({setting: `background_opacity`, value: 90})
   App.set_setting({setting: `background_zoom`, value: 1.2})

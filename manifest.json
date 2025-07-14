@@ -8,6 +8,7 @@
     "tabs",
     "sessions",
     "storage",
+    "unlimitedStorage",
     "contextualIdentities",
     "cookies",
     "contextMenus"

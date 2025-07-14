@@ -479,18 +479,22 @@ App.build_settings = () => {
       },
     },
     background_image: {
-      name: `Background Image`,
+      name: `BG Image`,
       type: `text`,
       value: `Background 1`,
       actions: [`theme`],
       placeholder: `Image URL`,
-      btns: [`pick`],
+      btns: [`pick`, `upload`],
       info: `The background image below the background color
       Pick from the list or enter a URL`,
       version: 1,
       setup: (key) => {
         DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
           App.pick_background(e)
+        })
+
+        DOM.ev(`#settings_${key}_upload`, `click`, (e) => {
+          App.upload_background(e)
         })
       },
     },
