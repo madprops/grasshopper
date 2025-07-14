@@ -305,7 +305,7 @@ App.show_palette_context_menu = (e) => {
       icon: App.notepad_icon,
       text: `Clear`,
       action: () => {
-        App.clear_palette()
+        App.clear_palette_filter()
       },
     })
   }
