@@ -1429,34 +1429,33 @@ App.paste_background = async () => {
 }
 
 App.upload_background = () => {
-    let input = document.createElement(`input`)
-    input.type = `file`
-    input.accept = `image/*`
+  let input = document.createElement(`input`)
+  input.type = `file`
+  input.accept = `image/*`
 
-    input.onchange = async (e) => {
-      let file = e.target.files[0]
+  input.onchange = async (e) => {
+    let file = e.target.files[0]
 
-      if (!file) {
-        return
-      }
-
-      if (file.size > 100 * 1024 * 1024) {
-        return
-      }
-
-      let reader = new FileReader()
-
-      reader.onload = async (event) => {
-        let data = event.target.result
-        await browser.storage.local.set({storedImage: data})
-        App.set_uploaded_image()
-      }
-
-      reader.onerror = (error) => reject(error)
-      reader.readAsDataURL(file)
+    if (!file) {
+      return
     }
 
-    input.click()
+    if (file.size > 100 * 1024 * 1024) {
+      return
+    }
+
+    let reader = new FileReader()
+
+    reader.onload = async (event) => {
+      let data = event.target.result
+      await browser.storage.local.set({storedImage: data})
+      App.set_uploaded_image()
+    }
+
+    reader.readAsDataURL(file)
+  }
+
+  input.click()
 }
 
 App.get_stored_background = async () => {
@@ -1470,7 +1469,6 @@ App.get_stored_background = async () => {
     return null
   }
   catch (error) {
-    console.error(`Error retrieving stored image:`, error)
     return null
   }
 }

@@ -255,7 +255,7 @@ App.footer_message = (msg) => {
   }, App.footer_message_delay)
 
   if (App.get_setting(`enable_speech`)) {
-    App.speech("Okay.")
+    App.speech(`Okay.`)
   }
 }
 

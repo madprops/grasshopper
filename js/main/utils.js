@@ -718,14 +718,15 @@ App.indent = (s, n) => {
 App.random_word = (parts = 3, cap = true) => {
   let cons = `bcdfghjklmnpqrstvwxyz`
   let vowels = `aeiou`
-  let cons_next = App.random_int(0, 1) === 0;
+  let cons_next = App.random_int(0, 1) === 0
   let word = ``
 
   for (let i = 0; i < parts * 2; i++) {
     if (cons_next) {
       let index = App.random_int(0, cons.length - 1)
       word += cons[index]
-    } else {
+    }
+    else {
       let index = App.random_int(0, vowels.length - 1)
       word += vowels[index]
     }

@@ -1492,13 +1492,18 @@ App.get_special_tabs = () => {
       let index_b = recent.findIndex(tab => tab.id === b.id)
 
       // If both tabs are in recent, sort by their position in recent
-      if (index_a !== -1 && index_b !== -1) {
+      if ((index_a !== -1) && (index_b !== -1)) {
         return index_a - index_b
       }
 
       // If only one tab is in recent, prioritize it
-      if (index_a !== -1) return -1
-      if (index_b !== -1) return 1
+      if (index_a !== -1) {
+        return -1
+      }
+
+      if (index_b !== -1) {
+        return 1
+      }
 
       // If neither tab is in recent, sort by lastAccessed
       return a.lastAccessed > b.lastAccessed ? -1 : 1
