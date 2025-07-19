@@ -1567,7 +1567,7 @@ App.do_scroll_on_mouse_out = () => {
 }
 
 App.start_progressive_fill = () => {
-  clearTimeout(App.observer_fill_timeout)
+  clearTimeout(App.progressive_fill_timeout)
   let fill = App.get_setting(`fill_elements`)
 
   if (fill === `progressive`) {
