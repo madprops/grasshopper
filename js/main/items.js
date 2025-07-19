@@ -1564,3 +1564,23 @@ App.do_scroll_on_mouse_out = () => {
     App.scroll_on_mouse_out = undefined
   }
 }
+
+App.start_observer_fill = () => {
+  let fill = App.get_setting(`fill_elements`)
+
+  if (fill === `progressive`) {
+    setTimeout(() => {
+      App.do_observer_fill()
+    }, App.observer_fill_timeout)
+  }
+}
+
+App.do_observer_fill = async () => {
+  for (let item of App.get_items(`tabs`)) {
+    if (item.element && !item.element_ready) {
+      App.create_item_element(item)
+      await App.sleep(App.observer_fill_throttle)
+      console.log(111111111)
+    }
+  }
+}

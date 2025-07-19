@@ -320,6 +320,23 @@ App.build_settings = () => {
         ])
       },
     },
+    fill_elements: {
+      name: `Fill Elements`,
+      type: `menu`,
+      value: `progressive`,
+      info: `How to fill the elements on first load. This can change the loading times
+      Instant loads everything at once and can slow down the load
+      Observer fills the elements as soon as they come into view
+      Progressive also observes but kicks off a controlled auto-loading in the background after a few seconds to speed up the interface`,
+      version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Instant`, value: `instant`},
+          {text: `Observer`, value: `observer`},
+          {text: `Progressive`, value: `progressive`},
+        ])
+      },
+    },
     scroll_amount: {
       name: `Scroll Amount`,
       type: `number`,
@@ -5449,13 +5466,6 @@ App.build_settings = () => {
       value: true,
       actions: [`sort_settings`],
       info: `Sort setting categories`,
-      version: 1,
-    },
-    fill_elements: {
-      name: `Fill Elements`,
-      type: `checkbox`,
-      value: false,
-      info: `Fill item elements immediately instead of using the observer`,
       version: 1,
     },
     context_autohide: {

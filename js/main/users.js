@@ -31,10 +31,10 @@ App.user_madprops_settings = () => {
   // Theme
 
   App.set_setting({setting: `text_color`, value: `rgb(231, 243, 244)`})
-  App.set_setting({setting: `background_color`, value: `rgb(93, 102, 118)`})
+  App.set_setting({setting: `background_color`, value: `rgb(82, 88, 97)`})
   App.set_setting({setting: `background_image`, value: `uploaded`})
-  App.set_setting({setting: `background_effect`, value: `blur`})
-  App.set_setting({setting: `background_opacity`, value: 90})
+  App.set_setting({setting: `background_effect`, value: `rotate_2_blur`})
+  App.set_setting({setting: `background_opacity`, value: 75})
   App.set_setting({setting: `background_zoom`, value: 1.2})
   App.set_setting({setting: `window_border_color`, value: `rgba(166, 190, 183, 1)`})
   App.set_setting({setting: `window_border_sides`, value: `right`})

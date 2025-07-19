@@ -184,8 +184,9 @@ App.process_info = (args = {}) => {
     item.last_scroll = 0
 
     App.create_empty_item_element(item)
+    let fill = App.get_setting(`fill_elements`)
 
-    if (App.get_setting(`fill_elements`)) {
+    if (fill === `instant`) {
       App.create_item_element(item)
     }
 
