@@ -2658,7 +2658,7 @@ App.setup_commands = () => {
       single: true,
       icon: header_icon,
       action: (args) => {
-        App.insert_header(args.item)
+        App.insert_header({item: args.item})
       },
       info: `Add a header tab`,
     },
@@ -2671,7 +2671,7 @@ App.setup_commands = () => {
       single: true,
       icon: subheader_icon,
       action: (args) => {
-        App.insert_header(args.item, false)
+        App.insert_header({item: args.item, full: false})
       },
       info: `Add a subheader tab`,
     },
