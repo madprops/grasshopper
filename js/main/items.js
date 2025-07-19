@@ -1184,6 +1184,7 @@ App.clear_show = async () => {
   App.clear_all_items()
   App.rebuild_items()
   App.show_main_mode()
+  App.start_progressive_fill()
 }
 
 App.select_item_by_id = (mode, id) => {
@@ -1565,22 +1566,22 @@ App.do_scroll_on_mouse_out = () => {
   }
 }
 
-App.start_observer_fill = () => {
+App.start_progressive_fill = () => {
+  clearTimeout(App.observer_fill_timeout)
   let fill = App.get_setting(`fill_elements`)
 
   if (fill === `progressive`) {
-    setTimeout(() => {
-      App.do_observer_fill()
-    }, App.observer_fill_timeout)
+    App.progressive_fill_timeout = setTimeout(() => {
+      App.do_progressive_fill()
+    }, App.progressive_fill_delay)
   }
 }
 
-App.do_observer_fill = async () => {
+App.do_progressive_fill = async () => {
   for (let item of App.get_items(`tabs`)) {
     if (item.element && !item.element_ready) {
       App.create_item_element(item)
-      await App.sleep(App.observer_fill_throttle)
-      console.log(111111111)
+      await App.sleep(App.progressive_fill_throttle)
     }
   }
 }

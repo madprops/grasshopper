@@ -148,8 +148,8 @@ App.scroll_done = false
 App.main_title_history = []
 App.main_title_history_max = 100
 App.mirror_mode = `none`
-App.observer_fill_timeout = App.SECOND * 5
-App.observer_fill_throttle = 120
+App.progressive_fill_delay = App.SECOND * 5
+App.progressive_fill_throttle = 120
 
 App.settings_ready = false
 App.media_image_ready = false
