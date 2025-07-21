@@ -25,6 +25,8 @@ App.start_about = () => {
         `To filter with regex by URL start with re_url:`,
         `To filter by color start with color:`,
         `To filter by tag start with tag:`,
+        `To filter by container start with container:`,
+        `To filter by zone start with zone:`,
         `Alt + Click selects items without triggering actions`,
         `Right Click on the Main Menu to show the Palette`,
         `Right Click on the Filter Menu to show Favorite Filters or filter commands on the Palette (Configurable)`,
@@ -41,7 +43,6 @@ App.start_about = () => {
         `There are 3 special tags: jump, jump2, and jump3`,
         `Use Alt + Up/Down to select items ignoring unloaded tabs`,
         `Use "quotes" in the filters for more "precise matching"`,
-        `Tabs below zones can be filtered with zone:name`,
       ]
 
       let close = DOM.el(`#about_close`)

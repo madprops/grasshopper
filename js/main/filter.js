@@ -538,7 +538,7 @@ App.filter_check = (args) => {
   }
 
   if (!match) {
-    if ((args.by_what === `all`) && App.get_setting(`filter_containers`)) {
+    if (args.by_what.startsWith(`container`) || App.get_setting(`filter_containers`)) {
       if (args.item.container_name) {
         let cname = App.clean_filter(args.item.container_name, true)
         match = cname === args.value_lower
@@ -547,7 +547,7 @@ App.filter_check = (args) => {
   }
 
   if (!match) {
-    if (args.by_what.startsWith(`zone`)) {
+    if (args.by_what.startsWith(`zone`) || App.get_setting(`filter_zones`)) {
       let zone = App.get_zone_of_tab(args.item)
 
       if (!zone) {

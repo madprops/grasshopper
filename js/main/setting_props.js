@@ -1036,13 +1036,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.media_modes)
       },
     },
-    filter_media: {
-      name: `Filter Media`,
-      type: `checkbox`,
-      value: true,
-      info: `Consider media when using the filter normally, like typing 'image'`,
-      version: 1,
-    },
   }
 
   add_props()
@@ -4692,6 +4685,20 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Consider tags when using the filter normally, by typing a tag name`,
+      version: 1,
+    },
+    filter_media: {
+      name: `Filter Media`,
+      type: `checkbox`,
+      value: true,
+      info: `Consider media when using the filter normally, like typing 'image'`,
+      version: 1,
+    },
+    filter_zones: {
+      name: `Filter Zones`,
+      type: `checkbox`,
+      value: true,
+      info: `Consider zone names when using the filter normally`,
       version: 1,
     },
     filter_containers: {
