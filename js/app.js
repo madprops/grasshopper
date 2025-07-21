@@ -149,7 +149,8 @@ App.main_title_history = []
 App.main_title_history_max = 100
 App.mirror_mode = `none`
 App.progressive_fill_delay = App.SECOND * 5
-App.progressive_fill_throttle = 50
+App.progressive_fill_throttle = 100
+App.progressive_fill_batch = 10
 
 App.settings_ready = false
 App.media_image_ready = false

@@ -1578,10 +1578,17 @@ App.start_progressive_fill = () => {
 }
 
 App.do_progressive_fill = async () => {
+  let n = 0
+
   for (let item of App.get_items(`tabs`)) {
     if (item.element && !item.element_ready) {
       App.create_item_element(item)
-      await App.sleep(App.progressive_fill_throttle)
+      n += 1
+
+      if (n >= App.progressive_fill_batch) {
+        await App.sleep(App.progressive_fill_throttle)
+        n = 0
+      }
     }
   }
 }
