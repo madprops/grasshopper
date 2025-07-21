@@ -3132,6 +3132,33 @@ App.setup_commands = () => {
       info: `Insert tabs inside a specific zone`,
     },
     {
+      name: `Focus Header`,
+      cmd: `focus_header`,
+      icon: header_icon,
+      action: (args) => {
+        App.focus_zone(args.e, `header`)
+      },
+      info: `Focus a specific header`,
+    },
+    {
+      name: `Focus Subheader`,
+      cmd: `focus_subheader`,
+      icon: subheader_icon,
+      action: (args) => {
+        App.focus_zone(args.e, `subheader`)
+      },
+      info: `Focus a specific subheader`,
+    },
+    {
+      name: `Focus Zone`,
+      cmd: `focus_zone`,
+      icon: zone_icon,
+      action: (args) => {
+        App.focus_zone(args.e, `zone`)
+      },
+      info: `Focus a specific zone`,
+    },
+    {
       name: `Split Up`,
       cmd: `jump_tabs_split_up`,
       icon: header_icon,

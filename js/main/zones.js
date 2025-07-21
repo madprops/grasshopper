@@ -550,7 +550,7 @@ App.do_fill_headers = (num, full = true) => {
   }
 }
 
-App.tabs_to_zone = (item, e, what) => {
+App.get_zones_and_icon = (what) => {
   let zones, icon
 
   if (what === `header`) {
@@ -565,6 +565,12 @@ App.tabs_to_zone = (item, e, what) => {
     zones = App.get_headers()
     icon = App.zone_icon
   }
+
+  return [zones, icon]
+}
+
+App.tabs_to_zone = (item, e, what) => {
+  let [zones, icon] = App.get_zones_and_icon(what)
 
   let items = []
 
@@ -587,4 +593,22 @@ App.move_to_zone = (zone, item) => {
   let first_index = App.get_item_element_index({element: tabs[0].element})
   let direction = zone_index < first_index ? `up` : `down`
   App.move_zone_move(tabs, zone, direction)
+}
+
+App.focus_zone = (e, what) => {
+  let [zones, icon] = App.get_zones_and_icon(what)
+
+  let items = []
+
+  for (let zone of zones) {
+    items.push({
+      icon,
+      text: App.title(zone, false),
+      action: () => {
+        App.scroll_to_item({item: zone, scroll: `center`})
+      },
+    })
+  }
+
+  App.show_context({items, e})
 }
