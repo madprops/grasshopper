@@ -415,6 +415,8 @@ App.filter_whats = [
   `colors`,
   `tag`,
   `tags`,
+  `zone`,
+  `zones`,
 ]
 
 App.themes = [

@@ -546,6 +546,20 @@ App.filter_check = (args) => {
     }
   }
 
+  if (!match) {
+    if (args.by_what.startsWith(`zone`)) {
+      let zone = App.get_zone_of_tab(args.item)
+
+      if (!zone) {
+        match = false
+      }
+      else {
+        let title = App.title(zone, false).toLowerCase()
+        match = title.includes(args.value_lower)
+      }
+    }
+  }
+
   if (match) {
     if (args.filter_mode === `all`) {
       match = true

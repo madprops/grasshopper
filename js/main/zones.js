@@ -612,3 +612,24 @@ App.focus_zone = (e, what) => {
 
   App.show_context({items, e})
 }
+
+App.get_zone_of_tab = (item) => {
+  if (item.header) {
+    return
+  }
+
+  let tabs = App.get_items(`tabs`)
+  let reversed = tabs.slice().reverse()
+  let met = false
+
+  for (let tab of reversed) {
+    if (tab === item) {
+      met = true
+      continue
+    }
+
+    if (met && tab.header) {
+      return tab
+    }
+  }
+}
