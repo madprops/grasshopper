@@ -3105,6 +3105,33 @@ App.setup_commands = () => {
       info: `Jump to the next header or subheader below`,
     },
     {
+      name: `Move To Header`,
+      cmd: `tabs_to_header`,
+      icon: header_icon,
+      action: (args) => {
+        App.tabs_to_zone(args.item, args.e, `header`)
+      },
+      info: `Insert tabs inside a specific header`,
+    },
+    {
+      name: `Move To Subheader`,
+      cmd: `tabs_to_subheader`,
+      icon: subheader_icon,
+      action: (args) => {
+        App.tabs_to_zone(args.item, args.e, `subheader`)
+      },
+      info: `Insert tabs inside a specific subheader`,
+    },
+    {
+      name: `Move To Zone`,
+      cmd: `tabs_to_zone`,
+      icon: zone_icon,
+      action: (args) => {
+        App.tabs_to_zone(args.item, args.e, `zone`)
+      },
+      info: `Insert tabs inside a specific zone`,
+    },
+    {
       name: `Split Up`,
       cmd: `jump_tabs_split_up`,
       icon: header_icon,

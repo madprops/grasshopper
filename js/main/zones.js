@@ -549,3 +549,42 @@ App.do_fill_headers = (num, full = true) => {
     App.insert_header({item, full, title})
   }
 }
+
+App.tabs_to_zone = (item, e, what) => {
+  let zones, icon
+
+  if (what === `header`) {
+    zones = App.get_header_tabs()
+    icon = App.get_setting_icon(`header`) || App.zone_icon
+  }
+  else if (what === `subheader`) {
+    zones = App.get_subheader_tabs()
+    icon = App.get_setting_icon(`subheader`) || App.zone_icon
+  }
+  else {
+    zones = App.get_headers()
+    icon = App.zone_icon
+  }
+
+  let items = []
+
+  for (let zone of zones) {
+    items.push({
+      icon,
+      text: App.title(zone, false),
+      action: () => {
+        App.move_to_zone(zone, item)
+      },
+    })
+  }
+
+  App.show_context({items, e})
+}
+
+App.move_to_zone = (zone, item) => {
+  let tabs = App.get_active_items({mode: `tabs`, item})
+  let zone_index = App.get_item_element_index({element: zone.element})
+  let first_index = App.get_item_element_index({element: tabs[0].element})
+  let direction = zone_index < first_index ? `up` : `down`
+  App.move_zone_move(tabs, zone, direction)
+}
