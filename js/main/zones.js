@@ -633,3 +633,13 @@ App.get_zone_of_tab = (item) => {
     }
   }
 }
+
+App.get_zone_by_title = (title) => {
+  let items = App.get_items(`tabs`)
+
+  for (let item of items) {
+    if (item.header && App.title(item, false) === title) {
+      return item
+    }
+  }
+}

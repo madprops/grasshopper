@@ -563,6 +563,21 @@ App.setup_commands = () => {
     })
   }
 
+  let custom_commands = []
+
+  for (let [i, cmd] of App.get_setting(`custom_commands`).entries()) {
+    custom_commands.push({
+      name: cmd.name,
+      short: short_name(cmd.name),
+      cmd: `run_command_combo_${cmd._id_}`,
+      icon: cmd.icon || command_icon,
+      action: async (args) => {
+        await App.run_custom_command(cmd, args.item, args.e)
+      },
+      info: `Run Custom Command (${i})`,
+    })
+  }
+
   let templates = []
 
   for (let [i, template] of App.get_setting(`templates`).entries()) {
@@ -979,6 +994,7 @@ App.setup_commands = () => {
 
     ...tabnums,
     ...cmd_combos,
+    ...custom_commands,
     ...gen_menus,
     ...templates,
 

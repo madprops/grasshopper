@@ -780,7 +780,7 @@ App.start_custom_commands_addlist = () => {
       widgets: {
         name: `text`,
         icon: `text`,
-        action: `text`,
+        action: `menu`,
         argument: `text`,
       },
       labels: {
@@ -788,6 +788,10 @@ App.start_custom_commands_addlist = () => {
         icon: `Icon`,
         action: `Action`,
         argument: `Argument`,
+      },
+      required: {
+        name: true,
+        action: true,
       },
       list_icon: (item) => {
         return item.icon
@@ -804,8 +808,31 @@ App.start_custom_commands_addlist = () => {
         action: `Type of action to run`,
         argument: `Argument for the action, if needed`,
       },
+      sources: {
+        action: () => {
+          return [
+            {text: `Go To Zone`, value: `goto_zone`},
+          ]
+        },
+      },
       title: props.name,
     })})
 
   App.custom_commands_addlist_ready = true
+}
+
+App.run_custom_command = (cmd, item, e) => {
+  if (cmd.action === `goto_zone`) {
+    if (!cmd.argument) {
+      return
+    }
+
+    let zone = App.get_zone_by_title(cmd.argument)
+
+    if (!zone) {
+      return
+    }
+
+    App.scroll_to_item({item: zone, scroll: `center`})
+  }
 }
