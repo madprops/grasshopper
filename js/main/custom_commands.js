@@ -44,6 +44,7 @@ App.start_custom_commands_addlist = () => {
           return [
             {text: `Go To Zone`, value: `goto_zone`},
             {text: `Edit Title`, value: `edit_title`},
+            {text: `Add Tag`, value: `add_tag`},
           ]
         },
       },
@@ -53,12 +54,8 @@ App.start_custom_commands_addlist = () => {
   App.custom_commands_addlist_ready = true
 }
 
-App.run_custom_command = (cmd, item, e) => {
-  if (!cmd.argument) {
-    return
-  }
-
-  if (cmd.action === `goto_zone`) {
+App.custom_command_actions = {
+  goto_zone: (cmd, item, e) => {
     let zone = App.get_zone_by_title(cmd.argument)
 
     if (!zone) {
@@ -66,12 +63,34 @@ App.run_custom_command = (cmd, item, e) => {
     }
 
     App.scroll_to_item({item: zone, scroll: `center_smooth`})
-  }
-  else if (cmd.action === `edit_title`) {
+  },
+  edit_title: (cmd, item, e) => {
     let active = App.get_active_items({mode: item.mode, item})
 
     for (let it of active) {
       App.edit_title_directly(it, cmd.argument)
     }
+  },
+  add_tag: (cmd, item, e) => {
+    let active = App.get_active_items({mode: item.mode, item})
+    let tags = cmd.argument.split(` `).filter(x => x.trim() !== ``)
+
+    for (let it of active) {
+      for (let tag of tags) {
+        App.add_tag(it, tag)
+      }
+    }
+  }
+}
+
+App.run_custom_command = (cmd, item, e) => {
+  if (!cmd.argument) {
+    return
+  }
+
+  let action = App.custom_command_actions[cmd.action]
+
+  if (action) {
+    action(cmd, item, e)
   }
 }
