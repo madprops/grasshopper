@@ -25,6 +25,7 @@ App.start_custom_commands_addlist = () => {
       required: {
         name: true,
         action: true,
+        argument: false,
       },
       list_icon: (item) => {
         return item.icon
@@ -53,11 +54,11 @@ App.start_custom_commands_addlist = () => {
 }
 
 App.run_custom_command = (cmd, item, e) => {
-  if (cmd.action === `goto_zone`) {
-    if (!cmd.argument) {
-      return
-    }
+  if (!cmd.argument) {
+    return
+  }
 
+  if (cmd.action === `goto_zone`) {
     let zone = App.get_zone_by_title(cmd.argument)
 
     if (!zone) {
@@ -67,10 +68,6 @@ App.run_custom_command = (cmd, item, e) => {
     App.scroll_to_item({item: zone, scroll: `center_smooth`})
   }
   else if (cmd.action === `edit_title`) {
-    if (!cmd.argument) {
-      return
-    }
-
     let active = App.get_active_items({mode: item.mode, item})
 
     for (let it of active) {
