@@ -37,7 +37,7 @@ App.start_custom_commands_addlist = () => {
         icon: `Icon for this command`,
         name: `Name of the command`,
         action: `Type of action to run`,
-        argument: `Argument for the action, if needed`,
+        argument: `Argument for the action`,
       },
       sources: {
         action: () => {
