@@ -516,3 +516,12 @@ App.remove_tags = (item) => {
     },
   })
 }
+
+App.add_tag_string = (item, tags) => {
+  let split = tags.split(/ |,/).filter(x => x.trim() !== ``)
+  let unique_tags = Array.from(new Set(split))
+
+  for (let tag of unique_tags) {
+    App.add_tag(item, tag)
+  }
+}

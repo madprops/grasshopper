@@ -73,12 +73,9 @@ App.custom_command_actions = {
   },
   add_tag: (cmd, item, e) => {
     let active = App.get_active_items({mode: item.mode, item})
-    let tags = cmd.argument.split(` `).filter(x => x.trim() !== ``)
 
     for (let it of active) {
-      for (let tag of tags) {
-        App.add_tag(it, tag)
-      }
+      App.add_tag_string(it, cmd.argument)
     }
   },
 }
