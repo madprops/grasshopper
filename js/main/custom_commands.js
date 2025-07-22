@@ -80,7 +80,7 @@ App.custom_command_actions = {
         App.add_tag(it, tag)
       }
     }
-  }
+  },
 }
 
 App.run_custom_command = (cmd, item, e) => {
