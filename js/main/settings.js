@@ -1591,6 +1591,7 @@ App.setup_settings_addlist = () => {
   App.start_signals_addlist()
   App.start_templates_addlist()
   App.start_command_combos_addlist()
+  App.start_custom_commands_addlist()
   App.start_colors_addlist()
   App.start_keyboard_addlist()
 

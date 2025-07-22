@@ -382,6 +382,14 @@ App.build_settings = () => {
       info: `Define Command Combos here`,
       version: 1,
     },
+    custom_commands: {
+      name: `Custom Commands`,
+      type: `list`,
+      value: [],
+      actions: [`commands`],
+      info: `Define Custom Commands here`,
+      version: 1,
+    },
     keyboard_shortcuts: {
       name: `Keyboard Shortcuts`,
       type: `list`,

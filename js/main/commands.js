@@ -764,3 +764,48 @@ App.repeat_command = () => {
 
   App.run_command(App.last_command)
 }
+
+App.start_custom_commands_addlist = () => {
+  if (App.custom_commands_addlist_ready) {
+    return
+  }
+
+  let id = `settings_custom_commands`
+  let props = App.setting_props.custom_commands
+  let {popobj, regobj} = App.get_setting_addlist_objects()
+
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
+      keys: [`name`, `icon`, `action`, `argument`],
+      widgets: {
+        name: `text`,
+        icon: `text`,
+        action: `text`,
+        argument: `text`,
+      },
+      labels: {
+        name: `Name`,
+        icon: `Icon`,
+        action: `Action`,
+        argument: `Argument`,
+      },
+      list_icon: (item) => {
+        return item.icon
+      },
+      list_text: (item) => {
+        return item.name
+      },
+      required: {
+        name: true,
+      },
+      tooltips: {
+        icon: `Icon for this command`,
+        name: `Name of the command`,
+        action: `Type of action to run`,
+        argument: `Argument for the action, if needed`,
+      },
+      title: props.name,
+    })})
+
+  App.custom_commands_addlist_ready = true
+}

@@ -171,6 +171,7 @@ App.templates_addlist_ready = false
 App.command_combos_addlist_ready = false
 App.colors_addlist_ready = false
 App.keyboard_addlist_ready = false
+App.custom_commands_addlist_ready = false
 
 App.alert_autohide_delay = 1500
 App.favorites_bar_show_delay = 100
