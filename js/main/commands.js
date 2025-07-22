@@ -799,9 +799,6 @@ App.start_custom_commands_addlist = () => {
       list_text: (item) => {
         return item.name
       },
-      required: {
-        name: true,
-      },
       tooltips: {
         icon: `Icon for this command`,
         name: `Name of the command`,
