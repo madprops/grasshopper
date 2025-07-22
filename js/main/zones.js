@@ -643,3 +643,11 @@ App.get_zone_by_title = (title) => {
     }
   }
 }
+
+App.upgrade_zone = (item) => {
+  App.edit_tab_split({item, which: `top`})
+}
+
+App.downgrade_zone = (item) => {
+  App.remove_edits({what: [`split_top`], items: [item], text: `splits`})
+}

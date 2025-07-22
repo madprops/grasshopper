@@ -54,6 +54,8 @@ App.show_item_menu = async (args = {}) => {
 
     App.item_menu_item(zone_items, `insert_header`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `insert_subheader`, {item: args.item, short: false})
+    App.item_menu_item(zone_items, `upgrade_zone`, {item: args.item, short: false})
+    App.item_menu_item(zone_items, `downgrade_zone`, {item: args.item, short: false})
     App.item_menu_separate(zone_items)
     App.item_menu_item(zone_items, `add_split_top`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `add_split_bottom`, {item: args.item, short: false})

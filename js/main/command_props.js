@@ -2692,6 +2692,32 @@ App.setup_commands = () => {
       info: `Add a subheader tab`,
     },
     {
+      name: `Upgrade Zone`,
+      short_name: `Upgrade`,
+      cmd: `upgrade_zone`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      icon: header_icon,
+      action: (args) => {
+        App.upgrade_zone(args.item)
+      },
+      info: `Turn a subheader into a header`,
+    },
+    {
+      name: `Downgrade Zone`,
+      short_name: `Downgrade`,
+      cmd: `downgrade_zone`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      icon: subheader_icon,
+      action: (args) => {
+        App.downgrade_zone(args.item)
+      },
+      info: `Turn a header into a subheader`,
+    },
+    {
       name: `Select Pins`,
       short_name: `Pins`,
       cmd: `select_pinned_tabs`,
