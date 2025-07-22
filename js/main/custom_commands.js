@@ -42,9 +42,10 @@ App.start_custom_commands_addlist = () => {
       sources: {
         action: () => {
           return [
-            {text: `Go To Zone`, value: `goto_zone`},
-            {text: `Edit Title`, value: `edit_title`},
-            {text: `Add Tag`, value: `add_tag`},
+            {text: `Go To Zone`, value: `goto_zone`, icon: App.zone_icon},
+            {text: `Edit Title`, value: `edit_title`, icon: App.notepad_icon},
+            {text: `Add Tag`, value: `add_tag`, icon: App.tag_icon},
+            {text: `Add Note`, value: `add_note`, icon: App.notepad_icon},
           ]
         },
       },
@@ -64,18 +65,19 @@ App.custom_command_actions = {
 
     App.scroll_to_item({item: zone, scroll: `center_smooth`})
   },
-  edit_title: (cmd, item, e) => {
-    let active = App.get_active_items({mode: item.mode, item})
-
-    for (let it of active) {
+  edit_title: (cmd, items, e) => {
+    for (let it of items) {
       App.edit_title_directly(it, cmd.argument)
     }
   },
-  add_tag: (cmd, item, e) => {
-    let active = App.get_active_items({mode: item.mode, item})
-
-    for (let it of active) {
+  add_tag: (cmd, items, e) => {
+    for (let it of items) {
       App.add_tag_string(it, cmd.argument)
+    }
+  },
+  add_note: (cmd, items, e) => {
+    for (let it of items) {
+      App.add_note(it, cmd.argument)
     }
   },
 }
@@ -88,6 +90,7 @@ App.run_custom_command = (cmd, item, e) => {
   let action = App.custom_command_actions[cmd.action]
 
   if (action) {
-    action(cmd, item, e)
+    let items = App.get_active_items({mode: item.mode, item})
+    action(cmd, items, e)
   }
 }

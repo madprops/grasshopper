@@ -14,9 +14,7 @@ App.edit_notes = (item) => {
           }
         }
 
-        App.apply_edit({what: `notes`, item: it, value: notes, on_change: (value) => {
-          App.custom_save(it.id, `notes`, value)
-        }})
+        App.set_notes(it, notes)
       }
 
       return true
@@ -89,4 +87,21 @@ App.get_noted_items = (mode) => {
   }
 
   return items
+}
+
+App.add_note = (item, note) => {
+  let current_notes = App.get_notes(item)
+  let new_notes = current_notes ? `${current_notes}\n${note}` : note
+  App.set_notes(item, new_notes)
+}
+
+App.set_notes = (item, notes) => {
+  App.apply_edit({
+    what: `notes`,
+    item,
+    value: notes,
+    on_change: (value) => {
+      App.custom_save(item.id, `notes`, value)
+    },
+  })
 }
