@@ -1485,23 +1485,34 @@ App.get_special_tabs = () => {
   let recent = App.get_recent_tabs()
   let normal = App.get_normal_tabs()
 
+  // Create lookup sets for O(1) includes() operations
+  let playing_set = new Set(playing.map(x => x.id))
+  let pinned_set = new Set(pinned.map(x => x.id))
+
   if (recent.length && normal.length) {
+    // Create a map for O(1) recent tab index lookups
+    let recent_map = new Map()
+
+    recent.forEach((tab, index) => {
+      recent_map.set(tab.id, index)
+    })
+
     normal.sort((a, b) => {
-      // Get indices of tabs in the recent array
-      let index_a = recent.findIndex(tab => tab.id === a.id)
-      let index_b = recent.findIndex(tab => tab.id === b.id)
+      // Get indices of tabs in the recent array using O(1) Map lookup
+      let index_a = recent_map.get(a.id)
+      let index_b = recent_map.get(b.id)
 
       // If both tabs are in recent, sort by their position in recent
-      if ((index_a !== -1) && (index_b !== -1)) {
+      if ((index_a !== undefined) && (index_b !== undefined)) {
         return index_a - index_b
       }
 
       // If only one tab is in recent, prioritize it
-      if (index_a !== -1) {
+      if (index_a !== undefined) {
         return -1
       }
 
-      if (index_b !== -1) {
+      if (index_b !== undefined) {
         return 1
       }
 
@@ -1510,20 +1521,17 @@ App.get_special_tabs = () => {
     })
   }
 
-  recent = recent.filter(x => !playing.includes(x))
-  recent = App.remove_empty_tabs(recent)
-  recent = App.remove_unloaded_tabs(recent)
-  recent = recent.slice(0, 2)
-  recent = recent.filter(x => !pinned.includes(x))
+  // Filter recent tabs efficiently in one pass
+  recent = recent.filter(x => !playing_set.has(x.id) && !App.is_new_tab(x.url) && !x.unloaded).slice(0, 2).filter(x => !pinned_set.has(x.id))
 
-  pinned = pinned.filter(x => !recent.includes(x))
-  pinned = App.remove_empty_tabs(pinned)
-  pinned = App.remove_unloaded_tabs(pinned)
+  // Create lookup set for filtered recent tabs
+  let recent_set = new Set(recent.map(x => x.id))
 
-  normal = normal.filter(x => !recent.includes(x))
-  normal = App.remove_empty_tabs(normal)
-  normal = App.remove_unloaded_tabs(normal)
-  normal = normal.slice(0, 20)
+  // Filter pinned tabs efficiently in one pass
+  pinned = pinned.filter(x => !recent_set.has(x.id) && !App.is_new_tab(x.url) && !x.unloaded)
+
+  // Filter normal tabs efficiently in one pass
+  normal = normal.filter(x => !recent_set.has(x.id) && !App.is_new_tab(x.url) && !x.unloaded).slice(0, 20)
 
   let filtered = new Set([...playing, ...recent, ...pinned, ...normal])
   return [...filtered]
