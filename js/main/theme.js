@@ -1225,6 +1225,13 @@ App.set_zone_vars = () => {
   else {
     App.main_remove(`hide_splits_on_filter`)
   }
+
+  if (App.get_setting(`bold_header_titles`)) {
+    App.main_add(`bold_header_titles`)
+  }
+  else {
+    App.main_remove(`bold_header_titles`)
+  }
 }
 
 App.set_hover_button_vars = () => {

@@ -3954,8 +3954,15 @@ App.build_settings = () => {
       name: `Hide Splits On Filter`,
       type: `checkbox`,
       value: false,
-      separator: true,
       info: `Don't show splits top/bottom when on a filtered view`,
+      version: 1,
+    },
+    bold_header_titles: {
+      name: `Bold Header Titles`,
+      type: `checkbox`,
+      value: false,
+      separator: true,
+      info: `Make header titles bold`,
       version: 1,
     },
     split_color_enabled: {

@@ -617,6 +617,10 @@ svg {
   margin-top: unset;
 }
 
+.bold_header_titles .header_item {
+  font-weight: bold;
+}
+
 .item_container .header_item .item_content {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
