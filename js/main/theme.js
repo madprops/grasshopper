@@ -176,7 +176,7 @@ App.do_apply_theme = (args = {}) => {
     let sides = App.get_setting(`window_border_sides`)
     App.main_add(`window_border_${sides}`)
 
-    if (sides === `full` || (sides.includes(`except`)) || sides === `just_glow`) {
+    if ((sides === `full`) || sides.includes(`except`) || (sides === `just_glow`)) {
       if (App.get_setting(`enable_window_border_glow`)) {
         if (border_color !== glow_color) {
           App.main_add(`window_border_glow`)
