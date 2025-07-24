@@ -154,35 +154,34 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`window_border_glow_color`, glow_color)
     App.set_css_var(`window_border_glow_speed`, `${glow_speed}s`)
 
-    App.main_remove(`window_border_full`)
-    App.main_remove(`window_border_top`)
-    App.main_remove(`window_border_bottom`)
-    App.main_remove(`window_border_left`)
-    App.main_remove(`window_border_right`)
+    let sidemodes = [
+      `full`,
+      `top`,
+      `bottom`,
+      `left`,
+      `right`,
+      `except_top`,
+      `except_bottom`,
+      `except_left`,
+      `except_right`,
+      `just_glow`,
+    ]
+
+    for (let side of sidemodes) {
+      App.main_remove(`window_border_${side}`)
+    }
+
     App.main_remove(`window_border_glow`)
 
     let sides = App.get_setting(`window_border_sides`)
+    App.main_add(`window_border_${sides}`)
 
-    if (sides === `full`) {
-      App.main_add(`window_border_full`)
-
+    if (sides === `full` || (sides.includes(`except`)) || sides === `just_glow`) {
       if (App.get_setting(`enable_window_border_glow`)) {
         if (border_color !== glow_color) {
           App.main_add(`window_border_glow`)
         }
       }
-    }
-    else if (sides === `top`) {
-      App.main_add(`window_border_top`)
-    }
-    else if (sides === `bottom`) {
-      App.main_add(`window_border_bottom`)
-    }
-    else if (sides === `left`) {
-      App.main_add(`window_border_left`)
-    }
-    else if (sides === `right`) {
-      App.main_add(`window_border_right`)
     }
 
     if (App.get_setting(`container_icon_text`)) {

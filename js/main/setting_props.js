@@ -637,10 +637,18 @@ App.build_settings = () => {
       setup: (key) => {
         App.settings_make_menu(key, [
           {text: `Full`, value: `full`},
+          {text: App.separator_string},
           {text: `Top`, value: `top`},
           {text: `Bottom`, value: `bottom`},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
+          {text: App.separator_string},
+          {text: `Except Top`, value: `except_top`},
+          {text: `Except Bottom`, value: `except_bottom`},
+          {text: `Except Left`, value: `except_left`},
+          {text: `Except Right`, value: `except_right`},
+          {text: App.separator_string},
+          {text: `Just Glow`, value: `just_glow`},
         ])
       },
     },

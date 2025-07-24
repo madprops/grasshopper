@@ -229,10 +229,18 @@ select {
   border-bottom-width: 0;
 }
 
+#main.window_border_except_top {
+  border-top-width: 0;
+}
+
 #main.window_border_bottom {
   border-left-width: 0;
   border-right-width: 0;
   border-top-width: 0;
+}
+
+#main.window_border_except_bottom {
+  border-bottom-width: 0;
 }
 
 #main.window_border_left {
@@ -241,10 +249,22 @@ select {
   border-bottom-width: 0;
 }
 
+#main.window_border_except_left {
+  border-left-width: 0;
+}
+
 #main.window_border_right {
   border-left-width: 0;
   border-top-width: 0;
   border-bottom-width: 0;
+}
+
+#main.window_border_except_right {
+  border-right-width: 0;
+}
+
+#main.window_border_just_glow {
+  border-width: 0;
 }
 
 body.mirror_horizontal #main {
