@@ -707,7 +707,7 @@ App.build_settings = () => {
     enable_window_border_glow: {
       name: `Enable Border Glow`,
       type: `checkbox`,
-      value: true,
+      value: false,
       actions: [`theme`],
       info: `Enable a glow effect on the window border`,
       separator: true,
