@@ -154,7 +154,7 @@ App.user_madprops_settings = () => {
 
   sett = `custom_commands`
 
-  cmd = {name: `bc`, icon: `🥩`, action: `goto_zone`, argument: `bc`, _id_: `zone_bc`}
+  cmd = {name: `Zone: bc`, icon: `🛤️`, action: `goto_zone`, argument: `bc`, _id_: `zone_bc`}
   App.append_list_setting(sett, cmd)
 
   // Combos
