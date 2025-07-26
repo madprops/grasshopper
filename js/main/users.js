@@ -100,10 +100,6 @@ App.user_madprops_settings = () => {
     },
   ]})
 
-  // Filter
-
-  App.set_setting({setting: `clock_enabled`, value: false})
-
   // Favorites
 
   sett = `favorites_menu`
