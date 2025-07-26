@@ -616,7 +616,7 @@ App.move_to_zone = (zone, item, position = `top`) => {
   }
 }
 
-App.focus_zone = (e, what, position = `top`) => {
+App.pick_zone = (e, what, position = `top`) => {
   let [zones, icon] = App.get_zones_and_icon(what)
 
   let items = []
@@ -626,7 +626,7 @@ App.focus_zone = (e, what, position = `top`) => {
       icon,
       text: App.title(zone, false),
       action: () => {
-        App.do_focus_zone(zone, position)
+        App.go_to_zone(zone, position)
       },
     })
   }
@@ -634,7 +634,7 @@ App.focus_zone = (e, what, position = `top`) => {
   App.show_context({items, e})
 }
 
-App.do_focus_zone = (zone, position = `top`) => {
+App.go_to_zone = (zone, position = `top`) => {
   let item
 
   if (position === `top`) {

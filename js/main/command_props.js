@@ -3226,41 +3226,41 @@ App.setup_commands = () => {
       info: `Insert tabs inside a specific zone and place them at the bottom`,
     },
     {
-      name: `Focus Header`,
-      cmd: `focus_header`,
+      name: `Go To Header`,
+      cmd: `go_to_header`,
       icon: header_icon,
       action: (args) => {
-        App.focus_zone(args.e, `header`)
+        App.pick_zone(args.e, `header`)
       },
-      info: `Focus a specific header`,
+      info: `Go to a specific header`,
     },
     {
-      name: `Focus Subheader`,
-      cmd: `focus_subheader`,
+      name: `Go To Subheader`,
+      cmd: `go_to_subheader`,
       icon: subheader_icon,
       action: (args) => {
-        App.focus_zone(args.e, `subheader`)
+        App.pick_zone(args.e, `subheader`)
       },
-      info: `Focus a specific subheader`,
+      info: `Go to a specific subheader`,
     },
     {
-      name: `Focus Zone`,
-      cmd: `focus_zone`,
+      name: `Go To Zone`,
+      cmd: `go_to_zone`,
       icon: zone_icon,
       action: (args) => {
-        App.focus_zone(args.e, `zone`)
+        App.pick_zone(args.e, `zone`)
       },
-      info: `Focus a specific zone`,
+      info: `Go to a specific zone`,
     },
     {
-      name: `Focus Zone (Bottom)`,
-      short_name: `Focus Zone (B)`,
-      cmd: `focus_zone_bottom`,
+      name: `Go To Zone (Bottom)`,
+      short_name: `Go To Zone (B)`,
+      cmd: `go_to_zone_bottom`,
       icon: zone_icon,
       action: (args) => {
-        App.focus_zone(args.e, `zone`, `bottom`)
+        App.pick_zone(args.e, `zone`, `bottom`)
       },
-      info: `Focus a specific zone`,
+      info: `Go to a specific zone`,
     },
     {
       name: `Split Up`,

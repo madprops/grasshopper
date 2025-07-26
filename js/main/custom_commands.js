@@ -63,7 +63,7 @@ App.custom_command_actions = {
       return
     }
 
-    App.do_focus_zone(zone)
+    App.go_to_zone(zone)
   },
   edit_title: (cmd, items, e) => {
     for (let it of items) {
