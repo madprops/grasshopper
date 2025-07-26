@@ -954,7 +954,7 @@ App.set_tab_box_vars = () => {
     App.main_remove(`tab_box_count`)
   }
 
-  if (App.get_setting(`tab_box_hide_title`)) {
+  if (!App.get_setting(`tab_box_title`)) {
     App.main_add(`tab_box_hide_title`)
   }
   else {

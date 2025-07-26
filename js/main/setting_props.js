@@ -2353,6 +2353,13 @@ App.build_settings = () => {
       info: `When a tab gets activated scroll to it in the Tab Box`,
       version: 1,
     },
+    tab_box_title: {
+      name: `Tab Box Title`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the title in the Tab Box`,
+      version: 1,
+    },
     tab_box_auto_playing: {
       name: `Tab Box Auto Playing`,
       type: `checkbox`,
@@ -2379,13 +2386,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Show the scrollbars in the Tab Box`,
-      version: 1,
-    },
-    tab_box_hide_title: {
-      name: `Tab Box Hide Title`,
-      type: `checkbox`,
-      value: false,
-      info: `Don't show the title in the Tab Box`,
       version: 1,
     },
   }
