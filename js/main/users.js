@@ -147,6 +147,9 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `run_custom_command_zone_bc`}
   App.append_list_setting(sett, cmd)
 
+  cmd = {cmd: `jump_tabs_zone_up`, middle: `jump_tabs_zone_down`}
+  App.append_list_setting(sett, cmd)
+
   cmd = {cmd: `lock_screen`}
   App.append_list_setting(sett, cmd)
 
