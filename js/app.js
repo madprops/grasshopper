@@ -321,6 +321,14 @@ App.sizes_3 = [
   {text: `Huge`, value: `huge`},
 ]
 
+App.item_borders = [
+  {text: `None`, value: `none`},
+  {text: App.separator_string},
+  {text: `Normal`, value: `normal`},
+  {text: `Big`, value: `big`},
+  {text: `Huge`, value: `huge`},
+]
+
 App.dark_colors = {
   background: `rgb(45, 45, 55)`,
   text: `rgb(233, 233, 233)`,

@@ -98,13 +98,7 @@ App.build_settings = () => {
       info: `Borders between items`,
       version: 2,
       setup: (key) => {
-        App.settings_make_menu(key, [
-          {text: `None`, value: `none`},
-          {text: App.separator_string},
-          {text: `Normal`, value: `normal`},
-          {text: `Big`, value: `big`},
-          {text: `Huge`, value: `huge`},
-        ])
+        App.settings_make_menu(key, App.item_borders)
       },
     },
     item_align: {
@@ -2199,10 +2193,30 @@ App.build_settings = () => {
       type: `menu`,
       value: `top`,
       info: `How to scroll the Tab Box`,
-      separator: true,
       version: 2,
       setup: (key) => {
         App.settings_make_menu(key, App.scroll_modes)
+      },
+    },
+    tab_box_item_height: {
+      name: `Tab Box Item Height`,
+      type: `menu`,
+      value: `normal`,
+      info: `How big each tab box item is`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.sizes_3)
+      },
+    },
+    tab_box_item_border: {
+      name: `Tab Box Item Border`,
+      type: `menu`,
+      value: `none`,
+      info: `Borders between items in the Tab Box`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.item_borders)
       },
     },
 
@@ -2367,11 +2381,11 @@ App.build_settings = () => {
       info: `Show the scrollbars in the Tab Box`,
       version: 1,
     },
-    tab_box_no_borders: {
-      name: `Tab Box No Borders`,
+    tab_box_hide_title: {
+      name: `Tab Box Hide Title`,
       type: `checkbox`,
       value: false,
-      info: `Avoid borders in the Tab Box`,
+      info: `Don't show the title in the Tab Box`,
       version: 1,
     },
   }

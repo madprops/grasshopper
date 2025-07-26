@@ -838,8 +838,14 @@ App.get_font_string = (font) => {
 }
 
 App.set_item_padding_vars = () => {
+  let a = 0.405
+  let b = 0.15
+
   let item_height = App.get_setting(`item_height`)
-  App.theme_sizer(item_height, `item_padding`, 0.405, 0.15)
+  App.theme_sizer(item_height, `item_padding`, a, b)
+
+  let tab_box_item_height = App.get_setting(`tab_box_item_height`)
+  App.theme_sizer(tab_box_item_height, `tab_box_item_padding`, a, b)
 }
 
 App.set_icon_size_vars = () => {
@@ -948,11 +954,11 @@ App.set_tab_box_vars = () => {
     App.main_remove(`tab_box_count`)
   }
 
-  if (App.get_setting(`tab_box_no_borders`)) {
-    App.main_add(`tab_box_no_borders`)
+  if (App.get_setting(`tab_box_hide_title`)) {
+    App.main_add(`tab_box_hide_title`)
   }
   else {
-    App.main_remove(`tab_box_no_borders`)
+    App.main_remove(`tab_box_hide_title`)
   }
 }
 
@@ -1348,12 +1354,19 @@ App.set_item_vars = () => {
 
   for (let b of borders_opts) {
     App.main_remove(`borders_${b}`)
+    App.main_remove(`tab_box_borders_${b}`)
   }
 
   let borders = App.get_setting(`item_border`)
 
   if (borders_opts.includes(borders)) {
     App.main_add(`borders_${borders}`)
+  }
+
+  let tb_borders = App.get_setting(`tab_box_item_border`)
+
+  if (borders_opts.includes(tb_borders)) {
+    App.main_add(`tab_box_borders_${tb_borders}`)
   }
 
   let item_align = App.get_setting(`item_align`)

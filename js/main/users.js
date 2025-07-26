@@ -258,6 +258,7 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `tab_box_no_borders`, value: true})
   App.set_setting({setting: `tab_box_color_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(47, 99, 151, 0.18)`})
+  App.set_setting({setting: `tab_box_item_height`, value: `normal`})
 
   // Footer
 
