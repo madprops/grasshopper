@@ -202,15 +202,6 @@ App.setup_window = () => {
   })
 }
 
-App.window_goto_top = (mode) => {
-  DOM.el(`#window_content_${mode}`).scrollTop = 0
-}
-
-App.window_goto_bottom = (mode) => {
-  let el = DOM.el(`#window_content_${mode}`)
-  el.scrollTop = el.scrollHeight
-}
-
 App.hide_window = (bypass = false) => {
   if (App.on_items()) {
     return

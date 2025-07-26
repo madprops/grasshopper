@@ -220,7 +220,7 @@ App.scroll_to_selected = (mode) => {
   }
 }
 
-App.goto_top_or_bottom = (args = {}) => {
+App.go_to_top_or_bottom = (args = {}) => {
   let def_args = {
     what: `top`,
     mode: App.active_mode,
@@ -275,7 +275,7 @@ App.scroller_click = (mode, e) => {
     return
   }
 
-  App.goto_top_or_bottom({what: `top`, mode})
+  App.go_to_top_or_bottom({what: `top`, mode})
 }
 
 App.show_scroller_menu = (e) => {

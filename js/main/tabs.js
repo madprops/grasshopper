@@ -982,7 +982,7 @@ App.check_tab_first = () => {
   }
 
   App.tabs_to_first = []
-  App.goto_top_or_bottom({what: `top`})
+  App.go_to_top_or_bottom({what: `top`})
 }
 
 App.check_on_tabs = async (show_all = true) => {
