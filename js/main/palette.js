@@ -52,12 +52,16 @@ App.show_palette = (prefilter = ``) => {
   let num = 0
 
   for (let el of els) {
-    let split = el.dataset.name.split(` `)
+    let name = el.dataset.name
+    let split = name.split(` `)
     let command = App.get_command(el.dataset.command)
     let cname
 
-    if (split.length < 2) {
-      cname = el.dataset.name
+    if (name.startsWith(`!`)) {
+      cname = name
+    }
+    else if (split.length < 2) {
+      cname = name
     }
     else {
       cname = split.slice(1).join(` `)
