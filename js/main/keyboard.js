@@ -803,6 +803,16 @@ App.keyboard_shortcuts_value = () => {
       key: `ArrowRight`, ctrl: true, shift: false, alt: false,
       _id_: `kb_filter_nodes`,
     },
+    {
+      cmd: `jump_tabs_zone_up`,
+      key: `ArrowUp`, ctrl: false, shift: false, alt: true,
+      _id_: `kb_zone_up`,
+    },
+    {
+      cmd: `jump_tabs_zone_down`,
+      key: `ArrowDown`, ctrl: false, shift: false, alt: true,
+      _id_: `kb_zone_down`,
+    },
   ]
 }
 
