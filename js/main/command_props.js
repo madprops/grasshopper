@@ -569,7 +569,7 @@ App.setup_commands = () => {
     custom_commands.push({
       name: cmd.name,
       short: short_name(cmd.name),
-      cmd: `run_command_combo_${cmd._id_}`,
+      cmd: `run_custom_command_${cmd._id_}`,
       icon: cmd.icon || command_icon,
       action: async (args) => {
         await App.run_custom_command(cmd, args.item, args.e)

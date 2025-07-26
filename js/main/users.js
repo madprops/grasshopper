@@ -144,7 +144,17 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `reopen_tab`}
   App.append_list_setting(sett, cmd)
 
+  cmd = {cmd: `run_custom_command_zone_bc`}
+  App.append_list_setting(sett, cmd)
+
   cmd = {cmd: `lock_screen`}
+  App.append_list_setting(sett, cmd)
+
+  // Custom Commands
+
+  sett = `custom_commands`
+
+  cmd = {name: `bc`, icon: `🥩`, action: `goto_zone`, argument: `bc`, _id_: `zone_bc`}
   App.append_list_setting(sett, cmd)
 
   // Combos
