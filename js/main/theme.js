@@ -947,6 +947,13 @@ App.set_tab_box_vars = () => {
   else {
     App.main_remove(`tab_box_count`)
   }
+
+  if (App.get_setting(`tab_box_no_borders`)) {
+    App.main_add(`tab_box_no_borders`)
+  }
+  else {
+    App.main_remove(`tab_box_no_borders`)
+  }
 }
 
 App.set_close_button_vars = () => {

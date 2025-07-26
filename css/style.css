@@ -1615,6 +1615,11 @@ a:hover
   border-top-width: 0;
 }
 
+.tab_box_no_borders .tab_box_item {
+  border-top-width: 0;
+  border-bottom-width: 0;
+}
+
 #tab_box.size_compact {
   height: var(--tab_box_size_compact);
 }

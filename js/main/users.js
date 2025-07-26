@@ -57,6 +57,10 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `rounded_pinline`, value: true})
   App.set_setting({setting: `small_pinline`, value: true})
 
+  // Tab Box
+
+  App.set_setting({setting: `tab_box_no_borders`, value: true})
+
   // Main Title
 
   App.set_setting({setting: `show_main_title`, value: false})

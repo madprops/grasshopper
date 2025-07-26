@@ -2367,6 +2367,13 @@ App.build_settings = () => {
       info: `Show the scrollbars in the Tab Box`,
       version: 1,
     },
+    tab_box_no_borders: {
+      name: `Tab Box No Borders`,
+      type: `checkbox`,
+      value: false,
+      info: `Avoid borders in the Tab Box`,
+      version: 1,
+    },
   }
 
   add_props()
