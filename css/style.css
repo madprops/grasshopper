@@ -1611,6 +1611,10 @@ a:hover
   font-family: var(--tab_box_font);
 }
 
+#tab_box_container > .tab_box_item:first-child {
+  border-top-width: 0;
+}
+
 #tab_box.size_compact {
   height: var(--tab_box_size_compact);
 }
