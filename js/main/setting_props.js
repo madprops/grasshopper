@@ -2213,10 +2213,21 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `Borders between items in the Tab Box`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.item_borders)
+      },
+    },
+    tab_box_border_width: {
+      name: `Tab Box Border`,
+      type: `menu`,
+      value: 0,
+      placeholder: `Px`,
+      info: `Width for a border at the top of the Tab Box`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
     },
 

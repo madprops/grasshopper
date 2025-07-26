@@ -1640,6 +1640,9 @@ a:hover
   background-color: var(--tab_box_color);
   font-size: var(--tab_box_font_size);
   font-family: var(--tab_box_font);
+  border-top-width: var(--tab_box_border_width);
+  border-top-style: solid;
+  border-top-color: var(--alt_color_1);
 }
 
 #tab_box_container > .tab_box_item:first-child {

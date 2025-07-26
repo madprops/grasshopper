@@ -960,6 +960,8 @@ App.set_tab_box_vars = () => {
   else {
     App.main_remove(`tab_box_hide_title`)
   }
+
+  App.set_css_var(`tab_box_border_width`, App.get_setting(`tab_box_border_width`) + `px`)
 }
 
 App.set_close_button_vars = () => {
