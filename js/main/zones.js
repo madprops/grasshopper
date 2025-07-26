@@ -569,8 +569,13 @@ App.get_zones_and_icon = (what) => {
   return [zones, icon]
 }
 
-App.tabs_to_zone = (item, e, what) => {
-  let [zones, icon] = App.get_zones_and_icon(what)
+App.tabs_to_zone = (args = {}) => {
+  let def_args = {
+    position: `top`,
+  }
+
+  App.def_args(def_args, args)
+  let [zones, icon] = App.get_zones_and_icon(args.what)
 
   let items = []
 
@@ -579,20 +584,30 @@ App.tabs_to_zone = (item, e, what) => {
       icon,
       text: App.title(zone, false),
       action: () => {
-        App.move_to_zone(zone, item)
+        App.move_to_zone(zone, args.item, args.position)
       },
     })
   }
 
-  App.show_context({items, e})
+  App.show_context({items, e: args.e})
 }
 
-App.move_to_zone = (zone, item) => {
+App.move_to_zone = (zone, item, position = `top`) => {
   let tabs = App.get_active_items({mode: `tabs`, item})
   let zone_index = App.get_item_element_index({element: zone.element})
+  let zone_below = App.get_zone_below(zone)
   let first_index = App.get_item_element_index({element: tabs[0].element})
-  let direction = zone_index < first_index ? `up` : `down`
-  App.move_zone_move(tabs, zone, direction)
+  let last_tab = App.get_items(`tabs`).at(-1)
+
+  if (position === `top`) {
+    let direction = zone_index < first_index ? `up` : `down`
+    App.move_zone_move(tabs, zone, direction)
+  }
+  else if (position === `bottom`) {
+    let last = zone_below || last_tab
+    let direction = last < first_index ? `up` : `down`
+    App.move_zone_move(tabs, last, direction, `before`)
+  }
 }
 
 App.focus_zone = (e, what) => {
@@ -654,4 +669,15 @@ App.downgrade_zone = (item) => {
 
 App.remove_headers = (items) => {
   return items.filter(x => !x.header)
+}
+
+App.get_zone_below = (item) => {
+  let tabs = App.get_items(`tabs`)
+  let index = App.get_item_element_index({element: item.element})
+
+  for (let i = index + 1; i < tabs.length; i++) {
+    if (tabs[i].header) {
+      return tabs[i]
+    }
+  }
 }

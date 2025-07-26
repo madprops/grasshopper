@@ -3171,7 +3171,11 @@ App.setup_commands = () => {
       cmd: `tabs_to_header`,
       icon: header_icon,
       action: (args) => {
-        App.tabs_to_zone(args.item, args.e, `header`)
+        App.tabs_to_zone({
+          item: args.item,
+          e: args.e,
+          what: `header`,
+        })
       },
       info: `Insert tabs inside a specific header`,
     },
@@ -3180,16 +3184,44 @@ App.setup_commands = () => {
       cmd: `tabs_to_subheader`,
       icon: subheader_icon,
       action: (args) => {
-        App.tabs_to_zone(args.item, args.e, `subheader`)
+        App.tabs_to_zone({
+          item: args.item,
+          e: args.e,
+          what: `subheader`,
+        })
       },
       info: `Insert tabs inside a specific subheader`,
     },
     {
       name: `Move To Zone`,
+      short_name: `To Zone`,
       cmd: `tabs_to_zone`,
+      modes: [`tabs`],
+      item: true,
       icon: zone_icon,
       action: (args) => {
-        App.tabs_to_zone(args.item, args.e, `zone`)
+        App.tabs_to_zone({
+          item: args.item,
+          e: args.e,
+          what: `zone`,
+        })
+      },
+      info: `Insert tabs inside a specific zone`,
+    },
+    {
+      name: `Move To Zone (Bottom)`,
+      short_name: `To Zone (B)`,
+      cmd: `tabs_to_zone_bottom`,
+      modes: [`tabs`],
+      item: true,
+      icon: zone_icon,
+      action: (args) => {
+        App.tabs_to_zone({
+          item: args.item,
+          e: args.e,
+          what: `zone`,
+          position: `bottom`,
+        })
       },
       info: `Insert tabs inside a specific zone`,
     },

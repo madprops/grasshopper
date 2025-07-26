@@ -54,6 +54,7 @@ App.show_item_menu = async (args = {}) => {
 
     App.item_menu_item(zone_items, `insert_header`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `insert_subheader`, {item: args.item, short: false})
+    App.item_menu_separate(zone_items)
     App.item_menu_item(zone_items, `upgrade_zone`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `downgrade_zone`, {item: args.item, short: false})
     App.item_menu_separate(zone_items)
@@ -61,6 +62,12 @@ App.show_item_menu = async (args = {}) => {
     App.item_menu_item(zone_items, `add_split_bottom`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `add_split_both`, {item: args.item, short: false})
     App.item_menu_item(zone_items, `remove_split`, {item: args.item, short: false})
+    App.item_menu_separate(zone_items)
+    App.item_menu_item(zone_items, `tabs_to_zone`, {item: args.item, short: false})
+    App.item_menu_item(zone_items, `tabs_to_zone_bottom`, {item: args.item, short: false})
+    App.item_menu_separate(zone_items)
+    App.item_menu_item(zone_items, `move_to_zone_up`, {item: args.item, short: false})
+    App.item_menu_item(zone_items, `move_to_zone_down`, {item: args.item, short: false})
 
     items.push({
       icon: App.zone_icon,
