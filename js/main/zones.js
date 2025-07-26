@@ -626,18 +626,30 @@ App.focus_zone = (e, what, position = `top`) => {
       icon,
       text: App.title(zone, false),
       action: () => {
-        if (position === `top`) {
-          App.scroll_to_item({item: zone, scroll: `center`})
-        }
-        else if (position === `bottom`) {
-          let last_item = App.get_last_zone_item(zone)
-          App.scroll_to_item({item: last_item, scroll: `center`})
-        }
+        App.do_focus_zone(zone, position)
       },
     })
   }
 
   App.show_context({items, e})
+}
+
+App.do_focus_zone = (zone, position = `top`) => {
+  let item
+
+  if (position === `top`) {
+    item = zone
+  }
+  else if (position === `bottom`) {
+    item = App.get_last_zone_item(zone)
+  }
+
+  App.tabs_action({
+    item,
+    scroll: `center_smooth`,
+    from: `jump`,
+    on_action: false,
+  })
 }
 
 App.get_zone_of_tab = (item) => {

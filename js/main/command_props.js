@@ -3223,7 +3223,7 @@ App.setup_commands = () => {
           position: `bottom`,
         })
       },
-      info: `Insert tabs inside a specific zone`,
+      info: `Insert tabs inside a specific zone and place them at the bottom`,
     },
     {
       name: `Focus Header`,

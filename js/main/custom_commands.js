@@ -63,7 +63,7 @@ App.custom_command_actions = {
       return
     }
 
-    App.scroll_to_item({item: zone, scroll: `center_smooth`})
+    App.do_focus_zone(zone)
   },
   edit_title: (cmd, items, e) => {
     for (let it of items) {
