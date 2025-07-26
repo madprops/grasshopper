@@ -42,7 +42,7 @@ App.start_custom_commands_addlist = () => {
       sources: {
         action: () => {
           return [
-            {text: `Go To Zone`, value: `goto_zone`, icon: App.zone_icon},
+            {text: `Go To Zone`, value: `go_to_zone`, icon: App.zone_icon},
             {text: `Edit Title`, value: `edit_title`, icon: App.notepad_icon},
             {text: `Add Tag`, value: `add_tag`, icon: App.tag_icon},
             {text: `Add Note`, value: `add_note`, icon: App.notepad_icon},
@@ -56,7 +56,7 @@ App.start_custom_commands_addlist = () => {
 }
 
 App.custom_command_actions = {
-  goto_zone: (cmd, item, e) => {
+  go_to_zone: (cmd, item, e) => {
     let zone = App.get_zone_by_title(cmd.argument)
 
     if (!zone) {
