@@ -3482,6 +3482,28 @@ App.setup_commands = () => {
       info: `Remove the splits from tabs`,
     },
     {
+      name: `Remove Top Splits`,
+      short_name: `Rm Top Splits`,
+      cmd: `remove_top_splits`,
+      modes: [`tabs`],
+      icon: zone_icon,
+      action: (args) => {
+        App.remove_top_splits()
+      },
+      info: `Remove all top splits from tabs`,
+    },
+    {
+      name: `Remove Bottom Splits`,
+      short_name: `Rm Bottom Splits`,
+      cmd: `remove_bottom_splits`,
+      modes: [`tabs`],
+      icon: zone_icon,
+      action: (args) => {
+        App.remove_bottom_splits()
+      },
+      info: `Remove all bottom splits from tabs`,
+    },
+    {
       name: `Remove All Splits`,
       short_name: `Rm Splits`,
       cmd: `remove_all_splits`,

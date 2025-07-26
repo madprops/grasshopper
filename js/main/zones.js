@@ -330,6 +330,14 @@ App.remove_item_split = (item) => {
   App.remove_edits({what: [`split_top`, `split_bottom`], items: active, text: `splits`})
 }
 
+App.remove_top_splits = (force = false) => {
+  App.remove_edits({what: [`split_top`], force, text: `splits`})
+}
+
+App.remove_bottom_splits = (force = false) => {
+  App.remove_edits({what: [`split_bottom`], force, text: `splits`})
+}
+
 App.remove_all_splits = (force = false) => {
   App.remove_edits({what: [`split_top`, `split_bottom`], force, text: `splits`})
 }
