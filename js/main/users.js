@@ -57,10 +57,6 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `rounded_pinline`, value: true})
   App.set_setting({setting: `small_pinline`, value: true})
 
-  // Tab Box
-
-  App.set_setting({setting: `tab_box_no_borders`, value: true})
-
   // Main Title
 
   App.set_setting({setting: `show_main_title`, value: false})
@@ -253,6 +249,7 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `show_tab_box`, value: true})
   App.set_setting({setting: `tab_box_mode`, value: `special`})
   App.set_setting({setting: `tab_box_size`, value: `normal`})
+  App.set_setting({setting: `tab_box_no_borders`, value: true})
   App.set_setting({setting: `tab_box_color_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(47, 99, 151, 0.18)`})
 
@@ -260,9 +257,4 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `footer_colors`, value: true})
   App.set_setting({setting: `footer_background_color`, value: `rgba(92, 152, 182, 0.65)`})
-
-  // Window Border
-  App.set_setting({setting: `window_border_width`, value: 5})
-  App.set_setting({setting: `window_border_sides`, value: `right`})
-  App.set_setting({setting: `window_border_color`, value: `#a6beb7ff`})
 }
