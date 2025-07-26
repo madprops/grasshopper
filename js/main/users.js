@@ -51,6 +51,12 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `split_width`, value: 1})
   App.set_setting({setting: `bold_header_titles`, value: true})
 
+  // Pinline
+
+  App.set_setting({setting: `pinline_icons`, value: true})
+  App.set_setting({setting: `rounded_pinline`, value: true})
+  App.set_setting({setting: `small_pinline`, value: true})
+
   // Main Title
 
   App.set_setting({setting: `show_main_title`, value: false})
