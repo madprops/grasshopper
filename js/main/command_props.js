@@ -4864,10 +4864,10 @@ App.setup_commands = () => {
       },
       info: `Restart the extension (For debugging)`,
     },
+    // Don't add icons to hidden commands
     {
       name: `!madprops`,
       cmd: `user_madprops_settings`,
-      icon: bot_icon,
       action: (args) => {
         App.user_settings(`madprops`)
       },
@@ -4878,7 +4878,6 @@ App.setup_commands = () => {
       name: `!madprops (Force)`,
       short_name: `!madprops (F)`,
       cmd: `user_madprops_settings_force`,
-      icon: bot_icon,
       action: (args) => {
         App.user_settings(`madprops`, true)
       },

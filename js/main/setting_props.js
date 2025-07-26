@@ -691,7 +691,7 @@ App.build_settings = () => {
       type: `menu`,
       value: 5,
       placeholder: `Px`,
-      info: `Width in pixels for the window border`,
+      info: `The animation speed of the border glow`,
       actions: [`theme`],
       version: 1,
       setup: (key) => {
