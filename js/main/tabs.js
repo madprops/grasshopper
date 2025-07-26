@@ -1544,3 +1544,27 @@ App.remove_empty_tabs = (tabs) => {
 App.remove_unloaded_tabs = (tabs) => {
   return tabs.filter(x => !x.unloaded)
 }
+
+App.random_tab = () => {
+  let loaded = App.get_loaded_tabs()
+  loaded = App.remove_headers(loaded)
+
+  if (!loaded.length) {
+    return
+  }
+
+  let item = App.get_random_item(loaded)
+  App.tabs_action({item})
+}
+
+App.resurrect_tab = () => {
+  let unloaded = App.get_unloaded_tabs()
+  unloaded = App.remove_headers(unloaded)
+
+  if (!unloaded.length) {
+    return
+  }
+
+  let item = App.get_random_item(unloaded)
+  App.tabs_action({item})
+}

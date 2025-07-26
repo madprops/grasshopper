@@ -2892,6 +2892,26 @@ App.setup_commands = () => {
       info: `Go to the Root URL of a tab`,
     },
     {
+      name: `Random Tab`,
+      short_name: `Random`,
+      cmd: `go_to_random_tab`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.random_tab(args.item)
+      },
+      info: `Go to a random tab`,
+    },
+    {
+      name: `Resurrect Tab`,
+      short_name: `Resurrect`,
+      cmd: `resurrect_random_tab`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.resurrect_tab(args.item)
+      },
+      info: `Load a random unloaded tab`,
+    },
+    {
       name: `Edit Notes`,
       short_name: `Notes`,
       cmd: `edit_notes`,

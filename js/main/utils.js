@@ -740,3 +740,12 @@ App.random_word = (parts = 3, cap = true) => {
 
   return word
 }
+
+App.get_random_item = (array) => {
+  if (!Array.isArray(array) || !array.length) {
+    return null
+  }
+
+  let index = App.random_int(0, array.length - 1)
+  return array[index]
+}

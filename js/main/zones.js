@@ -651,3 +651,7 @@ App.upgrade_zone = (item) => {
 App.downgrade_zone = (item) => {
   App.remove_edits({what: [`split_top`], items: [item], text: `splits`})
 }
+
+App.remove_headers = (items) => {
+  return items.filter(x => !x.header)
+}
