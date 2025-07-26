@@ -610,17 +610,23 @@ App.move_to_zone = (zone, item, position = `top`) => {
   }
 }
 
-App.focus_zone = (e, what) => {
+App.focus_zone = (e, what, position = `top`) => {
   let [zones, icon] = App.get_zones_and_icon(what)
 
   let items = []
 
-  for (let zone of zones) {
+  for (let [i, zone] of zones.entries()) {
     items.push({
       icon,
       text: App.title(zone, false),
       action: () => {
-        App.scroll_to_item({item: zone, scroll: `center`})
+        if (position === `top`) {
+          App.scroll_to_item({item: zone, scroll: `center`})
+        }
+        else if (position === `bottom`) {
+          let last_item = App.get_last_zone_item(zone)
+          App.scroll_to_item({item: last_item, scroll: `center`})
+        }
       },
     })
   }
@@ -680,4 +686,17 @@ App.get_zone_below = (item) => {
       return tabs[i]
     }
   }
+}
+
+App.get_last_zone_item = (item) => {
+  let tabs = App.get_items(`tabs`)
+  let index = App.get_item_element_index({element: item.element})
+
+  for (let i = index + 1; i < tabs.length; i++) {
+    if (tabs[i].header) {
+      return tabs[i - 1]
+    }
+  }
+
+  return tabs.at(-1)
 }

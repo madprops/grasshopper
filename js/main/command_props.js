@@ -3253,6 +3253,16 @@ App.setup_commands = () => {
       info: `Focus a specific zone`,
     },
     {
+      name: `Focus Zone (Bottom)`,
+      short_name: `Focus Zone (B)`,
+      cmd: `focus_zone_bottom`,
+      icon: zone_icon,
+      action: (args) => {
+        App.focus_zone(args.e, `zone`, `bottom`)
+      },
+      info: `Focus a specific zone`,
+    },
+    {
       name: `Split Up`,
       cmd: `jump_tabs_split_up`,
       icon: header_icon,
