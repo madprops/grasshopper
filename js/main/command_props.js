@@ -3260,7 +3260,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.pick_zone(args.e, `zone`, `bottom`)
       },
-      info: `Go to a specific zone`,
+      info: `Go to a specific zone and focus the bottom`,
     },
     {
       name: `Split Up`,

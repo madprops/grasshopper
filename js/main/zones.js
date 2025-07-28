@@ -2,6 +2,7 @@ App.insert_header = async (args = {}) => {
   let def_args = {
     full: true,
     title: ``,
+    random_title: false,
   }
 
   App.def_args(def_args, args)
@@ -37,6 +38,10 @@ App.insert_header = async (args = {}) => {
   if (header) {
     if (args.full) {
       App.edit_tab_split({item: header, which: `top`})
+    }
+
+    if (!args.title && (App.get_setting(`random_zone_titles`) || args.random_title)) {
+      args.title = App.random_word()
     }
 
     if (args.title) {
@@ -553,8 +558,7 @@ App.do_fill_headers = (num, full = true) => {
   let items = tabs.filter((_, i) => ((i % step) === 0) && (i > 0)).slice(0, num)
 
   for (let item of items) {
-    let title = App.random_word()
-    App.insert_header({item, full, title})
+    App.insert_header({item, full, random_title: true})
   }
 }
 

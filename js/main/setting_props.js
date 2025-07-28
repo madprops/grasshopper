@@ -3993,8 +3993,15 @@ App.build_settings = () => {
       name: `Bold Header Titles`,
       type: `checkbox`,
       value: false,
-      separator: true,
       info: `Make header titles bold`,
+      version: 1,
+    },
+    random_zone_titles: {
+      name: `Random Zone Titles`,
+      type: `checkbox`,
+      value: false,
+      separator: true,
+      info: `Give a random title to new zones`,
       version: 1,
     },
     split_color_enabled: {
