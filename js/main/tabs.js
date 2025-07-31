@@ -1413,7 +1413,7 @@ App.push_recent_tab = (item) => {
   }
 }
 
-App.change_tab_url = (item) => {
+App.change_tabs_url = (item) => {
   let value = ``
   let active = App.get_active_items({mode: item.mode, item})
   let active_tab = App.get_active_tab_item()
@@ -1569,7 +1569,7 @@ App.resurrect_tab = () => {
   App.tabs_action({item})
 }
 
-App.make_tab_new = (item) => {
+App.make_tabs_new = (item) => {
   let selection = App.get_active_items({mode: `tabs`, item})
 
   let before_close = async (tabs) => {

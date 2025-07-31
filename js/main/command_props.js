@@ -2011,7 +2011,7 @@ App.setup_commands = () => {
       some_no_header: true,
       icon: tabs_icon,
       action: (args) => {
-        App.change_tab_url(args.item)
+        App.change_tabs_url(args.item)
       },
       info: `Change the URL of tabs`,
     },
@@ -2023,7 +2023,7 @@ App.setup_commands = () => {
       item: true,
       icon: new_icon,
       action: (args) => {
-        App.make_tab_new(args.item)
+        App.make_tabs_new(args.item)
       },
       info: `Edit the Title`,
     },
