@@ -2005,7 +2005,7 @@ App.setup_commands = () => {
     {
       name: `Change URL`,
       short_name: `URL`,
-      cmd: `change_tab_url`,
+      cmd: `change_tabs_url`,
       modes: [`tabs`],
       item: true,
       some_no_header: true,
@@ -2016,8 +2016,11 @@ App.setup_commands = () => {
       info: `Change the URL of tabs`,
     },
     {
-      name: `Make New`,
-      cmd: `make_tab_new`,
+      name: `Make Tab New`,
+      short_name: `Make New`,
+      cmd: `make_tabs_new`,
+      modes: [`tabs`],
+      item: true,
       icon: new_icon,
       action: (args) => {
         App.make_tab_new(args.item)
