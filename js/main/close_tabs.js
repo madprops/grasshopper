@@ -66,6 +66,10 @@ App.close_tabs = (args = {}) => {
         }
       }
 
+      if (args.before_close) {
+        await args.before_close(items)
+      }
+
       let ids = items.map(x => x.id)
       await App.close_tab_or_tabs(ids)
 

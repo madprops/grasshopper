@@ -1,3 +1,57 @@
+App.custom_command_actions = {
+  go_to_zone: (cmd, items, e) => {
+    let zone = App.get_zone_by_title(cmd.argument)
+
+    if (!zone) {
+      return
+    }
+
+    App.go_to_zone(zone)
+  },
+  move_to_zone_top: (cmd, items, e) => {
+    let zone = App.get_zone_by_title(cmd.argument)
+
+    if (!zone || !items.length) {
+      return
+    }
+
+    App.move_to_zone(zone, items[0], `top`)
+  },
+  move_to_zone_bottom: (cmd, items, e) => {
+    let zone = App.get_zone_by_title(cmd.argument)
+
+    if (!zone || !items.length) {
+      return
+    }
+
+    App.move_to_zone(zone, items[0], `bottom`)
+  },
+  edit_title: (cmd, items, e) => {
+    for (let it of items) {
+      App.edit_title_directly(it, cmd.argument)
+    }
+  },
+  add_tag: (cmd, items, e) => {
+    for (let it of items) {
+      App.add_tag_string(it, cmd.argument)
+    }
+  },
+  add_note: (cmd, items, e) => {
+    for (let it of items) {
+      App.add_note(it, cmd.argument)
+    }
+  },
+}
+
+App.custom_command_items = [
+  {text: `Go To Zone`, value: `go_to_zone`, icon: App.zone_icon},
+  {text: `Move To Zone (Top)`, value: `move_to_zone_top`, icon: App.zone_icon},
+  {text: `Move To Zone (Bottom)`, value: `move_to_zone_bottom`, icon: App.zone_icon},
+  {text: `Edit Title`, value: `edit_title`, icon: App.notepad_icon},
+  {text: `Add Tag`, value: `add_tag`, icon: App.tag_icon},
+  {text: `Add Note`, value: `add_note`, icon: App.notepad_icon},
+]
+
 App.start_custom_commands_addlist = () => {
   if (App.custom_commands_addlist_ready) {
     return
@@ -41,45 +95,13 @@ App.start_custom_commands_addlist = () => {
       },
       sources: {
         action: () => {
-          return [
-            {text: `Go To Zone`, value: `go_to_zone`, icon: App.zone_icon},
-            {text: `Edit Title`, value: `edit_title`, icon: App.notepad_icon},
-            {text: `Add Tag`, value: `add_tag`, icon: App.tag_icon},
-            {text: `Add Note`, value: `add_note`, icon: App.notepad_icon},
-          ]
+          return App.custom_command_items
         },
       },
       title: props.name,
     })})
 
   App.custom_commands_addlist_ready = true
-}
-
-App.custom_command_actions = {
-  go_to_zone: (cmd, item, e) => {
-    let zone = App.get_zone_by_title(cmd.argument)
-
-    if (!zone) {
-      return
-    }
-
-    App.go_to_zone(zone)
-  },
-  edit_title: (cmd, items, e) => {
-    for (let it of items) {
-      App.edit_title_directly(it, cmd.argument)
-    }
-  },
-  add_tag: (cmd, items, e) => {
-    for (let it of items) {
-      App.add_tag_string(it, cmd.argument)
-    }
-  },
-  add_note: (cmd, items, e) => {
-    for (let it of items) {
-      App.add_note(it, cmd.argument)
-    }
-  },
 }
 
 App.run_custom_command = (cmd, item, e) => {

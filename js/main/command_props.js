@@ -2016,6 +2016,15 @@ App.setup_commands = () => {
       info: `Change the URL of tabs`,
     },
     {
+      name: `Make New`,
+      cmd: `make_tab_new`,
+      icon: new_icon,
+      action: (args) => {
+        App.make_tab_new(args.item)
+      },
+      info: `Edit the Title`,
+    },
+    {
       name: `Obfuscate Tab`,
       name_multiple: `Obfuscate Tabs`,
       short_name: `Obfuscate`,

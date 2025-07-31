@@ -1568,3 +1568,19 @@ App.resurrect_tab = () => {
   let item = App.get_random_item(unloaded)
   App.tabs_action({item})
 }
+
+App.make_tab_new = (item) => {
+  let selection = App.get_active_items({mode: `tabs`, item})
+
+  let before_close = async (tabs) => {
+    for (let tab of tabs) {
+      if (App.is_new_tab(tab.url)) {
+        continue
+      }
+
+      App.create_new_tab({}, tab, `cmd_below`)
+    }
+  }
+
+  App.close_tabs({selection, before_close})
+}
