@@ -288,7 +288,7 @@ body.mirror_vertical #main {
   z-index: 1000;
 }
 
-#supermain.window_border_glow_hover::after {
+#supermain.window_border_glow.window_border_glow_hover::after {
   animation: unset;
 }
 
