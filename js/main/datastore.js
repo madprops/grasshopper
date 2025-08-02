@@ -75,6 +75,8 @@ App.browse_datastore = () => {
     })
   }
 
+  ds_items.reverse()
+
   App.show_context({
     items: ds_items,
   })
