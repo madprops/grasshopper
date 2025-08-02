@@ -70,7 +70,33 @@ App.browse_datastore = () => {
     ds_items.push({
       text: `${item.type}: ${item.value.substring(0, 20).trim()}`,
       action: () => {
-        App.show_textarea({title: `Datastore Item `, text: item.value})
+        let c_items = [
+          {
+            text: `View`,
+            action: () => {
+              App.show_textarea({title: `Datastore Item `, text: item.value})
+            },
+          }
+        ]
+
+        if ([`settings`, `theme`].includes(item.type)) {
+          c_items.push({
+            text: `Import`,
+            action: () => {
+              App.import_settings(item.value)
+            },
+          })
+        }
+
+        if (c_items.length === 1) {
+          c_items[0].action()
+        }
+        else {
+          App.show_context({
+            title: `Action`,
+            items: c_items,
+          })
+        }
       },
     })
   }
@@ -78,21 +104,22 @@ App.browse_datastore = () => {
   ds_items.reverse()
 
   App.show_context({
+    title: `Datastore`,
     items: ds_items,
   })
 }
 
 App.datastore_settings = () => {
   let data = App.get_settings_snapshot(``)
-  App.add_to_datastore(data, `Settings`)
+  App.add_to_datastore(data, `settings`)
 }
 
 App.datastore_theme = () => {
   let data = App.get_settings_snapshot(`theme`)
-  App.add_to_datastore(data, `Theme`)
+  App.add_to_datastore(data, `theme`)
 }
 
 App.datastore_urls = () => {
   let data = App.get_url_list()
-  App.add_to_datastore(data, `URLs`)
+  App.add_to_datastore(data, `urls`)
 }
