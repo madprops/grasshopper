@@ -2996,7 +2996,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.clear_datastore()
       },
-      info: `Show some tab information`,
+      info: `Clear the datastore`,
     },
     {
       name: `Jump Up`,
