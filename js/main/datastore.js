@@ -3,22 +3,20 @@ App.datastore_prompt = () => {
     message: `Enter some text`,
     placeholder: `Text`,
     on_submit: (text) => {
-      if (App.add_to_datastore(text)) {
-        App.footer_message(`Datastore: Added`)
-      }
+      App.add_to_datastore(text)
     },
   })
 }
 
-App.add_to_datastore = (text, do_alert = true) => {
+App.add_to_datastore = (text) => {
   if (!text) {
-    return false
+    return
   }
 
+  text = JSON.stringify(text)
+
   if (text.length < App.datastore_max) {
-    if (do_alert) {
-      App.alert(`Datastore: Text is too long`)
-    }
+    App.footer_message(`Datastore: Text is too long`)
   }
 
   let obj = {
@@ -37,7 +35,7 @@ App.add_to_datastore = (text, do_alert = true) => {
   }
 
   App.stor_save_datastore()
-  return true
+  App.footer_message(`Datastore: Added`)
 }
 
 App.clear_datastore = () => {
@@ -51,4 +49,19 @@ App.clear_datastore = () => {
       },
     }
   )
+}
+
+App.datastore_settings = () => {
+  let data = App.get_settings_snapshot(``)
+  App.add_to_datastore(data)
+}
+
+App.datastore_theme = () => {
+  let data = App.get_settings_snapshot(`theme`)
+  App.add_to_datastore(data)
+}
+
+App.datastore_urls = () => {
+  let data = App.get_url_list()
+  App.add_to_datastore(data)
 }

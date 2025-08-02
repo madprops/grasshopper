@@ -2949,6 +2949,36 @@ App.setup_commands = () => {
       info: `Add text manually to the datastore`,
     },
     {
+      name: `Datastore Settings`,
+      short_name: `Info`,
+      cmd: `datastore_settings`,
+      icon: data_icon,
+      action: (args) => {
+        App.datastore_settings()
+      },
+      info: `Add the current settings state to the datastore`,
+    },
+    {
+      name: `Datastore Theme`,
+      short_name: `Info`,
+      cmd: `datastore_theme`,
+      icon: data_icon,
+      action: (args) => {
+        App.datastore_theme()
+      },
+      info: `Add the current theme state to the datastore`,
+    },
+    {
+      name: `Datastore URLs`,
+      short_name: `Info`,
+      cmd: `datastore_urls`,
+      icon: data_icon,
+      action: (args) => {
+        App.datastore_urls()
+      },
+      info: `Add the current URLs state to the datastore`,
+    },
+    {
       name: `Clear Datastore`,
       short_name: `Info`,
       cmd: `clear_datastore`,
