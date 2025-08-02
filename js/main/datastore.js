@@ -8,7 +8,7 @@ App.datastore_prompt = () => {
   })
 }
 
-App.add_to_datastore = (value, type = `Note`) => {
+App.add_to_datastore = (value, type = `note`) => {
   if (!value) {
     return
   }
