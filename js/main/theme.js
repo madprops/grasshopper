@@ -147,6 +147,7 @@ App.do_apply_theme = (args = {}) => {
     let border_color = App.get_setting(`window_border_color`)
     let glow_color = App.get_setting(`window_border_glow`)
     let glow_speed = App.get_setting(`window_border_glow_speed`)
+    let glow_hover = App.get_setting(`window_border_glow_hover`)
 
     App.set_css_var(`unloaded_opacity`, uto)
     App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
@@ -196,6 +197,13 @@ App.do_apply_theme = (args = {}) => {
     }
     else {
       App.main_remove(`hide_settings_info`)
+    }
+
+    if (glow_hover) {
+      App.main_add(`window_border_glow_hover`)
+    }
+    else {
+      App.main_remove(`window_border_glow_hover`)
     }
 
     App.set_item_vars()

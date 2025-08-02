@@ -2027,7 +2027,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.make_tabs_new(args.item)
       },
-      info: `Edit the Title`,
+      info: `Make a tab new`,
     },
     {
       name: `Obfuscate Tab`,

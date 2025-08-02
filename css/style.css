@@ -77,28 +77,24 @@
     border-right-color: transparent;
     border-bottom-color: transparent;
     border-left-color: transparent;
-    box-shadow: 0 -3px 10px -1px var(--window_border_glow_color);
   }
   25% {
     border-top-color: transparent;
     border-right-color: var(--window_border_glow_color);
     border-bottom-color: transparent;
     border-left-color: transparent;
-    box-shadow: 3px 0 10px -1px var(--window_border_glow_color);
   }
   50% {
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: var(--window_border_glow_color);
     border-left-color: transparent;
-    box-shadow: 0 3px 10px -1px var(--window_border_glow_color);
   }
   75% {
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
     border-left-color: var(--window_border_glow_color);
-    box-shadow: -3px 0 10px -1px var(--window_border_glow_color);
   }
 }
 
@@ -286,6 +282,14 @@ body.mirror_vertical #main {
   pointer-events: none;
   animation: border_travel var(--window_border_glow_speed) infinite linear;
   z-index: 1000;
+}
+
+#main.window_border_glow_hover::after {
+  animation: unset;
+}
+
+#main.window_border_glow_hover:hover::after {
+  animation: border_travel var(--window_border_glow_speed) infinite linear;
 }
 
 #main_top {
