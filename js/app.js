@@ -18,7 +18,7 @@ App.stor_first_time_name = `first_time_v200`
 App.stor_notes_name = `notes_v200`
 App.stor_bookmark_folder_picks = `bookmark_folder_picks_v202`
 App.stor_history_picks = `history_picks_v202`
-App.stor_datastore = `datastore_v202`
+App.stor_datastore = `datastore_v204`
 
 // Backwards compatibility check
 // This should only be used if the structure of the objects have not changed

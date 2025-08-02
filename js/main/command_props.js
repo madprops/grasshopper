@@ -2950,7 +2950,7 @@ App.setup_commands = () => {
     },
     {
       name: `Datastore Settings`,
-      short_name: `Info`,
+      short_name: `DS Settings`,
       cmd: `datastore_settings`,
       icon: data_icon,
       action: (args) => {
@@ -2960,7 +2960,7 @@ App.setup_commands = () => {
     },
     {
       name: `Datastore Theme`,
-      short_name: `Info`,
+      short_name: `DS Theme`,
       cmd: `datastore_theme`,
       icon: data_icon,
       action: (args) => {
@@ -2970,13 +2970,23 @@ App.setup_commands = () => {
     },
     {
       name: `Datastore URLs`,
-      short_name: `Info`,
+      short_name: `DS URLs`,
       cmd: `datastore_urls`,
       icon: data_icon,
       action: (args) => {
         App.datastore_urls()
       },
       info: `Add the current URLs state to the datastore`,
+    },
+    {
+      name: `Browse Datastore`,
+      short_name: `Info`,
+      cmd: `browse_datastore`,
+      icon: data_icon,
+      action: (args) => {
+        App.browse_datastore()
+      },
+      info: `Browse datastore items`,
     },
     {
       name: `Clear Datastore`,

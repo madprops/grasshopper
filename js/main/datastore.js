@@ -8,20 +8,27 @@ App.datastore_prompt = () => {
   })
 }
 
-App.add_to_datastore = (text) => {
-  if (!text) {
+App.add_to_datastore = (value, type = `Note`) => {
+  if (!value) {
     return
   }
 
-  text = JSON.stringify(text)
+  if (typeof value !== `string`) {
+    value = App.str(value, true)
+  }
 
-  if (text.length < App.datastore_max) {
+  if (!value.trim()) {
+    return
+  }
+
+  if (value.length < App.datastore_max) {
     App.footer_message(`Datastore: Text is too long`)
   }
 
   let obj = {
+    type,
+    value,
     date: App.now(),
-    text: text,
   }
 
   if (!App.datastore.items) {
@@ -47,21 +54,43 @@ App.clear_datastore = () => {
         App.stor_save_datastore()
         App.alert(`Datastore cleared`)
       },
-    }
+    },
   )
+}
+
+App.browse_datastore = () => {
+  let items = App.datastore.items || []
+  let ds_items = []
+
+  for (let item of items) {
+    if (!item.value) {
+      continue
+    }
+
+    ds_items.push({
+      text: `${item.type}: ${item.value.substring(0, 20).trim()}`,
+      action: () => {
+        App.show_textarea({title: `Datastore Item `, text: item.value})
+      },
+    })
+  }
+
+  App.show_context({
+    items: ds_items,
+  })
 }
 
 App.datastore_settings = () => {
   let data = App.get_settings_snapshot(``)
-  App.add_to_datastore(data)
+  App.add_to_datastore(data, `Settings`)
 }
 
 App.datastore_theme = () => {
   let data = App.get_settings_snapshot(`theme`)
-  App.add_to_datastore(data)
+  App.add_to_datastore(data, `Theme`)
 }
 
 App.datastore_urls = () => {
   let data = App.get_url_list()
-  App.add_to_datastore(data)
+  App.add_to_datastore(data, `URLs`)
 }
