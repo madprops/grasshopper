@@ -168,3 +168,13 @@ App.stor_save_history_picks = () => {
   App.debug(`Stor: Saving history picks`)
   App.save_local_storage(App.stor_history_picks, App.history_picks)
 }
+
+App.stor_get_datastore = async () => {
+  App.datastore = await App.get_local_storage(App.stor_datastore, {})
+  App.debug(`Stor: Got datastore`)
+}
+
+App.stor_save_datastore = () => {
+  App.debug(`Stor: Saving datastore`)
+  App.save_local_storage(App.stor_datastore, App.datastore)
+}

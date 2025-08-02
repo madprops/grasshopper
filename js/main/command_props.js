@@ -83,6 +83,7 @@ App.setup_commands = () => {
   let shroom_icon = App.shroom_icon
   let window_icon = App.window_icon
   let mirror_icon = App.mirror_icon
+  let data_icon = App.data_icon
 
   let tbmodes = []
 
@@ -2936,6 +2937,26 @@ App.setup_commands = () => {
         App.edit_notes(args.item)
       },
       info: `Edit the notes of tabs`,
+    },
+    {
+      name: `Add To Datastore`,
+      short_name: `Info`,
+      cmd: `add_to_datastore`,
+      icon: data_icon,
+      action: (args) => {
+        App.datastore_prompt()
+      },
+      info: `Add text manually to the datastore`,
+    },
+    {
+      name: `Clear Datastore`,
+      short_name: `Info`,
+      cmd: `clear_datastore`,
+      icon: data_icon,
+      action: (args) => {
+        App.clear_datastore()
+      },
+      info: `Show some tab information`,
     },
     {
       name: `Jump Up`,
