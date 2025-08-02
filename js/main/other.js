@@ -152,6 +152,22 @@ App.main_has = (cls) => {
   return App.main().classList.contains(cls)
 }
 
+App.supermain = () => {
+  return DOM.el(`#supermain`)
+}
+
+App.supermain_add = (cls) => {
+  App.supermain().classList.add(cls)
+}
+
+App.supermain_remove = (cls) => {
+  App.supermain().classList.remove(cls)
+}
+
+App.supermain_has = (cls) => {
+  return App.supermain().classList.contains(cls)
+}
+
 App.body_add = (cls) => {
   App.body().classList.add(cls)
 }

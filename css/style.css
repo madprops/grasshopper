@@ -205,61 +205,65 @@ select {
   width: 100vw;
 }
 
-#main {
-  user-select: none;
-  scrollbar-color: var(--alt_color_2) var(--alt_color_1);
-  display: flex;
-  flex-direction: column;
+#supermain {
   height: 100vh;
   width: 100vw;
   z-index: 999;
   border-color: var(--window_border_color);
   border-width: var(--window_border_width);
   border-style: solid;
-  box-sizing: border-box;
 }
 
-#main.window_border_top {
+#main {
+  user-select: none;
+  scrollbar-color: var(--alt_color_2) var(--alt_color_1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+#supermain.window_border_top {
   border-left-width: 0;
   border-right-width: 0;
   border-bottom-width: 0;
 }
 
-#main.window_border_except_top {
+#supermain.window_border_except_top {
   border-top-width: 0;
 }
 
-#main.window_border_bottom {
+#supermain.window_border_bottom {
   border-left-width: 0;
   border-right-width: 0;
   border-top-width: 0;
 }
 
-#main.window_border_except_bottom {
+#supermain.window_border_except_bottom {
   border-bottom-width: 0;
 }
 
-#main.window_border_left {
+#supermain.window_border_left {
   border-right-width: 0;
   border-top-width: 0;
   border-bottom-width: 0;
 }
 
-#main.window_border_except_left {
+#supermain.window_border_except_left {
   border-left-width: 0;
 }
 
-#main.window_border_right {
+#supermain.window_border_right {
   border-left-width: 0;
   border-top-width: 0;
   border-bottom-width: 0;
 }
 
-#main.window_border_except_right {
+#supermain.window_border_except_right {
   border-right-width: 0;
 }
 
-#main.window_border_just_glow {
+#supermain.window_border_just_glow {
   border-width: 0;
 }
 
@@ -271,7 +275,7 @@ body.mirror_vertical #main {
   transform: scaleY(-1);
 }
 
-#main.window_border_glow::after {
+#supermain.window_border_glow::after {
   content: "";
   position: absolute;
   top: 0;
@@ -284,11 +288,11 @@ body.mirror_vertical #main {
   z-index: 1000;
 }
 
-#main.window_border_glow_hover::after {
+#supermain.window_border_glow_hover::after {
   animation: unset;
 }
 
-#main.window_border_glow_hover:hover::after {
+#supermain.window_border_glow_hover:hover::after {
   animation: border_travel var(--window_border_glow_speed) infinite linear;
 }
 

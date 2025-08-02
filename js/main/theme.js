@@ -169,20 +169,27 @@ App.do_apply_theme = (args = {}) => {
     ]
 
     for (let side of sidemodes) {
-      App.main_remove(`window_border_${side}`)
+      App.supermain_remove(`window_border_${side}`)
     }
 
-    App.main_remove(`window_border_glow`)
+    App.supermain_remove(`window_border_glow`)
 
     let sides = App.get_setting(`window_border_sides`)
-    App.main_add(`window_border_${sides}`)
+    App.supermain_add(`window_border_${sides}`)
 
     if ((sides === `full`) || sides.includes(`except`) || (sides === `just_glow`)) {
       if (App.get_setting(`enable_window_border_glow`)) {
         if (border_color !== glow_color) {
-          App.main_add(`window_border_glow`)
+          App.supermain_add(`window_border_glow`)
         }
       }
+    }
+
+    if (glow_hover) {
+      App.supermain_add(`window_border_glow_hover`)
+    }
+    else {
+      App.supermain_remove(`window_border_glow_hover`)
     }
 
     if (App.get_setting(`container_icon_text`)) {
@@ -197,13 +204,6 @@ App.do_apply_theme = (args = {}) => {
     }
     else {
       App.main_remove(`hide_settings_info`)
-    }
-
-    if (glow_hover) {
-      App.main_add(`window_border_glow_hover`)
-    }
-    else {
-      App.main_remove(`window_border_glow_hover`)
     }
 
     App.set_item_vars()
