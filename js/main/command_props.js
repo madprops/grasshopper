@@ -25,6 +25,8 @@ App.setup_commands = () => {
   let title_icon = App.get_setting_icon(`title`)
   let tags_icon = App.get_setting_icon(`tags`)
   let image_icon = App.get_setting_icon(`image`)
+  let video_icon = App.get_setting_icon(`video`)
+  let audio_icon = App.get_setting_icon(`audio`)
   let edited_icon = App.get_setting_icon(`edited`)
   let container_icon = App.get_setting_icon(`container`)
 
@@ -4510,6 +4512,33 @@ App.setup_commands = () => {
         App.change_background(args.item.url)
       },
       info: `Change the background to the selected image`,
+    },
+    {
+      name: `Find Image`,
+      cmd: `find_image`,
+      icon: image_icon,
+      action: (args) => {
+        App.open_first_media(`image`)
+      },
+      info: `Open the first tab that contains an image`,
+    },
+    {
+      name: `Find Video`,
+      cmd: `find_video`,
+      icon: video_icon,
+      action: (args) => {
+        App.open_first_media(`video`)
+      },
+      info: `Open the first tab that contains a video`,
+    },
+    {
+      name: `Find Audio`,
+      cmd: `find_audio`,
+      icon: audio_icon,
+      action: (args) => {
+        App.open_first_media(`audio`)
+      },
+      info: `Open the first tab that contains an audio`,
     },
     {
       name: `Set Title`,

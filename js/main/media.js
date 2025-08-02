@@ -388,3 +388,14 @@ App.fill_media_window = (what) => {
   let top = DOM.create(`div`, `flex_row_center gap_2 grow`, `media_${what}_buttons`)
   DOM.el(`#window_top_media_${what}`).append(top)
 }
+
+App.open_first_media = (what) => {
+  let tabs = App.get_all_tabs()
+
+  for (let tab of tabs) {
+    if (tab[what]) {
+      App.view_media(tab)
+      return
+    }
+  }
+}
