@@ -35,6 +35,7 @@ App.add_to_datastore = (value, type = `note`) => {
     App.datastore.items = []
   }
 
+  App.remove_from_list(App.datastore.items, value)
   App.datastore.items.push(obj)
 
   if (App.datastore.items.length > App.datastore_max) {

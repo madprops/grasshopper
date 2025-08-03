@@ -749,3 +749,11 @@ App.get_random_item = (array) => {
   let index = App.random_int(0, array.length - 1)
   return array[index]
 }
+
+App.remove_from_list = (list, value) => {
+  let existing = list.findIndex(item => item.value === value)
+
+  if (existing !== -1) {
+    list.splice(existing, 1)
+  }
+}
