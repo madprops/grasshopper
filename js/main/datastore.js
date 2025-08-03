@@ -77,7 +77,7 @@ App.browse_datastore = () => {
             action: () => {
               App.show_textarea({title: `Datastore Item `, text: item.value})
             },
-          }
+          },
         ]
 
         if ([`settings`, `theme`].includes(item.type)) {
