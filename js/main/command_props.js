@@ -2999,6 +2999,26 @@ App.setup_commands = () => {
       info: `Clear the datastore`,
     },
     {
+      name: `Export Datastore`,
+      short_name: `Info`,
+      cmd: `export_datastore`,
+      icon: data_icon,
+      action: (args) => {
+        App.export_datastore()
+      },
+      info: `Export the datastore`,
+    },
+    {
+      name: `Import Datastore`,
+      short_name: `Info`,
+      cmd: `import_datastore`,
+      icon: data_icon,
+      action: (args) => {
+        App.import_datastore()
+      },
+      info: `Import the datastore`,
+    },
+    {
       name: `Jump Up`,
       cmd: `jump_tabs_tag_1_up`,
       icon: right_icon,

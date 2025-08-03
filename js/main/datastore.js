@@ -46,21 +46,32 @@ App.add_to_datastore = (value, type = `note`) => {
   App.footer_message(`Datastore: Added`)
 }
 
+App.get_datastore_items = () => {
+  return App.datastore.items || []
+}
+
 App.clear_datastore = () => {
+  let items = App.get_datastore_items()
+
+  if (!items.length) {
+    App.alert(`Datastore is empty`)
+    return
+  }
+
   App.show_confirm(
     {
-      message: `Are you sure you want to clear the datastore?`,
+      message: `Clear the datastore?`,
       confirm_action: () => {
         App.datastore.items = []
         App.stor_save_datastore()
-        App.alert(`Datastore cleared`)
+        App.alert_autohide(`Datastore cleared`)
       },
     },
   )
 }
 
 App.browse_datastore = () => {
-  let items = App.datastore.items || []
+  let items = App.get_datastore_items()
   let ds_items = []
 
   for (let item of items) {
@@ -123,4 +134,15 @@ App.datastore_theme = () => {
 App.datastore_urls = () => {
   let data = App.get_url_list()
   App.add_to_datastore(data, `urls`)
+}
+
+App.export_datastore = () => {
+  App.export_data(`Datastore`, App.datastore)
+}
+
+App.import_datastore = () => {
+  App.import_data(`Datastore`, (json) => {
+    App.datastore = App.obj(json)
+    App.stor_save_datastore()
+  })
 }
