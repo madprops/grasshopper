@@ -790,11 +790,11 @@ App.export_settings = (category = ``) => {
 }
 
 App.import_settings = (value = ``) => {
-  App.import_data(`Settings`, (json) => {
-    if (App.is_object(json)) {
+  App.import_data(`Settings`, (obj) => {
+    if (App.is_object(obj)) {
       for (let key in App.settings) {
-        if (json[key]) {
-          App.settings[key] = json[key]
+        if (obj[key]) {
+          App.settings[key] = obj[key]
         }
       }
 
@@ -803,6 +803,10 @@ App.import_settings = (value = ``) => {
       App.restart_settings()
     }
   }, value)
+}
+
+App.export_theme = () => {
+  App.export_settings(`theme`)
 }
 
 App.restart_settings = () => {

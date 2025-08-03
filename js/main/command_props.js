@@ -1116,13 +1116,23 @@ App.setup_commands = () => {
     },
     {
       name: `Export Settings`,
-      short_name: `Export`,
+      short_name: `E. Settings`,
       cmd: `export_settings`,
       icon: settings_icon,
       action: (args) => {
         App.export_settings()
       },
       info: `Export settings`,
+    },
+    {
+      name: `Export Theme`,
+      short_name: `E. Theme`,
+      cmd: `export_theme`,
+      icon: settings_icon,
+      action: (args) => {
+        App.export_theme()
+      },
+      info: `Export theme`,
     },
     {
       name: `Import Settings`,

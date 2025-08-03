@@ -141,8 +141,9 @@ App.export_datastore = () => {
 }
 
 App.import_datastore = () => {
-  App.import_data(`Datastore`, (json) => {
-    App.datastore = App.obj(json)
+  App.import_data(`Datastore`, (obj) => {
+    App.datastore = obj
     App.stor_save_datastore()
+    App.footer_message(`Datastore: Imported`)
   })
 }
