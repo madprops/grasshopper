@@ -116,7 +116,8 @@ App.browse_datastore = () => {
   ds_items.reverse()
 
   App.show_context({
-    title: `Datastore`,
+    title: `Datastore (${items.length})`,
+    title_icon: App.data_icon,
     items: ds_items,
   })
 }
