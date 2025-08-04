@@ -263,6 +263,7 @@ App.zone_icon = `🚥`
 App.extra_icon = `✳️`
 App.globe_icon = `🌎`
 App.data_icon = `💾`
+App.action_icon = `🚀`
 App.time_icon = `⏰`
 App.grasshopper_icon = `🦗`
 App.lock_icon = `🔒`

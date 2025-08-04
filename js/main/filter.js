@@ -976,10 +976,18 @@ App.do_filter_2 = (mode) => {
     }
   }
 
-  for (let item of items) {
+  function get_parts(sep) {
+    return value.split(sep)
+      .map(x => x.trim())
+      .filter(x => x.trim() && (x !== ``))
+  }
+
+  let and_parts = get_parts(`&`)
+  let or_parts = get_parts(`|`)
+
+  function action(item) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
     let tooltip = item.title
-
     text = App.clean_filter(text, true)
 
     if (!colons) {
@@ -992,7 +1000,15 @@ App.do_filter_2 = (mode) => {
       show = value && text.startsWith(value)
     }
     else {
-      show = text.includes(value)
+      if (and_parts.length > 1) {
+        show = and_parts.every(part => text.includes(part))
+      }
+      else if (or_parts.length > 1) {
+        show = or_parts.some(part => text.includes(part))
+      }
+      else {
+        show = text.includes(value)
+      }
 
       if (!show && tooltip) {
         show = tooltip.includes(value)
@@ -1005,6 +1021,12 @@ App.do_filter_2 = (mode) => {
     else {
       DOM.hide(item)
     }
+
+    return show
+  }
+
+  for (let item of items) {
+    action(item)
   }
 }
 

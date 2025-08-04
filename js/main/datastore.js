@@ -106,6 +106,7 @@ App.browse_datastore = () => {
         else {
           App.show_context({
             title: `Action`,
+            title_icon: App.action_icon,
             items: c_items,
           })
         }
