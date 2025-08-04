@@ -526,9 +526,6 @@ App.media_icons = [
 ]
 
 App.item_icons = [
-  `image`,
-  `video`,
-  `audio`,
   `active`,
   `pin`,
   `normal`,
@@ -538,6 +535,9 @@ App.item_icons = [
   `loading`,
   `loaded`,
   `unread`,
+  `image`,
+  `video`,
+  `audio`,
   `title`,
   `tags`,
   `notes`,
