@@ -823,7 +823,7 @@ App.build_settings = () => {
     image_icon_side: {
       name: `Image Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Image Icon on the left or right of text`,
       version: 1,
       setup: (key) => {
@@ -904,7 +904,7 @@ App.build_settings = () => {
     video_icon_side: {
       name: `Video Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Video Icon on the left or right of text`,
       version: 1,
       setup: (key) => {
@@ -985,7 +985,7 @@ App.build_settings = () => {
     audio_icon_side: {
       name: `Audio Icon Side`,
       type: `menu`,
-      value: `left`,
+      value: `right`,
       info: `Show the Audio Icon on the left or right of text`,
       version: 1,
       setup: (key) => {
