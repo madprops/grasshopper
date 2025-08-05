@@ -5023,6 +5023,15 @@ App.setup_commands = () => {
       info: `Toggle the browser sidebar`,
     },
     {
+      name: `Welcome`,
+      cmd: `show_welcome_message`,
+      icon: grasshopper_icon,
+      action: (args) => {
+        App.show_intro_message()
+      },
+      info: `Show the welcome message`,
+    },
+    {
       name: `Swarm`,
       cmd: `locust_swarm`,
       icon: grasshopper_icon,
