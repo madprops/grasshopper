@@ -260,11 +260,16 @@ App.do_filter = async (args = {}) => {
   let f_value_lower = f_value ? f_value.toLowerCase() : ``
   let lc_value = value.toLowerCase()
   let only_these = []
-  let only_these_check = false
+  let only_these_check = true
 
   if (filter_mode === `filter_tab_clusters`) {
     only_these = App.get_tab_clusters()
-    only_these_check = true
+  }
+  else if (filter_mode === `filter_no_tab`) {
+    only_these = App.get_no_tabs()
+  }
+  else {
+    only_these_check = false
   }
 
   function check_match(item) {
@@ -719,18 +724,6 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `filter_obfuscated_tabs`) {
       match = App.get_obfuscated(args.item)
-    }
-    else if (args.filter_mode === `filter_no_tab`) {
-      let no_tab = true
-
-      for (let tab of App.get_items(`tabs`)) {
-        if (tab.path === args.item.path) {
-          no_tab = false
-          break
-        }
-      }
-
-      match = no_tab
     }
     else if (args.filter_mode === `filter_tab_containers_all`) {
       match = args.item.container_name

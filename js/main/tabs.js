@@ -1584,3 +1584,30 @@ App.make_tabs_new = (item) => {
 
   App.close_tabs({selection, before_close})
 }
+
+App.get_no_tabs = () => {
+  if (App.active_mode === `tabs`) {
+    return []
+  }
+
+  let items = App.get_items(App.active_mode)
+  let tabs = App.get_items(`tabs`)
+  let matches = []
+
+  for (let item of items) {
+    let no_tab = true
+
+    for (let tab of tabs) {
+      if (tab.path === item.path) {
+        no_tab = false
+        break
+      }
+    }
+
+    if (no_tab) {
+      matches.push(item)
+    }
+  }
+
+  return matches
+}
