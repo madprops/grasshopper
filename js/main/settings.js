@@ -2507,11 +2507,11 @@ App.show_setting_guides = (e) => {
 
 App.show_setting_guide = (i, focused_button = 1) => {
   if (i < 0) {
-    i = 0
+    i = App.setting_guides.length - 1
   }
 
   if (i >= App.setting_guides.length) {
-    i = App.setting_guides.length - 1
+    i = 0
   }
 
   let guide = App.setting_guides[i]
