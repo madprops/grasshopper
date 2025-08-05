@@ -1585,7 +1585,7 @@ App.make_tabs_new = (item) => {
   App.close_tabs({selection, before_close})
 }
 
-App.get_tab_clusters = () => {
+App.get_tab_clusters = (remove_first = false) => {
   let items = App.get_items(`tabs`)
 
   let grouped = items
@@ -1603,6 +1603,16 @@ App.get_tab_clusters = () => {
       return acc
     }, [])
     .filter(group => group.length >= App.get_setting(`min_cluster_size`))
+
+  if (remove_first) {
+    grouped = grouped.map(group => {
+      if (group.length > 1) {
+        return group.slice(1)
+      }
+
+      return []
+    }).filter(group => group.length > 0)
+  }
 
   let tabs = grouped.flat()
   return App.remove_headers(tabs)

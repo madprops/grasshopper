@@ -2532,13 +2532,22 @@ App.setup_commands = () => {
     },
     {
       name: `Close Clusters`,
-      short_name: `Close Clusters`,
       cmd: `close_clusters_tabs`,
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`clusters`, args.item)
       },
       info: `Close all tabs that are part of groups of tabs with the same domain`,
+    },
+    {
+      name: `Close Clusters (Trim)`,
+      short_name: `Close Clusters (T)`,
+      cmd: `close_clusters_trim_tabs`,
+      icon: close_icon,
+      action: (args) => {
+        App.close_tabs_popup(`clusters_trim`, args.item)
+      },
+      info: `Close clusters but keep the first tab of each group`,
     },
     {
       name: `Close Pins`,
