@@ -724,3 +724,31 @@ App.show_color_picker = (e) => {
   let title_icon = App.settings_icons.colors
   App.show_context({items, e, title, title_icon})
 }
+
+App.filter_color = (args = {}) => {
+  let def_args = {
+    toggle: false,
+  }
+
+  App.def_args(def_args, args)
+  let value, text
+
+  if (args.id === `all`) {
+    value = `all`
+  }
+  else {
+    let color = App.get_color_by_id(args.id)
+    value = color.id
+    text = color.name
+  }
+
+  App.complex_filter({
+    mode: args.mode,
+    value,
+    text,
+    short: `color`,
+    full: `Colors`,
+    toggle: args.toggle,
+    from: args.from,
+  })
+}

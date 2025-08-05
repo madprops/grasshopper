@@ -259,6 +259,13 @@ App.do_filter = async (args = {}) => {
 
   let f_value_lower = f_value ? f_value.toLowerCase() : ``
   let lc_value = value.toLowerCase()
+  let only_these = []
+  let only_these_check = false
+
+  if (filter_mode === `filter_tab_clusters`) {
+    only_these = App.get_tab_clusters()
+    only_these_check = true
+  }
 
   function check_match(item) {
     let args = {
@@ -272,6 +279,7 @@ App.do_filter = async (args = {}) => {
       f_value,
       f_value_lower,
       search,
+      force_value_check: only_these_check,
     }
 
     return App.filter_check(args)
@@ -305,14 +313,6 @@ App.do_filter = async (args = {}) => {
     check_max = true
   }
 
-  let only_these = []
-  let only_these_check = false
-
-  if (lc_value === `[clusters]`) {
-    only_these = App.get_tab_clusters()
-    only_these_check = true
-  }
-
   for (let item of items) {
     if (!search && !item.element) {
       continue
@@ -324,10 +324,17 @@ App.do_filter = async (args = {}) => {
       match = true
     }
 
-    if (only_these_check) {
-      match = only_these.includes(item)
+    if (!match && only_these_check) {
+      if (only_these.includes(item)) {
+        match = check_match(item)
+      }
+      else {
+        App.hide_item(item)
+        continue
+      }
     }
-    else if (!match) {
+
+    if (!match) {
       if (headers) {
         if (header_match >= 1) {
           if (App.check_header_first(item)) {
@@ -343,10 +350,10 @@ App.do_filter = async (args = {}) => {
           }
         }
       }
+    }
 
-      if (!match) {
-        match = check_match(item)
-      }
+    if (!match) {
+      match = check_match(item)
     }
 
     if (match) {
@@ -510,7 +517,11 @@ App.filter_check = (args) => {
   let title = App.title(args.item)
   let lower_title = title.toLowerCase()
 
-  if (!match) {
+  if (args.force_value_check) {
+    match = true
+  }
+
+  if (!match || (args.force_value_check && args.value)) {
     let clean_title = App.clean_filter(title)
 
     for (let regex of args.regexes) {
@@ -1492,35 +1503,6 @@ App.complex_filter = (args = {}) => {
   App.do_filter({mode: args.mode, refine})
 }
 
-App.filter_color = (args = {}) => {
-  let def_args = {
-    toggle: false,
-  }
-
-  App.def_args(def_args, args)
-  let value, text
-
-  if (args.id === `all`) {
-    value = `all`
-  }
-  else {
-    let color = App.get_color_by_id(args.id)
-    value = color.id
-    text = color.name
-  }
-
-  App.complex_filter({
-    mode: args.mode,
-    value,
-    text,
-    short: `color`,
-    full: `Colors`,
-    toggle: args.toggle,
-    cap_value: true,
-    from: args.from,
-  })
-}
-
 App.filter_tag = (args = {}) => {
   let def_args = {
     toggle: false,
@@ -1665,6 +1647,7 @@ App.create_filter_button = (mode) => {
   fmodes.push({cmd: `icon_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
 
   fmodes.push({cmd: `filter_root_tabs`})
+  fmodes.push({cmd: `filter_tab_clusters`})
 
   if (mode === `tabs`) {
     fmodes.push(separator())

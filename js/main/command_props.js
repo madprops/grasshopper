@@ -84,6 +84,7 @@ App.setup_commands = () => {
   let window_icon = App.window_icon
   let mirror_icon = App.mirror_icon
   let data_icon = App.data_icon
+  let cluster_icon = App.cluster_icon
 
   let tbmodes = []
 
@@ -2968,10 +2969,10 @@ App.setup_commands = () => {
       name: `Filter Clusters`,
       short_name: `Clusters`,
       cmd: `filter_tab_clusters`,
-      icon: tabs_icon,
+      icon: cluster_icon,
       modes: [`tabs`],
       action: (args) => {
-        App.filter_tab_clusters()
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Filter groups of tabs that share the same domain`,
     },
@@ -2979,7 +2980,7 @@ App.setup_commands = () => {
       name: `Show Clusters`,
       short_name: `Clusters`,
       cmd: `show_tab_clusters`,
-      icon: tabs_icon,
+      icon: cluster_icon,
       action: (args) => {
         App.show_tab_clusters(args.e)
       },

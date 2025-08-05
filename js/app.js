@@ -302,6 +302,7 @@ App.select_icon = `🎯`
 App.mirror_icon = `🪞`
 App.data_icon = `💾`
 App.info_icon = `ℹ️`
+App.cluster_icon = `✨`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`
