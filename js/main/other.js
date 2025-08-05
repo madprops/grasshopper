@@ -62,7 +62,6 @@ App.print_intro = () => {
 `
   App.log(s.trim(), `green`)
   App.log(`Starting ${App.manifest.name} v${App.manifest.version}`)
-  App.log(`${App.nice_date(d, true)} | ${d}`)
 }
 
 App.check_ready = (what) => {
