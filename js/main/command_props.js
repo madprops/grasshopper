@@ -1242,6 +1242,15 @@ App.setup_commands = () => {
       info: `Apply background from image URL in clipboard`,
     },
     {
+      name: `Welcome`,
+      cmd: `show_welcome_message`,
+      icon: bot_icon,
+      action: (args) => {
+        App.show_intro_message()
+      },
+      info: `Show the welcome message`,
+    },
+    {
       name: `Show About`,
       short_name: `About`,
       cmd: `show_about`,
@@ -5021,15 +5030,6 @@ App.setup_commands = () => {
         App.toggle_sidebar()
       },
       info: `Toggle the browser sidebar`,
-    },
-    {
-      name: `Welcome`,
-      cmd: `show_welcome_message`,
-      icon: grasshopper_icon,
-      action: (args) => {
-        App.show_intro_message()
-      },
-      info: `Show the welcome message`,
     },
     {
       name: `Swarm`,

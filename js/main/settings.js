@@ -2488,7 +2488,7 @@ App.show_setting_guides = (e) => {
 
   for (let [i, guide] of App.setting_guides.entries()) {
     items.push({
-      icon: App.settings_icons.general,
+      icon: App.info_icon,
       text: guide.title,
       action: () => {
         App.show_setting_guide(i)
@@ -2496,7 +2496,13 @@ App.show_setting_guides = (e) => {
     })
   }
 
-  App.show_context({e, items, expand: true})
+  App.show_context({
+    e,
+    items,
+    expand: true,
+    title: `Setting Guides`,
+    title_icon: App.settings_icons.general,
+  })
 }
 
 App.show_setting_guide = (i, focused_button = 1) => {

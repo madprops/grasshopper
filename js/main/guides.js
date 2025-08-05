@@ -25,4 +25,10 @@ App.setting_guides = [
 
     Single click will only select them, not load them.`,
   },
+  {
+    title: `Datastore backups`,
+    text: `Using the "Datastore Settings" command you can save snapshots of the current settings in the datastore.
+
+    Then you can use "Browse Datastore" to restore previous snapshots.`,
+  },
 ]
