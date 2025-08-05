@@ -68,8 +68,9 @@ App.do_filter = async (args = {}) => {
   let value = App.get_filter(args.mode)
   App[`last_${args.mode}_filter`] = value
   App.save_previous_filter(args.mode)
+  let value_t = value.trim()
 
-  if (value.endsWith(`|`)) {
+  if (value_t.endsWith(`&`) || value_t.endsWith(`|`)) {
     return
   }
 
@@ -190,15 +191,29 @@ App.do_filter = async (args = {}) => {
   }
 
   let regexes = []
-  let reg = App.make_filter_regex(value, by_what, quotes_enabled)
+  let and_parts = App.filter_parts(value, `&`)
+  let look = `(?=.*`
+  let and_join
 
-  if (reg) {
-    regexes.push(reg)
+  if (and_parts.length > 1) {
+    and_join = `${look}${and_parts.join(`)(?=.*`)}).*`
   }
   else {
+    and_join = value
+  }
+
+  let regex = App.make_filter_regex({
+    value: and_join,
+    quotes: quotes_enabled,
+    escape: false,
+    by_what,
+  })
+
+  if (!regex) {
     return
   }
 
+  regexes.push(regex)
   let insensitive = App.get_setting(`case_insensitive`)
 
   if (value && (by_what === `all`)) {
@@ -229,7 +244,11 @@ App.do_filter = async (args = {}) => {
           quotes_enabled = check_quotes_enabled(match)
         }
 
-        let reg = App.make_filter_regex(match, by_what, quotes_enabled)
+        let reg = App.make_filter_regex({
+          value: match,
+          quotes: quotes_enabled,
+          by_what,
+        })
 
         if (reg) {
           regexes.push(reg)
@@ -435,13 +454,19 @@ App.replace_filter_vars = (value) => {
   return value
 }
 
-App.make_filter_regex = (value, by_what, quotes = true) => {
+App.make_filter_regex = (args = {}) => {
+  let def_args = {
+    escape: true,
+    quotes: true,
+  }
+
+  App.def_args(def_args, args)
   let regex
-  value = App.replace_filter_vars(value)
+  args.value = App.replace_filter_vars(args.value)
   let ci = App.get_setting(`case_insensitive`)
 
-  if (by_what.startsWith(`re`)) {
-    let cleaned = value.replace(/\\+$/, ``)
+  if (args.by_what.startsWith(`re`)) {
+    let cleaned = args.value.replace(/\\+$/, ``)
 
     try {
       regex = new RegExp(cleaned, ci ? `i` : ``)
@@ -451,11 +476,14 @@ App.make_filter_regex = (value, by_what, quotes = true) => {
     }
   }
   else {
-    let cleaned = App.clean_filter(value)
-    cleaned = App.escape_regex(cleaned)
+    let cleaned = App.clean_filter(args.value)
 
-    if (quotes) {
-      cleaned = cleaned.replace(/"/g, `\\b`)
+    if (args.escape) {
+      cleaned = App.escape_regex(cleaned)
+    }
+
+    if (args.quotes) {
+      cleaned = App.filter_quotes(cleaned)
     }
 
     cleaned = cleaned.replace(/\s*\|\s*/g, `|`)
@@ -960,6 +988,11 @@ App.set_custom_filter = (mode, filter) => {
 
 App.do_filter_2 = (mode) => {
   let value = App.clean_filter(App.get_filter(mode), true)
+
+  if (value.endsWith(`&`) || value.endsWith(`|`)) {
+    return
+  }
+
   let type = App.popup_open() ? `popup` : `window`
   let win = DOM.el(`#${type}_${mode}`)
   let container = DOM.el_or_self(`.filter_container`, win)
@@ -976,14 +1009,8 @@ App.do_filter_2 = (mode) => {
     }
   }
 
-  function get_parts(sep) {
-    return value.split(sep)
-      .map(x => x.trim())
-      .filter(x => x.trim() && (x !== ``))
-  }
-
-  let and_parts = get_parts(`&`)
-  let or_parts = get_parts(`|`)
+  let and_parts = App.filter_parts(value, `&`)
+  let or_parts = App.filter_parts(value, `|`)
 
   function action(item) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
@@ -2113,4 +2140,14 @@ App.filter_enter_active = (mode) => {
   }
 
   return sett === `normal`
+}
+
+App.filter_parts = (value, sep) => {
+  return value.split(sep)
+    .map(x => x.trim())
+    .filter(x => x.trim() && (x !== ``))
+}
+
+App.filter_quotes = (value) => {
+  return value.replace(/"/g, `\\b`)
 }
