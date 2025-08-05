@@ -1371,6 +1371,10 @@ App.set_item_vars = () => {
 
   if (borders_opts.includes(borders)) {
     App.main_add(`borders_${borders}`)
+    App.set_css_var(`split_margin`, `0`)
+  }
+  else {
+    App.set_css_var(`split_margin`, `0.5rem`)
   }
 
   let tb_borders = App.get_setting(`tab_box_item_border`)

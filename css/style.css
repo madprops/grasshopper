@@ -12,7 +12,6 @@
   --glow_effect: 0 0 0.1rem currentcolor;
   --text_glow: 0 0 0.18rem currentcolor;
   --split_border: var(--split_width) solid var(--split_color);
-  --split_margin: 0.5rem;
   --backdrop: blur(8px);
   --taglist_gap: 0.55rem;
   --header_margin: 0.25rem;
