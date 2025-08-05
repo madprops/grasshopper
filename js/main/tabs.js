@@ -1602,7 +1602,7 @@ App.get_tab_clusters = () => {
 
       return acc
     }, [])
-    .filter(group => group.length >= 5)
+    .filter(group => group.length >= App.get_setting(`min_cluster_size`))
 
   let tabs = grouped.flat()
   return App.remove_headers(tabs)

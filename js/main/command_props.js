@@ -2960,6 +2960,7 @@ App.setup_commands = () => {
       short_name: `Clusters`,
       cmd: `filter_tab_clusters`,
       icon: tabs_icon,
+      modes: [`tabs`],
       action: (args) => {
         App.filter_tab_clusters()
       },

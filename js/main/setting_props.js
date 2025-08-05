@@ -5413,6 +5413,16 @@ App.build_settings = () => {
       info: `Max items to show in the Palette History`,
       version: 1,
     },
+    min_cluster_size: {
+      name: `Min Cluster Size`,
+      type: `number`,
+      value: 5,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Mninimum number of tabs to consider a cluster`,
+      version: 1,
+    },
     obfuscate_symbol: {
       name: `Obfuscate Symbol`,
       type: `text_smaller`,
