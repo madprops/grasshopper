@@ -1,6 +1,6 @@
 App.show_tab_list = (what, e, item) => {
   let tabs, title, title_icon
-    let tabs_icon = App.get_setting_icon(`tabs_mode`)
+  let tabs_icon = App.get_setting_icon(`tabs_mode`)
 
   if (what === `recent`) {
     let max = App.get_setting(`max_recent_tabs`)
