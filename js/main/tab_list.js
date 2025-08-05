@@ -1,5 +1,6 @@
 App.show_tab_list = (what, e, item) => {
   let tabs, title, title_icon
+    let tabs_icon = App.get_setting_icon(`tabs_mode`)
 
   if (what === `recent`) {
     let max = App.get_setting(`max_recent_tabs`)
@@ -79,10 +80,9 @@ App.show_tab_list = (what, e, item) => {
     title_icon = icon
   }
   else if (what === `clusters`) {
-    let icon = `tabs`
     tabs = App.get_tab_clusters()
     title = `Clusters`
-    title_icon = icon
+    title_icon = tabs_icon
   }
 
   let items = []
