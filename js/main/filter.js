@@ -515,11 +515,16 @@ App.filter_check = (args) => {
 
     for (let regex of args.regexes) {
       if ((args.by_what === `all`) || (args.by_what === `re`)) {
-        match = regex.test(clean_title)
+        let title_path
 
-        if (!match && !args.item.header) {
-          match = regex.test(args.item.path)
+        if (args.item.header) {
+          title_path = clean_title
         }
+        else {
+          title_path = `${clean_title} ${args.item.path}`
+        }
+
+        match = regex.test(title_path)
       }
       else if (args.by_what.includes(`title`)) {
         match = regex.test(clean_title)
