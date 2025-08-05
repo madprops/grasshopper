@@ -1608,6 +1608,10 @@ App.get_tab_clusters = () => {
   return App.remove_headers(tabs)
 }
 
-App.filter_tab_clusters = (mode = App.active_mode) => {
-  App.set_filter({mode, text: `[clusters]`})
+App.filter_tab_clusters = () => {
+  App.set_filter({mode: `tabs`, text: `[clusters]`})
+}
+
+App.show_tab_clusters = (e) => {
+  App.show_tab_list(`clusters`, e)
 }

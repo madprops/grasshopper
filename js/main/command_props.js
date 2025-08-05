@@ -2948,11 +2948,21 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Clusters`,
-      short_name: `Cluster`,
+      short_name: `Clusters`,
       cmd: `filter_tab_clusters`,
       icon: tabs_icon,
       action: (args) => {
-        App.filter_tab_clusters(args.mode)
+        App.filter_tab_clusters()
+      },
+      info: `Filter groups of tabs that share the same domain`,
+    },
+    {
+      name: `Show Clusters`,
+      short_name: `Clusters`,
+      cmd: `show_tab_clusters`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.show_tab_clusters(args.e)
       },
       info: `Show groups of tabs that share the same domain`,
     },

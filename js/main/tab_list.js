@@ -78,6 +78,12 @@ App.show_tab_list = (what, e, item) => {
     title = `Icon`
     title_icon = icon
   }
+  else if (what === `clusters`) {
+    let icon = `tabs`
+    tabs = App.get_tab_clusters()
+    title = `Clusters`
+    title_icon = icon
+  }
 
   let items = []
   let playing_icon = App.get_setting(`playing_icon`)
