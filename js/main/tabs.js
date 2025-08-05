@@ -1584,3 +1584,30 @@ App.make_tabs_new = (item) => {
 
   App.close_tabs({selection, before_close})
 }
+
+App.get_tab_clusters = () => {
+  let items = App.get_items(`tabs`)
+
+  let grouped = items
+    .reduce((acc, item) => {
+      let hostname = item.hostname || `unknown`
+      let existing = acc.find(group => (group.length > 0) && (group[0].hostname === hostname))
+
+      if (existing) {
+        existing.push(item)
+      }
+      else {
+        acc.push([item])
+      }
+
+      return acc
+    }, [])
+    .filter(group => group.length >= 5)
+
+  let tabs = grouped.flat()
+  return App.remove_headers(tabs)
+}
+
+App.filter_tab_clusters = (mode = App.active_mode) => {
+  App.set_filter({mode, text: `[clusters]`})
+}

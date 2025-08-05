@@ -524,6 +524,40 @@ App.close_domain_other_tabs = (pins, normal, unloaded) => {
   App.close_tabs_method(items)
 }
 
+App.get_clusters_tabs_items = (pins, normal, unloaded) => {
+  let active = App.get_active_items({mode: `tabs`, item: App.close_tabs_item})
+
+  if (!active.length) {
+    return []
+  }
+
+  let items = App.get_tab_clusters()
+
+  if (!pins) {
+    items = items.filter(x => !x.pinned)
+  }
+
+  if (!normal) {
+    items = items.filter(x => x.pinned)
+  }
+
+  if (!unloaded) {
+    items = items.filter(x => !x.unloaded)
+  }
+
+  return items
+}
+
+App.close_clusters_tabs = (pins, normal, unloaded) => {
+  let items = App.get_clusters_tabs_items(pins, normal, unloaded)
+
+  if (!items.length) {
+    return
+  }
+
+  App.close_tabs_method(items)
+}
+
 App.get_all_tabs_items = (pins, normal, unloaded) => {
   return App.get_items(`tabs`)
 }

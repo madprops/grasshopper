@@ -196,7 +196,7 @@ App.do_filter = async (args = {}) => {
   let and_join
 
   if (and_parts.length > 1) {
-    and_join = `${look}${and_parts.join(`)(?=.*`)}).*`
+    and_join = `${look}${and_parts.join(`)${look}`)}).*`
   }
   else {
     and_join = value
@@ -258,6 +258,7 @@ App.do_filter = async (args = {}) => {
   }
 
   let f_value_lower = f_value ? f_value.toLowerCase() : ``
+  let lc_value = value.toLowerCase()
 
   function check_match(item) {
     let args = {
@@ -267,7 +268,7 @@ App.do_filter = async (args = {}) => {
       filter_mode,
       duplicates,
       value,
-      value_lower: value.toLowerCase(),
+      value_lower: lc_value,
       f_value,
       f_value_lower,
       search,
@@ -304,6 +305,14 @@ App.do_filter = async (args = {}) => {
     check_max = true
   }
 
+  let only_these = []
+  let only_these_check = false
+
+  if (lc_value === `[clusters]`) {
+    only_these = App.get_tab_clusters()
+    only_these_check = true
+  }
+
   for (let item of items) {
     if (!search && !item.element) {
       continue
@@ -315,7 +324,10 @@ App.do_filter = async (args = {}) => {
       match = true
     }
 
-    if (!match) {
+    if (only_these_check) {
+      match = only_these.includes(item)
+    }
+    else if (!match) {
       if (headers) {
         if (header_match >= 1) {
           if (App.check_header_first(item)) {
@@ -331,10 +343,10 @@ App.do_filter = async (args = {}) => {
           }
         }
       }
-    }
 
-    if (!match) {
-      match = check_match(item)
+      if (!match) {
+        match = check_match(item)
+      }
     }
 
     if (match) {

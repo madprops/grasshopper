@@ -2522,6 +2522,16 @@ App.setup_commands = () => {
       info: `Close all tabs from the same domain except the active one`,
     },
     {
+      name: `Close Clusters`,
+      short_name: `Close Clusters`,
+      cmd: `close_clusters_tabs`,
+      icon: close_icon,
+      action: (args) => {
+        App.close_tabs_popup(`clusters`, args.item)
+      },
+      info: `Close all tabs that are part of groups of tabs with the same domain`,
+    },
+    {
       name: `Close Pins`,
       cmd: `close_pinned_tabs`,
       icon: close_icon,
@@ -2935,6 +2945,16 @@ App.setup_commands = () => {
         App.resurrect_tab(args.item)
       },
       info: `Load a random unloaded tab`,
+    },
+    {
+      name: `Filter Clusters`,
+      short_name: `Cluster`,
+      cmd: `filter_tab_clusters`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.filter_tab_clusters(args.mode)
+      },
+      info: `Show groups of tabs that share the same domain`,
     },
     {
       name: `Edit Notes`,
