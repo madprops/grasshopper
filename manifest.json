@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Grasshopper",
-  "version": "6459",
+  "version": "6460",
   "description": "Godspeed You Tab Emperor",
   "author": "Merkoba",
   "permissions": [
@@ -37,7 +37,8 @@
   "sidebar_action": {
     "default_title": "Grasshopper",
     "default_panel": "main.html?sidebar",
-    "default_icon": "img/icon128.png"
+    "default_icon": "img/icon128.png",
+    "open_at_install": false
   },
   "commands": {
     "_execute_browser_action": {
