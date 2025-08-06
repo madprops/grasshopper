@@ -21,8 +21,9 @@ App.add_to_datastore = (value, type = `note`) => {
     return
   }
 
-  if (value.length < App.datastore_max) {
+  if (value.length > App.datastore_max) {
     App.footer_message(`Datastore: Text is too long`)
+    return
   }
 
   let obj = {
@@ -44,6 +45,7 @@ App.add_to_datastore = (value, type = `note`) => {
 
   App.stor_save_datastore()
   App.footer_message(`Datastore: Added`)
+  App.action_sound()
 }
 
 App.get_datastore_items = () => {
@@ -147,5 +149,6 @@ App.import_datastore = () => {
     App.datastore = obj
     App.stor_save_datastore()
     App.footer_message(`Datastore: Imported`)
+    App.action_sound()
   })
 }

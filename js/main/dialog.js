@@ -125,5 +125,5 @@ App.show_confirm = (args = {}) => {
     on_any_action,
   })
 
-  App.play_sound(`effect_2`)
+  App.action_sound()
 }
