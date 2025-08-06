@@ -48,7 +48,7 @@ App.close_tabs_types = [
 ]
 
 App.no_favicons = [`history`, `bookmarks`]
-App.fonts = [`serif`, `sans-serif`, `monospace`, `Nova Square`]
+App.fonts = [`serif`, `sans-serif`, `monospace`, `Nova Square`, `Bitcount`, `Antic Slab`]
 App.optional_modes = [`history`, `bookmarks`]
 
 App.color_types = [`active`, `header`, `subheader`, `playing`, `loaded`,
