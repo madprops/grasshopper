@@ -292,7 +292,9 @@ App.apply_shape = (num, force = false) => {
   })
 }
 
-App.apply_shape_1 = () => {
+App.user_auver_settings = () => {
+  App.user_madprops_settings()
+
   App.set_setting({setting: `text_color`, value: `rgb(222, 255, 219)`})
   App.set_setting({setting: `background_color`, value: `rgb(94, 94, 106)`})
   App.set_setting({setting: `background_image`, value: `Background 5`})

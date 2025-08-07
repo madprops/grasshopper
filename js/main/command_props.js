@@ -5219,23 +5219,23 @@ App.setup_commands = () => {
       info: `Use the preferred settings for madprops without confirmation`,
     },
     {
-      name: `!shape 1`,
-      cmd: `apply_shape_1`,
+      name: `!auver`,
+      cmd: `user_auver`,
       action: (args) => {
-        App.apply_shape(1)
+        App.user_settings(`auver`)
       },
       skip_settings: true,
-      info: `Apply Shape 1`,
+      info: `Use the preferred settings for auver`,
     },
     {
-      name: `!shape 1 (Force)`,
-      short_name: `!shape1 (F)`,
-      cmd: `apply_shape_1_force`,
+      name: `!auver (Force)`,
+      short_name: `!auver (F)`,
+      cmd: `user_auver_force`,
       action: (args) => {
-        App.apply_shape(1, true)
+        App.user_settings(`auver`, true)
       },
       skip_settings: true,
-      info: `Apply Shape 1 without confirmation`,
+      info: `Use the preferred settings for auver without confirmation`,
     },
   ]
 
