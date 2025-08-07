@@ -31,4 +31,10 @@ App.setting_guides = [
 
     Then you can use "Browse Datastore" to restore previous snapshots.`,
   },
+  {
+    title: `Find & Return`,
+    text: `'Find' allows you to search for a specific setting.
+
+    'Return' opens the last category visited, at the correct scrolling position.`,
+  },
 ]
