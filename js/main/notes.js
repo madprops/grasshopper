@@ -117,7 +117,15 @@ App.add_note = (type, item, note = ``) => {
     let items = App.get_active_items(item)
 
     for (let it of items) {
-      let current = App.get_notes(it)
+      let current
+
+      if (type.includes(`global`)) {
+        current = App.notes
+      }
+      else {
+        current = App.get_notes(it)
+      }
+
       let new_notes
 
       if (type.startsWith(`append`)) {
@@ -134,6 +142,9 @@ App.add_note = (type, item, note = ``) => {
       else {
         App.set_notes(it, new_notes)
       }
+
+      App.footer_message(`Note added`)
+      App.action_sound()
     }
   }
 
