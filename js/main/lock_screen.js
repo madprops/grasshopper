@@ -58,6 +58,15 @@ App.lock_screen = () => {
     DOM.hide(text_el)
   }
 
+  clearTimeout(App.words_autohide_timeout)
+  let words_autohide = App.get_setting(`lock_screen_words_autohide`)
+
+  if (words_autohide > 0) {
+    App.words_autohide_timeout = setTimeout(() => {
+      DOM.hide(text_el)
+    }, words_autohide * 1000)
+  }
+
   App.show_window(`lock_screen`)
 }
 

@@ -4927,6 +4927,17 @@ App.build_settings = () => {
       info: `How many random words to show in the lock screen`,
       version: 1,
     },
+    lock_screen_words_autohide: {
+      name: `Lock Screen Words Autohide`,
+      type: `number`,
+      value: 5,
+      placeholder: `Number`,
+      min: 0,
+      max: App.number_max,
+      separator: true,
+      info: `Auto-hide the lock screen words after this many seconds`,
+      version: 1,
+    },
     lock_screen_block_signals: {
       name: `Lock Screen Block Signals`,
       type: `checkbox`,
