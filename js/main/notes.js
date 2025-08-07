@@ -89,12 +89,6 @@ App.get_noted_items = (mode) => {
   return items
 }
 
-App.add_note = (item, note) => {
-  let current_notes = App.get_notes(item)
-  let new_notes = current_notes ? `${current_notes}\n${note}` : note
-  App.set_notes(item, new_notes)
-}
-
 App.set_notes = (item, notes) => {
   App.apply_edit({
     what: `notes`,
@@ -104,4 +98,32 @@ App.set_notes = (item, notes) => {
       App.custom_save(item.id, `notes`, value)
     },
   })
+}
+
+App.apply_notes = (item, notes) => {
+  let items = App.get_active_items(item)
+
+  for (let it of items) {
+    App.set_notes(it, notes)
+  }
+}
+
+App.append_note = (item, note) => {
+  let items = App.get_active_items(item)
+
+  for (let it of items) {
+    let current = App.get_notes(it)
+    let new_notes = current ? `${current}\n${note}` : note
+    App.set_notes(it, new_notes)
+  }
+}
+
+App.prepend_note = (item, note) => {
+  let items = App.get_active_items(item)
+
+  for (let it of items) {
+    let current = App.get_notes(it)
+    let new_notes = current ? `${note}\n${current}` : note
+    App.set_notes(it, new_notes)
+  }
 }

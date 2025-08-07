@@ -94,21 +94,57 @@ App.browse_datastore = () => {
           },
         ]
 
-        if ([`settings`, `theme`].includes(item.type)) {
-          c_items.push({
-            text: `Import`,
-            action: () => {
-              App.import_settings(item.value)
-            },
-          })
-        }
-        else if ([`urls`].includes(item.type)) {
-          c_items.push({
-            text: `Import`,
-            action: () => {
-              App.open_tab_urls(item.value)
-            },
-          })
+        if (item.value) {
+          if ([`settings`, `theme`].includes(item.type)) {
+            c_items.push({
+              text: `Import`,
+              action: () => {
+                App.import_settings(item.value)
+              },
+            })
+          }
+          else if ([`urls`].includes(item.type)) {
+            c_items.push({
+              text: `Import`,
+              action: () => {
+                App.open_tab_urls(item.value)
+              },
+            })
+          }
+          else if ([`note`].includes(item.type)) {
+            c_items.push({
+              text: `Apply`,
+              action: () => {
+                let it = App.get_selected(`tabs`)
+
+                if (it) {
+                  App.apply_notes(it, item.value)
+                }
+              },
+            })
+
+            c_items.push({
+              text: `Append`,
+              action: () => {
+                let it = App.get_selected(`tabs`)
+
+                if (it) {
+                  App.append_note(it, item.value)
+                }
+              },
+            })
+
+            c_items.push({
+              text: `Prepend`,
+              action: () => {
+                let it = App.get_selected(`tabs`)
+
+                if (it) {
+                  App.prepend_note(it, item.value)
+                }
+              },
+            })
+          }
         }
 
         if (c_items.length === 1) {

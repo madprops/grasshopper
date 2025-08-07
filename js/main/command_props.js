@@ -2999,9 +2999,9 @@ App.setup_commands = () => {
       info: `Edit the notes of tabs`,
     },
     {
-      name: `Add To Datastore`,
-      short_name: `Info`,
-      cmd: `add_to_datastore`,
+      name: `Datastore Note`,
+      short_name: `DS Note`,
+      cmd: `datastore_note`,
       icon: data_icon,
       action: (args) => {
         App.datastore_prompt()

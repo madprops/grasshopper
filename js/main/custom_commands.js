@@ -36,9 +36,14 @@ App.custom_command_actions = {
       App.add_tag_string(it, cmd.argument)
     }
   },
-  add_note: (cmd, items, e) => {
+  append_note: (cmd, items, e) => {
     for (let it of items) {
-      App.add_note(it, cmd.argument)
+      App.append_note(it, cmd.argument)
+    }
+  },
+  prepend_note: (cmd, items, e) => {
+    for (let it of items) {
+      App.prepend_note(it, cmd.argument)
     }
   },
 }
@@ -49,7 +54,8 @@ App.custom_command_items = [
   {text: `Move To Zone (Bottom)`, value: `move_to_zone_bottom`, icon: App.zone_icon},
   {text: `Edit Title`, value: `edit_title`, icon: App.notepad_icon},
   {text: `Add Tag`, value: `add_tag`, icon: App.tag_icon},
-  {text: `Add Note`, value: `add_note`, icon: App.notepad_icon},
+  {text: `Append Note`, value: `append_note`, icon: App.notepad_icon},
+  {text: `Prepend Note`, value: `prepend_note`, icon: App.notepad_icon},
 ]
 
 App.start_custom_commands_addlist = () => {
