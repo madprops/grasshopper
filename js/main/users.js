@@ -272,26 +272,6 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `footer_background_color`, value: `rgba(92, 152, 182, 0.65)`})
 }
 
-App.apply_shape = (num, force = false) => {
-  function action() {
-    App[`apply_shape_${num}`]()
-    App.refresh_settings()
-    App.clear_show()
-  }
-
-  if (force) {
-    action()
-    return
-  }
-
-  App.show_confirm({
-    message: `Apply settings?`,
-    confirm_action: () => {
-      action()
-    },
-  })
-}
-
 App.user_auver_settings = () => {
   App.user_madprops_settings()
 
