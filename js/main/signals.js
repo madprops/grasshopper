@@ -201,6 +201,10 @@ App.do_send_signal = async (signal, from) => {
       method: signal.method,
     }
 
+    if (obj.method === `none`) {
+      return
+    }
+
     if ([
       `arguments`,
       `send_tabs`,
@@ -475,6 +479,7 @@ App.start_signals_addlist = () => {
       sources: {
         method: () => {
           return [
+            {text: `None`, value: `none`},
             {text: `GET`, value: `GET`},
             {text: `POST`, value: `POST`},
             {text: `PUT`, value: `PUT`},
