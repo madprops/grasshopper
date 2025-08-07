@@ -120,14 +120,20 @@ App.add_note = (type, item, note = ``) => {
       let current = App.get_notes(it)
       let new_notes
 
-      if (type === `append`) {
+      if (type.startsWith(`append`)) {
         new_notes = current ? `${current}\n${note}` : note
       }
-      else if (type === `prepend`) {
+      else if (type.startsWith(`prepend`)) {
         new_notes = current ? `${note}\n${current}` : note
       }
 
-      App.set_notes(it, new_notes)
+      if (type.includes(`global`)) {
+        App.notes = App.single_linebreak(new_notes)
+        App.stor_save_notes()
+      }
+      else {
+        App.set_notes(it, new_notes)
+      }
     }
   }
 
@@ -150,4 +156,12 @@ App.append_note = (item, note = ``) => {
 
 App.prepend_note = (item, note = ``) => {
   App.add_note(`prepend`, item, note)
+}
+
+App.append_global_note = (note = ``) => {
+  App.add_note(`append_global`, undefined, note)
+}
+
+App.prepend_global_note = (note = ``) => {
+  App.add_note(`prepend_global`, undefined, note)
 }

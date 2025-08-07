@@ -3489,6 +3489,26 @@ App.setup_commands = () => {
       info: `Edit the Global Notes`,
     },
     {
+      name: `Append Global Note`,
+      short_name: `Notes`,
+      cmd: `append_global_note`,
+      icon: notes_icon,
+      action: (args) => {
+        App.append_global_note()
+      },
+      info: `Append to Global Notes`,
+    },
+    {
+      name: `Prepend Global Note`,
+      short_name: `Notes`,
+      cmd: `prepend_global_note`,
+      icon: notes_icon,
+      action: (args) => {
+        App.prepend_global_note()
+      },
+      info: `Prepend to Global Notes`,
+    },
+    {
       name: `Split Both`,
       short_name: `Split`,
       cmd: `add_split_both`,
@@ -5197,6 +5217,25 @@ App.setup_commands = () => {
       },
       skip_settings: true,
       info: `Use the preferred settings for madprops without confirmation`,
+    },
+    {
+      name: `!shape 1`,
+      cmd: `apply_shape_1`,
+      action: (args) => {
+        App.apply_shape(1)
+      },
+      skip_settings: true,
+      info: `Apply Shape 1`,
+    },
+    {
+      name: `!shape 1 (Force)`,
+      short_name: `!shape1 (F)`,
+      cmd: `apply_shape_1_force`,
+      action: (args) => {
+        App.apply_shape(1, true)
+      },
+      skip_settings: true,
+      info: `Apply Shape 1 without confirmation`,
     },
   ]
 

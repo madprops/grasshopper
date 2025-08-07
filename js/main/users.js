@@ -271,3 +271,43 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `footer_colors`, value: true})
   App.set_setting({setting: `footer_background_color`, value: `rgba(92, 152, 182, 0.65)`})
 }
+
+App.apply_shape = (num, force = false) => {
+  function action() {
+    App[`apply_shape_${num}`]()
+    App.refresh_settings()
+    App.clear_show()
+  }
+
+  if (force) {
+    action()
+    return
+  }
+
+  App.show_confirm({
+    message: `Apply settings?`,
+    confirm_action: () => {
+      action()
+    },
+  })
+}
+
+App.apply_shape_1 = () => {
+  App.set_setting({setting: `text_color`, value: `rgb(222, 255, 219)`})
+  App.set_setting({setting: `background_color`, value: `rgb(94, 94, 106)`})
+  App.set_setting({setting: `background_image`, value: `Background 5`})
+  App.set_setting({setting: `background_effect`, value: `rotate_2_blur`})
+  App.set_setting({setting: `background_opacity`, value: 70})
+  App.set_setting({setting: `font`, value: `Antic Slab`})
+  App.set_setting({setting: `font_size`, value: 18})
+  App.set_setting({setting: `window_border_sides`, value: `full`})
+  App.set_setting({setting: `window_border_width`, value: 6})
+  App.set_setting({setting: `window_border_color`, value: `rgba(129, 194, 182, 1)`})
+  App.set_setting({setting: `window_border_glow`, value: `rgba(254, 212, 149, 1)`})
+  App.set_setting({setting: `window_border_glow_speed`, value: 4})
+  App.set_setting({setting: `enable_window_border_glow`, value: true})
+  App.set_setting({setting: `tab_box_item_height`, value: `small`})
+  App.set_setting({setting: `tab_box_border_width`, value: 5})
+  App.set_setting({setting: `tab_box_color_enabled`, value: true})
+  App.set_setting({setting: `tab_box_color`, value: `rgba(82, 115, 139, 1)`})
+}
