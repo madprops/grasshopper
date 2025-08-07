@@ -112,7 +112,7 @@ App.browse_datastore = () => {
           }
           else if ([`note`].includes(item.type)) {
             c_items.push({
-              text: `Apply`,
+              text: `Apply (Tab)`,
               action: () => {
                 let it = App.get_selected(`tabs`)
 
@@ -123,7 +123,7 @@ App.browse_datastore = () => {
             })
 
             c_items.push({
-              text: `Append`,
+              text: `Append (Tab)`,
               action: () => {
                 let it = App.get_selected(`tabs`)
 
@@ -134,7 +134,7 @@ App.browse_datastore = () => {
             })
 
             c_items.push({
-              text: `Prepend`,
+              text: `Prepend (Tab)`,
               action: () => {
                 let it = App.get_selected(`tabs`)
 
