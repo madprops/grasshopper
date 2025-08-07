@@ -309,5 +309,5 @@ App.apply_shape_1 = () => {
   App.set_setting({setting: `tab_box_item_height`, value: `small`})
   App.set_setting({setting: `tab_box_border_width`, value: 5})
   App.set_setting({setting: `tab_box_color_enabled`, value: true})
-  App.set_setting({setting: `tab_box_color`, value: `rgba(82, 115, 139, 1)`})
+  App.set_setting({setting: `tab_box_color`, value: `rgba(81, 125, 138, 1)`})
 }

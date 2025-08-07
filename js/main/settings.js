@@ -860,15 +860,22 @@ App.set_setting = (args = {}) => {
     return
   }
 
-  if (App.str(App.settings[args.setting].value) !== App.str(args.value)) {
+  let value_s = App.str(args.value)
+
+  if (App.str(App.settings[args.setting].value) !== value_s) {
     let props = App.setting_props[args.setting]
-    App.settings[args.setting].value = args.value
+
+    if (App.str(props.value) === value_s) {
+      App.set_default_setting(args.setting, false)
+    }
+    else {
+      App.settings[args.setting].value = args.value
+    }
+
     let mirror = !props.no_mirror
     App.save_settings_debouncer.call(mirror)
 
     if (args.action) {
-      let props = App.setting_props[args.setting]
-
       if (props.actions) {
         App.settings_do_actions(props.actions)
       }
