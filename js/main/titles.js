@@ -121,3 +121,13 @@ App.edit_title_directly = (item, value) => {
   obj.item = item
   App.edit_tab_title(obj)
 }
+
+App.get_item_title = (args) => {
+  let title = args.info.title || ``
+
+  if (!App.get_setting(`show_protocol`)) {
+    title = App.remove_protocol(title)
+  }
+
+  return title
+}
