@@ -46,6 +46,16 @@ App.custom_command_actions = {
       App.prepend_note(it, cmd.argument)
     }
   },
+  append_global_note: (cmd, items, e) => {
+    for (let it of items) {
+      App.append_global_note(cmd.argument)
+    }
+  },
+  prepend_global_note: (cmd, items, e) => {
+    for (let it of items) {
+      App.prepend_global_note(cmd.argument)
+    }
+  },
 }
 
 App.custom_command_items = [
@@ -56,6 +66,8 @@ App.custom_command_items = [
   {text: `Add Tag`, value: `add_tag`, icon: App.tag_icon},
   {text: `Append Note`, value: `append_note`, icon: App.notepad_icon},
   {text: `Prepend Note`, value: `prepend_note`, icon: App.notepad_icon},
+  {text: `Append Global Note`, value: `append_global_note`, icon: App.notepad_icon},
+  {text: `Prepend Global Note`, value: `prepend_global_note`, icon: App.notepad_icon},
 ]
 
 App.start_custom_commands_addlist = () => {
