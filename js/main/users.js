@@ -175,6 +175,7 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `lock_screen_command`, value: `run_command_combo_on_lock`})
   App.set_setting({setting: `unlock_screen_command`, value: `run_command_combo_on_unlock`})
+  App.set_setting({setting: `lock_screen_words`, value: 2})
 
   // Signals
 
