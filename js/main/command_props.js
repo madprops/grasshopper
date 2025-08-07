@@ -5079,7 +5079,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.mirror(`vertical`)
       },
-      info: `The grass is leaner on the other side`,
+      info: `The grass is leaner on that other side`,
     },
     {
       name: `Words`,

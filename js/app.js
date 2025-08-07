@@ -346,13 +346,13 @@ App.item_borders = [
 ]
 
 App.dark_colors = {
-  background: `rgb(45, 45, 55)`,
-  text: `rgb(233, 233, 233)`,
+  background: `rgb(55, 55, 55)`,
+  text: `rgb(235, 235, 235)`,
 }
 
 App.light_colors = {
-  background: `rgb(200, 200, 200)`,
-  text: `rgb(50, 50, 55)`,
+  background: `rgb(205, 205, 205)`,
+  text: `rgb(50, 50, 50)`,
 }
 
 App.effects = [
@@ -456,14 +456,10 @@ App.themes = [
   },
   {
     num: 3, opacity: 80,
-    text_color: `rgb(207, 228, 204)`,
-    background_color: `rgb(54, 49, 55)`,
     effect: `rotate_1`,
   },
   {
     num: 4, opacity: 70,
-    text_color: `rgb(253, 244, 207)`,
-    background_color: `rgb(49, 45, 49)`,
   },
   {
     num: 5, opacity: 80,

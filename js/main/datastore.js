@@ -102,6 +102,14 @@ App.browse_datastore = () => {
             },
           })
         }
+        else if ([`urls`].includes(item.type)) {
+          c_items.push({
+            text: `Import`,
+            action: () => {
+              App.open_tab_urls(item.value)
+            },
+          })
+        }
 
         if (c_items.length === 1) {
           c_items[0].action()

@@ -902,8 +902,9 @@ App.is_new_tab = (url) => {
   return App.new_tab_url === url
 }
 
-App.open_tab_urls = () => {
+App.open_tab_urls = (value = ``) => {
   App.show_input({
+    value,
     title: `Open URLs`,
     button: `Open`,
     action: (text) => {
