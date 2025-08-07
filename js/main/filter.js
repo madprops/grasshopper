@@ -728,6 +728,15 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `filter_tab_containers_all`) {
       match = args.item.container_name
     }
+    else if (args.filter_mode === `filter_https_tabs`) {
+      match = args.item.protocol === `https:`
+    }
+    else if (args.filter_mode === `filter_http_tabs`) {
+      match = args.item.protocol === `http:`
+    }
+    else if (args.filter_mode === `filter_file_tabs`) {
+      match = args.item.protocol === `file:`
+    }
   }
 
   return Boolean(match)
@@ -1641,6 +1650,11 @@ App.create_filter_button = (mode) => {
 
   fmodes.push({cmd: `filter_root_tabs`})
   fmodes.push({cmd: `filter_tab_clusters`})
+
+  fmodes.push(separator())
+  fmodes.push({cmd: `filter_https_tabs`})
+  fmodes.push({cmd: `filter_http_tabs`})
+  fmodes.push({cmd: `filter_file_tabs`})
 
   if (mode === `tabs`) {
     fmodes.push(separator())

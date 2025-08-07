@@ -85,6 +85,9 @@ App.setup_commands = () => {
   let mirror_icon = App.mirror_icon
   let data_icon = App.data_icon
   let cluster_icon = App.cluster_icon
+  let https_icon = App.https_icon
+  let http_icon = App.http_icon
+  let file_icon = App.file_icon
 
   let tbmodes = []
 
@@ -4098,6 +4101,39 @@ App.setup_commands = () => {
         App.filter_same_container(args.item)
       },
       info: `Filter tabs with the same container`,
+    },
+    {
+      name: `Filter Https`,
+      short_name: `Https`,
+      cmd: `filter_https_tabs`,
+      icon: https_icon,
+      modes: [`tabs`],
+      action: (args) => {
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter tabs using the HTTPS protocol`,
+    },
+    {
+      name: `Filter Http`,
+      short_name: `Http`,
+      cmd: `filter_http_tabs`,
+      icon: http_icon,
+      modes: [`tabs`],
+      action: (args) => {
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter tabs using the HTTP protocol`,
+    },
+    {
+      name: `Filter Files`,
+      short_name: `Files`,
+      cmd: `filter_file_tabs`,
+      icon: file_icon,
+      modes: [`tabs`],
+      action: (args) => {
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter local file tabs`,
     },
     {
       name: `Filter Icon`,
