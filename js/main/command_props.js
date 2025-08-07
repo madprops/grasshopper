@@ -5082,6 +5082,16 @@ App.setup_commands = () => {
       info: `The grass is leaner on the other side`,
     },
     {
+      name: `Words`,
+      cmd: `show_words`,
+      modes: [`items`],
+      icon: mirror_icon,
+      action: (args) => {
+        App.show_words()
+      },
+      info: `The grass is leaner on the other side`,
+    },
+    {
       name: `Fill Headers`,
       cmd: `fill_headers`,
       modes: [`tabs`],

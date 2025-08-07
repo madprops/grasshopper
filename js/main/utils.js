@@ -364,28 +364,43 @@ App.is_array = (a) => {
   return Array.isArray(a)
 }
 
-App.random_int = (min, max, exclude = undefined, random_function = undefined) => {
-  let num
-
-  if (random_function) {
-    num = Math.floor(random_function() * (max - min + 1) + min)
-  }
-  else {
-    num = Math.floor(Math.random() * (max - min + 1) + min)
+App.random_int = (args = {}) => {
+  let def_args = {
+    exclude: [],
   }
 
-  if (exclude) {
-    if (num === exclude) {
-      if (num + 1 <= max) {
-        num = num + 1
-      }
-      else if (num - 1 >= min) {
-        num = num - 1
+  App.def_args(def_args, args)
+
+  if (args.exclude.length > 0) {
+    let available = []
+
+    for (let i = args.min; i <= args.max; i++) {
+      if (!args.exclude.includes(i)) {
+        available.push(i)
       }
     }
+
+    if (available.length === 0) {
+      return
+    }
+
+    let random_index
+
+    if (args.rand) {
+      random_index = Math.floor(args.rand() * available.length)
+    }
+    else {
+      random_index = Math.floor(Math.random() * available.length)
+    }
+
+    return available[random_index]
   }
 
-  return num
+  if (args.rand) {
+    return Math.floor(args.rand() * (args.max - args.min + 1) + args.min)
+  }
+
+  return Math.floor(Math.random() * (args.max - args.min + 1) + args.min)
 }
 
 App.random_string = (n) => {
@@ -394,7 +409,7 @@ App.random_string = (n) => {
   let possible = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789`
 
   for (let i = 0; i < n; i++) {
-    text += possible[App.random_int(0, possible.length - 1)]
+    text += possible[App.random_int({min: 0, max: possible.length - 1})]
   }
 
   return text
@@ -718,16 +733,16 @@ App.indent = (s, n) => {
 App.random_word = (parts = 3, cap = true) => {
   let cons = `bcdfghjklmnpqrstvwxyz`
   let vowels = `aeiou`
-  let cons_next = App.random_int(0, 1) === 0
+  let cons_next = App.random_int({min: 0, max: 1}) === 0
   let word = ``
 
   for (let i = 0; i < parts * 2; i++) {
     if (cons_next) {
-      let index = App.random_int(0, cons.length - 1)
+      let index = App.random_int({min: 0, max: cons.length - 1})
       word += cons[index]
     }
     else {
-      let index = App.random_int(0, vowels.length - 1)
+      let index = App.random_int({min: 0, max: vowels.length - 1})
       word += vowels[index]
     }
 
@@ -746,8 +761,20 @@ App.get_random_item = (array) => {
     return null
   }
 
-  let index = App.random_int(0, array.length - 1)
+  let index = App.random_int({min: 0, max: array.length - 1})
   return array[index]
+}
+
+App.get_random_items = (array, num) => {
+  let indices = []
+  let len = array.length - 1
+
+  for (let n = 1; n <= num; n++) {
+    indices.push(App.random_int({min: 0, max: len, exclude: indices}))
+  }
+
+  let items = indices.map(i => array[i])
+  return items
 }
 
 App.remove_from_list = (list, value) => {

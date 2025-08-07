@@ -4917,6 +4917,16 @@ App.build_settings = () => {
         App.settings_cmdlist_single(key)
       },
     },
+    lock_screen_words: {
+      name: `Lock Screen Words`,
+      type: `number`,
+      value: 0,
+      placeholder: `Number`,
+      min: 0,
+      max: App.number_max,
+      info: `How many random words to show in the lock screen`,
+      version: 1,
+    },
     lock_screen_block_signals: {
       name: `Lock Screen Block Signals`,
       type: `checkbox`,

@@ -46,6 +46,18 @@ App.lock_screen = () => {
     DOM.show(img_el)
   }
 
+  let text_el = DOM.el(`#lock_screen_text`)
+  let num_words = App.get_setting(`lock_screen_words`)
+
+  if (num_words > 0) {
+    let words = App.get_random_words(num_words)
+    text_el.textContent = words.join(` `)
+    DOM.show(text_el)
+  }
+  else {
+    DOM.hide(text_el)
+  }
+
   App.show_window(`lock_screen`)
 }
 

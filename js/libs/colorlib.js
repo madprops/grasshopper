@@ -1,28 +1,4 @@
 const ColorLib = (function() {
-  function get_random_int(min, max, exclude, random_function) {
-    let num
-
-    if (random_function) {
-      num = Math.floor(random_function() * (max - min + 1) + min)
-    }
-    else {
-      num = Math.floor(Math.random() * (max - min + 1) + min)
-    }
-
-    if (exclude) {
-      if (num === exclude) {
-        if (num + 1 <= max) {
-          num = num + 1
-        }
-        else if (num - 1 >= min) {
-          num = num - 1
-        }
-      }
-    }
-
-    return num
-  }
-
   let num_instances = 0
 
   let factory = function() {
@@ -572,9 +548,9 @@ const ColorLib = (function() {
     }
 
     instance.get_random_hex = function() {
-      let r = get_random_int(0, 255)
-      let g = get_random_int(0, 255)
-      let b = get_random_int(0, 255)
+      let r = App.random_int({min: 0, max: 255})
+      let g = App.random_int({min: 0, max: 255})
+      let b = App.random_int({min: 0, max: 255})
       return instance.rgb_to_hex([r, g, b])
     }
 
@@ -595,9 +571,9 @@ const ColorLib = (function() {
       let n = 55
 
       return instance.rgb_to_hex([
-        get_random_int(0, n, undefined, rand),
-        get_random_int(0, n, undefined, rand),
-        get_random_int(0, n, undefined, rand),
+        App.random_int({min: 0, max: n, rand}),
+        App.random_int({min: 0, max: n, rand}),
+        App.random_int({min: 0, max: n, rand}),
       ])
     }
 
@@ -605,9 +581,9 @@ const ColorLib = (function() {
       let n = 55
 
       return instance.rgb_to_hex([
-        255 - get_random_int(0, n, undefined, rand),
-        255 - get_random_int(0, n, undefined, rand),
-        255 - get_random_int(0, n, undefined, rand),
+        255 - App.random_int({min: 0, max: n, rand}),
+        255 - App.random_int({min: 0, max: n, rand}),
+        255 - App.random_int({min: 0, max: n, rand}),
       ])
     }
 
