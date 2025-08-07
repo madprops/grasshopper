@@ -1,6 +1,5 @@
 App.datastore_prompt = () => {
   App.show_prompt({
-    message: `Enter some text`,
     placeholder: `Text`,
     on_submit: (text) => {
       App.add_to_datastore(text)

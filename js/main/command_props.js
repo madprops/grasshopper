@@ -2999,6 +2999,28 @@ App.setup_commands = () => {
       info: `Edit the notes of tabs`,
     },
     {
+      name: `Append Note`,
+      cmd: `append_note`,
+      modes: [`tabs`],
+      item: true,
+      icon: notes_icon,
+      action: (args) => {
+        App.append_note(args.item)
+      },
+      info: `Append a note to tabs`,
+    },
+    {
+      name: `Prepend Note`,
+      cmd: `prepend_note`,
+      modes: [`tabs`],
+      item: true,
+      icon: notes_icon,
+      action: (args) => {
+        App.prepend_note(args.item)
+      },
+      info: `Prepend a note to tabs`,
+    },
+    {
       name: `Datastore Note`,
       short_name: `DS Note`,
       cmd: `datastore_note`,
