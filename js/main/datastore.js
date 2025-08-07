@@ -105,7 +105,7 @@ App.browse_datastore = () => {
           }
           else if ([`urls`].includes(item.type)) {
             c_items.push({
-              text: `Import`,
+              text: `Open`,
               action: () => {
                 App.open_tab_urls(item.value)
               },
