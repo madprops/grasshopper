@@ -294,6 +294,10 @@ App.speech = (text) => {
   window.speechSynthesis.speak(utterance)
 }
 
+App.error_sound = () => {
+  App.play_sound(`effect_1`)
+}
+
 App.action_sound = () => {
   App.play_sound(`effect_2`)
 }

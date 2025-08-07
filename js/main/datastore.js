@@ -21,8 +21,9 @@ App.add_to_datastore = (value, type = `note`) => {
     return
   }
 
-  if (value.length > App.datastore_max) {
+  if (value.length > App.datastore_max_text) {
     App.footer_message(`Datastore: Text is too long`)
+    App.error_sound()
     return
   }
 

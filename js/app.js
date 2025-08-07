@@ -162,6 +162,7 @@ App.progressive_fill_delay = App.SECOND * 10
 App.progressive_fill_throttle = 100
 App.progressive_fill_batch = 10
 App.datastore_max = 250
+App.datastore_max_text = 20 * 1000
 
 App.settings_ready = false
 App.media_image_ready = false
