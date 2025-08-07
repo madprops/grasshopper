@@ -47,14 +47,10 @@ App.custom_command_actions = {
     }
   },
   append_global_note: (cmd, items, e) => {
-    for (let it of items) {
-      App.append_global_note(cmd.argument)
-    }
+    App.append_global_note(cmd.argument)
   },
   prepend_global_note: (cmd, items, e) => {
-    for (let it of items) {
-      App.prepend_global_note(cmd.argument)
-    }
+    App.prepend_global_note(cmd.argument)
   },
 }
 

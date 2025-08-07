@@ -143,6 +143,27 @@ App.browse_datastore = () => {
                 }
               },
             })
+
+            c_items.push({
+              text: `Apply (Global)`,
+              action: () => {
+                App.apply_global_notes(item.value)
+              },
+            })
+
+            c_items.push({
+              text: `Append (Global)`,
+              action: () => {
+                App.append_global_note(item.value)
+              },
+            })
+
+            c_items.push({
+              text: `Prepend (Global)`,
+              action: () => {
+                App.prepend_global_note(item.value)
+              },
+            })
           }
         }
 

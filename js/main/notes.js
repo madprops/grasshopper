@@ -65,8 +65,7 @@ App.edit_global_notes = () => {
     title_icon: App.notepad_icon,
     button: `Save`,
     action: (text) => {
-      App.notes = App.single_linebreak(text)
-      App.stor_save_notes()
+      App.set_global_notes(text)
       return true
     },
     value: App.notes,
@@ -108,6 +107,17 @@ App.apply_notes = (item, notes) => {
   }
 }
 
+App.set_global_notes = (notes) => {
+  App.notes = App.single_linebreak(notes)
+  App.stor_save_notes()
+}
+
+App.apply_global_notes = (notes) => {
+  App.set_global_notes(notes)
+  App.footer_message(`Notes set`)
+  App.action_sound()
+}
+
 App.add_note = (type, item, note = ``) => {
   function action(note) {
     if (!note) {
@@ -136,8 +146,7 @@ App.add_note = (type, item, note = ``) => {
       }
 
       if (type.includes(`global`)) {
-        App.notes = App.single_linebreak(new_notes)
-        App.stor_save_notes()
+        App.set_global_notes(new_notes)
       }
       else {
         App.set_notes(it, new_notes)
