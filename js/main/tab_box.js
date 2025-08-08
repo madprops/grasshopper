@@ -163,8 +163,9 @@ App.create_tab_box = () => {
     }
   }
 
-  DOM.ev(container, `scroll`, () => {
+  DOM.ev(container, `scroll`, (e) => {
     App.check_tab_box_scroll_info()
+    App.check_tab_box_scroll_position()
   })
 
   DOM.ev(container, `wheel`, (e) => {
@@ -772,6 +773,8 @@ App.show_tab_box = (refresh = true, set = false) => {
       App.scroll_to_item({item, scroll})
     }
   }
+
+  App.check_tab_box_scroll_position()
 }
 
 App.hide_tab_box = (set = false) => {
@@ -1175,4 +1178,19 @@ App.tab_box_left_click = () => {
 
 App.tab_box_right_click = () => {
   App.cycle_tab_box_mode(`next`)
+}
+
+App.check_tab_box_scroll_position = () => {
+  let el = DOM.el(`#tab_box_container`)
+
+  if (el.scrollTop === 0) {
+    App.main_add(`tab_box_at_top`)
+  }
+  else if ((el.scrollTop + el.clientHeight) >= el.scrollHeight) {
+    App.main_add(`tab_box_at_bottom`)
+  }
+  else {
+    App.main_remove(`tab_box_at_top`)
+    App.main_remove(`tab_box_at_bottom`)
+  }
 }

@@ -1682,6 +1682,14 @@ a:hover
     transparent 100%);
 }
 
+.tab_box_glass.tab_box_at_top #tab_box::before {
+  display: none;
+}
+
+.tab_box_glass.tab_box_at_bottom #tab_box::after {
+  display: none;
+}
+
 #tab_box_container {
   background-color: var(--tab_box_color);
   font-size: var(--tab_box_font_size);
