@@ -2373,6 +2373,13 @@ App.build_settings = () => {
       info: `When a tab gets activated scroll to it in the Tab Box`,
       version: 1,
     },
+    tab_box_glass: {
+      name: `Tab Box Glass`,
+      type: `checkbox`,
+      value: false,
+      info: `Add a glass effect to the top and bottom of the Tab Box`,
+      version: 1,
+    },
     tab_box_title: {
       name: `Tab Box Title`,
       type: `checkbox`,

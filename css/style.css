@@ -1647,10 +1647,39 @@ a:hover
 #tab_box {
   display: none;
   transition: height 0.35s ease;
+  position: relative;
 }
 
 .show_tab_box #tab_box {
   display: flex;
+}
+
+.tab_box_glass #tab_box::before,
+.tab_box_glass #tab_box::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1.7rem;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.tab_box_glass #tab_box::before {
+  top: 0;
+  background: linear-gradient(to bottom,
+    var(--tab_box_color) 0%,
+    color-mix(in srgb, var(--tab_box_color) 85%, transparent) 50%,
+    transparent 100%);
+}
+
+.tab_box_glass #tab_box::after {
+  bottom: 0;
+  background: linear-gradient(to top,
+    var(--tab_box_color) 0%,
+    color-mix(in srgb, var(--tab_box_color) 85%, transparent) 50%,
+    transparent 100%);
 }
 
 #tab_box_container {
