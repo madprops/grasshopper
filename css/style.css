@@ -1660,7 +1660,7 @@ a:hover
   position: absolute;
   left: 0;
   right: 0;
-  height: 1.7rem;
+  height: 1.72rem;
   pointer-events: none;
   backdrop-filter: blur(2px);
   z-index: 1;
@@ -1670,7 +1670,8 @@ a:hover
   top: 0;
   background: linear-gradient(to bottom,
     var(--tab_box_color) 0%,
-    color-mix(in srgb, var(--tab_box_color) 85%, transparent) 50%,
+    color-mix(in srgb, var(--tab_box_color) 70%, transparent) 30%,
+    color-mix(in srgb, var(--tab_box_color) 40%, transparent) 60%,
     transparent 100%);
 }
 
@@ -1678,7 +1679,8 @@ a:hover
   bottom: 0;
   background: linear-gradient(to top,
     var(--tab_box_color) 0%,
-    color-mix(in srgb, var(--tab_box_color) 85%, transparent) 50%,
+    color-mix(in srgb, var(--tab_box_color) 70%, transparent) 30%,
+    color-mix(in srgb, var(--tab_box_color) 40%, transparent) 60%,
     transparent 100%);
 }
 
