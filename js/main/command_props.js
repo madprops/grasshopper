@@ -5237,6 +5237,25 @@ App.setup_commands = () => {
       skip_settings: true,
       info: `Use the preferred settings for auver without confirmation`,
     },
+    {
+      name: `!pauver`,
+      cmd: `user_pauver`,
+      action: (args) => {
+        App.user_settings(`pauver`)
+      },
+      skip_settings: true,
+      info: `Use the preferred settings for pauver`,
+    },
+    {
+      name: `!pauver (Force)`,
+      short_name: `!pauver (F)`,
+      cmd: `user_pauver_force`,
+      action: (args) => {
+        App.user_settings(`pauver`, true)
+      },
+      skip_settings: true,
+      info: `Use the preferred settings for pauver without confirmation`,
+    },
   ]
 
   let infos = App.commands.map(command => command.info)

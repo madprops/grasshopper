@@ -293,3 +293,25 @@ App.user_auver_settings = () => {
   App.set_setting({setting: `tab_box_color_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(81, 125, 138, 1)`})
 }
+
+App.user_pauver_settings = () => {
+  App.user_madprops_settings()
+
+  App.set_setting({setting: `text_color`, value: `rgb(223, 233, 255)`})
+  App.set_setting({setting: `background_color`, value: `rgb(65, 65, 75)`})
+  App.set_setting({setting: `background_image`, value: `Background 5`})
+  App.set_setting({setting: `background_effect`, value: `rotate_2_blur`})
+  App.set_setting({setting: `background_opacity`, value: 70})
+  App.set_setting({setting: `font`, value: `Bitcount`})
+  App.set_setting({setting: `font_size`, value: 18})
+  App.set_setting({setting: `background_zoom`, value: 2})
+  App.set_setting({setting: `window_border_sides`, value: `right`})
+  App.set_setting({setting: `window_border_width`, value: 3})
+  App.set_setting({setting: `window_border_color`, value: `rgba(96, 111, 149, 1)`})
+  App.set_setting({setting: `window_border_glow_speed`, value: 4})
+  App.set_setting({setting: `tab_box_item_height`, value: `small`})
+  App.set_setting({setting: `tab_box_border_width`, value: 5})
+  App.set_setting({setting: `tab_box_color_enabled`, value: true})
+  App.set_setting({setting: `tab_box_color`, value: `rgba(65, 65, 151, 0.16)`})
+  App.set_setting({setting: `tab_box_glass`, value: true})
+}

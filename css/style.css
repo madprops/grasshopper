@@ -1660,7 +1660,7 @@ a:hover
   position: absolute;
   left: 0;
   right: 0;
-  height: 1.72rem;
+  height: 2rem;
   pointer-events: none;
   backdrop-filter: blur(2px);
   z-index: 1;
@@ -1673,6 +1673,8 @@ a:hover
     color-mix(in srgb, var(--tab_box_color) 70%, transparent) 30%,
     color-mix(in srgb, var(--tab_box_color) 40%, transparent) 60%,
     transparent 100%);
+  -webkit-mask-image: radial-gradient(120% 160% at 50% 0%, #000 60%, transparent 61%);
+  mask-image: radial-gradient(120% 160% at 50% 0%, #000 60%, transparent 61%);
 }
 
 .tab_box_glass #tab_box::after {
@@ -1682,6 +1684,8 @@ a:hover
     color-mix(in srgb, var(--tab_box_color) 70%, transparent) 30%,
     color-mix(in srgb, var(--tab_box_color) 40%, transparent) 60%,
     transparent 100%);
+  -webkit-mask-image: radial-gradient(120% 160% at 50% 100%, #000 60%, transparent 61%);
+  mask-image: radial-gradient(120% 160% at 50% 100%, #000 60%, transparent 61%);
 }
 
 .tab_box_glass.tab_box_at_top #tab_box::before {
@@ -1713,7 +1717,7 @@ a:hover
   height: var(--tab_box_size_compact);
 }
 
-#tab_box.size_tiny {
+#tab_box.size.tiny {
   height: var(--tab_box_size_tiny);
 }
 
