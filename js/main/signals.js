@@ -201,7 +201,7 @@ App.do_send_signal = async (signal, from) => {
       method: signal.method,
     }
 
-    if (obj.method === `none`) {
+    if (obj.method === `off`) {
       return
     }
 
@@ -479,7 +479,8 @@ App.start_signals_addlist = () => {
       sources: {
         method: () => {
           return [
-            {text: `None`, value: `none`},
+            {text: `Off`, value: `off`},
+            {text: App.separator_string},
             {text: `GET`, value: `GET`},
             {text: `POST`, value: `POST`},
             {text: `PUT`, value: `PUT`},
