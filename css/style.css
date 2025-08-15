@@ -1928,6 +1928,7 @@ a:hover
   flex-grow: 0;
   padding-left: var(--hover_button_padding);
   padding-right: var(--hover_button_padding);
+  font-size: 0.88rem;
 }
 
 .hover_button_left .hover_button {

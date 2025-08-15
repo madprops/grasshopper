@@ -1717,6 +1717,8 @@ App.build_settings = () => {
         {cmd: `filter_domain`},
         {cmd: `filter_color`},
         {cmd: `duplicate_tabs`},
+        {cmd: `obfuscate_tabs`},
+        {cmd: `make_tabs_new`},
         {cmd: `unload_tabs`},
         {cmd: `settings_category_hover`},
       ],
