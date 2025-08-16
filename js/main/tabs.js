@@ -686,7 +686,13 @@ App.on_tab_activated = async (info) => {
   }
 
   let new_active = await App.refresh_tab({id: info.tabId, select: true})
+  new_active.activated = true
   new_active.unread = false
+
+  if (new_active.idle) {
+    new_active.idle = false
+    App.check_icons(new_active)
+  }
 
   for (let item of old_active) {
     App.update_item({mode: `tabs`, id: item.id, info: item})
@@ -1639,23 +1645,35 @@ App.do_idle_tabs_check = () => {
 
   let delay = App.get_setting(`idle_tabs_delay`)
   let tabs = App.get_items(`tabs`)
-  let now = App.now()
 
   for (let tab of tabs) {
-    let diff = now - tab.last_access || 0
-    let mins = Math.floor(diff / App.MINUTE)
+    if (!tab.activated) {
+      continue
+    }
 
-    if (mins >= delay) {
-      if (!tab.idle) {
-        tab.idle = true
-        App.check_icons(tab)
-      }
-    }
-    else if (tab.idle) {
-      tab.idle = false
-      App.check_icons(tab)
-    }
+    App.do_idle_tab_check(tab, App.now(), delay)
   }
 
   App.start_idle_tabs_timeout()
+}
+
+App.check_idle_tab = (tab) => {
+  let delay = App.get_setting(`idle_tabs_delay`)
+  App.do_idle_tab_check(tab, App.now(), delay)
+}
+
+App.do_idle_tab_check = (tab, now, delay) => {
+  let diff = now - tab.last_access || 0
+  let mins = Math.floor(diff / App.MINUTE)
+
+  if (mins >= delay) {
+    if (!tab.idle) {
+      tab.idle = true
+      App.check_icons(tab)
+    }
+  }
+  else if (tab.idle) {
+    tab.idle = false
+    App.check_icons(tab)
+  }
 }

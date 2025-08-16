@@ -182,6 +182,7 @@ App.process_info = (args = {}) => {
     item.selected = false
     item.tab_box = false
     item.last_scroll = 0
+    item.activated = false
 
     App.create_empty_item_element(item)
     let fill = App.get_setting(`fill_elements`)
