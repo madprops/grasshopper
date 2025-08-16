@@ -270,6 +270,10 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `footer_colors`, value: true})
   App.set_setting({setting: `footer_background_color`, value: `rgba(92, 152, 182, 0.65)`})
+
+  // Idle Tabs
+
+  App.set_setting({setting: `show_idle_icon`, value: `always`})
 }
 
 App.user_auver_settings = () => {

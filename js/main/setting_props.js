@@ -1237,7 +1237,7 @@ App.build_settings = () => {
       info: `Icons for idle tabs`,
       side: `right`,
       show: `never`,
-      cmd: `nothing`,
+      cmd: `none`,
     }),
 
     ...App.make_icon_settings({
