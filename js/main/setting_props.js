@@ -1236,7 +1236,7 @@ App.build_settings = () => {
       icon: `😴`,
       info: `Icons for idle tabs`,
       side: `right`,
-      show: `global`,
+      show: `never`,
     }),
 
     ...App.make_icon_settings({
