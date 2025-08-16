@@ -410,6 +410,7 @@ App.refresh_settings = () => {
   App.build_tab_filters()
   App.reset_main_title()
   App.start_signal_intervals()
+  App.start_idle_tabs_check()
   App.resolve_icons()
   App.refresh_context()
 }

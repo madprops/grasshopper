@@ -128,6 +128,11 @@ App.add_item_icon = (item, side, name) => {
     obj = {...obj, title}
     App.proc_item_icon(obj)
   }
+  else if (name === `idle`) {
+    let title = `Idle`
+    obj = {...obj, title}
+    App.proc_item_icon(obj)
+  }
   else if (name === `notes`) {
     let title = `Notes`
     title += `\nMiddle Click: Remove Notes`
@@ -231,6 +236,7 @@ App.check_icons = (item) => {
     `muted`,
     `unread`,
     `obfuscated`,
+    `idle`,
     `root`,
     `parent`,
     `node`,
@@ -936,6 +942,9 @@ App.check_icon_active = (icon, item) => {
   else if (icon === `obfuscated`) {
     return App.get_obfuscated(item)
   }
+  else if (icon === `idle`) {
+    return App.get_idle(item)
+  }
   else if (icon === `image`) {
     return App.get_media_type(item) === `image`
   }
@@ -1095,6 +1104,9 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
     }
     else if (check(`.obfuscated_icon`)) {
       icon = `obfuscated`
+    }
+    else if (check(`.idle_icon`)) {
+      icon = `idle`
     }
     else if (check(`.notes_icon`)) {
       icon = `notes`

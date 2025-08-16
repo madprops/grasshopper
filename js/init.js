@@ -62,6 +62,7 @@ App.init = async () => {
   App.start_main_title()
   App.check_init_commands()
   App.start_signal_intervals()
+  App.start_idle_tabs_check()
   App.start_progressive_fill()
 
   App.start_date = App.now()

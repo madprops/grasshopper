@@ -224,6 +224,7 @@ App.mouse_out_delay = 150
 App.ensure_scroll_delay = 800
 App.icon_pick_delay = 100
 App.autoclick_delay = 450
+App.idle_tabs_delay = App.MINUTE
 
 App.settings_icons = {
   all: `🔍`,

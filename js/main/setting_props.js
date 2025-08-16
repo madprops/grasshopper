@@ -1231,6 +1231,15 @@ App.build_settings = () => {
     }),
 
     ...App.make_icon_settings({
+      what: `idle`,
+      name: `Idle`,
+      icon: `😴`,
+      info: `Icons for idle tabs`,
+      side: `right`,
+      show: `global`,
+    }),
+
+    ...App.make_icon_settings({
       what: `parent`,
       name: `Parent`,
       icon: `🤿`,
@@ -5461,6 +5470,23 @@ App.build_settings = () => {
       character: true,
       placeholder: `Symbol`,
       info: `Symbol to use on obfuscated text`,
+      version: 1,
+    },
+    idle_tabs_delay: {
+      name: `Idle Tabs Delay`,
+      type: `number`,
+      value: 60,
+      placeholder: `Number`,
+      min: 1,
+      max: App.number_max,
+      info: `Delay in minutes to consider a tab idle`,
+      version: 1,
+    },
+    idle_tabs_check: {
+      name: `Idle Tabs Check`,
+      type: `checkbox`,
+      value: true,
+      info: `Check for idle tabs and mark them as such`,
       version: 1,
     },
     mute_click: {
