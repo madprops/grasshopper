@@ -557,6 +557,7 @@ App.item_icons = [
   `root`,
   `edited`,
   `obfuscated`,
+  `idle`,
   `parent`,
   `node`,
   `color`,

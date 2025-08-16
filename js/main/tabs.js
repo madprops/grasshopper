@@ -1646,20 +1646,16 @@ App.do_idle_tabs_check = () => {
     let mins = Math.floor(diff / App.MINUTE)
 
     if (mins >= delay) {
-      App.tab_is_idle(tab)
+      if (!tab.idle) {
+        tab.idle = true
+        App.check_icons(tab)
+      }
     }
-    else {
-      App.tab_is_not_idle(tab)
+    else if (tab.idle) {
+      tab.idle = false
+      App.check_icons(tab)
     }
   }
 
   App.start_idle_tabs_timeout()
-}
-
-App.tab_is_idle = (tab) => {
-  tab.idle = true
-}
-
-App.tab_is_not_idle = (tab) => {
-  App.idle = false
 }

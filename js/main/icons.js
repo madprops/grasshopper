@@ -943,7 +943,7 @@ App.check_icon_active = (icon, item) => {
     return App.get_obfuscated(item)
   }
   else if (icon === `idle`) {
-    return App.get_idle(item)
+    return item.idle
   }
   else if (icon === `image`) {
     return App.get_media_type(item) === `image`
@@ -1104,9 +1104,6 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
     }
     else if (check(`.obfuscated_icon`)) {
       icon = `obfuscated`
-    }
-    else if (check(`.idle_icon`)) {
-      icon = `idle`
     }
     else if (check(`.notes_icon`)) {
       icon = `notes`
