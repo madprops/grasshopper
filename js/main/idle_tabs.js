@@ -48,11 +48,11 @@ App.do_idle_tab_check = (tab, now, delay) => {
   if (mins >= delay) {
     if (!tab.idle) {
       tab.idle = true
-      App.check_icons(tab)
+      App.update_item({mode: `tabs`, id: tab.id, info: tab})
     }
   }
   else if (tab.idle) {
     tab.idle = false
-    App.check_icons(tab)
+    App.update_item({mode: `tabs`, id: tab.id, info: tab})
   }
 }

@@ -691,7 +691,7 @@ App.on_tab_activated = async (info) => {
 
   if (new_active.idle) {
     new_active.idle = false
-    App.check_icons(new_active)
+    App.update_item({mode: `tabs`, id: new_active.id, info: new_active})
   }
 
   for (let item of old_active) {

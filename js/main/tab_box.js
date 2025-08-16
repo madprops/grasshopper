@@ -419,6 +419,14 @@ App.get_tab_box_items = (o_items, mode) => {
   return items
 }
 
+App.get_tab_box_item = (item) => {
+  for (let it of App.tab_box_items) {
+    if (it.id === item.id) {
+      return it
+    }
+  }
+}
+
 App.set_tab_box_title = (mode) => {
   if (!mode) {
     mode = App.get_setting(`tab_box_mode`)
