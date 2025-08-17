@@ -1,5 +1,13 @@
+App.idle_tabs_enabled = () => {
+  return App.get_setting(`idle_tabs_check`)
+}
+
+App.get_idle_tabs_delay = () => {
+  return App.get_setting(`idle_tabs_delay`)
+}
+
 App.start_idle_tabs_check = () => {
-  if (!App.get_setting(`idle_tabs_check`)) {
+  if (!App.idle_tabs_enabled()) {
     App.stop_idle_tabs_timeout()
     return
   }
@@ -18,11 +26,11 @@ App.stop_idle_tabs_timeout = () => {
 }
 
 App.do_idle_tabs_check = () => {
-  if (!App.get_setting(`idle_tabs_check`)) {
+  if (!App.idle_tabs_enabled()) {
     return
   }
 
-  let delay = App.get_setting(`idle_tabs_delay`)
+  let delay = App.get_idle_tabs_delay()
   let tabs = App.get_items(`tabs`)
 
   for (let tab of tabs) {
@@ -37,7 +45,7 @@ App.do_idle_tabs_check = () => {
 }
 
 App.check_idle_tab = (tab) => {
-  let delay = App.get_setting(`idle_tabs_delay`)
+  let delay = App.get_idle_tabs_delay()
   App.do_idle_tab_check(tab, App.now(), delay)
 }
 
