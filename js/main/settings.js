@@ -2412,11 +2412,13 @@ App.get_setting_icon = (name) => {
 App.make_icon_settings = (args = {}) => {
   let def_args = {
     separator: true,
+    tab_box: true,
     icon_version: 1,
     side_version: 1,
     show_version: 1,
     weight_version: 1,
     command_version: 1,
+    tab_box_version: 1,
   }
 
   App.def_args(def_args, args)
@@ -2478,6 +2480,14 @@ App.make_icon_settings = (args = {}) => {
         App.settings_cmdlist_single(key)
       },
     }
+  }
+
+  obj[`${args.what}_icon_tab_box`] = {
+    name: `${args.name} Icon Tab Box`,
+    type: `checkbox`,
+    value: args.tab_box,
+    info: `Show the ${args.name} Icon in the Tab Box`,
+    version: args.tab_box_version,
   }
 
   if (args.separator) {

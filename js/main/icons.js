@@ -243,6 +243,12 @@ App.check_icons = (item) => {
   ]
 
   for (let icon of icons) {
+    if (item.tab_box) {
+      if (!App.get_setting(`${icon}_icon_tab_box`)) {
+        continue
+      }
+    }
+
     App.do_icon_check(icon, item)
   }
 }
@@ -943,7 +949,7 @@ App.check_icon_active = (icon, item) => {
     return App.get_obfuscated(item)
   }
   else if (icon === `idle`) {
-    return item.idle
+    return item.idle && !item.unloaded
   }
   else if (icon === `image`) {
     return App.get_media_type(item) === `image`
