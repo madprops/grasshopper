@@ -834,6 +834,10 @@ App.settings_label_menu = (e, args) => {
   App.show_context({e, items})
 }
 
+App.setting_exists = (setting) => {
+  return App.settings[setting] !== undefined
+}
+
 App.get_setting = (setting) => {
   if (App.settings[setting] === undefined) {
     App.error(`Setting not found: ${setting}`)

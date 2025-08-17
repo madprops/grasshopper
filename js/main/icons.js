@@ -243,12 +243,6 @@ App.check_icons = (item) => {
   ]
 
   for (let icon of icons) {
-    if (item.tab_box) {
-      if (!App.get_setting(`${icon}_icon_tab_box`)) {
-        continue
-      }
-    }
-
     App.do_icon_check(icon, item)
   }
 }
@@ -738,6 +732,14 @@ App.get_icon_tabs = (icon) => {
 App.icon_enabled = (name, item) => {
   if (item.override_icon === name) {
     return false
+  }
+
+  if (item.tab_box) {
+    if (App.setting_exists(`${name}_icon_tab_box`)) {
+      if (!App.get_setting(`${name}_icon_tab_box`)) {
+        return false
+      }
+    }
   }
 
   return App.icon_enabled_2(name)
