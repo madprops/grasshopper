@@ -951,7 +951,7 @@ App.check_icon_active = (icon, item) => {
     return App.get_obfuscated(item)
   }
   else if (icon === `idle`) {
-    return item.idle && !item.unloaded
+    return item.idle && !item.unloaded && !item.header
   }
   else if (icon === `image`) {
     return App.get_media_type(item) === `image`
