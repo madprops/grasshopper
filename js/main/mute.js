@@ -1,6 +1,6 @@
 App.mute_tab = async (id) => {
   try {
-    await browser.tabs.update(id, {muted: true})
+    await App.update_tab(id, {muted: true})
   }
   catch (err) {
     App.error(err)
@@ -9,7 +9,7 @@ App.mute_tab = async (id) => {
 
 App.unmute_tab = async (id) => {
   try {
-    await browser.tabs.update(id, {muted: false})
+    await App.update_tab(id, {muted: false})
   }
   catch (err) {
     App.error(err)

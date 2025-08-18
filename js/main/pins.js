@@ -1,6 +1,6 @@
 App.pin_tab = async (id) => {
   try {
-    await browser.tabs.update(id, {pinned: true})
+    await App.update_tab(id, {pinned: true})
   }
   catch (err) {
     App.error(err)
@@ -9,7 +9,7 @@ App.pin_tab = async (id) => {
 
 App.unpin_tab = async (id) => {
   try {
-    await browser.tabs.update(id, {pinned: false})
+    await App.update_tab(id, {pinned: false})
   }
   catch (err) {
     App.error(err)

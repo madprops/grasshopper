@@ -178,7 +178,7 @@ App.focus_tab = async (args = {}) => {
   }
 
   try {
-    await browser.tabs.update(args.item.id, {active: true})
+    await App.update_tab(args.item.id, {active: true})
   }
   catch (err) {
     App.error(err)
@@ -605,7 +605,7 @@ App.change_tab = async (item) => {
       return
     }
 
-    return await browser.tabs.update(current.id, {url: item.url})
+    return await App.update_tab(current.id, {url: item.url})
   }
   catch (err) {
     App.error(err)
@@ -615,7 +615,7 @@ App.change_tab = async (item) => {
 App.change_url = async (item, url) => {
   try {
     item.url = url
-    return await browser.tabs.update(item.id, {url})
+    return await App.update_tab(item.id, {url})
   }
   catch (err) {
     App.error(err)
@@ -1331,7 +1331,7 @@ App.import_tabs = async (value = ``) => {
 
         if (parent) {
           try {
-            await browser.tabs.update(new_id, {openerTabId: parent})
+            await App.update_tab(new_id, {openerTabId: parent})
           }
           catch (err) {
             App.error(err)
@@ -1617,4 +1617,26 @@ App.get_no_tabs = () => {
   }
 
   return matches
+}
+
+App.visit_tabs = async (item) => {
+  let tabs = App.get_active_items({mode: `tabs`, item})
+  let force = App.check_warn(`warn_on_visit_tabs`, tabs)
+
+  App.show_confirm({
+    message:`Visit tabs? (${tabs.length})`,
+    confirm_action: async () => {
+      let delay = App.get_setting(`visit_tabs_delay`)
+
+      for (let tab of tabs) {
+        await App.update_tab(tab.id, {active: true})
+        await App.sleep(delay)
+      }
+    },
+    force,
+  })
+}
+
+App.update_tab = async (id, obj) => {
+  await browser.tabs.update(id, obj)
 }

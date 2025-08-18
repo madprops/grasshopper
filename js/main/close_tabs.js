@@ -57,7 +57,7 @@ App.close_tabs = (args = {}) => {
 
           if (succ) {
             for (let it of items) {
-              await browser.tabs.update(it.id, {successorTabId: succ.id})
+              await App.update_tab(it.id, {successorTabId: succ.id})
             }
           }
           else {

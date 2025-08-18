@@ -3848,6 +3848,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.warn_modes)
       },
     },
+    warn_on_visit_tabs: {
+      name: `Warn On Visit Tabs`,
+      type: `menu`,
+      value: `multiple`,
+      info: `Warn when visiting tabs`,
+      version: 2,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
+    },
     max_warn_limit: {
       name: `Max Warn Limit`,
       type: `number`,
@@ -5443,6 +5453,16 @@ App.build_settings = () => {
       info: `Delay in milliseconds for Context Autohide`,
       version: 1,
     },
+    visit_tabs_delay: {
+      name: `Visit Tabs Delay`,
+      type: `number`,
+      value: 200,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay for tab visits through commands`,
+      version: 1,
+    },
     max_palette_history: {
       name: `Max Palette History`,
       type: `number`,
@@ -5478,7 +5498,7 @@ App.build_settings = () => {
       type: `number`,
       value: 60,
       placeholder: `Number`,
-      min: 1,
+      min: App.number_min,
       max: App.number_max,
       info: `Delay in minutes to consider a tab idle`,
       version: 1,

@@ -2969,6 +2969,16 @@ App.setup_commands = () => {
       info: `Load a random unloaded tab`,
     },
     {
+      name: `Visit Tabs`,
+      short_name: `Visit`,
+      cmd: `visit_tabs`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.visit_tabs(args.item)
+      },
+      info: `Visit selected tabs`,
+    },
+    {
       name: `Filter Clusters`,
       short_name: `Clusters`,
       cmd: `filter_tab_clusters`,

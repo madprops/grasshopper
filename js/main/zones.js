@@ -207,7 +207,7 @@ App.check_header = (item) => {
       }
 
       item.header_refresh = true
-      browser.tabs.update(item.id, {url: App.header_url})
+      App.update_tab(item.id, {url: App.header_url})
       return
     }
 
