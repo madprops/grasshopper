@@ -90,22 +90,6 @@ App.setup_tabs = () => {
   })
 }
 
-App.build_tab_filters = () => {
-  App.tabs_filter_modes = [
-    {cmd: `filter_pinned_tabs`},
-    {cmd: `filter_normal_tabs`},
-    {cmd: `filter_playing_tabs`},
-    {cmd: `filter_loaded_tabs`},
-    {cmd: `filter_unloaded_tabs`},
-    {cmd: `filter_unread_tabs`},
-    {cmd: `filter_header_tabs`},
-    {cmd: `filter_duplicate_tabs`},
-    {cmd: `filter_obfuscated_tabs`},
-    {cmd: `filter_all_parent_tabs`},
-    {cmd: `filter_all_node_tabs`},
-  ]
-}
-
 App.pre_show_tabs = () => {
   App.tabs_locked = false
 }

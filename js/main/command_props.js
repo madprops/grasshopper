@@ -29,6 +29,7 @@ App.setup_commands = () => {
   let audio_icon = App.get_setting_icon(`audio`)
   let edited_icon = App.get_setting_icon(`edited`)
   let container_icon = App.get_setting_icon(`container`)
+  let idle_icon = App.get_setting_icon(`idle`)
 
   let main_title_icon = App.settings_icons.title
   let settings_icon = App.settings_icons.general
@@ -4368,6 +4369,18 @@ App.setup_commands = () => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Filter obfuscated tabs`,
+    },
+    {
+      name: `Filter Idle`,
+      short_name: `Idle`,
+      cmd: `filter_idle_tabs`,
+      modes: [`tabs`],
+      icon: idle_icon,
+      filter_mode: true,
+      action: (args) => {
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter idle tabs`,
     },
     {
       name: `Filter Titled`,

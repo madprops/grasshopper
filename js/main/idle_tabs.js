@@ -64,3 +64,7 @@ App.do_idle_tab_check = (tab, now, delay) => {
     App.update_item({mode: `tabs`, id: tab.id, info: tab})
   }
 }
+
+App.tab_is_idle = (tab) => {
+  return tab.idle && !tab.unloaded && !tab.header
+}
