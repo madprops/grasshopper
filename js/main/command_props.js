@@ -3076,7 +3076,7 @@ App.setup_commands = () => {
     },
     {
       name: `Browse Datastore`,
-      short_name: `Info`,
+      short_name: `Data`,
       cmd: `browse_datastore`,
       icon: data_icon,
       action: (args) => {

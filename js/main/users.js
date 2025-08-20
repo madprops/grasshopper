@@ -283,7 +283,7 @@ App.user_auver_settings = () => {
   App.set_setting({setting: `background_color`, value: `rgb(94, 94, 106)`})
   App.set_setting({setting: `background_image`, value: `Background 5`})
   App.set_setting({setting: `background_effect`, value: `rotate_2_blur`})
-  App.set_setting({setting: `background_opacity`, value: 70})
+  App.set_setting({setting: `background_opacity`, value: 90})
   App.set_setting({setting: `font`, value: `Antic Slab`})
   App.set_setting({setting: `font_size`, value: 18})
   App.set_setting({setting: `window_border_sides`, value: `full`})
@@ -295,7 +295,7 @@ App.user_auver_settings = () => {
   App.set_setting({setting: `tab_box_item_height`, value: `small`})
   App.set_setting({setting: `tab_box_border_width`, value: 5})
   App.set_setting({setting: `tab_box_color_enabled`, value: true})
-  App.set_setting({setting: `tab_box_color`, value: `rgba(81, 125, 138, 1)`})
+  App.set_setting({setting: `tab_box_color`, value: `rgba(81, 125, 138, 0.537)`})
 }
 
 App.user_pauver_settings = () => {
