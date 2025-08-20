@@ -301,13 +301,13 @@ App.user_auver_settings = () => {
 App.user_pauver_settings = () => {
   App.user_madprops_settings()
 
-  App.set_setting({setting: `text_color`, value: `rgb(223, 233, 255)`})
+  App.set_setting({setting: `text_color`, value: `rgb(240, 245, 255)`})
   App.set_setting({setting: `background_color`, value: `rgb(65, 65, 75)`})
   App.set_setting({setting: `background_image`, value: `Background 5`})
   App.set_setting({setting: `background_effect`, value: `rotate_2_blur`})
   App.set_setting({setting: `background_opacity`, value: 70})
   App.set_setting({setting: `font`, value: `Bitcount`})
-  App.set_setting({setting: `font_size`, value: 18})
+  App.set_setting({setting: `font_size`, value: 17})
   App.set_setting({setting: `background_zoom`, value: 2})
   App.set_setting({setting: `window_border_sides`, value: `right`})
   App.set_setting({setting: `window_border_width`, value: 3})
