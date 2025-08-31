@@ -1,13 +1,17 @@
 App.create_taglist = () => {
   let position = App.get_setting(`taglist_position`)
   let taglist = DOM.create(`div`, `taglist`)
+
   let left_scroll = DOM.create(`div`, `taglist_left_scroll boldover`)
   left_scroll.textContent = `<`
   left_scroll.title = `Scroll the Taglist to the left`
+
   let right_scroll = DOM.create(`div`, `taglist_right_scroll boldover`)
   right_scroll.textContent = `>`
   right_scroll.title = `Scroll the Taglist to the right`
+
   let container = DOM.create(`div`, `taglist_container`)
+
   taglist.append(left_scroll)
   taglist.append(container)
   taglist.append(right_scroll)
@@ -25,6 +29,7 @@ App.create_taglist = () => {
       if (DOM.class(taglist, [`overflow`])) {
         e.stopPropagation()
         e.preventDefault()
+
         let direction = App.wheel_direction(e)
 
         if (direction === `up`) {
@@ -58,7 +63,6 @@ App.check_taglist = (item) => {
   }
 
   let taglist = DOM.el(`.taglist`, item.element)
-  let mode = App.get_setting(`taglist_mode`)
 
   if (!App.tagged(item)) {
     item.element.classList.remove(`tagged`)
@@ -68,6 +72,7 @@ App.check_taglist = (item) => {
     let container = DOM.el(`.taglist_container`, taglist)
     item.element.classList.add(`using_taglist_${position}`)
     container.innerHTML = ``
+
     let tags = App.tags(item).slice(0)
 
     if (App.get_setting(`sort_taglist`)) {
@@ -93,6 +98,7 @@ App.check_taglist = (item) => {
       let sep = DOM.create(`div`)
       sep.textContent = `|`
       container.append(sep)
+
       let add = DOM.create(`div`, `taglist_add action`)
       add.textContent = `add`
       add.title = `Add Tag`

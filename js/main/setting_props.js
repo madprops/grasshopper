@@ -3367,6 +3367,13 @@ App.build_settings = () => {
       info: `If the Taglist mode is above or below, only show tags when the item is selected`,
       version: 1,
     },
+    sticky_taglist: {
+      name: `Sticky Taglist`,
+      type: `checkbox`,
+      value: false,
+      info: `Always show side tags. Hover is not required`,
+      version: 1,
+    },
     sort_taglist: {
       name: `Sort Taglist`,
       type: `checkbox`,

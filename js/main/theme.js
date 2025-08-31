@@ -1355,6 +1355,13 @@ App.set_taglist_vars = () => {
   else {
     App.main_remove(`autohide_taglist`)
   }
+
+  if (App.get_setting(`sticky_taglist`)) {
+    App.main_add(`taglist_sticky`)
+  }
+  else {
+    App.main_remove(`taglist_sticky`)
+  }
 }
 
 App.set_filter_vars = () => {

@@ -2009,6 +2009,10 @@ a:hover
   opacity: 1;
 }
 
+.taglist_sticky .taglist.hover {
+  opacity: 1;
+}
+
 .taglist.hover .taglist_container {
   overflow: auto;
   padding-left: var(--taglist_gap);
