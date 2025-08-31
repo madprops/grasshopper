@@ -2003,6 +2003,7 @@ a:hover
   height: 100%;
   max-width: 52%;
   opacity: 0;
+  transition: opacity 250ms;
 }
 
 .show_taglist .item:hover .taglist.hover {
