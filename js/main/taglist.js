@@ -50,8 +50,11 @@ App.check_taglist = (item) => {
     return
   }
 
+  let taglist = DOM.el(`.taglist`, item.element)
+
   if (item.tab_box) {
     if (!App.get_setting(`tab_box_taglist`)) {
+      DOM.hide(taglist)
       return
     }
   }
@@ -61,8 +64,6 @@ App.check_taglist = (item) => {
   if (position === `none`) {
     return
   }
-
-  let taglist = DOM.el(`.taglist`, item.element)
 
   if (!App.tagged(item)) {
     item.element.classList.remove(`tagged`)
@@ -83,6 +84,10 @@ App.check_taglist = (item) => {
 
     if ((position === `left`) || (position === `right`)) {
       cls += ` linkbutton`
+
+      if (tags.length > 1) {
+        cls += ` doubleline`
+      }
     }
     else if ((position === `above`) || (position === `below`)) {
       cls += ` doubleline`

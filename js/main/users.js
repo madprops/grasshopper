@@ -274,6 +274,12 @@ App.user_madprops_settings = () => {
   // Idle Tabs
 
   App.set_setting({setting: `show_idle_icon`, value: `always`})
+
+  // Taglist
+
+  App.set_setting({setting: `taglist_position`, value: `right`})
+  App.set_setting({setting: `sticky_taglist`, value: true})
+  App.set_setting({setting: `tab_box_taglist`, value: false})
 }
 
 App.user_auver_settings = () => {
