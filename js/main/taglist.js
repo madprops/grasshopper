@@ -54,7 +54,7 @@ App.check_taglist = (item) => {
 
   if (item.tab_box) {
     if (!App.get_setting(`tab_box_taglist`)) {
-      DOM.hide(taglist)
+      DOM.hide(taglist, 2)
       return
     }
   }
@@ -67,7 +67,7 @@ App.check_taglist = (item) => {
 
   if (!App.tagged(item)) {
     item.element.classList.remove(`tagged`)
-    DOM.hide(taglist)
+    DOM.hide(taglist, 2)
   }
   else {
     let container = DOM.el(`.taglist_container`, taglist)
@@ -110,7 +110,7 @@ App.check_taglist = (item) => {
       container.append(add)
     }
 
-    DOM.show(taglist)
+    DOM.show(taglist, 2)
 
     if ((position === `left`) || (position === `right`)) {
       if (container.scrollWidth > container.clientWidth) {
@@ -248,7 +248,7 @@ App.init_taglist = () => {
 }
 
 App.show_taglist = (set = false) => {
-  App.main_add(`show_taglist`)
+  App.main_remove(`hide_taglist`)
 
   if (set) {
     App.set_show_taglist(true)
@@ -256,7 +256,7 @@ App.show_taglist = (set = false) => {
 }
 
 App.hide_taglist = (set = false) => {
-  App.main_remove(`show_taglist`)
+  App.main_add(`hide_taglist`)
 
   if (set) {
     App.set_show_taglist(false)

@@ -1349,19 +1349,13 @@ App.set_effect_vars = () => {
 }
 
 App.set_taglist_vars = () => {
-  if (App.get_setting(`autohide_taglist`)) {
-    App.main_add(`autohide_taglist`)
-  }
-  else {
-    App.main_remove(`autohide_taglist`)
+  let show = App.get_setting(`taglist_visibility`)
+
+  for (let mode of App.taglist_show_modes) {
+    App.main_remove(`taglist_show_${mode.value}`)
   }
 
-  if (App.get_setting(`sticky_taglist`)) {
-    App.main_add(`taglist_sticky`)
-  }
-  else {
-    App.main_remove(`taglist_sticky`)
-  }
+  App.main_add(`taglist_show_${show}`)
 }
 
 App.set_filter_vars = () => {

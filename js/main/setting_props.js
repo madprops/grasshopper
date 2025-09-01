@@ -3268,6 +3268,16 @@ App.build_settings = () => {
         ])
       },
     },
+    taglist_visibility: {
+      name: `Taglist Visibility`,
+      type: `menu`,
+      value: `always`,
+      info: `When to show the Taglist`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.taglist_show_modes)
+      },
+    },
     taglist_mode: {
       name: `Taglist Mode`,
       type: `menu`,
@@ -3358,20 +3368,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Show the Taglist add button`,
-      version: 1,
-    },
-    autohide_taglist: {
-      name: `Autohide Taglist`,
-      type: `checkbox`,
-      value: false,
-      info: `If the Taglist mode is above or below, only show tags when the item is selected`,
-      version: 1,
-    },
-    sticky_taglist: {
-      name: `Sticky Taglist`,
-      type: `checkbox`,
-      value: false,
-      info: `Always show side tags. Hover is not required`,
       version: 1,
     },
     sort_taglist: {

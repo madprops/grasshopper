@@ -581,19 +581,27 @@ App.title_buttons = [
   {text: `On Global`, value: `global`, info: `Show when hovering the window`},
 ]
 
+App.taglist_show_modes = [
+  {text: `Always`, value: `always`, info: `Always show the taglist`},
+  {text: `On Hover`, value: `hover`, info: `Show when hovering an item`},
+  {text: `On Select`, value: `select`, info: `Show when an item is selected`},
+  {text: `On Focus`, value: `focus`, info: `Show on hover or select`},
+  {text: `On Global`, value: `global`, info: `Show when hovering the window`},
+]
+
 App.panel_sizes = {
   normal: 0.25,
   steps: 0.1,
 }
 
 App.footer_tab_box_click_cmd = `toggle_tab_box`
-//
+
 App.footer_up_click_cmd = `move_tabs_to_top`
 App.footer_up_middle_click_cmd = `select_items_above`
 App.footer_up_shift_click_cmd = `page_up`
 App.footer_up_ctrl_click_cmd = `jump_tabs_all_up`
 App.footer_up_ctrl_shift_click_cmd = `move_to_zone_up`
-//
+
 App.footer_down_click_cmd = `move_tabs_to_bottom`
 App.footer_down_middle_click_cmd = `select_items_below`
 App.footer_down_shift_click_cmd = `page_down`
