@@ -1990,8 +1990,6 @@ a:hover
   color: var(--background_color);
   height: 100%;
   max-width: 52%;
-  opacity: 0;
-  transition: opacity 250ms;
 }
 
 .taglist.hover .taglist_container {
