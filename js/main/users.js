@@ -278,8 +278,7 @@ App.user_madprops_settings = () => {
   // Taglist
 
   App.set_setting({setting: `taglist_position`, value: `right`})
-  App.set_setting({setting: `sticky_taglist`, value: true})
-  App.set_setting({setting: `tab_box_taglist`, value: false})
+  App.set_setting({setting: `taglist_visibility`, value: `global`})
 }
 
 App.user_auver_settings = () => {
