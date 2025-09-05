@@ -46,11 +46,12 @@ App.create_taglist = () => {
 }
 
 App.check_taglist = (item) => {
+  let taglist = DOM.el(`.taglist`, item.element)
+
   if (item.mode !== `tabs`) {
+    DOM.hide(taglist, 2)
     return
   }
-
-  let taglist = DOM.el(`.taglist`, item.element)
 
   if (item.tab_box) {
     if (!App.get_setting(`tab_box_taglist`)) {
