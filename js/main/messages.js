@@ -28,5 +28,8 @@ App.setup_messages = () => {
         App.do_show_mode({mode: `bookmarks`, force: true})
       }
     }
+    else if (message.action === `fullscreen_change`) {
+      App.scroll_to_top()
+    }
   })
 }
