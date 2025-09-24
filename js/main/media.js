@@ -58,6 +58,10 @@ App.start_media = (what) => {
         App.media_show_error(what)
       })
 
+      DOM.ev(media, `dblclick`, () => {
+        App.open_media(what)
+      })
+
       DOM.ev(open, `click`, () => {
         App.open_media(what)
       })
