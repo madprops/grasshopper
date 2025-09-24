@@ -29,7 +29,11 @@ App.setup_messages = () => {
       }
     }
     else if (message.action === `fullscreen_change`) {
-      App.scroll_to_top()
+      setTimeout(() => {
+        let c = DOM.el(`#tabs_container`)
+        c.scrollTop += 1
+        c.scrollTop -= 1
+      }, 250)
     }
   })
 }
