@@ -673,6 +673,11 @@ App.on_tab_activated = async (info) => {
   new_active.activated = true
   new_active.unread = false
 
+  if (!new_active.boosted) {
+    App.boost_tab(new_active.id)
+    new_active.boosted = true
+  }
+
   if (new_active.idle) {
     new_active.idle = false
     App.update_item({mode: `tabs`, id: new_active.id, info: new_active})
@@ -1623,4 +1628,8 @@ App.visit_tabs = async (item) => {
 
 App.update_tab = async (id, obj) => {
   await browser.tabs.update(id, obj)
+}
+
+App.boost_tab = async (tab_id) => {
+  await browser.runtime.sendMessage({action: `boost_tab`, tab_id})
 }

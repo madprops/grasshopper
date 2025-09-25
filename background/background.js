@@ -156,3 +156,11 @@ browser.contextMenus.onClicked.addListener((info, tab) => {
     open_popup_mode(`closed`)
   }
 })
+
+browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === `boost_tab`) {
+    browser.tabs.executeScript(request.tab_id, {
+      file: `js/content.js`
+    })
+  }
+})

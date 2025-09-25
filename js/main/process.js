@@ -134,6 +134,7 @@ App.process_info = (args = {}) => {
     special,
     is_item: true,
     header: false,
+    boosted: false,
   }
 
   if (args.mode === `tabs`) {

@@ -308,6 +308,7 @@ App.cluster_icon = `✨`
 App.https_icon = `🔒`
 App.http_icon = `🔗`
 App.file_icon = `📃`
+App.injection_icon = `💉`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

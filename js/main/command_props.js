@@ -89,6 +89,7 @@ App.setup_commands = () => {
   let https_icon = App.https_icon
   let http_icon = App.http_icon
   let file_icon = App.file_icon
+  let injection_icon = App.injection_icon
 
   let tbmodes = []
 
@@ -5211,6 +5212,16 @@ App.setup_commands = () => {
         App.fill_subheaders(args.e)
       },
       info: `Insert x number of subheaders between the tabs`,
+    },
+    {
+      name: `Booster Shot`,
+      short_name: `Boost`,
+      cmd: `booster_shot`,
+      icon: injection_icon,
+      action: (args) => {
+        App.booster_shot()
+      },
+      info: `Allow injecting code to websites to improve the experience`,
     },
     {
       name: `Restart`,
