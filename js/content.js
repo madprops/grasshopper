@@ -1,4 +1,5 @@
-if (!_grasshopper_boosted_) {
+console.info(12222223)
+if (!window._grasshopper_boosted_) {
   let resize_timeout
 
   window.addEventListener(`resize`, () => {
@@ -9,6 +10,6 @@ if (!_grasshopper_boosted_) {
     }, 500)
   })
 
-  _grasshopper_boosted_ = true
+  window._grasshopper_boosted_ = true
   console.info(`🟢 Grasshopper: Content Script Loaded`)
 }

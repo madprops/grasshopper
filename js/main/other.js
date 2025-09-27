@@ -303,42 +303,28 @@ App.action_sound = () => {
 }
 
 App.booster_shot = async () => {
-  // Permission requests must be made synchronously during a user gesture.
-  // Request `activeTab` immediately so the browser shows the prompt inside the
-  // click handler. After that, try to request the host origin asynchronously
-  // (this won't require the user gesture anymore because activeTab was granted
-  // for the tab).
-  try {
-    // Immediately request activeTab to preserve the user input handler.
-    // This call must not be awaited after any other async work that would
-    // detach it from the click event's gesture.
-    let activeGranted = await browser.permissions.request({permissions: [`activeTab`]})
+  let permissions_to_request = {
+    origins: [`<all_urls>`]
+  }
 
-    if (!activeGranted) {
-      // User declined activeTab; nothing more we can do from this handler.
-      return
+  let has_permission = await browser.permissions.contains(permissions_to_request)
+
+  if (!has_permission) {
+    let granted = await browser.permissions.request(permissions_to_request)
+
+    if (granted) {
+      console.info(`Permission granted!`)
     }
-
-    // Now it's safe to do async work and request host origins since the active
-    // tab permission was granted within the user gesture.
-    let tabs = await browser.tabs.query({active: true, currentWindow: true})
-    let tab = tabs && tabs[0]
-
-    if (tab && tab.url) {
-      try {
-        let u = new URL(tab.url)
-        let originPattern = `${u.origin}/*`
-        // Requesting host permission may still show another prompt; do it
-        // after activeTab has been granted so it doesn't fail with
-        // "may only be called from a user input handler".
-        await browser.permissions.request({origins: [originPattern]})
-      }
-      catch (err) {
-        // ignore URL parsing or permission errors here
-      }
+    else {
+      console.info(`Permission denied.`)
     }
   }
-  catch (err) {
-    App.error(`Permission request failed: ${err}`)
-  }
+}
+
+App.fix_scroll = () => {
+  setTimeout(() => {
+    let c = DOM.el(`#tabs_container`)
+    c.scrollTop += 1
+    c.scrollTop -= 1
+  }, 1000)
 }

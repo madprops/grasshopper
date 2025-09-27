@@ -50,11 +50,16 @@ App.show_main_menu = (mode) => {
   items.push(App.cmd_item({cmd: `edit_global_notes`, short: true}))
   items.push(App.cmd_item({cmd: `browse_datastore`, short: true}))
   items.push(App.cmd_item({cmd: `show_stuff_menu`, short: true}))
-  items.push(App.cmd_item({cmd: `booster_shot`, short: true}))
   items.push(App.cmd_item({cmd: `show_about`, short: true}))
   App.sep(items)
   items.push(App.cmd_item({cmd: `lock_screen`, short: true}))
   items.push(App.cmd_item({cmd: `show_palette`, short: true}))
+  App.sep(items)
+
+  items.push({text: `💉 Booster`, direct_action: () => {
+    App.booster_shot()
+  }})
+
   App.sep(items)
   items.push(App.cmd_item({cmd: `focus_window_menu`, short: true}))
 
