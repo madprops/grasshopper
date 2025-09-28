@@ -255,6 +255,12 @@ App.refresh_tab = async (args = {}) => {
     App.select_item({item, scroll: `nearest_smooth`})
   }
 
+  if (!item.boosted) {
+    await App.boost_tab(item)
+    item.boosted = true
+    App.update_item({mode: `tabs`, id: item.id, info: item})
+  }
+
   return item
 }
 
@@ -672,11 +678,6 @@ App.on_tab_activated = async (info) => {
   let new_active = await App.refresh_tab({id: info.tabId, select: true})
   new_active.activated = true
   new_active.unread = false
-
-  if (!new_active.boosted) {
-    App.boost_tab(new_active.id)
-    new_active.boosted = true
-  }
 
   if (new_active.idle) {
     new_active.idle = false
@@ -1630,6 +1631,6 @@ App.update_tab = async (id, obj) => {
   await browser.tabs.update(id, obj)
 }
 
-App.boost_tab = async (tab_id) => {
-  await browser.runtime.sendMessage({action: `boost_tab`, tab_id})
+App.boost_tab = async (item) => {
+  await browser.runtime.sendMessage({action: `boost_tab`, tab_id: item.id})
 }

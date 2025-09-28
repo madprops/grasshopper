@@ -64,6 +64,7 @@ App.process_info = (args = {}) => {
     exclude: [],
     list: false,
     add_parent: true,
+    boosted: false,
   }
 
   App.def_args(def_args, args)
@@ -134,10 +135,10 @@ App.process_info = (args = {}) => {
     special,
     is_item: true,
     header: false,
-    boosted: false,
   }
 
   if (args.mode === `tabs`) {
+    item.header = App.is_header_url(item.url)
     item.active = args.info.active
     item.pinned = args.info.pinned
     item.playing = args.info.audible
@@ -148,7 +149,7 @@ App.process_info = (args = {}) => {
     item.parent = args.info.openerTabId
     item.container_name = args.info.container_name
     item.container_color = args.info.container_color
-    item.header = App.is_header_url(item.url)
+    item.boosted = args.info.boosted
   }
   else if (args.mode === `history`) {
     item.last_visit = args.info.lastVisitTime

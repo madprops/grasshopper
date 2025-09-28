@@ -326,5 +326,5 @@ App.fix_scroll = () => {
     let c = DOM.el(`#tabs_container`)
     c.scrollTop += 1
     c.scrollTop -= 1
-  }, 1000)
+  }, App.SECOND)
 }

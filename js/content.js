@@ -1,4 +1,3 @@
-console.info(12222223)
 if (!window._grasshopper_boosted_) {
   let resize_timeout
 
@@ -7,7 +6,7 @@ if (!window._grasshopper_boosted_) {
 
     resize_timeout = setTimeout(() => {
       browser.runtime.sendMessage({action: `fullscreen_change`})
-    }, 500)
+    }, 1000)
   })
 
   window._grasshopper_boosted_ = true
