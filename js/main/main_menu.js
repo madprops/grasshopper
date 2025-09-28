@@ -58,7 +58,7 @@ App.show_main_menu = (mode) => {
 
   items.push({text: `💉 Booster`, direct_action: () => {
     App.booster_shot()
-  }})
+  }, info: `Enable scripts to improve the experience`})
 
   App.sep(items)
   items.push(App.cmd_item({cmd: `focus_window_menu`, short: true}))
