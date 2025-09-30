@@ -304,7 +304,7 @@ App.action_sound = () => {
 
 App.booster_shot = async () => {
   let permissions_to_request = {
-    origins: [`<all_urls>`]
+    origins: [`<all_urls>`],
   }
 
   let has_permission = await browser.permissions.contains(permissions_to_request)
@@ -313,9 +313,11 @@ App.booster_shot = async () => {
     let granted = await browser.permissions.request(permissions_to_request)
 
     if (granted) {
+      // eslint-disable-next-line no-console
       console.info(`Permission granted!`)
     }
     else {
+      // eslint-disable-next-line no-console
       console.info(`Permission denied.`)
     }
   }

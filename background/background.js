@@ -160,7 +160,7 @@ browser.contextMenus.onClicked.addListener((info, tab) => {
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === `boost_tab`) {
     browser.tabs.executeScript(request.tab_id, {
-      file: `js/content.js`
+      file: `js/content.js`,
     })
   }
 })

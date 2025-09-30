@@ -10,5 +10,7 @@ if (!window._grasshopper_boosted_) {
   })
 
   window._grasshopper_boosted_ = true
-  console.info(`🟢 Grasshopper: Content Script Loaded`)
+
+  // eslint-disable-next-line no-console
+  console.info(`🟢 Grasshopper: Content Script Loaded`) //
 }
