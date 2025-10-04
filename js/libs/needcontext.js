@@ -321,13 +321,6 @@ NeedContext.show = (args = {}) => {
         el.classList.add(`needcontext-bold`)
       }
 
-      if (item.direct_action) {
-        el.addEventListener(`click`, () => {
-          item.direct_action()
-          NeedContext.hide()
-        })
-      }
-
       el.dataset.index = index
       item.index = index
 
@@ -1072,28 +1065,6 @@ NeedContext.action = (item, e) => {
       }
     }
 
-    // don't hide yet; run the action first so any permission requests
-    // or APIs that require a direct user gesture are still valid.
-  }
-
-  // Call the item's action while still inside the original user gesture
-  // event call stack. Hiding the menu first can break the gesture chain
-  // and cause errors like: "permissions.request may only be called from a
-  // user input handler".
-  item.action(e)
-
-  // After the action has executed, hide or keep open depending on mode
-  if (args.picker_mode) {
-    // if all items are picked, hide now
-    let all_picked = true
-
-    for (let item of args.items) {
-      if (!item.picked) {
-        all_picked = false
-        break
-      }
-    }
-
     if (all_picked) {
       NeedContext.hide(e)
     }
@@ -1101,6 +1072,8 @@ NeedContext.action = (item, e) => {
   else {
     NeedContext.hide(e)
   }
+
+  item.action(e)
 
   if (after_action) {
     after_action(e)
