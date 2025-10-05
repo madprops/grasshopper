@@ -307,19 +307,17 @@ App.booster_shot = async () => {
     origins: [`<all_urls>`],
   }
 
-  let has_permission = await browser.permissions.contains(permissions_to_request)
+  // Directly request the permission.
+  // If already granted, it resolves to true without a prompt.
+  let granted = await browser.permissions.request(permissions_to_request)
 
-  if (!has_permission) {
-    let granted = await browser.permissions.request(permissions_to_request)
-
-    if (granted) {
-      // eslint-disable-next-line no-console
-      console.info(`Permission granted!`)
-    }
-    else {
-      // eslint-disable-next-line no-console
-      console.info(`Permission denied.`)
-    }
+  if (granted) {
+    // eslint-disable-next-line no-console
+    console.info(`Permission granted!`)
+  }
+  else {
+    // eslint-disable-next-line no-console
+    console.info(`Permission denied.`)
   }
 }
 

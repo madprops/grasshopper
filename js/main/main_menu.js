@@ -56,7 +56,7 @@ App.show_main_menu = (mode) => {
   items.push(App.cmd_item({cmd: `show_palette`, short: true}))
   App.sep(items)
 
-  items.push({text: `💉 Booster`, action: () => {
+  items.push({text: `💉 Booster`, direct_action: () => {
     App.booster_shot()
   }, info: `Enable scripts to improve the experience`})
 

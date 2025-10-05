@@ -1,4 +1,4 @@
-// NeedContext v9.8
+// NeedContext v9.9
 
 // Main object
 const NeedContext = {}
@@ -321,6 +321,13 @@ NeedContext.show = (args = {}) => {
         el.classList.add(`needcontext-bold`)
       }
 
+      if (item.direct_action) {
+        el.addEventListener(`click`, () => {
+          item.direct_action()
+          NeedContext.hide()
+        })
+      }
+
       el.dataset.index = index
       item.index = index
 
@@ -498,18 +505,23 @@ NeedContext.select_next = (direction = `down`, bounce = false) => {
 }
 
 // Do the selected action
-NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`) => {
+NeedContext.select_action = (e, index = NeedContext.index, mode = `mouse`) => {
   if (mode === `mouse`) {
     if (!e.target.closest(`.needcontext-normal`)) {
       return
     }
   }
 
-  let x = NeedContext.last_x
-  let y = NeedContext.last_y
   let item = NeedContext.get_layer().normal_items[index]
 
-  function show_below(items) {
+  if (!item) {
+    return
+  }
+
+  let x = NeedContext.last_x
+  let y = NeedContext.last_y
+
+  let show_below = (items) => {
     NeedContext.get_layer().last_index = index
     NeedContext.level += 1
 
@@ -520,46 +532,27 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
     NeedContext.show({x, y, items, root: false})
   }
 
-  function do_items(items) {
+  let do_items = (items) => {
     if ((items.length === 1) && items[0].direct) {
       NeedContext.action(items[0], e)
     }
     else {
       show_below(items)
     }
-
-    return
   }
 
-  async function check_item() {
+  let check_item = () => {
     if (item.action) {
-      if (e.shiftKey) {
-        if (item.shift_action) {
-          NeedContext.shift_action(item, e)
-        }
-      }
-      else if (e.ctrlKey) {
-        if (item.ctrl_action) {
-          NeedContext.ctrl_action(item, e)
-        }
-      }
-      else if (e.altKey) {
-        if (item.alt_action) {
-          NeedContext.alt_action(item, e)
-        }
-      }
-      else {
-        NeedContext.action(item, e)
-      }
-
-      return
+      NeedContext.action(item, e)
     }
     else if (item.items) {
       do_items(item.items)
     }
     else if (item.get_items) {
-      let items = await item.get_items()
-      do_items(items)
+      // Handle the async case without making the parent function async
+      item.get_items().then((items) => {
+        do_items(items)
+      })
     }
   }
 
@@ -1056,6 +1049,26 @@ NeedContext.action = (item, e) => {
     item.element.classList.add(`needcontext-picked`)
     NeedContext.filter.focus()
     item.picked = true
+
+    for (let item of args.items) {
+      if (!item.picked) {
+        break
+      }
+    }
+
+    // don't hide yet; run the action first so any permission requests
+    // or APIs that require a direct user gesture are still valid.
+  }
+
+  // Call the item's action while still inside the original user gesture
+  // event call stack. Hiding the menu first can break the gesture chain
+  // and cause errors like: "permissions.request may only be called from a
+  // user input handler".
+  item.action(e)
+
+  // After the action has executed, hide or keep open depending on mode
+  if (args.picker_mode) {
+    // if all items are picked, hide now
     let all_picked = true
 
     for (let item of args.items) {
@@ -1072,8 +1085,6 @@ NeedContext.action = (item, e) => {
   else {
     NeedContext.hide(e)
   }
-
-  item.action(e)
 
   if (after_action) {
     after_action(e)
