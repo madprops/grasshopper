@@ -1049,26 +1049,6 @@ NeedContext.action = (item, e) => {
     item.element.classList.add(`needcontext-picked`)
     NeedContext.filter.focus()
     item.picked = true
-
-    for (let item of args.items) {
-      if (!item.picked) {
-        break
-      }
-    }
-
-    // don't hide yet; run the action first so any permission requests
-    // or APIs that require a direct user gesture are still valid.
-  }
-
-  // Call the item's action while still inside the original user gesture
-  // event call stack. Hiding the menu first can break the gesture chain
-  // and cause errors like: "permissions.request may only be called from a
-  // user input handler".
-  item.action(e)
-
-  // After the action has executed, hide or keep open depending on mode
-  if (args.picker_mode) {
-    // if all items are picked, hide now
     let all_picked = true
 
     for (let item of args.items) {
@@ -1085,6 +1065,8 @@ NeedContext.action = (item, e) => {
   else {
     NeedContext.hide(e)
   }
+
+  item.action(e)
 
   if (after_action) {
     after_action(e)
