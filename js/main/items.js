@@ -466,7 +466,15 @@ App.set_item_text = (item) => {
     url = item.path
   }
 
-  let text_mode = App.get_setting(`text_mode`)
+  let text_mode
+
+  if (item.tab_box) {
+    text_mode = App.get_setting(`tab_box_text_mode`)
+  }
+  else {
+    text_mode = App.get_setting(`text_mode`)
+  }
+
   let title = App.title(item)
 
   if (text_mode === `title`) {

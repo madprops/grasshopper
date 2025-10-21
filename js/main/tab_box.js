@@ -455,7 +455,7 @@ App.scroll_tab_box_bottom = () => {
 }
 
 App.fill_tab_box = (items) => {
-  let text_mode = App.get_setting(`text_mode`)
+  let text_mode = App.get_setting(`tab_box_text_mode`)
   let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
 

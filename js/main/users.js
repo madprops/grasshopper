@@ -337,6 +337,7 @@ App.user_fondo_settings = () => {
   App.set_setting({setting: `background_effect`, value: `rotate_3`})
   App.set_setting({setting: `background_opacity`, value: 70})
   App.set_setting({setting: `font`, value: `monospace`})
+  App.set_setting({setting: `window_border_sides`, value: `full`})
   App.set_setting({setting: `window_border_width`, value: 6})
   App.set_setting({setting: `window_border_color`, value: `rgba(228, 228, 228, 1)`})
   App.set_setting({setting: `window_border_glow`, value: `rgba(90, 202, 204, 1)`})

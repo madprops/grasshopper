@@ -2070,6 +2070,21 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.get_setting_tab_box_modes())
       },
     },
+    tab_box_text_mode: {
+      name: `Tab Box Text Mode`,
+      type: `menu`,
+      value: `title`,
+      info: `What to show as the text for each item on the Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, [
+          {text: `Title`, value: `title`},
+          {text: `URL`, value: `url`},
+          {text: `Title / URL`, value: `title_url`},
+          {text: `URL / Title`, value: `url_title`},
+        ])
+      },
+    },
     tab_box_menu: {
       name: `Tab Box Menu`,
       type: `list`,
