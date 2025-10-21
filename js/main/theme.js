@@ -1422,6 +1422,13 @@ App.set_item_vars = () => {
   else {
     App.main_remove(`multi_bold`)
   }
+
+  if (App.get_setting(`smart_icons`)) {
+    App.main_add(`smart_icons`)
+  }
+  else {
+    App.main_remove(`smart_icons`)
+  }
 }
 
 App.theme_sizer = (size, what, normal, steps) => {

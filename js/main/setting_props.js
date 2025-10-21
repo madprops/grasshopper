@@ -443,6 +443,13 @@ App.build_settings = () => {
       info: `Make the second item of multi-lines bold`,
       version: 1,
     },
+    smart_icons: {
+      name: `Smart Icons`,
+      type: `checkbox`,
+      value: false,
+      info: `Don't show the icon if the item is unloaded`,
+      version: 1,
+    },
     wrap_text: {
       name: `Wrap Text`,
       type: `checkbox`,
