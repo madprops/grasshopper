@@ -1948,6 +1948,7 @@ a:hover
 .taglist {
   display: none;
   flex-direction: row;
+  z-index: 99;
 }
 
 .taglist_container {
