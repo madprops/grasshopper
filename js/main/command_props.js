@@ -5290,6 +5290,25 @@ App.setup_commands = () => {
       skip_settings: true,
       info: `Use the preferred settings for pauver without confirmation`,
     },
+    {
+      name: `!fondo`,
+      cmd: `user_fondo`,
+      action: (args) => {
+        App.user_settings(`fondo`)
+      },
+      skip_settings: true,
+      info: `Use the preferred settings for fondo`,
+    },
+    {
+      name: `!fondo (Force)`,
+      short_name: `!fondo (F)`,
+      cmd: `user_fondo_force`,
+      action: (args) => {
+        App.user_settings(`fondo`, true)
+      },
+      skip_settings: true,
+      info: `Use the preferred settings for fondo without confirmation`,
+    },
   ]
 
   let infos = App.commands.map(command => command.info)

@@ -325,3 +325,24 @@ App.user_pauver_settings = () => {
   App.set_setting({setting: `tab_box_color`, value: `rgba(65, 65, 151, 0.16)`})
   App.set_setting({setting: `tab_box_glass`, value: true})
 }
+
+App.user_fondo_settings = () => {
+  App.user_madprops_settings()
+
+  App.set_setting({setting: `text_mode`, value: `title_url`})
+  App.set_setting({setting: `item_border`, value: `none`})
+  App.set_setting({setting: `item_icon`, value: `small`})
+  App.set_setting({setting: `background_color`, value: `rgb(72, 90, 96)`})
+  App.set_setting({setting: `background_image`, value: `Background 6`})
+  App.set_setting({setting: `background_effect`, value: `rotate_3`})
+  App.set_setting({setting: `background_opacity`, value: 70})
+  App.set_setting({setting: `font`, value: `monospace`})
+  App.set_setting({setting: `window_border_width`, value: 6})
+  App.set_setting({setting: `window_border_color`, value: `rgba(228, 228, 228, 1)`})
+  App.set_setting({setting: `window_border_glow`, value: `rgba(90, 202, 204, 1)`})
+  App.set_setting({setting: `window_border_glow_speed`, value: 6})
+  App.set_setting({setting: `enable_window_border_glow`, value: true})
+  App.set_setting({setting: `window_border_glow_hover`, value: true})
+  App.set_setting({setting: `footer_colors`, value: true})
+  App.set_setting({setting: `footer_background_color`, value: `rgba(86, 107, 125, 0.65)`})
+}
