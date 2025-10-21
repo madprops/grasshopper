@@ -347,4 +347,5 @@ App.user_fondo_settings = () => {
   App.set_setting({setting: `window_border_glow_hover`, value: true})
   App.set_setting({setting: `footer_colors`, value: true})
   App.set_setting({setting: `footer_background_color`, value: `rgba(86, 107, 125, 0.65)`})
+  App.set_setting({setting: `smart_icons`, value: true})
 }
