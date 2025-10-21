@@ -334,7 +334,7 @@ App.user_fondo_settings = () => {
   App.set_setting({setting: `item_icon`, value: `small`})
   App.set_setting({setting: `background_color`, value: `rgb(72, 90, 96)`})
   App.set_setting({setting: `background_image`, value: `Background 6`})
-  App.set_setting({setting: `background_effect`, value: `rotate_3`})
+  App.set_setting({setting: `background_effect`, value: `rotate_3_blur`})
   App.set_setting({setting: `background_opacity`, value: 70})
   App.set_setting({setting: `font`, value: `monospace`})
   App.set_setting({setting: `window_border_sides`, value: `full`})
