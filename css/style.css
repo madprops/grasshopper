@@ -2496,3 +2496,7 @@ a:hover
 .hide_taglist .taglist {
   display: none !important;
 }
+
+.multi_bold .item_text_2 {
+  font-weight: bold;
+}

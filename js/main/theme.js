@@ -1415,6 +1415,13 @@ App.set_item_vars = () => {
   else {
     App.main_remove(`item_pointer`)
   }
+
+  if (App.get_setting(`multi_bold`)) {
+    App.main_add(`multi_bold`)
+  }
+  else {
+    App.main_remove(`multi_bold`)
+  }
 }
 
 App.theme_sizer = (size, what, normal, steps) => {

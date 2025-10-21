@@ -436,6 +436,13 @@ App.build_settings = () => {
       info: `Enable smooth list scrolling in some cases`,
       version: 1,
     },
+    multi_bold: {
+      name: `Multi Bold`,
+      type: `checkbox`,
+      value: false,
+      info: `Make the second item of multi-lines bold`,
+      version: 1,
+    },
     wrap_text: {
       name: `Wrap Text`,
       type: `checkbox`,
