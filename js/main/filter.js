@@ -982,7 +982,7 @@ App.create_filter = (mode) => {
     filter.placeholder = `Search`
   }
   else {
-    filter.placeholder = App.filter_placeholder
+    filter.placeholder = App.get_filter_placeholder()
   }
 
   DOM.ev(filter, `keydown`, (e) => {
@@ -2177,4 +2177,8 @@ App.filter_parts = (value, sep) => {
 
 App.filter_quotes = (value) => {
   return value.replace(/"/g, `\\b`)
+}
+
+App.get_filter_placeholder = () => {
+  return App.get_setting(`filter_placeholder`) || App.filter_placeholder
 }

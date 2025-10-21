@@ -21,7 +21,7 @@ App.check_clock = (force = false) => {
     placeholder = dateFormat(date, format)
   }
   else {
-    placeholder = App.filter_placeholder
+    placeholder = App.get_filter_placeholder()
   }
 
   if (!force) {

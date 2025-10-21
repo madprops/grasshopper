@@ -4636,6 +4636,14 @@ App.build_settings = () => {
         ])
       },
     },
+    filter_placeholder: {
+      name: `Filter Placeholder`,
+      type: `text`,
+      value: ``,
+      placeholder: `Placeholder`,
+      info: `What to display as the text for the Filter's placeholder`,
+      version: 1,
+    },
     clock_format: {
       name: `Clock Format`,
       type: `text`,
