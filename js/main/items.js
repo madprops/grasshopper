@@ -478,7 +478,7 @@ App.set_item_text = (item) => {
   let title = App.title(item)
   let is_zone = App.is_zone(item)
 
-  if (text_mode === `title` || is_zone) {
+  if ((text_mode === `title`) || is_zone) {
     lines.push(title || url)
     item.footer = url || title
   }
