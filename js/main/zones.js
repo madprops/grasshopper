@@ -257,7 +257,7 @@ App.is_subheader = (item) => {
 }
 
 App.is_zone = (item) => {
-  App.is_header(item) || App.is_subheader(item)
+  return App.is_header(item) || App.is_subheader(item) || App.is_header_url(item.url)
 }
 
 App.is_split = (item) => {
