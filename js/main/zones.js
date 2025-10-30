@@ -256,6 +256,10 @@ App.is_subheader = (item) => {
   return item.header && !App.get_split_top(item)
 }
 
+App.is_zone = (item) => {
+  App.is_header(item) || App.is_subheader(item)
+}
+
 App.is_split = (item) => {
   return App.get_split_top(item) || App.get_split_bottom(item)
 }
@@ -437,7 +441,7 @@ App.move_zone_prepare = (item) => {
 }
 
 App.move_zone_check = (item, first_index, direction) => {
-  let is_header = App.is_header(item) || App.is_subheader(item)
+  let is_header = App.is_zone(item)
 
   if (!is_header) {
     return false
