@@ -184,6 +184,10 @@ App.is_url = (s) => {
   return s.startsWith(`http://`) || s.startsWith(`https://`)
 }
 
+App.is_local = (s) => {
+  return s.startsWith(`file://`)
+}
+
 App.get_extension = (s) => {
   if (App.is_url(s)) {
     let u = new URL(s)
