@@ -166,12 +166,25 @@ App.get_all_containers = async () => {
   }
 }
 
-App.open_in_tab_container = async (item, e) => {
+App.find_container_by_name = (containers, name = ``) => {
+  name = name.trim().toLowerCase()
+
+  for (let container of containers) {
+    if (container.name.toLowerCase() === name) {
+      return container
+    }
+  }
+}
+
+App.open_in_tab_container = async (item, e, name = ``) => {
   let new_tab_mode = App.get_setting(`new_tab_mode`)
   let containers = await App.get_all_containers()
   let active = App.get_active_items({mode: item.mode, item})
-  let items = []
   let o_item
+
+  if (!active.length) {
+    return
+  }
 
   if (new_tab_mode === `above`) {
     o_item = active[0]
@@ -183,6 +196,23 @@ App.open_in_tab_container = async (item, e) => {
     o_item = active[0]
   }
 
+  if (name) {
+    let target_container = App.find_container_by_name(containers, name)
+
+    if (!target_container) {
+      App.alert(`No container named ${name} found`)
+      return
+    }
+
+    for (let it of active) {
+      App.create_new_tab({url: it.url, cookieStoreId: target_container.id}, o_item)
+    }
+
+    return
+  }
+
+  let items = []
+
   for (let c of containers) {
     items.push({
       text: c.name,
@@ -193,6 +223,11 @@ App.open_in_tab_container = async (item, e) => {
         }
       },
     })
+  }
+
+  if (!items.length) {
+    App.alert(`No containers available`)
+    return
   }
 
   let title = `Open In`

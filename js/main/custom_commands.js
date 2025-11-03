@@ -52,6 +52,9 @@ App.custom_command_actions = {
   prepend_global_note: (cmd, items, e) => {
     App.prepend_global_note(cmd.argument)
   },
+  open_in_container: (cmd, items, e) => {
+    App.open_in_tab_container(items[0], e, cmd.argument)
+  },
 }
 
 App.custom_command_items = [
@@ -64,6 +67,7 @@ App.custom_command_items = [
   {text: `Prepend Note`, value: `prepend_note`, icon: App.notepad_icon},
   {text: `Append Global Note`, value: `append_global_note`, icon: App.notepad_icon},
   {text: `Prepend Global Note`, value: `prepend_global_note`, icon: App.notepad_icon},
+  {text: `Open In Container`, value: `open_in_container`, icon: App.container_icon},
 ]
 
 App.start_custom_commands_addlist = () => {
