@@ -328,3 +328,7 @@ App.fix_scroll = () => {
     c.scrollTop -= 1
   }, App.SECOND)
 }
+
+App.is_blank_url = (url) => {
+  return [`about:blank`].some(x => url.startsWith(x))
+}

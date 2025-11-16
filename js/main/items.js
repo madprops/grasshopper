@@ -451,11 +451,6 @@ App.create_item_element = (item) => {
 }
 
 App.set_item_text = (item) => {
-  if (item.header) {
-    App.set_header_text(item)
-    return
-  }
-
   let lines = []
   let url
 
@@ -476,9 +471,10 @@ App.set_item_text = (item) => {
   }
 
   let title = App.title(item)
+  let blank_url = App.is_blank_url(item.url)
   let is_zone = App.is_zone(item)
 
-  if ((text_mode === `title`) || is_zone || !url) {
+  if (text_mode === `title`) {
     lines.push(title || url)
     item.footer = url || title
   }
@@ -488,7 +484,14 @@ App.set_item_text = (item) => {
   }
   else if (text_mode === `title_url`) {
     lines.push(title)
-    lines.push(url)
+
+    if (blank_url || is_zone) {
+      // Don't insert the second line
+    }
+    else {
+      lines.push(url)
+    }
+
     item.footer = url || title
   }
   else if (text_mode === `url_title`) {
