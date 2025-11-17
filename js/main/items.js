@@ -653,6 +653,10 @@ App.get_item_element_index = (args = {}) => {
   return DOM.els(`.${args.mode}_item`).indexOf(args.element)
 }
 
+App.get_last_element_index = (mode = App.active_mode) => {
+  return DOM.els(`.${mode}_item`).length - 1
+}
+
 App.move_item = (mode, from_index, to_index) => {
   let item = App.get_items(mode).splice(from_index, 1)[0]
   App.get_items(mode).splice(to_index, 0, item)
@@ -1603,4 +1607,9 @@ App.do_progressive_fill = async () => {
       }
     }
   }
+}
+
+App.get_item_edges = (mode = App.active_mode) => {
+  let items = App.get_items(mode)
+  return {first: items[0], last: items.at(-1)}
 }

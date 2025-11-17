@@ -3,6 +3,7 @@ App.insert_header = async (args = {}) => {
     full: true,
     title: ``,
     random_title: false,
+    position: `normal`,
   }
 
   App.def_args(def_args, args)
@@ -12,9 +13,24 @@ App.insert_header = async (args = {}) => {
   }
 
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
-  let first = active.at(0)
-  let index = App.get_item_element_index({mode: first.mode, element: first.element})
-  let tab = await App.open_new_tab({url: App.header_url, index, pinned: args.item.pinned, active: false})
+  let edges = App.get_item_edges(args.item.mode)
+  let index, pinned
+
+  if (args.position === `normal`) {
+    let first = active.at(0)
+    index = App.get_item_element_index({mode: first.mode, element: first.element})
+    pinned = args.item.pinned
+  }
+  else if (args.position === `top`) {
+    index = 0
+    pinned = edges.first.pinned
+  }
+  else if (args.position === `bottom`) {
+    index = App.get_last_element_index(args.item.mode)
+    pinned = edges.last.pinned
+  }
+
+  let tab = await App.open_new_tab({url: App.header_url, index, pinned, active: false})
   let header = App.get_item_by_id(args.item.mode, tab.id)
 
   if (active.length > 1) {
