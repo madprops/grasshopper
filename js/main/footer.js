@@ -42,12 +42,7 @@ App.do_update_footer_info = (item) => {
       }
     }
 
-    if (item.header) {
-      info = item.header_title
-    }
-    else {
-      info = item.footer
-    }
+    info = item.footer
   }
 
   if (pre) {
