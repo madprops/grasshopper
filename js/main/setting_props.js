@@ -1932,6 +1932,8 @@ App.build_settings = () => {
         {cmd: `open_new_tab_bottom`},
         {cmd: `reopen_tab`},
         {cmd: `select_all_items`},
+        {cmd: `insert_header_bottom`},
+        {cmd: `insert_subheader_bottom`},
       ],
       data_group: `normal_menus`,
       info: `Menu to show when right clicking empty space in Tabs mode`,

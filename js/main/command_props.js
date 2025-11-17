@@ -2738,7 +2738,7 @@ App.setup_commands = () => {
       info: `Add a header tab`,
     },
     {
-      name: `Insert Header (Top)`,
+      name: `Header Top`,
       short_name: `Header (T)`,
       cmd: `insert_header_top`,
       modes: [`tabs`],
@@ -2751,7 +2751,7 @@ App.setup_commands = () => {
       info: `Add a header tab at the top`,
     },
     {
-      name: `Insert Header (Bottom)`,
+      name: `Header Bottom`,
       short_name: `Header (B)`,
       cmd: `insert_header_bottom`,
       modes: [`tabs`],
@@ -2762,19 +2762,6 @@ App.setup_commands = () => {
         App.insert_header({item: args.item, position: `bottom`})
       },
       info: `Add a header tab at the bottom`,
-    },
-    {
-      name: `Insert Header (Bottom)`,
-      short_name: `Header (B)`,
-      cmd: `insert_header_bottom`,
-      modes: [`tabs`],
-      item: true,
-      single: true,
-      icon: header_icon,
-      action: (args) => {
-        App.insert_header({item: args.item, position: `bottom`})
-      },
-      info: `Add a header tab`,
     },
     {
       name: `Insert Subheader`,
@@ -2790,7 +2777,7 @@ App.setup_commands = () => {
       info: `Add a subheader tab`,
     },
     {
-      name: `Insert Subheader (Top)`,
+      name: `Subheader Top`,
       short_name: `Subheader (T)`,
       cmd: `insert_subheader_top`,
       modes: [`tabs`],
@@ -2803,7 +2790,7 @@ App.setup_commands = () => {
       info: `Add a subheader tab at the top`,
     },
     {
-      name: `Insert Subheader (Bottom)`,
+      name: `Subheader Bottom`,
       short_name: `Subheader (B)`,
       cmd: `insert_subheader_bottom`,
       modes: [`tabs`],
