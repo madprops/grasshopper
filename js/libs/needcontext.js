@@ -1,4 +1,4 @@
-// NeedContext v9.9
+// NeedContext v10.0
 
 // Main object
 const NeedContext = {}
@@ -541,18 +541,35 @@ NeedContext.select_action = (e, index = NeedContext.index, mode = `mouse`) => {
     }
   }
 
-  let check_item = () => {
+  async function check_item() {
     if (item.action) {
-      NeedContext.action(item, e)
+      if (e.shiftKey) {
+        if (item.shift_action) {
+          NeedContext.shift_action(item, e)
+        }
+      }
+      else if (e.ctrlKey) {
+        if (item.ctrl_action) {
+          NeedContext.ctrl_action(item, e)
+        }
+      }
+      else if (e.altKey) {
+        if (item.alt_action) {
+          NeedContext.alt_action(item, e)
+        }
+      }
+      else {
+        NeedContext.action(item, e)
+      }
+
+      return
     }
     else if (item.items) {
       do_items(item.items)
     }
     else if (item.get_items) {
-      // Handle the async case without making the parent function async
-      item.get_items().then((items) => {
-        do_items(items)
-      })
+      let items = await item.get_items()
+      do_items(items)
     }
   }
 
