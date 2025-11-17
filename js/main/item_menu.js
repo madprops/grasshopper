@@ -81,6 +81,22 @@ App.show_item_menu = async (args = {}) => {
     }
 
     App.common_menu_items(common_obj)
+    let new_items = []
+
+    App.item_menu_item(new_items, `open_new_tab_above`, {item: args.item, short: true})
+    App.item_menu_item(new_items, `open_new_tab_below`, {item: args.item, short: true})
+
+    if (new_items.length) {
+      if (new_items.at(-1).separator) {
+        new_items.pop()
+      }
+
+      items.push({
+        icon: App.new_icon,
+        text: `New`,
+        items: new_items,
+      })
+    }
 
     let more_obj = {
       o_items: items,
@@ -157,23 +173,6 @@ App.common_menu_items = (args = {}) => {
       icon: App.clipboard_icon,
       text: `Copy`,
       items: copy_items,
-    })
-  }
-
-  let new_items = []
-
-  App.item_menu_item(new_items, `open_new_tab_above`, {item: args.item, short: true})
-  App.item_menu_item(new_items, `open_new_tab_below`, {item: args.item, short: true})
-
-  if (new_items.length) {
-    if (new_items.at(-1).separator) {
-      new_items.pop()
-    }
-
-    items.push({
-      icon: App.new_icon,
-      text: `New`,
-      items: new_items,
     })
   }
 
