@@ -160,6 +160,23 @@ App.common_menu_items = (args = {}) => {
     })
   }
 
+  let new_items = []
+
+  App.item_menu_item(new_items, `open_new_tab_above`, {item: args.item, short: true})
+  App.item_menu_item(new_items, `open_new_tab_below`, {item: args.item, short: true})
+
+  if (new_items.length) {
+    if (new_items.at(-1).separator) {
+      new_items.pop()
+    }
+
+    items.push({
+      icon: App.new_icon,
+      text: `New`,
+      items: new_items,
+    })
+  }
+
   if (items.length) {
     for (let c of items) {
       args.o_items.push(c)
