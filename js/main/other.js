@@ -9,8 +9,13 @@ App.check_first_time = () => {
 App.show_intro_message = () => {
   let s = `Hi there
   The main menu is the top-left button
-  Check out the settings
-  I constantly experiment and change stuff, so expect things to break.`
+  Check out the settings and guides
+  There are many setting categories
+  Context menus can be filtered by typing
+  There are hundreds of commands available
+  Access the command palette with Ctrl+Ctrl
+  Try right clicking anywhere on the interface
+  It can be used in sidebar or popup mode`
 
   let text = App.periods(s)
 
@@ -27,6 +32,12 @@ App.show_intro_message = () => {
       action: () => {
         App.close_textarea()
         App.show_settings_category(`general`)
+      },
+    },
+    {
+      text: `Guides`,
+      action: () => {
+        App.show_setting_guides()
       },
     },
     {
