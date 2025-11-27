@@ -5361,6 +5361,25 @@ App.setup_commands = () => {
       skip_settings: true,
       info: `Use the preferred settings for fondo without confirmation`,
     },
+    {
+      name: `!slay`,
+      cmd: `user_slay`,
+      action: (args) => {
+        App.user_settings(`slay`)
+      },
+      skip_settings: true,
+      info: `Use the preferred settings for slay`,
+    },
+    {
+      name: `!slay (Force)`,
+      short_name: `!slay (F)`,
+      cmd: `user_slay_force`,
+      action: (args) => {
+        App.user_settings(`slay`, true)
+      },
+      skip_settings: true,
+      info: `Use the preferred settings for slay without confirmation`,
+    },
   ]
 
   let infos = App.commands.map(command => command.info)
