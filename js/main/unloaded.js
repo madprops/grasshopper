@@ -25,11 +25,11 @@ App.unload_tabs = (item, multiple = true, mode = `all`) => {
     else if (App.is_about_url(it.url)) {
       continue
     }
-    else if (App.is_extension(it.url)) {
-      continue
-    }
-    else if (App.is_zone(it)) {
-      continue
+
+    if (mode !== `all`) {
+      if (App.is_zone(it)) {
+        continue
+      }
     }
 
     if (mode === `normal`) {
