@@ -48,7 +48,6 @@ App.unload_tabs = (item, multiple = true, mode = `all`) => {
     }
 
     items.push(it)
-    console.log(it.url)
   }
 
   if (!items.length) {
