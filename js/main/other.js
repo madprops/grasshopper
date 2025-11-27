@@ -37,6 +37,7 @@ App.show_intro_message = () => {
     {
       text: `Guides`,
       action: () => {
+        App.close_textarea()
         App.show_setting_guides()
       },
     },
