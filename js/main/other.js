@@ -332,3 +332,11 @@ App.fix_scroll = () => {
 App.is_blank_url = (url) => {
   return [`about:blank`].some(x => url.startsWith(x))
 }
+
+App.is_extension = (url) => {
+  return [`moz-extension:`].some(x => url.startsWith(x))
+}
+
+App.is_about_url = (url) => {
+  return [`about:`].some(x => url.startsWith(x))
+}

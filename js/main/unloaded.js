@@ -22,6 +22,15 @@ App.unload_tabs = (item, multiple = true, mode = `all`) => {
     if (App.is_new_tab(it.url)) {
       continue
     }
+    else if (App.is_about_url(it.url)) {
+      continue
+    }
+    else if (App.is_extension(it.url)) {
+      continue
+    }
+    else if (App.is_zone(it)) {
+      continue
+    }
 
     if (mode === `normal`) {
       if (it.pinned) {
@@ -39,6 +48,7 @@ App.unload_tabs = (item, multiple = true, mode = `all`) => {
     }
 
     items.push(it)
+    console.log(it.url)
   }
 
   if (!items.length) {
