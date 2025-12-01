@@ -268,7 +268,7 @@ App.tab_box_show = (mode, o_items) => {
 
   App.update_tab_box_count(items.length)
   App.tab_box_items = items
-  App.tab_box_o_items = o_items
+  App.tab_box_o_items = [...o_items]
   return true
 }
 
@@ -360,7 +360,6 @@ App.update_tab_box_nodes = () => {
 
 App.update_tab_box_spawns = () => {
   let o_items = App.get_current_tab_nodes()
-  console.log(o_items)
   return App.tab_box_show(`spawns`, o_items)
 }
 
