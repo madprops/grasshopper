@@ -718,7 +718,7 @@ NeedContext.init = () => {
     }
 
     .needcontext-highlight {
-      border: 2px solid currentColor !important;
+      border: 1px solid currentColor !important;
       border-radius: 10px;
     }
 

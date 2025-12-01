@@ -47,7 +47,7 @@ App.make_tab_box_modes = () => {
     roots: {info: `Tabs with a root`, icon: App.get_setting(`root_icon`)},
     parents: {info: `Tabs that are parents to other tabs`, icon: App.get_setting(`parent_icon`)},
     nodes: {info: `Tabs that were opened by another tab`, icon: App.get_setting(`node_icon`)},
-    nodez: {info: `The tabs opened by the selected tab`, icon: App.get_setting(`node_icon`)},
+    spawns: {info: `The tabs opened by the selected tab`, icon: App.get_setting(`node_icon`)},
     containers: {info: `Tabs with containers`, icon: App.get_setting(`container_icon`)},
     headers: {info: `Headers and subheaders`, icon: App.get_setting(`header_icon`) || App.zone_icon},
     history: {info: `Pick a query to search history`, icon: App.mode_icon(`history`)},
@@ -196,9 +196,15 @@ App.do_update_tab_box = () => {
   }
 
   let what = App.get_tab_box_mode()
+  let check_func = App[`update_tab_box_${what}`]
+
+  if (!check_func) {
+    return
+  }
+
   App.check_tab_box()
 
-  if (!App[`update_tab_box_${what}`]()) {
+  if (!check_func()) {
     return
   }
 
@@ -352,9 +358,10 @@ App.update_tab_box_nodes = () => {
   return App.tab_box_show(`nodes`, o_items)
 }
 
-App.update_tab_box_nodez = () => {
+App.update_tab_box_spawns = () => {
   let o_items = App.get_current_tab_nodes()
-  return App.tab_box_show(`nodez`, o_items)
+  console.log(o_items)
+  return App.tab_box_show(`spawns`, o_items)
 }
 
 App.update_tab_box_containers = () => {

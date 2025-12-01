@@ -66,7 +66,7 @@ App.select_item = (args = {}) => {
   App.last_selected_date[args.item.mode] = App.now()
   let tb_mode = App.get_tab_box_mode()
 
-  if ([`nodez`].includes(tb_mode)) {
+  if ([`spawns`].includes(tb_mode)) {
     App.update_tab_box()
   }
 }
