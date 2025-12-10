@@ -81,17 +81,18 @@ export default [
     },
     languageOptions: {
       globals: {
-        App: "writable",
-        DOM: "writable",
-        Addlist: "writable",
-        NiceGesture: "writable",
-        NeedContext: "writable",
-        Menubutton: "writable",
-        ColorLib: "writable",
-        AColorPicker: "writable",
-        dateFormat: "writable",
-        jdenticon: "writable",
-        browser: "writable",
+        App: "readonly",
+        DOM: "readonly",
+        Addlist: "readonly",
+        NiceGesture: "readonly",
+        NeedContext: "readonly",
+        Menubutton: "readonly",
+        ColorLib: "readonly",
+        AColorPicker: "readonly",
+        dateFormat: "readonly",
+        jdenticon: "readonly",
+        browser: "readonly",
+        "expr-eval": "readonly",
       }
     }
   }

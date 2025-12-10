@@ -23,10 +23,15 @@ App.use_calculator = () => {
     readonly: false,
     buttons: [
       {
-        text: `Copy`,
+        text: `Close`,
         action: () => {
-          App.copy_to_clipboard(password)
           App.close_textarea()
+        },
+      },
+      {
+        text: `Copy`,
+        action: (text) => {
+          App.copy_to_clipboard(text)
         },
       },
       {
@@ -49,7 +54,7 @@ App.number_format = (num, decimals) => {
   // it defaults to not showing trailing zeros
   let formatter = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: decimals,
-    useGrouping: true // Set true if you want "1,000"
+    useGrouping: true, // Set true if you want "1,000"
   })
 
   return formatter.format(num)
