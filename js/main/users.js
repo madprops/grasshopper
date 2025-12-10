@@ -130,10 +130,10 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `obfuscate_tabs`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `toggle_auto_blur`}
+  cmd = {cmd: `use_calculator`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `use_calculator`}
+  cmd = {cmd: `toggle_auto_blur`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `locust_swarm`, middle: `breathe_effect`}
