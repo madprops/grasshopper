@@ -36,16 +36,72 @@ App.math_eval_multiline = (text) => {
     }
 
     try {
-      // 2. Handle Assignment (x = 10)
-      if (line.includes(`=`)) {
-        let parts = line.split(`=`)
-        let var_name = parts[0].trim()
-        let expression = parts[1].trim()
-        let value = parser.evaluate(expression, scope)
-        scope[var_name] = value
-        final_result = value
+      // 2. Determine Operator
+      // Check for compound operators first because they contain "="
+      let operator = null
+
+      if (line.includes(`+=`)) {
+        operator = `+=`
       }
-      // 3. Handle Standard Math
+      else if (line.includes(`-=`)) {
+        operator = `-=`
+      }
+      else if (line.includes(`*=`)) {
+        operator = `*=`
+      }
+      else if (line.includes(`/=`)) {
+        operator = `/=`
+      }
+      else if (line.includes(`^=`)) {
+        operator = `^=`
+      }
+      else if (line.includes(`%=`)) {
+        operator = `%=`
+      }
+      else if (line.includes(`=`)) {
+        operator = `=`
+      }
+
+      // 3. Handle Assignment
+      if (operator) {
+        let parts = line.split(operator)
+        let var_name = parts[0].trim()
+
+        // Join back in case the expression part contained the operator string
+        let expression = parts.slice(1).join(operator).trim()
+
+        let value = parser.evaluate(expression, scope)
+        let current_val = 0
+
+        if (scope[var_name] !== undefined) {
+          current_val = scope[var_name]
+        }
+
+        if (operator === `+=`) {
+          scope[var_name] = current_val + value
+        }
+        else if (operator === `-=`) {
+          scope[var_name] = current_val - value
+        }
+        else if (operator === `*=`) {
+          scope[var_name] = current_val * value
+        }
+        else if (operator === `/=`) {
+          scope[var_name] = current_val / value
+        }
+        else if (operator === `^=`) {
+          scope[var_name] = Math.pow(current_val, value)
+        }
+        else if (operator === `%=`) {
+          scope[var_name] = current_val % value
+        }
+        else {
+          scope[var_name] = value
+        }
+
+        final_result = scope[var_name]
+      }
+      // 4. Handle Standard Math
       else {
         let value = parser.evaluate(line, scope)
         scope.ans = value

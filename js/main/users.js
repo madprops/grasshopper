@@ -194,7 +194,7 @@ App.user_madprops_settings = () => {
   cmd = {name: `Words`, url: `http://127.0.0.1:5000/words`, method: `off`, icon: `🥁`, interval: minute * 30, update_title: true, startup: true, arguments: `{"num": 2}`, _id_: `sig_words`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, update_title: true, _id_: `sig_np`}
+  cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, interval: 5, update_title: true, _id_: `sig_np`}
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `🎸`, _id_: `sig_play`}
