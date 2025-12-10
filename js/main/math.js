@@ -6,12 +6,50 @@ App.math_eval = (input = ``) => {
   let ans = ``
 
   try {
-    ans = App.math_parser.evaluate(input)
+    ans = App.math_eval_multiline(input)
     return [ans, true]
   }
   catch (err) {
+    console.error(err)
     return [ans, false]
   }
+}
+
+App.math_eval_multiline = (text) => {
+  // 1. The persistent memory (Variables live here)
+  let scope = {
+    ans: 0 // Default 'ans' variable
+  }
+
+  let lines = text.split('\n')
+  let final_result = 0
+
+  for (let line of lines) {
+    line = line.trim()
+    if (!line) continue
+
+    // 2. Handle Custom Assignment (x = 10)
+    if (line.includes(`=`)) {
+      let parts = line.split(`=`)
+      let var_name = parts[0].trim()
+      let value = App.math_parser.evaluate(parts[1], scope)
+
+      // Save it to our memory
+      scope[var_name] = value
+      final_result = value
+    }
+
+    // 3. Handle Regular Math
+    else {
+      let value = App.math_parser.evaluate(line, scope)
+
+      // Update 'ans' and result
+      scope[`ans`] = value
+      final_result = value
+    }
+  }
+
+  return final_result
 }
 
 App.use_calculator = () => {
