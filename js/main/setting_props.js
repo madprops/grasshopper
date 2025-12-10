@@ -2006,6 +2006,7 @@ App.build_settings = () => {
       data_group: `normal_menus`,
       value: [
         {cmd: `show_flashlight`},
+        {cmd: `use_calculator`},
         {cmd: `generate_password`},
         {cmd: `breathe_effect`},
         {cmd: `locust_swarm`},

@@ -7,12 +7,11 @@ App.math_eval = (input = ``) => {
 
   try {
     ans = App.math_parser.evaluate(input)
+    return [ans, true]
   }
   catch (err) {
-    //
+    return [ans, false]
   }
-
-  return ans
 }
 
 App.use_calculator = () => {
@@ -37,11 +36,14 @@ App.use_calculator = () => {
       {
         text: `Calculate`,
         action: (text) => {
-          let ans = App.math_eval(text)
+          let [ans, ok] = App.math_eval(text)
 
-          if (ans) {
+          if (ok) {
             let num = App.number_format(ans, 5)
             App.alert(num)
+          }
+          else {
+            App.alert(`Expression could not be parsed`)
           }
         },
       },
