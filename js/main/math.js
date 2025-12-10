@@ -10,7 +10,7 @@ App.math_eval = (input = ``) => {
     return [ans, true]
   }
   catch (err) {
-    console.error(err)
+    App.error(err)
     return [ans, false]
   }
 }
@@ -18,15 +18,17 @@ App.math_eval = (input = ``) => {
 App.math_eval_multiline = (text) => {
   // 1. The persistent memory (Variables live here)
   let scope = {
-    ans: 0 // Default 'ans' variable
+    ans: 0, // Default 'ans' variable
   }
 
-  let lines = text.split('\n')
+  let lines = text.split(`\n`)
   let final_result = 0
 
   for (let line of lines) {
     line = line.trim()
-    if (!line) continue
+    if (!line) {
+      continue
+    }
 
     // 2. Handle Custom Assignment (x = 10)
     if (line.includes(`=`)) {
@@ -44,7 +46,7 @@ App.math_eval_multiline = (text) => {
       let value = App.math_parser.evaluate(line, scope)
 
       // Update 'ans' and result
-      scope[`ans`] = value
+      scope.ans = value
       final_result = value
     }
   }
@@ -92,7 +94,7 @@ App.use_calculator = () => {
 App.number_format = (num, decimals) => {
   // maximumFractionDigits caps the decimals
   // it defaults to not showing trailing zeros
-  let formatter = new Intl.NumberFormat('en-US', {
+  let formatter = new Intl.NumberFormat(`en-US`, {
     maximumFractionDigits: decimals,
     useGrouping: true, // Set true if you want "1,000"
   })

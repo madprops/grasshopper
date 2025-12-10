@@ -92,7 +92,7 @@ export default [
         dateFormat: "readonly",
         jdenticon: "readonly",
         browser: "readonly",
-        "expr-eval": "readonly",
+        exprEval: "readonly",
       }
     }
   }
