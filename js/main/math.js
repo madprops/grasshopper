@@ -6,8 +6,8 @@ App.math_eval = (input = ``) => {
   let ans = ``
 
   try {
-    ans = App.math_eval_multiline(input)
-    return [ans, true]
+    [ans, ok] = App.math_eval_multiline(input)
+    return [ans, ok]
   }
   catch (err) {
     App.error(err)
@@ -16,42 +16,48 @@ App.math_eval = (input = ``) => {
 }
 
 App.math_eval_multiline = (text) => {
-  // 1. The persistent memory (Variables live here)
+  let parser = App.math_parser
+
+  // Persistent memory
   let scope = {
-    ans: 0, // Default 'ans' variable
+    ans: 0
   }
 
   let lines = text.split(`\n`)
   let final_result = 0
 
   for (let line of lines) {
-    line = line.trim()
+    // 1. Strip Comments: Take everything before the first '//'
+    line = line.split(`//`)[0].trim()
+
+    // Skip empty lines (or lines that were just comments)
     if (!line) {
       continue
     }
 
-    // 2. Handle Custom Assignment (x = 10)
-    if (line.includes(`=`)) {
-      let parts = line.split(`=`)
-      let var_name = parts[0].trim()
-      let value = App.math_parser.evaluate(parts[1], scope)
-
-      // Save it to our memory
-      scope[var_name] = value
-      final_result = value
+    try {
+      // 2. Handle Assignment (x = 10)
+      if (line.includes(`=`)) {
+        let parts = line.split(`=`)
+        let var_name = parts[0].trim()
+        let expression = parts[1].trim()
+        let value = parser.evaluate(expression, scope)
+        scope[var_name] = value
+        final_result = value
+      }
+      // 3. Handle Standard Math
+      else {
+        let value = parser.evaluate(line, scope)
+        scope[`ans`] = value
+        final_result = value
+      }
     }
-
-    // 3. Handle Regular Math
-    else {
-      let value = App.math_parser.evaluate(line, scope)
-
-      // Update 'ans' and result
-      scope.ans = value
-      final_result = value
+    catch (e) {
+      return [0, false]
     }
   }
 
-  return final_result
+  return [final_result, true]
 }
 
 App.use_calculator = () => {
