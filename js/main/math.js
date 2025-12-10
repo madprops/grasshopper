@@ -6,7 +6,7 @@ App.math_eval = (input = ``) => {
   let ans = ``
 
   try {
-    [ans, ok] = App.math_eval_multiline(input)
+    let [ans, ok] = App.math_eval_multiline(input)
     return [ans, ok]
   }
   catch (err) {
@@ -20,7 +20,7 @@ App.math_eval_multiline = (text) => {
 
   // Persistent memory
   let scope = {
-    ans: 0
+    ans: 0,
   }
 
   let lines = text.split(`\n`)
@@ -48,7 +48,7 @@ App.math_eval_multiline = (text) => {
       // 3. Handle Standard Math
       else {
         let value = parser.evaluate(line, scope)
-        scope[`ans`] = value
+        scope.ans = value
         final_result = value
       }
     }
@@ -65,7 +65,7 @@ App.use_calculator = () => {
     return App.number_format(ans, 5)
   }
 
-  function on_error () {
+  function on_error() {
     App.alert(`Expression could not be parsed`)
   }
 
