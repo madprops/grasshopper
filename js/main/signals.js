@@ -127,7 +127,7 @@ App.fill_signals = () => {
     name.textContent = signal.name
 
     if (signal.interval) {
-      name.textContent += ` (${signal.interval})`
+      name.textContent += ` (${App.signal_method_string(signal.method)}) (${signal.interval})`
     }
 
     let title = `${signal.url} (${signal.method})`
@@ -677,4 +677,13 @@ App.signals_blocked = () => {
   }
 
   return false
+}
+
+App.signal_method_string = (method) => {
+  if (method === `off`) {
+    return `Off`
+  }
+  else {
+    return method.toUpperCase()
+  }
 }
