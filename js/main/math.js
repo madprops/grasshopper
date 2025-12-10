@@ -61,6 +61,14 @@ App.math_eval_multiline = (text) => {
 }
 
 App.use_calculator = () => {
+  function format_num(ans) {
+    return App.number_format(ans, 5)
+  }
+
+  function on_error () {
+    App.alert(`Expression could not be parsed`)
+  }
+
   App.show_textarea({
     title: `Calculator`,
     text: ``,
@@ -76,7 +84,15 @@ App.use_calculator = () => {
       {
         text: `Copy`,
         action: (text) => {
-          App.copy_to_clipboard(text)
+          let [ans, ok] = App.math_eval(text)
+
+          if (ok) {
+            let num = format_num(ans)
+            App.copy_to_clipboard(num)
+          }
+          else {
+            on_error()
+          }
         },
       },
       {
@@ -85,11 +101,11 @@ App.use_calculator = () => {
           let [ans, ok] = App.math_eval(text)
 
           if (ok) {
-            let num = App.number_format(ans, 5)
+            let num = format_num(ans)
             App.alert(num)
           }
           else {
-            App.alert(`Expression could not be parsed`)
+            on_error()
           }
         },
       },
