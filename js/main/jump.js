@@ -22,7 +22,7 @@ App.jump_tabs = async (args = {}) => {
     items = items.filter(it => it.visible)
   }
 
-  let headers = [`header`, `subheader`, `headers`, `zone`]
+  let headers = [`header`, `subheader`, `zone`]
   let zones = [...headers, `zone`]
   let h_action = App.get_setting(`header_action`)
   let index = items.indexOf(args.item)
@@ -106,9 +106,6 @@ App.jump_tabs = async (args = {}) => {
     }
     else if (args.what === `subheader`) {
       return App.is_subheader(it)
-    }
-    else if (args.what === `headers`) {
-      return it.header
     }
     else if (args.what === `split`) {
       if (App.get_split_top(it) || App.get_split_bottom(it)) {
@@ -242,10 +239,6 @@ App.jump_tabs_header = (reverse = false) => {
 
 App.jump_tabs_subheader = (reverse = false) => {
   App.jump_tabs({what: `subheader`, reverse})
-}
-
-App.jump_tabs_headers = (reverse = false) => {
-  App.jump_tabs({what: `headers`, reverse})
 }
 
 App.jump_tabs_split = (reverse = false) => {

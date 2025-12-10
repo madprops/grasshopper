@@ -90,6 +90,7 @@ App.setup_commands = () => {
   let http_icon = App.http_icon
   let file_icon = App.file_icon
   let injection_icon = App.injection_icon
+  let calculator_icon = App.calculator_icon
 
   let tbmodes = []
 
@@ -3393,24 +3394,6 @@ App.setup_commands = () => {
       info: `Jump to the next subheader below`,
     },
     {
-      name: `Headers Up`,
-      cmd: `jump_tabs_headers_up`,
-      icon: header_icon,
-      action: (args) => {
-        App.jump_tabs_headers(true)
-      },
-      info: `Jump to the next header or subheader above`,
-    },
-    {
-      name: `Headers Down`,
-      cmd: `jump_tabs_headers_down`,
-      icon: header_icon,
-      action: (args) => {
-        App.jump_tabs_headers()
-      },
-      info: `Jump to the next header or subheader below`,
-    },
-    {
       name: `Move To Header`,
       cmd: `tabs_to_header`,
       icon: header_icon,
@@ -5138,6 +5121,15 @@ App.setup_commands = () => {
         App.generate_password()
       },
       info: `Generate a random password`,
+    },
+    {
+      name: `Calculator`,
+      cmd: `use_calculator`,
+      icon: calculator_icon,
+      action: (args) => {
+        App.use_calculator()
+      },
+      info: `Use the calculator`,
     },
     {
       name: `Flashlight`,

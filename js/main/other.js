@@ -231,6 +231,34 @@ App.generate_password = () => {
   })
 }
 
+App.use_calculator = () => {
+  App.show_textarea({
+    title: `Calculator`,
+    text: ``,
+    monospace: true,
+    readonly: false,
+    buttons: [
+      {
+        text: `Copy`,
+        action: () => {
+          App.copy_to_clipboard(password)
+          App.close_textarea()
+        },
+      },
+      {
+        text: `Calculate`,
+        action: (text) => {
+          let ans = App.math_eval(text)
+
+          if (ans) {
+            App.alert(ans)
+          }
+        },
+      },
+    ],
+  })
+}
+
 App.play_sound = (name) => {
   if (!App.get_setting(`sound_effects`)) {
     return

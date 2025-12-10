@@ -84,7 +84,7 @@ App.show_textarea = (args = {}) => {
       b.textContent = btn.text
 
       DOM.ev(b, `click`, () => {
-        btn.action()
+        btn.action(textarea.value)
       })
 
       c.append(b)
