@@ -302,6 +302,8 @@ App.random_color = (what, type) => {
 
   color = App.colorlib.hex_to_rgb(color)
   App.set_setting({setting: `${what}_color`, value: color})
+  let border_color = App.opacity(color, 0.20)
+  App.set_setting({setting: `item_border_color`, value: border_color})
   App.apply_theme()
 }
 
@@ -727,10 +729,13 @@ App.set_theme = (num) => {
   }
 
   if (theme.text_color) {
+    let border_color = App.opacity(theme.text_color, 0.20)
     App.set_setting({setting: `text_color`, value: theme.text_color})
+    App.set_setting({setting: `item_border_color`, value: border_color})
   }
   else {
     App.set_default_setting(`text_color`)
+    App.set_default_setting(`item_border_color`)
   }
 
   if (theme.background_color) {
