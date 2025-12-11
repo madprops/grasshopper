@@ -977,6 +977,7 @@ App.set_tab_box_vars = () => {
   }
 
   App.set_css_var(`tab_box_border_width`, App.get_setting(`tab_box_border_width`) + `px`)
+  App.set_css_var(`tab_box_item_border_color`, App.get_setting(`tab_box_item_border_color`))
 }
 
 App.set_close_button_vars = () => {
@@ -1394,6 +1395,7 @@ App.set_item_vars = () => {
   let item_align = App.get_setting(`item_align`)
   let item_justify = App.justify_map[item_align]
   App.set_css_var(`item_align`, item_justify)
+  App.set_css_var(`item_border_color`, App.get_setting(`item_border_color`))
 
   if (App.get_setting(`wrap_text`)) {
     App.main_remove(`no_wrap`)

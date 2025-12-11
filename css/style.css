@@ -682,21 +682,21 @@ svg {
 .borders_normal .item:not(.tab_box_item) {
   border-top-width: 1px;
   border-bottom-width: 1px;
-  border-color: var(--alt_color_1);
+  border-color: var(--item_border_color);
   margin-top: -1px;
 }
 
 .borders_big .item:not(.tab_box_item) {
   border-top-width: 2px;
   border-bottom-width: 2px;
-  border-color: var(--alt_color_1);
+  border-color: var(--item_border_color);
   margin-top: -2px;
 }
 
 .borders_huge .item:not(.tab_box_item) {
   border-top-width: 4px;
   border-bottom-width: 4px;
-  border-color: var(--alt_color_1);
+  border-color: var(--item_border_color);
   margin-top: -4px;
 }
 
@@ -708,21 +708,21 @@ svg {
 .tab_box_borders_normal .tab_box_item {
   border-top-width: 1px;
   border-bottom-width: 1px;
-  border-color: var(--alt_color_1);
+  border-color: var(--tab_box_item_border_color);
   margin-top: -1px;
 }
 
 .tab_box_borders_big .tab_box_item {
   border-top-width: 2px;
   border-bottom-width: 2px;
-  border-color: var(--alt_color_1);
+  border-color: var(--tab_box_item_border_color);
   margin-top: -2px;
 }
 
 .tab_box_borders_huge .tab_box_item {
   border-top-width: 4px;
   border-bottom-width: 4px;
-  border-color: var(--alt_color_1);
+  border-color: var(--tab_box_item_border_color);
   margin-top: -4px;
 }
 

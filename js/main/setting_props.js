@@ -504,6 +504,17 @@ App.build_settings = () => {
         App.start_color_picker(key)
       },
     },
+    item_border_color: {
+      name: `Border Color`,
+      type: `color`,
+      value: `rgba(235, 235, 235, 0.2)`,
+      actions: [`theme`],
+      info: `Color to use for item borders`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
     background_image: {
       name: `BG Image`,
       type: `text`,
@@ -666,7 +677,7 @@ App.build_settings = () => {
       },
     },
     window_border_color: {
-      name: `Border Color`,
+      name: `Window Border Color`,
       type: `color`,
       value: `rgb(71, 71, 229)`,
       actions: [`theme`],
@@ -2317,6 +2328,17 @@ App.build_settings = () => {
       value: App.default_color,
       separator: true,
       info: `Background color of the Tab Box`,
+      version: 1,
+      setup: (key) => {
+        App.start_color_picker(key, true)
+      },
+    },
+    tab_box_item_border_color: {
+      name: `Tab Box Border Color`,
+      type: `color`,
+      value: `rgba(235, 235, 235, 0.2)`,
+      actions: [`theme`],
+      info: `Color to use for item borders in the tab box`,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key, true)
