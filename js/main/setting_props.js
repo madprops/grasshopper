@@ -498,7 +498,6 @@ App.build_settings = () => {
       value: App.dark_colors.background,
       actions: [`theme`],
       info: `Main color to use for the background`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key)
@@ -510,6 +509,7 @@ App.build_settings = () => {
       value: `rgba(235, 235, 235, 0.2)`,
       actions: [`theme`],
       info: `Color to use for item borders`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key, true)
@@ -2314,11 +2314,11 @@ App.build_settings = () => {
       wheel_down_shift: `tab_box_next_mode`,
     }),
 
-    tab_box_color_enabled: {
-      name: `Tab Box Color`,
+    tab_box_colors_enabled: {
+      name: `Tab Box Colors`,
       type: `checkbox`,
       value: false,
-      info: `Enable the background color of the Tab Box`,
+      info: `Enable custom colors for the Tab Box`,
       version: 1,
     },
     tab_box_color: {
@@ -2326,7 +2326,6 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: App.default_color,
-      separator: true,
       info: `Background color of the Tab Box`,
       version: 1,
       setup: (key) => {
@@ -2339,6 +2338,7 @@ App.build_settings = () => {
       value: `rgba(235, 235, 235, 0.2)`,
       actions: [`theme`],
       info: `Color to use for item borders in the tab box`,
+      separator: true,
       version: 1,
       setup: (key) => {
         App.start_color_picker(key, true)

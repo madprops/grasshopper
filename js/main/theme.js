@@ -85,6 +85,9 @@ App.do_apply_theme = (args = {}) => {
     App.text_color = args.text_color
     App.background_color = args.background_color
     App.text_color_darker = text_color_darker
+    App.alt_color_0 = alt_color_0
+    App.alt_color_1 = alt_color_1
+    App.alt_color_2 = alt_color_2
 
     if (args.safe_mode) {
       return
@@ -912,11 +915,13 @@ App.set_pinline_vars = () => {
 }
 
 App.set_tab_box_vars = () => {
-  if (App.get_setting(`tab_box_color_enabled`)) {
+  if (App.get_setting(`tab_box_colors_enabled`)) {
     App.set_css_var(`tab_box_color`, App.get_setting(`tab_box_color`))
+    App.set_css_var(`tab_box_item_border_color`, App.get_setting(`tab_box_item_border_color`))
   }
   else {
     App.set_css_var(`tab_box_color`, `transparent`)
+    App.set_css_var(`tab_box_item_border_color`, App.alt_color_1)
   }
 
   if (App.get_setting(`tab_box_font_enabled`)) {
@@ -982,7 +987,6 @@ App.set_tab_box_vars = () => {
   }
 
   App.set_css_var(`tab_box_border_width`, App.get_setting(`tab_box_border_width`) + `px`)
-  App.set_css_var(`tab_box_item_border_color`, App.get_setting(`tab_box_item_border_color`))
 }
 
 App.set_close_button_vars = () => {

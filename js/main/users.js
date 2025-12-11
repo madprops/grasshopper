@@ -269,7 +269,7 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `show_tab_box`, value: true})
   App.set_setting({setting: `tab_box_mode`, value: `special`})
   App.set_setting({setting: `tab_box_size`, value: `normal`})
-  App.set_setting({setting: `tab_box_color_enabled`, value: true})
+  App.set_setting({setting: `tab_box_colors_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(47, 99, 151, 0.18)`})
   App.set_setting({setting: `tab_box_item_height`, value: `normal`})
   App.set_setting({setting: `tab_box_title`, value: false})
@@ -309,7 +309,7 @@ App.user_auver_settings = () => {
   App.set_setting({setting: `enable_window_border_glow`, value: true})
   App.set_setting({setting: `tab_box_item_height`, value: `small`})
   App.set_setting({setting: `tab_box_border_width`, value: 5})
-  App.set_setting({setting: `tab_box_color_enabled`, value: true})
+  App.set_setting({setting: `tab_box_colors_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(81, 125, 138, 0.537)`})
 }
 
@@ -330,7 +330,7 @@ App.user_pauver_settings = () => {
   App.set_setting({setting: `window_border_glow_speed`, value: 4})
   App.set_setting({setting: `tab_box_item_height`, value: `small`})
   App.set_setting({setting: `tab_box_border_width`, value: 5})
-  App.set_setting({setting: `tab_box_color_enabled`, value: true})
+  App.set_setting({setting: `tab_box_colors_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(65, 65, 151, 0.16)`})
   App.set_setting({setting: `tab_box_glass`, value: true})
 }
