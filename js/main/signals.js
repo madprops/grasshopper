@@ -683,7 +683,6 @@ App.signal_method_string = (method) => {
   if (method === `off`) {
     return `Off`
   }
-  else {
-    return method.toUpperCase()
-  }
+
+  return method.toUpperCase()
 }
