@@ -127,19 +127,21 @@ App.use_calculator = () => {
 
   App.show_textarea({
     title: `Calculator`,
-    text: ``,
+    text: App.calculator_text,
     monospace: true,
     readonly: false,
     buttons: [
       {
         text: `Close`,
-        action: () => {
+        action: (text) => {
+          App.calculator_text = text
           App.close_textarea()
         },
       },
       {
         text: `Copy`,
         action: (text) => {
+          App.calculator_text = text
           let [ans, ok] = App.math_eval(text)
 
           if (ok) {
@@ -154,6 +156,7 @@ App.use_calculator = () => {
       {
         text: `Calculate`,
         action: (text) => {
+          App.calculator_text = text
           let [ans, ok] = App.math_eval(text)
 
           if (ok) {
