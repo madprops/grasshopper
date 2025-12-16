@@ -2191,7 +2191,7 @@ App.build_settings = () => {
     tab_box_auto_shrink: {
       name: `Tab Box Auto Shrink`,
       type: `menu`,
-      value: `compact`,
+      value: `none`,
       info: `Shrink the Tab Box automatically when it has no items`,
       separator: true,
       version: 1,
