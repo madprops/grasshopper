@@ -95,9 +95,11 @@ App.setup_commands = () => {
   let tbmodes = []
 
   for (let mode in App.tab_box_modes) {
-    let m_name = App.capitalize(mode)
+    let t_mode = App.tab_box_modes[mode]
+    let icon = App.clone_if_node(t_mode.icon)
+    let text = t_mode.text
+    let m_name = App.capitalize(text || mode)
     let name = `Tab Box: ${m_name}`
-    let icon = App.tab_box_modes[mode].icon
 
     tbmodes.push({
       name,
@@ -111,6 +113,7 @@ App.setup_commands = () => {
     })
 
     name = `Toggle Tab Box: ${m_name}`
+    icon = App.clone_if_node(t_mode.icon)
 
     tbmodes.push({
       name,
