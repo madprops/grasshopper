@@ -154,7 +154,7 @@ App.use_calculator = () => {
         },
       },
       {
-        text: `Calculate`,
+        text: `Result`,
         action: (text) => {
           App.calculator_text = text
           let [ans, ok] = App.math_eval(text)
