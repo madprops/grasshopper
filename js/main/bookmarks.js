@@ -236,7 +236,7 @@ App.bookmark_active = async () => {
     url: App.format_url(tab.url || ``),
   }
 
-  App.bookmark_items({active: [item]})
+  App.bookmark_items({active: [item], folder: App.bookmarks_folder})
 }
 
 App.bookmark_items_to_folder = async (args) => {
