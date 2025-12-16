@@ -53,6 +53,23 @@ App.make_tab_box_modes = () => {
     history: {info: `Pick a query to search history`, icon: App.mode_icon(`history`)},
     folders: {info: `Pick a bookmarks folder`, icon: App.mode_icon(`bookmarks`)},
   }
+
+  for (let color of App.colors()) {
+    let id = color.id
+    let name = color.name
+    let key = `color_${id}`
+
+    App.tab_box_modes[key] = {
+      info: `Tabs with color: ${name}`,
+      icon: App.color_icon(id),
+      text: name,
+    }
+
+    App[`update_tab_box_${key}`] = () => {
+      let o_items = App.get_color_tabs(id)
+      return App.tab_box_show(key, o_items)
+    }
+  }
 }
 
 App.reset_tab_box = () => {
@@ -445,9 +462,9 @@ App.set_tab_box_title = (mode) => {
 
   let title_main = DOM.el(`#tab_box_title_main`)
   title_main.innerHTML = ``
-  let icon = App.tab_box_modes[mode].icon
-  let text = App.capitalize(mode)
-  title_main.append(App.button_text(icon, text, true))
+  let t_mode = App.tab_box_modes[mode]
+  let text = App.capitalize(t_mode.text || mode)
+  title_main.append(App.button_text(t_mode.icon, text, true))
 }
 
 App.scroll_tab_box_top = () => {
@@ -490,10 +507,15 @@ App.show_tab_box_menu = (e) => {
       highlight = true
     }
 
+    let mode = App.tab_box_modes[tbmode]
+    let icon = mode.icon
+    let info = mode.info
+    let text = mode.text
+
     items.push({
-      text: App.capitalize(tbmode),
-      icon: App.tab_box_modes[tbmode].icon,
-      info: App.tab_box_modes[tbmode].info,
+      text: App.capitalize(text || tbmode),
+      icon: App.clone_if_node(icon),
+      info,
       highlight,
       action: () => {
         App.change_tab_box_mode(tbmode)
