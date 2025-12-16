@@ -330,7 +330,6 @@ App.user_pauver_settings = () => {
   App.set_setting({setting: `tab_box_border_width`, value: 5})
   App.set_setting({setting: `tab_box_colors_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(65, 65, 151, 0.16)`})
-  App.set_setting({setting: `tab_box_glass`, value: true})
 }
 
 App.user_fondo_settings = () => {

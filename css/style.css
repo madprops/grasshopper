@@ -1655,48 +1655,6 @@ a:hover
   display: flex;
 }
 
-.tab_box_glass #tab_box::before,
-.tab_box_glass #tab_box::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 2rem;
-  pointer-events: none;
-  backdrop-filter: blur(2px);
-  z-index: 1;
-}
-
-.tab_box_glass #tab_box::before {
-  top: 0;
-  background: linear-gradient(to bottom,
-    var(--tab_box_color) 0%,
-    color-mix(in srgb, var(--tab_box_color) 70%, transparent) 30%,
-    color-mix(in srgb, var(--tab_box_color) 40%, transparent) 60%,
-    transparent 100%);
-  -webkit-mask-image: radial-gradient(120% 160% at 50% 0%, #000 60%, transparent 61%);
-  mask-image: radial-gradient(120% 160% at 50% 0%, #000 60%, transparent 61%);
-}
-
-.tab_box_glass #tab_box::after {
-  bottom: 0;
-  background: linear-gradient(to top,
-    var(--tab_box_color) 0%,
-    color-mix(in srgb, var(--tab_box_color) 70%, transparent) 30%,
-    color-mix(in srgb, var(--tab_box_color) 40%, transparent) 60%,
-    transparent 100%);
-  -webkit-mask-image: radial-gradient(120% 160% at 50% 100%, #000 60%, transparent 61%);
-  mask-image: radial-gradient(120% 160% at 50% 100%, #000 60%, transparent 61%);
-}
-
-.tab_box_glass.tab_box_at_top #tab_box::before {
-  display: none;
-}
-
-.tab_box_glass.tab_box_at_bottom #tab_box::after {
-  display: none;
-}
-
 #tab_box_container {
   background-color: var(--tab_box_color);
   font-size: var(--tab_box_font_size);
@@ -1758,6 +1716,10 @@ a:hover
 
 .tab_box_blur #tab_box_title {
   backdrop-filter: var(--backdrop);
+}
+
+.tab_box_blur #tab_box.size_compact #tab_box_title {
+  backdrop-filter: initial;
 }
 
 .box_container {

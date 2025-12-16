@@ -979,13 +979,6 @@ App.set_tab_box_vars = () => {
     App.main_remove(`tab_box_hide_title`)
   }
 
-  if (App.get_setting(`tab_box_glass`)) {
-    App.main_add(`tab_box_glass`)
-  }
-  else {
-    App.main_remove(`tab_box_glass`)
-  }
-
   App.set_css_var(`tab_box_border_width`, App.get_setting(`tab_box_border_width`) + `px`)
 }
 
