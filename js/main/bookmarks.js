@@ -782,7 +782,7 @@ App.do_save_bookmarks_folder_pick = (folder) => {
   }
 }
 
-App.open_bookmarks_folder = (folder) => {
+App.open_bookmarks_folder = (folder = App.bookmarks_folder) => {
   App.bookmarks_folder = folder
   App.show_mode({mode: `bookmarks`, force: true})
 }
@@ -860,4 +860,23 @@ App.toggle_bookmark_folders = () => {
 
 App.is_folder = (item) => {
   return item.type === `folder`
+}
+
+App.on_refresh_bookmarks = (message) => {
+  App.debug(`On Refresh Bookmarks`)
+  App.bookmarks_received = true
+  App.bookmark_items_cache = message.items
+  App.bookmark_folders_cache = message.folders
+
+  if (App.active_mode === `bookmarks`) {
+    if (App.bookmarks_folder) {
+      App.open_bookmarks_folder()
+    }
+    else {
+      App.do_show_mode({mode: `bookmarks`, force: true})
+    }
+  }
+  else if (message.show_mode) {
+    App.do_show_mode({mode: `bookmarks`, force: true})
+  }
 }
