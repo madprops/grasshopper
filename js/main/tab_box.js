@@ -423,6 +423,9 @@ App.get_tab_box_items = (o_items, mode) => {
 
     let {element, ...item} = o_item
     item.tab_box = true
+    item.override_icon = undefined
+    item.override_icon_code = undefined
+    item.override_icon_tab_box = undefined
 
     if (!o_item.element_ready) {
       App.create_item_element(o_item)
