@@ -2317,7 +2317,7 @@ App.build_settings = () => {
     tab_box_colors_enabled: {
       name: `Tab Box Colors`,
       type: `checkbox`,
-      value: false,
+      value: true,
       info: `Enable custom colors for the Tab Box`,
       version: 1,
     },
@@ -2325,7 +2325,7 @@ App.build_settings = () => {
       name: `Tab Box Color`,
       hide_name: true,
       type: `color`,
-      value: App.default_color,
+      value: `rgba(62, 75, 96, 0.34)`,
       info: `Background color of the Tab Box`,
       version: 1,
       setup: (key) => {
@@ -2723,7 +2723,7 @@ App.build_settings = () => {
     footer_colors: {
       name: `Footer Colors`,
       type: `checkbox`,
-      value: false,
+      value: true,
       info: `Enable custom colors for the Footer`,
       version: 1,
     },
@@ -2740,7 +2740,7 @@ App.build_settings = () => {
     footer_background_color: {
       name: `Footer Background Color`,
       type: `color`,
-      value: App.default_color,
+      value: `rgba(102, 89, 108, 0.77)`,
       info: `Background color of the Footer`,
       separator: true,
       version: 1,
@@ -4077,11 +4077,11 @@ App.build_settings = () => {
       info: `Don't show splits top/bottom when on a filtered view`,
       version: 1,
     },
-    bold_header_titles: {
-      name: `Bold Header Titles`,
+    bold_zone_titles: {
+      name: `Bold Zone Titles`,
       type: `checkbox`,
       value: false,
-      info: `Make header titles bold`,
+      info: `Make zone titles bold`,
       version: 1,
     },
     random_zone_titles: {

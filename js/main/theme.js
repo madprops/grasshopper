@@ -1259,11 +1259,11 @@ App.set_zone_vars = () => {
     App.main_remove(`hide_splits_on_filter`)
   }
 
-  if (App.get_setting(`bold_header_titles`)) {
-    App.main_add(`bold_header_titles`)
+  if (App.get_setting(`bold_zone_titles`)) {
+    App.main_add(`bold_zone_titles`)
   }
   else {
-    App.main_remove(`bold_header_titles`)
+    App.main_remove(`bold_zone_titles`)
   }
 }
 
