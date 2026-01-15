@@ -34,7 +34,7 @@ App.get_recent_tabs = (args = {}) => {
   }
 
   if (!args.zones) {
-    tabs = tabs.filter(x => !App.is_zone(x))
+    tabs = tabs.filter(x => !x.header)
   }
 
   if (args.max > 0) {

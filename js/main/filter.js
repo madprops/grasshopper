@@ -731,7 +731,7 @@ App.filter_check = (args) => {
       match = App.edited(args.item)
     }
     else if (args.filter_mode === `filter_zone_tabs`) {
-      match = App.is_zone(args.item)
+      match = args.item.header
     }
     else if (args.filter_mode === `filter_all_node_tabs`) {
       match = App.tab_has_parent(args.item)

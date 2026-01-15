@@ -413,7 +413,7 @@ App.get_tab_box_items = (o_items, mode) => {
       continue
     }
 
-    if (App.is_zone(o_item)) {
+    if (o_item.header) {
       if (mode !== `headers`) {
         if (!App.get_setting(`tab_box_zones`)) {
           continue

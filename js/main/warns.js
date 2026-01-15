@@ -44,7 +44,7 @@ App.check_warn = (warn_setting, items) => {
         return false
       }
 
-      if (App.is_zone(item) && App.get_setting(`warn_special_zone`)) {
+      if (item.header && App.get_setting(`warn_special_zone`)) {
         let group = App.header_group(item)
 
         if (group.length > 0) {
