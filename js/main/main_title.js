@@ -509,7 +509,7 @@ App.replace_title_vars = (title) => {
     return w.toUpperCase()
   })
 
-  return  title
+  return title
 }
 
 App.get_main_title = (replace = true) => {
