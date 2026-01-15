@@ -2016,13 +2016,13 @@ a:hover
   border-right: var(--split_border) !important;
 }
 
-.split_top,
-.item_container .header_item.split_top
+.split_top:not(.header_item),
+.item_container .header_item.split_top:not(.header_item)
 {
   border-top: var(--split_border) !important;
 }
 
-.split_padding .split_top {
+.split_padding .split_top:not(.header_item) {
   margin-top: var(--split_margin);
 }
 
