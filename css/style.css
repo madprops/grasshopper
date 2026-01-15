@@ -2462,7 +2462,3 @@ a:hover
 .multi_bold .item_text_2 {
   font-weight: bold;
 }
-
-.smart_icons .unloaded_tab .item_icon_container {
-  display: none;
-}
