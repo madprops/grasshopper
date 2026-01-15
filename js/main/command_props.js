@@ -91,6 +91,7 @@ App.setup_commands = () => {
   let file_icon = App.file_icon
   let injection_icon = App.injection_icon
   let calculator_icon = App.calculator_icon
+  let oracle_icon = App.oracle_icon
 
   let tbmodes = []
 
@@ -5124,6 +5125,15 @@ App.setup_commands = () => {
         App.generate_password()
       },
       info: `Generate a random password`,
+    },
+    {
+      name: `Oracle`,
+      cmd: `show_oracle`,
+      icon: oracle_icon,
+      action: (args) => {
+        App.show_oracle()
+      },
+      info: `Show the oracle`,
     },
     {
       name: `Calculator`,

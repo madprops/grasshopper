@@ -312,6 +312,7 @@ App.file_icon = `📃`
 App.injection_icon = `💉`
 App.container_icon = `🛍️`
 App.calculator_icon = `🔢`
+App.oracle_icon = `🔮`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

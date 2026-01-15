@@ -2019,6 +2019,7 @@ App.build_settings = () => {
         {cmd: `show_flashlight`},
         {cmd: `use_calculator`},
         {cmd: `generate_password`},
+        {cmd: `show_oracle`},
         {cmd: `breathe_effect`},
         {cmd: `locust_swarm`},
         {cmd: App.separator_string},
