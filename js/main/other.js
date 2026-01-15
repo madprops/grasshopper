@@ -7,15 +7,9 @@ App.check_first_time = () => {
 }
 
 App.show_intro_message = () => {
-  let s = `Hi there
-  The main menu is the top-left button
-  Check out the settings and guides
-  There are many setting categories
-  Context menus can be filtered by typing
-  There are hundreds of commands available
-  Access the command palette with Ctrl+Ctrl
-  Try right clicking anywhere on the interface
-  It can be used in sidebar or popup mode`
+  let s = `The main menu is at the top left
+  There are hundreds of settings and commands
+  Sidebar and popup modes are available.`
 
   let text = App.periods(s)
 
