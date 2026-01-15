@@ -2986,7 +2986,7 @@ App.build_settings = () => {
       value: `Grasshopper $version`,
       no_mirror: true,
       placeholder: `Text to show`,
-      info: `The text to show in the Title`,
+      info: `The text to show in the Title. Special words include $version, $random, $Random, and $RANDOM`,
       version: 1,
     },
     main_title_align: {

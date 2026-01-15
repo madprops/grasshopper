@@ -4565,3 +4565,7 @@ App.get_random_words = (num = 1) => {
   App.load_wordlist()
   return App.get_random_items(App.wordlist, num)
 }
+
+App.get_random_word = () => {
+  return App.get_random_words()[0]
+}

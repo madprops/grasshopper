@@ -493,7 +493,23 @@ App.show_title_history = () => {
 }
 
 App.replace_title_vars = (title) => {
-  return title.replace(/\$version/g, `v${App.manifest.version}`)
+  title = title.replace(/\$version/g, `v${App.manifest.version}`)
+
+  title = title.replace(/\$random/g, () => {
+    return App.get_random_word()
+  })
+
+  title = title.replace(/\$Random/g, () => {
+    let w = App.get_random_word()
+    return App.capitalize(w)
+  })
+
+  title = title.replace(/\$RANDOM/g, () => {
+    let w = App.get_random_word()
+    return w.toUpperCase()
+  })
+
+  return  title
 }
 
 App.get_main_title = (replace = true) => {
