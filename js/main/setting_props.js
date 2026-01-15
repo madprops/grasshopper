@@ -2460,11 +2460,11 @@ App.build_settings = () => {
       info: `Reverse the order of items in the Tab Box`,
       version: 1,
     },
-    tab_box_headers: {
-      name: `Tab Box Headers`,
+    tab_box_zones: {
+      name: `Tab Box Zones`,
       type: `checkbox`,
       value: false,
-      info: `Show headers in the Tab Box on all modes`,
+      info: `Show zones in the Tab Box on all modes`,
       version: 1,
     },
     tab_box_scrollbars: {
@@ -3932,11 +3932,11 @@ App.build_settings = () => {
       info: `Treat playing tabs as special`,
       version: 1,
     },
-    warn_special_header: {
-      name: `Header Special`,
+    warn_special_zone: {
+      name: `Zone Special`,
       type: `checkbox`,
       value: true,
-      info: `Treat header tabs as special`,
+      info: `Treat zone tabs as special`,
       version: 1,
     },
     warn_special_edited: {

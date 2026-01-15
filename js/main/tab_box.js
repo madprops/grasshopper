@@ -49,7 +49,7 @@ App.make_tab_box_modes = () => {
     nodes: {info: `Tabs that were opened by another tab`, icon: App.get_setting(`node_icon`)},
     spawns: {info: `The tabs opened by the selected tab`, icon: App.get_setting(`node_icon`)},
     containers: {info: `Tabs with containers`, icon: App.get_setting(`container_icon`)},
-    headers: {info: `Headers and subheaders`, icon: App.get_setting(`header_icon`) || App.zone_icon},
+    zones: {info: `Headers and subheaders`, icon: App.get_setting(`header_icon`) || App.zone_icon},
     history: {info: `Pick a query to search history`, icon: App.mode_icon(`history`)},
     folders: {info: `Pick a bookmarks folder`, icon: App.mode_icon(`bookmarks`)},
   }
@@ -294,7 +294,7 @@ App.tab_box_show = (mode, o_items) => {
 App.update_tab_box_recent = () => {
   let o_items = App.get_recent_tabs({
     max: App.get_setting(`tab_box_max`),
-    headers: App.get_setting(`tab_box_headers`),
+    zones: App.get_setting(`tab_box_zones`),
   })
 
   return App.tab_box_show(`recent`, o_items)
@@ -360,9 +360,9 @@ App.update_tab_box_roots = () => {
   return App.tab_box_show(`roots`, o_items)
 }
 
-App.update_tab_box_headers = () => {
-  let o_items = App.get_headers()
-  return App.tab_box_show(`headers`, o_items)
+App.update_tab_box_zones = () => {
+  let o_items = App.get_zones()
+  return App.tab_box_show(`zones`, o_items)
 }
 
 App.update_tab_box_parents = () => {
@@ -413,9 +413,9 @@ App.get_tab_box_items = (o_items, mode) => {
       continue
     }
 
-    if (o_item.header) {
+    if (App.is_zone(o_item)) {
       if (mode !== `headers`) {
-        if (!App.get_setting(`tab_box_headers`)) {
+        if (!App.get_setting(`tab_box_zones`)) {
           continue
         }
       }

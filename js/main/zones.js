@@ -158,8 +158,8 @@ App.get_subheader_tabs = () => {
   return headers.filter(x => !App.is_header(x))
 }
 
-App.get_headers = () => {
-  return App.get_items(`tabs`).filter(x => x.header)
+App.get_zones = () => {
+  return App.get_items(`tabs`).filter(x => App.is_zone(x))
 }
 
 App.close_headers = (force = false) => {
@@ -585,7 +585,7 @@ App.get_zones_and_icon = (what) => {
     icon = App.get_setting_icon(`subheader`) || App.zone_icon
   }
   else {
-    zones = App.get_headers()
+    zones = App.get_zones()
     icon = App.zone_icon
   }
 
@@ -721,4 +721,31 @@ App.get_last_zone_item = (item) => {
   }
 
   return tabs.at(-1)
+}
+
+App.get_zone_tabs = (zone) => {
+  if (!zone || !App.is_zone(zone)) {
+    return []
+  }
+
+  let tabs = App.get_items(`tabs`)
+  let index = App.get_item_element_index({element: zone.element})
+
+  if (index < 0) {
+    return []
+  }
+
+  let result = []
+
+  for (let i = index + 1; i < tabs.length; i++) {
+    let tab = tabs[i]
+
+    if (App.is_zone(tab)) {
+      break
+    }
+
+    result.push(tab)
+  }
+
+  return result
 }

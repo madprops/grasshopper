@@ -44,8 +44,12 @@ App.check_warn = (warn_setting, items) => {
         return false
       }
 
-      if (item.header && App.get_setting(`warn_special_header`)) {
-        return false
+      if (App.is_zone(item) && App.get_setting(`warn_special_zone`)) {
+        let group = App.header_group(item)
+
+        if (group.length > 0) {
+          return false
+        }
       }
 
       if (item.unloaded && App.get_setting(`warn_special_unloaded`)) {

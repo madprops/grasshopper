@@ -18,7 +18,7 @@ App.do_empty_previous_tabs = () => {
 App.get_recent_tabs = (args = {}) => {
   let def_args = {
     active: true,
-    headers: false,
+    zones: false,
     max: 0,
   }
 
@@ -33,8 +33,8 @@ App.get_recent_tabs = (args = {}) => {
     tabs = tabs.filter(x => !x.active)
   }
 
-  if (!args.headers) {
-    tabs = tabs.filter(x => !x.header)
+  if (!args.zones) {
+    tabs = tabs.filter(x => !App.is_zone(x))
   }
 
   if (args.max > 0) {
