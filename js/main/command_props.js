@@ -4515,16 +4515,16 @@ App.setup_commands = () => {
       info: `Filter tabs that are edited`,
     },
     {
-      name: `Filter Header`,
-      short_name: `Headers`,
-      cmd: `filter_header_tabs`,
+      name: `Filter Zones`,
+      short_name: `Zones`,
+      cmd: `filter_zone_tabs`,
       modes: [`items`],
       icon: zone_icon,
       filter_mode: true,
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Filter header tabs`,
+      info: `Filter zone tabs`,
     },
     {
       name: `Filter No Tab`,

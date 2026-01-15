@@ -6,7 +6,7 @@ App.build_tab_filters = () => {
     {cmd: `filter_loaded_tabs`},
     {cmd: `filter_unloaded_tabs`},
     {cmd: `filter_unread_tabs`},
-    {cmd: `filter_header_tabs`},
+    {cmd: `filter_zone_tabs`},
     {cmd: `filter_duplicate_tabs`},
     {cmd: `filter_obfuscated_tabs`},
     {cmd: `filter_idle_tabs`},
@@ -308,9 +308,9 @@ App.do_filter = async (args = {}) => {
   }
 
   App.check_filtered(args.mode)
-  let headers = filter_mode === `filter_header_tabs`
-  let header_match = 0
-  let max_header = App.get_setting(`header_filter_context`)
+  let zones = filter_mode === `filter_zone_tabs`
+  let zone_match = 0
+  let max_zone_items = App.get_setting(`zone_filter_context`)
   let force_show = App.is_filtered(args.mode)
   let check_pins = !App.get_setting(`show_pinned_tabs`)
   let check_unloaded = !App.get_setting(`show_unloaded_tabs`)
@@ -357,18 +357,18 @@ App.do_filter = async (args = {}) => {
     }
 
     if (!match) {
-      if (headers) {
-        if (header_match >= 1) {
+      if (zones) {
+        if (zone_match >= 1) {
           if (App.check_header_first(item)) {
-            header_match += 1
+            zone_match += 1
             match = true
 
-            if (header_match > max_header) {
-              header_match = 0
+            if (zone_match > max_zone_items) {
+              zone_match = 0
             }
           }
           else {
-            header_match = 0
+            zone_match = 0
           }
         }
       }
@@ -402,9 +402,9 @@ App.do_filter = async (args = {}) => {
         App.check_hide_tabs(item)
       }
 
-      if (headers) {
+      if (zones) {
         if (item.header) {
-          header_match = 1
+          zone_match = 1
         }
       }
     }
@@ -730,8 +730,8 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `filter_edited_tabs`) {
       match = App.edited(args.item)
     }
-    else if (args.filter_mode === `filter_header_tabs`) {
-      match = args.item.header
+    else if (args.filter_mode === `filter_zone_tabs`) {
+      match = App.is_zone(args.item)
     }
     else if (args.filter_mode === `filter_all_node_tabs`) {
       match = App.tab_has_parent(args.item)

@@ -4807,14 +4807,14 @@ App.build_settings = () => {
       info: `Max items to show in the Filter History`,
       version: 1,
     },
-    header_filter_context: {
-      name: `Header Filter Context`,
+    zone_filter_context: {
+      name: `Zone Filter Context`,
       type: `number`,
       value: 2,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `How many tabs from each header to show when using the Header filter mode`,
+      info: `How many tabs from each zone to show when using the Zone filter mode`,
       version: 1,
     },
     case_insensitive: {
