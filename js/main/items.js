@@ -658,6 +658,18 @@ App.get_last_element_index = (mode = App.active_mode) => {
 }
 
 App.move_item = (mode, from_index, to_index) => {
+  if (!Number.isInteger(from_index)) {
+    return
+  }
+
+  if (!Number.isInteger(to_index)) {
+    return
+  }
+
+  if (from_index === to_index) {
+    return
+  }
+
   let item = App.get_items(mode).splice(from_index, 1)[0]
   App.get_items(mode).splice(to_index, 0, item)
   App.move_item_element(mode, item.element, to_index)
@@ -669,6 +681,14 @@ App.move_item_element = (mode, el, to_index) => {
   let items = DOM.els(`.${mode}_item`)
   let from_index = items.indexOf(el)
   let target = items[to_index]
+
+  if (!Number.isInteger(from_index)) {
+    return
+  }
+
+  if (!Number.isInteger(to_index)) {
+    return
+  }
 
   if (from_index === to_index) {
     return

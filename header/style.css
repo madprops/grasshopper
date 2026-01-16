@@ -152,4 +152,6 @@ a.linkbutton:hover {
   text-align: center;
   font-size: 1rem;
   outline: 0;
+  min-width: 100%;
+  box-sizing: border-box;
 }
