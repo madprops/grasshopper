@@ -658,15 +658,7 @@ App.get_last_element_index = (mode = App.active_mode) => {
 }
 
 App.move_item = (mode, from_index, to_index) => {
-  if (!Number.isInteger(from_index)) {
-    return
-  }
-
-  if (!Number.isInteger(to_index)) {
-    return
-  }
-
-  if (from_index === to_index) {
+  if (!App.check_indices(from_index, to_index)) {
     return
   }
 
@@ -682,15 +674,7 @@ App.move_item_element = (mode, el, to_index) => {
   let from_index = items.indexOf(el)
   let target = items[to_index]
 
-  if (!Number.isInteger(from_index)) {
-    return
-  }
-
-  if (!Number.isInteger(to_index)) {
-    return
-  }
-
-  if (from_index === to_index) {
+  if (!App.check_indices(from_index, to_index)) {
     return
   }
 
@@ -1632,4 +1616,20 @@ App.do_progressive_fill = async () => {
 App.get_item_edges = (mode = App.active_mode) => {
   let items = App.get_items(mode)
   return {first: items[0], last: items.at(-1)}
+}
+
+App.check_indices = (from_index, to_index) => {
+  if (!Number.isInteger(from_index)) {
+    return false
+  }
+
+  if (!Number.isInteger(to_index)) {
+    return false
+  }
+
+  if (from_index === to_index) {
+    return false
+  }
+
+  return true
 }
