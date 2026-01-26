@@ -209,6 +209,14 @@ App.do_apply_theme = (args = {}) => {
       App.main_remove(`hide_settings_info`)
     }
 
+    if (App.get_setting(`auto_color_enabled`)) {
+      let t = App.get_setting(`auto_color_transition`)
+      App.set_css_var(`auto_color_transition`, `${t}ms`)
+    }
+    else {
+      App.set_css_var(`auto_color_transition`, 0)
+    }
+
     App.set_item_vars()
     App.set_close_button_vars()
     App.set_hover_button_vars()
@@ -230,6 +238,8 @@ App.do_apply_theme = (args = {}) => {
     App.insert_color_css()
     App.insert_icon_css()
     App.insert_custom_css()
+
+    App.start_auto_color()
   }
   catch (err) {
     App.error(err)
@@ -1435,6 +1445,21 @@ App.set_item_vars = () => {
   }
 }
 
+App.set_background_vars = () => {
+  let delay = parseInt(App.get_setting(`auto_color_delay`))
+
+  if (isNaN(delay) && delay > 0) {
+    App.set_css_var(`auto_color_delay`, `${delay}ms`)
+  }
+
+  if (App.get_setting(`auto_color_enabled`)) {
+    App.main_add(`auto_color`)
+  }
+  else {
+    App.main_remove(`auto_color`)
+  }
+}
+
 App.theme_sizer = (size, what, normal, steps) => {
   let rem
 
@@ -1543,4 +1568,41 @@ App.set_uploaded_image = () => {
   App.set_setting({setting: `background_image`, value: `uploaded`})
   App.apply_theme()
   App.refresh_setting_widgets([`background_image`])
+}
+
+App.is_dark_mode = () => {
+  let color = App.get_setting(`background_color`)
+  return App.colorlib.is_dark(color)
+}
+
+App.start_auto_color = () => {
+  let enabled = App.get_setting(`auto_color_enabled`)
+  clearInterval(App.auto_color_interval)
+
+  if (!enabled) {
+    return
+  }
+
+  let delay = parseInt(App.get_setting(`auto_color_delay`))
+
+  if (isNaN(delay)) {
+    return
+  }
+
+  if (delay <= 0) {
+    return
+  }
+
+  App.auto_color_interval = setInterval(() => {
+    App.do_auto_color()
+  }, delay)
+}
+
+App.do_auto_color = () => {
+  if (App.is_dark_mode) {
+    App.random_colors(`dark`)
+  }
+  else {
+    App.random_colors(`light`)
+  }
 }
