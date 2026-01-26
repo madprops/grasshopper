@@ -762,21 +762,11 @@ App.build_settings = () => {
     auto_color_delay: {
       name: `Auto Color Delay`,
       type: `number`,
-      value: App.SECOND * 20,
+      value: App.SECOND * 60,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       info: `How often in milliseconds to do an auto-color tick`,
-      version: 1,
-    },
-    auto_color_transition: {
-      name: `Auto Color Transition`,
-      type: `number`,
-      value: App.SECOND * 5,
-      placeholder: `Number`,
-      min: 0,
-      max: App.number_max,
-      info: `The color change transition delay for background auto color`,
       version: 1,
     },
   }

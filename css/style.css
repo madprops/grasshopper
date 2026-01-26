@@ -21,8 +21,6 @@
   --panel_padding: 0.25rem;
   --popup_padding: 0.8rem;
   --close_button_transition: width 350ms, border-width 350ms;
-  --auto_color_transition: 500ms;
-  --auto_color_prop: background-color var(--auto_color_transition), color var(--auto_color_transition);
 }
 
 @font-face {
@@ -138,7 +136,6 @@ html
   margin: 0;
   padding: 0;
   background-color: var(--background_color);
-  transition: var(--auto_color_prop);
 }
 
 body {
@@ -171,7 +168,6 @@ select {
   outline: none;
   min-width: 8rem;
   text-align: center;
-  transition: var(--auto_color_prop);
 }
 
 .no_scrollbars .item_container,
@@ -192,7 +188,6 @@ select {
   width: 100%;
   height: 100%;
   background-color: var(--background_color);
-  transition: var(--auto_color_prop);
 }
 
 #background {
@@ -318,7 +313,6 @@ body.mirror_vertical #main {
   flex-direction: column;
   max-width: 100%;
   background-color: var(--main_background);
-  transition: var(--auto_color_prop);
 }
 
 #main_center {
@@ -336,7 +330,6 @@ body.mirror_vertical #main {
   flex-direction: column;
   max-width: 100%;
   background-color: var(--main_background);
-  transition: var(--auto_color_prop);
 }
 
 .window_main {
@@ -348,7 +341,6 @@ body.mirror_vertical #main {
   flex-grow: 1;
   max-height: 100%;
   max-width: 100%;
-  transition: var(--auto_color_prop);
 }
 
 .auto_blur .window_content,
@@ -441,7 +433,6 @@ body.mirror_vertical #main {
 .filter.invert {
   color: var(--text_color);
   background-color: var(--background_color);
-  transition: var(--auto_color_prop);
 }
 
 .small_filter {
@@ -825,7 +816,6 @@ svg {
 {
   color: var(--text_color);
   background-color: var(--alt_color_1);
-  transition: var(--auto_color_prop);
 }
 
 .hover_effect_glow .item_container .item:hover .item_text,
@@ -1080,7 +1070,6 @@ svg {
   background-color: var(--alt_color_1);
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
-  transition: var(--auto_color_prop);
 }
 
 .text_smaller {
@@ -1205,7 +1194,6 @@ a:hover
   overflow-y: auto;
   justify-content: center;
   background-color: var(--overlay_color);
-  transition: var(--auto_color_prop);
 }
 
 .popup_container {
@@ -1220,7 +1208,6 @@ a:hover
   justify-content: center;
   background-color: var(--background_color);
   border: 2px solid var(--alt_color_1);
-  transition: var(--auto_color_prop);
   color: var(--text_color);
   max-width: 90%;
   outline: none;
@@ -1421,7 +1408,6 @@ a:hover
 
 .palette_selected {
   background-color: var(--alt_color_1);
-  transition: var(--auto_color_prop);
 }
 
 .scroller {
@@ -1959,7 +1945,6 @@ a:hover
   padding-right: 0.5rem;
   height: 100%;
   cursor: pointer;
-  transition: var(--auto_color_prop);
 }
 
 .taglist.hover {
@@ -2313,7 +2298,6 @@ a:hover
 
 .signal_button:hover {
   background-color: var(--alt_color_1);
-  transition: var(--auto_color_prop);
 }
 
 #signals_container {
@@ -2385,7 +2369,6 @@ a:hover
 
 .container_with_text .item .container_icon_container {
   background-color: var(--alt_color_0);
-  transition: var(--auto_color_prop);
 }
 
 .container_with_text .item.selected .container_icon_container {
