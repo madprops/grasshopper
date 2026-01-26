@@ -171,6 +171,7 @@ select {
   outline: none;
   min-width: 8rem;
   text-align: center;
+  transition: var(--auto_color_prop);
 }
 
 .no_scrollbars .item_container,
@@ -824,6 +825,7 @@ svg {
 {
   color: var(--text_color);
   background-color: var(--alt_color_1);
+  transition: var(--auto_color_prop);
 }
 
 .hover_effect_glow .item_container .item:hover .item_text,
@@ -1078,6 +1080,7 @@ svg {
   background-color: var(--alt_color_1);
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
+  transition: var(--auto_color_prop);
 }
 
 .text_smaller {
@@ -1418,6 +1421,7 @@ a:hover
 
 .palette_selected {
   background-color: var(--alt_color_1);
+  transition: var(--auto_color_prop);
 }
 
 .scroller {
@@ -1955,6 +1959,7 @@ a:hover
   padding-right: 0.5rem;
   height: 100%;
   cursor: pointer;
+  transition: var(--auto_color_prop);
 }
 
 .taglist.hover {
@@ -2308,6 +2313,7 @@ a:hover
 
 .signal_button:hover {
   background-color: var(--alt_color_1);
+  transition: var(--auto_color_prop);
 }
 
 #signals_container {
@@ -2379,6 +2385,7 @@ a:hover
 
 .container_with_text .item .container_icon_container {
   background-color: var(--alt_color_0);
+  transition: var(--auto_color_prop);
 }
 
 .container_with_text .item.selected .container_icon_container {

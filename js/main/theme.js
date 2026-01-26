@@ -1599,7 +1599,7 @@ App.do_auto_color = () => {
     App.set_css_var(`auto_color_transition`, 0)
   }
 
-  if (App.is_dark_mode) {
+  if (App.is_dark_mode()) {
     App.random_colors(`dark`)
   }
   else {
