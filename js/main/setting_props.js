@@ -762,7 +762,7 @@ App.build_settings = () => {
     auto_color_delay: {
       name: `Auto Color Delay`,
       type: `number`,
-      value: App.SECOND * 60,
+      value: App.SECOND * 30,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,

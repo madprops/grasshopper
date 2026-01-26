@@ -1586,6 +1586,10 @@ App.start_auto_color = () => {
   }
 
   App.auto_color_interval = setInterval(() => {
+    if (!App.on_items()) {
+      return
+    }
+
     App.do_auto_color()
   }, delay)
 }
