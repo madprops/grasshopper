@@ -1448,7 +1448,7 @@ App.set_item_vars = () => {
 App.set_background_vars = () => {
   let delay = parseInt(App.get_setting(`auto_color_delay`))
 
-  if (isNaN(delay) && delay > 0) {
+  if (isNaN(delay) && (delay > 0)) {
     App.set_css_var(`auto_color_delay`, `${delay}ms`)
   }
 
