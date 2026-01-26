@@ -106,11 +106,12 @@ App.create_footer = () => {
   footer.append(footer_content)
 
   if (App.get_setting(`show_footer_buttons`)) {
-    let btn_up = DOM.create(`div`, `footer_button grower footer_ghost`, `footer_up_tabs`)
+    let btns = DOM.create(`div`, ``, `footer_buttons`)
+    let btn_up = DOM.create(`div`, `footer_button grower`, `footer_up_tabs`)
     btn_up.textContent = App.up_arrow_icon
-    footer.append(btn_up)
+    btns.append(btn_up)
 
-    let btn_down = DOM.create(`div`, `footer_button grower footer_ghost`, `footer_down_tabs`)
+    let btn_down = DOM.create(`div`, `footer_button grower`, `footer_down_tabs`)
     btn_down.textContent = App.down_arrow_icon
 
     if (App.tooltips()) {
@@ -147,7 +148,8 @@ App.create_footer = () => {
       btn_down.title = down_tips.join(`\n`)
     }
 
-    footer.append(btn_down)
+    btns.append(btn_down)
+    footer.append(btns)
   }
 
   return footer

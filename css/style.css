@@ -1462,6 +1462,17 @@ a:hover
   display: flex;
 }
 
+#footer_buttons {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  visibility: hidden;
+  right: 0;
+  gap: 0.35rem;
+  padding-right: 0.35rem;
+  background-color: var(--footer_background_color);
+}
+
 .footer_button {
   display: flex;
   align-items: center;
@@ -2394,8 +2405,10 @@ a:hover
   display: none;
 }
 
-#footer:hover .footer_ghost {
-  display: flex;
+#footer:hover .footer_ghost,
+#footer:hover #footer_buttons
+{
+  visibility: visible;
 }
 
 .filter_focus_effect .mode_filter:focus {
