@@ -209,14 +209,6 @@ App.do_apply_theme = (args = {}) => {
       App.main_remove(`hide_settings_info`)
     }
 
-    if (App.get_setting(`auto_color_enabled`)) {
-      let t = App.get_setting(`auto_color_transition`)
-      App.set_css_var(`auto_color_transition`, `${t}ms`)
-    }
-    else {
-      App.set_css_var(`auto_color_transition`, 0)
-    }
-
     App.set_item_vars()
     App.set_close_button_vars()
     App.set_hover_button_vars()
@@ -1599,6 +1591,14 @@ App.start_auto_color = () => {
 }
 
 App.do_auto_color = () => {
+  if (App.get_setting(`auto_color_enabled`)) {
+    let t = App.get_setting(`auto_color_transition`)
+    App.set_css_var(`auto_color_transition`, `${t}ms`)
+  }
+  else {
+    App.set_css_var(`auto_color_transition`, 0)
+  }
+
   if (App.is_dark_mode) {
     App.random_colors(`dark`)
   }
