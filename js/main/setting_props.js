@@ -756,7 +756,7 @@ App.build_settings = () => {
       type: `checkbox`,
       actions: [`theme`],
       value: false,
-      info: `Change the background color automatically`,
+      info: `Change the theme colors automatically`,
       version: 1,
     },
     auto_color_delay: {
