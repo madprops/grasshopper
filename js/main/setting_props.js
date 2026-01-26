@@ -5706,7 +5706,7 @@ App.build_settings = () => {
     sort_settings: {
       name: `Sort Settings`,
       type: `checkbox`,
-      value: true,
+      value: false,
       actions: [`sort_settings`],
       info: `Sort setting categories`,
       version: 1,
