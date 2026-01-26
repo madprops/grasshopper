@@ -287,12 +287,16 @@ App.change_background = (url) => {
 App.random_colors = (type = `dark`) => {
   if (type === `dark`) {
     App.random_color(`background`, `dark`)
-    App.random_color(`text`, `light`)
   }
   else {
     App.random_color(`background`, `light`)
-    App.random_color(`text`, `dark`)
   }
+
+  App.refresh_setting_widgets([
+    `background_color`,
+    `text_color`,
+    `item_border_color`,
+  ])
 }
 
 App.random_color = (what, type) => {
@@ -306,10 +310,17 @@ App.random_color = (what, type) => {
   }
 
   color = App.colorlib.hex_to_rgb(color)
+
+  if (what === `background`) {
+    let text_color = App.colorlib.get_lighter_or_darker(color, 0.99)
+    App.set_setting({setting: `text_color`, value: text_color})
+  }
+
   App.set_setting({setting: `${what}_color`, value: color})
   let border_color = App.opacity(color, 0.20)
   App.set_setting({setting: `item_border_color`, value: border_color})
   App.apply_theme()
+  return color
 }
 
 App.set_background = async (url) => {
