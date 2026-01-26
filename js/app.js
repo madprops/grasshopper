@@ -596,7 +596,7 @@ App.taglist_show_modes = [
 ]
 
 App.panel_sizes = {
-  normal: 0.25,
+  normal: 0.28,
   steps: 0.1,
 }
 
