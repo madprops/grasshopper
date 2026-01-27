@@ -35,8 +35,9 @@ App.show_context = (args = {}) => {
     args.title = undefined
   }
 
+  let ac_enabled = App.get_setting(`autoclick_enabled`)
   args.autohide = App.get_setting(`context_autohide`)
-  args.autoclick = App.get_setting(`context_autoclick`)
+  args.autoclick = ac_enabled && App.get_setting(`context_autoclick`)
   NeedContext.show(args)
 }
 
