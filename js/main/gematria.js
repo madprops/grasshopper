@@ -27,7 +27,6 @@ App.show_gematria = () => {
           let result = App.solve_gematria(text)
           App.copy_to_clipboard(result)
           App.close_textarea()
-
         },
       },
       {
