@@ -6,6 +6,7 @@ App.show_gematria = () => {
 
   App.show_textarea({
     title: `Gematria`,
+    title_icon: App.gematria_icon,
     readonly: false,
     single_line: true,
     center: true,

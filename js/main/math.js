@@ -127,6 +127,7 @@ App.use_calculator = () => {
 
   App.show_textarea({
     title: `Calculator`,
+    title_icon: App.calculator_icon,
     text: App.calculator_text,
     monospace: true,
     readonly: false,

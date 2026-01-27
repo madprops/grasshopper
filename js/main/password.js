@@ -2,7 +2,8 @@ App.generate_password = () => {
   let password = App.random_string(App.password_length)
 
   App.show_textarea({
-    title: `Random Password`,
+    title: `Password`,
+    title_icon: App.key_icon,
     text: password,
     simple: true,
     monospace: true,

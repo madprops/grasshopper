@@ -92,7 +92,7 @@ App.setup_commands = () => {
   let injection_icon = App.injection_icon
   let calculator_icon = App.calculator_icon
   let oracle_icon = App.oracle_icon
-  let math_icon = App.math_icon
+  let gematria_icon = App.gematria_icon
 
   let tbmodes = []
 
@@ -5148,7 +5148,7 @@ App.setup_commands = () => {
     {
       name: `Gematria`,
       cmd: `show_gematria`,
-      icon: math_icon,
+      icon: gematria_icon,
       action: (args) => {
         App.show_gematria()
       },
