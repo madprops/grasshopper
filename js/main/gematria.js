@@ -24,8 +24,8 @@ App.show_gematria = () => {
         text: `Result`,
         action: (text) => {
           solve(text)
-        }
-      }
+        },
+      },
     ],
   })
 }
