@@ -2400,13 +2400,6 @@ App.build_settings = () => {
       This means icons like muted, or notes`,
       version: 1,
     },
-    tab_box_taglist: {
-      name: `Tab Box Taglist`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable the Taglist in the items of the Tab Box`,
-      version: 1,
-    },
     tab_box_focus: {
       name: `Tab Box Focus`,
       type: `checkbox`,
@@ -2475,6 +2468,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the title in the Tab Box`,
+      version: 1,
+    },
+    tab_box_taglist: {
+      name: `Tab Box Taglist`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable the Taglist in the items of the Tab Box`,
       version: 1,
     },
     tab_box_auto_playing: {
