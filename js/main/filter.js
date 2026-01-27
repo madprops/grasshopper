@@ -516,7 +516,7 @@ App.make_filter_regex = (args = {}) => {
       // Do nothing
     }
   }
-  else if (args.by_what.startsWith(`chars`)) {
+  else if (args.by_what.startsWith(`char`)) {
     let cleaned_val = args.value.replace(/\\+$/, ``)
     let len = cleaned_val.length
 
@@ -572,7 +572,7 @@ App.filter_check = (args) => {
     let clean_title = App.clean_filter(title)
 
     for (let regex of args.regexes) {
-      if ([`all`, `re`, `chars`].includes(args.by_what)) {
+      if ([`all`, `re`, `char`].includes(args.by_what)) {
         let title_path
 
         if (args.item.header) {
