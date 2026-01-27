@@ -3,6 +3,10 @@ App.setup_bookmarks = () => {
     return
   }
 
+  if (!browser.bookmarks) {
+    return
+  }
+
   browser.bookmarks.onCreated.addListener((id, info) => {
     App.debug(`Bookmark Created: ID: ${id}`)
 
