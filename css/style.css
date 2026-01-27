@@ -1283,6 +1283,14 @@ a:hover
   text-align: center;
 }
 
+#textarea_text.single_line {
+  height: unset;
+}
+
+#textarea_text.center {
+  text-align: center;
+}
+
 .full_width {
   width: 100%;
 }

@@ -1,5 +1,6 @@
 App.show_textarea = (args = {}) => {
   let def_args = {
+    text: ``,
     simple: false,
     buttons: [],
     align: `center`,
@@ -8,6 +9,7 @@ App.show_textarea = (args = {}) => {
     bottom: false,
     wrap: false,
     monospace: false,
+    single_line: false,
   }
 
   App.def_args(def_args, args)
@@ -61,6 +63,15 @@ App.show_textarea = (args = {}) => {
     else {
       textarea.classList.remove(`pre_wrap`)
     }
+
+    if (args.single_line) {
+      textarea.classList.add(`single_line`)
+      textarea.rows = 1
+    }
+    else {
+      textarea.classList.remove(`single_line`)
+      textarea.rows = undefined
+    }
   }
 
   let img = DOM.el(`#textarea_image`)
@@ -95,13 +106,19 @@ App.show_textarea = (args = {}) => {
     DOM.show(`#textarea_buttons`)
   }
 
+  textarea.classList.remove(`center`)
+
   if (args.align === `center`) {
-    DOM.el(`#textarea_simple`).classList.add(`center`)
-    DOM.el(`#textarea_simple`).classList.remove(`left`)
+    simplearea.classList.add(`center`)
+    simplearea.classList.remove(`left`)
+
+    if (args.single_line) {
+      textarea.classList.add(`center`)
+    }
   }
   else if (args.align === `left`) {
-    DOM.el(`#textarea_simple`).classList.add(`left`)
-    DOM.el(`#textarea_simple`).classList.remove(`center`)
+    simplearea.classList.add(`left`)
+    simplearea.classList.remove(`center`)
   }
 
   App.textarea_args = args
@@ -149,8 +166,8 @@ App.on_textarea_dismiss = () => {
   }
 }
 
-App.textarea_enter = () => {
-  if (App.textarea_args.on_enter) {
-    App.textarea_args.on_enter()
+App.check_textarea_focus = () => {
+  if (App.popup_is_open(`textarea`)) {
+    DOM.el(`#textarea_text`).focus()
   }
 }

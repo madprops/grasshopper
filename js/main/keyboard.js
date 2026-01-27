@@ -317,6 +317,21 @@ App.setup_keyboard = () => {
           e.preventDefault()
           return
         }
+        else if (e.key === `Enter`) {
+          let fn = App.textarea_args.on_enter
+
+          if (fn) {
+            fn(e, e.target.value)
+          }
+        }
+      }
+      else if (pmode === `alert`) {
+        if (e.key === `Enter`) {
+          App.hide_popup(`alert`)
+          App.check_textarea_focus()
+          e.preventDefault()
+          return
+        }
       }
       else if (pmode === `palette`) {
         if (e.key === `Escape`) {

@@ -1,10 +1,32 @@
 App.show_gematria = () => {
-  App.show_prompt({
-    placeholder: `Enter Text`,
-    on_submit: (text) => {
-      let s = App.solve_gematria(text)
-      App.alert(s)
+  function solve(text) {
+    let s = App.solve_gematria(text)
+    App.alert(s)
+  }
+
+  App.show_textarea({
+    title: `Gematria`,
+    readonly: false,
+    single_line: true,
+    center: true,
+    on_enter: (e, text) => {
+      solve(text)
+      e.preventDefault()
     },
+    buttons: [
+      {
+        text: `Close`,
+        action: () => {
+          App.close_textarea()
+        },
+      },
+      {
+        text: `Result`,
+        action: (text) => {
+          solve(text)
+        }
+      }
+    ],
   })
 }
 
