@@ -1,5 +1,5 @@
-App.generate_password = () => {
-  let password = App.make_password()
+App.generate_password = (hard = false) => {
+  let password = App.make_password(hard)
 
   App.show_textarea({
     title: `Password`,
@@ -9,9 +9,15 @@ App.generate_password = () => {
     monospace: true,
     buttons: [
       {
-        text: `Again`,
+        text: `1`,
         action: () => {
           App.generate_password()
+        },
+      },
+      {
+        text: `2`,
+        action: () => {
+          App.generate_password(true)
         },
       },
       {
@@ -31,8 +37,8 @@ App.generate_password = () => {
   })
 }
 
-App.make_password = () => {
-  if (App.get_setting(`hard_passwords`)) {
+App.make_password = (hard = false) => {
+  if (hard || App.get_setting(`hard_passwords`)) {
     return App.random_string(App.password_length)
   }
   else {
