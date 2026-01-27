@@ -1,0 +1,57 @@
+App.use_calculator = () => {
+  function format_num(ans) {
+    return App.number_format(ans, 5)
+  }
+
+  function on_error() {
+    App.alert(`Expression could not be parsed`)
+  }
+
+  App.show_textarea({
+    title: `Calculator`,
+    title_icon: App.calculator_icon,
+    text: App.calculator_text,
+    monospace: true,
+    readonly: false,
+    buttons: [
+      {
+        text: `Close`,
+        action: (text) => {
+          App.calculator_text = text
+          App.close_textarea()
+        },
+      },
+      {
+        text: `Copy`,
+        action: (text) => {
+          App.calculator_text = text
+          let [ans, ok] = App.math_eval(text)
+
+          if (ok) {
+            let num = format_num(ans)
+            App.copy_to_clipboard(num)
+            App.close_textarea()
+          }
+          else {
+            on_error()
+          }
+        },
+      },
+      {
+        text: `Result`,
+        action: (text) => {
+          App.calculator_text = text
+          let [ans, ok] = App.math_eval(text)
+
+          if (ok) {
+            let num = format_num(ans)
+            App.alert(num)
+          }
+          else {
+            on_error()
+          }
+        },
+      },
+    ],
+  })
+}
