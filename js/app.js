@@ -165,7 +165,7 @@ App.progressive_fill_batch = 10
 App.datastore_max = 250
 App.datastore_max_text = 20 * 1000
 App.calculator_text = ``
-App.background_auto_color_prev = -1
+App.background_autocolor_prev = -1
 
 App.settings_ready = false
 App.media_image_ready = false

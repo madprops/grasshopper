@@ -21,6 +21,7 @@
   --panel_padding: 0.25rem;
   --popup_padding: 0.8rem;
   --close_button_transition: width 350ms, border-width 350ms;
+  --color_transition: background-color var(--color_transition), color var(--color_transition);
 }
 
 @font-face {
@@ -313,6 +314,7 @@ body.mirror_vertical #main {
   flex-direction: column;
   max-width: 100%;
   background-color: var(--main_background);
+  transition: var(--color_transition);
 }
 
 #main_center {
@@ -330,6 +332,7 @@ body.mirror_vertical #main {
   flex-direction: column;
   max-width: 100%;
   background-color: var(--main_background);
+  transition: var(--color_transition);
 }
 
 .window_main {
@@ -341,6 +344,10 @@ body.mirror_vertical #main {
   flex-grow: 1;
   max-height: 100%;
   max-width: 100%;
+}
+
+.window_main_mode {
+  transition: var(--color_transition);
 }
 
 .auto_blur .window_content,

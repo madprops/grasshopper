@@ -733,23 +733,23 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-    auto_color_enabled: {
-      name: `Auto Color`,
+    autocolor_enabled: {
+      name: `Autocolor`,
       type: `checkbox`,
       actions: [`theme`],
       value: false,
       info: `Change the theme colors automatically`,
       version: 1,
     },
-    auto_color_delay: {
-      name: `Auto Color Delay`,
+    autocolor_delay: {
+      name: `Autocolor Delay`,
       type: `number`,
       value: App.SECOND * 30,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `How often in milliseconds to do an auto-color tick`,
+      info: `How often in milliseconds to do an autocolor tick`,
       version: 1,
     },
     custom_css: {
@@ -759,6 +759,17 @@ App.build_settings = () => {
       value: ``,
       placeholder: `Paste CSS Here`,
       info: `Add custom CSS to override the default style`,
+      version: 1,
+    },
+    color_transition: {
+      name: `Color Transition`,
+      type: `number`,
+      value: App.SECOND * 5,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      separator: true,
+      info: `How long the autocolor transition is`,
       version: 1,
     },
     text_glow: {
