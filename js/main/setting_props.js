@@ -768,7 +768,6 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      separator: true,
       info: `How long the autocolor transition is`,
       version: 1,
     },
