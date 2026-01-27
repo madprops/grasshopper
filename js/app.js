@@ -54,6 +54,7 @@ App.optional_modes = [`history`, `bookmarks`]
 App.color_types = [`active`, `header`, `subheader`, `playing`, `loaded`,
   `unloaded`, `unread`, `pinned`, `normal`, `unloaded`, `loaded`]
 
+App.letters = `abcdefghijklmnopqrstuvwxyz`
 App.default_icons = [`😀`, `❤️`, `🤖`, `✅`, `🕒`]
 App.default_setting_string = `__default__`
 App.separator_string = `--separator--`
@@ -314,6 +315,7 @@ App.injection_icon = `💉`
 App.container_icon = `🛍️`
 App.calculator_icon = `🔢`
 App.oracle_icon = `🔮`
+App.math_icon = `🧮`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

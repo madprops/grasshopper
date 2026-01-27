@@ -92,6 +92,7 @@ App.setup_commands = () => {
   let injection_icon = App.injection_icon
   let calculator_icon = App.calculator_icon
   let oracle_icon = App.oracle_icon
+  let math_icon = App.math_icon
 
   let tbmodes = []
 
@@ -5143,6 +5144,15 @@ App.setup_commands = () => {
         App.generate_password()
       },
       info: `Generate a random password`,
+    },
+    {
+      name: `Gematria`,
+      cmd: `show_gematria`,
+      icon: math_icon,
+      action: (args) => {
+        App.show_gematria()
+      },
+      info: `Show the numeric value of text`,
     },
     {
       name: `Oracle`,
