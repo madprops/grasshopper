@@ -185,3 +185,7 @@ App.append_global_note = (note = ``) => {
 App.prepend_global_note = (note = ``) => {
   App.add_note(`prepend_global`, undefined, note)
 }
+
+App.clear_global_notes = () => {
+  App.set_global_notes(``)
+}

@@ -3560,6 +3560,15 @@ App.setup_commands = () => {
       info: `Prepend to Global Notes`,
     },
     {
+      name: `Clear Global Notes`,
+      cmd: `clear_global_notes`,
+      icon: notes_icon,
+      action: (args) => {
+        App.clear_global_notes()
+      },
+      info: `Clear the Global Notes`,
+    },
+    {
       name: `Split Both`,
       short_name: `Split`,
       cmd: `add_split_both`,
