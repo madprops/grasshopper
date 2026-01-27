@@ -106,6 +106,9 @@ App.user_madprops_settings = () => {
   sett = `favorites_menu`
   App.set_setting({setting: sett, value: []})
 
+  cmd = {cmd: `open_new_tab`, middle: `open_new_tab_above`}
+  App.append_list_setting(sett, cmd)
+
   cmd = {cmd: `edit_global_notes`, middle: `show_title_history`}
   App.append_list_setting(sett, cmd)
 
@@ -133,6 +136,9 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `use_calculator`}
   App.append_list_setting(sett, cmd)
 
+  cmd = {cmd: `show_gematria`}
+  App.append_list_setting(sett, cmd)
+
   cmd = {cmd: `toggle_auto_blur`}
   App.append_list_setting(sett, cmd)
 
@@ -149,9 +155,6 @@ App.user_madprops_settings = () => {
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `jump_tabs_zone_up`, middle: `jump_tabs_zone_down`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `run_custom_command_zone_bc`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `run_custom_command_container_shopping`}
