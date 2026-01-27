@@ -9,54 +9,54 @@ App.show_gematria = () => {
 }
 
 App.solve_gematria = (text) => {
-	let sum = 0
-	let split = text.split(``)
+  let sum = 0
+  let split = text.split(``)
 
-	for (let i=0; i<split.length; i++) {
-		let c = split[i].toLowerCase()
+  for (let i = 0; i < split.length; i++) {
+    let c = split[i].toLowerCase()
 
-		if (c.trim() == ``) {
-			continue
-		}
+    if (c.trim() === ``) {
+      continue
+    }
 
-		if (!isNaN(c)) {
-			sum += parseInt(c)
-		}
-		else {
+    if (!isNaN(c)) {
+      sum += parseInt(c)
+    }
+    else {
       let indx = App.letters.indexOf(c)
 
-			if (indx !== -1) {
-				sum += indx + 1
-			}
-		}
-	}
+      if (indx !== -1) {
+        sum += indx + 1
+      }
+    }
+  }
 
-	let num
+  let num
 
-	if (sum > 9) {
-		num = App.deconstruct_gematria(sum)
-	}
+  if (sum > 9) {
+    num = App.deconstruct_gematria(sum)
+  }
 
-	else {
-		num = sum.toString()
-	}
+  else {
+    num = sum.toString()
+  }
 
   return num
 }
 
 App.deconstruct_gematria = (sum, s = `${sum}`) => {
-	let num = 0
-	let split = sum.toString().split(``)
+  let num = 0
+  let split = sum.toString().split(``)
 
-	for (let n of split) {
-		num += parseInt(n)
-	}
+  for (let n of split) {
+    num += parseInt(n)
+  }
 
-	s += ` -> ${num}`
+  s += ` -> ${num}`
 
-	if (num > 9) {
-		return App.deconstruct_gematria(num, s)
-	}
+  if (num > 9) {
+    return App.deconstruct_gematria(num, s)
+  }
 
-	return s
+  return s
 }
