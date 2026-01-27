@@ -521,3 +521,7 @@ App.get_main_title = (replace = true) => {
 
   return title
 }
+
+App.clear_main_title = () => {
+  App.set_main_title(``)
+}

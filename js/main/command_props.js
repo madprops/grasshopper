@@ -4841,6 +4841,15 @@ App.setup_commands = () => {
       info: `Edit the Title`,
     },
     {
+      name: `Clear Title`,
+      cmd: `clear_main_title`,
+      icon: main_title_icon,
+      action: (args) => {
+        App.clear_main_title()
+      },
+      info: `Edit the Title`,
+    },
+    {
       name: `Title Menu`,
       cmd: `show_main_title_menu`,
       icon: main_title_icon,
