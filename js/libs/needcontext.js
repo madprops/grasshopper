@@ -77,7 +77,9 @@ NeedContext.do_filter = () => {
       text = text.replace(/:/g, ``)
     }
 
-    if (text.includes(cleaned)) {
+    let chars = cleaned.toLowerCase().split(``)
+
+    if (chars.every(char => text.includes(char))) {
       el.classList.remove(`needcontext-hidden`)
 
       if (!selected) {
@@ -1401,6 +1403,7 @@ NeedContext.start_autoclick = (delay) => {
   }, delay || NeedContext.autoclick_delay)
 }
 
+// Lock the autoclick until it moves
 NeedContext.lock_autoclick = () => {
   NeedContext.autoclick_lock = NeedContext.autoclick_lock_amount
 }
