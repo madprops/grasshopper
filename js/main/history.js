@@ -3,6 +3,10 @@ App.setup_history = () => {
     return
   }
 
+  if (!browser.history) {
+    return
+  }
+
   browser.history.onVisited.addListener((info) => {
     App.debug(`History Visited`)
 
