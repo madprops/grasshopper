@@ -1,5 +1,5 @@
 App.generate_password = () => {
-  let password = App.random_string(App.password_length)
+  let password = App.make_password()
 
   App.show_textarea({
     title: `Password`,
@@ -29,4 +29,10 @@ App.generate_password = () => {
       },
     ],
   })
+}
+
+App.make_password = () => {
+  let words = App.get_random_words(2)
+  let num = App.random_int({min: 10, max: 999})
+  return `${words[0]}${words[1]}${num}`
 }
