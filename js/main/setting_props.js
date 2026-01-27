@@ -5815,6 +5815,13 @@ App.build_settings = () => {
       info: `Move focused items to the top on Recent tabs mode instantly`,
       version: 1,
     },
+    hard_passwords: {
+      name: `Hard Passwords`,
+      type: `checkbox`,
+      value: false,
+      info: `Completely random password strings by the password generator`,
+      version: 1,
+    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,
