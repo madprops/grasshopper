@@ -516,6 +516,31 @@ App.make_filter_regex = (args = {}) => {
       // Do nothing
     }
   }
+  else if (args.by_what.startsWith(`chars`)) {
+    let cleaned_val = args.value.replace(/\\+$/, ``)
+    let len = cleaned_val.length
+
+    // We need to look within a window of size (len - 1)
+    // If len is 4 ("ativ"), we check indices 0,1,2,3 relative to the current position
+    let range = Math.max(0, len - 1)
+
+    let pattern_parts = cleaned_val.split(``).map(char => {
+      let escaped = char.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`)
+      // Assert that the char exists somewhere within the next 'len' characters
+      return `(?=.{0,${range}}${escaped})`
+    })
+
+    // 1. All assertions must pass
+    // 2. Then we consume the exact number of characters (.{len}) to match the block
+    let pattern = `${pattern_parts.join(``)}.{${len}}`
+
+    try {
+      regex = new RegExp(pattern, ci ? `i` : ``)
+    }
+    catch (err) {
+      // Do nothing
+    }
+  }
   else {
     let cleaned = App.clean_filter(args.value)
 
@@ -547,7 +572,7 @@ App.filter_check = (args) => {
     let clean_title = App.clean_filter(title)
 
     for (let regex of args.regexes) {
-      if ((args.by_what === `all`) || (args.by_what === `re`)) {
+      if ([`all`, `re`, `chars`].includes(args.by_what)) {
         let title_path
 
         if (args.item.header) {

@@ -457,6 +457,7 @@ App.filter_whats = [
   `zones`,
   `container`,
   `containers`,
+  `chars`,
 ]
 
 App.themes = [

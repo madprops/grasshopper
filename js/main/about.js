@@ -27,6 +27,7 @@ App.start_about = () => {
         `To filter by tag start with tag:`,
         `To filter by container start with container:`,
         `To filter by zone start with zone:`,
+        `To filter by characters start with chars:`,
         `Alt + Click selects items without triggering actions`,
         `Right Click on the Main Menu to show the Palette`,
         `Right Click on the Filter Menu to show Favorite Filters or filter commands on the Palette (Configurable)`,
