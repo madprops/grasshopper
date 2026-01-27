@@ -22,6 +22,15 @@ App.show_gematria = () => {
         },
       },
       {
+        text: `Copy`,
+        action: (text) => {
+          let result = App.solve_gematria(text)
+          App.copy_to_clipboard(result)
+          App.close_textarea()
+
+        },
+      },
+      {
         text: `Result`,
         action: (text) => {
           solve(text)
