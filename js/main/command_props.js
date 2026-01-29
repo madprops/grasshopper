@@ -53,6 +53,7 @@ App.setup_commands = () => {
   let open_icon = App.open_icon
   let action_icon = App.action_icon
   let select_icon = App.select_icon
+  let photo_icon = App.photo_icon
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -5237,6 +5238,15 @@ App.setup_commands = () => {
         App.locust_swarm()
       },
       info: `Decimate the crops`,
+    },
+    {
+      name: `Photo`,
+      cmd: `show_photo`,
+      icon: photo_icon,
+      action: (args) => {
+        App.show_photo()
+      },
+      info: `Show the Photo`,
     },
     {
       name: `Breathe`,

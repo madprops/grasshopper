@@ -10,6 +10,8 @@ App.show_textarea = (args = {}) => {
     wrap: false,
     monospace: false,
     single_line: false,
+    only_image: false,
+    image_size: `normal`,
   }
 
   App.def_args(def_args, args)
@@ -18,6 +20,7 @@ App.show_textarea = (args = {}) => {
   let textarea = DOM.el(`#textarea_text`)
   let simplearea = DOM.el(`#textarea_simple`)
   let title = DOM.el(`#textarea_title`)
+  let image = DOM.el(`#textarea_image`)
 
   if (args.title) {
     DOM.show(title)
@@ -44,6 +47,10 @@ App.show_textarea = (args = {}) => {
     else {
       simplearea.classList.remove(`monospace`)
     }
+  }
+  else if (args.only_image) {
+    DOM.hide(textarea)
+    DOM.hide(simplearea)
   }
   else {
     DOM.hide(simplearea)
@@ -74,14 +81,21 @@ App.show_textarea = (args = {}) => {
     }
   }
 
-  let img = DOM.el(`#textarea_image`)
+  if (args.image_size === `normal`) {
+    image.classList.add(`normal`)
+    image.classList.remove(`big`)
+  }
+  else if (args.image_size === `big`) {
+    image.classList.add(`big`)
+    image.classList.remove(`normal`)
+  }
 
   if (args.image) {
-    DOM.show(img)
-    img.src = args.image
+    DOM.show(image)
+    image.src = args.image
   }
   else {
-    DOM.hide(img)
+    DOM.hide(image)
   }
 
   if (args.buttons.length) {

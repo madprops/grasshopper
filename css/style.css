@@ -1276,6 +1276,10 @@ a:hover
   height: auto;
 }
 
+#textarea_image.big {
+  width: 100%;
+}
+
 #textarea_simple {
   width: 66vw;
   padding: 0.1rem;
