@@ -2052,6 +2052,7 @@ App.build_settings = () => {
         {cmd: `show_oracle`},
         {cmd: `breathe_effect`},
         {cmd: `locust_swarm`},
+        {cmd: `show_photo`},
         {cmd: App.separator_string},
         {cmd: `toggle_main_title`},
         {cmd: `toggle_taglist`},

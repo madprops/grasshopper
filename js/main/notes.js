@@ -196,6 +196,6 @@ App.clear_global_notes = () => {
     message: `Clear Global Notes?`,
     confirm_action: () => {
       App.set_global_notes(``)
-    }
+    },
   })
 }
