@@ -1091,6 +1091,9 @@ App.mouse_wheel_action = (e) => {
   else if (DOM.parent(target, [`#tab_box_container`])) {
     App.wheel_action(direction, `tab_box`, e)
   }
+  else if (DOM.parent(target, [`.item_container`])) {
+    App.wheel_action(direction, `items`, e)
+  }
 }
 
 App.wheel_action = (direction, name, e) => {
