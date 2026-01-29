@@ -1029,8 +1029,9 @@ App.mouse_wheel_action = (e) => {
   }
 
   let direction = App.wheel_direction(e)
+  let is_supermain = target.id === `supermain`
 
-  if (DOM.parent(target, [`.scroller`])) {
+  if (DOM.parent(target, [`.scroller`]) || is_supermain) {
     if (direction === `up`) {
       if (e.shiftKey) {
         App.scroll_page(mode, `up`)
@@ -1089,9 +1090,6 @@ App.mouse_wheel_action = (e) => {
   }
   else if (DOM.parent(target, [`#tab_box_container`])) {
     App.wheel_action(direction, `tab_box`, e)
-  }
-  else if (DOM.parent(target, [`.item_container`])) {
-    App.wheel_action(direction, `items`, e)
   }
 }
 
