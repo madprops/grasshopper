@@ -355,7 +355,9 @@ body.mirror_vertical #main {
 .auto_blur #main_title,
 .auto_blur #footer,
 .auto_blur #tab_box,
-.auto_blur .favorites_bar
+.auto_blur .favorites_bar,
+.auto_blur #needcontext-container,
+.auto_blur .popup_container
 {
   filter: blur(3px) !important;
 }

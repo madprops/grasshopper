@@ -194,6 +194,7 @@ App.more_menu_items = (args = {}) => {
     App.item_menu_item(items, `sort_tabs_asc`, {item: args.item, short: false})
     App.item_menu_item(items, `sort_tabs_desc`, {item: args.item, short: false})
     App.item_menu_item(items, `duplicate_tabs`, {item: args.item, short: true})
+    App.item_menu_item(items, `obfuscate_tabs`, {item: args.item, short: true})
     App.item_menu_item(items, `edit_root_url`, {item: args.item, short: false})
     App.item_menu_item(items, `remove_item_edits`, {item: args.item, short: false})
     App.item_menu_item(items, `open_tabs_in_container`, {item: args.item, short: true})

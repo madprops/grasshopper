@@ -1370,13 +1370,13 @@ App.make_item_first = (item) => {
 
 App.auto_blur = () => {
   if (App.get_setting(`auto_blur`)) {
-    App.main_add(`auto_blur`)
+    App.body_add(`auto_blur`)
   }
 }
 
 App.remove_auto_blur = () => {
   if (App.get_setting(`auto_blur`)) {
-    App.main_remove(`auto_blur`)
+    App.body_remove(`auto_blur`)
   }
 }
 
