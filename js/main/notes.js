@@ -187,5 +187,15 @@ App.prepend_global_note = (note = ``) => {
 }
 
 App.clear_global_notes = () => {
-  App.set_global_notes(``)
+  if (!App.notes) {
+    App.alert(`Global Notes are empty`)
+    return
+  }
+
+  App.show_confirm({
+    message: `Clear Global Notes?`,
+    confirm_action: () => {
+      App.set_global_notes(``)
+    }
+  })
 }
