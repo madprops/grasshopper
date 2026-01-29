@@ -5013,7 +5013,13 @@ App.build_settings = () => {
       type: `text`,
       value: ``,
       placeholder: `Image URL`,
+      btns: [`upload`],
       info: `Image to use for the lock screen`,
+      setup: (key) => {
+        DOM.ev(`#settings_${key}_upload`, `click`, (e) => {
+          App.upload_lock_screen_image(e)
+        })
+      },
       version: 1,
     },
     lock_screen_command: {
