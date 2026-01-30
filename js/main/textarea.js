@@ -12,6 +12,7 @@ App.show_textarea = (args = {}) => {
     single_line: false,
     only_image: false,
     image_size: `normal`,
+    enter_action: false,
   }
 
   App.def_args(def_args, args)
@@ -186,11 +187,20 @@ App.check_textarea_focus = () => {
   }
 }
 
-App.textarea_enter = () => {
-  if (App.textarea_args.on_enter) {
-    App.textarea_args.on_enter()
-    return true
+App.textarea_enter = (force = false) => {
+  if (!App.textarea_args.on_enter) {
+    return false
   }
 
-  return false
+  if (!force && !App.textarea_args.enter_action) {
+    return false
+  }
+
+  let text = App.get_textarea_text()
+  App.textarea_args.on_enter(text)
+  return true
+}
+
+App.get_textarea_text = () => {
+  return DOM.el(`#textarea_text`).value
 }

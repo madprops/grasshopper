@@ -568,7 +568,7 @@ App.setup_keyboard = () => {
       else if (pmode === `textarea`) {
         if (e.key === `Enter`) {
           if (e.ctrlKey) {
-            if (App.textarea_enter()) {
+            if (App.textarea_enter(true)) {
               e.preventDefault()
             }
           }

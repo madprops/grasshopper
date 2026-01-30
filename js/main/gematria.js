@@ -10,10 +10,10 @@ App.show_gematria = () => {
     readonly: false,
     single_line: true,
     center: true,
-    on_enter: (e, text) => {
+    on_enter: (text) => {
       solve(text)
-      e.preventDefault()
     },
+    enter_action: true,
     buttons: [
       {
         text: `Close`,
