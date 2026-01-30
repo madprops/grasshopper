@@ -3252,8 +3252,14 @@ App.build_settings = () => {
       type: `text`,
       value: `dddd dS mmmm yyyy`,
       placeholder: `Date Format`,
+      btns: [`pick`],
       separator: true,
       info: `Format to use when showing the date as the Title. ${App.date_format_info}`,
+      setup: (key) => {
+        DOM.ev(`#settings_${key}_pick`, `click`, (e) => {
+          App.pick_clock_format(e, `main_title_date_format`)
+        })
+      },
       version: 1,
     },
     main_title_auto_scroll: {
@@ -4726,7 +4732,7 @@ App.build_settings = () => {
     clock_format: {
       name: `Clock Format`,
       type: `text`,
-      value: `h:MM tt Z`,
+      value: `h:MM tt`,
       placeholder: `Format`,
       btns: [`pick`],
       info: `Clock time format to use in the filter input. Leave empty to disable. ${App.date_format_info}`,
