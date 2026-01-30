@@ -553,7 +553,6 @@ App.clear_main_title = () => {
 
 App.clear_title_history = () => {
   if (!App.main_title_history.length) {
-    App.alert(`Title History is empty`)
     return
   }
 
