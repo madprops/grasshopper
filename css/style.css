@@ -1274,6 +1274,7 @@ a:hover
 #textarea_image {
   width: 8rem;
   height: auto;
+  object-fit: contain;
 }
 
 #textarea_image.big {
@@ -2294,6 +2295,7 @@ a:hover
   width: 90%;
   height: auto;
   max-height: 45vh;
+  object-fit: contain;
 }
 
 #lock_screen_text {
