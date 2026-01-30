@@ -2689,3 +2689,21 @@ App.sort_settings = () => {
     keys.sort()
   }
 }
+
+App.check_init_settings = () => {
+  let init_settings = localStorage.getItem(`init_settings`) || `nothing`
+
+  if (init_settings !== `nothing`) {
+    let split = init_settings.split(`|`)
+    console.log(split)
+    App.show_settings_category(split[0], split[1])
+  }
+
+  localStorage.setItem(`init_settings`, `nothing`)
+}
+
+App.open_settings = (category, filter) => {
+  localStorage.setItem(`init_settings`, `${category}|${filter}`)
+  App.open_sidebar()
+  App.close_popup()
+}

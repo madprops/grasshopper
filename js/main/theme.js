@@ -1525,33 +1525,14 @@ App.paste_background = async () => {
 }
 
 App.upload_background = () => {
-  let input = document.createElement(`input`)
-  input.type = `file`
-  input.accept = `image/*`
-
-  input.onchange = async (e) => {
-    let file = e.target.files[0]
-
-    if (!file) {
-      return
-    }
-
-    if (file.size > 100 * 1024 * 1024) {
-      return
-    }
-
-    let reader = new FileReader()
-
-    reader.onload = async (event) => {
-      let data = event.target.result
-      await browser.storage.local.set({storedImage: data})
+  App.upload_image({
+    key_name: `storedImage`,
+    category: `theme`,
+    filter: `bg image`,
+    set_function: () => {
       App.set_uploaded_image()
-    }
-
-    reader.readAsDataURL(file)
-  }
-
-  input.click()
+    },
+  })
 }
 
 App.get_stored_background = async () => {

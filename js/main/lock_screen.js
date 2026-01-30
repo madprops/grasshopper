@@ -95,33 +95,14 @@ App.unlock_screen = () => {
 }
 
 App.upload_lock_screen_image = () => {
-  let input = document.createElement(`input`)
-  input.type = `file`
-  input.accept = `image/*`
-
-  input.onchange = async (e) => {
-    let file = e.target.files[0]
-
-    if (!file) {
-      return
-    }
-
-    if (file.size > 100 * 1024 * 1024) {
-      return
-    }
-
-    let reader = new FileReader()
-
-    reader.onload = async (event) => {
-      let data = event.target.result
-      await browser.storage.local.set({storedLockScreenImage: data})
+  App.upload_image({
+    key_name: `storedLockScreenImage`,
+    category: `lock`,
+    filter: `lock screen image`,
+    set_function: () => {
       App.set_uploaded_lock_screen_image()
-    }
-
-    reader.readAsDataURL(file)
-  }
-
-  input.click()
+    },
+  })
 }
 
 App.get_stored_lock_screen_image = async () => {

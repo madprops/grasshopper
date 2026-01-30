@@ -26,33 +26,13 @@ App.show_photo = async () => {
 }
 
 App.upload_photo = () => {
-  let input = document.createElement(`input`)
-  input.type = `file`
-  input.accept = `image/*`
-
-  input.onchange = async (e) => {
-    let file = e.target.files[0]
-
-    if (!file) {
-      return
-    }
-
-    if (file.size > 100 * 1024 * 1024) {
-      return
-    }
-
-    let reader = new FileReader()
-
-    reader.onload = async (event) => {
-      let data = event.target.result
-      await browser.storage.local.set({storedPhoto: data})
+  App.upload_image({
+    key_name: `storedPhoto`,
+    command: `show_photo`,
+    set_function: () => {
       App.show_photo()
-    }
-
-    reader.readAsDataURL(file)
-  }
-
-  input.click()
+    },
+  })
 }
 
 App.get_photo = async () => {
