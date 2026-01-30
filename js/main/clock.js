@@ -45,7 +45,7 @@ App.pick_clock_format = (e, setting = `clock_format`) => {
   items.push({
     text: `12 Hour`,
     action: () => {
-      App.set_setting({setting: setting, value: `h:MM tt`})
+      App.set_setting({setting, value: `h:MM tt`})
       App.refresh_setting_widgets([setting])
     },
   })
@@ -53,7 +53,7 @@ App.pick_clock_format = (e, setting = `clock_format`) => {
   items.push({
     text: `24 Hour`,
     action: () => {
-      App.set_setting({setting: setting, value: `HH:MM`})
+      App.set_setting({setting, value: `HH:MM`})
       App.refresh_setting_widgets([setting])
     },
   })
@@ -61,7 +61,7 @@ App.pick_clock_format = (e, setting = `clock_format`) => {
   items.push({
     text: `Seconds`,
     action: () => {
-      App.set_setting({setting: setting, value: `MM:ss`})
+      App.set_setting({setting, value: `MM:ss`})
       App.refresh_setting_widgets([setting])
     },
   })
@@ -69,7 +69,7 @@ App.pick_clock_format = (e, setting = `clock_format`) => {
   items.push({
     text: `Full Date`,
     action: () => {
-      App.set_setting({setting: setting, value: `dddd dS mmmm yyyy`})
+      App.set_setting({setting, value: `dddd dS mmmm yyyy`})
       App.refresh_setting_widgets([setting])
     },
   })
@@ -77,7 +77,7 @@ App.pick_clock_format = (e, setting = `clock_format`) => {
   items.push({
     text: `Short Date`,
     action: () => {
-      App.set_setting({setting: setting, value: `dd/mm/yy`})
+      App.set_setting({setting, value: `dd/mm/yy`})
       App.refresh_setting_widgets([setting])
     },
   })

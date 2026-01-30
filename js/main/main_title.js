@@ -561,6 +561,6 @@ App.clear_title_history = () => {
     confirm_action: () => {
       App.main_title_history = []
       App.show_title_history()
-    }
+    },
   })
 }
