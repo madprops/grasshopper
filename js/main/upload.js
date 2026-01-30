@@ -6,7 +6,7 @@ App.upload_image = (args = {}) => {
     command: ``,
     set_function: () => {
       App.set_uploaded_image()
-    }
+    },
   }
 
   App.def_args(def_args, args)

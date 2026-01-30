@@ -2695,7 +2695,6 @@ App.check_init_settings = () => {
 
   if (init_settings !== `nothing`) {
     let split = init_settings.split(`|`)
-    console.log(split)
     App.show_settings_category(split[0], split[1])
   }
 
