@@ -460,3 +460,7 @@ App.fav_tips_empty = (el, where) => {
   App.trigger_title(el, `wheel_up_shift_favorites_${where}`)
   App.trigger_title(el, `wheel_down_shift_favorites_${where}`)
 }
+
+App.favorites_scrollable = () => {
+  return App.get_setting(`favorites_scroll`)
+}

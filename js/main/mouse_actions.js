@@ -1050,13 +1050,19 @@ App.mouse_wheel_action = (e) => {
     }
   }
   else if (target.closest(`.favorites_empty_top`)) {
-    App.wheel_action(direction, `favorites_top`, e)
+    if (!App.favorites_scrollable()) {
+      App.wheel_action(direction, `favorites_top`, e)
+    }
   }
   else if (target.closest(`.favorites_bar`)) {
-    App.wheel_action(direction, `favorites_center`, e)
+    if (!App.favorites_scrollable()) {
+      App.wheel_action(direction, `favorites_center`, e)
+    }
   }
   else if (target.closest(`.favorites_empty_bottom`)) {
-    App.wheel_action(direction, `favorites_bottom`, e)
+    if (!App.favorites_scrollable()) {
+      App.wheel_action(direction, `favorites_bottom`, e)
+    }
   }
   else if (target.closest(`.favorites_button`)) {
     App.wheel_action(direction, `favorites_button`, e)

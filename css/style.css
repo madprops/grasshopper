@@ -1796,6 +1796,10 @@ a:hover
   background-color: var(--favorites_bar_color);
 }
 
+.favorites_scroll .favorites_bar_container {
+  overflow: auto;
+}
+
 .show_favorites .favorites_bar_container {
   display: flex;
 }
@@ -2289,6 +2293,7 @@ a:hover
 #lock_screen_image {
   width: 90%;
   height: auto;
+  max-height: 45vh;
 }
 
 #lock_screen_text {

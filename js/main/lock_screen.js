@@ -3,6 +3,11 @@ App.start_lock_screen = () => {
     return
   }
 
+  if (App.is_popup()) {
+    App.open_command(`lock_screen`)
+    return
+  }
+
   App.create_window({
     id: `lock_screen`,
     setup: () => {

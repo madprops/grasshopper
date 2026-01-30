@@ -1108,6 +1108,13 @@ App.set_favorite_vars = () => {
     App.main_remove(`favorites_autohide`)
   }
 
+  if (App.get_setting(`favorites_scroll`)) {
+    App.main_add(`favorites_scroll`)
+  }
+  else {
+    App.main_remove(`favorites_scroll`)
+  }
+
   let size = App.get_setting(`favorites_size`)
   App.theme_sizer_panel(size, `favorites_padding`)
   let gap = App.get_setting(`favorites_gap`)

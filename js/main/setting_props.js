@@ -2990,6 +2990,13 @@ App.build_settings = () => {
       info: `Add a blur effect to the background of favorite bars`,
       version: 1,
     },
+    favorites_scroll: {
+      name: `Favorites Scroll`,
+      type: `checkbox`,
+      value: true,
+      info: `Scroll favorite items with the wheel when overflowed`,
+      version: 1,
+    },
     favorites_autohide: {
       name: `Favorites Autohide`,
       type: `checkbox`,
