@@ -118,6 +118,14 @@ App.start_popups = () => {
       DOM.ev(`#textarea_close`, `click`, () => {
         App.hide_popup(`textarea`)
       })
+
+      DOM.ev(`#textarea_image`, `load`, (e) => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            e.target.style.transform = `translateZ(0)`
+          })
+        })
+      })
     },
     on_dismiss: () => {
       App.on_textarea_dismiss()
