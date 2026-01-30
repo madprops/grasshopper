@@ -318,10 +318,8 @@ App.setup_keyboard = () => {
           return
         }
         else if (e.key === `Enter`) {
-          let fn = App.textarea_args.on_enter
-
-          if (fn) {
-            fn(e, e.target.value)
+          if (App.textarea_enter()) {
+            e.preventDefault()
           }
         }
       }
@@ -570,8 +568,9 @@ App.setup_keyboard = () => {
       else if (pmode === `textarea`) {
         if (e.key === `Enter`) {
           if (e.ctrlKey) {
-            App.textarea_enter()
-            e.preventDefault()
+            if (App.textarea_enter()) {
+              e.preventDefault()
+            }
           }
 
           return

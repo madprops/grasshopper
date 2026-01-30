@@ -185,3 +185,12 @@ App.check_textarea_focus = () => {
     DOM.el(`#textarea_text`).focus()
   }
 }
+
+App.textarea_enter = () => {
+  if (App.textarea_args.on_enter) {
+    App.textarea_args.on_enter()
+    return true
+  }
+
+  return false
+}

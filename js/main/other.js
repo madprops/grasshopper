@@ -193,10 +193,6 @@ App.toggle_sidebar = () => {
   browser.sidebarAction.toggle()
 }
 
-App.close_popup = () => {
-  window.close()
-}
-
 App.play_sound = (name) => {
   if (!App.get_setting(`sound_effects`)) {
     return

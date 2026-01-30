@@ -2705,5 +2705,5 @@ App.check_init_settings = () => {
 App.open_settings = (category, filter) => {
   localStorage.setItem(`init_settings`, `${category}|${filter}`)
   App.open_sidebar()
-  App.close_popup()
+  App.close_window()
 }

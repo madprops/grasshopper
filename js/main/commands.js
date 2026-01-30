@@ -780,5 +780,5 @@ App.check_init_command = () => {
 App.open_command = (command) => {
   localStorage.setItem(`init_command`, command)
   App.open_sidebar()
-  App.close_popup()
+  App.close_window()
 }
