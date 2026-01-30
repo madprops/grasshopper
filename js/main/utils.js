@@ -388,7 +388,7 @@ App.random_int = (args = {}) => {
       }
     }
 
-    if (available.length === 0) {
+    if (!available.length) {
       return
     }
 

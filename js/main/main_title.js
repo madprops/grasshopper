@@ -489,7 +489,32 @@ App.add_to_title_history = (title) => {
 
 App.show_title_history = () => {
   let text = App.main_title_history.slice().reverse().join(`\n`)
-  App.show_textarea({title: `Title History`, text})
+
+  App.show_textarea({
+    text,
+    title: `Title History`,
+    buttons: [
+      {
+        text: `Clear`,
+        action: () => {
+          App.clear_title_history()
+        },
+      },
+      {
+        text: `Copy`,
+        action: () => {
+          App.copy_to_clipboard(text)
+          App.close_textarea()
+        },
+      },
+      {
+        text: `Close`,
+        action: () => {
+          App.close_textarea()
+        },
+      },
+    ],
+  })
 }
 
 App.replace_title_vars = (title) => {
@@ -524,4 +549,19 @@ App.get_main_title = (replace = true) => {
 
 App.clear_main_title = () => {
   App.set_main_title(``)
+}
+
+App.clear_title_history = () => {
+  if (!App.main_title_history.length) {
+    App.alert(`Title History is empty`)
+    return
+  }
+
+  App.show_confirm({
+    message: `Clear Title History?`,
+    confirm_action: () => {
+      App.main_title_history = []
+      App.show_title_history()
+    }
+  })
 }

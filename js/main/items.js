@@ -1050,7 +1050,7 @@ App.get_active_items = (args = {}) => {
 
   let selected = App.selected_items(args.mode)
 
-  if (selected.length === 0) {
+  if (!selected.length) {
     if (args.item) {
       return [args.item]
     }
