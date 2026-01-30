@@ -1,7 +1,7 @@
 App.start_clock = () => {
   let delay = App.check_clock_delay
 
-  if (!delay || (delay < App.SECOND)) {
+  if (!delay || (delay < 1)) {
     App.error(`Clock delay is invalid`)
     return
   }

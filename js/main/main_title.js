@@ -12,7 +12,7 @@ App.start_main_title_intervals = () => {
   clearTimeout(App.main_title_scroll_timeout)
   let delay = App.check_main_title_date_delay
 
-  if (!delay || (delay < App.SECOND)) {
+  if (!delay || (delay < 1)) {
     App.error(`Main title date delay is invalid`)
     return
   }
