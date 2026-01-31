@@ -98,9 +98,11 @@ But not all Grasshoppers are Locusts
         <img id="about_image" src="img/grasshopper.png">
         <div id="about_dev" class="flex_column_center"></div>
 
-        <a id="show_about_info" class="doubleline">Info</div>
-        <div>|</div>
-        <a id="show_about_lore" class="doubleline">Lore</div>
+        <div class="flex_row_center gap_1">
+          <div id="show_about_info" class="doubleline">Info</div>
+          <div>|</div>
+          <div id="show_about_lore" class="doubleline">Lore</div>
+        </div>
       </div>
     </template>
 
@@ -116,6 +118,12 @@ But not all Grasshoppers are Locusts
       </div>
     </template>
 
+    <template id="template_about_lore">
+      <div id="about_container" class="flex_column_center gap_2">
+        <div id="about_lore"></div>
+      </div>
+    </template>
+
     <template id="template_about_top">
       <div class="flex_row_center gap_15">
         <div id="about_name"></div>
@@ -127,6 +135,13 @@ But not all Grasshoppers are Locusts
       <div class="flex_row_center gap_15">
         <div id="about_info_name"></div>
         <div id="about_info_close" class="button"></div>
+      </div>
+    </template>
+
+    <template id="template_about_lore_top">
+      <div class="flex_row_center gap_15">
+        <div id="about_lore_name"></div>
+        <div id="about_lore_close" class="button"></div>
       </div>
     </template>
 

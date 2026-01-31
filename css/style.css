@@ -2508,3 +2508,8 @@ a:hover
 .smart_icons .unloaded_tab:not(.header_item) .item_icon_container {
   display: none;
 }
+
+#about_lore {
+  padding: 1rem;
+  padding-top: 0;
+}
