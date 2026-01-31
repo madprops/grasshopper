@@ -489,7 +489,7 @@ App.setup_keyboard = () => {
         return
       }
     }
-    else if (mode === `about`) {
+    else if (mode === `about_info`) {
       if (e.key === `Escape`) {
         if (App.about_filter_focused()) {
           App.clear_about_filter()

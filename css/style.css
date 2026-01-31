@@ -1154,6 +1154,7 @@ svg {
   user-select: text;
   gap: 0.5rem;
   width: 100%;
+  padding-bottom: 1rem;
 }
 
 .about_info_item {
@@ -1174,7 +1175,7 @@ svg {
 }
 
 .about_image {
-  width: 45%;
+  width: 53.5%;
   cursor: pointer;
 }
 

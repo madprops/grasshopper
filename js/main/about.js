@@ -102,9 +102,6 @@ App.start_about = () => {
       let s = `${App.manifest.name} v${App.manifest.version}`
       DOM.el(`#about_name`).textContent = s
 
-      let container = DOM.el(`#window_content_about`)
-      App.generic_gestures(container)
-
       DOM.ev(`#show_about_info`, `click`, () => {
         App.hide_window()
         App.show_about_info()
@@ -133,12 +130,12 @@ App.start_about = () => {
 }
 
 App.about_filter_focused = () => {
-  return document.activeElement.id === `about_filter`
+  return document.activeElement.id === `about_info_filter`
 }
 
 App.clear_about_filter = () => {
-  if (App.filter_has_value(`about`)) {
-    App.reset_generic_filter(`about`)
+  if (App.filter_has_value(`about_info`)) {
+    App.reset_generic_filter(`about_info`)
   }
   else {
     App.hide_window()
@@ -149,9 +146,9 @@ App.filter_about = () => {
   App.filter_about_debouncer.call()
 }
 
-App.do_filter_about = () => {
+App.do_filter_about_info = () => {
   App.filter_about_debouncer.cancel()
-  App.do_filter_2(`about`)
+  App.do_filter_2(`about_info`)
 }
 
 App.show_about = () => {
@@ -170,12 +167,12 @@ App.show_about_lore = () => {
 }
 
 App.focus_about_filter = () => {
-  let filter = DOM.el(`#about_filter`)
+  let filter = DOM.el(`#about_info_filter`)
   filter.focus()
 }
 
 App.about_bottom = () => {
-  let container = DOM.el(`#window_content_about`)
+  let container = DOM.el(`#window_content_about_info`)
   container.scrollTop = container.scrollHeight
 }
 
@@ -203,7 +200,7 @@ App.start_about_info = () => {
         info.append(el)
       }
 
-      let filter = DOM.el(`#about_filter`)
+      let filter = DOM.el(`#about_info_filter`)
 
       DOM.ev(filter, `input`, () => {
         App.filter_about()
@@ -222,14 +219,17 @@ App.start_about_info = () => {
       clear.title = App.filter_clear_title
 
       DOM.ev(clear, `click`, () => {
-        App.reset_generic_filter(`about`)
+        App.reset_generic_filter(`about_info`)
       })
 
       let s = `${App.manifest.name} v${App.manifest.version}`
       DOM.el(`#about_info_name`).textContent = s
+
+      let container = DOM.el(`#window_content_about_info`)
+      App.generic_gestures(container)
     },
     after_show: () => {
-      let filter = DOM.el(`#about_filter`)
+      let filter = DOM.el(`#about_info_filter`)
 
       if (filter.value) {
         App.clear_about_filter()
@@ -241,7 +241,7 @@ App.start_about_info = () => {
   })
 
   App.filter_about_debouncer = App.create_debouncer(() => {
-    App.do_filter_about()
+    App.do_filter_about_info()
   }, App.filter_delay_2)
 }
 
