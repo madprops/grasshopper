@@ -360,12 +360,12 @@ App.item_borders = [
 
 App.dark_colors = {
   background: `rgb(55, 55, 55)`,
-  text: `rgb(235, 235, 235)`,
+  text: `rgb(250, 250, 250)`,
 }
 
 App.light_colors = {
   background: `rgb(205, 205, 205)`,
-  text: `rgb(50, 50, 50)`,
+  text: `rgb(30, 30, 30)`,
 }
 
 App.effects = [
