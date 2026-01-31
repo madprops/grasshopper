@@ -1174,9 +1174,12 @@ svg {
   margin-bottom: 0.5rem;
 }
 
+#about_image {
+  cursor: pointer;
+}
+
 .about_image {
   width: 53.5%;
-  cursor: pointer;
 }
 
 #about_image.normal:hover {
