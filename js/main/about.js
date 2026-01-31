@@ -271,6 +271,9 @@ App.start_about_lore = () => {
 
       let s = `${App.manifest.name} v${App.manifest.version}`
       DOM.el(`#about_lore_name`).textContent = s
+
+      let container = DOM.el(`#window_content_about_lore`)
+      App.generic_gestures(container)
     },
     colored_top: true,
   })
