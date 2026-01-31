@@ -1796,6 +1796,7 @@ a:hover
   overflow: hidden;
   flex-direction: column;
   background-color: var(--favorites_bar_color);
+  scrollbar-width: none !important;
 }
 
 .favorites_scroll .favorites_bar_container {
