@@ -1178,6 +1178,11 @@ svg {
   cursor: pointer;
 }
 
+#about_lore_image {
+  width: 45%;
+  cursor: pointer;
+}
+
 #about_image.normal:hover {
   animation: shake 0.9s ease-in-out infinite;
 }
@@ -2510,6 +2515,12 @@ a:hover
 }
 
 #about_lore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: text;
+  gap: 0.5rem;
+  width: 100%;
   padding: 1rem;
   padding-top: 0;
 }
