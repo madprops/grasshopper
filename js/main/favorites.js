@@ -464,3 +464,12 @@ App.fav_tips_empty = (el, where) => {
 App.favorites_scrollable = () => {
   return App.get_setting(`favorites_scroll`)
 }
+
+App.favorites_overflowed = () => {
+  let c = DOM.el(`#favorites_bar_container_tabs`)
+  return c.scrollHeight > c.clientHeight
+}
+
+App.favorites_wheel = (e) => {
+  return e.shiftKey || !App.favorites_scrollable() || !App.favorites_overflowed()
+}
