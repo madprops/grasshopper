@@ -1173,12 +1173,7 @@ svg {
   margin-bottom: 0.5rem;
 }
 
-#about_image {
-  width: 45%;
-  cursor: pointer;
-}
-
-#about_lore_image {
+.about_image {
   width: 45%;
   cursor: pointer;
 }
