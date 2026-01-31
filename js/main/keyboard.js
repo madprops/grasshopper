@@ -489,15 +489,31 @@ App.setup_keyboard = () => {
         return
       }
     }
+    else if (mode === `about`) {
+      if (e.key === `Escape`) {
+        App.hide_window()
+        e.preventDefault()
+        return
+      }
+    }
     else if (mode === `about_info`) {
       if (e.key === `Escape`) {
-        if (App.about_filter_focused()) {
+        if (App.about_filter_focused() && App.filter_has_value(`about_info`)) {
           App.clear_about_filter()
         }
         else {
           App.hide_window()
+          App.show_about()
         }
 
+        e.preventDefault()
+        return
+      }
+    }
+    else if (mode === `about_lore`) {
+      if (e.key === `Escape`) {
+        App.hide_window()
+        App.show_about()
         e.preventDefault()
         return
       }
