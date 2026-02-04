@@ -149,53 +149,7 @@ App.do_apply_theme = (args = {}) => {
     App.main_add(`active_background_${active_bg}`)
 
     let uto = App.get_setting(`unloaded_opacity`) / 100
-    let border_color = App.get_setting(`window_border_color`)
-    let glow_color = App.get_setting(`window_border_glow`)
-    let glow_speed = App.get_setting(`window_border_glow_speed`)
-    let glow_hover = App.get_setting(`window_border_glow_hover`)
-
     App.set_css_var(`unloaded_opacity`, uto)
-    App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
-    App.set_css_var(`window_border_color`, border_color)
-    App.set_css_var(`window_border_glow_color`, glow_color)
-    App.set_css_var(`window_border_glow_speed`, `${glow_speed}s`)
-
-    let sidemodes = [
-      `full`,
-      `top`,
-      `bottom`,
-      `left`,
-      `right`,
-      `except_top`,
-      `except_bottom`,
-      `except_left`,
-      `except_right`,
-      `just_glow`,
-    ]
-
-    for (let side of sidemodes) {
-      App.supermain_remove(`window_border_${side}`)
-    }
-
-    App.supermain_remove(`window_border_glow`)
-
-    let sides = App.get_setting(`window_border_sides`)
-    App.supermain_add(`window_border_${sides}`)
-
-    if ((sides === `full`) || sides.includes(`except`) || (sides === `just_glow`)) {
-      if (App.get_setting(`enable_window_border_glow`)) {
-        if (border_color !== glow_color) {
-          App.supermain_add(`window_border_glow`)
-        }
-      }
-    }
-
-    if (glow_hover) {
-      App.supermain_add(`window_border_glow_hover`)
-    }
-    else {
-      App.supermain_remove(`window_border_glow_hover`)
-    }
 
     if (App.get_setting(`container_icon_text`)) {
       App.main_add(`container_with_text`)
@@ -227,6 +181,7 @@ App.do_apply_theme = (args = {}) => {
     App.set_filter_vars()
     App.set_top_panel_vars()
     App.set_obfuscate_vars()
+    App.set_border_vars()
 
     App.insert_tab_color_css()
     App.insert_color_css()
@@ -1523,6 +1478,101 @@ App.set_obfuscate_vars = () => {
   }
   else {
     App.main_remove(`obfuscate_text`)
+  }
+}
+
+App.set_border_vars = () => {
+  let border_color = App.get_setting(`window_border_color`)
+  let glow_color = App.get_setting(`window_border_glow`)
+  let glow_speed = App.get_setting(`window_border_glow_speed`)
+  let glow_hover = App.get_setting(`window_border_glow_hover`)
+
+  App.set_css_var(`window_border_width`, App.get_setting(`window_border_width`) + `px`)
+  App.set_css_var(`window_border_glow_color`, glow_color)
+  App.set_css_var(`window_border_glow_speed`, `${glow_speed}s`)
+  App.set_css_var(`window_border_color`, border_color)
+
+  let sidemodes = [
+    `full`,
+    `top`,
+    `bottom`,
+    `left`,
+    `right`,
+    `except_top`,
+    `except_bottom`,
+    `except_left`,
+    `except_right`,
+    `just_glow`,
+  ]
+
+  for (let side of sidemodes) {
+    App.supermain_remove(`window_border_${side}`)
+  }
+
+  App.supermain_remove(`window_border_glow`)
+
+  let sides = App.get_setting(`window_border_sides`)
+  App.supermain_add(`window_border_${sides}`)
+
+  let top_border = true
+  let bottom_border = true
+  let left_border = true
+  let right_border = true
+
+  if (sides === `except_top`) {
+    top_border = false
+  }
+  else if (sides === `except_bottom`) {
+    bottom_border = false
+  }
+  else if (sides === `except_left`) {
+    left_border = false
+  }
+  else if (sides === `except_right`) {
+    right_border = false
+  }
+
+  if (top_border) {
+    App.set_css_var(`window_border_glow_color_top`, glow_color)
+  }
+  else {
+    App.set_css_var(`window_border_glow_color_top`, `transparent`)
+  }
+
+  if (bottom_border) {
+    App.set_css_var(`window_border_glow_color_bottom`, glow_color)
+  }
+  else {
+    App.set_css_var(`window_border_glow_color_bottom`, `transparent`)
+  }
+
+  if (left_border) {
+    App.set_css_var(`window_border_glow_color_left`, glow_color)
+  }
+  else {
+    App.set_css_var(`window_border_glow_color_left`, `transparent`)
+  }
+
+  if (right_border) {
+    App.set_css_var(`window_border_glow_color_right`, glow_color)
+  }
+  else {
+    App.set_css_var(`window_border_glow_color_right`, `transparent`)
+  }
+
+  if ((sides === `full`) || sides.includes(`except`) || (sides === `just_glow`)) {
+    if (App.get_setting(`enable_window_border_glow`)) {
+      if (border_color !== glow_color) {
+        App.supermain_add(`window_border_glow`)
+      }
+    }
+  }
+
+  if (glow_hover) {
+    App.supermain_add(`window_border_glow_hover`)
+  }
+  else {
+    App.supermain_remove(`window_border_glow_hover`)
   }
 }
 

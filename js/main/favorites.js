@@ -65,20 +65,20 @@ App.create_favorites_bar = (mode) => {
   })
 
   DOM.ev(container, `mouseleave`, () => {
-    if (App.fav_autohide_enabled()) {
+    if (App.fav_autohide_enabled() && !App.fav_hover()) {
       App.on_favorites_leave(mode)
     }
   })
 
-  let supermain = DOM.el(`#supermain`)
+  let all = `#all`
 
-  DOM.ev(supermain, `mouseenter`, () => {
+  DOM.ev(all, `mouseenter`, () => {
     if (App.fav_autohide_enabled() && App.fav_hover()) {
       App.on_favorites_enter(mode)
     }
   })
 
-  DOM.ev(supermain, `mouseleave`, () => {
+  DOM.ev(all, `mouseleave`, () => {
     if (App.fav_autohide_enabled() && App.fav_hover()) {
       App.on_favorites_leave(mode)
     }
