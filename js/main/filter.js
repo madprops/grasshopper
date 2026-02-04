@@ -541,6 +541,29 @@ App.make_filter_regex = (args = {}) => {
       // Do nothing
     }
   }
+  else if (args.by_what.startsWith(`sim`)) {
+    regex = {}
+
+    regex.test = (text) => {
+      let words = App.get_words(text)
+
+      if (text.includes(args.value)) {
+        return true
+      }
+
+      for (let word of words) {
+        if (word.includes(args.value)) {
+          return true
+        }
+
+        if (App.string_similarity(word, args.value) >= 0.7) {
+          return true
+        }
+      }
+
+      return false
+    }
+  }
   else {
     let cleaned = App.clean_filter(args.value)
 
@@ -572,7 +595,7 @@ App.filter_check = (args) => {
     let clean_title = App.clean_filter(title)
 
     for (let regex of args.regexes) {
-      if ([`all`, `re`, `char`, `chars`].includes(args.by_what)) {
+      if ([`all`, `re`, `char`, `chars`, `sim`, `sims`].includes(args.by_what)) {
         let title_path
 
         if (args.item.header) {
