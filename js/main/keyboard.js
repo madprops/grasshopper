@@ -518,6 +518,14 @@ App.setup_keyboard = () => {
         return
       }
     }
+    else if (mode === `about_credits`) {
+      if (e.key === `Escape`) {
+        App.hide_window()
+        App.show_about()
+        e.preventDefault()
+        return
+      }
+    }
     else if (mode === `signals`) {
       if (e.key === `Escape`) {
         if (App.signals_filter_focused()) {

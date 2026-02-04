@@ -2,6 +2,8 @@
 
 [Advanced Tab Manager For Firefox](https://addons.mozilla.org/firefox/addon/grasshopper-urls/)
 
+![](img/screenshot.jpg)
+
 Developed by Merkoba
 
 Programmed by madprops
