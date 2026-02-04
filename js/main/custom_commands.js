@@ -58,6 +58,12 @@ App.custom_command_actions = {
   jump_to_tag: (cmd, items, e) => {
     App.jump_tabs({what: `tag_${cmd.argument}`, item: items[0]})
   },
+  custom_filter: (cmd, items, e) => {
+    App.set_filter({text: cmd.argument})
+  },
+  find_command: (cmd, items, e) => {
+    App.show_palette(cmd.argument)
+  },
 }
 
 App.custom_command_items = [
@@ -72,6 +78,8 @@ App.custom_command_items = [
   {text: `Prepend Global Note`, value: `prepend_global_note`, icon: App.notepad_icon},
   {text: `Open In Container`, value: `open_in_container`, icon: App.container_icon},
   {text: `Jump To Tag`, value: `jump_to_tag`, icon: App.tag_icon},
+  {text: `Custom Filter`, value: `custom_filter`, icon: App.filter_icon},
+  {text: `Find Command`, value: `find_command`, icon: App.command_icon},
 ]
 
 App.start_custom_commands_addlist = () => {

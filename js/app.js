@@ -320,6 +320,7 @@ App.gematria_icon = `🧮`
 App.photo_icon = `🖼️`
 App.chemistry_icon = `⚛️`
 App.toggle_icon = `🔛`
+App.filter_icon = `🔍`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

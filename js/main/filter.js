@@ -812,6 +812,7 @@ App.set_filter = (args = {}) => {
     filter: true,
     instant: true,
     to_history: true,
+    mode: App.active_mode,
   }
 
   App.def_args(def_args, args)
