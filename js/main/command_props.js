@@ -5120,7 +5120,7 @@ App.setup_commands = () => {
       info: `Repeat the last command`,
     },
     {
-      name: `Show Stuff`,
+      name: `Stuff Menu`,
       short_name: `Stuff`,
       cmd: `show_stuff_menu`,
       icon: shroom_icon,
