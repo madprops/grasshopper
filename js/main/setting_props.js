@@ -2058,8 +2058,8 @@ App.build_settings = () => {
       info: `Items for the Stuff Menu`,
       version: 1,
     },
-    toggles_menu: {
-      name: `Toggles Menu`,
+    toggle_menu: {
+      name: `Toggle Menu`,
       type: `list`,
       data_group: `normal_menus`,
       value: [
@@ -2077,7 +2077,7 @@ App.build_settings = () => {
         {cmd: `toggle_wrap_text`},
         {cmd: `toggle_auto_blur`},
       ],
-      info: `Items for the Toggles Menu`,
+      info: `Items for the Toggle Menu`,
       version: 1,
     },
     scroller_menu: {
@@ -5501,7 +5501,7 @@ App.build_settings = () => {
       info: `Only show icons in the Stuff Menu`,
       version: 1,
     },
-    compact_toggles_menu: {
+    compact_toggle_menu: {
       name: `Compact Toggles Menu`,
       type: `checkbox`,
       value: false,

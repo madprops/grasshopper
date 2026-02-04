@@ -114,15 +114,15 @@ App.show_stuff_menu = (item, e) => {
   })
 }
 
-App.show_toggles_menu = (item, e) => {
-  let items = App.custom_menu_items({name: `toggles_menu`, item})
-  let compact = App.get_setting(`compact_toggles_menu`)
+App.show_toggle_menu = (item, e) => {
+  let items = App.custom_menu_items({name: `toggle_menu`, item})
+  let compact = App.get_setting(`compact_toggle_menu`)
 
   App.show_context({
     e,
     items,
-    title: `Toggles`,
-    title_icon: App.toggles_icon,
+    title: `Toggle`,
+    title_icon: App.toggle_icon,
     title_number: true,
     compact,
   })

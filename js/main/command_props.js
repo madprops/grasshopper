@@ -5130,12 +5130,12 @@ App.setup_commands = () => {
       info: `Show a menu with some selected commands`,
     },
     {
-      name: `Show Toggles`,
-      short_name: `Toggles`,
-      cmd: `show_toggles_menu`,
+      name: `Toggle Menu`,
+      short_name: `Toggle`,
+      cmd: `show_toggle_menu`,
       icon: toggle_icon,
       action: (args) => {
-        App.show_toggles_menu(args.item, args.e)
+        App.show_toggle_menu(args.item, args.e)
       },
       info: `Show a menu with some toggle commands`,
     },
