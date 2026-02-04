@@ -45,6 +45,27 @@ App.about_lore_items = [
   `Grasshoppers have had a long relationship with humans. Swarms of locusts can have devastating effects and cause famine, having done so since Biblical times. Even in smaller numbers, the insects can be serious pests. They are used as food in countries such as Mexico and Indonesia. They feature in art, symbolism and literature. The study of grasshopper species is called acridology.`,
 ]
 
+App.about_credits_items = [
+  `Developed by Merkoba`,
+  `Programmed by madprops`,
+  `Designed by madprops`,
+  `Ideas by N3C2L`,
+  `Feedback by user0022`,
+  `Support by daffydock`,
+  `Coffee by fireworksordie`,
+  `Appearance by ghost-of-freedom`,
+  `Investigation by matt961`,
+  `Suggestions by arjpar`,
+  `Realization by sunng87`,
+  `Checks by lifehaschanged`,
+  `Cooperation by eLionsson`,
+  `Followup by Pierll`,
+  `Reasoning by jingofett`,
+  `Falconry by sjehuda`,
+  `Shortcuts by u2615`,
+  `Ovation by getcheffy`,
+]
+
 App.start_about = () => {
   if (App.check_ready(`about`)) {
     return
@@ -111,6 +132,11 @@ App.start_about = () => {
         App.hide_window()
         App.show_about_lore()
       })
+
+      DOM.ev(`#show_about_credits`, `click`, () => {
+        App.hide_window()
+        App.show_about_credits()
+      })
     },
     after_show: () => {
       let info = ``
@@ -164,6 +190,11 @@ App.show_about_info = () => {
 App.show_about_lore = () => {
   App.start_about_lore()
   App.show_window(`about_lore`)
+}
+
+App.show_about_credits = () => {
+  App.start_about_credits()
+  App.show_window(`about_credits`)
 }
 
 App.focus_about_filter = () => {
@@ -273,6 +304,40 @@ App.start_about_lore = () => {
       DOM.el(`#about_lore_name`).textContent = s
 
       let container = DOM.el(`#window_content_about_lore`)
+      App.generic_gestures(container)
+    },
+    colored_top: true,
+  })
+}
+
+App.start_about_credits = () => {
+  if (App.check_ready(`about_credits`)) {
+    return
+  }
+
+  App.create_window({
+    id: `about_credits`,
+    setup: () => {
+      let close = DOM.el(`#about_credits_close`)
+
+      DOM.ev(close, `click`, () => {
+        App.hide_window()
+        App.show_about()
+      })
+
+      close.textContent = App.close_text
+      let credits = DOM.el(`#about_credits`)
+
+      for (let item of App.about_credits_items) {
+        let el = DOM.create(`div`, `about_info_item filter_item filter_text`)
+        el.textContent = item
+        credits.append(el)
+      }
+
+      let s = `${App.manifest.name} v${App.manifest.version}`
+      DOM.el(`#about_credits_name`).textContent = s
+
+      let container = DOM.el(`#window_content_about_credits`)
       App.generic_gestures(container)
     },
     colored_top: true,
