@@ -318,6 +318,8 @@ App.calculator_icon = `🔢`
 App.oracle_icon = `🔮`
 App.gematria_icon = `🧮`
 App.photo_icon = `🖼️`
+App.chemistry_icon = `⚛️`
+
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`
 App.filter_clear_icon = `x`

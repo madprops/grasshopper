@@ -48,6 +48,13 @@ App.show_textarea = (args = {}) => {
     else {
       simplearea.classList.remove(`monospace`)
     }
+
+    if (args.wrap) {
+      simplearea.classList.add(`pre_wrap`)
+    }
+    else {
+      simplearea.classList.remove(`pre_wrap`)
+    }
   }
   else if (args.only_image) {
     DOM.hide(textarea)

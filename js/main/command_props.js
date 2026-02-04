@@ -54,6 +54,7 @@ App.setup_commands = () => {
   let action_icon = App.action_icon
   let select_icon = App.select_icon
   let photo_icon = App.photo_icon
+  let chemistry_icon = App.chemistry_icon
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -5154,6 +5155,15 @@ App.setup_commands = () => {
         App.show_gematria()
       },
       info: `Show the numeric value of text`,
+    },
+    {
+      name: `Elements`,
+      cmd: `show_elements`,
+      icon: chemistry_icon,
+      action: (args) => {
+        App.show_elements()
+      },
+      info: `Show information about chemical elements`,
     },
     {
       name: `Oracle`,

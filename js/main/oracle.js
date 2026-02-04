@@ -9,7 +9,6 @@ App.show_oracle = () => {
     title_icon: App.oracle_icon,
     text,
     simple: true,
-    monospace: true,
     buttons: [
       {
         text: `Again`,
