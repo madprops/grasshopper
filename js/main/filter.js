@@ -1093,12 +1093,12 @@ App.do_filter_2 = (mode) => {
       return true
     }
 
-    for (let word of App.get_words(text)) {
-      let sim = App.string_similarity(word, value)
+    if (text.includes(value)) {
+      return true
+    }
 
-      if (sim >= 0.7) {
-        return true
-      }
+    if (App.string_similarity(text, value) >= 0.7) {
+      return true
     }
 
     return false
