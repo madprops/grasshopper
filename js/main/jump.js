@@ -34,6 +34,9 @@ App.jump_tabs = async (args = {}) => {
   if (args.what === `tag`) {
     target = App.get_jump_target(args.info)
   }
+  else if (args.what.startsWith(`tag_`)) {
+    target = args.what.split(`_`).slice(1).join(`_`)
+  }
   else if (zones.includes(args.what)) {
     if (index > 0) {
       if (h_action === `first`) {
@@ -97,7 +100,7 @@ App.jump_tabs = async (args = {}) => {
       let id = App.get_color(it)
       return id && (id === args.info)
     }
-    else if (args.what === `tag`) {
+    else if (args.what.startsWith(`tag`)) {
       let tags = App.get_tags(it)
       return tags.includes(target)
     }
