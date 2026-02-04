@@ -1088,6 +1088,22 @@ App.do_filter_2 = (mode) => {
   let and_parts = App.filter_parts(value, `&`)
   let or_parts = App.filter_parts(value, `|`)
 
+  function check(text, value) {
+    if (!value) {
+      return true
+    }
+
+    for (let word of App.get_words(text)) {
+      let sim = App.string_similarity(word, value)
+
+      if (sim >= 0.7) {
+        return true
+      }
+    }
+
+    return false
+  }
+
   function action(item) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
     let tooltip = item.title
@@ -1104,17 +1120,17 @@ App.do_filter_2 = (mode) => {
     }
     else {
       if (and_parts.length > 1) {
-        show = and_parts.every(part => text.includes(part))
+        show = and_parts.every(part => check(text, part))
       }
       else if (or_parts.length > 1) {
-        show = or_parts.some(part => text.includes(part))
+        show = or_parts.some(part => check(text, part))
       }
       else {
-        show = text.includes(value)
+        show = check(text, value)
       }
 
       if (!show && tooltip) {
-        show = tooltip.includes(value)
+        show = check(tooltip, value)
       }
     }
 

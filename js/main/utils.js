@@ -846,3 +846,12 @@ App.string_similarity_distance = (s1, s2) => {
 
   return costs[s2.length]
 }
+
+App.sort_chars = (text) => {
+  let chars = text.toLowerCase().split(``).filter(x => x).sort()
+  return chars.join(``)
+}
+
+App.get_words = (text) => {
+  return text.split(` `).filter(x => x)
+}
