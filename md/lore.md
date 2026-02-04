@@ -8,4 +8,4 @@ Grasshoppers are plant-eaters, with a few species at times becoming serious pest
 
 Grasshoppers have had a long relationship with humans. Swarms of locusts can have devastating effects and cause famine, having done so since Biblical times. Even in smaller numbers, the insects can be serious pests. They are used as food in countries such as Mexico and Indonesia. They feature in art, symbolism and literature. The study of grasshopper species is called acridology.
 
-<img src="../img/info.jpg" width="380">
+![](../img/info.jpg)
