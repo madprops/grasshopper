@@ -1,6 +1,6 @@
 # Grasshopper
 
 [Download](https://addons.mozilla.org/firefox/addon/grasshopper-urls/)
-| [Credits](credits.md) | [Lore](lore.md) | [Reviews](reviews.md)
+| [Credits](md/credits.md) | [Lore](md/lore.md) | [Reviews](md/reviews.md)
 
 ![](img/screenshot.jpg)

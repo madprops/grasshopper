@@ -1,4 +1,4 @@
-![](img/info.jpg)
+![](../img/info.jpg)
 
 >Now I don’t know if other people think this, but I’m the only one that I know that is terrified of grasshoppers. Their body looks like a demon out of hell and the way they can swarm and decimate crops is terrifying. I can just imagine them going piranha mode on a live human. They make me shake and I can’t talk when I see them too close.
 

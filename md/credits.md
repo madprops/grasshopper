@@ -1,3 +1,5 @@
+![](../img/mural.jpg)
+
 Developed by Merkoba
 
 Programmed by madprops
