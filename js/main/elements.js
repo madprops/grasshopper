@@ -4898,10 +4898,13 @@ App.show_elements = (name = ``) => {
 
   let text = [
     `${element.name} (${element.symbol})`,
-    `${element.phase} (${element.category})`,
-    `N: ${element.number} 🟢 P: ${element.period}`,
+    `${element.phase} (${element.category})\n`,
+    `Number: ${element.number}`,
+    `Period: ${element.period}\n`,
+    `Mass: ${element.atomic_mass}\n`,
+    `${element.electron_configuration}\n`,
     element.summary,
-  ].join(`\n\n`)
+  ].join(`\n`)
 
   App.show_textarea({
     title: `Elements`,
