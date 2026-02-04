@@ -4944,7 +4944,7 @@ App.show_elements = (name = ``) => {
 
 App.find_element = () => {
   App.show_prompt({
-    placeholder: `Element Name or Symbol`,
+    placeholder: `Name | Symbol | Number`,
     on_submit: async (name) => {
       App.show_elements(name)
     },
@@ -4956,7 +4956,10 @@ App.search_element = (name, prop = `name`) => {
   let highest = 0
 
   for (let element of App.elements) {
-    let score = App.string_similarity(name, element[prop])
+    let score = App.string_similarity(
+      name.toString(),
+      element[prop].toString(),
+    )
 
     if (score > highest) {
       closest = element
@@ -4970,5 +4973,8 @@ App.search_element = (name, prop = `name`) => {
 
   if (prop === `name`) {
     return App.search_element(name, `symbol`)
+  }
+  else if (prop === `symbol`) {
+    return App.search_element(name, `number`)
   }
 }

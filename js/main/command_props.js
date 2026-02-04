@@ -55,6 +55,7 @@ App.setup_commands = () => {
   let select_icon = App.select_icon
   let photo_icon = App.photo_icon
   let chemistry_icon = App.chemistry_icon
+  let toggle_icon = App.toggle_icon
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -5127,6 +5128,16 @@ App.setup_commands = () => {
         App.show_stuff_menu(args.item, args.e)
       },
       info: `Show a menu with some selected commands`,
+    },
+    {
+      name: `Show Toggles`,
+      short_name: `Toggles`,
+      cmd: `show_toggles_menu`,
+      icon: toggle_icon,
+      action: (args) => {
+        App.show_toggles_menu(args.item, args.e)
+      },
+      info: `Show a menu with some toggle commands`,
     },
     {
       name: `Lock Screen`,
