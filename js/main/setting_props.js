@@ -3009,6 +3009,13 @@ App.build_settings = () => {
       info: `Autohide the Favorites Bar when on left or right mode`,
       version: 1,
     },
+    favorites_hover: {
+      name: `Favorites Hover`,
+      type: `checkbox`,
+      value: false,
+      info: `Show favorites on global hover when autohide is enabled`,
+      version: 1,
+    },
   }
 
   add_props()

@@ -70,6 +70,20 @@ App.create_favorites_bar = (mode) => {
     }
   })
 
+  let supermain = DOM.el(`#supermain`)
+
+  DOM.ev(supermain, `mouseenter`, () => {
+    if (App.fav_autohide_enabled() && App.fav_hover()) {
+      App.on_favorites_enter(mode)
+    }
+  })
+
+  DOM.ev(supermain, `mouseleave`, () => {
+    if (App.fav_autohide_enabled() && App.fav_hover()) {
+      App.on_favorites_leave(mode)
+    }
+  })
+
   container.append(empty_top)
   container.append(bar)
   container.append(empty_bottom)
@@ -472,4 +486,8 @@ App.favorites_overflowed = () => {
 
 App.favorites_wheel = (e) => {
   return e.shiftKey || !App.favorites_scrollable() || !App.favorites_overflowed()
+}
+
+App.fav_hover = () => {
+  return App.get_setting(`favorites_hover`)
 }
