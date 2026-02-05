@@ -14,18 +14,23 @@ App.start_color_picker_window = () => {
         App.copy_to_clipboard(App.color_picker_hex())
       })
 
+      DOM.ev(`#color_picker_copy_hsl`, `click`, () => {
+        App.copy_to_clipboard(App.color_picker_hsl())
+      })
+
       DOM.ev(`#color_picker_close`, `click`, () => {
         App.hide_window()
       })
 
       let el = DOM.el(`#color_picker`)
+      App.color_picker_rgb = `rgb(0, 0, 0)`
 
       App.color_picker = AColorPicker.createPicker(el, {
         showAlpha: true,
         showHSL: true,
         showRGB: true,
         showHEX: true,
-        color: `rgb(0, 0, 0)`,
+        color: App.color_picker_rgb,
       })
 
       App.color_picker.on(`change`, (picker, color) => {
@@ -48,5 +53,9 @@ App.show_color_picker_window = () => {
 }
 
 App.color_picker_hex = () => {
-  return App.colorlib.rgb_to_hex(App.color_picker_rgb)
+  return AColorPicker.parseColor(App.color_picker_rgb, `hex`)
+}
+
+App.color_picker_hsl = () => {
+  return AColorPicker.parseColor(App.color_picker_rgb, `hslcss`)
 }
