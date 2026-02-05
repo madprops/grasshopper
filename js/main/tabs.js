@@ -140,7 +140,7 @@ App.focus_tab = async (args = {}) => {
 
   App.def_args(def_args, args)
 
-  if (!args.item) {
+  if (!App.item_ready(args.item)) {
     return
   }
 

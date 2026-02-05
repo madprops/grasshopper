@@ -1633,3 +1633,15 @@ App.check_indices = (from_index, to_index) => {
 
   return true
 }
+
+App.item_ready = (item) => {
+  if (!item) {
+    return false
+  }
+
+  if (!item.element_ready) {
+    return false
+  }
+
+  return true
+}
