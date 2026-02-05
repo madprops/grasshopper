@@ -42,7 +42,7 @@ App.start_color_picker_window = () => {
       })
     },
     after_show: () => {
-      //
+      App.color_picker_focus_name()
     },
     after_hide: () => {
       //
@@ -72,8 +72,14 @@ App.color_picker_enter = () => {
   let input = DOM.el(`#color_picker_name_input`)
   let value = input.value
   let hex = App.color_to_hex(value)
+
   App.color_picker.setColor(hex)
   App.color_picker_hex = hex
   input.value = ``
-  input.focus()
+
+  App.color_picker_focus_name()
+}
+
+App.color_picker_focus_name = () => {
+  DOM.el(`#color_picker_name_input`).focus()
 }
