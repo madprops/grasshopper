@@ -178,3 +178,13 @@ App.stor_save_datastore = () => {
   App.debug(`Stor: Saving datastore`)
   App.save_local_storage(App.stor_datastore, App.datastore)
 }
+
+App.stor_get_memory = async () => {
+  App.memory = await App.get_local_storage(App.stor_memory, {})
+  App.debug(`Stor: Got memory`)
+}
+
+App.stor_save_memory = () => {
+  App.debug(`Stor: Saving memory`)
+  App.save_local_storage(App.stor_memory, App.memory)
+}

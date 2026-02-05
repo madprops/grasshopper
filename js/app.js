@@ -19,6 +19,7 @@ App.stor_notes_name = `notes_v200`
 App.stor_bookmark_folder_picks = `bookmark_folder_picks_v202`
 App.stor_history_picks = `history_picks_v202`
 App.stor_datastore = `datastore_v204`
+App.stor_memory = `memory_v204`
 
 // Backwards compatibility check
 // This should only be used if the structure of the objects have not changed
@@ -167,6 +168,7 @@ App.datastore_max_text = 20 * 1000
 App.calculator_text = ``
 App.background_autocolor_prev = -1
 App.oracle_words = 2
+App.memory = {}
 
 App.settings_ready = false
 App.media_image_ready = false

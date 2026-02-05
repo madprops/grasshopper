@@ -106,25 +106,16 @@ App.user_madprops_settings = () => {
   sett = `favorites_menu`
   App.set_setting({setting: sett, value: []})
 
+  cmd = {cmd: `repeat_command`}
+  App.append_list_setting(sett, cmd)
+
   cmd = {cmd: `open_new_tab`, middle: `open_new_tab_above`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `edit_global_notes`, middle: `show_title_history`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `select_normal_tabs`, middle: `deselect_all_items`}
-  App.append_list_setting(sett, cmd)
-
   cmd = {cmd: `show_settings`, middle: `show_last_settings`, shift: `show_all_settings`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `send_signal_sig_play`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `send_signal_sig_next`, middle: `send_signal_sig_prev`, shift: `send_signal_sig_seek`, ctrl: `send_signal_sig_rewind`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `send_signal_sig_volup`, middle: `send_signal_sig_voldown`, shift: `send_signal_sig_volmax`, ctrl: `send_signal_sig_volmin`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `show_signals`}

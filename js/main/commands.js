@@ -80,10 +80,11 @@ App.run_command = async (args) => {
       from: args.from,
     }
 
-    let no_repat = [`repeat_command`, `show_palette`]
+    let no_repat = [`repeat_command`, `show_palette`, `restart_extension`]
 
     if (!no_repat.includes(args.cmd)) {
       App.last_command = last_args
+      App.mem_last_command()
     }
 
     await command.action(args)
