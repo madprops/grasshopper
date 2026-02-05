@@ -542,7 +542,11 @@ App.fill_headers = (e) => {
     })
   }
 
-  App.show_context({items, e})
+  App.show_context({
+    title: `${App.zone_icon} Headers`,
+    items,
+    e,
+  })
 }
 
 App.fill_subheaders = (e) => {
@@ -557,7 +561,11 @@ App.fill_subheaders = (e) => {
     })
   }
 
-  App.show_context({items, e})
+  App.show_context({
+    title: `${App.zone_icon} Subheaders`,
+    items,
+    e,
+  })
 }
 
 App.do_fill_headers = (num, full = true) => {
@@ -612,7 +620,11 @@ App.tabs_to_zone = (args = {}) => {
     })
   }
 
-  App.show_context({items, e: args.e})
+  App.show_context({
+    title: `${App.zone_icon} To Zone`,
+    items,
+    e: args.e,
+  })
 }
 
 App.move_to_zone = (zone, item, position = `top`) => {
@@ -633,7 +645,6 @@ App.move_to_zone = (zone, item, position = `top`) => {
 
 App.pick_zone = (e, what, position = `top`) => {
   let [zones, icon] = App.get_zones_and_icon(what)
-
   let items = []
 
   for (let [i, zone] of zones.entries()) {
@@ -646,7 +657,11 @@ App.pick_zone = (e, what, position = `top`) => {
     })
   }
 
-  App.show_context({items, e})
+  App.show_context({
+    title: `${App.zone_icon} Pick Zone`,
+    items,
+    e,
+  })
 }
 
 App.go_to_zone = (zone, position = `top`) => {
