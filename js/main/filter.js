@@ -219,10 +219,10 @@ App.do_filter = async (args = {}) => {
     and_join = value
   }
 
-  let escape = false
+  let escape = true
 
-  if (!by_what.startsWith(`re`)) {
-    escape = true
+  if (by_what.startsWith(`re`)) {
+    escape = false
   }
 
   let regex = App.make_filter_regex({
