@@ -1,4 +1,4 @@
-// NeedContext v11.0
+// NeedContext v12.0
 
 // Main object
 const NeedContext = {}
@@ -246,7 +246,7 @@ NeedContext.show = (args = {}) => {
   }
 
   if (!args.root) {
-    c.append(NeedContext.back_button())
+    c.append(NeedContext.back_button(args))
   }
 
   c.append(NeedContext.clear_button())
@@ -533,7 +533,9 @@ NeedContext.select_action = (e, index = NeedContext.index, mode = `mouse`) => {
       y = e.clientY
     }
 
-    NeedContext.show({x, y, items, root: false})
+    let args = {x, y, items, root: false}
+    NeedContext.fill_args(args)
+    NeedContext.show(args)
   }
 
   let do_items = (items) => {
@@ -1012,25 +1014,33 @@ NeedContext.go_back = () => {
   let layer = NeedContext.prev_layer()
   NeedContext.level -= 1
 
-  let args = {x: layer.x, y: layer.y, items: layer.items, root: layer.root}
-  args.compact = NeedContext.args.compact
-  args.autohide = NeedContext.args.autohide
-  args.autoclick = NeedContext.args.autoclick
+  let args = {
+    x: layer.x,
+    y: layer.y,
+    items: layer.items,
+    root: layer.root,
+  }
+
+  NeedContext.fill_args(args)
   NeedContext.show(args)
 }
 
 // Create back button
-NeedContext.back_button = () => {
+NeedContext.back_button = (args) => {
   let el = document.createElement(`div`)
   el.id = `needcontext-back`
   el.classList.add(`needcontext-back`)
   el.classList.add(`needcontext-button`)
   let icon = document.createElement(`div`)
   icon.append(NeedContext.back_icon)
-  let text = document.createElement(`div`)
-  text.textContent = NeedContext.back_text.trim()
+
+  if (!args.compact) {
+    let text = document.createElement(`div`)
+    text.textContent = NeedContext.back_text.trim()
+    el.append(text)
+  }
+
   el.append(icon)
-  el.append(text)
   el.title = `Shortcut: Backspace`
   return el
 }
@@ -1406,4 +1416,11 @@ NeedContext.start_autoclick = (delay) => {
 // Lock the autoclick until it moves
 NeedContext.lock_autoclick = () => {
   NeedContext.autoclick_lock = NeedContext.autoclick_lock_amount
+}
+
+// Fill an args object
+NeedContext.fill_args = (args) => {
+  args.compact = NeedContext.args.compact
+  args.autohide = NeedContext.args.autohide
+  args.autoclick = NeedContext.args.autoclick
 }
