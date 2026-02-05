@@ -7,11 +7,11 @@ App.start_color_picker_window = () => {
     id: `color_picker`,
     setup: () => {
       DOM.ev(`#color_picker_copy_rgb`, `click`, () => {
-        App.copy_to_clipboard(App.colorpicker_rgb)
+        App.copy_to_clipboard(App.color_picker_rgb)
       })
 
       DOM.ev(`#color_picker_copy_hex`, `click`, () => {
-        App.copy_to_clipboard(App.colorpicker_hex())
+        App.copy_to_clipboard(App.color_picker_hex())
       })
 
       DOM.ev(`#color_picker_close`, `click`, () => {
@@ -20,7 +20,7 @@ App.start_color_picker_window = () => {
 
       let el = DOM.el(`#color_picker`)
 
-      App.colorpicker = AColorPicker.createPicker(el, {
+      App.color_picker = AColorPicker.createPicker(el, {
         showAlpha: true,
         showHSL: true,
         showRGB: true,
@@ -28,8 +28,8 @@ App.start_color_picker_window = () => {
         color: `rgb(0, 0, 0)`,
       })
 
-      App.colorpicker.on(`change`, (picker, color) => {
-        App.colorpicker_rgb = color.toString()
+      App.color_picker.on(`change`, (picker, color) => {
+        App.color_picker_rgb = color.toString()
       })
     },
     after_show: () => {
@@ -47,6 +47,6 @@ App.show_color_picker_window = () => {
   App.show_window(`color_picker`)
 }
 
-App.colorpicker_hex = () => {
-  return App.colorlib.rgb_to_hex(App.colorpicker_rgb)
+App.color_picker_hex = () => {
+  return App.colorlib.rgb_to_hex(App.color_picker_rgb)
 }

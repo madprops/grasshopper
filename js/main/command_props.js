@@ -5160,7 +5160,8 @@ App.setup_commands = () => {
       info: `Generate a random password`,
     },
     {
-      name: `Colorpicker`,
+      name: `Color Picker`,
+      short_name: `Colorpicker`,
       cmd: `show_color_picker`,
       icon: color_picker_icon,
       action: (args) => {
