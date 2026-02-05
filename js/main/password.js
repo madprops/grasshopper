@@ -15,13 +15,13 @@ App.generate_password = (hard = false) => {
         },
       },
       {
-        text: `1`,
+        text: `Easy`,
         action: () => {
           App.generate_password()
         },
       },
       {
-        text: `2`,
+        text: `Hard`,
         action: () => {
           App.generate_password(true)
         },
