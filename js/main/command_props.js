@@ -96,6 +96,7 @@ App.setup_commands = () => {
   let calculator_icon = App.calculator_icon
   let oracle_icon = App.oracle_icon
   let gematria_icon = App.gematria_icon
+  let color_picker_icon = App.color_picker_icon
 
   let tbmodes = []
 
@@ -5157,6 +5158,15 @@ App.setup_commands = () => {
         App.generate_password()
       },
       info: `Generate a random password`,
+    },
+    {
+      name: `Colorpicker`,
+      cmd: `show_color_picker`,
+      icon: color_picker_icon,
+      action: (args) => {
+        App.show_color_picker_window()
+      },
+      info: `Show the color picker`,
     },
     {
       name: `Gematria`,

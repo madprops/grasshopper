@@ -2048,6 +2048,7 @@ App.build_settings = () => {
         {cmd: `show_flashlight`},
         {cmd: `use_calculator`},
         {cmd: `generate_password`},
+        {cmd: `show_color_picker`},
         {cmd: `show_gematria`},
         {cmd: `show_elements`},
         {cmd: `show_oracle`},
