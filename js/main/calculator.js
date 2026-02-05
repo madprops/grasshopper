@@ -1,3 +1,5 @@
+App.calculator_info = `You can use variables like a = 123. Combined operators like += -= /= *= are available. Variables can reference other variables. The result is the last operation performed.`
+
 App.use_calculator = () => {
   function format_num(ans) {
     return App.number_format(ans, 5)
@@ -15,10 +17,9 @@ App.use_calculator = () => {
     readonly: false,
     buttons: [
       {
-        text: `Close`,
+        text: `Info`,
         action: (text) => {
-          App.calculator_text = text
-          App.close_textarea()
+          App.alert(App.calculator_info)
         },
       },
       {
@@ -50,6 +51,13 @@ App.use_calculator = () => {
           else {
             on_error()
           }
+        },
+      },
+      {
+        text: `Close`,
+        action: (text) => {
+          App.calculator_text = text
+          App.close_textarea()
         },
       },
     ],
