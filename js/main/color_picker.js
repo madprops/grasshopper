@@ -74,7 +74,6 @@ App.color_picker_enter = () => {
   let hex = App.color_to_hex(value)
 
   App.color_picker.setColor(hex)
-  App.color_picker_hex = hex
   input.value = ``
 
   App.color_picker_focus_name()
