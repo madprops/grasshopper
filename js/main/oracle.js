@@ -11,6 +11,12 @@ App.show_oracle = () => {
     simple: true,
     buttons: [
       {
+        text: `Close`,
+        action: () => {
+          App.close_textarea()
+        },
+      },
+      {
         text: `Again`,
         action: () => {
           App.show_oracle()
@@ -20,12 +26,6 @@ App.show_oracle = () => {
         text: `Copy`,
         action: () => {
           App.copy_to_clipboard(text)
-          App.close_textarea()
-        },
-      },
-      {
-        text: `Close`,
-        action: () => {
           App.close_textarea()
         },
       },

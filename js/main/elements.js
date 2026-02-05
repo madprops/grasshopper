@@ -4914,6 +4914,12 @@ App.show_elements = (name = ``) => {
     wrap: true,
     buttons: [
       {
+        text: `Close`,
+        action: () => {
+          App.close_textarea()
+        },
+      },
+      {
         text: `Find`,
         action: () => {
           App.find_element()
@@ -4929,12 +4935,6 @@ App.show_elements = (name = ``) => {
         text: `Copy`,
         action: () => {
           App.copy_to_clipboard(text)
-          App.close_textarea()
-        },
-      },
-      {
-        text: `Close`,
-        action: () => {
           App.close_textarea()
         },
       },

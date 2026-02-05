@@ -9,6 +9,12 @@ App.generate_password = (hard = false) => {
     monospace: true,
     buttons: [
       {
+        text: `Close`,
+        action: () => {
+          App.close_textarea()
+        },
+      },
+      {
         text: `1`,
         action: () => {
           App.generate_password()
@@ -24,12 +30,6 @@ App.generate_password = (hard = false) => {
         text: `Copy`,
         action: () => {
           App.copy_to_clipboard(password)
-          App.close_textarea()
-        },
-      },
-      {
-        text: `Close`,
-        action: () => {
           App.close_textarea()
         },
       },

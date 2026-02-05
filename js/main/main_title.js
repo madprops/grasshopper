@@ -495,6 +495,12 @@ App.show_title_history = () => {
     title: `Title History`,
     buttons: [
       {
+        text: `Close`,
+        action: () => {
+          App.close_textarea()
+        },
+      },
+      {
         text: `Clear`,
         action: () => {
           App.clear_title_history()
@@ -504,12 +510,6 @@ App.show_title_history = () => {
         text: `Copy`,
         action: () => {
           App.copy_to_clipboard(text)
-          App.close_textarea()
-        },
-      },
-      {
-        text: `Close`,
-        action: () => {
           App.close_textarea()
         },
       },

@@ -17,6 +17,13 @@ App.use_calculator = () => {
     readonly: false,
     buttons: [
       {
+        text: `Close`,
+        action: (text) => {
+          App.calculator_text = text
+          App.close_textarea()
+        },
+      },
+      {
         text: `Info`,
         action: (text) => {
           App.alert(App.calculator_info)
@@ -51,13 +58,6 @@ App.use_calculator = () => {
           else {
             on_error()
           }
-        },
-      },
-      {
-        text: `Close`,
-        action: (text) => {
-          App.calculator_text = text
-          App.close_textarea()
         },
       },
     ],

@@ -9,15 +9,15 @@ App.show_photo = async () => {
     image_size: `big`,
     buttons: [
       {
-        text: `Change`,
+        text: `Close`,
         action: () => {
-          App.upload_photo()
           App.close_textarea()
         },
       },
       {
-        text: `Close`,
+        text: `Change`,
         action: () => {
+          App.upload_photo()
           App.close_textarea()
         },
       },
