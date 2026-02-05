@@ -287,7 +287,7 @@ App.booster_shot = async () => {
 
   if (granted) {
     // eslint-disable-next-line no-console
-    console.info(`Permission granted!`)
+    console.info(`Permission granted.`)
   }
   else {
     // eslint-disable-next-line no-console
