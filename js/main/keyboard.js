@@ -526,6 +526,16 @@ App.setup_keyboard = () => {
         return
       }
     }
+    else if (mode === `color_picker`) {
+      if (e.key === `Escape`) {
+        App.hide_window()
+        e.preventDefault()
+        return
+      }
+      else if (e.key === `Enter`) {
+        App.color_picker_enter()
+      }
+    }
     else if (mode === `signals`) {
       if (e.key === `Escape`) {
         if (App.signals_filter_focused()) {

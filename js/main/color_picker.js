@@ -22,6 +22,10 @@ App.start_color_picker_window = () => {
         App.hide_window()
       })
 
+      DOM.ev(`#color_picker_name_button`, `click`, () => {
+        App.color_picker_enter()
+      })
+
       let el = DOM.el(`#color_picker`)
       App.color_picker_rgb = `rgb(0, 0, 0)`
 
@@ -58,4 +62,18 @@ App.color_picker_hex = () => {
 
 App.color_picker_hsl = () => {
   return AColorPicker.parseColor(App.color_picker_rgb, `hslcss`)
+}
+
+App.color_to_hex = (value) => {
+  return AColorPicker.parseColor(value, `hex`)
+}
+
+App.color_picker_enter = () => {
+  let input = DOM.el(`#color_picker_name_input`)
+  let value = input.value
+  let hex = App.color_to_hex(value)
+  App.color_picker.setColor(hex)
+  App.color_picker_hex = hex
+  input.value = ``
+  input.focus()
 }

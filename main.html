@@ -181,10 +181,18 @@ But not all Grasshoppers are Locusts
       <div id="color_picker_container" class="flex_column_center gap_2">
         <div id="color_picker"></div>
 
-        <div class="flex_row_center gap_2">
-          <div id="color_picker_copy_hex" class="button">Hex</div>
-          <div id="color_picker_copy_rgb" class="button">RGB</div>
-          <div id="color_picker_copy_hsl" class="button">HSL</div>
+        <div class="flex_column_center gap_2">
+          <div class="flex_row_center gap_2">
+            <div id="color_picker_copy_hex" class="button color_picker_button" title="Copy the Hex value to the clipboard">Hex</div>
+            <div id="color_picker_copy_rgb" class="button color_picker_button" title="Copy the RGB value to the clipboard">RGB</div>
+            <div id="color_picker_copy_hsl" class="button color_picker_button" title="Copy the HSL value to the clipboard">HSL</div>
+          </div>
+
+          <div class="flex_row_center gap_1">
+            <input id="color_picker_name_input" type="text" placeholder="Color Name">
+            <div id="color_picker_name_button" class="button color_picker_button" title="Set the color using names like 'red'">Set</div>
+          </div>
+        </div>
       </div>
     </template>
 

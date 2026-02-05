@@ -219,10 +219,16 @@ App.do_filter = async (args = {}) => {
     and_join = value
   }
 
+  let escape = false
+
+  if (!by_what.startsWith(`re`)) {
+    escape = true
+  }
+
   let regex = App.make_filter_regex({
     value: and_join,
     quotes: quotes_enabled,
-    escape: false,
+    escape,
     by_what,
   })
 
