@@ -394,9 +394,12 @@ App.remove_all_zones = () => {
   })
 }
 
-App.close_header_group = (item) => {
+App.close_header_group = (item, header = true) => {
   App.select_header_group(item)
-  App.toggle_selected({item, what: false})
+
+  if (!header) {
+    App.toggle_selected({item, what: false})
+  }
 
   App.close_tabs({
     cancel_action: () => {
