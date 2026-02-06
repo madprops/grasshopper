@@ -1088,6 +1088,11 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
     return DOM.parent(target, [what])
   }
 
+  if (item.header && App.get_setting(`header_icon_pick`)) {
+    App.close_header_group(item)
+    return true
+  }
+
   if (!icon) {
     if (check(`.color_icon_container`)) {
       icon = `color`
@@ -1180,10 +1185,5 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
 
 App.check_item_icon_middle_click_2 = (item) => {
   let icon = item.override_icon
-
-  if (!icon) {
-    return false
-  }
-
   return App.check_item_icon_middle_click(item, item.element, icon)
 }

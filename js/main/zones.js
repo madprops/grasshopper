@@ -397,7 +397,12 @@ App.remove_all_zones = () => {
 App.close_header_group = (item) => {
   App.select_header_group(item)
   App.toggle_selected({item, what: false})
-  App.close_tabs()
+
+  App.close_tabs({
+    cancel_action: () => {
+      App.deselect({mode: `tabs`})
+    }
+  })
 }
 
 App.do_header_action = (item, action) => {

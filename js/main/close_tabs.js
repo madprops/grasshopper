@@ -7,6 +7,7 @@ App.close_tabs = (args = {}) => {
     full_force: false,
     no_smart: false,
     clear: true,
+    cancel_action: () => {},
   }
 
   App.def_args(def_args, args)
@@ -82,6 +83,9 @@ App.close_tabs = (args = {}) => {
       }
 
       App.play_sound(`effect_1`)
+    },
+    cancel_action: () => {
+      args.cancel_action()
     },
     force: args.force,
   })
