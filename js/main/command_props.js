@@ -139,19 +139,27 @@ App.setup_commands = () => {
   let color_closers = []
 
   color_filters.push({
-    name: `Filter All Colors`,
-    short_name: `All Colors`,
+    name: `Filter Colors`,
+    short_name: `Colors`,
     cmd: `filter_color_all`,
     modes: [`items`],
     icon: colors_icon,
     filter_mode: true,
     action: (args) => {
-      App.filter_color({
-        mode: args.mode,
-        id: `all`,
-        toggle: true,
-        from: args.from,
-      })
+      App.filter_all_colors(args)
+    },
+    info: `Filter all colors`,
+  })
+
+  color_filters.push({
+    name: `Show Colors`,
+    short_name: `Colors`,
+    cmd: `show_color_all`,
+    modes: [`items`],
+    icon: colors_icon,
+    filter_mode: true,
+    action: (args) => {
+      App.show_all_colors(args)
     },
     info: `Filter all colors`,
   })
@@ -343,7 +351,7 @@ App.setup_commands = () => {
   })
 
   color_removers.push({
-    name: `Remove All Colors`,
+    name: `Remove Colors`,
     short_name: `Rm Colors`,
     cmd: `remove_all_colors`,
     modes: [`tabs`],

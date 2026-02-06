@@ -66,6 +66,11 @@ App.show_tab_list = (what, e, item) => {
     title = color.name
     title_icon = App.color_icon(color_id)
   }
+  else if (what.startsWith(`colors`)) {
+    tabs = App.get_color_tabs()
+    title = `Colors`
+    title_icon = App.settings_icons.colors
+  }
   else if (what.startsWith(`tag_`)) {
     let tag = what.split(`_`)[1]
     tabs = App.get_tag_tabs(tag)
