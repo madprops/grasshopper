@@ -1,7 +1,6 @@
 App.booster_shot = async () => {
   let permissions_to_request = {
     origins: [
-      `trialML`,
       `<all_urls>`,
     ],
   }
