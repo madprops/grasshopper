@@ -5279,7 +5279,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.talk_to_cael()
       },
-      info: `Decimate the crops`,
+      info: `Talk to Cael (AI)`,
     },
     {
       name: `Set AI Key`,
@@ -5289,7 +5289,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.set_ai_key()
       },
-      info: `Decimate the crops`,
+      info: `Set the API Key for the AI`,
     },
     {
       name: `Swarm`,

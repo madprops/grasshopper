@@ -8,7 +8,7 @@ App.ai_config = {
 
 App.talk_to_cael = async () => {
   if (!App.ai.key) {
-    App.set_ai_key(true)
+    App.set_ai_key(`cael`)
     return
   }
 
@@ -80,15 +80,17 @@ App.ask_ai = async (system, prompt) => {
   }
 }
 
-App.set_ai_key = (talk = false) => {
+App.set_ai_key = (talk = ``) => {
   App.show_prompt({
+    password: true,
     placeholder: `API Key`,
     on_submit: async (key) => {
       if (key) {
-        App.ai.api_key = key
+        App.ai.key = key
+        App.stor_save_ai()
 
         if (talk) {
-          App.talk_to_cael()
+          App[`talk_to_${talk}`]()
         }
       }
     },
