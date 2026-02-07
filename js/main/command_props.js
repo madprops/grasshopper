@@ -5188,7 +5188,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_color_picker_window()
       },
-      info: `Show the color picker`,
+      info: `Show the Color Picker`,
     },
     {
       name: `Gematria`,
@@ -5215,7 +5215,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_oracle()
       },
-      info: `Show the oracle`,
+      info: `Show the Oracle`,
     },
     {
       name: `Word Counter`,
@@ -5224,7 +5224,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_word_counter()
       },
-      info: `Show the oracle`,
+      info: `Show the Word Counter`,
     },
     {
       name: `Calculator`,
@@ -5233,7 +5233,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.use_calculator()
       },
-      info: `Use the calculator`,
+      info: `Use the Calculator`,
     },
     {
       name: `Flashlight`,
