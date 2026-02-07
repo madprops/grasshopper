@@ -5,8 +5,8 @@ App.ai_config = {
   },
   cael_system: `Your name is Cael, an ancient grasshopper deity. I am here to ask you a question, or to entertain you for a while.`,
   history: [],
-  words: 500,
-  max_tokens: 1000,
+  words: 100,
+  max_tokens: 2000,
 }
 
 App.talk_to_cael = async () => {
@@ -76,8 +76,8 @@ App.ask_ai = async (system, prompt) => {
   }
 
   let body = {
-    model: App.ai_config.gemini.model,
     stream: false,
+    model: App.ai_config.gemini.model,
     max_tokens: App.ai_config.max_tokens,
   }
 
@@ -106,12 +106,17 @@ App.ask_ai = async (system, prompt) => {
     }
 
     let res = data.choices[0].message.content
-    App.ai_config.history.push({role: `user`, content: prompt})
-    App.ai_config.history.push({role: `assistant`, content: res})
+
+    if (res) {
+      App.ai_config.history.push({role: `user`, content: prompt})
+      App.ai_config.history.push({role: `assistant`, content: res})
+    }
+
     App.clear_textarea()
     return res
   }
   catch (error) {
+    App.hide_alert()
     App.error(error)
   }
 }
