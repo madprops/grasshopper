@@ -1,3 +1,5 @@
+// This is modularized so it's easy to add other personalities
+
 App.ai_config = {
   gemini: {
     url: `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`,
