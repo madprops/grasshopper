@@ -5075,14 +5075,14 @@ App.setup_commands = () => {
       info: `Toggle the tab sort`,
     },
     {
-      name: `Toggle Autoclick`,
-      short_name: `Autoclick`,
+      name: `Toggle Auto Click`,
+      short_name: `Auto Click`,
       cmd: `toggle_auto_click`,
       icon: mouse_icon,
       action: (args) => {
         App.toggle_auto_click()
       },
-      info: `Enable or disable Autoclick`,
+      info: `Enable or disable Auto Click`,
     },
     {
       name: `Toggle Gestures`,

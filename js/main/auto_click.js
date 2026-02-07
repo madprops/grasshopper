@@ -130,5 +130,5 @@ App.auto_click_action = (e) => {
 App.toggle_auto_click = () => {
   let aclick = App.get_setting(`auto_click_enabled`)
   App.set_setting({setting: `auto_click_enabled`, value: !aclick})
-  App.toggle_message(`Autoclick`, `auto_click_enabled`)
+  App.toggle_message(`Auto Click`, `auto_click_enabled`)
 }
