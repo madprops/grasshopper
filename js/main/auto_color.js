@@ -46,8 +46,5 @@ App.toggle_auto_color = () => {
   })
 
   App.toggle_message(`Auto Color`, `auto_color_enabled`)
-
-  if (!ac) {
-    App.start_auto_color()
-  }
+  App.start_auto_color()
 }
