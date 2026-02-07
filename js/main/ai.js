@@ -47,7 +47,13 @@ App.show_ai = (who, title) => {
 }
 
 App.ai_ask_cael = (text) => {
-  App.ask_ai(App.ai_config.cael_system, text)
+  try {
+    let res = App.ask_ai(App.ai_config.cael_system, text)
+
+    if (res) {
+      App.alert(res)
+    }
+  }
 }
 
 App.ask_ai = async (system, prompt) => {
@@ -80,7 +86,10 @@ App.ask_ai = async (system, prompt) => {
       throw new Error(`AI API Error (${App.ai_source}): ${err}`)
     }
 
-    return data.choices[0].message.content
+    let res = data.choices[0].message.content
+    App.ai_config.history.push({role: `user`, content: prompt})
+    App.ai_config.history.push({role: `assistant`, content: res})
+    return res
   }
   catch (error) {
     console.error(`AI Request Failed:`, error)
