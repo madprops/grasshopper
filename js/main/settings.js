@@ -414,7 +414,7 @@ App.refresh_settings = () => {
   App.resolve_icons()
   App.refresh_context()
   App.start_auto_color()
-  App.check_themed_week()
+  App.start_themed_week()
 }
 
 App.build_setting_cmds = () => {

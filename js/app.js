@@ -233,6 +233,7 @@ App.ensure_scroll_delay = 800
 App.icon_pick_delay = 100
 App.auto_click_delay = 450
 App.idle_tabs_delay = App.MINUTE
+App.themed_week_delay = App.MINUTE
 
 App.settings_icons = {
   all: `🔍`,
