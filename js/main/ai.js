@@ -25,6 +25,7 @@ App.show_ai = (who, title) => {
     title,
     title_icon: App[`ai_icon_${who}`],
     readonly: false,
+    fluid: true,
     on_enter: (text) => {
       ask(text)
     },

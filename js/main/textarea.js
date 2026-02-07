@@ -15,6 +15,7 @@ App.show_textarea = (args = {}) => {
     enter_action: false,
     shift_enter: false,
     format: true,
+    fluid: false,
   }
 
   App.def_args(def_args, args)
@@ -123,6 +124,13 @@ App.show_textarea = (args = {}) => {
   else if (args.image_size === `big`) {
     image.classList.add(`big`)
     image.classList.remove(`normal`)
+  }
+
+  if (args.fluid) {
+    textarea.classList.add(`fluid`)
+  }
+  else {
+    textarea.classList.remove(`fluid`)
   }
 
   if (args.image) {

@@ -1310,6 +1310,10 @@ a:hover
   text-align: center;
 }
 
+#textarea_text.fluid {
+  white-space: unset;
+}
+
 .full_width {
   width: 100%;
 }

@@ -8,6 +8,7 @@ App.show_word_counter = () => {
     title: `Word Counter`,
     title_icon: App.word_counter_icon,
     readonly: false,
+    fluid: true,
     buttons: [
       {
         text: `Close`,
