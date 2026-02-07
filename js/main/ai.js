@@ -46,13 +46,16 @@ App.show_ai = (who, title) => {
   })
 }
 
-App.ai_ask_cael = (text) => {
+App.ai_ask_cael = async (text) => {
   try {
-    let res = App.ask_ai(App.ai_config.cael_system, text)
+    let res = await App.ask_ai(App.ai_config.cael_system, text)
 
     if (res) {
       App.alert(res)
     }
+  }
+  catch (err) {
+    App.alert(`Communication Breakdown`)
   }
 }
 
@@ -89,6 +92,7 @@ App.ask_ai = async (system, prompt) => {
     let res = data.choices[0].message.content
     App.ai_config.history.push({role: `user`, content: prompt})
     App.ai_config.history.push({role: `assistant`, content: res})
+    App.clear_textarea()
     return res
   }
   catch (error) {
