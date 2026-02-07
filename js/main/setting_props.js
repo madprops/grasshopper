@@ -2074,6 +2074,7 @@ App.build_settings = () => {
         {cmd: `toggle_show_pins`},
         {cmd: `toggle_show_unloaded`},
         {cmd: `toggle_tab_sort`},
+        {cmd: `toggle_zones`},
         {cmd: App.separator_string},
         {cmd: `toggle_wrap_text`},
         {cmd: `toggle_auto_blur`},
@@ -4032,6 +4033,14 @@ App.build_settings = () => {
   category = `zones`
 
   props = {
+    zones_enabled: {
+      name: `Zones Enabled`,
+      type: `checkbox`,
+      value: true,
+      separator: true,
+      info: `Show zone tabs`,
+      version: 1,
+    },
     split_width: {
       name: `Split Width`,
       type: `menu`,

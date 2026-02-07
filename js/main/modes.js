@@ -193,6 +193,7 @@ App.do_show_mode = async (args = {}) => {
   App.init_footer()
   App.refresh_footer()
   App.check_footer_mode(args.mode)
+  App.do_filter()
 
   if (args.mode === `tabs`) {
     App.check_pinline()

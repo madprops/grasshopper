@@ -72,6 +72,7 @@ App.do_filter = async (args = {}) => {
   App.cancel_filter()
 
   let def_args = {
+    mode: App.active_mode,
     force: false,
     deep: false,
     select: true,
@@ -341,8 +342,15 @@ App.do_filter = async (args = {}) => {
     check_max = true
   }
 
+  let zones_enabled = App.get_setting(`zones_enabled`)
+
   for (let item of items) {
     if (!search && !item.element) {
+      continue
+    }
+
+    if (item.header && !zones_enabled) {
+      App.hide_item(item)
       continue
     }
 
@@ -592,6 +600,12 @@ App.filter_check = (args) => {
   let match = false
   let title = App.title(args.item)
   let lower_title = title.toLowerCase()
+
+  if (args.item.header) {
+    if (!App.get_setting(`zones_enabled`)) {
+      return false
+    }
+  }
 
   if (args.force_value_check) {
     match = true

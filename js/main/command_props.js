@@ -2849,6 +2849,16 @@ App.setup_commands = () => {
       info: `Turn a header into a subheader`,
     },
     {
+      name: `Toggle Zones`,
+      cmd: `toggle_zones`,
+      modes: [`tabs`],
+      icon: zone_icon,
+      action: (args) => {
+        App.toggle_zones(args.item)
+      },
+      info: `Show or hide zone tabs`,
+    },
+    {
       name: `Select Pins`,
       short_name: `Pins`,
       cmd: `select_pinned_tabs`,

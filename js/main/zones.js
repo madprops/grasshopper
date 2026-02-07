@@ -772,3 +772,16 @@ App.get_zone_tabs = (zone) => {
 
   return result
 }
+
+App.toggle_zones = () => {
+  let ze = App.get_setting(`zones_enabled`)
+
+  App.set_setting({
+    setting: `zones_enabled`,
+    value: !ze,
+    action: true,
+  })
+
+  App.toggle_message(`Zones`, `zones_enabled`)
+  App.do_filter()
+}
