@@ -404,7 +404,7 @@ App.close_header_group = (item, header = true) => {
   App.close_tabs({
     cancel_action: () => {
       App.deselect({mode: `tabs`})
-    }
+    },
   })
 }
 

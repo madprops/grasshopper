@@ -1,7 +1,7 @@
 App.ai_config = {
   gemini: {
-    url: "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
-    model: "gemini-flash-latest",
+    url: `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`,
+    model: `gemini-flash-latest`,
   },
   cael_system: `Your name is Cael, an ancient grasshopper deity. I am here to ask you a question, or to entertain you for a while.`,
   history: [],
@@ -94,7 +94,7 @@ App.ask_ai = async (system, prompt) => {
   try {
     let response = await fetch(App.ai_config.gemini.url, {
       method: `POST`,
-      headers: headers,
+      headers,
       body: JSON.stringify(body),
     })
 
@@ -112,7 +112,7 @@ App.ask_ai = async (system, prompt) => {
     return res
   }
   catch (error) {
-    console.error(`AI Request Failed:`, error)
+    App.error(error)
   }
 }
 
