@@ -20,7 +20,6 @@ App.alert = (message, args = {}) => {
   App.start_popups()
   let msg = DOM.el(`#alert_message`)
   message = message.toString()
-  text = App.make_html_safe(message)
 
   if (args.format) {
     text = text.replace(/<\/ ?blockquote>/g, ``)
@@ -32,6 +31,7 @@ App.alert = (message, args = {}) => {
     action(App.char_regex_2(`_`), App.to_bold)
   }
 
+  text = App.make_html_safe(message)
   text = text.replace(/\n/g, `<br>`)
   msg.innerHTML = text
   App.show_popup(`alert`)
