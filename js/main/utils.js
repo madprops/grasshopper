@@ -907,12 +907,36 @@ App.line_level = (s) => {
   return Math.max(0, ...(s.match(/\n+/g) || []).map((m) => m.length))
 }
 
+App.get_word_matches = (s) => {
+  return s.match(/\S+/g)
+}
+
 App.word_count = (s) => {
-  let matches = s.match(/\S+/g)
+  let matches = App.get_word_matches(s)
 
   if (!matches) {
     return 0
   }
 
   return matches.length
+}
+
+App.longest_word = (s) => {
+  let word_list = App.get_word_matches(s)
+
+  if (!word_list) {
+    return ``
+  }
+
+  return word_list.reduce((l, c) => c.length > l.length ? c : l)
+}
+
+App.shortest_word = (s) => {
+  let word_list = App.get_word_matches(s)
+
+  if (!word_list) {
+    return ``
+  }
+
+  return word_list.reduce((s, c) => c.length < s.length ? c : s)
 }

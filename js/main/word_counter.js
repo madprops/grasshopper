@@ -44,5 +44,13 @@ App.count_words = (text) => {
   let words = App.word_count(text)
   let spaces = App.space_level(text)
   let lines = App.line_level(text)
-  return `Words: ${words}\nChars: ${text.length}\nSpaces: ${spaces}\nLines: ${lines}`
+  let long = App.longest_word(text) || `[None]`
+  let short = App.shortest_word(text) || `[None]`
+
+  return `Words: ${words}
+  Chars: ${text.length}
+  Spaces: ${spaces}
+  Lines: ${lines}
+  Long: ${long}
+  Short: ${short}`
 }
