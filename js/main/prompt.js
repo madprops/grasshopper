@@ -15,6 +15,10 @@ App.setup_prompt = () => {
     App.fill_prompt()
   })
 
+  DOM.ev(`#prompt_reveal`, `click`, (e) => {
+    App.reveal_prompt()
+  })
+
   DOM.el(`#prompt_list`).textContent = App.smiley_icon
 }
 
@@ -42,12 +46,15 @@ App.show_prompt = (args = {}) => {
   input.value = args.value
   input.placeholder = args.placeholder
   let prompt_mode = App.get_setting(`prompt_mode`)
+  let reveal = DOM.el(`#prompt_reveal`)
 
   if (args.password) {
     input.type = `password`
+    DOM.show(reveal)
   }
   else {
     input.type = `text`
+    DOM.hide(reveal)
   }
 
   let list = DOM.el(`#prompt_list`)
@@ -200,11 +207,21 @@ App.show_prompt_list = (from = `click`) => {
   })
 }
 
-// Fill the prompt with the fill value if any
 App.fill_prompt = () => {
   if (App.prompt_fill) {
     let input = DOM.el(`#prompt_input`)
     input.value = App.prompt_fill
     input.focus()
+  }
+}
+
+App.reveal_prompt = () => {
+  let input = DOM.el(`#prompt_input`)
+
+  if (input.type === `password`) {
+    input.type = `text`
+  }
+  else {
+    input.type = `password`
   }
 }
