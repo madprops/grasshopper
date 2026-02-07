@@ -67,13 +67,13 @@ App.lock_screen = async () => {
     DOM.hide(text_el)
   }
 
-  clearTimeout(App.words_autohide_timeout)
-  let words_autohide = App.get_setting(`lock_screen_words_autohide`)
+  clearTimeout(App.words_auto_hide_timeout)
+  let words_auto_hide = App.get_setting(`lock_screen_words_auto_hide`)
 
-  if (words_autohide > 0) {
-    App.words_autohide_timeout = setTimeout(() => {
+  if (words_auto_hide > 0) {
+    App.words_auto_hide_timeout = setTimeout(() => {
       DOM.hide(text_el)
-    }, words_autohide * 1000)
+    }, words_auto_hide * 1000)
   }
 
   App.show_window(`lock_screen`)

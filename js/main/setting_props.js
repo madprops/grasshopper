@@ -5079,15 +5079,15 @@ App.build_settings = () => {
       info: `How many random words to show in the lock screen`,
       version: 1,
     },
-    lock_screen_words_autohide: {
-      name: `Lock Screen Words Autohide`,
+    lock_screen_words_auto_hide: {
+      name: `Lock Screen Words Auto Hide`,
       type: `number`,
       value: 5,
       placeholder: `Number`,
       min: 0,
       max: App.number_max,
       separator: true,
-      info: `Auto-hide the lock screen words after this many seconds`,
+      info: `Auto hide the lock screen words after these many seconds`,
       version: 1,
     },
     lock_screen_block_signals: {
@@ -5111,285 +5111,285 @@ App.build_settings = () => {
   props = App.setting_browser_commands()
 
   add_props()
-  category = `autoclick`
+  category = `auto_click`
 
   props = {
-    autoclick_enabled: {
-      name: `Autoclick Enabled`,
+    auto_click_enabled: {
+      name: `Auto Click Enabled`,
       type: `checkbox`,
       value: false,
       separator: true,
       no_mirror: true,
-      info: `Enable or disable autoclick globally`,
+      info: `Enable or disable auto click globally`,
       version: 1,
     },
-    item_autoclick: {
-      name: `Item Autoclick`,
+    item_auto_click: {
+      name: `Item Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on items`,
       version: 1,
     },
-    item_autoclick_delay: {
-      name: `Item Autoclick Delay`,
+    item_auto_click_delay: {
+      name: `Item Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Item Autoclick`,
+      info: `Delay in milliseconds for Item Auto Click`,
       version: 1,
     },
-    unloaded_tab_autoclick: {
-      name: `Unloaded Autoclick`,
+    unloaded_tab_auto_click: {
+      name: `Unloaded Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on unloaded tabs`,
       version: 1,
     },
-    unloaded_tab_autoclick_delay: {
-      name: `Unloaded Autoclick Delay`,
+    unloaded_tab_auto_click_delay: {
+      name: `Unloaded Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Unloaded Autoclick`,
+      info: `Delay in milliseconds for Unloaded Auto Click`,
       version: 1,
     },
-    tab_box_autoclick: {
-      name: `Tab Box Autoclick`,
+    tab_box_auto_click: {
+      name: `Tab Box Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on Tab Box items`,
       version: 1,
     },
-    tab_box_autoclick_delay: {
-      name: `Tab Box Autoclick Delay`,
+    tab_box_auto_click_delay: {
+      name: `Tab Box Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Tab Box Autoclick`,
+      info: `Delay in milliseconds for Tab Box Auto Click`,
       version: 1,
     },
-    hover_button_autoclick: {
-      name: `Hover Btn Autoclick`,
+    hover_button_auto_click: {
+      name: `Hover Btn Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click the menu when hovering the Hover Button`,
       version: 1,
     },
-    hover_button_autoclick_delay: {
-      name: `Hover Btn Autoclick Delay`,
+    hover_button_auto_click_delay: {
+      name: `Hover Btn Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Hover Button Autoclick`,
+      info: `Delay in milliseconds for Hover Button Auto Click`,
       version: 1,
     },
-    close_button_autoclick: {
-      name: `Close Btn Autoclick`,
+    close_button_auto_click: {
+      name: `Close Btn Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click the menu when hovering the Close Button`,
       version: 1,
     },
-    close_button_autoclick_delay: {
-      name: `Close Btn Autoclick Delay`,
+    close_button_auto_click_delay: {
+      name: `Close Btn Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Close Button Autoclick`,
+      info: `Delay in milliseconds for Close Button Auto Click`,
       version: 1,
     },
-    main_button_autoclick: {
-      name: `Main Btn Autoclick`,
+    main_button_auto_click: {
+      name: `Main Btn Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on the Main Button`,
       version: 1,
     },
-    main_button_autoclick_delay: {
-      name: `Main Btn Autoclick Delay`,
+    main_button_auto_click_delay: {
+      name: `Main Btn Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Main Button Autoclick`,
+      info: `Delay in milliseconds for Main Button Auto Click`,
       version: 1,
     },
-    filter_button_autoclick: {
-      name: `Filter Btn Autoclick`,
+    filter_button_auto_click: {
+      name: `Filter Btn Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on the Filter Button`,
       version: 1,
     },
-    filter_button_autoclick_delay: {
-      name: `Filter Btn Autoclick Delay`,
+    filter_button_auto_click_delay: {
+      name: `Filter Btn Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Filter Button Autoclick`,
+      info: `Delay in milliseconds for Filter Button Auto Click`,
       version: 1,
     },
-    actions_button_autoclick: {
-      name: `Actions Btn Autoclick`,
+    actions_button_auto_click: {
+      name: `Actions Btn Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on the Actions Button`,
       version: 1,
     },
-    actions_button_autoclick_delay: {
-      name: `Actions Btn Autoclick Delay`,
+    actions_button_auto_click_delay: {
+      name: `Actions Btn Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Actions Button Autoclick`,
+      info: `Delay in milliseconds for Actions Button Auto Click`,
       version: 1,
     },
-    favorites_autoclick: {
-      name: `Favorites Autoclick`,
+    favorites_auto_click: {
+      name: `Favorites Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on the Favorites items`,
       version: 1,
     },
-    favorites_autoclick_delay: {
-      name: `Favorites Autoclick Delay`,
+    favorites_auto_click_delay: {
+      name: `Favorites Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Favorites Button Autoclick`,
+      info: `Delay in milliseconds for Favorites Button Auto Click`,
       version: 1,
     },
-    main_title_autoclick: {
-      name: `Title Autoclick`,
+    main_title_auto_click: {
+      name: `Title Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click the menu when hovering the Title Button`,
       version: 1,
     },
-    main_title_autoclick_delay: {
-      name: `Title Autoclick Delay`,
+    main_title_auto_click_delay: {
+      name: `Title Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Title Autoclick`,
+      info: `Delay in milliseconds for Title Auto Click`,
       version: 1,
     },
-    settings_autoclick: {
-      name: `Settings Autoclick`,
+    settings_auto_click: {
+      name: `Settings Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click the menu when hovering the Settings buttons`,
       version: 1,
     },
-    settings_autoclick_delay: {
-      name: `Settings Autoclick Delay`,
+    settings_auto_click_delay: {
+      name: `Settings Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Settings Autoclick`,
+      info: `Delay in milliseconds for Settings Auto Click`,
       version: 1,
     },
-    palette_autoclick: {
-      name: `Palette Autoclick`,
+    palette_auto_click: {
+      name: `Palette Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on the Command Palette`,
       version: 1,
     },
-    palette_autoclick_delay: {
-      name: `Palette Autoclick Delay`,
+    palette_auto_click_delay: {
+      name: `Palette Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Palette Autoclick`,
+      info: `Delay in milliseconds for Palette Auto Click`,
       version: 1,
     },
-    pinline_autoclick: {
-      name: `Pinline Autoclick`,
+    pinline_auto_click: {
+      name: `Pinline Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on the Command Pinline`,
       version: 1,
     },
-    pinline_autoclick_delay: {
-      name: `Pinline Autoclick Delay`,
+    pinline_auto_click_delay: {
+      name: `Pinline Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Pinline Autoclick`,
+      info: `Delay in milliseconds for Pinline Auto Click`,
       version: 1,
     },
-    footer_autoclick: {
-      name: `Footer Autoclick`,
+    footer_auto_click: {
+      name: `Footer Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on the Command Footer`,
       version: 1,
     },
-    footer_autoclick_delay: {
-      name: `Footer Autoclick Delay`,
+    footer_auto_click_delay: {
+      name: `Footer Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `Delay in milliseconds for Footer Autoclick`,
+      info: `Delay in milliseconds for Footer Auto Click`,
       version: 1,
     },
-    context_autoclick: {
-      name: `Context Autoclick`,
+    context_auto_click: {
+      name: `Context Auto Click`,
       type: `checkbox`,
       value: false,
       info: `Auto-click on context menus`,
       version: 1,
     },
-    context_autoclick_delay: {
-      name: `Context Autoclick Delay`,
+    context_auto_click_delay: {
+      name: `Context Auto Click Delay`,
       type: `number`,
-      value: App.autoclick_delay,
+      value: App.auto_click_delay,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay in milliseconds for Context Autoclick`,
+      info: `Delay in milliseconds for Context Auto Click`,
       version: 1,
     },
   }
@@ -5573,14 +5573,14 @@ App.build_settings = () => {
       info: `Delay in milliseconds for effects like Global when the mouse leaves`,
       version: 1,
     },
-    context_autohide_delay: {
-      name: `Context Autohide Delay`,
+    context_auto_hide_delay: {
+      name: `Context Auto Hide Delay`,
       type: `number`,
       value: 800,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay in milliseconds for Context Autohide`,
+      info: `Delay in milliseconds for Context Auto Hide`,
       version: 1,
     },
     visit_tabs_delay: {
@@ -5763,11 +5763,11 @@ App.build_settings = () => {
       info: `Sort setting categories`,
       version: 1,
     },
-    context_autohide: {
-      name: `Context Autohide`,
+    context_auto_hide: {
+      name: `Context Auto Hide`,
       type: `checkbox`,
       value: false,
-      info: `Autohide context menus when the mouse moves away from them`,
+      info: `Auto Hide context menus when the mouse moves away from them`,
       version: 1,
     },
     jump_unfold: {
@@ -6016,8 +6016,8 @@ App.build_settings = () => {
       Then click 'Manage Extension Shortcuts' and add the shortcuts you need
       Popup Commands open the popup first before running the command`,
     },
-    autoclick: {
-      info: `Enable auto-click actions on some components`,
+    auto_click: {
+      info: `Enable auto click actions on some components`,
     },
     compact: {
       info: `Compact some menus to only show icons in a row`,

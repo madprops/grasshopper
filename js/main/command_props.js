@@ -5067,10 +5067,10 @@ App.setup_commands = () => {
     {
       name: `Toggle Autoclick`,
       short_name: `Autoclick`,
-      cmd: `toggle_autoclick`,
+      cmd: `toggle_auto_click`,
       icon: mouse_icon,
       action: (args) => {
-        App.toggle_autoclick()
+        App.toggle_auto_click()
       },
       info: `Enable or disable Autoclick`,
     },
