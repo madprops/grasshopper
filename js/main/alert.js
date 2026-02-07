@@ -32,10 +32,10 @@ App.alert = (message, args = {}) => {
   msg.innerHTML = text
   App.show_popup(`alert`)
 
-  if (autohide_delay > 0) {
+  if (args.autohide_delay > 0) {
     App.alert_timeout = setTimeout(() => {
       App.hide_alert()
-    }, autohide_delay)
+    }, args.autohide_delay)
   }
 }
 

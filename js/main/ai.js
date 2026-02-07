@@ -5,6 +5,8 @@ App.ai_config = {
   },
   cael_system: `Your name is Cael, an ancient grasshopper deity. I am here to ask you a question, or to entertain you for a while.`,
   history: [],
+  words: 500,
+  max_tokens: 1000,
 }
 
 App.talk_to_cael = async () => {
@@ -76,7 +78,10 @@ App.ask_ai = async (system, prompt) => {
   let body = {
     model: App.ai_config.gemini.model,
     stream: false,
+    max_tokens: App.ai_config.max_tokens,
   }
+
+  system += `\nKeep response to around ${App.ai_config.words} words.`
 
   body.messages = [
     {role: `system`, content: system},
