@@ -940,3 +940,33 @@ App.shortest_word = (s) => {
 
   return word_list.reduce((s, c) => c.length < s.length ? c : s)
 }
+
+App.space_count = (s) => {
+  let matches = s.match(/ /g)
+
+  if (!matches) {
+    return 0
+  }
+
+  return matches.length
+}
+
+App.line_count = (s) => {
+  if (s.length === 0) {
+    return 0
+  }
+
+  let matches = s.match(/\n/g)
+
+  if (!matches) {
+    return 1
+  }
+
+  // If the string ends with a newline, we don't add an extra line
+  // unless there is content (or the potential for content) after it.
+  if (s.endsWith(`\n`)) {
+    return matches.length
+  }
+
+  return matches.length + 1
+}

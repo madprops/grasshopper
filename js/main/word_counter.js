@@ -18,7 +18,7 @@ App.show_word_counter = () => {
       {
         text: `Info`,
         action: (text) => {
-          App.alert(`This counts the number of words, characters, and biggest space`)
+          App.alert(`This counts the number of words, characters, number of spaces, number of lines, biggest space, biggest line, longest word, and shortest word`)
         },
       },
       {
@@ -42,15 +42,19 @@ App.show_word_counter = () => {
 App.count_words = (text) => {
   text = text.trim()
   let words = App.word_count(text)
-  let spaces = App.space_level(text)
-  let lines = App.line_level(text)
-  let long = App.longest_word(text) || `[None]`
-  let short = App.shortest_word(text) || `[None]`
+  let spaces = App.space_count(text)
+  let lines = App.line_count(text)
+  let space_level = App.space_level(text)
+  let line_level = App.line_level(text)
+  let longest = App.longest_word(text) || `[None]`
+  let shortest = App.shortest_word(text) || `[None]`
 
   return `Words: ${words}
   Chars: ${text.length}
   Spaces: ${spaces}
   Lines: ${lines}
-  Long: ${long}
-  Short: ${short}`
+  Space Level: ${space_level}
+  Line Level: ${line_level}
+  Longest: ${longest}
+  Shortest: ${shortest}`
 }
