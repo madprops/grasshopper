@@ -18,10 +18,17 @@ App.talk_to_cael = async () => {
 }
 
 App.show_ai = (who, title) => {
+  function ask() {
+    App[`ai_ask_${who}`](text)
+  }
+
   App.show_textarea({
     title,
     title_icon: App.cael_icon,
     readonly: false,
+    enter_action: () => {
+      ask()
+    },
     buttons: [
       {
         text: `Close`,
@@ -39,7 +46,7 @@ App.show_ai = (who, title) => {
       {
         text: `Send`,
         action: (text) => {
-          App[`ai_ask_${who}`](text)
+          ask()
         },
       },
     ],

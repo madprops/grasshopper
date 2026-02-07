@@ -208,6 +208,10 @@ App.textarea_enter = (e, force = false) => {
     return false
   }
 
+  if (e.shiftKey) {
+    return false
+  }
+
   let text = App.get_textarea_text()
   App.textarea_args.on_enter(text)
   return true
