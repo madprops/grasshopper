@@ -22,6 +22,11 @@ App.alert = (message, args = {}) => {
 
   if (args.format) {
     text = text.replace(/<\/ ?blockquote>/g, ``)
+  }
+
+  text = App.make_html_safe(text)
+
+  if (args.format) {
     action(App.char_regex_3(`\``), App.to_bold)
     action(App.char_regex_3(`"`), App.to_bold, true)
     action(App.char_regex_1(`*`, 2), App.to_bold)
@@ -30,7 +35,6 @@ App.alert = (message, args = {}) => {
     action(App.char_regex_2(`_`), App.to_bold)
   }
 
-  text = App.make_html_safe(text)
   text = text.replace(/\n/g, `<br>`)
   msg.innerHTML = text
   App.show_popup(`alert`)

@@ -7,8 +7,8 @@ App.ai_config = {
   },
   cael_system: `Your name is Cael, an ancient grasshopper deity. I am here to ask you a question, or to entertain you for a while. Don't be overly mysterious, be relatable while maintaining some of your essence.`,
   history: [],
-  words: 80,
-  max_tokens: 2000,
+  words: 50,
+  max_tokens: 1000,
 }
 
 App.talk_to_cael = async () => {
