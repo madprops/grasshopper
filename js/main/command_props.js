@@ -58,6 +58,7 @@ App.setup_commands = () => {
   let toggle_icon = App.toggle_icon
   let cael_icon = App.ai_icon_cael
   let ai_icon = App.ai_icon
+  let word_counter_icon = App.word_counter_icon
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -5213,6 +5214,15 @@ App.setup_commands = () => {
       icon: oracle_icon,
       action: (args) => {
         App.show_oracle()
+      },
+      info: `Show the oracle`,
+    },
+    {
+      name: `Word Counter`,
+      cmd: `show_word_counter`,
+      icon: word_counter_icon,
+      action: (args) => {
+        App.show_word_counter()
       },
       info: `Show the oracle`,
     },

@@ -328,6 +328,7 @@ App.filter_icon = `🔍`
 App.color_picker_icon = `🎨`
 App.ai_icon_cael = `🎆`
 App.ai_icon = `🧠`
+App.word_counter_icon = `🥸`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

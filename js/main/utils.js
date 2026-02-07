@@ -898,3 +898,21 @@ App.char_regex_3 = (char, n = 1) => {
 App.to_bold = (text) => {
   return `<span class="md_highlight">${text}</span>`
 }
+
+App.space_level = (s) => {
+  return Math.max(0, ...(s.match(/ +/g) || []).map((m) => m.length))
+}
+
+App.line_level = (s) => {
+  return Math.max(0, ...(s.match(/\n+/g) || []).map((m) => m.length))
+}
+
+App.word_count = (s) => {
+  let matches = s.match(/\S+/g)
+
+  if (!matches) {
+    return 0
+  }
+
+  return matches.length
+}

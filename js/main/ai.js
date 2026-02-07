@@ -7,7 +7,7 @@ App.ai_config = {
   },
   cael_system: `Your name is Cael, an ancient grasshopper deity. I am here to ask you a question, or to entertain you for a while. Don't be overly mysterious, be relatable while maintaining some of your essence.`,
   history: [],
-  words: 100,
+  words: 80,
   max_tokens: 2000,
 }
 
