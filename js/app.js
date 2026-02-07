@@ -324,6 +324,7 @@ App.chemistry_icon = `⚛️`
 App.toggle_icon = `🔛`
 App.filter_icon = `🔍`
 App.color_picker_icon = `🎨`
+App.cael_icon = `🧿`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

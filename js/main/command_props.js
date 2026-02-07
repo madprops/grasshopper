@@ -56,6 +56,7 @@ App.setup_commands = () => {
   let photo_icon = App.photo_icon
   let chemistry_icon = App.chemistry_icon
   let toggle_icon = App.toggle_icon
+  let cael_icon = App.cael_icon
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -5269,6 +5270,16 @@ App.setup_commands = () => {
         App.toggle_sidebar()
       },
       info: `Toggle the browser sidebar`,
+    },
+    {
+      name: `Talk To Cael`,
+      short_name: `Cael`,
+      cmd: `talk_to_cael`,
+      icon: cael_icon,
+      action: (args) => {
+        App.talk_to_cael()
+      },
+      info: `Decimate the crops`,
     },
     {
       name: `Swarm`,
