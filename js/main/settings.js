@@ -413,6 +413,7 @@ App.refresh_settings = () => {
   App.start_idle_tabs_check()
   App.resolve_icons()
   App.refresh_context()
+  App.start_auto_color()
 }
 
 App.build_setting_cmds = () => {

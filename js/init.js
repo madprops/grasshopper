@@ -67,6 +67,7 @@ App.init = async () => {
   App.start_signal_intervals()
   App.start_idle_tabs_check()
   App.start_progressive_fill()
+  App.start_auto_color()
   App.check_init_settings()
   App.check_init_command()
 

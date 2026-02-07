@@ -765,15 +765,3 @@ App.filter_all_colors = (args) => {
 App.show_all_colors = (args) => {
   App.show_tab_list(`colors`, args.e)
 }
-
-App.toggle_auto_color = () => {
-  let ac = App.get_setting(`auto_color_enabled`)
-
-  App.set_setting({
-    setting: `auto_color_enabled`,
-    value: !ac,
-    action: true,
-  })
-
-  App.toggle_message(`Auto Color`, `auto_color_enabled`)
-}

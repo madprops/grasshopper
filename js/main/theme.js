@@ -187,8 +187,6 @@ App.do_apply_theme = (args = {}) => {
     App.insert_color_css()
     App.insert_icon_css()
     App.insert_custom_css()
-
-    App.start_auto_color()
   }
   catch (err) {
     App.error(err)
@@ -1616,40 +1614,4 @@ App.set_uploaded_image = () => {
 App.is_dark_mode = () => {
   let color = App.get_setting(`background_color`)
   return App.colorlib.is_dark(color)
-}
-
-App.start_auto_color = () => {
-  let enabled = App.get_setting(`auto_color_enabled`)
-  clearInterval(App.auto_color_interval)
-
-  if (!enabled) {
-    return
-  }
-
-  let delay = parseInt(App.get_setting(`auto_color_delay`))
-
-  if (isNaN(delay)) {
-    return
-  }
-
-  if (delay <= 0) {
-    return
-  }
-
-  App.auto_color_interval = setInterval(() => {
-    if (!App.on_items()) {
-      return
-    }
-
-    App.do_auto_color()
-  }, delay)
-}
-
-App.do_auto_color = () => {
-  if (App.is_dark_mode()) {
-    App.random_colors(`dark`)
-  }
-  else {
-    App.random_colors(`light`)
-  }
 }
