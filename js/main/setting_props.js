@@ -736,7 +736,6 @@ App.build_settings = () => {
     auto_color_enabled: {
       name: `Auto Color`,
       type: `checkbox`,
-      actions: [`theme`],
       value: false,
       info: `Change the theme colors automatically`,
       version: 1,
@@ -777,6 +776,13 @@ App.build_settings = () => {
       actions: [`theme`],
       value: false,
       info: `Add a glow effect to all text`,
+      version: 1,
+    },
+    themed_week_enabled: {
+      name: `Themed Week`,
+      type: `checkbox`,
+      value: false,
+      info: `Use themes 1 through 7 depending on the day of the week`,
       version: 1,
     },
   }

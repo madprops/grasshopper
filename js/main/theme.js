@@ -748,7 +748,8 @@ App.set_background_image = (num) => {
 }
 
 App.background_path = (num) => {
-  return App.backgrounds_dir + `background_${num}.jpg`
+  let ext = App.get_theme_item(num).image_ext || `jpg`
+  return App.backgrounds_dir + `background_${num}.${ext}`
 }
 
 App.pick_background = (e) => {

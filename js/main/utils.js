@@ -970,3 +970,13 @@ App.line_count = (s) => {
 
   return matches.length + 1
 }
+
+App.get_day_number = () => {
+  let day = new Date().getDay()
+
+  if (day === 0) {
+    return 7
+  }
+
+  return day
+}
