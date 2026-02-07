@@ -56,7 +56,7 @@ App.setup_commands = () => {
   let photo_icon = App.photo_icon
   let chemistry_icon = App.chemistry_icon
   let toggle_icon = App.toggle_icon
-  let cael_icon = App.cael_icon
+  let cael_icon = App.ai_icon_cael
   let ai_icon = App.ai_icon
 
   let combo_icon = App.combo_icon
