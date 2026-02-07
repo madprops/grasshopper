@@ -336,7 +336,7 @@ App.tabs_action = async (args = {}) => {
 
   let check_auto_scroll = [
     `click`,
-    `autoclick`,
+    `auto_click`,
   ].includes(args.from)
 
   if (args.soft && args.item.unloaded) {
@@ -358,7 +358,12 @@ App.tabs_action = async (args = {}) => {
       return false
     }
 
-    let no_blink = [`click`, `enter`, `tab_cmd`, `close`, `autoclick`]
+    let no_blink = [`click`,
+      `enter`,
+      `tab_cmd`,
+      `close`,
+      `auto_click`,
+    ]
 
     if (no_blink.includes(args.from)) {
       return false

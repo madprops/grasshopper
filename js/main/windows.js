@@ -183,7 +183,7 @@ App.setup_window = () => {
   })
 
   DOM.ev(document.documentElement, `mouseleave`, () => {
-    clearInterval(App.autoclick_timeout)
+    clearInterval(App.auto_click_timeout)
     App.mouse_inside = false
     App.reset_triggers()
 

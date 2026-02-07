@@ -1,5 +1,5 @@
 App.mouse_click_action = (e, from = `click`) => {
-  clearInterval(App.autoclick_timeout)
+  clearInterval(App.auto_click_timeout)
   App.update_filter_history()
   let target = e.target
 
@@ -308,7 +308,7 @@ App.mouse_click_action = (e, from = `click`) => {
 }
 
 App.mouse_double_click_action = (e) => {
-  clearInterval(App.autoclick_timeout)
+  clearInterval(App.auto_click_timeout)
   App.update_filter_history()
   let target = e.target
   let mode = App.active_mode
@@ -435,7 +435,7 @@ App.mouse_double_click_action = (e) => {
 }
 
 App.mouse_ctrl_shift_click_action = (e) => {
-  clearInterval(App.autoclick_timeout)
+  clearInterval(App.auto_click_timeout)
   App.update_filter_history()
 
   let target = e.target
@@ -462,7 +462,7 @@ App.mouse_ctrl_shift_click_action = (e) => {
 }
 
 App.mouse_ctrl_shift_middle_click_action = (e) => {
-  clearInterval(App.autoclick_timeout)
+  clearInterval(App.auto_click_timeout)
   App.update_filter_history()
 
   let target = e.target
@@ -489,7 +489,7 @@ App.mouse_ctrl_shift_middle_click_action = (e) => {
 }
 
 App.mouse_context_action = (e) => {
-  clearInterval(App.autoclick_timeout)
+  clearInterval(App.auto_click_timeout)
   App.update_filter_history()
   let target = e.target
   let mode = App.active_mode
@@ -651,7 +651,7 @@ App.mouse_context_action = (e) => {
 }
 
 App.mouse_middle_action = (e, target_el) => {
-  clearInterval(App.autoclick_timeout)
+  clearInterval(App.auto_click_timeout)
   let target = e.target || target_el
   let mode = App.active_mode
 
@@ -852,7 +852,7 @@ App.mouse_middle_action = (e, target_el) => {
 }
 
 App.click_press_action = (e) => {
-  clearInterval(App.autoclick_timeout)
+  clearInterval(App.auto_click_timeout)
   let target = e.target
   let mode = App.active_mode
 

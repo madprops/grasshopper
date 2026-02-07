@@ -7,9 +7,9 @@ App.setup_context = () => {
 
 App.refresh_context = () => {
   let auto_hide_delay = App.get_setting(`context_auto_hide_delay`)
-  let autoclick_delay = App.get_setting(`context_autoclick_delay`)
+  let auto_click_delay = App.get_setting(`context_auto_click_delay`)
   NeedContext.start_autohide(auto_hide_delay)
-  NeedContext.start_autoclick(autoclick_delay)
+  NeedContext.start_autoclick(auto_click_delay)
 }
 
 App.show_context = (args = {}) => {
@@ -17,7 +17,7 @@ App.show_context = (args = {}) => {
     return
   }
 
-  clearInterval(App.autoclick_timeout)
+  clearInterval(App.auto_click_timeout)
 
   if (!args.items.length) {
     args.items.push({
@@ -35,9 +35,9 @@ App.show_context = (args = {}) => {
     args.title = undefined
   }
 
-  let ac_enabled = App.get_setting(`autoclick_enabled`)
+  let ac_enabled = App.get_setting(`auto_click_enabled`)
   args.autohide = App.get_setting(`context_auto_hide`)
-  args.autoclick = ac_enabled && App.get_setting(`context_autoclick`)
+  args.autoclick = ac_enabled && App.get_setting(`context_auto_click`)
   NeedContext.show(args)
 }
 

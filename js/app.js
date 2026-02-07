@@ -193,7 +193,7 @@ App.colors_addlist_ready = false
 App.keyboard_addlist_ready = false
 App.custom_commands_addlist_ready = false
 
-App.alert_autohide_delay = 1500
+App.alert_auto_hide_delay = 1500
 App.favorites_bar_show_delay = 100
 App.tab_box_grow_delay = 100
 App.tab_box_ungrow_delay = 500
@@ -231,7 +231,7 @@ App.mouse_over_delay = 150
 App.mouse_out_delay = 150
 App.ensure_scroll_delay = 800
 App.icon_pick_delay = 100
-App.autoclick_delay = 450
+App.auto_click_delay = 450
 App.idle_tabs_delay = App.MINUTE
 
 App.settings_icons = {
@@ -263,7 +263,7 @@ App.settings_icons = {
   close: `❌`,
   pinline: `📍`,
   compact: `💎`,
-  autoclick: `🖱️`,
+  auto_click: `🖱️`,
 }
 
 App.clipboard_icon = `📋`

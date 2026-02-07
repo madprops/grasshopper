@@ -62,7 +62,7 @@ App.setup_mouse = () => {
   })
 
   DOM.ev(container, `mouseover`, (e) => {
-    App.autoclick_action(e)
+    App.auto_click_action(e)
     App.mouse_over_action(e)
   })
 
