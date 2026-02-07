@@ -4,7 +4,7 @@ App.user_settings = (who, force = false) => {
     App[`user_${who}_settings`]()
     App.refresh_settings()
     App.clear_show()
-    App.alert_autohide(`Welcome ${who}`)
+    App.alert_auto_hide(`Welcome ${who}`)
   }
 
   if (force) {

@@ -66,7 +66,7 @@ App.clear_datastore = () => {
       confirm_action: () => {
         App.datastore.items = []
         App.stor_save_datastore()
-        App.alert_autohide(`Datastore cleared`)
+        App.alert_auto_hide(`Datastore cleared`)
       },
     },
   )

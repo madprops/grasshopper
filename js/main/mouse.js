@@ -314,6 +314,6 @@ App.click_element = (el) => {
     clientY: y,
   })
 
-  ev.custom_from = `autoclick`
+  ev.custom_from = `auto_click`
   el.dispatchEvent(ev)
 }

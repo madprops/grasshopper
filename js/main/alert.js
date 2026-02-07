@@ -1,6 +1,6 @@
 App.alert = (message, args = {}) => {
   let def_args = {
-    autohide_delay: 0,
+    auto_hide_delay: 0,
     format: true,
   }
 
@@ -35,14 +35,14 @@ App.alert = (message, args = {}) => {
   msg.innerHTML = text
   App.show_popup(`alert`)
 
-  if (args.autohide_delay > 0) {
+  if (args.auto_hide_delay > 0) {
     App.alert_timeout = setTimeout(() => {
       App.hide_alert()
-    }, args.autohide_delay)
+    }, args.auto_hide_delay)
   }
 }
 
-App.alert_autohide = (message, force = false) => {
+App.alert_auto_hide = (message, force = false) => {
   if (!force) {
     if (!App.get_setting(`show_feedback`)) {
       App.footer_message(message)
@@ -50,7 +50,7 @@ App.alert_autohide = (message, force = false) => {
     }
   }
 
-  App.alert(message, {autohide_delay: App.alert_autohide_delay})
+  App.alert(message, {auto_hide_delay: App.alert_auto_hide_delay})
 }
 
 App.hide_alert = () => {
