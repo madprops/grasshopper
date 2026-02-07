@@ -40,6 +40,12 @@ App.show_ai = (who, title) => {
         },
       },
       {
+        text: `Info`,
+        action: () => {
+          App.show_ai_info()
+        },
+      },
+      {
         text: `Key`,
         action: () => {
           App.set_ai_key(`cael`)
@@ -137,14 +143,16 @@ App.set_ai_key = (talk = ``) => {
     value: App.ai.key,
     placeholder: `Gemini Key`,
     on_submit: async (key) => {
-      if (key) {
-        App.ai.key = key
-        App.stor_save_ai()
+      App.ai.key = key
+      App.stor_save_ai()
 
-        if (talk) {
-          App[`talk_to_${talk}`]()
-        }
+      if (key && talk) {
+        App[`talk_to_${talk}`]()
       }
     },
   })
+}
+
+App.show_ai_info = () => {
+  App.alert(`This uses Gemini.\nGet an API key in Google AI Studio`)
 }
