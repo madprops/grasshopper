@@ -85,6 +85,14 @@ App.run_command = async (args) => {
       `show_palette`,
       `restart_extension`,
       `soft_item_action`,
+      `scroll_up`,
+      `scroll_down`,
+      `tab_box_scroll_up`,
+      `tab_box_scroll_down`,
+      `scroll_main_title_left`,
+      `scroll_main_title_right`,
+      `page_up`,
+      `page_down`,
     ]
 
     if (!no_repeat.includes(args.cmd)) {
