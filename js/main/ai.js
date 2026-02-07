@@ -114,7 +114,7 @@ App.ask_ai = async (system, prompt) => {
 App.set_ai_key = (talk = ``) => {
   App.show_prompt({
     password: true,
-    placeholder: `API Key`,
+    placeholder: `Gemini Key`,
     on_submit: async (key) => {
       if (key) {
         App.ai.key = key

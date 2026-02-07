@@ -1,8 +1,33 @@
-App.alert = (message, autohide_delay = 0) => {
+App.alert = (message, args = {}) => {
+  let def_args = {
+    autohide_delay: 0,
+  }
+
+  let text = ``
+
+  function action(regex, func, full = false) {
+    text = text.replace(regex, (match, g1) => {
+      if (full) {
+        return func(match)
+      }
+
+      return func(g1)
+    })
+  }
+
+  App.def_args(def_args, args)
   App.start_popups()
   let msg = DOM.el(`#alert_message`)
   message = message.toString()
-  let text = App.make_html_safe(message)
+  text = App.make_html_safe(message)
+
+  action(App.char_regex_3(`\``), App.to_bold)
+  action(App.char_regex_3(`"`), App.to_bold, true)
+  action(App.char_regex_1(`*`, 2), App.to_bold)
+  action(App.char_regex_1(`*`), App.to_bold)
+  action(App.char_regex_2(`_`, 2), App.to_bold)
+  action(App.char_regex_2(`_`), App.to_bold)
+
   text = text.replace(/\n/g, `<br>`)
   msg.innerHTML = text
   App.show_popup(`alert`)
@@ -22,7 +47,7 @@ App.alert_autohide = (message, force = false) => {
     }
   }
 
-  App.alert(message, App.alert_autohide_delay)
+  App.alert(message, {autohide_delay: App.alert_autohide_delay})
 }
 
 App.hide_alert = () => {

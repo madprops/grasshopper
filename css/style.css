@@ -2533,3 +2533,7 @@ a:hover
 .color_picker_button {
   min-width: 3.3rem;
 }
+
+.md_highlight {
+  font-weight: bold;
+}

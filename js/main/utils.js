@@ -855,3 +855,46 @@ App.sort_chars = (text) => {
 App.get_words = (text) => {
   return text.split(` `).filter(x => x)
 }
+
+App.regex_u = (c, n) => {
+  return `${c}{${n}}`
+}
+
+App.regex_t = (c, n) => {
+  let u = App.regex_u(c, n)
+  return `(?:(?!${u}|\\s).)`
+}
+
+App.regex_t2 = (c, n) => {
+  let u = App.regex_u(c, n)
+  return `(?:(?!${u}).)`
+}
+
+App.char_regex_1 = (char, n = 1) => {
+  let c = App.escape_regex(char)
+  let u = App.regex_u(c, n)
+  let t = App.regex_t(c, n)
+  let t2 = App.regex_t2(c, n)
+  let regex = `${u}(${t}${t2}*${t}|${t})${u}`
+  return new RegExp(regex, `g`)
+}
+
+App.char_regex_2 = (char, n = 1) => {
+  let c = App.escape_regex(char)
+  let u = App.regex_u(c, n)
+  let t = App.regex_t(c, n)
+  let regex = `(?:^|\\s)${u}(${t}.*?${t}|${t})${u}(?:$|\\s)`
+  return new RegExp(regex, `g`)
+}
+
+App.char_regex_3 = (char, n = 1) => {
+  let c = App.escape_regex(char)
+  let u = App.regex_u(c, n)
+  let t2 = App.regex_t2(c, n)
+  let regex = `${u}(${t2}+)${u}`
+  return new RegExp(regex, `g`)
+}
+
+App.to_bold = (text) => {
+  return `<span class="md_highlight">${text}</span>`
+}
