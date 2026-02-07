@@ -188,3 +188,13 @@ App.stor_save_memory = () => {
   App.debug(`Stor: Saving memory`)
   App.save_local_storage(App.stor_memory, App.memory)
 }
+
+App.stor_get_ai = async () => {
+  App.ai = await App.get_local_storage(App.stor_ai, {})
+  App.debug(`Stor: Got ai`)
+}
+
+App.stor_save_ai = () => {
+  App.debug(`Stor: Saving ai`)
+  App.save_local_storage(App.stor_ai, App.ai)
+}

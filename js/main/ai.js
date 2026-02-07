@@ -3,10 +3,15 @@ App.ai_config = {
     url: "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
     model: "gemini-flash-latest",
   },
-  cael_system: `Your name is Cael, an ancient grasshopper deity. I am here to ask you a question, or to entertain you for a while.`
+  cael_system: `Your name is Cael, an ancient grasshopper deity. I am here to ask you a question, or to entertain you for a while.`,
 }
 
 App.talk_to_cael = async () => {
+  if (!App.ai.key) {
+    App.set_ai_key(true)
+    return
+  }
+
   App.show_textarea({
     title: `Cael`,
     title_icon: App.cael_icon,
@@ -73,4 +78,19 @@ App.ask_ai = async (system, prompt) => {
   catch (error) {
     console.error(`AI Request Failed:`, error)
   }
+}
+
+App.set_ai_key = (talk = false) => {
+  App.show_prompt({
+    placeholder: `API Key`,
+    on_submit: async (key) => {
+      if (key) {
+        App.ai.api_key = key
+
+        if (talk) {
+          App.talk_to_cael()
+        }
+      }
+    },
+  })
 }

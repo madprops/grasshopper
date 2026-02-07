@@ -5282,6 +5282,16 @@ App.setup_commands = () => {
       info: `Decimate the crops`,
     },
     {
+      name: `Set AI Key`,
+      short_name: `AI Key`,
+      cmd: `set_ai_key`,
+      icon: cael_icon,
+      action: (args) => {
+        App.set_ai_key()
+      },
+      info: `Decimate the crops`,
+    },
+    {
       name: `Swarm`,
       cmd: `locust_swarm`,
       icon: grasshopper_icon,

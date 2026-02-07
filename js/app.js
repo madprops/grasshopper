@@ -20,6 +20,7 @@ App.stor_bookmark_folder_picks = `bookmark_folder_picks_v202`
 App.stor_history_picks = `history_picks_v202`
 App.stor_datastore = `datastore_v204`
 App.stor_memory = `memory_v204`
+App.stor_ai = `ai_v204`
 
 // Backwards compatibility check
 // This should only be used if the structure of the objects have not changed
@@ -169,6 +170,7 @@ App.calculator_text = ``
 App.background_autocolor_prev = -1
 App.oracle_words = 2
 App.memory = {}
+App.ai = {}
 
 App.settings_ready = false
 App.media_image_ready = false
