@@ -63,6 +63,8 @@ App.show_input = (args = {}) => {
     wrap: args.wrap,
     text: args.value,
     readonly: false,
+    enter_action: true,
+    ctrl_enter: true,
     on_dismiss,
     buttons,
   })
