@@ -9,12 +9,30 @@ App.use_calculator = () => {
     App.alert(`Expression could not be parsed`)
   }
 
+  function result(text) {
+    App.calculator_text = text
+    let [ans, ok] = App.math_eval(text)
+
+    if (ok) {
+      let num = format_num(ans)
+      App.alert(num)
+    }
+    else {
+      on_error()
+    }
+  }
+
   App.show_textarea({
     title: `Calculator`,
     title_icon: App.calculator_icon,
     text: App.calculator_text,
     monospace: true,
     readonly: false,
+    enter_action: true,
+    on_enter: (text) => {
+      result(text)
+    },
+    ctrl_enter: true,
     buttons: [
       {
         text: `Close`,
@@ -48,16 +66,7 @@ App.use_calculator = () => {
       {
         text: `Result`,
         action: (text) => {
-          App.calculator_text = text
-          let [ans, ok] = App.math_eval(text)
-
-          if (ok) {
-            let num = format_num(ans)
-            App.alert(num)
-          }
-          else {
-            on_error()
-          }
+          result(text)
         },
       },
     ],

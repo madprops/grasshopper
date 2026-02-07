@@ -9,6 +9,11 @@ App.show_word_counter = () => {
     title_icon: App.word_counter_icon,
     readonly: false,
     fluid: true,
+    enter_action: true,
+    on_enter: (text) => {
+      count(text)
+    },
+    ctrl_enter: true,
     buttons: [
       {
         text: `Close`,

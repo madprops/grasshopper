@@ -246,11 +246,21 @@ App.textarea_enter = (e, force = false) => {
     return false
   }
 
-  if (App.textarea_args.shift_enter && !e.shiftKey) {
+  if (App.textarea_args.shift_enter) {
+    if (!e.shiftKey) {
+      return false
+    }
+  }
+  else if (e.shiftKey) {
     return false
   }
 
-  if (e.shiftKey) {
+  if (App.textarea_args.ctrl_enter) {
+    if (!e.ctrlKey) {
+      return false
+    }
+  }
+  else if (e.ctrlKey) {
     return false
   }
 
