@@ -148,6 +148,10 @@ App.show_textarea = (args = {}) => {
   App.textarea_text = args.text
   App.show_popup(`textarea`)
 
+  if (args.after_show) {
+    args.after_show()
+  }
+
   requestAnimationFrame(() => {
     App.focus_textarea(textarea)
 

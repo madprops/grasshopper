@@ -3,18 +3,13 @@ App.ai_config = {
     url: `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`,
     model: `gemini-flash-latest`,
   },
-  cael_system: `Your name is Cael, an ancient grasshopper deity. I am here to ask you a question, or to entertain you for a while.`,
+  cael_system: `Your name is Cael, an ancient grasshopper deity. I am here to ask you a question, or to entertain you for a while. Don't be overly mysterious, be relatable while maintaining some of your essence.`,
   history: [],
   words: 100,
   max_tokens: 2000,
 }
 
 App.talk_to_cael = async () => {
-  if (!App.ai.key) {
-    App.set_ai_key(`cael`)
-    return
-  }
-
   App.ai_config.history = []
   App.show_ai(`cael`, `Cael`)
 }
@@ -32,6 +27,11 @@ App.show_ai = (who, title) => {
       ask(text)
     },
     enter_action: true,
+    after_show: () => {
+      if (!App.ai.key) {
+        App.set_ai_key(`cael`)
+      }
+    },
     buttons: [
       {
         text: `Close`,
@@ -40,15 +40,25 @@ App.show_ai = (who, title) => {
         },
       },
       {
-        text: `Copy`,
+        text: `Key`,
         action: () => {
-          // copy whole conversation
-          App.close_textarea()
+          App.set_ai_key(`cael`)
         },
       },
       {
         text: `Send`,
         action: (text) => {
+          text = text.trim()
+
+          if (!text) {
+            return
+          }
+
+          if (!App.ai.key) {
+            App.alert(`The key must be set first`)
+            return
+          }
+
           ask(text)
         },
       },
@@ -124,6 +134,7 @@ App.ask_ai = async (system, prompt) => {
 App.set_ai_key = (talk = ``) => {
   App.show_prompt({
     password: true,
+    value: App.ai.key,
     placeholder: `Gemini Key`,
     on_submit: async (key) => {
       if (key) {
