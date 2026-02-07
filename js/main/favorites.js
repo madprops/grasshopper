@@ -27,7 +27,7 @@ App.create_favorites_bar = (mode) => {
   let container = DOM.create(`div`, `favorites_bar_container`, `favorites_bar_container_${mode}`)
   let cls = `favorites_bar`
 
-  if (App.fav_autohide_enabled()) {
+  if (App.fav_auto_hide_enabled()) {
     cls += ` hidden`
   }
 
@@ -59,13 +59,13 @@ App.create_favorites_bar = (mode) => {
   }
 
   DOM.ev(container, `mouseenter`, () => {
-    if (App.fav_autohide_enabled()) {
+    if (App.fav_auto_hide_enabled()) {
       App.on_favorites_enter(mode)
     }
   })
 
   DOM.ev(container, `mouseleave`, () => {
-    if (App.fav_autohide_enabled() && !App.fav_hover()) {
+    if (App.fav_auto_hide_enabled() && !App.fav_hover()) {
       App.on_favorites_leave(mode)
     }
   })
@@ -73,13 +73,13 @@ App.create_favorites_bar = (mode) => {
   let all = `#all`
 
   DOM.ev(all, `mouseenter`, () => {
-    if (App.fav_autohide_enabled() && App.fav_hover()) {
+    if (App.fav_auto_hide_enabled() && App.fav_hover()) {
       App.on_favorites_enter(mode)
     }
   })
 
   DOM.ev(all, `mouseleave`, () => {
-    if (App.fav_autohide_enabled() && App.fav_hover()) {
+    if (App.fav_auto_hide_enabled() && App.fav_hover()) {
       App.on_favorites_leave(mode)
     }
   })
@@ -91,12 +91,12 @@ App.create_favorites_bar = (mode) => {
 }
 
 App.on_favorites_enter = (mode) => {
-  App.clear_favorite_bar_autohide()
+  App.clear_favorite_bar_auto_hide()
   App.favorites_bar_show_debouncer.call(mode)
 }
 
 App.on_favorites_leave = (mode) => {
-  App.clear_favorite_bar_autohide()
+  App.clear_favorite_bar_auto_hide()
   App.favorites_bar_hide_debouncer.call(mode)
 }
 
@@ -219,10 +219,10 @@ App.show_favorites_menu = (e) => {
 
   if (App.favorites_bar_side()) {
     more.push({
-      text: `Autohide`,
+      text: `Auto Hide`,
       icon: App.settings_icons.favorites,
       action: () => {
-        App.toggle_favorites_autohide()
+        App.toggle_favorites_auto_hide()
       },
     })
   }
@@ -362,7 +362,7 @@ App.do_favorites_bar_hide = (mode) => {
   DOM.hide(bar)
 }
 
-App.clear_favorite_bar_autohide = () => {
+App.clear_favorite_bar_auto_hide = () => {
   App.favorites_bar_show_debouncer.cancel()
   App.favorites_bar_hide_debouncer.cancel()
 }
@@ -419,23 +419,23 @@ App.favorites_bar_side = () => {
   return [`left`, `right`].includes(pos)
 }
 
-App.fav_autohide_enabled = () => {
-  return App.get_setting(`favorites_autohide`) && App.favorites_bar_side()
+App.fav_auto_hide_enabled = () => {
+  return App.get_setting(`favorites_auto_hide`) && App.favorites_bar_side()
 }
 
-App.toggle_favorites_autohide = () => {
-  let autohide = !App.get_setting(`favorites_autohide`)
-  App.set_setting({setting: `favorites_autohide`, value: autohide})
+App.toggle_favorites_auto_hide = () => {
+  let auto_hide = !App.get_setting(`favorites_auto_hide`)
+  App.set_setting({setting: `favorites_auto_hide`, value: auto_hide})
   App.check_refresh_settings()
 
-  if (App.fav_autohide_enabled()) {
+  if (App.fav_auto_hide_enabled()) {
     App.on_favorites_leave(App.active_mode)
   }
   else {
     App.on_favorites_enter(App.active_mode)
   }
 
-  App.toggle_message(`Fav Autohide`, `favorites_autohide`)
+  App.toggle_message(`Fav Auto Hide`, `favorites_auto_hide`)
 }
 
 App.fav_empty_top_click = (e) => {

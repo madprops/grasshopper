@@ -1308,14 +1308,14 @@ App.setup_commands = () => {
       info: `Show or hide the Favorites Bar or Button`,
     },
     {
-      name: `Favorites Autohide`,
-      short_name: `Favs Autohide`,
-      cmd: `toggle_favorites_autohide`,
+      name: `Favorites Auto Hide`,
+      short_name: `Auto Hide`,
+      cmd: `toggle_favorites_auto_hide`,
       icon: favorites_icon,
       action: (args) => {
-        App.toggle_favorites_autohide()
+        App.toggle_favorites_auto_hide()
       },
-      info: `Enable or disable Favorites Autohide`,
+      info: `Enable or disable Favorites Auto Hide`,
     },
     {
       name: `Toggle Tab Box`,

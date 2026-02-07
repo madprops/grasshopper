@@ -2067,7 +2067,7 @@ App.build_settings = () => {
         {cmd: `toggle_main_title`},
         {cmd: `toggle_taglist`},
         {cmd: `toggle_favorites`},
-        {cmd: `toggle_favorites_autohide`},
+        {cmd: `toggle_favorites_auto_hide`},
         {cmd: `toggle_tab_box`},
         {cmd: `toggle_footer`},
         {cmd: App.separator_string},
@@ -3004,18 +3004,18 @@ App.build_settings = () => {
       info: `Scroll favorite items with the wheel when overflowed`,
       version: 1,
     },
-    favorites_autohide: {
-      name: `Favorites Autohide`,
+    favorites_auto_hide: {
+      name: `Favorites Auto Hide`,
       type: `checkbox`,
       value: false,
-      info: `Autohide the Favorites Bar when on left or right mode`,
+      info: `Auto Hide the Favorites Bar when on left or right mode`,
       version: 1,
     },
     favorites_hover: {
       name: `Favorites Hover`,
       type: `checkbox`,
       value: false,
-      info: `Show favorites on global hover when autohide is enabled`,
+      info: `Show favorites on global hover when auto hide is enabled`,
       version: 1,
     },
   }

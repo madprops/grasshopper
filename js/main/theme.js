@@ -1054,11 +1054,11 @@ App.set_favorite_vars = () => {
     App.set_css_var(`favorites_bar_color`, `unset`)
   }
 
-  if (App.get_setting(`favorites_autohide`)) {
-    App.main_add(`favorites_autohide`)
+  if (App.get_setting(`favorites_auto_hide`)) {
+    App.main_add(`favorites_auto_hide`)
   }
   else {
-    App.main_remove(`favorites_autohide`)
+    App.main_remove(`favorites_auto_hide`)
   }
 
   if (App.get_setting(`favorites_scroll`)) {
