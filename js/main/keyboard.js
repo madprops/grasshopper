@@ -325,7 +325,7 @@ App.setup_keyboard = () => {
       }
       else if (pmode === `alert`) {
         if (e.key === `Enter`) {
-          App.hide_popup(`alert`)
+          App.hide_alert()
           App.check_textarea_focus()
           e.preventDefault()
           return

@@ -62,6 +62,7 @@ App.ai_ask_cael = async (text) => {
 App.ask_ai = async (system, prompt) => {
   let headers = {
     "Content-Type": `application/json`,
+    "Authorization": `Bearer ${App.ai.key}`,
   }
 
   let body = {
@@ -74,6 +75,8 @@ App.ask_ai = async (system, prompt) => {
     ...App.ai_config.history,
     {role: `user`, content: prompt},
   ]
+
+  App.alert(`Thinking...`)
 
   try {
     let response = await fetch(App.ai_config.gemini.url, {
