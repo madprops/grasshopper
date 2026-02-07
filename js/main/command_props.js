@@ -161,7 +161,7 @@ App.setup_commands = () => {
     action: (args) => {
       App.show_all_colors(args)
     },
-    info: `Filter all colors`,
+    info: `Show all colors`,
   })
 
   for (let color of App.colors()) {
