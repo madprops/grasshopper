@@ -575,7 +575,12 @@ App.get_url_list = () => {
 App.show_tab_urls = () => {
   let urls = App.get_url_list()
   let text = urls.join(`\n`)
-  App.show_textarea({title: `All Open URLs (${urls.length})`, text})
+
+  App.show_textarea({
+    text,
+    title: `All Open URLs (${urls.length})`,
+    title_icon: App.get_setting_icon(`tabs_mode`),
+  })
 }
 
 App.open_tab = async (item) => {
@@ -902,6 +907,7 @@ App.open_tab_urls = (value = ``) => {
   App.show_input({
     value,
     title: `Open URLs`,
+    title_icon: App.get_setting_icon(`tabs_mode`),
     button: `Open`,
     action: (text) => {
       let urls = text.split(`\n`).map(x => x.trim()).filter(x => x !== ``)
