@@ -1945,7 +1945,10 @@ App.refresh_setting_widgets = (keys) => {
     }
     else if (props.type === `color`) {
       let picker = App[`settings_color_picker_${key}`]
-      picker.setColor(value)
+
+      if (picker) {
+        picker.setColor(value)
+      }
     }
   }
 
