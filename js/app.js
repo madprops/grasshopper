@@ -501,7 +501,6 @@ App.themes = [
   {
     num: 7, opacity: 65,
     effect: `rotate_3`,
-    text_color: `#fcfdfd`,
     text_color: `rgb(252, 253, 253)`,
     background_color: `rgb(2, 35, 9)`,
     image_ext: `gif`,
