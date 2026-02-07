@@ -21,6 +21,7 @@ App.alert = (message, args = {}) => {
   message = message.toString()
   text = App.make_html_safe(message)
 
+  text = text.replace(/<\/ ?blockquote>/g, ``)
   action(App.char_regex_3(`\``), App.to_bold)
   action(App.char_regex_3(`"`), App.to_bold, true)
   action(App.char_regex_1(`*`, 2), App.to_bold)
