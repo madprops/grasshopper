@@ -1309,8 +1309,8 @@ App.setup_commands = () => {
       info: `Show or hide the Favorites Bar or Button`,
     },
     {
-      name: `Favorites Auto Hide`,
-      short_name: `Auto Hide`,
+      name: `Toggle Favorites Auto Hide`,
+      short_name: `Favs Auto Hide`,
       cmd: `toggle_favorites_auto_hide`,
       icon: favorites_icon,
       action: (args) => {
@@ -5262,6 +5262,16 @@ App.setup_commands = () => {
         App.toggle_auto_color()
       },
       info: `Enable or disable Auto Color`,
+    },
+    {
+      name: `Toggle Themed Week`,
+      short_name: `Themed Week`,
+      cmd: `toggle_themed_week`,
+      icon: theme_icon,
+      action: (args) => {
+        App.toggle_themed_week()
+      },
+      info: `Enable or disable Themed Week`,
     },
     {
       name: `Toggle Signals`,

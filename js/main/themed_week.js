@@ -31,3 +31,16 @@ App.check_themed_week = () => {
   let day = App.get_day_number()
   App.set_theme(day)
 }
+
+App.toggle_themed_week = () => {
+  let ac = App.get_setting(`themed_week_enabled`)
+
+  App.set_setting({
+    setting: `themed_week_enabled`,
+    value: !ac,
+    action: true,
+  })
+
+  App.toggle_message(`Themed Week`, `themed_week_enabled`)
+  App.start_themed_week()
+}
