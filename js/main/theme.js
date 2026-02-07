@@ -188,7 +188,7 @@ App.do_apply_theme = (args = {}) => {
     App.insert_icon_css()
     App.insert_custom_css()
 
-    App.start_autocolor()
+    App.start_auto_color()
   }
   catch (err) {
     App.error(err)
@@ -1413,17 +1413,17 @@ App.set_item_vars = () => {
 }
 
 App.set_background_vars = () => {
-  let delay = parseInt(App.get_setting(`autocolor_delay`))
+  let delay = parseInt(App.get_setting(`auto_color_delay`))
 
   if (isNaN(delay) && (delay > 0)) {
-    App.set_css_var(`autocolor_delay`, `${delay}ms`)
+    App.set_css_var(`auto_color_delay`, `${delay}ms`)
   }
 
-  if (App.get_setting(`autocolor_enabled`)) {
-    App.main_add(`autocolor`)
+  if (App.get_setting(`auto_color_enabled`)) {
+    App.main_add(`auto_color`)
   }
   else {
-    App.main_remove(`autocolor`)
+    App.main_remove(`auto_color`)
   }
 }
 
@@ -1618,15 +1618,15 @@ App.is_dark_mode = () => {
   return App.colorlib.is_dark(color)
 }
 
-App.start_autocolor = () => {
-  let enabled = App.get_setting(`autocolor_enabled`)
-  clearInterval(App.autocolor_interval)
+App.start_auto_color = () => {
+  let enabled = App.get_setting(`auto_color_enabled`)
+  clearInterval(App.auto_color_interval)
 
   if (!enabled) {
     return
   }
 
-  let delay = parseInt(App.get_setting(`autocolor_delay`))
+  let delay = parseInt(App.get_setting(`auto_color_delay`))
 
   if (isNaN(delay)) {
     return
@@ -1636,16 +1636,16 @@ App.start_autocolor = () => {
     return
   }
 
-  App.autocolor_interval = setInterval(() => {
+  App.auto_color_interval = setInterval(() => {
     if (!App.on_items()) {
       return
     }
 
-    App.do_autocolor()
+    App.do_auto_color()
   }, delay)
 }
 
-App.do_autocolor = () => {
+App.do_auto_color = () => {
   if (App.is_dark_mode()) {
     App.random_colors(`dark`)
   }

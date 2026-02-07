@@ -5233,6 +5233,16 @@ App.setup_commands = () => {
       info: `Show the window to run and edit signals`,
     },
     {
+      name: `Toggle Auto Color`,
+      short_name: `Auto Color`,
+      cmd: `toggle_auto_color`,
+      icon: theme_icon,
+      action: (args) => {
+        App.toggle_auto_color()
+      },
+      info: `Enable or disable Auto Color`,
+    },
+    {
       name: `Toggle Signals`,
       cmd: `toggle_signals`,
       icon: signal_icon,

@@ -733,23 +733,23 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-    autocolor_enabled: {
-      name: `Autocolor`,
+    auto_color_enabled: {
+      name: `Auto Color`,
       type: `checkbox`,
       actions: [`theme`],
       value: false,
       info: `Change the theme colors automatically`,
       version: 1,
     },
-    autocolor_delay: {
-      name: `Autocolor Delay`,
+    auto_color_delay: {
+      name: `Auto Color Delay`,
       type: `number`,
       value: App.SECOND * 30,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `How often in milliseconds to do an autocolor tick`,
+      info: `How often in milliseconds to do an auto_color tick`,
       version: 1,
     },
     custom_css: {
@@ -768,7 +768,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `How long the autocolor transition is`,
+      info: `How long the auto_color transition is`,
       version: 1,
     },
     text_glow: {
@@ -2077,6 +2077,7 @@ App.build_settings = () => {
         {cmd: App.separator_string},
         {cmd: `toggle_wrap_text`},
         {cmd: `toggle_auto_blur`},
+        {cmd: `toggle_auto_color`},
       ],
       info: `Items for the Toggle Menu`,
       version: 1,
@@ -2128,7 +2129,7 @@ App.build_settings = () => {
     tab_box_mode: {
       name: `Tab Box Mode`,
       type: `menu`,
-      value: `special`,
+      value: `recent`,
       no_mirror: true,
       info: `What to show in the Tab Box`,
       version: 4,
