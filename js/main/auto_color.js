@@ -16,6 +16,8 @@ App.start_auto_color = () => {
     return
   }
 
+  App.do_auto_color()
+
   App.auto_color_interval = setInterval(() => {
     if (!App.on_items()) {
       return
@@ -44,4 +46,8 @@ App.toggle_auto_color = () => {
   })
 
   App.toggle_message(`Auto Color`, `auto_color_enabled`)
+
+  if (!ac) {
+    App.start_auto_color()
+  }
 }
