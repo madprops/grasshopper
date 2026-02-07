@@ -57,6 +57,7 @@ App.setup_commands = () => {
   let chemistry_icon = App.chemistry_icon
   let toggle_icon = App.toggle_icon
   let cael_icon = App.cael_icon
+  let ai_icon = App.ai_icon
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -5295,7 +5296,7 @@ App.setup_commands = () => {
       name: `Set AI Key`,
       short_name: `AI Key`,
       cmd: `set_ai_key`,
-      icon: cael_icon,
+      icon: ai_icon,
       action: (args) => {
         App.set_ai_key()
       },

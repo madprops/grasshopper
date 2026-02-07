@@ -4,7 +4,7 @@ App.alert = (message, args = {}) => {
     format: true,
   }
 
-  let text = ``
+  let text = message.toString()
 
   function action(regex, func, full = false) {
     text = text.replace(regex, (match, g1) => {
@@ -19,7 +19,6 @@ App.alert = (message, args = {}) => {
   App.def_args(def_args, args)
   App.start_popups()
   let msg = DOM.el(`#alert_message`)
-  message = message.toString()
 
   if (args.format) {
     text = text.replace(/<\/ ?blockquote>/g, ``)
@@ -31,7 +30,7 @@ App.alert = (message, args = {}) => {
     action(App.char_regex_2(`_`), App.to_bold)
   }
 
-  text = App.make_html_safe(message)
+  text = App.make_html_safe(text)
   text = text.replace(/\n/g, `<br>`)
   msg.innerHTML = text
   App.show_popup(`alert`)

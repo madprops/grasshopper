@@ -21,7 +21,7 @@ App.show_ai = (who, title) => {
 
   App.show_textarea({
     title,
-    title_icon: App.cael_icon,
+    title_icon: App[`ai_icon_${who}`],
     readonly: false,
     on_enter: (text) => {
       ask(text)
@@ -77,10 +77,11 @@ App.ai_ask_cael = async (text) => {
     let res = await App.ask_ai(App.ai_config.cael_system, text)
 
     if (res) {
-      App.alert(res)
+      App.show_ai_response(res, `cael`, `Cael`)
     }
   }
   catch (err) {
+    App.error(err)
     App.alert(`Communication Breakdown`)
   }
 }
@@ -128,6 +129,7 @@ App.ask_ai = async (system, prompt) => {
       App.ai_config.history.push({role: `assistant`, content: res})
     }
 
+    App.hide_alert()
     App.clear_textarea()
     return res
   }
@@ -155,4 +157,29 @@ App.set_ai_key = (talk = ``) => {
 
 App.show_ai_info = () => {
   App.alert(`This uses Gemini.\nGet an API key in Google AI Studio`)
+}
+
+App.show_ai_response = (response, who, title) => {
+  App.show_textarea({
+    title,
+    text: response,
+    title_icon: App[`ai_icon_${who}`],
+    readonly: true,
+    wrap: true,
+    simple: true,
+    buttons: [
+      {
+        text: `Write`,
+        action: () => {
+          App.show_ai(who, title)
+        },
+      },
+      {
+        text: `Copy`,
+        action: () => {
+          App.textarea_copy()
+        },
+      },
+    ],
+  })
 }
