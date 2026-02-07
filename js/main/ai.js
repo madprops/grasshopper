@@ -4,6 +4,7 @@ App.ai_config = {
     model: "gemini-flash-latest",
   },
   cael_system: `Your name is Cael, an ancient grasshopper deity. I am here to ask you a question, or to entertain you for a while.`,
+  history: [],
 }
 
 App.talk_to_cael = async () => {
@@ -12,9 +13,15 @@ App.talk_to_cael = async () => {
     return
   }
 
+  App.ai_config.history = []
+  App.show_ai(`cael`, `Cael`)
+}
+
+App.show_ai = (who, title) => {
   App.show_textarea({
-    title: `Cael`,
+    title,
     title_icon: App.cael_icon,
+    readonly: false,
     buttons: [
       {
         text: `Close`,
@@ -32,14 +39,14 @@ App.talk_to_cael = async () => {
       {
         text: `Send`,
         action: (text) => {
-          App.ask_cael(text)
+          App[`ai_ask_${who}`](text)
         },
       },
     ],
   })
 }
 
-App.ask_cael = (text) => {
+App.ai_ask_cael = (text) => {
   App.ask_ai(App.ai_config.cael_system, text)
 }
 
@@ -55,7 +62,7 @@ App.ask_ai = async (system, prompt) => {
 
   body.messages = [
     {role: `system`, content: system},
-    ...history,
+    ...App.ai_config.history,
     {role: `user`, content: prompt},
   ]
 

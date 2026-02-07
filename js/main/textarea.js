@@ -13,6 +13,7 @@ App.show_textarea = (args = {}) => {
     only_image: false,
     image_size: `normal`,
     enter_action: false,
+    shift_enter: false,
   }
 
   App.def_args(def_args, args)
@@ -194,12 +195,16 @@ App.check_textarea_focus = () => {
   }
 }
 
-App.textarea_enter = (force = false) => {
+App.textarea_enter = (e, force = false) => {
   if (!App.textarea_args.on_enter) {
     return false
   }
 
   if (!force && !App.textarea_args.enter_action) {
+    return false
+  }
+
+  if (App.textarea_args.shift_enter && !e.shiftKey) {
     return false
   }
 
