@@ -232,8 +232,10 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
         App.alert(`Nothing happened`)
       }
 
-      App.log(`AI: Running command: ${cmd.cmd}`)
-      App.run_command({cmd: cmd.cmd, from: `ai`})
+      for (cmd of cmds) {
+        App.log(`AI: Running command: ${cmd.cmd}`)
+        App.run_command({cmd: cmd.cmd, from: `ai`})
+      }
     }
     else {
       App.show_ai_response(res, `cael`, `Cael`)
