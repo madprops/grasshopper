@@ -5,7 +5,13 @@ App.ai_config = {
     url: `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`,
     model: `gemini-flash-latest`,
   },
-  cael_system: `Your name is Cael, an ancient grasshopper deity. I am here to ask you a question, or to entertain you for a while. Don't be overly mysterious, be relatable while maintaining some of your essence.`,
+  cael_system: `Your name is Cael, an ancient grasshopper deity.
+  I am here to ask you a question, or to entertain you for a while.
+  Don't be overly mysterious, be relatable while maintaining some of your essence.
+  You exist inside a tab manager addon for Firefox that has many features available.
+  If given instructions to perform an action, return the 'cmd' that solves that problem....
+  For instance you can return "open_new_tab" if the user asks for a new tab to be opened.
+  If no command satisfies the request, or it's too ambiguous, just return "idk".`,
   history: [],
   words: 50,
   max_tokens: 1000,
@@ -17,8 +23,23 @@ App.talk_to_cael = async () => {
 }
 
 App.show_ai = (who, title) => {
-  function ask(text) {
-    App[`ai_ask_${who}`](text)
+  function ask(text, mode = `chat`) {
+    App[`ai_ask_${who}`](text, mode)
+  }
+
+  function send(text, mode = `chat`) {
+    text = text.trim()
+
+    if (!text) {
+      return
+    }
+
+    if (!App.ai.key) {
+      App.alert(`The key must be set first`)
+      return
+    }
+
+    ask(text, mode)
   }
 
   App.show_textarea({
@@ -55,33 +76,59 @@ App.show_ai = (who, title) => {
         },
       },
       {
+        text: `Cmd`,
+        action: () => {
+          send(text, `cmd`)
+        },
+      },
+      {
         text: `Send`,
         action: (text) => {
-          text = text.trim()
-
-          if (!text) {
-            return
-          }
-
-          if (!App.ai.key) {
-            App.alert(`The key must be set first`)
-            return
-          }
-
-          ask(text)
+          send(text)
         },
       },
     ],
   })
 }
 
-App.ai_ask_cael = async (text) => {
+App.ai_ask_cael = async (text, mode = `chat`) => {
   try {
-    let res = await App.ask_ai(App.ai_config.cael_system, text)
-
-    if (res) {
-      App.show_ai_response(res, `cael`, `Cael`)
+    if (mode === `cmd`) {
+      App.ai_config.history = []
+      let cmds = App.command_summary_str
+      let msg = `Here are the available commands: ${cmds}`
+      App.ai_config.history.push({role: `user`, content: msg})
     }
+
+    let res = await App.ask_ai(App.ai_config.cael_system, text)
+    res = res.trim()
+
+    if (!res) {
+      App.alert(`Empty Response`)
+      return
+    }
+
+    if (mode === `cmd`) {
+      if (res === `idk`) {
+        App.alert(`I decided to do nothing`)
+        return
+      }
+
+      if (res.split(` `) !== 1) {
+        App.alert(res)
+        return
+      }
+
+      let cmd = App.get_command(cmd)
+
+      if (!cmd) {
+        App.alert(`idk lol`)
+      }
+
+      App.run_command({cmd, from: `ai`})
+    }
+
+    App.show_ai_response(res, `cael`, `Cael`)
   }
   catch (err) {
     App.error(err)

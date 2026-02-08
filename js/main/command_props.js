@@ -5541,4 +5541,5 @@ App.setup_commands = () => {
   }
 
   App.sort_commands()
+  App.make_command_summary()
 }

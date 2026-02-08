@@ -796,3 +796,17 @@ App.open_command = (command) => {
   App.open_sidebar()
   App.close_window()
 }
+
+App.make_command_summary = () => {
+  App.command_summary = []
+
+  for (let cmd of App.commands) {
+    App.command_summary.push({
+      name: cmd.name,
+      cmd: cmd.cmd,
+      info: cmd.info,
+    })
+  }
+
+  App.command_summary_str = JSON.stringify(App.command_summary)
+}
