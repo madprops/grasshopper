@@ -6056,6 +6056,7 @@ App.build_settings = () => {
   App.check_settings_dups(App.setting_props)
   App.check_settings_dups(App.setting_catprops)
   App.check_setting_overrides()
+  App.make_setting_summary()
   App.original_setting_catprops = Object.keys(App.setting_catprops)
 }
 

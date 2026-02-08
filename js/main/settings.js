@@ -2716,10 +2716,11 @@ App.open_settings = (category, filter) => {
 App.make_setting_summary = () => {
   App.setting_summary = []
 
-  for (let sett of App.settings) {
+  for (let key in App.setting_props) {
     App.setting_summary.push({
       name: sett.name,
       info: sett.info,
+      key,
     })
   }
 }

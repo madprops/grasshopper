@@ -803,8 +803,8 @@ App.make_command_summary = () => {
   for (let cmd of App.commands) {
     App.command_summary.push({
       name: cmd.name,
-      cmd: cmd.cmd,
       info: cmd.info,
+      key: cmd.cmd,
     })
   }
 }
@@ -831,7 +831,7 @@ App.get_command_summary = (text = ``) => {
         continue
       }
 
-      if (cmd.cmd.toLowerCase().includes(word)) {
+      if (cmd.key.toLowerCase().includes(word)) {
         items.push(cmd)
         continue
       }

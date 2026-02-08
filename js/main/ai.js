@@ -12,7 +12,7 @@ App.ai_config = {
   You are going to be given instructions to perform one or more actions.
   You are going to be given a list of relevant commands.
   Find the commands that satisfy that request.
-  The format is an array of cmd strings, with one or more items.
+  The format is an array of command key strings, with one or more items.
   For instance, if the user asks for a new tab to be opened:
   You return ["open_new_tab"].
   If the user asks to increase the font size and close all unloaded tabs.
@@ -23,8 +23,7 @@ App.ai_config = {
   You are going to be given a list of relevant commands, and a list of relevant settings.
   Point the user to a command or setting they might use to solve their problem.
   For instance: "You might be looking for the 'Close Unloaded' command.".
-  Or: "You can adjust this in the 'Filter Placeholder' setting.".
-  `,
+  Or: "You can adjust this in the 'Filter Placeholder' setting.".`,
   history: [],
   words: 50,
   max_tokens: 1000,
@@ -116,7 +115,7 @@ App.show_ai = (who, title) => {
       },
       {
         text: `Ask`,
-        action: () => {
+        action: (text) => {
           send(text, `ask`)
         },
       },
@@ -180,6 +179,8 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
       }
 
       let msg_s = msg.join(`\n\n`)
+      console.log(msg_s)
+      return
       App.ai_config.history.push({role: `user`, content: msg_s})
     }
 
