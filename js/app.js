@@ -131,7 +131,6 @@ App.bookmark_items_cache = []
 App.bookmark_folders_cache = []
 App.bookmarks_received = false
 App.tab_tree = {}
-App.last_settings = {}
 App.tab_box_items = []
 App.tab_box_o_items = []
 App.num_generic_menus = 10

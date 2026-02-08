@@ -200,6 +200,8 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     `main_title_left_button_size`,
     `main_title_right_button_size`,
     `main_title_font_size`,
+    `lock_screen_command`,
+    `unlock_screen_command`,
   ]
 
   let btn_id = `settings_menubutton_${setting}`
@@ -1973,7 +1975,7 @@ App.save_last_settings = () => {
   let scroll = el.scrollTop
   let filter = App.get_settings_filter(category).value
 
-  App.last_settings = {
+  App.memory.last_settings = {
     category,
     scroll,
     filter,
@@ -1981,18 +1983,18 @@ App.save_last_settings = () => {
 }
 
 App.show_last_settings = () => {
-  if (!Object.keys(App.last_settings).length) {
+  if (!Object.keys(App.memory.last_settings).length) {
     App.show_settings_category(`general`)
   }
   else {
-    let {category, scroll, filter} = App.last_settings
+    let {category, scroll, filter} = App.memory.last_settings
     App.show_settings_category(category, filter)
 
     if (scroll > 0) {
       setTimeout(() => {
         let el = App.settings_content()
         el.scrollTop = scroll
-      }, App.last_settings_scroll_delay)
+      }, App.memory.last_settings_scroll_delay)
     }
   }
 }
