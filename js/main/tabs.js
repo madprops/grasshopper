@@ -914,6 +914,7 @@ App.open_tab_urls = (value = ``) => {
     title: `Open URLs`,
     title_icon: App.get_setting_icon(`tabs_mode`),
     button: `Open`,
+    placeholder: `One URL per line`,
     action: (text) => {
       let urls = text.split(`\n`).map(x => x.trim()).filter(x => x !== ``)
       let to_open = []

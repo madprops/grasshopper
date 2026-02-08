@@ -1878,7 +1878,7 @@ App.setting_steps = (min, max, step, units = ``) => {
 }
 
 App.settings_cmdlist_single = (key) => {
-  return App.settings_make_menu(key, App.cmdlist_single)
+  return App.settings_make_menu(key, App.cmdlist_single.slice(0))
 }
 
 App.setting_browser_commands = () => {

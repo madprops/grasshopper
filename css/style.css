@@ -1250,6 +1250,7 @@ a:hover
   border: none;
   width: 66vw;
   height: 36vh;
+  max-height: 20rem;
   white-space: pre;
 }
 
