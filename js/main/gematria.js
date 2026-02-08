@@ -10,6 +10,7 @@ App.show_gematria = () => {
     readonly: false,
     single_line: true,
     center: true,
+    placeholder: `Enter some word`,
     on_enter: (text) => {
       solve(text)
     },

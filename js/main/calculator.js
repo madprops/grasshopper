@@ -35,6 +35,7 @@ App.use_calculator = () => {
     text: App.calculator_text,
     monospace: true,
     readonly: false,
+    placeholder: `Enter some numbers`,
     enter_action: true,
     on_enter: (text) => {
       result(text)

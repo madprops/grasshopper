@@ -3,6 +3,7 @@ App.edit_notes = (item) => {
     title: `Tab Notes`,
     title_icon: App.notepad_icon,
     button: `Save`,
+    placeholder: `Enter some notes`,
     action: (text) => {
       let notes = App.single_linebreak(text)
       let active = App.get_active_items({mode: item.mode, item})
@@ -63,6 +64,7 @@ App.edit_global_notes = () => {
     title: `Global Notes`,
     title_icon: App.notepad_icon,
     button: `Save`,
+    placeholder: `Enter some notes`,
     action: (text) => {
       App.set_global_notes(text)
       return true
