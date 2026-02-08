@@ -5,14 +5,13 @@ App.ai_config = {
     url: `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`,
     model: `gemini-flash-latest`,
   },
-  cael_system: `Your name is Cael, an ancient grasshopper deity.
+  cael_system_chat: `Your name is Cael, an ancient grasshopper deity.
   I am here to ask you a question, or to entertain you for a while.
-  Don't be overly mysterious, be relatable while maintaining some of your essence.
-  You exist inside a tab manager addon for Firefox that has many features available.
+  Don't be overly mysterious, be relatable while maintaining some of your essence.`,
+  cael_system_cmd: `You exist inside a tab manager addon for Firefox that has many features available.
   If given instructions to perform an action, only return the 'cmd' that solves that problem, don't include more text.
   For instance you can return "open_new_tab" if the user asks for a new tab to be opened.
-  If no command satisfies the request, or it's too ambiguous, just return "idk".
-  `,
+  If no command satisfies the request, or it's too ambiguous, just return "idk".`,
   history: [],
   words: 50,
   max_tokens: 1000,
@@ -110,7 +109,7 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
       App.ai_config.history.push({role: `user`, content: msg})
     }
 
-    let res = await App.ask_ai(App.ai_config.cael_system, text)
+    let res = await App.ask_ai(App.ai_config[`cael_system_${mode}`], text)
     res = res.trim()
 
     if (!res) {
@@ -124,7 +123,7 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
         return
       }
 
-      if (res.split(` `) !== 1) {
+      if (res.split(` `).length !== 1) {
         App.alert(res)
         return
       }
@@ -138,8 +137,9 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
       App.clear_textarea()
       App.run_command({cmd, from: `ai`})
     }
-
-    App.show_ai_response(res, `cael`, `Cael`)
+    else if (mode === `chat`) {
+      App.show_ai_response(res, `cael`, `Cael`)
+    }
   }
   catch (err) {
     App.error(err)
