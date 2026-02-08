@@ -5068,7 +5068,6 @@ App.setup_commands = () => {
       name: `Toggle Tab Sort`,
       short_name: `Sort`,
       cmd: `toggle_tab_sort`,
-      modes: [`tabs`],
       icon: tabs_icon,
       action: (args) => {
         App.toggle_tab_sort()
