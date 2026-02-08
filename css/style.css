@@ -1251,6 +1251,7 @@ a:hover
   width: 66vw;
   height: 36vh;
   max-height: 20rem;
+  max-width: 20rem;
   white-space: pre;
 }
 
