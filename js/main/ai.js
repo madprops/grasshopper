@@ -10,6 +10,7 @@ App.ai_config = {
   Don't be overly mysterious, be relatable while maintaining some of your essence.`,
   cael_system_cmd: `You exist inside a tab manager addon for Firefox that has many features available.
   If given instructions to perform an action, only return the 'cmd' that solves that problem, don't include more text.
+  The response format is 1 word, the command, don't use natural language.
   For instance you can return "open_new_tab" if the user asks for a new tab to be opened.
   If no command satisfies the request, or it's too ambiguous, just return "idk".`,
   history: [],
@@ -134,8 +135,9 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
         App.alert(`idk lol`)
       }
 
-      App.clear_textarea()
-      App.run_command({cmd, from: `ai`})
+      App.close_textarea()
+      App.log(`AI: Running command: ${cmd.cmd}`)
+      App.run_command({cmd: cmd.cmd, from: `ai`})
     }
     else if (mode === `chat`) {
       App.show_ai_response(res, `cael`, `Cael`)
