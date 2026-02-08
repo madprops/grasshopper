@@ -50,6 +50,16 @@ App.show_ai = (who, title) => {
       return
     }
 
+    if (mode === `cmd`) {
+      if (text.length < 10) {
+        return
+      }
+
+      if (!text.includes(` `)) {
+        return
+      }
+    }
+
     if (!App.ai.key) {
       App.alert(`The key must be set first`)
       return
@@ -131,6 +141,7 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
       }
 
       let msg_s = msg.join(`\n\n`)
+      console.log(msg_s)
       App.ai_config.history.push({role: `user`, content: msg_s})
     }
 
