@@ -2712,3 +2712,47 @@ App.open_settings = (category, filter) => {
   App.open_sidebar()
   App.close_window()
 }
+
+App.make_setting_summary = () => {
+  App.setting_summary = []
+
+  for (let sett of App.settings) {
+    App.setting_summary.push({
+      name: sett.name,
+      value: sett.value,
+      info: sett.info,
+    })
+  }
+}
+
+App.get_setting_summary = (text = ``) => {
+  text = text.toLowerCase().trim()
+
+  if (!text) {
+    return App.setting_summary
+  }
+
+  let items = []
+  let words = App.get_words(text)
+  let ignore = App.ignored_tokens
+
+  words = words.filter(word => {
+    return !ignore.includes(word)
+  })
+
+  for (let set of App.setting_summary) {
+    for (let word of words) {
+      if (set.name.toLowerCase().includes(word)) {
+        items.push(set)
+        continue
+      }
+
+      if (set.info.toLowerCase().includes(word)) {
+        items.push(set)
+        continue
+      }
+    }
+  }
+
+  return items
+}

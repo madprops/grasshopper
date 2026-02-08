@@ -818,7 +818,7 @@ App.get_command_summary = (text = ``) => {
 
   let items = []
   let words = App.get_words(text)
-  let ignore = [`a`, `the`, `of`, `an`]
+  let ignore = App.ignored_tokens
 
   words = words.filter(word => {
     return !ignore.includes(word)

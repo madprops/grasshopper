@@ -171,6 +171,7 @@ App.background_auto_color_prev = -1
 App.oracle_words = 2
 App.memory = {}
 App.ai = {}
+App.ignored_tokens = [`a`, `the`, `of`, `an`]
 
 App.settings_ready = false
 App.media_image_ready = false

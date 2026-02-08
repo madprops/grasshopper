@@ -9,10 +9,14 @@ App.ai_config = {
   I am here to ask you a question, or to entertain you for a while.
   Don't be overly mysterious, be relatable while maintaining some of your essence.`,
   cael_system_cmd: `You exist inside a tab manager addon for Firefox that has many features available.
-  If given instructions to perform an action, only return the 'cmd' that solves that problem, don't include more text.
-  The response format is 1 word, the command, don't use natural language.
-  For instance you can return "open_new_tab" if the user asks for a new tab to be opened.
-  If no command satisfies the request, or it's too ambiguous, just return "idk".`,
+  You are going to be given a list of relevant commands, and a list of relevant settings.
+  You are going to be given instructions to perform an action or change something.
+  You then return a valid json array that contains 'cmd' and 'sett' items tht should be relevant to the instructions.
+  cmd items are just a string (the internal command), sett items contain the name and value.
+  For instance if the instruction is "open a new tab and change the hover effect to bigger", you then return:
+  [cmd: "open_new_tab", sett: {name: "hover_effect", value: "bigger"}]
+  You can return any number of cmd and sett items to satisfy the request.
+  If nothing satisfies the request, or it's too ambiguous, just return "idk".`,
   history: [],
   words: 50,
   max_tokens: 1000,
@@ -33,7 +37,9 @@ App.show_ai = (who, title) => {
 
     if (!text) {
       if (mode === `chat`) {
-        App.alert(`You can use this for conversation`)
+        App.alert(`You can use this for conversation.
+          Like: "How are you?"
+          Or: "How high can you jump?"`)
       }
       else if (mode === `cmd`) {
         App.alert(`You can use this to request an action.
@@ -106,14 +112,26 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
     if (mode === `cmd`) {
       App.ai_config.history = []
       let cmds = App.get_command_summary(text)
+      let sett = App.get_setting_summary(text)
 
-      if (cmds.length === 0) {
+      if ((cmds.length === 0) && (sett.length === 0)) {
         return
       }
 
       let cmd_str = App.str(cmds)
-      let msg = `Here are the available commands: ${cmd_str}`
-      App.ai_config.history.push({role: `user`, content: msg})
+      let sett_str = App.str(sett)
+      let msg = []
+
+      if (cmd_str) {
+        msg.push(`Here are the available commands: ${cmd_str}`)
+      }
+
+      if (sett_str) {
+        msg.push(`Here are the available settings: ${sett_str}`)
+      }
+
+      let msg_s = msg.join(`\n\n`)
+      App.ai_config.history.push({role: `user`, content: msg_s})
     }
 
     let res = await App.ask_ai(App.ai_config[`cael_system_${mode}`], text)
@@ -200,7 +218,7 @@ App.ask_ai = async (system, prompt) => {
 
     App.hide_alert()
     App.clear_textarea()
-    return res
+    return res || ""
   }
   catch (error) {
     App.hide_alert()
