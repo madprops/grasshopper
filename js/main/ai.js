@@ -186,7 +186,7 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
     let res = await App.ask_ai(App.ai_config[`cael_system_${mode}`], text)
     res = res.trim()
 
-    if (mode === `cmd`) {
+    if ([`cmd`, `ask`].includes(mode)) {
       App.ai_config.history = []
     }
 
@@ -236,7 +236,7 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
       App.log(`AI: Running command: ${cmd.cmd}`)
       App.run_command({cmd: cmd.cmd, from: `ai`})
     }
-    else if (mode === `chat`) {
+    else {
       App.show_ai_response(res, `cael`, `Cael`)
     }
   }
