@@ -11,7 +11,8 @@ App.ai_config = {
   You exist inside a tab manager addon for Firefox that has many features available.
   If given instructions to perform an action, only return the 'cmd' that solves that problem, don't include more text.
   For instance you can return "open_new_tab" if the user asks for a new tab to be opened.
-  If no command satisfies the request, or it's too ambiguous, just return "idk".`,
+  If no command satisfies the request, or it's too ambiguous, just return "idk".
+  `,
   history: [],
   words: 50,
   max_tokens: 1000,
@@ -31,6 +32,15 @@ App.show_ai = (who, title) => {
     text = text.trim()
 
     if (!text) {
+      if (mode === `chat`) {
+        App.alert(`You can use this for conversation`)
+      }
+      else if (mode === `cmd`) {
+        App.alert(`You can use this to request an action.
+          Like: "Set a random dark theme"
+          Or: "Close all the unloaded tabs"`)
+      }
+
       return
     }
 
@@ -82,7 +92,7 @@ App.show_ai = (who, title) => {
         },
       },
       {
-        text: `Send`,
+        text: `Chat`,
         action: (text) => {
           send(text)
         },
@@ -119,12 +129,13 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
         return
       }
 
-      let cmd = App.get_command(cmd)
+      let cmd = App.get_command(res)
 
       if (!cmd) {
         App.alert(`idk lol`)
       }
 
+      App.clear_textarea()
       App.run_command({cmd, from: `ai`})
     }
 
