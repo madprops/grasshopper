@@ -105,7 +105,15 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
   try {
     if (mode === `cmd`) {
       App.ai_config.history = []
-      let cmds = App.command_summary_str
+      let cmds = App.get_command_summary(text)
+
+      if (cmds.length === 0) {
+        return
+      }
+
+      let cmd_str = App.str(cmds)
+      console.log(1111111, cmd_str)
+      return
       let msg = `Here are the available commands: ${cmds}`
       App.ai_config.history.push({role: `user`, content: msg})
     }

@@ -807,6 +807,41 @@ App.make_command_summary = () => {
       info: cmd.info,
     })
   }
+}
 
-  App.command_summary_str = JSON.stringify(App.command_summary)
+App.get_command_summary = (text = ``) => {
+  text = text.toLowerCase().trim()
+
+  if (!text) {
+    return App.command_summary
+  }
+
+  let items = []
+  let words = App.get_words(text)
+  let ignore = [`a`, `the`, `of`, `an`]
+
+  words = words.filter(word => {
+    return !ignore.includes(word)
+  })
+
+  for (let cmd of App.command_summary) {
+    for (let word of words) {
+      if (cmd.name.toLowerCase().includes(word)) {
+        items.push(cmd)
+        continue
+      }
+
+      if (cmd.cmd.toLowerCase().includes(word)) {
+        items.push(cmd)
+        continue
+      }
+
+      if (cmd.info.toLowerCase().includes(word)) {
+        items.push(cmd)
+        continue
+      }
+    }
+  }
+
+  return items
 }
