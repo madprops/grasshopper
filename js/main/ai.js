@@ -179,8 +179,6 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
       }
 
       let msg_s = msg.join(`\n\n`)
-      console.log(msg_s)
-      return
       App.ai_config.history.push({role: `user`, content: msg_s})
     }
 
