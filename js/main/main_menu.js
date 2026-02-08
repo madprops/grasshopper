@@ -55,6 +55,7 @@ App.show_main_menu = (mode) => {
   App.sep(items)
   items.push(App.cmd_item({cmd: `talk_to_cael`, short: true, middle: `set_ai_key`}))
   App.sep(items)
+  items.push(App.cmd_item({cmd: `toggle_tab_sort`, short: true}))
   items.push(App.cmd_item({cmd: `lock_screen`, short: true}))
   items.push(App.cmd_item({cmd: `show_palette`, short: true}))
   App.sep(items)
