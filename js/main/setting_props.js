@@ -5091,7 +5091,7 @@ App.build_settings = () => {
     lock_screen_words: {
       name: `Lock Screen Words`,
       type: `number`,
-      value: 0,
+      value: 2,
       placeholder: `Number`,
       min: 0,
       max: App.number_max,
