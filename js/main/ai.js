@@ -112,9 +112,7 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
       }
 
       let cmd_str = App.str(cmds)
-      console.log(1111111, cmd_str)
-      return
-      let msg = `Here are the available commands: ${cmds}`
+      let msg = `Here are the available commands: ${cmd_str}`
       App.ai_config.history.push({role: `user`, content: msg})
     }
 
