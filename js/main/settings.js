@@ -200,8 +200,6 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     `main_title_left_button_size`,
     `main_title_right_button_size`,
     `main_title_font_size`,
-    `lock_screen_command`,
-    `unlock_screen_command`,
   ]
 
   let btn_id = `settings_menubutton_${setting}`
