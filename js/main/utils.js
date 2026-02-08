@@ -980,3 +980,11 @@ App.get_day_number = () => {
 
   return day
 }
+
+App.is_array_of_strings = (val) => {
+  if (!Array.isArray(val)) {
+    return false
+  }
+
+  return val.every((item) => typeof item === `string`)
+}

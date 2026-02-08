@@ -9,9 +9,13 @@ App.ai_config = {
   I am here to ask you a question, or to entertain you for a while.
   Don't be overly mysterious, be relatable while maintaining some of your essence.`,
   cael_system_cmd: `You exist inside a tab manager addon for Firefox that has many features available.
-  If given instructions to perform an action, only return the 'cmd' that solves that problem, don't include more text.
-  The response format is 1 word, the command, don't use natural language.
-  For instance you can return "open_new_tab" if the user asks for a new tab to be opened.
+  You are going to be given instructions to perform one or more actions.
+  Find the relevant commands that satisfy that request.
+  The format is an array of cmd strings, with one or more items.
+  For instance, if the user asks for a new tab to be opened:
+  You return ["open_new_tab"].
+  If the user asks to increase the font size and close all unloaded tabs.
+  You return ["increase_font_size", "close_unloaded_tabs"].
   If no command satisfies the request, or it's too ambiguous, just return "idk".`,
   history: [],
   words: 50,
@@ -144,6 +148,10 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
     let res = await App.ask_ai(App.ai_config[`cael_system_${mode}`], text)
     res = res.trim()
 
+    if (mode === `cmd`) {
+      App.ai_config.history = []
+    }
+
     if (!res) {
       App.alert(`Empty Response`)
       return
@@ -155,18 +163,38 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
         return
       }
 
-      if (res.split(` `).length !== 1) {
-        App.alert(res)
+      let obj
+
+      try {
+        obj = App.obj(res)
+      }
+      catch (err) {
+        App.alert(`Invalid Format`)
         return
       }
 
-      let cmd = App.get_command(res)
-
-      if (!cmd) {
-        App.alert(`idk lol`)
+      if (!App.is_array_of_strings(obj)) {
+        App.alert(`Invalid Content`)
+        return
       }
 
-      App.close_textarea()
+      let cmds = []
+
+      for (let c of obj) {
+        let cmd = App.get_command(c)
+
+        if (!cmd) {
+          App.alert(`Invalid Command`)
+          return
+        }
+
+        cmds.push(cmd)
+      }
+
+      if (cmds.length === 0) {
+        App.alert(`Nothing happened`)
+      }
+
       App.log(`AI: Running command: ${cmd.cmd}`)
       App.run_command({cmd: cmd.cmd, from: `ai`})
     }
