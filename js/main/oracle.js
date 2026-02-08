@@ -25,8 +25,7 @@ App.show_oracle = () => {
       {
         text: `Copy`,
         action: () => {
-          App.copy_to_clipboard(text)
-          App.close_textarea()
+          App.textarea_copy()
         },
       },
     ],

@@ -29,8 +29,7 @@ App.generate_password = (hard = false) => {
       {
         text: `Copy`,
         action: () => {
-          App.copy_to_clipboard(password)
-          App.close_textarea()
+          App.textarea_copy()
         },
       },
     ],

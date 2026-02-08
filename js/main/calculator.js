@@ -9,13 +9,20 @@ App.use_calculator = () => {
     App.alert(`Expression could not be parsed`)
   }
 
-  function result(text) {
+  function result(text, mode = `normal`) {
     App.calculator_text = text
     let [ans, ok] = App.math_eval(text)
 
     if (ok) {
       let num = format_num(ans)
-      App.alert(num)
+
+      if (mode === `normal`) {
+        App.alert(num)
+      }
+      else if (mode === `copy`) {
+        App.copy_to_clipboard(num)
+        App.close_textarea()
+      }
     }
     else {
       on_error()
@@ -50,17 +57,7 @@ App.use_calculator = () => {
       {
         text: `Copy`,
         action: (text) => {
-          App.calculator_text = text
-          let [ans, ok] = App.math_eval(text)
-
-          if (ok) {
-            let num = format_num(ans)
-            App.copy_to_clipboard(num)
-            App.close_textarea()
-          }
-          else {
-            on_error()
-          }
+          result(text, `copy`)
         },
       },
       {
