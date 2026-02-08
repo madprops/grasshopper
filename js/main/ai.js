@@ -54,11 +54,16 @@ App.show_ai = (who, title) => {
           Like: "Set a random dark theme"
           Or: "Close all the unloaded tabs"`)
       }
+      else if (mode === `ask`) {
+        App.alert(`You can use this to ask about functionality.
+          Like: "How do I select normal tabs?"
+          Or: "Where do I change the border color?"`)
+      }
 
       return
     }
 
-    if (mode === `cmd`) {
+    if ([`cmd`, `ask`].includes(mode)) {
       if (text.length < 10) {
         return
       }
@@ -126,6 +131,8 @@ App.show_ai = (who, title) => {
 }
 
 App.ai_ask_cael = async (text, mode = `chat`) => {
+  let av = `Here are the available`
+
   try {
     if (mode === `cmd`) {
       App.ai_config.history = []
@@ -139,12 +146,40 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
       let msg = []
 
       if (cmd_str) {
-        msg.push(`Here are the available commands: ${cmd_str}`)
+        msg.push(`${av} commands: ${cmd_str}`)
       }
 
       let msg_s = msg.join(`\n\n`)
-      console.log(msg_s)
-      return
+      App.ai_config.history.push({role: `user`, content: msg_s})
+    }
+    else if (mode === `ask`) {
+      App.ai_config.history = []
+      let cmds = App.get_command_summary(text)
+      let sett = App.get_setting_summary(text)
+
+      if ((cmds.length === 0) && (sett.length === 0)) {
+        return
+      }
+
+      let msg = []
+
+      if (cmds.length) {
+        let str = App.str(cmds, true)
+
+        if (str) {
+          msg.push(`${av} commands:\n\n${str}`)
+        }
+      }
+
+      if (sett.length) {
+        let str = App.str(sett, true)
+
+        if (str) {
+          msg.push(`${av} settings:\n\n${str}`)
+        }
+      }
+
+      let msg_s = msg.join(`\n\n`)
       App.ai_config.history.push({role: `user`, content: msg_s})
     }
 
