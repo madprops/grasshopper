@@ -27,8 +27,8 @@ App.alert = (message, args = {}) => {
   text = App.make_html_safe(text)
 
   if (args.format) {
-    action(App.char_regex_3(`\``), App.to_bold)
     action(App.char_regex_3(`"`), App.to_bold, true)
+    action(App.char_regex_3(`\``), App.to_bold)
     action(App.char_regex_1(`*`, 2), App.to_bold)
     action(App.char_regex_1(`*`), App.to_bold)
     action(App.char_regex_2(`_`, 2), App.to_bold)
