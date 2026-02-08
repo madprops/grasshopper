@@ -345,7 +345,7 @@ App.chemistry_icon = `⚛️`
 App.toggle_icon = `🔛`
 App.filter_icon = `🔍`
 App.color_picker_icon = `🎨`
-App.ai_icon_cael = `🎆`
+App.ai_icon_cael = `🌿`
 App.ai_icon = `🧠`
 App.word_counter_icon = `🥸`
 

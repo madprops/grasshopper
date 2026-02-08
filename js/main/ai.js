@@ -232,7 +232,9 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
         App.alert(`Nothing happened`)
       }
 
-      for (cmd of cmds) {
+      App.close_textarea()
+
+      for (let cmd of cmds) {
         App.log(`AI: Running command: ${cmd.cmd}`)
         App.run_command({cmd: cmd.cmd, from: `ai`})
       }
@@ -292,7 +294,7 @@ App.ask_ai = async (system, prompt) => {
 
     App.hide_alert()
     App.clear_textarea()
-    return res || ""
+    return res || ``
   }
   catch (error) {
     App.hide_alert()

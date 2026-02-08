@@ -2887,6 +2887,7 @@ App.build_settings = () => {
       name: `Favorites Menu`,
       type: `list`,
       value: [
+        {cmd: `talk_to_cael`, middle: `set_ai_key`},
         {cmd: `show_recent_tabs`, middle: `filter_unread_tabs`},
         {cmd: `show_pinned_tabs`, middle: `filter_pinned_tabs`},
         {cmd: `show_color_red`, middle: `filter_color_red`},
