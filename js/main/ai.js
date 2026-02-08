@@ -10,13 +10,21 @@ App.ai_config = {
   Don't be overly mysterious, be relatable while maintaining some of your essence.`,
   cael_system_cmd: `You exist inside a tab manager addon for Firefox that has many features available.
   You are going to be given instructions to perform one or more actions.
-  Find the relevant commands that satisfy that request.
+  You are going to be given a list of relevant commands.
+  Find the commands that satisfy that request.
   The format is an array of cmd strings, with one or more items.
   For instance, if the user asks for a new tab to be opened:
   You return ["open_new_tab"].
   If the user asks to increase the font size and close all unloaded tabs.
   You return ["increase_font_size", "close_unloaded_tabs"].
   If no command satisfies the request, or it's too ambiguous, just return "idk".`,
+  cael_system_ask: `You exist inside a tab manager addon for Firefox that has many features available.
+  You are going to be asked about how to do or set something.
+  You are going to be given a list of relevant commands, and a list of relevant settings.
+  Point the user to a command or setting they might use to solve their problem.
+  For instance: "You might be looking for the 'Close Unloaded' command.".
+  Or: "You can adjust this in the 'Filter Placeholder' setting.".
+  `,
   history: [],
   words: 50,
   max_tokens: 1000,
@@ -90,12 +98,6 @@ App.show_ai = (who, title) => {
         },
       },
       {
-        text: `Info`,
-        action: () => {
-          App.show_ai_info()
-        },
-      },
-      {
         text: `Key`,
         action: () => {
           App.set_ai_key(`cael`)
@@ -105,6 +107,12 @@ App.show_ai = (who, title) => {
         text: `Cmd`,
         action: (text) => {
           send(text, `cmd`)
+        },
+      },
+      {
+        text: `Ask`,
+        action: () => {
+          send(text, `ask`)
         },
       },
       {
@@ -122,26 +130,21 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
     if (mode === `cmd`) {
       App.ai_config.history = []
       let cmds = App.get_command_summary(text)
-      let sett = App.get_setting_summary(text)
 
-      if ((cmds.length === 0) && (sett.length === 0)) {
+      if (cmds.length === 0) {
         return
       }
 
       let cmd_str = App.str(cmds)
-      let sett_str = App.str(sett)
       let msg = []
 
       if (cmd_str) {
         msg.push(`Here are the available commands: ${cmd_str}`)
       }
 
-      if (sett_str) {
-        msg.push(`Here are the available settings: ${sett_str}`)
-      }
-
       let msg_s = msg.join(`\n\n`)
       console.log(msg_s)
+      return
       App.ai_config.history.push({role: `user`, content: msg_s})
     }
 
@@ -275,10 +278,6 @@ App.set_ai_key = (talk = ``) => {
       }
     },
   })
-}
-
-App.show_ai_info = () => {
-  App.alert(`This uses Gemini.\nGet an API key in Google AI Studio`)
 }
 
 App.show_ai_response = (response, who, title) => {

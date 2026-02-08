@@ -2719,7 +2719,6 @@ App.make_setting_summary = () => {
   for (let sett of App.settings) {
     App.setting_summary.push({
       name: sett.name,
-      value: sett.value,
       info: sett.info,
     })
   }
