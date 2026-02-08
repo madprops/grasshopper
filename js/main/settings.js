@@ -2717,6 +2717,8 @@ App.make_setting_summary = () => {
   App.setting_summary = []
 
   for (let key in App.setting_props) {
+    let sett = App.setting_props[key]
+
     App.setting_summary.push({
       name: sett.name,
       info: sett.info,
