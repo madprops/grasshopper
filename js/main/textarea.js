@@ -14,6 +14,7 @@ App.show_textarea = (args = {}) => {
     image_size: `normal`,
     enter_action: false,
     shift_enter: false,
+    placeholder: ``,
     format: true,
     fluid: false,
   }
@@ -95,6 +96,7 @@ App.show_textarea = (args = {}) => {
     DOM.hide(simplearea)
     DOM.show(textarea)
     textarea.value = args.text
+    textarea.placeholder = args.placeholder
 
     if (args.readonly) {
       textarea.readOnly = true

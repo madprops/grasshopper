@@ -24,6 +24,9 @@ App.ai_config = {
   Point the user to a command or setting they might use to solve their problem.
   For instance: "You might be looking for the 'Close Unloaded' command.".
   Or: "You can adjust this in the 'Filter Placeholder' setting.".`,
+  cael_placeholder: `My name is Cael. I am a grasshopper.
+  I can help you perform actions, point to commands and settings,
+  or just chat with you. Write something and use the buttons below to select the action.`,
   history: [],
   words: 50,
   max_tokens: 1000,
@@ -85,6 +88,7 @@ App.show_ai = (who, title) => {
     title_icon: App[`ai_icon_${who}`],
     readonly: false,
     fluid: true,
+    placeholder: App.ai_config[`${who}_placeholder`],
     on_enter: (text) => {
       ask(text)
     },
