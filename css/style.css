@@ -1663,6 +1663,10 @@ a:hover
   max-width: 12.9rem;
 }
 
+#prompt_info {
+  max-width: 18rem;
+}
+
 .item_node {
   display: flex;
   align-items: center;

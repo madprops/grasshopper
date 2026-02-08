@@ -304,7 +304,8 @@ App.set_ai_key = (talk = ``) => {
   App.show_prompt({
     password: true,
     value: App.ai.key,
-    placeholder: `Gemini Key`,
+    placeholder: `API Key`,
+    info: `Get a key in Google AI Studio`,
     on_submit: async (key) => {
       App.ai.key = key
       App.stor_save_ai()

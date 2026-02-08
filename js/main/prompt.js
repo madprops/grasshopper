@@ -34,6 +34,7 @@ App.show_prompt = (args = {}) => {
     append: false,
     show_list: false,
     password: false,
+    info: ``,
     list: [],
     fill: ``,
   }
@@ -71,6 +72,14 @@ App.show_prompt = (args = {}) => {
   }
   else {
     DOM.hide(`#prompt_fill`)
+  }
+
+  if (args.info) {
+    DOM.show(`#prompt_info`)
+    DOM.el(`#prompt_info`).textContent = args.info
+  }
+  else {
+    DOM.hide(`#prompt_info`)
   }
 
   App.prompt_fill = args.fill
