@@ -92,6 +92,10 @@ App.do_filter = async (args = {}) => {
     return
   }
 
+  if (value.startsWith(App.filter_url_symbol)) {
+    return
+  }
+
   if (value_t.endsWith(`&`) || value_t.endsWith(`|`)) {
     return
   }
@@ -2273,22 +2277,57 @@ App.get_filter_placeholder = () => {
 }
 
 App.check_filter_enter = () => {
-  let sym = App.filter_cmd_symbol
   let value = App.get_filter()
-  let words = App.get_words(value)
-  let head = words[0]
-  let tail = words.slice(1).join(` `)
-  let chead = ``
 
-  if (head.startsWith(sym)) {
-    chead = head.slice(1)
+  if (value.startsWith(App.filter_cmd_symbol)) {
+    let words = App.get_words(value)
+    let head = words[0]
+    let tail = words.slice(1).join(` `).trim()
+    let chead = head.slice(1)
+
+    if (chead && tail) {
+      if ([`g`, `google`].includes(chead)) {
+        App.search_google(tail)
+      }
+      else if ([`ddg`, `duckduckgo`].includes(chead)) {
+        App.search_duckduckgo(tail)
+      }
+      else if ([`b`, `bing`].includes(chead)) {
+        App.search_bing(tail)
+      }
+      else if ([`w`, `wiki`].includes(chead)) {
+        App.search_wikipedia(tail)
+      }
+      else if ([`yt`, `youtube`].includes(chead)) {
+        App.search_youtube(tail)
+      }
+      else if ([`i`, `image`].includes(chead)) {
+        App.search_google_images(tail)
+      }
+    }
   }
+  else if (value.startsWith(App.filter_url_symbol)) {
+    let tail = value.slice(1).trim()
 
-  if (chead && tail) {
-    if ([`w`, `wiki`].includes(chead)) {
-      App.search_wikipedia(tail)
+    if (App.is_url(tail)) {
+      App.open_tab({url: tail})
+    }
+    else {
+      App.search_google(tail)
     }
   }
 
   App.clear_filter()
+}
+
+App.is_cmd_filter = (value) => {
+  if (value.startsWith(App.filter_cmd_symbol)) {
+    return true
+  }
+
+  if (value.startsWith(App.filter_url_symbol)) {
+    return true
+  }
+
+  return false
 }

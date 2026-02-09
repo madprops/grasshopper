@@ -120,7 +120,7 @@ App.check_items_keyboard = (e) => {
       if (filter_focus) {
         let current = App.get_filter(mode)
 
-        if (current.startsWith(App.filter_cmd_symbol)) {
+        if (App.is_cmd_filter(current)) {
           App.check_filter_enter()
           return
         }

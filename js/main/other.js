@@ -295,3 +295,10 @@ App.is_extension = (url) => {
 App.is_about_url = (url) => {
   return [`about:`].some(x => url.startsWith(x))
 }
+
+App.get_soul_emoji = () => {
+  App.load_emojilist()
+  let n = App.first_time.date
+  let i = n % App.emojilist.length
+  return App.emojilist[i]
+}

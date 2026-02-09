@@ -171,6 +171,7 @@ App.background_auto_color_prev = -1
 App.oracle_words = 2
 App.memory = {}
 App.filter_cmd_symbol = `!`
+App.filter_url_symbol = `>`
 
 App.ignored_tokens = [
   ``,

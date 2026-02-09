@@ -37,8 +37,12 @@ App.about_info_items = [
   `There are 3 special tags: jump, jump2, and jump3`,
   `Use Alt + Up/Down to select items ignoring unloaded tabs`,
   `Use "quotes" in the filters for more "precise matching"`,
+  `Use !g or !google in the filter to search Google`,
+  `Use !ddg or !duckduckgo in the filter to search DuckDuckGo`,
+  `Use !b or !bing in the filter to search Bing`,
   `Use !w or !wiki in the filter to search Wikipedia`,
-  `Use !yt in the filter to search YouTube`,
+  `Use !yt or !youtube in the filter to search YouTube`,
+  `Use !i or !image in the filter to search Images`,
   `Use > in the filter to enter URL or search term`,
 ]
 
@@ -147,7 +151,8 @@ App.start_about = () => {
       info += `Started: ${App.timeago(App.start_date)}\n`
       info += `Installed: ${App.timeago(App.first_time.date)}\n`
       info += `Commands: ${Object.keys(App.commands).length}\n`
-      info += `Settings: ${Object.keys(App.settings).length}`
+      info += `Settings: ${Object.keys(App.settings).length}\n`
+      info += `Soul: ${App.get_soul_emoji()}`
 
       let image = DOM.el(`#about_image`)
       image.classList.remove(`rotate_1`)
