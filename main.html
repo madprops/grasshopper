@@ -89,12 +89,6 @@ But not all Grasshoppers are Locusts
 
     <template id="template_about">
       <div id="about_container" class="flex_column_center gap_2">
-        <div id="about_links" class="flex_row_center gap_2">
-          <a href="https://github.com/madprops/grasshopper" class="action">GitHub Repo</a>
-          <div>|</div>
-          <a href="https://addons.mozilla.org/firefox/addon/grasshopper-urls" class="action">Firefox Store</a>
-        </div>
-
         <img id="about_image" class="about_image" src="img/grasshopper.png">
         <div id="about_dev" class="flex_column_center"></div>
 
@@ -104,6 +98,8 @@ But not all Grasshoppers are Locusts
           <div id="show_about_lore" class="doubleline">Lore</div>
           <div>|</div>
           <div id="show_about_credits" class="doubleline">Credits</div>
+          <div>|</div>
+          <div id="show_about_links" class="doubleline">Links</div>
         </div>
       </div>
     </template>
@@ -136,6 +132,13 @@ But not all Grasshoppers are Locusts
       </div>
     </template>
 
+    <template id="template_about_links">
+      <div id="about_container" class="flex_column_center gap_2">
+        <img class="about_image" src="img/icon.jpg">
+        <div id="about_links" class="flex_column_center gap_15"></div>
+      </div>
+    </template>
+
     <template id="template_about_top">
       <div class="flex_row_center gap_15">
         <div id="about_name"></div>
@@ -161,6 +164,13 @@ But not all Grasshoppers are Locusts
       <div class="flex_row_center gap_15">
         <div id="about_credits_name"></div>
         <div id="about_credits_close" class="button"></div>
+      </div>
+    </template>
+
+    <template id="template_about_links_top">
+      <div class="flex_row_center gap_15">
+        <div id="about_links_name"></div>
+        <div id="about_links_close" class="button"></div>
       </div>
     </template>
 

@@ -74,6 +74,12 @@ App.about_credits_items = [
   `Ovation by getcheffy`,
 ]
 
+App.about_links_items = [
+  [`https://github.com/madprops/grasshopper`, `Firefox Store`],
+  [`https://addons.mozilla.org/es-ES/firefox/addon/grasshopper-urls`, `GitHub Repo`],
+  [`https://groups.google.com/g/grasshopper-urls`, `Google Group`],
+]
+
 App.start_about = () => {
   if (App.check_ready(`about`)) {
     return
@@ -145,6 +151,11 @@ App.start_about = () => {
         App.hide_window()
         App.show_about_credits()
       })
+
+      DOM.ev(`#show_about_links`, `click`, () => {
+        App.hide_window()
+        App.show_about_links()
+      })
     },
     after_show: () => {
       let info = ``
@@ -204,6 +215,11 @@ App.show_about_lore = () => {
 App.show_about_credits = () => {
   App.start_about_credits()
   App.show_window(`about_credits`)
+}
+
+App.show_about_links = () => {
+  App.start_about_links()
+  App.show_window(`about_links`)
 }
 
 App.focus_about_filter = () => {
@@ -347,6 +363,41 @@ App.start_about_credits = () => {
       DOM.el(`#about_credits_name`).textContent = s
 
       let container = DOM.el(`#window_content_about_credits`)
+      App.generic_gestures(container)
+    },
+    colored_top: true,
+  })
+}
+
+App.start_about_links = () => {
+  if (App.check_ready(`about_links`)) {
+    return
+  }
+
+  App.create_window({
+    id: `about_links`,
+    setup: () => {
+      let close = DOM.el(`#about_links_close`)
+
+      DOM.ev(close, `click`, () => {
+        App.hide_window()
+        App.show_about()
+      })
+
+      close.textContent = App.close_text
+      let links = DOM.el(`#about_links`)
+
+      for (let item of App.about_links_items) {
+        let el = DOM.create(`a`, `about_link`)
+        el.href = item[0]
+        el.textContent = item[1]
+        links.append(el)
+      }
+
+      let s = `${App.manifest.name} v${App.manifest.version}`
+      DOM.el(`#about_links_name`).textContent = s
+
+      let container = DOM.el(`#window_content_about_links`)
       App.generic_gestures(container)
     },
     colored_top: true,
