@@ -113,18 +113,21 @@ App.show_ai = (who, title) => {
       },
       {
         text: `Cmd`,
+        title: `Request to perform an action`,
         action: (text) => {
           send(text, `cmd`)
         },
       },
       {
         text: `Ask`,
+        title: `Ask about commands and settings`,
         action: (text) => {
           send(text, `ask`)
         },
       },
       {
         text: `Chat`,
+        title: `Casual conversation`,
         action: (text) => {
           send(text)
         },

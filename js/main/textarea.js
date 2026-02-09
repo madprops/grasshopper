@@ -156,6 +156,10 @@ App.show_textarea = (args = {}) => {
       let b = DOM.create(`div`, `button`)
       b.textContent = btn.text
 
+      if (btn.title) {
+        b.title = btn.title
+      }
+
       DOM.ev(b, `click`, () => {
         btn.action(textarea.value)
       })
