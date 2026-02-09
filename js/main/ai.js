@@ -336,15 +336,15 @@ App.show_ai_response = (response, who, title) => {
     simple: true,
     buttons: [
       {
-        text: `Write`,
-        action: () => {
-          App.show_ai(who, title)
-        },
-      },
-      {
         text: `Copy`,
         action: () => {
           App.textarea_copy()
+        },
+      },
+      {
+        text: `Write`,
+        action: () => {
+          App.show_ai(who, title)
         },
       },
     ],
