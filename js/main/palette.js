@@ -55,9 +55,10 @@ App.show_palette = (prefilter = ``) => {
     let name = el.dataset.name
     let split = name.split(` `)
     let command = App.get_command(el.dataset.command)
+    let pcs = App.private_command_symbol
     let cname
 
-    if (name.startsWith(`!`)) {
+    if (name.startsWith(pcs)) {
       cname = name
     }
     else if (split.length < 2) {
@@ -67,7 +68,7 @@ App.show_palette = (prefilter = ``) => {
       cname = split.slice(1).join(` `)
     }
 
-    if (cname.startsWith(`!`)) {
+    if (cname.startsWith(pcs)) {
       DOM.hide(el)
     }
     else {

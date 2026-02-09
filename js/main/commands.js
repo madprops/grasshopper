@@ -801,6 +801,10 @@ App.make_command_summary = () => {
   App.command_summary = []
 
   for (let cmd of App.commands) {
+    if (cmd.name.startsWith(App.private_command_symbol)) {
+      continue
+    }
+
     App.command_summary.push({
       name: cmd.name,
       info: cmd.info,

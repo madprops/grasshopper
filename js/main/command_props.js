@@ -3,6 +3,8 @@ App.setup_commands = () => {
     return name.substring(0, 10).trim()
   }
 
+  let pcs = App.private_command_symbol
+
   let tabs_icon = App.get_setting_icon(`tabs_mode`)
   let history_icon = App.get_setting_icon(`history_mode`)
   let bookmarks_icon = App.get_setting_icon(`bookmarks_mode`)
@@ -5430,7 +5432,7 @@ App.setup_commands = () => {
     },
     // Don't add icons to hidden commands
     {
-      name: `!madprops`,
+      name: `${pcs}madprops`,
       cmd: `user_madprops_settings`,
       action: (args) => {
         App.user_settings(`madprops`)
@@ -5439,8 +5441,8 @@ App.setup_commands = () => {
       info: `Use the preferred settings for madprops`,
     },
     {
-      name: `!madprops (Force)`,
-      short_name: `!madprops (F)`,
+      name: `${pcs}madprops (Force)`,
+      short_name: `${pcs}madprops (F)`,
       cmd: `user_madprops_settings_force`,
       action: (args) => {
         App.user_settings(`madprops`, true)
@@ -5449,7 +5451,7 @@ App.setup_commands = () => {
       info: `Use the preferred settings for madprops without confirmation`,
     },
     {
-      name: `!auver`,
+      name: `${pcs}auver`,
       cmd: `user_auver`,
       action: (args) => {
         App.user_settings(`auver`)
@@ -5458,8 +5460,8 @@ App.setup_commands = () => {
       info: `Use the preferred settings for auver`,
     },
     {
-      name: `!auver (Force)`,
-      short_name: `!auver (F)`,
+      name: `${pcs}auver (Force)`,
+      short_name: `${pcs}auver (F)`,
       cmd: `user_auver_force`,
       action: (args) => {
         App.user_settings(`auver`, true)
@@ -5468,7 +5470,7 @@ App.setup_commands = () => {
       info: `Use the preferred settings for auver without confirmation`,
     },
     {
-      name: `!pauver`,
+      name: `${pcs}pauver`,
       cmd: `user_pauver`,
       action: (args) => {
         App.user_settings(`pauver`)
@@ -5477,8 +5479,8 @@ App.setup_commands = () => {
       info: `Use the preferred settings for pauver`,
     },
     {
-      name: `!pauver (Force)`,
-      short_name: `!pauver (F)`,
+      name: `${pcs}pauver (Force)`,
+      short_name: `${pcs}pauver (F)`,
       cmd: `user_pauver_force`,
       action: (args) => {
         App.user_settings(`pauver`, true)
@@ -5487,7 +5489,7 @@ App.setup_commands = () => {
       info: `Use the preferred settings for pauver without confirmation`,
     },
     {
-      name: `!fondo`,
+      name: `${pcs}fondo`,
       cmd: `user_fondo`,
       action: (args) => {
         App.user_settings(`fondo`)
@@ -5496,8 +5498,8 @@ App.setup_commands = () => {
       info: `Use the preferred settings for fondo`,
     },
     {
-      name: `!fondo (Force)`,
-      short_name: `!fondo (F)`,
+      name: `${pcs}fondo (Force)`,
+      short_name: `${pcs}fondo (F)`,
       cmd: `user_fondo_force`,
       action: (args) => {
         App.user_settings(`fondo`, true)
@@ -5506,7 +5508,7 @@ App.setup_commands = () => {
       info: `Use the preferred settings for fondo without confirmation`,
     },
     {
-      name: `!slay`,
+      name: `${pcs}slay`,
       cmd: `user_slay`,
       action: (args) => {
         App.user_settings(`slay`)
@@ -5515,8 +5517,8 @@ App.setup_commands = () => {
       info: `Use the preferred settings for slay`,
     },
     {
-      name: `!slay (Force)`,
-      short_name: `!slay (F)`,
+      name: `${pcs}slay (Force)`,
+      short_name: `${pcs}slay (F)`,
       cmd: `user_slay_force`,
       action: (args) => {
         App.user_settings(`slay`, true)
