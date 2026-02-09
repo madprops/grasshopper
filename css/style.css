@@ -2551,3 +2551,7 @@ a:hover
 .break {
   word-break: break-all;
 }
+
+.selectable {
+  user-select: text !important;
+}

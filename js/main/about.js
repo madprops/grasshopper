@@ -442,7 +442,7 @@ App.start_about_donate = () => {
       let donate = DOM.el(`#about_donate`)
 
       for (let item of App.about_donate_items) {
-        let el = DOM.create(`div`, `about_info_item filter_item filter_text break`)
+        let el = DOM.create(`div`, `about_info_item filter_item filter_text break selectable`)
         el.textContent = item
         donate.append(el)
       }
