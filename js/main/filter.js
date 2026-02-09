@@ -88,6 +88,10 @@ App.do_filter = async (args = {}) => {
   App.save_previous_filter(args.mode)
   let value_t = value.trim()
 
+  if (value.startsWith(App.filter_cmd_symbol)) {
+    return
+  }
+
   if (value_t.endsWith(`&`) || value_t.endsWith(`|`)) {
     return
   }
@@ -1538,7 +1542,7 @@ App.forget_filter_history_item = (value) => {
   App.stor_save_filter_history()
 }
 
-App.filter_is_focused = (mode) => {
+App.filter_is_focused = (mode = App.window_mode) => {
   return App.get_filter_el(mode) === document.activeElement
 }
 
@@ -2266,4 +2270,25 @@ App.filter_quotes = (value) => {
 
 App.get_filter_placeholder = () => {
   return App.get_setting(`filter_placeholder`) || App.filter_placeholder
+}
+
+App.check_filter_enter = () => {
+  let sym = App.filter_cmd_symbol
+  let value = App.get_filter()
+  let words = App.get_words(value)
+  let head = words[0]
+  let tail = words.slice(1).join(` `)
+  let chead = ``
+
+  if (head.startsWith(sym)) {
+    chead = head.slice(1)
+  }
+
+  if (chead && tail) {
+    if ([`w`, `wiki`].includes(chead)) {
+      App.search_wikipedia(tail)
+    }
+  }
+
+  App.clear_filter()
 }

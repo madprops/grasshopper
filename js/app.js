@@ -56,6 +56,7 @@ App.optional_modes = [`history`, `bookmarks`]
 App.color_types = [`active`, `header`, `subheader`, `playing`, `loaded`,
   `unloaded`, `unread`, `pinned`, `normal`, `unloaded`, `loaded`]
 
+App.ai = {}
 App.letters = `abcdefghijklmnopqrstuvwxyz`
 App.default_icons = [`😀`, `❤️`, `🤖`, `✅`, `🕒`]
 App.default_setting_string = `__default__`
@@ -169,7 +170,7 @@ App.calculator_text = ``
 App.background_auto_color_prev = -1
 App.oracle_words = 2
 App.memory = {}
-App.ai = {}
+App.filter_cmd_symbol = `!`
 
 App.ignored_tokens = [
   ``,

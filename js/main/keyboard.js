@@ -118,8 +118,14 @@ App.check_items_keyboard = (e) => {
       App.update_filter_history()
 
       if (filter_focus) {
+        let current = App.get_filter(mode)
+
+        if (current.startsWith(App.filter_cmd_symbol)) {
+          App.check_filter_enter()
+          return
+        }
+
         if (App.filter_enter_active(mode)) {
-          let current = App.get_filter(mode)
           let last = App[`last_${mode}_filter`]
 
           if (current !== last) {
@@ -653,6 +659,11 @@ App.setup_keyboard = () => {
         }
 
         return
+      }
+    }
+    else if (App.filter_is_focused()) {
+      if (e.key === `Enter`) {
+        App.check_filter_enter()
       }
     }
   })
