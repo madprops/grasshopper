@@ -2547,3 +2547,7 @@ a:hover
 .md_highlight {
   font-weight: bold;
 }
+
+.break {
+  word-break: break-all;
+}

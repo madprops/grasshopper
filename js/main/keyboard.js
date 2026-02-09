@@ -531,6 +531,14 @@ App.setup_keyboard = () => {
         return
       }
     }
+    else if (mode === `about_donate`) {
+      if (e.key === `Escape`) {
+        App.hide_window()
+        App.show_about()
+        e.preventDefault()
+        return
+      }
+    }
     else if (mode === `about_links`) {
       if (e.key === `Escape`) {
         App.hide_window()

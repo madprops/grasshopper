@@ -84,6 +84,10 @@ App.about_links_items = [
   [`https://en.wikipedia.org/wiki/Grasshopper`, `Wikipedia`],
 ]
 
+App.about_donate_items = [
+  [`84XEQKBLWYp9uNNn6bamfSFDkbbSzXXR64TpEJMW5puu4uur4B8uZVj1v9VXdYRfTQKoH9gnmAw57DkJoH2z6wcyM5CedwF`],
+]
+
 App.start_about = () => {
   if (App.check_ready(`about`)) {
     return
@@ -156,6 +160,11 @@ App.start_about = () => {
         App.show_about_credits()
       })
 
+      DOM.ev(`#show_about_donate`, `click`, () => {
+        App.hide_window()
+        App.show_about_donate()
+      })
+
       DOM.ev(`#show_about_links`, `click`, () => {
         App.hide_window()
         App.show_about_links()
@@ -219,6 +228,11 @@ App.show_about_lore = () => {
 App.show_about_credits = () => {
   App.start_about_credits()
   App.show_window(`about_credits`)
+}
+
+App.show_about_donate = () => {
+  App.start_about_donate()
+  App.show_window(`about_donate`)
 }
 
 App.show_about_links = () => {
@@ -403,6 +417,40 @@ App.start_about_links = () => {
       DOM.el(`#about_links_name`).textContent = s
 
       let container = DOM.el(`#window_content_about_links`)
+      App.generic_gestures(container)
+    },
+    colored_top: true,
+  })
+}
+
+App.start_about_donate = () => {
+  if (App.check_ready(`about_donate`)) {
+    return
+  }
+
+  App.create_window({
+    id: `about_donate`,
+    setup: () => {
+      let close = DOM.el(`#about_donate_close`)
+
+      DOM.ev(close, `click`, () => {
+        App.hide_window()
+        App.show_about()
+      })
+
+      close.textContent = App.close_text
+      let donate = DOM.el(`#about_donate`)
+
+      for (let item of App.about_donate_items) {
+        let el = DOM.create(`div`, `about_info_item filter_item filter_text break`)
+        el.textContent = item
+        donate.append(el)
+      }
+
+      let s = `${App.manifest.name} v${App.manifest.version}`
+      DOM.el(`#about_donate_name`).textContent = s
+
+      let container = DOM.el(`#window_content_about_donate`)
       App.generic_gestures(container)
     },
     colored_top: true,
