@@ -37,6 +37,9 @@ App.about_info_items = [
   `There are 3 special tags: jump, jump2, and jump3`,
   `Use Alt + Up/Down to select items ignoring unloaded tabs`,
   `Use "quotes" in the filters for more "precise matching"`,
+  `Use !w or !wiki in the filter to search Wikipedia`,
+  `Use !yt in the filter to search YouTube`,
+  `Use > in the filter to enter URL or search term`,
 ]
 
 App.about_lore_items = [
