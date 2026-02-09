@@ -44,6 +44,7 @@ App.about_info_items = [
   `Use !yt or !youtube in the filter to search YouTube`,
   `Use !i or !image in the filter to search Images`,
   `Use > in the filter to enter URL or search term`,
+  `Use ? in the filter to enter search term`,
 ]
 
 App.about_lore_items = [
@@ -78,6 +79,7 @@ App.about_links_items = [
   [`https://github.com/madprops/grasshopper`, `Firefox Store`],
   [`https://addons.mozilla.org/es-ES/firefox/addon/grasshopper-urls`, `GitHub Repo`],
   [`https://groups.google.com/g/grasshopper-urls`, `Google Group`],
+  [`https://en.wikipedia.org/wiki/Grasshopper`, `Wikipedia`],
 ]
 
 App.start_about = () => {
@@ -388,9 +390,10 @@ App.start_about_links = () => {
       let links = DOM.el(`#about_links`)
 
       for (let item of App.about_links_items) {
-        let el = DOM.create(`a`, `about_link`)
+        let el = DOM.create(`a`, `about_link doubleline`)
         el.href = item[0]
         el.textContent = item[1]
+        el.target = `_blank`
         links.append(el)
       }
 

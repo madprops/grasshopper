@@ -88,11 +88,7 @@ App.do_filter = async (args = {}) => {
   App.save_previous_filter(args.mode)
   let value_t = value.trim()
 
-  if (value.startsWith(App.filter_cmd_symbol)) {
-    return
-  }
-
-  if (value.startsWith(App.filter_url_symbol)) {
+  if (App.is_cmd_filter(value)) {
     return
   }
 
@@ -2316,6 +2312,10 @@ App.check_filter_enter = () => {
       App.search_google(tail)
     }
   }
+  else if (value.startsWith(App.filter_search_symbol)) {
+    let tail = value.slice(1).trim()
+    App.search_google(tail)
+  }
 
   App.clear_filter()
 }
@@ -2326,6 +2326,10 @@ App.is_cmd_filter = (value) => {
   }
 
   if (value.startsWith(App.filter_url_symbol)) {
+    return true
+  }
+
+  if (value.startsWith(App.filter_search_symbol)) {
     return true
   }
 

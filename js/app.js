@@ -172,6 +172,7 @@ App.oracle_words = 2
 App.memory = {}
 App.filter_cmd_symbol = `!`
 App.filter_url_symbol = `>`
+App.filter_search_symbol = `?`
 
 App.ignored_tokens = [
   ``,
