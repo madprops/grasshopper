@@ -297,10 +297,16 @@ App.settings_filter_focused = () => {
   return DOM.class(document.activeElement, [`settings_filter`])
 }
 
-App.show_all_settings = () => {
+App.show_all_settings = (filter = ``) => {
   App.start_settings()
   App.settings_category = `all`
   App.show_window(`settings_all`)
+
+  if (filter) {
+    let el = App.get_settings_filter(`all`)
+    el.value = filter
+    App.do_filter_settings()
+  }
 }
 
 App.prepare_all_settings = () => {

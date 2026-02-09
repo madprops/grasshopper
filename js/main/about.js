@@ -45,6 +45,8 @@ App.about_info_items = [
   `Use !i or !image in the filter to search Images`,
   `Use > in the filter to enter URL or search term`,
   `Use ? in the filter to enter search term`,
+  `Use $ in the filter to search a command`,
+  `Use # in the filter to search a setting`,
 ]
 
 App.about_lore_items = [

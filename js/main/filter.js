@@ -2275,7 +2275,7 @@ App.get_filter_placeholder = () => {
 App.check_filter_enter = () => {
   let value = App.get_filter()
 
-  if (value.startsWith(App.filter_cmd_symbol)) {
+  if (value.startsWith(App.filter_bang_symbol)) {
     let words = App.get_words(value)
     let head = words[0]
     let tail = words.slice(1).join(` `).trim()
@@ -2316,22 +2316,26 @@ App.check_filter_enter = () => {
     let tail = value.slice(1).trim()
     App.search_google(tail)
   }
+  else if (value.startsWith(App.filter_cmd_symbol)) {
+    let tail = value.slice(1).trim()
+    App.show_palette(tail)
+  }
+  else if (value.startsWith(App.filter_setting_symbol)) {
+    let tail = value.slice(1).trim()
+    App.show_all_settings(tail)
+  }
 
   App.clear_filter()
 }
 
 App.is_cmd_filter = (value) => {
-  if (value.startsWith(App.filter_cmd_symbol)) {
-    return true
-  }
+  let symbols = [
+    App.filter_bang_symbol,
+    App.filter_url_symbol,
+    App.filter_search_symbol,
+    App.filter_cmd_symbol,
+    App.filter_setting_symbol,
+  ]
 
-  if (value.startsWith(App.filter_url_symbol)) {
-    return true
-  }
-
-  if (value.startsWith(App.filter_search_symbol)) {
-    return true
-  }
-
-  return false
+  return symbols.some(symbol => value.startsWith(symbol))
 }

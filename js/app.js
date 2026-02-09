@@ -170,9 +170,11 @@ App.calculator_text = ``
 App.background_auto_color_prev = -1
 App.oracle_words = 2
 App.memory = {}
-App.filter_cmd_symbol = `!`
+App.filter_bang_symbol = `!`
 App.filter_url_symbol = `>`
 App.filter_search_symbol = `?`
+App.filter_cmd_symbol = `$`
+App.filter_setting_symbol = `#`
 
 App.ignored_tokens = [
   ``,
