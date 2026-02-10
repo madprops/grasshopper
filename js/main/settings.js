@@ -1343,7 +1343,7 @@ App.get_settings_with_list = () => {
 
 App.setup_settings_addlist = () => {
   let {popobj, regobj} = App.get_setting_addlist_objects()
-  key = `aliases`
+  let key = `aliases`
   let id = `settings_${key}`
   let props = App.setting_props[key]
 
@@ -1545,7 +1545,7 @@ App.setup_settings_addlist = () => {
     }
   }
 
-  let key = `command_filters`
+  key = `command_filters`
   id = `settings_${key}`
   props = App.setting_props[key]
 
