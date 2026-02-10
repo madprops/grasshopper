@@ -2287,7 +2287,7 @@ App.check_filter_enter = (value = ``) => {
     value = App.get_filter()
   }
 
-  if (value.startsWith(App.filter_bang_symbol)) {
+  if (value.startsWith(App.get_setting(`filter_search_symbol`))) {
     let words = App.get_words(value)
     let head = words[0]
     let tail = words.slice(1).join(` `).trim()
@@ -2302,7 +2302,7 @@ App.check_filter_enter = (value = ``) => {
       }
     }
   }
-  else if (value.startsWith(App.filter_url_symbol)) {
+  else if (value.startsWith(App.get_setting(`filter_url_symbol`))) {
     let tail = value.slice(1).trim()
 
     if (App.is_url(tail)) {
@@ -2312,15 +2312,15 @@ App.check_filter_enter = (value = ``) => {
       App.def_search_engine(tail)
     }
   }
-  else if (value.startsWith(App.filter_search_symbol)) {
+  else if (value.startsWith(App.get_setting(`filter_search_symbol`))) {
     let tail = value.slice(1).trim()
     App.def_search_engine(tail)
   }
-  else if (value.startsWith(App.filter_cmd_symbol)) {
+  else if (value.startsWith(App.get_setting(`filter_commands_symbol`))) {
     let tail = value.slice(1).trim()
     App.show_palette(tail)
   }
-  else if (value.startsWith(App.filter_setting_symbol)) {
+  else if (value.startsWith(App.get_setting(`filter_settings_symbol`))) {
     let tail = value.slice(1).trim()
     App.show_all_settings(tail)
   }

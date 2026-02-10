@@ -4756,7 +4756,7 @@ App.build_settings = () => {
       version: 1,
     },
 
-    filter_commands_symbol: {
+    filter_settings_symbol: {
       name: `Filter Settings Symbol`,
       type: `text_smaller`,
       value: `#`,
