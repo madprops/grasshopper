@@ -2287,7 +2287,7 @@ App.check_filter_enter = (value = ``) => {
     value = App.get_filter()
   }
 
-  if (value.startsWith(App.get_setting(`filter_search_symbol`))) {
+  if (value.startsWith(App.get_filter_symbol(`search`))) {
     let words = App.get_words(value)
     let head = words[0]
     let tail = words.slice(1).join(` `).trim()
@@ -2302,7 +2302,7 @@ App.check_filter_enter = (value = ``) => {
       }
     }
   }
-  else if (value.startsWith(App.get_setting(`filter_url_symbol`))) {
+  else if (value.startsWith(App.get_filter_symbol(url))) {
     let tail = value.slice(1).trim()
 
     if (App.is_url(tail)) {
@@ -2312,15 +2312,15 @@ App.check_filter_enter = (value = ``) => {
       App.def_search_engine(tail)
     }
   }
-  else if (value.startsWith(App.get_setting(`filter_search_symbol`))) {
+  else if (value.startsWith(App.get_filter_symbol(`query`))) {
     let tail = value.slice(1).trim()
-    App.def_search_engine(tail)
+    App.query_search_engine(tail)
   }
-  else if (value.startsWith(App.get_setting(`filter_commands_symbol`))) {
+  else if (value.startsWith(App.get_filter_symbol(`commands`))) {
     let tail = value.slice(1).trim()
     App.show_palette(tail)
   }
-  else if (value.startsWith(App.get_setting(`filter_settings_symbol`))) {
+  else if (value.startsWith(App.get_filter_symbol(`settings`))) {
     let tail = value.slice(1).trim()
     App.show_all_settings(tail)
   }
@@ -2330,12 +2330,16 @@ App.check_filter_enter = (value = ``) => {
 
 App.is_cmd_filter = (value) => {
   let symbols = [
-    App.filter_bang_symbol,
-    App.filter_url_symbol,
-    App.filter_search_symbol,
-    App.filter_cmd_symbol,
-    App.filter_setting_symbol,
+    `search`,
+    `url`,
+    `query`,
+    `commands`,
+    `settings`,
   ]
 
-  return symbols.some(symbol => value.startsWith(symbol))
+  return symbols.some(s => value.startsWith(App.get_filter_symbol(s)))
+}
+
+App.get_filter_symbol = (what) => {
+  return App.get_setting(`filter_${what}_symbol`)
 }

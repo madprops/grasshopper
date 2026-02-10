@@ -1,4 +1,4 @@
-App.def_search_engine = (term) => {
+App.query_search_engine = (term) => {
   let se = App.get_setting(`search_engine`)
 
   if (!se) {
