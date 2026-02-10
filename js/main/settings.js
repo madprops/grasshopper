@@ -1506,7 +1506,6 @@ App.setup_settings_addlist = () => {
   menukeys = [
     `favorite_filters`,
     `refine_filters`,
-    `command_filters`,
   ]
 
   for (let key in App.setting_props) {
@@ -1543,6 +1542,33 @@ App.setup_settings_addlist = () => {
         })})
     }
   }
+
+  id = `settings_command_filters`
+
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
+      keys: [`name`, `cmd`, `url`],
+      pk: `cmd`,
+      widgets: {
+        name: `text`,
+        cmd: `text`,
+        url: `text`,
+      },
+      labels: {
+        name: `Name`,
+        cmd: `Command`,
+        url: `URL`,
+      },
+      labels: {
+        cmd: `Name`,
+        cmd: `Command`,
+        cmd: `URL`,
+      },
+      list_text: (item) => {
+        return item.name
+      },
+      title: props.name,
+    })})
 
   menukeys = [
     `custom_icon_commands`,

@@ -4686,7 +4686,6 @@ App.build_settings = () => {
         {cmd: `filter_media_video`},
         {cmd: `filter_media_audio`},
       ],
-      separator: true,
       info: `This list appears when middle clicking the Filter
       Used to further refine filtered items`,
       version: 1,
@@ -4703,7 +4702,9 @@ App.build_settings = () => {
         {name: `Images`, cmd: `i`, url: `https://www.google.com/search?q=%s&tbm=isch`},
       ],
       actions: [`commands`],
-      info: `List of filter commands to perform searches`,
+      separator: true,
+      info: `List of filter commands to perform searches
+      Use %s where the search terms are supposed to go`,
       version: 1,
     },
 
