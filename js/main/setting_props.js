@@ -4691,6 +4691,21 @@ App.build_settings = () => {
       Used to further refine filtered items`,
       version: 1,
     },
+    command_filters: {
+      name: `Command Filters`,
+      type: `list`,
+      value: [
+        {name: `Google`, cmd: `g`, url: `https://www.google.com/search?q=%s`},
+        {name: `Bing`, cmd: `b`, url: `https://www.bing.com/search?q=%s`},
+        {name: `DuckDuckGo`, cmd: `ddg`, url: `https://duckduckgo.com?q=%s`},
+        {name: `YouTube`, cmd: `yt`, url: `https://www.youtube.com/results?search_query=%s`},
+        {name: `Wikpedia`, cmd: `wiki`, url: `https://en.wikipedia.org/w/index.php?search=%s&title=Special:Search&go=Go`},
+        {name: `Images`, cmd: `i`, url: `https://www.google.com/search?q=%s&tbm=isch`},
+      ],
+      actions: [`commands`],
+      info: `List of filter commands to perform searches`,
+      version: 1,
+    },
 
     ...App.make_mouse_settings({
       what: `filter`,

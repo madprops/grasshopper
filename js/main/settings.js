@@ -1506,6 +1506,7 @@ App.setup_settings_addlist = () => {
   menukeys = [
     `favorite_filters`,
     `refine_filters`,
+    `command_filters`,
   ]
 
   for (let key in App.setting_props) {
