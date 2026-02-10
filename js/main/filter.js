@@ -864,6 +864,7 @@ App.set_filter = (args = {}) => {
   }
 
   App.def_args(def_args, args)
+  args.text = args.text.trimStart()
 
   if (args.enter_if_cmd) {
     if (App.is_cmd_filter(args.text)) {
