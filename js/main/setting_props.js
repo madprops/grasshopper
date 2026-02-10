@@ -4694,12 +4694,13 @@ App.build_settings = () => {
         {cmd: `filter_media_video`},
         {cmd: `filter_media_audio`},
       ],
+      separator: true,
       info: `This list appears when middle clicking the Filter
       Used to further refine filtered items`,
       version: 1,
     },
-    command_filters: {
-      name: `Command Filters`,
+    search_filters: {
+      name: `Search Filters`,
       type: `list`,
       value: [
         {name: `Google`, cmd: `g`, url: `https://www.google.com/search?q=%s`},
@@ -4710,9 +4711,59 @@ App.build_settings = () => {
         {name: `Images`, cmd: `i`, url: `https://www.google.com/search?q=%s&tbm=isch`},
       ],
       actions: [`commands`],
-      separator: true,
       info: `List of filter commands to perform searches
       Use %s where the search terms are supposed to go`,
+      version: 1,
+    },
+
+    filter_search_symbol: {
+      name: `Filter Search Symbol`,
+      type: `text_smaller`,
+      value: `!`,
+      placeholder: `Symbol`,
+      no_empty: true,
+      info: `Symbol for search filter commands`,
+      version: 1,
+    },
+
+    filter_url_symbol: {
+      name: `Filter URL Symbol`,
+      type: `text_smaller`,
+      value: `>`,
+      placeholder: `Symbol`,
+      no_empty: true,
+      info: `Symbol for URL filter commands`,
+      version: 1,
+    },
+
+    filter_query_symbol: {
+      name: `Filter Query Symbol`,
+      type: `text_smaller`,
+      value: `?`,
+      placeholder: `Symbol`,
+      no_empty: true,
+      info: `Symbol for query filter commands`,
+      version: 1,
+    },
+
+    filter_commands_symbol: {
+      name: `Filter Commands Symbol`,
+      type: `text_smaller`,
+      value: `$`,
+      placeholder: `Symbol`,
+      no_empty: true,
+      info: `Symbol for commands filter`,
+      version: 1,
+    },
+
+    filter_commands_symbol: {
+      name: `Filter Settings Symbol`,
+      type: `text_smaller`,
+      value: `#`,
+      placeholder: `Symbol`,
+      no_empty: true,
+      separator: true,
+      info: `Symbol for settings filter`,
       version: 1,
     },
 

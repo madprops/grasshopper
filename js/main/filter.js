@@ -2294,7 +2294,7 @@ App.check_filter_enter = (value = ``) => {
     let chead = head.slice(1)
 
     if (chead && tail) {
-      for (let filter of App.get_setting(`command_filters`)) {
+      for (let filter of App.get_setting(`search_filters`)) {
         if (filter.cmd === chead) {
           App.use_search_engine(filter.url, tail)
           break

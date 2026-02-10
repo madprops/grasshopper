@@ -1545,7 +1545,7 @@ App.setup_settings_addlist = () => {
     }
   }
 
-  key = `command_filters`
+  key = `search_filters`
   id = `settings_${key}`
   props = App.setting_props[key]
 
