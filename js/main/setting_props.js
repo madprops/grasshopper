@@ -5923,6 +5923,7 @@ App.build_settings = () => {
     let obj = {
       text: num,
       action: () => {
+        App.set_setting({setting: `themed_week_enabled`, value: false})
         App.set_theme(num)
       },
     }
