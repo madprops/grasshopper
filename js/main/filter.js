@@ -2302,7 +2302,7 @@ App.check_filter_enter = (value = ``) => {
       }
     }
   }
-  else if (value.startsWith(App.get_filter_symbol(url))) {
+  else if (value.startsWith(App.get_filter_symbol(`url`))) {
     let tail = value.slice(1).trim()
 
     if (App.is_url(tail)) {

@@ -4699,73 +4699,6 @@ App.build_settings = () => {
       Used to further refine filtered items`,
       version: 1,
     },
-    search_filters: {
-      name: `Search Filters`,
-      type: `list`,
-      value: [
-        {name: `Google`, cmd: `g`, url: `https://www.google.com/search?q=%s`},
-        {name: `Bing`, cmd: `b`, url: `https://www.bing.com/search?q=%s`},
-        {name: `DuckDuckGo`, cmd: `ddg`, url: `https://duckduckgo.com?q=%s`},
-        {name: `YouTube`, cmd: `yt`, url: `https://www.youtube.com/results?search_query=%s`},
-        {name: `Wikpedia`, cmd: `wiki`, url: `https://en.wikipedia.org/w/index.php?search=%s&title=Special:Search&go=Go`},
-        {name: `Images`, cmd: `i`, url: `https://www.google.com/search?q=%s&tbm=isch`},
-      ],
-      actions: [`commands`],
-      info: `List of filter commands to perform searches
-      Use %s where the search terms are supposed to go`,
-      version: 1,
-    },
-
-    filter_search_symbol: {
-      name: `Filter Search Symbol`,
-      type: `text_smaller`,
-      value: `!`,
-      placeholder: `Symbol`,
-      no_empty: true,
-      info: `Symbol for search filter commands`,
-      version: 1,
-    },
-
-    filter_url_symbol: {
-      name: `Filter URL Symbol`,
-      type: `text_smaller`,
-      value: `>`,
-      placeholder: `Symbol`,
-      no_empty: true,
-      info: `Symbol for URL filter commands`,
-      version: 1,
-    },
-
-    filter_query_symbol: {
-      name: `Filter Query Symbol`,
-      type: `text_smaller`,
-      value: `?`,
-      placeholder: `Symbol`,
-      no_empty: true,
-      info: `Symbol for query filter commands`,
-      version: 1,
-    },
-
-    filter_commands_symbol: {
-      name: `Filter Commands Symbol`,
-      type: `text_smaller`,
-      value: `$`,
-      placeholder: `Symbol`,
-      no_empty: true,
-      info: `Symbol for commands filter`,
-      version: 1,
-    },
-
-    filter_settings_symbol: {
-      name: `Filter Settings Symbol`,
-      type: `text_smaller`,
-      value: `#`,
-      placeholder: `Symbol`,
-      no_empty: true,
-      separator: true,
-      info: `Symbol for settings filter`,
-      version: 1,
-    },
 
     ...App.make_mouse_settings({
       what: `filter`,
@@ -4864,6 +4797,73 @@ App.build_settings = () => {
       value: false,
       info: `Enable the clock in the filter input`,
       separator: true,
+      version: 1,
+    },
+    search_filters: {
+      name: `Search Filters`,
+      type: `list`,
+      value: [
+        {name: `Google`, cmd: `g`, url: `https://www.google.com/search?q=%s`},
+        {name: `Bing`, cmd: `b`, url: `https://www.bing.com/search?q=%s`},
+        {name: `DuckDuckGo`, cmd: `ddg`, url: `https://duckduckgo.com?q=%s`},
+        {name: `YouTube`, cmd: `yt`, url: `https://www.youtube.com/results?search_query=%s`},
+        {name: `Wikpedia`, cmd: `wiki`, url: `https://en.wikipedia.org/w/index.php?search=%s&title=Special:Search&go=Go`},
+        {name: `Images`, cmd: `i`, url: `https://www.google.com/search?q=%s&tbm=isch`},
+      ],
+      actions: [`commands`],
+      info: `List of filter commands to perform searches
+      Use %s where the search terms are supposed to go`,
+      version: 1,
+    },
+
+    filter_search_symbol: {
+      name: `Filter Search Symbol`,
+      type: `text_smaller`,
+      value: `!`,
+      placeholder: `Symbol`,
+      no_empty: true,
+      info: `Symbol for search filter commands`,
+      version: 1,
+    },
+
+    filter_url_symbol: {
+      name: `Filter URL Symbol`,
+      type: `text_smaller`,
+      value: `>`,
+      placeholder: `Symbol`,
+      no_empty: true,
+      info: `Symbol for URL filter commands`,
+      version: 1,
+    },
+
+    filter_query_symbol: {
+      name: `Filter Query Symbol`,
+      type: `text_smaller`,
+      value: `?`,
+      placeholder: `Symbol`,
+      no_empty: true,
+      info: `Symbol for query filter commands`,
+      version: 1,
+    },
+
+    filter_commands_symbol: {
+      name: `Filter Commands Symbol`,
+      type: `text_smaller`,
+      value: `$`,
+      placeholder: `Symbol`,
+      no_empty: true,
+      info: `Symbol for commands filter`,
+      version: 1,
+    },
+
+    filter_settings_symbol: {
+      name: `Filter Settings Symbol`,
+      type: `text_smaller`,
+      value: `#`,
+      placeholder: `Symbol`,
+      no_empty: true,
+      separator: true,
+      info: `Symbol for settings filter`,
       version: 1,
     },
     max_search_items_history: {
