@@ -1559,11 +1559,6 @@ App.setup_settings_addlist = () => {
         cmd: `Command`,
         url: `URL`,
       },
-      labels: {
-        cmd: `Name`,
-        cmd: `Command`,
-        cmd: `URL`,
-      },
       list_text: (item) => {
         return item.name
       },
