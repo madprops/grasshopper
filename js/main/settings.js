@@ -1343,8 +1343,9 @@ App.get_settings_with_list = () => {
 
 App.setup_settings_addlist = () => {
   let {popobj, regobj} = App.get_setting_addlist_objects()
-  let id = `settings_aliases`
-  let props = App.setting_props.aliases
+  key = `aliases`
+  let id = `settings_${key}`
+  let props = App.setting_props[key]
 
   let add_cmd_single = () => {
     let cmds = App.shuffle_array(App.commands)
@@ -1387,8 +1388,9 @@ App.setup_settings_addlist = () => {
       title: props.name,
     })})
 
-  id = `settings_custom_filters`
-  props = App.setting_props.custom_filters
+  key = `custom_filters`
+  id = `settings_${key}`
+  props = App.setting_props[key]
 
   App.create_popup({...popobj, id: `addlist_${id}`,
     element: Addlist.register({...regobj, id,
@@ -1644,8 +1646,9 @@ App.setup_settings_addlist = () => {
   App.start_colors_addlist()
   App.start_keyboard_addlist()
 
-  id = `settings_custom_urls`
-  props = App.setting_props.custom_urls
+  key = `custom_urls`
+  id = `settings_${key}`
+  props = App.setting_props[key]
 
   App.create_popup({...popobj, id: `addlist_${id}`,
     element: Addlist.register({...regobj, id,
