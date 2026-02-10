@@ -2294,23 +2294,11 @@ App.check_filter_enter = (value = ``) => {
     let chead = head.slice(1)
 
     if (chead && tail) {
-      if ([`g`, `google`].includes(chead)) {
-        App.search_google(tail)
-      }
-      else if ([`ddg`, `duckduckgo`].includes(chead)) {
-        App.search_duckduckgo(tail)
-      }
-      else if ([`b`, `bing`].includes(chead)) {
-        App.search_bing(tail)
-      }
-      else if ([`w`, `wiki`].includes(chead)) {
-        App.search_wikipedia(tail)
-      }
-      else if ([`yt`, `youtube`].includes(chead)) {
-        App.search_youtube(tail)
-      }
-      else if ([`i`, `image`].includes(chead)) {
-        App.search_google_images(tail)
+      for (let filter of App.get_setting(`command_filters`)) {
+        if (filter.cmd === chead) {
+          App.do_command_filter(filter, tail)
+          break
+        }
       }
     }
   }
@@ -2350,4 +2338,10 @@ App.is_cmd_filter = (value) => {
   ]
 
   return symbols.some(symbol => value.startsWith(symbol))
+}
+
+App.do_command_filter = (filter, term) => {
+  let encoded_term = encodeURIComponent(term)
+  let url = filter.url.replaceAll(`%s`, encoded_term)
+  App.open_tab({url})
 }
