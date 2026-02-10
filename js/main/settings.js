@@ -2764,3 +2764,11 @@ App.get_setting_summary = (text = ``) => {
 
   return items
 }
+
+App.disable_settings_mirror = () => {
+  App.settings_mirror = false
+}
+
+App.enable_settings_mirror = () => {
+  App.settings_mirror = true
+}

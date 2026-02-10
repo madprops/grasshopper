@@ -28,12 +28,16 @@ App.start_auto_color = () => {
 }
 
 App.do_auto_color = () => {
+  App.disable_settings_mirror()
+
   if (App.is_dark_mode()) {
     App.random_colors(`dark`)
   }
   else {
     App.random_colors(`light`)
   }
+
+  App.enable_settings_mirror()
 }
 
 App.toggle_auto_color = () => {

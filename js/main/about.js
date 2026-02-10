@@ -296,8 +296,7 @@ App.start_about_info = () => {
         App.reset_generic_filter(`about_info`)
       })
 
-      let s = `${App.manifest.name} v${App.manifest.version}`
-      DOM.el(`#about_info_name`).textContent = s
+      DOM.el(`#about_info_name`).textContent = `Info`
 
       let container = DOM.el(`#window_content_about_info`)
       App.generic_gestures(container)
@@ -343,8 +342,7 @@ App.start_about_lore = () => {
         lore.append(el)
       }
 
-      let s = `${App.manifest.name} v${App.manifest.version}`
-      DOM.el(`#about_lore_name`).textContent = s
+      DOM.el(`#about_lore_name`).textContent = `Lore`
 
       let container = DOM.el(`#window_content_about_lore`)
       App.generic_gestures(container)
@@ -377,8 +375,7 @@ App.start_about_credits = () => {
         credits.append(el)
       }
 
-      let s = `${App.manifest.name} v${App.manifest.version}`
-      DOM.el(`#about_credits_name`).textContent = s
+      DOM.el(`#about_credits_name`).textContent = `Credits`
 
       let container = DOM.el(`#window_content_about_credits`)
       App.generic_gestures(container)
@@ -413,8 +410,7 @@ App.start_about_links = () => {
         links.append(el)
       }
 
-      let s = `${App.manifest.name} v${App.manifest.version}`
-      DOM.el(`#about_links_name`).textContent = s
+      DOM.el(`#about_links_name`).textContent = `Links`
 
       let container = DOM.el(`#window_content_about_links`)
       App.generic_gestures(container)
@@ -447,8 +443,7 @@ App.start_about_donate = () => {
         donate.append(el)
       }
 
-      let s = `${App.manifest.name} v${App.manifest.version}`
-      DOM.el(`#about_donate_name`).textContent = s
+      DOM.el(`#about_donate_name`).textContent = `Donate`
 
       let container = DOM.el(`#window_content_about_donate`)
       App.generic_gestures(container)
