@@ -859,10 +859,19 @@ App.set_filter = (args = {}) => {
     filter: true,
     instant: true,
     to_history: true,
+    enter_if_cmd: false,
     mode: App.active_mode,
   }
 
   App.def_args(def_args, args)
+
+  if (args.enter_if_cmd) {
+    if (App.is_cmd_filter(args.text)) {
+      App.check_filter_enter(args.text)
+      return
+    }
+  }
+
   App.get_filter_el(args.mode).value = args.text
 
   if (args.to_history) {
@@ -2272,8 +2281,10 @@ App.get_filter_placeholder = () => {
   return App.get_setting(`filter_placeholder`) || App.filter_placeholder
 }
 
-App.check_filter_enter = () => {
-  let value = App.get_filter()
+App.check_filter_enter = (value = ``) => {
+  if (!value) {
+    value = App.get_filter()
+  }
 
   if (value.startsWith(App.filter_bang_symbol)) {
     let words = App.get_words(value)

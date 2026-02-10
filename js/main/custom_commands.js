@@ -59,7 +59,7 @@ App.custom_command_actions = {
     App.jump_tabs({what: `tag_${cmd.argument}`, item: items[0]})
   },
   custom_filter: (cmd, items, e) => {
-    App.set_filter({text: cmd.argument})
+    App.set_filter({text: cmd.argument, enter_if_cmd: true})
   },
   find_command: (cmd, items, e) => {
     App.show_palette(cmd.argument)
