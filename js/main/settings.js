@@ -885,7 +885,7 @@ App.set_setting = (args = {}) => {
       App.settings[args.setting].value = args.value
     }
 
-    let mirror = !props.no_mirror
+    let mirror = App.settings_mirror && !props.no_mirror
     App.save_settings_debouncer.call(mirror)
 
     if (args.action) {

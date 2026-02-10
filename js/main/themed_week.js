@@ -29,7 +29,9 @@ App.check_themed_week = () => {
   }
 
   let day = App.get_day_number()
+  App.settings_mirror = false
   App.set_theme(day)
+  App.settings_mirror = true
 }
 
 App.toggle_themed_week = () => {

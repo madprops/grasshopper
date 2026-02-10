@@ -176,6 +176,7 @@ App.filter_url_symbol = `>`
 App.filter_search_symbol = `?`
 App.filter_cmd_symbol = `$`
 App.filter_setting_symbol = `#`
+App.settings_mirror = true
 
 App.ignored_tokens = [
   ``,
