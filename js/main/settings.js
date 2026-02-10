@@ -1543,7 +1543,9 @@ App.setup_settings_addlist = () => {
     }
   }
 
-  id = `settings_command_filters`
+  let key = `command_filters`
+  id = `settings_${key}`
+  props = App.setting_props[key]
 
   App.create_popup({...popobj, id: `addlist_${id}`,
     element: Addlist.register({...regobj, id,
