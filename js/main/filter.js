@@ -2296,7 +2296,7 @@ App.check_filter_enter = (value = ``) => {
     if (chead && tail) {
       for (let filter of App.get_setting(`command_filters`)) {
         if (filter.cmd === chead) {
-          App.do_command_filter(filter, tail)
+          App.use_search_engine(filter.url, tail)
           break
         }
       }
@@ -2309,12 +2309,12 @@ App.check_filter_enter = (value = ``) => {
       App.open_tab({url: tail})
     }
     else {
-      App.search_google(tail)
+      App.def_search_engine(tail)
     }
   }
   else if (value.startsWith(App.filter_search_symbol)) {
     let tail = value.slice(1).trim()
-    App.search_google(tail)
+    App.def_search_engine(tail)
   }
   else if (value.startsWith(App.filter_cmd_symbol)) {
     let tail = value.slice(1).trim()
@@ -2338,10 +2338,4 @@ App.is_cmd_filter = (value) => {
   ]
 
   return symbols.some(symbol => value.startsWith(symbol))
-}
-
-App.do_command_filter = (filter, term) => {
-  let encoded_term = encodeURIComponent(term)
-  let url = filter.url.replaceAll(`%s`, encoded_term)
-  App.open_tab({url})
 }

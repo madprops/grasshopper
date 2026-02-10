@@ -393,6 +393,14 @@ App.build_settings = () => {
       separator: true,
       version: 4,
     },
+    search_engine: {
+      name: `Search Engine`,
+      type: `text`,
+      value: `https://www.google.com/search?q=%s`,
+      placeholder: `URL`,
+      info: `Default search engine for the > and ? commands and others`,
+      version: 1,
+    },
     close_on_focus: {
       name: `Close On Focus`,
       type: `checkbox`,
