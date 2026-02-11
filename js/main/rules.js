@@ -136,6 +136,8 @@ App.start_domain_rules_addlist = () => {
         `exact`,
         `color`,
         `title`,
+        `title_prepend`,
+        `title_append`,
         `icon`,
         `tags`,
         `root`,
@@ -149,6 +151,8 @@ App.start_domain_rules_addlist = () => {
         domain: `text`,
         color: `menu`,
         title: `text`,
+        title_prepend: `text`,
+        title_append: `text`,
         root: `text`,
         icon: `text`,
         tags: `text`,
@@ -182,6 +186,8 @@ App.start_domain_rules_addlist = () => {
         domain: `Domain`,
         color: `Color`,
         title: `Title`,
+        title_prepend: `Title (Prepend)`,
+        title_append: `Title (Append)`,
         icon: `Icon`,
         tags: `Tags`,
         notes: `Notes`,
@@ -221,6 +227,8 @@ App.start_domain_rules_addlist = () => {
         if (
           !values.color &&
           !values.title &&
+          !values.title_prepend &&
+          !values.title_append &&
           !values.root &&
           !values.icon &&
           !values.tags &&
@@ -243,6 +251,8 @@ App.start_domain_rules_addlist = () => {
         by_title: `Match by title instead of URL`,
         color: `Add this color to matches`,
         title: `Add this title to matches`,
+        title_prepend: `Add this prepended title to matches`,
+        title_append: `Add this appended title to matches`,
         icon: `Add this icon to matches`,
         tags: `Add these tags to matches`,
         notes: `Add these notes to matches`,
