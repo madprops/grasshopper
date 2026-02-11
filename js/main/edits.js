@@ -208,7 +208,7 @@ App.edit_prompt = (args = {}) => {
     }
   }
 
-  let name = App.capitalize(args.what)
+  let name = App.capitalize_words(args.what)
   let single_word = false
   let suggestions = []
   let tags, titles, icons, roots
@@ -217,7 +217,7 @@ App.edit_prompt = (args = {}) => {
     tags = App.get_all_tags()
     suggestions = tags
   }
-  else if (args.what === `title`) {
+  else if (args.what.startsWith(`title`)) {
     titles = App.get_all_titles()
     suggestions = titles
   }
@@ -245,7 +245,7 @@ App.edit_prompt = (args = {}) => {
   if (args.what === `tags`) {
     list = tags
   }
-  else if (args.what === `title`) {
+  else if (args.what.startsWith(`title`)) {
     list = titles
   }
   else if (args.what === `icon`) {
@@ -260,7 +260,7 @@ App.edit_prompt = (args = {}) => {
   if ((args.what === `tags`) && App.get_setting(`auto_tag_picker`)) {
     list_submit = true
   }
-  else if ((args.what === `title`) || (args.what === `icon`)) {
+  else if ((args.what.startsWith(`title`)) || (args.what === `icon`)) {
     list_submit = true
   }
   else {

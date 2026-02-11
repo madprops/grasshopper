@@ -769,7 +769,9 @@ App.filter_check = (args) => {
         match = false
       }
       else {
-        match = args.item.custom_title || args.item.rule_title
+        match = args.item.custom_title || args.item.rule_title ||
+                args.item.custom_title_prepend || args.item.rule_title_prepend ||
+                args.item.custom_title_append || args.item.rule_title_append
       }
     }
     else if (args.filter_mode === `filter_pinned_tabs`) {

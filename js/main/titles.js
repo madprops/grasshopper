@@ -57,6 +57,7 @@ App.edit_tab_title_prepend = (args = {}) => {
       for (let it of active) {
         App.apply_edit({what: `title_prepend`, item: it, value: args.title_prepend, on_change: (value) => {
           App.custom_save(it.id, `title_prepend`, value)
+          App.push_to_title_history([value])
         }})
       }
     },
@@ -80,6 +81,7 @@ App.edit_tab_title_append = (args = {}) => {
       for (let it of active) {
         App.apply_edit({what: `title_append`, item: it, value: args.title_append, on_change: (value) => {
           App.custom_save(it.id, `title_append`, value)
+          App.push_to_title_history([value])
         }})
       }
     },
@@ -146,6 +148,34 @@ App.push_to_title_history = (titles) => {
   }
 
   App.stor_save_title_history()
+}
+
+App.get_all_titles = (include_rules = true) => {
+  let titles = []
+
+  for (let title of App.title_history) {
+    if (!titles.includes(title)) {
+      titles.push(title)
+    }
+  }
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_title) {
+      if (!titles.includes(item.custom_title)) {
+        titles.push(item.custom_title)
+      }
+    }
+
+    if (include_rules) {
+      if (item.rule_title) {
+        if (!titles.includes(item.rule_title)) {
+          titles.push(item.rule_title)
+        }
+      }
+    }
+  }
+
+  return titles
 }
 
 App.get_all_titles = (include_rules = true) => {
