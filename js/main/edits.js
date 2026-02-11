@@ -260,7 +260,7 @@ App.edit_prompt = (args = {}) => {
   if ((args.what === `tags`) && App.get_setting(`auto_tag_picker`)) {
     list_submit = true
   }
-  else if ((args.what.startsWith(`title`)) || (args.what === `icon`)) {
+  else if (args.what.startsWith(`title`) || (args.what === `icon`)) {
     list_submit = true
   }
   else {
