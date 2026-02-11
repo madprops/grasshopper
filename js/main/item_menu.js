@@ -53,6 +53,7 @@ App.show_item_menu = async (args = {}) => {
     App.item_menu_item(title_items, `edit_title`, {item: args.item})
     App.item_menu_item(title_items, `edit_title_prepend`, {item: args.item})
     App.item_menu_item(title_items, `edit_title_append`, {item: args.item})
+    App.item_menu_item(title_items, `remove_title`, {item: args.item})
 
     items.push({
       icon: App.title_icon,

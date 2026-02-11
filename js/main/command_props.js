@@ -3669,7 +3669,7 @@ App.setup_commands = () => {
       cmd: `remove_title`,
       modes: [`tabs`],
       item: true,
-      some_custom_title: true,
+      title_edited: true,
       icon: notepad_icon,
       action: (args) => {
         App.remove_item_title(args.item)
@@ -3683,7 +3683,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: notepad_icon,
       action: (args) => {
-        App.remove_edits({what: [`title`], text: `titles`})
+        App.remove_all_titles()
       },
       info: `Remove all titles from tabs`,
     },

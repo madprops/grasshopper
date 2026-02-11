@@ -188,7 +188,18 @@ App.remove_item_title = (item) => {
     }
   }
 
-  App.remove_edits({what: [`title`], items: active, text: `titles`})
+  App.remove_edits({
+    what: [`title`, `title_prepend`, `title_append`],
+    items: active,
+    text: `titles`,
+  })
+}
+
+App.remove_all_titles = () => {
+  App.remove_edits({
+    what: [`title`, `title_prepend`, `title_append`],
+    text: `titles`,
+  })
 }
 
 App.get_titled_items = (mode) => {

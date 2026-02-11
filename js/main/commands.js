@@ -307,6 +307,15 @@ App.check_command = (command, args = {}) => {
     args.some_no_custom_split = true
   }
 
+  if (args.some_custom_title ||
+    args.some_custom_title_prepend ||
+    args.some_custom_title_append) {
+      args.title_edited = true
+    }
+  else {
+    args.title_edited = false
+  }
+
   let valid = true
 
   function check_1(what) {
@@ -386,6 +395,7 @@ App.check_command = (command, args = {}) => {
   check_1(`some_container`)
   check_1(`some_obfuscated`)
   check_1(`some_no_obfuscated`)
+  check_1(`title_edited`)
 
   let edit_props = App.get_edit_prop_list()
   edit_props.push(`split`)
