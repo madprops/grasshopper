@@ -2963,7 +2963,7 @@ App.setup_commands = () => {
     },
     {
       name: `Edit Title (Prepend)`,
-      short_name: `Title Prepend`,
+      short_name: `Title (Prepend)`,
       cmd: `edit_title_prepend`,
       modes: [`tabs`],
       item: true,
@@ -2975,7 +2975,7 @@ App.setup_commands = () => {
     },
     {
       name: `Edit Title (Append)`,
-      short_name: `Title Append`,
+      short_name: `Title (Append)`,
       cmd: `edit_title_append`,
       modes: [`tabs`],
       item: true,

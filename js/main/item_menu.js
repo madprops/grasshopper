@@ -47,7 +47,19 @@ App.show_item_menu = async (args = {}) => {
     App.item_menu_item(items, `show_color_menu`, {item: args.item})
     App.item_menu_tags(items, args.item)
     App.item_menu_item(items, `edit_icon`, {item: args.item})
-    App.item_menu_item(items, `edit_title`, {item: args.item})
+
+    let title_items = []
+
+    App.item_menu_item(title_items, `edit_title`, {item: args.item})
+    App.item_menu_item(title_items, `edit_title_prepend`, {item: args.item})
+    App.item_menu_item(title_items, `edit_title_append`, {item: args.item})
+
+    items.push({
+      icon: App.title_icon,
+      text: `Title`,
+      items: title_items,
+    })
+
     App.item_menu_item(items, `edit_notes`, {item: args.item})
 
     let zone_items = []
