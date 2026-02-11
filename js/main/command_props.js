@@ -1281,23 +1281,54 @@ App.setup_commands = () => {
       info: `Show the welcome message`,
     },
     {
-      name: `Show About`,
-      short_name: `About`,
+      name: `About`,
       cmd: `show_about`,
       icon: bot_icon,
       action: (args) => {
+        App.hide_window()
         App.show_about()
       },
       info: `Show the About window`,
     },
     {
+      name: `Info`,
+      cmd: `show_about_info`,
+      icon: bot_icon,
+      action: (args) => {
+        App.hide_window()
+        App.show_about_info()
+      },
+      info: `Show the Info window`,
+    },
+    {
+      name: `Credits`,
+      cmd: `show_about_credits`,
+      icon: bot_icon,
+      action: (args) => {
+        App.hide_window()
+        App.show_about_credits()
+      },
+      info: `Show the Credits window`,
+    },
+    {
+      name: `Links`,
+      cmd: `show_about_links`,
+      icon: bot_icon,
+      action: (args) => {
+        App.hide_window()
+        App.show_about_links()
+      },
+      info: `Show the Links window`,
+    },
+    {
       name: `Donate`,
-      cmd: `show_donate`,
+      cmd: `show_about_donate`,
       icon: donate_icon,
       action: (args) => {
+        App.hide_window()
         App.show_about_donate()
       },
-      info: `Show the About window`,
+      info: `Show the Donate window`,
     },
     {
       name: `Show Palette`,
