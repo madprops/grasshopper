@@ -6,7 +6,7 @@ App.speech = (text) => {
 
   let utterance = new SpeechSynthesisUtterance(text)
   utterance.lang = `en-US`
-  utterance.rate = 0.5
+  utterance.rate = 0.88
 
   window.speechSynthesis.speak(utterance)
 }
