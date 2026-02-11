@@ -31,6 +31,10 @@ App.do_update_tab_count = () => {
         continue
       }
 
+      if (item.header) {
+        continue
+      }
+
       let count = DOM.el(`.tab_count`, item.element)
 
       if (count) {

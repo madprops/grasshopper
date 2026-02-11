@@ -21,6 +21,11 @@ App.do_update_active_trace = () => {
 
   for (let item of App.get_items(`tabs`)) {
     let trace = DOM.el(`.item_trace`, item.element)
+
+    if (!trace) {
+      continue
+    }
+
     DOM.hide(trace)
   }
 
@@ -33,6 +38,11 @@ App.do_update_active_trace = () => {
     }
 
     let trace = DOM.el(`.item_trace`, item.element)
+
+    if (!trace) {
+      continue
+    }
+
     trace.textContent = n
     DOM.show(trace)
 
