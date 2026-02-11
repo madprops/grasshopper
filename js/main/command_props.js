@@ -1301,6 +1301,16 @@ App.setup_commands = () => {
       info: `Show the Info window`,
     },
     {
+      name: `Lore`,
+      cmd: `show_about_lore`,
+      icon: grasshopper_icon,
+      action: (args) => {
+        App.hide_window()
+        App.show_about_lore()
+      },
+      info: `Show the Lore window`,
+    },
+    {
       name: `Credits`,
       cmd: `show_about_credits`,
       icon: bot_icon,
