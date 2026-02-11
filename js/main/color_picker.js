@@ -18,6 +18,18 @@ App.start_color_picker_window = () => {
         App.copy_to_clipboard(App.color_picker_hsl())
       })
 
+      DOM.ev(`#color_picker_copy_rgba`, `click`, () => {
+        App.copy_to_clipboard(App.color_picker_rgba())
+      })
+
+      DOM.ev(`#color_picker_copy_hexa`, `click`, () => {
+        App.copy_to_clipboard(App.color_picker_hexa())
+      })
+
+      DOM.ev(`#color_picker_copy_hsla`, `click`, () => {
+        App.copy_to_clipboard(App.color_picker_hsla())
+      })
+
       DOM.ev(`#color_picker_close`, `click`, () => {
         App.hide_window()
       })
@@ -62,6 +74,18 @@ App.color_picker_hex = () => {
 
 App.color_picker_hsl = () => {
   return AColorPicker.parseColor(App.color_picker_rgb, `hslcss`)
+}
+
+App.color_picker_rgba = () => {
+  return AColorPicker.parseColor(App.color_picker_rgb, `rgbacss`)
+}
+
+App.color_picker_hexa = () => {
+  return AColorPicker.parseColor(App.color_picker_rgb, `hexcss4`)
+}
+
+App.color_picker_hsla = () => {
+  return AColorPicker.parseColor(App.color_picker_rgb, `hslacss`)
 }
 
 App.color_to_hex = (value) => {
