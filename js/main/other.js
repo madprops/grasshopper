@@ -193,45 +193,12 @@ App.toggle_sidebar = () => {
   browser.sidebarAction.toggle()
 }
 
-App.play_sound = (name) => {
-  if (!App.get_setting(`sound_effects`)) {
-    return
-  }
-
-  let pname = `audio_player_${name}`
-
-  if (!App[pname]) {
-    App[pname] = new Audio(`audio/${name}.mp3`)
-  }
-
-  let player = App[pname]
-  player.pause()
-  player.currentTime = 0
-  player.play()
-}
-
 App.check_caps = (text) => {
   if (App.get_setting(`all_caps`)) {
     text = text.toUpperCase()
   }
 
   return text
-}
-
-App.show_flashlight = () => {
-  App.flashlight = DOM.create(`div`, ``, `flashlight`)
-  document.body.appendChild(App.flashlight)
-  App.flashlight_on = true
-
-  DOM.ev(App.flashlight, `click`, () => {
-    App.turn_flashlight_off()
-  })
-}
-
-App.turn_flashlight_off = () => {
-  App.flashlight.remove()
-  App.flashlight_on = false
-  App.flashlight = undefined
 }
 
 App.check_show_button = (name, btn) => {
@@ -253,27 +220,6 @@ App.toggle_message = (msg, setting) => {
   let sett = App.get_setting(setting)
   let what = sett ? `Enabled` : `Disabled`
   App.footer_message(`${msg} ${what}`)
-}
-
-App.speech = (text) => {
-  if (!window.speechSynthesis) {
-    App.error(`Speech synthesis not supported`)
-    return
-  }
-
-  let utterance = new SpeechSynthesisUtterance(text)
-  utterance.lang = `en-US`
-  utterance.rate = 0.5
-
-  window.speechSynthesis.speak(utterance)
-}
-
-App.error_sound = () => {
-  App.play_sound(`effect_1`)
-}
-
-App.action_sound = () => {
-  App.play_sound(`effect_2`)
 }
 
 App.fix_scroll = () => {

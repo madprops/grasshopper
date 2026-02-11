@@ -17,4 +17,6 @@ App.booster_shot = async () => {
     // eslint-disable-next-line no-console
     console.info(`Permission denied.`)
   }
+
+  App.speech(`power surge`)
 }
