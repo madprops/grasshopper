@@ -2309,7 +2309,7 @@ App.check_filter_enter = (value = ``) => {
       App.open_tab({url: tail})
     }
     else {
-      App.def_search_engine(tail)
+      App.query_search_engine(tail)
     }
   }
   else if (value.startsWith(App.get_filter_symbol(`query`))) {

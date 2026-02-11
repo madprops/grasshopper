@@ -4804,11 +4804,12 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {name: `Google`, cmd: `g`, url: `https://www.google.com/search?q=%s`},
-        {name: `Bing`, cmd: `b`, url: `https://www.bing.com/search?q=%s`},
-        {name: `DuckDuckGo`, cmd: `ddg`, url: `https://duckduckgo.com?q=%s`},
+        {name: `Images`, cmd: `i`, url: `https://www.google.com/search?q=%s&tbm=isch`},
         {name: `YouTube`, cmd: `yt`, url: `https://www.youtube.com/results?search_query=%s`},
         {name: `Wikpedia`, cmd: `wiki`, url: `https://en.wikipedia.org/w/index.php?search=%s&title=Special:Search&go=Go`},
-        {name: `Images`, cmd: `i`, url: `https://www.google.com/search?q=%s&tbm=isch`},
+        {name: `DuckDuckGo`, cmd: `ddg`, url: `https://duckduckgo.com?q=%s`},
+        {name: `Bing`, cmd: `b`, url: `https://www.bing.com/search?q=%s`},
+        {name: `4get`, cmd: `4get`, url: `https://4get.ca/web?s=%s`},
       ],
       actions: [`commands`],
       info: `List of filter commands to perform searches
