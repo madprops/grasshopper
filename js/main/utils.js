@@ -988,3 +988,21 @@ App.is_array_of_strings = (val) => {
 
   return val.every((item) => typeof item === `string`)
 }
+
+App.is_highlighted = (el) => {
+  let selection = window.getSelection()
+
+  if ((selection.rangeCount === 0) || selection.isCollapsed) {
+    return false
+  }
+
+  // The second argument 'false' means the element is considered
+  // highlighted even if only part of it is selected.
+  let is_contained = selection.containsNode(el, true)
+
+  if (is_contained) {
+    return true
+  }
+
+  return false
+}

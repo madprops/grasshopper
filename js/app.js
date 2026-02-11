@@ -350,6 +350,7 @@ App.ai_icon_cael = `🌿`
 App.ai_icon = `🧠`
 App.word_counter_icon = `🥸`
 App.title_icon = `✏️`
+App.donate_icon = `🎁`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

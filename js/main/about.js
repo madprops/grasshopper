@@ -432,13 +432,22 @@ App.start_about_donate = () => {
       let donate = DOM.el(`#about_donate`)
 
       for (let item of App.about_donate_items) {
-        let el = DOM.create(`div`, `about_info_item filter_item filter_text break selectable`)
+        let el = DOM.create(`div`, `about_info_item filter_item filter_text selectable pointer`)
         el.textContent = item
+
+        DOM.ev(el, `click`, () => {
+          if (App.is_highlighted(el)) {
+            return
+          }
+
+          App.copy_to_clipboard(item)
+          App.alert(`Copied to clipboard`)
+        })
+
         donate.append(el)
       }
 
       DOM.el(`#about_donate_name`).textContent = `Donate`
-
       let container = DOM.el(`#window_content_about_donate`)
       App.generic_gestures(container)
     },

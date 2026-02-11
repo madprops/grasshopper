@@ -102,6 +102,7 @@ App.setup_commands = () => {
   let oracle_icon = App.oracle_icon
   let gematria_icon = App.gematria_icon
   let color_picker_icon = App.color_picker_icon
+  let donate_icon = App.donate_icon
 
   let tbmodes = []
 
@@ -1286,6 +1287,15 @@ App.setup_commands = () => {
       icon: bot_icon,
       action: (args) => {
         App.show_about()
+      },
+      info: `Show the About window`,
+    },
+    {
+      name: `Donate`,
+      cmd: `show_donate`,
+      icon: donate_icon,
+      action: (args) => {
+        App.show_about_donate()
       },
       info: `Show the About window`,
     },
