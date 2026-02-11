@@ -18,5 +18,5 @@ App.booster_shot = async () => {
     console.info(`Permission denied.`)
   }
 
-  App.speech(`Booster activated`)
+  App.footer_message(`Booster activated`)
 }

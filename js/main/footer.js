@@ -241,7 +241,7 @@ App.toggle_footer = () => {
   App.toggle_message(`Footer`, `show_footer`)
 }
 
-App.footer_message = (msg) => {
+App.footer_message = (msg, speech = ``) => {
   clearTimeout(App.footer_message_timeout)
   App.set_footer_info(msg)
   App.footer_showing_message = true
@@ -252,7 +252,7 @@ App.footer_message = (msg) => {
   }, App.footer_message_delay)
 
   if (App.get_setting(`enable_speech`)) {
-    App.speech(`Okay.`)
+    App.speech(speech || msg || `okay`)
   }
 }
 
