@@ -176,6 +176,11 @@ App.edit_is_default_check = (what, value) => {
 }
 
 App.edit_prompt = (args = {}) => {
+  let def_args = {
+    add: false,
+  }
+
+  App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let value = ``
 
@@ -319,6 +324,10 @@ App.edit_prompt = (args = {}) => {
       obj.item = args.item
       obj.add = args.add
       App[`edit_tab_${args.what}`](obj)
+
+      if (args.on_edit) {
+        args.on_edit()
+      }
     },
   })
 }

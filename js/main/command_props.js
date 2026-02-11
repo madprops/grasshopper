@@ -2962,6 +2962,30 @@ App.setup_commands = () => {
       info: `Edit tab titles`,
     },
     {
+      name: `Edit Title (Prepend)`,
+      short_name: `Title Prepend`,
+      cmd: `edit_title_prepend`,
+      modes: [`tabs`],
+      item: true,
+      icon: title_icon,
+      action: (args) => {
+        App.edit_title(args.item, `prepend`)
+      },
+      info: `Edit tab titles by prepending to the original title`,
+    },
+    {
+      name: `Edit Title (Append)`,
+      short_name: `Title Append`,
+      cmd: `edit_title_append`,
+      modes: [`tabs`],
+      item: true,
+      icon: title_icon,
+      action: (args) => {
+        App.edit_title(args.item, `append`)
+      },
+      info: `Edit tab titles by appending to the original title`,
+    },
+    {
       name: `Edit Icon`,
       short_name: `Icon`,
       cmd: `edit_icon`,

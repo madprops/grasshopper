@@ -27,10 +27,16 @@ App.edit_tab_title = (args = {}) => {
   })
 }
 
-App.edit_title = (item, add_value = true) => {
+App.edit_title = (item, args = {}) => {
+  let def_args = {
+    add_value: false,
+    mode: `normal`
+  }
+
+  App.def_args(def_args, args)
   let value
 
-  if (add_value) {
+  if (args.add_value) {
     let auto = App.get_setting(`edit_title_auto`)
     value = auto ? App.title(item) : ``
   }
@@ -39,7 +45,14 @@ App.edit_title = (item, add_value = true) => {
   }
 
   App.edit_prompt({what: `title`, item,
-    fill: item.title, value})
+    fill: item.title, value, on_edit: () => {
+      let obj = {
+        title_mode: args.mode,
+        item,
+      }
+
+      App.edit_tab_title_mode(obj)
+    }})
 }
 
 App.push_to_title_history = (titles) => {
@@ -100,7 +113,11 @@ App.remove_item_title = (item) => {
     }
   }
 
-  App.remove_edits({what: [`title`], items: active, text: `titles`})
+  App.remove_edits({
+    what: [`title`, `title_mode`],
+    items: active,
+    text: `titles`,
+  })
 }
 
 App.get_titled_items = (mode) => {
