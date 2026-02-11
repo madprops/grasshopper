@@ -309,9 +309,10 @@ App.check_command = (command, args = {}) => {
 
   if (args.some_custom_title ||
     args.some_custom_title_prepend ||
-    args.some_custom_title_append) {
-      args.title_edited = true
-    }
+    args.some_custom_title_append
+  ) {
+    args.title_edited = true
+  }
   else {
     args.title_edited = false
   }
