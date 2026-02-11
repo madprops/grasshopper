@@ -1177,7 +1177,7 @@ App.do_filter_2 = (mode) => {
 
     let show
 
-    if (text.startsWith(`!`)) {
+    if (text.startsWith(App.private_command_symbol)) {
       show = value && text.startsWith(value)
     }
     else {

@@ -171,6 +171,7 @@ App.background_auto_color_prev = -1
 App.oracle_words = 2
 App.memory = {}
 App.settings_mirror = true
+App.private_command_symbol = `!`
 
 App.ignored_tokens = [
   ``,
