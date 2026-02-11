@@ -1,14 +1,17 @@
-App.title = (item) => {
+App.title = (item, sides = true) => {
   let title = App.get_title(item) || item.title || ``
-  let prepend = App.get_title_prepend(item) || ``
-  let append = App.get_title_append(item) || ``
 
-  if (prepend) {
-    title = `${prepend} - ${title}`
-  }
+  if (sides) {
+    let prepend = App.get_title_prepend(item) || ``
+    let append = App.get_title_append(item) || ``
 
-  if (append) {
-    title = `${title} - ${append}`
+    if (prepend) {
+      title = `${prepend} - ${title}`
+    }
+
+    if (append) {
+      title = `${title} - ${append}`
+    }
   }
 
   return App.check_caps(title)
@@ -89,7 +92,7 @@ App.edit_title = (item, add_value = true) => {
 
   if (add_value) {
     let auto = App.get_setting(`edit_title_auto`)
-    value = auto ? App.title(item) : ``
+    value = auto ? App.title(item, false) : ``
   }
   else {
     value = ``
