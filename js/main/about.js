@@ -432,7 +432,7 @@ App.start_about_donate = () => {
       let donate = DOM.el(`#about_donate`)
 
       for (let item of App.about_donate_items) {
-        let el = DOM.create(`div`, `about_info_item filter_item filter_text selectable pointer`)
+        let el = DOM.create(`div`, `about_info_item filter_item filter_text break selectable pointer`)
         el.textContent = item
 
         DOM.ev(el, `click`, () => {
