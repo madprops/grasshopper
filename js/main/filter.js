@@ -714,6 +714,14 @@ App.filter_check = (args) => {
     if (args.filter_mode === `all`) {
       match = true
     }
+    else if (args.item.header) {
+      if (args.filter_mode === `filter_zone_tabs`) {
+        match = true
+      }
+      else {
+        match = false
+      }
+    }
     else if (args.filter_mode === `domain`) {
       match = args.item.hostname.startsWith(args.f_value)
     }
@@ -729,7 +737,7 @@ App.filter_check = (args) => {
       }
     }
     else if (args.filter_mode === `container`) {
-      return args.item.container_name === args.f_value
+      match = args.item.container_name === args.f_value
     }
     else if (args.filter_mode === `color`) {
       if (args.f_value === `all`) {
@@ -765,14 +773,9 @@ App.filter_check = (args) => {
       match = args.item.audio
     }
     else if (args.filter_mode === `filter_titled_tabs`) {
-      if (args.item.header) {
-        match = false
-      }
-      else {
-        match = args.item.custom_title || args.item.rule_title ||
-                args.item.custom_title_prepend || args.item.rule_title_prepend ||
-                args.item.custom_title_append || args.item.rule_title_append
-      }
+      match = args.item.custom_title || args.item.rule_title ||
+              args.item.custom_title_prepend || args.item.rule_title_prepend ||
+              args.item.custom_title_append || args.item.rule_title_append
     }
     else if (args.filter_mode === `filter_pinned_tabs`) {
       match = args.item.pinned
