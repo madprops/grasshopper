@@ -5,6 +5,12 @@ App.edit_props = {
   title: {
     type: `string`,
   },
+  title_prepend: {
+    type: `string`,
+  },
+  title_append: {
+    type: `string`,
+  },
   tags: {
     type: `list`,
   },

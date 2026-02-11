@@ -2969,7 +2969,7 @@ App.setup_commands = () => {
       item: true,
       icon: title_icon,
       action: (args) => {
-        App.edit_title(args.item, `prepend`)
+        App.edit_title_prepend(args.item)
       },
       info: `Edit tab titles by prepending to the original title`,
     },
@@ -2981,7 +2981,7 @@ App.setup_commands = () => {
       item: true,
       icon: title_icon,
       action: (args) => {
-        App.edit_title(args.item, `append`)
+        App.edit_title_append(args.item)
       },
       info: `Edit tab titles by appending to the original title`,
     },

@@ -20,6 +20,14 @@ App.get_title = (item, rule = true) => {
   return App.get_edit(item, `title`, rule)
 }
 
+App.get_title_prepend = (item, rule = true) => {
+  return App.get_edit(item, `title_prepend`, rule)
+}
+
+App.get_title_append = (item, rule = true) => {
+  return App.get_edit(item, `title_append`, rule)
+}
+
 App.get_root = (item, rule = true) => {
   return App.get_edit(item, `root`, rule)
 }

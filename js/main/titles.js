@@ -1,5 +1,16 @@
 App.title = (item) => {
   let title = App.get_title(item) || item.title || ``
+  let prepend = App.get_title_prepend(item) || ``
+  let append = App.get_title_append(item) || ``
+
+  if (prepend) {
+    title = `${prepend} - ${title}`
+  }
+
+  if (append) {
+    title = `${title} - ${append}`
+  }
+
   return App.check_caps(title)
 }
 
@@ -27,16 +38,56 @@ App.edit_tab_title = (args = {}) => {
   })
 }
 
-App.edit_title = (item, args = {}) => {
+App.edit_tab_title_prepend = (args = {}) => {
   let def_args = {
-    add_value: false,
-    mode: `normal`
+    title_prepend: ``,
   }
 
   App.def_args(def_args, args)
+  let active = App.get_active_items({mode: args.item.mode, item: args.item})
+  let s = args.title_prepend ? `Edit title (prepend) ?` : `Remove title (prepend) ?`
+  let force = App.check_warn(`warn_on_edit_tabs`, active)
+
+  App.show_confirm({
+    message: `${s} (${active.length})`,
+    confirm_action: () => {
+      for (let it of active) {
+        App.apply_edit({what: `title_prepend`, item: it, value: args.title_prepend, on_change: (value) => {
+          App.custom_save(it.id, `title_prepend`, value)
+        }})
+      }
+    },
+    force,
+  })
+}
+
+App.edit_tab_title_append = (args = {}) => {
+  let def_args = {
+    title_append: ``,
+  }
+
+  App.def_args(def_args, args)
+  let active = App.get_active_items({mode: args.item.mode, item: args.item})
+  let s = args.title_append ? `Edit title (append) ?` : `Remove title (append) ?`
+  let force = App.check_warn(`warn_on_edit_tabs`, active)
+
+  App.show_confirm({
+    message: `${s} (${active.length})`,
+    confirm_action: () => {
+      for (let it of active) {
+        App.apply_edit({what: `title_append`, item: it, value: args.title_append, on_change: (value) => {
+          App.custom_save(it.id, `title_append`, value)
+        }})
+      }
+    },
+    force,
+  })
+}
+
+App.edit_title = (item, add_value = true) => {
   let value
 
-  if (args.add_value) {
+  if (add_value) {
     let auto = App.get_setting(`edit_title_auto`)
     value = auto ? App.title(item) : ``
   }
@@ -45,14 +96,35 @@ App.edit_title = (item, args = {}) => {
   }
 
   App.edit_prompt({what: `title`, item,
-    fill: item.title, value, on_edit: () => {
-      let obj = {
-        title_mode: args.mode,
-        item,
-      }
+    fill: item.title, value})
+}
 
-      App.edit_tab_title_mode(obj)
-    }})
+App.edit_title_prepend = (item, add_value = true) => {
+  let value
+
+  if (add_value) {
+    let auto = App.get_setting(`edit_title_auto`)
+    value = auto ? App.get_title_prepend(item) : ``
+  }
+  else {
+    value = ``
+  }
+
+  App.edit_prompt({what: `title_prepend`, item, value})
+}
+
+App.edit_title_append = (item, add_value = true) => {
+  let value
+
+  if (add_value) {
+    let auto = App.get_setting(`edit_title_auto`)
+    value = auto ? App.get_title_append(item) : ``
+  }
+  else {
+    value = ``
+  }
+
+  App.edit_prompt({what: `title_append`, item, value})
 }
 
 App.push_to_title_history = (titles) => {
@@ -113,11 +185,7 @@ App.remove_item_title = (item) => {
     }
   }
 
-  App.remove_edits({
-    what: [`title`, `title_mode`],
-    items: active,
-    text: `titles`,
-  })
+  App.remove_edits({what: [`title`], items: active, text: `titles`})
 }
 
 App.get_titled_items = (mode) => {
