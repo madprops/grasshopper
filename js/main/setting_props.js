@@ -4812,6 +4812,7 @@ App.build_settings = () => {
         {name: `4get`, cmd: `4get`, url: `https://4get.ca/web?s=%s`},
       ],
       actions: [`commands`],
+      separator: true,
       info: `List of filter commands to perform searches
       Use %s where the search terms are supposed to go`,
       version: 1,
