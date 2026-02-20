@@ -56,6 +56,7 @@ App.init = async () => {
   App.mouse_inside_check()
   App.resolve_icons()
 
+  await App.check_boosted()
   await App.clear_show()
 
   App.init_tab_box()
