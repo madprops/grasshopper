@@ -10,7 +10,7 @@ App.check_boosted = async () => {
 
 App.booster_shot = async () => {
   if (App.boosted) {
-    console.info(`Permissions already granted.`)
+    App.log(`Permissions already granted.`)
     App.alert(`Already boosted!`)
     return
   }
@@ -21,12 +21,12 @@ App.booster_shot = async () => {
 
   if (granted) {
     // eslint-disable-next-line no-console
-    console.info(`Permission granted.`)
+    App.log(`Permission granted.`)
     App.alert(`Booster activated 🚀`)
   }
   else {
     // eslint-disable-next-line no-console
-    console.info(`Permission denied.`)
+    App.log(`Permission denied.`)
     App.alert(`Permission denied 🤯`)
   }
 
