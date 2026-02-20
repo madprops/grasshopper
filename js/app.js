@@ -172,6 +172,7 @@ App.oracle_words = 2
 App.memory = {}
 App.settings_mirror = true
 App.private_command_symbol = `!`
+App.close_filtered_tabs_text = ``
 
 App.ignored_tokens = [
   ``,

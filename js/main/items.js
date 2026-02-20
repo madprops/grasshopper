@@ -1645,3 +1645,16 @@ App.item_ready = (item) => {
 
   return true
 }
+
+App.filter_items_by_title = (items, text) => {
+  text = text.toLowerCase()
+  let new_items = []
+
+  for (let item of items) {
+    if (item.title.toLowerCase().includes(text)) {
+      new_items.push(item)
+    }
+  }
+
+  return new_items
+}

@@ -750,3 +750,37 @@ App.check_clear_on_close = () => {
     }
   }
 }
+
+App.get_filtered_tabs_items = (pins, normal, unloaded) => {
+  let items = App.get_all_tabs_items(pins, normal, unloaded)
+  items = App.filter_items_by_title(items, App.close_filtered_tabs_text)
+
+  if (!pins) {
+    items = items.filter(x => !x.pinned)
+  }
+
+  if (!normal) {
+    items = items.filter(x => x.pinned)
+  }
+
+  if (!unloaded) {
+    items = items.filter(x => !x.unloaded)
+  }
+
+  return items
+}
+
+App.custom_close_tabs = (text, item) => {
+  App.close_filtered_tabs_text = text
+  App.close_tabs_popup(`filtered`, item)
+}
+
+App.close_filtered_tabs = (pins, normal, unloaded) => {
+  let items = App.get_filtered_tabs_items(pins, normal, unloaded)
+
+  if (!items.length) {
+    return
+  }
+
+  App.close_tabs_method(items)
+}

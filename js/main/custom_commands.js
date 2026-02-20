@@ -64,6 +64,9 @@ App.custom_command_actions = {
   find_command: (cmd, items, e) => {
     App.show_palette(cmd.argument)
   },
+  close_tabs: (cmd, items, e) => {
+    App.custom_close_tabs(cmd.argument, items[0])
+  },
 }
 
 App.custom_command_items = [
@@ -80,6 +83,7 @@ App.custom_command_items = [
   {text: `Jump To Tag`, value: `jump_to_tag`, icon: App.tag_icon},
   {text: `Custom Filter`, value: `custom_filter`, icon: App.filter_icon},
   {text: `Find Command`, value: `find_command`, icon: App.command_icon},
+  {text: `Close Tabs`, value: `close_tabs`, icon: App.close_icon},
 ]
 
 App.start_custom_commands_addlist = () => {
