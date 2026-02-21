@@ -442,6 +442,7 @@ App.do_filter = async (args = {}) => {
   let selected = App.get_selected(args.mode)
 
   if (args.select_all) {
+    App.clear_selected(args.mode)
     App.select_all()
   }
   else if (args.select) {
