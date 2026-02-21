@@ -790,8 +790,7 @@ App.close_filtered_tabs_prompt = (item) => {
     placeholder: `Title Text`,
     on_submit: async (text) => {
       if (text) {
-        App.close_filtered_tabs_text = text
-        App.close_tabs_popup(`filtered`, item)
+        App.custom_close_tabs(text, item)
       }
     },
   })
