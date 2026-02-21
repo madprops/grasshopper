@@ -441,7 +441,10 @@ App.do_filter = async (args = {}) => {
 
   let selected = App.get_selected(args.mode)
 
-  if (args.select) {
+  if (args.select_all) {
+    App.select_all()
+  }
+  else if (args.select) {
     App.clear_selected(args.mode)
     let sticky_filter = App.get_setting(`sticky_filter`)
 
@@ -496,10 +499,6 @@ App.do_filter = async (args = {}) => {
         App.show_search_no_value(args.mode)
       }
     }
-  }
-
-  if (args.select_all) {
-    App.select_all()
   }
 
   App.refresh_tab_box_special(args.mode)
