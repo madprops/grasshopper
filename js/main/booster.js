@@ -20,12 +20,10 @@ App.booster_shot = async () => {
   let granted = await browser.permissions.request(App.booster_permissions)
 
   if (granted) {
-    // eslint-disable-next-line no-console
     App.log(`Permission granted.`)
     App.alert(`Booster activated 🚀`)
   }
   else {
-    // eslint-disable-next-line no-console
     App.log(`Permission denied.`)
     App.alert(`Permission denied 🤯`)
   }
