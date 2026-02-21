@@ -1658,3 +1658,42 @@ App.filter_items_by_title = (items, text) => {
 
   return new_items
 }
+
+App.select_item_list = (text) => {
+  let items = App.get_items().slice(0)
+  items = App.filter_items_by_title(items, text)
+  App.item_list = items.map(x => x.id)
+
+  App.filter_list({
+    mode: App.active_mode,
+    from: `select_item_list`,
+  })
+}
+
+App.filter_list = (args = {}) => {
+  let def_args = {
+    toggle: false,
+  }
+
+  App.def_args(def_args, args)
+
+  App.complex_filter({
+    mode: args.mode,
+    value: ``,
+    text: `List`,
+    short: `list`,
+    full: `List`,
+    toggle: args.toggle,
+    from: args.from,
+    select_all: true,
+  })
+}
+
+App.filter_list_prompt = (from = `filter_list_prompt`) => {
+  App.show_prompt({
+    placeholder: `Title Text`,
+    on_submit: async (text) => {
+      App.select_item_list(text)
+    },
+  })
+}

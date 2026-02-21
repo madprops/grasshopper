@@ -76,6 +76,7 @@ App.do_filter = async (args = {}) => {
     force: false,
     deep: false,
     select: true,
+    select_all: false,
     from: `normal`,
     refine: false,
     sticky: true,
@@ -497,6 +498,10 @@ App.do_filter = async (args = {}) => {
     }
   }
 
+  if (args.select_all) {
+    App.select_all()
+  }
+
   App.refresh_tab_box_special(args.mode)
 }
 
@@ -762,6 +767,9 @@ App.filter_check = (args) => {
       else {
         match = App.get_icon(args.item) === args.f_value
       }
+    }
+    else if (args.filter_mode === `list`) {
+      match = App.item_list.includes(args.item.id)
     }
     else if (args.filter_mode === `filter_media_image`) {
       match = args.item.image
@@ -1040,6 +1048,9 @@ App.filter_mode_text = (args = {}) => {
       else {
         icon = App.color_icon(color)
       }
+    }
+    else if (args.name.startsWith(`list-`)) {
+      icon = App.select_icon
     }
     else if (args.name.startsWith(`container-`)) {
       let name = args.name.replace(`container-`, ``)
@@ -1603,6 +1614,7 @@ App.filter_cmd = (mode, cmd, from) => {
 App.complex_filter = (args = {}) => {
   let def_args = {
     toggle: false,
+    select_all: false,
   }
 
   App.def_args(def_args, args)
@@ -1626,7 +1638,12 @@ App.complex_filter = (args = {}) => {
 
   let refine = args.from === App.refine_string
   App.set_custom_filter_mode(args.mode, name, s)
-  App.do_filter({mode: args.mode, refine})
+
+  App.do_filter({
+    refine,
+    mode: args.mode,
+    select_all: args.select_all,
+  })
 }
 
 App.filter_tag = (args = {}) => {

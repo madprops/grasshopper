@@ -784,3 +784,15 @@ App.close_filtered_tabs = (pins, normal, unloaded) => {
 
   App.close_tabs_method(items)
 }
+
+App.close_filtered_tabs_prompt = (item) => {
+  App.show_prompt({
+    placeholder: `Title Text`,
+    on_submit: async (text) => {
+      if (text) {
+        App.close_filtered_tabs_text = text
+        App.close_tabs_popup(`filtered`, item)
+      }
+    },
+  })
+}

@@ -965,6 +965,17 @@ App.setup_commands = () => {
       info: `Select the item below ignoring unloaded`,
     },
     {
+      name: `Filter Select`,
+      short_name: `Select`,
+      cmd: `filter_select`,
+      modes: [`items`],
+      icon: select_icon,
+      action: (args) => {
+        App.filter_list_prompt(args.from)
+      },
+      info: `Filter and select items`,
+    },
+    {
       name: `To Zone Up`,
       short_name: `Zone Up`,
       cmd: `move_to_zone_up`,
@@ -2655,6 +2666,15 @@ App.setup_commands = () => {
         App.close_tabs_popup(`empty`, args.item)
       },
       info: `Close empty tabs`,
+    },
+    {
+      name: `Close Filtered`,
+      cmd: `close_filtered_tabs`,
+      icon: close_icon,
+      action: (args) => {
+        App.close_filtered_tabs_prompt(args.item)
+      },
+      info: `Close tabs by selecting a filter`,
     },
     {
       name: `Close First`,

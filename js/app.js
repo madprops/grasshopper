@@ -45,7 +45,7 @@ App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 
 App.close_tabs_types = [
   `normal`, `pinned`, `playing`, `unloaded`, `loaded`, `duplicate`,
-  `visible`, `empty`, `other`, `domain`, `domain_other`,
+  `visible`, `empty`, `other`, `domain`, `domain_other`, `filtered`,
   `clusters`, `clusters_trim`, `all`,
 ]
 
@@ -173,6 +173,7 @@ App.memory = {}
 App.settings_mirror = true
 App.private_command_symbol = `!`
 App.close_filtered_tabs_text = ``
+App.item_list = []
 
 App.ignored_tokens = [
   ``,
