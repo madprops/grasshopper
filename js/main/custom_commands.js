@@ -84,9 +84,9 @@ App.custom_command_items = [
   {text: `Prepend Global Note`, value: `prepend_global_note`, icon: App.notepad_icon},
   {text: `Open In Container`, value: `open_in_container`, icon: App.container_icon},
   {text: `Jump To Tag`, value: `jump_to_tag`, icon: App.tag_icon},
+  {text: `Find Command`, value: `find_command`, icon: App.command_icon},
   {text: `Custom Filter`, value: `custom_filter`, icon: App.filter_icon},
   {text: `Select Items`, value: `select_items`, icon: App.filter_icon},
-  {text: `Find Command`, value: `find_command`, icon: App.command_icon},
   {text: `Close Tabs`, value: `close_tabs`, icon: App.close_icon},
 ]
 
