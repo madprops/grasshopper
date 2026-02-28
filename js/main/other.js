@@ -277,7 +277,11 @@ App.is_blank_url = (url) => {
 }
 
 App.is_extension = (url) => {
-  return [`moz-extension:`].some(x => url.startsWith(x))
+  if (!url) {
+    return false
+  }
+
+  return url.startsWith(App.browser_protocol)
 }
 
 App.is_about_url = (url) => {

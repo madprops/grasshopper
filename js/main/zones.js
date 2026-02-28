@@ -183,7 +183,7 @@ App.close_subheaders = (force = false) => {
 }
 
 App.is_header_url = (url) => {
-  if (!url.startsWith(App.browser_protocol())) {
+  if (!url.startsWith(App.browser_protocol)) {
     return false
   }
 

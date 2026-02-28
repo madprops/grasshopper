@@ -5,6 +5,7 @@ App.init = async () => {
   App.manifest = App.browser().runtime.getManifest()
   App.header_url = App.browser().runtime.getURL(`header/index.html`)
   App.extension_id = App.browser().runtime.id
+  App.browser_protocol = App.get_browser_protocol()
 
   App.print_intro()
   App.build_settings()
