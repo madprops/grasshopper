@@ -48,26 +48,28 @@ async function refresh_bookmarks(send = true) {
     for (let bookmark of bookmarks) {
       let title = bookmark.title
 
+      // In Chrome, root nodes often have empty titles,
+      // but we still need to traverse their children.
       if (title) {
         items.push(bookmark)
       }
 
-      if (bookmark.type === `folder`) {
+      // Check for children instead of type === `folder`
+      if (bookmark.children) {
         if (title) {
           folders.push(bookmark)
         }
 
-        if (bookmark.children) {
-          traverse(bookmark.children)
-        }
+        traverse(bookmark.children)
       }
     }
   }
 
   traverse(nodes)
 
-  items.sort((a, b) => b.dateAdded - a.dateAdded)
-  folders.sort((a, b) => b.dateGroupModified - a.dateGroupModified)
+  // Use || 0 to prevent sort errors if these properties are missing on some nodes
+  items.sort((a, b) => (b.dateAdded || 0) - (a.dateAdded || 0))
+  folders.sort((a, b) => (b.dateGroupModified || 0) - (a.dateGroupModified || 0))
 
   bookmark_items = items
   bookmark_folders = folders
@@ -100,7 +102,7 @@ export async function start_bookmarks(refresh = true) {
     App.print(`BG: No bookmarks permission`)
     return
   }
-   
+
   bookmark_debouncer = App.debouncer(() => {
     refresh_bookmarks()
   }, 1000)

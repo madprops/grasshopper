@@ -60,40 +60,44 @@ App.browser().commands.onCommand.addListener((command) => {
   }
 })
 
-App.browser().contextMenus.create({
-  id: `toggle_sidebar`,
-  title: `Toggle Sidebar`,
-  contexts: [`action`],
-})
+App.browser().runtime.onInstalled.addListener(() => {
+  App.browser().contextMenus.removeAll()
 
-App.browser().contextMenus.create({
-  type: `separator`,
-  id: `separator1`,
-  contexts: [`action`],
-})
+  App.browser().contextMenus.create({
+    id: `toggle_sidebar`,
+    title: `Toggle Sidebar`,
+    contexts: [`action`], // Remember to use "action" instead of "browser_action"
+  })
 
-App.browser().contextMenus.create({
-  id: `open_tabs`,
-  title: `Open Tabs`,
-  contexts: [`action`],
-})
+  App.browser().contextMenus.create({
+    type: `separator`,
+    id: `separator1`,
+    contexts: [`action`],
+  })
 
-App.browser().contextMenus.create({
-  id: `open_history`,
-  title: `Open History`,
-  contexts: [`action`],
-})
+  App.browser().contextMenus.create({
+    id: `open_tabs`,
+    title: `Open Tabs`,
+    contexts: [`action`],
+  })
 
-App.browser().contextMenus.create({
-  id: `open_bookmarks`,
-  title: `Open Bookmarks`,
-  contexts: [`action`],
-})
+  App.browser().contextMenus.create({
+    id: `open_history`,
+    title: `Open History`,
+    contexts: [`action`],
+  })
 
-App.browser().contextMenus.create({
-  id: `open_closed`,
-  title: `Open Closed`,
-  contexts: [`action`],
+  App.browser().contextMenus.create({
+    id: `open_bookmarks`,
+    title: `Open Bookmarks`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
+    id: `open_closed`,
+    title: `Open Closed`,
+    contexts: [`action`],
+  })
 })
 
 App.browser().contextMenus.onClicked.addListener((info, tab) => {

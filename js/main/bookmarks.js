@@ -293,7 +293,7 @@ App.filter_bookmark_nodes = (query, nodes, max) => {
 }
 
 App.clean_bookmark_nodes = (nodes) => {
-  return nodes.filter(x => x.type === `bookmark`)
+  return nodes.filter(x => !!x.url)
 }
 
 App.get_bookmark_items = async (args = {}) => {
@@ -544,7 +544,7 @@ App.set_bookmarks_title = () => {
 App.get_bookmark_subitems = (parent, children, bookmarks = []) => {
   for (let child of children) {
     if (child.parentId === parent) {
-      if (child.type === `folder`) {
+      if (App.is_folder(child)) {
         App.get_bookmark_subitems(child.id, children, bookmarks)
       }
 
@@ -863,7 +863,7 @@ App.toggle_bookmark_folders = () => {
 }
 
 App.is_folder = (item) => {
-  return item.type === `folder`
+  return !!item.children
 }
 
 App.on_refresh_bookmarks = (message) => {

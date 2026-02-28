@@ -980,6 +980,9 @@ App.browser = () => {
     return browser
   }
 
-  // eslint-disable-no-undef
-  return chrome
+  api_type = typeof chrome
+
+  if (api_type !== `undefined`) {
+    return chrome
+  }
 }
