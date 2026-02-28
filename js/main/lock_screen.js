@@ -112,13 +112,7 @@ App.upload_lock_screen_image = () => {
 
 App.get_stored_lock_screen_image = async () => {
   try {
-    let result = await App.browser().storage.local.get(`storedLockScreenImage`)
-
-    if (result.storedLockScreenImage) {
-      return result.storedLockScreenImage
-    }
-
-    return null
+    return App.local_get(`storedLockScreenImage`, null)
   }
   catch (error) {
     return null

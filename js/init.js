@@ -64,14 +64,14 @@ App.init = async () => {
   App.check_first_time()
   App.start_clock()
   App.start_main_title()
-  App.check_init_commands()
+  await App.check_init_commands()
   App.start_signal_intervals()
   App.start_idle_tabs_check()
   App.start_progressive_fill()
   App.start_auto_color()
   App.start_themed_week()
   App.check_init_settings()
-  App.check_init_command()
+  await App.check_init_command()
 
   App.start_date = App.now()
 }

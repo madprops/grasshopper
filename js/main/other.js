@@ -55,7 +55,7 @@ App.show_intro_message = () => {
 }
 
 App.restart_extension = () => {
-  App.App.browser().runtime.reload()
+  App.browser().runtime.reload()
 }
 
 App.print_intro = () => {

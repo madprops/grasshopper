@@ -1,8 +1,9 @@
-App.get_local_storage_old = (ls_name) => {
+App.get_local_storage_old = async (ls_name) => {
   let obj = null
 
   try {
-    obj = App.obj(localStorage.getItem(ls_name))
+    let value = await App.local_get(ls_name)
+    obj = App.obj(value)
   }
   catch (err) {
     App.error(err)
@@ -35,20 +36,20 @@ App.stor_compat_check = async () => {
     App.debug(`Stor: Compat`)
 
     for (let item of App.stor_compat) {
-      let obj = App.get_local_storage_old(item.old)
+      let obj = await App.get_local_storage_old(item.old)
 
       if (obj !== null) {
         App.debug(`Stor: Converting ${item.old} to ${item.new}`)
         await App.save_local_storage(item.new, obj)
 
         try {
-          localStorage.setItem(`${item.old}_backup`, App.str(obj))
+          App.browser().storage.local.set({[`${item.old}_backup`]: App.str(obj)})
         }
         catch (err) {
           // Do nothing
         }
 
-        localStorage.removeItem(item.old)
+        App.browser().storage.local.remove(item.old)
       }
     }
 
@@ -197,4 +198,9 @@ App.stor_get_ai = async () => {
 App.stor_save_ai = () => {
   App.debug(`Stor: Saving ai`)
   App.save_local_storage(App.stor_ai, App.ai)
+}
+
+App.local_get = async (key, fallback = undefined) => {
+  let obj = await App.browser().storage.local.get(key)
+  return obj[key] || fallback
 }

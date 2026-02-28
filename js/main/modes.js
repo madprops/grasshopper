@@ -307,8 +307,8 @@ App.main_mode = () => {
 }
 
 App.check_init_mode = async () => {
-  let init_mode = localStorage.getItem(`init_mode`) || `nothing`
-  localStorage.setItem(`init_mode`, `nothing`)
+  let init_mode = await App.local_get(`init_mode`) || `nothing`
+  App.browser().storage.local.set({init_mode: `nothing`})
 
   if (App.modes.includes(init_mode)) {
     if (init_mode === `history`) {

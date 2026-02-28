@@ -67,9 +67,9 @@ App.run_popup_command = (num) => {
   App.run_command({cmd, from: `popup_command`})
 }
 
-App.check_init_commands = () => {
-  let init_cmd = localStorage.getItem(`init_popup_command`) || `nothing`
-  localStorage.setItem(`init_popup_command`, `nothing`)
+App.check_init_commands = async () => {
+  let init_cmd = await App.local_get(`init_popup_command`, `nothing`)
+  await App.browser().storage.local.set({init_popup_command: `nothing`})
 
   if (init_cmd !== `nothing`) {
     App.prompt_mode = true

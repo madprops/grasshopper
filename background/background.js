@@ -1,3 +1,5 @@
+importScripts(`bookmarks_server.js`)
+
 function print(msg) {
   // eslint-disable-next-line no-console
   console.info(msg)
@@ -63,12 +65,13 @@ function open_popup() {
   App.browser().browserAction.openPopup()
 }
 
-function set_item(what, value) {
-  localStorage.setItem(`init_${what}`, value)
+async function set_item(what, value) {
+  let key = `init_${what}`
+  App.browser().storage.local.set({[key]: value})
 }
 
-function open_popup_mode(mode) {
-  set_item(`mode`, mode)
+async function open_popup_mode(mode) {
+  await set_item(`mode`, mode)
   open_popup()
 }
 

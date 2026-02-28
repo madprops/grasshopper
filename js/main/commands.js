@@ -790,8 +790,8 @@ App.repeat_command = () => {
   App.run_command(App.last_command)
 }
 
-App.check_init_command = () => {
-  let init_command = localStorage.getItem(`init_command`) || `nothing`
+App.check_init_command = async () => {
+  let init_command = await App.local_get(`init_command`, `nothing`)
 
   if (init_command !== `nothing`) {
     App.run_command({
@@ -799,11 +799,11 @@ App.check_init_command = () => {
     })
   }
 
-  localStorage.setItem(`init_command`, `nothing`)
+  App.browser().storage.local.set({init_command: `nothing`})
 }
 
 App.open_command = (command) => {
-  localStorage.setItem(`init_command`, command)
+  App.browser().storage.local.set({init_command: command})
   App.open_sidebar()
   App.close_window()
 }

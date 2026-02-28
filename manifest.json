@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Grasshopper",
   "version": "6585",
   "description": "Godspeed You Tab Emperor",
@@ -23,13 +23,9 @@
     "128": "img/icon128.png"
   },
   "background": {
-    "scripts": [
-      "background/background.js",
-      "background/bookmarks_server.js"
-    ],
-    "persistent": true
+    "scripts": ["background.js"]
   },
-  "browser_action": {
+  "action": {
     "default_icon": {
       "128": "img/icon128.png"
     },
@@ -42,8 +38,11 @@
     "default_icon": "img/icon128.png",
     "open_at_install": false
   },
+  "side_panel": {
+    "default_path": "main.html?sidebar"
+  },
   "commands": {
-    "_execute_browser_action": {
+    "_execute_action": {
       "suggested_key": {
         "default": "Ctrl+Space"
       },
