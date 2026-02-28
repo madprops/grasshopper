@@ -1653,7 +1653,7 @@ App.boost_tab = async (item) => {
 App.wait_for_tab_load = (tab_id) => {
   return new Promise((resolve) => {
     let listener = (id, info) => {
-      if (id === tab_id && info.status === `complete`) {
+      if ((id === tab_id) && (info.status === `complete`)) {
         App.browser().tabs.onUpdated.removeListener(listener)
         resolve()
       }
