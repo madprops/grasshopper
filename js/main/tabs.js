@@ -1649,3 +1649,16 @@ App.update_tab = async (id, obj) => {
 App.boost_tab = async (item) => {
   await App.browser().runtime.sendMessage({action: `boost_tab`, tab_id: item.id})
 }
+
+App.wait_for_tab_load = (tab_id) => {
+  return new Promise((resolve) => {
+    let listener = (id, info) => {
+      if (id === tab_id && info.status === `complete`) {
+        App.browser().tabs.onUpdated.removeListener(listener)
+        resolve()
+      }
+    }
+
+    App.browser().tabs.onUpdated.addListener(listener)
+  })
+}

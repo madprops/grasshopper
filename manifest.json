@@ -18,16 +18,13 @@
     "bookmarks",
     "clipboardRead",
     "scripting",
-    "activeTab",
-    "<all_urls>"
+    "activeTab"
   ],
   "icons": {
     "128": "img/icon128.png"
   },
   "background": {
-    "scripts": [
-      "background/background.js"
-    ],
+    "service_worker": "background/background.js",
     "type": "module"
   },
   "action": {
@@ -136,5 +133,8 @@
     "gecko": {
       "id": "{23aee10d-1130-4694-80ef-428e287ba83d}"
     }
-  }
+  },
+  "optional_host_permissions": [
+    "<all_urls>"
+  ]
 }

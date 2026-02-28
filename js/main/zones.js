@@ -31,6 +31,7 @@ App.insert_header = async (args = {}) => {
   }
 
   let tab = await App.open_new_tab({url: App.header_url, index, pinned, active: false})
+  await App.wait_for_tab_load(tab.id)
   let header = App.get_item_by_id(args.item.mode, tab.id)
 
   if (active.length > 1) {
