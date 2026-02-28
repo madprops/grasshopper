@@ -120,3 +120,9 @@ App.browser_forward = (item) => {
     App.browser().tabs.goForward(id)
   })
 }
+
+App.browser_protocol = () => {
+  let base_url = App.browser().runtime.getURL(``)
+  let parsed = new URL(base_url)
+  return `${parsed.protocol}//`
+}
