@@ -157,11 +157,15 @@ App.focus_tab = async (args = {}) => {
     })
   }
 
-  if (args.item.window_id) {
-    await App.browser().windows.update(args.item.window_id, {focused: true})
+  if (!App.tab_box_make_item_first(args.item)) {
+    App.update_tab_box()
   }
 
+  // Run cleanup and programmatic closing BEFORE stealing focus
+  App.after_focus(args)
+
   try {
+    // Activate the tab first
     await App.update_tab(args.item.id, {active: true})
   }
   catch (err) {
@@ -169,11 +173,18 @@ App.focus_tab = async (args = {}) => {
     App.remove_closed_tab(args.item.id)
   }
 
-  if (!App.tab_box_make_item_first(args.item)) {
-    App.update_tab_box()
+  // Finally, bring the window to the front.
+  // We drop the 'await' because in a Chrome popup, this line
+  // causes the popup to instantly close and destroy the JS context.
+  if (args.item.window_id) {
+    App.browser().windows.update(args.item.window_id, {focused: true})
   }
+}
 
-  App.after_focus(args)
+App.update_tab = async (id, obj) => {
+  if (id) {
+    await App.browser().tabs.update(id, obj)
+  }
 }
 
 App.open_new_tab = async (args = {}) => {
