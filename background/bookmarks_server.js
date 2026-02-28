@@ -37,6 +37,11 @@ App.browser().permissions.onAdded.addListener(async (obj) => {
 async function refresh_bookmarks(send = true) {
   let items = []
   let folders = []
+
+  if (!await App.browser().permissions.contains({permissions: [`bookmarks`]})) {
+    return
+  }
+
   let nodes = await App.browser().bookmarks.getTree()
 
   function traverse(bookmarks) {

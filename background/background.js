@@ -167,12 +167,14 @@ App.browser().contextMenus.onClicked.addListener((info, tab) => {
 
 App.browser().runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === `boost_tab`) {
-  App.browser().permissions.request(request_payload).then((granted) => {
-    if (granted) {
+    try {
       App.browser().scripting.executeScript({
         target: {tabId: request.tab_id},
         files: [`js/content.js`]
       })
     }
-  })
+    catch (err) {
+      //
+    }
+  }
 })
