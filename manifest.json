@@ -10,7 +10,8 @@
     "storage",
     "contextualIdentities",
     "cookies",
-    "contextMenus"
+    "contextMenus",
+    "sidePanel"
   ],
   "optional_permissions": [
     "history",

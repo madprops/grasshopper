@@ -181,16 +181,58 @@ App.body_remove = (cls) => {
   App.body().classList.remove(cls)
 }
 
-App.open_sidebar = () => {
-  App.browser().sidebarAction.open()
+App.open_sidebar = async () => {
+  let ext_api = App.browser()
+
+  if (ext_api.sidebarAction) {
+    ext_api.sidebarAction.open()
+  }
+  else if (ext_api.sidePanel) {
+    let current_window = await ext_api.windows.getCurrent()
+    ext_api.sidePanel.open({windowId:current_window.id})
+  }
 }
 
-App.close_sidebar = () => {
-  App.browser().sidebarAction.close()
+App.close_sidebar = async () => {
+  let ext_api = App.browser()
+
+  if (ext_api.sidebarAction) {
+    ext_api.sidebarAction.close()
+  }
+  else if (ext_api.sidePanel) {
+    if (ext_api.sidePanel.close) {
+      let current_window = await ext_api.windows.getCurrent()
+      ext_api.sidePanel.close({windowId:current_window.id})
+    }
+    else {
+      await ext_api.sidePanel.setOptions({enabled:false})
+      await ext_api.sidePanel.setOptions({enabled:true})
+    }
+  }
 }
 
-App.toggle_sidebar = () => {
-  App.browser().sidebarAction.toggle()
+App.toggle_sidebar = async () => {
+  let ext_api = App.browser()
+
+  if (ext_api.sidebarAction) {
+    ext_api.sidebarAction.toggle()
+  }
+  else if (ext_api.sidePanel) {
+    let current_window = await ext_api.windows.getCurrent()
+
+    let panel_contexts = await ext_api.runtime.getContexts({
+      contextTypes: [`SIDE_PANEL`],
+      windowId: current_window.id
+    })
+
+    if (panel_contexts.length > 0) {
+      await App.close_sidebar()
+    }
+
+    else {
+      await App.open_sidebar()
+    }
+  }
 }
 
 App.check_caps = (text) => {
