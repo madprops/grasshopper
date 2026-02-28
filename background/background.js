@@ -1,5 +1,3 @@
-importScripts(`bookmarks_server.js`)
-
 function print(msg) {
   // eslint-disable-next-line no-console
   console.info(msg)

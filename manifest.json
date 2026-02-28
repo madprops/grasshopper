@@ -23,7 +23,10 @@
     "128": "img/icon128.png"
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "background/background.js",
+      "background/bookmarks_server.js"
+    ]
   },
   "action": {
     "default_icon": {
