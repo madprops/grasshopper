@@ -7,9 +7,8 @@ App.browser = () => {
     return browser
   }
 
-  else {
-    return chrome
-  }
+  // eslint-disable-no-undef
+  return chrome
 }
 
 App.print = (msg) => {

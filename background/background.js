@@ -121,7 +121,7 @@ App.browser().runtime.onMessage.addListener((request, sender, sendResponse) => {
     try {
       App.browser().scripting.executeScript({
         target: {tabId: request.tab_id},
-        files: [`js/content.js`]
+        files: [`js/content.js`],
       })
     }
     catch (err) {

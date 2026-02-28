@@ -100,8 +100,7 @@ export async function start_bookmarks(refresh = true) {
     App.print(`BG: No bookmarks permission`)
     return
   }
-
-  // eslint-disable-next-line no-undef
+   
   bookmark_debouncer = App.debouncer(() => {
     refresh_bookmarks()
   }, 1000)

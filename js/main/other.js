@@ -222,7 +222,7 @@ App.toggle_sidebar = async () => {
 
     let panel_contexts = await ext_api.runtime.getContexts({
       contextTypes: [`SIDE_PANEL`],
-      windowId: current_window.id
+      windowId: current_window.id,
     })
 
     if (panel_contexts.length > 0) {
