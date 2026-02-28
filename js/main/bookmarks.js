@@ -3,11 +3,11 @@ App.setup_bookmarks = () => {
     return
   }
 
-  if (!browser.bookmarks) {
+  if (!App.browser().bookmarks) {
     return
   }
 
-  browser.bookmarks.onCreated.addListener((id, info) => {
+  App.browser().bookmarks.onCreated.addListener((id, info) => {
     App.debug(`Bookmark Created: ID: ${id}`)
 
     if (App.active_mode === `bookmarks`) {
@@ -15,7 +15,7 @@ App.setup_bookmarks = () => {
     }
   })
 
-  browser.bookmarks.onRemoved.addListener((id, info) => {
+  App.browser().bookmarks.onRemoved.addListener((id, info) => {
     App.debug(`Bookmark Removed: ID: ${id}`)
 
     if (App.active_mode === `bookmarks`) {
@@ -27,7 +27,7 @@ App.setup_bookmarks = () => {
     }
   })
 
-  browser.bookmarks.onChanged.addListener((id, info) => {
+  App.browser().bookmarks.onChanged.addListener((id, info) => {
     App.debug(`Bookmark Changed: ID: ${id}`)
 
     if (App.active_mode === `bookmarks`) {
@@ -211,7 +211,7 @@ App.bookmark_items = async (args = {}) => {
           continue
         }
 
-        await browser.bookmarks.create({parentId: folder.id, title, url: item.url})
+        await App.browser().bookmarks.create({parentId: folder.id, title, url: item.url})
       }
 
       let feedback = App.get_setting(`show_feedback`)
@@ -453,15 +453,15 @@ App.search_bookmarks_folder = async (callback) => {
 }
 
 App.request_bookmarks = () => {
-  browser.runtime.sendMessage({action: `refresh_bookmarks`})
+  App.browser().runtime.sendMessage({action: `refresh_bookmarks`})
 }
 
 App.make_bookmarks_folder = async (title, parent = ``) => {
   if (parent) {
-    return await browser.bookmarks.create({title, parentId: parent.id})
+    return await App.browser().bookmarks.create({title, parentId: parent.id})
   }
 
-  return await browser.bookmarks.create({title})
+  return await App.browser().bookmarks.create({title})
 }
 
 App.create_bookmarks_folder = (callback) => {
@@ -520,7 +520,7 @@ App.init_bookmarks = async () => {
     return
   }
 
-  await browser.runtime.sendMessage({action: `send_bookmarks`})
+  await App.browser().runtime.sendMessage({action: `send_bookmarks`})
 }
 
 App.reset_bookmarks = () => {

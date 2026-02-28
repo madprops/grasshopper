@@ -221,7 +221,7 @@ App.get_mode_name = (mode, shorten = false) => {
 
 App.cycle_modes = async (reverse, reuse_filter = true) => {
   let modes = App.modes
-  let history_perm = await browser.permissions.contains({permissions: [`history`]})
+  let history_perm = await App.browser().permissions.contains({permissions: [`history`]})
 
   if (!history_perm) {
     modes = modes.filter((x) => {
@@ -229,7 +229,7 @@ App.cycle_modes = async (reverse, reuse_filter = true) => {
     })
   }
 
-  let bookmarks_perm = await browser.permissions.contains({permissions: [`bookmarks`]})
+  let bookmarks_perm = await App.browser().permissions.contains({permissions: [`bookmarks`]})
 
   if (!bookmarks_perm) {
     modes = modes.filter((x) => {
@@ -312,14 +312,14 @@ App.check_init_mode = async () => {
 
   if (App.modes.includes(init_mode)) {
     if (init_mode === `history`) {
-      let perm = await browser.permissions.contains({permissions: [`history`]})
+      let perm = await App.browser().permissions.contains({permissions: [`history`]})
 
       if (!perm) {
         return
       }
     }
     else if (init_mode === `bookmarks`) {
-      let perm = await browser.permissions.contains({permissions: [`bookmarks`]})
+      let perm = await App.browser().permissions.contains({permissions: [`bookmarks`]})
 
       if (!perm) {
         return

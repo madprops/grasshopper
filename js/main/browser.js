@@ -105,18 +105,18 @@ App.browser_action = (item, action) => {
 
 App.browser_reload = (item, bypass = false) => {
   App.browser_action(item, (id) => {
-    browser.tabs.reload(id, {bypassCache: bypass})
+    App.browser().tabs.reload(id, {bypassCache: bypass})
   })
 }
 
 App.browser_back = (item) => {
   App.browser_action(item, (id) => {
-    browser.tabs.goBack(id)
+    App.browser().tabs.goBack(id)
   })
 }
 
 App.browser_forward = (item) => {
   App.browser_action(item, (id) => {
-    browser.tabs.goForward(id)
+    App.browser().tabs.goForward(id)
   })
 }

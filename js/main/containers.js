@@ -1,7 +1,7 @@
 App.get_contextual_identity = async (tab) => {
   try {
     if (tab.cookieStoreId && (tab.cookieStoreId !== `firefox-default`)) {
-      return await browser.contextualIdentities.get(tab.cookieStoreId)
+      return await App.browser().contextualIdentities.get(tab.cookieStoreId)
     }
   }
   catch (error) {
@@ -149,7 +149,7 @@ App.get_all_containers = async () => {
   let containers = []
 
   try {
-    let data = await browser.contextualIdentities.query({})
+    let data = await App.browser().contextualIdentities.query({})
 
     for (let c of data) {
       containers.push({

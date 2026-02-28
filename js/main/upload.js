@@ -43,7 +43,7 @@ App.upload_image = (args = {}) => {
       let data = event.target.result
       let obj = {}
       obj[args.key_name] = data
-      await browser.storage.local.set(obj)
+      await App.browser().storage.local.set(obj)
       args.set_function()
     }
 

@@ -88,7 +88,7 @@ App.unload_pinned_tabs = (item) => {
 
 App.do_unload_tabs = async (ids) => {
   try {
-    await browser.tabs.discard(ids)
+    await App.browser().tabs.discard(ids)
   }
   catch (err) {
     App.error(err)

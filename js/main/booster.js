@@ -5,7 +5,7 @@ App.booster_permissions = {
 }
 
 App.check_boosted = async () => {
-  App.boosted = await browser.permissions.contains(App.booster_permissions)
+  App.boosted = await App.browser().permissions.contains(App.booster_permissions)
 }
 
 App.booster_shot = async () => {
@@ -17,7 +17,7 @@ App.booster_shot = async () => {
 
   // Directly request the permission.
   // If already granted, it resolves to true without a prompt.
-  let granted = await browser.permissions.request(App.booster_permissions)
+  let granted = await App.browser().permissions.request(App.booster_permissions)
 
   if (granted) {
     App.log(`Permission granted.`)

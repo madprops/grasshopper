@@ -2,7 +2,7 @@ App.setup_tabs = () => {
   App.build_tab_filters()
   App.debug_tabs = false
 
-  browser.tabs.onCreated.addListener(async (info) => {
+  App.browser().tabs.onCreated.addListener(async (info) => {
     if (App.tabs_locked) {
       return
     }
@@ -19,7 +19,7 @@ App.setup_tabs = () => {
     }
   })
 
-  browser.tabs.onUpdated.addListener(async (id, changed, info) => {
+  App.browser().tabs.onUpdated.addListener(async (id, changed, info) => {
     if (App.tabs_locked) {
       return
     }
@@ -39,7 +39,7 @@ App.setup_tabs = () => {
     }
   })
 
-  browser.tabs.onActivated.addListener(async (info) => {
+  App.browser().tabs.onActivated.addListener(async (info) => {
     if (App.tabs_locked) {
       return
     }
@@ -51,7 +51,7 @@ App.setup_tabs = () => {
     }
   })
 
-  browser.tabs.onRemoved.addListener((id, info) => {
+  App.browser().tabs.onRemoved.addListener((id, info) => {
     if (App.tabs_locked) {
       return
     }
@@ -64,7 +64,7 @@ App.setup_tabs = () => {
     }
   })
 
-  browser.tabs.onMoved.addListener((id, info) => {
+  App.browser().tabs.onMoved.addListener((id, info) => {
     if (App.tabs_locked) {
       return
     }
@@ -76,7 +76,7 @@ App.setup_tabs = () => {
     }
   })
 
-  browser.tabs.onDetached.addListener((id, info) => {
+  App.browser().tabs.onDetached.addListener((id, info) => {
     if (App.tabs_locked) {
       return
     }
@@ -100,7 +100,7 @@ App.get_tabs = async () => {
   let tabs
 
   try {
-    tabs = await browser.tabs.query({currentWindow: true})
+    tabs = await App.browser().tabs.query({currentWindow: true})
   }
   catch (err) {
     App.error(err)
@@ -158,7 +158,7 @@ App.focus_tab = async (args = {}) => {
   }
 
   if (args.item.window_id) {
-    await browser.windows.update(args.item.window_id, {focused: true})
+    await App.browser().windows.update(args.item.window_id, {focused: true})
   }
 
   try {
@@ -184,7 +184,7 @@ App.open_new_tab = async (args = {}) => {
   App.def_args(def_args, args)
 
   try {
-    return await browser.tabs.create(args)
+    return await App.browser().tabs.create(args)
   }
   catch (err) {
     App.error(err)
@@ -205,7 +205,7 @@ App.create_new_tab = async (args, item, from = `normal`) => {
 
 App.get_tab_info = async (id) => {
   try {
-    let info = await browser.tabs.get(id)
+    let info = await App.browser().tabs.get(id)
     return info
   }
   catch (err) {
@@ -493,7 +493,7 @@ App.tabs_action = async (args = {}) => {
 
 App.duplicate_tab = async (item, args = {}) => {
   try {
-    await browser.tabs.duplicate(item.id, args)
+    await App.browser().tabs.duplicate(item.id, args)
   }
   catch (err) {
     App.error(err)
@@ -590,7 +590,7 @@ App.show_tab_urls = () => {
 
 App.open_tab = async (item) => {
   try {
-    return await browser.tabs.create({url: item.url})
+    return await App.browser().tabs.create({url: item.url})
   }
   catch (err) {
     App.error(err)
@@ -658,7 +658,7 @@ App.do_move_tab_index = async (id, index) => {
   let ans
 
   try {
-    ans = await browser.tabs.move(id, {index})
+    ans = await App.browser().tabs.move(id, {index})
   }
   catch (err) {
     App.error(err)
@@ -706,7 +706,7 @@ App.move_tabs_to_window = async (item, window_id) => {
     let index = it.pinned ? 0 : -1
 
     try {
-      await browser.tabs.move(it.id, {index, windowId: window_id})
+      await App.browser().tabs.move(it.id, {index, windowId: window_id})
     }
     catch (err) {
       App.error(err)
@@ -716,7 +716,7 @@ App.move_tabs_to_window = async (item, window_id) => {
 
 App.detach_tab = async (item) => {
   try {
-    await browser.windows.create({tabId: item.id, focused: false})
+    await App.browser().windows.create({tabId: item.id, focused: false})
   }
   catch (err) {
     App.error(err)
@@ -728,7 +728,7 @@ App.move_tabs_to_new_window = async (item) => {
     await App.detach_tab(item)
   }
   else {
-    let info = await browser.windows.create({focused: false})
+    let info = await App.browser().windows.create({focused: false})
 
     setTimeout(() => {
       App.move_tabs_to_window(item, info.id)
@@ -738,7 +738,7 @@ App.move_tabs_to_new_window = async (item) => {
 
 App.get_active_tab = async () => {
   try {
-    let tabs = await browser.tabs.query({active: true, currentWindow: true})
+    let tabs = await App.browser().tabs.query({active: true, currentWindow: true})
     return tabs[0]
   }
   catch (err) {
@@ -1290,12 +1290,12 @@ App.import_tabs = async (value = ``) => {
       return
     }
 
-    let win = await browser.windows.create({})
+    let win = await App.browser().windows.create({})
     let id_map = {}
 
     for (let info of json) {
       try {
-        let tab = await browser.tabs.create({
+        let tab = await App.browser().tabs.create({
           windowId: win.id,
           url: info.url,
           pinned: info.pinned,
@@ -1309,7 +1309,7 @@ App.import_tabs = async (value = ``) => {
           let value = info[name]
 
           if (value !== undefined) {
-            await browser.sessions.setTabValue(tab.id, name, value)
+            await App.browser().sessions.setTabValue(tab.id, name, value)
           }
         }
       }
@@ -1319,7 +1319,7 @@ App.import_tabs = async (value = ``) => {
     }
 
     let ids = Object.values(id_map)
-    await browser.tabs.discard(ids)
+    await App.browser().tabs.discard(ids)
 
     for (let info of json) {
       if (info.parent) {
@@ -1640,9 +1640,9 @@ App.visit_tabs = async (item) => {
 }
 
 App.update_tab = async (id, obj) => {
-  await browser.tabs.update(id, obj)
+  await App.browser().tabs.update(id, obj)
 }
 
 App.boost_tab = async (item) => {
-  await browser.runtime.sendMessage({action: `boost_tab`, tab_id: item.id})
+  await App.browser().runtime.sendMessage({action: `boost_tab`, tab_id: item.id})
 }

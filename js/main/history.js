@@ -3,11 +3,11 @@ App.setup_history = () => {
     return
   }
 
-  if (!browser.history) {
+  if (!App.browser().history) {
     return
   }
 
-  browser.history.onVisited.addListener((info) => {
+  App.browser().history.onVisited.addListener((info) => {
     App.debug(`History Visited`)
 
     if (App.active_mode === `history`) {
@@ -55,7 +55,7 @@ App.get_history = async (query = ``, deep = false, by_what = `all`) => {
   }
 
   try {
-    results = await browser.history.search({
+    results = await App.browser().history.search({
       text,
       maxResults: max_items,
       startTime: App.history_time(deep),

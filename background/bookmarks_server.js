@@ -12,7 +12,21 @@ let bookmark_items = []
 let bookmark_folders = []
 let bookmark_debouncer
 
-browser.runtime.onMessage.addListener((request, sender, respond) => {
+App = {}
+
+App.browser = () => {
+  let api_type = typeof browser
+
+  if (api_type !== `undefined`) {
+    return browser
+  }
+
+  else {
+    return chrome
+  }
+}
+
+App.browser().runtime.onMessage.addListener((request, sender, respond) => {
   if (request.action === `send_bookmarks`) {
     if (bookmarks_active) {
       send_bookmarks()
@@ -20,7 +34,7 @@ browser.runtime.onMessage.addListener((request, sender, respond) => {
   }
 })
 
-browser.permissions.onAdded.addListener(async (obj) => {
+App.browser().permissions.onAdded.addListener(async (obj) => {
   if (obj.permissions.includes(`bookmarks`)) {
     print(`BG: Bookmarks permission granted`)
 
@@ -35,7 +49,7 @@ browser.permissions.onAdded.addListener(async (obj) => {
 async function refresh_bookmarks(send = true) {
   let items = []
   let folders = []
-  let nodes = await browser.bookmarks.getTree()
+  let nodes = await App.browser().bookmarks.getTree()
 
   function traverse(bookmarks) {
     for (let bookmark of bookmarks) {
@@ -74,7 +88,7 @@ async function refresh_bookmarks(send = true) {
 
 function send_bookmarks(show_mode = false) {
   try {
-    browser.runtime.sendMessage({
+    App.browser().runtime.sendMessage({
       action: `refresh_bookmarks`,
       items: bookmark_items,
       folders: bookmark_folders,
@@ -87,7 +101,7 @@ function send_bookmarks(show_mode = false) {
 }
 
 async function start_bookmarks(refresh = true) {
-  let perm = await browser.permissions.contains({permissions: [`bookmarks`]})
+  let perm = await App.browser().permissions.contains({permissions: [`bookmarks`]})
 
   if (!perm) {
     print(`BG: No bookmarks permission`)
@@ -99,19 +113,19 @@ async function start_bookmarks(refresh = true) {
     refresh_bookmarks()
   }, 1000)
 
-  browser.bookmarks.onCreated.addListener((id, info) => {
+  App.browser().bookmarks.onCreated.addListener((id, info) => {
     bookmark_debouncer.call()
   })
 
-  browser.bookmarks.onRemoved.addListener((id, info) => {
+  App.browser().bookmarks.onRemoved.addListener((id, info) => {
     bookmark_debouncer.call()
   })
 
-  browser.bookmarks.onChanged.addListener((id, info) => {
+  App.browser().bookmarks.onChanged.addListener((id, info) => {
     bookmark_debouncer.call()
   })
 
-  browser.bookmarks.onMoved.addListener((id, info) => {
+  App.browser().bookmarks.onMoved.addListener((id, info) => {
     bookmark_debouncer.call()
   })
 

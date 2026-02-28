@@ -14,14 +14,14 @@ App.get_local_storage_old = (ls_name) => {
 App.get_local_storage = async (ls_name, fallback) => {
   let keys = {}
   keys[ls_name] = fallback
-  let ans = await browser.storage.local.get(keys)
+  let ans = await App.browser().storage.local.get(keys)
   return ans[ls_name]
 }
 
 App.save_local_storage = async (ls_name, obj) => {
   let keys = {}
   keys[ls_name] = obj
-  await browser.storage.local.set(keys)
+  await App.browser().storage.local.set(keys)
 }
 
 App.stor_compat_check = async () => {

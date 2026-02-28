@@ -1593,7 +1593,7 @@ App.upload_background = () => {
 
 App.get_stored_background = async () => {
   try {
-    let result = await browser.storage.local.get(`storedImage`)
+    let result = await App.browser().storage.local.get(`storedImage`)
 
     if (result.storedImage) {
       return result.storedImage

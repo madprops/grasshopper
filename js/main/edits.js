@@ -63,7 +63,7 @@ App.check_tab_session = async (items = [], force = false) => {
 
   for (let item of items) {
     for (let key in App.edit_props) {
-      let value = await browser.sessions.getTabValue(item.id, `custom_${key}`)
+      let value = await App.browser().sessions.getTabValue(item.id, `custom_${key}`)
 
       if (value === undefined) {
         if (!force) {
@@ -98,14 +98,14 @@ App.custom_save = async (id, what, value) => {
   let name = `custom_${what}`
 
   if (value) {
-    browser.sessions.setTabValue(id, name, value)
+    App.browser().sessions.setTabValue(id, name, value)
   }
   else {
-    browser.sessions.removeTabValue(id, name)
+    App.browser().sessions.removeTabValue(id, name)
   }
 
   try {
-    await browser.runtime.sendMessage({action: `mirror_edits`, id})
+    await App.browser().runtime.sendMessage({action: `mirror_edits`, id})
   }
   catch (err) {
     // Do nothing

@@ -3,6 +3,20 @@ function print(msg) {
   console.info(msg)
 }
 
+App = {}
+
+App.browser = () => {
+  let api_type = typeof browser
+
+  if (api_type !== `undefined`) {
+    return browser
+  }
+
+  else {
+    return chrome
+  }
+}
+
 function debouncer(func, delay) {
   if (typeof func !== `function`) {
     App.error(`Invalid debouncer function`)
@@ -46,7 +60,7 @@ function debouncer(func, delay) {
 }
 
 function open_popup() {
-  browser.browserAction.openPopup()
+  App.browser().browserAction.openPopup()
 }
 
 function set_item(what, value) {
@@ -60,7 +74,7 @@ function open_popup_mode(mode) {
 
 function browser_command(num) {
   try {
-    browser.runtime.sendMessage({action: `browser_command`, number: num})
+    App.browser().runtime.sendMessage({action: `browser_command`, number: num})
   }
   catch (err) {
     // Ignore
@@ -72,7 +86,7 @@ function popup_command(num) {
   open_popup()
 }
 
-browser.commands.onCommand.addListener((command) => {
+App.browser().commands.onCommand.addListener((command) => {
   if (command === `popup_tabs`) {
     open_popup_mode(`tabs`)
   }
@@ -101,47 +115,47 @@ browser.commands.onCommand.addListener((command) => {
   }
 })
 
-browser.contextMenus.create({
+App.browser().contextMenus.create({
   id: `toggle_sidebar`,
   title: `Toggle Sidebar`,
   contexts: [`browser_action`],
 })
 
-browser.contextMenus.create({
+App.browser().contextMenus.create({
   type: `separator`,
   id: `separator1`,
   contexts: [`browser_action`],
 })
 
-browser.contextMenus.create({
+App.browser().contextMenus.create({
   id: `open_tabs`,
   title: `Open Tabs`,
   contexts: [`browser_action`],
 })
 
-browser.contextMenus.create({
+App.browser().contextMenus.create({
   id: `open_history`,
   title: `Open History`,
   contexts: [`browser_action`],
 })
 
-browser.contextMenus.create({
+App.browser().contextMenus.create({
   id: `open_bookmarks`,
   title: `Open Bookmarks`,
   contexts: [`browser_action`],
 })
 
-browser.contextMenus.create({
+App.browser().contextMenus.create({
   id: `open_closed`,
   title: `Open Closed`,
   contexts: [`browser_action`],
 })
 
-browser.contextMenus.onClicked.addListener((info, tab) => {
+App.browser().contextMenus.onClicked.addListener((info, tab) => {
   let id = info.menuItemId
 
   if (id === `toggle_sidebar`) {
-    browser.sidebarAction.toggle()
+    App.browser().sidebarAction.toggle()
   }
   else if (id === `open_tabs`) {
     open_popup_mode(`tabs`)
@@ -157,9 +171,9 @@ browser.contextMenus.onClicked.addListener((info, tab) => {
   }
 })
 
-browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+App.browser().runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === `boost_tab`) {
-    browser.tabs.executeScript(request.tab_id, {
+    App.browser().tabs.executeScript(request.tab_id, {
       file: `js/content.js`,
     })
   }

@@ -1799,7 +1799,7 @@ App.get_setting_addlist_objects = () => {
 
 App.mirror_settings = async () => {
   try {
-    await browser.runtime.sendMessage({action: `mirror_settings`})
+    await App.browser().runtime.sendMessage({action: `mirror_settings`})
   }
   catch (err) {
     // Do nothing

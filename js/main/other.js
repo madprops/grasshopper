@@ -55,7 +55,7 @@ App.show_intro_message = () => {
 }
 
 App.restart_extension = () => {
-  browser.runtime.reload()
+  App.App.browser().runtime.reload()
 }
 
 App.print_intro = () => {
@@ -122,10 +122,10 @@ App.ask_permission = async (what) => {
   let perm
 
   try {
-    perm = await browser.permissions.request({permissions: [what]})
+    perm = await App.browser().permissions.request({permissions: [what]})
   }
   catch (err) {
-    perm = await browser.permissions.contains({permissions: [what]})
+    perm = await App.browser().permissions.contains({permissions: [what]})
   }
 
   return perm
@@ -182,15 +182,15 @@ App.body_remove = (cls) => {
 }
 
 App.open_sidebar = () => {
-  browser.sidebarAction.open()
+  App.browser().sidebarAction.open()
 }
 
 App.close_sidebar = () => {
-  browser.sidebarAction.close()
+  App.browser().sidebarAction.close()
 }
 
 App.toggle_sidebar = () => {
-  browser.sidebarAction.toggle()
+  App.browser().sidebarAction.toggle()
 }
 
 App.check_caps = (text) => {

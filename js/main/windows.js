@@ -311,7 +311,7 @@ App.show_focus_a_window = async (e) => {
 }
 
 App.focus_a_window = async (id) => {
-  await browser.windows.update(id, {focused: true})
+  await App.browser().windows.update(id, {focused: true})
 }
 
 App.toggle_top_panel = () => {
@@ -342,5 +342,5 @@ App.window_text = (win) => {
 }
 
 App.get_windows = async (populate = true) => {
-  return await browser.windows.getAll({populate})
+  return await App.browser().windows.getAll({populate})
 }

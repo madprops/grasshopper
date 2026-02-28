@@ -140,7 +140,7 @@ App.start_close_tabs = () => {
 
 App.close_tab_or_tabs = async (id_or_ids) => {
   try {
-    await browser.tabs.remove(id_or_ids)
+    await App.browser().tabs.remove(id_or_ids)
   }
   catch (err) {
     App.error(err)

@@ -1,5 +1,5 @@
 App.setup_closed = () => {
-  browser.sessions.onChanged.addListener(() => {
+  App.browser().sessions.onChanged.addListener(() => {
     if (App.active_mode === `closed`) {
       App.closed_changed = true
     }
@@ -11,7 +11,7 @@ App.get_closed = async () => {
   let results
 
   try {
-    results = await browser.sessions.getRecentlyClosed({
+    results = await App.browser().sessions.getRecentlyClosed({
       maxResults: App.max_closed,
     })
   }
@@ -45,7 +45,7 @@ App.reopen_tab = async () => {
   let closed = await App.get_closed()
 
   if (closed && closed.length) {
-    browser.sessions.restore(closed[0].sessionId)
+    App.browser().sessions.restore(closed[0].sessionId)
   }
 }
 
@@ -56,7 +56,7 @@ App.forget_closed = () => {
     message: `Forget closed tabs? (${items.length})`,
     confirm_action: async () => {
       for (let item of items) {
-        await browser.sessions.forgetClosedTab(item.window_id, item.session_id)
+        await App.browser().sessions.forgetClosedTab(item.window_id, item.session_id)
       }
 
       App.after_forget()
@@ -71,7 +71,7 @@ App.forget_closed_item = (item) => {
     message: `Forget closed tabs? (${active.length})`,
     confirm_action: async () => {
       for (let item of active) {
-        await browser.sessions.forgetClosedTab(item.window_id, item.session_id)
+        await App.browser().sessions.forgetClosedTab(item.window_id, item.session_id)
       }
 
       App.after_forget()

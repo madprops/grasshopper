@@ -1,5 +1,5 @@
 App.setup_messages = () => {
-  browser.runtime.onMessage.addListener(async (message) => {
+  App.browser().runtime.onMessage.addListener(async (message) => {
     if (message.action === `mirror_settings`) {
       if (App.get_setting(`mirror_settings`)) {
         await App.stor_get_settings()

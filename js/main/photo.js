@@ -37,7 +37,7 @@ App.upload_photo = () => {
 
 App.get_photo = async () => {
   try {
-    let result = await browser.storage.local.get(`storedPhoto`)
+    let result = await App.browser().storage.local.get(`storedPhoto`)
 
     if (result.storedPhoto) {
       return result.storedPhoto

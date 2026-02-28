@@ -5,7 +5,7 @@ if (!window._grasshopper_boosted_) {
     clearTimeout(resize_timeout)
 
     resize_timeout = setTimeout(() => {
-      browser.runtime.sendMessage({action: `fullscreen_change`})
+      App.browser().runtime.sendMessage({action: `fullscreen_change`})
     }, 1000)
   })
 

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Grasshopper",
-  "version": "6584",
+  "version": "6585",
   "description": "Godspeed You Tab Emperor",
   "author": "Merkoba",
   "permissions": [
@@ -17,7 +17,6 @@
     "bookmarks",
     "clipboardRead",
     "activeTab",
-    "trialML",
     "<all_urls>"
   ],
   "icons": {
