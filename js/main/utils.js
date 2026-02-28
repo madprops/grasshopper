@@ -51,7 +51,7 @@ App.create_debouncer = (func, delay) => {
   return obj
 }
 
-App.remove_protocol = (url, www = true, file = true) => {
+App.remove_protocol = (url = ``, www = true, file = true) => {
   url = url.replace(/^https?:\/\//, ``)
 
   if (www) {

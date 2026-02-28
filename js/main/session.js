@@ -28,3 +28,16 @@ App.set_tab_value = async (tab_id, key, value) => {
     await ext_api.storage.session.set({[storage_key]:value})
   }
 }
+
+App.remove_tab_value = async (tab_id, key) => {
+  let ext_api = App.browser()
+
+  if (ext_api.sessions && ext_api.sessions.removeTabValue) {
+    await ext_api.sessions.removeTabValue(tab_id, key)
+  }
+
+  else if (ext_api.storage && ext_api.storage.session) {
+    let storage_key = `tab_${tab_id}_${key}`
+    await ext_api.storage.session.remove(storage_key)
+  }
+}

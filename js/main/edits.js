@@ -101,7 +101,7 @@ App.custom_save = async (id, what, value) => {
     App.set_tab_value(id, name, value)
   }
   else {
-    App.browser().sessions.removeTabValue(id, name)
+    App.remove_tab_value(id, name)
   }
 
   try {
