@@ -1,20 +1,13 @@
+import {App} from "./utils.js"
+import {fetch_user_bookmarks} from "./bookmarks_server.js"
+
+fetch_user_bookmarks().then((data) => {
+  console.log(`Bookmarks loaded:`, data)
+})
+
 function print(msg) {
   // eslint-disable-next-line no-console
   console.info(msg)
-}
-
-App = {}
-
-App.browser = () => {
-  let api_type = typeof browser
-
-  if (api_type !== `undefined`) {
-    return browser
-  }
-
-  else {
-    return chrome
-  }
 }
 
 function debouncer(func, delay) {
@@ -119,37 +112,37 @@ App.browser().commands.onCommand.addListener((command) => {
 App.browser().contextMenus.create({
   id: `toggle_sidebar`,
   title: `Toggle Sidebar`,
-  contexts: [`browser_action`],
+  contexts: [`action`],
 })
 
 App.browser().contextMenus.create({
   type: `separator`,
   id: `separator1`,
-  contexts: [`browser_action`],
+  contexts: [`action`],
 })
 
 App.browser().contextMenus.create({
   id: `open_tabs`,
   title: `Open Tabs`,
-  contexts: [`browser_action`],
+  contexts: [`action`],
 })
 
 App.browser().contextMenus.create({
   id: `open_history`,
   title: `Open History`,
-  contexts: [`browser_action`],
+  contexts: [`action`],
 })
 
 App.browser().contextMenus.create({
   id: `open_bookmarks`,
   title: `Open Bookmarks`,
-  contexts: [`browser_action`],
+  contexts: [`action`],
 })
 
 App.browser().contextMenus.create({
   id: `open_closed`,
   title: `Open Closed`,
-  contexts: [`browser_action`],
+  contexts: [`action`],
 })
 
 App.browser().contextMenus.onClicked.addListener((info, tab) => {
@@ -174,8 +167,12 @@ App.browser().contextMenus.onClicked.addListener((info, tab) => {
 
 App.browser().runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === `boost_tab`) {
-    App.browser().tabs.executeScript(request.tab_id, {
-      file: `js/content.js`,
-    })
-  }
+  App.browser().permissions.request(request_payload).then((granted) => {
+    if (granted) {
+      App.browser().scripting.executeScript({
+        target: {tabId: request.tab_id},
+        files: [`js/content.js`]
+      })
+    }
+  })
 })

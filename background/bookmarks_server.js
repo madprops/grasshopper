@@ -7,24 +7,12 @@
 // The idea of this is to make bookmark retrieval much faster when many bookmarks exist
 // Since the native getTree function is currently slow
 
+import {App} from "./utils.js"
+
 let bookmarks_active = false
 let bookmark_items = []
 let bookmark_folders = []
 let bookmark_debouncer
-
-App = {}
-
-App.browser = () => {
-  let api_type = typeof browser
-
-  if (api_type !== `undefined`) {
-    return browser
-  }
-
-  else {
-    return chrome
-  }
-}
 
 App.browser().runtime.onMessage.addListener((request, sender, respond) => {
   if (request.action === `send_bookmarks`) {
@@ -137,3 +125,7 @@ async function start_bookmarks(refresh = true) {
 }
 
 start_bookmarks()
+
+export async function fetch_user_bookmarks() {
+  return await App.bookmarks.getTree()
+}

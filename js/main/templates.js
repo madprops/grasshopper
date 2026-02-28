@@ -121,7 +121,7 @@ App.apply_template = (template, item) => {
     }
 
     it[key] = value
-    App.browser().sessions.setTabValue(it.id, key, it[key])
+    App.set_tab_value(it.id, key, it[key])
   }
 
   let active = App.get_active_items({mode: `tabs`, item})

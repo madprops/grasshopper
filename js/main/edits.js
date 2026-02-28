@@ -63,7 +63,7 @@ App.check_tab_session = async (items = [], force = false) => {
 
   for (let item of items) {
     for (let key in App.edit_props) {
-      let value = await App.browser().sessions.getTabValue(item.id, `custom_${key}`)
+      let value = await App.get_tab_value(item.id, `custom_${key}`)
 
       if (value === undefined) {
         if (!force) {
@@ -98,7 +98,7 @@ App.custom_save = async (id, what, value) => {
   let name = `custom_${what}`
 
   if (value) {
-    App.browser().sessions.setTabValue(id, name, value)
+    App.set_tab_value(id, name, value)
   }
   else {
     App.browser().sessions.removeTabValue(id, name)

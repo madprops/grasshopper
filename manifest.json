@@ -17,6 +17,7 @@
     "history",
     "bookmarks",
     "clipboardRead",
+    "scripting",
     "activeTab",
     "<all_urls>"
   ],
@@ -24,10 +25,11 @@
     "128": "img/icon128.png"
   },
   "background": {
+    "service_worker": "background/background.js",
     "scripts": [
-      "background/background.js",
-      "background/bookmarks_server.js"
-    ]
+      "background/background.js"
+    ],
+    "type": "module"
   },
   "action": {
     "default_icon": {
