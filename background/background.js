@@ -1,56 +1,7 @@
 import {App} from "./utils.js"
-import {fetch_user_bookmarks} from "./bookmarks_server.js"
+import {start_bookmarks} from "./bookmarks_server.js"
 
-fetch_user_bookmarks().then((data) => {
-  console.log(`Bookmarks loaded:`, data)
-})
-
-function print(msg) {
-  // eslint-disable-next-line no-console
-  console.info(msg)
-}
-
-function debouncer(func, delay) {
-  if (typeof func !== `function`) {
-    App.error(`Invalid debouncer function`)
-    return
-  }
-
-  if (!delay) {
-    App.error(`Invalid debouncer delay`)
-    return
-  }
-
-  let timer
-  let obj = {}
-
-  function clear() {
-    clearTimeout(timer)
-  }
-
-  function run(...args) {
-    func(...args)
-  }
-
-  obj.call = (...args) => {
-    clear()
-
-    timer = setTimeout(() => {
-      run(...args)
-    }, delay)
-  }
-
-  obj.now = (...args) => {
-    clear()
-    run(...args)
-  }
-
-  obj.cancel = () => {
-    clear()
-  }
-
-  return obj
-}
+start_bookmarks()
 
 function open_popup() {
   App.browser().browserAction.openPopup()

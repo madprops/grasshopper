@@ -24,7 +24,7 @@ App.browser().runtime.onMessage.addListener((request, sender, respond) => {
 
 App.browser().permissions.onAdded.addListener(async (obj) => {
   if (obj.permissions.includes(`bookmarks`)) {
-    print(`BG: Bookmarks permission granted`)
+    App.print(`BG: Bookmarks permission granted`)
 
     if (!bookmarks_active) {
       await start_bookmarks(false)
@@ -76,7 +76,7 @@ async function refresh_bookmarks(send = true) {
     send_bookmarks()
   }
 
-  print(`BG: Bookmarks refreshed: ${folders.length} folders and ${items.length} items`)
+  App.print(`BG: Bookmarks refreshed: ${folders.length} folders and ${items.length} items`)
 }
 
 function send_bookmarks(show_mode = false) {
@@ -93,16 +93,16 @@ function send_bookmarks(show_mode = false) {
   }
 }
 
-async function start_bookmarks(refresh = true) {
+export async function start_bookmarks(refresh = true) {
   let perm = await App.browser().permissions.contains({permissions: [`bookmarks`]})
 
   if (!perm) {
-    print(`BG: No bookmarks permission`)
+    App.print(`BG: No bookmarks permission`)
     return
   }
 
   // eslint-disable-next-line no-undef
-  bookmark_debouncer = debouncer(() => {
+  bookmark_debouncer = App.debouncer(() => {
     refresh_bookmarks()
   }, 1000)
 
@@ -127,10 +127,4 @@ async function start_bookmarks(refresh = true) {
   }
 
   bookmarks_active = true
-}
-
-start_bookmarks()
-
-export async function fetch_user_bookmarks() {
-  return await App.bookmarks.getTree()
 }
