@@ -5969,6 +5969,13 @@ App.build_settings = () => {
       info: `Completely random password strings by the password generator`,
       version: 1,
     },
+    auto_group_picker: {
+      name: `Auto Group Picker`,
+      type: `checkbox`,
+      value: false,
+      info: `Add groups quickly with the auto picker`,
+      version: 1,
+    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,

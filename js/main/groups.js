@@ -12,6 +12,7 @@ App.change_group = async (item) => {
   let groups = await App.get_groups()
   let names = groups.map(x => x.title)
   let current = await App.get_group_by_id(item.group)
+  let auto_picker = App.get_setting(`auto_group_picker`)
   let value = ``
 
   if (current) {
@@ -23,8 +24,8 @@ App.change_group = async (item) => {
     placeholder: `Tab Group`,
     suggestions: names,
     list: names,
-    show_list: true,
-    list_submit: true,
+    show_list: auto_picker,
+    list_submit: auto_picker,
     fill: true,
     on_submit: async (name) => {
       let active = App.get_active_items({mode: item.mode, item})
