@@ -277,7 +277,7 @@ App.check_group_item = async (item) => {
           let color = App.get_color(item)
 
           if (color !== c_obj.id) {
-            App.edit_tab_color({item, color: c_obj.id})
+            App.edit_tab_color({item, color: c_obj.id, force: true})
           }
         }
       }
