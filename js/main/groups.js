@@ -85,6 +85,10 @@ App.ungroup_tabs = async (item) => {
   let active = App.get_active_items({mode: item.mode, item})
 
   for (let tab of active) {
+    if (App.is_color_group(item)) {
+      App.edit_tab_color({item})
+    }
+
     await App.browser().tabs.ungroup(tab.id)
     App.update_item({mode: `tabs`, id: tab.id, group: -1})
     item.ungrouping = false

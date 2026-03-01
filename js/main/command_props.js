@@ -3109,7 +3109,7 @@ App.setup_commands = () => {
       item: true,
       icon: group_icon,
       action: (args) => {
-        App.change_group(args.item)
+        App.group_tabs(args.item)
       },
       info: `Change the group of the tabs`,
     },
