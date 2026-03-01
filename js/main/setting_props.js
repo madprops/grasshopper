@@ -1302,6 +1302,16 @@ App.build_settings = () => {
     }),
 
     ...App.make_icon_settings({
+      what: `group`,
+      name: `Group`,
+      icon: `🗂️`,
+      info: `Icons for grouped tabs`,
+      side: `right`,
+      show: `always`,
+      cmd: `none`,
+    }),
+
+    ...App.make_icon_settings({
       what: `parent`,
       name: `Parent`,
       icon: `🤿`,

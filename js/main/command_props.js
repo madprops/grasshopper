@@ -61,6 +61,7 @@ App.setup_commands = () => {
   let cael_icon = App.ai_icon_cael
   let ai_icon = App.ai_icon
   let word_counter_icon = App.word_counter_icon
+  let group_icon = App.group_icon
 
   let combo_icon = App.combo_icon
   let time_icon = App.time_icon
@@ -3091,6 +3092,29 @@ App.setup_commands = () => {
         App.add_tags(args.item)
       },
       info: `Add tags to tabs`,
+    },
+    {
+      name: `Change Group`,
+      short_name: `Group`,
+      cmd: `change_group`,
+      modes: [`tabs`],
+      item: true,
+      icon: group_icon,
+      action: (args) => {
+        App.change_group(args.item)
+      },
+      info: `Change the group of the tabs`,
+    },
+    {
+      name: `Ungroup`,
+      cmd: `ungroup_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: group_icon,
+      action: (args) => {
+        App.remove_group(args.item)
+      },
+      info: `Remove the tabs from the group`,
     },
     {
       name: `Edit Root`,

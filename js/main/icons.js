@@ -133,6 +133,11 @@ App.add_item_icon = (item, side, name) => {
     obj = {...obj, title}
     App.proc_item_icon(obj)
   }
+  else if (name === `group`) {
+    let title = `Grouped`
+    obj = {...obj, title}
+    App.proc_item_icon(obj)
+  }
   else if (name === `notes`) {
     let title = `Notes`
     title += `\nMiddle Click: Remove Notes`
@@ -237,6 +242,7 @@ App.check_icons = (item) => {
     `unread`,
     `obfuscated`,
     `idle`,
+    `group`,
     `root`,
     `parent`,
     `node`,
@@ -952,6 +958,9 @@ App.check_icon_active = (icon, item) => {
   }
   else if (icon === `idle`) {
     return App.tab_is_idle(item)
+  }
+  else if (icon === `group`) {
+    return App.is_grouped(item)
   }
   else if (icon === `image`) {
     return App.get_media_type(item) === `image`
