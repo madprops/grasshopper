@@ -138,70 +138,59 @@ App.get_group_name = async (item) => {
 }
 
 App.restore_groups = async (items, tab_map) => {
-  if (App.is_restoring_groups) {
-    return
-  }
+  let processed_groups = []
 
-  App.is_restoring_groups = true
+  for (let item of items) {
+    let group_id = tab_map[item.id].group
 
-  try {
-    let processed_groups = []
+    if (group_id && (group_id !== -1)) {
+      if (!processed_groups.includes(group_id)) {
+        processed_groups.push(group_id)
 
-    for (let item of items) {
-      let group_id = tab_map[item.id].group
+        // group all tabs at once to prevent chaotic index shifting
+        let group_tab_ids = []
 
-      if (group_id && (group_id !== -1)) {
-        if (!processed_groups.includes(group_id)) {
-          processed_groups.push(group_id)
-
-          // group all tabs at once to prevent chaotic index shifting
-          let group_tab_ids = []
-
-          for (let i of items) {
-            if (tab_map[i.id].group === group_id) {
-              group_tab_ids.push(i.id)
-            }
+        for (let i of items) {
+          if (tab_map[i.id].group === group_id) {
+            group_tab_ids.push(i.id)
           }
+        }
 
-          let tab_data = await App.browser().tabs.get(item.id)
-          let target_index = tab_data.index
-          let window_id = tab_data.windowId
+        let tab_data = await App.browser().tabs.get(item.id)
+        let target_index = tab_data.index
+        let window_id = tab_data.windowId
 
-          let current_group_tabs = await App.browser().tabs.query({groupId: group_id})
-          let tabs_before_target = current_group_tabs.filter(t => t.index < target_index).length
+        let current_group_tabs = await App.browser().tabs.query({groupId: group_id})
+        let tabs_before_target = current_group_tabs.filter(t => t.index < target_index).length
 
-          let safe_target_index = target_index - tabs_before_target
+        let safe_target_index = target_index - tabs_before_target
 
-          try {
-            await App.browser().tabs.group({tabIds: group_tab_ids, groupId: group_id})
-            await App.browser().tabGroups.move(group_id, {index: safe_target_index})
-          }
-          catch (err) {
-            let error_msg = err.message || ``
+        try {
+          await App.browser().tabs.group({tabIds: group_tab_ids, groupId: group_id})
+          await App.browser().tabGroups.move(group_id, {index: safe_target_index})
+        }
+        catch (err) {
+          let error_msg = err.message || ``
 
-            if (error_msg.includes(`middle of another group`)) {
-              let tabs_at_target = await App.browser().tabs.query({windowId: window_id, index: safe_target_index})
+          if (error_msg.includes(`middle of another group`)) {
+            let tabs_at_target = await App.browser().tabs.query({windowId: window_id, index: safe_target_index})
 
-              if (tabs_at_target.length > 0) {
-                let blocking_group_id = tabs_at_target[0].groupId
+            if (tabs_at_target.length > 0) {
+              let blocking_group_id = tabs_at_target[0].groupId
 
-                if (blocking_group_id && (blocking_group_id !== -1) && (blocking_group_id !== group_id)) {
-                  let blocking_tabs = await App.browser().tabs.query({groupId: blocking_group_id})
+              if (blocking_group_id && (blocking_group_id !== -1) && (blocking_group_id !== group_id)) {
+                let blocking_tabs = await App.browser().tabs.query({groupId: blocking_group_id})
 
-                  if (blocking_tabs.length > 0) {
-                    let last_tab = blocking_tabs[blocking_tabs.length - 1]
-                    let fallback_index = last_tab.index + 1
+                if (blocking_tabs.length > 0) {
+                  let last_tab = blocking_tabs[blocking_tabs.length - 1]
+                  let fallback_index = last_tab.index + 1
 
-                    try {
-                      await App.browser().tabGroups.move(group_id, {index: fallback_index})
-                    }
-                    catch (fallback_err) {
-                      App.debug(fallback_err)
-                    }
+                  try {
+                    await App.browser().tabGroups.move(group_id, {index: fallback_index})
                   }
-                }
-                else {
-                  App.debug(err)
+                  catch (fallback_err) {
+                    App.debug(fallback_err)
+                  }
                 }
               }
               else {
@@ -212,38 +201,38 @@ App.restore_groups = async (items, tab_map) => {
               App.debug(err)
             }
           }
-        }
-      }
-      else {
-        try {
-          let current_tab = await App.browser().tabs.get(item.id)
-
-          if (current_tab.groupId !== -1) {
-            let window_id = current_tab.windowId
-            let index = current_tab.index
-
-            let prev_tabs = await App.browser().tabs.query({windowId: window_id, index: index - 1})
-            let next_tabs = await App.browser().tabs.query({windowId: window_id, index: index + 1})
-
-            let prev_group = prev_tabs[0] ? prev_tabs[0].groupId : -1
-            let next_group = next_tabs[0] ? next_tabs[0].groupId : -1
-
-            if ((prev_group !== -1) && (prev_group === next_group) && (prev_group === current_tab.groupId)) {
-              // tab is sandwiched between two tabs in the same group, keep it absorbed
-            }
-            else {
-              await App.browser().tabs.ungroup(item.id)
-            }
+          else {
+            App.debug(err)
           }
-        }
-        catch (err) {
-          App.debug(err)
         }
       }
     }
-  }
-  finally {
-    App.is_restoring_groups = false
+    else {
+      try {
+        let current_tab = await App.browser().tabs.get(item.id)
+
+        if (current_tab.groupId !== -1) {
+          let window_id = current_tab.windowId
+          let index = current_tab.index
+
+          let prev_tabs = await App.browser().tabs.query({windowId: window_id, index: index - 1})
+          let next_tabs = await App.browser().tabs.query({windowId: window_id, index: index + 1})
+
+          let prev_group = prev_tabs[0] ? prev_tabs[0].groupId : -1
+          let next_group = next_tabs[0] ? next_tabs[0].groupId : -1
+
+          if ((prev_group !== -1) && (prev_group === next_group) && (prev_group === current_tab.groupId)) {
+            // tab is sandwiched between two tabs in the same group, keep it absorbed
+          }
+          else {
+            await App.browser().tabs.ungroup(item.id)
+          }
+        }
+      }
+      catch (err) {
+        App.debug(err)
+      }
+    }
   }
 }
 
@@ -286,6 +275,10 @@ App.check_group_item = async (item) => {
 }
 
 App.attempt_group = async (item, name) => {
+  if (App.updating_index) {
+    return
+  }
+
   let group = await App.get_group_by_name(name)
 
   if (group && (group.id === item.group)) {

@@ -174,7 +174,7 @@ App.private_command_symbol = `!`
 App.close_filtered_tabs_text = ``
 App.item_list = []
 App.change_group_args = []
-App.is_restoring_groups = false
+App.updating_index = false
 App.check_group_items = []
 
 App.ignored_tokens = [

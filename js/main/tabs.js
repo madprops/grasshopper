@@ -630,40 +630,51 @@ App.update_tabs_index = async (items, direction) => {
     items = items.slice(0).reverse()
   }
 
-  let pinline = App.pinline_index(false)
-  let tab_map = {}
-
-  for (let item of items) {
-    tab_map[item.id] = {
-      group: item.group,
-    }
+  if (App.updating_index) {
+    return
   }
 
-  for (let item of items) {
-    let index = App.get_item_element_index({
-      mode: `tabs`,
-      element: item.element,
-      include_all: true,
-    })
+  App.updating_index = true
 
-    let index_2 = App.get_item_element_index({
-      mode: `tabs`,
-      element: item.element,
-    })
+  try {
+    let pinline = App.pinline_index(false)
+    let tab_map = {}
 
-    if (item.pinned) {
-      if (index > pinline) {
-        await App.unpin_tab(item.id)
+    for (let item of items) {
+      tab_map[item.id] = {
+        group: item.group,
       }
     }
-    else if (index < pinline) {
-      await App.pin_tab(item.id)
+
+    for (let item of items) {
+      let index = App.get_item_element_index({
+        mode: `tabs`,
+        element: item.element,
+        include_all: true,
+      })
+
+      let index_2 = App.get_item_element_index({
+        mode: `tabs`,
+        element: item.element,
+      })
+
+      if (item.pinned) {
+        if (index > pinline) {
+          await App.unpin_tab(item.id)
+        }
+      }
+      else if (index < pinline) {
+        await App.pin_tab(item.id)
+      }
+
+      await App.do_move_tab_index(item.id, index_2)
     }
 
-    await App.do_move_tab_index(item.id, index_2)
+    App.restore_groups(items, tab_map)
   }
-
-  App.restore_groups(items, tab_map)
+  finally {
+    App.updating_index = false
+  }
 }
 
 App.do_move_tab_index = async (id, index) => {
