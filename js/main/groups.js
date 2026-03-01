@@ -1,6 +1,6 @@
 App.setup_groups = () => {
   App.change_group_debouncer = App.create_debouncer(() => {
-    App.do_change_group_action()
+    App.change_group_action()
   }, App.change_group_delay)
 
   App.check_group_debouncer = App.create_debouncer(() => {
@@ -8,7 +8,7 @@ App.setup_groups = () => {
   }, App.check_group_delay)
 }
 
-App.change_group = async (item) => {
+App.group_tabs = async (item) => {
   let groups = await App.get_groups()
   let names = groups.map(x => x.title)
   let current = await App.get_group_by_id(item.group)
@@ -31,14 +31,14 @@ App.change_group = async (item) => {
       let active = App.get_active_items({mode: item.mode, item})
 
       for (let tab of active) {
-        await App.do_change_group(tab, name)
+        await App.change_group(tab, name)
         App.check_group(tab)
       }
     },
   })
 }
 
-App.do_change_group = (item, name, id) => {
+App.change_group = (item, name, id) => {
   App.change_group_args.push({
     item, name, id
   })
@@ -46,13 +46,13 @@ App.do_change_group = (item, name, id) => {
   App.change_group_debouncer.call()
 }
 
-App.do_change_group_action = async () => {
+App.change_group_action = async () => {
   let items = App.change_group_args.slice(0)
   App.change_group_args = []
 
   for (let item of items) {
     try {
-      await App.do_change_group_item(item)
+      await App.change_group_item(item)
     }
     catch (err) {
       App.error(err)
@@ -60,7 +60,7 @@ App.do_change_group_action = async () => {
   }
 }
 
-App.do_change_group_item = async (args = {}) => {
+App.change_group_item = async (args = {}) => {
   let new_group
 
   if (args.id) {
@@ -81,7 +81,7 @@ App.do_change_group_item = async (args = {}) => {
   }
 }
 
-App.remove_group = async (item) => {
+App.ungroup_tabs = async (item) => {
   let active = App.get_active_items({mode: item.mode, item})
 
   for (let tab of active) {
@@ -284,6 +284,6 @@ App.attempt_group = async (item, name) => {
     // Ignore
   }
   else {
-    App.do_change_group(item, name)
+    App.change_group(item, name)
   }
 }

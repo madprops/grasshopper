@@ -3120,7 +3120,7 @@ App.setup_commands = () => {
       item: true,
       icon: group_icon,
       action: (args) => {
-        App.remove_group(args.item)
+        App.ungroup_tabs(args.item)
       },
       info: `Remove the tabs from the group`,
     },

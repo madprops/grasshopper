@@ -267,7 +267,7 @@ App.edit_tab_color = (args = {}) => {
           App.custom_save(it.id, `color`, value)
 
           if (ungroup) {
-            App.remove_group(it)
+            App.ungroup_tabs(it)
           }
         }})
       }
