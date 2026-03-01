@@ -630,10 +630,6 @@ App.update_tabs_index = async (items, direction) => {
     items = items.slice(0).reverse()
   }
 
-  if (App.updating_index) {
-    return
-  }
-
   App.updating_index = true
 
   try {
