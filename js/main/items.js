@@ -450,7 +450,7 @@ App.create_item_element = (item) => {
   item.element_ready = true
 }
 
-App.set_item_text = (item) => {
+App.set_item_text = async (item) => {
   let lines = []
   let url
 
@@ -518,6 +518,7 @@ App.set_item_text = (item) => {
 
   item.tooltips_title = title
   item.tooltips_url = url
+  item.tooltips_group = await App.get_group_name(item)
   item.has_tooltips = false
 }
 
@@ -1466,6 +1467,10 @@ App.tooltip_modes = {
       tips.push(`Tags: ${tags.join(`, `)}`)
     }
 
+    if (args.group) {
+      tips.push(`Group: ${args.group}`)
+    }
+
     tips.push(App.mode_vars[args.item.mode].item_info)
     args.item.element.title = tips.join(`\n`)
   },
@@ -1473,6 +1478,11 @@ App.tooltip_modes = {
     let tips = []
     tips.push(`Title: ${args.title}`)
     tips.push(`URL: ${args.url}`)
+
+    if (args.group) {
+      tips.push(`Group: ${args.group}`)
+    }
+
     args.item.element.title = tips.join(`\n`)
   },
   minimal: (args) => {
@@ -1507,7 +1517,7 @@ App.tooltip_modes = {
   },
 }
 
-App.set_item_tooltips = (item) => {
+App.set_item_tooltips = async (item) => {
   if (!App.tooltips()) {
     return
   }
@@ -1518,8 +1528,9 @@ App.set_item_tooltips = (item) => {
 
   let title = item.tooltips_title || `No Title`
   let url = item.tooltips_url || `No URL`
+  let group = item.tooltips_group
   let t_mode = App.get_setting(`tooltips_mode`)
-  App.tooltip_modes[t_mode]({item, title, url})
+  App.tooltip_modes[t_mode]({item, title, url, group})
 
   if (App.get_setting(`icon_pick`)) {
     let icon_container = DOM.el(`.item_icon_container`, item.element)

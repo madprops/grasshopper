@@ -16,24 +16,28 @@ App.change_group = async (item) => {
     show_list: true,
     list_submit: true,
     fill: true,
-    on_submit: async (ans) => {
+    on_submit: async (name) => {
       let active = App.get_active_items({mode: item.mode, item})
 
       for (let tab of active) {
-        let new_group = await App.get_group_by_name(ans)
-
-        if (new_group) {
-          await App.browser().tabs.group({tabIds: tab.id, groupId: new_group.id})
-          App.update_item({mode: `tabs`, id: tab.id, group: new_group.id})
-        }
-        else {
-          let id = await App.browser().tabs.group({tabIds: tab.id})
-          await App.browser().tabGroups.update(id, {title: ans, color: `cyan`})
-          App.update_item({mode: `tabs`, id: tab.id, group: id})
-        }
+        await App.do_change_group(tab, name)
       }
     },
   })
+}
+
+App.do_change_group = async (item, name) => {
+  let new_group = await App.get_group_by_name(name)
+
+  if (new_group) {
+    await App.browser().tabs.group({tabIds: item.id, groupId: new_group.id})
+    App.update_item({mode: `tabs`, id: item.id, group: new_group.id})
+  }
+  else {
+    let id = await App.browser().tabs.group({tabIds: item.id})
+    await App.browser().tabGroups.update(id, {title: name, color: `cyan`})
+    App.update_item({mode: `tabs`, id: item.id, group: id})
+  }
 }
 
 App.remove_group = async (item) => {
@@ -71,4 +75,18 @@ App.get_group_by_name = async (name) => {
 
 App.is_grouped = (item) => {
   return item.group !== -1
+}
+
+App.get_group_name = async (item) => {
+  if (!App.is_grouped(item)) {
+    return
+  }
+
+  let group = await App.get_group_by_id(item.group)
+
+  if (group) {
+    return group.title
+  }
+
+  return ``
 }

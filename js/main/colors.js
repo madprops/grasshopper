@@ -97,6 +97,20 @@ App.check_tab_colors = (item) => {
 App.apply_color_mode = (item) => {
   let color_mode = App.get_setting(`color_mode`)
   let color = App.get_color(item)
+  let c_obj = App.get_color_by_id(color)
+
+  if (color) {
+
+    if (c_obj.group) {
+      let grp = App.get_group_by_name(color.name)
+
+      if (grp) {
+        if (item.group !== grp.id) {
+          App.do_change_group(item, color.name)
+        }
+      }
+    }
+  }
 
   if (item.tab_box) {
     color_mode = App.get_setting(`tab_box_color_mode`)
@@ -121,8 +135,6 @@ App.apply_color_mode = (item) => {
     el.dataset.color = color
 
     if (App.tooltips()) {
-      let c_obj = App.get_color_by_id(color)
-
       if (c_obj) {
         el.title = c_obj.name
 
@@ -641,19 +653,21 @@ App.start_colors_addlist = () => {
 
   App.create_popup({...popobj, id: `addlist_${id}`,
     element: Addlist.register({...regobj, id,
-      keys: [`name`, `value`, `text`, `cmd`],
+      keys: [`name`, `value`, `text`, `cmd`, `group`],
       pk: `name`,
       widgets: {
         name: `text`,
         value: `color`,
         text: `color`,
         cmd: `menu`,
+        group: `checkbox`,
       },
       labels: {
         name: `Name`,
         value: `Value`,
         text: `Text`,
         cmd: `Command`,
+        group: `Group`,
       },
       sources: {
         cmd: () => {
@@ -673,6 +687,7 @@ App.start_colors_addlist = () => {
         name: `Name of the color`,
         value: `Value of the color`,
         text: `Color of the text`,
+        group: `Consider this a tab group`,
       },
       title: props.name,
     })})
