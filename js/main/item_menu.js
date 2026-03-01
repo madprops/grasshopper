@@ -88,6 +88,17 @@ App.show_item_menu = async (args = {}) => {
       items: zone_items,
     })
 
+    let group_items = []
+
+    App.item_menu_item(group_items, `group_tabs`, {item: args.item, short: false})
+    App.item_menu_item(group_items, `ungroup_tabs`, {item: args.item, short: false})
+
+    items.push({
+      icon: App.group_icon,
+      text: `Group`,
+      items: group_items,
+    })
+
     let common_obj = {
       o_items: items,
       item: args.item,
@@ -216,7 +227,6 @@ App.more_menu_items = (args = {}) => {
   App.item_menu_item(items, `bookmark_items`, {item: args.item, short: false})
   App.item_menu_item(items, `set_background_image`, {item: args.item, short: false})
   App.item_menu_item(items, `edit_domain_rule`, {item: args.item, short: false})
-  App.item_menu_item(items, `change_group`, {item: args.item, short: false})
 
   if (args.item.mode === `tabs`) {
     App.item_menu_separate(items)

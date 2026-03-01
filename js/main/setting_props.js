@@ -1376,6 +1376,7 @@ App.build_settings = () => {
       show: `always`,
       separator: false,
     }),
+
     custom_icon_commands: {
       name: `Custom Icon Commands`,
       type: `list`,
@@ -1391,7 +1392,6 @@ App.build_settings = () => {
       info: `Add icons quickly with the auto picker`,
       version: 1,
     },
-
     button_icons: {
       name: `Button Icons`,
       type: `checkbox`,

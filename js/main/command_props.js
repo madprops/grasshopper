@@ -3103,9 +3103,8 @@ App.setup_commands = () => {
       info: `Add tags to tabs`,
     },
     {
-      name: `Change Group`,
-      short_name: `Group`,
-      cmd: `change_group`,
+      name: `Group`,
+      cmd: `group_tabs`,
       modes: [`tabs`],
       item: true,
       icon: group_icon,

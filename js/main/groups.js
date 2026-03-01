@@ -148,14 +148,11 @@ App.restore_groups = async (items, tab_map) => {
       if (group_id && group_id !== -1) {
         if (!processed_groups.includes(group_id)) {
           processed_groups.push(group_id)
-
           let tab_data = await App.browser().tabs.get(item.id)
           let target_index = tab_data.index
           let window_id = tab_data.windowId
-
           let current_group_tabs = await App.browser().tabs.query({groupId: group_id})
           let tabs_before_target = current_group_tabs.filter(t => t.index < target_index).length
-
           let safe_target_index = target_index - tabs_before_target
 
           try {
@@ -171,7 +168,7 @@ App.restore_groups = async (items, tab_map) => {
               if (tabs_at_target.length > 0) {
                 let blocking_group_id = tabs_at_target[0].groupId
 
-                if (blocking_group_id && (blocking_group_id !== -1) && (blocking_group_id !== group_id)) {
+                if (blocking_group_id && blocking_group_id !== -1 && blocking_group_id !== group_id) {
                   let blocking_tabs = await App.browser().tabs.query({groupId: blocking_group_id})
 
                   if (blocking_tabs.length > 0) {
@@ -209,9 +206,26 @@ App.restore_groups = async (items, tab_map) => {
         }
       }
       else {
-        // explicitly ungroup tabs that were absorbed into adjacent groups during the move
         try {
-          await App.browser().tabs.ungroup(item.id)
+          let current_tab = await App.browser().tabs.get(item.id)
+
+          if (current_tab.groupId !== -1) {
+            let window_id = current_tab.windowId
+            let index = current_tab.index
+
+            let prev_tabs = await App.browser().tabs.query({windowId: window_id, index: index - 1})
+            let next_tabs = await App.browser().tabs.query({windowId: window_id, index: index + 1})
+
+            let prev_group = prev_tabs[0] ? prev_tabs[0].groupId : -1
+            let next_group = next_tabs[0] ? next_tabs[0].groupId : -1
+
+            if (prev_group !== -1 && prev_group === next_group && prev_group === current_tab.groupId) {
+              // tab is sandwiched between two tabs in the same group, keep it absorbed
+            }
+            else {
+              await App.browser().tabs.ungroup(item.id)
+            }
+          }
         }
         catch (err) {
           App.debug(err)
