@@ -1,3 +1,9 @@
+App.setup_groups = () => {
+  App.change_group_debouncer = App.create_debouncer(() => {
+    App.do_change_group_action()
+  }, App.change_group_delay)
+}
+
 App.change_group = async (item) => {
   let groups = await App.get_groups()
   let names = groups.map(x => x.title)
@@ -27,24 +33,42 @@ App.change_group = async (item) => {
   })
 }
 
-App.do_change_group = async (item, name = ``, id = ``) => {
+App.do_change_group = (item, name, id) => {
+  App.change_group_args.push({
+    item, name, id
+  })
+
+  App.change_group_debouncer.call()
+}
+
+App.do_change_group_action = async () => {
+  let items = App.change_group_args.slice(0)
+  App.change_group_args = []
+
+  for (let item of items) {
+    await App.do_change_group_item(item)
+  }
+}
+
+App.do_change_group_item = async (args = {}) => {
   let new_group
 
-  if (id) {
-    new_group = await App.get_group_by_id(id)
+  if (args.id) {
+    new_group = await App.get_group_by_id(args.id)
   }
   else {
-    new_group = await App.get_group_by_name(name)
+    new_group = await App.get_group_by_name(args.name)
   }
 
+
   if (new_group) {
-    await App.browser().tabs.group({tabIds: item.id, groupId: new_group.id})
-    App.update_item({mode: `tabs`, id: item.id, group: new_group.id})
+    await App.browser().tabs.group({tabIds: args.item.id, groupId: new_group.id})
+    App.update_item({mode: `tabs`, id: args.item.id, group: new_group.id})
   }
-  else if (name) {
-    let id = await App.browser().tabs.group({tabIds: item.id})
-    await App.browser().tabGroups.update(id, {title: name, color: `cyan`})
-    App.update_item({mode: `tabs`, id: item.id, group: id})
+  else if (args.name) {
+    let id = await App.browser().tabs.group({tabIds: args.item.id})
+    await App.browser().tabGroups.update(id, {title: args.name, color: `cyan`})
+    App.update_item({mode: `tabs`, id: args.item.id, group: id})
   }
 }
 

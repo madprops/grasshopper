@@ -56,6 +56,7 @@ App.init = async () => {
   App.build_shell()
   App.mouse_inside_check()
   App.resolve_icons()
+  App.setup_groups()
 
   await App.check_boosted()
   await App.clear_show()
