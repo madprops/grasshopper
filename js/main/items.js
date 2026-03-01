@@ -361,6 +361,7 @@ App.refresh_item_element = (item) => {
   App.check_unloaded(item)
   App.check_hide_tabs(item)
   App.check_obfuscated(item)
+  App.check_group(item)
 
   if (App.zones_unlocked(item.mode)) {
     App.apply_splits(item)
@@ -438,6 +439,7 @@ App.create_item_element = (item) => {
     App.check_unloaded(item)
     App.check_hide_tabs(item)
     App.check_obfuscated(item)
+    App.check_group(item)
   }
 
   if (item.selected) {

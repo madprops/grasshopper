@@ -100,15 +100,8 @@ App.apply_color_mode = (item) => {
   let c_obj = App.get_color_by_id(color)
 
   if (color) {
-
     if (c_obj.group) {
-      let grp = App.get_group_by_name(color.name)
-
-      if (grp) {
-        if (item.group !== grp.id) {
-          App.do_change_group(item, color.name)
-        }
-      }
+      App.do_change_group(item, c_obj.name)
     }
   }
 
@@ -236,6 +229,13 @@ App.edit_tab_color = (args = {}) => {
   }
 
   let c_obj = App.get_color_by_id(args.color)
+  let color = App.get_color(args.item)
+  let current_obj
+
+  if (color) {
+    current_obj = App.get_color_by_id(color)
+  }
+
   let s = args.color ? `Color items?` : `Remove color?`
   let force = args.force || App.check_warn(`warn_on_edit_tabs`, active)
   let value
@@ -249,11 +249,21 @@ App.edit_tab_color = (args = {}) => {
 
   App.show_confirm({
     message: `${s} (${active.length})`,
-    confirm_action: () => {
+    confirm_action: async () => {
       for (let it of active) {
         App.apply_edit({what: `color`, item: it, value, on_change: (value) => {
           App.custom_save(it.id, `color`, value)
         }})
+      }
+
+      if (!args.color) {
+        if (current_obj) {
+          if (current_obj.group) {
+            for (let it of active) {
+              App.remove_group(it)
+            }
+          }
+        }
       }
     },
     force,
@@ -489,6 +499,8 @@ App.colors = () => {
       name: color.name,
       value: color.value,
       text: color.text,
+      cmd: color.cmd,
+      group: color.group,
     })
   }
 

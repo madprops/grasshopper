@@ -631,6 +631,13 @@ App.update_tabs_index = async (items, direction) => {
   }
 
   let pinline = App.pinline_index(false)
+  let tab_map = {}
+
+  for (let item of items) {
+    tab_map[item.id] = {
+      group: item.group,
+    }
+  }
 
   for (let item of items) {
     let index = App.get_item_element_index({
@@ -655,6 +662,8 @@ App.update_tabs_index = async (items, direction) => {
 
     await App.do_move_tab_index(item.id, index_2)
   }
+
+  App.restore_groups(items, tab_map)
 }
 
 App.do_move_tab_index = async (id, index) => {
