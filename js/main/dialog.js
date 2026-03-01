@@ -1,11 +1,25 @@
 App.show_dialog = (args = {}) => {
+  let def_args = {
+    fixed: false,
+  }
+
+  App.def_args(def_args, args)
   App.start_popups()
 
   if (App.popups.dialog.open) {
     return
   }
 
-  DOM.el(`#dialog_message`).textContent = args.message
+  let message = DOM.el(`#dialog_message`)
+  message.textContent = args.message
+
+  if (args.fixed) {
+    message.classList.add(`fixed`)
+  }
+  else {
+    message.classList.remove(`fixed`)
+  }
+
   let btns = DOM.el(`#dialog_buttons`)
   btns.innerHTML = ``
 

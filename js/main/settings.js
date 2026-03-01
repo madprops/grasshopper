@@ -2599,6 +2599,7 @@ App.show_setting_guide = (i, focused_button = 1) => {
     message: App.indent(guide.text),
     focused_button,
     buttons,
+    fixed: true,
   })
 }
 

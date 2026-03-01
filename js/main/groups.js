@@ -154,59 +154,59 @@ App.restore_groups = async (items, tab_map) => {
           let window_id = tab_data.windowId
 
           // Count how many tabs currently in this group will vacate space before the target
-          let current_group_tabs = await App.browser().tabs.query({groupId:group_id})
+          let current_group_tabs = await App.browser().tabs.query({groupId: group_id})
           let tabs_before_target = current_group_tabs.filter(t => t.index < target_index).length
 
           // Subtract that number to account for the array shifting left when the group moves
           let safe_target_index = target_index - tabs_before_target
 
           try {
-            await App.browser().tabs.group({tabIds:[item.id],groupId:group_id})
-            await App.browser().tabGroups.move(group_id, {index:safe_target_index})
+            await App.browser().tabs.group({tabIds: [item.id], groupId: group_id})
+            await App.browser().tabGroups.move(group_id, {index: safe_target_index})
           }
           catch (err) {
             let error_msg = err.message || ``
 
             if (error_msg.includes(`middle of another group`)) {
-              let tabs_at_target = await App.browser().tabs.query({windowId:window_id,index:safe_target_index})
+              let tabs_at_target = await App.browser().tabs.query({windowId: window_id, index: safe_target_index})
 
               if (tabs_at_target.length > 0) {
                 let blocking_group_id = tabs_at_target[0].groupId
 
-                if (blocking_group_id && blocking_group_id !== -1 && blocking_group_id !== group_id) {
-                  let blocking_tabs = await App.browser().tabs.query({groupId:blocking_group_id})
+                if (blocking_group_id && (blocking_group_id !== -1) && (blocking_group_id !== group_id)) {
+                  let blocking_tabs = await App.browser().tabs.query({groupId: blocking_group_id})
 
                   if (blocking_tabs.length > 0) {
                     let last_tab = blocking_tabs[blocking_tabs.length - 1]
                     let fallback_index = last_tab.index + 1
 
                     try {
-                      await App.browser().tabGroups.move(group_id, {index:fallback_index})
+                      await App.browser().tabGroups.move(group_id, {index: fallback_index})
                     }
                     catch (fallback_err) {
-                      App.error(fallback_err)
+                      App.debug(fallback_err)
                     }
                   }
                 }
                 else {
-                  App.error(err)
+                  App.debug(err)
                 }
               }
               else {
-                App.error(err)
+                App.debug(err)
               }
             }
             else {
-              App.error(err)
+              App.debug(err)
             }
           }
         }
         else {
           try {
-            await App.browser().tabs.group({tabIds:[item.id],groupId:group_id})
+            await App.browser().tabs.group({tabIds: [item.id],groupId: group_id})
           }
           catch (err) {
-            App.error(err)
+            App.debug(err)
           }
         }
       }

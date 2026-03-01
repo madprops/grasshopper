@@ -37,4 +37,10 @@ App.setting_guides = [
 
     'Return' opens the last category visited, at the correct scrolling position.`,
   },
+  {
+    title: `Color Groups`,
+    text: `Individual colors can be configured to act as tab groups.
+
+    Coloring and uncoloring tabs then acts as group assignments.`,
+  },
 ]

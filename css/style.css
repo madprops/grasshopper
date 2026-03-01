@@ -2555,3 +2555,8 @@ a:hover
 .selectable {
   user-select: text !important;
 }
+
+#dialog_message.fixed {
+  height: 250px;
+  overflow: auto;
+}
