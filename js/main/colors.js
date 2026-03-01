@@ -250,20 +250,28 @@ App.edit_tab_color = (args = {}) => {
   App.show_confirm({
     message: `${s} (${active.length})`,
     confirm_action: async () => {
-      for (let it of active) {
-        App.apply_edit({what: `color`, item: it, value, on_change: (value) => {
-          App.custom_save(it.id, `color`, value)
-        }})
-      }
+      let ungroup = false
 
       if (!args.color) {
         if (current_obj) {
           if (current_obj.group) {
-            for (let it of active) {
-              App.remove_group(it)
-            }
+            ungroup = true
           }
         }
+      }
+
+      for (let it of active) {
+        if (ungroup) {
+          it.ungrouping = true
+        }
+
+        App.apply_edit({what: `color`, item: it, value, on_change: (value) => {
+          App.custom_save(it.id, `color`, value)
+
+          if (ungroup) {
+            App.remove_group(it)
+          }
+        }})
       }
     },
     force,

@@ -21,6 +21,7 @@ App.change_group = async (item) => {
 
       for (let tab of active) {
         await App.do_change_group(tab, name)
+        await App.check_group(tab)
       }
     },
   })
@@ -53,6 +54,7 @@ App.remove_group = async (item) => {
   for (let tab of active) {
     await App.browser().tabs.ungroup(tab.id)
     App.update_item({mode: `tabs`, id: tab.id, group: -1})
+    item.ungrouping = false
   }
 }
 
@@ -137,6 +139,10 @@ App.restore_groups = async (items, tab_map) => {
 }
 
 App.check_group = async (item) => {
+  if (item.ungrouping) {
+    return
+  }
+
   if (App.is_grouped(item)) {
     let group = await App.get_group_by_id(item.group)
 
@@ -147,7 +153,7 @@ App.check_group = async (item) => {
         if (c_obj.group) {
           let color = App.get_color(item)
 
-          if (color && (color !== c_obj.id)) {
+          if (color !== c_obj.id) {
             App.edit_tab_color({item, color: c_obj.id})
           }
         }

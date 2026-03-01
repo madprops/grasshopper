@@ -216,6 +216,7 @@ App.more_menu_items = (args = {}) => {
   App.item_menu_item(items, `bookmark_items`, {item: args.item, short: false})
   App.item_menu_item(items, `set_background_image`, {item: args.item, short: false})
   App.item_menu_item(items, `edit_domain_rule`, {item: args.item, short: false})
+  App.item_menu_item(items, `change_group`, {item: args.item, short: false})
 
   if (args.item.mode === `tabs`) {
     App.item_menu_separate(items)
