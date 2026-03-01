@@ -2554,6 +2554,15 @@ App.setup_commands = () => {
       info: `Close playing tabs`,
     },
     {
+      name: `Close Grouped`,
+      cmd: `close_grouped_tabs`,
+      icon: close_icon,
+      action: (args) => {
+        App.close_tabs_popup(`grouped`)
+      },
+      info: `Close grouped tabs`,
+    },
+    {
       name: `Close Loaded`,
       cmd: `close_loaded_tabs`,
       icon: close_icon,

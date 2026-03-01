@@ -46,7 +46,7 @@ App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 App.close_tabs_types = [
   `normal`, `pinned`, `playing`, `unloaded`, `loaded`, `duplicate`,
   `visible`, `empty`, `other`, `domain`, `domain_other`, `filtered`,
-  `clusters`, `clusters_trim`, `all`,
+  `clusters`, `clusters_trim`, `grouped`, `all`,
 ]
 
 App.no_favicons = [`history`, `bookmarks`]

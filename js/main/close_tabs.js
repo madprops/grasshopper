@@ -318,6 +318,38 @@ App.close_playing_tabs = (pins, normal, unloaded) => {
   App.close_tabs_method(items)
 }
 
+App.get_grouped_tabs_items = (pins, normal, unloaded) => {
+  let items = []
+
+  for (let it of App.get_items(`tabs`)) {
+    if (!App.is_grouped(it)) {
+      continue
+    }
+
+    if (!pins && it.pinned) {
+      continue
+    }
+
+    if (!normal && !it.pinned) {
+      continue
+    }
+
+    items.push(it)
+  }
+
+  return items
+}
+
+App.close_grouped_tabs = (pins, normal, unloaded) => {
+  let items = App.get_grouped_tabs_items(pins, normal, unloaded)
+
+  if (!items.length) {
+    return
+  }
+
+  App.close_tabs_method(items)
+}
+
 App.get_loaded_tabs_items = (pins, normal, unloaded) => {
   let items = []
 
