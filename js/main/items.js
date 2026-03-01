@@ -452,7 +452,7 @@ App.create_item_element = (item) => {
   item.element_ready = true
 }
 
-App.set_item_text = async (item) => {
+App.set_item_text = (item) => {
   let lines = []
   let url
 
@@ -520,7 +520,6 @@ App.set_item_text = async (item) => {
 
   item.tooltips_title = title
   item.tooltips_url = url
-  item.tooltips_group = await App.get_group_name(item)
   item.has_tooltips = false
 }
 
@@ -1530,8 +1529,8 @@ App.set_item_tooltips = async (item) => {
 
   let title = item.tooltips_title || `No Title`
   let url = item.tooltips_url || `No URL`
-  let group = item.tooltips_group
   let t_mode = App.get_setting(`tooltips_mode`)
+  let group = await App.get_group_name(item)
   App.tooltip_modes[t_mode]({item, title, url, group})
 
   if (App.get_setting(`icon_pick`)) {
