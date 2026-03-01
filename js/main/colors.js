@@ -99,10 +99,8 @@ App.apply_color_mode = (item) => {
   let color = App.get_color(item)
   let c_obj = App.get_color_by_id(color)
 
-  if (color) {
-    if (c_obj.group) {
-      App.do_change_group(item, c_obj.name)
-    }
+  if (App.is_color_group(item)) {
+    App.do_change_group(item, c_obj.name)
   }
 
   if (item.tab_box) {
@@ -799,4 +797,17 @@ App.filter_all_colors = (args) => {
 
 App.show_all_colors = (args) => {
   App.show_tab_list(`colors`, args.e)
+}
+
+App.is_color_group = (item) => {
+  let color = App.get_color(item)
+  let obj = App.get_color_by_id(color)
+
+  if (color) {
+    if (obj.group) {
+      return true
+    }
+  }
+
+  return false
 }

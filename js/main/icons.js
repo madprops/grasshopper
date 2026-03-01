@@ -960,7 +960,7 @@ App.check_icon_active = (icon, item) => {
     return App.tab_is_idle(item)
   }
   else if (icon === `group`) {
-    return App.is_grouped(item)
+    return App.is_grouped(item) && !App.is_color_group(item)
   }
   else if (icon === `image`) {
     return App.get_media_type(item) === `image`

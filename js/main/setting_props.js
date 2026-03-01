@@ -1307,7 +1307,7 @@ App.build_settings = () => {
       icon: `🗂️`,
       info: `Icons for grouped tabs`,
       side: `right`,
-      show: `never`,
+      show: `always`,
       cmd: `none`,
     }),
 
