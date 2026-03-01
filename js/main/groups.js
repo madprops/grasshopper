@@ -2,6 +2,10 @@ App.setup_groups = () => {
   App.change_group_debouncer = App.create_debouncer(() => {
     App.do_change_group_action()
   }, App.change_group_delay)
+
+  App.check_group_debouncer = App.create_debouncer(() => {
+    App.check_group_action()
+  }, App.check_group_delay)
 }
 
 App.change_group = async (item) => {
@@ -27,7 +31,7 @@ App.change_group = async (item) => {
 
       for (let tab of active) {
         await App.do_change_group(tab, name)
-        await App.check_group(tab)
+        App.check_group(tab)
       }
     },
   })
@@ -64,7 +68,6 @@ App.do_change_group_item = async (args = {}) => {
   else {
     new_group = await App.get_group_by_name(args.name)
   }
-
 
   if (new_group) {
     await App.browser().tabs.group({tabIds: args.item.id, groupId: new_group.id})
@@ -130,52 +133,63 @@ App.get_group_name = async (item) => {
 }
 
 App.restore_groups = async (items, tab_map) => {
-  let processed_groups = []
+  if (App.is_restoring_groups) {
+    return
+  }
 
-  for (let item of items) {
-    let group_id = tab_map[item.id].group
+  App.is_restoring_groups = true
 
-    if (group_id && group_id !== -1) {
-      if (!processed_groups.includes(group_id)) {
-        processed_groups.push(group_id)
+  try {
+    let processed_groups = []
 
-        let tab_data = await App.browser().tabs.get(item.id)
-        let target_index = tab_data.index
-        let window_id = tab_data.windowId
+    for (let item of items) {
+      let group_id = tab_map[item.id].group
 
-        // Count how many tabs currently in this group will vacate space before the target
-        let current_group_tabs = await App.browser().tabs.query({groupId:group_id})
-        let tabs_before_target = current_group_tabs.filter(t => t.index < target_index).length
+      if (group_id && group_id !== -1) {
+        if (!processed_groups.includes(group_id)) {
+          processed_groups.push(group_id)
 
-        // Subtract that number to account for the array shifting left when the group moves
-        let safe_target_index = target_index - tabs_before_target
+          let tab_data = await App.browser().tabs.get(item.id)
+          let target_index = tab_data.index
+          let window_id = tab_data.windowId
 
-        try {
-          await App.browser().tabs.group({tabIds:[item.id],groupId:group_id})
-          await App.browser().tabGroups.move(group_id, {index:safe_target_index})
-        }
-        catch (err) {
-          let error_msg = err.message || ``
+          // Count how many tabs currently in this group will vacate space before the target
+          let current_group_tabs = await App.browser().tabs.query({groupId:group_id})
+          let tabs_before_target = current_group_tabs.filter(t => t.index < target_index).length
 
-          if (error_msg.includes(`middle of another group`)) {
-            let tabs_at_target = await App.browser().tabs.query({windowId:window_id,index:safe_target_index})
+          // Subtract that number to account for the array shifting left when the group moves
+          let safe_target_index = target_index - tabs_before_target
 
-            if (tabs_at_target.length > 0) {
-              let blocking_group_id = tabs_at_target[0].groupId
+          try {
+            await App.browser().tabs.group({tabIds:[item.id],groupId:group_id})
+            await App.browser().tabGroups.move(group_id, {index:safe_target_index})
+          }
+          catch (err) {
+            let error_msg = err.message || ``
 
-              if (blocking_group_id && blocking_group_id !== -1 && blocking_group_id !== group_id) {
-                let blocking_tabs = await App.browser().tabs.query({groupId:blocking_group_id})
+            if (error_msg.includes(`middle of another group`)) {
+              let tabs_at_target = await App.browser().tabs.query({windowId:window_id,index:safe_target_index})
 
-                if (blocking_tabs.length > 0) {
-                  let last_tab = blocking_tabs[blocking_tabs.length - 1]
-                  let fallback_index = last_tab.index + 1
+              if (tabs_at_target.length > 0) {
+                let blocking_group_id = tabs_at_target[0].groupId
 
-                  try {
-                    await App.browser().tabGroups.move(group_id, {index:fallback_index})
+                if (blocking_group_id && blocking_group_id !== -1 && blocking_group_id !== group_id) {
+                  let blocking_tabs = await App.browser().tabs.query({groupId:blocking_group_id})
+
+                  if (blocking_tabs.length > 0) {
+                    let last_tab = blocking_tabs[blocking_tabs.length - 1]
+                    let fallback_index = last_tab.index + 1
+
+                    try {
+                      await App.browser().tabGroups.move(group_id, {index:fallback_index})
+                    }
+                    catch (fallback_err) {
+                      App.error(fallback_err)
+                    }
                   }
-                  catch (fallback_err) {
-                    App.error(fallback_err)
-                  }
+                }
+                else {
+                  App.error(err)
                 }
               }
               else {
@@ -186,24 +200,38 @@ App.restore_groups = async (items, tab_map) => {
               App.error(err)
             }
           }
-          else {
+        }
+        else {
+          try {
+            await App.browser().tabs.group({tabIds:[item.id],groupId:group_id})
+          }
+          catch (err) {
             App.error(err)
           }
         }
       }
-      else {
-        try {
-          await App.browser().tabs.group({tabIds:[item.id],groupId:group_id})
-        }
-        catch (err) {
-          App.error(err)
-        }
-      }
     }
+  }
+  finally {
+    App.is_restoring_groups = false
   }
 }
 
-App.check_group = async (item) => {
+App.check_group = (item) => {
+  App.check_group_items.push(item)
+  App.check_group_debouncer.call()
+}
+
+App.check_group_action = () => {
+  let items = App.check_group_items.slice(0)
+  App.check_group_items = []
+
+  for (let item of items) {
+    App.check_group_item(item)
+  }
+}
+
+App.check_group_item = async (item) => {
   if (item.ungrouping) {
     return
   }
@@ -224,5 +252,16 @@ App.check_group = async (item) => {
         }
       }
     }
+  }
+}
+
+App.attempt_group = async (item, name) => {
+  let group = await App.get_group_by_name(name)
+
+  if (group && (group.id === item.group)) {
+    // Ignore
+  }
+  else {
+    App.do_change_group(item, name)
   }
 }

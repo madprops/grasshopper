@@ -100,7 +100,7 @@ App.apply_color_mode = (item) => {
   let c_obj = App.get_color_by_id(color)
 
   if (App.is_color_group(item)) {
-    App.do_change_group(item, c_obj.name)
+    App.attempt_group(item, c_obj.name)
   }
 
   if (item.tab_box) {
