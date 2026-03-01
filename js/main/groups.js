@@ -46,7 +46,12 @@ App.do_change_group_action = async () => {
   App.change_group_args = []
 
   for (let item of items) {
-    await App.do_change_group_item(item)
+    try {
+      await App.do_change_group_item(item)
+    }
+    catch (err) {
+      App.error(err)
+    }
   }
 }
 
