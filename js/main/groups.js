@@ -153,11 +153,9 @@ App.restore_groups = async (items, tab_map) => {
           let target_index = tab_data.index
           let window_id = tab_data.windowId
 
-          // Count how many tabs currently in this group will vacate space before the target
           let current_group_tabs = await App.browser().tabs.query({groupId: group_id})
           let tabs_before_target = current_group_tabs.filter(t => t.index < target_index).length
 
-          // Subtract that number to account for the array shifting left when the group moves
           let safe_target_index = target_index - tabs_before_target
 
           try {
@@ -203,11 +201,20 @@ App.restore_groups = async (items, tab_map) => {
         }
         else {
           try {
-            await App.browser().tabs.group({tabIds: [item.id],groupId: group_id})
+            await App.browser().tabs.group({tabIds: [item.id], groupId: group_id})
           }
           catch (err) {
             App.debug(err)
           }
+        }
+      }
+      else {
+        // explicitly ungroup tabs that were absorbed into adjacent groups during the move
+        try {
+          await App.browser().tabs.ungroup(item.id)
+        }
+        catch (err) {
+          App.debug(err)
         }
       }
     }
