@@ -8,17 +8,23 @@ manifest = JSON.parse(file)
 version = manifest["version"].gsub(".", "_")
 name = manifest["name"].downcase.split.join("_")
 
+bname = ARGV[0]
+
 # Delete the old zip file
 old_name = Dir.glob("#{name}*.zip").first
 
 if old_name
-	if File.exist?(old_name)
-		File.delete(old_name)
-		puts "Removed #{old_name}"
-	end
+  if File.exist?(old_name)
+    File.delete(old_name)
+    puts "Removed #{old_name}"
+  end
 end
 
-# Create the new zip file
-new_name = "#{name}_v#{version}.zip"
+if bname
+	new_name = "#{name}_v#{version}_#{bname}.zip"
+else
+	new_name = "#{name}_v#{version}.zip"
+end
+
 `zip -r #{new_name} * -x "*.zip" "node_modules/*" "package-lock.json" ".eslintcache" ".directory"`
 puts "Created #{new_name}"
