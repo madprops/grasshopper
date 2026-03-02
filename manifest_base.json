@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Grasshopper",
-  "version": "6585",
+  "version": "6586",
   "description": "Godspeed You Tab Emperor",
   "author": "Merkoba",
   "permissions": [
@@ -11,7 +11,8 @@
     "contextualIdentities",
     "cookies",
     "contextMenus",
-    "sidePanel"
+    "sidePanel",
+    "tabGroups"
   ],
   "optional_permissions": [
     "history",
