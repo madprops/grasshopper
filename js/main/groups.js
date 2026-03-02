@@ -328,3 +328,46 @@ App.push_to_group_history = (groups) => {
 
   App.stor_save_group_history()
 }
+
+App.group_menu_items = async (item, e) => {
+  let items = []
+  let item_group = await App.get_group(item)
+
+  if (item_group) {
+    items.push({
+      text: `Show`,
+      action: () => {
+        App.show_tab_list(`group_${item_group.id}`, e)
+      },
+    })
+
+    items.push({
+      text: `Filter`,
+      action: () => {
+        App.filter_group({mode: item.mode, group: item_group})
+      },
+    })
+
+    if (item.mode !== `tabs`) {
+      return items
+    }
+  }
+
+  items.push({
+    text: `Ungroup`,
+    action: () => {
+      App.ungroup_tabs(item)
+    },
+  })
+
+  return items
+}
+
+App.show_group_menu = async (item, e, show_title = true) => {
+  let items = await App.group_menu_items(item, e)
+  let title = show_title ? `Group` : undefined
+  let title_icon = App.group_icon
+  let element = item?.element
+  let compact = App.get_setting(`compact_group_menu`)
+  App.show_context({items, e, title, title_icon, element, compact})
+}

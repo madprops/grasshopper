@@ -4750,6 +4750,18 @@ App.setup_commands = () => {
       info: `Filter group tabs`,
     },
     {
+      name: `Group Menu`,
+      short_name: `Group`,
+      cmd: `show_group_menu`,
+      modes: [`tabs`],
+      item: true,
+      icon: group_icon,
+      action: (args) => {
+        App.show_group_menu(args.item, args.e)
+      },
+      info: `Show the Group Menu`,
+    },
+    {
       name: `Filter No Tab`,
       short_name: `No Tab`,
       cmd: `filter_no_tab`,
