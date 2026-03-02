@@ -86,9 +86,9 @@ App.change_group_item = async (args = {}) => {
     g_id = id
   }
 
-  item.group = g_id
-  item.group_name = args.name
-  App.update_item({mode: `tabs`, id: args.item.id, info: item})
+  args.item.group = g_id
+  args.item.group_name = args.name
+  App.update_item({mode: `tabs`, id: args.item.id, info: args.item})
   App.push_to_group_history([args.name])
 }
 
