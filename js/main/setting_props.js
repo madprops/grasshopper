@@ -4357,7 +4357,7 @@ App.build_settings = () => {
     color_icon_weight: {
       name: `Color Icon Weight`,
       type: `menu`,
-      value: 1,
+      value: 2,
       info: `How much to the right should the Color Icon be`,
       separator: true,
       version: 1,

@@ -220,6 +220,10 @@ App.attempt_icon_group = (item, icon) => {
 }
 
 App.do_attempt_color_group = async (item, name) => {
+  if (App.is_icon_group(item)) {
+    return
+  }
+
   let group = await App.get_group_by_name(name)
 
   if (group && (group.id === item.group)) {
@@ -231,6 +235,10 @@ App.do_attempt_color_group = async (item, name) => {
 }
 
 App.do_attempt_icon_group = (item, icon) => {
+  if (App.is_color_group(item)) {
+    return
+  }
+
   let c_icon = App.get_custom_icon_item(icon)
 
   if (c_icon.group && (c_icon.group === item.group)) {
