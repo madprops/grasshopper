@@ -368,6 +368,5 @@ App.show_group_menu = async (item, e, show_title = true) => {
   let title = show_title ? `Group` : undefined
   let title_icon = App.group_icon
   let element = item?.element
-  let compact = App.get_setting(`compact_group_menu`)
-  App.show_context({items, e, title, title_icon, element, compact})
+  App.show_context({items, e, title, title_icon, element})
 }
