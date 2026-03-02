@@ -4284,9 +4284,29 @@ App.setup_commands = () => {
       single: true,
       icon: group_icon,
       action: (args) => {
-        App.filter_group(args.item, args.from)
+        App.filter_group({item: args.item, from: args.from})
       },
       info: `Filter same group`,
+    },
+    {
+      name: `Filter Group Menu`,
+      short_name: `Filter`,
+      cmd: `filter_group_menu`,
+      icon: group_icon,
+      action: (args) => {
+        App.show_filter_group_menu(args.mode, args.e)
+      },
+      info: `Pick a group to filter`,
+    },
+    {
+      name: `Pick Group`,
+      short_name: `Group`,
+      cmd: `pick_group`,
+      icon: group_icon,
+      action: (args) => {
+        App.show_filter_group_menu(args.mode, args.e, true)
+      },
+      info: `Pick a group to show`,
     },
     {
       name: `Filter Tag`,

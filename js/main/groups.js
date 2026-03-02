@@ -83,6 +83,8 @@ App.change_group_item = async (args = {}) => {
     await App.browser().tabGroups.update(id, {title: args.name, color: `cyan`})
     App.update_item({mode: `tabs`, id: args.item.id, group: id})
   }
+
+  App.push_to_group_history([args.name])
 }
 
 App.ungroup_tabs = async (item, uncolor = true) => {
@@ -228,24 +230,101 @@ App.get_group_tabs = (group) => {
   return items
 }
 
-App.filter_group = async (item, from) => {
-  if (!App.is_grouped(item)) {
+App.fill_group = async (item) => {
+  item.group_name = await App.get_group_name(item)
+}
+
+App.show_filter_group_menu = async (mode, e, show = false) => {
+  let items = await App.get_group_items(mode, show)
+  let title_icon = App.get_setting(`group_icon`)
+  App.show_context({items, e, title: `Tags`, title_icon})
+}
+
+App.get_group_items = async (mode, show = false) => {
+  function fav_sort(a, b) {
+    let ai = App.group_history.indexOf(a.title)
+    let bi = App.group_history.indexOf(b.title)
+
+    if (ai === -1) {
+      ai = App.group_history.length
+    }
+
+    if (bi === -1) {
+      bi = App.group_history.length
+    }
+
+    return ai - bi
+  }
+
+  let items = []
+  let groups = await App.get_groups()
+
+  if (groups.length) {
+    groups.sort(fav_sort)
+    let icon = App.get_setting(`group_icon`)
+
+    if (!show) {
+      items.push({
+        icon,
+        text: `All`,
+        action: () => {
+          App.filter_group({mode})
+        },
+        middle_action: () => {
+          App.filter_group({mode, from: App.refine_string})
+        },
+      })
+    }
+
+    for (let group of groups.slice(0, App.max_group_picks)) {
+      items.push({
+        icon,
+        text: group.title,
+        action: (e) => {
+          if (show) {
+            App.show_tab_list(`group_${group.title}`, e)
+          }
+          else {
+            App.filter_group({mode, group})
+          }
+        },
+        middle_action: (e) => {
+          if (show) {
+            //
+          }
+          else {
+            App.filter_group({mode, group, from: App.refine_string})
+          }
+        },
+      })
+    }
+  }
+  else {
+    items.push({
+      text: `No groups in use`,
+      action: () => {
+        App.alert(`You can assign a group to tabs`)
+      },
+    })
+  }
+
+  return items
+}
+
+App.push_to_group_history = (groups) => {
+  if (!groups.length) {
     return
   }
 
-  let group = await App.get_group(item)
+  for (let group of groups) {
+    if (!group) {
+      continue
+    }
 
-  App.complex_filter({
-    mode: item.mode,
-    value: group.id,
-    text: group.title,
-    short: `group`,
-    full: `Group`,
-    toggle: true,
-    from,
-  })
-}
+    App.group_history = App.group_history.filter(x => x !== group)
+    App.group_history.unshift(group)
+    App.group_history = App.group_history.slice(0, App.group_history_max)
+  }
 
-App.fill_group = async (item) => {
-  item.group_name = await App.get_group_name(item)
+  App.stor_save_group_history()
 }

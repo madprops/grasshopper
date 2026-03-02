@@ -14,6 +14,7 @@ App.init = async () => {
   await App.stor_get_settings()
   await App.stor_get_command_history()
   await App.stor_get_tag_history()
+  await App.stor_get_group_history()
   await App.stor_get_title_history()
   await App.stor_get_icon_history()
   await App.stor_get_first_time()

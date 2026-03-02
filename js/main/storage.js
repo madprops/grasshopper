@@ -110,6 +110,17 @@ App.stor_save_tag_history = () => {
   App.save_local_storage(App.stor_tag_history_name, App.tag_history)
 }
 
+App.stor_get_group_history = async () => {
+  let def = []
+  App.group_history = await App.get_local_storage(App.stor_group_history_name, def)
+  App.debug(`Stor: Got group history`)
+}
+
+App.stor_save_group_history = () => {
+  App.debug(`Stor: Saving group history`)
+  App.save_local_storage(App.stor_group_history_name, App.group_history)
+}
+
 App.stor_get_title_history = async () => {
   App.title_history = await App.get_local_storage(App.stor_title_history_name, [])
   App.debug(`Stor: Got title history`)
