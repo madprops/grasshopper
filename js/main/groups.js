@@ -71,6 +71,10 @@ App.change_group_item = async (args = {}) => {
   }
 
   if (new_group) {
+    if (new_group.id === args.item.group) {
+      return
+    }
+
     await App.browser().tabs.group({tabIds: args.item.id, groupId: new_group.id})
     App.update_item({mode: `tabs`, id: args.item.id, group: new_group.id})
   }
@@ -178,6 +182,13 @@ App.restore_groups = async (items, tab_map) => {
           catch (err) {
             try {
               active_group_id = await App.browser().tabs.group({tabIds: group_tab_ids})
+
+              let saved_title = tab_map[item.id].title
+              let saved_color = tab_map[item.id].color
+
+              if (saved_color) {
+                await App.browser().tabGroups.update(active_group_id, {title: saved_title, color: saved_color})
+              }
             }
             catch (err_2) {
               App.debug(err_2)
@@ -308,7 +319,13 @@ App.check_group_item = async (item) => {
   }
 }
 
-App.attempt_group = async (item, name) => {
+App.attempt_group = (item, name) => {
+  setTimeout(() => {
+    App.do_attempt_group(item, name)
+  }, App.SECOND)
+}
+
+App.do_attempt_group = async (item, name) => {
   if (App.updating_index) {
     return
   }
