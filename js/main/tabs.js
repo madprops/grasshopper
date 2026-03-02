@@ -658,7 +658,7 @@ App.update_tabs_index = async (items, direction) => {
         await App.pin_tab(item.id)
       }
 
-      if (item.group && item.group !== -1) {
+      if (item.group && (item.group !== -1)) {
         let move_whole_group = false
         let group_tabs = []
 
@@ -670,7 +670,7 @@ App.update_tabs_index = async (items, direction) => {
             let min_index = Math.min(...group_indices)
             let max_index = Math.max(...group_indices)
 
-            if (index_2 < min_index || index_2 > max_index) {
+            if ((index_2 < min_index) || (index_2 > max_index)) {
               move_whole_group = true
             }
           }
@@ -693,7 +693,7 @@ App.update_tabs_index = async (items, direction) => {
               if (tabs_at_target.length > 0) {
                 let blocking_group_id = tabs_at_target[0].groupId
 
-                if (blocking_group_id && blocking_group_id !== -1 && blocking_group_id !== item.group) {
+                if (blocking_group_id && (blocking_group_id !== -1) && (blocking_group_id !== item.group)) {
                   let blocking_tabs = await App.browser().tabs.query({groupId: blocking_group_id})
 
                   if (blocking_tabs.length > 0) {

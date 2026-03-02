@@ -126,7 +126,7 @@ App.dragstart_action = (mode, e) => {
   }
 
   App.drag_start_index = App.get_item_element_index({
-    mode: mode,
+    mode,
     element: App.drag_items[0].element,
     include_all: true,
   })
