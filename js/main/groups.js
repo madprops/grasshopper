@@ -40,7 +40,7 @@ App.group_tabs = async (item) => {
 
 App.change_group = (item, name, id) => {
   App.change_group_args.push({
-    item, name, id
+    item, name, id,
   })
 
   App.change_group_debouncer.call()

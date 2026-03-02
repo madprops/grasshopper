@@ -640,7 +640,7 @@ App.update_tabs_index = async (items, direction) => {
       let group_title = ``
       let group_color = ``
 
-      if (item.group && item.group !== -1) {
+      if (item.group && (item.group !== -1)) {
         try {
           let group_info = await App.browser().tabGroups.get(item.group)
 
@@ -655,7 +655,7 @@ App.update_tabs_index = async (items, direction) => {
       tab_map[item.id] = {
         group: item.group,
         title: group_title,
-        color: group_color
+        color: group_color,
       }
     }
 
