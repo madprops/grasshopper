@@ -653,11 +653,12 @@ App.update_tabs_index = async (items, direction) => {
           await App.unpin_tab(item.id)
         }
       }
+
       else if (index < pinline) {
         await App.pin_tab(item.id)
       }
 
-      if (item.group && (item.group !== -1)) {
+      if (item.group && item.group !== -1) {
         let move_whole_group = false
         let group_tabs = []
 
@@ -669,8 +670,7 @@ App.update_tabs_index = async (items, direction) => {
             let min_index = Math.min(...group_indices)
             let max_index = Math.max(...group_indices)
 
-            // If the dragged tab is pushed beyond the native boundaries of its group
-            if ((index_2 < min_index) || (index_2 > max_index)) {
+            if (index_2 < min_index || index_2 > max_index) {
               move_whole_group = true
             }
           }
@@ -680,12 +680,54 @@ App.update_tabs_index = async (items, direction) => {
         }
 
         if (move_whole_group) {
-
           if (!processed_groups.includes(item.group)) {
             processed_groups.push(item.group)
-            let final_target_index = index_2
 
-            // Visually pull the rest of the group DOM elements to the dragged tab first
+            let final_target_index = index_2
+            let window_id = group_tabs[0].windowId
+
+            // 1. COLLISION CHECK: Ensure we aren't dropping inside another group
+            try {
+              let tabs_at_target = await App.browser().tabs.query({windowId: window_id, index: index_2})
+
+              if (tabs_at_target.length > 0) {
+                let blocking_group_id = tabs_at_target[0].groupId
+
+                if (blocking_group_id && blocking_group_id !== -1 && blocking_group_id !== item.group) {
+                  let blocking_tabs = await App.browser().tabs.query({groupId: blocking_group_id})
+
+                  if (blocking_tabs.length > 0) {
+                    blocking_tabs.sort((a, b) => a.index - b.index)
+                    let original_min = Math.min(...group_tabs.map(t => t.index))
+
+                    if (index_2 > original_min) {
+                      // Dragging down: eject to the very end of the blocking group
+                      let last_blocking_tab = blocking_tabs[blocking_tabs.length - 1]
+                      let last_el = App.get_item_by_id(`tabs`, last_blocking_tab.id)
+
+                      if (last_el && last_el.element) {
+                        last_el.element.after(item.element)
+                      }
+                    }
+
+                    else {
+                      // Dragging up: eject to the very beginning of the blocking group
+                      let first_blocking_tab = blocking_tabs[0]
+                      let first_el = App.get_item_by_id(`tabs`, first_blocking_tab.id)
+
+                      if (first_el && first_el.element) {
+                        first_el.element.before(item.element)
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            catch (err) {
+              App.debug(err)
+            }
+
+            // 2. VISUAL COMPACTION: Pull the rest of the group around the safe handle
             if (group_tabs.length > 0) {
               group_tabs.sort((a, b) => a.index - b.index)
               let relative_index = group_tabs.findIndex(t => t.id === item.id)
@@ -713,21 +755,17 @@ App.update_tabs_index = async (items, direction) => {
                   }
                 }
 
-                // NOW read the true DOM index of the first item in the compacted block
+                // 3. READ TRUE INDEX: Find the exact DOM index of our safely positioned block
                 let first_tab = group_tabs[0]
                 let first_el_item = App.get_item_by_id(`tabs`, first_tab.id)
 
                 if (first_el_item && first_el_item.element) {
-                  final_target_index = App.get_item_element_index({
-                    mode: `tabs`,
-                    element: first_el_item.element
-                  })
+                  final_target_index = App.get_item_element_index({mode: `tabs`, element: first_el_item.element})
                 }
               }
             }
 
             try {
-              // Pass the exact compacted index to Chrome so the native array perfectly aligns
               await App.browser().tabGroups.move(item.group, {index: Math.max(0, final_target_index)})
             }
             catch (err) {
