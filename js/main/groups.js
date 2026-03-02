@@ -232,6 +232,7 @@ App.get_group_tabs = (group) => {
 
 App.fill_group = async (item) => {
   item.group_name = await App.get_group_name(item)
+  App.set_item_tooltips(item, true)
 }
 
 App.show_filter_group_menu = async (mode, e, show = false) => {

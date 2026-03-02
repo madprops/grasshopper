@@ -362,6 +362,7 @@ App.refresh_item_element = (item) => {
   App.check_hide_tabs(item)
   App.check_obfuscated(item)
   App.check_group(item)
+  App.fill_group(item)
 
   if (App.zones_unlocked(item.mode)) {
     App.apply_splits(item)
@@ -440,6 +441,7 @@ App.create_item_element = (item) => {
     App.check_hide_tabs(item)
     App.check_obfuscated(item)
     App.check_group(item)
+    App.fill_group(item)
   }
 
   if (item.selected) {
@@ -1468,8 +1470,8 @@ App.tooltip_modes = {
       tips.push(`Tags: ${tags.join(`, `)}`)
     }
 
-    if (args.group) {
-      tips.push(`Group: ${args.group}`)
+    if (args.item.group_name) {
+      tips.push(`Group: ${args.item.group_name}`)
     }
 
     tips.push(App.mode_vars[args.item.mode].item_info)
@@ -1480,8 +1482,8 @@ App.tooltip_modes = {
     tips.push(`Title: ${args.title}`)
     tips.push(`URL: ${args.url}`)
 
-    if (args.group) {
-      tips.push(`Group: ${args.group}`)
+    if (args.item.group_name) {
+      tips.push(`Group: ${args.item.group_name}`)
     }
 
     args.item.element.title = tips.join(`\n`)
@@ -1518,20 +1520,19 @@ App.tooltip_modes = {
   },
 }
 
-App.set_item_tooltips = (item) => {
+App.set_item_tooltips = (item, force = false) => {
   if (!App.tooltips()) {
     return
   }
 
-  if (item.has_tooltips) {
+  if (!force && item.has_tooltips) {
     return
   }
 
   let title = item.tooltips_title || `No Title`
   let url = item.tooltips_url || `No URL`
   let t_mode = App.get_setting(`tooltips_mode`)
-  let group = item.group_name
-  App.tooltip_modes[t_mode]({item, title, url, group})
+  App.tooltip_modes[t_mode]({item, title, url})
 
   if (App.get_setting(`icon_pick`)) {
     let icon_container = DOM.el(`.item_icon_container`, item.element)
