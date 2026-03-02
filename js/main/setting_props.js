@@ -3956,6 +3956,16 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.warn_modes)
       },
     },
+    warn_on_ungroup_tabs: {
+      name: `Warn On Ungroup Tabs`,
+      type: `menu`,
+      value: `multiple`,
+      info: `Warn when ungrouping tabs`,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.warn_modes)
+      },
+    },
     warn_on_sort_tabs: {
       name: `Warn On Sort Tabs`,
       type: `menu`,
