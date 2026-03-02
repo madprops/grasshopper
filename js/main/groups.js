@@ -70,20 +70,25 @@ App.change_group_item = async (args = {}) => {
     new_group = await App.get_group_by_name(args.name)
   }
 
+  let g_id
+
   if (new_group) {
     if (new_group.id === args.item.group) {
       return
     }
 
     await App.browser().tabs.group({tabIds: args.item.id, groupId: new_group.id})
-    App.update_item({mode: `tabs`, id: args.item.id, group: new_group.id})
+    g_id = new_group.id
   }
   else if (args.name) {
     let id = await App.browser().tabs.group({tabIds: args.item.id})
     await App.browser().tabGroups.update(id, {title: args.name, color: `cyan`})
-    App.update_item({mode: `tabs`, id: args.item.id, group: id})
+    g_id = id
   }
 
+  item.group = g_id
+  item.group_name = args.name
+  App.update_item({mode: `tabs`, id: args.item.id, info: item})
   App.push_to_group_history([args.name])
 }
 
@@ -104,7 +109,8 @@ App.ungroup_tabs = (item, edit = true) => {
         }
 
         await App.browser().tabs.ungroup(tab.id)
-        App.update_item({mode: `tabs`, id: tab.id, group: -1})
+        tab.group = -1
+        App.update_item({mode: `tabs`, id: tab.id, info: tab})
         item.ungrouping = false
       }
     },
@@ -274,8 +280,10 @@ App.get_group_tabs = (group) => {
 }
 
 App.fill_group = async (item) => {
-  item.group_name = await App.get_group_name(item)
-  App.set_item_tooltips(item, true)
+  if (!item.group_name) {
+    item.group_name = await App.get_group_name(item)
+    App.set_item_tooltips(item, true)
+  }
 }
 
 App.show_filter_group_menu = async (mode, e, show = false) => {

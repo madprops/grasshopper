@@ -151,6 +151,7 @@ App.process_info = (args = {}) => {
     item.container_color = args.info.container_color
     item.boosted = args.info.boosted
     item.group = args.info.groupId
+    item.group_name = args.info.group_name || ``
   }
   else if (args.mode === `history`) {
     item.last_visit = args.info.lastVisitTime
