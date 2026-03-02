@@ -485,7 +485,7 @@ App.apply_edit = (args = {}) => {
     App.update_item({mode: args.item.mode, id: args.item.id, info: args.item})
 
     if (ungroup) {
-      App.ungroup_tabs(args.item, false)
+      App.ungroup_tabs(args.item, false, true)
     }
 
     if (args.on_change) {

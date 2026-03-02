@@ -90,11 +90,12 @@ App.change_group_item = async (args = {}) => {
   args.item.group_name = args.name
   App.update_item({mode: `tabs`, id: args.item.id, info: args.item})
   App.push_to_group_history([args.name])
+  App.set_item_tooltips(args.item, true)
 }
 
-App.ungroup_tabs = (item, edit = true) => {
+App.ungroup_tabs = (item, edit = true, force = false) => {
   let items = App.get_active_items({mode: item.mode, item})
-  let force = App.check_warn(`warn_on_ungroup_tabs`, items)
+  force = force || App.check_warn(`warn_on_ungroup_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm({
@@ -110,8 +111,10 @@ App.ungroup_tabs = (item, edit = true) => {
 
         await App.browser().tabs.ungroup(tab.id)
         tab.group = -1
+        tab.group_name = ``
+        tab.ungrouping = false
         App.update_item({mode: `tabs`, id: tab.id, info: tab})
-        item.ungrouping = false
+        App.set_item_tooltips(tab, true)
       }
     },
     force,
