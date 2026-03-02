@@ -3130,6 +3130,7 @@ App.setup_commands = () => {
       cmd: `close_group`,
       modes: [`tabs`],
       item: true,
+      single: true,
       icon: group_icon,
       action: (args) => {
         App.close_group(args.item)
