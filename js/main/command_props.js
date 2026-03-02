@@ -4281,7 +4281,6 @@ App.setup_commands = () => {
       modes: [`items`],
       item: true,
       single: true,
-      color: true,
       icon: group_icon,
       action: (args) => {
         App.filter_group(args.item, args.from)

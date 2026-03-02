@@ -1518,7 +1518,7 @@ App.tooltip_modes = {
   },
 }
 
-App.set_item_tooltips = async (item) => {
+App.set_item_tooltips = (item) => {
   if (!App.tooltips()) {
     return
   }
@@ -1530,7 +1530,7 @@ App.set_item_tooltips = async (item) => {
   let title = item.tooltips_title || `No Title`
   let url = item.tooltips_url || `No URL`
   let t_mode = App.get_setting(`tooltips_mode`)
-  let group = await App.get_group_name(item)
+  let group = item.group_name
   App.tooltip_modes[t_mode]({item, title, url, group})
 
   if (App.get_setting(`icon_pick`)) {

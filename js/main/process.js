@@ -162,6 +162,7 @@ App.process_info = (args = {}) => {
   }
 
   App.check_rules(item)
+  App.fill_group(item)
 
   if (args.o_item) {
     args.o_item = Object.assign(args.o_item, item)

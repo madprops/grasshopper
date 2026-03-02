@@ -133,7 +133,7 @@ App.is_grouped = (item) => {
 
 App.get_group_name = async (item) => {
   if (!App.is_grouped(item)) {
-    return
+    return ``
   }
 
   let group = await App.get_group(item)
@@ -384,4 +384,8 @@ App.filter_group = async (item, from) => {
     toggle: true,
     from,
   })
+}
+
+App.fill_group = async (item) => {
+  item.group_name = await App.get_group_name(item)
 }
