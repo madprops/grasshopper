@@ -3125,6 +3125,18 @@ App.setup_commands = () => {
       info: `Remove the tabs from the group`,
     },
     {
+      name: `Close Group`,
+      short_name: `Close`,
+      cmd: `close_group`,
+      modes: [`tabs`],
+      item: true,
+      icon: group_icon,
+      action: (args) => {
+        App.close_group(args.item)
+      },
+      info: `Close all the tabs from the group of a tab`,
+    },
+    {
       name: `Edit Root`,
       short_name: `Root`,
       cmd: `edit_root_url`,

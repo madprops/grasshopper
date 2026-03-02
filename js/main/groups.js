@@ -339,3 +339,27 @@ App.do_attempt_group = async (item, name) => {
     App.change_group(item, name)
   }
 }
+
+App.close_group = (item) => {
+  if (!App.is_grouped(item)) {
+    return false
+  }
+
+  let items = App.get_group_tabs(item.group)
+
+  App.close_tabs({
+    selection: items,
+  })
+}
+
+App.get_group_tabs = (group) => {
+  let items = []
+
+  for (let tab of App.get_items(`tabs`)) {
+    if (tab.group === group) {
+      items.push(tab)
+    }
+  }
+
+  return items
+}
