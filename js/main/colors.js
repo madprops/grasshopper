@@ -227,13 +227,6 @@ App.edit_tab_color = (args = {}) => {
   }
 
   let c_obj = App.get_color_by_id(args.color)
-  let color = App.get_color(args.item)
-  let current_obj
-
-  if (color) {
-    current_obj = App.get_color_by_id(color)
-  }
-
   let s = args.color ? `Color items?` : `Remove color?`
   let force = args.force || App.check_warn(`warn_on_edit_tabs`, active)
   let value
@@ -248,24 +241,8 @@ App.edit_tab_color = (args = {}) => {
   App.show_confirm({
     message: `${s} (${active.length})`,
     confirm_action: async () => {
-      let ungroup = false
-
-      if (current_obj) {
-        if (current_obj.group) {
-          ungroup = true
-        }
-      }
-
       for (let it of active) {
-        if (ungroup) {
-          it.ungrouping = true
-        }
-
         App.apply_edit({what: `color`, item: it, value, on_change: (value) => {
-          if (ungroup) {
-            App.ungroup_tabs(it, false)
-          }
-
           App.custom_save(it.id, `color`, value)
         }})
       }

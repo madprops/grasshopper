@@ -454,9 +454,39 @@ App.apply_edit = (args = {}) => {
     new_value = args.value
   }
 
+  let ungroup = false
+
+  if (args.what === `color`) {
+    let color = App.get_color(args.item)
+    let c_obj
+
+    if (color) {
+      c_obj = App.get_color_by_id(color)
+    }
+
+    if (c_obj && c_obj.group) {
+      ungroup = true
+    }
+  }
+  else if (args.what === `icon`) {
+    let i_obj = App.get_custom_icon_item(args.item.custom_icon)
+
+    if (i_obj && i_obj.group) {
+      ungroup = true
+    }
+  }
+
+  if (ungroup) {
+    args.item.ungrouping = true
+  }
+
   if (!App.same_edit(args.what, args.item, new_value, `custom`)) {
     args.item[`custom_${args.what}`] = new_value
     App.update_item({mode: args.item.mode, id: args.item.id, info: args.item})
+
+    if (ungroup) {
+      App.ungroup_tabs(args.item, false)
+    }
 
     if (args.on_change) {
       args.on_change(new_value)
