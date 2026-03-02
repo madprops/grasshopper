@@ -4284,7 +4284,7 @@ App.setup_commands = () => {
       single: true,
       icon: group_icon,
       action: (args) => {
-        App.filter_group({item: args.item, from: args.from})
+        App.filter_group({mode: args.mode, item: args.item, from: args.from})
       },
       info: `Filter same group`,
     },
