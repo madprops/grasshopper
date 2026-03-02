@@ -1308,7 +1308,7 @@ App.build_settings = () => {
       info: `Icon for grouped tabs`,
       side: `right`,
       show: `always`,
-      cmd: `show_group_menu`,
+      cmd: `none`,
     }),
 
     ...App.make_icon_settings({

@@ -370,3 +370,14 @@ App.show_group_menu = async (item, e, show_title = true) => {
   let element = item?.element
   App.show_context({items, e, title, title_icon, element})
 }
+
+App.group_icon_click = (item, e) => {
+  let cmd = App.get_setting(`group_icon_command`)
+
+  if (cmd && (cmd !== `none`)) {
+    App.run_command({cmd, from: `group_icon`, item, e})
+  }
+  else {
+    App.show_group_menu(item, e, false)
+  }
+}

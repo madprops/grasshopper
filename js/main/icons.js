@@ -824,6 +824,10 @@ App.item_icon_click = (args = {}) => {
     App.container_icon_click(args.item, args.e)
     return true
   }
+  else if (args.icon === `group`) {
+    App.group_icon_click(args.item, args.e)
+    return true
+  }
 
   let cmd = App.get_setting(`${args.icon}_icon_command`)
 
