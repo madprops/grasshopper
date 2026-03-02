@@ -471,12 +471,13 @@ App.generate_icon = (hostname) => {
 App.edit_tab_icon = (args = {}) => {
   let def_args = {
     icon: ``,
+    force: false,
   }
 
   App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let s = args.icon ? `Edit icon?` : `Remove icon?`
-  let force = App.check_warn(`warn_on_edit_tabs`, active)
+  let force = args.force || App.check_warn(`warn_on_edit_tabs`, active)
 
   App.show_confirm({
     message: `${s} (${active.length})`,
@@ -781,16 +782,22 @@ App.container_icon_click = (item, e) => {
 
 App.get_custom_icon_command = (icon) => {
   let custom_cmds = App.get_setting(`custom_icon_commands`)
-  let cmd
 
   for (let item of custom_cmds) {
     if (item.icon === icon) {
-      cmd = item.cmd
-      break
+      return item.cmd
     }
   }
+}
 
-  return cmd
+App.get_custom_icon_item = (icon) => {
+  let custom_cmds = App.get_setting(`custom_icon_commands`)
+
+  for (let item of custom_cmds) {
+    if (item.icon === icon) {
+      return item
+    }
+  }
 }
 
 App.item_icon_click = (args = {}) => {
@@ -933,6 +940,10 @@ App.check_custom_icon = (item) => {
     custom_icon_el.innerHTML = custom_icon
     custom_icon_el.dataset.content = custom_icon
     DOM.show(custom_icon_el)
+
+    if (App.is_icon_group(item)) {
+      App.attempt_icon_group(item, custom_icon)
+    }
   }
   else {
     DOM.hide(custom_icon_el)
@@ -1207,4 +1218,26 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
 App.check_item_icon_middle_click_2 = (item) => {
   let icon = item.override_icon
   return App.check_item_icon_middle_click(item, item.element, icon)
+}
+
+App.is_icon_group = (item) => {
+  let icon = App.get_custom_icon_item(item.custom_icon)
+
+  if (icon) {
+    if (obj.group) {
+      return true
+    }
+  }
+
+  return false
+}
+
+App.get_icon_by_group = (group) => {
+  let custom_cmds = App.get_setting(`custom_icon_commands`)
+
+  for (let item of custom_cmds) {
+    if (item.group === group) {
+      return item
+    }
+  }
 }

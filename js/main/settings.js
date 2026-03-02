@@ -1580,19 +1580,21 @@ App.setup_settings_addlist = () => {
 
       App.create_popup({...popobj, id: `addlist_${id}`,
         element: Addlist.register({...regobj, id,
-          keys: [`icon`, `cmd`],
+          keys: [`icon`, `cmd`, `group`],
           pk: `icon`,
           widgets: {
             icon: `text`,
             cmd: `menu`,
+            group: `text`,
           },
           labels: {
             icon: `Icon`,
             cmd: `Command`,
+            group: `Group`,
           },
           sources: {
             cmd: () => {
-              return App.cmdlist_pure.slice(0)
+              return App.cmdlist_single.slice(0)
             },
           },
           list_icon: (item) => {

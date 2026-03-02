@@ -174,36 +174,47 @@ App.check_group_item = async (item) => {
     return
   }
 
-  if (App.is_grouped(item)) {
-    let group = await App.get_group(item)
+  if (!App.is_grouped(item)) {
+    return
+  }
 
-    if (group) {
-      let c_obj = App.get_color_by_name(group.title)
+  let group = await App.get_group(item)
+  let c_obj = App.get_color_by_name(group.title)
 
-      if (c_obj) {
-        if (c_obj.group) {
-          let color = App.get_color(item)
+  if (c_obj) {
+    if (c_obj.group) {
+      let color = App.get_color(item)
 
-          if (color !== c_obj.id) {
-            App.edit_tab_color({item, color: c_obj.id, force: true})
-          }
-        }
+      if (color !== c_obj.id) {
+        App.edit_tab_color({item, color: c_obj.id, force: true})
       }
+    }
+
+    return
+  }
+
+  let i_obj = App.get_icon_by_group(group.title)
+
+  if (i_obj) {
+    if (item.custom_icon !== i_obj.icon) {
+      App.edit_tab_icon({item, icon: i_obj.icon, force: true})
     }
   }
 }
 
-App.attempt_group = (item, name) => {
+App.attempt_color_group = (item, name) => {
   setTimeout(() => {
-    App.do_attempt_group(item, name)
+    App.do_attempt_color_group(item, name)
   }, App.attempt_group_delay)
 }
 
-App.do_attempt_group = async (item, name) => {
-  if (App.updating_index) {
-    return
-  }
+App.attempt_icon_group = (item, icon) => {
+  setTimeout(() => {
+    App.do_attempt_icon_group(item, icon)
+  }, App.attempt_group_delay)
+}
 
+App.do_attempt_color_group = async (item, name) => {
   let group = await App.get_group_by_name(name)
 
   if (group && (group.id === item.group)) {
@@ -211,6 +222,18 @@ App.do_attempt_group = async (item, name) => {
   }
   else {
     App.change_group(item, name)
+  }
+}
+
+App.do_attempt_icon_group = (item, icon) => {
+  let c_icon = App.get_custom_icon_item(icon)
+  console.log(item.custom_icon, icon, c_icon)
+
+  if (c_icon.group && (c_icon.group === item.group)) {
+    // Ignore
+  }
+  else {
+    App.change_group(item, c_icon.group)
   }
 }
 
