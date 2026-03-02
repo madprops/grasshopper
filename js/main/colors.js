@@ -262,11 +262,11 @@ App.edit_tab_color = (args = {}) => {
         }
 
         App.apply_edit({what: `color`, item: it, value, on_change: (value) => {
-          App.custom_save(it.id, `color`, value)
-
           if (ungroup) {
-            App.ungroup_tabs(it)
+            App.ungroup_tabs(it, false)
           }
+
+          App.custom_save(it.id, `color`, value)
         }})
       }
     },

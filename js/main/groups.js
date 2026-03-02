@@ -85,11 +85,11 @@ App.change_group_item = async (args = {}) => {
   }
 }
 
-App.ungroup_tabs = async (item) => {
+App.ungroup_tabs = async (item, uncolor = true) => {
   let active = App.get_active_items({mode: item.mode, item})
 
   for (let tab of active) {
-    if (App.is_color_group(item)) {
+    if (uncolor && App.is_color_group(item)) {
       App.edit_tab_color({item})
     }
 
