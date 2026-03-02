@@ -1,4 +1,4 @@
-App.show_tab_list = (what, e, item) => {
+App.show_tab_list = async (what, e, item) => {
   let tabs, title, title_icon
 
   if (what === `recent`) {
@@ -53,6 +53,13 @@ App.show_tab_list = (what, e, item) => {
     tabs = App.get_container_tabs(name)
     title = name
     title_icon = App.color_icon_square(App.container_data[name].color)
+  }
+  else if (what.startsWith(`group_`)) {
+    let id = parseInt(what.split(`_`)[1])
+    tabs = App.get_group_tabs(id)
+    let group = await App.get_group_by_id(id)
+    title = group?.title || `Group`
+    title_icon = App.group_icon
   }
   else if (what.startsWith(`color_`)) {
     let color_id = what.split(`_`)[1]

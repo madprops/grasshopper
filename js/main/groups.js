@@ -282,7 +282,7 @@ App.get_group_items = async (mode, show = false) => {
         text: group.title,
         action: (e) => {
           if (show) {
-            App.show_tab_list(`group_${group.title}`, e)
+            App.show_tab_list(`group_${group.id}`, e)
           }
           else {
             App.filter_group({mode, group})
