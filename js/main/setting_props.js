@@ -1121,6 +1121,22 @@ App.build_settings = () => {
   category = `icons`
 
   props = {
+    custom_icons: {
+      name: `Custom Icons`,
+      type: `list`,
+      value: [],
+      info: `Define custom icons with actions and groups`,
+      version: 1,
+    },
+
+    ...App.make_icon_settings({
+      what: `custom`,
+      name: `Custom`,
+      side: `right`,
+      show: `always`,
+      separator: true,
+    }),
+
     tabs_mode_icon: {
       name: `Tabs Icon`,
       type: `text_smaller`,
@@ -1341,6 +1357,7 @@ App.build_settings = () => {
       cmd: `go_to_root_url`,
       separator: false,
     }),
+
     auto_root_icon: {
       name: `Auto Root Icon`,
       type: `checkbox`,
@@ -1360,6 +1377,7 @@ App.build_settings = () => {
       cmd: `none`,
       separator: false,
     }),
+
     container_icon_text: {
       name: `Container Icon Text`,
       type: `checkbox`,
@@ -1369,21 +1387,6 @@ App.build_settings = () => {
       version: 1,
     },
 
-    ...App.make_icon_settings({
-      what: `custom`,
-      name: `Custom`,
-      side: `right`,
-      show: `always`,
-      separator: false,
-    }),
-
-    custom_icon_commands: {
-      name: `Custom Icon Commands`,
-      type: `list`,
-      value: [],
-      info: `Define the action when clicking specific custom icons`,
-      version: 1,
-    },
     auto_icon_picker: {
       name: `Auto Icon Picker`,
       type: `checkbox`,

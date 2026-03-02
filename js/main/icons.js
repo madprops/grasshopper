@@ -791,7 +791,7 @@ App.container_icon_click = (item, e) => {
 }
 
 App.get_custom_icon_command = (icon) => {
-  let custom_cmds = App.get_setting(`custom_icon_commands`)
+  let custom_cmds = App.get_setting(`custom_icons`)
 
   for (let item of custom_cmds) {
     if (item.icon === icon) {
@@ -801,7 +801,7 @@ App.get_custom_icon_command = (icon) => {
 }
 
 App.get_custom_icon_item = (icon) => {
-  let custom_cmds = App.get_setting(`custom_icon_commands`)
+  let custom_cmds = App.get_setting(`custom_icons`)
 
   for (let item of custom_cmds) {
     if (item.icon === icon) {
@@ -1243,7 +1243,7 @@ App.is_icon_group = (item) => {
 }
 
 App.get_icon_by_group = (group) => {
-  let custom_cmds = App.get_setting(`custom_icon_commands`)
+  let custom_cmds = App.get_setting(`custom_icons`)
 
   for (let item of custom_cmds) {
     if (item.group === group) {
@@ -1253,7 +1253,7 @@ App.get_icon_by_group = (group) => {
 }
 
 App.fill_icons = () => {
-  let custom_cmds = App.get_setting(`custom_icon_commands`)
+  let custom_cmds = App.get_setting(`custom_icons`)
   let new_icons = []
 
   for (let item of custom_cmds) {

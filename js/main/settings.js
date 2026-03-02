@@ -1571,7 +1571,7 @@ App.setup_settings_addlist = () => {
     })})
 
   menukeys = [
-    `custom_icon_commands`,
+    `custom_icons`,
   ]
 
   for (let key in App.setting_props) {
