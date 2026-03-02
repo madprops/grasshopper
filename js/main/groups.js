@@ -11,7 +11,7 @@ App.setup_groups = () => {
 App.group_tabs = async (item) => {
   let groups = await App.get_groups()
   let names = groups.map(x => x.title)
-  let current = await App.get_group_by_id(item.group)
+  let current = await App.get_group(item)
   let auto_picker = App.get_setting(`auto_group_picker`)
   let value = ``
 
@@ -103,6 +103,10 @@ App.get_groups = async () => {
   return await App.browser().tabGroups.query({})
 }
 
+App.get_group = async (item) => {
+  return await App.get_group_by_id(item.group)
+}
+
 App.get_group_by_id = async (id) => {
   let groups = await App.get_groups()
 
@@ -132,7 +136,7 @@ App.get_group_name = async (item) => {
     return
   }
 
-  let group = await App.get_group_by_id(item.group)
+  let group = await App.get_group(item)
 
   if (group) {
     return group.title
@@ -301,7 +305,7 @@ App.check_group_item = async (item) => {
   }
 
   if (App.is_grouped(item)) {
-    let group = await App.get_group_by_id(item.group)
+    let group = await App.get_group(item)
 
     if (group) {
       let c_obj = App.get_color_by_name(group.title)
@@ -362,4 +366,22 @@ App.get_group_tabs = (group) => {
   }
 
   return items
+}
+
+App.filter_group = async (item, from) => {
+  if (!App.is_grouped(item)) {
+    return
+  }
+
+  let group = await App.get_group(item)
+
+  App.complex_filter({
+    mode: item.mode,
+    value: group.id,
+    text: group.title,
+    short: `group`,
+    full: `Group`,
+    toggle: true,
+    from,
+  })
 }

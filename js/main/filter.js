@@ -291,6 +291,7 @@ App.do_filter = async (args = {}) => {
   let lc_value = value.toLowerCase()
   let only_these = []
   let only_these_check = true
+  let f_value_int = parseInt(f_value)
 
   if (filter_mode === `filter_tab_clusters`) {
     only_these = App.get_tab_clusters()
@@ -313,6 +314,7 @@ App.do_filter = async (args = {}) => {
       value_lower: lc_value,
       f_value,
       f_value_lower,
+      f_value_int,
       search,
       force_value_check: only_these_check,
     }
@@ -669,6 +671,16 @@ App.filter_check = (args) => {
   }
 
   if (!match) {
+    if (args.by_what.startsWith(`group`) || App.get_setting(`filter_groups`)) {
+      let group = App.get_group_name(item)
+
+      if (App.clean_filter(group, true) === args.value_lower) {
+        match = true
+      }
+    }
+  }
+
+  if (!match) {
     if (args.by_what.startsWith(`tag`) || App.get_setting(`filter_tags`)) {
       for (let tag of App.tags(args.item)) {
         if (App.clean_filter(tag, true) === args.value_lower) {
@@ -752,6 +764,9 @@ App.filter_check = (args) => {
       else {
         match = App.get_color(args.item) === args.f_value
       }
+    }
+    else if (args.filter_mode === `group`) {
+      match = args.item.group === args.f_value_int
     }
     else if (args.filter_mode === `tag`) {
       if (args.f_value === `all`) {
@@ -1059,6 +1074,9 @@ App.filter_mode_text = (args = {}) => {
     else if (args.name.startsWith(`container-`)) {
       let name = args.name.replace(`container-`, ``)
       icon = App.color_icon_square(App.container_data[name].color)
+    }
+    else if (args.name.startsWith(`group-`)) {
+      icon = App.group_icon
     }
 
     text = args.title

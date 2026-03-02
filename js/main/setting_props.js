@@ -5031,6 +5031,13 @@ App.build_settings = () => {
       info: `Consider containers when using the filter normally, like typing 'work'`,
       version: 1,
     },
+    filter_groups: {
+      name: `Filter Groups`,
+      type: `checkbox`,
+      value: true,
+      info: `Consider groups when using the filter normally, like typing 'fun'`,
+      version: 1,
+    },
     reuse_filter: {
       name: `Reuse Filter`,
       type: `checkbox`,

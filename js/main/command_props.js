@@ -4276,6 +4276,19 @@ App.setup_commands = () => {
       info: `Filter same color`,
     },
     {
+      name: `Filter Group`,
+      cmd: `filter_group`,
+      modes: [`items`],
+      item: true,
+      single: true,
+      color: true,
+      icon: group_icon,
+      action: (args) => {
+        App.filter_group(args.item, args.from)
+      },
+      info: `Filter same group`,
+    },
+    {
       name: `Filter Tag`,
       cmd: `filter_tag`,
       modes: [`items`],
