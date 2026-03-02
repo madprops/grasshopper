@@ -87,7 +87,7 @@ App.change_group_item = async (args = {}) => {
   App.push_to_group_history([args.name])
 }
 
-App.ungroup_tabs = (item, uncolor = true) => {
+App.ungroup_tabs = (item, edit = true) => {
   let items = App.get_active_items({mode: item.mode, item})
   let force = App.check_warn(`warn_on_ungroup_tabs`, items)
   let ids = items.map(x => x.id)
@@ -96,8 +96,11 @@ App.ungroup_tabs = (item, uncolor = true) => {
     message: `Ungroup tabs? (${ids.length})`,
     confirm_action: async () => {
       for (let tab of items) {
-        if (uncolor && App.is_color_group(item)) {
+        if (edit && App.is_color_group(item)) {
           App.edit_tab_color({item, force: true})
+        }
+        else if (edit && App.is_icon_group(item)) {
+          App.edit_tab_icon({item, force: true})
         }
 
         await App.browser().tabs.ungroup(tab.id)

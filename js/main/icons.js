@@ -668,6 +668,16 @@ App.custom_icon_menu_items = (item, e) => {
     },
   })
 
+  if (App.is_icon_group(item)) {
+    items.push({
+      text: `Group`,
+      icon: App.group_icon,
+      action: () => {
+        App.show_group_menu(item, e, false)
+      },
+    })
+  }
+
   if (item.mode !== `tabs`) {
     return items
   }
