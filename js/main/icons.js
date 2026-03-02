@@ -1133,6 +1133,9 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
     else if (check(`.custom_icon`)) {
       icon = `custom`
     }
+    else if (check(`.group_icon`)) {
+      icon = `group`
+    }
   }
 
   if (!icon) {
@@ -1186,6 +1189,11 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
 
   if (icon === `custom`) {
     App.remove_item_icon(item)
+    return true
+  }
+
+  if (icon === `group`) {
+    App.ungroup_tabs(item)
     return true
   }
 
