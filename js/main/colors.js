@@ -250,11 +250,9 @@ App.edit_tab_color = (args = {}) => {
     confirm_action: async () => {
       let ungroup = false
 
-      if (!args.color) {
-        if (current_obj) {
-          if (current_obj.group) {
-            ungroup = true
-          }
+      if (current_obj) {
+        if (current_obj.group) {
+          ungroup = true
         }
       }
 
