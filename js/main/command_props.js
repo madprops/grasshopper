@@ -4277,6 +4277,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Group`,
+      short_name: `Filter`,
       cmd: `filter_group`,
       modes: [`items`],
       item: true,
