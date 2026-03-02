@@ -199,6 +199,8 @@ App.check_group_item = async (item) => {
     if (item.custom_icon !== i_obj.icon) {
       App.edit_tab_icon({item, icon: i_obj.icon, force: true})
     }
+
+    return
   }
 }
 
@@ -227,7 +229,6 @@ App.do_attempt_color_group = async (item, name) => {
 
 App.do_attempt_icon_group = (item, icon) => {
   let c_icon = App.get_custom_icon_item(icon)
-  console.log(item.custom_icon, icon, c_icon)
 
   if (c_icon.group && (c_icon.group === item.group)) {
     // Ignore

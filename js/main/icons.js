@@ -975,7 +975,7 @@ App.check_icon_active = (icon, item) => {
     return App.tab_is_idle(item)
   }
   else if (icon === `group`) {
-    return App.is_grouped(item) && !App.is_color_group(item)
+    return App.is_grouped(item) && !App.is_color_group(item) && !App.is_icon_group(item)
   }
   else if (icon === `image`) {
     return App.get_media_type(item) === `image`
@@ -1224,7 +1224,7 @@ App.is_icon_group = (item) => {
   let icon = App.get_custom_icon_item(item.custom_icon)
 
   if (icon) {
-    if (obj.group) {
+    if (icon.group) {
       return true
     }
   }
@@ -1240,4 +1240,21 @@ App.get_icon_by_group = (group) => {
       return item
     }
   }
+}
+
+App.fill_icons = () => {
+  let custom_cmds = App.get_setting(`custom_icon_commands`)
+  let new_icons = []
+
+  for (let item of custom_cmds) {
+    if (App.icon_history.length >= App.max_icon_picks) {
+      break
+    }
+
+    if (!App.icon_history.includes(item.icon)) {
+      new_icons.push(item.icon)
+    }
+  }
+
+  App.push_to_icon_history(new_icons)
 }

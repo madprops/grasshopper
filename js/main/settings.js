@@ -418,6 +418,7 @@ App.refresh_settings = () => {
   App.start_signal_intervals()
   App.start_idle_tabs_check()
   App.resolve_icons()
+  App.fill_icons()
   App.refresh_context()
   App.start_auto_color()
   App.start_themed_week()
