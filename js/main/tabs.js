@@ -637,23 +637,14 @@ App.update_tabs_index = async (items, direction) => {
     let processed_groups = []
 
     for (let item of items) {
-      let index = App.get_item_element_index({
-        mode: `tabs`,
-        element: item.element,
-        include_all: true,
-      })
-
-      let index_2 = App.get_item_element_index({
-        mode: `tabs`,
-        element: item.element,
-      })
+      let index = App.get_item_element_index({mode: `tabs`, element: item.element, include_all: true})
+      let index_2 = App.get_item_element_index({mode: `tabs`, element: item.element})
 
       if (item.pinned) {
         if (index > pinline) {
           await App.unpin_tab(item.id)
         }
       }
-
       else if (index < pinline) {
         await App.pin_tab(item.id)
       }
@@ -686,7 +677,6 @@ App.update_tabs_index = async (items, direction) => {
             let final_target_index = index_2
             let window_id = group_tabs[0].windowId
 
-            // 1. COLLISION CHECK: Ensure we aren't dropping inside another group
             try {
               let tabs_at_target = await App.browser().tabs.query({windowId: window_id, index: index_2})
 
@@ -701,7 +691,6 @@ App.update_tabs_index = async (items, direction) => {
                     let original_min = Math.min(...group_tabs.map(t => t.index))
 
                     if (index_2 > original_min) {
-                      // Dragging down: eject to the very end of the blocking group
                       let last_blocking_tab = blocking_tabs[blocking_tabs.length - 1]
                       let last_el = App.get_item_by_id(`tabs`, last_blocking_tab.id)
 
@@ -709,9 +698,7 @@ App.update_tabs_index = async (items, direction) => {
                         last_el.element.after(item.element)
                       }
                     }
-
                     else {
-                      // Dragging up: eject to the very beginning of the blocking group
                       let first_blocking_tab = blocking_tabs[0]
                       let first_el = App.get_item_by_id(`tabs`, first_blocking_tab.id)
 
@@ -727,7 +714,6 @@ App.update_tabs_index = async (items, direction) => {
               App.debug(err)
             }
 
-            // 2. VISUAL COMPACTION: Pull the rest of the group around the safe handle
             if (group_tabs.length > 0) {
               group_tabs.sort((a, b) => a.index - b.index)
               let relative_index = group_tabs.findIndex(t => t.id === item.id)
@@ -755,7 +741,6 @@ App.update_tabs_index = async (items, direction) => {
                   }
                 }
 
-                // 3. READ TRUE INDEX: Find the exact DOM index of our safely positioned block
                 let first_tab = group_tabs[0]
                 let first_el_item = App.get_item_by_id(`tabs`, first_tab.id)
 
@@ -773,14 +758,38 @@ App.update_tabs_index = async (items, direction) => {
             }
           }
         }
-
         else {
           await App.do_move_tab_index(item.id, index_2)
         }
       }
-
       else {
         await App.do_move_tab_index(item.id, index_2)
+
+        try {
+          let current_tab = await App.browser().tabs.get(item.id)
+
+          if (current_tab.groupId !== -1) {
+            let window_id = current_tab.windowId
+            let tab_index = current_tab.index
+
+            let prev_tabs = await App.browser().tabs.query({windowId: window_id, index: tab_index - 1})
+            let next_tabs = await App.browser().tabs.query({windowId: window_id, index: tab_index + 1})
+
+            let prev_group = prev_tabs[0] ? prev_tabs[0].groupId : -1
+            let next_group = next_tabs[0] ? next_tabs[0].groupId : -1
+
+            if ((prev_group !== -1) && (prev_group === next_group) && (prev_group === current_tab.groupId)) {
+              // keep it absorbed
+            }
+
+            else {
+              await App.browser().tabs.ungroup(item.id)
+            }
+          }
+        }
+        catch (err) {
+          App.debug(err)
+        }
       }
     }
   }
