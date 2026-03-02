@@ -257,8 +257,9 @@ App.icon_pick_delay = 100
 App.auto_click_delay = 450
 App.idle_tabs_delay = App.MINUTE
 App.themed_week_delay = App.MINUTE
-App.change_group_delay = App.SECOND
-App.check_group_delay = App.SECOND
+App.change_group_delay = 500
+App.check_group_delay = 500
+App.attempt_group_delay = 500
 
 App.settings_icons = {
   all: `🔍`,

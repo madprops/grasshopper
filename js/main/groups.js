@@ -322,7 +322,7 @@ App.check_group_item = async (item) => {
 App.attempt_group = (item, name) => {
   setTimeout(() => {
     App.do_attempt_group(item, name)
-  }, App.SECOND)
+  }, App.attempt_group_delay)
 }
 
 App.do_attempt_group = async (item, name) => {
