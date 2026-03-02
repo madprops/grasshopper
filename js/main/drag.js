@@ -106,8 +106,20 @@ App.dragstart_action = (mode, e) => {
   let urls = []
   let moz_urls = []
 
-  if (App.drag_item.selected) {
+  // If the dragged item is part of a group, grab all items in that group
+  if (App.drag_item.group && (App.drag_item.group !== -1)) {
+    let target_group = App.drag_item.group
+
     for (let item of App.get_items(mode)) {
+
+      if (item.group === target_group) {
+        App.drag_items.push(item)
+      }
+    }
+  }
+  else if (App.drag_item.selected) {
+    for (let item of App.get_items(mode)) {
+
       if (item.selected) {
         App.drag_items.push(item)
 

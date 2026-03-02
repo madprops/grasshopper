@@ -634,44 +634,14 @@ App.update_tabs_index = async (items, direction) => {
 
   try {
     let pinline = App.pinline_index(false)
-    let tab_map = {}
+    let processed_groups = []
 
     for (let item of items) {
-      let group_title = ``
-      let group_color = ``
-
-      if (item.group && (item.group !== -1)) {
-        try {
-          let group_info = await App.browser().tabGroups.get(item.group)
-
-          group_title = group_info.title
-          group_color = group_info.color
-        }
-        catch (err) {
-          App.debug(err)
-        }
-      }
-
-      tab_map[item.id] = {
-        group: item.group,
-        title: group_title,
-        color: group_color,
-      }
-    }
-
-    for (let item of items) {
-      let index = App.get_item_element_index({
-        mode: `tabs`,
-        element: item.element,
-        include_all: true,
-      })
-
-      let index_2 = App.get_item_element_index({
-        mode: `tabs`,
-        element: item.element,
-      })
+      let index = App.get_item_element_index({mode: `tabs`, element: item.element, include_all: true})
+      let index_2 = App.get_item_element_index({mode: `tabs`, element: item.element})
 
       if (item.pinned) {
+
         if (index > pinline) {
           await App.unpin_tab(item.id)
         }
@@ -680,10 +650,27 @@ App.update_tabs_index = async (items, direction) => {
         await App.pin_tab(item.id)
       }
 
-      await App.do_move_tab_index(item.id, index_2)
-    }
+      if (item.group && (item.group !== -1)) {
+        if (!processed_groups.includes(item.group)) {
+          processed_groups.push(item.group)
 
-    App.restore_groups(items, tab_map)
+          // Find the lowest DOM index from the dragged group block to act as the target
+          let group_items = items.filter(i => i.group === item.group)
+          let dom_indices = group_items.map(i => App.get_item_element_index({mode: `tabs`, element: i.element}))
+          let target_index = Math.min(...dom_indices)
+
+          try {
+            await App.browser().tabGroups.move(item.group, {index: target_index})
+          }
+          catch (err) {
+            App.debug(err)
+          }
+        }
+      }
+      else {
+        await App.do_move_tab_index(item.id, index_2)
+      }
+    }
   }
   finally {
     App.updating_index = false
