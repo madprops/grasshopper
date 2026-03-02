@@ -4705,6 +4705,18 @@ App.setup_commands = () => {
       info: `Filter zone tabs`,
     },
     {
+      name: `Filter Groups`,
+      short_name: `Groups`,
+      cmd: `filter_group_tabs`,
+      modes: [`items`],
+      icon: group_icon,
+      filter_mode: true,
+      action: (args) => {
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter group tabs`,
+    },
+    {
       name: `Filter No Tab`,
       short_name: `No Tab`,
       cmd: `filter_no_tab`,

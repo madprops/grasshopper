@@ -7,6 +7,7 @@ App.build_tab_filters = () => {
     {cmd: `filter_unloaded_tabs`},
     {cmd: `filter_unread_tabs`},
     {cmd: `filter_zone_tabs`},
+    {cmd: `filter_group_tabs`},
     {cmd: `filter_duplicate_tabs`},
     {cmd: `filter_obfuscated_tabs`},
     {cmd: `filter_idle_tabs`},
@@ -817,6 +818,9 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `filter_zone_tabs`) {
       match = args.item.header
+    }
+    else if (args.filter_mode === `filter_group_tabs`) {
+      match = App.is_grouped(args.item)
     }
     else if (args.filter_mode === `filter_all_node_tabs`) {
       match = App.tab_has_parent(args.item)
