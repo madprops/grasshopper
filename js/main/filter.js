@@ -1834,6 +1834,9 @@ App.create_filter_button = (mode) => {
   fmodes.push(separator())
 
   function add_menu (what) {
+    let cmd = App.get_command(`show_filter_${what}_menu`)
+    console.log(what, cmd)
+
     fmodes.push({
       cmd: `${what}_menu`,
       text: cmd.short_name,
@@ -1843,21 +1846,13 @@ App.create_filter_button = (mode) => {
     })
   }
 
-  cmd = App.get_command(`show_filter_color_menu`)
   add_menu(`color`)
-
-  cmd = App.get_command(`show_filter_tag_menu`)
   add_menu(`tag`)
-
-  cmd = App.get_command(`show_filter_icon_menu`)
   add_menu(`icon`)
-
-  cmd = App.get_command(`show_filter_group_menu`)
   add_menu(`group`)
 
   fmodes.push({cmd: `filter_root_tabs`})
   fmodes.push({cmd: `filter_tab_clusters`})
-
   fmodes.push(separator())
   fmodes.push({cmd: `filter_https_tabs`})
   fmodes.push({cmd: `filter_http_tabs`})

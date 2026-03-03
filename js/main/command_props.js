@@ -4756,7 +4756,6 @@ App.setup_commands = () => {
       short_name: `Groups`,
       cmd: `show_filter_group_menu`,
       modes: [`items`],
-      item: true,
       icon: group_icon,
       action: (args) => {
         App.show_filter_group_menu(args.mode, args.e)
