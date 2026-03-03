@@ -1828,9 +1828,11 @@ App.create_filter_button = (mode) => {
   }
 
   fmodes.push(separator())
+
   fmodes.push({cmd: `filter_media_image`})
   fmodes.push({cmd: `filter_media_video`})
   fmodes.push({cmd: `filter_media_audio`})
+
   fmodes.push(separator())
 
   function add_menu (what) {
@@ -1852,18 +1854,20 @@ App.create_filter_button = (mode) => {
 
   fmodes.push({cmd: `filter_root_tabs`})
   fmodes.push({cmd: `filter_tab_clusters`})
+
   fmodes.push(separator())
+
   fmodes.push({cmd: `filter_https_tabs`})
   fmodes.push({cmd: `filter_http_tabs`})
   fmodes.push({cmd: `filter_file_tabs`})
 
   if (mode === `tabs`) {
     fmodes.push(separator())
-    cmd = App.get_command(`show_filter_container_menu`)
-    fmodes.push({cmd: `container_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
+    add_menu(`container`)
   }
 
   fmodes.push(separator())
+
   fmodes.push({cmd: `filter_titled_tabs`})
   fmodes.push({cmd: `filter_notes_tabs`})
   fmodes.push({cmd: `filter_edited_tabs`})
@@ -1874,8 +1878,8 @@ App.create_filter_button = (mode) => {
   }
 
   let filter_icon = App.settings_icons.filter
-
   fmodes.push(separator())
+
   fmodes.push({cmd: `exact`, text: `Exact`, icon: filter_icon, skip: true, info: `Show the Exact Filters`})
   fmodes.push({cmd: `refine`, text: `Refine`, icon: filter_icon, skip: true, info: `Show the Refine Filters`})
   fmodes.push({cmd: `custom`, text: `Custom`, icon: filter_icon, skip: true, info: `Show the Custom Filters`})
@@ -1969,6 +1973,16 @@ App.show_filter_menu = (mode) => {
           text: filter_mode.text,
           get_items: () => {
             return App.get_icon_items(mode)
+          },
+          info: filter_mode.info,
+        })
+      }
+      else if (filter_mode.cmd === `group_menu`) {
+        items.push({
+          icon: filter_mode.icon,
+          text: filter_mode.text,
+          get_items: () => {
+            return App.get_group_items(mode)
           },
           info: filter_mode.info,
         })
