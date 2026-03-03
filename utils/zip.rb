@@ -19,7 +19,7 @@ if old_name
   end
 end
 
-new_name = "#{name}_v#{version}_#{bname}.zip"
+new_name = "#{name}_#{bname}_v#{version}.zip"
 
 `zip -r #{new_name} * -x "*.zip" "node_modules/*" "package-lock.json" ".eslintcache" ".directory"`
 puts "Created #{new_name}"
