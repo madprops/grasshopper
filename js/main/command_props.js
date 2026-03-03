@@ -3102,7 +3102,8 @@ App.setup_commands = () => {
       info: `Add tags to tabs`,
     },
     {
-      name: `Group`,
+      name: `Group Tabs`,
+      short_name: `Group`,
       cmd: `group_tabs`,
       modes: [`tabs`],
       item: true,
@@ -3113,7 +3114,8 @@ App.setup_commands = () => {
       info: `Change the group of the tabs`,
     },
     {
-      name: `Ungroup`,
+      name: `Ungroup Tabs`,
+      short_name: `Ungroup`,
       cmd: `ungroup_tabs`,
       modes: [`tabs`],
       item: true,

@@ -90,8 +90,9 @@ App.show_item_menu = async (args = {}) => {
 
     let group_items = []
 
-    App.item_menu_item(group_items, `group_tabs`, {item: args.item, short: false})
-    App.item_menu_item(group_items, `ungroup_tabs`, {item: args.item, short: false})
+    App.item_menu_item(group_items, `group_tabs`, {item: args.item, short: true})
+    App.item_menu_item(group_items, `ungroup_tabs`, {item: args.item, short: true})
+    App.item_menu_item(group_items, `rename_group`, {item: args.item, short: true})
     App.item_menu_item(group_items, `show_group`, {item: args.item, short: true})
     App.item_menu_item(group_items, `filter_group`, {item: args.item, short: true})
     App.item_menu_item(group_items, `close_group`, {item: args.item, short: true})
