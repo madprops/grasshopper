@@ -1835,7 +1835,7 @@ App.create_filter_button = (mode) => {
 
   fmodes.push(separator())
 
-  function add_menu (what) {
+  function add_menu(what) {
     let cmd = App.get_command(`show_filter_${what}_menu`)
 
     fmodes.push({
