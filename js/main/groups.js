@@ -441,3 +441,7 @@ App.show_group = async (item, e) => {
   let group = await App.get_group(item)
   App.show_tab_list(`group_${group.id}`, e)
 }
+
+App.rename_group = () => {
+
+}

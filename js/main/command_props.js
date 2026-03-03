@@ -4293,20 +4293,12 @@ App.setup_commands = () => {
       short_name: `Show`,
       cmd: `show_group`,
       icon: group_icon,
+      item: true,
+      single: true,
       action: (args) => {
         App.show_group(args.item, args.e)
       },
       info: `Show the tabs of a group`,
-    },
-    {
-      name: `Filter Group Menu`,
-      short_name: `Filter`,
-      cmd: `filter_group_menu`,
-      icon: group_icon,
-      action: (args) => {
-        App.show_filter_group_menu(args.mode, args.e)
-      },
-      info: `Pick a group to filter`,
     },
     {
       name: `Pick Group`,
@@ -4748,9 +4740,9 @@ App.setup_commands = () => {
       info: `Filter zone tabs`,
     },
     {
-      name: `Filter Groups`,
+      name: `Filter All Groups`,
       short_name: `Groups`,
-      cmd: `filter_group_tabs`,
+      cmd: `filter_group_all`,
       modes: [`items`],
       icon: group_icon,
       filter_mode: true,
@@ -4758,6 +4750,18 @@ App.setup_commands = () => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Filter group tabs`,
+    },
+    {
+      name: `Filter Group Menu`,
+      short_name: `Groups`,
+      cmd: `show_filter_group_menu`,
+      modes: [`items`],
+      item: true,
+      icon: group_icon,
+      action: (args) => {
+        App.show_filter_group_menu(args.mode, args.e)
+      },
+      info: `Show the Filter Group Menu`,
     },
     {
       name: `Group Menu`,
@@ -4770,6 +4774,19 @@ App.setup_commands = () => {
         App.show_group_menu(args.item, args.e)
       },
       info: `Show the Group Menu`,
+    },
+    {
+      name: `Rename Group`,
+      short_name: `Rename`,
+      cmd: `rename_group`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      icon: group_icon,
+      action: (args) => {
+        App.rename_group(args.item)
+      },
+      info: `Rename a group`,
     },
     {
       name: `Filter No Tab`,

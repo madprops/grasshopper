@@ -7,7 +7,6 @@ App.build_tab_filters = () => {
     {cmd: `filter_unloaded_tabs`},
     {cmd: `filter_unread_tabs`},
     {cmd: `filter_zone_tabs`},
-    {cmd: `filter_group_tabs`},
     {cmd: `filter_duplicate_tabs`},
     {cmd: `filter_obfuscated_tabs`},
     {cmd: `filter_idle_tabs`},
@@ -1834,14 +1833,27 @@ App.create_filter_button = (mode) => {
   fmodes.push({cmd: `filter_media_audio`})
   fmodes.push(separator())
 
+  function add_menu (what) {
+    fmodes.push({
+      cmd: `${what}_menu`,
+      text: cmd.short_name,
+      icon: cmd.icon,
+      skip: true,
+      info: cmd.info,
+    })
+  }
+
   cmd = App.get_command(`show_filter_color_menu`)
-  fmodes.push({cmd: `color_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
+  add_menu(`color`)
 
   cmd = App.get_command(`show_filter_tag_menu`)
-  fmodes.push({cmd: `tag_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
+  add_menu(`tag`)
 
   cmd = App.get_command(`show_filter_icon_menu`)
-  fmodes.push({cmd: `icon_menu`, text: cmd.short_name, icon: cmd.icon, skip: true, info: cmd.info})
+  add_menu(`icon`)
+
+  cmd = App.get_command(`show_filter_group_menu`)
+  add_menu(`group`)
 
   fmodes.push({cmd: `filter_root_tabs`})
   fmodes.push({cmd: `filter_tab_clusters`})
@@ -2111,6 +2123,7 @@ App.filter_cmd_name = (cmd) => {
     `filter_color_all`,
     `filter_tag_all`,
     `filter_icon_all`,
+    `filter_group_all`,
   ]
 
   if (combo_filters.includes(cmd)) {
@@ -2136,6 +2149,11 @@ App.filter_cmd_name = (cmd) => {
   if (cmd.startsWith(`filter_icon_`)) {
     let icon = cmd.replace(`filter_icon_`, ``)
     return `icon-${icon}`
+  }
+
+  if (cmd.startsWith(`filter_group_`)) {
+    let group = cmd.replace(`filter_group_`, ``)
+    return `group-${group}`
   }
 
   return cmd
