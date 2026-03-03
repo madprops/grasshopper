@@ -63,7 +63,7 @@ App.change_group_item = async (args = {}) => {
   }
   else if (args.name) {
     let id = await App.group_call({tabIds: args.item.id})
-    await App.update_group_call(id, {title: args.name, color: `cyan`})
+    await App.group_update_call(id, {title: args.name, color: `cyan`})
     g_id = id
   }
 
@@ -222,14 +222,20 @@ App.do_attempt_color_group = async (item, name) => {
   }
 }
 
-App.do_attempt_icon_group = (item, icon) => {
+App.do_attempt_icon_group = async (item, icon) => {
   if (App.is_color_group(item)) {
     return
   }
 
   let c_icon = App.get_custom_icon_item(icon)
 
-  if (c_icon.group && (c_icon.group === item.group)) {
+  if (!c_icon) {
+    return
+  }
+
+  let group = await App.get_group_by_name(c_icon.group)
+
+  if (group && (group.id === item.group)) {
     // Ignore
   }
   else {
@@ -429,7 +435,7 @@ App.rename_group = async (item) => {
       return
     }
 
-    await App.update_group_call(group.id, {title: name})
+    await App.group_update_call(group.id, {title: name})
     let tabs = App.get_group_tabs(group.id)
 
     for (let tab of tabs) {
@@ -475,16 +481,28 @@ App.group_call = async (obj) => {
 }
 
 App.ungroup_call = async (id) => {
+  if (!id) {
+    return
+  }
+
   App.debug(`Ungrouping: Tab ${id}`)
   await App.browser().tabs.ungroup(id)
 }
 
-App.update_group_call = async (id, obj) => {
+App.group_update_call = async (id, obj) => {
+  if (!id) {
+    return
+  }
+
   App.debug(`Updating Group: ID ${id}`)
   await App.browser().tabGroups.update(id, obj)
 }
 
 App.group_move_call = async (id, obj) => {
+  if (!id) {
+    return
+  }
+
   await App.browser().tabGroups.move(id, obj)
 }
 
