@@ -322,7 +322,6 @@ App.setup_commands = () => {
     short_name: `Colors`,
     cmd: `show_filter_color_menu`,
     modes: [`items`],
-    item: true,
     icon: colors_icon,
     action: (args) => {
       App.show_filter_color_menu(args.mode, args.e)
@@ -4448,7 +4447,6 @@ App.setup_commands = () => {
       short_name: `Icons`,
       cmd: `show_filter_icon_menu`,
       modes: [`items`],
-      item: true,
       icon: bot_icon,
       action: (args) => {
         App.show_filter_icon_menu(args.mode, args.e)
@@ -4687,7 +4685,6 @@ App.setup_commands = () => {
       short_name: `Containers`,
       cmd: `show_filter_container_menu`,
       modes: [`tabs`],
-      item: true,
       icon: container_icon,
       action: (args) => {
         App.show_filter_container_menu(args.mode, args.e)
