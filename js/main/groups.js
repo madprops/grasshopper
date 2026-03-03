@@ -58,12 +58,12 @@ App.change_group_item = async (args = {}) => {
       return
     }
 
-    await App.browser().tabs.group({tabIds: args.item.id, groupId: new_group.id})
+    await App.group_call({tabIds: args.item.id, groupId: new_group.id})
     g_id = new_group.id
   }
   else if (args.name) {
-    let id = await App.browser().tabs.group({tabIds: args.item.id})
-    await App.browser().tabGroups.update(id, {title: args.name, color: `cyan`})
+    let id = await App.group_call({tabIds: args.item.id})
+    await App.update_group_call(id, {title: args.name, color: `cyan`})
     g_id = id
   }
 
@@ -89,7 +89,7 @@ App.ungroup_tabs = (item, edit = true, force = false) => {
           App.edit_tab_icon({item, force: true})
         }
 
-        await App.browser().tabs.ungroup(tab.id)
+        await App.ungroup_call(tab.id)
         tab.group = -1
         tab.group_name = ``
         tab.ungrouping = false
@@ -101,7 +101,7 @@ App.ungroup_tabs = (item, edit = true, force = false) => {
 }
 
 App.get_groups = async () => {
-  return await App.browser().tabGroups.query({})
+  return await App.group_query_call({})
 }
 
 App.get_group = async (item) => {
@@ -429,7 +429,7 @@ App.rename_group = async (item) => {
       return
     }
 
-    await App.browser().tabGroups.update(group.id, {title: name})
+    await App.update_group_call(group.id, {title: name})
     let tabs = App.get_group_tabs(group.id)
 
     for (let tab of tabs) {
@@ -467,4 +467,27 @@ App.group_prompt = async (item, callback) => {
       callback(name)
     },
   })
+}
+
+App.group_call = async (obj) => {
+  App.debug(`Grouping: Obj ${obj}`)
+  await App.browser().tabs.group(obj)
+}
+
+App.ungroup_call = async (id) => {
+  App.debug(`Ungrouping: Tab ${id}`)
+  await App.browser().tabs.ungroup(id)
+}
+
+App.update_group_call = async (id, obj) => {
+  App.debug(`Updating Group: ID ${id}`)
+  await App.browser().tabGroups.update(id, obj)
+}
+
+App.group_move_call = async (id, obj) => {
+  await App.browser().tabGroups.move(id, obj)
+}
+
+App.group_query_call = async (obj) => {
+  return await App.browser().tabGroups.query(obj)
 }

@@ -751,7 +751,7 @@ App.update_tabs_index = async (items, direction) => {
             }
 
             try {
-              await App.browser().tabGroups.move(item.group, {index: Math.max(0, final_target_index)})
+              await App.group_move_call(item.group, {index: Math.max(0, final_target_index)})
             }
             catch (err) {
               App.debug(err)
