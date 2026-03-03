@@ -9,32 +9,13 @@ App.setup_groups = () => {
 }
 
 App.group_tabs = async (item) => {
-  let groups = await App.get_groups()
-  let names = groups.map(x => x.title)
-  let current = await App.get_group(item)
-  let auto_picker = App.get_setting(`auto_group_picker`)
-  let value = ``
+  App.group_prompt(item, async (name) => {
+    let active = App.get_active_items({mode: item.mode, item})
 
-  if (current) {
-    value = current.title
-  }
-
-  App.show_prompt({
-    value,
-    placeholder: `Tab Group`,
-    suggestions: names,
-    list: names,
-    show_list: auto_picker,
-    list_submit: auto_picker,
-    fill: true,
-    on_submit: async (name) => {
-      let active = App.get_active_items({mode: item.mode, item})
-
-      for (let tab of active) {
-        await App.change_group(tab, name)
-        App.check_group(tab)
-      }
-    },
+    for (let tab of active) {
+      await App.change_group(tab, name)
+      App.check_group(tab)
+    }
   })
 }
 
@@ -88,9 +69,8 @@ App.change_group_item = async (args = {}) => {
 
   args.item.group = g_id
   args.item.group_name = args.name
-  App.update_item({mode: `tabs`, id: args.item.id, info: args.item})
+  App.update_group_item(args.item)
   App.push_to_group_history([args.name])
-  App.set_item_tooltips(args.item, true)
 }
 
 App.ungroup_tabs = (item, edit = true, force = false) => {
@@ -113,8 +93,7 @@ App.ungroup_tabs = (item, edit = true, force = false) => {
         tab.group = -1
         tab.group_name = ``
         tab.ungrouping = false
-        App.update_item({mode: `tabs`, id: tab.id, info: tab})
-        App.set_item_tooltips(tab, true)
+        App.update_group_item(tab)
       }
     },
     force,
@@ -442,6 +421,50 @@ App.show_group = async (item, e) => {
   App.show_tab_list(`group_${group.id}`, e)
 }
 
-App.rename_group = () => {
+App.rename_group = async (item) => {
+  App.group_prompt(item, async (name) => {
+    let group = await App.get_group(item)
 
+    if (!group) {
+      return
+    }
+
+    await App.browser().tabGroups.update(group.id, {title: name})
+    let tabs = App.get_group_tabs(group.id)
+
+    for (let tab of tabs) {
+      tab.group_name = name
+      App.set_item_tooltips(item, true)
+    }
+  })
+}
+
+App.update_group_item = (item) => {
+  App.update_item({mode: `tabs`, id: item.id, info: item})
+  App.set_item_tooltips(item, true)
+}
+
+App.group_prompt = async (item, callback) => {
+  let groups = await App.get_groups()
+  let names = groups.map(x => x.title)
+  let current = await App.get_group(item)
+  let auto_picker = App.get_setting(`auto_group_picker`)
+  let value = ``
+
+  if (current) {
+    value = current.title
+  }
+
+  App.show_prompt({
+    value,
+    placeholder: `Tab Group`,
+    suggestions: names,
+    list: names,
+    show_list: auto_picker,
+    list_submit: auto_picker,
+    fill: true,
+    on_submit: async (name) => {
+      callback(name)
+    },
+  })
 }
