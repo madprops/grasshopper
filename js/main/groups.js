@@ -229,17 +229,18 @@ App.do_attempt_icon_group = async (item, icon) => {
 
   let c_icon = App.get_custom_icon_item(icon)
 
-  if (!c_icon) {
+  if (!c_icon || c_icon.group) {
     return
   }
 
-  let group = await App.get_group_by_name(c_icon.group)
+  let name = c_icon.group
+  let group = await App.get_group_by_name(name)
 
   if (group && (group.id === item.group)) {
     // Ignore
   }
   else {
-    App.change_group(item, c_icon.group)
+    App.change_group(item, name)
   }
 }
 
