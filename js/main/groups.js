@@ -229,7 +229,7 @@ App.do_attempt_icon_group = async (item, icon) => {
 
   let c_icon = App.get_custom_icon_item(icon)
 
-  if (!c_icon || c_icon.group) {
+  if (!c_icon || !c_icon.group) {
     return
   }
 
@@ -478,7 +478,7 @@ App.group_prompt = async (item, callback) => {
 
 App.group_call = async (obj) => {
   App.debug(`Grouping: Obj ${obj}`)
-  await App.browser().tabs.group(obj)
+  return await App.browser().tabs.group(obj)
 }
 
 App.ungroup_call = async (id) => {
@@ -487,7 +487,7 @@ App.ungroup_call = async (id) => {
   }
 
   App.debug(`Ungrouping: Tab ${id}`)
-  await App.browser().tabs.ungroup(id)
+  return await App.browser().tabs.ungroup(id)
 }
 
 App.group_update_call = async (id, obj) => {
@@ -496,7 +496,7 @@ App.group_update_call = async (id, obj) => {
   }
 
   App.debug(`Updating Group: ID ${id}`)
-  await App.browser().tabGroups.update(id, obj)
+  return await App.browser().tabGroups.update(id, obj)
 }
 
 App.group_move_call = async (id, obj) => {
@@ -504,7 +504,7 @@ App.group_move_call = async (id, obj) => {
     return
   }
 
-  await App.browser().tabGroups.move(id, obj)
+  return await App.browser().tabGroups.move(id, obj)
 }
 
 App.group_query_call = async (obj) => {
