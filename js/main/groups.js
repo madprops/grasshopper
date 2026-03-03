@@ -90,6 +90,7 @@ App.ungroup_tabs = (item, edit = true, force = false) => {
         }
 
         await App.ungroup_call(tab.id)
+
         tab.group = -1
         tab.group_name = ``
         tab.ungrouping = false
@@ -441,13 +442,16 @@ App.rename_group = async (item) => {
 
     for (let tab of tabs) {
       tab.group_name = name
-      App.set_item_tooltips(item, true)
+      App.set_item_tooltips(tab, true)
     }
   })
 }
 
-App.update_group_item = (item) => {
-  App.update_item({mode: `tabs`, id: item.id, info: item})
+App.update_group_item = (item, update = false) => {
+  if (update) {
+    App.update_item({mode: `tabs`, id: item.id, info: item})
+  }
+
   App.set_item_tooltips(item, true)
 }
 
