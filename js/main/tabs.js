@@ -784,6 +784,9 @@ App.update_tabs_index = async (items, direction) => {
 
             else {
               await App.browser().tabs.ungroup(item.id)
+              item.group = -1
+              item.group_name = ``
+              App.set_item_tooltips(item, true)
             }
           }
         }
