@@ -436,3 +436,8 @@ App.group_icon_click = (item, e) => {
     App.show_group_menu(item, e, false)
   }
 }
+
+App.show_group = async (item, e) => {
+  let group = await App.get_group(item)
+  App.show_tab_list(`group_${group.id}`, e)
+}

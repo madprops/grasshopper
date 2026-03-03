@@ -4289,6 +4289,16 @@ App.setup_commands = () => {
       info: `Filter same group`,
     },
     {
+      name: `Show Group`,
+      short_name: `Show`,
+      cmd: `show_group`,
+      icon: group_icon,
+      action: (args) => {
+        App.show_group(args.item, args.e)
+      },
+      info: `Show the tabs of a group`,
+    },
+    {
       name: `Filter Group Menu`,
       short_name: `Filter`,
       cmd: `filter_group_menu`,
