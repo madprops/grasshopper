@@ -781,7 +781,6 @@ App.update_tabs_index = async (items, direction) => {
             if ((prev_group !== -1) && (prev_group === next_group) && (prev_group === current_tab.groupId)) {
               // keep it absorbed
             }
-
             else {
               await App.browser().tabs.ungroup(item.id)
               item.group = -1
