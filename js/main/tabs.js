@@ -2,7 +2,7 @@ App.setup_tabs = () => {
   App.build_tab_filters()
   App.debug_tabs = false
 
-  App.handle_new_tab = async (id, window_id) => {
+  let handle_new_tab = async (id, window_id, tab_data = null) => {
     if (App.tabs_locked) {
       return
     }
@@ -10,10 +10,9 @@ App.setup_tabs = () => {
     App.debug(`Tab Added: ID: ${id}`, App.debug_tabs)
 
     if (window_id === App.window_id) {
-      // onAttached doesn't provide the full tab info, so we fetch it to guarantee
-      // App.refresh_tab always receives a complete tab object
-      let tab = await App.browser().tabs.get(id)
-      let item = await App.refresh_tab({id, info: tab})
+      // Use the provided data, or fetch it only if it's missing (like during onAttached)
+      let info = tab_data || await App.browser().tabs.get(id)
+      let item = await App.refresh_tab({id: id, info: info})
 
       if (item) {
         App.check_tab_session([item])
@@ -23,7 +22,7 @@ App.setup_tabs = () => {
   }
 
   App.browser().tabs.onCreated.addListener((tab) => {
-    App.handle_new_tab(tab.id, tab.windowId)
+    App.handle_new_tab(tab.id, tab.windowId, tab)
   })
 
   App.browser().tabs.onAttached.addListener((tab_id, attach_info) => {
