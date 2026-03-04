@@ -64,9 +64,15 @@ App.browser().runtime.onInstalled.addListener(() => {
   App.browser().contextMenus.removeAll()
 
   App.browser().contextMenus.create({
-    id: `toggle_sidebar`,
-    title: `Toggle Sidebar`,
-    contexts: [`action`], // Remember to use "action" instead of "browser_action"
+    id: `open_sidebar`,
+    title: `Open Sidebar`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
+    id: `close_sidebar`,
+    title: `Close Sidebar`,
+    contexts: [`action`],
   })
 
   App.browser().contextMenus.create({
@@ -103,8 +109,11 @@ App.browser().runtime.onInstalled.addListener(() => {
 App.browser().contextMenus.onClicked.addListener((info, tab) => {
   let id = info.menuItemId
 
-  if (id === `toggle_sidebar`) {
-    App.browser().sidebarAction.toggle()
+  if (id === `open_sidebar`) {
+    App.open_sidebar(tab)
+  }
+  else if (id === `close_sidebar`) {
+    App.close_sidebar(tab)
   }
   else if (id === `open_tabs`) {
     open_popup_mode(`tabs`)

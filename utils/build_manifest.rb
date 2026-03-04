@@ -19,6 +19,7 @@ if target == "chrome"
     "type" => "module"
   }
 
+  manifest.delete("sidebar_action")
   manifest["optional_host_permissions"] = ["<all_urls>"]
 
   # 1. Remove Firefox-only permissions
@@ -28,11 +29,14 @@ if target == "chrome"
   # 2. Strip Firefox-specific settings (Gecko ID)
   # Chrome will throw an "Unrecognized manifest key" warning if this is left in.
   manifest.delete("browser_specific_settings")
-else
+else # Firefox
   manifest["background"] = {
     "scripts" => ["background/background.js"],
     "type" => "module"
   }
+
+  manifest["permissions"]&.delete("sidePanel")
+  manifest.delete("side_panel")
 
   # Ensure the array exists before pushing
   manifest["optional_permissions"] ||= []

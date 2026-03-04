@@ -61,4 +61,28 @@ App.debouncer = (func, delay) => {
   return obj
 }
 
+App.open_sidebar = (tab) => {
+  let window_id = tab.windowId
+  let ext_api = App.browser()
+
+  if (ext_api.sidebarAction) {
+    ext_api.sidebarAction.open()
+  }
+  else if (ext_api.sidePanel) {
+    ext_api.sidePanel.open({windowId: window_id})
+  }
+}
+
+App.close_sidebar = (tab) => {
+  let window_id = tab.windowId
+  let ext_api = App.browser()
+
+  if (ext_api.sidebarAction) {
+    ext_api.sidebarAction.close()
+  }
+  else if (ext_api.sidePanel) {
+    ext_api.sidePanel.close({windowId: window_id})
+  }
+}
+
 export {App}

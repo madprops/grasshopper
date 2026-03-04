@@ -189,7 +189,7 @@ App.open_sidebar = async () => {
   }
   else if (ext_api.sidePanel) {
     let current_window = await ext_api.windows.getCurrent()
-    ext_api.sidePanel.open({windowId:current_window.id})
+    ext_api.sidePanel.open({windowId: current_window.id})
   }
 }
 
@@ -202,11 +202,11 @@ App.close_sidebar = async () => {
   else if (ext_api.sidePanel) {
     if (ext_api.sidePanel.close) {
       let current_window = await ext_api.windows.getCurrent()
-      ext_api.sidePanel.close({windowId:current_window.id})
+      ext_api.sidePanel.close({windowId: current_window.id})
     }
     else {
-      await ext_api.sidePanel.setOptions({enabled:false})
-      await ext_api.sidePanel.setOptions({enabled:true})
+      await ext_api.sidePanel.setOptions({enabled: false})
+      await ext_api.sidePanel.setOptions({enabled: true})
     }
   }
 }
@@ -219,16 +219,11 @@ App.toggle_sidebar = async () => {
   }
   else if (ext_api.sidePanel) {
     let current_window = await ext_api.windows.getCurrent()
-
-    let panel_contexts = await ext_api.runtime.getContexts({
-      contextTypes: [`SIDE_PANEL`],
-      windowId: current_window.id,
-    })
+    let panel_contexts = await ext_api.runtime.getContexts({contextTypes: [`SIDE_PANEL`], windowIds: [current_window.id]})
 
     if (panel_contexts.length > 0) {
       await App.close_sidebar()
     }
-
     else {
       await App.open_sidebar()
     }
