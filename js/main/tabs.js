@@ -2,21 +2,32 @@ App.setup_tabs = () => {
   App.build_tab_filters()
   App.debug_tabs = false
 
-  App.browser().tabs.onCreated.addListener(async (info) => {
+  App.handle_new_tab = async (id, window_id) => {
     if (App.tabs_locked) {
       return
     }
 
-    App.debug(`Tab Created: ID: ${info.id}`, App.debug_tabs)
+    App.debug(`Tab Added: ID: ${id}`, App.debug_tabs)
 
-    if (info.windowId === App.window_id) {
-      let item = await App.refresh_tab({id: info.id, info})
+    if (window_id === App.window_id) {
+      // onAttached doesn't provide the full tab info, so we fetch it to guarantee
+      // App.refresh_tab always receives a complete tab object
+      let tab = await App.browser().tabs.get(id)
+      let item = await App.refresh_tab({id: id, info: tab})
 
       if (item) {
         App.check_tab_session([item])
         App.update_tab_box()
       }
     }
+  }
+
+  App.browser().tabs.onCreated.addListener((tab) => {
+    App.handle_new_tab(tab.id, tab.windowId)
+  })
+
+  App.browser().tabs.onAttached.addListener((tab_id, attach_info) => {
+    App.handle_new_tab(tab_id, attach_info.newWindowId)
   })
 
   App.browser().tabs.onUpdated.addListener(async (id, changed, info) => {
@@ -848,15 +859,32 @@ App.on_tab_activated = async (info) => {
 }
 
 App.move_tabs_to_window = async (item, window_id) => {
-  for (let it of App.get_active_items({mode: `tabs`, item})) {
-    let index = it.pinned ? 0 : -1
+  let active_items = App.get_active_items({mode: `tabs`, item})
+  let move_ids = active_items.map(it => it.id)
 
-    try {
-      await App.browser().tabs.move(it.id, {index, windowId: window_id})
+  if (move_ids.length === 0) {
+    return
+  }
+
+  try {
+    let source_window_id = active_items[0].windowId
+    let all_source_tabs = await App.browser().tabs.query({windowId: source_window_id})
+    let active_tab = all_source_tabs.find(t => t.active)
+
+    // Shift focus to a tab that is staying behind before the move happens
+    if (active_tab && move_ids.includes(active_tab.id)) {
+      let safe_tab = all_source_tabs.find(t => !move_ids.includes(t.id))
+
+      if (safe_tab) {
+        await App.browser().tabs.update(safe_tab.id, {active: true})
+      }
     }
-    catch (err) {
-      App.error(err)
-    }
+
+    // Moving all IDs in one batch prevents the UI glitch and keeps discarded tabs unloaded
+    await App.browser().tabs.move(move_ids, {index: -1, windowId: window_id})
+  }
+  catch (err) {
+    App.error(err)
   }
 }
 
