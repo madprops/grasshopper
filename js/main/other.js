@@ -218,10 +218,7 @@ App.toggle_sidebar = async () => {
     ext_api.sidebarAction.toggle()
   }
   else if (ext_api.sidePanel) {
-    let current_window = await ext_api.windows.getCurrent()
-    let panel_contexts = await ext_api.runtime.getContexts({contextTypes: [`SIDE_PANEL`], windowIds: [current_window.id]})
-
-    if (panel_contexts.length > 0) {
+    if (App.is_sidebar()) {
       await App.close_sidebar()
     }
     else {
