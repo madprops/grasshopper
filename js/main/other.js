@@ -181,15 +181,14 @@ App.body_remove = (cls) => {
   App.body().classList.remove(cls)
 }
 
-App.open_sidebar = async () => {
+App.open_sidebar = () => {
   let ext_api = App.browser()
 
   if (ext_api.sidebarAction) {
     ext_api.sidebarAction.open()
   }
   else if (ext_api.sidePanel) {
-    let current_window = await ext_api.windows.getCurrent()
-    ext_api.sidePanel.open({windowId: current_window.id})
+    ext_api.sidePanel.open({windowId: App.window_id})
   }
 }
 
@@ -200,18 +199,11 @@ App.close_sidebar = async () => {
     ext_api.sidebarAction.close()
   }
   else if (ext_api.sidePanel) {
-    if (ext_api.sidePanel.close) {
-      let current_window = await ext_api.windows.getCurrent()
-      ext_api.sidePanel.close({windowId: current_window.id})
-    }
-    else {
-      await ext_api.sidePanel.setOptions({enabled: false})
-      await ext_api.sidePanel.setOptions({enabled: true})
-    }
+    ext_api.sidePanel.close({windowId: App.window_id})
   }
 }
 
-App.toggle_sidebar = async () => {
+App.toggle_sidebar = () => {
   let ext_api = App.browser()
 
   if (ext_api.sidebarAction) {
@@ -219,10 +211,10 @@ App.toggle_sidebar = async () => {
   }
   else if (ext_api.sidePanel) {
     if (App.is_sidebar()) {
-      await App.close_sidebar()
+      App.close_sidebar()
     }
     else {
-      await App.open_sidebar()
+      App.open_sidebar()
     }
   }
 }

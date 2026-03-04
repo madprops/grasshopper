@@ -90,6 +90,10 @@ App.show_popup = (id) => {
   let zindex = 99999
 
   for (let popup of open) {
+    if (!popup || !popup.element) {
+      continue
+    }
+
     popup.element.style.zIndex = zindex
     zindex += 1
   }
@@ -122,7 +126,9 @@ App.start_popups = () => {
       DOM.ev(`#textarea_image`, `load`, (e) => {
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            e.target.style.transform = `translateZ(0)`
+            if (e && e.target) {
+              e.target.style.transform = `translateZ(0)`
+            }
           })
         })
       })
