@@ -13,7 +13,7 @@ App.setup_tabs = () => {
       // onAttached doesn't provide the full tab info, so we fetch it to guarantee
       // App.refresh_tab always receives a complete tab object
       let tab = await App.browser().tabs.get(id)
-      let item = await App.refresh_tab({id: id, info: tab})
+      let item = await App.refresh_tab({id, info: tab})
 
       if (item) {
         App.check_tab_session([item])
