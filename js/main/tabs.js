@@ -2,7 +2,7 @@ App.setup_tabs = () => {
   App.build_tab_filters()
   App.debug_tabs = false
 
-  let handle_new_tab = async (id, window_id, tab_data = null) => {
+  App.handle_new_tab = async (id, window_id, tab_data = null) => {
     if (App.tabs_locked) {
       return
     }
@@ -12,7 +12,7 @@ App.setup_tabs = () => {
     if (window_id === App.window_id) {
       // Use the provided data, or fetch it only if it's missing (like during onAttached)
       let info = tab_data || await App.browser().tabs.get(id)
-      let item = await App.refresh_tab({id: id, info: info})
+      let item = await App.refresh_tab({id, info})
 
       if (item) {
         App.check_tab_session([item])
