@@ -4,7 +4,7 @@ import {start_bookmarks} from "./bookmarks_server.js"
 start_bookmarks()
 
 function open_popup() {
-  App.browser().browserAction.openPopup()
+  App.browser().action.openPopup()
 }
 
 async function set_item(what, value) {
