@@ -278,3 +278,16 @@ App.get_soul_emoji = () => {
   let i = n % App.emojilist.length
   return App.emojilist[i]
 }
+
+App.similarity_threshold = (text) => {
+  let threshold = 0.7
+
+  if (text.length >= 12) {
+    threshold = 0.95
+  }
+  else if (text.length >= 6) {
+    threshold = 0.85
+  }
+
+  return threshold
+}

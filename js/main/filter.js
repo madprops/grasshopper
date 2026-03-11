@@ -581,7 +581,9 @@ App.make_filter_regex = (args = {}) => {
           return true
         }
 
-        if (App.string_similarity(word, args.value) >= 0.7) {
+        let threshold = App.similarity_threshold(text)
+
+        if (App.string_similarity(word, args.value) >= threshold) {
           return true
         }
       }
@@ -1189,7 +1191,9 @@ App.do_filter_2 = (mode) => {
       return true
     }
 
-    if (App.string_similarity(text, value) >= 0.7) {
+    let threshold = App.similarity_threshold(text)
+
+    if (App.string_similarity(text, value) >= threshold) {
       return true
     }
 
@@ -1211,6 +1215,7 @@ App.do_filter_2 = (mode) => {
       show = value && text.startsWith(value)
     }
     else {
+
       if (and_parts.length > 1) {
         show = and_parts.every(part => check(text, part))
       }
