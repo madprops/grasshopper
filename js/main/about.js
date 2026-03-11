@@ -76,6 +76,7 @@ App.about_links_items = [
   [`https://addons.mozilla.org/es-ES/firefox/addon/grasshopper-urls`, `GitHub Repo`],
   [`https://groups.google.com/g/grasshopper-urls`, `Google Group`],
   [`https://en.wikipedia.org/wiki/Grasshopper`, `Wikipedia`],
+  [`https://ko-fi.com/glue`, `Ko-Fi`],
 ]
 
 App.about_donate_items = [
