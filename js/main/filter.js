@@ -1215,7 +1215,6 @@ App.do_filter_2 = (mode) => {
       show = value && text.startsWith(value)
     }
     else {
-
       if (and_parts.length > 1) {
         show = and_parts.every(part => check(text, part))
       }
