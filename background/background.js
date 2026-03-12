@@ -99,7 +99,7 @@ App.browser().runtime.onInstalled.addListener(() => {
 
   App.browser().contextMenus.create({
     id: `browser_commands`,
-    title: `Browser Cmds`,
+    title: `Browser Command`,
     contexts: [`action`],
   })
 
@@ -114,7 +114,7 @@ App.browser().runtime.onInstalled.addListener(() => {
 
   App.browser().contextMenus.create({
     id: `popup_commands`,
-    title: `Popup Cmds`,
+    title: `Popup Command`,
     contexts: [`action`],
   })
 
