@@ -360,10 +360,7 @@ App.build_settings = () => {
     custom_urls: {
       name: `Custom URLs`,
       type: `list`,
-      value: [
-        {_id_: `store`, name: `Store`, url: `https://addons.mozilla.org/firefox/addon/grasshopper-urls`, icon: `🦊`},
-        {_id_: `repo`, name: `Repo`, url: `https://github.com/madprops/grasshopper`, icon: `🐙`},
-      ],
+      value: [],
       actions: [`commands`],
       info: `List of URLs that can be used in commands`,
       version: 1,
