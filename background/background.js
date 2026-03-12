@@ -9,11 +9,11 @@ function open_popup() {
 
 async function set_item(what, value) {
   let key = `init_${what}`
-  App.browser().storage.local.set({[key]: value})
+  await App.browser().storage.local.set({[key]: value})
 }
 
-async function open_popup_mode(mode) {
-  await set_item(`mode`, mode)
+function open_popup_mode(mode) {
+  set_item(`mode`, mode)
   open_popup()
 }
 
@@ -64,20 +64,8 @@ App.browser().runtime.onInstalled.addListener(() => {
   App.browser().contextMenus.removeAll()
 
   App.browser().contextMenus.create({
-    id: `open_sidebar`,
-    title: `Open Sidebar`,
-    contexts: [`action`],
-  })
-
-  App.browser().contextMenus.create({
-    id: `close_sidebar`,
-    title: `Close Sidebar`,
-    contexts: [`action`],
-  })
-
-  App.browser().contextMenus.create({
     id: `modes_menu`,
-    title: `Open Mode`,
+    title: `Open`,
     contexts: [`action`],
   })
 
@@ -111,7 +99,7 @@ App.browser().runtime.onInstalled.addListener(() => {
 
   App.browser().contextMenus.create({
     id: `browser_commands`,
-    title: `Browser Commands`,
+    title: `Browser Cmds`,
     contexts: [`action`],
   })
 
@@ -126,7 +114,7 @@ App.browser().runtime.onInstalled.addListener(() => {
 
   App.browser().contextMenus.create({
     id: `popup_commands`,
-    title: `Popup Commands`,
+    title: `Popup Cmds`,
     contexts: [`action`],
   })
 
@@ -138,6 +126,18 @@ App.browser().runtime.onInstalled.addListener(() => {
       contexts: [`action`],
     })
   }
+
+  App.browser().contextMenus.create({
+    id: `open_sidebar`,
+    title: `Open Sidebar`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
+    id: `close_sidebar`,
+    title: `Close Sidebar`,
+    contexts: [`action`],
+  })
 })
 
 App.browser().contextMenus.onClicked.addListener((info, tab) => {
