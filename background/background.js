@@ -17,6 +17,11 @@ function open_popup_mode(mode) {
   open_popup()
 }
 
+function open_sidebar_mode(mode, tab) {
+  set_item(`mode`, mode)
+  App.open_sidebar(tab)
+}
+
 function browser_command(num) {
   try {
     App.browser().runtime.sendMessage({action: `browser_command`, number: num})
@@ -64,35 +69,69 @@ App.browser().runtime.onInstalled.addListener(() => {
   App.browser().contextMenus.removeAll()
 
   App.browser().contextMenus.create({
-    id: `modes_menu`,
-    title: `Open`,
+    id: `popup_menu`,
+    title: `Popup`,
     contexts: [`action`],
   })
 
   App.browser().contextMenus.create({
-    id: `open_tabs`,
-    parentId: `modes_menu`,
+    id: `popup_open_tabs`,
+    parentId: `popup_menu`,
     title: `Open Tabs`,
     contexts: [`action`],
   })
 
   App.browser().contextMenus.create({
-    id: `open_history`,
-    parentId: `modes_menu`,
+    id: `popup_open_history`,
+    parentId: `popup_menu`,
     title: `Open History`,
     contexts: [`action`],
   })
 
   App.browser().contextMenus.create({
-    id: `open_bookmarks`,
-    parentId: `modes_menu`,
+    id: `popup_open_bookmarks`,
+    parentId: `popup_menu`,
     title: `Open Bookmarks`,
     contexts: [`action`],
   })
 
   App.browser().contextMenus.create({
-    id: `open_closed`,
-    parentId: `modes_menu`,
+    id: `popup_open_closed`,
+    parentId: `popup_menu`,
+    title: `Open Closed`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
+    id: `sidebar_menu`,
+    title: `Sidebar`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
+    id: `sidebar_open_tabs`,
+    parentId: `sidebar_menu`,
+    title: `Open Tabs`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
+    id: `sidebar_open_history`,
+    parentId: `sidebar_menu`,
+    title: `Open History`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
+    id: `sidebar_open_bookmarks`,
+    parentId: `sidebar_menu`,
+    title: `Open Bookmarks`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
+    id: `sidebar_open_closed`,
+    parentId: `sidebar_menu`,
     title: `Open Closed`,
     contexts: [`action`],
   })
@@ -128,12 +167,6 @@ App.browser().runtime.onInstalled.addListener(() => {
   }
 
   App.browser().contextMenus.create({
-    id: `open_sidebar`,
-    title: `Open Sidebar`,
-    contexts: [`action`],
-  })
-
-  App.browser().contextMenus.create({
     id: `close_sidebar`,
     title: `Close Sidebar`,
     contexts: [`action`],
@@ -143,23 +176,13 @@ App.browser().runtime.onInstalled.addListener(() => {
 App.browser().contextMenus.onClicked.addListener((info, tab) => {
   let id = info.menuItemId
 
-  if (id === `open_sidebar`) {
-    App.open_sidebar(tab)
+  if (id.startsWith(`popup_open`)) {
+    let mode = id.replace(`popup_open_`, ``)
+    open_popup_mode(mode)
   }
-  else if (id === `close_sidebar`) {
-    App.close_sidebar(tab)
-  }
-  else if (id === `open_tabs`) {
-    open_popup_mode(`tabs`)
-  }
-  else if (id === `open_history`) {
-    open_popup_mode(`history`)
-  }
-  else if (id === `open_bookmarks`) {
-    open_popup_mode(`bookmarks`)
-  }
-  else if (id === `open_closed`) {
-    open_popup_mode(`closed`)
+  else if (id.startsWith(`sidebar_open`)) {
+    let mode = id.replace(`sidebar_open_`, ``)
+    open_sidebar_mode(mode, tab)
   }
   else if (id.startsWith(`browser_command`)) {
     let n = parseInt(id.replace(`browser_command_`, ``))
@@ -168,6 +191,9 @@ App.browser().contextMenus.onClicked.addListener((info, tab) => {
   else if (id.startsWith(`popup_command`)) {
     let n = parseInt(id.replace(`popup_command_`, ``))
     popup_command(n)
+  }
+  else if (id === `close_sidebar`) {
+    App.close_sidebar(tab)
   }
 })
 
