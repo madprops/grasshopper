@@ -22,7 +22,7 @@ function browser_command(num) {
     App.browser().runtime.sendMessage({action: `browser_command`, number: num})
   }
   catch (err) {
-    // Ignore
+    // Ignore error if receiving end does not exist
   }
 }
 
@@ -82,25 +82,35 @@ App.browser().runtime.onInstalled.addListener(() => {
   })
 
   App.browser().contextMenus.create({
+    id: `modes_menu`,
+    title: `Open Mode`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
     id: `open_tabs`,
+    parentId: `modes_menu`,
     title: `Open Tabs`,
     contexts: [`action`],
   })
 
   App.browser().contextMenus.create({
     id: `open_history`,
+    parentId: `modes_menu`,
     title: `Open History`,
     contexts: [`action`],
   })
 
   App.browser().contextMenus.create({
     id: `open_bookmarks`,
+    parentId: `modes_menu`,
     title: `Open Bookmarks`,
     contexts: [`action`],
   })
 
   App.browser().contextMenus.create({
     id: `open_closed`,
+    parentId: `modes_menu`,
     title: `Open Closed`,
     contexts: [`action`],
   })
@@ -129,7 +139,7 @@ App.browser().contextMenus.onClicked.addListener((info, tab) => {
   }
 })
 
-App.browser().runtime.onMessage.addListener((request, sender, sendResponse) => {
+App.browser().runtime.onMessage.addListener((request, sender, send_response) => {
   if (request.action === `boost_tab`) {
     try {
       App.browser().scripting.executeScript({
@@ -138,7 +148,7 @@ App.browser().runtime.onMessage.addListener((request, sender, sendResponse) => {
       })
     }
     catch (err) {
-      //
+      // Ignore
     }
   }
 })
