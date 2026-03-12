@@ -76,12 +76,6 @@ App.browser().runtime.onInstalled.addListener(() => {
   })
 
   App.browser().contextMenus.create({
-    type: `separator`,
-    id: `separator1`,
-    contexts: [`action`],
-  })
-
-  App.browser().contextMenus.create({
     id: `modes_menu`,
     title: `Open Mode`,
     contexts: [`action`],
@@ -114,6 +108,36 @@ App.browser().runtime.onInstalled.addListener(() => {
     title: `Open Closed`,
     contexts: [`action`],
   })
+
+  App.browser().contextMenus.create({
+    id: `browser_commands`,
+    title: `Browser Commands`,
+    contexts: [`action`],
+  })
+
+  for (let n = 1; n <= 10; n++) {
+    App.browser().contextMenus.create({
+      id: `browser_command_${n}`,
+      parentId: `browser_commands`,
+      title: `Browser Command ${n}`,
+      contexts: [`action`],
+    })
+  }
+
+  App.browser().contextMenus.create({
+    id: `popup_commands`,
+    title: `Popup Commands`,
+    contexts: [`action`],
+  })
+
+  for (let n = 1; n <= 10; n++) {
+    App.browser().contextMenus.create({
+      id: `popup_command_${n}`,
+      parentId: `popup_commands`,
+      title: `Popup Command ${n}`,
+      contexts: [`action`],
+    })
+  }
 })
 
 App.browser().contextMenus.onClicked.addListener((info, tab) => {
@@ -136,6 +160,14 @@ App.browser().contextMenus.onClicked.addListener((info, tab) => {
   }
   else if (id === `open_closed`) {
     open_popup_mode(`closed`)
+  }
+  else if (id.startsWith(`browser_command`)) {
+    let n = parseInt(id.replace(`browser_command_`, ``))
+    browser_command(n)
+  }
+  else if (id.startsWith(`popup_command`)) {
+    let n = parseInt(id.replace(`popup_command_`, ``))
+    popup_command(n)
   }
 })
 
