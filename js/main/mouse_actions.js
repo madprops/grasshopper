@@ -787,6 +787,17 @@ App.mouse_middle_action = (e, target_el) => {
     return
   }
 
+  let item_container = DOM.parent(target, [`.item_container`])
+
+  if (item_container) {
+    if (DOM.parent(target, [`.item_icon_container`])) {
+      if (item.header && App.get_setting(`header_icon_pick`)) {
+        App.close_header_group(item)
+        return
+      }
+    }
+  }
+
   if (mode === `tabs`) {
     if (DOM.parent(target, [`.close_button`])) {
       if (e.ctrlKey && e.shiftKey) {

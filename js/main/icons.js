@@ -1122,11 +1122,6 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
     return DOM.parent(target, [what])
   }
 
-  if (item.header && App.get_setting(`header_icon_pick`)) {
-    App.close_header_group(item)
-    return true
-  }
-
   if (!icon) {
     if (check(`.color_icon_container`)) {
       icon = `color`
