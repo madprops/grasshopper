@@ -500,10 +500,14 @@ App.edit_to_string = (what, item, kind = `custom`) => {
   let props = App.edit_props[what]
 
   if (props.type === `string`) {
-    return item[`${kind}_${what}`]
+    item[`${kind}_${what}`]
   }
   else if (props.type === `list`) {
-    return item[`${kind}_${what}`].join(` `)
+    let list = item[`${kind}_${what}`]
+
+    if (list) {
+      return list.join(` `)
+    }
   }
 
   return ``

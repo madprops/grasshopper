@@ -525,3 +525,8 @@ App.add_tag_string = (item, tags) => {
     App.add_tag(item, tag)
   }
 }
+
+App.select_tag = (tag) => {
+  let items = App.get_tag_tabs(tag)
+  App.toggle_selected_items(items, true)
+}

@@ -175,6 +175,14 @@ App.show_taglist_menu = (e, item) => {
     },
   })
 
+  items.push({
+    text: `Select`,
+    icon: tags_icon,
+    action: () => {
+      App.select_tag(tag)
+    },
+  })
+
   App.sep(items)
 
   if (is_custom) {
