@@ -257,11 +257,11 @@ App.close_group = (item) => {
   })
 }
 
-App.get_group_tabs = (group) => {
+App.get_group_tabs = (group = ``) => {
   let items = []
 
   for (let tab of App.get_items(`tabs`)) {
-    if (tab.group === group) {
+    if (!group || (tab.group === group)) {
       items.push(tab)
     }
   }
@@ -276,13 +276,25 @@ App.fill_group = async (item) => {
   }
 }
 
-App.show_filter_group_menu = async (mode, e, show = false) => {
-  let items = await App.get_group_items(mode, show)
+App.show_filter_group_menu = async (mode, e) => {
+  let items = await App.get_group_items(mode)
   let title_icon = App.get_setting(`group_icon`)
   App.show_context({items, e, title: `Tags`, title_icon})
 }
 
-App.get_group_items = async (mode, show = false) => {
+App.show_show_group_menu = async (mode, e) => {
+  let items = await App.get_group_items(mode, `show`)
+  let title_icon = App.get_setting(`group_icon`)
+  App.show_context({items, e, title: `Tags`, title_icon})
+}
+
+App.show_select_group_menu = async (mode, e) => {
+  let items = await App.get_group_items(mode, `select`)
+  let title_icon = App.get_setting(`group_icon`)
+  App.show_context({items, e, title: `Tags`, title_icon})
+}
+
+App.get_group_items = async (mode, action = `filter`) => {
   function fav_sort(a, b) {
     let ai = App.group_history.indexOf(a.title)
     let bi = App.group_history.indexOf(b.title)
@@ -305,36 +317,42 @@ App.get_group_items = async (mode, show = false) => {
     groups.sort(fav_sort)
     let icon = App.get_setting(`group_icon`)
 
-    if (!show) {
-      items.push({
-        icon,
-        text: `All`,
-        action: () => {
+    items.push({
+      icon,
+      text: `All`,
+      action: () => {
+        if (action === `filter`) {
           App.filter_group({mode})
-        },
-        middle_action: () => {
-          App.filter_group({mode, from: App.refine_string})
-        },
-      })
-    }
+        }
+        else if (action === `show`) {
+          App.show_tab_list(`group_allthegroups`, e)
+        }
+        else if (action === `select`) {
+          App.select_all_groups()
+        }
+      },
+      middle_action: () => {
+        App.filter_group({mode, from: App.refine_string})
+      },
+    })
 
     for (let group of groups.slice(0, App.max_group_picks)) {
       items.push({
         icon,
         text: group.title,
         action: (e) => {
-          if (show) {
+          if (action === `filter`) {
+            App.filter_group({mode, group})
+          }
+          else if (action === `show`) {
             App.show_tab_list(`group_${group.id}`, e)
           }
-          else {
-            App.filter_group({mode, group})
+          else if (action === `select`) {
+            App.do_select_group(group.id)
           }
         },
         middle_action: (e) => {
-          if (show) {
-            //
-          }
-          else {
+          if (action === `filter`) {
             App.filter_group({mode, group, from: App.refine_string})
           }
         },
@@ -533,6 +551,14 @@ App.select_group = (item) => {
     return
   }
 
-  let items = App.get_group_tabs(item.group)
+  App.do_select_group(item.group)
+}
+
+App.do_select_group = (group) => {
+  let items = App.get_group_tabs(group)
   App.toggle_selected_items(items, true)
+}
+
+App.select_all_groups = () => {
+  App.do_select_group(``)
 }

@@ -56,17 +56,25 @@ App.show_tab_list = async (what, e, item) => {
   }
   else if (what.startsWith(`group_`)) {
     let id = parseInt(what.split(`_`)[1])
-    tabs = App.get_group_tabs(id)
-    let group = await App.get_group_by_id(id)
-    title = group?.title || `Group`
-    title_icon = App.group_icon
+
+    if (id === `allthegroups`) {
+      tabs = App.get_group_tabs()
+      title = `Groups`
+      title_icon = App.group_icon
+    }
+    else {
+      tabs = App.get_group_tabs(id)
+      let group = await App.get_group_by_id(id)
+      title = group?.title || `Group`
+      title_icon = App.group_icon
+    }
   }
   else if (what.startsWith(`color_`)) {
     let color_id = what.split(`_`)[1]
 
     if (color_id === `allthecolors`) {
       tabs = App.get_color_tabs()
-      title = `All`
+      title = `Colors`
       title_icon = App.color_picker_icon
     }
     else {
@@ -105,7 +113,7 @@ App.show_tab_list = async (what, e, item) => {
 
     if (icon === `alltheicons`) {
       tabs = App.get_icon_tabs()
-      title = `Icon`
+      title = `Icons`
       title_icon = App.bot_icon
     }
     else {

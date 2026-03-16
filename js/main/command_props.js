@@ -4867,6 +4867,28 @@ App.setup_commands = () => {
       info: `Show the Filter Group Menu`,
     },
     {
+      name: `Show Group Menu`,
+      short_name: `Groups`,
+      cmd: `show_show_group_menu`,
+      modes: [`items`],
+      icon: group_icon,
+      action: (args) => {
+        App.show_show_group_menu(args.mode, args.e)
+      },
+      info: `Show the Show Group Menu`,
+    },
+    {
+      name: `Select Group Menu`,
+      short_name: `Groups`,
+      cmd: `show_select_group_menu`,
+      modes: [`items`],
+      icon: group_icon,
+      action: (args) => {
+        App.show_select_group_menu(args.mode, args.e)
+      },
+      info: `Show the Select Group Menu`,
+    },
+    {
       name: `Group Menu`,
       short_name: `Group`,
       cmd: `show_group_menu`,
