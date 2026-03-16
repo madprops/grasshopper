@@ -1710,7 +1710,7 @@ App.filter_group = async (args = {}) => {
     text,
     mode: args.mode,
     short: `group`,
-    full: `Group`,
+    full: `Groups`,
     toggle: true,
     from: args.from,
   })
