@@ -4455,7 +4455,7 @@ App.setup_commands = () => {
       some_icon: true,
       icon: bot_icon,
       action: (args) => {
-        App.select_icon(args.item)
+        App.select_same_icon(args.item)
       },
       info: `Select tabs with the same icon`,
     },

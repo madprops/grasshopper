@@ -672,7 +672,7 @@ App.custom_icon_menu_items = (item, e) => {
     text: `Select`,
     icon,
     action: () => {
-      App.select_icon(item)
+      App.select_same_icon(item)
     },
   })
 
@@ -1272,7 +1272,7 @@ App.fill_icons = () => {
   App.push_to_icon_history(new_icons)
 }
 
-App.select_icon = (item) => {
+App.select_same_icon = (item) => {
   let icon = App.get_icon(item)
 
   if (!icon) {
