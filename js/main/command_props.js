@@ -351,7 +351,7 @@ App.setup_commands = () => {
     action: (args) => {
       App.show_show_color_menu(args.mode, args.e)
     },
-    info: `Show the Show Color Menu to show`,
+    info: `Show the Show Color Menu`,
   })
 
   color_filters.push({

@@ -827,7 +827,7 @@ App.select_color = (id, e) => {
 }
 
 App.show_show_color_menu = (mode, e) => {
-  let items = App.get_color_items(mode, `filter`)
+  let items = App.get_color_items(mode, `show`)
   App.show_context({items, e})
 }
 
