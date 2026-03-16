@@ -528,7 +528,7 @@ App.group_query_call = async (obj) => {
   return await App.browser().tabGroups.query(obj)
 }
 
-App.select_group = async (item) => {
+App.select_group = (item) => {
   if (!App.is_grouped(item)) {
     return
   }

@@ -3986,6 +3986,19 @@ App.setup_commands = () => {
       info: `Select the group of a header tab`,
     },
     {
+      name: `Select Group Tabs`,
+      short_name: `Select`,
+      cmd: `select_group_tabs`,
+      modes: [`tabs`],
+      item: true,
+      some_header: true,
+      icon: header_icon,
+      action: (args) => {
+        App.select_group(args.item)
+      },
+      info: `Select the group of a header tab`,
+    },
+    {
       name: `Close Group`,
       short_name: `Close`,
       cmd: `close_header_group`,
@@ -4382,12 +4395,23 @@ App.setup_commands = () => {
       cmd: `show_tab_container`,
       modes: [`tabs`],
       icon: container_icon,
-      single: true,
       some_container: true,
       action: (args) => {
         App.show_tab_list(`container`, args.e, args.item)
       },
       info: `Show other tabs with the same container`,
+    },
+    {
+      name: `Select Container`,
+      short_name: `Container`,
+      cmd: `select_tab_container`,
+      modes: [`tabs`],
+      icon: container_icon,
+      some_container: true,
+      action: (args) => {
+        App.select_container(args.item)
+      },
+      info: `Select tabs with the same container`,
     },
     {
       name: `Filter Container`,
