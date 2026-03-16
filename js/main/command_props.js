@@ -4445,13 +4445,24 @@ App.setup_commands = () => {
       cmd: `filter_icon`,
       modes: [`items`],
       item: true,
-      single: true,
       some_icon: true,
       icon: bot_icon,
       action: (args) => {
         App.filter_by_icon(args.item)
       },
       info: `Filter by the item's icon`,
+    },
+    {
+      name: `Select Icon`,
+      cmd: `select_icon`,
+      modes: [`items`],
+      item: true,
+      some_icon: true,
+      icon: bot_icon,
+      action: (args) => {
+        App.select_icon(args.item)
+      },
+      info: `Select tabs with the same icon`,
     },
     {
       name: `Filter All Icons`,
