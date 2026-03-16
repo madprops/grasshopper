@@ -374,10 +374,12 @@ App.push_to_group_history = (groups) => {
 App.group_menu_items = async (item, e) => {
   let items = []
   let item_group = await App.get_group(item)
+  let icon = App.group_icon
 
   if (item_group) {
     items.push({
       text: `Show`,
+      icon,
       action: () => {
         App.show_tab_list(`group_${item_group.id}`, e)
       },
@@ -385,6 +387,7 @@ App.group_menu_items = async (item, e) => {
 
     items.push({
       text: `Filter`,
+      icon,
       action: () => {
         App.filter_group({mode: item.mode, group: item_group})
       },
@@ -392,6 +395,7 @@ App.group_menu_items = async (item, e) => {
 
     items.push({
       text: `Select`,
+      icon,
       action: () => {
         App.select_group(item)
       },
@@ -401,6 +405,8 @@ App.group_menu_items = async (item, e) => {
       return items
     }
   }
+
+  App.sep(items)
 
   items.push({
     text: `Ungroup`,
