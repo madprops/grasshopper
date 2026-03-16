@@ -94,9 +94,17 @@ App.show_tab_list = async (what, e, item) => {
   }
   else if (what.startsWith(`icon_`)) {
     let icon = what.split(`_`)[1]
-    tabs = App.get_icon_tabs(icon)
-    title = `Icon`
-    title_icon = icon
+
+    if (icon === `all`) {
+      tabs = App.get_icon_tabs()
+      title = `Icon`
+      title_icon = App.bot_icon
+    }
+    else {
+      tabs = App.get_icon_tabs(icon)
+      title = `Icon`
+      title_icon = icon
+    }
   }
   else if (what === `clusters`) {
     tabs = App.get_tab_clusters()

@@ -562,7 +562,7 @@ App.fetch_favicon_url = (item) => {
   return `https://www.google.com/s2/favicons?sz=64&domain=${item.hostname}`
 }
 
-App.get_icon_items = (mode, show = false) => {
+App.get_icon_items = (mode, action = `filter`) => {
   function icon_sort(a, b) {
     let ai = App.icon_history.indexOf(a)
     let bi = App.icon_history.indexOf(b)
@@ -594,27 +594,36 @@ App.get_icon_items = (mode, show = false) => {
   if (icons.length) {
     icons.sort(icon_sort)
 
-    if (!show) {
-      items.push({
-        text: `All`,
-        action: () => {
+    items.push({
+      text: `All`,
+      action: (e) => {
+        if (action === `filter`) {
           App.filter_icon({mode, icon: `all`})
-        },
-        middle_action: () => {
-          App.filter_icon({mode, icon: `all`, from: App.refine_string})
-        },
-      })
-    }
+        }
+        else if (action === `show`) {
+          App.show_tab_list(`icon_all`, e)
+        }
+        else if (action === `select`) {
+          App.select_all_icons()
+        }
+      },
+      middle_action: () => {
+        App.filter_icon({mode, icon: `all`, from: App.refine_string})
+      },
+    })
 
     for (let icon of icons.slice(0, App.max_icon_picks)) {
       items.push({
         text: icon,
         action: (e) => {
-          if (show) {
+          if (action === `filter`) {
+            App.filter_icon({mode, icon})
+          }
+          else if (action === `show`) {
             App.show_tab_list(`icon_${icon}`, e)
           }
-          else {
-            App.filter_icon({mode, icon})
+          else if (action === `select`) {
+            App.do_select_same_icon(icon)
           }
         },
         middle_action: (e) => {
@@ -720,8 +729,20 @@ App.change_icon = (item) => {
   App.edit_prompt({what: `icon`, item})
 }
 
-App.show_filter_icon_menu = (mode, e, show = false) => {
-  let items = App.get_icon_items(mode, show)
+App.show_filter_icon_menu = (mode, e) => {
+  let items = App.get_icon_items(mode)
+  let title_icon = App.bot_icon
+  App.show_context({items, e, title: `Icons`, title_icon})
+}
+
+App.show_show_icon_menu = (mode, e) => {
+  let items = App.get_icon_items(mode, `show`)
+  let title_icon = App.bot_icon
+  App.show_context({items, e, title: `Icons`, title_icon})
+}
+
+App.show_select_icon_menu = (mode, e) => {
+  let items = App.get_icon_items(mode, `select`)
   let title_icon = App.bot_icon
   App.show_context({items, e, title: `Icons`, title_icon})
 }
@@ -738,14 +759,14 @@ App.get_iconed_items = (mode) => {
   return items
 }
 
-App.get_icon_tabs = (icon) => {
+App.get_icon_tabs = (icon = ``) => {
   let tabs = []
 
   for (let item of App.get_items(`tabs`)) {
     let item_icon = App.get_icon(item)
 
     if (item_icon) {
-      if (item_icon === icon) {
+      if (!icon || (item_icon === icon)) {
         tabs.push(item)
       }
     }
@@ -1279,6 +1300,17 @@ App.select_same_icon = (item) => {
     return
   }
 
+  App.do_select_same_icon(icon)
+}
+
+App.do_select_same_icon = (icon) => {
   let items = App.get_icon_tabs(icon)
   App.toggle_selected_items(items, true)
+}
+
+App.select_all_icons = () => {
+  App.do_select_same_icon(``)
+}
+
+App.show_all_icons = () => {
 }

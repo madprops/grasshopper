@@ -4517,6 +4517,28 @@ App.setup_commands = () => {
       info: `Show the Filter Icon Menu`,
     },
     {
+      name: `Show Icon Menu`,
+      short_name: `Icons`,
+      cmd: `show_show_icon_menu`,
+      modes: [`items`],
+      icon: bot_icon,
+      action: (args) => {
+        App.show_show_icon_menu(args.mode, args.e)
+      },
+      info: `Show the Show Icon Menu`,
+    },
+    {
+      name: `Select Icon Menu`,
+      short_name: `Icons`,
+      cmd: `show_select_icon_menu`,
+      modes: [`items`],
+      icon: bot_icon,
+      action: (args) => {
+        App.show_select_icon_menu(args.mode, args.e)
+      },
+      info: `Show the Select Icon Menu`,
+    },
+    {
       name: `Pick Icon`,
       short_name: `Icon`,
       cmd: `pick_custom_icon`,
