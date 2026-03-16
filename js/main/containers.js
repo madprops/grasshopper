@@ -11,7 +11,7 @@ App.get_contextual_identity = async (tab) => {
 
 App.get_container_tabs = (name = ``) => {
   let items = App.get_items(`tabs`)
-  return items.filter(x => x.container_name && (!name || x.container_name === name))
+  return items.filter(x => x.container_name && (!name || (x.container_name === name)))
 }
 
 App.get_all_container_tabs = () => {
