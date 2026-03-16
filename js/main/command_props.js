@@ -209,6 +209,20 @@ App.setup_commands = () => {
     })
 
     icon = App.color_icon(color.id)
+    name = `Select ${color.name}`
+
+    color_filters.push({
+      name,
+      short_name: color.name,
+      cmd: `select_color_${color.id}`,
+      icon,
+      action: (args) => {
+        App.select_color(color.id, args.e)
+      },
+      info: `Select color (${color.name})`,
+    })
+
+    icon = App.color_icon(color.id)
     name = `Color ${color.name}`
     short = color.name
 
@@ -4314,7 +4328,7 @@ App.setup_commands = () => {
       item: true,
       icon: group_icon,
       action: (args) => {
-        App.select_group(args.mode, args.item, args.from)
+        App.select_group(args.item)
       },
       info: `Select same group`,
     },

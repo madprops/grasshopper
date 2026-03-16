@@ -390,6 +390,13 @@ App.group_menu_items = async (item, e) => {
       },
     })
 
+    items.push({
+      text: `Select`,
+      action: () => {
+        App.select_group(item)
+      },
+    })
+
     if (item.mode !== `tabs`) {
       return items
     }
@@ -515,7 +522,7 @@ App.group_query_call = async (obj) => {
   return await App.browser().tabGroups.query(obj)
 }
 
-App.select_group = async (mode, item, from) => {
+App.select_group = async (item) => {
   if (!App.is_grouped(item)) {
     return
   }

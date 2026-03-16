@@ -273,6 +273,14 @@ App.color_menu_items = (item, e) => {
       },
     })
 
+    items.push({
+      text: `Select`,
+      icon: App.clone_if_node(c_icon),
+      action: () => {
+        App.select_color(item_color)
+      },
+    })
+
     if (App.is_color_group(item)) {
       items.push({
         text: `Group`,
@@ -795,4 +803,9 @@ App.is_color_group = (item) => {
   }
 
   return false
+}
+
+App.select_color = (id, e) => {
+  let items = App.get_color_tabs(id)
+  App.toggle_selected_items(items, true)
 }
