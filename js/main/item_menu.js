@@ -95,6 +95,7 @@ App.show_item_menu = async (args = {}) => {
     App.item_menu_item(group_items, `rename_group`, {item: args.item, short: true})
     App.item_menu_item(group_items, `show_group`, {item: args.item, short: true})
     App.item_menu_item(group_items, `filter_group`, {item: args.item, short: true})
+    App.item_menu_item(group_items, `select_group`, {item: args.item, short: true})
     App.item_menu_item(group_items, `close_group`, {item: args.item, short: true})
 
     items.push({
