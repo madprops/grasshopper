@@ -888,6 +888,18 @@ App.check_selected = (mode) => {
 }
 
 App.toggle_selected_items = (items, what) => {
+  if (!items || !items.length) {
+    return
+  }
+
+  App.deselect_all(items[0].mode)
+
+  App.select_item({
+    item: items[0],
+    scroll: `nearest_smooth`,
+    check_auto_scroll: true,
+  })
+
   for (let item of items) {
     App.toggle_selected({item, what})
   }
