@@ -765,7 +765,12 @@ App.filter_check = (args) => {
       }
     }
     else if (args.filter_mode === `group`) {
-      match = args.item.group === args.f_value_int
+      if (args.f_value === `all`) {
+        match = App.is_grouped(args.item)
+      }
+      else {
+        match = args.item.group === args.f_value_int
+      }
     }
     else if (args.filter_mode === `tag`) {
       if (args.f_value === `all`) {
