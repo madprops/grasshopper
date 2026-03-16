@@ -842,5 +842,5 @@ App.select_color_tabs = () => {
 }
 
 App.show_color_tabs = () => {
-  App.show_tab_list(`color_all`, args.e)
+  App.show_tab_list(`color_all`)
 }
