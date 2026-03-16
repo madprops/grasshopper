@@ -390,6 +390,26 @@ App.filter_tag_pick = (item, e) => {
   App.show_context({items, e})
 }
 
+App.select_tag_pick = (item, e) => {
+  if (!App.tagged(item)) {
+    return
+  }
+
+  let items = []
+
+  for (let tag of App.tags(item)) {
+    items.push({
+      icon: App.get_setting(`tags_icon`),
+      text: tag,
+      action: () => {
+        App.select_tag(tag)
+      },
+    })
+  }
+
+  App.show_context({items, e})
+}
+
 App.get_tag_items = (mode, show = false) => {
   function fav_sort(a, b) {
     let ai = App.tag_history.indexOf(a)

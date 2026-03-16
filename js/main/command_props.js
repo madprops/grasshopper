@@ -4329,6 +4329,18 @@ App.setup_commands = () => {
       info: `Filter by picking a tag from the current item`,
     },
     {
+      name: `Select Tag`,
+      cmd: `select_tag`,
+      modes: [`items`],
+      some_tags: true,
+      item: true,
+      icon: tags_icon,
+      action: (args) => {
+        App.select_tag_pick(args.item, args.e)
+      },
+      info: `Select by picking a tag from the current item`,
+    },
+    {
       name: `Filter Tag Menu`,
       short_name: `Tags`,
       cmd: `show_filter_tag_menu`,
