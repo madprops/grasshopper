@@ -1813,7 +1813,6 @@ App.setup_commands = () => {
       cmd: `copy_item_url`,
       modes: [`items`],
       item: true,
-      single: true,
       icon: clipboard_icon,
       action: (args) => {
         App.copy_url(args.item)
@@ -1826,7 +1825,6 @@ App.setup_commands = () => {
       cmd: `copy_item_title`,
       modes: [`items`],
       item: true,
-      single: true,
       icon: clipboard_icon,
       action: (args) => {
         App.copy_title(args.item)
@@ -2842,7 +2840,6 @@ App.setup_commands = () => {
       cmd: `insert_header`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: header_icon,
       action: (args) => {
         App.insert_header({item: args.item})
@@ -2855,7 +2852,6 @@ App.setup_commands = () => {
       cmd: `insert_header_top`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: header_icon,
       action: (args) => {
         App.insert_header({item: args.item, position: `top`})
@@ -2868,7 +2864,6 @@ App.setup_commands = () => {
       cmd: `insert_header_bottom`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: header_icon,
       action: (args) => {
         App.insert_header({item: args.item, position: `bottom`})
@@ -2881,7 +2876,6 @@ App.setup_commands = () => {
       cmd: `insert_subheader`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: subheader_icon,
       action: (args) => {
         App.insert_header({item: args.item, full: false})
@@ -2894,7 +2888,6 @@ App.setup_commands = () => {
       cmd: `insert_subheader_top`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: header_icon,
       action: (args) => {
         App.insert_header({item: args.item, full: false, position: `top`})
@@ -2907,7 +2900,6 @@ App.setup_commands = () => {
       cmd: `insert_subheader_bottom`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: subheader_icon,
       action: (args) => {
         App.insert_header({item: args.item, full: false, position: `bottom`})
@@ -2920,7 +2912,6 @@ App.setup_commands = () => {
       cmd: `upgrade_zone`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: header_icon,
       action: (args) => {
         App.upgrade_zone(args.item)
@@ -2933,7 +2924,6 @@ App.setup_commands = () => {
       cmd: `downgrade_zone`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: subheader_icon,
       action: (args) => {
         App.downgrade_zone(args.item)
@@ -3996,7 +3986,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.select_group(args.item)
       },
-      info: `Select the group of a header tab`,
+      info: `Select tabs with the same group`,
     },
     {
       name: `Close Group`,
@@ -4071,7 +4061,6 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_edits: true,
-      single: true,
       icon: edited_icon,
       action: (args) => {
         App.show_edits_info(args.item)
@@ -4098,7 +4087,6 @@ App.setup_commands = () => {
       cmd: `filter_domain`,
       modes: [`items`],
       item: true,
-      single: true,
       some_no_header: true,
       some_hostname: true,
       icon: filter_icon,
@@ -4112,7 +4100,6 @@ App.setup_commands = () => {
       cmd: `show_same_domain`,
       modes: [`items`],
       item: true,
-      single: true,
       some_no_header: true,
       some_hostname: true,
       icon: filter_icon,
@@ -4126,7 +4113,6 @@ App.setup_commands = () => {
       cmd: `filter_title`,
       modes: [`items`],
       item: true,
-      single: true,
       icon: filter_icon,
       action: (args) => {
         App.filter_title(args.item)
@@ -4138,7 +4124,6 @@ App.setup_commands = () => {
       cmd: `show_same_title`,
       modes: [`items`],
       item: true,
-      single: true,
       icon: filter_icon,
       action: (args) => {
         App.show_tab_list(`title`, args.e, args.item)
@@ -4151,7 +4136,6 @@ App.setup_commands = () => {
       cmd: `filter_node_tabs`,
       modes: [`tabs`],
       item: true,
-      single: true,
       some_nodes: true,
       icon: node_icon,
       action: (args) => {
@@ -4165,7 +4149,6 @@ App.setup_commands = () => {
       cmd: `show_node_tabs`,
       modes: [`tabs`],
       item: true,
-      single: true,
       some_nodes: true,
       icon: node_icon,
       action: (args) => {
@@ -4179,7 +4162,6 @@ App.setup_commands = () => {
       cmd: `show_parent_tab`,
       modes: [`tabs`],
       item: true,
-      single: true,
       some_parent: true,
       icon: parent_icon,
       action: (args) => {
@@ -4193,7 +4175,6 @@ App.setup_commands = () => {
       cmd: `close_node_tabs`,
       modes: [`tabs`],
       item: true,
-      single: true,
       some_nodes: true,
       icon: close_icon,
       action: (args) => {
@@ -4207,7 +4188,6 @@ App.setup_commands = () => {
       cmd: `close_parent_tab`,
       modes: [`tabs`],
       item: true,
-      single: true,
       some_parent: true,
       icon: close_icon,
       action: (args) => {
@@ -4221,7 +4201,6 @@ App.setup_commands = () => {
       cmd: `focus_parent_tab`,
       modes: [`tabs`],
       item: true,
-      single: true,
       some_parent: true,
       icon: parent_icon,
       action: (args) => {
@@ -4257,7 +4236,6 @@ App.setup_commands = () => {
       cmd: `show_node_tab_siblings`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: node_icon,
       action: (args) => {
         App.show_tab_list(`siblings`, args.e, args.item)
@@ -4270,7 +4248,6 @@ App.setup_commands = () => {
       cmd: `filter_node_tab_siblings`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: node_icon,
       action: (args) => {
         App.filter_node_tab_siblings(args.item)
@@ -4282,7 +4259,6 @@ App.setup_commands = () => {
       cmd: `filter_color`,
       modes: [`items`],
       item: true,
-      single: true,
       color: true,
       icon: colors_icon,
       action: (args) => {
@@ -4346,7 +4322,6 @@ App.setup_commands = () => {
       modes: [`items`],
       some_tags: true,
       item: true,
-      single: true,
       icon: tags_icon,
       action: (args) => {
         App.filter_tag_pick(args.item, args.e)
@@ -4419,7 +4394,6 @@ App.setup_commands = () => {
       cmd: `filter_tab_container`,
       modes: [`tabs`],
       icon: container_icon,
-      single: true,
       some_container: true,
       action: (args) => {
         App.filter_same_container(args.item)
@@ -4948,7 +4922,6 @@ App.setup_commands = () => {
       short_name: `Rule`,
       cmd: `edit_domain_rule`,
       modes: [`items`],
-      single: true,
       some_no_header: true,
       icon: notepad_icon,
       action: (args) => {

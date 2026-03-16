@@ -52,9 +52,11 @@ App.insert_header = async (args = {}) => {
     }})
   }
 
+  App.select_item({item: args.item})
+
   if (header) {
     if (args.full) {
-      App.edit_tab_split({item: header, which: `top`})
+      App.edit_tab_split({item: header, which: `top`, single: true})
     }
 
     if (!args.title && (App.get_setting(`random_zone_titles`) || args.random_title)) {
