@@ -385,10 +385,10 @@ App.get_color_items = (mode, action = `filter`) => {
             App.filter_color({mode, id: color.id})
           }
           else if (action === `show`) {
-            App.show_tab_list(`color_${color.id}`, args.e)
+            App.show_tab_list(`color_${color.id}`)
           }
           else if (action === `select`) {
-            App.select_color(color.id, args.e)
+            App.select_color(color.id)
           }
         },
         middle_action: () => {
