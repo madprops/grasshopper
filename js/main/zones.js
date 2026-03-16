@@ -56,7 +56,7 @@ App.insert_header = async (args = {}) => {
 
   if (header) {
     if (args.full) {
-      App.edit_tab_split({item: header, which: `top`, single: true})
+      App.edit_tab_split({item: header, which: `top`})
     }
 
     if (!args.title && (App.get_setting(`random_zone_titles`) || args.random_title)) {
@@ -278,10 +278,18 @@ App.edit_tab_split = (args = {}) => {
   let def_args = {
     which: `top`,
     prompt_title: true,
+    single: false,
   }
 
   App.def_args(def_args, args)
-  let active = App.get_active_items({mode: args.item.mode, item: args.item})
+  let active
+
+  if (args.single) {
+    active = [args.item]
+  }
+  else {
+    active = App.get_active_items({mode: args.item.mode, item: args.item})
+  }
 
   if (!active.length) {
     return
@@ -725,7 +733,7 @@ App.get_zone_by_title = (title) => {
 }
 
 App.upgrade_zone = (item) => {
-  App.edit_tab_split({item, which: `top`})
+  App.edit_tab_split({item, which: `top`, single: true})
 }
 
 App.downgrade_zone = (item) => {
