@@ -627,10 +627,7 @@ App.get_icon_items = (mode, action = `filter`) => {
           }
         },
         middle_action: (e) => {
-          if (show) {
-            //
-          }
-          else {
+          if (action === `filter`) {
             App.filter_icon({mode, icon, from: App.refine_string})
           }
         },
