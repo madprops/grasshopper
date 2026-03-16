@@ -785,9 +785,9 @@ App.filter_color = (args = {}) => {
   }
 
   App.complex_filter({
-    mode: args.mode,
     value,
     text,
+    mode: args.mode,
     short: `color`,
     full: `Colors`,
     toggle: args.toggle,

@@ -562,3 +562,37 @@ App.do_select_group = (group) => {
 App.select_all_groups = () => {
   App.do_select_group(``)
 }
+
+App.filter_group = async (args = {}) => {
+  let def_args = {
+    toggle: false,
+    value:  `all`,
+  }
+
+  App.def_args(def_args, args)
+  let value, text
+
+  if (args.item && App.is_grouped(args.item)) {
+    let group = await App.get_group(args.item)
+    value = group.id
+    text = group.title
+  }
+  else if (args.group) {
+    value = args.group.id
+    text = args.group.title
+  }
+  else {
+    value = args.value
+    text = args.value
+  }
+
+  App.complex_filter({
+    value,
+    text,
+    mode: args.mode,
+    short: `group`,
+    full: `Groups`,
+    toggle: true,
+    from: args.from,
+  })
+}
