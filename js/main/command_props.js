@@ -342,6 +342,30 @@ App.setup_commands = () => {
     info: `Show the Filter Color Menu`,
   })
 
+  color_filters.push({
+    name: `Show Color Menu`,
+    short_name: `Colors`,
+    cmd: `show_show_color_menu`,
+    modes: [`items`],
+    icon: colors_icon,
+    action: (args) => {
+      App.show_show_color_menu(args.mode, args.e)
+    },
+    info: `Show the Show Color Menu to show`,
+  })
+
+  color_filters.push({
+    name: `Select Color Menu`,
+    short_name: `Colors`,
+    cmd: `show_select_color_menu`,
+    modes: [`items`],
+    icon: colors_icon,
+    action: (args) => {
+      App.show_select_color_menu(args.mode, args.e)
+    },
+    info: `Show the Filter Color Menu to select`,
+  })
+
   color_changers.push({
     name: `Color Menu`,
     short_name: `Color`,

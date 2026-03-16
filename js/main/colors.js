@@ -343,7 +343,7 @@ App.show_color_menu = (item, e, show_title = true) => {
   App.show_context({items, e, title, title_icon, element, compact})
 }
 
-App.get_color_items = (mode) => {
+App.get_color_items = (mode, action = `filter`) => {
   let items = []
   let count = App.get_active_colors(mode)
 
@@ -353,7 +353,15 @@ App.get_color_items = (mode) => {
         icon: App.settings_icons.colors,
         text: `All`,
         action: () => {
-          App.filter_color({mode, id: `all`})
+          if (action === `filter`) {
+            App.filter_color({mode, id: `all`})
+          }
+          else if (action === `show`) {
+            App.show_color_tabs()
+          }
+          else if (action === `select`) {
+            App.select_color_tabs()
+          }
         },
         middle_action: () => {
           App.filter_color({mode, id: `all`, from: App.refine_string})
@@ -373,7 +381,15 @@ App.get_color_items = (mode) => {
         icon,
         text: name,
         action: () => {
-          App.filter_color({mode, id: color.id})
+          if (action === `filter`) {
+            App.filter_color({mode, id: color.id})
+          }
+          else if (action === `show`) {
+            App.show_tab_list(`color_${color.id}`, args.e)
+          }
+          else if (action === `select`) {
+            App.select_color(color.id, args.e)
+          }
         },
         middle_action: () => {
           App.filter_color({mode, id: color.id, from: App.refine_string})
@@ -808,4 +824,23 @@ App.is_color_group = (item) => {
 App.select_color = (id, e) => {
   let items = App.get_color_tabs(id)
   App.toggle_selected_items(items, true)
+}
+
+App.show_show_color_menu = (mode, e) => {
+  let items = App.get_color_items(mode, `filter`)
+  App.show_context({items, e})
+}
+
+App.show_select_color_menu = (mode, e) => {
+  let items = App.get_color_items(mode, `select`)
+  App.show_context({items, e})
+}
+
+App.select_color_tabs = () => {
+  let items = App.get_color_tabs()
+  App.toggle_selected_items(items, true)
+}
+
+App.show_color_tabs = () => {
+  App.show_tab_list(`color_all`, args.e)
 }

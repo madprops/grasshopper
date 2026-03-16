@@ -63,15 +63,23 @@ App.show_tab_list = async (what, e, item) => {
   }
   else if (what.startsWith(`color_`)) {
     let color_id = what.split(`_`)[1]
-    let color = App.get_color_by_id(color_id)
 
-    if (!color) {
-      return
+    if (color_id === `all`) {
+      tabs = App.get_color_tabs()
+      title = `All`
+      title_icon = App.color_picker_icon
     }
+    else {
+      let color = App.get_color_by_id(color_id)
 
-    tabs = App.get_color_tabs(color_id)
-    title = color.name
-    title_icon = App.color_icon(color_id)
+      if (!color) {
+        return
+      }
+
+      tabs = App.get_color_tabs(color_id)
+      title = color.name
+      title_icon = App.color_icon(color_id)
+    }
   }
   else if (what.startsWith(`colors`)) {
     tabs = App.get_color_tabs()
