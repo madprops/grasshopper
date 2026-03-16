@@ -4788,7 +4788,7 @@ App.setup_commands = () => {
       info: `Filter tabs that have containers`,
     },
     {
-      name: `Filter Containers`,
+      name: `Filter Container Menu`,
       short_name: `Containers`,
       cmd: `show_filter_container_menu`,
       modes: [`tabs`],
@@ -4797,6 +4797,28 @@ App.setup_commands = () => {
         App.show_filter_container_menu(args.mode, args.e)
       },
       info: `Show the Filter Container Menu`,
+    },
+    {
+      name: `Show Container Menu`,
+      short_name: `Containers`,
+      cmd: `show_show_container_menu`,
+      modes: [`tabs`],
+      icon: container_icon,
+      action: (args) => {
+        App.show_show_container_menu(args.mode, args.e)
+      },
+      info: `Show the Show Container Menu`,
+    },
+    {
+      name: `Select Container Menu`,
+      short_name: `Containers`,
+      cmd: `show_select_container_menu`,
+      modes: [`tabs`],
+      icon: container_icon,
+      action: (args) => {
+        App.show_select_container_menu(args.mode, args.e)
+      },
+      info: `Show the Select Container Menu`,
     },
     {
       name: `Open In Container`,

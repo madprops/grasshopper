@@ -9,9 +9,9 @@ App.get_contextual_identity = async (tab) => {
   }
 }
 
-App.get_container_tabs = (name) => {
+App.get_container_tabs = (name = ``) => {
   let items = App.get_items(`tabs`)
-  return items.filter(x => x.container_name === name)
+  return items.filter(x => x.container_name && (!name || x.container_name === name))
 }
 
 App.get_all_container_tabs = () => {
@@ -81,14 +81,28 @@ App.filter_same_container = (item) => {
   App.filter_container({mode: item.mode, container: item.container_name})
 }
 
-App.show_filter_container_menu = (mode, e, show = false) => {
-  let items = App.get_container_items(mode, show)
+App.show_filter_container_menu = (mode, e) => {
+  let items = App.get_container_items(mode)
   let title_icon = App.get_setting(`container_icon`)
   let compact = App.get_setting(`compact_container_menu`)
   App.show_context({items, e, title: `Containers`, title_icon, compact})
 }
 
-App.get_container_items = (mode, show) => {
+App.show_show_container_menu = (mode, e) => {
+  let items = App.get_container_items(mode, `show`)
+  let title_icon = App.get_setting(`container_icon`)
+  let compact = App.get_setting(`compact_container_menu`)
+  App.show_context({items, e, title: `Containers`, title_icon, compact})
+}
+
+App.show_select_container_menu = (mode, e) => {
+  let items = App.get_container_items(mode, `select`)
+  let title_icon = App.get_setting(`container_icon`)
+  let compact = App.get_setting(`compact_container_menu`)
+  App.show_context({items, e, title: `Containers`, title_icon, compact})
+}
+
+App.get_container_items = (mode, action = `filter`) => {
   let items = []
   let containers = []
 
@@ -103,18 +117,24 @@ App.get_container_items = (mode, show) => {
   if (containers.length) {
     let icon = App.get_setting(`container_icon`)
 
-    if (!show) {
-      items.push({
-        icon,
-        text: `All`,
-        action: () => {
+    items.push({
+      icon,
+      text: `All`,
+      action: () => {
+        if (action === `filter`) {
           App.filter_cmd(mode, `filter_tab_containers_all`, `containers_menu`)
-        },
-        middle_action: () => {
-          App.filter_container({mode, container: `all`, from: App.refine_string})
-        },
-      })
-    }
+        }
+        else if (action === `show`) {
+          App.show_tab_list(`container_allthecontainers`)
+        }
+        else if (action === `select`) {
+          App.select_all_containers()
+        }
+      },
+      middle_action: () => {
+        App.filter_container({mode, container: `all`, from: App.refine_string})
+      },
+    })
 
     for (let container of containers) {
       let icon = App.color_icon_square(App.container_data[container].color)
@@ -123,18 +143,18 @@ App.get_container_items = (mode, show) => {
         icon,
         text: container,
         action: (e) => {
-          if (show) {
-            App.show_tab_list(`container_${container}`, e)
-          }
-          else {
+          if (action === `filter`) {
             App.filter_container({mode, container})
+          }
+          else if (action === `show`) {
+            App.show_tab_list(`container_${container}`)
+          }
+          else if (action === `select`) {
+            App.do_select_container(container)
           }
         },
         middle_action: (e) => {
-          if (show) {
-            //
-          }
-          else {
+          if (action === `filter`) {
             App.filter_container({mode, container, from: App.refine_string})
           }
         },
@@ -245,6 +265,14 @@ App.open_in_tab_container = async (item, e, name = ``) => {
 }
 
 App.select_container = (item) => {
-  let items = App.get_container_tabs(item.container_name)
+  App.do_select_container(item.container_name)
+}
+
+App.do_select_container = (name) => {
+  let items = App.get_container_tabs(name)
   App.toggle_selected_items(items, true)
+}
+
+App.select_all_containers = () => {
+  App.do_select_container(``)
 }

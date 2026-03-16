@@ -50,9 +50,17 @@ App.show_tab_list = async (what, e, item) => {
   }
   else if (what.startsWith(`container_`)) {
     let name = what.split(`_`)[1]
-    tabs = App.get_container_tabs(name)
-    title = name
-    title_icon = App.color_icon_square(App.container_data[name].color)
+
+    if (name === `allthecontainers`) {
+      tabs = App.get_container_tabs()
+      title = `Containers`
+      title_icon = App.container_icon
+    }
+    else {
+      tabs = App.get_container_tabs(name)
+      title = name
+      title_icon = App.color_icon_square(App.container_data[name].color)
+    }
   }
   else if (what.startsWith(`group_`)) {
     let id = parseInt(what.split(`_`)[1])
