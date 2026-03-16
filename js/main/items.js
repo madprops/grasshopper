@@ -887,6 +887,12 @@ App.check_selected = (mode) => {
   App.check_selected_debouncer.call(mode)
 }
 
+App.toggle_selected_items = (items, what) => {
+  for (let item of items) {
+    App.toggle_selected({item, what: what})
+  }
+}
+
 App.do_check_selected = (mode) => {
   App.check_selected_debouncer.cancel()
   let num = App.selected_items(mode).length

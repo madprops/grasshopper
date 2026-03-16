@@ -3131,7 +3131,6 @@ App.setup_commands = () => {
       cmd: `close_group`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: group_icon,
       action: (args) => {
         App.close_group(args.item)
@@ -3970,7 +3969,6 @@ App.setup_commands = () => {
       cmd: `select_header_group`,
       modes: [`tabs`],
       item: true,
-      single: true,
       some_header: true,
       icon: header_icon,
       action: (args) => {
@@ -3984,7 +3982,6 @@ App.setup_commands = () => {
       cmd: `close_header_group`,
       modes: [`tabs`],
       item: true,
-      single: true,
       some_header: true,
       icon: header_icon,
       action: (args) => {
@@ -4282,7 +4279,6 @@ App.setup_commands = () => {
       cmd: `filter_group`,
       modes: [`items`],
       item: true,
-      single: true,
       icon: group_icon,
       action: (args) => {
         App.filter_group({mode: args.mode, item: args.item, from: args.from})
@@ -4295,7 +4291,6 @@ App.setup_commands = () => {
       cmd: `show_group`,
       icon: group_icon,
       item: true,
-      single: true,
       action: (args) => {
         App.show_group(args.item, args.e)
       },
@@ -4310,6 +4305,18 @@ App.setup_commands = () => {
         App.show_filter_group_menu(args.mode, args.e, true)
       },
       info: `Pick a group to show`,
+    },
+    {
+      name: `Select Group`,
+      short_name: `Select`,
+      cmd: `select_group`,
+      modes: [`items`],
+      item: true,
+      icon: group_icon,
+      action: (args) => {
+        App.select_group(args.mode, args.item, args.from)
+      },
+      info: `Select same group`,
     },
     {
       name: `Filter Tag`,
@@ -4779,7 +4786,6 @@ App.setup_commands = () => {
       cmd: `rename_group`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: group_icon,
       action: (args) => {
         App.rename_group(args.item)

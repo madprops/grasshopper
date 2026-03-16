@@ -514,3 +514,12 @@ App.group_move_call = async (id, obj) => {
 App.group_query_call = async (obj) => {
   return await App.browser().tabGroups.query(obj)
 }
+
+App.select_group = async (mode, item, from) => {
+  if (!App.is_grouped(item)) {
+    return
+  }
+
+  let items = App.get_group_tabs(item.group)
+  App.toggle_selected_items(items, true)
+}
