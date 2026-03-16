@@ -357,7 +357,7 @@ App.get_color_items = (mode, action = `filter`) => {
             App.filter_color({mode, id: `all`})
           }
           else if (action === `show`) {
-            App.show_color_tabs()
+            App.show_tab_list(`color_allthecolors`)
           }
           else if (action === `select`) {
             App.select_color_tabs()
@@ -826,6 +826,11 @@ App.select_color = (id, e) => {
   App.toggle_selected_items(items, true)
 }
 
+App.show_filter_color_menu = (mode, e) => {
+  let items = App.get_color_items(mode, `filter`)
+  App.show_context({items, e})
+}
+
 App.show_show_color_menu = (mode, e) => {
   let items = App.get_color_items(mode, `show`)
   App.show_context({items, e})
@@ -839,8 +844,4 @@ App.show_select_color_menu = (mode, e) => {
 App.select_color_tabs = () => {
   let items = App.get_color_tabs()
   App.toggle_selected_items(items, true)
-}
-
-App.show_color_tabs = () => {
-  App.show_tab_list(`color_all`)
 }

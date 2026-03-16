@@ -1611,11 +1611,6 @@ App.clean_filter = (s, lower_case = false) => {
   return s
 }
 
-App.show_filter_color_menu = (mode, e) => {
-  let items = App.get_color_items(mode, `filter`)
-  App.show_context({items, e})
-}
-
 App.toggle_filter = (mode, cmd, refine = false) => {
   if (App[`${mode}_filter_mode`] === cmd) {
     App.filter_all(mode)

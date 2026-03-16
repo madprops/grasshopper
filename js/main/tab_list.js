@@ -64,7 +64,7 @@ App.show_tab_list = async (what, e, item) => {
   else if (what.startsWith(`color_`)) {
     let color_id = what.split(`_`)[1]
 
-    if (color_id === `all`) {
+    if (color_id === `allthecolors`) {
       tabs = App.get_color_tabs()
       title = `All`
       title_icon = App.color_picker_icon
@@ -88,14 +88,22 @@ App.show_tab_list = async (what, e, item) => {
   }
   else if (what.startsWith(`tag_`)) {
     let tag = what.split(`_`)[1]
-    tabs = App.get_tag_tabs(tag)
-    title = tag
-    title_icon = App.get_setting(`tags_icon`)
+
+    if (tag === `allthetags`) {
+      tabs = App.get_tag_tabs()
+      title = `Tags`
+      title_icon = App.get_setting(`tags_icon`)
+    }
+    else {
+      tabs = App.get_tag_tabs(tag)
+      title = tag
+      title_icon = App.get_setting(`tags_icon`)
+    }
   }
   else if (what.startsWith(`icon_`)) {
     let icon = what.split(`_`)[1]
 
-    if (icon === `all`) {
+    if (icon === `alltheicons`) {
       tabs = App.get_icon_tabs()
       title = `Icon`
       title_icon = App.bot_icon

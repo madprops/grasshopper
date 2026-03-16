@@ -601,7 +601,7 @@ App.get_icon_items = (mode, action = `filter`) => {
           App.filter_icon({mode, icon: `all`})
         }
         else if (action === `show`) {
-          App.show_tab_list(`icon_all`, e)
+          App.show_tab_list(`icon_alltheicons`, e)
         }
         else if (action === `select`) {
           App.select_all_icons()
@@ -1307,7 +1307,4 @@ App.do_select_same_icon = (icon) => {
 
 App.select_all_icons = () => {
   App.do_select_same_icon(``)
-}
-
-App.show_all_icons = () => {
 }

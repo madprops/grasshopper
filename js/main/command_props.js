@@ -4373,7 +4373,29 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_filter_tag_menu(args.mode, args.e)
       },
-      info: `Show the filter tag menu`,
+      info: `Show the Filter Tag Menu`,
+    },
+    {
+      name: `Show Tag Menu`,
+      short_name: `Tags`,
+      cmd: `show_show_filter_tag_menu`,
+      modes: [`items`],
+      icon: tags_icon,
+      action: (args) => {
+        App.show_show_tag_menu(args.mode, args.e)
+      },
+      info: `Show the Show Tag Menu`,
+    },
+    {
+      name: `Select Tag Menu`,
+      short_name: `Tags`,
+      cmd: `show_select_tag_menu`,
+      modes: [`items`],
+      icon: tags_icon,
+      action: (args) => {
+        App.show_select_tag_menu(args.mode, args.e)
+      },
+      info: `Show the Select Tag Menu`,
     },
     {
       name: `Pick Tag`,

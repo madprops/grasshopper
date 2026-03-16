@@ -410,7 +410,7 @@ App.select_tag_pick = (item, e) => {
   App.show_context({items, e})
 }
 
-App.get_tag_items = (mode, show = false) => {
+App.get_tag_items = (mode, action = `filter`) => {
   function fav_sort(a, b) {
     let ai = App.tag_history.indexOf(a)
     let bi = App.tag_history.indexOf(b)
@@ -441,36 +441,42 @@ App.get_tag_items = (mode, show = false) => {
     tags.sort(fav_sort)
     let icon = App.get_setting(`tags_icon`)
 
-    if (!show) {
-      items.push({
-        icon,
-        text: `All`,
-        action: () => {
+    items.push({
+      icon,
+      text: `All`,
+      action: () => {
+        if (action === `filter`) {
           App.filter_tag({mode, tag: `all`})
-        },
-        middle_action: () => {
-          App.filter_tag({mode, tag: `all`, from: App.refine_string})
-        },
-      })
-    }
+        }
+        else if (action === `show`) {
+          App.show_tab_list(`tag_allthetags`, e)
+        }
+        else if (action === `select`) {
+          App.select_all_tags()
+        }
+      },
+      middle_action: () => {
+        App.filter_tag({mode, tag: `all`, from: App.refine_string})
+      },
+    })
 
     for (let tag of tags.slice(0, App.max_tag_picks)) {
       items.push({
         icon,
         text: tag,
         action: (e) => {
-          if (show) {
+          if (action === `filter`) {
+            App.filter_tag({mode, tag})
+          }
+          else if (action === `show`) {
             App.show_tab_list(`tag_${tag}`, e)
           }
-          else {
-            App.filter_tag({mode, tag})
+          else if (action === `select`) {
+            App.select_tag(tag)
           }
         },
         middle_action: (e) => {
-          if (show) {
-            //
-          }
-          else {
+          if (action === `filter`) {
             App.filter_tag({mode, tag, from: App.refine_string})
           }
         },
@@ -495,7 +501,19 @@ App.tagged = (item) => {
 }
 
 App.show_filter_tag_menu = (mode, e, show = false) => {
-  let items = App.get_tag_items(mode, show)
+  let items = App.get_tag_items(mode)
+  let title_icon = App.get_setting(`tags_icon`)
+  App.show_context({items, e, title: `Tags`, title_icon})
+}
+
+App.show_show_tag_menu = (mode, e, show = false) => {
+  let items = App.get_tag_items(mode, `show`)
+  let title_icon = App.get_setting(`tags_icon`)
+  App.show_context({items, e, title: `Tags`, title_icon})
+}
+
+App.show_select_tag_menu = (mode, e, show = false) => {
+  let items = App.get_tag_items(mode, `select`)
   let title_icon = App.get_setting(`tags_icon`)
   App.show_context({items, e, title: `Tags`, title_icon})
 }
@@ -512,14 +530,14 @@ App.get_tagged_items = (mode) => {
   return items
 }
 
-App.get_tag_tabs = (tag, rule = true) => {
+App.get_tag_tabs = (tag = ``, rule = true) => {
   let tabs = []
 
   for (let item of App.get_items(`tabs`)) {
     let tags = App.get_tags(item, rule)
 
     if (tags.length) {
-      if (tags.includes(tag)) {
+      if (!tag || tags.includes(tag)) {
         tabs.push(item)
       }
     }
@@ -549,4 +567,8 @@ App.add_tag_string = (item, tags) => {
 App.select_tag = (tag) => {
   let items = App.get_tag_tabs(tag)
   App.toggle_selected_items(items, true)
+}
+
+App.select_all_tags = () => {
+  App.select_tag(``)
 }
