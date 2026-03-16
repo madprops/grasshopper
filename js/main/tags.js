@@ -449,7 +449,7 @@ App.get_tag_items = (mode, action = `filter`) => {
           App.filter_tag({mode, tag: `all`})
         }
         else if (action === `show`) {
-          App.show_tab_list(`tag_allthetags`, e)
+          App.show_tab_list(`tag_allthetags`)
         }
         else if (action === `select`) {
           App.select_all_tags()

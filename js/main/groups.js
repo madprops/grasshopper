@@ -325,7 +325,7 @@ App.get_group_items = async (mode, action = `filter`) => {
           App.filter_group({mode})
         }
         else if (action === `show`) {
-          App.show_tab_list(`group_allthegroups`, e)
+          App.show_tab_list(`group_allthegroups`)
         }
         else if (action === `select`) {
           App.select_all_groups()
