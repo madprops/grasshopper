@@ -291,7 +291,6 @@ App.setup_commands = () => {
       info: `Remove color from all tabs (${color.name})`,
     })
 
-    icon = App.color_icon(color.id)
     name = `Close ${color.name}`
 
     color_closers.push({
@@ -448,7 +447,6 @@ App.setup_commands = () => {
   }
 
   let show_modes = []
-  let mode_menus = []
 
   for (let mode of App.modes) {
     let icon = App.mode_icon(mode)
@@ -600,7 +598,7 @@ App.setup_commands = () => {
   for (let [i, combo] of App.get_setting(`command_combos`).entries()) {
     cmd_combos.push({
       name: combo.name,
-      short: short_name(combo.name),
+      short_name: short_name(combo.name),
       cmd: `run_command_combo_${combo._id_}`,
       icon: combo.icon || combo_icon,
       action: async (args) => {
@@ -615,7 +613,7 @@ App.setup_commands = () => {
   for (let [i, cmd] of App.get_setting(`custom_commands`).entries()) {
     custom_commands.push({
       name: cmd.name,
-      short: short_name(cmd.name),
+      short_name: short_name(cmd.name),
       cmd: `run_custom_command_${cmd._id_}`,
       icon: cmd.icon || command_icon,
       action: async (args) => {
@@ -630,7 +628,7 @@ App.setup_commands = () => {
   for (let [i, template] of App.get_setting(`templates`).entries()) {
     templates.push({
       name: template.name,
-      short: short_name(template.name),
+      short_name: short_name(template.name),
       cmd: `apply_template_${template._id_}`,
       modes: [`tabs`],
       icon: template.cmd_icon || template_icon,
@@ -1729,7 +1727,7 @@ App.setup_commands = () => {
     },
     {
       name: `Parent Folder`,
-      short_name: `Paret`,
+      short_name: `Parent`,
       cmd: `go_to_bookmarks_parent_folder`,
       modes: [`bookmarks`],
       icon: bookmarks_icon,
@@ -1917,9 +1915,6 @@ App.setup_commands = () => {
       },
       info: `Unfocus the filter input`,
     },
-
-    ...mode_menus,
-
     {
       name: `Actions Menu`,
       short_name: `Actions`,
