@@ -44,6 +44,14 @@ App.tab_container_menu_items = (item, e) => {
   })
 
   items.push({
+    text: `Select`,
+    icon: App.color_icon_square(item.container_color),
+    action: () => {
+      App.select_container(item)
+    },
+  })
+
+  items.push({
     text: `Open`,
     icon: App.get_setting(`container_icon`),
     action: () => {
@@ -234,4 +242,9 @@ App.open_in_tab_container = async (item, e, name = ``) => {
   let title_icon = App.get_setting(`container_icon`)
   let compact = App.get_setting(`compact_container_menu`)
   App.show_context({items, e, title, title_icon, compact})
+}
+
+App.select_container = (item) => {
+  let items = App.get_container_tabs(item.container_name)
+  App.toggle_selected_items(items, true)
 }
