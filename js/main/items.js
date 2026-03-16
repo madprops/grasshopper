@@ -889,7 +889,7 @@ App.check_selected = (mode) => {
 
 App.toggle_selected_items = (items, what) => {
   for (let item of items) {
-    App.toggle_selected({item, what: what})
+    App.toggle_selected({item, what})
   }
 }
 
