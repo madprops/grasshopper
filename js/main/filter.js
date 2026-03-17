@@ -1820,19 +1820,18 @@ App.create_filter_button = (mode) => {
   add_menu(`color`)
   add_menu(`tag`)
   add_menu(`icon`)
-  add_menu(`group`)
-
-  fmodes.push({cmd: `filter_root_tabs`})
-  fmodes.push({cmd: `filter_tab_clusters`})
 
   fmodes.push(separator())
 
   fmodes.push({cmd: `filter_https_tabs`})
   fmodes.push({cmd: `filter_http_tabs`})
   fmodes.push({cmd: `filter_file_tabs`})
+  fmodes.push({cmd: `filter_tab_clusters`})
 
   if (mode === `tabs`) {
     fmodes.push(separator())
+    add_menu(`group`)
+    fmodes.push({cmd: `filter_root_tabs`})
     add_menu(`container`)
   }
 

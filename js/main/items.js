@@ -892,7 +892,8 @@ App.toggle_selected_items = (items, what) => {
     return
   }
 
-  App.deselect_all(items[0].mode)
+  let mode = items[0].mode
+  App.deselect({mode})
 
   App.select_item({
     item: items[0],
@@ -1043,9 +1044,8 @@ App.select_all = (mode = App.active_mode, toggle = false) => {
   }
 }
 
-App.deselect_all = (mode) => {
+App.deselect_all = (mode, select = `selected`) => {
   let filtered = App.is_filtered(mode)
-  let select = `selected`
 
   if ((mode === `tabs`) && !filtered) {
     select = `active`

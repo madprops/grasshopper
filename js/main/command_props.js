@@ -3233,7 +3233,7 @@ App.setup_commands = () => {
       short_name: `Clusters`,
       cmd: `filter_tab_clusters`,
       icon: cluster_icon,
-      modes: [`tabs`],
+      modes: [`items`],
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
@@ -4463,7 +4463,7 @@ App.setup_commands = () => {
       short_name: `Https`,
       cmd: `filter_https_tabs`,
       icon: https_icon,
-      modes: [`tabs`],
+      modes: [`items`],
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
@@ -4474,7 +4474,7 @@ App.setup_commands = () => {
       short_name: `Http`,
       cmd: `filter_http_tabs`,
       icon: http_icon,
-      modes: [`tabs`],
+      modes: [`items`],
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
@@ -4485,7 +4485,7 @@ App.setup_commands = () => {
       short_name: `Files`,
       cmd: `filter_file_tabs`,
       icon: file_icon,
-      modes: [`tabs`],
+      modes: [`items`],
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
