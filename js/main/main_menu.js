@@ -39,6 +39,7 @@ App.show_main_menu = (mode) => {
 
         App.do_show_mode({mode: m, reuse_filter: false, force: true})
       },
+      info: App.get_mode_info(m),
       selected: m === mode,
     })
   }

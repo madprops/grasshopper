@@ -337,3 +337,28 @@ App.mode_icon = (mode) => {
 App.is_tabs_mode = (mode) => {
   return [`tabs`, `global`].includes(mode)
 }
+
+App.get_mode_info = (mode) => {
+  let info
+
+  if (mode === `tabs`) {
+    info = `These are the tabs from the current window`
+  }
+  else if (mode === `bookmarks`) {
+    info = `These are the saved bookmarks`
+  }
+  else if (mode === `history`) {
+    info = `This is the browsing history`
+  }
+  else if (mode === `closed`) {
+    info = `These are recently closed tabs`
+  }
+  else if (mode === `global`) {
+    info = `These are tabs from all the windows`
+  }
+  else {
+    info = `Show Mode: ${mode}`
+  }
+
+  return info
+}
