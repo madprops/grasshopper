@@ -950,6 +950,17 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.media_modes)
       },
     },
+    view_image_global: {
+      name: `View Image (Global)`,
+      type: `menu`,
+      value: `icon`,
+      info: `What to do when clicking on an image in Global mode`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
+    },
     video_icon: {
       name: `View Video Icon`,
       type: `text_smaller`,
@@ -1025,6 +1036,17 @@ App.build_settings = () => {
       type: `menu`,
       value: `icon`,
       info: `What to do when clicking on a video in Closed mode`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
+    },
+    view_video_global: {
+      name: `View Video (Global)`,
+      type: `menu`,
+      value: `icon`,
+      info: `What to do when clicking on a video in Global mode`,
       separator: true,
       version: 1,
       setup: (key) => {
@@ -1112,6 +1134,17 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.media_modes)
       },
     },
+    view_audio_global: {
+      name: `View Audio (Global)`,
+      type: `menu`,
+      value: `icon`,
+      info: `What to do when clicking on an audio in Global mode`,
+      separator: true,
+      version: 1,
+      setup: (key) => {
+        App.settings_make_menu(key, App.media_modes)
+      },
+    },
   }
 
   add_props()
@@ -1166,9 +1199,18 @@ App.build_settings = () => {
       type: `text_smaller`,
       value: `🔃`,
       no_empty: true,
-      separator: true,
       placeholder: App.icon_placeholder,
       info: `Icon for the Closed mode`,
+      version: 1,
+    },
+    global_mode_icon: {
+      name: `Global Icon`,
+      type: `text_smaller`,
+      value: `🌎`,
+      no_empty: true,
+      separator: true,
+      placeholder: App.icon_placeholder,
+      info: `Icon for the Global mode`,
       version: 1,
     },
 
@@ -1842,6 +1884,14 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Hover Button (Closed)`,
       version: 1,
     },
+    hover_button_menu_global: {
+      name: `Hover Button Menu (Global)`,
+      type: `list`,
+      value: [],
+      separator: true,
+      info: `Menu to show when clicking the Hover Button (Global)`,
+      version: 1,
+    },
 
     ...App.make_mouse_settings({
       what: `hover_button`,
@@ -1914,6 +1964,15 @@ App.build_settings = () => {
       info: `Menu to show when using the Closed Item Menu`,
       version: 1,
     },
+    item_menu_global: {
+      name: `Item Menu (Global)`,
+      type: `list`,
+      value: [],
+      separator: true,
+      data_group: `normal_menus`,
+      info: `Menu to show when using the Global Item Menu`,
+      version: 1,
+    },
     actions_menu: {
       name: `Actions Menu`,
       type: `list`,
@@ -1981,6 +2040,15 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Closed Actions Menu`,
       version: 1,
     },
+    actions_menu_global: {
+      name: `Actions Menu (Global)`,
+      type: `list`,
+      value: [],
+      separator: true,
+      data_group: `normal_menus`,
+      info: `Menu to show when clicking the Global Actions Menu`,
+      version: 1,
+    },
     empty_menu: {
       name: `Empty Menu`,
       type: `list`,
@@ -2037,6 +2105,15 @@ App.build_settings = () => {
       separator: true,
       data_group: `normal_menus`,
       info: `Menu to show when right clicking empty space in Closed mode`,
+      version: 1,
+    },
+    empty_menu_global: {
+      name: `Empty Menu (Global)`,
+      type: `list`,
+      value: [],
+      separator: true,
+      data_group: `normal_menus`,
+      info: `Menu to show when right clicking empty space in Global mode`,
       version: 1,
     },
     extra_menu_mode: {
@@ -2952,6 +3029,15 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
+    favorites_menu_global: {
+      name: `Favorites Menu (Global)`,
+      type: `list`,
+      value: [],
+      data_group: `favorite_menus`,
+      info: `The favorites menu for Global mode`,
+      separator: true,
+      version: 1,
+    },
     favorites_bar_color_enabled: {
       name: `Favorites Bar Color`,
       type: `checkbox`,
@@ -3661,6 +3747,18 @@ App.build_settings = () => {
     }),
 
     ...App.make_mouse_settings({
+      what: `item_global`,
+      title: `Item (Global)`,
+      click: `item_action`,
+      double_click: `item_action`,
+      middle_click: `open_items`,
+      click_press: `none`,
+      middle_click_press: `none`,
+      ctrl_shift_click: `none`,
+      ctrl_shift_middle_click: `none`,
+    }),
+
+    ...App.make_mouse_settings({
       what: `items`,
       title: `Items`,
       wheel_up: `scroll_up`,
@@ -3735,6 +3833,12 @@ App.build_settings = () => {
     ...App.make_mouse_settings({
       what: `empty_closed`,
       title: `Empty (Closed)`,
+      double_click: `show_empty_menu`,
+    }),
+
+    ...App.make_mouse_settings({
+      what: `empty_global`,
+      title: `Empty (Global)`,
       double_click: `show_empty_menu`,
     }),
 

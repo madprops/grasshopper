@@ -104,13 +104,18 @@ App.pre_show_tabs = () => {
   App.tabs_locked = false
 }
 
-App.get_tabs = async () => {
+App.get_tabs = async (all = false) => {
   App.getting(`tabs`)
   App.tabs_to_first = []
   let tabs
 
   try {
-    tabs = await App.browser().tabs.query({currentWindow: true})
+    if (all) {
+      tabs = await App.browser().tabs.query({})
+    }
+    else {
+      tabs = await App.browser().tabs.query({currentWindow: true})
+    }
   }
   catch (err) {
     App.error(err)
@@ -1831,4 +1836,9 @@ App.wait_for_tab_load = (tab_id) => {
 
     App.browser().tabs.onUpdated.addListener(listener)
   })
+}
+
+App.focus_global_tab = async (item) => {
+  await App.browser().windows.update(item.window_id, {focused: true})
+  await App.browser().tabs.update(item.id, {active: true})
 }

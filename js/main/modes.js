@@ -333,3 +333,7 @@ App.check_init_mode = async () => {
 App.mode_icon = (mode) => {
   return App.get_setting_icon(`${mode}_mode`)
 }
+
+App.is_tabs_mode = (mode) => {
+  return [`tabs`, `global`].includes(mode)
+}

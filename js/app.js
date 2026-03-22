@@ -41,7 +41,7 @@ App.RED = `rgba(255, 0, 0, 1)`
 App.GREEN = `rgba(0, 255, 0, 1)`
 App.BLUE = `rgba(0, 0, 255, 1)`
 
-App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
+App.modes = [`tabs`, `history`, `bookmarks`, `closed`, `global`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 
 App.close_tabs_types = [
