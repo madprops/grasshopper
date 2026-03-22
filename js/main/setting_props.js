@@ -2044,7 +2044,7 @@ App.build_settings = () => {
       name: `Actions Menu (Global)`,
       type: `list`,
       value: [
-        {cmd: `focus_window_menu`}
+        {cmd: `focus_window_menu`},
       ],
       separator: true,
       data_group: `normal_menus`,
