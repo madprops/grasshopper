@@ -10,7 +10,6 @@ App.setup_tabs = () => {
     App.debug(`Tab Added: ID: ${id}`, App.debug_tabs)
 
     if (window_id === App.window_id) {
-      // Use the provided data, or fetch it only if it's missing (like during onAttached)
       let info = tab_data || await App.browser().tabs.get(id)
       let item = await App.refresh_tab({id, info})
 
