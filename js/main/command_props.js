@@ -476,6 +476,26 @@ App.setup_commands = () => {
     let icon = App.mode_icon(mode)
     let m_name = App.get_mode_name(mode, false)
     let name = `Show ${m_name}`
+    let info = ``
+
+    if (mode === `tabs`) {
+      info = `These are the tabs from the current window`
+    }
+    else if (mode === `bookmarks`) {
+      info = `These are the saved bookmarks`
+    }
+    else if (mode === `history`) {
+      info = `This is the browsing history`
+    }
+    else if (mode === `closed`) {
+      info = `These are recently closed tabs`
+    }
+    else if (mode === `global`) {
+      info = `These are tabs from all the windows`
+    }
+    else {
+      info = `Show Mode: ${m_name}`
+    }
 
     show_modes.push({
       name,
@@ -485,7 +505,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_mode({mode, reuse_filter: true})
       },
-      info: `Show Mode: ${mode}`,
+      info,
     })
   }
 
