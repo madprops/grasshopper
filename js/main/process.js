@@ -36,7 +36,7 @@ App.process_info_list = (mode, info_list) => {
       continue
     }
 
-    if (!App.is_tabs_mode(mode)) {
+    if (mode !== `tabs`) {
       exclude.push(item.url)
     }
 
@@ -44,7 +44,7 @@ App.process_info_list = (mode, info_list) => {
     container.append(item.element)
   }
 
-  if (App.is_tabs_mode(mode)) {
+  if (mode === `tabs`) {
     for (let item of items) {
       App.add_tab_parent(item)
     }
@@ -53,7 +53,7 @@ App.process_info_list = (mode, info_list) => {
   App.update_footer_count()
   App.do_check_pinline()
 
-  if (App.is_tabs_mode(mode)) {
+  if (mode === `tabs`) {
     App.check_tab_session()
     App.update_tab_box()
   }
@@ -175,7 +175,7 @@ App.process_info = (args = {}) => {
   }
   else {
     if (!args.list) {
-      if ((App.is_tabs_mode(args.mode)) && !item.active && item.parent) {
+      if ((args.mode === `tabs`) && !item.active && item.parent) {
         item.unread = true
       }
     }
@@ -195,7 +195,7 @@ App.process_info = (args = {}) => {
       App.create_item_element(item)
     }
 
-    if (App.is_tabs_mode(args.mode)) {
+    if (args.mode === `tabs`) {
       if (args.add_parent) {
         App.add_tab_parent(item)
       }
