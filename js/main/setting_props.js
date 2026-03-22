@@ -2043,7 +2043,9 @@ App.build_settings = () => {
     actions_menu_global: {
       name: `Actions Menu (Global)`,
       type: `list`,
-      value: [],
+      value: [
+        {cmd: `focus_window_menu`}
+      ],
       separator: true,
       data_group: `normal_menus`,
       info: `Menu to show when clicking the Global Actions Menu`,

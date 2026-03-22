@@ -49,6 +49,9 @@ App.browser().commands.onCommand.addListener((command) => {
   else if (command === `popup_closed`) {
     open_popup_mode(`closed`)
   }
+  else if (command === `popup_global`) {
+    open_popup_mode(`global`)
+  }
   else if (command.startsWith(`browser_command_`)) {
     let num = command.split(`_`).at(-1)
 
@@ -103,6 +106,13 @@ App.browser().runtime.onInstalled.addListener(() => {
   })
 
   App.browser().contextMenus.create({
+    id: `popup_open_global`,
+    parentId: `popup_menu`,
+    title: `Open Global`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
     id: `sidebar_menu`,
     title: `Sidebar`,
     contexts: [`action`],
@@ -133,6 +143,20 @@ App.browser().runtime.onInstalled.addListener(() => {
     id: `sidebar_open_closed`,
     parentId: `sidebar_menu`,
     title: `Open Closed`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
+    id: `sidebar_open_global`,
+    parentId: `sidebar_menu`,
+    title: `Open Global`,
+    contexts: [`action`],
+  })
+
+  App.browser().contextMenus.create({
+    id: `sidebar_open_global`,
+    parentId: `sidebar_menu`,
+    title: `Open Global`,
     contexts: [`action`],
   })
 

@@ -692,7 +692,7 @@ App.custom_icon_menu_items = (item, e) => {
     })
   }
 
-  if (item.mode !== `tabs`) {
+  if (!App.is_tabs_mode(item.mode)) {
     return items
   }
 
