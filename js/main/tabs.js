@@ -67,9 +67,13 @@ App.setup_tabs = () => {
 
     App.debug(`Tab Removed: ID: ${id}`, App.debug_tabs)
 
-    if (info.windowId === App.window_id) {
+    if ((info.windowId === App.window_id)) {
       App.remove_closed_tab(id)
       App.check_playing()
+    }
+
+    if (App.active_mode === `global`) {
+      App.remove_closed_tab_global(id)
     }
   })
 
@@ -323,6 +327,14 @@ App.remove_closed_tab = (id) => {
   if (item) {
     App.remove_item(item)
     App.check_pinline()
+  }
+}
+
+App.remove_closed_tab_global = (id) => {
+  let item = App.get_item_by_id(`global`, id)
+
+  if (item) {
+    App.remove_item(item)
   }
 }
 

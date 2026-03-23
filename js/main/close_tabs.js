@@ -47,6 +47,10 @@ App.close_tabs = (args = {}) => {
     smart_switch = false
   }
 
+  if (App.active_mode === `global`) {
+    smart_switch = false
+  }
+
   App.show_confirm({
     message: `Close ${args.title}? (${items.length})`,
     confirm_action: async () => {
