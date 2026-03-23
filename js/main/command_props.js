@@ -2514,7 +2514,7 @@ App.setup_commands = () => {
       name_multiple: `Close Tabs`,
       short_name: `Close`,
       cmd: `close_tabs`,
-      modes: [`tabs`],
+      modes: [`tabs`, `global`],
       item: true,
       icon: close_icon,
       action: (args) => {

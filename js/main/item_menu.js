@@ -137,6 +137,9 @@ App.show_item_menu = async (args = {}) => {
     App.item_menu_separate(items)
     App.item_menu_item(items, `close_tabs`, {item: args.item})
   }
+  else if (args.item.mode === `global`) {
+    App.item_menu_item(items, `close_tabs`, {item: args.item})
+  }
   else {
     App.item_menu_item(items, `open_items`, {item: args.item})
 
