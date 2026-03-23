@@ -36,7 +36,7 @@ App.process_info_list = (mode, info_list) => {
       continue
     }
 
-    if (mode !== `tabs`) {
+    if (!App.is_tabs_mode(mode)) {
       exclude.push(item.url)
     }
 

@@ -13,6 +13,10 @@ App.build_tab_filters = () => {
     {cmd: `filter_all_parent_tabs`},
     {cmd: `filter_all_node_tabs`},
   ]
+
+  App.global_filter_modes = [
+    {cmd: `filter_duplicate_tabs`},
+  ]
 }
 
 App.setup_filter = () => {

@@ -4696,7 +4696,7 @@ App.setup_commands = () => {
       name: `Filter Duplicates`,
       short_name: `Duplicates`,
       cmd: `filter_duplicate_tabs`,
-      modes: [`tabs`],
+      modes: [`tabs`, `global`],
       icon: duplicate_icon,
       filter_mode: true,
       action: (args) => {
