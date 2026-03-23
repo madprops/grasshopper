@@ -3753,7 +3753,7 @@ App.build_settings = () => {
       title: `Item (Global)`,
       click: `item_action`,
       double_click: `item_action`,
-      middle_click: `open_items`,
+      middle_click: `close_tabs`,
       click_press: `none`,
       middle_click_press: `none`,
       ctrl_shift_click: `none`,
