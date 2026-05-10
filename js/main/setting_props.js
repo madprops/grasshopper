@@ -5746,6 +5746,13 @@ App.build_settings = () => {
       info: `Auto close edited tabs`,
       version: 1,
     },
+    auto_close_zones: {
+      name: `Auto Close Zones`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto close zone tabs`,
+      version: 1,
+    },
     auto_close_delay: {
       name: `Recent Tabs Delay`,
       type: `number`,

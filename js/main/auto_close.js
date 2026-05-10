@@ -13,7 +13,6 @@ App.start_auto_close = () => {
 
 App.start_auto_close_timeout = () => {
   App.auto_close_timeout = setTimeout(() => {
-    console.log(`Auto Close`)
     App.auto_close_action()
     App.start_auto_close_timeout()
   }, App.auto_close_delay)
@@ -51,6 +50,10 @@ App.auto_close_action = () => {
       }
 
       if (App.is_media(tab) && !App.get_setting(`auto_close_media`)) {
+        continue
+      }
+
+      if (App.is_zone(tab) && !App.get_setting(`auto_close_zones`)) {
         continue
       }
 
