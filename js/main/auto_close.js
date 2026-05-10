@@ -25,7 +25,25 @@ App.auto_close_action = () => {
 
   for (let tab of App.get_normal_tabs()) {
     if ((now - tab.last_access) >= auto_close_delay) {
-      to_close.push(tab)
+      if (tab.pinned && !App.get_setting(`auto_close_pinned`)) {
+        continue
+      }
+
+      if (!tab.pinned && App.get_setting(`auto_close_normal`)) {
+        continue
+      }
+
+      if (tab.unloaded && !App.get_setting(`auto_close_unloaded`)) {
+        continue
+      }
+
+      if ((tab.playing || tab.muted) && !App.get_setting(`auto_close_playing`)) {
+        continue
+      }
+
+      if (tab.unloaded && !App.get_setting(`auto_close_unloaded`)) {
+        continue
+      }
     }
   }
 
