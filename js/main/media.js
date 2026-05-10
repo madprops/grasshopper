@@ -403,3 +403,7 @@ App.open_first_media = (what) => {
     }
   }
 }
+
+App.is_media = (item) => {
+  return item.image || item.video || item.audio
+}

@@ -41,9 +41,15 @@ App.auto_close_action = () => {
         continue
       }
 
-      if (tab.unloaded && !App.get_setting(`auto_close_unloaded`)) {
+      if (App.edited(tab) && !App.get_setting(`auto_close_edited`)) {
         continue
       }
+
+      if (App.is_media(tab) && !App.get_setting(`auto_close_media`)) {
+        continue
+      }
+
+      to_close.push(tab)
     }
   }
 
