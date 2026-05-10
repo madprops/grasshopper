@@ -33,6 +33,10 @@ App.auto_close_action = () => {
   let to_close = []
 
   for (let tab of App.get_normal_tabs()) {
+    if (tab.active) {
+      continue
+    }
+
     if ((now - tab.last_access) >= auto_close_delay) {
       if (tab.pinned && !App.get_setting(`auto_close_pinned`)) {
         continue
