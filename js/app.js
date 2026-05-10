@@ -521,7 +521,8 @@ App.themes = [
   },
   {
     num: 2, opacity: 85,
-    background_color: `#414141`,
+    text_color: `rgb(255 255 255)`,
+    background_color: `rgb(65 65 65)`,
     image_ext: `gif`,
   },
   {
@@ -541,6 +542,7 @@ App.themes = [
   },
   {
     num: 7, opacity: 80,
+    background_color: `rgb(59 64 65)`,
     image_ext: `gif`,
   },
 ]
