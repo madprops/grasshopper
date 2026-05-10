@@ -73,6 +73,7 @@ App.init = async () => {
   App.start_progressive_fill()
   App.start_auto_color()
   App.start_themed_week()
+  App.start_auto_close()
   App.check_init_settings()
   await App.check_init_command()
 

@@ -5,9 +5,17 @@ App.start_auto_close = () => {
     return
   }
 
+  App.start_auto_close_timeout()
+  let hours = App.get_setting(`auto_close_delay`)
+  let word = App.plural(hours, `hour`, `hours`)
+  App.log(`Auto Close started: ${hours} ${word}`)
+}
+
+App.start_auto_close_timeout = () => {
   App.auto_close_timeout = setTimeout(() => {
+    console.log(`Auto Close`)
     App.auto_close_action()
-    App.start_auto_close()
+    App.start_auto_close_timeout()
   }, App.auto_close_delay)
 }
 
@@ -17,7 +25,7 @@ App.auto_close_action = () => {
   }
 
   let now = App.now()
-  let auto_close_delay = App.get_setting(`auto_close_delay`) * 60 * 1000
+  let auto_close_delay = App.get_setting(`auto_close_delay`) * 60 * 60 * 1000
   let to_close = []
 
   for (let tab of App.get_normal_tabs()) {

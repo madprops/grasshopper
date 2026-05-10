@@ -5694,7 +5694,7 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `auto_click`
+  category = `auto_close`
 
   props = {
     auto_close_enabled: {
@@ -5749,11 +5749,11 @@ App.build_settings = () => {
     auto_close_delay: {
       name: `Recent Tabs Delay`,
       type: `number`,
-      value: App.SECOND * 2,
+      value: 24,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Empty the recent tabs list these milliseconds after its last use`,
+      info: `How many hours of inactivity before closing tabs`,
       version: 1,
     },
   }
@@ -6416,6 +6416,9 @@ App.build_settings = () => {
     },
     auto_click: {
       info: `Enable auto click actions on some components`,
+    },
+    auto_close: {
+      info: `Close inactive tabs automatically after a certain time`,
     },
     compact: {
       info: `Compact some menus to only show icons in a row`,
