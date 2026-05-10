@@ -1,16 +1,13 @@
-App.setup_auto_close = () => {
-
-}
-
 App.start_auto_close = () => {
-  clearInterval(App.auto_close_interval)
+  clearTimeout(App.auto_close_timeout)
 
   if (!App.get_setting(`auto_close_enabled`)) {
     return
   }
 
-  App.auto_close_interval = setInterval(() => {
+  App.auto_close_timeout = setTimeout(() => {
     App.auto_close_action()
+    App.start_auto_close()
   }, App.auto_close_delay)
 }
 
@@ -29,7 +26,7 @@ App.auto_close_action = () => {
         continue
       }
 
-      if (!tab.pinned && App.get_setting(`auto_close_normal`)) {
+      if (!tab.pinned && !App.get_setting(`auto_close_normal`)) {
         continue
       }
 
