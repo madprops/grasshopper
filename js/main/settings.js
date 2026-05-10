@@ -423,6 +423,7 @@ App.refresh_settings = () => {
   App.start_auto_color()
   App.start_themed_week()
   App.setup_favorites()
+  App.start_auto_close()
 }
 
 App.build_setting_cmds = () => {

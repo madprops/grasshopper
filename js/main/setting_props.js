@@ -5694,6 +5694,71 @@ App.build_settings = () => {
   }
 
   add_props()
+  category = `auto_click`
+
+  props = {
+    auto_close_enabled: {
+      name: `Auto Close Enabled`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable or disable auto closing of tabs`,
+      version: 1,
+    },
+    auto_close_pinned: {
+      name: `Auto Close Pinned`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto close pinned tabs`,
+      version: 1,
+    },
+    auto_close_normal: {
+      name: `Auto Close Normal`,
+      type: `checkbox`,
+      value: true,
+      info: `Auto close normal tabs`,
+      version: 1,
+    },
+    auto_close_unloaded: {
+      name: `Auto Close Unloaded`,
+      type: `checkbox`,
+      value: true,
+      info: `Auto close unloaded tabs`,
+      version: 1,
+    },
+    auto_close_media: {
+      name: `Auto Close Media`,
+      type: `checkbox`,
+      value: true,
+      info: `Auto close media tabs`,
+      version: 1,
+    },
+    auto_close_playing: {
+      name: `Auto Close Playing`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto close tabs that are emitting sound`,
+      version: 1,
+    },
+    auto_close_edited: {
+      name: `Auto Close Edited`,
+      type: `checkbox`,
+      value: false,
+      info: `Auto close edited tabs`,
+      version: 1,
+    },
+    auto_close_delay: {
+      name: `Recent Tabs Delay`,
+      type: `number`,
+      value: App.SECOND * 2,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Empty the recent tabs list these milliseconds after its last use`,
+      version: 1,
+    },
+  }
+
+  add_props()
   category = `compact`
 
   props = {

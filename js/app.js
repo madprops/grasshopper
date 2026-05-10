@@ -266,6 +266,7 @@ App.themed_week_delay = App.MINUTE
 App.change_group_delay = 500
 App.check_group_delay = 500
 App.attempt_group_delay = 500
+App.auto_close_delay = App.MINUTE
 
 App.settings_icons = {
   all: `🔍`,
