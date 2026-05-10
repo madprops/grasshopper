@@ -5,13 +5,18 @@ App.start_auto_close = () => {
     return
   }
 
-  App.start_auto_close_timeout()
   let hours = App.get_setting(`auto_close_delay`)
   let word = App.plural(hours, `hour`, `hours`)
   App.log(`Auto Close started: ${hours} ${word}`)
+
+  App.start_auto_close_timeout()
 }
 
 App.start_auto_close_timeout = () => {
+  if (!App.get_setting(`auto_close_enabled`)) {
+    return
+  }
+
   App.auto_close_timeout = setTimeout(() => {
     App.auto_close_action()
     App.start_auto_close_timeout()
@@ -41,7 +46,11 @@ App.auto_close_action = () => {
         continue
       }
 
-      if ((tab.playing || tab.muted) && !App.get_setting(`auto_close_playing`)) {
+      if (tab.playing && !App.get_setting(`auto_close_playing`)) {
+        continue
+      }
+
+      if (tab.muted && !App.get_setting(`auto_close_muted`)) {
         continue
       }
 

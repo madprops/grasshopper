@@ -5729,7 +5729,7 @@ App.build_settings = () => {
       name: `Auto Close Media`,
       type: `checkbox`,
       value: true,
-      info: `Auto close media tabs`,
+      info: `Auto close media tabs, like images`,
       version: 1,
     },
     auto_close_playing: {
@@ -5737,6 +5737,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Auto close tabs that are emitting sound`,
+      version: 1,
+    },
+    auto_close_muted: {
+      name: `Auto Close Muted`,
+      type: `checkbox`,
+      value: true,
+      info: `Auto close tabs that are muted`,
       version: 1,
     },
     auto_close_edited: {
