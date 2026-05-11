@@ -234,6 +234,9 @@ App.user_madprops_settings = () => {
 
   App.set_setting({setting: `footer_colors`, value: true})
   App.set_setting({setting: `footer_background_color`, value: `rgba(92, 152, 182, 0.65)`})
+
+  // Auto Close
+  App.set_setting({setting: `auto_close_enabled`, value: true})
 }
 
 App.user_auver_settings = () => {
