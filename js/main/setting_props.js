@@ -952,7 +952,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `icon`,
       info: `What to do when clicking on an image in Closed mode`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.media_modes)
@@ -1044,7 +1043,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `icon`,
       info: `What to do when clicking on a video in Closed mode`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.media_modes)
@@ -1136,7 +1134,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `icon`,
       info: `What to do when clicking on an audio in Closed mode`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.media_modes)
@@ -1147,7 +1144,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `icon`,
       info: `What to do when clicking on an audio in Global mode`,
-      separator: true,
       version: 1,
       setup: (key) => {
         App.settings_make_menu(key, App.media_modes)
@@ -1888,7 +1884,6 @@ App.build_settings = () => {
       name: `Hover Button Menu (Closed)`,
       type: `list`,
       value: [],
-      separator: true,
       info: `Menu to show when clicking the Hover Button (Closed)`,
       version: 1,
     },
@@ -1967,7 +1962,6 @@ App.build_settings = () => {
       name: `Item Menu (Closed)`,
       type: `list`,
       value: [],
-      separator: true,
       data_group: `normal_menus`,
       info: `Menu to show when using the Closed Item Menu`,
       version: 1,
@@ -2043,7 +2037,6 @@ App.build_settings = () => {
       value: [
         {cmd: `forget_closed`},
       ],
-      separator: true,
       data_group: `normal_menus`,
       info: `Menu to show when clicking the Closed Actions Menu`,
       version: 1,
@@ -2112,7 +2105,6 @@ App.build_settings = () => {
         {cmd: `forget_closed`},
         {cmd: `select_all_items`},
       ],
-      separator: true,
       data_group: `normal_menus`,
       info: `Menu to show when right clicking empty space in Closed mode`,
       version: 1,
@@ -3882,6 +3874,7 @@ App.build_settings = () => {
       what: `empty_closed`,
       title: `Empty (Closed)`,
       double_click: `show_empty_menu`,
+      separator: false,
     }),
 
     ...App.make_mouse_settings({
@@ -5385,7 +5378,6 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: 0,
       max: App.number_max,
-      separator: true,
       info: `Auto hide the lock screen words after these many seconds`,
       version: 1,
     },
