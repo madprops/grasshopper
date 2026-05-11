@@ -8,7 +8,6 @@ App.start_auto_close = () => {
   let hours = App.get_setting(`auto_close_delay`)
   let word = App.plural(hours, `hour`, `hours`)
   App.log(`Auto Close started: ${hours} ${word}`)
-
   App.start_auto_close_timeout()
 }
 
