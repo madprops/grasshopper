@@ -298,7 +298,7 @@ App.settings_icons = {
   pinline: `📍`,
   compact: `💎`,
   auto_click: `🖱️`,
-  auto_close: `⏰`
+  auto_close: `⏰`,
 }
 
 App.clipboard_icon = `📋`
