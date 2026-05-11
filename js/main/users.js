@@ -339,6 +339,7 @@ App.user_wright_settings = () => {
   App.set_setting({setting: `item_border`, value: `none`})
   App.set_setting({setting: `item_icon`, value: `small`})
   App.set_setting({setting: `multi_bold`, value: true})
+  App.set_setting({setting: `background_color`, value: `rgb(59, 64, 65)`})
   App.set_setting({setting: `background_image`, value: `Background 7`})
   App.set_setting({setting: `background_opacity`, value: 80})
   App.set_setting({setting: `window_border_sides`, value: `right`})
