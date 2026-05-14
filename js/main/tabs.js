@@ -1725,6 +1725,10 @@ App.get_special_tabs = () => {
         return 1
       }
 
+      if (a.last_use === b.last_use) {
+        return 0
+      }
+
       // If neither tab is in recent, sort by last_use
       return a.last_use > b.last_use ? -1 : 1
     })
