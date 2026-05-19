@@ -36,7 +36,7 @@ App.create_debouncer = (func, delay) => {
       return
     }
 
-    obj.call(args)
+    obj.call(...args)
   }
 
   obj.now = (...args) => {
