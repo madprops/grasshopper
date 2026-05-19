@@ -1162,7 +1162,6 @@ App.build_settings = () => {
       info: `Define custom icons with actions and groups`,
       version: 1,
     },
-
     ...App.make_icon_settings({
       what: `custom`,
       name: `Custom`,
@@ -1170,7 +1169,6 @@ App.build_settings = () => {
       show: `always`,
       separator: true,
     }),
-
     tabs_mode_icon: {
       name: `Tabs Icon`,
       type: `text_smaller`,
@@ -1217,7 +1215,6 @@ App.build_settings = () => {
       info: `Icon for the Global mode`,
       version: 1,
     },
-
     ...App.make_icon_settings({
       what: `active`,
       name: `Active`,
@@ -1228,7 +1225,6 @@ App.build_settings = () => {
       show: `never`,
       cmd: `show_same_domain`,
     }),
-
     ...App.make_icon_settings({
       what: `pin`,
       name: `Pin`,
@@ -1238,7 +1234,6 @@ App.build_settings = () => {
       show: `never`,
       cmd: `toggle_pin_tabs`,
     }),
-
     ...App.make_icon_settings({
       what: `normal`,
       name: `Normal`,
@@ -1248,7 +1243,6 @@ App.build_settings = () => {
       show: `never`,
       cmd: `toggle_pin_tabs`,
     }),
-
     ...App.make_icon_settings({
       what: `playing`,
       name: `Playing`,
@@ -1258,7 +1252,6 @@ App.build_settings = () => {
       show: `always`,
       cmd: `toggle_mute_tabs`,
     }),
-
     ...App.make_icon_settings({
       what: `muted`,
       name: `Muted`,
@@ -1268,7 +1261,6 @@ App.build_settings = () => {
       show: `always`,
       cmd: `toggle_mute_tabs`,
     }),
-
     ...App.make_icon_settings({
       what: `unloaded`,
       name: `Unloaded`,
@@ -1278,7 +1270,6 @@ App.build_settings = () => {
       show: `always`,
       cmd: `load_tabs`,
     }),
-
     ...App.make_icon_settings({
       what: `loading`,
       name: `Loading`,
@@ -1288,7 +1279,6 @@ App.build_settings = () => {
       show: `always`,
       cmd: `browser_reload`,
     }),
-
     ...App.make_icon_settings({
       what: `loaded`,
       name: `Loaded`,
@@ -1298,7 +1288,6 @@ App.build_settings = () => {
       show: `never`,
       cmd: `unload_tabs`,
     }),
-
     ...App.make_icon_settings({
       what: `unread`,
       name: `Unread`,
@@ -1308,7 +1297,6 @@ App.build_settings = () => {
       show: `always`,
       cmd: `add_tag_later`,
     }),
-
     ...App.make_icon_settings({
       what: `title`,
       name: `Title`,
@@ -1318,7 +1306,6 @@ App.build_settings = () => {
       show: `never`,
       cmd: `edit_title`,
     }),
-
     ...App.make_icon_settings({
       what: `notes`,
       name: `Notes`,
@@ -1328,7 +1315,6 @@ App.build_settings = () => {
       show: `always`,
       cmd: `edit_notes`,
     }),
-
     ...App.make_icon_settings({
       what: `edited`,
       name: `Edited`,
@@ -1339,7 +1325,6 @@ App.build_settings = () => {
       show: `never`,
       cmd: `show_edits_info`,
     }),
-
     ...App.make_icon_settings({
       what: `obfuscated`,
       name: `Obfuscated`,
@@ -1349,7 +1334,6 @@ App.build_settings = () => {
       show: `always`,
       cmd: `deobfuscate_tabs`,
     }),
-
     ...App.make_icon_settings({
       what: `idle`,
       name: `Idle`,
@@ -1359,7 +1343,6 @@ App.build_settings = () => {
       show: `never`,
       cmd: `none`,
     }),
-
     ...App.make_icon_settings({
       what: `group`,
       name: `Group`,
@@ -1369,7 +1352,6 @@ App.build_settings = () => {
       show: `always`,
       cmd: `none`,
     }),
-
     ...App.make_icon_settings({
       what: `parent`,
       name: `Parent`,
@@ -1379,7 +1361,6 @@ App.build_settings = () => {
       show: `never`,
       cmd: `show_node_tabs`,
     }),
-
     ...App.make_icon_settings({
       what: `node`,
       name: `Node`,
@@ -1389,7 +1370,6 @@ App.build_settings = () => {
       show: `never`,
       cmd: `show_parent_tab`,
     }),
-
     ...App.make_icon_settings({
       what: `root`,
       name: `Root`,
@@ -1400,7 +1380,6 @@ App.build_settings = () => {
       cmd: `go_to_root_url`,
       separator: false,
     }),
-
     auto_root_icon: {
       name: `Auto Root Icon`,
       type: `checkbox`,
@@ -1409,7 +1388,6 @@ App.build_settings = () => {
       info: `Show the root icon only when not at the root already`,
       version: 1,
     },
-
     ...App.make_icon_settings({
       what: `container`,
       name: `Container`,
@@ -1420,7 +1398,6 @@ App.build_settings = () => {
       cmd: `none`,
       separator: false,
     }),
-
     container_icon_text: {
       name: `Container Icon Text`,
       type: `checkbox`,
@@ -1429,7 +1406,6 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-
     auto_icon_picker: {
       name: `Auto Icon Picker`,
       type: `checkbox`,
@@ -1732,7 +1708,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
     },
-
     ...App.make_mouse_settings({
       what: `close_button`,
       title: `Close Btn`,
@@ -1748,7 +1723,6 @@ App.build_settings = () => {
       click_press: `none`,
       middle_click_press: `close_domain_tabs`,
     }),
-
     close_button_padding: {
       name: `Close Button Padding`,
       type: `number`,
@@ -1895,7 +1869,6 @@ App.build_settings = () => {
       info: `Menu to show when clicking the Hover Button (Global)`,
       version: 1,
     },
-
     ...App.make_mouse_settings({
       what: `hover_button`,
       title: `Hover Btn`,
@@ -1903,7 +1876,6 @@ App.build_settings = () => {
       click_press: `none`,
       middle_click_press: `unload_tabs`,
     }),
-
     hover_button_icon: {
       name: `Hover Button Icon`,
       type: `text_smaller`,
@@ -2223,7 +2195,6 @@ App.build_settings = () => {
       info: `Items for the Scroller Menu`,
       version: 1,
     },
-
     ...App.settings_generic_menus(),
   }
 
@@ -2457,7 +2428,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.setting_steps(...App.border_widths, `px`))
       },
     },
-
     ...App.make_mouse_settings({
       what: `tab_box_title`,
       title: `Tab Box Title`,
@@ -2467,7 +2437,6 @@ App.build_settings = () => {
       wheel_up: `tab_box_previous_mode`,
       wheel_down: `tab_box_next_mode`,
     }),
-
     ...App.make_mouse_settings({
       what: `tab_box`,
       title: `Tab Box`,
@@ -2476,7 +2445,6 @@ App.build_settings = () => {
       wheel_up_shift: `tab_box_previous_mode`,
       wheel_down_shift: `tab_box_next_mode`,
     }),
-
     tab_box_colors_enabled: {
       name: `Tab Box Colors`,
       type: `checkbox`,
@@ -2709,7 +2677,6 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-
     ...App.make_mouse_settings({
       what: `pinline`,
       title: `Pinline`,
@@ -2721,7 +2688,6 @@ App.build_settings = () => {
       wheel_up: `scroll_up`,
       wheel_down: `scroll_down`,
     }),
-
     pinline_colors: {
       name: `Pinline Colors`,
       type: `checkbox`,
@@ -2827,7 +2793,6 @@ App.build_settings = () => {
       info: `Menu to show when right clicking the Footer`,
       version: 1,
     },
-
     ...App.make_mouse_settings({
       what: `footer`,
       title: `Footer`,
@@ -2847,7 +2812,6 @@ App.build_settings = () => {
       wheel_up_shift: `page_up`,
       wheel_down_shift: `page_down`,
     }),
-
     footer_font_enabled: {
       name: `Footer Font Enabled`,
       type: `checkbox`,
@@ -3075,7 +3039,6 @@ App.build_settings = () => {
         App.start_color_picker(key, true)
       },
     },
-
     ...App.make_mouse_settings({
       what: `favorites_top`,
       title: `Fav Top`,
@@ -3089,7 +3052,6 @@ App.build_settings = () => {
       wheel_up_shift: `page_up`,
       wheel_down_shift: `page_down`,
     }),
-
     ...App.make_mouse_settings({
       what: `favorites_center`,
       title: `Fav Center`,
@@ -3098,7 +3060,6 @@ App.build_settings = () => {
       wheel_up_shift: `page_up`,
       wheel_down_shift: `page_down`,
     }),
-
     ...App.make_mouse_settings({
       what: `favorites_bottom`,
       title: `Fav Bottom`,
@@ -3112,7 +3073,6 @@ App.build_settings = () => {
       wheel_up_shift: `page_up`,
       wheel_down_shift: `page_down`,
     }),
-
     ...App.make_mouse_settings({
       what: `favorites_button`,
       title: `Fav Btn`,
@@ -3122,7 +3082,6 @@ App.build_settings = () => {
       wheel_up: `jump_tabs_all_up`,
       wheel_down: `jump_tabs_all_down`,
     }),
-
     favorites_bar_show_delay: {
       name: `Favorites Bar Show Delay`,
       type: `number`,
@@ -3144,7 +3103,6 @@ App.build_settings = () => {
       info: `Delay for hiding the Favorites Bar when hovering it`,
       version: 1,
     },
-
     favorites_blur: {
       name: `Favorites Blur`,
       type: `checkbox`,
@@ -3282,7 +3240,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.sizes_3)
       },
     },
-
     ...App.make_mouse_settings({
       what: `main_title`,
       title: `Title`,
@@ -3296,7 +3253,6 @@ App.build_settings = () => {
       wheel_up_shift: `previous_main_title_color`,
       wheel_down_shift: `next_main_title_color`,
     }),
-
     ...App.make_mouse_settings({
       what: `main_title_left_button`,
       title: `Title Left`,
@@ -3306,7 +3262,6 @@ App.build_settings = () => {
       click_press: `none`,
       middle_click_press: `set_previous_theme`,
     }),
-
     ...App.make_mouse_settings({
       what: `main_title_right_button`,
       title: `Title Right`,
@@ -3316,7 +3271,6 @@ App.build_settings = () => {
       click_press: `none`,
       middle_click_press: `set_next_theme`,
     }),
-
     main_title_left_button_menu: {
       name: `Title Left Menu`,
       type: `list`,
@@ -3749,7 +3703,6 @@ App.build_settings = () => {
       ctrl_shift_click: `duplicate_tabs`,
       ctrl_shift_middle_click: `unload_tabs`,
     }),
-
     ...App.make_mouse_settings({
       what: `item_history`,
       title: `Item (History)`,
@@ -3761,7 +3714,6 @@ App.build_settings = () => {
       ctrl_shift_click: `none`,
       ctrl_shift_middle_click: `none`,
     }),
-
     ...App.make_mouse_settings({
       what: `item_bookmarks`,
       title: `Item (${bkmarks})`,
@@ -3773,7 +3725,6 @@ App.build_settings = () => {
       ctrl_shift_click: `none`,
       ctrl_shift_middle_click: `none`,
     }),
-
     ...App.make_mouse_settings({
       what: `item_closed`,
       title: `Item (Closed)`,
@@ -3785,7 +3736,6 @@ App.build_settings = () => {
       ctrl_shift_click: `none`,
       ctrl_shift_middle_click: `none`,
     }),
-
     ...App.make_mouse_settings({
       what: `item_global`,
       title: `Item (Global)`,
@@ -3797,7 +3747,6 @@ App.build_settings = () => {
       ctrl_shift_click: `none`,
       ctrl_shift_middle_click: `none`,
     }),
-
     ...App.make_mouse_settings({
       what: `items`,
       title: `Items`,
@@ -3806,7 +3755,6 @@ App.build_settings = () => {
       wheel_up_shift: `page_up`,
       wheel_down_shift: `page_down`,
     }),
-
     ...App.make_mouse_settings({
       what: `main_button`,
       title: `Main Btn`,
@@ -3816,7 +3764,6 @@ App.build_settings = () => {
       wheel_up: `show_previous_mode`,
       wheel_down: `show_next_mode`,
     }),
-
     ...App.make_mouse_settings({
       what: `playing_button`,
       title: `Playing Btn`,
@@ -3827,7 +3774,6 @@ App.build_settings = () => {
       wheel_up: `jump_tabs_playing_down`,
       wheel_down: `jump_tabs_playing_up`,
     }),
-
     ...App.make_mouse_settings({
       what: `step_back_button`,
       title: `Step Back Btn`,
@@ -3838,7 +3784,6 @@ App.build_settings = () => {
       wheel_up: `recent_tabs_forwards`,
       wheel_down: `recent_tabs_backwards`,
     }),
-
     ...App.make_mouse_settings({
       what: `actions_button`,
       title: `Actions Btn`,
@@ -3848,41 +3793,35 @@ App.build_settings = () => {
       wheel_up: `jump_tabs_all_up`,
       wheel_down: `jump_tabs_all_down`,
     }),
-
     ...App.make_mouse_settings({
       what: `empty_tabs`,
       title: `Empty (Tabs)`,
       double_click: `open_new_tab_bottom`,
       separator: false,
     }),
-
     ...App.make_mouse_settings({
       what: `empty_history`,
       title: `Empty (History)`,
       double_click: `show_empty_menu`,
       separator: false,
     }),
-
     ...App.make_mouse_settings({
       what: `empty_bookmarks`,
       title: `Empty (${bkmarks})`,
       double_click: `show_empty_menu`,
       separator: false,
     }),
-
     ...App.make_mouse_settings({
       what: `empty_closed`,
       title: `Empty (Closed)`,
       double_click: `show_empty_menu`,
       separator: false,
     }),
-
     ...App.make_mouse_settings({
       what: `empty_global`,
       title: `Empty (Global)`,
       double_click: `show_empty_menu`,
     }),
-
     ...App.make_mouse_settings({
       what: `unloaded_tab`,
       title: `Unloaded Tab`,
@@ -3892,7 +3831,6 @@ App.build_settings = () => {
       click_press: `none`,
       middle_click_press: `none`,
     }),
-
     double_ctrl_command: {
       name: `Double Ctrl`,
       type: `menu`,
@@ -4268,7 +4206,6 @@ App.build_settings = () => {
         ])
       },
     },
-
     ...App.make_mouse_settings({
       what: `header`,
       title: `Header`,
@@ -4280,7 +4217,6 @@ App.build_settings = () => {
         App.settings_make_menu(key, App.header_actions)
       },
     }),
-
     header_icon: {
       name: `Header Icon`,
       type: `text_smaller`,
@@ -4884,7 +4820,6 @@ App.build_settings = () => {
       Used to further refine filtered items`,
       version: 1,
     },
-
     ...App.make_mouse_settings({
       what: `filter`,
       title: `Filter`,
@@ -4893,7 +4828,6 @@ App.build_settings = () => {
       click_press: `edit_global_notes`,
       middle_click_press: `lock_screen`,
     }),
-
     ...App.make_mouse_settings({
       what: `filter_button`,
       title: `Filter Btn`,
@@ -4903,7 +4837,6 @@ App.build_settings = () => {
       wheel_up: `do_prev_filter`,
       wheel_down: `do_next_filter`,
     }),
-
     filter_effect: {
       name: `Filter Effect`,
       type: `menu`,
@@ -6276,7 +6209,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
   let theme_pickers = []
 
   for (let num = 1; num <= App.themes.length; num++) {
