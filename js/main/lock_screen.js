@@ -49,6 +49,10 @@ App.lock_screen = async () => {
 
     if (img_src === `uploaded`) {
       img_src = await App.get_stored_lock_screen_image()
+
+      if (!img_src) {
+        img_src = `img/lock.jpg`
+      }
     }
 
     img_el.src = img_src
@@ -113,7 +117,7 @@ App.upload_lock_screen_image = (e, file) => {
 
 App.get_stored_lock_screen_image = async () => {
   try {
-    return App.local_get(`storedLockScreenImage`, null)
+    return await App.local_get(`storedLockScreenImage`, null)
   }
   catch (error) {
     return null
