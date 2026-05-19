@@ -180,6 +180,32 @@ App.dragstart_action = (mode, e) => {
     App.drag_items.push(App.drag_item)
   }
 
+  if ((mode === `tabs`) && App.get_setting(`tree_order`)) {
+    let with_nodes = []
+
+    for (let item of App.drag_items) {
+      with_nodes.push(item)
+
+      if (item.group && (item.group !== -1)) {
+        continue
+      }
+
+      let nodes = App.get_tab_nodes(item)
+
+      for (let node of nodes) {
+        if (node.group && (node.group !== -1)) {
+          continue
+        }
+
+        if (!with_nodes.includes(node) && !App.drag_items.includes(node)) {
+          with_nodes.push(node)
+        }
+      }
+    }
+
+    App.drag_items = with_nodes
+  }
+
   App.drag_start_index = App.get_item_element_index({
     mode,
     element: App.drag_items[0].element,

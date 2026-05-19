@@ -449,6 +449,13 @@ App.build_settings = () => {
       info: `Enable or disable automatic scrolling when dragging items to the top or bottom edges`,
       version: 1,
     },
+    tree_order: {
+      name: `Tree Order`,
+      type: `checkbox`,
+      value: true,
+      info: `Make nodes follow their parent when it moves`,
+      version: 1,
+    },
     multi_bold: {
       name: `Multi Bold`,
       type: `checkbox`,
@@ -1349,7 +1356,7 @@ App.build_settings = () => {
       icon: `🗂️`,
       info: `Icon for grouped tabs`,
       side: `right`,
-      show: `always`,
+      show: `global`,
       cmd: `none`,
     }),
     ...App.make_icon_settings({
