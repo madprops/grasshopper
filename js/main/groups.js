@@ -490,7 +490,7 @@ App.group_prompt = async (item, callback) => {
   let groups = await App.get_groups()
   let names = groups.map(x => x.title)
   let current = await App.get_group(item)
-  let auto_picker = App.get_setting(`auto_group_picker`)
+  let auto_picker = App.auto_picker(`group`)
   let value = ``
 
   if (current) {
