@@ -41,22 +41,29 @@ App.check_rules = (item, rule) => {
 
 App.copy_rule = (item, rule) => {
   for (let key in App.edit_props) {
+    let value = rule[key]
+
+    if (value === undefined) {
+      value = App.edit_default(key)
+      rule[key] = value
+    }
+
     if (key === `tags`) {
-      if (rule[key].length) {
-        item[`rule_${key}`] = App.split_list(rule[key])
+      if (value.length) {
+        item[`rule_${key}`] = App.split_list(value)
         item.ruled = true
         item.rule = rule
       }
     }
     else if (key === `color`) {
-      if (rule[key] && (rule[key] !== `none`)) {
-        item[`rule_${key}`] = rule[key]
+      if (value && (value !== `none`)) {
+        item[`rule_${key}`] = value
         item.ruled = true
         item.rule = rule
       }
     }
-    else if (rule[key]) {
-      item[`rule_${key}`] = rule[key]
+    else if (value) {
+      item[`rule_${key}`] = value
       item.ruled = true
       item.rule = rule
     }

@@ -237,6 +237,12 @@ App.user_madprops_settings = () => {
 
   // Auto Close
   App.set_setting({setting: `auto_close_enabled`, value: true})
+
+  // Domain Rules
+  App.set_setting({setting: `domain_rules`, value: [{
+    "domain": "mail.google.com",
+    "title": "Gmail",
+  }]})
 }
 
 App.user_auver_settings = () => {
