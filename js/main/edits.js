@@ -221,15 +221,6 @@ App.edit_prompt = (args = {}) => {
     list = roots
   }
 
-  let list_submit
-
-  if ([`title`, `icon`, `tag`].some(x => args.what.startsWith(x))) {
-    list_submit = true
-  }
-  else {
-    list_submit = false
-  }
-
   if (args.what.startsWith(`tag`)) {
     show_list = App.auto_picker(`tag`)
   }
@@ -238,6 +229,15 @@ App.edit_prompt = (args = {}) => {
   }
   else if (args.what.startsWith(`title`)) {
     show_list = App.auto_picker(`title`)
+  }
+
+  let list_submit
+
+  if ([`title`, `icon`, `tag`].some(x => args.what.startsWith(x))) {
+    list_submit = true
+  }
+  else {
+    list_submit = false
   }
 
   let word_mode
