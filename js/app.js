@@ -523,7 +523,6 @@ App.themes = [
     num: 2, opacity: 85,
     text_color: `rgb(255, 255, 255)`,
     background_color: `rgb(65, 65, 65)`,
-    image_ext: `gif`,
   },
   {
     num: 3, opacity: 80,
@@ -533,8 +532,7 @@ App.themes = [
     num: 4, opacity: 70,
   },
   {
-    num: 5, opacity: 85,
-    effect: `rotate_3`,
+    num: 5, opacity: 75,
   },
   {
     num: 6, opacity: 70,
@@ -543,7 +541,6 @@ App.themes = [
   {
     num: 7, opacity: 80,
     background_color: `rgb(59, 64, 65)`,
-    image_ext: `gif`,
   },
 ]
 
