@@ -63,7 +63,6 @@ App.edit_tags = (item) => {
   App.edit_prompt({
     item,
     what: `tags`,
-    show_list: App.show_tag_list(),
   })
 }
 
@@ -141,7 +140,7 @@ App.wipe_tag = () => {
     placeholder: `Wipe Tag`,
     suggestions: tags,
     list: tags,
-    show_list: App.show_tag_list(),
+    show_list: App.auto_picker(`tag`),
     list_submit: true,
     on_submit: (tag) => {
       App.do_wipe_tag(tag)
@@ -171,7 +170,7 @@ App.close_tag_all = () => {
     placeholder: `Close Tag`,
     suggestions: App.get_all_tags(),
     list: App.get_all_tags(),
-    show_list: App.show_tag_list(),
+    show_list: App.auto_picker(`tag`),
     list_submit: true,
     on_submit: (tag) => {
       let items = []
@@ -236,7 +235,6 @@ App.add_tags = (item) => {
     item,
     what: `tags`,
     add: true,
-    show_list: App.show_tag_list(),
   })
 }
 
@@ -252,14 +250,14 @@ App.replace_tag = () => {
     suggestions: tags,
     placeholder: `Original Tag`,
     list: tags,
-    show_list: App.show_tag_list(),
+    show_list: App.auto_picker(`tag`),
     list_submit: true,
     on_submit: (tag_1) => {
       App.show_prompt({
         suggestions: tags,
         placeholder: `New Tag`,
         list: tags.filter(x => x !== tag_1),
-        show_list: App.show_tag_list(),
+        show_list: App.auto_picker(`tag`),
         list_submit: true,
         on_submit: (tag_2) => {
           App.do_replace_tag(tag_1, tag_2)
@@ -312,7 +310,7 @@ App.edit_tag = (item, tag) => {
     placeholder: `Edit Tag`,
     value: tag,
     list: tags,
-    show_list: App.show_tag_list(),
+    show_list: App.auto_picker(`tag`),
     list_submit: true,
     on_submit: (ans) => {
       App.do_edit_tag(item, tag, ans)
@@ -602,8 +600,4 @@ App.filter_tag = (args = {}) => {
     toggle: args.toggle,
     from: args.from,
   })
-}
-
-App.show_tag_list = () => {
-  return App.get_setting(`auto_tag_picker`)
 }

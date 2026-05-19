@@ -1410,7 +1410,6 @@ App.build_settings = () => {
       name: `Auto Icon Picker`,
       type: `checkbox`,
       value: false,
-      separator: true,
       info: `Add icons quickly with the auto picker`,
       version: 1,
     },
@@ -6197,6 +6196,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Add groups quickly with the auto picker`,
+      version: 1,
+    },
+    auto_title_picker: {
+      name: `Auto Title Picker`,
+      type: `checkbox`,
+      value: false,
+      info: `Add titles quickly with the auto picker`,
       version: 1,
     },
     debug_mode: {

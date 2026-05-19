@@ -223,11 +223,21 @@ App.edit_prompt = (args = {}) => {
 
   let list_submit
 
-  if (args.what.startsWith(`title`) || (args.what === `icon`)) {
+  if ([`title`, `icon`, `tag`].some(x => args.what.startsWith(x))) {
     list_submit = true
   }
   else {
     list_submit = false
+  }
+
+  if (args.what.startsWith(`tag`)) {
+    show_list = App.auto_picker(`tag`)
+  }
+  else if (args.what.startsWith(`icon`)) {
+    show_list = App.auto_picker(`icon`)
+  }
+  else if (args.what.startsWith(`title`)) {
+    show_list = App.auto_picker(`title`)
   }
 
   let word_mode
@@ -241,7 +251,6 @@ App.edit_prompt = (args = {}) => {
 
   let ignore_words = []
   let append = false
-  let show_list = false
   let unique_words = false
 
   if (args.what === `tags`) {
@@ -545,4 +554,8 @@ App.show_edits_info = (item) => {
     title_icon: App.get_setting(`edited_icon`),
     text: content.join(`\n\n`),
   })
+}
+
+App.auto_picker = (what) => {
+  return App.get_setting(`auto_${what}_picker`)
 }
