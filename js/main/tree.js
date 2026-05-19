@@ -30,14 +30,9 @@ App.remove_tree_item = (item) => {
   }
 
   if (App.tab_tree[item.parent]) {
-    let nodes = App.tab_tree[item.parent].nodes.filter(it => it !== item)
+    let nodes = App.tab_tree[item.parent].nodes.filter(it => it.id !== item.id)
     nodes = nodes.filter(it => it)
     App.tab_tree[item.parent].nodes = nodes
-
-    if (item.id in App.tab_tree) {
-      delete App.tab_tree[item.id]
-    }
-
     App.update_tab_parent(item.parent)
     App.update_tab_nodes(nodes)
   }
@@ -45,6 +40,10 @@ App.remove_tree_item = (item) => {
 
 App.update_tab_parent = (id) => {
   let tree = App.tab_tree[id]
+
+  if (!tree || !tree.parent) {
+    return
+  }
 
   if (tree.parent.element_ready) {
     App.check_item_icon(tree.parent)
@@ -111,9 +110,13 @@ App.get_parent_item = (item) => {
 }
 
 App.go_to_parent = (item) => {
+  if (!item) {
+    return
+  }
+
   let parent = App.get_parent_item(item)
 
-  if (item) {
+  if (parent) {
     App.tabs_action({item: parent, from: `node`})
   }
 }
@@ -128,6 +131,10 @@ App.close_parent_tab = (item) => {
 
 App.node_tab_already_in = (id, item) => {
   let tree = App.tab_tree[id]
+
+  if (!tree) {
+    return false
+  }
 
   for (let node of tree.nodes) {
     if (node.id === item.id) {
