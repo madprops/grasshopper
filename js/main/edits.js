@@ -223,10 +223,7 @@ App.edit_prompt = (args = {}) => {
 
   let list_submit
 
-  if ((args.what === `tags`) && App.get_setting(`auto_tag_picker`)) {
-    list_submit = true
-  }
-  else if (args.what.startsWith(`title`) || (args.what === `icon`)) {
+  if (args.what.startsWith(`title`) || (args.what === `icon`)) {
     list_submit = true
   }
   else {
@@ -250,20 +247,10 @@ App.edit_prompt = (args = {}) => {
   if (args.what === `tags`) {
     if (args.add) {
       ignore_words = App.tags(args.item)
-
-      if (App.get_setting(`auto_tag_picker`)) {
-        show_list = true
-      }
     }
 
     append = true
     unique_words = true
-  }
-
-  if (args.what === `icon`) {
-    if (App.get_setting(`auto_icon_picker`)) {
-      show_list = true
-    }
   }
 
   App.show_prompt({

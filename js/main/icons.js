@@ -494,7 +494,11 @@ App.edit_tab_icon = (args = {}) => {
 }
 
 App.edit_icon = (item) => {
-  App.edit_prompt({what: `icon`, item})
+  App.edit_prompt({
+    item,
+    what: `icon`,
+    show_list: App.show_icon_list(),
+  })
 }
 
 App.get_all_icons = (include_rules = true) => {
@@ -723,7 +727,12 @@ App.custom_icon_menu = (item, e) => {
 }
 
 App.change_icon = (item) => {
-  App.edit_prompt({what: `icon`, item})
+  App.edit_prompt({
+    item,
+    what: `icon`,
+    show_list: App.show_icon_list(),
+  })
+
 }
 
 App.show_filter_icon_menu = (mode, e, from) => {
@@ -1325,4 +1334,8 @@ App.filter_icon = (args = {}) => {
     toggle: args.toggle,
     from: args.from,
   })
+}
+
+App.show_icon_list = () => {
+  return App.get_setting(`auto_icon_picker`)
 }

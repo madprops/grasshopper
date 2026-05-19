@@ -60,7 +60,11 @@ App.edit_tab_tags = (args = {}) => {
 }
 
 App.edit_tags = (item) => {
-  App.edit_prompt({what: `tags`, item})
+  App.edit_prompt({
+    item,
+    what: `tags`,
+    show_list: App.show_tag_list(),
+  })
 }
 
 App.get_tag_list = (value) => {
@@ -137,7 +141,7 @@ App.wipe_tag = () => {
     placeholder: `Wipe Tag`,
     suggestions: tags,
     list: tags,
-    show_list: true,
+    show_list: App.show_tag_list(),
     list_submit: true,
     on_submit: (tag) => {
       App.do_wipe_tag(tag)
@@ -167,7 +171,7 @@ App.close_tag_all = () => {
     placeholder: `Close Tag`,
     suggestions: App.get_all_tags(),
     list: App.get_all_tags(),
-    show_list: true,
+    show_list: App.show_tag_list(),
     list_submit: true,
     on_submit: (tag) => {
       let items = []
@@ -228,7 +232,12 @@ App.get_all_tags = (include_rules = true) => {
 }
 
 App.add_tags = (item) => {
-  App.edit_prompt({what: `tags`, item, add: true})
+  App.edit_prompt({
+    item,
+    what: `tags`,
+    add: true,
+    show_list: App.show_tag_list(),
+  })
 }
 
 App.remove_item_tags = (item) => {
@@ -243,14 +252,14 @@ App.replace_tag = () => {
     suggestions: tags,
     placeholder: `Original Tag`,
     list: tags,
-    show_list: true,
+    show_list: App.show_tag_list(),
     list_submit: true,
     on_submit: (tag_1) => {
       App.show_prompt({
         suggestions: tags,
         placeholder: `New Tag`,
         list: tags.filter(x => x !== tag_1),
-        show_list: true,
+        show_list: App.show_tag_list(),
         list_submit: true,
         on_submit: (tag_2) => {
           App.do_replace_tag(tag_1, tag_2)
@@ -269,7 +278,8 @@ App.do_replace_tag = (tag_1, tag_2) => {
     let ctags = App.get_tags(item, false)
 
     if (ctags.includes(tag_1)) {
-      let tags = ctags.map(x => x === tag_1 ? tag_2 : x)
+      let mapped = ctags.map(x => x === tag_1 ? tag_2 : x)
+      let tags = Array.from(new Set(mapped))
 
       App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
         App.custom_save(item.id, `tags`, value)
@@ -302,7 +312,7 @@ App.edit_tag = (item, tag) => {
     placeholder: `Edit Tag`,
     value: tag,
     list: tags,
-    show_list: true,
+    show_list: App.show_tag_list(),
     list_submit: true,
     on_submit: (ans) => {
       App.do_edit_tag(item, tag, ans)
@@ -328,7 +338,10 @@ App.do_edit_tag = (item, tag_1, tag_2) => {
   }
 
   let tags = App.get_tags(item, false).filter(x => x !== tag_1)
-  tags.push(tag_2)
+
+  if (!tags.includes(tag_2)) {
+    tags.push(tag_2)
+  }
 
   App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
     App.custom_save(item.id, `tags`, value)
@@ -429,7 +442,7 @@ App.get_tag_items = (mode, action = `filter`, from = `normal`) => {
   let items = []
   let tags = []
 
-  for (let tab of App.get_items(`tabs`)) {
+  for (let tab of App.get_items(mode)) {
     for (let tag of App.tags(tab)) {
       if (!tags.includes(tag)) {
         tags.push(tag)
@@ -589,4 +602,8 @@ App.filter_tag = (args = {}) => {
     toggle: args.toggle,
     from: args.from,
   })
+}
+
+App.show_tag_list = () => {
+  return App.get_setting(`auto_tag_picker`)
 }
