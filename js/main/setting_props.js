@@ -3130,7 +3130,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `How many pixels to scroll when scrolling automatically`,
+      info: `Delay for showing the Favorites Bar when hovering it`,
       version: 1,
     },
     favorites_bar_hide_delay: {
@@ -3141,7 +3141,7 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       separator: true,
-      info: `How many pixels to scroll when scrolling automatically`,
+      info: `Delay for hiding the Favorites Bar when hovering it`,
       version: 1,
     },
 
