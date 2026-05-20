@@ -893,7 +893,7 @@ App.move_tabs_to_window = async (item, window_id) => {
   }
 
   try {
-    let source_window_id = active_items[0].windowId
+    let source_window_id = active_items[0].window_id
     let all_source_tabs = await App.browser().tabs.query({windowId: source_window_id})
     let active_tab = all_source_tabs.find(t => t.active)
 
