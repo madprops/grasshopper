@@ -178,34 +178,6 @@ App.get_all_titles = (include_rules = true) => {
   return titles
 }
 
-App.get_all_titles = (include_rules = true) => {
-  let titles = []
-
-  for (let title of App.title_history) {
-    if (!titles.includes(title)) {
-      titles.push(title)
-    }
-  }
-
-  for (let item of App.get_items(`tabs`)) {
-    if (item.custom_title) {
-      if (!titles.includes(item.custom_title)) {
-        titles.push(item.custom_title)
-      }
-    }
-
-    if (include_rules) {
-      if (item.rule_title) {
-        if (!titles.includes(item.rule_title)) {
-          titles.push(item.rule_title)
-        }
-      }
-    }
-  }
-
-  return titles
-}
-
 App.remove_item_title = (item) => {
   let active = App.get_active_items({mode: item.mode, item})
 

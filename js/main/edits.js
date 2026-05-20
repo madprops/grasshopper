@@ -221,6 +221,8 @@ App.edit_prompt = (args = {}) => {
     list = roots
   }
 
+  let show_list = false
+
   if (args.what.startsWith(`tag`)) {
     show_list = App.auto_picker(`tag`)
   }

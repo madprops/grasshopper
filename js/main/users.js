@@ -236,13 +236,19 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `footer_background_color`, value: `rgba(92, 152, 182, 0.65)`})
 
   // Auto Close
+
   App.set_setting({setting: `auto_close_enabled`, value: true})
 
   // Domain Rules
+
   App.set_setting({setting: `domain_rules`, value: [{
     "domain": "mail.google.com",
     "title": "Gmail",
   }]})
+
+  // Tree
+
+  App.set_setting({setting: `tree_order`, value: true})
 }
 
 App.user_auver_settings = () => {

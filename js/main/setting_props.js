@@ -1319,7 +1319,7 @@ App.build_settings = () => {
       icon: `📝`,
       info: `Icon for tabs with notes`,
       side: `right`,
-      show: `always`,
+      show: `global`,
       cmd: `edit_notes`,
     }),
     ...App.make_icon_settings({
@@ -1338,7 +1338,7 @@ App.build_settings = () => {
       icon: `👻`,
       info: `Icon for obfuscated tabs`,
       side: `right`,
-      show: `always`,
+      show: `global`,
       cmd: `deobfuscate_tabs`,
     }),
     ...App.make_icon_settings({
@@ -1365,7 +1365,7 @@ App.build_settings = () => {
       icon: `🤿`,
       info: `Icon for tabs that are parents`,
       side: `right`,
-      show: `never`,
+      show: `global`,
       cmd: `show_node_tabs`,
     }),
     ...App.make_icon_settings({
@@ -1374,7 +1374,7 @@ App.build_settings = () => {
       icon: `🦠`,
       info: `Icon for tabs that are nodes`,
       side: `right`,
-      show: `never`,
+      show: `global`,
       cmd: `show_parent_tab`,
     }),
     ...App.make_icon_settings({
@@ -1401,7 +1401,7 @@ App.build_settings = () => {
       icon: `🛍️`,
       info: `Icon for containers`,
       side: `right`,
-      show: `always`,
+      show: `global`,
       cmd: `none`,
       separator: false,
     }),
