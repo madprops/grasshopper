@@ -124,7 +124,6 @@ App.select_to_edge = (item, dir) => {
   App.select_item({item, scroll: `nearest`})
   let items = App.get_items(mode).slice(0)
 
-
   if (App.tabs_normal()) {
     if (mode === `tabs`) {
       if (item.pinned) {

@@ -734,7 +734,6 @@ App.change_icon = (item) => {
     show_list: App.auto_picker(`icon`),
     list_submit: true,
   })
-
 }
 
 App.show_filter_icon_menu = (mode, e, from) => {

@@ -242,8 +242,8 @@ App.user_madprops_settings = () => {
   // Domain Rules
 
   App.set_setting({setting: `domain_rules`, value: [{
-    "domain": "mail.google.com",
-    "title": "Gmail",
+    domain: `mail.google.com`,
+    title: `Gmail`,
   }]})
 
   // Tree
