@@ -1124,10 +1124,10 @@ App.resolve_icons = () => {
     let cmd
 
     if (icon.name === `custom`) {
-      cmd = App.get_custom_icon_command(icon)
+      // Skipped: Commands are evaluated dynamically per icon
     }
     else if (icon.name === `color`) {
-      cmd = App.get_color_icon_command(icon)
+      // Skipped: Commands are evaluated dynamically per color
     }
     else {
       cmd = App.get_setting(`${icon.name}_icon_command`)
