@@ -115,9 +115,15 @@ App.select_next = (mode, dir) => {
   }
 }
 
-App.select_to_edge = (mode, dir) => {
-  let item = App.get_selected(mode)
+App.select_to_edge = (item, dir) => {
+  if (!item) {
+    item = App.get_selected(App.active_mode)
+  }
+
+  let mode = item.mode
+  App.select_item({item, scroll: `nearest`})
   let items = App.get_items(mode).slice(0)
+
 
   if (App.tabs_normal()) {
     if (mode === `tabs`) {

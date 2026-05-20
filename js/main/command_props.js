@@ -945,7 +945,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: up_icon,
       action: (args) => {
-        App.select_to_edge(args.mode, `up`)
+        App.select_to_edge(args.item, `up`)
       },
       info: `Select all items above this item`,
     },
@@ -956,7 +956,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: down_icon,
       action: (args) => {
-        App.select_to_edge(args.mode, `down`)
+        App.select_to_edge(args.item, `down`)
       },
       info: `Select all items below this item`,
     },
