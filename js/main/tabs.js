@@ -1330,6 +1330,10 @@ App.edge_tab_up_down = (direction) => {
     item = App.get_active_tab_item()
   }
 
+  if (!item) {
+    return
+  }
+
   if (direction === `up`) {
     if (item.pinned) {
       if (pins[0] === item) {
@@ -1405,7 +1409,7 @@ App.get_new_tab_args = (item, from, args) => {
   if ([`top`, `bottom`].includes(new_mode)) {
     if (new_mode === `top`) {
       index = 0
-      pinned = items.length && items[0].pinned
+      pinned = (items.length > 0) && items[0].pinned
     }
     else if (new_mode === `bottom`) {
       index = items.length + 10
@@ -1646,9 +1650,8 @@ App.change_tabs_url = (item) => {
 
         if (App.is_url(url_)) {
           await App.change_url(it, url_)
+          changed = true
         }
-
-        changed = true
       }
 
       if (changed) {
