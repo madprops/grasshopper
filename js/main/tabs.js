@@ -21,14 +21,14 @@ App.setup_tabs = () => {
   }
 
   App.browser().tabs.onCreated.addListener((tab) => {
-    App.handle_new_tab(tab.id, tab.windowId, tab)
+    App.handle_new_tab(tab.id, tab.windowId, tab).catch(App.error)
   })
 
   App.browser().tabs.onAttached.addListener((tab_id, attach_info) => {
-    App.handle_new_tab(tab_id, attach_info.newWindowId)
+    App.handle_new_tab(tab_id, attach_info.newWindowId).catch(App.error)
   })
 
-  App.browser().tabs.onUpdated.addListener(async (id, changed, info) => {
+  App.browser().tabs.onUpdated.addListener((id, changed, info) => {
     if (App.tabs_locked) {
       return
     }
@@ -36,19 +36,19 @@ App.setup_tabs = () => {
     App.debug(`Tab Updated: ID: ${id}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      await App.refresh_tab({id, info, url: changed.url})
+      App.refresh_tab({id, info, url: changed.url}).then(() => {
+        if (changed.audible !== undefined) {
+          App.check_playing()
+        }
 
-      if (changed.audible !== undefined) {
-        App.check_playing()
-      }
-
-      if (changed.url !== undefined) {
-        App.update_tab_box()
-      }
+        if (changed.url !== undefined) {
+          App.update_tab_box()
+        }
+      }).catch(App.error)
     }
   })
 
-  App.browser().tabs.onActivated.addListener(async (info) => {
+  App.browser().tabs.onActivated.addListener((info) => {
     if (App.tabs_locked) {
       return
     }
@@ -56,7 +56,7 @@ App.setup_tabs = () => {
     App.debug(`Tab Activated: ID: ${info.tabId}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      await App.on_tab_activated(info)
+      App.on_tab_activated(info).catch(App.error)
     }
   })
 
@@ -282,9 +282,14 @@ App.refresh_tab = async (args = {}) => {
   }
 
   if (!item.boosted) {
-    await App.boost_tab(item)
-    item.boosted = true
-    App.update_item({mode: `tabs`, id: item.id, info: item})
+    try {
+      await App.boost_tab(item)
+      item.boosted = true
+      App.update_item({mode: `tabs`, id: item.id, info: item})
+    }
+    catch (err) {
+      App.error(err)
+    }
   }
 
   return item

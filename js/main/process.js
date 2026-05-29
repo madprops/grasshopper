@@ -143,7 +143,7 @@ App.process_info = (args = {}) => {
     item.active = args.info.active
     item.pinned = args.info.pinned
     item.playing = args.info.audible
-    item.muted = args.info.mutedInfo.muted
+    item.muted = args.info.mutedInfo?.muted || false
     item.unloaded = args.info.discarded
     item.last_access = args.info.lastAccessed
 
