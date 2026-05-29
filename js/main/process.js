@@ -99,7 +99,7 @@ App.process_info = (args = {}) => {
       decoded_url = decodeURI(args.info.url)
     }
     catch (err) {
-      return false
+      decoded_url = args.info.url
     }
   }
 

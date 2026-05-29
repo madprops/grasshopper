@@ -268,6 +268,11 @@ App.refresh_tab = async (args = {}) => {
   }
   else {
     item = App.insert_item(`tabs`, args.info)
+
+    if (!item) {
+      return
+    }
+
     App.check_pinline()
     App.update_tab_box()
   }

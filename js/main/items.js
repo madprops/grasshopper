@@ -1105,6 +1105,11 @@ App.get_active_items = (args = {}) => {
 
 App.insert_item = (mode, info) => {
   let item = App.process_info({mode, info})
+
+  if (!item) {
+    return
+  }
+
   let container = DOM.el(`#${mode}_container`)
 
   if (mode === `tabs`) {
