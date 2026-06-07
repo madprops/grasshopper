@@ -1365,7 +1365,7 @@ App.build_settings = () => {
       icon: `🤿`,
       info: `Icon for tabs that are parents`,
       side: `right`,
-      show: `global`,
+      show: `never`,
       cmd: `show_node_tabs`,
     }),
     ...App.make_icon_settings({
@@ -1374,7 +1374,7 @@ App.build_settings = () => {
       icon: `🦠`,
       info: `Icon for tabs that are nodes`,
       side: `right`,
-      show: `global`,
+      show: `never`,
       cmd: `show_parent_tab`,
     }),
     ...App.make_icon_settings({
@@ -5950,7 +5950,7 @@ App.build_settings = () => {
     use_delay: {
       name: `Use Delay`,
       type: `number`,
-      value: 3000,
+      value: 500,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
