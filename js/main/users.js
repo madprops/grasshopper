@@ -241,14 +241,16 @@ App.user_madprops_settings = () => {
 
   // Domain Rules
 
-  App.set_setting({setting: `domain_rules`, value: [{
-    domain: `mail.google.com`,
-    title: `Gmail`,
-  }]})
-
-  // Tree
-
-  App.set_setting({setting: `tree_order`, value: true})
+  App.set_setting({setting: `domain_rules`, value: [
+    {
+      domain: `mail.google.com`,
+      title: `Gmail`,
+    },
+    {
+      domain: `mail.proton.me`,
+      title: `Email`,
+    },
+  ]})
 }
 
 App.user_auver_settings = () => {
