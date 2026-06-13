@@ -26,7 +26,7 @@ This software is dual-licensed:
 2. Under a commercial license.
    If you wish to use this software in a closed-source, proprietary, or
    commercial product without the obligations of the GPLv3, contact
-   [email/entity] to obtain a commercial license.
+   grasshopper@merkoba.com to obtain a commercial license.
 
 Unless you have entered into a separate commercial license agreement, your
 use of this software is governed by the GPLv3.
