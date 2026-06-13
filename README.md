@@ -7,7 +7,7 @@
 
 You can contribute by reporting bugs or by explaining how some things can be improved or fixed with concepts, pseudo code, or code examples, but I won't accept pull requests.
 
-Email: grasshopper.fox605@silomails.com
+Email: grasshopper@merkoba.com
 
 ---
 
