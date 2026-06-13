@@ -80,11 +80,13 @@ App.handle_drag_scroll = (container, client_y) => {
   let rect = container.getBoundingClientRect()
   let at_top = client_y - rect.top < App.edge_scroll_threshold
   let at_bottom = rect.bottom - client_y < App.edge_scroll_threshold
+  let can_scroll_up = container.scrollTop > 0
+  let can_scroll_down = container.scrollTop + container.clientHeight < container.scrollHeight - 1
 
-  if (at_top) {
+  if (at_top && can_scroll_up) {
     App.init_scroll_timer(container, -App.edge_scroll_speed, App.edge_scroll_delay)
   }
-  else if (at_bottom) {
+  else if (at_bottom && can_scroll_down) {
     App.init_scroll_timer(container, App.edge_scroll_speed, App.edge_scroll_delay)
   }
   else {
@@ -108,6 +110,19 @@ App.init_scroll_timer = (container, amount, delay) => {
     App.edge_scrolling = true
 
     App.scroll_interval = setInterval(() => {
+      let can_scroll_up = container.scrollTop > 0
+      let can_scroll_down = container.scrollTop + container.clientHeight < container.scrollHeight - 1
+
+      if ((amount < 0) && !can_scroll_up) {
+        App.stop_drag_scroll()
+        return
+      }
+
+      if ((amount > 0) && !can_scroll_down) {
+        App.stop_drag_scroll()
+        return
+      }
+
       container.scrollTop += amount
     }, App.edge_scroll_amount)
   }, delay)
