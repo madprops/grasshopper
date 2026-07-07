@@ -1104,6 +1104,15 @@ App.get_active_items = (args = {}) => {
 }
 
 App.insert_item = (mode, info) => {
+  if (mode === `tabs`) {
+    let existing = App.get_item_by_id(`tabs`, info.id)
+
+    if (existing) {
+      App.update_item({mode: `tabs`, id: existing.id, info})
+      return existing
+    }
+  }
+
   let item = App.process_info({mode, info})
 
   if (!item) {
@@ -1113,13 +1122,6 @@ App.insert_item = (mode, info) => {
   let container = DOM.el(`#${mode}_container`)
 
   if (mode === `tabs`) {
-    let existing = App.get_item_by_id(`tabs`, info.id)
-
-    if (existing) {
-      App.update_item({mode: `tabs`, id: existing.id, info})
-      return existing
-    }
-
     App.get_items(mode).splice(info.index, 0, item)
     container.append(item.element)
     App.move_item_element(`tabs`, item.element, info.index)

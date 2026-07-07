@@ -1,10 +1,7 @@
 App.process_info_list = (mode, info_list) => {
   let container = DOM.el(`#${mode}_container`)
   App[`${mode}_idx`] = 0
-
-  if (!App.persistent_modes.includes(mode)) {
-    App.clear_items(mode)
-  }
+  App.clear_items(mode)
 
   let items = App.get_items(mode)
   let exclude = []
