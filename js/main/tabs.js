@@ -1,6 +1,7 @@
 App.setup_tabs = () => {
   App.build_tab_filters()
   App.debug_tabs = false
+  App.tab_refresh_promises = {}
 
   App.handle_new_tab = async (id, window_id, tab_data = null) => {
     if (App.tabs_locked) {
@@ -236,63 +237,78 @@ App.get_tab_info = async (id) => {
 }
 
 App.refresh_tab = async (args = {}) => {
-  let def_args = {
-    select: false,
+  let id = args.id
+
+  while (App.tab_refresh_promises[id]) {
+    await App.tab_refresh_promises[id]
   }
 
-  App.def_args(def_args, args)
+  let resolve_lock
+  App.tab_refresh_promises[id] = new Promise((r) => { resolve_lock = r })
 
-  if (!args.info) {
-    try {
-      args.info = await App.get_tab_info(args.id)
-    }
-    catch (err) {
-      App.check_pinline()
-      return
-    }
-  }
-
-  if (!args.info) {
-    return
-  }
-
-  await App.check_tab_container(args.info)
-  let item = App.get_item_by_id(`tabs`, args.id)
-
-  if (item) {
-    if (item.pinned !== args.info.pinned) {
-      App.check_pinline()
+  try {
+    let def_args = {
+      select: false,
     }
 
-    App.update_item({mode: `tabs`, id: item.id, info: args.info, url: args.url})
-  }
-  else {
-    item = App.insert_item(`tabs`, args.info)
+    App.def_args(def_args, args)
 
-    if (!item) {
+    if (!args.info) {
+      try {
+        args.info = await App.get_tab_info(args.id)
+      }
+      catch (err) {
+        App.check_pinline()
+        return
+      }
+    }
+
+    if (!args.info) {
       return
     }
 
-    App.check_pinline()
-    App.update_tab_box()
-  }
+    await App.check_tab_container(args.info)
+    let item = App.get_item_by_id(`tabs`, args.id)
 
-  if (args.select && !item.selected && item.visible) {
-    App.select_item({item, scroll: `nearest_smooth`})
-  }
+    if (item) {
+      if (item.pinned !== args.info.pinned) {
+        App.check_pinline()
+      }
 
-  if (!item.boosted) {
-    try {
-      await App.boost_tab(item)
-      item.boosted = true
-      App.update_item({mode: `tabs`, id: item.id, info: item})
+      App.update_item({mode: `tabs`, id: item.id, info: args.info, url: args.url})
     }
-    catch (err) {
-      App.error(err)
-    }
-  }
+    else {
+      item = App.insert_item(`tabs`, args.info)
 
-  return item
+      if (!item) {
+        return
+      }
+
+      App.check_pinline()
+      App.update_tab_box()
+    }
+
+    if (args.select && !item.selected && item.visible) {
+      App.select_item({item, scroll: `nearest_smooth`})
+    }
+
+    if (!item.boosted) {
+      try {
+        await App.boost_tab(item)
+        item.boosted = true
+        App.update_item({mode: `tabs`, id: item.id, info: item})
+      }
+      catch (err) {
+        App.error(err)
+      }
+    }
+
+    return item
+  }
+  finally {
+    delete App.tab_refresh_promises[id]
+    resolve_lock()
+  }
 }
 
 App.get_all_tabs = () => {
