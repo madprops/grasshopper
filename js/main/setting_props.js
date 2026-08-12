@@ -1401,7 +1401,7 @@ App.build_settings = () => {
       icon: `🛍️`,
       info: `Icon for containers`,
       side: `right`,
-      show: `global`,
+      show: `always`,
       cmd: `none`,
       separator: false,
     }),

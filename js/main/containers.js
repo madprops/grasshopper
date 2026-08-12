@@ -276,3 +276,28 @@ App.do_select_container = (name) => {
 App.select_all_containers = () => {
   App.do_select_container(``)
 }
+
+App.detach_container = async (item, e) => {
+  let new_tab_mode = App.get_setting(`new_tab_mode`)
+  let containers = await App.get_all_containers()
+  let active = App.get_active_items({mode: item.mode, item})
+  let o_item
+
+  if (!active.length) {
+    return
+  }
+
+  if (new_tab_mode === `above`) {
+    o_item = active[0]
+  }
+  else if (new_tab_mode === `below`) {
+    o_item = active.at(-1)
+  }
+  else {
+    o_item = active[0]
+  }
+
+  for (let it of active) {
+    App.create_new_tab({url: it.url}, o_item)
+  }
+}

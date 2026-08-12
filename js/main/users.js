@@ -85,7 +85,7 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `show_signals`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `obfuscate_tabs`}
+  cmd = {cmd: `toggle_obfuscate_tabs`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `use_calculator`}
@@ -115,6 +115,9 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `run_custom_command_container_shopping`}
   App.append_list_setting(sett, cmd)
 
+  cmd = {cmd: `run_custom_command_container_share`}
+  App.append_list_setting(sett, cmd)
+
   cmd = {cmd: `lock_screen`}
   App.append_list_setting(sett, cmd)
 
@@ -126,6 +129,9 @@ App.user_madprops_settings = () => {
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Container: Shopping`, icon: `👱🏻‍♂`, action: `open_in_container`, argument: `Shopping`, _id_: `container_shopping`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {name: `Container: Share`, icon: `🔷`, action: `open_in_container`, argument: `Share`, _id_: `container_share`}
   App.append_list_setting(sett, cmd)
 
   // Combos
@@ -347,15 +353,12 @@ App.user_slay_settings = () => {
 App.user_wright_settings = () => {
   App.user_madprops_settings()
 
+  App.set_theme(3)
   App.set_setting({setting: `show_main_title`, value: true})
-  App.set_setting({setting: `background_effect`, value: `none`})
   App.set_setting({setting: `favorites_auto_hide`, value: true})
   App.set_setting({setting: `item_border`, value: `none`})
   App.set_setting({setting: `item_icon`, value: `small`})
   App.set_setting({setting: `multi_bold`, value: true})
-  App.set_setting({setting: `background_color`, value: `rgb(59, 64, 65)`})
-  App.set_setting({setting: `background_image`, value: `Background 7`})
-  App.set_setting({setting: `background_opacity`, value: 80})
   App.set_setting({setting: `window_border_sides`, value: `right`})
   App.set_setting({setting: `window_border_width`, value: 6})
   App.set_setting({setting: `window_border_color`, value: `rgba(140, 159, 180, 1)`})
