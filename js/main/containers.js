@@ -224,8 +224,12 @@ App.open_in_tab_container = async (item, e, name = ``, close = false) => {
     o_item = active[0]
   }
 
-  function close_tabs() {
+  async function close_tabs(new_tab_ids) {
     if (close) {
+      if (new_tab_ids.length) {
+        await App.update_tab(new_tab_ids.at(-1), {active: true})
+      }
+
       App.close_tabs({selection: active, force: true})
     }
   }
@@ -238,11 +242,17 @@ App.open_in_tab_container = async (item, e, name = ``, close = false) => {
       return
     }
 
+    let new_tab_ids = []
+
     for (let it of active) {
-      App.create_new_tab({url: it.url, cookieStoreId: target_container.id}, o_item)
+      let tab = await App.create_new_tab({url: it.url, cookieStoreId: target_container.id}, o_item)
+
+      if (tab) {
+        new_tab_ids.push(tab.id)
+      }
     }
 
-    close_tabs()
+    await close_tabs(new_tab_ids)
     return
   }
 
@@ -253,11 +263,17 @@ App.open_in_tab_container = async (item, e, name = ``, close = false) => {
       text: c.name,
       icon: App.color_icon_square(c.color),
       action: async () => {
+        let new_tab_ids = []
+
         for (let it of active) {
-          await App.create_new_tab({url: it.url, cookieStoreId: c.id}, o_item)
+          let tab = await App.create_new_tab({url: it.url, cookieStoreId: c.id}, o_item)
+
+          if (tab) {
+            new_tab_ids.push(tab.id)
+          }
         }
 
-        close_tabs()
+        await close_tabs(new_tab_ids)
       },
     })
   }
@@ -306,11 +322,21 @@ App.detach_container = async (item, e, close = false) => {
     o_item = active[0]
   }
 
+  let new_tab_ids = []
+
   for (let it of active) {
-    await App.create_new_tab({url: it.url}, o_item)
+    let tab = await App.create_new_tab({url: it.url}, o_item)
+
+    if (tab) {
+      new_tab_ids.push(tab.id)
+    }
   }
 
   if (close) {
+    if (new_tab_ids.length) {
+      await App.update_tab(new_tab_ids.at(-1), {active: true})
+    }
+
     App.close_tabs({selection: active, force: true})
   }
 }

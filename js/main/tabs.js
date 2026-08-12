@@ -222,7 +222,7 @@ App.new_tab = async (item, from = `normal`) => {
 
 App.create_new_tab = async (args, item, from = `normal`) => {
   App.get_new_tab_args(item, from, args)
-  await App.open_new_tab(args)
+  return await App.open_new_tab(args)
 }
 
 App.get_tab_info = async (id) => {
