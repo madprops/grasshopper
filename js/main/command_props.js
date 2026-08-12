@@ -4869,6 +4869,17 @@ App.setup_commands = () => {
       info: `Open a tab in a new container`,
     },
     {
+      name: `Open In Container 2`,
+      short_name: `Container`,
+      cmd: `open_tabs_in_container_2`,
+      modes: [`tabs`],
+      icon: container_icon,
+      action: (args) => {
+        App.open_in_tab_container(args.item, args.e, ``, true)
+      },
+      info: `Open a tab in a new container (And close the original tabs)`,
+    },
+    {
       name: `Detach Container`,
       short_name: `Detach`,
       cmd: `detach_tab_container`,
@@ -4878,6 +4889,17 @@ App.setup_commands = () => {
         App.detach_container(args.item, args.e)
       },
       info: `Open this URL without a container`,
+    },
+    {
+      name: `Detach Container 2`,
+      short_name: `Detach`,
+      cmd: `detach_tab_container_2`,
+      modes: [`tabs`],
+      icon: container_icon,
+      action: (args) => {
+        App.detach_container(args.item, args.e, true)
+      },
+      info: `Open this URL without a container (And close the original tabs)`,
     },
     {
       name: `Pick Container`,

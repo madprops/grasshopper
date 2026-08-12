@@ -204,7 +204,7 @@ App.find_container_by_name = (containers, name = ``) => {
   }
 }
 
-App.open_in_tab_container = async (item, e, name = ``) => {
+App.open_in_tab_container = async (item, e, name = ``, close = false) => {
   let new_tab_mode = App.get_setting(`new_tab_mode`)
   let containers = await App.get_all_containers()
   let active = App.get_active_items({mode: item.mode, item})
@@ -224,6 +224,12 @@ App.open_in_tab_container = async (item, e, name = ``) => {
     o_item = active[0]
   }
 
+  function close_tabs() {
+    if (close) {
+      App.close_tabs({selection: active, force: true})
+    }
+  }
+
   if (name) {
     let target_container = App.find_container_by_name(containers, name)
 
@@ -236,6 +242,7 @@ App.open_in_tab_container = async (item, e, name = ``) => {
       App.create_new_tab({url: it.url, cookieStoreId: target_container.id}, o_item)
     }
 
+    close_tabs()
     return
   }
 
@@ -245,10 +252,12 @@ App.open_in_tab_container = async (item, e, name = ``) => {
     items.push({
       text: c.name,
       icon: App.color_icon_square(c.color),
-      action: () => {
+      action: async () => {
         for (let it of active) {
-          App.create_new_tab({url: it.url, cookieStoreId: c.id}, o_item)
+          await App.create_new_tab({url: it.url, cookieStoreId: c.id}, o_item)
         }
+
+        close_tabs()
       },
     })
   }
@@ -277,7 +286,7 @@ App.select_all_containers = () => {
   App.do_select_container(``)
 }
 
-App.detach_container = async (item, e) => {
+App.detach_container = async (item, e, close = false) => {
   let new_tab_mode = App.get_setting(`new_tab_mode`)
   let containers = await App.get_all_containers()
   let active = App.get_active_items({mode: item.mode, item})
@@ -298,6 +307,10 @@ App.detach_container = async (item, e) => {
   }
 
   for (let it of active) {
-    App.create_new_tab({url: it.url}, o_item)
+    await App.create_new_tab({url: it.url}, o_item)
+  }
+
+  if (close) {
+    App.close_tabs({selection: active, force: true})
   }
 }

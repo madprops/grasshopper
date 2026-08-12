@@ -70,46 +70,22 @@ App.user_madprops_settings = () => {
   sett = `favorites_menu`
   App.set_setting({setting: sett, value: []})
 
-  cmd = {cmd: `repeat_command`}
-  App.append_list_setting(sett, cmd)
-
   cmd = {cmd: `open_new_tab`, middle: `open_new_tab_above`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `edit_global_notes`, middle: `show_title_history`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `show_settings`, middle: `show_last_settings`, shift: `show_all_settings`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `show_signals`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `toggle_obfuscate_tabs`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `use_calculator`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `show_gematria`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `toggle_auto_blur`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `locust_swarm`, middle: `breathe_effect`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {cmd: `set_random_dark_colors`, middle: `set_random_light_colors`, shift: `set_next_theme`, ctrl: `set_previous_theme`, alt: `settings_category_theme`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `bookmark_items`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `reopen_tab`}
+  cmd = {cmd: `edit_global_notes`, middle: `show_title_history`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `jump_tabs_zone_up`, middle: `jump_tabs_zone_down`}
+  cmd = {cmd: `toggle_obfuscate_tabs`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {cmd: `toggle_auto_blur`}
+  App.append_list_setting(sett, cmd)
+
+  cmd = {cmd: `detach_tab_container_2`}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `run_custom_command_container_shopping`}
@@ -128,10 +104,10 @@ App.user_madprops_settings = () => {
   cmd = {name: `Zone: bc`, icon: `🛤️`, action: `go_to_zone`, argument: `bc`, _id_: `zone_bc`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Container: Shopping`, icon: `👱🏻‍♂`, action: `open_in_container`, argument: `Shopping`, _id_: `container_shopping`}
+  cmd = {name: `Container: Shopping`, icon: `👱🏻‍♂`, action: `open_in_container_2`, argument: `Shopping`, _id_: `container_shopping`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Container: Share`, icon: `🔷`, action: `open_in_container`, argument: `Share`, _id_: `container_share`}
+  cmd = {name: `Container: Share`, icon: `🔷`, action: `open_in_container_2`, argument: `Share`, _id_: `container_share`}
   App.append_list_setting(sett, cmd)
 
   // Combos
