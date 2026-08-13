@@ -211,6 +211,11 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `tab_box_colors_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(47, 99, 151, 0.18)`})
   App.set_setting({setting: `tab_box_item_height`, value: `normal`})
+  App.set_setting({setting: `tab_box_mode`, value: `pins`})
+  App.set_setting({setting: `wheel_up_tab_box_title`, value: `none`})
+  App.set_setting({setting: `wheel_down_tab_box_title`, value: `none`})
+  App.set_setting({setting: `wheel_up_shift_tab_box_title`, value: `tab_box_previous_mode`})
+  App.set_setting({setting: `wheel_down_shift_tab_box_title`, value: `tab_box_next_mode`})
 
   // Footer
 

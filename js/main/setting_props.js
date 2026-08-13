@@ -2442,6 +2442,8 @@ App.build_settings = () => {
       middle_click_press: `tab_box_close`,
       wheel_up: `tab_box_previous_mode`,
       wheel_down: `tab_box_next_mode`,
+      wheel_up_shift: `none`,
+      wheel_down_shift: `none`,
     }),
     ...App.make_mouse_settings({
       what: `tab_box`,
