@@ -5,6 +5,88 @@
 
 ![](img/screenshot.jpg)
 
+## What is this?
+
+It's a tab manager extension for `Firefox` that is used as a sidebar or as a popup. It has almost `1000` settings, allowing extreme configurability and advanced (and niche) features. It has hundreds of commands, which can be launched with a command palette, clicks, or shortcuts.
+
+The complexity and and capabilities are such that I compare it to an `operating system` or a `desktop environment`, when you use Firefox as the engine. The settings manager allow many different kinds of setups, not only aesthetically but functionally, so different vendors could easily create `distros` using specific configurations.
+
+---
+
+## Some Features
+
+- Tab management. What you'd expect: Focus, move, close, duplicate, tag, color, add icon, set a custom title, pin/unpin, unload, mute.
+
+- Ta Box. An extra view at the bottom to always have certain tabs in view.
+
+- Filterable Menus. All context menus can be filtered by typing anything, to find items very quickly.
+
+- Title Bar. Set a custom title, or use the date, or display information dynamically.
+
+- Go To Playing Tab. Go to the tabs emitting sound by clicking a button or selecting items from a list.
+
+- Close Tabs. Over 18 ways of closing tabs using different criteria.
+
+- Signals. A signal system to interface with programs, using GET, POST, PUT.
+
+- Zones. Create special tabs that act as visual dividers. These are normal tabs, but special within Grasshopper.
+
+- Favorites. A favorites bar that can be placed at any side, with a selection of commands.
+
+- Obfuscate Tabs. Scramble the text and favicon of a tab so others can't see it. Restore it anytime.
+
+- Notes. Simple global notepad to take notes. And per-tab notes to annotate information on specific tabs.
+
+- Cael. AI assistant that can help you with settings and commands, or just talk. This uses Gemini.
+
+- Datastore. Data store system to store different versions of settings, notes, or themes.
+
+- Stuff. An assorted collection of small interesting & useful tools, including some easter eggs.
+
+- Lock Screen. Lock the sidebar, and optional require a password to unlock. Soft security.
+
+- History. Change the mode to recent browsing history.
+
+- Bookmarks. Change the view to bookmarks. Bookmark tabs.
+
+- Closed. Change the view to to view recently closed tabs. Restore tabs.
+
+- Global. View tabs from all windows.
+
+- Auto Click. Click things by just hovering over them with the mouse for a while.
+
+- Media. View images and videos from tabs.
+
+- Warnings. Get warnings on certain actions. Like warn when closing a tab that is emitting sound. All configurable.
+
+- Footer. Information at the bottom. Tab Box toggle. Other controls.
+
+- Theme. Change background color, text color, background image, font, border colors. Use a custom CSS.
+
+- Colors. Color tabs, and configure how they are seen, like icons, background. Define custom colors.
+
+- Pinline. A separator between pins and normal tabs which shows information.
+
+- Gestures. Middle click and drag to do gestures. Configurable.
+
+- Icons. Define custom icons, add them to tabs. Customize all the icons, including when they are visible, and their positions.
+
+- Tags. Add one or more tags to tabs. Show  them in different ways.
+
+- Shortcuts. Configure and add keyboard shortcuts, map them to any command.
+
+- Combos. Create command combos, which are a sequence of commands. These appears as another command which you can map anywhere.
+
+- Auto Close. Make unused tabs to close automatically after some time. This avoids collecting hundreds of tabs.
+
+- Mouse Events. Most UI elements allow to be mapped with commands on click, middle click, middle click press, click press, shift click, ctrl click, ctrl shift click, wheel up, wheel up. Depends on the element.
+
+- Tree. Track which are the parents of the other tabs, which can be used for tab management or visual categorization. This is not tree tab style. This just adds icons on the tabs, and allows some operations.
+
+And more.
+
+---
+
 You can contribute by reporting bugs or by explaining how some things can be improved or fixed with concepts, pseudo code, or code examples, but I won't accept pull requests.
 
 Email: grasshopper@merkoba.com
