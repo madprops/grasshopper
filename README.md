@@ -9,7 +9,7 @@
 
 It's a tab manager extension for `Firefox` that is used as a sidebar or as a popup. It has almost `1000` settings, allowing extreme configurability and advanced (and niche) features. It has hundreds of commands, which can be launched with a command palette, clicks, or shortcuts.
 
-The complexity and and capabilities are such that I compare it to an `operating system` or a `desktop environment`, when you use Firefox as the engine. The settings manager allow many different kinds of setups, not only aesthetically but functionally, so different vendors could easily create `distros` using specific configurations.
+The complexity and capabilities are such that I compare it to an `operating system` or a `desktop environment`, when you use Firefox as the engine. The settings manager allow many different kinds of setups, not only aesthetically but functionally, so different vendors could easily create `distros` using specific configurations.
 
 ---
 
