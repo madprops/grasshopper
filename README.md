@@ -17,17 +17,17 @@ The complexity and capabilities are such that I compare it to an `operating syst
 
 - Tab management. What you'd expect: Focus, move, close, duplicate, tag, color, add icon, set a custom title, pin/unpin, unload, mute.
 
-- Ta Box. An extra view at the bottom to always have certain tabs in view.
+- Tab Box. An extra view at the bottom to always have certain tabs in view.
 
 - Filterable Menus. All context menus can be filtered by typing anything, to find items very quickly.
-
-- Title Bar. Set a custom title, or use the date, or display information dynamically.
 
 - Go To Playing Tab. Go to the tabs emitting sound by clicking a button or selecting items from a list.
 
 - Close Tabs. Over 18 ways of closing tabs using different criteria.
 
-- Signals. A signal system to interface with programs, using GET, POST, PUT.
+- Signals. A signal system to interface with programs, using `GET`, `POST`, `PUT`.
+
+- Title Bar. Set a custom title, or use the date, or display information dynamically. For instance you could show `Now Playing` information if you use `Signals` and check the music you are listening to.
 
 - Zones. Create special tabs that act as visual dividers. These are normal tabs, but special within Grasshopper.
 
@@ -82,6 +82,8 @@ The complexity and capabilities are such that I compare it to an `operating syst
 - Mouse Events. Most UI elements allow to be mapped with commands on click, middle click, middle click press, click press, shift click, ctrl click, ctrl shift click, wheel up, wheel up. Depends on the element.
 
 - Tree. Track which are the parents of the other tabs, which can be used for tab management or visual categorization. This is not tree tab style. This just adds icons on the tabs, and allows some operations.
+
+- Auto Blur. Blur the sidebar when the mouse leaves, unblur it when it enters.
 
 And more.
 
