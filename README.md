@@ -17,6 +17,8 @@ The complexity and capabilities are such that I compare it to an `operating syst
 
 - Tab management. What you'd expect: Focus, move, close, duplicate, tag, color, add icon, set a custom title, pin/unpin, unload, mute.
 
+- Filter. Filter tabs by typing. Filter by tab type, with over 30 modes.
+
 - Tab Box. An extra view at the bottom to always have certain tabs in view.
 
 - Filterable Menus. All context menus can be filtered by typing anything, to find items very quickly.
