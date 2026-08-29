@@ -95,6 +95,12 @@ And more.
 
 ---
 
+## Is this AI slop?
+
+No. It was started in 2022 and it was done entirely from scratch, not using AI. Right now it has around 67k lines of code in total, including the libraries which are included files and half of them were written by me. AI has been used recently (2026) to find and fix some bugs, very focused. And it should stay this way, using only AI as an assistant, not a writer. All the code was written by hand by me, including the formatting, there is no automatic code formatter, but there are linters to find inconsistencies.
+
+---
+
 You can contribute by reporting bugs or by explaining how some things can be improved or fixed with concepts, pseudo code, or code examples, but I won't accept pull requests.
 
 Email: grasshopper@merkoba.com
