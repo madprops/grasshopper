@@ -87,6 +87,10 @@ The complexity and capabilities are such that I compare it to an `operating syst
 
 - Auto Blur. Blur the sidebar when the mouse leaves, unblur it when it enters.
 
+- Containers. Open tabs in containers. Open tabs without containers (restore). Use icons to know which tabs are using containers.
+
+- Commands. Hundreds of commands to perform anything Grasshopper can do, which can be ran with the command palette (ctrl ctrl). They can be mapped to click events, keyboard events, put in the favorites bar, put in any of the many configurable menus, or used in combos.
+
 And more.
 
 ---
