@@ -23,6 +23,8 @@ The complexity and capabilities are such that I compare it to an `operating syst
 
 - Filterable Menus. All context menus can be filtered by typing anything, to find items very quickly.
 
+- Go Back. Go to the previously visited tabs with a click of a button.
+
 - Go To Playing Tab. Go to the tabs emitting sound by clicking a button or selecting items from a list.
 
 - Close Tabs. Over 18 ways of closing tabs using different criteria.
