@@ -15,7 +15,7 @@ The complexity and capabilities are such that I compare it to an `operating syst
 
 ## Some Features
 
-- Tab management. What you'd expect: Focus, move, close, duplicate, tag, color, add icon, set a custom title, pin/unpin, unload, mute.
+- Tab management. What you'd expect: Focus, move, close, duplicate, tag, color, add icon, set a custom title, pin/unpin, unload, mute. Select multiple tabs.
 
 - Filter. Find tabs by typing. Filter by tab type, with over 30 modes.
 
