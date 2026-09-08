@@ -1190,6 +1190,10 @@ svg {
   animation: shake2 0.9s ease-in-out infinite;
 }
 
+.about_item {
+  font-weight: bold;
+}
+
 a:visited,
 a:link,
 a:hover

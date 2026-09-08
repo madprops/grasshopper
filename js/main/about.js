@@ -79,9 +79,9 @@ App.about_links_items = [
   [`https://en.wikipedia.org/wiki/Grasshopper`, `Wikipedia`],
 ]
 
-App.about_donate_items = [
-  [`84XEQKBLWYp9uNNn6bamfSFDkbbSzXXR64TpEJMW5puu4uur4B8uZVj1v9VXdYRfTQKoH9gnmAw57DkJoH2z6wcyM5CedwF`],
-]
+App.about_donate_monero = `84XEQKBLWYp9uNNn6bamfSFDkbbSzXXR64TpEJMW5puu4uur4B8uZVj1v9VXdYRfTQKoH9gnmAw57DkJoH2z6wcyM5CedwF`
+App.about_donate_bitcoin = `bc1qpcag8w2npcazlencm56a9cc9l8gvh24x0e0hdp`
+App.about_donate_eth = `0x3d906390595CD4A9333c5B8690c0Cde4D3a4B1AF`
 
 App.start_about = () => {
   if (App.check_ready(`about`)) {
@@ -430,23 +430,28 @@ App.start_about_donate = () => {
       })
 
       close.textContent = App.close_text
-      let donate = DOM.el(`#about_donate`)
 
-      for (let item of App.about_donate_items) {
+      function add_address(what) {
+        let label = DOM.el(`#about_donate_${what}`)
+        let address = App[`about_donate_${what}`]
         let el = DOM.create(`div`, `about_info_item filter_item filter_text break selectable pointer`)
-        el.textContent = item
+        el.textContent = address
 
         DOM.ev(el, `click`, () => {
           if (App.is_highlighted(el)) {
             return
           }
 
-          App.copy_to_clipboard(item)
+          App.copy_to_clipboard(address)
           App.alert(`Copied to clipboard`)
         })
 
-        donate.append(el)
+        label.append(el)
       }
+
+      add_address(`monero`)
+      add_address(`bitcoin`)
+      add_address(`eth`)
 
       DOM.el(`#about_donate_name`).textContent = `Donate`
       let container = DOM.el(`#window_content_about_donate`)

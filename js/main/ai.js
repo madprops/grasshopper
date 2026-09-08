@@ -321,7 +321,7 @@ App.set_ai_key = (talk = ``) => {
     password: true,
     value: App.get_setting(`ai_key`),
     placeholder: `API Key`,
-    info: `Get a key in Google AI Studio`,
+    info: `Get a key in OpenRouter`,
     on_submit: async (key) => {
       App.set_setting({setting: `ai_key`, value: key})
 
