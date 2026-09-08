@@ -80,6 +80,7 @@ App.show_ai = (who, title) => {
   }
 
   App.show_textarea({
+    id: `ai_${who}`,
     title,
     title_icon: App[`ai_icon_${who}`],
     readonly: false,
@@ -186,6 +187,11 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
     }
 
     let res = await App.ask_ai(App.ai_config[`cael_system_${mode}`], text)
+
+    if (!App.popup_is_open(`textarea`) || (App.textarea_args.id !== `ai_cael`)) {
+      return
+    }
+
     res = res.trim()
 
     if ([`cmd`, `ask`].includes(mode)) {
@@ -247,6 +253,11 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
     }
   }
   catch (err) {
+    if (!App.popup_is_open(`textarea`) ||
+    (App.textarea_args.id !== `ai_cael`)) {
+      return
+    }
+
     App.error(err)
     App.alert(`Communication Breakdown`)
   }
