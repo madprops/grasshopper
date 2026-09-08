@@ -1,10 +1,6 @@
 // This is modularized so it's easy to add other personalities
 
 App.ai_config = {
-  gemini: {
-    url: `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`,
-    model: `gemini-flash-latest`,
-  },
   cael_system_chat: `Your name is Cael, an ancient grasshopper deity.
   I am here to ask you a question, or to entertain you for a while.
   Don't be overly mysterious, be relatable while maintaining some of your essence.`,
@@ -75,7 +71,7 @@ App.show_ai = (who, title) => {
       }
     }
 
-    if (!App.ai.key) {
+    if (!App.get_setting(`ai_key`)) {
       App.alert(`The key must be set first`)
       return
     }
@@ -94,7 +90,7 @@ App.show_ai = (who, title) => {
     },
     enter_action: true,
     after_show: () => {
-      if (!App.ai.key) {
+      if (!App.get_setting(`ai_key`)) {
         App.set_ai_key(`cael`)
       }
     },
@@ -259,12 +255,12 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
 App.ask_ai = async (system, prompt) => {
   let headers = {
     "Content-Type": `application/json`,
-    "Authorization": `Bearer ${App.ai.key}`,
+    "Authorization": `Bearer ${App.get_setting(`ai_key`)}`
   }
 
   let body = {
     stream: false,
-    model: App.ai_config.gemini.model,
+    model: App.get_setting(`ai_model`),
     max_tokens: App.ai_config.max_tokens,
   }
 
@@ -279,10 +275,10 @@ App.ask_ai = async (system, prompt) => {
   App.alert(`Thinking...`)
 
   try {
-    let response = await fetch(App.ai_config.gemini.url, {
+    let response = await fetch(`https://openrouter.ai/api/v1/chat/completions`, {
       method: `POST`,
       headers,
-      body: JSON.stringify(body),
+      body: JSON.stringify(body)
     })
 
     let data = await response.json()
@@ -312,12 +308,11 @@ App.ask_ai = async (system, prompt) => {
 App.set_ai_key = (talk = ``) => {
   App.show_prompt({
     password: true,
-    value: App.ai.key,
+    value: App.get_setting(`ai_key`),
     placeholder: `API Key`,
     info: `Get a key in Google AI Studio`,
     on_submit: async (key) => {
-      App.ai.key = key
-      App.stor_save_ai()
+      App.set_setting({setting: `ai_key`, value: key})
 
       if (key && talk) {
         App[`talk_to_${talk}`]()

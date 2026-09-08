@@ -5849,6 +5849,22 @@ App.build_settings = () => {
       info: `List of extensions to consider documents`,
       version: 1,
     },
+    ai_model: {
+      name: `AI Model`,
+      type: `text`,
+      value: `anthropic/claude-3-haiku`,
+      placeholder: `Model Name`,
+      info: `Name of the AI model to use. This is an OpenRouter model, in the format 'company/name'`,
+      version: 1,
+    },
+    ai_key: {
+      name: `AI Key`,
+      type: `password`,
+      value: ``,
+      placeholder: `API Key`,
+      info: `The OpenRouter API key to power the AI`,
+      version: 1,
+    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,

@@ -24,7 +24,6 @@ App.init = async () => {
   await App.stor_get_palette_history()
   await App.stor_get_datastore()
   await App.stor_get_memory()
-  await App.stor_get_ai()
   await App.check_init_mode()
 
   App.make_tab_box_modes()
