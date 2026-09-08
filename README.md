@@ -41,7 +41,7 @@ The complexity and capabilities are such that I compare it to an `operating syst
 
 - Notes. Simple global notepad to take notes. And per-tab notes to annotate information on specific tabs.
 
-- Cael. AI assistant that can help you with settings and commands, or just talk. This uses Gemini.
+- Cael. AI assistant that can help you with settings and commands, or just talk. This uses OpenRouter.
 
 - Datastore. Data store system to store different versions of settings, notes, or themes.
 
