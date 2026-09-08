@@ -255,7 +255,7 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
 App.ask_ai = async (system, prompt) => {
   let headers = {
     "Content-Type": `application/json`,
-    "Authorization": `Bearer ${App.get_setting(`ai_key`)}`
+    "Authorization": `Bearer ${App.get_setting(`ai_key`)}`,
   }
 
   let body = {
@@ -278,7 +278,7 @@ App.ask_ai = async (system, prompt) => {
     let response = await fetch(`https://openrouter.ai/api/v1/chat/completions`, {
       method: `POST`,
       headers,
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     })
 
     let data = await response.json()
