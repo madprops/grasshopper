@@ -81,7 +81,7 @@ The complexity and capabilities are such that I compare it to an `operating syst
 
 - Combos. Create command combos, which are a sequence of commands. These appears as another command which you can map anywhere.
 
-- Auto Close. Make unused tabs to close automatically after some time. This avoids collecting hundreds of tabs.
+- Auto Close. Make unused tabs close automatically after some time. This avoids collecting hundreds of tabs.
 
 - Mouse Events. Most UI elements allow to be mapped with commands on click, middle click, middle click press, click press, shift click, ctrl click, ctrl shift click, wheel up, wheel up. Depends on the element.
 
