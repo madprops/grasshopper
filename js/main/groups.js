@@ -504,7 +504,7 @@ App.group_prompt = async (item, callback) => {
     list: names,
     show_list: auto_picker,
     list_submit: auto_picker,
-    fill: true,
+    fill: App.random_word(3, false),
     on_submit: async (name) => {
       callback(name)
     },

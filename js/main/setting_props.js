@@ -4142,6 +4142,13 @@ App.build_settings = () => {
       info: `Treat container tabs as special`,
       version: 1,
     },
+    warn_special_group: {
+      name: `Group Special`,
+      type: `checkbox`,
+      value: false,
+      info: `Treat group tabs as special`,
+      version: 1,
+    },
     warn_special_unloaded: {
       name: `Unloaded Special`,
       type: `checkbox`,

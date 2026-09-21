@@ -64,6 +64,10 @@ App.check_warn = (warn_setting, items) => {
         return false
       }
 
+      if (App.is_grouped(item) && App.get_setting(`warn_special_group`)) {
+        return false
+      }
+
       if (!item.header && App.get_setting(`warn_special_edited`)) {
         if (App.edited(item, false, [`obfuscated`])) {
           return false
