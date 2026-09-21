@@ -725,7 +725,7 @@ App.filter_check = (args) => {
 
   if (!match) {
     if (args.by_what.startsWith(`container`) || App.get_setting(`filter_containers`)) {
-      if (args.item.container_name) {
+      if (App.is_container(args.item)) {
         let cname = App.clean_filter(args.item.container_name, true)
         match = cname === args.value_lower
       }
@@ -876,7 +876,7 @@ App.filter_check = (args) => {
       match = App.tab_is_idle(args.item)
     }
     else if (args.filter_mode === `filter_tab_containers_all`) {
-      match = args.item.container_name
+      match = App.is_container(args.item)
     }
     else if (args.filter_mode === `filter_https_tabs`) {
       match = args.item.protocol === `https:`

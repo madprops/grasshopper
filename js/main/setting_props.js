@@ -4135,6 +4135,13 @@ App.build_settings = () => {
       info: `Treat edited tabs as special`,
       version: 1,
     },
+    warn_special_container: {
+      name: `Container Special`,
+      type: `checkbox`,
+      value: false,
+      info: `Treat container tabs as special`,
+      version: 1,
+    },
     warn_special_unloaded: {
       name: `Unloaded Special`,
       type: `checkbox`,

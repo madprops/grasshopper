@@ -284,7 +284,7 @@ App.check_command = (command, args = {}) => {
         args.some_ruled = true
       }
 
-      if (item.container_name) {
+      if (App.is_container(item)) {
         args.some_container = true
       }
 

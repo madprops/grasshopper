@@ -11,12 +11,12 @@ App.get_contextual_identity = async (tab) => {
 
 App.get_container_tabs = (name = ``) => {
   let items = App.get_items(`tabs`)
-  return items.filter(x => x.container_name && (!name || (x.container_name === name)))
+  return items.filter(x => App.is_container(x) && (!name || (x.container_name === name)))
 }
 
 App.get_all_container_tabs = () => {
   let items = App.get_items(`tabs`)
-  return items.filter(x => x.container_name)
+  return items.filter(x => App.is_container(x))
 }
 
 App.tab_container_menu = (item, e) => {
@@ -107,7 +107,7 @@ App.get_container_items = (mode, action = `filter`) => {
   let containers = []
 
   for (let tab of App.get_items(`tabs`)) {
-    if (tab.container_name) {
+    if (App.is_container(tab)) {
       if (!containers.includes(tab.container_name)) {
         containers.push(tab.container_name)
       }
@@ -339,4 +339,8 @@ App.detach_container = async (item, e, close = false) => {
 
     App.close_tabs({selection: active, force: true})
   }
+}
+
+App.is_container = (item) => {
+  return Boolean(item.container_name)
 }

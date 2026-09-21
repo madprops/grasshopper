@@ -959,7 +959,7 @@ App.update_icon_tooltips = (item, target) => {
 App.check_container_icon = (item) => {
   let container_el = DOM.el(`.container_icon`, item.element)
 
-  if (item.container_name && App.icon_enabled(`container`, item)) {
+  if (App.is_container(item) && App.icon_enabled(`container`, item)) {
     let c_icon = App.color_icon_square(item.container_color)
     container_el.innerHTML = ``
 
