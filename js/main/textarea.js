@@ -22,7 +22,6 @@ App.show_textarea = (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  args.text = args.text
 
   if (args.trim) {
     args.text = args.text.trim()
