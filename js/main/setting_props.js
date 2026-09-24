@@ -6125,7 +6125,7 @@ App.build_settings = () => {
     wrap_notes: {
       name: `Wrap Notes`,
       type: `checkbox`,
-      value: false,
+      value: true,
       info: `Wrap long lines when taking notes`,
       version: 1,
     },
