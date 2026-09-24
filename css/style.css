@@ -1244,7 +1244,7 @@ a:hover
 }
 
 .pre_wrap {
-  white-space: pre-wrap;
+  white-space: pre-wrap !important;
 }
 
 .textarea {
