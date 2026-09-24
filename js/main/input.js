@@ -4,6 +4,7 @@ App.show_input = (args = {}) => {
     bottom: false,
     left: false,
     wrap: false,
+    trim: true,
   }
 
   App.def_args(def_args, args)
@@ -13,7 +14,13 @@ App.show_input = (args = {}) => {
       return
     }
 
-    let ans = args.action(DOM.el(`#textarea_text`).value.trim())
+    let value = DOM.el(`#textarea_text`).value
+
+    if (args.trim) {
+      value = value.trim()
+    }
+
+    let ans = args.action(value)
 
     if (ans) {
       App.close_textarea()
@@ -63,6 +70,7 @@ App.show_input = (args = {}) => {
     bottom: args.bottom,
     wrap: args.wrap,
     text: args.value,
+    trim: args.trim,
     readonly: false,
     enter_action: true,
     ctrl_enter: true,

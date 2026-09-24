@@ -6122,6 +6122,20 @@ App.build_settings = () => {
       info: `Obfuscate the icons when the tab is obfuscated`,
       version: 1,
     },
+    wrap_notes: {
+      name: `Wrap Notes`,
+      type: `checkbox`,
+      value: false,
+      info: `Wrap long lines when taking notes`,
+      version: 1,
+    },
+    clean_notes: {
+      name: `Clean Notes`,
+      type: `checkbox`,
+      value: false,
+      info: `Do some format cleaning when saving notes`,
+      version: 1,
+    },
     sort_settings: {
       name: `Sort Settings`,
       type: `checkbox`,

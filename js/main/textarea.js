@@ -17,11 +17,17 @@ App.show_textarea = (args = {}) => {
     placeholder: ``,
     format: true,
     fluid: false,
+    trim: true,
     on_drop: (e) => {},
   }
 
   App.def_args(def_args, args)
-  args.text = args.text.trim()
+  args.text = args.text
+
+  if (args.trim) {
+    args.text = args.text.trim()
+  }
+
   App.start_popups()
   let textarea = DOM.el(`#textarea_text`)
   let simplearea = DOM.el(`#textarea_simple`)

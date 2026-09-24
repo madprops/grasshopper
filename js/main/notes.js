@@ -4,8 +4,15 @@ App.edit_notes = (item) => {
     title_icon: App.notepad_icon,
     button: `Save`,
     placeholder: `Enter some notes`,
+    wrap: App.get_setting(`wrap_notes`),
+    trim: App.get_setting(`clean_notes`),
     action: (text) => {
-      let notes = App.single_linebreak(text)
+      let notes = text
+
+      if (App.get_setting(`clean_notes`)) {
+        notes = App.single_linebreak(notes)
+      }
+
       let active = App.get_active_items({mode: item.mode, item})
 
       for (let it of active) {
@@ -65,6 +72,8 @@ App.edit_global_notes = () => {
     title_icon: App.notepad_icon,
     button: `Save`,
     placeholder: `Enter some notes`,
+    wrap: App.get_setting(`wrap_notes`),
+    trim: App.get_setting(`clean_notes`),
     action: (text) => {
       App.set_global_notes(text)
       return true
@@ -108,7 +117,13 @@ App.apply_notes = (item, notes) => {
 }
 
 App.set_global_notes = (notes) => {
-  App.notes = App.single_linebreak(notes)
+  if (App.get_setting(`clean_notes`)) {
+    App.notes = App.single_linebreak(notes)
+  }
+  else {
+    App.notes = notes
+  }
+
   App.stor_save_notes()
 }
 
