@@ -36,6 +36,7 @@ App.make_tab_box_modes = () => {
     normal: {info: `Normal tabs`, icon: App.get_setting(`normal_icon`)},
     pins: {info: `Pinned tabs`, icon: App.get_setting(`pin_icon`)},
     playing: {info: `Tabs emitting sound`, icon: App.get_setting(`playing_icon`)},
+    updates: {info: `Tabs with title updates`, icon: App.bell_icon},
     loaded: {info: `Loaded tabs`, icon: App.get_setting(`loaded_icon`)},
     unloaded: {info: `Unloaded tabs`, icon: App.get_setting(`unloaded_icon`)},
     unread: {info: `Unread tabs`, icon: App.get_setting(`unread_icon`)},
@@ -388,6 +389,11 @@ App.update_tab_box_containers = () => {
 App.update_tab_box_notes = () => {
   let o_items = App.get_noted_items()
   return App.tab_box_show(`notes`, o_items)
+}
+
+App.update_tab_box_updates = () => {
+  let o_items = App.updated_tabs()
+  return App.tab_box_show(`updates`, o_items)
 }
 
 App.update_tab_box_titles = () => {

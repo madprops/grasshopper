@@ -42,7 +42,10 @@ App.setup_tabs = () => {
           App.check_playing()
         }
 
-        if (changed.url !== undefined) {
+        let props = [`url`, `title`]
+        let has_changes = props.some(p => changed[p] !== undefined)
+
+        if (has_changes) {
           App.update_tab_box()
         }
       }).catch(App.error)
@@ -1896,4 +1899,9 @@ App.wait_for_tab_load = (tab_id) => {
 App.focus_global_tab = async (item) => {
   await App.browser().windows.update(item.window_id, {focused: true})
   await App.browser().tabs.update(item.id, {active: true})
+}
+
+App.updated_tabs = () => {
+  let tabs = App.get_all_tabs()
+  return [...tabs].sort((a, b) => b.last_title - a.last_title)
 }

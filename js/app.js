@@ -368,6 +368,7 @@ App.title_icon = `✏️`
 App.donate_icon = `🎁`
 App.group_icon = `🗂️`
 App.document_icon = `📖`
+App.bell_icon = `🔔`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`
