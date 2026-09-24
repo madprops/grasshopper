@@ -171,6 +171,10 @@ App.process_info = (args = {}) => {
   App.check_rules(item)
 
   if (args.o_item) {
+    if (args.o_item.title !== item.title) {
+      item.last_title = App.now()
+    }
+
     args.o_item = Object.assign(args.o_item, item)
     App.refresh_item_element(args.o_item)
     App.refresh_tab_box_element(args.o_item)
@@ -193,6 +197,7 @@ App.process_info = (args = {}) => {
     item.tab_box = false
     item.last_scroll = 0
     item.activated = false
+    item.last_title = 0
 
     App.create_empty_item_element(item)
     let fill = App.get_setting(`fill_elements`)
