@@ -224,7 +224,7 @@ App.colors_addlist_ready = false
 App.keyboard_addlist_ready = false
 App.custom_commands_addlist_ready = false
 
-App.alert_auto_hide_delay = 1500
+App.alert_auto_hide_delay = App.SECOND * 1.5
 App.tab_box_grow_delay = 100
 App.tab_box_ungrow_delay = 500
 App.tab_box_shrink_delay = 100
@@ -267,6 +267,7 @@ App.change_group_delay = 500
 App.check_group_delay = 500
 App.attempt_group_delay = 500
 App.auto_close_delay = App.MINUTE
+App.navigation_delay = App.SECOND * 5
 
 App.settings_icons = {
   all: `🔍`,

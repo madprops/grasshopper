@@ -171,10 +171,7 @@ App.process_info = (args = {}) => {
   App.check_rules(item)
 
   if (args.o_item) {
-    if (args.o_item.title !== item.title) {
-      item.last_title = App.now()
-    }
-
+    App.check_navigation(args.o_item, item)
     args.o_item = Object.assign(args.o_item, item)
     App.refresh_item_element(args.o_item)
     App.refresh_tab_box_element(args.o_item)
@@ -190,6 +187,7 @@ App.process_info = (args = {}) => {
       }
     }
 
+    let now = App.now()
     item.original_data = args.info
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true
@@ -198,6 +196,7 @@ App.process_info = (args = {}) => {
     item.last_scroll = 0
     item.activated = false
     item.last_title = 0
+    item.last_nav = now
 
     App.create_empty_item_element(item)
     let fill = App.get_setting(`fill_elements`)
@@ -220,4 +219,21 @@ App.process_info = (args = {}) => {
 
 App.process_search_item = (info) => {
   info.path = App.get_path(info.url || `https://no.url`)
+}
+
+App.check_navigation = (o_item, item) => {
+  let url_changed = o_item.url !== item.url
+
+  if (url_changed) {
+    item.last_nav = App.now()
+  }
+
+  if (o_item.title !== item.title) {
+    let last_nav = item.last_nav || o_item.last_nav || 0
+    let time_since_nav = App.now() - last_nav
+
+    if (!url_changed && (time_since_nav > App.navigation_delay)) {
+      item.last_title = App.now()
+    }
+  }
 }

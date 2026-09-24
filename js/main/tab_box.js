@@ -413,8 +413,13 @@ App.update_tab_box_history = () => {
 
 App.get_tab_box_items = (o_items, mode) => {
   let items = []
+  let max_items = App.get_setting(`tab_box_max`)
 
-  for (let o_item of o_items.slice(0, App.get_setting(`tab_box_max`))) {
+  for (let o_item of o_items) {
+    if (items.length >= max_items) {
+      break
+    }
+
     if (!o_item || !o_item.element) {
       continue
     }
