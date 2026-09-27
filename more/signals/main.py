@@ -1,4 +1,5 @@
 import json
+import random
 import subprocess
 from datetime import datetime
 from flask import Flask, request
@@ -22,7 +23,7 @@ port = 5000
 debug = False
 
 # Your music player
-player = ["playerctl", "-p", "audacious"]
+player = ["playerctl", "-p", "tauon"]
 
 # Delay to wait for metadata to update
 metadata_delay = "0.18"
@@ -32,6 +33,14 @@ backup_path = Path("~/.config/signals/backups").expanduser()
 
 # Seconds to seek forwards or backwards
 seek_time = 5
+
+# Load nouns from file
+nouns = []
+nouns_path = Path("nouns.txt")
+
+if nouns_path.exists():
+    with nouns_path.open("r") as f:
+        nouns = [line.strip() for line in f if line.strip()]
 
 
 # ----------
@@ -62,19 +71,19 @@ def music(what):
 
 
 def inc_volume():
-    run(["awesome-client", "Utils.increase_volume()"])
+    run(["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "0.01+"])
 
 
 def dec_volume():
-    run(["awesome-client", "Utils.decrease_volume()"])
+    run(["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "0.01-"])
 
 
 def max_volume():
-    run(["awesome-client", "Utils.max_volume()"])
+    run(["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "1.0"])
 
 
 def min_volume():
-    run(["awesome-client", "Utils.min_volume()"])
+    run(["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "0.0"])
 
 
 def get_metadata(what):
@@ -104,6 +113,17 @@ def player_status():
     result = output([*player, "status"])
     return result.stdout.decode("utf-8").strip()
 
+
+def words(num: int = 2, capitalize: bool = False) -> str:
+    if num < 1:
+        return ""
+
+    w = " ".join(random.sample(nouns, min(num, len(nouns))))
+
+    if capitalize:
+        w = w.title()
+
+    return w
 
 def save_backup(what, data):
     tabs = get_arg(what)
@@ -194,6 +214,12 @@ def music_seek_f():
 def music_seek_b():
     music(["position", f"{seek_time}-"])
     return "ok"
+
+
+@app.route("/words", methods=["POST"])
+def random_words():
+    num = get_arg("num") or 2
+    return words(num, True)
 
 
 # ------------
