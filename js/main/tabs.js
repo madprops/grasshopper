@@ -690,10 +690,20 @@ App.update_tabs_index = async (items, direction) => {
   try {
     let pinline = App.pinline_index(false)
     let processed_groups = []
+    let item_data = []
 
     for (let item of items) {
-      let index = App.get_item_element_index({mode: `tabs`, element: item.element, include_all: true})
-      let index_2 = App.get_item_element_index({mode: `tabs`, element: item.element})
+      item_data.push({
+        item,
+        index: App.get_item_element_index({mode: `tabs`, element: item.element, include_all: true}),
+        index_2: App.get_item_element_index({mode: `tabs`, element: item.element})
+      })
+    }
+
+    for (let data of item_data) {
+      let item = data.item
+      let index = data.index
+      let index_2 = data.index_2
 
       if (item.pinned) {
         if (index > pinline) {
