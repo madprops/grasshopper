@@ -692,8 +692,12 @@ App.filter_check = (args) => {
 
   if (!match) {
     if (args.by_what.startsWith(`group`) || App.get_setting(`filter_groups`)) {
-      if (App.clean_filter(args.item.group_name, true) === args.value_lower) {
-        match = true
+      let name = args.item.group_name
+
+      if (name) {
+        if (App.clean_filter(name, true) === args.value_lower) {
+          match = true
+        }
       }
     }
   }
