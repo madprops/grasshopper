@@ -63,15 +63,20 @@ App.show_tab_list = async (what, e, item) => {
     }
   }
   else if (what.startsWith(`group_`)) {
-    let id = parseInt(what.split(`_`)[1])
+    let id = what.split(`_`)[1]
 
     if (id === `allthegroups`) {
       tabs = App.get_group_tabs()
       title = `Groups`
       title_icon = App.group_icon
     }
+    else if (id === `nogrouphere`) {
+      tabs = []
+      title = `Groups`
+      title_icon = App.group_icon
+    }
     else {
-      tabs = App.get_group_tabs(id)
+      tabs = App.get_group_tabs(parseInt(id))
       let group = await App.get_group_by_id(id)
       title = group?.title || `Group`
       title_icon = App.group_icon

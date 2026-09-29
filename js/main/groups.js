@@ -171,6 +171,11 @@ App.check_group_item = async (item) => {
   }
 
   let group = await App.get_group(item)
+
+  if (!group) {
+    return
+  }
+
   let c_obj = App.get_color_by_name(group.title)
 
   if (c_obj) {
@@ -279,19 +284,19 @@ App.fill_group = async (item) => {
 App.show_filter_group_menu = async (mode, e) => {
   let items = await App.get_group_items(mode)
   let title_icon = App.get_setting(`group_icon`)
-  App.show_context({items, e, title: `Tags`, title_icon})
+  App.show_context({items, e, title: `Groups`, title_icon})
 }
 
 App.show_show_group_menu = async (mode, e) => {
   let items = await App.get_group_items(mode, `show`)
   let title_icon = App.get_setting(`group_icon`)
-  App.show_context({items, e, title: `Tags`, title_icon})
+  App.show_context({items, e, title: `Groups`, title_icon})
 }
 
 App.show_select_group_menu = async (mode, e) => {
   let items = await App.get_group_items(mode, `select`)
   let title_icon = App.get_setting(`group_icon`)
-  App.show_context({items, e, title: `Tags`, title_icon})
+  App.show_context({items, e, title: `Groups`, title_icon})
 }
 
 App.get_group_items = async (mode, action = `filter`) => {
@@ -457,7 +462,16 @@ App.group_icon_click = (item, e) => {
 
 App.show_group = async (item, e) => {
   let group = await App.get_group(item)
-  App.show_tab_list(`group_${group.id}`, e)
+  let id
+
+  if (group) {
+    id = group.id
+  }
+  else {
+    id = `nogrouphere`
+  }
+
+  App.show_tab_list(`group_${id}`, e)
 }
 
 App.rename_group = async (item) => {
@@ -574,6 +588,11 @@ App.filter_group = async (args = {}) => {
 
   if (args.item && App.is_grouped(args.item)) {
     let group = await App.get_group(args.item)
+
+    if (!group) {
+      return
+    }
+
     value = group.id
     text = group.title
   }
