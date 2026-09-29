@@ -89,16 +89,23 @@ App.ungroup_tabs = (item, edit = true, force = false) => {
           App.edit_tab_icon({item, force: true})
         }
 
-        await App.ungroup_call(tab.id)
-
-        tab.group = -1
-        tab.group_name = ``
+        await App.ungroup_tab(tab)
         tab.ungrouping = false
         App.update_group_item(tab)
       }
     },
     force,
   })
+}
+
+App.ungroup_tab = async (tab, set_tooltip = false) => {
+  await App.ungroup_call(tab.id)
+  tab.group = -1
+  tab.group_name = ``
+
+  if (set_tooltip) {
+    App.set_item_tooltips(tab, true)
+  }
 }
 
 App.get_groups = async () => {

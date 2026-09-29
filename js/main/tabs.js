@@ -701,6 +701,10 @@ App.update_tabs_index = async (items, direction) => {
         }
       }
       else if (index < pinline) {
+        if (item.group && (item.group !== -1)) {
+          await App.ungroup_tab(item, true)
+        }
+
         await App.pin_tab(item.id)
       }
 
