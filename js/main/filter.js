@@ -625,6 +625,27 @@ App.make_filter_regex = (args = {}) => {
     regex = new RegExp(cleaned, ci ? `i` : ``)
   }
 
+  if (regex) {
+    let normalize_enabled = App.get_setting(`normalize_filter`)
+
+    if (normalize_enabled) {
+      let orig_test = regex.test.bind(regex)
+
+      regex.test = (text) => {
+        if (orig_test(text)) {
+          return true
+        }
+
+        if (text) {
+          let normalized_text = App.normalize_text(text)
+          return orig_test(normalized_text)
+        }
+
+        return false
+      }
+    }
+  }
+
   return regex
 }
 

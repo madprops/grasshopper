@@ -5203,6 +5203,13 @@ App.build_settings = () => {
       info: `Show an effect on focused filter inputs`,
       version: 1,
     },
+    normalize_filter: {
+      name: `Normalize Filter`,
+      type: `checkbox`,
+      value: true,
+      info: `Make it so special chars can be ignored. For instance 'metodo' can match 'método'`,
+      version: 1,
+    },
     auto_deep_search_history: {
       name: `Auto Deep (History)`,
       type: `checkbox`,
