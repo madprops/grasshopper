@@ -696,7 +696,7 @@ App.update_tabs_index = async (items, direction) => {
       item_data.push({
         item,
         index: App.get_item_element_index({mode: `tabs`, element: item.element, include_all: true}),
-        index_2: App.get_item_element_index({mode: `tabs`, element: item.element})
+        index_2: App.get_item_element_index({mode: `tabs`, element: item.element}),
       })
     }
 
