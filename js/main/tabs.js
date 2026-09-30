@@ -851,10 +851,7 @@ App.update_tabs_index = async (items, direction) => {
               // keep it absorbed
             }
             else {
-              await App.browser().tabs.ungroup(item.id)
-              item.group = -1
-              item.group_name = ``
-              App.set_item_tooltips(item, true)
+              await App.ungroup_tab(item, true)
             }
           }
         }
