@@ -702,6 +702,14 @@ App.update_tabs_index = async (items, direction) => {
 
     for (let data of item_data) {
       let item = data.item
+
+      if (!item.pinned && (data.index < pinline) && App.is_grouped(item)) {
+        await App.ungroup_tab(item, true)
+      }
+    }
+
+    for (let data of item_data) {
+      let item = data.item
       let index = data.index
       let index_2 = data.index_2
 
@@ -711,10 +719,6 @@ App.update_tabs_index = async (items, direction) => {
         }
       }
       else if (index < pinline) {
-        if (item.group && (item.group !== -1)) {
-          await App.ungroup_tab(item, true)
-        }
-
         await App.pin_tab(item.id)
       }
 

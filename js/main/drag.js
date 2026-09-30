@@ -287,30 +287,6 @@ App.dragenter_action = (mode, e) => {
   let direction = e.clientY > App.drag_y ? `down` : `up`
   App.drag_y = e.clientY
 
-  if (App.drag_items.length > 1) {
-    let has_grouped = App.drag_items.some(item => App.is_grouped(item) && !item.pinned)
-
-    if (has_grouped) {
-      let pinline_el = DOM.el(`#pinline`)
-
-      if (pinline_el) {
-        let els = DOM.els(`.tabs_element`)
-        let el_idx = els.indexOf(el)
-        let pin_idx = els.indexOf(pinline_el)
-
-        if (direction === `up` && (el_idx <= pin_idx)) {
-          e.preventDefault()
-          return false
-        }
-
-        if (direction === `down` && (el_idx < pin_idx)) {
-          e.preventDefault()
-          return false
-        }
-      }
-    }
-  }
-
   if (direction === `up`) {
     el.before(...App.drag_els)
   }
