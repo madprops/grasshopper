@@ -282,8 +282,10 @@ App.get_group_tabs = (group = ``) => {
 }
 
 App.fill_group = async (item) => {
-  if (!item.group_name) {
-    item.group_name = await App.get_group_name(item)
+  let name = await App.get_group_name(item)
+
+  if (name !== item.group_name) {
+    item.group_name = name
     App.set_item_tooltips(item, true)
   }
 }
@@ -495,7 +497,10 @@ App.rename_group = async (item) => {
     for (let tab of tabs) {
       tab.group_name = name
       App.set_item_tooltips(tab, true)
+      App.check_group(tab)
     }
+
+    App.push_to_group_history([name])
   })
 }
 
