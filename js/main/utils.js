@@ -990,3 +990,8 @@ App.browser = () => {
 App.normalize_text = (s) => {
   return s.toLowerCase().normalize(`NFD`).replace(/[\u0300-\u036f]/g, ``)
 }
+
+App.clean_special_chars = (text) => {
+  text = text.toLowerCase().trim()
+  return text.replace(/[?!]/g, ``)
+}

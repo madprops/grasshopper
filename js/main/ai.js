@@ -21,7 +21,10 @@ App.ai_config = {
   If no command satisfies the request, or it's too ambiguous, just return "idk".`,
   cael_system_ask: `You exist inside a tab manager addon for Firefox that has many features available.
   You are going to be asked about how to do or set something.
-  You are going to be given a list of relevant commands, and a list of relevant settings.
+  You are going to be given a description of the available setting categories.
+  Setting categories are sections in the settings window to configure certain things.
+  Guide the user towards the appropriate setting category so they find relevant settings if that's what they need.
+  You are also going to be given a list of relevant commands, and a list of relevant settings.
   Point the user to a command or setting they might use to solve their problem.
   For instance: "You might be looking for the 'Close Unloaded' command.".
   Or: "You can adjust this in the 'Filter Placeholder' setting.".
@@ -170,12 +173,10 @@ App.ai_ask_cael = async (text, mode = `chat`) => {
       App.ai_config.history = []
       let cmds = App.get_command_summary(text)
       let sett = App.get_setting_summary(text)
-
-      if ((cmds.length === 0) && (sett.length === 0)) {
-        return
-      }
-
       let msg = []
+
+      let sct = App.setting_categories_text()
+      msg.push(`${av} setting categories:\n\n${sct}`)
 
       if (cmds.length) {
         let str = App.str(cmds, true)

@@ -2795,7 +2795,7 @@ App.make_setting_summary = () => {
 }
 
 App.get_setting_summary = (text = ``) => {
-  text = text.toLowerCase().trim()
+  text = App.clean_special_chars(text)
 
   if (!text) {
     return App.setting_summary
@@ -2865,4 +2865,17 @@ App.setup_settings_events = (container, key) => {
       }
     }
   }
+}
+
+App.setting_categories_text = () => {
+  let items = []
+
+  for (let c of App.settings_categories) {
+    let props = App.setting_catprops[c]
+    let name = App.category_string(c)
+    let info = props.info
+    items.push(`${name}: ${info}`)
+  }
+
+  return items.join(`\n\n`)
 }

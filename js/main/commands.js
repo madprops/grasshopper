@@ -829,7 +829,7 @@ App.make_command_summary = () => {
 }
 
 App.get_command_summary = (text = ``) => {
-  text = text.toLowerCase().trim()
+  text = App.clean_special_chars(text)
 
   if (!text) {
     return App.command_summary

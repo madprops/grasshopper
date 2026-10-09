@@ -5873,7 +5873,7 @@ App.build_settings = () => {
     ai_model: {
       name: `AI Model`,
       type: `text`,
-      value: `anthropic/claude-3-haiku`,
+      value: `openai/gpt-6-luna`,
       placeholder: `Model Name`,
       info: `Name of the AI model to use. This is an OpenRouter model, in the format 'company/name'`,
       version: 1,
