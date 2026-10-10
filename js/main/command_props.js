@@ -5516,6 +5516,26 @@ App.setup_commands = () => {
       info: `Toggle the tab sort`,
     },
     {
+      name: `Tab Sort (Normal)`,
+      short_name: `Normal`,
+      cmd: `tab_sort_normal`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.toggle_tab_sort(`normal`)
+      },
+      info: `Sort the tabs by normal order`,
+    },
+    {
+      name: `Tab Sort (Recent)`,
+      short_name: `Recent`,
+      cmd: `tab_sort_recent`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.toggle_tab_sort(`recent`)
+      },
+      info: `Sort the tabs by recent usage`,
+    },
+    {
       name: `Toggle Auto Click`,
       short_name: `Auto Click`,
       cmd: `toggle_auto_click`,

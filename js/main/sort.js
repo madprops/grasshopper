@@ -147,14 +147,26 @@ App.tabs_recent = () => {
   return App.get_setting(`tab_sort`) === `recent`
 }
 
-App.toggle_tab_sort = () => {
-  let value
-
-  if (App.tabs_normal()) {
-    value = `recent`
+App.toggle_tab_sort = (value = ``) => {
+  if (value) {
+    if (value === `normal`) {
+      if (App.tabs_normal()) {
+        return
+      }
+    }
+    else if (value === `recent`) {
+      if (App.tabs_recent()) {
+        return
+      }
+    }
   }
-  else if (App.tabs_recent()) {
-    value = `normal`
+  else {
+    if (App.tabs_normal()) {
+      value = `recent`
+    }
+    else if (App.tabs_recent()) {
+      value = `normal`
+    }
   }
 
   App.set_setting({setting: `tab_sort`, value})
