@@ -864,3 +864,31 @@ App.get_command_summary = (text = ``) => {
 
   return items
 }
+
+App.get_public_commands = () => {
+  let cmds = []
+
+  for (let cmd of App.commands) {
+    if (cmd.name.startsWith(App.private_command_symbol)) {
+      continue
+    }
+
+    cmds.push(cmd)
+  }
+
+  return cmds
+}
+
+App.get_private_commands = () => {
+  let cmds = []
+
+  for (let cmd of App.commands) {
+    if (!cmd.name.startsWith(App.private_command_symbol)) {
+      continue
+    }
+
+    cmds.push(cmd)
+  }
+
+  return cmds
+}

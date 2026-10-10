@@ -169,7 +169,7 @@ App.start_about = () => {
       let info = ``
       info += `Started: ${App.timeago(App.start_date)}\n`
       info += `Installed: ${App.timeago(App.first_time.date)}\n`
-      info += `Commands: ${Object.keys(App.commands).length}\n`
+      info += `Commands: ${App.get_public_commands().length}\n`
       info += `Settings: ${Object.keys(App.settings).length}\n`
       info += `Soul: ${App.get_soul_emoji()}`
 
