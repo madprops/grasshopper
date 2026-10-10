@@ -5516,7 +5516,7 @@ App.setup_commands = () => {
       info: `Toggle the tab sort`,
     },
     {
-      name: `Tab Sort (Normal)`,
+      name: `Tab Sort: Normal`,
       short_name: `Normal`,
       cmd: `tab_sort_normal`,
       icon: tabs_icon,
@@ -5526,7 +5526,7 @@ App.setup_commands = () => {
       info: `Sort the tabs by normal order`,
     },
     {
-      name: `Tab Sort (Recent)`,
+      name: `Tab Sort: Recent`,
       short_name: `Recent`,
       cmd: `tab_sort_recent`,
       icon: tabs_icon,

@@ -160,13 +160,11 @@ App.toggle_tab_sort = (value = ``) => {
       }
     }
   }
-  else {
-    if (App.tabs_normal()) {
-      value = `recent`
-    }
-    else if (App.tabs_recent()) {
-      value = `normal`
-    }
+  else if (App.tabs_normal()) {
+    value = `recent`
+  }
+  else if (App.tabs_recent()) {
+    value = `normal`
   }
 
   App.set_setting({setting: `tab_sort`, value})
