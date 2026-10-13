@@ -489,6 +489,24 @@ App.mouse_ctrl_shift_middle_click_action = (e) => {
 }
 
 App.mouse_context_action = (e) => {
+  let natural_ids = [
+    `textarea_text`
+  ]
+
+  if (natural_ids.some(id => e.target.id === id)) {
+    return
+  }
+
+  let natural_cls = [
+    `settings_text`,
+    `settings_textarea`,
+    `settings_number`,
+  ]
+
+  if (natural_cls.some(cls => e.target.classList.contains(cls))) {
+    return
+  }
+
   clearInterval(App.auto_click_timeout)
   App.update_filter_history()
   let target = e.target

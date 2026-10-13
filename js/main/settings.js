@@ -246,6 +246,10 @@ App.add_settings_filter = (category) => {
     App.filter_settings()
   })
 
+  DOM.ev(filter, `contextmenu`, (e) => {
+    App.show_settings_filter_context_menu(e)
+  })
+
   filter.placeholder = `Filter (${count})`
   let bottom = DOM.create(`div`, `button filter_btn`)
   bottom.textContent = App.filter_bottom_icon
@@ -260,9 +264,7 @@ App.add_settings_filter = (category) => {
   clear.title = App.filter_clear_title
 
   DOM.ev(clear, `click`, () => {
-    filter.value = ``
-    App.do_filter_settings()
-    filter.focus()
+    App.settings_filter_clear(filter)
   })
 
   filter_container.append(bottom)
@@ -2878,4 +2880,67 @@ App.setting_categories_text = () => {
   }
 
   return items.join(`\n\n`)
+}
+
+App.show_settings_filter_context_menu = (e) => {
+  let items = []
+  let value = e.target.value.trim()
+
+  if (value) {
+    items.push({
+      icon: App.clipboard_icon,
+      text: `Copy`,
+      action: () => {
+        App.settings_filter_copy(e.target)
+      },
+    })
+  }
+
+  items.push({
+    icon: App.clipboard_icon,
+    text: `Paste`,
+    action: () => {
+      App.settings_filter_paste(e.target)
+    },
+  })
+
+  if (value) {
+    App.sep(items)
+
+    items.push({
+      icon: App.notepad_icon,
+      text: `Clear`,
+      action: () => {
+        App.settings_filter_clear(e.target)
+      },
+    })
+  }
+
+  App.show_context({items, e})
+}
+
+App.settings_filter_copy = (el) => {
+  App.copy_to_clipboard(el.value.trim())
+}
+
+App.settings_filter_paste = async (el) => {
+  let perm = await App.ask_permission(`clipboardRead`)
+
+  if (!perm) {
+    return
+  }
+
+  let value = await navigator.clipboard.readText()
+
+  if (value) {
+    el.value = value
+    App.do_filter_settings()
+    el.focus()
+  }
+}
+
+App.settings_filter_clear = (el) => {
+  el.value = ``
+  App.do_filter_settings()
+  el.focus()
 }
