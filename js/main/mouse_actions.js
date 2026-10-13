@@ -504,6 +504,7 @@ App.mouse_context_action = (e) => {
     `settings_number`,
     `addlist_text`,
     `addlist_textarea`,
+    `addlist_number`,
   ]
 
   if (natural_cls.some(cls => e.target.classList.contains(cls))) {
