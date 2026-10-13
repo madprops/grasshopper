@@ -1920,3 +1920,7 @@ App.updated_tabs = () => {
   let tabs = App.get_all_tabs()
   return [...tabs].sort((a, b) => b.last_title - a.last_title)
 }
+
+App.get_unread_tabs = () => {
+  return App.get_items(`tabs`).filter(x => x.unread)
+}

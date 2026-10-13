@@ -4675,6 +4675,16 @@ App.setup_commands = () => {
       info: `Show playing tabs`,
     },
     {
+      name: `Show Unread`,
+      short_name: `Unread`,
+      cmd: `show_unread_tabs`,
+      icon: unread_icon,
+      action: (args) => {
+        App.show_tab_list(`unread`, args.e)
+      },
+      info: `Show unread tabs`,
+    },
+    {
       name: `Show Recent`,
       short_name: `Recent`,
       cmd: `show_recent_tabs`,

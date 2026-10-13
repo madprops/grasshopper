@@ -18,6 +18,11 @@ App.show_tab_list = async (what, e, item) => {
     title = `Playing`
     title_icon = App.get_setting(`playing_icon`)
   }
+  else if (what === `unread`) {
+    tabs = App.get_unread_tabs()
+    title = `Unread`
+    title_icon = App.get_setting(`unread_icon`)
+  }
   else if (what === `nodes`) {
     tabs = App.get_tab_nodes(item)
     title = `Nodes`
