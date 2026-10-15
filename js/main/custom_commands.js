@@ -31,6 +31,15 @@ App.custom_command_actions = {
       App.edit_title_directly(it, cmd.argument)
     }
   },
+  edit_icon: (cmd, items, e) => {
+    for (let it of items) {
+      App.edit_tab_icon({
+        item: it,
+        icon: cmd.argument,
+        force: true,
+      })
+    }
+  },
   add_tag: (cmd, items, e) => {
     for (let it of items) {
       App.add_tag_string(it, cmd.argument)
@@ -80,6 +89,7 @@ App.custom_command_items = [
   {text: `Move To Zone (Top)`, value: `move_to_zone_top`, icon: App.zone_icon},
   {text: `Move To Zone (Bottom)`, value: `move_to_zone_bottom`, icon: App.zone_icon},
   {text: `Edit Title`, value: `edit_title`, icon: App.notepad_icon},
+  {text: `Edit Icon`, value: `edit_icon`, icon: App.settings_icons.icons},
   {text: `Add Tag`, value: `add_tag`, icon: App.tag_icon},
   {text: `Append Note`, value: `append_note`, icon: App.notepad_icon},
   {text: `Prepend Note`, value: `prepend_note`, icon: App.notepad_icon},

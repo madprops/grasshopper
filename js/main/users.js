@@ -85,16 +85,16 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `toggle_auto_blur`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `detach_tab_container_2`}
+  cmd = {cmd: `detach_tab_container_2`, confirm: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `run_custom_command_container_shopping`}
+  cmd = {cmd: `run_custom_command_container_shopping`, confirm: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `run_custom_command_container_share`}
+  cmd = {cmd: `run_custom_command_container_share`, confirm: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `run_custom_command_container_banking`}
+  cmd = {cmd: `run_custom_command_container_banking`, confirm: true}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `lock_screen`}
