@@ -341,7 +341,6 @@ App.user_wright_settings = () => {
 
   App.set_theme(5)
   App.set_setting({setting: `show_main_title`, value: true})
-  App.set_setting({setting: `favorites_auto_hide`, value: true})
   App.set_setting({setting: `item_border`, value: `none`})
   App.set_setting({setting: `item_icon`, value: `small`})
   App.set_setting({setting: `multi_bold`, value: true})
