@@ -1456,16 +1456,22 @@ App.setup_settings_addlist = () => {
     if (menukeys.includes(key)) {
       let id = `settings_${key}`
       let props = App.setting_props[key]
+      let keys = [`cmd`, `middle`, `shift`, `ctrl`, `alt`]
+
+      if (key.startsWith(`favorites_menu`)) {
+        keys.push(`confirm`)
+      }
 
       App.create_popup({...popobj, id: `addlist_${id}`,
         element: Addlist.register({...regobj, id,
-          keys: [`cmd`, `middle`, `shift`, `ctrl`, `alt`],
+          keys,
           widgets: {
             cmd: `menu`,
             middle: `menu`,
             shift: `menu`,
             ctrl: `menu`,
             alt: `menu`,
+            confirm: `checkbox`,
           },
           labels: {
             cmd: `Command`,
@@ -1473,6 +1479,7 @@ App.setup_settings_addlist = () => {
             shift: `Shift`,
             ctrl: `Ctrl`,
             alt: `Alt`,
+            confirm: `Confirm`
           },
           sources: {
             cmd: () => {
@@ -1490,6 +1497,9 @@ App.setup_settings_addlist = () => {
             alt: () => {
               return App.cmdlist_single.slice(0)
             },
+            confirm: () => {
+              return false
+            },
           },
           list_icon: (item) => {
             return App.settings_cmd_icon(item.cmd)
@@ -1503,6 +1513,7 @@ App.setup_settings_addlist = () => {
             shift: `Command on Shift + Click`,
             ctrl: `Command on Ctrl + Click`,
             alt: `Command on Alt + Click`,
+            confirm: `Require confirmation to run this when clicked`,
           },
           title: props.name,
           special_add: () => {

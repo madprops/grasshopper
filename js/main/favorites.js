@@ -150,7 +150,16 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
         e,
       }
 
-      App.run_command(args)
+      if (fav.fav.confirm) {
+      }
+
+      App.show_confirm({
+        message: `${fav.cmd.name}?`,
+        confirm_action: async () => {
+          App.run_command(args)
+        },
+        force: !fav.fav.confirm,
+      })
     })
 
     let middle = App.get_command(fav.fav.middle)
