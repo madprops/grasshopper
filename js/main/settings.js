@@ -1479,7 +1479,7 @@ App.setup_settings_addlist = () => {
             shift: `Shift`,
             ctrl: `Ctrl`,
             alt: `Alt`,
-            confirm: `Confirm`
+            confirm: `Confirm`,
           },
           sources: {
             cmd: () => {

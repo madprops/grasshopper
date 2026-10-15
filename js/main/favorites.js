@@ -150,9 +150,6 @@ App.fill_favorites_bar = (mode = App.active_mode) => {
         e,
       }
 
-      if (fav.fav.confirm) {
-      }
-
       App.show_confirm({
         message: `${fav.cmd.name}?`,
         confirm_action: async () => {
