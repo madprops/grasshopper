@@ -877,11 +877,27 @@ App.setup_commands = () => {
     let icon = item.icon
 
     custom_icons.push({
+      name: `Edit Icon: ${icon}`,
+      short_name: `Icon: ${icon}`,
+      cmd: `edit_an_icon_${icon}`,
+      modes: [`tabs`],
+      icon: icon,
+      action: (args) => {
+        App.edit_tab_icon({
+          icon,
+          item: args.item,
+          force: true,
+        })
+      },
+      info: `Edit the tab with icon: ${icon}`,
+    })
+
+    custom_icons.push({
       name: `Show Icon: ${icon}`,
       short_name: `Show: ${icon}`,
       cmd: `show_an_icon_${icon}`,
       modes: [`tabs`],
-      icon: icons_icon,
+      icon: icon,
       action: (args) => {
         App.show_tab_list(`icon_${icon}`, args.e)
       },
@@ -893,7 +909,7 @@ App.setup_commands = () => {
       short_name: `Filter: ${icon}`,
       cmd: `filter_an_icon_${icon}`,
       modes: [`tabs`],
-      icon: icons_icon,
+      icon: icon,
       action: (args) => {
         App.set_filter({text: `icon: ${icon}`})
       },
