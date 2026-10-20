@@ -303,8 +303,11 @@ App.select_all_containers = () => {
 }
 
 App.detach_container = async (item, e, close = false) => {
+  if (!App.is_container(item)) {
+    return
+  }
+
   let new_tab_mode = App.get_setting(`new_tab_mode`)
-  let containers = await App.get_all_containers()
   let active = App.get_active_items({mode: item.mode, item})
   let o_item
 
