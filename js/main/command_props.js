@@ -737,7 +737,7 @@ App.setup_commands = () => {
   for (let n = 1; n <= 5; n++) {
     container_openers.push({
       name: `Container #${n}`,
-      cmd: `use_container_num_${n}`,
+      cmd: `container_num_${n}`,
       icon: App[`num_${n}_icon`],
       action: (args) => {
         App.open_in_container(n, args.item, args.e)
@@ -749,7 +749,7 @@ App.setup_commands = () => {
   for (let n = 1; n <= 5; n++) {
     container_openers.push({
       name: `Container #${n} (2)`,
-      cmd: `use_container_num_${n}_2`,
+      cmd: `container_num_${n}_2`,
       icon: App[`num_${n}_icon`],
       action: (args) => {
         App.open_in_container(n, args.item, args.e, true)
