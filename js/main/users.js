@@ -88,13 +88,13 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `detach_tab_container_2`, confirm: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `run_custom_command_container_shopping`, confirm: true}
+  cmd = {cmd: `use_container_num_1_2`, confirm: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `run_custom_command_container_share`, confirm: true}
+  cmd = {cmd: `use_container_num_2_2`, confirm: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `run_custom_command_container_banking`, confirm: true}
+  cmd = {cmd: `use_container_num_3_2`, confirm: true}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `lock_screen`}
@@ -105,15 +105,6 @@ App.user_madprops_settings = () => {
   sett = `custom_commands`
 
   cmd = {name: `Zone: bc`, icon: `🛤️`, action: `go_to_zone`, argument: `bc`, _id_: `zone_bc`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {name: `Container: Shopping`, icon: `1️⃣`, action: `open_in_container_2`, argument: `Shopping`, _id_: `container_shopping`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {name: `Container: Share`, icon: `2️⃣`, action: `open_in_container_2`, argument: `Share`, _id_: `container_share`}
-  App.append_list_setting(sett, cmd)
-
-  cmd = {name: `Container: Banking`, icon: `3️⃣`, action: `open_in_container_2`, argument: `Banking`, _id_: `container_banking`}
   App.append_list_setting(sett, cmd)
 
   // Combos
