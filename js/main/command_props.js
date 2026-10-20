@@ -47,6 +47,7 @@ App.setup_commands = () => {
   let footer_icon = App.settings_icons.footer
   let pinline_icon = App.settings_icons.pinline
   let gestures_icon = App.settings_icons.gestures
+  let icons_icon = App.settings_icons.icons
   let hat_icon = App.hat_icon
   let letters_icon = App.letters_icon
   let blur_icon = App.blur_icon
@@ -867,6 +868,36 @@ App.setup_commands = () => {
         App.show_jump_tag(n, args.e)
       },
       info: `Show the 'jump' (${n}) tag`,
+    })
+  }
+
+  let custom_icons = []
+
+  for (let item of App.get_setting(`custom_icons`)) {
+    let icon = item.icon
+
+    custom_icons.push({
+      name: `Show Icon: ${icon}`,
+      short_name: `Show: ${icon}`,
+      cmd: `show_an_icon_${icon}`,
+      modes: [`tabs`],
+      icon: icons_icon,
+      action: (args) => {
+        App.show_tab_list(`icon_${icon}`, args.e)
+      },
+      info: `Show tabs of an icon: ${icon}`,
+    })
+
+    custom_icons.push({
+      name: `Filter Icon: ${icon}`,
+      short_name: `Filter: ${icon}`,
+      cmd: `filter_an_icon_${icon}`,
+      modes: [`tabs`],
+      icon: icons_icon,
+      action: (args) => {
+        App.set_filter({text: `icon: ${icon}`})
+      },
+      info: `Filter tabs of an icon: ${icon}`,
     })
   }
 
@@ -4570,6 +4601,9 @@ App.setup_commands = () => {
       },
       info: `Show a specific icon`,
     },
+
+    ...custom_icons,
+
     {
       name: `Filter Pins`,
       short_name: `Pins`,
