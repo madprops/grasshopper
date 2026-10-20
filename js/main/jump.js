@@ -259,3 +259,8 @@ App.jump_tabs_unread = (reverse = false) => {
 App.jump_tabs_playing = (reverse = false) => {
   App.jump_tabs({what: `playing`, reverse})
 }
+
+App.show_jump_tag = (n, e) => {
+  let tag = App.get_jump_target(n)
+  App.show_tab_list(`tag_${tag}`, e)
+}

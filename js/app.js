@@ -370,6 +370,11 @@ App.donate_icon = `🎁`
 App.group_icon = `🗂️`
 App.document_icon = `📖`
 App.bell_icon = `🔔`
+App.num_1_icon = `1️⃣`
+App.num_2_icon = `2️⃣`
+App.num_3_icon = `3️⃣`
+App.num_4_icon = `4️⃣`
+App.num_5_icon = `5️⃣`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

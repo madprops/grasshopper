@@ -732,6 +732,118 @@ App.setup_commands = () => {
     })
   }
 
+  let container_openers = []
+
+  for (let n = 1; n <= 5; n++) {
+    container_openers.push({
+      name: `Container #${n}`,
+      cmd: `use_container_num_${n}`,
+      icon: App[`num_${n}_icon`],
+      action: (args) => {
+        App.open_in_container(n, args.item, args.e)
+      },
+      info: `Open tabs in container #${n}`,
+    })
+  }
+
+  for (let n = 1; n <= 5; n++) {
+    container_openers.push({
+      name: `Container #${n} (2)`,
+      cmd: `use_container_num_${n}_2`,
+      icon: App[`num_${n}_icon`],
+      action: (args) => {
+        App.open_in_container(n, args.item, args.e, true)
+      },
+      info: `Open tabs in container #${n}, in place`,
+    })
+  }
+
+  let jumpers = []
+
+  for (let n = 1; n <= 3; n++) {
+    jumpers.push({
+      name: `Jump Up ${n}`,
+      cmd: `jump_tabs_tag_${n}_up`,
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(n, true)
+      },
+      info: `Jump in reverse to tabs with the 'jump${n}' tag`,
+    })
+
+    jumpers.push({
+      name: `Jump Down ${n}`,
+      cmd: `jump_tabs_tag_${n}_down`,
+      icon: right_icon,
+      action: (args) => {
+        App.jump_tabs_tag(n)
+      },
+      info: `Jump to tabs with the 'jump${n}' tag`,
+    })
+
+    jumpers.push({
+      name: `Add Jump ${n}`,
+      short_name: `Jump ${n}`,
+      cmd: `add_jump_tag_${n}`,
+      modes: [`tabs`],
+      item: true,
+      icon: tags_icon,
+      action: (args) => {
+        let tag = App.get_jump_target(n)
+        App.add_tag_all(args.item, tag)
+      },
+      info: `Add the 'jump${n}' tag`,
+    })
+
+    jumpers.push({
+      name: `Remove Jump ${n}`,
+      short_name: `Rm Jump ${n}`,
+      cmd: `remove_jump_tag_${n}`,
+      modes: [`tabs`],
+      item: true,
+      icon: tags_icon,
+      action: (args) => {
+        let tag = App.get_jump_target(n)
+        App.remove_tag_all(args.item, tag)
+      },
+      info: `Remove the 'jump${n}' tag`,
+    })
+
+    jumpers.push({
+      name: `Wipe Jump ${n}`,
+      cmd: `wipe_jump_${n}`,
+      modes: [`tabs`],
+      icon: tags_icon,
+      action: (args) => {
+        App.wipe_jump(n)
+      },
+      info: `Remove the 'jump${n}' tag from all items`,
+    })
+
+    jumpers.push({
+      name: `Filter Jump ${n}`,
+      cmd: `filter_jump_tag_${n}`,
+      modes: [`tabs`],
+      filter_mode: true,
+      icon: tags_icon,
+      action: (args) => {
+        App.filter_jump_tag(args.mode, n)
+      },
+      info: `Filter the 'jump${n}' tag`,
+    })
+
+    jumpers.push({
+      name: `Show Jump ${n}`,
+      cmd: `show_jump_tag_${n}`,
+      modes: [`tabs`],
+      icon: tags_icon,
+      action: (args) => {
+        App.show_jump_tag(n, args.e)
+      },
+      info: `Show the 'jump${n}' tag`,
+    })
+  }
+
   App.commands = [
     {
       name: `Go To Top`,
@@ -1800,7 +1912,7 @@ App.setup_commands = () => {
       info: `Bookmark the selected items by picking a folder`,
     },
     {
-      name: `To Folder 2`,
+      name: `To Folder (2)`,
       short_name: `To Folder`,
       cmd: `bookmark_items_folder_2`,
       modes: [`items`],
@@ -3400,195 +3512,9 @@ App.setup_commands = () => {
       },
       info: `Import the datastore`,
     },
-    {
-      name: `Jump Up`,
-      cmd: `jump_tabs_tag_1_up`,
-      icon: right_icon,
-      action: (args) => {
-        App.jump_tabs_tag(1, true)
-      },
-      info: `Jump in reverse to tabs with the 'jump' tag`,
-    },
-    {
-      name: `Jump Down`,
-      cmd: `jump_tabs_tag_1_down`,
-      icon: right_icon,
-      action: (args) => {
-        App.jump_tabs_tag(1)
-      },
-      info: `Jump to tabs with the 'jump' tag`,
-    },
-    {
-      name: `Jump 2 Up`,
-      cmd: `jump_tabs_tag_2_up`,
-      icon: right_icon,
-      action: (args) => {
-        App.jump_tabs_tag(2, true)
-      },
-      info: `Jump in reverse to tabs with the 'jump2' tag`,
-    },
-    {
-      name: `Jump 2 Down`,
-      cmd: `jump_tabs_tag_2_down`,
-      icon: right_icon,
-      action: (args) => {
-        App.jump_tabs_tag(2)
-      },
-      info: `Jump to tabs with the 'jump2' tag`,
-    },
-    {
-      name: `Jump 3 Up`,
-      cmd: `jump_tabs_tag_3_up`,
-      icon: right_icon,
-      action: (args) => {
-        App.jump_tabs_tag(3, true)
-      },
-      info: `Jump in reverse to tabs with the 'jump3' tag`,
-    },
-    {
-      name: `Jump 3 Down`,
-      cmd: `jump_tabs_tag_3_down`,
-      icon: right_icon,
-      action: (args) => {
-        App.jump_tabs_tag(3)
-      },
-      info: `Jump to tabs with the 'jump3' tag`,
-    },
-    {
-      name: `Add Jump`,
-      short_name: `Jump`,
-      cmd: `add_jump_tag_1`,
-      modes: [`tabs`],
-      item: true,
-      icon: tags_icon,
-      action: (args) => {
-        App.add_tag_all(args.item, `jump`)
-      },
-      info: `Add the 'jump' tag`,
-    },
-    {
-      name: `Remove Jump`,
-      short_name: `Rm Jump`,
-      cmd: `remove_jump_tag_1`,
-      modes: [`tabs`],
-      item: true,
-      icon: tags_icon,
-      action: (args) => {
-        App.remove_tag_all(args.item, `jump`)
-      },
-      info: `Remove the 'jump' tag`,
-    },
-    {
-      name: `Wipe Jump`,
-      cmd: `wipe_jump_1`,
-      modes: [`tabs`],
-      icon: tags_icon,
-      action: (args) => {
-        App.wipe_jump(1)
-      },
-      info: `Remove the 'jump' tag from all items`,
-    },
-    {
-      name: `Add Jump 2`,
-      short_name: `Jump 2`,
-      cmd: `add_jump_tag_2`,
-      modes: [`tabs`],
-      item: true,
-      icon: tags_icon,
-      action: (args) => {
-        App.add_tag_all(args.item, `jump2`)
-      },
-      info: `Add the 'jump2' tag`,
-    },
-    {
-      name: `Remove Jump 2`,
-      short_name: `Rm Jump 2`,
-      cmd: `remove_jump_tag_2`,
-      modes: [`tabs`],
-      item: true,
-      icon: tags_icon,
-      action: (args) => {
-        App.remove_tag_all(args.item, `jump2`)
-      },
-      info: `Remove the 'jump2' tag`,
-    },
-    {
-      name: `Wipe Jump 2`,
-      cmd: `wipe_jump_2`,
-      modes: [`tabs`],
-      icon: tags_icon,
-      action: (args) => {
-        App.wipe_jump(2)
-      },
-      info: `Remove the 'jump2' tag from all items`,
-    },
-    {
-      name: `Add Jump 3`,
-      short_name: `Jump 3`,
-      cmd: `add_jump_tag_3`,
-      modes: [`tabs`],
-      item: true,
-      icon: tags_icon,
-      action: (args) => {
-        App.add_tag_all(args.item, `jump3`)
-      },
-      info: `Add the 'jump3' tag`,
-    },
-    {
-      name: `Remove Jump 3`,
-      short_name: `Rm Jump 3`,
-      cmd: `remove_jump_tag_3`,
-      modes: [`tabs`],
-      item: true,
-      icon: tags_icon,
-      action: (args) => {
-        App.remove_tag_all(args.item, `jump3`)
-      },
-      info: `Remove the 'jump3' tag`,
-    },
-    {
-      name: `Wipe Jump 3`,
-      cmd: `wipe_jump_3`,
-      modes: [`tabs`],
-      icon: tags_icon,
-      action: (args) => {
-        App.wipe_jump(3)
-      },
-      info: `Remove the 'jump3' tag from all items`,
-    },
-    {
-      name: `Filter Jump`,
-      cmd: `filter_jump_tag_1`,
-      modes: [`tabs`],
-      filter_mode: true,
-      icon: tags_icon,
-      action: (args) => {
-        App.filter_jump_tag(args.mode, 1)
-      },
-      info: `Filter the 'jump' tag`,
-    },
-    {
-      name: `Filter Jump 2`,
-      cmd: `filter_jump_tag_2`,
-      modes: [`tabs`],
-      filter_mode: true,
-      icon: tags_icon,
-      action: (args) => {
-        App.filter_jump_tag(args.mode, 2)
-      },
-      info: `Filter the 'jump2' tag`,
-    },
-    {
-      name: `Filter Jump 3`,
-      cmd: `filter_jump_tag_3`,
-      modes: [`tabs`],
-      filter_mode: true,
-      icon: tags_icon,
-      action: (args) => {
-        App.filter_jump_tag(args.mode, 3)
-      },
-      info: `Filter the 'jump3' tag`,
-    },
+
+    ...jumpers,
+
     {
       name: `Header Up`,
       cmd: `jump_tabs_header_up`,
@@ -4879,7 +4805,7 @@ App.setup_commands = () => {
       info: `Open a tab in a new container`,
     },
     {
-      name: `Open In Container 2`,
+      name: `Open In Container (2)`,
       short_name: `Container`,
       cmd: `open_tabs_in_container_2`,
       modes: [`tabs`],
@@ -4901,7 +4827,7 @@ App.setup_commands = () => {
       info: `Open this URL without a container`,
     },
     {
-      name: `Detach Container 2`,
+      name: `Detach Container (2)`,
       short_name: `Detach`,
       cmd: `detach_tab_container_2`,
       modes: [`tabs`],
@@ -4921,6 +4847,9 @@ App.setup_commands = () => {
       },
       info: `Pick a specific container to show`,
     },
+
+    ...container_openers,
+
     {
       name: `Filter Edited`,
       short_name: `Edited`,

@@ -344,3 +344,14 @@ App.detach_container = async (item, e, close = false) => {
 App.is_container = (item) => {
   return Boolean(item.container_name)
 }
+
+App.open_in_container = async (n, item, e, close = false) => {
+  let containers = await App.get_all_containers()
+
+  if (containers.length < n) {
+    return
+  }
+
+  let container = containers[n - 1]
+  App.open_in_tab_container(item, e, container.name, close)
+}
