@@ -3002,11 +3002,11 @@ App.build_settings = () => {
       name: `Favorites Menu`,
       type: `list`,
       value: [
-        {cmd: `show_pinned_tabs`, middle: `filter_pinned_tabs`},
         {cmd: `show_recent_tabs`, middle: `show_playing_tabs`},
         {cmd: `show_color_red`, middle: `filter_color_red`},
         {cmd: `show_color_green`, middle: `filter_color_green`},
         {cmd: `show_color_blue`, middle: `filter_color_blue`},
+        {cmd: `show_unread_tabs`, middle: `filter_unread_tabs`},
         {cmd: `detach_tab_container_2`},
         {cmd: `use_container_num_1_2`},
         {cmd: `use_container_num_2_2`},
