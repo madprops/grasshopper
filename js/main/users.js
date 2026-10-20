@@ -88,13 +88,13 @@ App.user_madprops_settings = () => {
   cmd = {cmd: `detach_tab_container_2`, confirm: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `container_num_1_2`, confirm: true}
+  cmd = {cmd: `tab_container_num_1_2`, confirm: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `container_num_2_2`, confirm: true}
+  cmd = {cmd: `tab_container_num_2_2`, confirm: true}
   App.append_list_setting(sett, cmd)
 
-  cmd = {cmd: `container_num_3_2`, confirm: true}
+  cmd = {cmd: `tab_container_num_3_2`, confirm: true}
   App.append_list_setting(sett, cmd)
 
   cmd = {cmd: `lock_screen`}
