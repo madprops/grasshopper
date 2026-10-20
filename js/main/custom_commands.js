@@ -40,6 +40,9 @@ App.custom_command_actions = {
       })
     }
   },
+  show_icon: (cmd, items, e) => {
+    App.show_tab_list(`icon_${cmd.argument}`, e)
+  },
   add_tag: (cmd, items, e) => {
     for (let it of items) {
       App.add_tag_string(it, cmd.argument)
@@ -70,6 +73,9 @@ App.custom_command_actions = {
   jump_to_tag: (cmd, items, e) => {
     App.jump_tabs({what: `tag_${cmd.argument}`, item: items[0]})
   },
+  show_tag: (cmd, items, e) => {
+    App.show_tab_list(`tag_${cmd.argument}`, e)
+  },
   custom_filter: (cmd, items, e) => {
     App.set_filter({text: cmd.argument, enter_if_cmd: true})
   },
@@ -90,6 +96,7 @@ App.custom_command_items = [
   {text: `Move To Zone (Bottom)`, value: `move_to_zone_bottom`, icon: App.zone_icon},
   {text: `Edit Title`, value: `edit_title`, icon: App.notepad_icon},
   {text: `Edit Icon`, value: `edit_icon`, icon: App.settings_icons.icons},
+  {text: `Show Icon`, value: `show_icon`, icon: App.settings_icons.icons},
   {text: `Add Tag`, value: `add_tag`, icon: App.tag_icon},
   {text: `Append Note`, value: `append_note`, icon: App.notepad_icon},
   {text: `Prepend Note`, value: `prepend_note`, icon: App.notepad_icon},
@@ -98,6 +105,7 @@ App.custom_command_items = [
   {text: `Open In Container`, value: `open_in_container`, icon: App.container_icon},
   {text: `Open In Container 2`, value: `open_in_container_2`, icon: App.container_icon},
   {text: `Jump To Tag`, value: `jump_to_tag`, icon: App.tag_icon},
+  {text: `Show Tag`, value: `show_tag`, icon: App.tag_icon},
   {text: `Find Command`, value: `find_command`, icon: App.command_icon},
   {text: `Custom Filter`, value: `custom_filter`, icon: App.filter_icon},
   {text: `Select Items`, value: `select_items`, icon: App.filter_icon},

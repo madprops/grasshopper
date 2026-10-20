@@ -5173,6 +5173,13 @@ App.build_settings = () => {
       info: `Consider tags when using the filter normally, by typing a tag name`,
       version: 1,
     },
+    filter_icons: {
+      name: `Filter Icons`,
+      type: `checkbox`,
+      value: true,
+      info: `Consider icons when using the filter normally, by typing an icon`,
+      version: 1,
+    },
     filter_media: {
       name: `Filter Media`,
       type: `checkbox`,

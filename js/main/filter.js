@@ -735,6 +735,14 @@ App.filter_check = (args) => {
   }
 
   if (!match) {
+    if (args.by_what.startsWith(`icon`) || App.get_setting(`filter_icons`)) {
+      if (App.get_icon(args.item) === args.value_lower) {
+        match = true
+      }
+    }
+  }
+
+  if (!match) {
     if ((args.by_what === `all`) && App.get_setting(`filter_media`)) {
       if (App.item_or_items(args.value_lower, `image`)) {
         match = args.item.image

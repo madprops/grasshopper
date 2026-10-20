@@ -730,6 +730,32 @@ App.setup_commands = () => {
       },
       info: `Add the '${item.tag}' tag to tabs`,
     })
+
+    custom_tags.push({
+      name: `Show Tag: ${item.tag}`,
+      short_name: item.tag,
+      cmd: `show_tag_${item.tag}`,
+      modes: [`tabs`],
+      item: true,
+      icon: tags_icon,
+      action: (args) => {
+        App.show_tab_list(`tag_${item.tag}`, args.e)
+      },
+      info: `Show the tabs with the '${item.tag}' tag`,
+    })
+
+    custom_tags.push({
+      name: `Filter Tag: ${item.tag}`,
+      short_name: item.tag,
+      cmd: `filter_a_tag_${item.tag}`,
+      modes: [`tabs`],
+      item: true,
+      icon: tags_icon,
+      action: (args) => {
+        App.filter_tag({mode: args.mode, tag: item.tag})
+      },
+      info: `Filter tabs with the '${item.tag}' tag`,
+    })
   }
 
   let container_openers = []

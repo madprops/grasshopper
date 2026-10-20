@@ -520,6 +520,8 @@ App.filter_whats = [
   `chars`,
   `sim`,
   `sims`,
+  `icon`,
+  `icons`,
 ]
 
 App.themes = [
