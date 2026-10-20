@@ -3006,7 +3006,6 @@ App.build_settings = () => {
         {cmd: `show_color_red`, middle: `filter_color_red`},
         {cmd: `show_color_green`, middle: `filter_color_green`},
         {cmd: `show_color_blue`, middle: `filter_color_blue`},
-        {cmd: `show_unread_tabs`, middle: `filter_unread_tabs`},
         {cmd: `detach_tab_container_2`, middle: `detach_tab_container`, confirm: true},
         {cmd: `tab_container_num_1_2`, middle: `tab_container_num_1`, confirm: true},
         {cmd: `tab_container_num_2_2`, middle: `tab_container_num_2`, confirm: true},

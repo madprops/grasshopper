@@ -330,7 +330,7 @@ App.user_slay_settings = () => {
 App.user_wright_settings = () => {
   App.user_madprops_settings()
 
-  App.set_theme(5)
+  App.set_theme(3)
   App.set_setting({setting: `show_main_title`, value: true})
   App.set_setting({setting: `item_border`, value: `none`})
   App.set_setting({setting: `item_icon`, value: `small`})
