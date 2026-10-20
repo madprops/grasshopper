@@ -31,7 +31,7 @@ App.custom_command_actions = {
   },
   edit_icon: (cmd, item, items, e) => {
     App.edit_tab_icon({
-      item: item,
+      item,
       icon: cmd.argument,
       force: true,
     })

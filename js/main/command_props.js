@@ -881,7 +881,7 @@ App.setup_commands = () => {
       short_name: `Icon: ${icon}`,
       cmd: `edit_an_icon_${icon}`,
       modes: [`tabs`],
-      icon: icon,
+      icon,
       action: (args) => {
         App.edit_tab_icon({
           icon,
@@ -897,7 +897,7 @@ App.setup_commands = () => {
       short_name: `Show: ${icon}`,
       cmd: `show_an_icon_${icon}`,
       modes: [`tabs`],
-      icon: icon,
+      icon,
       action: (args) => {
         App.show_tab_list(`icon_${icon}`, args.e)
       },
@@ -909,7 +909,7 @@ App.setup_commands = () => {
       short_name: `Filter: ${icon}`,
       cmd: `filter_an_icon_${icon}`,
       modes: [`tabs`],
-      icon: icon,
+      icon,
       action: (args) => {
         App.set_filter({text: `icon: ${icon}`})
       },
