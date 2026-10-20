@@ -768,7 +768,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_tag(n, true)
       },
-      info: `Jump in reverse to tabs with the 'jump${n}' tag`,
+      info: `Jump in reverse to tabs with the 'jump' (${n}) tag`,
     })
 
     jumpers.push({
@@ -778,7 +778,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.jump_tabs_tag(n)
       },
-      info: `Jump to tabs with the 'jump${n}' tag`,
+      info: `Jump to tabs with the 'jump' (${n}) tag`,
     })
 
     jumpers.push({
@@ -792,7 +792,7 @@ App.setup_commands = () => {
         let tag = App.get_jump_target(n)
         App.add_tag_all(args.item, tag)
       },
-      info: `Add the 'jump${n}' tag`,
+      info: `Add the 'jump' (${n}) tag`,
     })
 
     jumpers.push({
@@ -806,7 +806,7 @@ App.setup_commands = () => {
         let tag = App.get_jump_target(n)
         App.remove_tag_all(args.item, tag)
       },
-      info: `Remove the 'jump${n}' tag`,
+      info: `Remove the 'jump' (${n}) tag`,
     })
 
     jumpers.push({
@@ -817,7 +817,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.wipe_jump(n)
       },
-      info: `Remove the 'jump${n}' tag from all items`,
+      info: `Remove the 'jump' (${n}) tag from all items`,
     })
 
     jumpers.push({
@@ -829,7 +829,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_jump_tag(args.mode, n)
       },
-      info: `Filter the 'jump${n}' tag`,
+      info: `Filter the 'jump' (${n}) tag`,
     })
 
     jumpers.push({
@@ -840,7 +840,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_jump_tag(n, args.e)
       },
-      info: `Show the 'jump${n}' tag`,
+      info: `Show the 'jump' (${n}) tag`,
     })
   }
 
