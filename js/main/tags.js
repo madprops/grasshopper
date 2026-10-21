@@ -119,10 +119,19 @@ App.remove_tag = (item, tag) => {
   }
 
   let tags = App.get_tags(item, false).filter(x => x !== tag)
+  let active = App.get_active_items({mode: item.mode, item})
 
-  App.apply_edit({what: `tags`, item, value: tags, on_change: (value) => {
-    App.custom_save(item.id, `tags`, value)
-  }})
+  App.show_confirm({
+    message: `Remove ${tag}?`,
+    confirm_action: async () => {
+      for (let it of active) {
+        App.apply_edit({what: `tags`, item: it, value: tags, on_change: (value) => {
+          App.custom_save(it.id, `tags`, value)
+        }})
+      }
+    },
+    force: active.length === 1,
+  })
 }
 
 App.remove_tag_all = (item, tag) => {
