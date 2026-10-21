@@ -62,7 +62,7 @@ App.remove_item_notes = (item, single = false) => {
 }
 
 App.remove_notes = (item) => {
-  App.remove_item_notes(item, true)
+  App.remove_item_notes(item)
 }
 
 App.edit_global_notes = () => {
