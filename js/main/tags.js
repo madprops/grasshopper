@@ -122,7 +122,7 @@ App.remove_tag = (item, tag) => {
   let active = App.get_active_items({mode: item.mode, item})
 
   App.show_confirm({
-    message: `Remove ${tag}?`,
+    message: `Remove tag? (${active.length})`,
     confirm_action: async () => {
       for (let it of active) {
         App.apply_edit({what: `tags`, item: it, value: tags, on_change: (value) => {
