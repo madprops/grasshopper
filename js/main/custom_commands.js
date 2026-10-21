@@ -1,6 +1,6 @@
 App.custom_command_actions = {
-  go_to_zone: (cmd, item, items, e) => {
-    let zone = App.get_zone_by_title(cmd.argument)
+  go_to_zone: (args) => {
+    let zone = App.get_zone_by_title(args.cmd.argument)
 
     if (!zone) {
       return
@@ -8,75 +8,75 @@ App.custom_command_actions = {
 
     App.go_to_zone(zone)
   },
-  move_to_zone_top: (cmd, item, items, e) => {
-    let zone = App.get_zone_by_title(cmd.argument)
+  move_to_zone_top: (args) => {
+    let zone = App.get_zone_by_title(args.cmd.argument)
 
-    if (!zone || !items.length) {
+    if (!zone || !args.items.length) {
       return
     }
 
-    App.move_to_zone(zone, item, `top`)
+    App.move_to_zone(zone, args.item, `top`)
   },
-  move_to_zone_bottom: (cmd, item, items, e) => {
-    let zone = App.get_zone_by_title(cmd.argument)
+  move_to_zone_bottom: (args) => {
+    let zone = App.get_zone_by_title(args.cmd.argument)
 
-    if (!zone || !items.length) {
+    if (!zone || !args.items.length) {
       return
     }
 
-    App.move_to_zone(zone, item, `bottom`)
+    App.move_to_zone(zone, args.item, `bottom`)
   },
-  edit_title: (cmd, item, items, e) => {
-    App.edit_title_directly(item, cmd.argument)
+  edit_title: (args) => {
+    App.edit_title_directly(args.item, args.cmd.argument)
   },
-  edit_icon: (cmd, item, items, e) => {
+  edit_icon: (args) => {
     App.edit_tab_icon({
-      item,
-      icon: cmd.argument,
+      item: args.item,
+      icon: args.cmd.argument,
       force: true,
     })
   },
-  show_icon: (cmd, item, items, e) => {
-    App.show_tab_list(`icon_${cmd.argument}`, e)
+  show_icon: (args) => {
+    App.show_tab_list(`icon_${args.cmd.argument}`, args.e)
   },
-  add_tag: (cmd, item, items, e) => {
-    App.add_tag_string(item, cmd.argument)
+  add_tag: (args) => {
+    App.add_tag_string(args.item, args.cmd.argument)
   },
-  append_note: (cmd, item, items, e) => {
-    App.append_note(item, cmd.argument)
+  append_note: (args) => {
+    App.append_note(args.item, args.cmd.argument)
   },
-  prepend_note: (cmd, item, items, e) => {
-    App.prepend_note(item, cmd.argument)
+  prepend_note: (args) => {
+    App.prepend_note(args.item, args.cmd.argument)
   },
-  append_global_note: (cmd, item, items, e) => {
-    App.append_global_note(cmd.argument)
+  append_global_note: (args) => {
+    App.append_global_note(args.cmd.argument)
   },
-  prepend_global_note: (cmd, item, items, e) => {
-    App.prepend_global_note(cmd.argument)
+  prepend_global_note: (args) => {
+    App.prepend_global_note(args.cmd.argument)
   },
-  open_in_container: (cmd, item, items, e) => {
-    App.open_in_tab_container(item, e, cmd.argument)
+  open_in_container: (args) => {
+    App.open_in_tab_container(args.item, args.e, args.cmd.argument)
   },
-  open_in_container_2: (cmd, item, items, e) => {
-    App.open_in_tab_container(item, e, cmd.argument, true)
+  open_in_container_2: (args) => {
+    App.open_in_tab_container(args.item, args.e, args.cmd.argument, true)
   },
-  jump_to_tag: (cmd, item, items, e) => {
-    App.jump_tabs({what: `tag_${cmd.argument}`, item})
+  jump_to_tag: (args) => {
+    App.jump_tabs({what: `tag_${args.cmd.argument}`, item: args.item})
   },
-  show_tag: (cmd, item, items, e) => {
-    App.show_tab_list(`tag_${cmd.argument}`, e)
+  show_tag: (args) => {
+    App.show_tab_list(`tag_${args.cmd.argument}`, args.e)
   },
-  custom_filter: (cmd, item, items, e) => {
-    App.set_filter({text: cmd.argument, enter_if_cmd: true})
+  custom_filter: (args) => {
+    App.set_filter({text: args.cmd.argument, enter_if_cmd: true})
   },
-  find_command: (cmd, item, items, e) => {
-    App.show_palette(cmd.argument)
+  find_command: (args) => {
+    App.show_palette(args.cmd.argument)
   },
-  close_tabs: (cmd, item, items, e) => {
-    App.custom_close_tabs(cmd.argument, item)
+  close_tabs: (args) => {
+    App.custom_close_tabs(args.cmd.argument, args.item)
   },
-  select_items: (cmd, item, items, e) => {
-    App.select_item_list(cmd.argument)
+  select_items: (args) => {
+    App.select_item_list(args.cmd.argument)
   },
 }
 
@@ -163,6 +163,6 @@ App.run_custom_command = (cmd, item, e) => {
 
   if (action) {
     let items = App.get_active_items({mode: item.mode, item})
-    action(cmd, item, items, e)
+    action({cmd, item, items, e})
   }
 }
