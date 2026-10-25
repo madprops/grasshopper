@@ -1857,7 +1857,7 @@ App.setup_commands = () => {
       item: true,
       icon: select_icon,
       action: (args) => {
-        App.select_item({item: args.item, scroll: `nearest_smooth`, deselect: false})
+        App.pick(args.item)
       },
       info: `Pick an item to select multiple`,
     },
