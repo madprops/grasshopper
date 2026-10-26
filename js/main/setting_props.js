@@ -2128,7 +2128,7 @@ App.build_settings = () => {
     extra_menu_mode: {
       name: `Extra Menu Mode`,
       type: `menu`,
-      value: `flat`,
+      value: `normal`,
       info: `How to show the Extra Menu on right click
       Either on its own submenu, flat at the root level`,
       version: 2,
