@@ -952,6 +952,7 @@ App.update_icon_tooltips = (item, target) => {
     el.title += `\nClick: Show Menu`
   }
   else if (icon === `container`) {
+    el.title += `\nMiddle Click: Detach Container`
     el.title += `\nClick: Show Menu`
   }
 }
