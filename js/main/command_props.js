@@ -4898,7 +4898,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: container_icon,
       action: (args) => {
-        App.detach_container(args.item, args.e)
+        App.detach_container(args.item)
       },
       info: `Open this URL without a container`,
     },
@@ -4909,7 +4909,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: container_icon,
       action: (args) => {
-        App.detach_container(args.item, args.e, true)
+        App.detach_container(args.item, true)
       },
       info: `Open this URL without a container (And close the original tabs)`,
     },

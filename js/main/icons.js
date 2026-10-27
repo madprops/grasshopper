@@ -1192,6 +1192,9 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
     else if (check(`.group_icon`)) {
       icon = `group`
     }
+    else if (check(`.container_icon`)) {
+      icon = `container`
+    }
   }
 
   if (!icon) {
@@ -1250,6 +1253,11 @@ App.check_item_icon_middle_click = (item, target, icon = ``) => {
 
   if (icon === `group`) {
     App.ungroup_tabs(item)
+    return true
+  }
+
+  if (icon === `container`) {
+    App.detach_container(item, true)
     return true
   }
 

@@ -302,7 +302,7 @@ App.select_all_containers = () => {
   App.do_select_container(``)
 }
 
-App.detach_container = async (item, e, close = false) => {
+App.detach_container = async (item, close = false) => {
   if (!App.is_container(item)) {
     return
   }
