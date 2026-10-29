@@ -1777,7 +1777,7 @@ App.filter_items_by_title = (items, text) => {
   return new_items
 }
 
-App.select_item_list = (text) => {
+App.select_item_list = (text, select_all = true) => {
   let items = App.get_items().slice(0)
   items = App.filter_items_by_title(items, text)
   App.item_list = items.map(x => x.id)
@@ -1785,12 +1785,14 @@ App.select_item_list = (text) => {
   App.filter_list({
     mode: App.active_mode,
     from: `select_item_list`,
+    select_all,
   })
 }
 
 App.filter_list = (args = {}) => {
   let def_args = {
     toggle: false,
+    select_all: true,
   }
 
   App.def_args(def_args, args)
@@ -1803,7 +1805,7 @@ App.filter_list = (args = {}) => {
     full: `List`,
     toggle: args.toggle,
     from: args.from,
-    select_all: true,
+    select_all: args.select_all,
   })
 }
 

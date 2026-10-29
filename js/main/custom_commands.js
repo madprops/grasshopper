@@ -76,6 +76,9 @@ App.custom_command_actions = {
     App.custom_close_tabs(args.cmd.argument, args.item)
   },
   filter_items: (args) => {
+    App.select_item_list(args.cmd.argument, false)
+  },
+  select_items: (args) => {
     App.select_item_list(args.cmd.argument)
   },
   show_tabs: (args) => {
@@ -102,6 +105,7 @@ App.custom_command_items = [
   {text: `Find Command`, value: `find_command`, icon: App.command_icon, info: `Find this command`},
   {text: `Custom Filter`, value: `custom_filter`, icon: App.filter_icon, info: `Make a filter with this text`},
   {text: `Filter Items`, value: `filter_items`, icon: App.filter_icon, info: `Filter items that have this text in the title`},
+  {text: `Select Items`, value: `select_items`, icon: App.filter_icon, info: `Select items that have this text in the title`},
   {text: `Show Tabs`, value: `show_tabs`, icon: App.tabs_icon, info: `Show tabs that have this text in the title`},
   {text: `Close Tabs`, value: `close_tabs`, icon: App.close_icon, info: `Close tabs have this text in the title`},
 ]
