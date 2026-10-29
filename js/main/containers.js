@@ -224,8 +224,8 @@ App.open_in_tab_container = async (item, e, name = ``, close = false) => {
     o_item = active[0]
   }
 
-  async function close_tabs(new_tab_ids) {
-    if (close) {
+  async function close_tabs(new_tab_ids, do_close) {
+    if (do_close) {
       if (new_tab_ids.length) {
         await App.update_tab(new_tab_ids.at(-1), {active: true})
       }
@@ -234,25 +234,35 @@ App.open_in_tab_container = async (item, e, name = ``, close = false) => {
     }
   }
 
-  if (name) {
-    let target_container = App.find_container_by_name(containers, name)
-
-    if (!target_container) {
-      App.alert(`No container named ${name} found`)
-      return
-    }
-
+  async function action (c, do_close) {
     let new_tab_ids = []
 
     for (let it of active) {
-      let tab = await App.create_new_tab({url: it.url, cookieStoreId: target_container.id}, o_item)
+      if (close && App.is_container(it, c.name)) {
+        continue
+      }
+
+      let tab = await App.create_new_tab({url: it.url, cookieStoreId: c.id}, o_item)
 
       if (tab) {
         new_tab_ids.push(tab.id)
       }
     }
 
-    await close_tabs(new_tab_ids)
+    if (new_tab_ids.length) {
+      await close_tabs(new_tab_ids, do_close)
+    }
+  }
+
+  if (name) {
+    let c = App.find_container_by_name(containers, name)
+
+    if (!c) {
+      App.alert(`No container named ${name} found`)
+      return
+    }
+
+    await action(c, close)
     return
   }
 
@@ -263,18 +273,12 @@ App.open_in_tab_container = async (item, e, name = ``, close = false) => {
       text: c.name,
       icon: App.color_icon_square(c.color),
       action: async () => {
-        let new_tab_ids = []
-
-        for (let it of active) {
-          let tab = await App.create_new_tab({url: it.url, cookieStoreId: c.id}, o_item)
-
-          if (tab) {
-            new_tab_ids.push(tab.id)
-          }
-        }
-
-        await close_tabs(new_tab_ids)
+        await action(c, true)
       },
+      middle_action: async () => {
+        await action(c, false)
+      },
+      info: `Middle`
     })
   }
 
@@ -344,8 +348,18 @@ App.detach_container = async (item, close = false) => {
   }
 }
 
-App.is_container = (item) => {
-  return Boolean(item.container_name)
+App.is_container = (item, name = ``) => {
+  let has_container = Boolean(item.container_name)
+
+  if (!has_container) {
+    return false
+  }
+
+  if (name) {
+    return item.container_name === name
+  }
+
+  return true
 }
 
 App.open_in_container = async (n, item, e, close = false) => {
