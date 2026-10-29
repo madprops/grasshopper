@@ -204,7 +204,7 @@ App.find_container_by_name = (containers, name = ``) => {
   }
 }
 
-App.open_in_tab_container = async (item, e, name = ``, close = false) => {
+App.open_in_tab_container = async (item, e, name = ``, close = true) => {
   let new_tab_mode = App.get_setting(`new_tab_mode`)
   let containers = await App.get_all_containers()
   let active = App.get_active_items({mode: item.mode, item})
@@ -306,7 +306,7 @@ App.select_all_containers = () => {
   App.do_select_container(``)
 }
 
-App.detach_container = async (item, close = false) => {
+App.detach_container = async (item, close = true) => {
   if (!App.is_container(item)) {
     return
   }
@@ -362,7 +362,7 @@ App.is_container = (item, name = ``) => {
   return true
 }
 
-App.open_in_container = async (n, item, e, close = false) => {
+App.open_in_container = async (n, item, e, close = true) => {
   let containers = await App.get_all_containers()
 
   if (containers.length < n) {

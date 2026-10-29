@@ -769,7 +769,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.open_in_container(n, args.item, args.e)
       },
-      info: `Open tabs in container #${n}`,
+      info: `Open tabs in container #${n}, in place`,
     })
   }
 
@@ -779,9 +779,9 @@ App.setup_commands = () => {
       cmd: `tab_container_num_${n}_2`,
       icon: App[`num_${n}_icon`],
       action: (args) => {
-        App.open_in_container(n, args.item, args.e, true)
+        App.open_in_container(n, args.item, args.e, false)
       },
-      info: `Open tabs in container #${n}, in place`,
+      info: `Open tabs in container #${n}, and keep tabs`,
     })
   }
 
@@ -4878,7 +4878,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.open_in_tab_container(args.item, args.e)
       },
-      info: `Open a tab in a new container`,
+      info: `Open a tab in a new container, in place`,
     },
     {
       name: `Open In Container (2)`,
@@ -4887,9 +4887,9 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: container_icon,
       action: (args) => {
-        App.open_in_tab_container(args.item, args.e, ``, true)
+        App.open_in_tab_container(args.item, args.e, ``, false)
       },
-      info: `Open a tab in a new container (And close the original tabs)`,
+      info: `Open a tab in a new container, and keep tabs`,
     },
     {
       name: `Detach Container`,
@@ -4900,7 +4900,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.detach_container(args.item)
       },
-      info: `Open this URL without a container`,
+      info: `Open this URL without a container, in place`,
     },
     {
       name: `Detach Container (2)`,
@@ -4909,9 +4909,9 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: container_icon,
       action: (args) => {
-        App.detach_container(args.item, true)
+        App.detach_container(args.item, false)
       },
-      info: `Open this URL without a container (And close the original tabs)`,
+      info: `Open this URL without a container, and keep tabs`,
     },
     {
       name: `Pick Container`,

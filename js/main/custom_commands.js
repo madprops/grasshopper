@@ -58,7 +58,7 @@ App.custom_command_actions = {
     App.open_in_tab_container(args.item, args.e, args.cmd.argument)
   },
   open_in_container_2: (args) => {
-    App.open_in_tab_container(args.item, args.e, args.cmd.argument, true)
+    App.open_in_tab_container(args.item, args.e, args.cmd.argument, false)
   },
   jump_to_tag: (args) => {
     App.jump_tabs({what: `tag_${args.cmd.argument}`, item: args.item})
