@@ -75,31 +75,35 @@ App.custom_command_actions = {
   close_tabs: (args) => {
     App.custom_close_tabs(args.cmd.argument, args.item)
   },
-  select_items: (args) => {
+  filter_items: (args) => {
     App.select_item_list(args.cmd.argument)
+  },
+  show_tabs: (args) => {
+    App.tab_list_by_title(args.cmd.argument, args.e)
   },
 }
 
 App.custom_command_items = [
-  {text: `Go To Zone`, value: `go_to_zone`, icon: App.zone_icon},
-  {text: `Move To Zone (Top)`, value: `move_to_zone_top`, icon: App.zone_icon},
-  {text: `Move To Zone (Bottom)`, value: `move_to_zone_bottom`, icon: App.zone_icon},
-  {text: `Edit Title`, value: `edit_title`, icon: App.notepad_icon},
-  {text: `Edit Icon`, value: `edit_icon`, icon: App.settings_icons.icons},
-  {text: `Show Icon`, value: `show_icon`, icon: App.settings_icons.icons},
-  {text: `Add Tag`, value: `add_tag`, icon: App.tag_icon},
-  {text: `Append Note`, value: `append_note`, icon: App.notepad_icon},
-  {text: `Prepend Note`, value: `prepend_note`, icon: App.notepad_icon},
-  {text: `Append Global Note`, value: `append_global_note`, icon: App.notepad_icon},
-  {text: `Prepend Global Note`, value: `prepend_global_note`, icon: App.notepad_icon},
-  {text: `Open In Container`, value: `open_in_container`, icon: App.container_icon},
-  {text: `Open In Container (2)`, value: `open_in_container_2`, icon: App.container_icon},
-  {text: `Jump To Tag`, value: `jump_to_tag`, icon: App.tag_icon},
-  {text: `Show Tag`, value: `show_tag`, icon: App.tag_icon},
-  {text: `Find Command`, value: `find_command`, icon: App.command_icon},
-  {text: `Custom Filter`, value: `custom_filter`, icon: App.filter_icon},
-  {text: `Select Items`, value: `select_items`, icon: App.filter_icon},
-  {text: `Close Tabs`, value: `close_tabs`, icon: App.close_icon},
+  {text: `Go To Zone`, value: `go_to_zone`, icon: App.zone_icon, info: `Go to this zone`},
+  {text: `Move To Zone (Top)`, value: `move_to_zone_top`, icon: App.zone_icon, info: `Move tabs to this zone at the top`},
+  {text: `Move To Zone (Bottom)`, value: `move_to_zone_bottom`, icon: App.zone_icon, info: `Move tabs to this zone at the bottom`},
+  {text: `Edit Title`, value: `edit_title`, icon: App.notepad_icon, info: `Edit the title with this`},
+  {text: `Edit Icon`, value: `edit_icon`, icon: App.settings_icons.icons, info: `Edit the icon with this`},
+  {text: `Show Icon`, value: `show_icon`, icon: App.settings_icons.icons, info: `Show tabs that have this icon`},
+  {text: `Add Tag`, value: `add_tag`, icon: App.tag_icon, info: `Add this tag to tabs`},
+  {text: `Append Note`, value: `append_note`, icon: App.notepad_icon, info: `Append this note to tabs`},
+  {text: `Prepend Note`, value: `prepend_note`, icon: App.notepad_icon, info: `Prepend this note to tabs`},
+  {text: `Append Global Note`, value: `append_global_note`, icon: App.notepad_icon, info: `Append this to global notes`},
+  {text: `Prepend Global Note`, value: `prepend_global_note`, icon: App.notepad_icon, info: `Prepend this to global notes`},
+  {text: `Open In Container`, value: `open_in_container`, icon: App.container_icon, info: `Open tabs in this container, in place`},
+  {text: `Open In Container (2)`, value: `open_in_container_2`, icon: App.container_icon, info: `Open tabs in this container, keep tabs open`},
+  {text: `Jump To Tag`, value: `jump_to_tag`, icon: App.tag_icon, info: `Jump to this tag`},
+  {text: `Show Tag`, value: `show_tag`, icon: App.tag_icon, info: `Show tabs with this tag`},
+  {text: `Find Command`, value: `find_command`, icon: App.command_icon, info: `Find this command`},
+  {text: `Custom Filter`, value: `custom_filter`, icon: App.filter_icon, info: `Make a filter with this text`},
+  {text: `Filter Items`, value: `filter_items`, icon: App.filter_icon, info: `Filter items that have this text in the title`},
+  {text: `Show Tabs`, value: `show_tabs`, icon: App.filter_icon, info: `Show tabs that have this text in the title`},
+  {text: `Close Tabs`, value: `close_tabs`, icon: App.close_icon, info: `Close tabs have this text in the title`},
 ]
 
 App.start_custom_commands_addlist = () => {

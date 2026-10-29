@@ -1924,3 +1924,8 @@ App.updated_tabs = () => {
 App.get_unread_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.unread)
 }
+
+App.get_tabs_by_title = (text) => {
+  let tabs = App.get_all_tabs()
+  return App.filter_items_by_title(tabs, text)
+}

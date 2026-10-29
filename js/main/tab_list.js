@@ -140,6 +140,12 @@ App.show_tab_list = async (what, e, item) => {
       title_icon = icon
     }
   }
+  else if (what.startsWith(`title_`)) {
+    let text = what.split(`_`)[1]
+    tabs = App.get_tabs_by_title(text)
+    title = `Custom`
+    title_icon = App.get_setting(`tabs_mode_icon`)
+  }
   else if (what === `clusters`) {
     tabs = App.get_tab_clusters()
     title = `Clusters`
@@ -214,4 +220,8 @@ App.show_tab_list = async (what, e, item) => {
     middle_action_remove: true,
     title_number: true,
   })
+}
+
+App.tab_list_by_title = (title, e) => {
+  App.show_tab_list(`title_${title}`, e)
 }
