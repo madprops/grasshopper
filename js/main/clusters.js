@@ -32,5 +32,5 @@ App.get_tab_clusters = (remove_first = false) => {
 }
 
 App.show_tab_clusters = (e) => {
-  App.show_tab_list(`clusters`, e)
+  App.show_tab_list({what: `clusters`, e})
 }

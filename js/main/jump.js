@@ -262,5 +262,5 @@ App.jump_tabs_playing = (reverse = false) => {
 
 App.show_jump_tag = (n, e) => {
   let tag = App.get_jump_target(n)
-  App.show_tab_list(`tag::${tag}`, e)
+  App.show_tab_list({what: `tag`, value: tag, e})
 }

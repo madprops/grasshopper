@@ -55,7 +55,7 @@ App.step_back = (mode = App.active_mode, e = undefined) => {
   }
   else if (tabs) {
     if (App.get_setting(`step_back_recent`) && e && (e.key !== `Escape`)) {
-      App.show_tab_list(`recent`, e)
+      App.show_tab_list({what: `recent`, e})
     }
     else {
       App.go_to_previous_tab()

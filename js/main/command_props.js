@@ -228,7 +228,7 @@ App.setup_commands = () => {
       cmd: `show_color_${color.id}`,
       icon,
       action: (args) => {
-        App.show_tab_list(`color::${color.id}`, args.e)
+        App.show_tab_list({what: `color`, value: color.id, e: args.e})
       },
       info: `Show color (${color.name})`,
     })
@@ -740,7 +740,7 @@ App.setup_commands = () => {
       item: true,
       icon: tags_icon,
       action: (args) => {
-        App.show_tab_list(`tag::${item.tag}`, args.e)
+        App.show_tab_list({what: `tag`, value: item.tag, e: args.e})
       },
       info: `Show the tabs with the '${item.tag}' tag`,
     })
@@ -899,7 +899,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon,
       action: (args) => {
-        App.show_tab_list(`icon::${icon}`, args.e)
+        App.show_tab_list({what: `icon`, value: icon, e: args.e})
       },
       info: `Show tabs of an icon: ${icon}`,
     })
@@ -4164,7 +4164,7 @@ App.setup_commands = () => {
       some_hostname: true,
       icon: filter_icon,
       action: (args) => {
-        App.show_tab_list(`domain`, args.e, args.item)
+        App.show_tab_list({what: `domain`, e: args.e, item: args.item})
       },
       info: `Show same domain`,
     },
@@ -4186,7 +4186,7 @@ App.setup_commands = () => {
       item: true,
       icon: filter_icon,
       action: (args) => {
-        App.show_tab_list(`title`, args.e, args.item)
+        App.show_tab_list({what: `title`, e: args.e, item: args.item})
       },
       info: `Show same title`,
     },
@@ -4212,7 +4212,7 @@ App.setup_commands = () => {
       some_nodes: true,
       icon: node_icon,
       action: (args) => {
-        App.show_tab_list(`nodes`, args.e, args.item)
+        App.show_tab_list({what: `nodes`, e: args.e, item: args.item})
       },
       info: `Show the nodes of this tab`,
     },
@@ -4225,7 +4225,7 @@ App.setup_commands = () => {
       some_parent: true,
       icon: parent_icon,
       action: (args) => {
-        App.show_tab_list(`parent`, args.e, args.item)
+        App.show_tab_list({what: `parent`, e: args.e, item: args.item})
       },
       info: `Show the parent of this tab`,
     },
@@ -4298,7 +4298,7 @@ App.setup_commands = () => {
       item: true,
       icon: node_icon,
       action: (args) => {
-        App.show_tab_list(`siblings`, args.e, args.item)
+        App.show_tab_list({what: `siblings`, e: args.e, item: args.item})
       },
       info: `Show the siblings of a tab`,
     },
@@ -4466,7 +4466,7 @@ App.setup_commands = () => {
       icon: container_icon,
       some_container: true,
       action: (args) => {
-        App.show_tab_list(`container`, args.e, args.item)
+        App.show_tab_list({what: `container`, e: args.e, item: args.item})
       },
       info: `Show other tabs with the same container`,
     },
@@ -4638,7 +4638,7 @@ App.setup_commands = () => {
       cmd: `show_pinned_tabs`,
       icon: pin_icon,
       action: (args) => {
-        App.show_tab_list(`pins`, args.e)
+        App.show_tab_list({what: `pins`, e: args.e})
       },
       info: `Show pinned tabs`,
     },
@@ -4672,7 +4672,7 @@ App.setup_commands = () => {
       cmd: `show_playing_tabs`,
       icon: playing_icon,
       action: (args) => {
-        App.show_tab_list(`playing`, args.e)
+        App.show_tab_list({what: `playing`, e: args.e})
       },
       info: `Show playing tabs`,
     },
@@ -4682,7 +4682,7 @@ App.setup_commands = () => {
       cmd: `show_unread_tabs`,
       icon: unread_icon,
       action: (args) => {
-        App.show_tab_list(`unread`, args.e)
+        App.show_tab_list({what: `unread`, e: args.e})
       },
       info: `Show unread tabs`,
     },
@@ -4692,7 +4692,7 @@ App.setup_commands = () => {
       cmd: `show_recent_tabs`,
       icon: tabs_icon,
       action: (args) => {
-        App.show_tab_list(`recent`, args.e)
+        App.show_tab_list({what: `recent`, e: args.e})
       },
       info: `Show recent tabs`,
     },

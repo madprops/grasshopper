@@ -469,7 +469,7 @@ App.get_tag_items = (mode, action = `filter`, from = `normal`) => {
           App.filter_tag({mode, tag: `all`, from})
         }
         else if (action === `show`) {
-          App.show_tab_list(`tag::allthetags`)
+          App.show_tab_list({what: `tag`, value: `allthetags`})
         }
         else if (action === `select`) {
           App.select_all_tags()
@@ -489,7 +489,7 @@ App.get_tag_items = (mode, action = `filter`, from = `normal`) => {
             App.filter_tag({mode, tag, from})
           }
           else if (action === `show`) {
-            App.show_tab_list(`tag::${tag}`, e)
+            App.show_tab_list({what: `tag`, value: tag, e})
           }
           else if (action === `select`) {
             App.select_tag(tag)

@@ -1,152 +1,153 @@
-App.show_tab_list = async (what, e, item) => {
+App.show_tab_list = async (args = {}) => {
   let tabs, title, title_icon
 
-  if (what === `recent`) {
+  if (args.what === `recent`) {
     let max = App.get_setting(`max_recent_tabs`)
     let active = App.get_setting(`recent_active`)
     tabs = App.get_recent_tabs({max, active})
     title = `Recent`
     title_icon = App.get_setting(`tabs_mode_icon`)
   }
-  else if (what === `pins`) {
+  else if (args.what === `pins`) {
     tabs = App.get_pinned_tabs()
     title = `Pinned`
     title_icon = App.get_setting(`pin_icon`)
   }
-  else if (what === `playing`) {
+  else if (args.what === `playing`) {
     tabs = App.get_playing_tabs()
     title = `Playing`
     title_icon = App.get_setting(`playing_icon`)
   }
-  else if (what === `unread`) {
+  else if (args.what === `unread`) {
     tabs = App.get_unread_tabs()
     title = `Unread`
     title_icon = App.get_setting(`unread_icon`)
   }
-  else if (what === `nodes`) {
-    tabs = App.get_tab_nodes(item)
+  else if (args.what === `nodes`) {
+    tabs = App.get_tab_nodes(args.item)
     title = `Nodes`
     title_icon = App.get_setting(`node_icon`)
   }
-  else if (what === `parent`) {
-    tabs = [App.get_parent_item(item)]
+  else if (args.what === `parent`) {
+    tabs = [App.get_parent_item(args.item)]
     title = `Parent`
     title_icon = App.get_setting(`parent_icon`)
   }
-  else if (what === `siblings`) {
-    tabs = App.get_tab_siblings(item)
+  else if (args.what === `siblings`) {
+    tabs = App.get_tab_siblings(args.item)
     title = `Siblings`
     title_icon = App.get_setting(`node_icon`)
   }
-  else if (what === `domain`) {
-    tabs = App.get_domain_tabs(item)
+  else if (args.what === `domain`) {
+    tabs = App.get_domain_tabs(args.item)
     title = `Domain`
     title_icon = App.settings_icons.filter
   }
-  else if (what === `title`) {
-    tabs = App.get_title_tabs(item)
+  else if (args.what === `title`) {
+    tabs = App.get_title_tabs(args.item)
     title = `Title`
     title_icon = App.settings_icons.filter
   }
-  else if (what === `container`) {
-    tabs = App.get_container_tabs(item.container_name)
-    title = item.container_name
-    title_icon = App.color_icon_square(item.container_color)
-  }
-  else if (what.startsWith(`container::`)) {
-    let name = what.split(`container::`)[1]
-
-    if (name === `allthecontainers`) {
-      tabs = App.get_container_tabs()
-      title = `Containers`
-      title_icon = App.container_icon
-    }
-    else {
-      tabs = App.get_container_tabs(name)
-      title = name
-      title_icon = App.color_icon_square(App.container_data[name].color)
-    }
-  }
-  else if (what.startsWith(`group::`)) {
-    let id = what.split(`group::`)[1]
-
-    if (id === `allthegroups`) {
-      tabs = App.get_group_tabs()
-      title = `Groups`
-      title_icon = App.group_icon
-    }
-    else if (id === `nogrouphere`) {
-      tabs = []
-      title = `Groups`
-      title_icon = App.group_icon
-    }
-    else {
-      tabs = App.get_group_tabs(parseInt(id))
-      let group = await App.get_group_by_id(id)
-      title = group?.title || `Group`
-      title_icon = App.group_icon
-    }
-  }
-  else if (what.startsWith(`color::`)) {
-    let color_id = what.split(`color::`)[1]
-
-    if (color_id === `allthecolors`) {
-      tabs = App.get_color_tabs()
-      title = `Colors`
-      title_icon = App.color_picker_icon
-    }
-    else {
-      let color = App.get_color_by_id(color_id)
-
-      if (!color) {
-        return
+  else if (args.what === `container`) {
+    if (args.value) {
+      if (args.value === `allthecontainers`) {
+        tabs = App.get_container_tabs()
+        title = `Containers`
+        title_icon = App.container_icon
       }
-
-      tabs = App.get_color_tabs(color_id)
-      title = color.name
-      title_icon = App.color_icon(color_id)
+      else {
+        tabs = App.get_container_tabs(args.value)
+        title = args.value
+        title_icon = App.color_icon_square(App.container_data[args.value].color)
+      }
+    }
+    else {
+      tabs = App.get_container_tabs(args.item.container_name)
+      title = args.item.container_name
+      title_icon = App.color_icon_square(args.item.container_color)
     }
   }
-  else if (what.startsWith(`colors`)) {
+  else if (args.what === `group`) {
+    if (args.value) {
+      if (args.value === `allthegroups`) {
+        tabs = App.get_group_tabs()
+        title = `Groups`
+        title_icon = App.group_icon
+      }
+      else if (args.value === `nogrouphere`) {
+        tabs = []
+        title = `Groups`
+        title_icon = App.group_icon
+      }
+      else {
+        tabs = App.get_group_tabs(parseInt(args.value))
+        let group = await App.get_group_by_id(args.value)
+        title = group?.title || `Group`
+        title_icon = App.group_icon
+      }
+    }
+  }
+  else if (args.what === `color`) {
+    if (args.value) {
+      if (args.value === `allthecolors`) {
+        tabs = App.get_color_tabs()
+        title = `Colors`
+        title_icon = App.color_picker_icon
+      }
+      else {
+        let color = App.get_color_by_id(args.value)
+
+        if (!color) {
+          return
+        }
+
+        tabs = App.get_color_tabs(args.value)
+        title = color.name
+        title_icon = App.color_icon(args.value)
+      }
+    }
+  }
+  else if (args.what === `colors`) {
     tabs = App.get_color_tabs()
     title = `Colors`
     title_icon = App.settings_icons.colors
   }
-  else if (what.startsWith(`tag::`)) {
-    let tag = what.split(`tag::`)[1]
-
-    if (tag === `allthetags`) {
-      tabs = App.get_tag_tabs()
-      title = `Tags`
-      title_icon = App.get_setting(`tags_icon`)
-    }
-    else {
-      tabs = App.get_tag_tabs(tag)
-      title = tag
-      title_icon = App.get_setting(`tags_icon`)
-    }
-  }
-  else if (what.startsWith(`icon::`)) {
-    let icon = what.split(`icon::`)[1]
-
-    if (icon === `alltheicons`) {
-      tabs = App.get_icon_tabs()
-      title = `Icons`
-      title_icon = App.bot_icon
-    }
-    else {
-      tabs = App.get_icon_tabs(icon)
-      title = `Icon`
-      title_icon = icon
+  else if (args.what === `tag`) {
+    if (args.value) {
+      if (args.value === `allthetags`) {
+        tabs = App.get_tag_tabs()
+        title = `Tags`
+        title_icon = App.get_setting(`tags_icon`)
+      }
+      else {
+        tabs = App.get_tag_tabs(args.value)
+        title = args.value
+        title_icon = App.get_setting(`tags_icon`)
+      }
     }
   }
-  else if (what.startsWith(`title::`)) {
-    let text = what.split(`title::`)[1]
-    tabs = App.get_tabs_by_title(text)
-    title = `Custom`
-    title_icon = App.get_setting(`tabs_mode_icon`)
+  else if (args.what === `icon`) {
+    if (args.value) {
+      if (args.value === `alltheicons`) {
+        tabs = App.get_icon_tabs()
+        title = `Icons`
+        title_icon = App.bot_icon
+      }
+      else {
+        tabs = App.get_icon_tabs(args.value)
+        title = `Icon`
+        title_icon = args.value
+      }
+    }
   }
-  else if (what === `clusters`) {
+  else if (args.what === `title`) {
+    if (args.value) {
+      tabs = App.get_tabs_by_title(args.value)
+      title = `Custom`
+      title_icon = App.get_setting(`tabs_mode_icon`)
+    }
+  }
+  else if (args.what === `clusters`) {
     tabs = App.get_tab_clusters()
     title = `Clusters`
     title_icon = App.cluster_icon
@@ -214,14 +215,15 @@ App.show_tab_list = async (what, e, item) => {
   }
 
   App.show_context({
-    items, e,
+    items,
     title,
     title_icon,
+    e: args.e,
     middle_action_remove: true,
     title_number: true,
   })
 }
 
 App.tab_list_by_title = (title, e) => {
-  App.show_tab_list(`title::${title}`, e)
+  App.show_tab_list({what: `title`, value: title, e})
 }

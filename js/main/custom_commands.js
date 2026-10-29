@@ -37,7 +37,7 @@ App.custom_command_actions = {
     })
   },
   show_icon: (args) => {
-    App.show_tab_list(`icon::${args.cmd.argument}`, args.e)
+    App.show_tab_list({what: `icon`, value: args.cmd.argument, e: args.e})
   },
   add_tag: (args) => {
     App.add_tag_string(args.item, args.cmd.argument)
@@ -64,7 +64,7 @@ App.custom_command_actions = {
     App.jump_tabs({what: `tag_${args.cmd.argument}`, item: args.item})
   },
   show_tag: (args) => {
-    App.show_tab_list(`tag::${args.cmd.argument}`, args.e)
+    App.show_tab_list({what: `tag`, value: args.cmd.argument, e: args.e})
   },
   custom_filter: (args) => {
     App.set_filter({text: args.cmd.argument, enter_if_cmd: true})

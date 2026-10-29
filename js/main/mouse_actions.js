@@ -530,12 +530,12 @@ App.mouse_context_action = (e) => {
     }
 
     if (DOM.parent(target, [`.step_back_button`])) {
-      App.show_tab_list(`recent`, e)
+      App.show_tab_list({what: `recent`, e})
       return
     }
 
     if (DOM.parent(target, [`.playing_button`])) {
-      App.show_tab_list(`playing`, e)
+      App.show_tab_list({what: `playing`, e})
       return
     }
 
