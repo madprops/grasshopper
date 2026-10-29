@@ -375,6 +375,7 @@ App.num_2_icon = `2️⃣`
 App.num_3_icon = `3️⃣`
 App.num_4_icon = `4️⃣`
 App.num_5_icon = `5️⃣`
+App.tabs_icon = `📚`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

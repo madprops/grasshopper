@@ -1733,11 +1733,43 @@ App.item_ready = (item) => {
 }
 
 App.filter_items_by_title = (items, text) => {
-  text = text.toLowerCase()
   let new_items = []
+  let regex = null
+
+  if (text instanceof RegExp) {
+    regex = text
+  }
+  else if (typeof text === `string`) {
+    let clean_text = text.trim()
+    let match = clean_text.match(/^\/(.+)\/([gimsuy]*)$/)
+
+    if (match) {
+      try {
+        let flags = match[2].replace(/[gy]/g, ``)
+
+        if (!flags.includes(`i`)) {
+          flags += `i`
+        }
+
+        regex = new RegExp(match[1], flags)
+      }
+      catch (error) {
+        regex = null
+      }
+    }
+  }
+
+  if (!regex) {
+    text = String(text).toLowerCase()
+  }
 
   for (let item of items) {
-    if (item.title.toLowerCase().includes(text)) {
+    if (regex) {
+      if (regex.test(item.title)) {
+        new_items.push(item)
+      }
+    }
+    else if (item.title.toLowerCase().includes(text)) {
       new_items.push(item)
     }
   }
