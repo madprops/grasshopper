@@ -234,7 +234,7 @@ App.open_in_tab_container = async (item, e, name = ``, close = true) => {
     }
   }
 
-  async function action (c, do_close) {
+  async function action(c, do_close) {
     let new_tab_ids = []
 
     for (let it of active) {
@@ -278,7 +278,7 @@ App.open_in_tab_container = async (item, e, name = ``, close = true) => {
       middle_action: async () => {
         await action(c, false)
       },
-      info: `Middle`
+      info: `Middle Click to open in a new tab`,
     })
   }
 
