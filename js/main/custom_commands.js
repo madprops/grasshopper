@@ -93,7 +93,7 @@ App.custom_command_items = [
   {text: `Append Global Note`, value: `append_global_note`, icon: App.notepad_icon},
   {text: `Prepend Global Note`, value: `prepend_global_note`, icon: App.notepad_icon},
   {text: `Open In Container`, value: `open_in_container`, icon: App.container_icon},
-  {text: `Open In Container 2`, value: `open_in_container_2`, icon: App.container_icon},
+  {text: `Open In Container (2)`, value: `open_in_container_2`, icon: App.container_icon},
   {text: `Jump To Tag`, value: `jump_to_tag`, icon: App.tag_icon},
   {text: `Show Tag`, value: `show_tag`, icon: App.tag_icon},
   {text: `Find Command`, value: `find_command`, icon: App.command_icon},
