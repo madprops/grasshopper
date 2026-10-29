@@ -339,7 +339,7 @@ App.get_group_items = async (mode, action = `filter`) => {
           App.filter_group({mode})
         }
         else if (action === `show`) {
-          App.show_tab_list(`group_allthegroups`)
+          App.show_tab_list(`group::allthegroups`)
         }
         else if (action === `select`) {
           App.select_all_groups()
@@ -359,7 +359,7 @@ App.get_group_items = async (mode, action = `filter`) => {
             App.filter_group({mode, group})
           }
           else if (action === `show`) {
-            App.show_tab_list(`group_${group.id}`, e)
+            App.show_tab_list(`group::${group.id}`, e)
           }
           else if (action === `select`) {
             App.do_select_group(group.id)
@@ -413,7 +413,7 @@ App.group_menu_items = async (item, e) => {
       text: `Show`,
       icon,
       action: () => {
-        App.show_tab_list(`group_${item_group.id}`, e)
+        App.show_tab_list(`group::${item_group.id}`, e)
       },
     })
 
@@ -480,7 +480,7 @@ App.show_group = async (item, e) => {
     id = `nogrouphere`
   }
 
-  App.show_tab_list(`group_${id}`, e)
+  App.show_tab_list(`group::${id}`, e)
 }
 
 App.rename_group = async (item) => {

@@ -606,7 +606,7 @@ App.get_icon_items = (mode, action = `filter`, from = `normal`) => {
           App.filter_icon({mode, icon: `all`, from})
         }
         else if (action === `show`) {
-          App.show_tab_list(`icon_alltheicons`, e)
+          App.show_tab_list(`icon::alltheicons`, e)
         }
         else if (action === `select`) {
           App.select_all_icons()
@@ -625,7 +625,7 @@ App.get_icon_items = (mode, action = `filter`, from = `normal`) => {
             App.filter_icon({mode, icon, from})
           }
           else if (action === `show`) {
-            App.show_tab_list(`icon_${icon}`, e)
+            App.show_tab_list(`icon::${icon}`, e)
           }
           else if (action === `select`) {
             App.do_select_same_icon(icon)
@@ -667,7 +667,7 @@ App.custom_icon_menu_items = (item, e) => {
     text: `Show`,
     icon,
     action: () => {
-      App.show_tab_list(`icon_${icon}`, e)
+      App.show_tab_list(`icon::${icon}`, e)
     },
   })
 
@@ -999,7 +999,7 @@ App.check_custom_icon = (item) => {
 
 App.show_custom_icon = (item, e) => {
   let icon = App.get_icon(item)
-  App.show_tab_list(`icon_${icon}`, e)
+  App.show_tab_list(`icon::${icon}`, e)
 }
 
 App.check_icon_active = (icon, item) => {

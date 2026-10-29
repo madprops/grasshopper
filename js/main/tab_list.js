@@ -53,8 +53,8 @@ App.show_tab_list = async (what, e, item) => {
     title = item.container_name
     title_icon = App.color_icon_square(item.container_color)
   }
-  else if (what.startsWith(`container_`)) {
-    let name = what.split(`_`)[1]
+  else if (what.startsWith(`container::`)) {
+    let name = what.split(`container::`)[1]
 
     if (name === `allthecontainers`) {
       tabs = App.get_container_tabs()
@@ -67,8 +67,8 @@ App.show_tab_list = async (what, e, item) => {
       title_icon = App.color_icon_square(App.container_data[name].color)
     }
   }
-  else if (what.startsWith(`group_`)) {
-    let id = what.split(`_`)[1]
+  else if (what.startsWith(`group::`)) {
+    let id = what.split(`group::`)[1]
 
     if (id === `allthegroups`) {
       tabs = App.get_group_tabs()
@@ -87,8 +87,8 @@ App.show_tab_list = async (what, e, item) => {
       title_icon = App.group_icon
     }
   }
-  else if (what.startsWith(`color_`)) {
-    let color_id = what.split(`_`)[1]
+  else if (what.startsWith(`color::`)) {
+    let color_id = what.split(`color::`)[1]
 
     if (color_id === `allthecolors`) {
       tabs = App.get_color_tabs()
@@ -112,8 +112,8 @@ App.show_tab_list = async (what, e, item) => {
     title = `Colors`
     title_icon = App.settings_icons.colors
   }
-  else if (what.startsWith(`tag_`)) {
-    let tag = what.split(`_`)[1]
+  else if (what.startsWith(`tag::`)) {
+    let tag = what.split(`tag::`)[1]
 
     if (tag === `allthetags`) {
       tabs = App.get_tag_tabs()
@@ -126,8 +126,8 @@ App.show_tab_list = async (what, e, item) => {
       title_icon = App.get_setting(`tags_icon`)
     }
   }
-  else if (what.startsWith(`icon_`)) {
-    let icon = what.split(`_`)[1]
+  else if (what.startsWith(`icon::`)) {
+    let icon = what.split(`icon::`)[1]
 
     if (icon === `alltheicons`) {
       tabs = App.get_icon_tabs()
@@ -140,8 +140,8 @@ App.show_tab_list = async (what, e, item) => {
       title_icon = icon
     }
   }
-  else if (what.startsWith(`title_`)) {
-    let text = what.split(`_`)[1]
+  else if (what.startsWith(`title::`)) {
+    let text = what.split(`title::`)[1]
     tabs = App.get_tabs_by_title(text)
     title = `Custom`
     title_icon = App.get_setting(`tabs_mode_icon`)
@@ -223,5 +223,5 @@ App.show_tab_list = async (what, e, item) => {
 }
 
 App.tab_list_by_title = (title, e) => {
-  App.show_tab_list(`title_${title}`, e)
+  App.show_tab_list(`title::${title}`, e)
 }

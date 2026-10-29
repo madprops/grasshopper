@@ -125,7 +125,7 @@ App.get_container_items = (mode, action = `filter`) => {
           App.filter_cmd(mode, `filter_tab_containers_all`, `containers_menu`)
         }
         else if (action === `show`) {
-          App.show_tab_list(`container_allthecontainers`)
+          App.show_tab_list(`container::allthecontainers`)
         }
         else if (action === `select`) {
           App.select_all_containers()
@@ -147,7 +147,7 @@ App.get_container_items = (mode, action = `filter`) => {
             App.filter_container({mode, container})
           }
           else if (action === `show`) {
-            App.show_tab_list(`container_${container}`)
+            App.show_tab_list(`container::${container}`)
           }
           else if (action === `select`) {
             App.do_select_container(container)

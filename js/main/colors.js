@@ -261,7 +261,7 @@ App.color_menu_items = (item, e) => {
       text: `Show`,
       icon: App.clone_if_node(c_icon),
       action: () => {
-        App.show_tab_list(`color_${item_color}`, e)
+        App.show_tab_list(`color::${item_color}`, e)
       },
     })
 
@@ -357,7 +357,7 @@ App.get_color_items = (mode, action = `filter`, from = `normal`) => {
             App.filter_color({mode, id: `all`, from})
           }
           else if (action === `show`) {
-            App.show_tab_list(`color_allthecolors`)
+            App.show_tab_list(`color::allthecolors`)
           }
           else if (action === `select`) {
             App.select_color_tabs()
@@ -385,7 +385,7 @@ App.get_color_items = (mode, action = `filter`, from = `normal`) => {
             App.filter_color({mode, id: color.id, from})
           }
           else if (action === `show`) {
-            App.show_tab_list(`color_${color.id}`)
+            App.show_tab_list(`color::${color.id}`)
           }
           else if (action === `select`) {
             App.select_color(color.id)
@@ -757,7 +757,7 @@ App.show_color_picker = (e) => {
       icon: App.color_icon(color._id_),
       text: color.name,
       action: () => {
-        App.show_tab_list(`color_${color._id_}`, e)
+        App.show_tab_list(`color::${color._id_}`, e)
       },
     })
   }

@@ -142,7 +142,7 @@ App.taglist_action = (item, e) => {
     App.edit_tag(item, tag)
   }
   else if (mode === `show`) {
-    App.show_tab_list(`tag_${tag}`, e)
+    App.show_tab_list(`tag::${tag}`, e)
   }
   else if (mode === `filter`) {
     App.taglist_filter(item, tag)
@@ -163,7 +163,7 @@ App.show_taglist_menu = (e, item) => {
     text: `Show`,
     icon: tags_icon,
     action: () => {
-      App.show_tab_list(`tag_${tag}`, e)
+      App.show_tab_list(`tag::${tag}`, e)
     },
   })
 

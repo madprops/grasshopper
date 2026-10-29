@@ -228,7 +228,7 @@ App.setup_commands = () => {
       cmd: `show_color_${color.id}`,
       icon,
       action: (args) => {
-        App.show_tab_list(`color_${color.id}`, args.e)
+        App.show_tab_list(`color::${color.id}`, args.e)
       },
       info: `Show color (${color.name})`,
     })
@@ -740,7 +740,7 @@ App.setup_commands = () => {
       item: true,
       icon: tags_icon,
       action: (args) => {
-        App.show_tab_list(`tag_${item.tag}`, args.e)
+        App.show_tab_list(`tag::${item.tag}`, args.e)
       },
       info: `Show the tabs with the '${item.tag}' tag`,
     })
@@ -899,7 +899,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon,
       action: (args) => {
-        App.show_tab_list(`icon_${icon}`, args.e)
+        App.show_tab_list(`icon::${icon}`, args.e)
       },
       info: `Show tabs of an icon: ${icon}`,
     })
