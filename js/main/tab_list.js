@@ -44,9 +44,16 @@ App.show_tab_list = async (args = {}) => {
     title_icon = App.settings_icons.filter
   }
   else if (args.what === `title`) {
-    tabs = App.get_title_tabs(args.item)
-    title = `Title`
-    title_icon = App.settings_icons.filter
+    if (args.value) {
+      tabs = App.get_tabs_by_title(args.value)
+      title = `Custom`
+      title_icon = App.get_setting(`tabs_mode_icon`)
+    }
+    else {
+      tabs = App.get_title_tabs(args.item)
+      title = `Title`
+      title_icon = App.settings_icons.filter
+    }
   }
   else if (args.what === `container`) {
     if (args.value) {
@@ -138,13 +145,6 @@ App.show_tab_list = async (args = {}) => {
         title = `Icon`
         title_icon = args.value
       }
-    }
-  }
-  else if (args.what === `title`) {
-    if (args.value) {
-      tabs = App.get_tabs_by_title(args.value)
-      title = `Custom`
-      title_icon = App.get_setting(`tabs_mode_icon`)
     }
   }
   else if (args.what === `clusters`) {
